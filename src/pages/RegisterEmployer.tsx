@@ -73,7 +73,9 @@ const RegisterEmployer = () => {
       if (error) throw error;
       
       toast.success("Registration successful! Our team will contact you soon.");
-      navigate("/");
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get('redirect');
+      navigate(redirect || "/");
     } catch (error) {
       console.error("Registration error:", error);
       toast.error("Registration failed. Please try again.");

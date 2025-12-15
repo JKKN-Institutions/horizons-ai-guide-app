@@ -70,7 +70,9 @@ const Register12thLearner = () => {
       if (error) throw error;
       
       toast.success("Registration successful! We'll be in touch soon.");
-      navigate("/");
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get('redirect');
+      navigate(redirect || "/");
     } catch (error) {
       console.error("Registration error:", error);
       toast.error("Registration failed. Please try again.");

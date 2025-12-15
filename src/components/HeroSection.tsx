@@ -45,7 +45,7 @@ const HeroSection = () => {
             <div className="flex flex-wrap gap-4 mb-8 animate-fade-up" style={{ animationDelay: '0.5s' }}>
               <Button 
                 className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold px-6 py-6 text-base"
-                onClick={() => navigate("/register/12th-learner")}
+                onClick={() => navigate("/register/12th-learner?redirect=/career-assessment/12th-learners")}
               >
                 <GraduationCap className="w-5 h-5 mr-2" />
                 Register as 12th Learner
