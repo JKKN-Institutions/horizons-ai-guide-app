@@ -36,14 +36,19 @@ const Auth = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  // Handle redirect after successful login
   useEffect(() => {
     if (user) {
       const redirectUrl = localStorage.getItem('redirectAfterLogin');
+      console.log('Auth: User logged in, checking redirect URL:', redirectUrl);
+      
       if (redirectUrl) {
+        console.log('Auth: Redirecting to saved URL:', redirectUrl);
         localStorage.removeItem('redirectAfterLogin');
-        navigate(redirectUrl);
+        navigate(redirectUrl, { replace: true });
       } else {
-        navigate('/');
+        console.log('Auth: No redirect URL found, going to home');
+        navigate('/', { replace: true });
       }
     }
   }, [user, navigate]);
