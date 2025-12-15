@@ -13,6 +13,9 @@ import RegisterEmployer from "./pages/RegisterEmployer";
 import AdminLogin from "./pages/AdminLogin";
 import AdminSetup from "./pages/AdminSetup";
 import AdminDashboard from "./pages/AdminDashboard";
+import CareerAssessmentColleges from "./pages/CareerAssessmentColleges";
+import TakeAssessment from "./pages/TakeAssessment";
+import AssessmentResults from "./pages/AssessmentResults";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +37,9 @@ const App = () => (
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin/setup" element={<AdminSetup />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/career-assessment/colleges" element={<CareerAssessmentColleges />} />
+              <Route path="/career-assessment/take/:type" element={<TakeAssessment />} />
+              <Route path="/career-assessment/results/:attemptId" element={<AssessmentResults />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

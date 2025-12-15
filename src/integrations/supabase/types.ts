@@ -239,6 +239,101 @@ export type Database = {
         }
         Relationships: []
       }
+      user_assessment_attempts: {
+        Row: {
+          assessment_type: Database["public"]["Enums"]["assessment_type"]
+          attempt_number: number
+          completed_at: string | null
+          created_at: string
+          current_question: number
+          id: string
+          is_paused: boolean
+          narrative_result: string | null
+          score: Json | null
+          started_at: string
+          total_questions: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          assessment_type: Database["public"]["Enums"]["assessment_type"]
+          attempt_number?: number
+          completed_at?: string | null
+          created_at?: string
+          current_question?: number
+          id?: string
+          is_paused?: boolean
+          narrative_result?: string | null
+          score?: Json | null
+          started_at?: string
+          total_questions?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          assessment_type?: Database["public"]["Enums"]["assessment_type"]
+          attempt_number?: number
+          completed_at?: string | null
+          created_at?: string
+          current_question?: number
+          id?: string
+          is_paused?: boolean
+          narrative_result?: string | null
+          score?: Json | null
+          started_at?: string
+          total_questions?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_question_history: {
+        Row: {
+          answered_at: string | null
+          assessment_type: Database["public"]["Enums"]["assessment_type"]
+          attempt_id: string | null
+          created_at: string
+          id: string
+          options: Json
+          question_hash: string
+          question_text: string
+          user_answer: string | null
+          user_id: string
+        }
+        Insert: {
+          answered_at?: string | null
+          assessment_type: Database["public"]["Enums"]["assessment_type"]
+          attempt_id?: string | null
+          created_at?: string
+          id?: string
+          options: Json
+          question_hash: string
+          question_text: string
+          user_answer?: string | null
+          user_id: string
+        }
+        Update: {
+          answered_at?: string | null
+          assessment_type?: Database["public"]["Enums"]["assessment_type"]
+          attempt_id?: string | null
+          created_at?: string
+          id?: string
+          options?: Json
+          question_hash?: string
+          question_text?: string
+          user_answer?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_question_history_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "user_assessment_attempts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -275,6 +370,11 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
+      assessment_type:
+        | "psychometric"
+        | "career_interest"
+        | "emotional_intelligence"
+        | "skill_gap"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -403,6 +503,12 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "moderator", "user"],
+      assessment_type: [
+        "psychometric",
+        "career_interest",
+        "emotional_intelligence",
+        "skill_gap",
+      ],
     },
   },
 } as const
