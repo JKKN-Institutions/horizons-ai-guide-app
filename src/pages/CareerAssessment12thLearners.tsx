@@ -117,9 +117,13 @@ export default function CareerAssessment12thLearners() {
   };
 
   const handleStartJourney = () => {
+    console.log('handleStartJourney: user =', user?.id, 'existingProfile =', !!existingProfile);
+    
     if (!user) {
       // Save the current URL to redirect back after login
-      localStorage.setItem('redirectAfterLogin', '/career-assessment/12th-learners');
+      const redirectUrl = '/career-assessment/12th-learners';
+      console.log('Not logged in, saving redirect URL:', redirectUrl);
+      localStorage.setItem('redirectAfterLogin', redirectUrl);
       toast({
         title: "Please login first",
         description: "You need to be logged in to take the assessment.",
@@ -129,9 +133,10 @@ export default function CareerAssessment12thLearners() {
     }
 
     if (existingProfile) {
-      // Returning user
+      console.log('Existing profile found, going to details step');
       setStep('details');
     } else {
+      console.log('No profile, going to stream selection');
       setStep('stream');
     }
   };
