@@ -2,10 +2,12 @@ import { Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import UserMenu from "@/components/UserMenu";
 import { useAuth } from "@/hooks/useAuth";
+import { useChatModal } from "@/hooks/useChatModal";
 import { Link } from "react-router-dom";
 
 const TopBar = () => {
   const { user } = useAuth();
+  const { openChat } = useChatModal();
 
   return (
     <div className="bg-primary text-primary-foreground py-2 px-4 md:px-8">
@@ -26,6 +28,7 @@ const TopBar = () => {
           <Button 
             size="sm" 
             className="bg-jkkn-green-light hover:bg-jkkn-green-light/80 text-primary-foreground text-xs h-8"
+            onClick={openChat}
           >
             AI Chat
           </Button>
