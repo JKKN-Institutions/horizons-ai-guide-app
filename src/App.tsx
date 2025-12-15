@@ -16,6 +16,9 @@ import AdminDashboard from "./pages/AdminDashboard";
 import CareerAssessmentColleges from "./pages/CareerAssessmentColleges";
 import TakeAssessment from "./pages/TakeAssessment";
 import AssessmentResults from "./pages/AssessmentResults";
+import CareerAssessment12thLearners from "./pages/CareerAssessment12thLearners";
+import TakeStudentAssessment from "./pages/TakeStudentAssessment";
+import StudentAssessmentResults from "./pages/StudentAssessmentResults";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +43,9 @@ const App = () => (
               <Route path="/career-assessment/colleges" element={<CareerAssessmentColleges />} />
               <Route path="/career-assessment/take/:type" element={<TakeAssessment />} />
               <Route path="/career-assessment/results/:attemptId" element={<AssessmentResults />} />
+              <Route path="/career-assessment/12th-learners" element={<CareerAssessment12thLearners />} />
+              <Route path="/career-assessment/12th-learners/take" element={<TakeStudentAssessment />} />
+              <Route path="/career-assessment/12th-learners/results/:attemptId" element={<StudentAssessmentResults />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

@@ -8,3 +8,6 @@ verify_jwt = true
 
 [functions.admin-setup]
 verify_jwt = false
+
+[functions.student-assessment]
+verify_jwt = true
