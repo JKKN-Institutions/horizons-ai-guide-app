@@ -38,7 +38,13 @@ const Auth = () => {
 
   useEffect(() => {
     if (user) {
-      navigate('/');
+      const redirectUrl = localStorage.getItem('redirectAfterLogin');
+      if (redirectUrl) {
+        localStorage.removeItem('redirectAfterLogin');
+        navigate(redirectUrl);
+      } else {
+        navigate('/');
+      }
     }
   }, [user, navigate]);
 
@@ -94,7 +100,7 @@ const Auth = () => {
             title: "Welcome back!",
             description: "You have successfully logged in.",
           });
-          navigate('/');
+          // Redirect handled by useEffect
         }
       } else {
         const { error } = await signUp(email, password, displayName);
@@ -117,7 +123,7 @@ const Auth = () => {
             title: "Account Created!",
             description: "Welcome! Your account has been created successfully.",
           });
-          navigate('/');
+          // Redirect handled by useEffect
         }
       }
     } finally {
