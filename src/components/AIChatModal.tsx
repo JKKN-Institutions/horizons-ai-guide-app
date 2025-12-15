@@ -1,12 +1,11 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { X, Send, Trash2, Minimize2, Maximize2, Mic, MicOff, Download } from "lucide-react";
+import { X, Send, Trash2, Minimize2, Maximize2, Mic, MicOff, Download, Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-
 interface Message {
   id?: string;
   role: "user" | "assistant";
@@ -74,9 +73,12 @@ const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
   const [isListening, setIsListening] = useState(false);
   const [voiceStatus, setVoiceStatus] = useState<string>("");
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [ttsEnabled, setTtsEnabled] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const speechSynthRef = useRef<SpeechSynthesisUtterance | null>(null);
 
   // Load chat history from database
   useEffect(() => {
@@ -195,6 +197,42 @@ const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
     };
   }, [saveMessage]);
 
+  // Text-to-speech function
+  const speakText = useCallback((text: string) => {
+    if (!ttsEnabled || !window.speechSynthesis) return;
+    
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    speechSynthRef.current = utterance;
+    
+    // Detect language (simple heuristic for Tamil)
+    const hasTamil = /[\u0B80-\u0BFF]/.test(text);
+    utterance.lang = hasTamil ? "ta-IN" : "en-US";
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+    
+    utterance.onstart = () => setIsSpeaking(true);
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => setIsSpeaking(false);
+    
+    window.speechSynthesis.speak(utterance);
+  }, [ttsEnabled]);
+
+  const stopSpeaking = useCallback(() => {
+    window.speechSynthesis?.cancel();
+    setIsSpeaking(false);
+  }, []);
+
+  const toggleTts = useCallback(() => {
+    if (isSpeaking) {
+      stopSpeaking();
+    }
+    setTtsEnabled(prev => !prev);
+    toast.success(ttsEnabled ? "Voice output disabled" : "Voice output enabled");
+  }, [ttsEnabled, isSpeaking, stopSpeaking]);
+
   const toggleVoiceInput = useCallback(() => {
     if (!recognitionRef.current) {
       toast.error("Voice input is not supported in your browser");
@@ -244,6 +282,7 @@ const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
         };
         setMessages(prev => [...prev, assistantMsg]);
         await saveMessage(assistantMsg);
+        speakText(assistantMsg.content);
         return;
       } else if (data.error) {
         throw new Error(data.error);
@@ -298,11 +337,12 @@ const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
       }
     }
     
-    // Save the final assistant message
+    // Save the final assistant message and speak it
     if (assistantContent) {
       await saveMessage({ role: "assistant", content: assistantContent });
+      speakText(assistantContent);
     }
-  }, [saveMessage]);
+  }, [saveMessage, speakText]);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -399,6 +439,15 @@ const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
           <p className="text-xs text-muted-foreground">Ask me anything! 🎤 Voice enabled</p>
         </div>
         <div className="flex items-center gap-1">
+          <Button 
+            size="icon" 
+            variant="ghost" 
+            onClick={isSpeaking ? stopSpeaking : toggleTts} 
+            title={isSpeaking ? "Stop speaking" : ttsEnabled ? "Disable voice output" : "Enable voice output"}
+            className={isSpeaking ? "text-primary animate-pulse" : ""}
+          >
+            {ttsEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+          </Button>
           <Button size="icon" variant="ghost" onClick={clearChat} title="Clear chat">
             <Trash2 className="w-4 h-4" />
           </Button>
