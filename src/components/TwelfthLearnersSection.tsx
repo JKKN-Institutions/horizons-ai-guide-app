@@ -53,7 +53,7 @@ const TwelfthLearnersSection = () => {
 
             <Button 
               className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 text-lg"
-              onClick={() => navigate("/register/12th-learner")}
+              onClick={() => navigate("/register/12th-learner?redirect=/career-assessment/12th-learners")}
             >
               Start Your Career Journey
             </Button>
