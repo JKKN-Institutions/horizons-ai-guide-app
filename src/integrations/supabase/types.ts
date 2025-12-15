@@ -239,6 +239,137 @@ export type Database = {
         }
         Relationships: []
       }
+      student_assessment_attempts: {
+        Row: {
+          answers_json: Json | null
+          attempt_number: number
+          completed_at: string | null
+          course_recommendations: Json | null
+          created_at: string
+          current_question: number
+          id: string
+          is_paused: boolean
+          questions_json: Json | null
+          started_at: string
+          stream: Database["public"]["Enums"]["student_stream"]
+          total_questions: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          answers_json?: Json | null
+          attempt_number?: number
+          completed_at?: string | null
+          course_recommendations?: Json | null
+          created_at?: string
+          current_question?: number
+          id?: string
+          is_paused?: boolean
+          questions_json?: Json | null
+          started_at?: string
+          stream: Database["public"]["Enums"]["student_stream"]
+          total_questions?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          answers_json?: Json | null
+          attempt_number?: number
+          completed_at?: string | null
+          course_recommendations?: Json | null
+          created_at?: string
+          current_question?: number
+          id?: string
+          is_paused?: boolean
+          questions_json?: Json | null
+          started_at?: string
+          stream?: Database["public"]["Enums"]["student_stream"]
+          total_questions?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      student_profiles: {
+        Row: {
+          created_at: string
+          entrance_exams: string[] | null
+          id: string
+          marks_range: string | null
+          specific_interests: string[] | null
+          stream: Database["public"]["Enums"]["student_stream"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          entrance_exams?: string[] | null
+          id?: string
+          marks_range?: string | null
+          specific_interests?: string[] | null
+          stream: Database["public"]["Enums"]["student_stream"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          entrance_exams?: string[] | null
+          id?: string
+          marks_range?: string | null
+          specific_interests?: string[] | null
+          stream?: Database["public"]["Enums"]["student_stream"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      student_question_history: {
+        Row: {
+          answered_at: string | null
+          attempt_id: string | null
+          created_at: string
+          id: string
+          options: Json
+          question_hash: string
+          question_text: string
+          stream: Database["public"]["Enums"]["student_stream"]
+          user_answer: string | null
+          user_id: string
+        }
+        Insert: {
+          answered_at?: string | null
+          attempt_id?: string | null
+          created_at?: string
+          id?: string
+          options: Json
+          question_hash: string
+          question_text: string
+          stream: Database["public"]["Enums"]["student_stream"]
+          user_answer?: string | null
+          user_id: string
+        }
+        Update: {
+          answered_at?: string | null
+          attempt_id?: string | null
+          created_at?: string
+          id?: string
+          options?: Json
+          question_hash?: string
+          question_text?: string
+          stream?: Database["public"]["Enums"]["student_stream"]
+          user_answer?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "student_question_history_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "student_assessment_attempts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_assessment_attempts: {
         Row: {
           assessment_type: Database["public"]["Enums"]["assessment_type"]
@@ -375,6 +506,7 @@ export type Database = {
         | "career_interest"
         | "emotional_intelligence"
         | "skill_gap"
+      student_stream: "pcm" | "pcb" | "pcmb" | "commerce" | "arts"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -509,6 +641,7 @@ export const Constants = {
         "emotional_intelligence",
         "skill_gap",
       ],
+      student_stream: ["pcm", "pcb", "pcmb", "commerce", "arts"],
     },
   },
 } as const
