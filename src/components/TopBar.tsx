@@ -1,4 +1,4 @@
-import { Bell, MessageCircle } from "lucide-react";
+import { Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import UserMenu from "@/components/UserMenu";
 import { useAuth } from "@/hooks/useAuth";
@@ -27,7 +27,6 @@ const TopBar = () => {
             size="sm" 
             className="bg-jkkn-green-light hover:bg-jkkn-green-light/80 text-primary-foreground text-xs h-8"
           >
-            <MessageCircle className="w-3 h-3 mr-1" />
             AI Chat
           </Button>
           <button className="relative p-2 hover:bg-primary-foreground/10 rounded-full transition-colors">
