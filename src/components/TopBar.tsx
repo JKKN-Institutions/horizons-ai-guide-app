@@ -1,7 +1,12 @@
 import { Bell, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import UserMenu from "@/components/UserMenu";
+import { useAuth } from "@/hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const TopBar = () => {
+  const { user } = useAuth();
+
   return (
     <div className="bg-primary text-primary-foreground py-2 px-4 md:px-8">
       <div className="container mx-auto flex items-center justify-between">
@@ -29,13 +34,24 @@ const TopBar = () => {
             <Bell className="w-4 h-4" />
             <span className="absolute top-1 right-1 w-2 h-2 bg-secondary rounded-full"></span>
           </button>
-          <a href="#" className="text-sm hover:underline hidden sm:inline">Login</a>
-          <Button 
-            size="sm" 
-            className="bg-jkkn-green-light hover:bg-jkkn-green-light/80 text-primary-foreground text-xs h-8"
-          >
-            Register
-          </Button>
+          
+          {user ? (
+            <UserMenu />
+          ) : (
+            <>
+              <Link to="/auth">
+                <span className="text-sm hover:underline hidden sm:inline cursor-pointer">Login</span>
+              </Link>
+              <Link to="/auth">
+                <Button 
+                  size="sm" 
+                  className="bg-jkkn-green-light hover:bg-jkkn-green-light/80 text-primary-foreground text-xs h-8"
+                >
+                  Register
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>
