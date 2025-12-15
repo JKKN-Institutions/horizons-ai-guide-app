@@ -71,13 +71,9 @@ export default function TakeStudentAssessment() {
   // Redirect to auth if not logged in
   useEffect(() => {
     if (!authLoading && !user) {
-      console.log('TakeStudentAssessment: Not logged in, saving redirect URL and going to auth');
-      localStorage.setItem('redirectAfterLogin', `/career-assessment/12th-learners/take?stream=${stream}`);
-      toast({
-        title: "Please login first",
-        description: "You need to be logged in to take the assessment.",
-      });
-      navigate('/auth');
+      console.log('TakeStudentAssessment: Not logged in, redirecting to auth with redirect param');
+      navigate(`/auth?redirect=${encodeURIComponent(`/career-assessment/12th-learners/take?stream=${stream}`)}`);
+      return;
     }
   }, [user, authLoading, navigate, stream]);
 

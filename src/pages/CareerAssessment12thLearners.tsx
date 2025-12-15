@@ -118,17 +118,10 @@ export default function CareerAssessment12thLearners() {
 
   const handleStartJourney = () => {
     console.log('handleStartJourney: user =', user?.id, 'existingProfile =', !!existingProfile);
-    
+
     if (!user) {
-      // Save the current URL to redirect back after login
-      const redirectUrl = '/career-assessment/12th-learners';
-      console.log('Not logged in, saving redirect URL:', redirectUrl);
-      localStorage.setItem('redirectAfterLogin', redirectUrl);
-      toast({
-        title: "Please login first",
-        description: "You need to be logged in to take the assessment.",
-      });
-      navigate('/auth');
+      console.log('User not logged in, redirecting to auth with redirect param');
+      navigate('/auth?redirect=/career-assessment/12th-learners');
       return;
     }
 
