@@ -11,6 +11,7 @@ import Register12thLearner from "./pages/Register12thLearner";
 import RegisterLearner from "./pages/RegisterLearner";
 import RegisterEmployer from "./pages/RegisterEmployer";
 import AdminLogin from "./pages/AdminLogin";
+import AdminSetup from "./pages/AdminSetup";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
@@ -31,6 +32,7 @@ const App = () => (
               <Route path="/register/learner" element={<RegisterLearner />} />
               <Route path="/register/employer" element={<RegisterEmployer />} />
               <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin/setup" element={<AdminSetup />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
