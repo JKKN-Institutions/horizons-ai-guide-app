@@ -2,3 +2,9 @@ project_id = "ozgfjntbxogdgyjvsvha"
 
 [functions.jkkn-chat]
 verify_jwt = false
+
+[functions.career-assessment]
+verify_jwt = true
+
+[functions.admin-setup]
+verify_jwt = false
