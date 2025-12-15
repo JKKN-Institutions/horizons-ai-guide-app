@@ -5,14 +5,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowLeft, ArrowRight, Users, CheckCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Users, CheckCircle, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const steps = ["Personal Info", "Education", "Experience", "Review"];
 
 const RegisterLearner = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -44,9 +46,39 @@ const RegisterLearner = () => {
     }
   };
 
-  const handleSubmit = () => {
-    toast.success("Registration successful! We'll be in touch soon.");
-    navigate("/");
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      const { error } = await supabase
+        .from("registrations_learners")
+        .insert({
+          user_id: user?.id || null,
+          full_name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          date_of_birth: formData.dateOfBirth || null,
+          institution: formData.institution || null,
+          degree: formData.degree || null,
+          specialization: formData.specialization || null,
+          graduation_year: formData.graduationYear || null,
+          experience: formData.experience || null,
+          job_role: formData.currentRole || null,
+          skills: formData.skills || null,
+          preferred_role: formData.preferredRole || null,
+        });
+
+      if (error) throw error;
+      
+      toast.success("Registration successful! We'll be in touch soon.");
+      navigate("/");
+    } catch (error) {
+      console.error("Registration error:", error);
+      toast.error("Registration failed. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -205,7 +237,7 @@ const RegisterLearner = () => {
             )}
 
             <div className="flex justify-between pt-4">
-              <Button variant="outline" onClick={handleBack} disabled={currentStep === 0}>
+              <Button variant="outline" onClick={handleBack} disabled={currentStep === 0 || isSubmitting}>
                 <ArrowLeft className="w-4 h-4 mr-2" /> Back
               </Button>
               {currentStep < steps.length - 1 ? (
@@ -213,7 +245,8 @@ const RegisterLearner = () => {
                   Next <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               ) : (
-                <Button onClick={handleSubmit} className="bg-primary hover:bg-primary/90">
+                <Button onClick={handleSubmit} className="bg-primary hover:bg-primary/90" disabled={isSubmitting}>
+                  {isSubmitting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                   Submit Registration
                 </Button>
               )}

@@ -6,14 +6,16 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowLeft, ArrowRight, Briefcase, CheckCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Briefcase, CheckCircle, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const steps = ["Company Info", "Contact Person", "Hiring Needs", "Review"];
 
 const RegisterEmployer = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     companyName: "",
     industry: "",
@@ -26,7 +28,7 @@ const RegisterEmployer = () => {
     hiringRoles: "",
     experienceLevel: "",
     locationsHiring: "",
-    aboutCompany: "",
+    hiringTimeline: "",
   });
 
   const handleChange = (field: string, value: string) => {
@@ -45,9 +47,39 @@ const RegisterEmployer = () => {
     }
   };
 
-  const handleSubmit = () => {
-    toast.success("Registration successful! Our team will contact you soon.");
-    navigate("/");
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      const { error } = await supabase
+        .from("registrations_employers")
+        .insert({
+          user_id: user?.id || null,
+          company_name: formData.companyName,
+          industry: formData.industry || null,
+          company_size: formData.companySize || null,
+          website: formData.website || null,
+          contact_name: formData.contactName,
+          contact_email: formData.contactEmail,
+          contact_phone: formData.contactPhone,
+          designation: formData.designation || null,
+          roles_hiring: formData.hiringRoles || null,
+          experience_level: formData.experienceLevel || null,
+          job_location: formData.locationsHiring || null,
+          hiring_timeline: formData.hiringTimeline || null,
+        });
+
+      if (error) throw error;
+      
+      toast.success("Registration successful! Our team will contact you soon.");
+      navigate("/");
+    } catch (error) {
+      console.error("Registration error:", error);
+      toast.error("Registration failed. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -179,8 +211,16 @@ const RegisterEmployer = () => {
                   <Input id="locations" placeholder="e.g., Chennai, Bangalore, Remote" value={formData.locationsHiring} onChange={e => handleChange("locationsHiring", e.target.value)} />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="about">About Your Company</Label>
-                  <Textarea id="about" placeholder="Brief description of your company..." value={formData.aboutCompany} onChange={e => handleChange("aboutCompany", e.target.value)} rows={3} />
+                  <Label>Hiring Timeline</Label>
+                  <Select value={formData.hiringTimeline} onValueChange={v => handleChange("hiringTimeline", v)}>
+                    <SelectTrigger><SelectValue placeholder="Select timeline" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="immediate">Immediate</SelectItem>
+                      <SelectItem value="1-month">Within 1 month</SelectItem>
+                      <SelectItem value="3-months">Within 3 months</SelectItem>
+                      <SelectItem value="6-months">Within 6 months</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             )}
@@ -201,7 +241,7 @@ const RegisterEmployer = () => {
             )}
 
             <div className="flex justify-between pt-4">
-              <Button variant="outline" onClick={handleBack} disabled={currentStep === 0}>
+              <Button variant="outline" onClick={handleBack} disabled={currentStep === 0 || isSubmitting}>
                 <ArrowLeft className="w-4 h-4 mr-2" /> Back
               </Button>
               {currentStep < steps.length - 1 ? (
@@ -209,7 +249,8 @@ const RegisterEmployer = () => {
                   Next <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               ) : (
-                <Button onClick={handleSubmit} className="bg-primary hover:bg-primary/90">
+                <Button onClick={handleSubmit} className="bg-primary hover:bg-primary/90" disabled={isSubmitting}>
+                  {isSubmitting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                   Submit Registration
                 </Button>
               )}

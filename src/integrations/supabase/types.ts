@@ -71,6 +71,174 @@ export type Database = {
         }
         Relationships: []
       }
+      registrations_12th_learners: {
+        Row: {
+          board: string | null
+          career_interests: string[] | null
+          created_at: string
+          date_of_birth: string | null
+          email: string
+          full_name: string
+          id: string
+          percentage: string | null
+          phone: string
+          preferred_course: string | null
+          preferred_institution: string | null
+          school_name: string | null
+          stream: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          board?: string | null
+          career_interests?: string[] | null
+          created_at?: string
+          date_of_birth?: string | null
+          email: string
+          full_name: string
+          id?: string
+          percentage?: string | null
+          phone: string
+          preferred_course?: string | null
+          preferred_institution?: string | null
+          school_name?: string | null
+          stream?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          board?: string | null
+          career_interests?: string[] | null
+          created_at?: string
+          date_of_birth?: string | null
+          email?: string
+          full_name?: string
+          id?: string
+          percentage?: string | null
+          phone?: string
+          preferred_course?: string | null
+          preferred_institution?: string | null
+          school_name?: string | null
+          stream?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      registrations_employers: {
+        Row: {
+          company_name: string
+          company_size: string | null
+          contact_email: string
+          contact_name: string
+          contact_phone: string
+          created_at: string
+          designation: string | null
+          experience_level: string | null
+          hiring_timeline: string | null
+          id: string
+          industry: string | null
+          job_location: string | null
+          roles_hiring: string | null
+          updated_at: string
+          user_id: string | null
+          website: string | null
+        }
+        Insert: {
+          company_name: string
+          company_size?: string | null
+          contact_email: string
+          contact_name: string
+          contact_phone: string
+          created_at?: string
+          designation?: string | null
+          experience_level?: string | null
+          hiring_timeline?: string | null
+          id?: string
+          industry?: string | null
+          job_location?: string | null
+          roles_hiring?: string | null
+          updated_at?: string
+          user_id?: string | null
+          website?: string | null
+        }
+        Update: {
+          company_name?: string
+          company_size?: string | null
+          contact_email?: string
+          contact_name?: string
+          contact_phone?: string
+          created_at?: string
+          designation?: string | null
+          experience_level?: string | null
+          hiring_timeline?: string | null
+          id?: string
+          industry?: string | null
+          job_location?: string | null
+          roles_hiring?: string | null
+          updated_at?: string
+          user_id?: string | null
+          website?: string | null
+        }
+        Relationships: []
+      }
+      registrations_learners: {
+        Row: {
+          created_at: string
+          date_of_birth: string | null
+          degree: string | null
+          email: string
+          experience: string | null
+          full_name: string
+          graduation_year: string | null
+          id: string
+          institution: string | null
+          job_role: string | null
+          phone: string
+          preferred_role: string | null
+          skills: string | null
+          specialization: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          date_of_birth?: string | null
+          degree?: string | null
+          email: string
+          experience?: string | null
+          full_name: string
+          graduation_year?: string | null
+          id?: string
+          institution?: string | null
+          job_role?: string | null
+          phone: string
+          preferred_role?: string | null
+          skills?: string | null
+          specialization?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          date_of_birth?: string | null
+          degree?: string | null
+          email?: string
+          experience?: string | null
+          full_name?: string
+          graduation_year?: string | null
+          id?: string
+          institution?: string | null
+          job_role?: string | null
+          phone?: string
+          preferred_role?: string | null
+          skills?: string | null
+          specialization?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
