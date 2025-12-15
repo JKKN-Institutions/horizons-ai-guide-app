@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
 
 interface Message {
+  id?: string;
   role: "user" | "assistant";
   content: string;
   imageUrl?: string;
@@ -63,15 +66,70 @@ declare global {
 }
 
 const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
+  const { user } = useAuth();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [voiceStatus, setVoiceStatus] = useState<string>("");
+  const [isLoadingHistory, setIsLoadingHistory] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
+
+  // Load chat history from database
+  useEffect(() => {
+    const loadChatHistory = async () => {
+      if (!user) return;
+      
+      setIsLoadingHistory(true);
+      try {
+        const { data, error } = await supabase
+          .from("chat_messages")
+          .select("*")
+          .eq("user_id", user.id)
+          .order("created_at", { ascending: true });
+        
+        if (error) throw error;
+        
+        if (data) {
+          setMessages(data.map(msg => ({
+            id: msg.id,
+            role: msg.role as "user" | "assistant",
+            content: msg.content,
+            imageUrl: msg.image_url || undefined
+          })));
+        }
+      } catch (error) {
+        console.error("Error loading chat history:", error);
+      } finally {
+        setIsLoadingHistory(false);
+      }
+    };
+    
+    loadChatHistory();
+  }, [user]);
+
+  // Save message to database
+  const saveMessage = useCallback(async (message: Message) => {
+    if (!user) return;
+    
+    try {
+      const { error } = await supabase
+        .from("chat_messages")
+        .insert({
+          user_id: user.id,
+          role: message.role,
+          content: message.content,
+          image_url: message.imageUrl || null
+        });
+      
+      if (error) throw error;
+    } catch (error) {
+      console.error("Error saving message:", error);
+    }
+  }, [user]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -135,7 +193,7 @@ const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
         recognitionRef.current.abort();
       }
     };
-  }, []);
+  }, [saveMessage]);
 
   const toggleVoiceInput = useCallback(() => {
     if (!recognitionRef.current) {
@@ -179,11 +237,13 @@ const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
     if (contentType.includes("application/json")) {
       const data = await resp.json();
       if (data.type === "image" && data.imageUrl) {
-        setMessages(prev => [...prev, { 
+        const assistantMsg: Message = { 
           role: "assistant", 
           content: data.content || "Here's the image you requested!",
           imageUrl: data.imageUrl 
-        }]);
+        };
+        setMessages(prev => [...prev, assistantMsg]);
+        await saveMessage(assistantMsg);
         return;
       } else if (data.error) {
         throw new Error(data.error);
@@ -237,7 +297,12 @@ const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
         }
       }
     }
-  }, []);
+    
+    // Save the final assistant message
+    if (assistantContent) {
+      await saveMessage({ role: "assistant", content: assistantContent });
+    }
+  }, [saveMessage]);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -254,6 +319,9 @@ const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
     setMessages(newMessages);
     setInput("");
     setIsLoading(true);
+
+    // Save user message
+    await saveMessage(userMessage);
 
     try {
       await streamChat(newMessages);
@@ -273,9 +341,27 @@ const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
     }
   };
 
-  const clearChat = () => {
-    setMessages([]);
-    toast.success("Chat cleared");
+  const clearChat = async () => {
+    if (!user) {
+      setMessages([]);
+      toast.success("Chat cleared");
+      return;
+    }
+    
+    try {
+      const { error } = await supabase
+        .from("chat_messages")
+        .delete()
+        .eq("user_id", user.id);
+      
+      if (error) throw error;
+      
+      setMessages([]);
+      toast.success("Chat cleared");
+    } catch (error) {
+      console.error("Error clearing chat:", error);
+      toast.error("Failed to clear chat history");
+    }
   };
 
   const downloadImage = (imageUrl: string) => {
@@ -327,7 +413,15 @@ const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
 
       {/* Messages */}
       <ScrollArea className="flex-1 p-4">
-        {messages.length === 0 ? (
+        {isLoadingHistory ? (
+          <div className="flex items-center justify-center py-8">
+            <div className="flex gap-1">
+              <span className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce" />
+              <span className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce [animation-delay:0.1s]" />
+              <span className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce [animation-delay:0.2s]" />
+            </div>
+          </div>
+        ) : messages.length === 0 ? (
           <div className="text-center text-muted-foreground py-8">
             <p className="text-sm">👋 Welcome! I'm your JKKN AI Assistant.</p>
             <p className="text-xs mt-2">
