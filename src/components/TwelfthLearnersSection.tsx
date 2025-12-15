@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, School } from "lucide-react";
 
@@ -22,6 +23,8 @@ const institutions = [
 ];
 
 const TwelfthLearnersSection = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-16 md:py-24 bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 md:px-8">
@@ -48,7 +51,10 @@ const TwelfthLearnersSection = () => {
               ))}
             </ul>
 
-            <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 text-lg">
+            <Button 
+              className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 text-lg"
+              onClick={() => navigate("/register/12th-learner")}
+            >
               Start Your Career Journey
             </Button>
           </div>

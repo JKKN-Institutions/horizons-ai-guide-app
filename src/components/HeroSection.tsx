@@ -1,8 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Users, Briefcase, GraduationCap } from "lucide-react";
 import heroCampus from "@/assets/hero-campus.jpg";
+import { useChatModal } from "@/hooks/useChatModal";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+  const { openChat } = useChatModal();
+
   return (
     <section className="relative min-h-[90vh] flex items-center">
       {/* Background Image with Overlay */}
@@ -38,15 +43,24 @@ const HeroSection = () => {
             </p>
 
             <div className="flex flex-wrap gap-4 mb-8 animate-fade-up" style={{ animationDelay: '0.5s' }}>
-              <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold px-6 py-6 text-base">
+              <Button 
+                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold px-6 py-6 text-base"
+                onClick={() => navigate("/register/12th-learner")}
+              >
                 <GraduationCap className="w-5 h-5 mr-2" />
                 Register as 12th Learner
               </Button>
-              <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold px-6 py-6 text-base">
+              <Button 
+                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold px-6 py-6 text-base"
+                onClick={() => navigate("/register/learner")}
+              >
                 <Users className="w-5 h-5 mr-2" />
                 Register as Learner
               </Button>
-              <Button className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary font-semibold px-6 py-6 text-base">
+              <Button 
+                className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary font-semibold px-6 py-6 text-base"
+                onClick={() => navigate("/register/employer")}
+              >
                 <Briefcase className="w-5 h-5 mr-2" />
                 Register as Employer
               </Button>
@@ -54,7 +68,11 @@ const HeroSection = () => {
 
             <div className="flex items-center gap-4 animate-fade-up" style={{ animationDelay: '0.6s' }}>
               <span className="text-sm text-primary-foreground/70">AI-powered guidance for every Learner journey</span>
-              <Button variant="outline" className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20 text-sm">
+              <Button 
+                variant="outline" 
+                className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20 text-sm"
+                onClick={openChat}
+              >
                 <Sparkles className="w-4 h-4 mr-2" />
                 Try JKKN AI Assistant
               </Button>
