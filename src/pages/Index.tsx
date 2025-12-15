@@ -11,24 +11,27 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import PartnersSection from "@/components/PartnersSection";
 import Footer from "@/components/Footer";
 import FloatingChatButton from "@/components/FloatingChatButton";
+import { ChatModalProvider } from "@/hooks/useChatModal";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <TopBar />
-      <NavigationBar />
-      <NewsTicker />
-      <HeroSection />
-      <StatsBar />
-      <ServicesSection />
-      <TwelfthLearnersSection />
-      <JobsSection />
-      <EventsAndAISection />
-      <TestimonialsSection />
-      <PartnersSection />
-      <Footer />
-      <FloatingChatButton />
-    </div>
+    <ChatModalProvider>
+      <div className="min-h-screen bg-background">
+        <TopBar />
+        <NavigationBar />
+        <NewsTicker />
+        <HeroSection />
+        <StatsBar />
+        <ServicesSection />
+        <TwelfthLearnersSection />
+        <JobsSection />
+        <EventsAndAISection />
+        <TestimonialsSection />
+        <PartnersSection />
+        <Footer />
+        <FloatingChatButton />
+      </div>
+    </ChatModalProvider>
   );
 };
 
