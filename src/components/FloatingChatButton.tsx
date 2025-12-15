@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { MessageCircle, X } from "lucide-react";
 import AIChatModal from "./AIChatModal";
 
-const FloatingChatButton = () => {
+const FloatingChatButton: React.FC = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -17,6 +17,8 @@ const FloatingChatButton = () => {
       <AIChatModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
-};
+});
+
+FloatingChatButton.displayName = "FloatingChatButton";
 
 export default FloatingChatButton;
