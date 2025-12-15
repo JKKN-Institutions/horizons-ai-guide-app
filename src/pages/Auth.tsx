@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -31,27 +31,26 @@ const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  
-  const { signIn, signUp, user } = useAuth();
+
+  const { signIn, signUp, user, loading } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
 
-  // Handle redirect after successful login
+  // Query param redirect (more reliable than localStorage)
+  const searchParams = new URLSearchParams(location.search);
+  const redirectParam = searchParams.get('redirect');
+
   useEffect(() => {
-    if (user) {
-      const redirectUrl = localStorage.getItem('redirectAfterLogin');
-      console.log('Auth: User logged in, checking redirect URL:', redirectUrl);
-      
-      if (redirectUrl) {
-        console.log('Auth: Redirecting to saved URL:', redirectUrl);
-        localStorage.removeItem('redirectAfterLogin');
-        navigate(redirectUrl, { replace: true });
-      } else {
-        console.log('Auth: No redirect URL found, going to home');
-        navigate('/', { replace: true });
-      }
+    console.log('Auth: auth state, user:', user?.id, 'loading:', loading);
+
+    if (user && !loading) {
+      const redirectUrl = redirectParam || '/';
+      console.log('Auth: redirect param =', redirectParam);
+      console.log('Auth: After login, redirecting to:', redirectUrl);
+      navigate(redirectUrl, { replace: true });
     }
-  }, [user, navigate]);
+  }, [user, loading, redirectParam, navigate]);
 
   const validateForm = () => {
     try {
