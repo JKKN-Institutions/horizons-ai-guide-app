@@ -118,10 +118,11 @@ export default function CareerAssessment12thLearners() {
 
   const handleStartJourney = () => {
     if (!user) {
+      // Save the current URL to redirect back after login
+      localStorage.setItem('redirectAfterLogin', '/career-assessment/12th-learners');
       toast({
         title: "Please login first",
         description: "You need to be logged in to take the assessment.",
-        variant: "destructive"
       });
       navigate('/auth');
       return;
