@@ -8,22 +8,19 @@ import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, Pause, Loader2, RefreshCw, AlertCircle } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { Database, Json } from "@/integrations/supabase/types";
+import { 
+  getQuestionsByStream, 
+  selectQuestionsForUser, 
+  calculateTraitScores, 
+  getTopTraits, 
+  getCourseRecommendations,
+  type Question 
+} from "@/constants/questions";
+import type { StreamType } from "@/constants/questions/types";
 
 type StudentStream = Database['public']['Enums']['student_stream'];
 
 const validStreams: StudentStream[] = ['pcm', 'pcb', 'pcmb', 'commerce', 'arts'];
-
-interface QuestionOption {
-  label: string;
-  text: string;
-  traits: string[];
-}
-
-interface Question {
-  scenario: string;
-  question: string;
-  options: QuestionOption[];
-}
 
 const streamNames: Record<string, string> = {
   pcm: "Science (PCM)",
@@ -33,7 +30,7 @@ const streamNames: Record<string, string> = {
   arts: "Arts / Humanities"
 };
 
-const TOTAL_QUESTIONS = 30;
+const TOTAL_QUESTIONS = 20;
 
 const transitions = [
   "Great choice! Let's explore more...",
@@ -49,47 +46,33 @@ const transitions = [
 export default function TakeStudentAssessment() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { user, loading: authLoading } = useAuth();
+  const { user } = useAuth();
   const streamParam = searchParams.get('stream') || 'pcm';
   const stream: StudentStream = validStreams.includes(streamParam as StudentStream) 
     ? (streamParam as StudentStream) 
     : 'pcm';
-  
 
   const [loading, setLoading] = useState(true);
-  const [generating, setGenerating] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
-  const [questionNumber, setQuestionNumber] = useState(1);
-  const [attemptId, setAttemptId] = useState<string | null>(null);
-  const [previousQuestions, setPreviousQuestions] = useState<string[]>([]);
-  const [answers, setAnswers] = useState<Array<{ question: string; answer: string; traits: string[] }>>([]);
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, string>>({});
   const [transition, setTransition] = useState<string | null>(null);
-  const [profile, setProfile] = useState<any>(null);
   const [elapsedTime, setElapsedTime] = useState(0);
+  const [attemptId, setAttemptId] = useState<string | null>(null);
+  const [needsReset, setNeedsReset] = useState(false);
 
-  // Redirect to auth if not logged in
-  useEffect(() => {
-    if (!authLoading && !user) {
-      console.log('TakeStudentAssessment: Not logged in, redirecting to auth with redirect param');
-      navigate(`/auth?redirect=${encodeURIComponent(`/career-assessment/12th-learners/take?stream=${stream}`)}`);
-      return;
-    }
-  }, [user, authLoading, navigate, stream]);
-
-  useEffect(() => {
-    if (user && !authLoading) {
-      console.log('TakeStudentAssessment: User is logged in, initializing assessment for stream:', stream);
-      initializeAssessment();
-    }
-  }, [user, authLoading, stream]);
-
+  // Timer
   useEffect(() => {
     const timer = setInterval(() => {
       setElapsedTime(prev => prev + 1);
     }, 1000);
     return () => clearInterval(timer);
   }, []);
+
+  // Initialize assessment - NO LOGIN REQUIRED
+  useEffect(() => {
+    initializeAssessment();
+  }, [stream, user]);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -99,81 +82,59 @@ export default function TakeStudentAssessment() {
 
   const initializeAssessment = async () => {
     setLoading(true);
-    setError(null);
     
     try {
-      console.log('Initializing assessment for stream:', stream, 'user:', user?.id);
+      // Get all questions for this stream
+      const allQuestions = getQuestionsByStream(stream as StreamType);
       
-      // Get user profile
-      const { data: profileData, error: profileError } = await supabase
-        .from('student_profiles')
-        .select('*')
-        .eq('user_id', user?.id)
-        .maybeSingle();
-
-      if (profileError) {
-        console.error('Profile fetch error:', profileError);
-      }
+      let seenQuestionIds: string[] = [];
       
-      console.log('Profile data:', profileData);
-      setProfile(profileData);
+      if (user) {
+        // Get seen questions from database for logged-in users
+        const { data: historyData } = await supabase
+          .from('student_question_history')
+          .select('question_hash')
+          .eq('user_id', user.id)
+          .eq('stream', stream);
+        
+        seenQuestionIds = historyData?.map(h => h.question_hash) || [];
+        
+        // Check for paused attempt
+        const { data: pausedAttempt } = await supabase
+          .from('student_assessment_attempts')
+          .select('*')
+          .eq('user_id', user.id)
+          .eq('stream', stream)
+          .eq('is_paused', true)
+          .maybeSingle();
 
-      // Get ALL previous questions from this user for this stream
-      const { data: historyData, error: historyError } = await supabase
-        .from('student_question_history')
-        .select('question_text')
-        .eq('user_id', user?.id)
-        .eq('stream', stream);
-
-      if (historyError) {
-        console.error('History fetch error:', historyError);
-      }
-
-      const prevQuestions = historyData?.map(h => h.question_text) || [];
-      console.log('Previous questions count:', prevQuestions.length);
-      setPreviousQuestions(prevQuestions);
-
-      // Check for paused attempt
-      const { data: pausedAttempt, error: pausedError } = await supabase
-        .from('student_assessment_attempts')
-        .select('*')
-        .eq('user_id', user?.id)
-        .eq('stream', stream)
-        .eq('is_paused', true)
-        .maybeSingle();
-
-      if (pausedError) {
-        console.error('Paused attempt fetch error:', pausedError);
-      }
-
-      if (pausedAttempt) {
-        console.log('Found paused attempt:', pausedAttempt.id);
-        setAttemptId(pausedAttempt.id);
-        setQuestionNumber(pausedAttempt.current_question + 1);
-        if (Array.isArray(pausedAttempt.answers_json)) {
-          setAnswers(pausedAttempt.answers_json as Array<{ question: string; answer: string; traits: string[] }>);
+        if (pausedAttempt) {
+          // Resume paused attempt
+          setAttemptId(pausedAttempt.id);
+          const savedQuestions = pausedAttempt.questions_json as unknown as Question[];
+          const savedAnswers = (pausedAttempt.answers_json as unknown as Record<string, string>) || {};
+          setQuestions(savedQuestions || []);
+          setAnswers(savedAnswers);
+          setCurrentQuestionIndex(pausedAttempt.current_question);
+          setLoading(false);
+          return;
         }
         
-        // Resume from where they left off
-        setLoading(false);
-        await generateQuestion(pausedAttempt.current_question + 1, prevQuestions);
-      } else {
         // Create new attempt
         const { data: attempts } = await supabase
           .from('student_assessment_attempts')
           .select('attempt_number')
-          .eq('user_id', user?.id)
+          .eq('user_id', user.id)
           .eq('stream', stream)
           .order('attempt_number', { ascending: false })
           .limit(1);
 
         const newAttemptNumber = (attempts && attempts.length > 0) ? attempts[0].attempt_number + 1 : 1;
-        console.log('Creating new attempt #', newAttemptNumber);
 
-        const { data: newAttempt, error: createError } = await supabase
+        const { data: newAttempt } = await supabase
           .from('student_assessment_attempts')
           .insert({
-            user_id: user?.id,
+            user_id: user.id,
             stream: stream,
             attempt_number: newAttemptNumber,
             total_questions: TOTAL_QUESTIONS
@@ -181,157 +142,157 @@ export default function TakeStudentAssessment() {
           .select()
           .single();
 
-        if (createError) {
-          console.error('Create attempt error:', createError);
-          throw createError;
+        if (newAttempt) {
+          setAttemptId(newAttempt.id);
         }
-        
-        console.log('New attempt created:', newAttempt.id);
-        setAttemptId(newAttempt.id);
-        setLoading(false);
-        await generateQuestion(1, prevQuestions);
+      } else {
+        // Get seen questions from localStorage for anonymous users
+        const localHistory = localStorage.getItem(`seen_questions_${stream}`);
+        seenQuestionIds = localHistory ? JSON.parse(localHistory) : [];
+      }
+
+      // Select questions user hasn't seen
+      const { questions: selectedQuestions, needsReset: resetNeeded } = selectQuestionsForUser(
+        allQuestions, 
+        seenQuestionIds, 
+        TOTAL_QUESTIONS
+      );
+
+      if (resetNeeded) {
+        setNeedsReset(true);
+        // Clear history for fresh start
+        if (user) {
+          await supabase
+            .from('student_question_history')
+            .delete()
+            .eq('user_id', user.id)
+            .eq('stream', stream);
+        } else {
+          localStorage.removeItem(`seen_questions_${stream}`);
+        }
+        toast({
+          title: "Fresh Start! 🎉",
+          description: "You've seen all our questions! Starting with a fresh set.",
+        });
+      }
+
+      setQuestions(selectedQuestions);
+      
+      // Save selected questions to attempt
+      if (user && attemptId) {
+        await supabase
+          .from('student_assessment_attempts')
+          .update({ questions_json: selectedQuestions as unknown as Json })
+          .eq('id', attemptId);
       }
     } catch (error) {
       console.error('Error initializing assessment:', error);
-      setError('Failed to start assessment. Please try again.');
       toast({
         title: "Error",
-        description: "Failed to start assessment. Please try again.",
+        description: "Failed to load questions. Please try again.",
         variant: "destructive"
       });
+    } finally {
       setLoading(false);
     }
   };
 
-  const generateQuestion = async (qNum: number, prevQs: string[]) => {
-    setGenerating(true);
-    setError(null);
+  const handleAnswer = async (questionId: string, optionId: string) => {
+    const currentQuestion = questions[currentQuestionIndex];
+    const selectedOption = currentQuestion.options.find(o => o.id === optionId);
     
-    try {
-      console.log('Generating question #', qNum, 'for stream:', stream);
-      console.log('Previous questions to avoid:', prevQs.length);
-      
-      const { data, error: invokeError } = await supabase.functions.invoke('student-assessment', {
-        body: {
-          action: 'generate_question',
-          stream,
-          previousQuestions: prevQs,
-          questionNumber: qNum,
-          marksRange: profile?.marks_range,
-          interests: profile?.specific_interests
-        }
-      });
+    if (!selectedOption) return;
 
-      console.log('Edge function response:', { data, error: invokeError });
-
-      if (invokeError) {
-        console.error('Edge function error:', invokeError);
-        throw new Error(invokeError.message || 'Failed to generate question');
-      }
-
-      if (!data || !data.scenario || !data.question || !data.options) {
-        console.error('Invalid question data:', data);
-        throw new Error('Invalid question format received');
-      }
-
-      setCurrentQuestion(data);
-      setQuestionNumber(qNum);
-      console.log('Question generated successfully:', data.question.substring(0, 50));
-    } catch (error) {
-      console.error('Error generating question:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Failed to generate question';
-      setError(errorMessage);
-      toast({
-        title: "Error generating question",
-        description: "Please try again.",
-        variant: "destructive"
-      });
-    } finally {
-      setGenerating(false);
-    }
-  };
-
-  const handleAnswer = async (option: QuestionOption) => {
-    if (!currentQuestion || !attemptId) return;
-
-    const questionText = `${currentQuestion.scenario} ${currentQuestion.question}`;
-    const questionHash = btoa(questionText).slice(0, 50);
-
-    // Save to history
-    const { error: historyError } = await supabase
-      .from('student_question_history')
-      .insert([{
-        user_id: user?.id as string,
-        attempt_id: attemptId,
-        stream: stream,
-        question_text: questionText,
-        question_hash: questionHash,
-        options: currentQuestion.options as unknown as Json,
-        user_answer: option.label,
-        answered_at: new Date().toISOString()
-      }]);
-    
-    if (historyError) console.error('History save error:', historyError);
-
-    const newAnswers = [...answers, {
-      question: questionText,
-      answer: option.text,
-      traits: option.traits
-    }];
+    // Save answer
+    const newAnswers = { ...answers, [questionId]: optionId };
     setAnswers(newAnswers);
 
-    // Update attempt progress
-    await supabase
-      .from('student_assessment_attempts')
-      .update({
-        current_question: questionNumber,
-        answers_json: newAnswers
-      })
-      .eq('id', attemptId);
+    // Track seen question
+    if (user) {
+      // Save to database
+      await supabase
+        .from('student_question_history')
+        .insert({
+          user_id: user.id,
+          attempt_id: attemptId,
+          stream: stream,
+          question_text: currentQuestion.scenario,
+          question_hash: questionId,
+          options: currentQuestion.options as unknown as Json,
+          user_answer: optionId,
+          answered_at: new Date().toISOString()
+        });
 
-    // Update previous questions
-    const newPrevQuestions = [...previousQuestions, questionText];
-    setPreviousQuestions(newPrevQuestions);
+      // Update attempt progress
+      if (attemptId) {
+        await supabase
+          .from('student_assessment_attempts')
+          .update({
+            current_question: currentQuestionIndex + 1,
+            answers_json: newAnswers as unknown as Json
+          })
+          .eq('id', attemptId);
+      }
+    } else {
+      // Save to localStorage for anonymous users
+      const localHistory = localStorage.getItem(`seen_questions_${stream}`);
+      const seenIds = localHistory ? JSON.parse(localHistory) : [];
+      seenIds.push(questionId);
+      localStorage.setItem(`seen_questions_${stream}`, JSON.stringify(seenIds));
+      localStorage.setItem(`current_answers_${stream}`, JSON.stringify(newAnswers));
+    }
 
-    if (questionNumber >= TOTAL_QUESTIONS) {
-      // Complete assessment
+    // Check if assessment is complete
+    if (currentQuestionIndex >= TOTAL_QUESTIONS - 1) {
       await completeAssessment(newAnswers);
     } else {
-      // Show transition and generate next question
+      // Show transition and move to next question
       setTransition(transitions[Math.floor(Math.random() * transitions.length)]);
-      setTimeout(async () => {
+      setTimeout(() => {
         setTransition(null);
-        await generateQuestion(questionNumber + 1, newPrevQuestions);
-      }, 1500);
+        setCurrentQuestionIndex(prev => prev + 1);
+      }, 1200);
     }
   };
 
-  const completeAssessment = async (finalAnswers: Array<{ question: string; answer: string; traits: string[] }>) => {
-    setGenerating(true);
+  const completeAssessment = async (finalAnswers: Record<string, string>) => {
+    setLoading(true);
+    
     try {
-      const { data: results, error } = await supabase.functions.invoke('student-assessment', {
-        body: {
-          action: 'generate_results',
-          stream,
-          marksRange: profile?.marks_range,
-          interests: profile?.specific_interests,
-          answers: finalAnswers
-        }
-      });
+      // Calculate results locally
+      const traitScores = calculateTraitScores(questions, finalAnswers);
+      const topTraits = getTopTraits(traitScores);
+      const recommendations = getCourseRecommendations(stream as StreamType, traitScores);
 
-      if (error) throw error;
+      const results = {
+        topTraits,
+        traitScores,
+        recommendations,
+        completedAt: new Date().toISOString()
+      };
 
-      // Save results
-      await supabase
-        .from('student_assessment_attempts')
-        .update({
-          completed_at: new Date().toISOString(),
-          is_paused: false,
-          course_recommendations: results
-        })
-        .eq('id', attemptId);
+      if (user && attemptId) {
+        // Save results to database
+        await supabase
+          .from('student_assessment_attempts')
+          .update({
+            completed_at: new Date().toISOString(),
+            is_paused: false,
+            course_recommendations: results as unknown as Json
+          })
+          .eq('id', attemptId);
 
-      navigate(`/career-assessment/12th-learners/results/${attemptId}`);
+        // Update completed attempts count
+        navigate(`/career-assessment/12th-learners/results/${attemptId}`);
+      } else {
+        // Save results to localStorage and navigate with results in state
+        const localAttempts = localStorage.getItem('completed_attempts');
+        const newCount = (localAttempts ? parseInt(localAttempts) : 0) + 1;
+        localStorage.setItem('completed_attempts', newCount.toString());
+        localStorage.setItem(`assessment_results_${stream}`, JSON.stringify(results));
+        
+        navigate('/career-assessment/12th-learners/results/local', { state: { results, stream } });
+      }
     } catch (error) {
       console.error('Error completing assessment:', error);
       toast({
@@ -340,34 +301,32 @@ export default function TakeStudentAssessment() {
         variant: "destructive"
       });
     } finally {
-      setGenerating(false);
+      setLoading(false);
     }
   };
 
   const handlePause = async () => {
-    if (attemptId) {
+    if (user && attemptId) {
       await supabase
         .from('student_assessment_attempts')
         .update({
           is_paused: true,
-          answers_json: answers
+          current_question: currentQuestionIndex,
+          answers_json: answers as unknown as Json,
+          questions_json: questions as unknown as Json
         })
         .eq('id', attemptId);
+    } else {
+      // Save progress to localStorage
+      localStorage.setItem(`paused_assessment_${stream}`, JSON.stringify({
+        questions,
+        answers,
+        currentQuestionIndex,
+        elapsedTime
+      }));
     }
     navigate('/career-assessment/12th-learners');
   };
-
-  // Show loading during auth check
-  if (authLoading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto mb-4" />
-          <p className="text-muted-foreground">Checking authentication...</p>
-        </div>
-      </div>
-    );
-  }
 
   if (loading) {
     return (
@@ -375,15 +334,39 @@ export default function TakeStudentAssessment() {
         <div className="text-center">
           <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto mb-4" />
           <p className="text-lg font-medium text-foreground">
-            AI is preparing your personalized questions based on your {streamNames[stream]} background...
+            Preparing your personalized questions...
           </p>
           <p className="text-sm text-muted-foreground mt-2">
-            This may take a few moments
+            This will only take a moment
           </p>
         </div>
       </div>
     );
   }
+
+  if (questions.length === 0) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
+          <h2 className="text-xl font-semibold text-foreground mb-2">
+            Unable to load questions
+          </h2>
+          <p className="text-muted-foreground mb-6">Please try again</p>
+          <Button 
+            onClick={() => initializeAssessment()}
+            className="bg-orange-500 hover:bg-orange-600"
+          >
+            <RefreshCw className="h-4 w-4 mr-2" />
+            Try Again
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  const currentQuestion = questions[currentQuestionIndex];
+  const progress = ((currentQuestionIndex + 1) / TOTAL_QUESTIONS) * 100;
 
   return (
     <div className="min-h-screen bg-background">
@@ -403,7 +386,7 @@ export default function TakeStudentAssessment() {
               </Button>
               <div>
                 <h1 className="font-semibold">{streamNames[stream]} Assessment</h1>
-                <p className="text-sm text-white/70">Chapter {questionNumber} of {TOTAL_QUESTIONS}</p>
+                <p className="text-sm text-white/70">Question {currentQuestionIndex + 1} of {TOTAL_QUESTIONS}</p>
               </div>
             </div>
             <div className="text-right">
@@ -411,72 +394,32 @@ export default function TakeStudentAssessment() {
             </div>
           </div>
           <Progress 
-            value={(questionNumber / TOTAL_QUESTIONS) * 100} 
+            value={progress} 
             className="mt-3 h-2 bg-white/20"
           />
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-3xl">
-        {/* Error state */}
-        {error && !generating && (
-          <div className="text-center py-16">
-            <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
-            <h2 className="text-xl font-semibold text-foreground mb-2">
-              Sorry, we couldn't generate questions
-            </h2>
-            <p className="text-muted-foreground mb-6">{error}</p>
-            <Button 
-              onClick={() => generateQuestion(questionNumber, previousQuestions)}
-              className="bg-orange-500 hover:bg-orange-600"
-            >
-              <RefreshCw className="h-4 w-4 mr-2" />
-              Try Again
-            </Button>
-          </div>
-        )}
-
-        {/* Generating state */}
-        {generating && (
-          <div className="text-center py-16">
-            <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto mb-4" />
-            <p className="text-lg font-medium text-foreground">
-              {questionNumber === 1 
-                ? `AI is preparing your personalized questions based on your ${streamNames[stream]} background...`
-                : questionNumber >= TOTAL_QUESTIONS 
-                  ? "Analyzing your responses and generating personalized recommendations..."
-                  : "Generating your next scenario..."}
-            </p>
-            <p className="text-sm text-muted-foreground mt-2">
-              {previousQuestions.length > 0 && questionNumber < TOTAL_QUESTIONS
-                ? "Making sure this question is unique for you!"
-                : "This may take a moment..."}
-            </p>
-          </div>
-        )}
-
         {/* Transition message */}
-        {transition && !generating && (
+        {transition && (
           <div className="text-center py-16">
             <p className="text-xl font-medium text-primary animate-pulse">{transition}</p>
           </div>
         )}
 
         {/* Question display */}
-        {currentQuestion && !generating && !transition && !error && (
+        {!transition && currentQuestion && (
           <div className="space-y-6">
             <Card className="border-l-4 border-l-primary">
               <CardContent className="p-6">
                 <div className="mb-4">
                   <span className="text-sm font-medium text-muted-foreground">
-                    Scenario {questionNumber}
+                    Scenario {currentQuestionIndex + 1}
                   </span>
                 </div>
-                <p className="text-lg text-foreground leading-relaxed mb-4">
+                <p className="text-lg text-foreground leading-relaxed">
                   {currentQuestion.scenario}
-                </p>
-                <p className="text-lg font-semibold text-foreground">
-                  {currentQuestion.question}
                 </p>
               </CardContent>
             </Card>
@@ -484,13 +427,13 @@ export default function TakeStudentAssessment() {
             <div className="space-y-3">
               {currentQuestion.options.map((option) => (
                 <Card
-                  key={option.label}
+                  key={option.id}
                   className="cursor-pointer transition-all hover:shadow-md hover:border-primary"
-                  onClick={() => handleAnswer(option)}
+                  onClick={() => handleAnswer(currentQuestion.id, option.id)}
                 >
                   <CardContent className="p-4 flex items-start gap-4">
                     <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <span className="font-bold text-primary">{option.label}</span>
+                      <span className="font-bold text-primary">{option.id}</span>
                     </div>
                     <p className="text-foreground pt-2">{option.text}</p>
                   </CardContent>

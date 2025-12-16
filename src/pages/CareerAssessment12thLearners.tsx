@@ -4,7 +4,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Atom, Dna, Brain, TrendingUp, BookOpen, CheckCircle, Clock } from "lucide-react";
+import { ArrowLeft, Atom, Dna, Brain, TrendingUp, BookOpen, CheckCircle } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { Database } from "@/integrations/supabase/types";
 
@@ -79,36 +79,46 @@ export default function CareerAssessment12thLearners() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (user) {
-      loadUserData();
-    } else {
-      setLoading(false);
-    }
+    loadUserData();
   }, [user]);
 
   const loadUserData = async () => {
     try {
-      // Check for existing profile
-      const { data: profile } = await supabase
-        .from('student_profiles')
-        .select('*')
-        .eq('user_id', user?.id)
-        .maybeSingle();
+      if (user) {
+        // Check for existing profile in database
+        const { data: profile } = await supabase
+          .from('student_profiles')
+          .select('*')
+          .eq('user_id', user.id)
+          .maybeSingle();
 
-      if (profile) {
-        setExistingProfile(profile);
-        setSelectedStream(profile.stream as StudentStream);
-        setSelectedMarks(profile.marks_range);
+        if (profile) {
+          setExistingProfile(profile);
+          setSelectedStream(profile.stream as StudentStream);
+          setSelectedMarks(profile.marks_range);
+        }
+
+        // Count completed attempts
+        const { data: attempts } = await supabase
+          .from('student_assessment_attempts')
+          .select('id')
+          .eq('user_id', user.id)
+          .not('completed_at', 'is', null);
+
+        setCompletedAttempts(attempts?.length || 0);
+      } else {
+        // Check localStorage for anonymous users
+        const localProfile = localStorage.getItem('student_profile');
+        if (localProfile) {
+          const parsed = JSON.parse(localProfile);
+          setExistingProfile(parsed);
+          setSelectedStream(parsed.stream as StudentStream);
+          setSelectedMarks(parsed.marks_range);
+        }
+
+        const localAttempts = localStorage.getItem('completed_attempts');
+        setCompletedAttempts(localAttempts ? parseInt(localAttempts) : 0);
       }
-
-      // Count completed attempts
-      const { data: attempts } = await supabase
-        .from('student_assessment_attempts')
-        .select('id')
-        .eq('user_id', user?.id)
-        .not('completed_at', 'is', null);
-
-      setCompletedAttempts(attempts?.length || 0);
     } catch (error) {
       console.error('Error loading user data:', error);
     } finally {
@@ -117,19 +127,10 @@ export default function CareerAssessment12thLearners() {
   };
 
   const handleStartJourney = () => {
-    console.log('handleStartJourney: user =', user?.id, 'existingProfile =', !!existingProfile);
-
-    if (!user) {
-      console.log('User not logged in, redirecting to auth with redirect param');
-      navigate('/auth?redirect=/career-assessment/12th-learners');
-      return;
-    }
-
+    // NO LOGIN REQUIRED - go directly to stream selection or details
     if (existingProfile) {
-      console.log('Existing profile found, going to details step');
       setStep('details');
     } else {
-      console.log('No profile, going to stream selection');
       setStep('stream');
     }
   };
@@ -150,23 +151,31 @@ export default function CareerAssessment12thLearners() {
     }
 
     try {
-      // Create or update profile
-      if (!existingProfile) {
-        await supabase
-          .from('student_profiles')
-          .insert({
-            user_id: user?.id,
-            stream: selectedStream,
-            marks_range: selectedMarks
-          });
+      if (user) {
+        // Save to database for logged-in users
+        if (!existingProfile) {
+          await supabase
+            .from('student_profiles')
+            .insert({
+              user_id: user.id,
+              stream: selectedStream,
+              marks_range: selectedMarks
+            });
+        } else {
+          await supabase
+            .from('student_profiles')
+            .update({
+              stream: selectedStream,
+              marks_range: selectedMarks
+            })
+            .eq('user_id', user.id);
+        }
       } else {
-        await supabase
-          .from('student_profiles')
-          .update({
-            stream: selectedStream,
-            marks_range: selectedMarks
-          })
-          .eq('user_id', user?.id);
+        // Save to localStorage for anonymous users
+        localStorage.setItem('student_profile', JSON.stringify({
+          stream: selectedStream,
+          marks_range: selectedMarks
+        }));
       }
 
       // Navigate to assessment
@@ -267,12 +276,12 @@ export default function CareerAssessment12thLearners() {
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center p-4">
                 <div className="text-3xl mb-2">📝</div>
-                <h3 className="font-semibold text-foreground">30 Questions</h3>
+                <h3 className="font-semibold text-foreground">20 Questions</h3>
                 <p className="text-sm text-muted-foreground">Scenario-based questions</p>
               </div>
               <div className="text-center p-4">
                 <div className="text-3xl mb-2">⏱️</div>
-                <h3 className="font-semibold text-foreground">15-20 Minutes</h3>
+                <h3 className="font-semibold text-foreground">10-15 Minutes</h3>
                 <p className="text-sm text-muted-foreground">Quick and insightful</p>
               </div>
               <div className="text-center p-4">
@@ -395,7 +404,7 @@ export default function CareerAssessment12thLearners() {
               <Card className="mb-6 bg-blue-50 border-blue-200">
                 <CardContent className="p-4">
                   <p className="text-sm text-blue-800">
-                    <strong>Returning user:</strong> We'll generate completely new questions you haven't seen before!
+                    <strong>Returning user:</strong> We'll show you completely new questions you haven't seen before!
                   </p>
                 </CardContent>
               </Card>
