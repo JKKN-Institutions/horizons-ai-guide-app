@@ -9,6 +9,48 @@ import { CollegeFilters } from './CollegeFilters';
 import { CollegeList } from './CollegeList';
 import { College, CollegeCategory, COLLEGE_TYPE_INFO, NAMAKKAL_FEATURED_COLLEGES } from './types';
 
+// Helper function to normalize college name for comparison
+const normalizeCollegeName = (name: string): string => {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, '') // Remove special characters
+    .replace(/\s+/g, ' ')        // Normalize spaces
+    .replace(/\b(college|institute|institution|of|and|the|for)\b/g, '') // Remove common words
+    .replace(/\s+/g, '')         // Remove all spaces for comparison
+    .trim();
+};
+
+// Helper function to remove duplicate colleges
+const removeDuplicates = (colleges: College[]): College[] => {
+  const seen = new Map<string, College>();
+  
+  for (const college of colleges) {
+    const normalizedName = normalizeCollegeName(college.name);
+    
+    // Check if we've seen a similar college
+    let isDuplicate = false;
+    for (const [existingName, existingCollege] of seen) {
+      // Check for exact match or high similarity
+      if (normalizedName === existingName || 
+          normalizedName.includes(existingName) || 
+          existingName.includes(normalizedName)) {
+        // Keep the one with more info (prefer isJKKN, then by data completeness)
+        if (college.isJKKN && !existingCollege.isJKKN) {
+          seen.set(existingName, college);
+        }
+        isDuplicate = true;
+        break;
+      }
+    }
+    
+    if (!isDuplicate) {
+      seen.set(normalizedName, college);
+    }
+  }
+  
+  return Array.from(seen.values());
+};
+
 export const CollegeSearch = () => {
   const { toast } = useToast();
   const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
@@ -44,15 +86,19 @@ export const CollegeSearch = () => {
 
       // For Namakkal, add featured colleges (JKKN and aided colleges) at the start
       if (district === 'Namakkal') {
-        // Remove any duplicates (in case AI returned JKKN colleges)
+        // Remove any JKKN-related colleges from AI results to avoid duplicates
         fetchedColleges = fetchedColleges.filter(c => 
           !c.name.toLowerCase().includes('jkkn') && 
-          !c.name.toLowerCase().includes('j.k.k. nataraja')
+          !c.name.toLowerCase().includes('j.k.k.') &&
+          !c.name.toLowerCase().includes('jkk ')
         );
         
         // Add featured Namakkal colleges first
         fetchedColleges = [...NAMAKKAL_FEATURED_COLLEGES, ...fetchedColleges];
       }
+
+      // Remove duplicates from all results
+      fetchedColleges = removeDuplicates(fetchedColleges);
 
       setColleges(fetchedColleges);
     } catch (error) {
