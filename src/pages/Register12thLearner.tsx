@@ -55,7 +55,7 @@ const Register12thLearner = () => {
         .insert({
           user_id: user?.id || null,
           full_name: formData.fullName,
-          email: formData.email,
+          email: formData.email || null,
           phone: formData.phone,
           date_of_birth: formData.dateOfBirth || null,
           school_name: formData.school || null,
@@ -132,8 +132,8 @@ const Register12thLearner = () => {
                     <Input id="fullName" placeholder="Enter your full name" value={formData.fullName} onChange={e => handleChange("fullName", e.target.value)} />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email Address *</Label>
-                    <Input id="email" type="email" placeholder="your@email.com" value={formData.email} onChange={e => handleChange("email", e.target.value)} />
+                    <Label htmlFor="email">Email Address</Label>
+                    <Input id="email" type="email" placeholder="your@email.com (optional)" value={formData.email} onChange={e => handleChange("email", e.target.value)} />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number *</Label>
