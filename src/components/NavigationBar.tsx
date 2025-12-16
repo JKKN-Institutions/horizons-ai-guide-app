@@ -3,7 +3,8 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
-  { label: "Home", href: "#" },
+  { label: "Home", href: "/" },
+  { label: "Dashboard", href: "/student-dashboard" },
   { label: "About JKKN", href: "#about" },
   { label: "Career Guidance", href: "#services" },
   { label: "Job Portal", href: "#jobs" },
