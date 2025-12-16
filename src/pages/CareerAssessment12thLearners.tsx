@@ -413,7 +413,7 @@ export default function CareerAssessment12thLearners() {
             <div className="flex gap-4 justify-center mt-8">
               <Button
                 variant="ghost"
-                onClick={() => setStep(existingProfile ? 'intro' : 'stream')}
+                onClick={() => setStep('stream')}
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back
