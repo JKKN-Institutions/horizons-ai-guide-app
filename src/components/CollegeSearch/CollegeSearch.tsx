@@ -7,7 +7,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { DistrictSelector } from './DistrictSelector';
 import { CollegeFilters } from './CollegeFilters';
 import { CollegeList } from './CollegeList';
-import { College, CollegeCategory, COLLEGE_TYPE_INFO, JKKN_COLLEGES } from './types';
+import { College, CollegeCategory, COLLEGE_TYPE_INFO, NAMAKKAL_FEATURED_COLLEGES } from './types';
 
 export const CollegeSearch = () => {
   const { toast } = useToast();
@@ -42,17 +42,16 @@ export const CollegeSearch = () => {
 
       let fetchedColleges: College[] = data.colleges || [];
 
-      // For Namakkal, add JKKN colleges at the start of each category
+      // For Namakkal, add featured colleges (JKKN and aided colleges) at the start
       if (district === 'Namakkal') {
-        const jkknCollegesList = Object.values(JKKN_COLLEGES).filter(Boolean) as College[];
-        
         // Remove any duplicates (in case AI returned JKKN colleges)
         fetchedColleges = fetchedColleges.filter(c => 
-          !c.name.toLowerCase().includes('jkkn')
+          !c.name.toLowerCase().includes('jkkn') && 
+          !c.name.toLowerCase().includes('j.k.k. nataraja')
         );
         
-        // Add JKKN colleges
-        fetchedColleges = [...jkknCollegesList, ...fetchedColleges];
+        // Add featured Namakkal colleges first
+        fetchedColleges = [...NAMAKKAL_FEATURED_COLLEGES, ...fetchedColleges];
       }
 
       setColleges(fetchedColleges);
@@ -64,9 +63,9 @@ export const CollegeSearch = () => {
         variant: 'destructive',
       });
       
-      // If API fails for Namakkal, at least show JKKN colleges
+      // If API fails for Namakkal, at least show featured colleges
       if (district === 'Namakkal') {
-        setColleges(Object.values(JKKN_COLLEGES).filter(Boolean) as College[]);
+        setColleges(NAMAKKAL_FEATURED_COLLEGES);
       }
     } finally {
       setLoading(false);

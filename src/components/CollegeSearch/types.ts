@@ -76,8 +76,10 @@ export const COLLEGE_TYPE_INFO = {
   autonomous: { label: 'Autonomous', color: 'bg-purple-500', badge: '🟣' },
 };
 
-export const JKKN_COLLEGES: Partial<Record<CollegeCategory, College>> = {
-  arts_science: {
+// Featured colleges for Namakkal district (JKKN and other notable institutions)
+export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
+  // JKKN Group of Institutions (Private)
+  {
     id: 'jkkn_arts_science',
     name: 'JKKN College of Arts and Science',
     type: 'private',
@@ -93,7 +95,7 @@ export const JKKN_COLLEGES: Partial<Record<CollegeCategory, College>> = {
     placementStats: '85% placement rate',
     facilities: ['Library', 'Labs', 'Hostel', 'Sports Complex', 'Cafeteria'],
   },
-  pharmacy: {
+  {
     id: 'jkkn_pharmacy',
     name: 'JKKN College of Pharmacy',
     type: 'private',
@@ -108,7 +110,7 @@ export const JKKN_COLLEGES: Partial<Record<CollegeCategory, College>> = {
     isJKKN: true,
     placementStats: '90% placement rate',
   },
-  dental: {
+  {
     id: 'jkkn_dental',
     name: 'JKKN Dental College and Hospital',
     type: 'private',
@@ -123,7 +125,7 @@ export const JKKN_COLLEGES: Partial<Record<CollegeCategory, College>> = {
     isJKKN: true,
     placementStats: '95% placement rate',
   },
-  nursing: {
+  {
     id: 'jkkn_nursing',
     name: 'JKKN College of Nursing',
     type: 'private',
@@ -138,7 +140,7 @@ export const JKKN_COLLEGES: Partial<Record<CollegeCategory, College>> = {
     isJKKN: true,
     placementStats: '92% placement rate',
   },
-  engineering: {
+  {
     id: 'jkkn_engineering',
     name: 'JKKN College of Engineering and Technology',
     type: 'private',
@@ -153,7 +155,7 @@ export const JKKN_COLLEGES: Partial<Record<CollegeCategory, College>> = {
     isJKKN: true,
     placementStats: '88% placement rate',
   },
-  allied_health: {
+  {
     id: 'jkkn_allied_health',
     name: 'JKKN Institute of Allied Health Sciences',
     type: 'private',
@@ -168,7 +170,7 @@ export const JKKN_COLLEGES: Partial<Record<CollegeCategory, College>> = {
     isJKKN: true,
     placementStats: '87% placement rate',
   },
-  agricultural: {
+  {
     id: 'jkkn_agricultural',
     name: 'JKKN College of Agricultural Science',
     type: 'private',
@@ -183,7 +185,7 @@ export const JKKN_COLLEGES: Partial<Record<CollegeCategory, College>> = {
     isJKKN: true,
     placementStats: '80% placement rate',
   },
-  education: {
+  {
     id: 'jkkn_education',
     name: 'JKKN College of Education',
     type: 'private',
@@ -198,4 +200,31 @@ export const JKKN_COLLEGES: Partial<Record<CollegeCategory, College>> = {
     isJKKN: true,
     placementStats: '85% placement rate',
   },
-};
+  // Government-Aided Colleges
+  {
+    id: 'jkk_nataraja_arts_science',
+    name: 'J.K.K. Nataraja College of Arts and Science',
+    type: 'government-aided',
+    category: 'arts_science',
+    naacGrade: 'B++',
+    establishedYear: 1971,
+    courses: 'B.A, B.Sc, B.Com, BCA, BBA, M.A, M.Sc, M.Com, M.Phil',
+    contact: '04286-220500',
+    website: 'www.jkknataraja.ac.in',
+    feeRange: '₹5,000 - ₹25,000 per year',
+    accreditation: 'Periyar University Affiliated',
+    isJKKN: true,
+    placementStats: '75% placement rate',
+    facilities: ['Library', 'Computer Lab', 'Hostel', 'Playground'],
+  },
+];
+
+// Legacy export for backward compatibility
+export const JKKN_COLLEGES: Partial<Record<CollegeCategory, College>> = 
+  NAMAKKAL_FEATURED_COLLEGES.reduce((acc, college) => {
+    // Only keep first college per category for legacy support
+    if (!acc[college.category]) {
+      acc[college.category] = college;
+    }
+    return acc;
+  }, {} as Partial<Record<CollegeCategory, College>>);

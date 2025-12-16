@@ -198,24 +198,30 @@ Be COMPREHENSIVE. Include EVERY institution. Do NOT truncate or limit results.`;
     }
 
     // Validate and clean up the data
-    colleges = colleges.map((college: any, index: number) => ({
-      id: college.id || `${district.toLowerCase().replace(/\s/g, '_')}_${index}`,
-      name: college.name || 'Unknown College',
-      type: ['government', 'government-aided', 'private', 'autonomous'].includes(college.type) 
-        ? college.type 
-        : 'private',
-      category: COLLEGE_CATEGORIES.includes(college.category) 
-        ? college.category 
-        : 'arts_science',
-      naacGrade: college.naacGrade || null,
-      establishedYear: college.establishedYear || null,
-      courses: college.courses || 'Various courses available',
-      contact: college.contact || null,
-      website: college.website || null,
-      feeRange: college.feeRange || null,
-      accreditation: college.accreditation || null,
-      isJKKN: false,
-    }));
+    colleges = colleges.map((college: any, index: number) => {
+      // Normalize null strings to actual null
+      const normalizeNull = (value: any) => 
+        value === null || value === 'null' || value === '' || value === undefined ? null : value;
+      
+      return {
+        id: college.id || `${district.toLowerCase().replace(/\s/g, '_')}_${index}`,
+        name: college.name || 'Unknown College',
+        type: ['government', 'government-aided', 'private', 'autonomous'].includes(college.type) 
+          ? college.type 
+          : 'private',
+        category: COLLEGE_CATEGORIES.includes(college.category) 
+          ? college.category 
+          : 'arts_science',
+        naacGrade: normalizeNull(college.naacGrade),
+        establishedYear: college.establishedYear || null,
+        courses: college.courses || 'Various courses available',
+        contact: normalizeNull(college.contact),
+        website: normalizeNull(college.website),
+        feeRange: normalizeNull(college.feeRange),
+        accreditation: normalizeNull(college.accreditation),
+        isJKKN: false,
+      };
+    });
 
     console.log(`Found ${colleges.length} colleges in ${district}`);
 
