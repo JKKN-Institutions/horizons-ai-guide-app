@@ -33,8 +33,8 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
               <Badge variant="outline" className="text-xs">
                 {typeInfo.badge} {typeInfo.label}
               </Badge>
-              {college.naacGrade && (
-                <Badge variant="secondary" className="text-xs">
+              {college.naacGrade && college.naacGrade !== 'null' && (
+                <Badge variant="secondary" className="text-xs bg-emerald-100 text-emerald-800">
                   NAAC {college.naacGrade}
                 </Badge>
               )}
