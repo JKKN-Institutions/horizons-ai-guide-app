@@ -116,37 +116,52 @@ export const CollegeSearch = () => {
       {selectedDistrict && !loading && colleges.length > 0 && (
         <Card>
           <CardContent className="pt-4">
-            <div className="flex flex-wrap items-center gap-4">
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">📍</span>
-                <div>
-                  <p className="text-sm text-muted-foreground">Colleges in</p>
-                  <p className="font-semibold">{selectedDistrict} District</p>
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl">📍</span>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Colleges in</p>
+                    <p className="font-semibold">{selectedDistrict} District</p>
+                  </div>
+                </div>
+                <div className="h-10 w-px bg-border hidden sm:block" />
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary" className="text-sm py-1 font-semibold">
+                    Total: {totalColleges} Colleges
+                  </Badge>
+                  {Object.entries(COLLEGE_TYPE_INFO).map(([type, info]) => (
+                    typeCounts[type] > 0 && (
+                      <Badge key={type} variant="outline" className="text-sm py-1">
+                        {info.badge} {info.label}: {typeCounts[type]}
+                      </Badge>
+                    )
+                  ))}
                 </div>
               </div>
-              <div className="h-10 w-px bg-border hidden sm:block" />
-              <div className="flex flex-wrap gap-2">
-                <Badge variant="secondary" className="text-sm py-1">
-                  Total: {totalColleges}
-                </Badge>
-                {Object.entries(COLLEGE_TYPE_INFO).map(([type, info]) => (
-                  typeCounts[type] > 0 && (
-                    <Badge key={type} variant="outline" className="text-sm py-1">
-                      {info.badge} {info.label}: {typeCounts[type]}
-                    </Badge>
-                  )
-                ))}
-              </div>
             </div>
+            {totalColleges < 30 && (
+              <p className="text-sm text-amber-600 mt-3 flex items-center gap-2">
+                <span>⚠️</span>
+                Showing {totalColleges} colleges. Some colleges may not be listed yet. 
+                We're continuously updating our database.
+              </p>
+            )}
           </CardContent>
         </Card>
       )}
 
       {/* Loading Indicator */}
       {loading && (
-        <div className="flex items-center justify-center py-8">
-          <Loader2 className="h-8 w-8 animate-spin text-[#0A2E1F]" />
-          <span className="ml-3 text-lg">Fetching colleges in {selectedDistrict}...</span>
+        <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
+          <Loader2 className="h-12 w-12 animate-spin text-[#0A2E1F] mb-4" />
+          <h3 className="text-lg font-semibold mb-2">
+            Searching all colleges in {selectedDistrict}...
+          </h3>
+          <p className="text-muted-foreground max-w-md">
+            Fetching comprehensive data from government records, university affiliations, 
+            and accreditation databases. This may take a moment for complete results.
+          </p>
         </div>
       )}
 
