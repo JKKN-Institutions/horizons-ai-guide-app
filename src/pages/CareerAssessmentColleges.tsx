@@ -128,7 +128,8 @@ const CareerAssessmentColleges = () => {
 
   const handleStartAssessment = async (assessment: AssessmentCard) => {
     // NO LOGIN REQUIRED - support both logged-in (cloud saved) and anonymous (this device)
-    if (!attemptId && inProgressAssessments[assessment.id]) {
+    // Check for in-progress assessment first
+    if (inProgressAssessments[assessment.id]) {
       navigate(`/career-assessment/take/${assessment.id}?attemptId=${inProgressAssessments[assessment.id].attemptId}`);
       return;
     }
@@ -162,12 +163,7 @@ const CareerAssessmentColleges = () => {
       return;
     }
 
-    // Logged-in flow (saved in backend)
-    if (inProgressAssessments[assessment.id]) {
-      navigate(`/career-assessment/take/${assessment.id}?attemptId=${inProgressAssessments[assessment.id].attemptId}`);
-      return;
-    }
-
+    // Logged-in flow (saved in backend) - create new attempt
     const { data: existingAttempts } = await supabase
       .from('user_assessment_attempts')
       .select('attempt_number')
