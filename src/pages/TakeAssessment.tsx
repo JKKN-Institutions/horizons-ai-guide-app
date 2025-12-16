@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Pause, Loader2, Clock, BookOpen } from 'lucide-react';
+import { Pause, Loader2, Clock, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -20,6 +20,23 @@ interface Question {
   transition: string;
 }
 
+type AssessmentType = 'psychometric' | 'career_interest' | 'emotional_intelligence' | 'skill_gap';
+
+type LocalAttempt = {
+  id: string;
+  type: AssessmentType;
+  attemptNumber: number;
+  totalQuestions: number;
+  currentQuestion: number;
+  answers: Array<{ answer: string; trait: string }>;
+  previousQuestions: string[];
+  elapsedTime: number;
+  startedAt: string;
+  completedAt?: string;
+  results?: any;
+  isPaused?: boolean;
+};
+
 const assessmentNames: Record<string, string> = {
   psychometric: 'Psychometric Assessment',
   career_interest: 'Career Interest Inventory',
@@ -27,7 +44,7 @@ const assessmentNames: Record<string, string> = {
   skill_gap: 'Skill Gap Analysis',
 };
 
-const totalQuestions: Record<string, number> = {
+const totalQuestions: Record<AssessmentType, number> = {
   psychometric: 60,
   career_interest: 40,
   emotional_intelligence: 35,
@@ -36,19 +53,39 @@ const totalQuestions: Record<string, number> = {
 
 const transitions = [
   "Great choice! Let's explore more...",
-  "Interesting perspective! Now imagine this...",
+  'Interesting perspective! Now imagine this...',
   "Well thought! Here's another scenario...",
-  "That tells us a lot about you! Moving on...",
+  'That tells us a lot about you! Moving on...',
   "Perfect! Let's dive deeper...",
 ];
 
+const localAttemptKey = (attemptId: string) => `college_assessment_attempt_${attemptId}`;
+
+const readLocalAttempt = (attemptId: string): LocalAttempt | null => {
+  try {
+    const raw = localStorage.getItem(localAttemptKey(attemptId));
+    return raw ? (JSON.parse(raw) as LocalAttempt) : null;
+  } catch {
+    return null;
+  }
+};
+
+const writeLocalAttempt = (attemptId: string, next: LocalAttempt) => {
+  localStorage.setItem(localAttemptKey(attemptId), JSON.stringify(next));
+};
+
 const TakeAssessment = () => {
-  const { type } = useParams<{ type: string }>();
+  const { type } = useParams<{ type: AssessmentType }>();
   const [searchParams] = useSearchParams();
   const attemptId = searchParams.get('attemptId');
   const navigate = useNavigate();
   const { user } = useAuth();
   const { toast } = useToast();
+
+  const isLocalAttempt = Boolean(attemptId && attemptId.startsWith('local_'));
+  const assessmentType = type;
+
+  const total = assessmentType ? totalQuestions[assessmentType] : 40;
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [question, setQuestion] = useState<Question | null>(null);
@@ -62,26 +99,54 @@ const TakeAssessment = () => {
   const [elapsedTime, setElapsedTime] = useState(0);
   const [isReturningUser, setIsReturningUser] = useState(false);
 
-  const total = totalQuestions[type || ''] || 40;
-
   useEffect(() => {
-    if (!user || !attemptId || !type) {
+    if (!attemptId || !assessmentType) {
       navigate('/career-assessment/colleges');
       return;
     }
+
+    if (!user && !isLocalAttempt) {
+      navigate('/career-assessment/colleges');
+      return;
+    }
+
     loadProgress();
-  }, [user, attemptId, type]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, attemptId, assessmentType]);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setElapsedTime(prev => prev + 1);
+      setElapsedTime((prev) => prev + 1);
     }, 1000);
     return () => clearInterval(timer);
   }, []);
 
   const loadProgress = async () => {
     try {
-      // Get attempt data
+      if (!attemptId || !assessmentType) return;
+
+      if (isLocalAttempt) {
+        const localAttempt = readLocalAttempt(attemptId);
+        if (!localAttempt) {
+          toast({ title: 'Error', description: 'Assessment not found', variant: 'destructive' });
+          navigate('/career-assessment/colleges');
+          return;
+        }
+
+        setCurrentQuestion(localAttempt.currentQuestion);
+        setAnswers(localAttempt.answers || []);
+        setPreviousQuestions(localAttempt.previousQuestions || []);
+        setElapsedTime(localAttempt.elapsedTime || 0);
+
+        if ((localAttempt.previousQuestions || []).length > 0 && localAttempt.currentQuestion === 0) {
+          setIsReturningUser(true);
+        }
+
+        await generateQuestion(localAttempt.currentQuestion + 1, localAttempt.previousQuestions || []);
+        return;
+      }
+
+      // Logged-in mode
       const { data: attempt, error: attemptError } = await supabase
         .from('user_assessment_attempts')
         .select('*')
@@ -89,28 +154,26 @@ const TakeAssessment = () => {
         .single();
 
       if (attemptError || !attempt) {
-        toast({ title: "Error", description: "Assessment not found", variant: "destructive" });
+        toast({ title: 'Error', description: 'Assessment not found', variant: 'destructive' });
         navigate('/career-assessment/colleges');
         return;
       }
 
       setCurrentQuestion(attempt.current_question);
 
-      // Get all previous questions from this user for this assessment type
       const { data: history } = await supabase
         .from('user_question_history')
         .select('question_text')
         .eq('user_id', user?.id || '')
-        .eq('assessment_type', type as 'psychometric' | 'career_interest' | 'emotional_intelligence' | 'skill_gap');
+        .eq('assessment_type', assessmentType);
 
-      const prevQuestions = history?.map(h => h.question_text) || [];
+      const prevQuestions = history?.map((h) => h.question_text) || [];
       setPreviousQuestions(prevQuestions);
-      
+
       if (prevQuestions.length > 0 && attempt.current_question === 0) {
         setIsReturningUser(true);
       }
 
-      // Get answered questions for this attempt
       const { data: answeredQuestions } = await supabase
         .from('user_question_history')
         .select('*')
@@ -119,19 +182,37 @@ const TakeAssessment = () => {
         .order('created_at');
 
       if (answeredQuestions) {
-        const loadedAnswers = answeredQuestions.map(q => ({
+        const loadedAnswers = answeredQuestions.map((q) => ({
           answer: q.user_answer || '',
-          trait: (q.options as any)?.find((o: any) => o.label === q.user_answer)?.trait || ''
+          trait: (q.options as any)?.find((o: any) => o.label === q.user_answer)?.trait || '',
         }));
         setAnswers(loadedAnswers);
       }
 
-      // Generate first question
       await generateQuestion(attempt.current_question + 1, prevQuestions);
     } catch (error) {
       console.error('Error loading progress:', error);
-      toast({ title: "Error", description: "Failed to load assessment", variant: "destructive" });
+      toast({ title: 'Error', description: 'Failed to load assessment', variant: 'destructive' });
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const persistLocal = (partial: Partial<LocalAttempt>) => {
+    if (!attemptId || !assessmentType || !isLocalAttempt) return;
+    const current = readLocalAttempt(attemptId);
+    if (!current) return;
+
+    const next: LocalAttempt = {
+      ...current,
+      ...partial,
+      elapsedTime: partial.elapsedTime ?? elapsedTime,
+      currentQuestion: partial.currentQuestion ?? currentQuestion,
+      answers: partial.answers ?? answers,
+      previousQuestions: partial.previousQuestions ?? previousQuestions,
+    };
+
+    writeLocalAttempt(attemptId, next);
   };
 
   const generateQuestion = async (questionNumber: number, prevQuestions: string[]) => {
@@ -140,36 +221,45 @@ const TakeAssessment = () => {
       const response = await supabase.functions.invoke('career-assessment', {
         body: {
           action: 'generate_question',
-          assessmentType: type,
+          assessmentType,
           previousQuestions: prevQuestions,
           questionNumber,
-        }
+        },
       });
 
-      if (response.error) {
-        throw new Error(response.error.message);
+      if (response.error) throw new Error(response.error.message);
+
+      const nextQuestion: Question = response.data.question;
+      setQuestion(nextQuestion);
+
+      // Store question
+      if (!isLocalAttempt) {
+        const questionHash = btoa(nextQuestion.scenario.substring(0, 50));
+        await supabase.from('user_question_history').insert([
+          {
+            user_id: user?.id || '',
+            assessment_type: assessmentType,
+            attempt_id: attemptId,
+            question_text: nextQuestion.scenario,
+            question_hash: questionHash,
+            options: nextQuestion.options,
+          },
+        ]);
+
+        setPreviousQuestions((prev) => [...prev, nextQuestion.scenario]);
+      } else {
+        setPreviousQuestions((prev) => {
+          const next = [...prev, nextQuestion.scenario];
+          persistLocal({ previousQuestions: next });
+          return next;
+        });
       }
-
-      setQuestion(response.data.question);
-
-      // Store question in history
-      const questionHash = btoa(response.data.question.scenario.substring(0, 50));
-      await supabase.from('user_question_history').insert([{
-        user_id: user?.id || '',
-        assessment_type: type as 'psychometric' | 'career_interest' | 'emotional_intelligence' | 'skill_gap',
-        attempt_id: attemptId,
-        question_text: response.data.question.scenario,
-        question_hash: questionHash,
-        options: response.data.question.options,
-      }]);
-
-      setPreviousQuestions(prev => [...prev, response.data.question.scenario]);
     } catch (error) {
       console.error('Error generating question:', error);
       toast({
-        title: "Error",
-        description: "Failed to generate question. Please try again.",
-        variant: "destructive",
+        title: 'Error',
+        description: 'Failed to generate question. Please try again.',
+        variant: 'destructive',
       });
     } finally {
       setLoading(false);
@@ -177,92 +267,116 @@ const TakeAssessment = () => {
   };
 
   const handleAnswer = async (option: QuestionOption) => {
-    if (submitting) return;
-    
+    if (submitting || !attemptId || !assessmentType) return;
+
     setSelectedAnswer(option.label);
     setSubmitting(true);
 
     const newAnswers = [...answers, { answer: option.label, trait: option.trait }];
     setAnswers(newAnswers);
 
-    // Update question history with answer
-    await supabase
-      .from('user_question_history')
-      .update({ user_answer: option.label, answered_at: new Date().toISOString() })
-      .eq('attempt_id', attemptId)
-      .eq('question_text', question?.scenario);
+    if (!isLocalAttempt) {
+      await supabase
+        .from('user_question_history')
+        .update({ user_answer: option.label, answered_at: new Date().toISOString() })
+        .eq('attempt_id', attemptId)
+        .eq('question_text', question?.scenario);
 
-    // Update attempt progress
-    await supabase
-      .from('user_assessment_attempts')
-      .update({ current_question: currentQuestion + 1 })
-      .eq('id', attemptId);
+      await supabase.from('user_assessment_attempts').update({ current_question: currentQuestion + 1 }).eq('id', attemptId);
+    } else {
+      persistLocal({
+        answers: newAnswers,
+        currentQuestion: currentQuestion + 1,
+        elapsedTime,
+      });
+    }
 
-    // Check if assessment complete
     if (currentQuestion + 1 >= total) {
       await completeAssessment(newAnswers);
       return;
     }
 
-    // Show transition
     setTransitionText(question?.transition || transitions[currentQuestion % transitions.length]);
     setShowTransition(true);
-    
+
     setTimeout(async () => {
       setShowTransition(false);
       setSelectedAnswer(null);
-      setCurrentQuestion(prev => prev + 1);
+      setCurrentQuestion((prev) => prev + 1);
       await generateQuestion(currentQuestion + 2, previousQuestions);
       setSubmitting(false);
+
+      if (isLocalAttempt) {
+        persistLocal({
+          currentQuestion: currentQuestion + 1,
+          elapsedTime,
+        });
+      }
     }, 1500);
   };
 
   const completeAssessment = async (finalAnswers: Array<{ answer: string; trait: string }>) => {
     setLoading(true);
     try {
-      // Get user profile
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('display_name')
-        .eq('user_id', user?.id)
-        .maybeSingle();
+      let userName = 'Explorer';
 
-      // Generate results
+      if (!isLocalAttempt) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('display_name')
+          .eq('user_id', user?.id)
+          .maybeSingle();
+        userName = profile?.display_name || 'Student';
+      }
+
       const response = await supabase.functions.invoke('career-assessment', {
         body: {
           action: 'generate_results',
-          assessmentType: type,
-          userName: profile?.display_name || 'Student',
+          assessmentType,
+          userName,
           answers: finalAnswers,
-        }
+        },
       });
 
-      if (response.error) {
-        throw new Error(response.error.message);
+      if (response.error) throw new Error(response.error.message);
+
+      if (!isLocalAttempt) {
+        await supabase
+          .from('user_assessment_attempts')
+          .update({
+            completed_at: new Date().toISOString(),
+            score: response.data.results,
+            narrative_result: response.data.results.careerStory,
+          })
+          .eq('id', attemptId);
+      } else {
+        const attempt = readLocalAttempt(attemptId);
+        if (attempt) {
+          writeLocalAttempt(attemptId, {
+            ...attempt,
+            completedAt: new Date().toISOString(),
+            results: response.data.results,
+            isPaused: false,
+            elapsedTime,
+            currentQuestion: total,
+            answers: finalAnswers,
+          });
+          localStorage.removeItem(`college_active_attempt_${assessmentType}`);
+        }
       }
 
-      // Save results
-      await supabase
-        .from('user_assessment_attempts')
-        .update({
-          completed_at: new Date().toISOString(),
-          score: response.data.results,
-          narrative_result: response.data.results.careerStory,
-        })
-        .eq('id', attemptId);
-
       toast({
-        title: "Assessment Complete!",
-        description: "Your personalized career report is ready.",
+        title: 'Assessment Complete!',
+        description: 'Your personalized career report is ready.',
       });
 
       navigate(`/career-assessment/results/${attemptId}`);
     } catch (error) {
       console.error('Error completing assessment:', error);
       toast({
-        title: "Error",
-        description: "Failed to generate results. Please try again.",
-        variant: "destructive",
+        title: 'Error',
+        description: 'Failed to generate results. Please try again.',
+        variant: 'destructive',
       });
     } finally {
       setLoading(false);
@@ -270,14 +384,21 @@ const TakeAssessment = () => {
   };
 
   const handlePause = async () => {
-    await supabase
-      .from('user_assessment_attempts')
-      .update({ is_paused: true })
-      .eq('id', attemptId);
+    if (!attemptId || !assessmentType) return;
+
+    if (!isLocalAttempt) {
+      await supabase.from('user_assessment_attempts').update({ is_paused: true }).eq('id', attemptId);
+    } else {
+      persistLocal({
+        isPaused: true,
+        elapsedTime,
+      });
+      localStorage.setItem(`college_active_attempt_${assessmentType}`, attemptId);
+    }
 
     toast({
-      title: "Assessment Paused",
-      description: "Your progress has been saved. Continue anytime!",
+      title: 'Assessment Paused',
+      description: 'Your progress has been saved. Continue anytime!',
     });
 
     navigate('/career-assessment/colleges');
@@ -289,7 +410,7 @@ const TakeAssessment = () => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const progress = ((currentQuestion) / total) * 100;
+  const progress = (currentQuestion / total) * 100;
 
   if (loading && !question) {
     return (
@@ -297,9 +418,7 @@ const TakeAssessment = () => {
         <div className="text-center">
           <Loader2 className="h-12 w-12 animate-spin text-[#FF6B35] mx-auto mb-4" />
           <p className="text-lg text-muted-foreground">
-            {isReturningUser 
-              ? "Welcome back! Generating fresh questions for you..." 
-              : "Preparing your assessment..."}
+            {isReturningUser ? 'Welcome back! Generating fresh questions for you...' : 'Preparing your assessment...'}
           </p>
         </div>
       </div>
@@ -308,21 +427,15 @@ const TakeAssessment = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0A2E1F]/5 to-background">
-      {/* Header */}
       <header className="bg-[#0A2E1F] text-white py-4 sticky top-0 z-10">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Button 
-                variant="ghost" 
-                size="icon"
-                className="text-white hover:bg-white/10"
-                onClick={handlePause}
-              >
+              <Button variant="ghost" size="icon" className="text-white hover:bg-white/10" onClick={handlePause}>
                 <Pause className="h-5 w-5" />
               </Button>
               <div>
-                <h1 className="font-semibold">{assessmentNames[type || '']}</h1>
+                <h1 className="font-semibold">{assessmentType ? assessmentNames[assessmentType] : 'Assessment'}</h1>
                 <p className="text-sm text-white/70">
                   Chapter {currentQuestion + 1} of {total}
                 </p>
@@ -365,21 +478,17 @@ const TakeAssessment = () => {
           </div>
         ) : question ? (
           <div className="space-y-6 animate-fade-in">
-            {/* Scenario Card */}
             <Card className="border-l-4 border-l-[#0A2E1F] bg-white shadow-lg">
               <CardContent className="pt-6">
                 <div className="flex items-start gap-4">
                   <div className="p-3 bg-[#0A2E1F]/10 rounded-full">
                     <BookOpen className="h-6 w-6 text-[#0A2E1F]" />
                   </div>
-                  <p className="text-lg leading-relaxed text-foreground flex-1">
-                    {question.scenario}
-                  </p>
+                  <p className="text-lg leading-relaxed text-foreground flex-1">{question.scenario}</p>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Options */}
             <div className="space-y-3">
               {question.options.map((option) => (
                 <button
@@ -393,11 +502,13 @@ const TakeAssessment = () => {
                   } ${submitting && selectedAnswer !== option.label ? 'opacity-50' : ''}`}
                 >
                   <div className="flex items-start gap-4">
-                    <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-semibold ${
-                      selectedAnswer === option.label
-                        ? 'bg-[#FF6B35] text-white'
-                        : 'bg-muted text-muted-foreground'
-                    }`}>
+                    <span
+                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-semibold ${
+                        selectedAnswer === option.label
+                          ? 'bg-[#FF6B35] text-white'
+                          : 'bg-muted text-muted-foreground'
+                      }`}
+                    >
                       {option.label}
                     </span>
                     <span className="text-foreground">{option.text}</span>
@@ -406,10 +517,7 @@ const TakeAssessment = () => {
               ))}
             </div>
 
-            {/* Help Text */}
-            <p className="text-center text-sm text-muted-foreground">
-              Choose the option that best describes how you would react
-            </p>
+            <p className="text-center text-sm text-muted-foreground">Choose the option that best describes how you would react</p>
           </div>
         ) : null}
       </main>
