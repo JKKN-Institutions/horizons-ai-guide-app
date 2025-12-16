@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { ArrowLeft, Share2, Download, Star, Target, TrendingUp, Calendar, Briefcase, GraduationCap, Loader2 } from "lucide-react";
+import { ArrowLeft, Share2, Star, Target, TrendingUp, Calendar, Briefcase, GraduationCap, Loader2 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 const streamNames: Record<string, string> = {
@@ -42,6 +42,7 @@ interface Results {
 
 export default function StudentAssessmentResults() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { attemptId } = useParams();
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
@@ -50,10 +51,58 @@ export default function StudentAssessmentResults() {
   const [userName, setUserName] = useState<string>("");
 
   useEffect(() => {
-    if (user && attemptId) {
-      loadResults();
+    if (!attemptId) return;
+
+    // Anonymous/local results route (TakeStudentAssessment navigates to /results/local)
+    if (attemptId === 'local' || !user) {
+      loadLocalResults();
+      return;
     }
+
+    loadResults();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, attemptId]);
+
+  const loadLocalResults = () => {
+    try {
+      const state = location.state as any;
+
+      const streamFromState = state?.stream as string | undefined;
+      const resultsFromState = state?.results as Results | undefined;
+
+      const profileRaw = localStorage.getItem('student_profile');
+      const profile = profileRaw ? JSON.parse(profileRaw) : null;
+      const streamFromProfile = profile?.stream as string | undefined;
+
+      const stream = streamFromState || streamFromProfile;
+
+      const storedResultsRaw = stream ? localStorage.getItem(`assessment_results_${stream}`) : null;
+      const storedResults = storedResultsRaw ? (JSON.parse(storedResultsRaw) as Results) : null;
+
+      const finalResults = resultsFromState || storedResults;
+
+      if (!finalResults || !stream) {
+        setResults(null);
+        setLoading(false);
+        return;
+      }
+
+      setResults(finalResults);
+
+      const completedAttempts = parseInt(localStorage.getItem('completed_attempts') || '1', 10) || 1;
+      setAttempt({ stream, attempt_number: completedAttempts });
+      setUserName('Student');
+    } catch (error) {
+      console.error('Error loading local results:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to load results.',
+        variant: 'destructive'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const loadResults = async () => {
     try {
@@ -70,7 +119,6 @@ export default function StudentAssessmentResults() {
         setResults(attemptData.course_recommendations as unknown as Results);
       }
 
-      // Get user name
       const { data: profile } = await supabase
         .from('profiles')
         .select('display_name')
@@ -99,8 +147,8 @@ export default function StudentAssessmentResults() {
           text: `I discovered my ideal courses after 12th! My top match is ${results?.topCourses[0]?.name}`,
           url: shareUrl
         });
-      } catch (err) {
-        console.log('Share cancelled');
+      } catch {
+        // ignore share cancel
       }
     } else {
       await navigator.clipboard.writeText(shareUrl);
@@ -137,7 +185,6 @@ export default function StudentAssessmentResults() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <div className="bg-[#0A2E1F] text-white py-6">
         <div className="container mx-auto px-4">
           <Button
@@ -170,7 +217,6 @@ export default function StudentAssessmentResults() {
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        {/* Profile Section */}
         <Card className="mb-8 border-l-4 border-l-primary overflow-hidden">
           <div className="bg-gradient-to-r from-primary/10 to-transparent p-6">
             <div className="flex items-start gap-4">
@@ -178,21 +224,15 @@ export default function StudentAssessmentResults() {
                 <GraduationCap className="h-8 w-8 text-white" />
               </div>
               <div>
-                <h2 className="font-playfair text-2xl font-bold text-foreground">
-                  {results.profile.title}
-                </h2>
-                <p className="text-muted-foreground mt-2 leading-relaxed">
-                  {results.profile.description}
-                </p>
+                <h2 className="font-playfair text-2xl font-bold text-foreground">{results.profile.title}</h2>
+                <p className="text-muted-foreground mt-2 leading-relaxed">{results.profile.description}</p>
               </div>
             </div>
           </div>
         </Card>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Top Courses */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -239,7 +279,6 @@ export default function StudentAssessmentResults() {
               </CardContent>
             </Card>
 
-            {/* Action Plan */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -269,9 +308,7 @@ export default function StudentAssessmentResults() {
             </Card>
           </div>
 
-          {/* Sidebar */}
           <div className="space-y-6">
-            {/* Strengths */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
@@ -291,7 +328,6 @@ export default function StudentAssessmentResults() {
               </CardContent>
             </Card>
 
-            {/* Growth Areas */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
@@ -311,17 +347,11 @@ export default function StudentAssessmentResults() {
               </CardContent>
             </Card>
 
-            {/* Take Another */}
             <Card className="bg-gradient-to-br from-primary/10 to-primary/5">
               <CardContent className="p-6 text-center">
                 <h3 className="font-semibold text-foreground mb-2">Want different insights?</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Take the assessment again for fresh perspectives
-                </p>
-                <Button
-                  onClick={() => navigate('/career-assessment/12th-learners')}
-                  className="w-full bg-primary hover:bg-primary/90"
-                >
+                <p className="text-sm text-muted-foreground mb-4">Take the assessment again for fresh perspectives</p>
+                <Button onClick={() => navigate('/career-assessment/12th-learners')} className="w-full bg-primary hover:bg-primary/90">
                   Take Another Assessment
                 </Button>
               </CardContent>

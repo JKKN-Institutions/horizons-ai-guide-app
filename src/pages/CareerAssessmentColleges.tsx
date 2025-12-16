@@ -127,23 +127,47 @@ const CareerAssessmentColleges = () => {
   };
 
   const handleStartAssessment = async (assessment: AssessmentCard) => {
-    if (!user) {
-      toast({
-        title: "Login Required",
-        description: "Please login to take the assessment",
-        variant: "destructive",
-      });
-      navigate('/auth');
+    // NO LOGIN REQUIRED - support both logged-in (cloud saved) and anonymous (this device)
+    if (!attemptId && inProgressAssessments[assessment.id]) {
+      navigate(`/career-assessment/take/${assessment.id}?attemptId=${inProgressAssessments[assessment.id].attemptId}`);
       return;
     }
 
-    // Check for in-progress assessment
+    if (!user) {
+      const uuid = (globalThis.crypto as any)?.randomUUID?.() ?? `${Date.now()}_${Math.random().toString(16).slice(2)}`;
+      const localAttemptId = `local_${uuid}`;
+
+      const countKey = `college_attempt_count_${assessment.id}`;
+      const nextAttemptNumber = (parseInt(localStorage.getItem(countKey) || '0', 10) || 0) + 1;
+      localStorage.setItem(countKey, String(nextAttemptNumber));
+
+      localStorage.setItem(
+        `college_assessment_attempt_${localAttemptId}`,
+        JSON.stringify({
+          id: localAttemptId,
+          type: assessment.id,
+          attemptNumber: nextAttemptNumber,
+          totalQuestions: assessment.questions,
+          currentQuestion: 0,
+          answers: [],
+          previousQuestions: [],
+          elapsedTime: 0,
+          startedAt: new Date().toISOString(),
+          isPaused: false,
+        })
+      );
+      localStorage.setItem(`college_active_attempt_${assessment.id}`, localAttemptId);
+
+      navigate(`/career-assessment/take/${assessment.id}?attemptId=${localAttemptId}`);
+      return;
+    }
+
+    // Logged-in flow (saved in backend)
     if (inProgressAssessments[assessment.id]) {
       navigate(`/career-assessment/take/${assessment.id}?attemptId=${inProgressAssessments[assessment.id].attemptId}`);
       return;
     }
 
-    // Get attempt number
     const { data: existingAttempts } = await supabase
       .from('user_assessment_attempts')
       .select('attempt_number')
@@ -154,7 +178,6 @@ const CareerAssessmentColleges = () => {
 
     const attemptNumber = (existingAttempts?.[0]?.attempt_number || 0) + 1;
 
-    // Create new attempt
     const { data: newAttempt, error } = await supabase
       .from('user_assessment_attempts')
       .insert({

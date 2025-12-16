@@ -8,7 +8,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
-interface AssessmentResults {
+interface AssessmentResultsData {
   careerStory: string;
   archetype: string;
   superpowers: Array<{ title: string; icon: string; description: string }>;
@@ -23,6 +23,15 @@ interface AssessmentResults {
   readinessLevel: string;
 }
 
+type AssessmentType = 'psychometric' | 'career_interest' | 'emotional_intelligence' | 'skill_gap';
+
+type LocalAttempt = {
+  id: string;
+  type: AssessmentType;
+  attemptNumber: number;
+  results?: AssessmentResultsData;
+};
+
 const assessmentNames: Record<string, string> = {
   psychometric: 'Psychometric Assessment',
   career_interest: 'Career Interest Inventory',
@@ -30,27 +39,64 @@ const assessmentNames: Record<string, string> = {
   skill_gap: 'Skill Gap Analysis',
 };
 
+const localAttemptKey = (attemptId: string) => `college_assessment_attempt_${attemptId}`;
+
 const AssessmentResults = () => {
   const { attemptId } = useParams<{ attemptId: string }>();
   const navigate = useNavigate();
   const { user } = useAuth();
   const { toast } = useToast();
-  
-  const [results, setResults] = useState<AssessmentResults | null>(null);
-  const [assessmentType, setAssessmentType] = useState<string>('');
+
+  const [results, setResults] = useState<AssessmentResultsData | null>(null);
+  const [assessmentType, setAssessmentType] = useState<AssessmentType | ''>('');
   const [attemptNumber, setAttemptNumber] = useState(1);
   const [loading, setLoading] = useState(true);
   const [userName, setUserName] = useState('');
 
   useEffect(() => {
-    if (!user || !attemptId) {
+    if (!attemptId) {
       navigate('/career-assessment/colleges');
       return;
     }
+
     loadResults();
-  }, [user, attemptId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [attemptId, user]);
+
+  const loadLocal = () => {
+    try {
+      const raw = localStorage.getItem(localAttemptKey(attemptId!));
+      const localAttempt = raw ? (JSON.parse(raw) as LocalAttempt) : null;
+
+      if (!localAttempt?.results) {
+        toast({ title: 'Error', description: 'Results not found', variant: 'destructive' });
+        navigate('/career-assessment/colleges');
+        return;
+      }
+
+      setResults(localAttempt.results);
+      setAssessmentType(localAttempt.type);
+      setAttemptNumber(localAttempt.attemptNumber || 1);
+      setUserName('Explorer');
+    } catch {
+      toast({ title: 'Error', description: 'Results not found', variant: 'destructive' });
+      navigate('/career-assessment/colleges');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const loadResults = async () => {
+    if (attemptId?.startsWith('local_')) {
+      loadLocal();
+      return;
+    }
+
+    if (!user) {
+      navigate('/career-assessment/colleges');
+      return;
+    }
+
     try {
       const { data: attempt, error } = await supabase
         .from('user_assessment_attempts')
@@ -59,16 +105,15 @@ const AssessmentResults = () => {
         .single();
 
       if (error || !attempt || !attempt.score) {
-        toast({ title: "Error", description: "Results not found", variant: "destructive" });
+        toast({ title: 'Error', description: 'Results not found', variant: 'destructive' });
         navigate('/career-assessment/colleges');
         return;
       }
 
-      setResults(attempt.score as unknown as AssessmentResults);
-      setAssessmentType(attempt.assessment_type);
+      setResults(attempt.score as unknown as AssessmentResultsData);
+      setAssessmentType(attempt.assessment_type as AssessmentType);
       setAttemptNumber(attempt.attempt_number);
 
-      // Get user name
       const { data: profile } = await supabase
         .from('profiles')
         .select('display_name')
@@ -86,18 +131,20 @@ const AssessmentResults = () => {
   const handleShare = async () => {
     if (navigator.share) {
       await navigator.share({
-        title: `My ${assessmentNames[assessmentType]} Results`,
-        text: `I just completed the ${assessmentNames[assessmentType]} and discovered I'm "${results?.archetype}"! Check out JKKN AI Horizons for career guidance.`,
+        title: assessmentType ? `My ${assessmentNames[assessmentType]} Results` : 'My Assessment Results',
+        text: assessmentType
+          ? `I just completed the ${assessmentNames[assessmentType]} and discovered I'm "${results?.archetype}"! Check out JKKN AI Horizons for career guidance.`
+          : 'I just completed an assessment on JKKN AI Horizons!',
         url: window.location.href,
       });
     } else {
       await navigator.clipboard.writeText(window.location.href);
-      toast({ title: "Link copied!", description: "Share your results with others" });
+      toast({ title: 'Link copied!', description: 'Share your results with others' });
     }
   };
 
   const handleDownload = () => {
-    toast({ title: "Coming Soon", description: "PDF download will be available soon!" });
+    toast({ title: 'Coming Soon', description: 'PDF download will be available soon!' });
   };
 
   if (loading) {
@@ -115,24 +162,17 @@ const AssessmentResults = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0A2E1F]/5 to-background">
-      {/* Header */}
       <header className="bg-[#0A2E1F] text-white py-6">
         <div className="container mx-auto px-4">
-          <Button 
-            variant="ghost" 
-            className="text-white hover:bg-white/10 mb-4"
-            onClick={() => navigate('/career-assessment/colleges')}
-          >
+          <Button variant="ghost" className="text-white hover:bg-white/10 mb-4" onClick={() => navigate('/career-assessment/colleges')}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Assessments
           </Button>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
-              <h1 className="font-playfair text-3xl md:text-4xl font-bold italic mb-2">
-                Your Career Story
-              </h1>
+              <h1 className="font-playfair text-3xl md:text-4xl font-bold italic mb-2">Your Career Story</h1>
               <p className="text-white/80">
-                {assessmentNames[assessmentType]} • Attempt #{attemptNumber}
+                {assessmentType ? assessmentNames[assessmentType] : 'Assessment'} • Attempt #{attemptNumber}
               </p>
             </div>
             <div className="flex gap-3">
@@ -150,7 +190,6 @@ const AssessmentResults = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Archetype Banner */}
         <Card className="mb-8 bg-gradient-to-r from-[#0A2E1F] to-[#0A2E1F]/80 text-white border-none overflow-hidden">
           <CardContent className="pt-6 pb-8 relative">
             <div className="absolute top-0 right-0 opacity-10">
@@ -172,7 +211,6 @@ const AssessmentResults = () => {
           </CardContent>
         </Card>
 
-        {/* Career Story */}
         <Card className="mb-8 border-l-4 border-l-[#FF6B35]">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -183,13 +221,14 @@ const AssessmentResults = () => {
           <CardContent>
             <div className="prose prose-lg max-w-none">
               {results.careerStory.split('\n\n').map((paragraph, i) => (
-                <p key={i} className="text-foreground leading-relaxed mb-4">{paragraph}</p>
+                <p key={i} className="text-foreground leading-relaxed mb-4">
+                  {paragraph}
+                </p>
               ))}
             </div>
           </CardContent>
         </Card>
 
-        {/* Superpowers */}
         <Card className="mb-8 border-l-4 border-l-[#FFB800]">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -212,7 +251,6 @@ const AssessmentResults = () => {
           </CardContent>
         </Card>
 
-        {/* Career Paths */}
         <Card className="mb-8 border-l-4 border-l-green-500">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -249,7 +287,6 @@ const AssessmentResults = () => {
           </CardContent>
         </Card>
 
-        {/* Growth Areas */}
         <Card className="mb-8 border-l-4 border-l-blue-500">
           <CardHeader>
             <CardTitle>Your Growth Journey</CardTitle>
@@ -271,7 +308,6 @@ const AssessmentResults = () => {
           </CardContent>
         </Card>
 
-        {/* 90-Day Action Plan */}
         <Card className="mb-8 border-l-4 border-l-purple-500">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -281,7 +317,7 @@ const AssessmentResults = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
-              {['chapter1', 'chapter2', 'chapter3'].map((chapter, i) => {
+              {['chapter1', 'chapter2', 'chapter3'].map((chapter) => {
                 const chapterData = results.actionPlan[chapter as keyof typeof results.actionPlan];
                 return (
                   <div key={chapter} className="relative pl-8 pb-6 border-l-2 border-purple-200 last:pb-0">
@@ -302,13 +338,8 @@ const AssessmentResults = () => {
           </CardContent>
         </Card>
 
-        {/* CTA */}
         <div className="text-center py-8">
-          <Button 
-            size="lg" 
-            className="bg-[#FF6B35] hover:bg-[#FF6B35]/90"
-            onClick={() => navigate('/career-assessment/colleges')}
-          >
+          <Button size="lg" className="bg-[#FF6B35] hover:bg-[#FF6B35]/90" onClick={() => navigate('/career-assessment/colleges')}>
             Take Another Assessment
           </Button>
         </div>
