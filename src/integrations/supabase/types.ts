@@ -77,7 +77,7 @@ export type Database = {
           career_interests: string[] | null
           created_at: string
           date_of_birth: string | null
-          email: string
+          email: string | null
           full_name: string
           id: string
           percentage: string | null
@@ -94,7 +94,7 @@ export type Database = {
           career_interests?: string[] | null
           created_at?: string
           date_of_birth?: string | null
-          email: string
+          email?: string | null
           full_name: string
           id?: string
           percentage?: string | null
@@ -111,7 +111,7 @@ export type Database = {
           career_interests?: string[] | null
           created_at?: string
           date_of_birth?: string | null
-          email?: string
+          email?: string | null
           full_name?: string
           id?: string
           percentage?: string | null
