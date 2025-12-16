@@ -7,6 +7,8 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { AdminAuthProvider } from "@/hooks/useAdminAuth";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
+import StudentDashboard from "./pages/StudentDashboard";
+import CareerChat from "./pages/CareerChat";
 import Register12thLearner from "./pages/Register12thLearner";
 import RegisterLearner from "./pages/RegisterLearner";
 import RegisterEmployer from "./pages/RegisterEmployer";
@@ -34,6 +36,8 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/student-dashboard" element={<StudentDashboard />} />
+              <Route path="/career-assessment/chat" element={<CareerChat />} />
               <Route path="/register/12th-learner" element={<Register12thLearner />} />
               <Route path="/register/learner" element={<RegisterLearner />} />
               <Route path="/register/employer" element={<RegisterEmployer />} />

@@ -45,7 +45,8 @@ const Auth = () => {
     console.log('Auth: auth state, user:', user?.id, 'loading:', loading);
 
     if (user && !loading) {
-      const redirectUrl = redirectParam || '/';
+      // Default redirect to student dashboard for students
+      const redirectUrl = redirectParam || '/student-dashboard';
       console.log('Auth: redirect param =', redirectParam);
       console.log('Auth: After login, redirecting to:', redirectUrl);
       navigate(redirectUrl, { replace: true });
