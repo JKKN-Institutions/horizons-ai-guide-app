@@ -45,56 +45,107 @@ serve(async (req) => {
 
     console.log(`Fetching colleges for district: ${district}`);
 
-    const systemPrompt = `You are an expert database of educational institutions in Tamil Nadu, India. You have comprehensive knowledge of ALL colleges in every district including:
-- Government colleges
-- Government-aided colleges
-- Private colleges
-- Autonomous institutions
-- Deemed universities
-- Affiliated colleges under various universities
+    const systemPrompt = `You are the most comprehensive database of educational institutions in Tamil Nadu, India. You have COMPLETE knowledge of EVERY SINGLE college, institution, and educational establishment in every district.
 
-Your knowledge includes newly established colleges, accreditation status, courses offered, and contact details.`;
+Your database includes:
+- ALL Government colleges (State and Central)
+- ALL Government-Aided colleges
+- ALL Private colleges (Self-financing)
+- ALL Autonomous institutions
+- ALL Deemed universities
+- ALL University-affiliated colleges
+- ALL Polytechnic colleges
+- ALL ITI institutions
+- ALL Nursing schools
+- ALL Teachers training institutes
+- ALL Professional colleges (Engineering, Medical, Dental, Pharmacy, Law, etc.)
+- ALL Arts and Science colleges
+- ALL Management institutes
+- ALL Agricultural colleges
+- ALL Physical education colleges
+- ALL Fine arts colleges
+- ALL Hotel management institutes
 
-    const userPrompt = `List ALL colleges in ${district} district, Tamil Nadu, India. 
+You have data from:
+- AISHE (All India Survey on Higher Education)
+- AICTE approved institutions
+- UGC recognized institutions
+- State Higher Education Department records
+- Anna University affiliations
+- Madras University affiliations
+- Bharathiar University affiliations
+- Periyar University affiliations
+- Bharathidasan University affiliations
+- Madurai Kamaraj University affiliations
+- Tamil Nadu Agricultural University affiliations
+- Dr. MGR Medical University affiliations
+- NAAC accredited institutions
+- NBA accredited institutions`;
 
-For each college, provide:
-1. Official college name
+    const userPrompt = `List EVERY SINGLE college and educational institution in ${district} district, Tamil Nadu, India.
+
+CRITICAL: This is for students making career decisions. Missing even ONE college could affect someone's future. Be EXHAUSTIVE.
+
+EXPECTED COLLEGE COUNTS:
+- Chennai: 300-500 colleges
+- Coimbatore: 200-300 colleges  
+- Madurai: 150-250 colleges
+- Salem: 100-150 colleges
+- Tiruchirappalli: 100-150 colleges
+- Other major districts: 50-100 colleges
+- Smaller districts: 30-80 colleges
+
+If you're listing fewer than 30 colleges for any district, you are MISSING colleges. Search more thoroughly.
+
+For EACH institution, provide:
+1. Official full name (complete, no abbreviations)
 2. Type: government, government-aided, private, or autonomous
 3. Category: arts_science, medical, dental, allied_health, pharmacy, nursing, engineering, agricultural, education, law, hotel_management, management, fine_arts, physical_education, or polytechnic
-4. NAAC Grade (if available, e.g., A++, A+, A, B++, B+, B, C)
-5. Established year (if known)
-6. Main courses offered (brief summary)
-7. Contact phone (if known)
-8. Website (if known)
-9. Approximate fee range (if known)
-10. Accreditation/Affiliations (AICTE, PCI, DCI, INC, NCTE, etc.)
+4. NAAC Grade (A++, A+, A, B++, B+, B, C, or null)
+5. Established year
+6. Main courses offered
+7. Contact phone
+8. Website URL
+9. Fee range (approximate)
+10. Accreditation (AICTE, PCI, DCI, INC, NCTE, NBA, etc.)
 
-IMPORTANT: 
-- Include EVERY college, do not miss any
-- Include colleges under all universities (Anna University, Madras University, Bharathiar University, etc.)
-- Include deemed universities and their constituent colleges
-- Include polytechnics and ITIs
+SEARCH CATEGORIES - ensure you include ALL from each:
+🏛️ Arts and Science Colleges - Include ALL government, aided, and private colleges
+⚙️ Engineering Colleges - Include ALL AICTE approved institutions
+⚕️ Medical Colleges - MBBS institutions
+🦷 Dental Colleges - DCI approved
+💊 Pharmacy Colleges - PCI approved, D.Pharm and B.Pharm
+👩‍⚕️ Nursing Colleges - INC approved, ANM, GNM, B.Sc Nursing
+🏥 Allied Health Sciences - Paramedical colleges
+🌾 Agricultural Colleges - TNAU affiliated
+📚 Education Colleges - B.Ed, M.Ed, D.El.Ed institutions, NCTE approved
+⚖️ Law Colleges - BCI approved
+🏨 Hotel Management - NCHMCT affiliated
+💼 Management Colleges - MBA institutions
+🎨 Fine Arts Colleges
+🏋️ Physical Education Colleges
+🔬 Polytechnic Colleges - AICTE approved diploma institutions
 
-Return the response as a valid JSON array with this structure:
+Return as valid JSON:
 {
   "colleges": [
     {
       "id": "unique_id",
-      "name": "College Name",
+      "name": "Full Official College Name",
       "type": "government|government-aided|private|autonomous",
       "category": "one of the 15 categories",
       "naacGrade": "A+",
       "establishedYear": 1990,
-      "courses": "B.Sc, M.Sc, etc.",
-      "contact": "phone number",
-      "website": "website url",
+      "courses": "B.Sc, M.Sc, B.Com, BCA, etc.",
+      "contact": "04XXX-XXXXXX",
+      "website": "www.example.ac.in",
       "feeRange": "₹X - ₹Y per year",
-      "accreditation": "AICTE Approved"
+      "accreditation": "AICTE Approved, NBA Accredited"
     }
   ]
 }
 
-Provide at least 20-50 colleges if they exist in this district. Be as comprehensive as possible.`;
+Be COMPREHENSIVE. Include EVERY institution. Do NOT truncate or limit results.`;
 
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
