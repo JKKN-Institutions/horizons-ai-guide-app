@@ -7,6 +7,7 @@ import { Progress } from '@/components/ui/progress';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { Json } from '@/integrations/supabase/types';
 
 interface QuestionOption {
   label: string;
@@ -238,11 +239,11 @@ const TakeAssessment = () => {
         await supabase.from('user_question_history').insert([
           {
             user_id: user?.id || '',
-            assessment_type: assessmentType,
+            assessment_type: assessmentType as 'psychometric' | 'career_interest' | 'emotional_intelligence' | 'skill_gap',
             attempt_id: attemptId,
             question_text: nextQuestion.scenario,
             question_hash: questionHash,
-            options: nextQuestion.options,
+            options: nextQuestion.options as unknown as Json,
           },
         ]);
 
