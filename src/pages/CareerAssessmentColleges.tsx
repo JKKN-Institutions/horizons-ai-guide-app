@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TrendingUp, Heart, BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, Building2, GraduationCap, MessageCircle, Mic, Sparkles, Radio, Target } from 'lucide-react';
+import { BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, Building2, GraduationCap, MessageCircle, Mic, Sparkles, Radio, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -51,26 +51,6 @@ const assessmentCards: AssessmentCard[] = [
     bgColor: 'bg-emerald-100',
     isExternal: true,
     secondaryIcon: Target,
-  },
-  {
-    id: 'emotional_intelligence',
-    title: 'Emotional Intelligence',
-    description: 'Evaluate emotional awareness, empathy and interpersonal skills',
-    duration: '25 min',
-    questions: 35,
-    icon: Heart,
-    iconColor: 'text-blue-500',
-    bgColor: 'bg-blue-100',
-  },
-  {
-    id: 'skill_gap',
-    title: 'Skill Gap Analysis',
-    description: 'Identify gaps between current skills and industry requirements',
-    duration: '30 min',
-    questions: 50,
-    icon: TrendingUp,
-    iconColor: 'text-purple-500',
-    bgColor: 'bg-purple-100',
   },
 ];
 
