@@ -30,10 +30,52 @@ import {
   PieChart,
   Pie,
   Cell,
+  BarChart,
+  Bar,
 } from 'recharts';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
+// Cache configuration
+const CACHE_KEY = 'industry_trends_cache';
+const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
+
+interface CacheData {
+  data: MarketData;
+  timestamp: number;
+}
+
+const getCache = (): MarketData | null => {
+  try {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (!cached) return null;
+    
+    const { data, timestamp }: CacheData = JSON.parse(cached);
+    const isExpired = Date.now() - timestamp > CACHE_DURATION;
+    
+    if (isExpired) {
+      localStorage.removeItem(CACHE_KEY);
+      return null;
+    }
+    
+    return data;
+  } catch {
+    return null;
+  }
+};
+
+const setCache = (data: MarketData): void => {
+  try {
+    const cacheData: CacheData = {
+      data,
+      timestamp: Date.now(),
+    };
+    localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+  } catch (e) {
+    console.warn('Failed to cache data:', e);
+  }
+};
 // Icon mapping for industries
 const industryIcons: Record<string, React.ElementType> = {
   'artificial intelligence': Brain,
@@ -208,19 +250,36 @@ const CHART_COLORS = ['#FF6B35', '#0A2E1F', '#FFB800', '#2196F3'];
 const IndustryTrends = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [marketData, setMarketData] = useState<MarketData>(fallbackData);
+  
+  // Initialize with cached data if available, otherwise fallback
+  const [marketData, setMarketData] = useState<MarketData>(() => {
+    const cached = getCache();
+    return cached || fallbackData;
+  });
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  const [isLiveData, setIsLiveData] = useState(false);
-  const [initialLoad, setInitialLoad] = useState(true);
+  const [isLiveData, setIsLiveData] = useState(() => !!getCache());
+  const [isCachedData, setIsCachedData] = useState(() => !!getCache());
+  const [selectedChartView, setSelectedChartView] = useState<'line' | 'bar'>('line');
 
-  const fetchMarketData = async (showToast = false) => {
+  const fetchMarketData = async (showToast = false, forceRefresh = false) => {
     try {
+      // Check cache first (unless force refresh)
+      if (!forceRefresh) {
+        const cached = getCache();
+        if (cached) {
+          setMarketData(cached);
+          setIsLiveData(true);
+          setIsCachedData(true);
+          return;
+        }
+      }
+
       if (showToast) setRefreshing(true);
 
-      // Create a timeout promise (10 seconds)
+      // Create a timeout promise (15 seconds)
       const timeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error('Request timeout')), 10000);
+        setTimeout(() => reject(new Error('Request timeout')), 15000);
       });
 
       // Race between the API call and timeout
@@ -238,11 +297,13 @@ const IndustryTrends = () => {
 
       if (data && !('error' in data)) {
         setMarketData(data);
+        setCache(data); // Cache the new data
         setIsLiveData(true);
+        setIsCachedData(false);
         if (showToast) {
           toast({
             title: "Data Refreshed",
-            description: "Latest job market data has been fetched.",
+            description: "Latest job market data has been fetched and cached.",
           });
         }
       } else {
@@ -251,16 +312,34 @@ const IndustryTrends = () => {
     } catch (error) {
       console.error('Failed to fetch live data, using fallback:', error);
       setIsLiveData(false);
+      setIsCachedData(false);
+      if (showToast) {
+        toast({
+          title: "Using Offline Data",
+          description: "Couldn't refresh. Showing cached information.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setRefreshing(false);
-      setInitialLoad(false);
     }
   };
 
   useEffect(() => {
-    // Fetch live data in the background (data is already showing from fallback)
-    fetchMarketData();
+    // If no cache exists, fetch fresh data in background
+    const cached = getCache();
+    if (!cached) {
+      fetchMarketData();
+    }
   }, []);
+
+  // Prepare comparison chart data from market data
+  const comparisonChartData = marketData.trendingIndustries.slice(0, 6).map(industry => ({
+    name: industry.name.split(' ')[0], // Shorten name for chart
+    fullName: industry.name,
+    growth: industry.growth,
+    openings: parseInt(industry.openings.replace(/[^0-9]/g, '')) / 1000, // Convert to K
+  }));
 
   const keyMetrics = [
     { icon: TrendingUp, value: marketData.keyMetrics.totalJobOpenings, label: 'Job Openings', sublabel: 'in India', change: marketData.keyMetrics.jobOpeningsChange, color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
@@ -344,7 +423,18 @@ const IndustryTrends = () => {
                 ) : (
                   <WifiOff className="h-4 w-4 text-white/40" />
                 )}
-                <span>{isLiveData ? 'Real-time analytics powered by AI' : 'Showing cached data'}</span>
+                <span>
+                  {isLiveData 
+                    ? (isCachedData ? 'Showing cached data' : 'Real-time analytics powered by AI')
+                    : 'Showing offline data'
+                  }
+                </span>
+                {isCachedData && (
+                  <Badge className="bg-blue-500 text-white text-xs">Cached</Badge>
+                )}
+                {isLiveData && !isCachedData && (
+                  <Badge className="bg-[#FFB800] text-black text-xs">Live</Badge>
+                )}
                 <span className="mx-2">•</span>
                 <span>Last updated: {new Date(marketData.lastUpdated).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
               </div>
@@ -352,7 +442,7 @@ const IndustryTrends = () => {
             <Button
               variant="outline"
               className="border-white/30 text-white hover:bg-white/10"
-              onClick={() => fetchMarketData(true)}
+              onClick={() => fetchMarketData(true, true)}
               disabled={refreshing}
             >
               {refreshing ? (
@@ -360,7 +450,7 @@ const IndustryTrends = () => {
               ) : (
                 <RefreshCw className="mr-2 h-4 w-4" />
               )}
-              Refresh Data
+              {isCachedData ? 'Refresh Data' : 'Fetch Latest'}
             </Button>
           </div>
         </div>
@@ -522,6 +612,80 @@ const IndustryTrends = () => {
                 <Line type="monotone" dataKey="Finance" stroke="#0A2E1F" strokeWidth={3} dot={{ fill: '#0A2E1F', strokeWidth: 2, r: 6 }} />
                 <Line type="monotone" dataKey="Manufacturing" stroke="#FFB800" strokeWidth={3} dot={{ fill: '#FFB800', strokeWidth: 2, r: 6 }} />
               </RechartsLineChart>
+            </ResponsiveContainer>
+          </Card>
+        </section>
+
+        {/* Industry Comparison Charts */}
+        <section>
+          <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
+            <div className="flex items-center gap-2">
+              <BarChart3 className="h-6 w-6 text-[#0A2E1F]" />
+              <h2 className="text-2xl font-bold text-foreground">Industry Comparison</h2>
+            </div>
+            <Tabs value={selectedChartView} onValueChange={(v) => setSelectedChartView(v as 'line' | 'bar')}>
+              <TabsList className="bg-muted/50">
+                <TabsTrigger value="bar" className="gap-2">
+                  <BarChart3 className="h-4 w-4" />
+                  Bar Chart
+                </TabsTrigger>
+                <TabsTrigger value="line" className="gap-2">
+                  <LineChart className="h-4 w-4" />
+                  Line Chart
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+          <Card className="p-6 border-0 shadow-lg">
+            <p className="text-sm text-muted-foreground mb-4">
+              Compare growth rates and job openings across top industries
+            </p>
+            <ResponsiveContainer width="100%" height={350}>
+              {selectedChartView === 'bar' ? (
+                <BarChart data={comparisonChartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                  <XAxis dataKey="name" tick={{ fill: '#666', fontSize: 12 }} />
+                  <YAxis yAxisId="left" tick={{ fill: '#666' }} label={{ value: 'Growth %', angle: -90, position: 'insideLeft', fill: '#666' }} />
+                  <YAxis yAxisId="right" orientation="right" tick={{ fill: '#666' }} label={{ value: 'Openings (K)', angle: 90, position: 'insideRight', fill: '#666' }} />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: '#fff', border: '1px solid #e0e0e0', borderRadius: '8px' }}
+                    formatter={(value, name) => {
+                      if (name === 'growth') return [`${value}%`, 'Growth Rate'];
+                      if (name === 'openings') return [`${value}K`, 'Job Openings'];
+                      return [value, name];
+                    }}
+                    labelFormatter={(label) => {
+                      const item = comparisonChartData.find(d => d.name === label);
+                      return item?.fullName || label;
+                    }}
+                  />
+                  <Legend />
+                  <Bar yAxisId="left" dataKey="growth" fill="#FF6B35" name="Growth %" radius={[4, 4, 0, 0]} />
+                  <Bar yAxisId="right" dataKey="openings" fill="#0A2E1F" name="Openings (K)" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              ) : (
+                <RechartsLineChart data={comparisonChartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                  <XAxis dataKey="name" tick={{ fill: '#666', fontSize: 12 }} />
+                  <YAxis yAxisId="left" tick={{ fill: '#666' }} label={{ value: 'Growth %', angle: -90, position: 'insideLeft', fill: '#666' }} />
+                  <YAxis yAxisId="right" orientation="right" tick={{ fill: '#666' }} label={{ value: 'Openings (K)', angle: 90, position: 'insideRight', fill: '#666' }} />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: '#fff', border: '1px solid #e0e0e0', borderRadius: '8px' }}
+                    formatter={(value, name) => {
+                      if (name === 'growth') return [`${value}%`, 'Growth Rate'];
+                      if (name === 'openings') return [`${value}K`, 'Job Openings'];
+                      return [value, name];
+                    }}
+                    labelFormatter={(label) => {
+                      const item = comparisonChartData.find(d => d.name === label);
+                      return item?.fullName || label;
+                    }}
+                  />
+                  <Legend />
+                  <Line yAxisId="left" type="monotone" dataKey="growth" stroke="#FF6B35" strokeWidth={3} dot={{ fill: '#FF6B35', strokeWidth: 2, r: 6 }} name="Growth %" />
+                  <Line yAxisId="right" type="monotone" dataKey="openings" stroke="#0A2E1F" strokeWidth={3} dot={{ fill: '#0A2E1F', strokeWidth: 2, r: 6 }} name="Openings (K)" />
+                </RechartsLineChart>
+              )}
             </ResponsiveContainer>
           </Card>
         </section>
