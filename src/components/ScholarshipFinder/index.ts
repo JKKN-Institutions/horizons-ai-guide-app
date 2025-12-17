@@ -2,5 +2,7 @@ export { ScholarshipFinder } from './ScholarshipFinder';
 export { ScholarshipCard } from './ScholarshipCard';
 export { ScholarshipFilters } from './ScholarshipFilters';
 export { ScholarshipDetailModal } from './ScholarshipDetailModal';
+export { CategoryButtons } from './CategoryButtons';
+export { CategoryScholarshipList } from './CategoryScholarshipList';
 export * from './types';
 export * from './scholarshipData';

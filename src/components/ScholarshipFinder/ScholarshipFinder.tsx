@@ -3,10 +3,11 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Search, Filter, Star, Landmark, Building2, Heart, SlidersHorizontal } from 'lucide-react';
+import { Search, SlidersHorizontal } from 'lucide-react';
 import { ScholarshipFilters } from './ScholarshipFilters';
-import { ScholarshipCard } from './ScholarshipCard';
 import { ScholarshipDetailModal } from './ScholarshipDetailModal';
+import { CategoryButtons } from './CategoryButtons';
+import { CategoryScholarshipList } from './CategoryScholarshipList';
 import { scholarships, getJKKNScholarships, getGovernmentScholarships, getCorporateScholarships, getNGOScholarships } from './scholarshipData';
 import { Scholarship, ScholarshipFilters as FiltersType } from './types';
 
@@ -20,11 +21,21 @@ const defaultFilters: FiltersType = {
   searchQuery: ''
 };
 
+type CategoryType = 'jkkn' | 'government' | 'corporate' | 'ngo';
+
 export const ScholarshipFinder = () => {
   const [filters, setFilters] = useState<FiltersType>(defaultFilters);
   const [sortBy, setSortBy] = useState('relevance');
   const [selectedScholarship, setSelectedScholarship] = useState<Scholarship | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<CategoryType>('jkkn');
+
+  const categoryCounts = useMemo(() => ({
+    jkkn: getJKKNScholarships().length,
+    government: getGovernmentScholarships().length,
+    corporate: getCorporateScholarships().length,
+    ngo: getNGOScholarships().length
+  }), []);
 
   const stats = useMemo(() => ({
     total: scholarships.length,
@@ -34,7 +45,7 @@ export const ScholarshipFinder = () => {
   }), []);
 
   const filteredScholarships = useMemo(() => {
-    let result = [...scholarships];
+    let result = scholarships.filter(s => s.type === activeCategory);
 
     // Search filter
     if (filters.searchQuery) {
@@ -44,11 +55,6 @@ export const ScholarshipFinder = () => {
         s.provider.toLowerCase().includes(query) ||
         s.description.toLowerCase().includes(query)
       );
-    }
-
-    // Type filter
-    if (filters.types.length > 0) {
-      result = result.filter(s => filters.types.includes(s.type));
     }
 
     // Education level filter
@@ -90,44 +96,11 @@ export const ScholarshipFinder = () => {
     }
 
     return result;
-  }, [filters, sortBy]);
-
-  const jkknScholarships = filteredScholarships.filter(s => s.type === 'jkkn');
-  const governmentScholarships = filteredScholarships.filter(s => s.type === 'government');
-  const corporateScholarships = filteredScholarships.filter(s => s.type === 'corporate');
-  const ngoScholarships = filteredScholarships.filter(s => s.type === 'ngo');
+  }, [filters, sortBy, activeCategory]);
 
   const handleViewDetails = (scholarship: Scholarship) => {
     setSelectedScholarship(scholarship);
     setIsDetailOpen(true);
-  };
-
-  const renderScholarshipSection = (
-    scholarships: Scholarship[],
-    title: string,
-    icon: React.ReactNode,
-    bgColor: string
-  ) => {
-    if (scholarships.length === 0) return null;
-    
-    return (
-      <div className="space-y-4">
-        <div className={`flex items-center gap-2 px-4 py-2 rounded-lg ${bgColor}`}>
-          {icon}
-          <h3 className="font-semibold text-foreground">{title}</h3>
-          <span className="text-sm text-muted-foreground">({scholarships.length})</span>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {scholarships.map(scholarship => (
-            <ScholarshipCard 
-              key={scholarship.id} 
-              scholarship={scholarship} 
-              onViewDetails={handleViewDetails}
-            />
-          ))}
-        </div>
-      </div>
-    );
   };
 
   return (
@@ -164,6 +137,13 @@ export const ScholarshipFinder = () => {
           </div>
         </div>
       </div>
+
+      {/* Category Buttons */}
+      <CategoryButtons 
+        activeCategory={activeCategory}
+        onCategoryChange={setActiveCategory}
+        counts={categoryCounts}
+      />
 
       {/* Search and Sort Bar */}
       <div className="flex flex-col md:flex-row gap-4">
@@ -225,8 +205,8 @@ export const ScholarshipFinder = () => {
           </div>
         </div>
 
-        {/* Scholarships Grid */}
-        <div className="flex-1 space-y-8">
+        {/* Scholarships List */}
+        <div className="flex-1">
           {filteredScholarships.length === 0 ? (
             <div className="text-center py-12 bg-muted/30 rounded-xl">
               <p className="text-lg text-muted-foreground">No scholarships found matching your criteria</p>
@@ -239,35 +219,11 @@ export const ScholarshipFinder = () => {
               </Button>
             </div>
           ) : (
-            <>
-              {renderScholarshipSection(
-                jkknScholarships,
-                'JKKN EXCLUSIVE',
-                <Star className="h-5 w-5 text-emerald-600" />,
-                'bg-emerald-50'
-              )}
-              
-              {renderScholarshipSection(
-                governmentScholarships,
-                'GOVERNMENT SCHOLARSHIPS',
-                <Landmark className="h-5 w-5 text-blue-600" />,
-                'bg-blue-50'
-              )}
-              
-              {renderScholarshipSection(
-                corporateScholarships,
-                'CORPORATE SCHOLARSHIPS',
-                <Building2 className="h-5 w-5 text-purple-600" />,
-                'bg-purple-50'
-              )}
-              
-              {renderScholarshipSection(
-                ngoScholarships,
-                'NGO/TRUST SCHOLARSHIPS',
-                <Heart className="h-5 w-5 text-orange-600" />,
-                'bg-orange-50'
-              )}
-            </>
+            <CategoryScholarshipList
+              scholarships={filteredScholarships}
+              category={activeCategory}
+              onViewDetails={handleViewDetails}
+            />
           )}
         </div>
       </div>
