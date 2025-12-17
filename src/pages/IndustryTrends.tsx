@@ -209,23 +209,34 @@ const IndustryTrends = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [marketData, setMarketData] = useState<MarketData>(fallbackData);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [isLiveData, setIsLiveData] = useState(false);
+  const [initialLoad, setInitialLoad] = useState(true);
 
   const fetchMarketData = async (showToast = false) => {
     try {
       if (showToast) setRefreshing(true);
-      else setLoading(true);
 
-      const { data, error } = await supabase.functions.invoke('industry-trends');
+      // Create a timeout promise (10 seconds)
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Request timeout')), 10000);
+      });
+
+      // Race between the API call and timeout
+      const result = await Promise.race([
+        supabase.functions.invoke('industry-trends'),
+        timeoutPromise
+      ]) as { data: MarketData | null; error: Error | null };
+
+      const { data, error } = result;
 
       if (error) {
         console.error('Error fetching market data:', error);
         throw error;
       }
 
-      if (data && !data.error) {
+      if (data && !('error' in data)) {
         setMarketData(data);
         setIsLiveData(true);
         if (showToast) {
@@ -235,26 +246,19 @@ const IndustryTrends = () => {
           });
         }
       } else {
-        throw new Error(data?.error || 'Failed to fetch data');
+        throw new Error((data as any)?.error || 'Failed to fetch data');
       }
     } catch (error) {
       console.error('Failed to fetch live data, using fallback:', error);
-      setMarketData(fallbackData);
       setIsLiveData(false);
-      if (showToast) {
-        toast({
-          title: "Using Cached Data",
-          description: "Couldn't fetch live data. Showing cached information.",
-          variant: "destructive",
-        });
-      }
     } finally {
-      setLoading(false);
       setRefreshing(false);
+      setInitialLoad(false);
     }
   };
 
   useEffect(() => {
+    // Fetch live data in the background (data is already showing from fallback)
     fetchMarketData();
   }, []);
 
