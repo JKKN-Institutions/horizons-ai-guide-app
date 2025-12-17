@@ -4,7 +4,7 @@ import {
   ArrowLeft, TrendingUp, Building2, IndianRupee, Target, Flame, 
   Cloud, Shield, Database, Laptop, Heart, Zap, Briefcase, 
   LineChart, BarChart3, Brain, Rocket, AlertTriangle, CheckCircle2,
-  MapPin, Sparkles, RefreshCw, Loader2, WifiOff
+  MapPin, Sparkles, RefreshCw, Loader2, WifiOff, Filter, X, SlidersHorizontal
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -36,6 +36,43 @@ import {
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+
+// Filter options
+const DEMAND_LEVELS = ['All', 'Very High', 'High', 'Medium'] as const;
+const SALARY_RANGES = [
+  { label: 'All Salaries', value: 'all' },
+  { label: '₹0-10 LPA', value: '0-10' },
+  { label: '₹10-20 LPA', value: '10-20' },
+  { label: '₹20-30 LPA', value: '20-30' },
+  { label: '₹30+ LPA', value: '30+' },
+] as const;
+
+const INDUSTRY_CATEGORIES = [
+  'AI & Machine Learning',
+  'Cloud & DevOps',
+  'Healthcare',
+  'Cybersecurity',
+  'Data Science',
+  'FinTech',
+  'Renewable Energy',
+] as const;
 
 // Cache configuration
 const CACHE_KEY = 'industry_trends_cache';
@@ -261,6 +298,97 @@ const IndustryTrends = () => {
   const [isLiveData, setIsLiveData] = useState(() => !!getCache());
   const [isCachedData, setIsCachedData] = useState(() => !!getCache());
   const [selectedChartView, setSelectedChartView] = useState<'line' | 'bar'>('line');
+  
+  // Filter states
+  const [demandFilter, setDemandFilter] = useState<string>('All');
+  const [salaryFilter, setSalaryFilter] = useState<string>('all');
+  const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  // Parse salary range from string like "₹8-35 LPA" to { min, max }
+  const parseSalaryRange = (salaryStr: string): { min: number; max: number } => {
+    const numbers = salaryStr.match(/\d+/g);
+    if (!numbers || numbers.length < 2) return { min: 0, max: 100 };
+    return { min: parseInt(numbers[0]), max: parseInt(numbers[1]) };
+  };
+
+  // Check if industry matches salary filter
+  const matchesSalaryFilter = (salaryRange: string): boolean => {
+    if (salaryFilter === 'all') return true;
+    const { min, max } = parseSalaryRange(salaryRange);
+    switch (salaryFilter) {
+      case '0-10': return min <= 10;
+      case '10-20': return min <= 20 && max >= 10;
+      case '20-30': return min <= 30 && max >= 20;
+      case '30+': return max >= 30;
+      default: return true;
+    }
+  };
+
+  // Check if industry matches selected industries filter
+  const matchesIndustryFilter = (industryName: string): boolean => {
+    if (selectedIndustries.length === 0) return true;
+    const lowerName = industryName.toLowerCase();
+    return selectedIndustries.some(selected => {
+      const lowerSelected = selected.toLowerCase();
+      if (lowerSelected.includes('ai') || lowerSelected.includes('machine')) {
+        return lowerName.includes('artificial') || lowerName.includes('machine') || lowerName.includes('ai');
+      }
+      if (lowerSelected.includes('cloud') || lowerSelected.includes('devops')) {
+        return lowerName.includes('cloud') || lowerName.includes('devops');
+      }
+      if (lowerSelected.includes('healthcare')) {
+        return lowerName.includes('healthcare') || lowerName.includes('life');
+      }
+      if (lowerSelected.includes('cyber')) {
+        return lowerName.includes('cyber') || lowerName.includes('security');
+      }
+      if (lowerSelected.includes('data')) {
+        return lowerName.includes('data') || lowerName.includes('analytics');
+      }
+      if (lowerSelected.includes('fintech')) {
+        return lowerName.includes('fintech') || lowerName.includes('banking') || lowerName.includes('finance');
+      }
+      if (lowerSelected.includes('renewable') || lowerSelected.includes('energy')) {
+        return lowerName.includes('renewable') || lowerName.includes('energy');
+      }
+      return false;
+    });
+  };
+
+  // Filter industries
+  const filteredIndustries = marketData.trendingIndustries.filter(industry => {
+    const matchesDemand = demandFilter === 'All' || industry.demand.toLowerCase() === demandFilter.toLowerCase();
+    const matchesSalary = matchesSalaryFilter(industry.salaryRange);
+    const matchesIndustry = matchesIndustryFilter(industry.name);
+    return matchesDemand && matchesSalary && matchesIndustry;
+  });
+
+  // Filter top jobs
+  const filteredJobs = marketData.topJobs.filter(job => {
+    const matchesDemand = demandFilter === 'All' || job.demand.toLowerCase() === demandFilter.toLowerCase();
+    const matchesSalary = matchesSalaryFilter(job.salaryRange);
+    return matchesDemand && matchesSalary;
+  });
+
+  // Toggle industry selection
+  const toggleIndustry = (industry: string) => {
+    setSelectedIndustries(prev => 
+      prev.includes(industry) 
+        ? prev.filter(i => i !== industry)
+        : [...prev, industry]
+    );
+  };
+
+  // Clear all filters
+  const clearFilters = () => {
+    setDemandFilter('All');
+    setSalaryFilter('all');
+    setSelectedIndustries([]);
+  };
+
+  // Check if any filters are active
+  const hasActiveFilters = demandFilter !== 'All' || salaryFilter !== 'all' || selectedIndustries.length > 0;
 
   const fetchMarketData = async (showToast = false, forceRefresh = false) => {
     try {
@@ -480,15 +608,156 @@ const IndustryTrends = () => {
           </div>
         </section>
 
+        {/* Filter Panel */}
+        <section>
+          <Card className="p-4 border-0 shadow-lg bg-gradient-to-r from-muted/50 to-muted/30">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <SlidersHorizontal className="h-5 w-5 text-[#FF6B35]" />
+                <span className="font-semibold text-foreground">Filter Results</span>
+                {hasActiveFilters && (
+                  <Badge variant="secondary" className="bg-[#FF6B35]/10 text-[#FF6B35]">
+                    {(demandFilter !== 'All' ? 1 : 0) + (salaryFilter !== 'all' ? 1 : 0) + selectedIndustries.length} active
+                  </Badge>
+                )}
+              </div>
+              
+              <div className="flex flex-wrap items-center gap-3">
+                {/* Demand Filter */}
+                <Select value={demandFilter} onValueChange={setDemandFilter}>
+                  <SelectTrigger className="w-[140px] bg-background">
+                    <SelectValue placeholder="Demand Level" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background z-50">
+                    {DEMAND_LEVELS.map(level => (
+                      <SelectItem key={level} value={level}>{level === 'All' ? 'All Demand' : level}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                {/* Salary Filter */}
+                <Select value={salaryFilter} onValueChange={setSalaryFilter}>
+                  <SelectTrigger className="w-[140px] bg-background">
+                    <SelectValue placeholder="Salary Range" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background z-50">
+                    {SALARY_RANGES.map(range => (
+                      <SelectItem key={range.value} value={range.value}>{range.label}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                {/* Industry Filter Sheet */}
+                <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
+                  <SheetTrigger asChild>
+                    <Button variant="outline" className="gap-2 bg-background">
+                      <Filter className="h-4 w-4" />
+                      Industries
+                      {selectedIndustries.length > 0 && (
+                        <Badge className="ml-1 bg-[#FF6B35] text-white text-xs">{selectedIndustries.length}</Badge>
+                      )}
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent className="bg-background">
+                    <SheetHeader>
+                      <SheetTitle>Select Industries</SheetTitle>
+                      <SheetDescription>
+                        Filter trends by specific industry categories
+                      </SheetDescription>
+                    </SheetHeader>
+                    <div className="mt-6 space-y-4">
+                      {INDUSTRY_CATEGORIES.map(industry => (
+                        <div key={industry} className="flex items-center space-x-3">
+                          <Checkbox
+                            id={industry}
+                            checked={selectedIndustries.includes(industry)}
+                            onCheckedChange={() => toggleIndustry(industry)}
+                          />
+                          <Label htmlFor={industry} className="cursor-pointer">{industry}</Label>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-6 flex gap-2">
+                      <Button 
+                        variant="outline" 
+                        onClick={() => setSelectedIndustries([])}
+                        className="flex-1"
+                      >
+                        Clear Selection
+                      </Button>
+                      <Button 
+                        onClick={() => setIsFilterOpen(false)}
+                        className="flex-1 bg-[#FF6B35] hover:bg-[#FF6B35]/90"
+                      >
+                        Apply
+                      </Button>
+                    </div>
+                  </SheetContent>
+                </Sheet>
+
+                {/* Clear All Filters */}
+                {hasActiveFilters && (
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={clearFilters}
+                    className="text-muted-foreground hover:text-foreground gap-1"
+                  >
+                    <X className="h-4 w-4" />
+                    Clear All
+                  </Button>
+                )}
+              </div>
+            </div>
+
+            {/* Active Filter Tags */}
+            {hasActiveFilters && (
+              <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-border">
+                {demandFilter !== 'All' && (
+                  <Badge variant="secondary" className="gap-1">
+                    Demand: {demandFilter}
+                    <X className="h-3 w-3 cursor-pointer" onClick={() => setDemandFilter('All')} />
+                  </Badge>
+                )}
+                {salaryFilter !== 'all' && (
+                  <Badge variant="secondary" className="gap-1">
+                    Salary: {SALARY_RANGES.find(r => r.value === salaryFilter)?.label}
+                    <X className="h-3 w-3 cursor-pointer" onClick={() => setSalaryFilter('all')} />
+                  </Badge>
+                )}
+                {selectedIndustries.map(industry => (
+                  <Badge key={industry} variant="secondary" className="gap-1">
+                    {industry}
+                    <X className="h-3 w-3 cursor-pointer" onClick={() => toggleIndustry(industry)} />
+                  </Badge>
+                ))}
+              </div>
+            )}
+          </Card>
+        </section>
+
         {/* Trending Industries */}
         <section>
-          <div className="flex items-center gap-2 mb-6">
-            <Flame className="h-6 w-6 text-[#FF6B35]" />
-            <h2 className="text-2xl font-bold text-foreground">Hot Industries in 2025</h2>
-            {isLiveData && <Badge className="bg-[#FFB800] text-black">Live</Badge>}
+          <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
+            <div className="flex items-center gap-2">
+              <Flame className="h-6 w-6 text-[#FF6B35]" />
+              <h2 className="text-2xl font-bold text-foreground">Hot Industries in 2025</h2>
+              {isLiveData && <Badge className="bg-[#FFB800] text-black">Live</Badge>}
+            </div>
+            <span className="text-sm text-muted-foreground">
+              Showing {filteredIndustries.length} of {marketData.trendingIndustries.length} industries
+            </span>
           </div>
+          {filteredIndustries.length === 0 ? (
+            <Card className="p-8 border-0 shadow-lg text-center">
+              <Filter className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+              <h3 className="font-semibold text-lg mb-2">No industries match your filters</h3>
+              <p className="text-muted-foreground mb-4">Try adjusting your filter criteria</p>
+              <Button variant="outline" onClick={clearFilters}>Clear Filters</Button>
+            </Card>
+          ) : (
           <div className="grid gap-4">
-            {marketData.trendingIndustries.map((industry, index) => {
+            {filteredIndustries.map((industry, index) => {
               const Icon = getIndustryIcon(industry.name);
               const color = industryColors[index % industryColors.length];
               return (
@@ -554,14 +823,28 @@ const IndustryTrends = () => {
               );
             })}
           </div>
+          )}
         </section>
 
         {/* Top In-Demand Jobs Table */}
         <section>
-          <div className="flex items-center gap-2 mb-6">
-            <Briefcase className="h-6 w-6 text-[#0A2E1F]" />
-            <h2 className="text-2xl font-bold text-foreground">Most In-Demand Jobs - 2025</h2>
+          <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
+            <div className="flex items-center gap-2">
+              <Briefcase className="h-6 w-6 text-[#0A2E1F]" />
+              <h2 className="text-2xl font-bold text-foreground">Most In-Demand Jobs - 2025</h2>
+            </div>
+            <span className="text-sm text-muted-foreground">
+              Showing {filteredJobs.length} of {marketData.topJobs.length} jobs
+            </span>
           </div>
+          {filteredJobs.length === 0 ? (
+            <Card className="p-8 border-0 shadow-lg text-center">
+              <Briefcase className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+              <h3 className="font-semibold text-lg mb-2">No jobs match your filters</h3>
+              <p className="text-muted-foreground mb-4">Try adjusting your filter criteria</p>
+              <Button variant="outline" onClick={clearFilters}>Clear Filters</Button>
+            </Card>
+          ) : (
           <Card className="overflow-hidden border-0 shadow-lg">
             <Table>
               <TableHeader>
@@ -574,9 +857,9 @@ const IndustryTrends = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {marketData.topJobs.map((job) => (
+                {filteredJobs.map((job, index) => (
                   <TableRow key={job.rank} className="hover:bg-muted/50 transition-colors">
-                    <TableCell className="font-bold text-[#FF6B35]">{job.rank}</TableCell>
+                    <TableCell className="font-bold text-[#FF6B35]">{index + 1}</TableCell>
                     <TableCell className="font-medium">{job.role}</TableCell>
                     <TableCell>{job.salaryRange}</TableCell>
                     <TableCell>{job.openings}</TableCell>
@@ -588,6 +871,7 @@ const IndustryTrends = () => {
               </TableBody>
             </Table>
           </Card>
+          )}
         </section>
 
         {/* Salary Comparison Chart */}
