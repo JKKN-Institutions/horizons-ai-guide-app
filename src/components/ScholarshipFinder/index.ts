@@ -4,5 +4,6 @@ export { ScholarshipFilters } from './ScholarshipFilters';
 export { ScholarshipDetailModal } from './ScholarshipDetailModal';
 export { CategoryButtons } from './CategoryButtons';
 export { CategoryScholarshipList } from './CategoryScholarshipList';
+export { EligibilityChecker } from './EligibilityChecker';
 export * from './types';
 export * from './scholarshipData';

@@ -17,3 +17,6 @@ verify_jwt = false
 
 [functions.college-search]
 verify_jwt = false
+
+[functions.scholarship-eligibility]
+verify_jwt = false
