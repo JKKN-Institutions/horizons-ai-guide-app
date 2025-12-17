@@ -11,3 +11,9 @@ verify_jwt = false
 
 [functions.student-assessment]
 verify_jwt = true
+
+[functions.industry-trends]
+verify_jwt = false
+
+[functions.college-search]
+verify_jwt = false
