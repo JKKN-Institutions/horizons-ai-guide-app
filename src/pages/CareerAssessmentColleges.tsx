@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Compass, Heart, BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, Building2, GraduationCap, MessageCircle, Mic } from 'lucide-react';
+import { TrendingUp, Heart, BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, Building2, GraduationCap, MessageCircle, Mic, Sparkles, Radio, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -10,7 +10,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { CollegeSearch } from '@/components/CollegeSearch';
 
-type AssessmentType = 'career_chat' | 'career_interest' | 'emotional_intelligence' | 'skill_gap';
+type AssessmentType = 'career_chat' | 'industry_trends' | 'emotional_intelligence' | 'skill_gap';
 type DbAssessmentType = 'career_interest' | 'emotional_intelligence' | 'skill_gap' | 'psychometric';
 
 interface AssessmentCard {
@@ -23,6 +23,8 @@ interface AssessmentCard {
   iconColor: string;
   bgColor: string;
   isChat?: boolean;
+  isExternal?: boolean;
+  secondaryIcon?: React.ElementType;
 }
 
 const assessmentCards: AssessmentCard[] = [
@@ -36,16 +38,19 @@ const assessmentCards: AssessmentCard[] = [
     iconColor: 'text-orange-500',
     bgColor: 'bg-orange-100',
     isChat: true,
+    secondaryIcon: Mic,
   },
   {
-    id: 'career_interest',
-    title: 'Career Interest Inventory',
-    description: 'Identify career interests and match with suitable job roles',
-    duration: '20 min',
-    questions: 40,
-    icon: Compass,
-    iconColor: 'text-green-600',
-    bgColor: 'bg-green-100',
+    id: 'industry_trends',
+    title: 'Industry Trends & Insights',
+    description: 'Real-time job market analytics, salary benchmarks & future career predictions',
+    duration: 'Live Data',
+    questions: 'AI-Powered',
+    icon: BarChart3,
+    iconColor: 'text-emerald-600',
+    bgColor: 'bg-emerald-100',
+    isExternal: true,
+    secondaryIcon: Target,
   },
   {
     id: 'emotional_intelligence',
@@ -63,7 +68,7 @@ const assessmentCards: AssessmentCard[] = [
     description: 'Identify gaps between current skills and industry requirements',
     duration: '30 min',
     questions: 50,
-    icon: BarChart3,
+    icon: TrendingUp,
     iconColor: 'text-purple-500',
     bgColor: 'bg-purple-100',
   },
@@ -135,6 +140,12 @@ const CareerAssessmentColleges = () => {
     // Handle Career AI Chat separately
     if (assessment.isChat) {
       navigate('/career-assessment/chat');
+      return;
+    }
+
+    // Handle Industry Trends separately (external page)
+    if (assessment.isExternal) {
+      navigate('/career-assessment/industry-trends');
       return;
     }
 
@@ -308,6 +319,17 @@ const CareerAssessmentColleges = () => {
                                   Voice Support
                                 </span>
                               </>
+                            ) : assessment.isExternal ? (
+                              <>
+                                <span className="flex items-center gap-1">
+                                  <Radio className="h-4 w-4" />
+                                  {assessment.duration}
+                                </span>
+                                <span className="flex items-center gap-1">
+                                  <Sparkles className="h-4 w-4" />
+                                  {assessment.questions} Insights
+                                </span>
+                              </>
                             ) : (
                               <>
                                 <span className="flex items-center gap-1">
@@ -322,7 +344,7 @@ const CareerAssessmentColleges = () => {
                             )}
                           </div>
 
-                          {inProgress && !completed && (
+                          {inProgress && !completed && !assessment.isExternal && (
                             <div className="mb-4">
                               <div className="flex justify-between text-sm mb-1">
                                 <span className="text-muted-foreground">Progress</span>
@@ -336,7 +358,7 @@ const CareerAssessmentColleges = () => {
                             className="w-full bg-[#FF6B35] hover:bg-[#FF6B35]/90 text-white"
                             onClick={() => handleStartAssessment(assessment)}
                           >
-                            {assessment.isChat ? 'Start Chat' : completed ? 'Retake Assessment' : inProgress ? 'Continue Assessment' : 'Start Assessment'}
+                            {assessment.isChat ? 'Start Chat' : assessment.isExternal ? 'View Insights →' : completed ? 'Retake Assessment' : inProgress ? 'Continue Assessment' : 'Start Assessment'}
                           </Button>
                         </CardContent>
                       </Card>
