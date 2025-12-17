@@ -756,66 +756,75 @@ const IndustryTrends = () => {
               <Button variant="outline" onClick={clearFilters}>Clear Filters</Button>
             </Card>
           ) : (
-          <div className="grid gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredIndustries.map((industry, index) => {
               const Icon = getIndustryIcon(industry.name);
               const color = industryColors[index % industryColors.length];
               return (
-                <Card key={index} className="overflow-hidden border-l-4 hover:shadow-lg transition-all duration-300" style={{ borderLeftColor: color }}>
-                  <CardContent className="p-6">
-                    <div className="flex flex-col lg:flex-row lg:items-center gap-4">
-                      <div className="flex items-center gap-4 flex-1">
-                        <div className="p-3 rounded-xl" style={{ backgroundColor: `${color}15` }}>
-                          <Icon className="h-6 w-6" style={{ color }} />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-lg text-foreground">{industry.name}</h3>
-                          <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground flex-wrap">
-                            <span className="flex items-center gap-1">
-                              <IndianRupee className="h-3 w-3" />
-                              {industry.salaryRange}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <Briefcase className="h-3 w-3" />
-                              {industry.openings}
-                            </span>
-                            <Badge variant={industry.demand === 'Very High' ? 'destructive' : 'secondary'} className="text-xs">
-                              {industry.demand}
-                            </Badge>
-                          </div>
-                        </div>
+                <Card 
+                  key={index} 
+                  className="overflow-hidden border-t-4 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" 
+                  style={{ borderTopColor: color }}
+                >
+                  <CardContent className="p-5">
+                    {/* Header */}
+                    <div className="flex items-start gap-3 mb-4">
+                      <div className="p-2.5 rounded-xl" style={{ backgroundColor: `${color}15` }}>
+                        <Icon className="h-5 w-5" style={{ color }} />
                       </div>
-                      <div className="lg:w-64">
-                        <div className="flex justify-between text-sm mb-1">
-                          <span className="text-muted-foreground">Growth</span>
-                          <span className="font-semibold text-foreground">+{industry.growth}%</span>
-                        </div>
-                        <div className="h-3 bg-muted rounded-full overflow-hidden">
-                          <div 
-                            className="h-full rounded-full transition-all duration-500"
-                            style={{ width: `${industry.growth}%`, backgroundColor: color }}
-                          ></div>
-                        </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-sm text-foreground line-clamp-2 leading-tight">{industry.name}</h3>
                       </div>
                     </div>
-                    <div className="mt-4 pt-4 border-t border-border">
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        <div className="flex-1">
-                          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Top Skills</span>
-                          <div className="flex flex-wrap gap-2 mt-2">
-                            {industry.topSkills.map((skill, i) => (
-                              <Badge key={i} variant="outline" className="text-xs">{skill}</Badge>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="flex-1">
-                          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Top Recruiters</span>
-                          <div className="flex flex-wrap gap-2 mt-2">
-                            {industry.topRecruiters.map((recruiter, i) => (
-                              <span key={i} className="text-xs text-muted-foreground">{recruiter}{i < industry.topRecruiters.length - 1 ? ',' : ''}</span>
-                            ))}
-                          </div>
-                        </div>
+                    
+                    {/* Stats */}
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2 text-sm">
+                        <IndianRupee className="h-3.5 w-3.5 text-muted-foreground" />
+                        <span className="font-medium text-foreground">{industry.salaryRange}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <Briefcase className="h-3.5 w-3.5 text-muted-foreground" />
+                        <span className="text-muted-foreground">{industry.openings} Jobs</span>
+                      </div>
+                    </div>
+                    
+                    {/* Growth Bar */}
+                    <div className="mb-4">
+                      <div className="flex justify-between text-xs mb-1.5">
+                        <span className="text-muted-foreground">Growth</span>
+                        <span className="font-semibold" style={{ color }}>+{industry.growth}%</span>
+                      </div>
+                      <div className="h-2 bg-muted rounded-full overflow-hidden">
+                        <div 
+                          className="h-full rounded-full transition-all duration-500"
+                          style={{ width: `${Math.min(industry.growth * 2, 100)}%`, backgroundColor: color }}
+                        ></div>
+                      </div>
+                    </div>
+                    
+                    {/* Demand Badge */}
+                    <div className="flex items-center justify-between">
+                      <Badge 
+                        variant={industry.demand === 'Very High' ? 'destructive' : 'secondary'} 
+                        className="text-xs"
+                      >
+                        {industry.demand === 'Very High' ? '🔴' : '🟠'} {industry.demand}
+                      </Badge>
+                      <span className="text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+                        View Details →
+                      </span>
+                    </div>
+                    
+                    {/* Top Skills (collapsed) */}
+                    <div className="mt-4 pt-3 border-t border-border">
+                      <div className="flex flex-wrap gap-1.5">
+                        {industry.topSkills.slice(0, 3).map((skill, i) => (
+                          <Badge key={i} variant="outline" className="text-[10px] px-2 py-0.5">{skill}</Badge>
+                        ))}
+                        {industry.topSkills.length > 3 && (
+                          <Badge variant="outline" className="text-[10px] px-2 py-0.5">+{industry.topSkills.length - 3}</Badge>
+                        )}
                       </div>
                     </div>
                   </CardContent>
@@ -845,32 +854,52 @@ const IndustryTrends = () => {
               <Button variant="outline" onClick={clearFilters}>Clear Filters</Button>
             </Card>
           ) : (
-          <Card className="overflow-hidden border-0 shadow-lg">
-            <Table>
-              <TableHeader>
-                <TableRow className="bg-[#0A2E1F] hover:bg-[#0A2E1F]">
-                  <TableHead className="text-white font-semibold w-16">#</TableHead>
-                  <TableHead className="text-white font-semibold">Job Role</TableHead>
-                  <TableHead className="text-white font-semibold">Salary Range</TableHead>
-                  <TableHead className="text-white font-semibold">Openings</TableHead>
-                  <TableHead className="text-white font-semibold text-right">Demand</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredJobs.map((job, index) => (
-                  <TableRow key={job.rank} className="hover:bg-muted/50 transition-colors">
-                    <TableCell className="font-bold text-[#FF6B35]">{index + 1}</TableCell>
-                    <TableCell className="font-medium">{job.role}</TableCell>
-                    <TableCell>{job.salaryRange}</TableCell>
-                    <TableCell>{job.openings}</TableCell>
-                    <TableCell className="text-right">
-                      <Badge className={`${getDemandColor(job.demand)} text-white`}>{job.demand}</Badge>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredJobs.map((job, index) => (
+              <Card 
+                key={job.rank} 
+                className="overflow-hidden border-0 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+              >
+                <CardContent className="p-5">
+                  {/* Rank Badge */}
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="w-8 h-8 rounded-full bg-[#0A2E1F] text-white text-sm font-bold flex items-center justify-center">
+                      {index + 1}
+                    </div>
+                    <Badge className={`${getDemandColor(job.demand)} text-white text-xs`}>
+                      {job.demand === 'Very High' ? '🔴' : job.demand === 'High' ? '🟠' : '🟡'} {job.demand}
+                    </Badge>
+                  </div>
+                  
+                  {/* Job Role */}
+                  <h3 className="font-semibold text-base text-foreground mb-4">{job.role}</h3>
+                  
+                  {/* Stats */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between p-2.5 bg-muted/50 rounded-lg">
+                      <span className="text-xs text-muted-foreground flex items-center gap-1.5">
+                        <IndianRupee className="h-3.5 w-3.5" />
+                        Salary
+                      </span>
+                      <span className="font-semibold text-sm text-[#FF6B35]">{job.salaryRange}</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2.5 bg-muted/50 rounded-lg">
+                      <span className="text-xs text-muted-foreground flex items-center gap-1.5">
+                        <Briefcase className="h-3.5 w-3.5" />
+                        Openings
+                      </span>
+                      <span className="font-semibold text-sm">{job.openings}</span>
+                    </div>
+                  </div>
+                  
+                  {/* Hover Action */}
+                  <div className="mt-4 pt-3 border-t border-border opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-xs text-[#FF6B35] font-medium">Explore opportunities →</span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
           )}
         </section>
 
@@ -980,41 +1009,48 @@ const IndustryTrends = () => {
             <Target className="h-6 w-6 text-[#FF6B35]" />
             <h2 className="text-2xl font-bold text-foreground">Most Sought-After Skills</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="p-6 border-0 shadow-lg">
-              <h3 className="font-semibold text-lg mb-4 text-foreground">Technical Skills</h3>
-              <div className="flex flex-wrap gap-3">
-                {marketData.technicalSkills.map((skill, index) => (
-                  <div key={index} className="relative group">
-                    <Badge 
-                      variant="outline" 
-                      className="px-4 py-2 text-sm font-medium hover:shadow-md transition-all cursor-default"
-                    >
-                      {skill.name}
-                      <span className={`ml-2 inline-block w-2 h-2 rounded-full ${skill.status === 'Hot' ? 'bg-red-500' : 'bg-orange-500'}`}></span>
-                    </Badge>
-                    <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-foreground text-background text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                      {skill.status === 'Hot' ? '🔥 Hot' : '📈 Rising'}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </Card>
-            <Card className="p-6 border-0 shadow-lg">
-              <h3 className="font-semibold text-lg mb-4 text-foreground">Soft Skills</h3>
-              <div className="flex flex-wrap gap-3">
-                {softSkills.map((skill, index) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {marketData.technicalSkills.map((skill, index) => (
+              <Card 
+                key={index} 
+                className={`p-4 border-0 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center ${
+                  skill.status === 'Hot' 
+                    ? 'bg-gradient-to-br from-[#FF6B35]/10 to-[#FF6B35]/5 border border-[#FF6B35]/20' 
+                    : 'bg-gradient-to-br from-[#0A2E1F]/10 to-[#0A2E1F]/5'
+                }`}
+              >
+                <div className="flex items-center justify-center gap-1.5 mb-2">
+                  {skill.status === 'Hot' ? (
+                    <Flame className="h-4 w-4 text-[#FF6B35]" />
+                  ) : (
+                    <TrendingUp className="h-4 w-4 text-[#0A2E1F]" />
+                  )}
                   <Badge 
-                    key={index}
-                    variant="secondary" 
-                    className="px-4 py-2 text-sm font-medium"
+                    variant="outline" 
+                    className={`text-[10px] px-1.5 py-0 ${
+                      skill.status === 'Hot' ? 'text-[#FF6B35] border-[#FF6B35]/30' : 'text-[#0A2E1F]'
+                    }`}
                   >
-                    {skill.name}
-                    <span className="ml-2 text-xs opacity-60">Essential</span>
+                    {skill.status}
                   </Badge>
-                ))}
-              </div>
-            </Card>
+                </div>
+                <h4 className="font-semibold text-sm text-foreground">{skill.name}</h4>
+              </Card>
+            ))}
+            {softSkills.map((skill, index) => (
+              <Card 
+                key={`soft-${index}`} 
+                className="p-4 border-0 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center bg-gradient-to-br from-blue-500/10 to-blue-500/5"
+              >
+                <div className="flex items-center justify-center gap-1.5 mb-2">
+                  <CheckCircle2 className="h-4 w-4 text-blue-500" />
+                  <Badge variant="outline" className="text-[10px] px-1.5 py-0 text-blue-500 border-blue-500/30">
+                    Essential
+                  </Badge>
+                </div>
+                <h4 className="font-semibold text-sm text-foreground">{skill.name}</h4>
+              </Card>
+            ))}
           </div>
         </section>
 
