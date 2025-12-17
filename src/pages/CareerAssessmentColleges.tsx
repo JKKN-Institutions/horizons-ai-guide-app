@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, Building2, GraduationCap, MessageCircle, Mic, Sparkles, Radio, Target } from 'lucide-react';
+import { BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, Building2, GraduationCap, MessageCircle, Mic, Sparkles, Radio, Target, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -9,6 +9,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { CollegeSearch } from '@/components/CollegeSearch';
+import { ScholarshipFinder } from '@/components/ScholarshipFinder';
 
 type AssessmentType = 'career_chat' | 'industry_trends' | 'emotional_intelligence' | 'skill_gap';
 type DbAssessmentType = 'career_interest' | 'emotional_intelligence' | 'skill_gap' | 'psychometric';
@@ -227,14 +228,18 @@ const CareerAssessmentColleges = () => {
 
       <div className="container mx-auto px-4 py-8">
         <Tabs defaultValue="assessments" className="w-full">
-          <TabsList className="grid w-full max-w-md grid-cols-2 mb-8">
+          <TabsList className="grid w-full max-w-2xl grid-cols-3 mb-8">
             <TabsTrigger value="assessments" className="flex items-center gap-2">
               <GraduationCap className="h-4 w-4" />
-              Career Assessments
+              <span className="hidden sm:inline">Career</span> Assessments
             </TabsTrigger>
             <TabsTrigger value="colleges" className="flex items-center gap-2">
               <Building2 className="h-4 w-4" />
               Find Colleges
+            </TabsTrigger>
+            <TabsTrigger value="scholarships" className="flex items-center gap-2">
+              <Award className="h-4 w-4" />
+              Scholarship Finder
             </TabsTrigger>
           </TabsList>
 
@@ -414,6 +419,10 @@ const CareerAssessmentColleges = () => {
 
           <TabsContent value="colleges">
             <CollegeSearch />
+          </TabsContent>
+
+          <TabsContent value="scholarships">
+            <ScholarshipFinder />
           </TabsContent>
         </Tabs>
       </div>
