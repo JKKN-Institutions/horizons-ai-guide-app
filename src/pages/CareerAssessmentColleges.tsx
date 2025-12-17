@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Brain, Compass, Heart, BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, Building2, GraduationCap } from 'lucide-react';
+import { Compass, Heart, BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, Building2, GraduationCap, MessageCircle, Mic } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -10,29 +10,32 @@ import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { CollegeSearch } from '@/components/CollegeSearch';
 
-type AssessmentType = 'psychometric' | 'career_interest' | 'emotional_intelligence' | 'skill_gap';
+type AssessmentType = 'career_chat' | 'career_interest' | 'emotional_intelligence' | 'skill_gap';
+type DbAssessmentType = 'career_interest' | 'emotional_intelligence' | 'skill_gap' | 'psychometric';
 
 interface AssessmentCard {
   id: AssessmentType;
   title: string;
   description: string;
   duration: string;
-  questions: number;
+  questions: number | string;
   icon: React.ElementType;
   iconColor: string;
   bgColor: string;
+  isChat?: boolean;
 }
 
 const assessmentCards: AssessmentCard[] = [
   {
-    id: 'psychometric',
-    title: 'Psychometric Assessment',
-    description: 'Deep dive into personality, values, interests and work style',
-    duration: '45 min',
-    questions: 60,
-    icon: Brain,
+    id: 'career_chat',
+    title: 'Career AI Chat',
+    description: 'Chat with AI Career Counselor - Ask any career-related questions instantly',
+    duration: 'Available 24/7',
+    questions: 'Unlimited',
+    icon: MessageCircle,
     iconColor: 'text-orange-500',
     bgColor: 'bg-orange-100',
+    isChat: true,
   },
   {
     id: 'career_interest',
@@ -129,6 +132,12 @@ const CareerAssessmentColleges = () => {
   };
 
   const handleStartAssessment = async (assessment: AssessmentCard) => {
+    // Handle Career AI Chat separately
+    if (assessment.isChat) {
+      navigate('/career-assessment/chat');
+      return;
+    }
+
     // NO LOGIN REQUIRED - support both logged-in (cloud saved) and anonymous (this device)
     // Check for in-progress assessment first
     if (inProgressAssessments[assessment.id]) {
@@ -170,7 +179,7 @@ const CareerAssessmentColleges = () => {
       .from('user_assessment_attempts')
       .select('attempt_number')
       .eq('user_id', user.id)
-      .eq('assessment_type', assessment.id)
+      .eq('assessment_type', assessment.id as DbAssessmentType)
       .order('attempt_number', { ascending: false })
       .limit(1);
 
@@ -180,9 +189,9 @@ const CareerAssessmentColleges = () => {
       .from('user_assessment_attempts')
       .insert({
         user_id: user.id,
-        assessment_type: assessment.id,
+        assessment_type: assessment.id as DbAssessmentType,
         attempt_number: attemptNumber,
-        total_questions: assessment.questions,
+        total_questions: typeof assessment.questions === 'number' ? assessment.questions : 0,
         current_question: 0,
       })
       .select()
@@ -288,14 +297,29 @@ const CareerAssessmentColleges = () => {
                         
                         <CardContent>
                           <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                            <span className="flex items-center gap-1">
-                              <Clock className="h-4 w-4" />
-                              {assessment.duration}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <HelpCircle className="h-4 w-4" />
-                              {assessment.questions} questions
-                            </span>
+                            {assessment.isChat ? (
+                              <>
+                                <span className="flex items-center gap-1">
+                                  <MessageCircle className="h-4 w-4" />
+                                  Unlimited
+                                </span>
+                                <span className="flex items-center gap-1">
+                                  <Mic className="h-4 w-4" />
+                                  Voice Support
+                                </span>
+                              </>
+                            ) : (
+                              <>
+                                <span className="flex items-center gap-1">
+                                  <Clock className="h-4 w-4" />
+                                  {assessment.duration}
+                                </span>
+                                <span className="flex items-center gap-1">
+                                  <HelpCircle className="h-4 w-4" />
+                                  {assessment.questions} questions
+                                </span>
+                              </>
+                            )}
                           </div>
 
                           {inProgress && !completed && (
@@ -312,7 +336,7 @@ const CareerAssessmentColleges = () => {
                             className="w-full bg-[#FF6B35] hover:bg-[#FF6B35]/90 text-white"
                             onClick={() => handleStartAssessment(assessment)}
                           >
-                            {completed ? 'Retake Assessment' : inProgress ? 'Continue Assessment' : 'Start Assessment'}
+                            {assessment.isChat ? 'Start Chat' : completed ? 'Retake Assessment' : inProgress ? 'Continue Assessment' : 'Start Assessment'}
                           </Button>
                         </CardContent>
                       </Card>
