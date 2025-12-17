@@ -1,16 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft, TrendingUp, Building2, IndianRupee, Target, Flame, 
   Cloud, Shield, Database, Laptop, Heart, Zap, Briefcase, 
   LineChart, BarChart3, Brain, Rocket, AlertTriangle, CheckCircle2,
-  MapPin, Filter, ChevronDown, ExternalLink, Sparkles
+  MapPin, Sparkles, RefreshCw, Loader2, WifiOff
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Skeleton } from '@/components/ui/skeleton';
 import {
   Table,
   TableBody,
@@ -20,146 +19,181 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import {
-  BarChart,
-  Bar,
+  LineChart as RechartsLineChart,
+  Line,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
-  LineChart as RechartsLineChart,
-  Line,
   PieChart,
   Pie,
   Cell,
 } from 'recharts';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
-const keyMetrics = [
-  { icon: TrendingUp, value: '2.5M+', label: 'Job Openings', sublabel: 'in India', change: '↑ 12% YoY', color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
-  { icon: Building2, value: '45,000+', label: 'Companies', sublabel: 'Hiring Now', change: '↑ 8% QoQ', color: 'text-blue-500', bg: 'bg-blue-500/10' },
-  { icon: IndianRupee, value: '₹6.2 LPA', label: 'Avg Salary', sublabel: 'for Freshers', change: '↑ 15% YoY', color: 'text-amber-500', bg: 'bg-amber-500/10' },
-  { icon: Target, value: '94%', label: 'Placement', sublabel: 'Top Colleges', change: 'Rate', color: 'text-violet-500', bg: 'bg-violet-500/10' },
-];
+// Icon mapping for industries
+const industryIcons: Record<string, React.ElementType> = {
+  'artificial intelligence': Brain,
+  'machine learning': Brain,
+  'ai/ml': Brain,
+  'cloud': Cloud,
+  'devops': Cloud,
+  'healthcare': Heart,
+  'life sciences': Heart,
+  'cybersecurity': Shield,
+  'security': Shield,
+  'data science': Database,
+  'analytics': Database,
+  'fintech': IndianRupee,
+  'banking': IndianRupee,
+  'renewable': Zap,
+  'energy': Zap,
+  'default': TrendingUp,
+};
 
-const trendingIndustries = [
-  { 
-    icon: Brain, 
-    name: 'Artificial Intelligence & Machine Learning', 
-    growth: 42, 
-    salary: '₹8-35 LPA', 
-    openings: '125,000+', 
-    demand: 'Very High',
-    skills: ['Python', 'TensorFlow', 'Deep Learning', 'NLP'],
-    recruiters: ['Google', 'Microsoft', 'Amazon', 'TCS', 'Infosys'],
-    color: '#FF6B35'
-  },
-  { 
-    icon: Cloud, 
-    name: 'Cloud Computing & DevOps', 
-    growth: 38, 
-    salary: '₹7-30 LPA', 
-    openings: '98,000+', 
-    demand: 'Very High',
-    skills: ['AWS', 'Azure', 'Docker', 'Kubernetes', 'CI/CD'],
-    recruiters: ['AWS', 'Microsoft', 'Accenture', 'Wipro', 'HCL'],
-    color: '#0A2E1F'
-  },
-  { 
-    icon: Heart, 
-    name: 'Healthcare & Life Sciences', 
-    growth: 35, 
-    salary: '₹5-25 LPA', 
-    openings: '200,000+', 
-    demand: 'Very High',
-    skills: ['Clinical Research', 'Biotech', 'Healthcare IT'],
-    recruiters: ['Apollo', 'Fortis', 'Sun Pharma', 'Biocon', 'Cipla'],
-    color: '#E91E63'
-  },
-  { 
-    icon: Shield, 
-    name: 'Cybersecurity', 
-    growth: 32, 
-    salary: '₹6-28 LPA', 
-    openings: '75,000+', 
-    demand: 'Very High',
-    skills: ['Ethical Hacking', 'SIEM', 'Network Security'],
-    recruiters: ['Deloitte', 'EY', 'KPMG', 'IBM', 'Cisco'],
-    color: '#9C27B0'
-  },
-  { 
-    icon: Database, 
-    name: 'Data Science & Analytics', 
-    growth: 30, 
-    salary: '₹6-25 LPA', 
-    openings: '110,000+', 
-    demand: 'High',
-    skills: ['Python', 'SQL', 'Tableau', 'Power BI', 'Statistics'],
-    recruiters: ['Amazon', 'Flipkart', 'Mu Sigma', 'Fractal'],
-    color: '#2196F3'
-  },
-  { 
-    icon: IndianRupee, 
-    name: 'FinTech & Banking', 
-    growth: 28, 
-    salary: '₹6-30 LPA', 
-    openings: '85,000+', 
-    demand: 'High',
-    skills: ['Blockchain', 'Financial Modeling', 'Risk Analysis'],
-    recruiters: ['PayTM', 'Razorpay', 'PhonePe', 'HDFC', 'ICICI'],
-    color: '#4CAF50'
-  },
-  { 
-    icon: Zap, 
-    name: 'Renewable Energy', 
-    growth: 35, 
-    salary: '₹5-22 LPA', 
-    openings: '45,000+', 
-    demand: 'High',
-    skills: ['Solar Technology', 'Wind Energy', 'Sustainability'],
-    recruiters: ['Tata Power', 'Adani Green', 'ReNew Power'],
-    color: '#FF9800'
-  },
-];
+const getIndustryIcon = (name: string): React.ElementType => {
+  const lowerName = name.toLowerCase();
+  for (const [key, icon] of Object.entries(industryIcons)) {
+    if (lowerName.includes(key)) return icon;
+  }
+  return industryIcons.default;
+};
 
-const topJobs = [
-  { rank: 1, role: 'AI/ML Engineer', salary: '₹8-35 LPA', openings: '45,000+', demand: 'Very High', demandColor: 'bg-red-500' },
-  { rank: 2, role: 'Full Stack Developer', salary: '₹5-25 LPA', openings: '120,000+', demand: 'Very High', demandColor: 'bg-red-500' },
-  { rank: 3, role: 'Cloud Solutions Architect', salary: '₹12-40 LPA', openings: '25,000+', demand: 'Very High', demandColor: 'bg-red-500' },
-  { rank: 4, role: 'Data Scientist', salary: '₹6-28 LPA', openings: '55,000+', demand: 'Very High', demandColor: 'bg-red-500' },
-  { rank: 5, role: 'Cybersecurity Analyst', salary: '₹5-22 LPA', openings: '35,000+', demand: 'High', demandColor: 'bg-orange-500' },
-  { rank: 6, role: 'DevOps Engineer', salary: '₹7-30 LPA', openings: '40,000+', demand: 'High', demandColor: 'bg-orange-500' },
-  { rank: 7, role: 'Product Manager', salary: '₹10-35 LPA', openings: '18,000+', demand: 'High', demandColor: 'bg-orange-500' },
-  { rank: 8, role: 'Digital Marketing Manager', salary: '₹4-18 LPA', openings: '65,000+', demand: 'High', demandColor: 'bg-orange-500' },
-  { rank: 9, role: 'Business Analyst', salary: '₹5-20 LPA', openings: '50,000+', demand: 'Medium', demandColor: 'bg-yellow-500' },
-  { rank: 10, role: 'UI/UX Designer', salary: '₹4-18 LPA', openings: '30,000+', demand: 'Medium', demandColor: 'bg-yellow-500' },
-];
+const industryColors = ['#FF6B35', '#0A2E1F', '#E91E63', '#9C27B0', '#2196F3', '#4CAF50', '#FF9800'];
+
+interface MarketData {
+  lastUpdated: string;
+  keyMetrics: {
+    totalJobOpenings: string;
+    jobOpeningsChange: string;
+    companiesHiring: string;
+    companiesChange: string;
+    avgFresherSalary: string;
+    salaryChange: string;
+    placementRate: string;
+  };
+  trendingIndustries: Array<{
+    name: string;
+    growth: number;
+    salaryRange: string;
+    openings: string;
+    demand: string;
+    topSkills: string[];
+    topRecruiters: string[];
+  }>;
+  topJobs: Array<{
+    rank: number;
+    role: string;
+    salaryRange: string;
+    openings: string;
+    demand: string;
+  }>;
+  technicalSkills: Array<{
+    name: string;
+    status: string;
+  }>;
+  futurePredictions: {
+    rising: Array<{ career: string; growth: string }>;
+    stable: Array<{ career: string; note: string }>;
+    declining: Array<{ career: string; risk: string }>;
+  };
+  tamilNaduData: {
+    cities: Array<{ name: string; openings: string }>;
+    industries: Array<{ name: string; percentage: number }>;
+  };
+}
+
+// Fallback static data
+const fallbackData: MarketData = {
+  lastUpdated: new Date().toISOString(),
+  keyMetrics: {
+    totalJobOpenings: '2.5M+',
+    jobOpeningsChange: '↑ 12% YoY',
+    companiesHiring: '45,000+',
+    companiesChange: '↑ 8% QoQ',
+    avgFresherSalary: '₹6.2 LPA',
+    salaryChange: '↑ 15% YoY',
+    placementRate: '94%',
+  },
+  trendingIndustries: [
+    { name: 'Artificial Intelligence & Machine Learning', growth: 42, salaryRange: '₹8-35 LPA', openings: '125,000+', demand: 'Very High', topSkills: ['Python', 'TensorFlow', 'Deep Learning', 'NLP'], topRecruiters: ['Google', 'Microsoft', 'Amazon', 'TCS', 'Infosys'] },
+    { name: 'Cloud Computing & DevOps', growth: 38, salaryRange: '₹7-30 LPA', openings: '98,000+', demand: 'Very High', topSkills: ['AWS', 'Azure', 'Docker', 'Kubernetes', 'CI/CD'], topRecruiters: ['AWS', 'Microsoft', 'Accenture', 'Wipro', 'HCL'] },
+    { name: 'Healthcare & Life Sciences', growth: 35, salaryRange: '₹5-25 LPA', openings: '200,000+', demand: 'Very High', topSkills: ['Clinical Research', 'Biotech', 'Healthcare IT'], topRecruiters: ['Apollo', 'Fortis', 'Sun Pharma', 'Biocon', 'Cipla'] },
+    { name: 'Cybersecurity', growth: 32, salaryRange: '₹6-28 LPA', openings: '75,000+', demand: 'Very High', topSkills: ['Ethical Hacking', 'SIEM', 'Network Security'], topRecruiters: ['Deloitte', 'EY', 'KPMG', 'IBM', 'Cisco'] },
+    { name: 'Data Science & Analytics', growth: 30, salaryRange: '₹6-25 LPA', openings: '110,000+', demand: 'High', topSkills: ['Python', 'SQL', 'Tableau', 'Power BI', 'Statistics'], topRecruiters: ['Amazon', 'Flipkart', 'Mu Sigma', 'Fractal'] },
+    { name: 'FinTech & Banking', growth: 28, salaryRange: '₹6-30 LPA', openings: '85,000+', demand: 'High', topSkills: ['Blockchain', 'Financial Modeling', 'Risk Analysis'], topRecruiters: ['PayTM', 'Razorpay', 'PhonePe', 'HDFC', 'ICICI'] },
+    { name: 'Renewable Energy', growth: 35, salaryRange: '₹5-22 LPA', openings: '45,000+', demand: 'High', topSkills: ['Solar Technology', 'Wind Energy', 'Sustainability'], topRecruiters: ['Tata Power', 'Adani Green', 'ReNew Power'] },
+  ],
+  topJobs: [
+    { rank: 1, role: 'AI/ML Engineer', salaryRange: '₹8-35 LPA', openings: '45,000+', demand: 'Very High' },
+    { rank: 2, role: 'Full Stack Developer', salaryRange: '₹5-25 LPA', openings: '120,000+', demand: 'Very High' },
+    { rank: 3, role: 'Cloud Solutions Architect', salaryRange: '₹12-40 LPA', openings: '25,000+', demand: 'Very High' },
+    { rank: 4, role: 'Data Scientist', salaryRange: '₹6-28 LPA', openings: '55,000+', demand: 'Very High' },
+    { rank: 5, role: 'Cybersecurity Analyst', salaryRange: '₹5-22 LPA', openings: '35,000+', demand: 'High' },
+    { rank: 6, role: 'DevOps Engineer', salaryRange: '₹7-30 LPA', openings: '40,000+', demand: 'High' },
+    { rank: 7, role: 'Product Manager', salaryRange: '₹10-35 LPA', openings: '18,000+', demand: 'High' },
+    { rank: 8, role: 'Digital Marketing Manager', salaryRange: '₹4-18 LPA', openings: '65,000+', demand: 'High' },
+    { rank: 9, role: 'Business Analyst', salaryRange: '₹5-20 LPA', openings: '50,000+', demand: 'Medium' },
+    { rank: 10, role: 'UI/UX Designer', salaryRange: '₹4-18 LPA', openings: '30,000+', demand: 'Medium' },
+  ],
+  technicalSkills: [
+    { name: 'Python', status: 'Hot' },
+    { name: 'AWS', status: 'Hot' },
+    { name: 'React', status: 'Hot' },
+    { name: 'SQL', status: 'Rising' },
+    { name: 'Java', status: 'Rising' },
+    { name: 'Docker', status: 'Rising' },
+    { name: 'Kubernetes', status: 'Rising' },
+    { name: 'Node.js', status: 'Hot' },
+    { name: 'TensorFlow', status: 'Hot' },
+    { name: 'Power BI', status: 'Rising' },
+  ],
+  futurePredictions: {
+    rising: [
+      { career: 'AI Specialist', growth: '50%+' },
+      { career: 'Sustainability Manager', growth: '45%+' },
+      { career: 'Robotics Engineer', growth: '40%+' },
+      { career: 'Blockchain Developer', growth: '35%+' },
+      { career: 'Mental Health Counselor', growth: '30%+' },
+    ],
+    stable: [
+      { career: 'Software Developer', note: 'Steady demand' },
+      { career: 'Healthcare Professional', note: 'Always needed' },
+      { career: 'Financial Analyst', note: 'Consistent growth' },
+      { career: 'Teacher/Educator', note: 'Essential role' },
+    ],
+    declining: [
+      { career: 'Data Entry Operator', risk: 'Automation risk' },
+      { career: 'Basic Accounting', risk: 'AI replacing' },
+      { career: 'Manual Testing', risk: 'Shifting to automation' },
+    ],
+  },
+  tamilNaduData: {
+    cities: [
+      { name: 'Chennai', openings: '150,000+' },
+      { name: 'Coimbatore', openings: '45,000+' },
+      { name: 'Madurai', openings: '18,000+' },
+      { name: 'Tiruchirappalli', openings: '12,000+' },
+      { name: 'Salem', openings: '8,000+' },
+    ],
+    industries: [
+      { name: 'IT & Software', percentage: 40 },
+      { name: 'Manufacturing', percentage: 25 },
+      { name: 'Healthcare', percentage: 15 },
+      { name: 'Education', percentage: 10 },
+      { name: 'Others', percentage: 10 },
+    ],
+  },
+};
 
 const salaryData = [
   { experience: 'Fresher', IT: 6, Healthcare: 4, Finance: 5, Manufacturing: 3.5 },
   { experience: '2-5 yrs', IT: 12, Healthcare: 8, Finance: 10, Manufacturing: 7 },
   { experience: '5-10 yrs', IT: 22, Healthcare: 15, Finance: 18, Manufacturing: 12 },
   { experience: '10+ yrs', IT: 35, Healthcare: 25, Finance: 30, Manufacturing: 20 },
-];
-
-const technicalSkills = [
-  { name: 'Python', status: 'Hot', color: 'bg-red-500' },
-  { name: 'AWS', status: 'Hot', color: 'bg-red-500' },
-  { name: 'React', status: 'Hot', color: 'bg-red-500' },
-  { name: 'SQL', status: 'Rising', color: 'bg-orange-500' },
-  { name: 'Java', status: 'Rising', color: 'bg-orange-500' },
-  { name: 'Docker', status: 'Rising', color: 'bg-orange-500' },
-  { name: 'Kubernetes', status: 'Rising', color: 'bg-orange-500' },
-  { name: 'Node.js', status: 'Hot', color: 'bg-red-500' },
-  { name: 'TensorFlow', status: 'Hot', color: 'bg-red-500' },
-  { name: 'Power BI', status: 'Rising', color: 'bg-orange-500' },
 ];
 
 const softSkills = [
@@ -169,50 +203,109 @@ const softSkills = [
   { name: 'Teamwork', status: 'Essential' },
 ];
 
-const futurePredictions = {
-  rising: [
-    { career: 'AI Specialist', growth: '50%+' },
-    { career: 'Sustainability Manager', growth: '45%+' },
-    { career: 'Robotics Engineer', growth: '40%+' },
-    { career: 'Blockchain Developer', growth: '35%+' },
-    { career: 'Mental Health Counselor', growth: '30%+' },
-  ],
-  stable: [
-    { career: 'Software Developer', note: 'Steady demand' },
-    { career: 'Healthcare Professional', note: 'Always needed' },
-    { career: 'Financial Analyst', note: 'Consistent growth' },
-    { career: 'Teacher/Educator', note: 'Essential role' },
-  ],
-  declining: [
-    { career: 'Data Entry Operator', risk: 'Automation risk' },
-    { career: 'Basic Accounting', risk: 'AI replacing' },
-    { career: 'Manual Testing', risk: 'Shifting to automation' },
-  ],
-};
-
-const tamilNaduData = {
-  cities: [
-    { name: 'Chennai', openings: '150,000+' },
-    { name: 'Coimbatore', openings: '45,000+' },
-    { name: 'Madurai', openings: '18,000+' },
-    { name: 'Tiruchirappalli', openings: '12,000+' },
-    { name: 'Salem', openings: '8,000+' },
-  ],
-  industries: [
-    { name: 'IT & Software', percentage: 40 },
-    { name: 'Manufacturing', percentage: 25 },
-    { name: 'Healthcare', percentage: 15 },
-    { name: 'Education', percentage: 10 },
-    { name: 'Others', percentage: 10 },
-  ],
-};
-
 const CHART_COLORS = ['#FF6B35', '#0A2E1F', '#FFB800', '#2196F3'];
 
 const IndustryTrends = () => {
   const navigate = useNavigate();
-  const [selectedIndustry, setSelectedIndustry] = useState('all');
-  const [selectedExperience, setSelectedExperience] = useState('all');
+  const { toast } = useToast();
+  const [marketData, setMarketData] = useState<MarketData>(fallbackData);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [isLiveData, setIsLiveData] = useState(false);
+
+  const fetchMarketData = async (showToast = false) => {
+    try {
+      if (showToast) setRefreshing(true);
+      else setLoading(true);
+
+      const { data, error } = await supabase.functions.invoke('industry-trends');
+
+      if (error) {
+        console.error('Error fetching market data:', error);
+        throw error;
+      }
+
+      if (data && !data.error) {
+        setMarketData(data);
+        setIsLiveData(true);
+        if (showToast) {
+          toast({
+            title: "Data Refreshed",
+            description: "Latest job market data has been fetched.",
+          });
+        }
+      } else {
+        throw new Error(data?.error || 'Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Failed to fetch live data, using fallback:', error);
+      setMarketData(fallbackData);
+      setIsLiveData(false);
+      if (showToast) {
+        toast({
+          title: "Using Cached Data",
+          description: "Couldn't fetch live data. Showing cached information.",
+          variant: "destructive",
+        });
+      }
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMarketData();
+  }, []);
+
+  const keyMetrics = [
+    { icon: TrendingUp, value: marketData.keyMetrics.totalJobOpenings, label: 'Job Openings', sublabel: 'in India', change: marketData.keyMetrics.jobOpeningsChange, color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
+    { icon: Building2, value: marketData.keyMetrics.companiesHiring, label: 'Companies', sublabel: 'Hiring Now', change: marketData.keyMetrics.companiesChange, color: 'text-blue-500', bg: 'bg-blue-500/10' },
+    { icon: IndianRupee, value: marketData.keyMetrics.avgFresherSalary, label: 'Avg Salary', sublabel: 'for Freshers', change: marketData.keyMetrics.salaryChange, color: 'text-amber-500', bg: 'bg-amber-500/10' },
+    { icon: Target, value: marketData.keyMetrics.placementRate, label: 'Placement', sublabel: 'Top Colleges', change: 'Rate', color: 'text-violet-500', bg: 'bg-violet-500/10' },
+  ];
+
+  const getDemandColor = (demand: string) => {
+    switch (demand.toLowerCase()) {
+      case 'very high': return 'bg-red-500';
+      case 'high': return 'bg-orange-500';
+      case 'medium': return 'bg-yellow-500';
+      default: return 'bg-gray-500';
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+        <header className="bg-gradient-to-r from-[#0A2E1F] via-[#0A2E1F] to-[#0A2E1F]/90 text-white py-8">
+          <div className="container mx-auto px-4">
+            <Skeleton className="h-8 w-24 bg-white/20 mb-4" />
+            <Skeleton className="h-10 w-96 bg-white/20 mb-2" />
+            <Skeleton className="h-6 w-64 bg-white/20" />
+          </div>
+        </header>
+        <div className="container mx-auto px-4 py-8 space-y-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {[1, 2, 3, 4].map((i) => (
+              <Card key={i} className="border-0 shadow-lg">
+                <CardContent className="p-6">
+                  <Skeleton className="h-8 w-8 rounded-lg mb-3" />
+                  <Skeleton className="h-8 w-24 mb-2" />
+                  <Skeleton className="h-4 w-20" />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="flex items-center justify-center py-20">
+            <div className="flex flex-col items-center gap-4">
+              <Loader2 className="h-12 w-12 animate-spin text-[#FF6B35]" />
+              <p className="text-muted-foreground">Fetching live job market data...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
@@ -228,22 +321,43 @@ const IndustryTrends = () => {
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back
           </Button>
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-[#FF6B35] rounded-lg">
-              <BarChart3 className="h-6 w-6 text-white" />
+          <div className="flex items-center justify-between flex-wrap gap-4">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2 bg-[#FF6B35] rounded-lg">
+                  <BarChart3 className="h-6 w-6 text-white" />
+                </div>
+                <h1 className="font-playfair text-3xl md:text-4xl font-bold italic">
+                  Industry Trends & Career Insights
+                </h1>
+              </div>
+              <p className="text-white/80 text-lg font-tamil mb-1">
+                தொழில்துறை போக்குகள் & வேலைவாய்ப்பு நுண்ணறிவு
+              </p>
+              <div className="flex items-center gap-2 text-sm text-white/60 mt-3">
+                {isLiveData ? (
+                  <Sparkles className="h-4 w-4 text-[#FFB800]" />
+                ) : (
+                  <WifiOff className="h-4 w-4 text-white/40" />
+                )}
+                <span>{isLiveData ? 'Real-time analytics powered by AI' : 'Showing cached data'}</span>
+                <span className="mx-2">•</span>
+                <span>Last updated: {new Date(marketData.lastUpdated).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+              </div>
             </div>
-            <h1 className="font-playfair text-3xl md:text-4xl font-bold italic">
-              Industry Trends & Career Insights
-            </h1>
-          </div>
-          <p className="text-white/80 text-lg font-tamil mb-1">
-            தொழில்துறை போக்குகள் & வேலைவாய்ப்பு நுண்ணறிவு
-          </p>
-          <div className="flex items-center gap-2 text-sm text-white/60 mt-3">
-            <Sparkles className="h-4 w-4 text-[#FFB800]" />
-            <span>Real-time analytics powered by AI</span>
-            <span className="mx-2">•</span>
-            <span>Last updated: {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+            <Button
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10"
+              onClick={() => fetchMarketData(true)}
+              disabled={refreshing}
+            >
+              {refreshing ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <RefreshCw className="mr-2 h-4 w-4" />
+              )}
+              Refresh Data
+            </Button>
           </div>
         </div>
       </header>
@@ -277,69 +391,74 @@ const IndustryTrends = () => {
           <div className="flex items-center gap-2 mb-6">
             <Flame className="h-6 w-6 text-[#FF6B35]" />
             <h2 className="text-2xl font-bold text-foreground">Hot Industries in 2025</h2>
+            {isLiveData && <Badge className="bg-[#FFB800] text-black">Live</Badge>}
           </div>
           <div className="grid gap-4">
-            {trendingIndustries.map((industry, index) => (
-              <Card key={index} className="overflow-hidden border-l-4 hover:shadow-lg transition-all duration-300" style={{ borderLeftColor: industry.color }}>
-                <CardContent className="p-6">
-                  <div className="flex flex-col lg:flex-row lg:items-center gap-4">
-                    <div className="flex items-center gap-4 flex-1">
-                      <div className="p-3 rounded-xl" style={{ backgroundColor: `${industry.color}15` }}>
-                        <industry.icon className="h-6 w-6" style={{ color: industry.color }} />
+            {marketData.trendingIndustries.map((industry, index) => {
+              const Icon = getIndustryIcon(industry.name);
+              const color = industryColors[index % industryColors.length];
+              return (
+                <Card key={index} className="overflow-hidden border-l-4 hover:shadow-lg transition-all duration-300" style={{ borderLeftColor: color }}>
+                  <CardContent className="p-6">
+                    <div className="flex flex-col lg:flex-row lg:items-center gap-4">
+                      <div className="flex items-center gap-4 flex-1">
+                        <div className="p-3 rounded-xl" style={{ backgroundColor: `${color}15` }}>
+                          <Icon className="h-6 w-6" style={{ color }} />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-lg text-foreground">{industry.name}</h3>
+                          <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground flex-wrap">
+                            <span className="flex items-center gap-1">
+                              <IndianRupee className="h-3 w-3" />
+                              {industry.salaryRange}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <Briefcase className="h-3 w-3" />
+                              {industry.openings}
+                            </span>
+                            <Badge variant={industry.demand === 'Very High' ? 'destructive' : 'secondary'} className="text-xs">
+                              {industry.demand}
+                            </Badge>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-lg text-foreground">{industry.name}</h3>
-                        <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground flex-wrap">
-                          <span className="flex items-center gap-1">
-                            <IndianRupee className="h-3 w-3" />
-                            {industry.salary}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Briefcase className="h-3 w-3" />
-                            {industry.openings}
-                          </span>
-                          <Badge variant={industry.demand === 'Very High' ? 'destructive' : 'secondary'} className="text-xs">
-                            {industry.demand}
-                          </Badge>
+                      <div className="lg:w-64">
+                        <div className="flex justify-between text-sm mb-1">
+                          <span className="text-muted-foreground">Growth</span>
+                          <span className="font-semibold text-foreground">+{industry.growth}%</span>
+                        </div>
+                        <div className="h-3 bg-muted rounded-full overflow-hidden">
+                          <div 
+                            className="h-full rounded-full transition-all duration-500"
+                            style={{ width: `${industry.growth}%`, backgroundColor: color }}
+                          ></div>
                         </div>
                       </div>
                     </div>
-                    <div className="lg:w-64">
-                      <div className="flex justify-between text-sm mb-1">
-                        <span className="text-muted-foreground">Growth</span>
-                        <span className="font-semibold text-foreground">+{industry.growth}%</span>
-                      </div>
-                      <div className="h-3 bg-muted rounded-full overflow-hidden">
-                        <div 
-                          className="h-full rounded-full transition-all duration-500"
-                          style={{ width: `${industry.growth}%`, backgroundColor: industry.color }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-4 border-t border-border">
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <div className="flex-1">
-                        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Top Skills</span>
-                        <div className="flex flex-wrap gap-2 mt-2">
-                          {industry.skills.map((skill, i) => (
-                            <Badge key={i} variant="outline" className="text-xs">{skill}</Badge>
-                          ))}
+                    <div className="mt-4 pt-4 border-t border-border">
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <div className="flex-1">
+                          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Top Skills</span>
+                          <div className="flex flex-wrap gap-2 mt-2">
+                            {industry.topSkills.map((skill, i) => (
+                              <Badge key={i} variant="outline" className="text-xs">{skill}</Badge>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex-1">
-                        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Top Recruiters</span>
-                        <div className="flex flex-wrap gap-2 mt-2">
-                          {industry.recruiters.map((recruiter, i) => (
-                            <span key={i} className="text-xs text-muted-foreground">{recruiter}{i < industry.recruiters.length - 1 ? ',' : ''}</span>
-                          ))}
+                        <div className="flex-1">
+                          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Top Recruiters</span>
+                          <div className="flex flex-wrap gap-2 mt-2">
+                            {industry.topRecruiters.map((recruiter, i) => (
+                              <span key={i} className="text-xs text-muted-foreground">{recruiter}{i < industry.topRecruiters.length - 1 ? ',' : ''}</span>
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </section>
 
@@ -361,14 +480,14 @@ const IndustryTrends = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {topJobs.map((job) => (
+                {marketData.topJobs.map((job) => (
                   <TableRow key={job.rank} className="hover:bg-muted/50 transition-colors">
                     <TableCell className="font-bold text-[#FF6B35]">{job.rank}</TableCell>
                     <TableCell className="font-medium">{job.role}</TableCell>
-                    <TableCell>{job.salary}</TableCell>
+                    <TableCell>{job.salaryRange}</TableCell>
                     <TableCell>{job.openings}</TableCell>
                     <TableCell className="text-right">
-                      <Badge className={`${job.demandColor} text-white`}>{job.demand}</Badge>
+                      <Badge className={`${getDemandColor(job.demand)} text-white`}>{job.demand}</Badge>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -413,14 +532,14 @@ const IndustryTrends = () => {
             <Card className="p-6 border-0 shadow-lg">
               <h3 className="font-semibold text-lg mb-4 text-foreground">Technical Skills</h3>
               <div className="flex flex-wrap gap-3">
-                {technicalSkills.map((skill, index) => (
+                {marketData.technicalSkills.map((skill, index) => (
                   <div key={index} className="relative group">
                     <Badge 
                       variant="outline" 
                       className="px-4 py-2 text-sm font-medium hover:shadow-md transition-all cursor-default"
                     >
                       {skill.name}
-                      <span className={`ml-2 inline-block w-2 h-2 rounded-full ${skill.color}`}></span>
+                      <span className={`ml-2 inline-block w-2 h-2 rounded-full ${skill.status === 'Hot' ? 'bg-red-500' : 'bg-orange-500'}`}></span>
                     </Badge>
                     <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-foreground text-background text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                       {skill.status === 'Hot' ? '🔥 Hot' : '📈 Rising'}
@@ -460,7 +579,7 @@ const IndustryTrends = () => {
                 <h3 className="font-semibold text-emerald-600">Rising Careers</h3>
               </div>
               <ul className="space-y-3">
-                {futurePredictions.rising.map((item, index) => (
+                {marketData.futurePredictions.rising.map((item, index) => (
                   <li key={index} className="flex items-center gap-2 text-sm">
                     <CheckCircle2 className="h-4 w-4 text-emerald-500 flex-shrink-0" />
                     <span className="flex-1">{item.career}</span>
@@ -477,7 +596,7 @@ const IndustryTrends = () => {
                 <h3 className="font-semibold text-blue-600">Stable Careers</h3>
               </div>
               <ul className="space-y-3">
-                {futurePredictions.stable.map((item, index) => (
+                {marketData.futurePredictions.stable.map((item, index) => (
                   <li key={index} className="flex items-center gap-2 text-sm">
                     <span className="text-blue-500">➡️</span>
                     <span className="flex-1">{item.career}</span>
@@ -492,7 +611,7 @@ const IndustryTrends = () => {
                 <h3 className="font-semibold text-amber-600">Transforming Careers</h3>
               </div>
               <ul className="space-y-3">
-                {futurePredictions.declining.map((item, index) => (
+                {marketData.futurePredictions.declining.map((item, index) => (
                   <li key={index} className="flex items-center gap-2 text-sm">
                     <span className="text-amber-500">⚠️</span>
                     <span className="flex-1">{item.career}</span>
@@ -514,7 +633,7 @@ const IndustryTrends = () => {
             <Card className="p-6 border-0 shadow-lg">
               <h3 className="font-semibold text-lg mb-4">Top Hiring Cities</h3>
               <div className="space-y-4">
-                {tamilNaduData.cities.map((city, index) => (
+                {marketData.tamilNaduData.cities.map((city, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <span className="w-6 h-6 rounded-full bg-[#0A2E1F] text-white text-xs flex items-center justify-center font-semibold">
@@ -532,7 +651,7 @@ const IndustryTrends = () => {
               <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
                   <Pie
-                    data={tamilNaduData.industries}
+                    data={marketData.tamilNaduData.industries}
                     cx="50%"
                     cy="50%"
                     innerRadius={60}
@@ -542,7 +661,7 @@ const IndustryTrends = () => {
                     label={({ name, percentage }) => `${name}: ${percentage}%`}
                     labelLine={false}
                   >
-                    {tamilNaduData.industries.map((_, index) => (
+                    {marketData.tamilNaduData.industries.map((_, index) => (
                       <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
                     ))}
                   </Pie>
