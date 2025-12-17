@@ -3,11 +3,12 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Search, SlidersHorizontal } from 'lucide-react';
+import { Search, SlidersHorizontal, Sparkles } from 'lucide-react';
 import { ScholarshipFilters } from './ScholarshipFilters';
 import { ScholarshipDetailModal } from './ScholarshipDetailModal';
 import { CategoryButtons } from './CategoryButtons';
 import { CategoryScholarshipList } from './CategoryScholarshipList';
+import { EligibilityChecker } from './EligibilityChecker';
 import { scholarships, getJKKNScholarships, getGovernmentScholarships, getCorporateScholarships, getNGOScholarships } from './scholarshipData';
 import { Scholarship, ScholarshipFilters as FiltersType } from './types';
 
@@ -29,6 +30,7 @@ export const ScholarshipFinder = () => {
   const [selectedScholarship, setSelectedScholarship] = useState<Scholarship | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<CategoryType>('jkkn');
+  const [isEligibilityOpen, setIsEligibilityOpen] = useState(false);
 
   const categoryCounts = useMemo(() => ({
     jkkn: getJKKNScholarships().length,
@@ -113,9 +115,19 @@ export const ScholarshipFinder = () => {
         <p className="text-lg text-muted-foreground">
           உதவித்தொகை கண்டுபிடிப்பான்
         </p>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
           Discover scholarships you're eligible for - Government schemes, corporate programs, and exclusive JKKN scholarships
         </p>
+
+        {/* AI Eligibility Checker Button */}
+        <Button 
+          onClick={() => setIsEligibilityOpen(true)}
+          className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg"
+          size="lg"
+        >
+          <Sparkles className="w-5 h-5 mr-2" />
+          Check My Eligibility (AI-Powered)
+        </Button>
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-6">
@@ -233,6 +245,13 @@ export const ScholarshipFinder = () => {
         scholarship={selectedScholarship}
         open={isDetailOpen}
         onOpenChange={setIsDetailOpen}
+      />
+
+      {/* Eligibility Checker Modal */}
+      <EligibilityChecker
+        open={isEligibilityOpen}
+        onOpenChange={setIsEligibilityOpen}
+        scholarships={scholarships}
       />
     </div>
   );
