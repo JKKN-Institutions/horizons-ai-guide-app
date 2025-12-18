@@ -199,11 +199,11 @@ export const CollegeSearch = () => {
       {/* Loading Indicator */}
       {loading && (
         <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
-          <Loader2 className="h-12 w-12 animate-spin text-[#0A2E1F] mb-4" />
-          <h3 className="text-lg font-semibold mb-2">
+          <Loader2 className="h-12 w-12 animate-spin text-orange-400 mb-4" />
+          <h3 className="text-lg font-semibold mb-2 text-white">
             Searching all colleges in {selectedDistrict}...
           </h3>
-          <p className="text-muted-foreground max-w-md">
+          <p className="text-slate-300 max-w-md">
             Fetching comprehensive data from government records, university affiliations, 
             and accreditation databases. This may take a moment for complete results.
           </p>

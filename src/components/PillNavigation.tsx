@@ -106,14 +106,14 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
     <div className="flex justify-center mb-8">
       <nav 
         ref={navRef}
-        className="relative inline-flex items-center gap-1 p-1.5 bg-gray-100/80 backdrop-blur-md rounded-full shadow-sm"
+        className="relative inline-flex items-center gap-1 p-1.5 bg-white/95 backdrop-blur-md rounded-full shadow-lg border border-slate-200"
       >
         {/* Sliding indicator */}
         <div
           className={cn(
-            'absolute top-1.5 bottom-1.5 rounded-full bg-white shadow-md',
+            'absolute top-1.5 bottom-1.5 rounded-full shadow-md',
             'transition-all duration-300 ease-out',
-            activeItem?.activeBg
+            activeItem?.activeBg || 'bg-white'
           )}
           style={{
             left: indicatorStyle.left,
@@ -134,19 +134,19 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
               }}
               onClick={() => handleTabClick(item.id)}
               className={cn(
-                'relative z-10 flex items-center gap-2 px-4 py-2.5 rounded-full font-medium text-sm',
+                'relative z-10 flex items-center gap-2 px-4 py-2.5 rounded-full font-semibold text-sm',
                 'transition-all duration-150 ease-out',
                 'hover:scale-105 active:scale-95',
                 clickedTab === item.id && 'animate-bounce-pop',
                 isActive
                   ? item.activeColor
-                  : 'text-gray-600 hover:text-gray-800'
+                  : 'text-slate-600 hover:text-slate-800'
               )}
             >
               <Icon 
                 className={cn(
                   'w-4 h-4 transition-colors duration-300',
-                  isActive ? item.activeColor : 'text-gray-400'
+                  isActive ? item.activeColor : 'text-slate-400'
                 )} 
               />
               <span className="hidden sm:inline whitespace-nowrap">{item.label}</span>
