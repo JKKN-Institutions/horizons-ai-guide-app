@@ -16,6 +16,7 @@ interface DashboardOption {
   badgeIcon: React.ReactNode;
   link: string;
   buttonText: string;
+  borderColor: string;
 }
 
 const StudentDashboard = () => {
@@ -31,7 +32,6 @@ const StudentDashboard = () => {
     const fetchUserData = async () => {
       if (!user) return;
 
-      // Fetch display name from profiles
       const { data: profile } = await supabase
         .from('profiles')
         .select('display_name')
@@ -44,7 +44,6 @@ const StudentDashboard = () => {
         setDisplayName(user.email.split('@')[0]);
       }
 
-      // Check for assessment progress
       const { data: attempts } = await supabase
         .from('student_assessment_attempts')
         .select('id, completed_at')
@@ -69,7 +68,7 @@ const StudentDashboard = () => {
   const dashboardOptions: DashboardOption[] = [
     {
       id: '12th-assessment',
-      icon: <GraduationCap className="h-12 w-12 text-secondary" />,
+      icon: <GraduationCap className="h-12 w-12 text-fresh-green-medium" />,
       title: 'Career Assessment for 12th Students',
       titleTamil: '12-ஆம் வகுப்பு மாணவர்களுக்கான தொழில் மதிப்பீடு',
       description: [
@@ -81,11 +80,12 @@ const StudentDashboard = () => {
       badge: '15-20 minutes',
       badgeIcon: <Clock className="h-4 w-4" />,
       link: '/career-assessment/12th-learners',
-      buttonText: 'Start Assessment'
+      buttonText: 'Start Assessment',
+      borderColor: 'border-l-fresh-green-medium'
     },
     {
       id: 'college-search',
-      icon: <Building2 className="h-12 w-12 text-secondary" />,
+      icon: <Building2 className="h-12 w-12 text-blue-600" />,
       title: 'College Search by District',
       titleTamil: 'மாவட்டம் வாரியாக கல்லூரிகளை தேடுங்கள்',
       description: [
@@ -97,11 +97,12 @@ const StudentDashboard = () => {
       badge: '38 Districts | 5000+ Colleges',
       badgeIcon: <MapPin className="h-4 w-4" />,
       link: '/career-assessment/colleges',
-      buttonText: 'Explore Colleges'
+      buttonText: 'Explore Colleges',
+      borderColor: 'border-l-blue-500'
     },
     {
       id: 'ai-chat',
-      icon: <MessageCircle className="h-12 w-12 text-secondary" />,
+      icon: <MessageCircle className="h-12 w-12 text-fresh-gold-dark" />,
       title: 'Chat with AI Career Counselor',
       titleTamil: 'AI தொழில் ஆலோசகருடன் உரையாடுங்கள்',
       description: [
@@ -113,18 +114,19 @@ const StudentDashboard = () => {
       badge: 'Unlimited conversations',
       badgeIcon: <Mic className="h-4 w-4" />,
       link: '/career-assessment/chat',
-      buttonText: 'Start Chat'
+      buttonText: 'Start Chat',
+      borderColor: 'border-l-fresh-gold-dark'
     }
   ];
 
   return (
-    <div className="premium-page-bg min-h-screen">
+    <div className="fresh-page-wrapper">
       {/* Header */}
-      <header className="premium-page-header">
+      <header className="fresh-page-header">
         <div className="container mx-auto px-4 py-4 relative z-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
+              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-fresh-gold-dark to-fresh-gold-medium flex items-center justify-center">
                 <User className="h-5 w-5 text-white" />
               </div>
               <div>
@@ -159,19 +161,19 @@ const StudentDashboard = () => {
       <main className="container mx-auto px-4 py-8 relative z-10">
         {/* Welcome Section */}
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-2">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-fresh-green-dark mb-2">
             Welcome, {displayName}! 👋
           </h2>
-          <p className="text-xl dark-body-light mb-1">
+          <p className="text-xl fresh-body mb-1">
             Choose your career discovery path
           </p>
-          <p className="text-lg dark-tamil">
+          <p className="text-lg fresh-tamil">
             உங்கள் தொழில் கண்டறிதல் பாதையை தேர்வு செய்யுங்கள்
           </p>
 
           {/* Progress Indicator */}
           {assessmentProgress.hasStarted12th && (
-            <div className="mt-4 inline-flex items-center gap-2 badge-premium px-4 py-2">
+            <div className="mt-4 inline-flex items-center gap-2 fresh-badge-premium px-4 py-2">
               <GraduationCap className="h-4 w-4" />
               <span className="text-sm">
                 {assessmentProgress.completedAssessments} assessment{assessmentProgress.completedAssessments !== 1 ? 's' : ''} completed
@@ -182,40 +184,38 @@ const StudentDashboard = () => {
 
         {/* Options Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {dashboardOptions.map((option, index) => (
+          {dashboardOptions.map((option) => (
             <Card
               key={option.id}
-              className={`glass-card-premium group cursor-pointer overflow-hidden ${
-                index === 0 ? 'dark-card-green' : index === 1 ? 'dark-card-cyan' : 'dark-card-orange'
-              }`}
+              className={`fresh-card group cursor-pointer overflow-hidden ${option.borderColor}`}
               onClick={() => navigate(option.link)}
             >
               <CardHeader className="pb-4">
                 <div className="mb-4">{option.icon}</div>
-                <CardTitle className="text-xl card-heading group-hover:text-orange-500 transition-colors">
+                <CardTitle className="text-xl fresh-card-title group-hover:text-fresh-green-medium transition-colors">
                   {option.title}
                 </CardTitle>
-                <CardDescription className="text-base font-tamil dark-tamil">
+                <CardDescription className="text-base font-tamil fresh-tamil">
                   {option.titleTamil}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <ul className="space-y-2">
                   {option.description.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm card-body">
-                      <span className="text-orange-500 mt-0.5">•</span>
+                    <li key={idx} className="flex items-start gap-2 text-sm fresh-body">
+                      <span className="text-fresh-gold-dark mt-0.5">•</span>
                       {item}
                     </li>
                   ))}
                 </ul>
 
-                <div className="flex items-center gap-2 text-sm card-muted dark-stat-card p-3">
+                <div className="flex items-center gap-2 text-sm fresh-muted fresh-stat-card p-3">
                   {option.badgeIcon}
                   <span>{option.badge}</span>
                 </div>
 
                 <Button 
-                  className="w-full btn-premium-primary"
+                  className="w-full btn-fresh-primary"
                 >
                   {option.buttonText}
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -227,13 +227,13 @@ const StudentDashboard = () => {
 
         {/* Quick Links */}
         <div className="mt-12 text-center">
-          <p className="dark-body-muted mb-4">
+          <p className="fresh-muted mb-4">
             Not sure where to start? Try the 12th Learner Assessment first!
           </p>
           <Button
             variant="link"
             onClick={() => navigate('/')}
-            className="text-orange-400 hover:text-amber-400"
+            className="text-fresh-green-medium hover:text-fresh-green-dark"
           >
             ← Back to Home
           </Button>

@@ -46,35 +46,35 @@ const AdminLogin = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-primary/10 to-background">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      <div className="fresh-page-wrapper flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-fresh-green-medium" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-primary/10 to-background p-4">
-      <Card className="w-full max-w-md shadow-elevated">
+    <div className="fresh-page-wrapper flex items-center justify-center p-4">
+      <Card className="fresh-card w-full max-w-md border-l-fresh-green-medium relative z-10">
         <CardHeader className="text-center">
           <Button 
             variant="ghost" 
             onClick={() => navigate("/")} 
-            className="absolute top-4 left-4"
+            className="absolute top-4 left-4 text-fresh-green-dark hover:text-fresh-green-medium"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Home
           </Button>
-          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Shield className="w-8 h-8 text-primary" />
+          <div className="w-16 h-16 bg-fresh-green-bg rounded-full flex items-center justify-center mx-auto mb-4">
+            <Shield className="w-8 h-8 text-fresh-green-medium" />
           </div>
-          <CardTitle className="text-2xl font-serif">Admin Login</CardTitle>
-          <CardDescription>Sign in to access the admin dashboard</CardDescription>
+          <CardTitle className="text-2xl font-serif text-fresh-green-dark">Admin Login</CardTitle>
+          <CardDescription className="fresh-body">Sign in to access the admin dashboard</CardDescription>
         </CardHeader>
 
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="fresh-label">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -82,10 +82,11 @@ const AdminLogin = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="fresh-input"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="fresh-label">Password</Label>
               <Input
                 id="password"
                 type="password"
@@ -93,11 +94,12 @@ const AdminLogin = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className="fresh-input"
               />
             </div>
-            <Button 
+            <Button
               type="submit" 
-              className="w-full bg-primary hover:bg-primary/90" 
+              className="w-full btn-fresh-primary"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
