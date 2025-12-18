@@ -6,5 +6,6 @@ export { CategoryButtons } from './CategoryButtons';
 export { CategoryScholarshipList } from './CategoryScholarshipList';
 export { EligibilityChecker } from './EligibilityChecker';
 export { ApplicationTracker, TrackerContext, useTracker } from './ApplicationTracker';
+export { ScholarshipComparison } from './ScholarshipComparison';
 export * from './types';
 export * from './scholarshipData';

@@ -1,6 +1,7 @@
-import { Star, Landmark, Building2, Handshake, CheckCircle2, Calendar, ExternalLink, Phone } from 'lucide-react';
+import { Star, Landmark, Building2, Handshake, CheckCircle2, Calendar, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Scholarship } from './types';
 import { cn } from '@/lib/utils';
 
@@ -8,6 +9,8 @@ interface CategoryScholarshipListProps {
   scholarships: Scholarship[];
   category: 'jkkn' | 'government' | 'corporate' | 'ngo';
   onViewDetails: (scholarship: Scholarship) => void;
+  selectedForCompare?: Set<string>;
+  onCompareToggle?: (scholarshipId: string) => void;
 }
 
 const categoryConfig = {
@@ -66,7 +69,13 @@ const getDeadlineIndicator = (status: Scholarship['deadlineStatus']) => {
   }
 };
 
-export const CategoryScholarshipList = ({ scholarships, category, onViewDetails }: CategoryScholarshipListProps) => {
+export const CategoryScholarshipList = ({ 
+  scholarships, 
+  category, 
+  onViewDetails,
+  selectedForCompare = new Set(),
+  onCompareToggle
+}: CategoryScholarshipListProps) => {
   const config = categoryConfig[category];
   const Icon = config.icon;
 
@@ -108,17 +117,26 @@ export const CategoryScholarshipList = ({ scholarships, category, onViewDetails 
               <div className="p-5 space-y-4">
                 {/* Header */}
                 <div className="flex items-start justify-between gap-3">
-                  <div className="flex-1">
-                    <Badge className={cn('mb-2 text-xs', config.badgeBg)}>
-                      {category === 'jkkn' && '⭐ JKKN Exclusive'}
-                      {category === 'government' && '🏛️ Government'}
-                      {category === 'corporate' && '🏢 Corporate'}
-                      {category === 'ngo' && '🤝 NGO/Trust'}
-                    </Badge>
-                    <h4 className="font-semibold text-foreground leading-tight">{scholarship.name}</h4>
-                    {category !== 'jkkn' && (
-                      <p className="text-sm text-muted-foreground mt-1">{scholarship.provider}</p>
+                  <div className="flex items-start gap-3 flex-1">
+                    {onCompareToggle && (
+                      <Checkbox
+                        checked={selectedForCompare.has(scholarship.id)}
+                        onCheckedChange={() => onCompareToggle(scholarship.id)}
+                        className="mt-1"
+                      />
                     )}
+                    <div className="flex-1">
+                      <Badge className={cn('mb-2 text-xs', config.badgeBg)}>
+                        {category === 'jkkn' && '⭐ JKKN Exclusive'}
+                        {category === 'government' && '🏛️ Government'}
+                        {category === 'corporate' && '🏢 Corporate'}
+                        {category === 'ngo' && '🤝 NGO/Trust'}
+                      </Badge>
+                      <h4 className="font-semibold text-foreground leading-tight">{scholarship.name}</h4>
+                      {category !== 'jkkn' && (
+                        <p className="text-sm text-muted-foreground mt-1">{scholarship.provider}</p>
+                      )}
+                    </div>
                   </div>
                 </div>
 
