@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Scholarship } from './types';
 import { useTracker } from './ApplicationTracker';
 import { Star, Building2, Landmark, Heart, Calendar, CheckCircle2, ExternalLink, BookmarkPlus, BookmarkCheck } from 'lucide-react';
@@ -9,6 +10,9 @@ import { cn } from '@/lib/utils';
 interface ScholarshipCardProps {
   scholarship: Scholarship;
   onViewDetails: (scholarship: Scholarship) => void;
+  isSelected?: boolean;
+  onSelectChange?: (selected: boolean) => void;
+  showCompareCheckbox?: boolean;
 }
 
 const typeConfig = {
@@ -54,7 +58,13 @@ const deadlineConfig = {
   'always-open': { label: 'Always Open', color: 'bg-green-100 text-green-700', icon: '🟢' }
 };
 
-export const ScholarshipCard = ({ scholarship, onViewDetails }: ScholarshipCardProps) => {
+export const ScholarshipCard = ({ 
+  scholarship, 
+  onViewDetails,
+  isSelected = false,
+  onSelectChange,
+  showCompareCheckbox = false
+}: ScholarshipCardProps) => {
   const config = typeConfig[scholarship.type];
   const deadlineInfo = deadlineConfig[scholarship.deadlineStatus];
   const Icon = config.icon;
@@ -64,14 +74,24 @@ export const ScholarshipCard = ({ scholarship, onViewDetails }: ScholarshipCardP
   return (
     <Card className={cn(
       "border-l-4 hover:shadow-lg transition-all duration-200 hover:-translate-y-1",
-      config.borderColor
+      config.borderColor,
+      isSelected && "ring-2 ring-primary"
     )}>
       <CardHeader className="pb-2">
         <div className="flex items-start justify-between gap-2">
-          <Badge variant="outline" className={cn("text-xs font-medium", config.badgeClass)}>
-            <Icon className="h-3 w-3 mr-1" />
-            {config.label}
-          </Badge>
+          <div className="flex items-center gap-2">
+            {showCompareCheckbox && (
+              <Checkbox
+                checked={isSelected}
+                onCheckedChange={(checked) => onSelectChange?.(checked as boolean)}
+                className="mt-0.5"
+              />
+            )}
+            <Badge variant="outline" className={cn("text-xs font-medium", config.badgeClass)}>
+              <Icon className="h-3 w-3 mr-1" />
+              {config.label}
+            </Badge>
+          </div>
           <div className="flex items-center gap-2">
             <Badge variant="outline" className={cn("text-xs", deadlineInfo.color)}>
               {deadlineInfo.icon} {deadlineInfo.label}

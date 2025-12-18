@@ -4,13 +4,14 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Search, SlidersHorizontal, Sparkles, ClipboardList, BookmarkPlus } from 'lucide-react';
+import { Search, SlidersHorizontal, Sparkles, ClipboardList, Scale, X } from 'lucide-react';
 import { ScholarshipFilters } from './ScholarshipFilters';
 import { ScholarshipDetailModal } from './ScholarshipDetailModal';
 import { CategoryButtons } from './CategoryButtons';
 import { CategoryScholarshipList } from './CategoryScholarshipList';
 import { EligibilityChecker } from './EligibilityChecker';
 import { ApplicationTracker, TrackerContext } from './ApplicationTracker';
+import { ScholarshipComparison } from './ScholarshipComparison';
 import { scholarships, getJKKNScholarships, getGovernmentScholarships, getCorporateScholarships, getNGOScholarships } from './scholarshipData';
 import { Scholarship, ScholarshipFilters as FiltersType } from './types';
 import { supabase } from '@/integrations/supabase/client';
@@ -38,6 +39,8 @@ export const ScholarshipFinder = () => {
   const [activeTab, setActiveTab] = useState('browse');
   const [user, setUser] = useState<any>(null);
   const [trackedIds, setTrackedIds] = useState<Set<string>>(new Set());
+  const [compareIds, setCompareIds] = useState<Set<string>>(new Set());
+  const [isCompareOpen, setIsCompareOpen] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -101,6 +104,25 @@ export const ScholarshipFinder = () => {
   };
 
   const isScholarshipTracked = (scholarshipId: string) => trackedIds.has(scholarshipId);
+
+  const handleCompareToggle = (scholarshipId: string) => {
+    setCompareIds(prev => {
+      const next = new Set(prev);
+      if (next.has(scholarshipId)) {
+        next.delete(scholarshipId);
+      } else if (next.size < 4) {
+        next.add(scholarshipId);
+      } else {
+        toast({ title: "Limit Reached", description: "You can compare up to 4 scholarships at a time" });
+      }
+      return next;
+    });
+  };
+
+  const compareScholarships = useMemo(() => 
+    scholarships.filter(s => compareIds.has(s.id)), 
+    [compareIds]
+  );
 
   const categoryCounts = useMemo(() => ({
     jkkn: getJKKNScholarships().length,
@@ -208,6 +230,16 @@ export const ScholarshipFinder = () => {
               <ClipboardList className="w-5 h-5 mr-2" />
               My Applications ({trackedIds.size})
             </Button>
+            {compareIds.size > 0 && (
+              <Button 
+                onClick={() => setIsCompareOpen(true)}
+                size="lg"
+                className="bg-primary"
+              >
+                <Scale className="w-5 h-5 mr-2" />
+                Compare ({compareIds.size})
+              </Button>
+            )}
           </div>
 
           {/* Stats */}
@@ -330,6 +362,8 @@ export const ScholarshipFinder = () => {
                     scholarships={filteredScholarships}
                     category={activeCategory}
                     onViewDetails={handleViewDetails}
+                    selectedForCompare={compareIds}
+                    onCompareToggle={handleCompareToggle}
                   />
                 )}
               </div>
@@ -353,6 +387,18 @@ export const ScholarshipFinder = () => {
           open={isEligibilityOpen}
           onOpenChange={setIsEligibilityOpen}
           scholarships={scholarships}
+        />
+
+        {/* Comparison Modal */}
+        <ScholarshipComparison
+          scholarships={compareScholarships}
+          open={isCompareOpen}
+          onOpenChange={setIsCompareOpen}
+          onRemove={(id) => setCompareIds(prev => {
+            const next = new Set(prev);
+            next.delete(id);
+            return next;
+          })}
         />
       </div>
     </TrackerContext.Provider>
