@@ -43,6 +43,14 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
   const navRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+  const [clickedTab, setClickedTab] = useState<string | null>(null);
+
+  const handleTabClick = (tabId: string) => {
+    setClickedTab(tabId);
+    onTabChange(tabId);
+    // Reset animation after bounce completes
+    setTimeout(() => setClickedTab(null), 300);
+  };
 
   useEffect(() => {
     const activeButton = buttonRefs.current.get(activeTab);
@@ -112,11 +120,12 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
               ref={(el) => {
                 if (el) buttonRefs.current.set(item.id, el);
               }}
-              onClick={() => onTabChange(item.id)}
+              onClick={() => handleTabClick(item.id)}
               className={cn(
                 'relative z-10 flex items-center gap-2 px-4 py-2.5 rounded-full font-medium text-sm',
-                'transition-all duration-300 ease-out',
-                'hover:scale-105',
+                'transition-all duration-150 ease-out',
+                'hover:scale-105 active:scale-95',
+                clickedTab === item.id && 'animate-bounce-pop',
                 isActive
                   ? item.activeColor
                   : 'text-gray-600 hover:text-gray-800'

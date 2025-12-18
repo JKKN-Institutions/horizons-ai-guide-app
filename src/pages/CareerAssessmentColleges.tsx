@@ -65,6 +65,20 @@ const CareerAssessmentColleges = () => {
   const [overallScore, setOverallScore] = useState(0);
   const [activeTab, setActiveTab] = useState('assessments');
 
+  // Dynamic button colors based on active tab
+  const getButtonColor = () => {
+    switch (activeTab) {
+      case 'assessments':
+        return 'bg-emerald-600 hover:bg-emerald-700';
+      case 'colleges':
+        return 'bg-blue-600 hover:bg-blue-700';
+      case 'scholarships':
+        return 'bg-pink-600 hover:bg-pink-700';
+      default:
+        return 'bg-emerald-600 hover:bg-emerald-700';
+    }
+  };
+
   useEffect(() => {
     if (user) {
       fetchUserProgress();
@@ -327,7 +341,7 @@ const CareerAssessmentColleges = () => {
                         )}
                         
                         <Button 
-                          className="w-full bg-[#FF6B35] hover:bg-[#FF6B35]/90 text-white"
+                          className={`w-full ${getButtonColor()} text-white`}
                           onClick={() => handleStartAssessment(assessment)}
                         >
                           {assessment.isChat ? 'Start Chat' : assessment.isExternal ? 'View Insights →' : completed ? 'Retake Assessment' : inProgress ? 'Continue Assessment' : 'Start Assessment'}
