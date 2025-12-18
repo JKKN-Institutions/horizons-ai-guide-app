@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Search, SlidersHorizontal, Sparkles, ClipboardList, Scale, X } from 'lucide-react';
+import { Search, SlidersHorizontal, Sparkles, ClipboardList, Scale, X, FileDown } from 'lucide-react';
 import { ScholarshipFilters } from './ScholarshipFilters';
 import { ScholarshipDetailModal } from './ScholarshipDetailModal';
 import { CategoryButtons } from './CategoryButtons';
@@ -16,6 +16,8 @@ import { scholarships, getJKKNScholarships, getGovernmentScholarships, getCorpor
 import { Scholarship, ScholarshipFilters as FiltersType } from './types';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { generateScholarshipPDF } from './generateScholarshipPDF';
+import { toast as sonnerToast } from 'sonner';
 
 const defaultFilters: FiltersType = {
   types: [],
@@ -240,6 +242,22 @@ export const ScholarshipFinder = () => {
                 Compare ({compareIds.size})
               </Button>
             )}
+            <Button 
+              onClick={() => {
+                if (filteredScholarships.length === 0) {
+                  sonnerToast.error('No scholarships to download');
+                  return;
+                }
+                generateScholarshipPDF(filteredScholarships);
+                sonnerToast.success(`Downloaded ${filteredScholarships.length} scholarships as PDF!`);
+              }}
+              size="lg"
+              variant="outline"
+              className="border-emerald-500 text-emerald-400 hover:bg-emerald-500/10"
+            >
+              <FileDown className="w-5 h-5 mr-2" />
+              Download PDF ({filteredScholarships.length})
+            </Button>
           </div>
 
           {/* Stats */}
