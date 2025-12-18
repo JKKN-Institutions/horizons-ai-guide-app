@@ -181,7 +181,7 @@ export const EduCutoff = () => {
       {/* Results Section */}
       {result && selectedGroup && (
         <>
-          <CutoffResults result={result} group={selectedGroup} marks={marks} />
+          <CutoffResults result={result} group={selectedGroup} marks={marks} category={selectedCategory || undefined} />
           <EligibleCourses
             group={selectedGroup}
             cutoffScore={result.tneaCutoff ?? 0}

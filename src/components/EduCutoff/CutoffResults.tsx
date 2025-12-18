@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
-import { cn } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
 import { CutoffResult, StudentGroup } from './types';
+import { generateResultsPDF } from './generateResultsPDF';
 
 interface CutoffResultsProps {
   result: CutoffResult;
   group: StudentGroup;
   marks: Record<string, number | null>;
+  category?: string;
 }
 
-export const CutoffResults = ({ result, group, marks }: CutoffResultsProps) => {
+export const CutoffResults = ({ result, group, marks, category }: CutoffResultsProps) => {
   const [animatedCutoff, setAnimatedCutoff] = useState(0);
   const [animatedPercentage, setAnimatedPercentage] = useState(0);
   const [animatedPercentile, setAnimatedPercentile] = useState(0);
@@ -63,15 +66,30 @@ export const CutoffResults = ({ result, group, marks }: CutoffResultsProps) => {
     }
   };
 
+  const handleDownloadPDF = () => {
+    generateResultsPDF(result, group, marks, category);
+  };
+
   return (
     <div className="bg-white rounded-xl shadow-sm border p-6 animate-fade-in">
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-          🎯 Your Eligibility Results
-        </h3>
-        <p className="text-sm text-gray-500 mt-1">
-          உங்கள் தகுதி முடிவுகள்
-        </p>
+      <div className="mb-6 flex items-start justify-between">
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+            🎯 Your Eligibility Results
+          </h3>
+          <p className="text-sm text-gray-500 mt-1">
+            உங்கள் தகுதி முடிவுகள்
+          </p>
+        </div>
+        <Button
+          onClick={handleDownloadPDF}
+          variant="outline"
+          size="sm"
+          className="flex items-center gap-2 text-violet-600 border-violet-300 hover:bg-violet-50"
+        >
+          <Download className="h-4 w-4" />
+          Download PDF
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
