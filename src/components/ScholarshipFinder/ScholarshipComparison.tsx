@@ -40,7 +40,7 @@ export const ScholarshipComparison = ({
         <div className="space-y-1">
           {value.slice(0, 4).map((item, idx) => (
             <div key={idx} className="flex items-start gap-1 text-xs">
-              <CheckCircle2 className="h-3 w-3 text-green-500 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="h-3 w-3 text-jkkn-green flex-shrink-0 mt-0.5" />
               <span>{item}</span>
             </div>
           ))}
@@ -117,7 +117,7 @@ export const ScholarshipComparison = ({
                   <TableCell key={scholarship.id}>
                     <Button
                       size="sm"
-                      className="bg-[#FF6B35] hover:bg-[#FF6B35]/90"
+                      className="bg-jkkn-orange hover:bg-jkkn-orange/90 text-white"
                       onClick={() => window.open(scholarship.applicationUrl, '_blank')}
                     >
                       Apply Now <ExternalLink className="h-3 w-3 ml-1" />
