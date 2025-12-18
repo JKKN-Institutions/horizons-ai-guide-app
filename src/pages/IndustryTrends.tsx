@@ -487,8 +487,8 @@ const IndustryTrends = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
-        <header className="bg-gradient-to-r from-[#0A2E1F] via-[#0A2E1F] to-[#0A2E1F]/90 text-white py-8">
+      <div className="premium-page-bg min-h-screen">
+        <header className="premium-page-header py-8">
           <div className="container mx-auto px-4">
             <Skeleton className="h-8 w-24 bg-white/20 mb-4" />
             <Skeleton className="h-10 w-96 bg-white/20 mb-2" />
@@ -498,19 +498,17 @@ const IndustryTrends = () => {
         <div className="container mx-auto px-4 py-8 space-y-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[1, 2, 3, 4].map((i) => (
-              <Card key={i} className="border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <Skeleton className="h-8 w-8 rounded-lg mb-3" />
-                  <Skeleton className="h-8 w-24 mb-2" />
-                  <Skeleton className="h-4 w-20" />
-                </CardContent>
-              </Card>
+              <div key={i} className="glass-card p-6">
+                <Skeleton className="h-8 w-8 rounded-lg mb-3 bg-premium-gold/20" />
+                <Skeleton className="h-8 w-24 mb-2 bg-premium-navy/20" />
+                <Skeleton className="h-4 w-20 bg-premium-navy/10" />
+              </div>
             ))}
           </div>
           <div className="flex items-center justify-center py-20">
             <div className="flex flex-col items-center gap-4">
-              <Loader2 className="h-12 w-12 animate-spin text-[#FF6B35]" />
-              <p className="text-muted-foreground">Fetching live job market data...</p>
+              <Loader2 className="h-12 w-12 animate-spin text-premium-gold" />
+              <p className="text-premium-navy/70">Fetching live job market data...</p>
             </div>
           </div>
         </div>
@@ -519,9 +517,9 @@ const IndustryTrends = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-[#0A2E1F] via-[#0A2E1F] to-[#0A2E1F]/90 text-white py-8 relative overflow-hidden">
+    <div className="premium-page-bg min-h-screen">
+      {/* Premium Header */}
+      <header className="premium-page-header py-8 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50"></div>
         <div className="container mx-auto px-4 relative z-10">
           <Button 
@@ -535,10 +533,10 @@ const IndustryTrends = () => {
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-[#FF6B35] rounded-lg">
+                <div className="p-2 bg-premium-gold rounded-lg">
                   <BarChart3 className="h-6 w-6 text-white" />
                 </div>
-                <h1 className="font-playfair text-3xl md:text-4xl font-bold italic">
+                <h1 className="font-serif text-3xl md:text-4xl font-bold text-white">
                   Industry Trends & Career Insights
                 </h1>
               </div>
@@ -547,7 +545,7 @@ const IndustryTrends = () => {
               </p>
               <div className="flex items-center gap-2 text-sm text-white/60 mt-3">
                 {isLiveData ? (
-                  <Sparkles className="h-4 w-4 text-[#FFB800]" />
+                  <Sparkles className="h-4 w-4 text-premium-gold" />
                 ) : (
                   <WifiOff className="h-4 w-4 text-white/40" />
                 )}
@@ -561,7 +559,7 @@ const IndustryTrends = () => {
                   <Badge className="bg-blue-500 text-white text-xs">Cached</Badge>
                 )}
                 {isLiveData && !isCachedData && (
-                  <Badge className="bg-[#FFB800] text-black text-xs">Live</Badge>
+                  <Badge className="bg-premium-gold text-premium-navy text-xs">Live</Badge>
                 )}
                 <span className="mx-2">•</span>
                 <span>Last updated: {new Date(marketData.lastUpdated).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
@@ -589,34 +587,34 @@ const IndustryTrends = () => {
         <section>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {keyMetrics.map((metric, index) => (
-              <Card key={index} className="relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                <div className={`absolute inset-0 ${metric.bg} opacity-50`}></div>
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-white/10 to-transparent rounded-bl-full"></div>
-                <CardContent className="p-6 relative">
+              <div key={index} className="stat-card-premium relative overflow-hidden group">
+                <div className={`absolute inset-0 ${metric.bg} opacity-30`}></div>
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-premium-gold/10 to-transparent rounded-bl-full"></div>
+                <div className="relative">
                   <div className={`inline-flex p-2 rounded-lg ${metric.bg} mb-3`}>
                     <metric.icon className={`h-5 w-5 ${metric.color}`} />
                   </div>
-                  <div className="text-3xl font-bold text-foreground mb-1">{metric.value}</div>
-                  <div className="text-sm font-medium text-foreground">{metric.label}</div>
-                  <div className="text-xs text-muted-foreground">{metric.sublabel}</div>
-                  <Badge variant="secondary" className="mt-2 text-xs font-medium">
+                  <div className="text-3xl font-bold text-premium-navy mb-1">{metric.value}</div>
+                  <div className="text-sm font-medium text-premium-navy">{metric.label}</div>
+                  <div className="text-xs text-premium-navy/60">{metric.sublabel}</div>
+                  <Badge variant="secondary" className="mt-2 text-xs font-medium bg-premium-gold/20 text-premium-navy">
                     {metric.change}
                   </Badge>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
         </section>
 
         {/* Filter Panel */}
         <section>
-          <Card className="p-4 border-0 shadow-lg bg-gradient-to-r from-muted/50 to-muted/30">
+          <div className="glass-card-premium p-4 rounded-2xl">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="flex items-center gap-2">
-                <SlidersHorizontal className="h-5 w-5 text-[#FF6B35]" />
-                <span className="font-semibold text-foreground">Filter Results</span>
+                <SlidersHorizontal className="h-5 w-5 text-premium-gold" />
+                <span className="font-semibold text-premium-navy">Filter Results</span>
                 {hasActiveFilters && (
-                  <Badge variant="secondary" className="bg-[#FF6B35]/10 text-[#FF6B35]">
+                  <Badge variant="secondary" className="bg-premium-gold/20 text-premium-navy">
                     {(demandFilter !== 'All' ? 1 : 0) + (salaryFilter !== 'all' ? 1 : 0) + selectedIndustries.length} active
                   </Badge>
                 )}
@@ -625,7 +623,7 @@ const IndustryTrends = () => {
               <div className="flex flex-wrap items-center gap-3">
                 {/* Demand Filter */}
                 <Select value={demandFilter} onValueChange={setDemandFilter}>
-                  <SelectTrigger className="w-[140px] bg-background">
+                  <SelectTrigger className="w-[140px] input-premium">
                     <SelectValue placeholder="Demand Level" />
                   </SelectTrigger>
                   <SelectContent className="bg-background z-50">
@@ -637,7 +635,7 @@ const IndustryTrends = () => {
 
                 {/* Salary Filter */}
                 <Select value={salaryFilter} onValueChange={setSalaryFilter}>
-                  <SelectTrigger className="w-[140px] bg-background">
+                  <SelectTrigger className="w-[140px] input-premium">
                     <SelectValue placeholder="Salary Range" />
                   </SelectTrigger>
                   <SelectContent className="bg-background z-50">
@@ -650,11 +648,11 @@ const IndustryTrends = () => {
                 {/* Industry Filter Sheet */}
                 <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
                   <SheetTrigger asChild>
-                    <Button variant="outline" className="gap-2 bg-background">
+                    <Button variant="outline" className="gap-2 glass-card border-premium-gold/30 text-premium-navy">
                       <Filter className="h-4 w-4" />
                       Industries
                       {selectedIndustries.length > 0 && (
-                        <Badge className="ml-1 bg-[#FF6B35] text-white text-xs">{selectedIndustries.length}</Badge>
+                        <Badge className="ml-1 bg-premium-gold text-premium-navy text-xs">{selectedIndustries.length}</Badge>
                       )}
                     </Button>
                   </SheetTrigger>
@@ -733,66 +731,66 @@ const IndustryTrends = () => {
                 ))}
               </div>
             )}
-          </Card>
+          </div>
         </section>
 
         {/* Trending Industries */}
         <section>
           <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
             <div className="flex items-center gap-2">
-              <Flame className="h-6 w-6 text-[#FF6B35]" />
-              <h2 className="text-2xl font-bold text-foreground">Hot Industries in 2025</h2>
-              {isLiveData && <Badge className="bg-[#FFB800] text-black">Live</Badge>}
+              <Flame className="h-6 w-6 text-premium-gold" />
+              <h2 className="text-2xl font-bold text-premium-navy">Hot Industries in 2025</h2>
+              {isLiveData && <Badge className="bg-premium-gold text-premium-navy">Live</Badge>}
             </div>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-sm text-premium-navy/60">
               Showing {filteredIndustries.length} of {marketData.trendingIndustries.length} industries
             </span>
           </div>
           {filteredIndustries.length === 0 ? (
-            <Card className="p-8 border-0 shadow-lg text-center">
-              <Filter className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="font-semibold text-lg mb-2">No industries match your filters</h3>
-              <p className="text-muted-foreground mb-4">Try adjusting your filter criteria</p>
-              <Button variant="outline" onClick={clearFilters}>Clear Filters</Button>
-            </Card>
+            <div className="glass-card-premium p-8 rounded-2xl text-center">
+              <Filter className="h-12 w-12 text-premium-navy/40 mx-auto mb-4" />
+              <h3 className="font-semibold text-lg mb-2 text-premium-navy">No industries match your filters</h3>
+              <p className="text-premium-navy/60 mb-4">Try adjusting your filter criteria</p>
+              <Button variant="outline" onClick={clearFilters} className="border-premium-gold/30 text-premium-navy">Clear Filters</Button>
+            </div>
           ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredIndustries.map((industry, index) => {
               const Icon = getIndustryIcon(industry.name);
               const color = industryColors[index % industryColors.length];
               return (
-                <Card 
+                <div 
                   key={index} 
-                  className="overflow-hidden border-t-4 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" 
+                  className="glass-card-premium overflow-hidden rounded-2xl border-t-4 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" 
                   style={{ borderTopColor: color }}
                 >
-                  <CardContent className="p-5">
+                  <div className="p-5">
                     {/* Header */}
                     <div className="flex items-start gap-3 mb-4">
                       <div className="p-2.5 rounded-xl" style={{ backgroundColor: `${color}15` }}>
                         <Icon className="h-5 w-5" style={{ color }} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-sm text-foreground line-clamp-2 leading-tight">{industry.name}</h3>
+                        <h3 className="font-semibold text-sm text-premium-navy line-clamp-2 leading-tight">{industry.name}</h3>
                       </div>
                     </div>
                     
                     {/* Stats */}
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center gap-2 text-sm">
-                        <IndianRupee className="h-3.5 w-3.5 text-muted-foreground" />
-                        <span className="font-medium text-foreground">{industry.salaryRange}</span>
+                        <IndianRupee className="h-3.5 w-3.5 text-premium-navy/60" />
+                        <span className="font-medium text-premium-navy">{industry.salaryRange}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
-                        <Briefcase className="h-3.5 w-3.5 text-muted-foreground" />
-                        <span className="text-muted-foreground">{industry.openings} Jobs</span>
+                        <Briefcase className="h-3.5 w-3.5 text-premium-navy/60" />
+                        <span className="text-premium-navy/70">{industry.openings} Jobs</span>
                       </div>
                     </div>
                     
                     {/* Growth Bar */}
                     <div className="mb-4">
                       <div className="flex justify-between text-xs mb-1.5">
-                        <span className="text-muted-foreground">Growth</span>
+                        <span className="text-premium-navy/60">Growth</span>
                         <span className="font-semibold" style={{ color }}>+{industry.growth}%</span>
                       </div>
                       <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -827,8 +825,8 @@ const IndustryTrends = () => {
                         )}
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               );
             })}
           </div>

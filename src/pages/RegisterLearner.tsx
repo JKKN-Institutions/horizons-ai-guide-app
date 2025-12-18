@@ -84,20 +84,20 @@ const RegisterLearner = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary/5 to-background py-12">
+    <div className="premium-page-bg min-h-screen py-12">
       <div className="container mx-auto px-4 max-w-2xl">
-        <Button variant="ghost" onClick={() => navigate("/")} className="mb-6">
+        <Button variant="ghost" onClick={() => navigate("/")} className="mb-6 text-premium-navy hover:bg-premium-gold/10">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Home
         </Button>
 
-        <Card className="shadow-elevated">
+        <Card className="glass-card-premium border-0 shadow-premium">
           <CardHeader className="text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Users className="w-8 h-8 text-primary" />
+            <div className="w-16 h-16 bg-gradient-to-br from-premium-navy/20 to-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Users className="w-8 h-8 text-premium-navy" />
             </div>
-            <CardTitle className="text-2xl font-serif">Register as Learner</CardTitle>
-            <CardDescription>Find your dream job and advance your career</CardDescription>
+            <CardTitle className="text-2xl font-serif text-premium-navy">Register as Learner</CardTitle>
+            <CardDescription className="text-premium-navy/70">Find your dream job and advance your career</CardDescription>
           </CardHeader>
 
           {/* Progress Steps */}
@@ -105,22 +105,22 @@ const RegisterLearner = () => {
             <div className="flex items-center justify-between">
               {steps.map((step, index) => (
                 <div key={step} className="flex items-center">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors ${
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all ${
                     index < currentStep 
-                      ? "bg-secondary text-secondary-foreground" 
+                      ? "bg-gradient-to-r from-premium-gold to-premium-orange text-white" 
                       : index === currentStep 
-                        ? "bg-primary text-primary-foreground" 
-                        : "bg-muted text-muted-foreground"
+                        ? "bg-premium-navy text-white" 
+                        : "bg-premium-cream text-premium-navy/50"
                   }`}>
                     {index < currentStep ? <CheckCircle className="w-5 h-5" /> : index + 1}
                   </div>
                   {index < steps.length - 1 && (
-                    <div className={`w-12 md:w-20 h-1 mx-2 ${index < currentStep ? "bg-secondary" : "bg-muted"}`} />
+                    <div className={`w-12 md:w-20 h-1 mx-2 rounded ${index < currentStep ? "bg-gradient-to-r from-premium-gold to-premium-orange" : "bg-premium-cream"}`} />
                   )}
                 </div>
               ))}
             </div>
-            <div className="flex justify-between mt-2 text-xs text-muted-foreground">
+            <div className="flex justify-between mt-2 text-xs text-premium-navy/60">
               {steps.map(step => <span key={step}>{step}</span>)}
             </div>
           </div>
@@ -130,20 +130,20 @@ const RegisterLearner = () => {
               <div className="space-y-4">
                 <div className="grid gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="fullName">Full Name *</Label>
-                    <Input id="fullName" placeholder="Enter your full name" value={formData.fullName} onChange={e => handleChange("fullName", e.target.value)} />
+                    <Label htmlFor="fullName" className="text-premium-navy">Full Name *</Label>
+                    <Input id="fullName" placeholder="Enter your full name" value={formData.fullName} onChange={e => handleChange("fullName", e.target.value)} className="input-premium" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email Address *</Label>
-                    <Input id="email" type="email" placeholder="your@email.com" value={formData.email} onChange={e => handleChange("email", e.target.value)} />
+                    <Label htmlFor="email" className="text-premium-navy">Email Address *</Label>
+                    <Input id="email" type="email" placeholder="your@email.com" value={formData.email} onChange={e => handleChange("email", e.target.value)} className="input-premium" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number *</Label>
-                    <Input id="phone" placeholder="+91 98765 43210" value={formData.phone} onChange={e => handleChange("phone", e.target.value)} />
+                    <Label htmlFor="phone" className="text-premium-navy">Phone Number *</Label>
+                    <Input id="phone" placeholder="+91 98765 43210" value={formData.phone} onChange={e => handleChange("phone", e.target.value)} className="input-premium" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="dob">Date of Birth</Label>
-                    <Input id="dob" type="date" value={formData.dateOfBirth} onChange={e => handleChange("dateOfBirth", e.target.value)} />
+                    <Label htmlFor="dob" className="text-premium-navy">Date of Birth</Label>
+                    <Input id="dob" type="date" value={formData.dateOfBirth} onChange={e => handleChange("dateOfBirth", e.target.value)} className="input-premium" />
                   </div>
                 </div>
               </div>
@@ -152,9 +152,9 @@ const RegisterLearner = () => {
             {currentStep === 1 && (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label>JKKN Institution *</Label>
+                  <Label className="text-premium-navy">JKKN Institution *</Label>
                   <Select value={formData.institution} onValueChange={v => handleChange("institution", v)}>
-                    <SelectTrigger><SelectValue placeholder="Select your institution" /></SelectTrigger>
+                    <SelectTrigger className="input-premium"><SelectValue placeholder="Select your institution" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="jkkn-college-engineering">JKKN College of Engineering</SelectItem>
                       <SelectItem value="jkkn-college-arts">JKKN College of Arts & Science</SelectItem>
@@ -169,17 +169,17 @@ const RegisterLearner = () => {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="degree">Degree/Program *</Label>
-                  <Input id="degree" placeholder="e.g., B.Tech, B.Sc, M.Pharm" value={formData.degree} onChange={e => handleChange("degree", e.target.value)} />
+                  <Label htmlFor="degree" className="text-premium-navy">Degree/Program *</Label>
+                  <Input id="degree" placeholder="e.g., B.Tech, B.Sc, M.Pharm" value={formData.degree} onChange={e => handleChange("degree", e.target.value)} className="input-premium" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="specialization">Specialization</Label>
-                  <Input id="specialization" placeholder="e.g., Computer Science, Biotechnology" value={formData.specialization} onChange={e => handleChange("specialization", e.target.value)} />
+                  <Label htmlFor="specialization" className="text-premium-navy">Specialization</Label>
+                  <Input id="specialization" placeholder="e.g., Computer Science, Biotechnology" value={formData.specialization} onChange={e => handleChange("specialization", e.target.value)} className="input-premium" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Graduation Year</Label>
+                  <Label className="text-premium-navy">Graduation Year</Label>
                   <Select value={formData.graduationYear} onValueChange={v => handleChange("graduationYear", v)}>
-                    <SelectTrigger><SelectValue placeholder="Select year" /></SelectTrigger>
+                    <SelectTrigger className="input-premium"><SelectValue placeholder="Select year" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="2024">2024</SelectItem>
                       <SelectItem value="2025">2025</SelectItem>
@@ -195,9 +195,9 @@ const RegisterLearner = () => {
             {currentStep === 2 && (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label>Work Experience</Label>
+                  <Label className="text-premium-navy">Work Experience</Label>
                   <Select value={formData.experience} onValueChange={v => handleChange("experience", v)}>
-                    <SelectTrigger><SelectValue placeholder="Select experience" /></SelectTrigger>
+                    <SelectTrigger className="input-premium"><SelectValue placeholder="Select experience" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="fresher">Fresher</SelectItem>
                       <SelectItem value="0-1">0-1 years</SelectItem>
@@ -208,46 +208,46 @@ const RegisterLearner = () => {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="currentRole">Current/Last Role</Label>
-                  <Input id="currentRole" placeholder="e.g., Software Developer, Analyst" value={formData.currentRole} onChange={e => handleChange("currentRole", e.target.value)} />
+                  <Label htmlFor="currentRole" className="text-premium-navy">Current/Last Role</Label>
+                  <Input id="currentRole" placeholder="e.g., Software Developer, Analyst" value={formData.currentRole} onChange={e => handleChange("currentRole", e.target.value)} className="input-premium" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="skills">Key Skills</Label>
-                  <Input id="skills" placeholder="e.g., Python, React, Data Analysis" value={formData.skills} onChange={e => handleChange("skills", e.target.value)} />
+                  <Label htmlFor="skills" className="text-premium-navy">Key Skills</Label>
+                  <Input id="skills" placeholder="e.g., Python, React, Data Analysis" value={formData.skills} onChange={e => handleChange("skills", e.target.value)} className="input-premium" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="preferredRole">Preferred Role</Label>
-                  <Input id="preferredRole" placeholder="e.g., Full Stack Developer, Product Manager" value={formData.preferredRole} onChange={e => handleChange("preferredRole", e.target.value)} />
+                  <Label htmlFor="preferredRole" className="text-premium-navy">Preferred Role</Label>
+                  <Input id="preferredRole" placeholder="e.g., Full Stack Developer, Product Manager" value={formData.preferredRole} onChange={e => handleChange("preferredRole", e.target.value)} className="input-premium" />
                 </div>
               </div>
             )}
 
             {currentStep === 3 && (
               <div className="space-y-4">
-                <h3 className="font-semibold text-lg">Review Your Information</h3>
-                <div className="bg-muted/50 rounded-lg p-4 space-y-2 text-sm">
-                  <p><strong>Name:</strong> {formData.fullName || "Not provided"}</p>
-                  <p><strong>Email:</strong> {formData.email || "Not provided"}</p>
-                  <p><strong>Phone:</strong> {formData.phone || "Not provided"}</p>
-                  <p><strong>Institution:</strong> {formData.institution || "Not provided"}</p>
-                  <p><strong>Degree:</strong> {formData.degree || "Not provided"}</p>
-                  <p><strong>Specialization:</strong> {formData.specialization || "Not provided"}</p>
-                  <p><strong>Experience:</strong> {formData.experience || "Not provided"}</p>
-                  <p><strong>Skills:</strong> {formData.skills || "Not provided"}</p>
+                <h3 className="font-semibold text-lg text-premium-navy">Review Your Information</h3>
+                <div className="glass-card rounded-xl p-4 space-y-2 text-sm">
+                  <p className="text-premium-navy"><strong>Name:</strong> {formData.fullName || "Not provided"}</p>
+                  <p className="text-premium-navy"><strong>Email:</strong> {formData.email || "Not provided"}</p>
+                  <p className="text-premium-navy"><strong>Phone:</strong> {formData.phone || "Not provided"}</p>
+                  <p className="text-premium-navy"><strong>Institution:</strong> {formData.institution || "Not provided"}</p>
+                  <p className="text-premium-navy"><strong>Degree:</strong> {formData.degree || "Not provided"}</p>
+                  <p className="text-premium-navy"><strong>Specialization:</strong> {formData.specialization || "Not provided"}</p>
+                  <p className="text-premium-navy"><strong>Experience:</strong> {formData.experience || "Not provided"}</p>
+                  <p className="text-premium-navy"><strong>Skills:</strong> {formData.skills || "Not provided"}</p>
                 </div>
               </div>
             )}
 
             <div className="flex justify-between pt-4">
-              <Button variant="outline" onClick={handleBack} disabled={currentStep === 0 || isSubmitting}>
+              <Button variant="outline" onClick={handleBack} disabled={currentStep === 0 || isSubmitting} className="border-premium-navy/20 text-premium-navy hover:bg-premium-navy/5">
                 <ArrowLeft className="w-4 h-4 mr-2" /> Back
               </Button>
               {currentStep < steps.length - 1 ? (
-                <Button onClick={handleNext} className="bg-secondary hover:bg-secondary/90">
+                <Button onClick={handleNext} className="btn-premium-primary">
                   Next <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               ) : (
-                <Button onClick={handleSubmit} className="bg-primary hover:bg-primary/90" disabled={isSubmitting}>
+                <Button onClick={handleSubmit} className="btn-premium-primary" disabled={isSubmitting}>
                   {isSubmitting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                   Submit Registration
                 </Button>
