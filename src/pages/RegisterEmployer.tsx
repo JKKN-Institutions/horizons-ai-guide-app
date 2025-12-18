@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft, ArrowRight, Briefcase, CheckCircle, Loader2 } from "lucide-react";
@@ -85,20 +84,20 @@ const RegisterEmployer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary/5 to-background py-12">
+    <div className="premium-page-bg min-h-screen py-12">
       <div className="container mx-auto px-4 max-w-2xl">
-        <Button variant="ghost" onClick={() => navigate("/")} className="mb-6">
+        <Button variant="ghost" onClick={() => navigate("/")} className="mb-6 text-premium-navy hover:bg-premium-gold/10">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Home
         </Button>
 
-        <Card className="shadow-elevated">
+        <Card className="glass-card-premium border-0 shadow-premium">
           <CardHeader className="text-center">
-            <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Briefcase className="w-8 h-8 text-accent-foreground" />
+            <div className="w-16 h-16 bg-gradient-to-br from-premium-orange/20 to-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Briefcase className="w-8 h-8 text-premium-orange" />
             </div>
-            <CardTitle className="text-2xl font-serif">Register as Employer</CardTitle>
-            <CardDescription>Connect with talented graduates from JKKN institutions</CardDescription>
+            <CardTitle className="text-2xl font-serif text-premium-navy">Register as Employer</CardTitle>
+            <CardDescription className="text-premium-navy/70">Connect with talented graduates from JKKN institutions</CardDescription>
           </CardHeader>
 
           {/* Progress Steps */}
@@ -106,22 +105,22 @@ const RegisterEmployer = () => {
             <div className="flex items-center justify-between">
               {steps.map((step, index) => (
                 <div key={step} className="flex items-center">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors ${
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all ${
                     index < currentStep 
-                      ? "bg-secondary text-secondary-foreground" 
+                      ? "bg-gradient-to-r from-premium-gold to-premium-orange text-white" 
                       : index === currentStep 
-                        ? "bg-primary text-primary-foreground" 
-                        : "bg-muted text-muted-foreground"
+                        ? "bg-premium-navy text-white" 
+                        : "bg-premium-cream text-premium-navy/50"
                   }`}>
                     {index < currentStep ? <CheckCircle className="w-5 h-5" /> : index + 1}
                   </div>
                   {index < steps.length - 1 && (
-                    <div className={`w-12 md:w-20 h-1 mx-2 ${index < currentStep ? "bg-secondary" : "bg-muted"}`} />
+                    <div className={`w-12 md:w-20 h-1 mx-2 rounded ${index < currentStep ? "bg-gradient-to-r from-premium-gold to-premium-orange" : "bg-premium-cream"}`} />
                   )}
                 </div>
               ))}
             </div>
-            <div className="flex justify-between mt-2 text-xs text-muted-foreground">
+            <div className="flex justify-between mt-2 text-xs text-premium-navy/60">
               {steps.map(step => <span key={step}>{step}</span>)}
             </div>
           </div>
@@ -130,13 +129,13 @@ const RegisterEmployer = () => {
             {currentStep === 0 && (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="companyName">Company Name *</Label>
-                  <Input id="companyName" placeholder="Enter company name" value={formData.companyName} onChange={e => handleChange("companyName", e.target.value)} />
+                  <Label htmlFor="companyName" className="text-premium-navy">Company Name *</Label>
+                  <Input id="companyName" placeholder="Enter company name" value={formData.companyName} onChange={e => handleChange("companyName", e.target.value)} className="input-premium" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Industry *</Label>
+                  <Label className="text-premium-navy">Industry *</Label>
                   <Select value={formData.industry} onValueChange={v => handleChange("industry", v)}>
-                    <SelectTrigger><SelectValue placeholder="Select industry" /></SelectTrigger>
+                    <SelectTrigger className="input-premium"><SelectValue placeholder="Select industry" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="it">IT / Software</SelectItem>
                       <SelectItem value="healthcare">Healthcare / Pharma</SelectItem>
@@ -150,9 +149,9 @@ const RegisterEmployer = () => {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label>Company Size</Label>
+                  <Label className="text-premium-navy">Company Size</Label>
                   <Select value={formData.companySize} onValueChange={v => handleChange("companySize", v)}>
-                    <SelectTrigger><SelectValue placeholder="Select company size" /></SelectTrigger>
+                    <SelectTrigger className="input-premium"><SelectValue placeholder="Select company size" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="1-50">1-50 employees</SelectItem>
                       <SelectItem value="51-200">51-200 employees</SelectItem>
@@ -163,8 +162,8 @@ const RegisterEmployer = () => {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="website">Website</Label>
-                  <Input id="website" placeholder="https://www.company.com" value={formData.website} onChange={e => handleChange("website", e.target.value)} />
+                  <Label htmlFor="website" className="text-premium-navy">Website</Label>
+                  <Input id="website" placeholder="https://www.company.com" value={formData.website} onChange={e => handleChange("website", e.target.value)} className="input-premium" />
                 </div>
               </div>
             )}
@@ -172,20 +171,20 @@ const RegisterEmployer = () => {
             {currentStep === 1 && (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="contactName">Contact Person Name *</Label>
-                  <Input id="contactName" placeholder="Full name" value={formData.contactName} onChange={e => handleChange("contactName", e.target.value)} />
+                  <Label htmlFor="contactName" className="text-premium-navy">Contact Person Name *</Label>
+                  <Input id="contactName" placeholder="Full name" value={formData.contactName} onChange={e => handleChange("contactName", e.target.value)} className="input-premium" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="contactEmail">Email Address *</Label>
-                  <Input id="contactEmail" type="email" placeholder="hr@company.com" value={formData.contactEmail} onChange={e => handleChange("contactEmail", e.target.value)} />
+                  <Label htmlFor="contactEmail" className="text-premium-navy">Email Address *</Label>
+                  <Input id="contactEmail" type="email" placeholder="hr@company.com" value={formData.contactEmail} onChange={e => handleChange("contactEmail", e.target.value)} className="input-premium" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="contactPhone">Phone Number *</Label>
-                  <Input id="contactPhone" placeholder="+91 98765 43210" value={formData.contactPhone} onChange={e => handleChange("contactPhone", e.target.value)} />
+                  <Label htmlFor="contactPhone" className="text-premium-navy">Phone Number *</Label>
+                  <Input id="contactPhone" placeholder="+91 98765 43210" value={formData.contactPhone} onChange={e => handleChange("contactPhone", e.target.value)} className="input-premium" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="designation">Designation</Label>
-                  <Input id="designation" placeholder="e.g., HR Manager, Talent Acquisition Lead" value={formData.designation} onChange={e => handleChange("designation", e.target.value)} />
+                  <Label htmlFor="designation" className="text-premium-navy">Designation</Label>
+                  <Input id="designation" placeholder="e.g., HR Manager, Talent Acquisition Lead" value={formData.designation} onChange={e => handleChange("designation", e.target.value)} className="input-premium" />
                 </div>
               </div>
             )}
@@ -193,13 +192,13 @@ const RegisterEmployer = () => {
             {currentStep === 2 && (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="hiringRoles">Roles You're Hiring For</Label>
-                  <Input id="hiringRoles" placeholder="e.g., Software Engineer, Data Analyst, Nurse" value={formData.hiringRoles} onChange={e => handleChange("hiringRoles", e.target.value)} />
+                  <Label htmlFor="hiringRoles" className="text-premium-navy">Roles You're Hiring For</Label>
+                  <Input id="hiringRoles" placeholder="e.g., Software Engineer, Data Analyst, Nurse" value={formData.hiringRoles} onChange={e => handleChange("hiringRoles", e.target.value)} className="input-premium" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Experience Level Required</Label>
+                  <Label className="text-premium-navy">Experience Level Required</Label>
                   <Select value={formData.experienceLevel} onValueChange={v => handleChange("experienceLevel", v)}>
-                    <SelectTrigger><SelectValue placeholder="Select experience level" /></SelectTrigger>
+                    <SelectTrigger className="input-premium"><SelectValue placeholder="Select experience level" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="fresher">Freshers Only</SelectItem>
                       <SelectItem value="0-2">0-2 years</SelectItem>
@@ -209,13 +208,13 @@ const RegisterEmployer = () => {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="locations">Hiring Locations</Label>
-                  <Input id="locations" placeholder="e.g., Chennai, Bangalore, Remote" value={formData.locationsHiring} onChange={e => handleChange("locationsHiring", e.target.value)} />
+                  <Label htmlFor="locations" className="text-premium-navy">Hiring Locations</Label>
+                  <Input id="locations" placeholder="e.g., Chennai, Bangalore, Remote" value={formData.locationsHiring} onChange={e => handleChange("locationsHiring", e.target.value)} className="input-premium" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Hiring Timeline</Label>
+                  <Label className="text-premium-navy">Hiring Timeline</Label>
                   <Select value={formData.hiringTimeline} onValueChange={v => handleChange("hiringTimeline", v)}>
-                    <SelectTrigger><SelectValue placeholder="Select timeline" /></SelectTrigger>
+                    <SelectTrigger className="input-premium"><SelectValue placeholder="Select timeline" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="immediate">Immediate</SelectItem>
                       <SelectItem value="1-month">Within 1 month</SelectItem>
@@ -229,29 +228,29 @@ const RegisterEmployer = () => {
 
             {currentStep === 3 && (
               <div className="space-y-4">
-                <h3 className="font-semibold text-lg">Review Your Information</h3>
-                <div className="bg-muted/50 rounded-lg p-4 space-y-2 text-sm">
-                  <p><strong>Company:</strong> {formData.companyName || "Not provided"}</p>
-                  <p><strong>Industry:</strong> {formData.industry || "Not provided"}</p>
-                  <p><strong>Company Size:</strong> {formData.companySize || "Not provided"}</p>
-                  <p><strong>Contact Name:</strong> {formData.contactName || "Not provided"}</p>
-                  <p><strong>Contact Email:</strong> {formData.contactEmail || "Not provided"}</p>
-                  <p><strong>Hiring Roles:</strong> {formData.hiringRoles || "Not provided"}</p>
-                  <p><strong>Locations:</strong> {formData.locationsHiring || "Not provided"}</p>
+                <h3 className="font-semibold text-lg text-premium-navy">Review Your Information</h3>
+                <div className="glass-card rounded-xl p-4 space-y-2 text-sm">
+                  <p className="text-premium-navy"><strong>Company:</strong> {formData.companyName || "Not provided"}</p>
+                  <p className="text-premium-navy"><strong>Industry:</strong> {formData.industry || "Not provided"}</p>
+                  <p className="text-premium-navy"><strong>Company Size:</strong> {formData.companySize || "Not provided"}</p>
+                  <p className="text-premium-navy"><strong>Contact Name:</strong> {formData.contactName || "Not provided"}</p>
+                  <p className="text-premium-navy"><strong>Contact Email:</strong> {formData.contactEmail || "Not provided"}</p>
+                  <p className="text-premium-navy"><strong>Hiring Roles:</strong> {formData.hiringRoles || "Not provided"}</p>
+                  <p className="text-premium-navy"><strong>Locations:</strong> {formData.locationsHiring || "Not provided"}</p>
                 </div>
               </div>
             )}
 
             <div className="flex justify-between pt-4">
-              <Button variant="outline" onClick={handleBack} disabled={currentStep === 0 || isSubmitting}>
+              <Button variant="outline" onClick={handleBack} disabled={currentStep === 0 || isSubmitting} className="border-premium-navy/20 text-premium-navy hover:bg-premium-navy/5">
                 <ArrowLeft className="w-4 h-4 mr-2" /> Back
               </Button>
               {currentStep < steps.length - 1 ? (
-                <Button onClick={handleNext} className="bg-secondary hover:bg-secondary/90">
+                <Button onClick={handleNext} className="btn-premium-primary">
                   Next <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               ) : (
-                <Button onClick={handleSubmit} className="bg-primary hover:bg-primary/90" disabled={isSubmitting}>
+                <Button onClick={handleSubmit} className="btn-premium-primary" disabled={isSubmitting}>
                   {isSubmitting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                   Submit Registration
                 </Button>

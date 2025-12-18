@@ -251,9 +251,9 @@ const CareerChat = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/30">
-      {/* Header */}
-      <header className="bg-primary text-primary-foreground shadow-lg sticky top-0 z-10">
+    <div className="premium-page-bg min-h-screen">
+      {/* Premium Header */}
+      <header className="premium-page-header sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -261,13 +261,13 @@ const CareerChat = () => {
                 variant="ghost"
                 size="icon"
                 onClick={() => navigate('/student-dashboard')}
-                className="text-primary-foreground hover:bg-primary-foreground/10"
+                className="text-white hover:bg-white/10"
               >
                 <ArrowLeft className="h-5 w-5" />
               </Button>
               <div>
-                <h1 className="text-xl font-serif font-bold">AI Career Counselor</h1>
-                <p className="text-sm opacity-80">AI தொழில் ஆலோசகர்</p>
+                <h1 className="text-xl font-serif font-bold text-white">AI Career Counselor</h1>
+                <p className="text-sm text-white/80 font-tamil">AI தொழில் ஆலோசகர்</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -275,7 +275,7 @@ const CareerChat = () => {
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsTtsEnabled(!isTtsEnabled)}
-                className="text-primary-foreground hover:bg-primary-foreground/10"
+                className="text-white hover:bg-white/10"
                 title={isTtsEnabled ? 'Disable voice' : 'Enable voice'}
               >
                 {isTtsEnabled ? <Volume2 className="h-5 w-5" /> : <VolumeX className="h-5 w-5" />}
@@ -284,7 +284,7 @@ const CareerChat = () => {
                 variant="ghost"
                 size="icon"
                 onClick={clearChat}
-                className="text-primary-foreground hover:bg-primary-foreground/10"
+                className="text-white hover:bg-white/10"
                 title="Clear chat"
               >
                 <Trash2 className="h-5 w-5" />
@@ -303,7 +303,7 @@ const CareerChat = () => {
               variant="outline"
               size="sm"
               onClick={() => handleQuickAction(action.prompt)}
-              className="flex items-center gap-2"
+              className="glass-card border-premium-gold/30 hover:bg-premium-gold/10 text-premium-navy"
             >
               {action.icon}
               {action.label}
@@ -312,10 +312,10 @@ const CareerChat = () => {
         </div>
 
         {/* Chat Area */}
-        <Card className="mb-4">
+        <Card className="glass-card-premium mb-4 border-0">
           <CardHeader className="pb-2">
-            <CardTitle className="text-lg flex items-center gap-2">
-              <Bot className="h-5 w-5 text-secondary" />
+            <CardTitle className="text-lg flex items-center gap-2 text-premium-navy">
+              <Bot className="h-5 w-5 text-premium-gold" />
               Conversation
             </CardTitle>
           </CardHeader>
@@ -323,14 +323,16 @@ const CareerChat = () => {
             <ScrollArea className="h-[50vh] pr-4">
               {messages.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center py-12">
-                  <Bot className="h-16 w-16 text-muted-foreground/50 mb-4" />
-                  <h3 className="text-lg font-medium text-foreground mb-2">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-premium-gold/20 to-premium-orange/20 flex items-center justify-center mb-4">
+                    <Bot className="h-10 w-10 text-premium-gold" />
+                  </div>
+                  <h3 className="text-lg font-medium text-premium-navy mb-2">
                     Hello! I'm your AI Career Counselor
                   </h3>
-                  <p className="text-muted-foreground max-w-md">
+                  <p className="text-premium-navy/70 max-w-md">
                     Ask me anything about careers, courses, colleges, or guidance. I'm here to help you find your path!
                   </p>
-                  <p className="text-muted-foreground font-tamil mt-2">
+                  <p className="text-premium-navy/60 font-tamil mt-2">
                     தொழில், படிப்புகள், கல்லூரிகள் பற்றி என்னிடம் கேளுங்கள்!
                   </p>
                 </div>
@@ -342,15 +344,15 @@ const CareerChat = () => {
                       className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       {message.role === 'assistant' && (
-                        <div className="h-8 w-8 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                          <Bot className="h-4 w-4 text-secondary-foreground" />
+                        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-premium-gold to-premium-orange flex items-center justify-center flex-shrink-0">
+                          <Bot className="h-4 w-4 text-white" />
                         </div>
                       )}
                       <div
-                        className={`max-w-[80%] rounded-lg px-4 py-2 ${
+                        className={`max-w-[80%] rounded-2xl px-4 py-2 ${
                           message.role === 'user'
-                            ? 'bg-primary text-primary-foreground'
-                            : 'bg-muted text-foreground'
+                            ? 'bg-gradient-to-r from-premium-navy to-premium-navy/90 text-white'
+                            : 'glass-card text-premium-navy'
                         }`}
                       >
                         <p className="whitespace-pre-wrap">{message.content}</p>
@@ -359,19 +361,19 @@ const CareerChat = () => {
                         </p>
                       </div>
                       {message.role === 'user' && (
-                        <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                          <User className="h-4 w-4 text-primary" />
+                        <div className="h-8 w-8 rounded-full bg-premium-navy/20 flex items-center justify-center flex-shrink-0">
+                          <User className="h-4 w-4 text-premium-navy" />
                         </div>
                       )}
                     </div>
                   ))}
                   {isLoading && messages[messages.length - 1]?.content === '' && (
                     <div className="flex gap-3">
-                      <div className="h-8 w-8 rounded-full bg-secondary flex items-center justify-center">
-                        <Bot className="h-4 w-4 text-secondary-foreground" />
+                      <div className="h-8 w-8 rounded-full bg-gradient-to-br from-premium-gold to-premium-orange flex items-center justify-center">
+                        <Bot className="h-4 w-4 text-white" />
                       </div>
-                      <div className="bg-muted rounded-lg px-4 py-2">
-                        <Loader2 className="h-4 w-4 animate-spin" />
+                      <div className="glass-card rounded-2xl px-4 py-2">
+                        <Loader2 className="h-4 w-4 animate-spin text-premium-gold" />
                       </div>
                     </div>
                   )}
@@ -388,25 +390,25 @@ const CareerChat = () => {
             variant="outline"
             size="icon"
             onClick={toggleVoiceInput}
-            className={isListening ? 'bg-destructive text-destructive-foreground' : ''}
+            className={`glass-card border-premium-gold/30 ${isListening ? 'bg-red-500 text-white border-red-500' : 'hover:bg-premium-gold/10'}`}
           >
-            {isListening ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
+            {isListening ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5 text-premium-navy" />}
           </Button>
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
             placeholder="Ask me about careers, courses, or colleges..."
-            className="flex-1"
+            className="input-premium flex-1"
             disabled={isLoading}
           />
-          <Button onClick={handleSend} disabled={isLoading || !input.trim()} className="btn-primary">
+          <Button onClick={handleSend} disabled={isLoading || !input.trim()} className="btn-premium-primary">
             {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5" />}
           </Button>
         </div>
 
         {isListening && (
-          <p className="text-center text-sm text-muted-foreground mt-2 animate-pulse">
+          <p className="text-center text-sm text-premium-gold mt-2 animate-pulse">
             🎤 Listening... Speak now
           </p>
         )}
