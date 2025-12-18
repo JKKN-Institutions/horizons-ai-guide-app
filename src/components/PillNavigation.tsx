@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { GraduationCap, Building2, Bookmark, LucideIcon } from 'lucide-react';
 
@@ -7,6 +7,7 @@ interface NavItem {
   label: string;
   icon: LucideIcon;
   activeColor: string;
+  activeBg: string;
 }
 
 interface PillNavigationProps {
@@ -20,25 +21,87 @@ const navItems: NavItem[] = [
     label: 'Career Assessments',
     icon: GraduationCap,
     activeColor: 'text-emerald-600',
+    activeBg: 'bg-emerald-50',
   },
   {
     id: 'colleges',
     label: 'Find Colleges',
     icon: Building2,
     activeColor: 'text-blue-600',
+    activeBg: 'bg-blue-50',
   },
   {
     id: 'scholarships',
     label: 'Scholarship Finder',
     icon: Bookmark,
     activeColor: 'text-amber-600',
+    activeBg: 'bg-amber-50',
   },
 ];
 
 export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) => {
+  const navRef = useRef<HTMLDivElement>(null);
+  const buttonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+
+  useEffect(() => {
+    const activeButton = buttonRefs.current.get(activeTab);
+    const nav = navRef.current;
+    
+    if (activeButton && nav) {
+      const navRect = nav.getBoundingClientRect();
+      const buttonRect = activeButton.getBoundingClientRect();
+      
+      setIndicatorStyle({
+        left: buttonRect.left - navRect.left,
+        width: buttonRect.width,
+      });
+    }
+  }, [activeTab]);
+
+  // Update indicator on resize
+  useEffect(() => {
+    const handleResize = () => {
+      const activeButton = buttonRefs.current.get(activeTab);
+      const nav = navRef.current;
+      
+      if (activeButton && nav) {
+        const navRect = nav.getBoundingClientRect();
+        const buttonRect = activeButton.getBoundingClientRect();
+        
+        setIndicatorStyle({
+          left: buttonRect.left - navRect.left,
+          width: buttonRect.width,
+        });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [activeTab]);
+
+  const activeItem = navItems.find(item => item.id === activeTab);
+
   return (
     <div className="flex justify-center mb-8">
-      <nav className="inline-flex items-center gap-1 p-1.5 bg-gray-100/80 backdrop-blur-md rounded-full shadow-sm">
+      <nav 
+        ref={navRef}
+        className="relative inline-flex items-center gap-1 p-1.5 bg-gray-100/80 backdrop-blur-md rounded-full shadow-sm"
+      >
+        {/* Sliding indicator */}
+        <div
+          className={cn(
+            'absolute top-1.5 bottom-1.5 rounded-full bg-white shadow-md',
+            'transition-all duration-300 ease-out',
+            activeItem?.activeBg
+          )}
+          style={{
+            left: indicatorStyle.left,
+            width: indicatorStyle.width,
+            transform: 'translateZ(0)', // GPU acceleration
+          }}
+        />
+        
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.id;
@@ -46,14 +109,17 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
           return (
             <button
               key={item.id}
+              ref={(el) => {
+                if (el) buttonRefs.current.set(item.id, el);
+              }}
               onClick={() => onTabChange(item.id)}
               className={cn(
-                'relative flex items-center gap-2 px-4 py-2.5 rounded-full font-medium text-sm',
+                'relative z-10 flex items-center gap-2 px-4 py-2.5 rounded-full font-medium text-sm',
                 'transition-all duration-300 ease-out',
                 'hover:scale-105',
                 isActive
-                  ? `bg-white shadow-md ${item.activeColor}`
-                  : 'text-gray-600 hover:bg-gray-200/70'
+                  ? item.activeColor
+                  : 'text-gray-600 hover:text-gray-800'
               )}
             >
               <Icon 
