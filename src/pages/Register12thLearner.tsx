@@ -82,18 +82,18 @@ const Register12thLearner = () => {
   return (
     <div className="premium-page-bg min-h-screen py-12">
       <div className="container mx-auto px-4 max-w-2xl">
-        <Button variant="ghost" onClick={() => navigate("/")} className="mb-6 text-premium-navy hover:bg-premium-gold/10">
+        <Button variant="ghost" onClick={() => navigate("/")} className="mb-6 text-white hover:bg-white/10">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Home
         </Button>
 
-        <Card className="glass-card-premium border-0 shadow-premium">
+        <Card className="glass-card-premium border-0 dark-card-green">
           <CardHeader className="text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-premium-gold/20 to-premium-orange/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <GraduationCap className="w-8 h-8 text-premium-gold" />
+            <div className="w-16 h-16 bg-gradient-to-br from-emerald-500/20 to-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <GraduationCap className="w-8 h-8 text-emerald-500" />
             </div>
-            <CardTitle className="text-2xl font-serif text-premium-navy">Register as 12th Learner</CardTitle>
-            <CardDescription className="text-premium-navy/70">Start your career journey with JKKN AI Horizons</CardDescription>
+            <CardTitle className="text-2xl font-serif card-heading">Register as 12th Learner</CardTitle>
+            <CardDescription className="card-body">Start your career journey with JKKN AI Horizons</CardDescription>
           </CardHeader>
 
           {/* Progress Steps */}
@@ -103,20 +103,20 @@ const Register12thLearner = () => {
                 <div key={step} className="flex items-center">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all ${
                     index < currentStep 
-                      ? "bg-gradient-to-r from-premium-gold to-premium-orange text-white" 
+                      ? "bg-gradient-to-r from-emerald-500 to-green-500 text-white" 
                       : index === currentStep 
-                        ? "bg-premium-navy text-white" 
-                        : "bg-premium-cream text-premium-navy/50"
+                        ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white" 
+                        : "bg-slate-700 text-slate-400"
                   }`}>
                     {index < currentStep ? <CheckCircle className="w-5 h-5" /> : index + 1}
                   </div>
                   {index < steps.length - 1 && (
-                    <div className={`w-12 md:w-20 h-1 mx-2 rounded ${index < currentStep ? "bg-gradient-to-r from-premium-gold to-premium-orange" : "bg-premium-cream"}`} />
+                    <div className={`w-12 md:w-20 h-1 mx-2 rounded ${index < currentStep ? "bg-gradient-to-r from-emerald-500 to-green-500" : "bg-slate-700"}`} />
                   )}
                 </div>
               ))}
             </div>
-            <div className="flex justify-between mt-2 text-xs text-premium-navy/60">
+            <div className="flex justify-between mt-2 text-xs card-muted">
               {steps.map(step => <span key={step}>{step}</span>)}
             </div>
           </div>
@@ -126,8 +126,8 @@ const Register12thLearner = () => {
               <div className="space-y-4">
                 <div className="grid gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="fullName" className="text-premium-navy">Full Name *</Label>
-                    <Input id="fullName" placeholder="Enter your full name" value={formData.fullName} onChange={e => handleChange("fullName", e.target.value)} className="input-premium" />
+                    <Label htmlFor="fullName" className="card-heading text-sm">Full Name *</Label>
+                    <Input id="fullName" placeholder="Enter your full name" value={formData.fullName} onChange={e => handleChange("fullName", e.target.value)} className="dark-input" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email" className="text-premium-navy">Email Address</Label>

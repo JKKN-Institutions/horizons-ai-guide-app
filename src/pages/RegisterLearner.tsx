@@ -86,18 +86,18 @@ const RegisterLearner = () => {
   return (
     <div className="premium-page-bg min-h-screen py-12">
       <div className="container mx-auto px-4 max-w-2xl">
-        <Button variant="ghost" onClick={() => navigate("/")} className="mb-6 text-premium-navy hover:bg-premium-gold/10">
+        <Button variant="ghost" onClick={() => navigate("/")} className="mb-6 text-white hover:bg-white/10">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Home
         </Button>
 
-        <Card className="glass-card-premium border-0 shadow-premium">
+        <Card className="glass-card-premium border-0 dark-card-blue">
           <CardHeader className="text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-premium-navy/20 to-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Users className="w-8 h-8 text-premium-navy" />
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Users className="w-8 h-8 text-blue-500" />
             </div>
-            <CardTitle className="text-2xl font-serif text-premium-navy">Register as Learner</CardTitle>
-            <CardDescription className="text-premium-navy/70">Find your dream job and advance your career</CardDescription>
+            <CardTitle className="text-2xl font-serif card-heading">Register as Learner</CardTitle>
+            <CardDescription className="card-body">Find your dream job and advance your career</CardDescription>
           </CardHeader>
 
           {/* Progress Steps */}
