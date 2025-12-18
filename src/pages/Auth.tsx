@@ -144,13 +144,19 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-hero p-4">
-      <Card className="w-full max-w-md shadow-elevated border-0">
+    <div className="premium-page-bg min-h-screen flex items-center justify-center p-4">
+      {/* Floating Decorations */}
+      <div className="floating-decoration">
+        <div className="golden-circle top-right" />
+        <div className="golden-circle bottom-left" />
+      </div>
+
+      <Card className="glass-card-premium w-full max-w-md shadow-premium border-0 relative z-10">
         <CardHeader className="space-y-1 text-center">
-          <CardTitle className="text-2xl font-serif text-foreground">
+          <CardTitle className="text-2xl font-serif premium-heading">
             {isLogin ? 'Welcome Back' : 'Create Account'}
           </CardTitle>
-          <CardDescription className="text-muted-foreground">
+          <CardDescription className="premium-muted">
             {isLogin
               ? 'Enter your credentials to access your account'
               : 'Fill in your details to get started'}
@@ -160,14 +166,14 @@ const Auth = () => {
           <CardContent className="space-y-4">
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="displayName" className="text-foreground">Display Name</Label>
+                <Label htmlFor="displayName" className="premium-body font-medium">Display Name</Label>
                 <Input
                   id="displayName"
                   type="text"
                   placeholder="John Doe"
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
-                  className={errors.displayName ? 'border-destructive' : ''}
+                  className={`input-premium ${errors.displayName ? 'border-destructive' : ''}`}
                   disabled={isLoading}
                 />
                 {errors.displayName && (
@@ -177,14 +183,14 @@ const Auth = () => {
             )}
             
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-foreground">Email</Label>
+              <Label htmlFor="email" className="premium-body font-medium">Email</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="name@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={errors.email ? 'border-destructive' : ''}
+                className={`input-premium ${errors.email ? 'border-destructive' : ''}`}
                 disabled={isLoading}
               />
               {errors.email && (
@@ -193,7 +199,7 @@ const Auth = () => {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-foreground">Password</Label>
+              <Label htmlFor="password" className="premium-body font-medium">Password</Label>
               <div className="relative">
                 <Input
                   id="password"
@@ -201,13 +207,13 @@ const Auth = () => {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className={errors.password ? 'border-destructive pr-10' : 'pr-10'}
+                  className={`input-premium pr-10 ${errors.password ? 'border-destructive' : ''}`}
                   disabled={isLoading}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-premium-gold hover:text-premium-orange transition-colors"
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -219,14 +225,14 @@ const Auth = () => {
             
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword" className="text-foreground">Confirm Password</Label>
+                <Label htmlFor="confirmPassword" className="premium-body font-medium">Confirm Password</Label>
                 <Input
                   id="confirmPassword"
                   type={showPassword ? 'text' : 'password'}
                   placeholder="••••••••"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className={errors.confirmPassword ? 'border-destructive' : ''}
+                  className={`input-premium ${errors.confirmPassword ? 'border-destructive' : ''}`}
                   disabled={isLoading}
                 />
                 {errors.confirmPassword && (
@@ -239,7 +245,7 @@ const Auth = () => {
           <CardFooter className="flex flex-col space-y-4">
             <Button 
               type="submit" 
-              className="w-full btn-primary"
+              className="w-full btn-premium-primary"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -253,13 +259,13 @@ const Auth = () => {
             </Button>
             
             <div className="text-center text-sm">
-              <span className="text-muted-foreground">
+              <span className="premium-muted">
                 {isLogin ? "Don't have an account? " : "Already have an account? "}
               </span>
               <button
                 type="button"
                 onClick={toggleMode}
-                className="text-secondary hover:text-secondary/80 font-medium transition-colors"
+                className="text-premium-orange hover:text-premium-gold font-medium transition-colors"
                 disabled={isLoading}
               >
                 {isLogin ? 'Sign Up' : 'Sign In'}

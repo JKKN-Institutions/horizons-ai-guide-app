@@ -223,35 +223,44 @@ const CareerAssessmentColleges = () => {
   const isInProgress = (id: AssessmentType) => !!inProgressAssessments[id];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="premium-page-bg min-h-screen">
+      {/* Floating Decorations */}
+      <div className="floating-decoration">
+        <div className="golden-circle top-right" />
+        <div className="golden-circle bottom-left" />
+      </div>
+
       {/* Header */}
-      <header className="bg-[#0A2E1F] text-white py-6">
-        <div className="container mx-auto px-4">
+      <header className="premium-page-header">
+        <div className="container mx-auto px-4 relative z-10">
           <Button 
             variant="ghost" 
-            className="text-white hover:bg-white/10 mb-4"
+            className="text-white/80 hover:text-white hover:bg-white/10 mb-4"
             onClick={() => navigate(-1)}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back
           </Button>
-          <h1 className="font-playfair text-3xl md:text-4xl font-bold italic mb-2">
+          <h1 className="text-white text-3xl md:text-4xl font-bold font-serif mb-2">
             Career Assessment Center for College Learners
           </h1>
-          <p className="text-white/80 text-lg">
+          <p className="text-white/80 font-tamil text-base">
+            கல்லூரி கற்றவர்களுக்கான வாழ்க்கை மதிப்பீட்டு மையம்
+          </p>
+          <p className="text-white/90 text-lg mt-4 max-w-2xl">
             Discover your strengths, interests and find the perfect college for your future
           </p>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 relative z-10">
         <PillNavigation activeTab={activeTab} onTabChange={setActiveTab} />
 
         {activeTab === 'assessments' && (
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Main Content */}
             <div className="flex-1">
-              <h2 className="text-2xl font-semibold mb-6 text-foreground">Choose Your Assessment</h2>
+              <h2 className="section-title-premium text-2xl font-semibold mb-6">Choose Your Assessment</h2>
               
               <div className="grid md:grid-cols-2 gap-6">
                 {assessmentCards.map((assessment) => {
@@ -262,7 +271,7 @@ const CareerAssessmentColleges = () => {
                   return (
                     <Card 
                       key={assessment.id} 
-                      className="border-l-4 border-l-[#0A2E1F] hover:shadow-lg transition-shadow relative overflow-hidden"
+                      className="glass-card border-l-4 border-l-premium-navy hover:shadow-premium transition-all relative overflow-hidden"
                     >
                       {completed && (
                         <div className="absolute top-3 right-3">
@@ -358,39 +367,40 @@ const CareerAssessmentColleges = () => {
 
             {/* Sidebar */}
             <div className="lg:w-80">
-              <Card className="sticky top-4 border-l-4 border-l-[#FFB800]">
+              <Card className="glass-card-premium sticky top-4 border-l-4 border-l-premium-gold">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Trophy className="h-5 w-5 text-[#FFB800]" />
+                  <CardTitle className="flex items-center gap-2 premium-heading text-lg">
+                    <Trophy className="h-5 w-5 text-premium-gold" />
                     Your Progress
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4 text-center">
-                    <div className="bg-green-50 rounded-lg p-3">
-                      <div className="text-2xl font-bold text-green-600">{completedAssessments.length}</div>
-                      <div className="text-xs text-muted-foreground">Completed</div>
+                    <div className="stat-card-premium p-3">
+                      <div className="text-2xl font-bold text-emerald-600">{completedAssessments.length}</div>
+                      <div className="text-xs premium-muted">Completed</div>
                     </div>
-                    <div className="bg-orange-50 rounded-lg p-3">
-                      <div className="text-2xl font-bold text-orange-600">
+                    <div className="stat-card-premium p-3">
+                      <div className="text-2xl font-bold text-premium-orange">
                         {4 - completedAssessments.length}
                       </div>
-                      <div className="text-xs text-muted-foreground">Pending</div>
+                      <div className="text-xs premium-muted">Pending</div>
                     </div>
                   </div>
 
                   <div>
                     <div className="flex justify-between text-sm mb-2">
-                      <span className="text-muted-foreground">Career Readiness</span>
-                      <span className="font-semibold">{overallScore}%</span>
+                      <span className="premium-muted">Career Readiness</span>
+                      <span className="font-semibold premium-heading">{overallScore}%</span>
                     </div>
-                    <Progress value={overallScore} className="h-3" />
+                    <div className="progress-premium">
+                      <div className="progress-bar-premium" style={{ width: `${overallScore}%` }} />
+                    </div>
                   </div>
 
                   {completedAssessments.length > 0 && (
                     <Button 
-                      variant="outline" 
-                      className="w-full"
+                      className="w-full btn-premium-secondary"
                       onClick={() => navigate('/career-assessment/results')}
                     >
                       <BookOpen className="mr-2 h-4 w-4" />
@@ -400,7 +410,7 @@ const CareerAssessmentColleges = () => {
 
                   {completedAssessments.length > 0 && (
                     <Button 
-                      className="w-full bg-[#0A2E1F] hover:bg-[#0A2E1F]/90"
+                      className="w-full btn-premium-primary"
                       onClick={() => navigate('/career-assessment/story')}
                     >
                       Read Your Career Story
@@ -408,9 +418,9 @@ const CareerAssessmentColleges = () => {
                   )}
 
                   {completedAssessments.length < 4 && (
-                    <div className="bg-muted/50 rounded-lg p-3">
-                      <p className="text-sm font-medium mb-1">Recommended Next:</p>
-                      <p className="text-sm text-muted-foreground">
+                    <div className="glass-card p-3">
+                      <p className="text-sm font-medium mb-1 premium-heading">Recommended Next:</p>
+                      <p className="text-sm premium-muted">
                         {assessmentCards.find(a => !completedAssessments.includes(a.id))?.title}
                       </p>
                     </div>
