@@ -2,7 +2,8 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Scholarship } from './types';
-import { Star, Building2, Landmark, Heart, Calendar, CheckCircle2, ExternalLink } from 'lucide-react';
+import { useTracker } from './ApplicationTracker';
+import { Star, Building2, Landmark, Heart, Calendar, CheckCircle2, ExternalLink, BookmarkPlus, BookmarkCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface ScholarshipCardProps {
@@ -57,6 +58,8 @@ export const ScholarshipCard = ({ scholarship, onViewDetails }: ScholarshipCardP
   const config = typeConfig[scholarship.type];
   const deadlineInfo = deadlineConfig[scholarship.deadlineStatus];
   const Icon = config.icon;
+  const tracker = useTracker();
+  const isTracked = tracker?.isScholarshipTracked(scholarship.id) || false;
 
   return (
     <Card className={cn(
@@ -69,9 +72,29 @@ export const ScholarshipCard = ({ scholarship, onViewDetails }: ScholarshipCardP
             <Icon className="h-3 w-3 mr-1" />
             {config.label}
           </Badge>
-          <Badge variant="outline" className={cn("text-xs", deadlineInfo.color)}>
-            {deadlineInfo.icon} {deadlineInfo.label}
-          </Badge>
+          <div className="flex items-center gap-2">
+            <Badge variant="outline" className={cn("text-xs", deadlineInfo.color)}>
+              {deadlineInfo.icon} {deadlineInfo.label}
+            </Badge>
+            {tracker && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className={cn(
+                  "h-7 w-7",
+                  isTracked ? "text-primary" : "text-muted-foreground hover:text-primary"
+                )}
+                onClick={() => !isTracked && tracker.saveScholarship(scholarship)}
+                disabled={isTracked}
+              >
+                {isTracked ? (
+                  <BookmarkCheck className="h-4 w-4" />
+                ) : (
+                  <BookmarkPlus className="h-4 w-4" />
+                )}
+              </Button>
+            )}
+          </div>
         </div>
         
         <h3 className="font-semibold text-lg mt-3 text-foreground leading-tight">

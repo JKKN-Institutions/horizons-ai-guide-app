@@ -5,5 +5,6 @@ export { ScholarshipDetailModal } from './ScholarshipDetailModal';
 export { CategoryButtons } from './CategoryButtons';
 export { CategoryScholarshipList } from './CategoryScholarshipList';
 export { EligibilityChecker } from './EligibilityChecker';
+export { ApplicationTracker, TrackerContext, useTracker } from './ApplicationTracker';
 export * from './types';
 export * from './scholarshipData';
