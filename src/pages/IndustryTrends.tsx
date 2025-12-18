@@ -470,7 +470,7 @@ const IndustryTrends = () => {
   }));
 
   const keyMetrics = [
-    { icon: TrendingUp, value: marketData.keyMetrics.totalJobOpenings, label: 'Job Openings', sublabel: 'in India', change: marketData.keyMetrics.jobOpeningsChange, color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
+    { icon: TrendingUp, value: marketData.keyMetrics.totalJobOpenings, label: 'Job Openings', sublabel: 'in India', change: marketData.keyMetrics.jobOpeningsChange, color: 'text-[#2E7D32]', bg: 'bg-[#E8F5E9]' },
     { icon: Building2, value: marketData.keyMetrics.companiesHiring, label: 'Companies', sublabel: 'Hiring Now', change: marketData.keyMetrics.companiesChange, color: 'text-blue-500', bg: 'bg-blue-500/10' },
     { icon: IndianRupee, value: marketData.keyMetrics.avgFresherSalary, label: 'Avg Salary', sublabel: 'for Freshers', change: marketData.keyMetrics.salaryChange, color: 'text-amber-500', bg: 'bg-amber-500/10' },
     { icon: Target, value: marketData.keyMetrics.placementRate, label: 'Placement', sublabel: 'Top Colleges', change: 'Rate', color: 'text-violet-500', bg: 'bg-violet-500/10' },
@@ -487,28 +487,28 @@ const IndustryTrends = () => {
 
   if (loading) {
     return (
-      <div className="premium-page-bg min-h-screen">
-        <header className="premium-page-header py-8">
-          <div className="container mx-auto px-4">
+      <div className="fresh-page-wrapper">
+        <header className="fresh-page-header py-8">
+          <div className="container mx-auto px-4 relative z-10">
             <Skeleton className="h-8 w-24 bg-white/20 mb-4" />
             <Skeleton className="h-10 w-96 bg-white/20 mb-2" />
             <Skeleton className="h-6 w-64 bg-white/20" />
           </div>
         </header>
-        <div className="container mx-auto px-4 py-8 space-y-8">
+        <div className="container mx-auto px-4 py-8 space-y-8 relative z-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="glass-card p-6">
-                <Skeleton className="h-8 w-8 rounded-lg mb-3 bg-premium-gold/20" />
-                <Skeleton className="h-8 w-24 mb-2 bg-premium-navy/20" />
-                <Skeleton className="h-4 w-20 bg-premium-navy/10" />
+              <div key={i} className="fresh-card p-6">
+                <Skeleton className="h-8 w-8 rounded-lg mb-3 bg-fresh-gold-light" />
+                <Skeleton className="h-8 w-24 mb-2 bg-fresh-green-bg" />
+                <Skeleton className="h-4 w-20 bg-gray-200" />
               </div>
             ))}
           </div>
           <div className="flex items-center justify-center py-20">
             <div className="flex flex-col items-center gap-4">
-              <Loader2 className="h-12 w-12 animate-spin text-premium-gold" />
-              <p className="text-premium-navy/70">Fetching live job market data...</p>
+              <Loader2 className="h-12 w-12 animate-spin text-fresh-gold-dark" />
+              <p className="fresh-muted">Fetching live job market data...</p>
             </div>
           </div>
         </div>
@@ -517,9 +517,9 @@ const IndustryTrends = () => {
   }
 
   return (
-    <div className="premium-page-bg min-h-screen">
-      {/* Premium Header */}
-      <header className="premium-page-header py-8 relative overflow-hidden">
+    <div className="fresh-page-wrapper">
+      {/* Fresh Header */}
+      <header className="fresh-page-header py-8 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50"></div>
         <div className="container mx-auto px-4 relative z-10">
           <Button 
@@ -533,19 +533,19 @@ const IndustryTrends = () => {
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-premium-gold rounded-lg">
+                <div className="p-2 bg-fresh-gold-dark rounded-lg">
                   <BarChart3 className="h-6 w-6 text-white" />
                 </div>
                 <h1 className="font-serif text-3xl md:text-4xl font-bold text-white">
                   Industry Trends & Career Insights
                 </h1>
               </div>
-              <p className="text-white/80 text-lg font-tamil mb-1">
+              <p className="text-fresh-gold-medium text-lg font-tamil mb-1">
                 தொழில்துறை போக்குகள் & வேலைவாய்ப்பு நுண்ணறிவு
               </p>
-              <div className="flex items-center gap-2 text-sm text-white/60 mt-3">
+              <div className="flex items-center gap-2 text-sm text-white/80 mt-3">
                 {isLiveData ? (
-                  <Sparkles className="h-4 w-4 text-premium-gold" />
+                  <Sparkles className="h-4 w-4 text-fresh-gold-medium" />
                 ) : (
                   <WifiOff className="h-4 w-4 text-white/40" />
                 )}
@@ -559,7 +559,7 @@ const IndustryTrends = () => {
                   <Badge className="bg-blue-500 text-white text-xs">Cached</Badge>
                 )}
                 {isLiveData && !isCachedData && (
-                  <Badge className="bg-premium-gold text-premium-navy text-xs">Live</Badge>
+                  <Badge className="bg-fresh-gold-dark text-white text-xs">Live</Badge>
                 )}
                 <span className="mx-2">•</span>
                 <span>Last updated: {new Date(marketData.lastUpdated).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
@@ -582,22 +582,22 @@ const IndustryTrends = () => {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8 space-y-8">
+      <div className="container mx-auto px-4 py-8 space-y-8 relative z-10">
         {/* Key Metrics Dashboard */}
         <section>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {keyMetrics.map((metric, index) => (
-              <div key={index} className="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-5 border border-slate-700/50 relative overflow-hidden group hover:bg-slate-800/80 transition-all">
-                <div className={`absolute inset-0 ${metric.bg} opacity-10`}></div>
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-orange-500/10 to-transparent rounded-bl-full"></div>
+              <div key={index} className="fresh-card p-5 relative overflow-hidden group transition-all">
+                <div className={`absolute inset-0 ${metric.bg} opacity-20`}></div>
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-fresh-gold-dark/10 to-transparent rounded-bl-full"></div>
                 <div className="relative">
                   <div className={`inline-flex p-2 rounded-lg ${metric.bg} mb-3`}>
                     <metric.icon className={`h-5 w-5 ${metric.color}`} />
                   </div>
-                  <div className="text-3xl font-bold text-white mb-1">{metric.value}</div>
-                  <div className="text-sm font-medium text-slate-200">{metric.label}</div>
-                  <div className="text-xs text-slate-400">{metric.sublabel}</div>
-                  <Badge variant="secondary" className="mt-2 text-xs font-medium bg-orange-500/20 text-orange-300 border-orange-500/30">
+                  <div className="text-3xl font-bold text-[#1B5E20] mb-1">{metric.value}</div>
+                  <div className="text-sm font-medium text-[#1F2937]">{metric.label}</div>
+                  <div className="text-xs text-[#6B7280]">{metric.sublabel}</div>
+                  <Badge variant="secondary" className="mt-2 text-xs font-medium bg-fresh-gold-light text-fresh-gold-rich border-fresh-gold-medium/30">
                     {metric.change}
                   </Badge>
                 </div>

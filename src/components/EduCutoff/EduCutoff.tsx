@@ -96,7 +96,7 @@ export const EduCutoff = () => {
   return (
     <div className="space-y-8">
       {/* Premium Header Section */}
-      <div className="premium-page-header rounded-2xl p-6 md:p-8 relative overflow-hidden">
+      <div className="fresh-page-header rounded-2xl p-6 md:p-8 relative overflow-hidden">
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center">
@@ -104,54 +104,54 @@ export const EduCutoff = () => {
             </div>
             <h2 className="text-2xl md:text-3xl font-serif font-bold text-white">EduCutoff - Universal Eligibility Calculator</h2>
           </div>
-          <p className="text-white/90 text-lg mb-1 font-tamil">கல்வி கட்ஆஃப் - அனைத்து மாணவர்களுக்கும்</p>
-          <p className="text-white/80 text-sm mb-6">
+          <p className="text-fresh-gold-medium text-lg mb-1 font-tamil">கல்வி கட்ஆஃப் - அனைத்து மாணவர்களுக்கும்</p>
+          <p className="text-white/90 text-sm mb-6">
             Calculate your cutoff & discover courses you're eligible for
           </p>
-          <p className="text-white/70 text-sm font-tamil">
+          <p className="text-white/80 text-sm font-tamil">
             உங்கள் தகுதியை கணக்கிட்டு சரியான படிப்பை கண்டறியுங்கள்
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-            <div className="glass-card p-4 text-center">
-              <GraduationCap className="h-6 w-6 mx-auto mb-2 text-premium-gold" />
-              <div className="text-2xl font-bold text-premium-navy">1000+</div>
-              <div className="text-xs text-premium-navy/70">Colleges</div>
+            <div className="fresh-card p-4 text-center">
+              <GraduationCap className="h-6 w-6 mx-auto mb-2 text-fresh-gold-dark" />
+              <div className="text-2xl font-bold text-fresh-green-dark">1000+</div>
+              <div className="text-xs fresh-muted">Colleges</div>
             </div>
-            <div className="glass-card p-4 text-center">
-              <Building2 className="h-6 w-6 mx-auto mb-2 text-premium-gold" />
-              <div className="text-2xl font-bold text-premium-navy">200+</div>
-              <div className="text-xs text-premium-navy/70">Courses</div>
+            <div className="fresh-card p-4 text-center">
+              <Building2 className="h-6 w-6 mx-auto mb-2 text-fresh-gold-dark" />
+              <div className="text-2xl font-bold text-fresh-green-dark">200+</div>
+              <div className="text-xs fresh-muted">Courses</div>
             </div>
-            <div className="glass-card p-4 text-center">
-              <MapPin className="h-6 w-6 mx-auto mb-2 text-premium-gold" />
-              <div className="text-2xl font-bold text-premium-navy">38</div>
-              <div className="text-xs text-premium-navy/70">Districts</div>
+            <div className="fresh-card p-4 text-center">
+              <MapPin className="h-6 w-6 mx-auto mb-2 text-fresh-gold-dark" />
+              <div className="text-2xl font-bold text-fresh-green-dark">38</div>
+              <div className="text-xs fresh-muted">Districts</div>
             </div>
-            <div className="glass-card p-4 text-center">
-              <CheckCircle className="h-6 w-6 mx-auto mb-2 text-premium-gold" />
-              <div className="text-2xl font-bold text-premium-navy">All</div>
-              <div className="text-xs text-premium-navy/70">Groups</div>
+            <div className="fresh-card p-4 text-center">
+              <CheckCircle className="h-6 w-6 mx-auto mb-2 text-fresh-gold-dark" />
+              <div className="text-2xl font-bold text-fresh-green-dark">All</div>
+              <div className="text-xs fresh-muted">Groups</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Step 1: Group Selection */}
-      <div className="glass-card-premium p-6 rounded-2xl">
+      <div className="fresh-card p-6 rounded-2xl">
         <GroupSelector selectedGroup={selectedGroup} onSelectGroup={setSelectedGroup} />
       </div>
 
       {/* Step 2: Marks Entry */}
       {selectedGroup && (
-        <div className="glass-card-premium p-6 rounded-2xl">
+        <div className="fresh-card p-6 rounded-2xl">
           <MarksEntryForm group={selectedGroup} onMarksChange={handleMarksChange} />
         </div>
       )}
 
       {/* Step 3: Category Selection */}
       {selectedGroup && (
-        <div className="glass-card-premium p-6 rounded-2xl">
+        <div className="fresh-card p-6 rounded-2xl">
           <CategorySelector
             selectedCategory={selectedCategory}
             onSelectCategory={setSelectedCategory}

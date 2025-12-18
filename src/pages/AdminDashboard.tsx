@@ -176,8 +176,8 @@ const AdminDashboard = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      <div className="fresh-page-wrapper flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-fresh-green-medium" />
       </div>
     );
   }
@@ -191,20 +191,20 @@ const AdminDashboard = () => {
   const filteredEmployer = filterBySearch(filterByDate(registrationsEmployer), ["company_name", "contact_name", "contact_email"]);
 
   return (
-    <div className="min-h-screen bg-muted/30">
+    <div className="fresh-page-wrapper">
       {/* Header */}
-      <header className="bg-primary text-primary-foreground py-4 px-6 shadow-lg">
-        <div className="container mx-auto flex items-center justify-between">
+      <header className="fresh-page-header py-4 px-6 mb-6">
+        <div className="container mx-auto flex items-center justify-between relative z-10">
           <div className="flex items-center gap-3">
-            <Shield className="w-8 h-8" />
+            <Shield className="w-8 h-8 text-white" />
             <div>
-              <h1 className="text-xl font-serif font-bold">Admin Dashboard</h1>
-              <p className="text-sm text-primary-foreground/80">JKKN AI Horizons</p>
+              <h1 className="text-xl font-serif font-bold text-white">Admin Dashboard</h1>
+              <p className="text-sm text-white/80">JKKN AI Horizons</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-sm hidden md:block">{user.email}</span>
-            <Button variant="secondary" size="sm" onClick={handleSignOut}>
+            <span className="text-sm hidden md:block text-white/80">{user.email}</span>
+            <Button variant="secondary" size="sm" onClick={handleSignOut} className="bg-white/20 text-white hover:bg-white/30">
               <LogOut className="w-4 h-4 mr-2" />
               Sign Out
             </Button>
@@ -212,64 +212,64 @@ const AdminDashboard = () => {
         </div>
       </header>
 
-      <main className="container mx-auto p-6 space-y-6">
+      <main className="container mx-auto px-6 pb-6 space-y-6 relative z-10">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card>
+          <Card className="fresh-card border-l-fresh-green-medium">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">12th Learners</CardTitle>
-              <GraduationCap className="w-5 h-5 text-secondary" />
+              <CardTitle className="text-sm font-medium fresh-muted">12th Learners</CardTitle>
+              <GraduationCap className="w-5 h-5 text-fresh-green-medium" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{registrations12th.length}</div>
+              <div className="text-3xl font-bold text-fresh-green-dark">{registrations12th.length}</div>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="fresh-card border-l-blue-500">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Learners</CardTitle>
-              <Users className="w-5 h-5 text-primary" />
+              <CardTitle className="text-sm font-medium fresh-muted">Learners</CardTitle>
+              <Users className="w-5 h-5 text-blue-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{registrationsLearner.length}</div>
+              <div className="text-3xl font-bold text-fresh-green-dark">{registrationsLearner.length}</div>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="fresh-card border-l-purple-500">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Employers</CardTitle>
-              <Briefcase className="w-5 h-5 text-accent-foreground" />
+              <CardTitle className="text-sm font-medium fresh-muted">Employers</CardTitle>
+              <Briefcase className="w-5 h-5 text-purple-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{registrationsEmployer.length}</div>
+              <div className="text-3xl font-bold text-fresh-green-dark">{registrationsEmployer.length}</div>
             </CardContent>
           </Card>
         </div>
 
         {/* Filters */}
-        <Card>
+        <Card className="fresh-card">
           <CardContent className="pt-6">
             <div className="flex flex-col md:flex-row gap-4 items-center">
               <div className="relative flex-1 w-full">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 fresh-muted" />
                 <Input
                   placeholder="Search by name, email, phone..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
+                  className="fresh-input pl-10"
                 />
               </div>
               <Select value={dateFilter} onValueChange={setDateFilter}>
-                <SelectTrigger className="w-full md:w-48">
+                <SelectTrigger className="w-full md:w-48 fresh-input">
                   <Calendar className="w-4 h-4 mr-2" />
                   <SelectValue placeholder="Filter by date" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white border border-fresh-green-light">
                   <SelectItem value="all">All Time</SelectItem>
                   <SelectItem value="today">Today</SelectItem>
                   <SelectItem value="week">Last 7 Days</SelectItem>
                   <SelectItem value="month">Last 30 Days</SelectItem>
                 </SelectContent>
               </Select>
-              <Button variant="outline" onClick={fetchData}>
+              <Button variant="outline" onClick={fetchData} className="btn-fresh-outline">
                 <RefreshCw className="w-4 h-4 mr-2" />
                 Refresh
               </Button>
@@ -278,25 +278,25 @@ const AdminDashboard = () => {
         </Card>
 
         {/* Data Tabs */}
-        <Card>
+        <Card className="fresh-card">
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <CardHeader>
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <TabsList>
-                  <TabsTrigger value="12th-learners" className="gap-2">
+                <TabsList className="bg-fresh-green-bg">
+                  <TabsTrigger value="12th-learners" className="gap-2 data-[state=active]:bg-fresh-green-medium data-[state=active]:text-white">
                     <GraduationCap className="w-4 h-4" />
                     <span className="hidden sm:inline">12th Learners</span>
-                    <Badge variant="secondary" className="ml-1">{filtered12th.length}</Badge>
+                    <Badge variant="secondary" className="ml-1 bg-fresh-gold-light text-fresh-gold-rich">{filtered12th.length}</Badge>
                   </TabsTrigger>
-                  <TabsTrigger value="learners" className="gap-2">
+                  <TabsTrigger value="learners" className="gap-2 data-[state=active]:bg-fresh-green-medium data-[state=active]:text-white">
                     <Users className="w-4 h-4" />
                     <span className="hidden sm:inline">Learners</span>
-                    <Badge variant="secondary" className="ml-1">{filteredLearner.length}</Badge>
+                    <Badge variant="secondary" className="ml-1 bg-fresh-gold-light text-fresh-gold-rich">{filteredLearner.length}</Badge>
                   </TabsTrigger>
-                  <TabsTrigger value="employers" className="gap-2">
+                  <TabsTrigger value="employers" className="gap-2 data-[state=active]:bg-fresh-green-medium data-[state=active]:text-white">
                     <Briefcase className="w-4 h-4" />
                     <span className="hidden sm:inline">Employers</span>
-                    <Badge variant="secondary" className="ml-1">{filteredEmployer.length}</Badge>
+                    <Badge variant="secondary" className="ml-1 bg-fresh-gold-light text-fresh-gold-rich">{filteredEmployer.length}</Badge>
                   </TabsTrigger>
                 </TabsList>
                 <Button 
@@ -306,6 +306,7 @@ const AdminDashboard = () => {
                     else if (activeTab === "learners") exportToCSV(filteredLearner, "learners");
                     else exportToCSV(filteredEmployer, "employers");
                   }}
+                  className="btn-fresh-secondary"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   Export CSV
