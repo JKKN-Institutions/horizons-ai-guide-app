@@ -10,6 +10,7 @@ import { useToast } from '@/hooks/use-toast';
 import { CollegeSearch } from '@/components/CollegeSearch';
 import { ScholarshipFinder } from '@/components/ScholarshipFinder';
 import { EduCutoff } from '@/components/EduCutoff';
+import { EntranceExams } from '@/components/EntranceExams';
 import { PillNavigation } from '@/components/PillNavigation';
 
 type AssessmentType = 'career_chat' | 'industry_trends' | 'emotional_intelligence' | 'skill_gap';
@@ -77,6 +78,8 @@ const CareerAssessmentColleges = () => {
         return 'bg-gradient-to-r from-[#F59E0B] to-[#D97706] hover:from-[#D97706] hover:to-[#B45309]';
       case 'educutoff':
         return 'bg-gradient-to-r from-[#7B1FA2] to-[#6A1B9A] hover:from-[#6A1B9A] hover:to-[#4A148C]';
+      case 'entranceexams':
+        return 'bg-gradient-to-r from-[#E65100] to-[#BF360C] hover:from-[#BF360C] hover:to-[#8D2900]';
       default:
         return 'bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] hover:from-[#1B5E20] hover:to-[#004D40]';
     }
@@ -430,6 +433,8 @@ const CareerAssessmentColleges = () => {
         {activeTab === 'scholarships' && <ScholarshipFinder />}
 
         {activeTab === 'educutoff' && <EduCutoff />}
+
+        {activeTab === 'entranceexams' && <EntranceExams />}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { GraduationCap, Building2, Bookmark, Calculator, LucideIcon } from 'lucide-react';
+import { GraduationCap, Building2, Bookmark, Calculator, FileText, LucideIcon } from 'lucide-react';
 
 interface NavItem {
   id: string;
@@ -48,6 +48,14 @@ const navItems: NavItem[] = [
     icon: Calculator,
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#7B1FA2] to-[#6A1B9A]',
+  },
+  {
+    id: 'entranceexams',
+    label: 'Entrance Exams',
+    shortLabel: 'Exams',
+    icon: FileText,
+    activeColor: 'text-white',
+    activeBg: 'bg-gradient-to-r from-[#E65100] to-[#BF360C]',
   },
 ];
 
