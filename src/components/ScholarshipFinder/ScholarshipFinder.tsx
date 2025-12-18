@@ -202,13 +202,13 @@ export const ScholarshipFinder = () => {
       <div className="space-y-6">
         {/* Header Section */}
         <div className="text-center space-y-4">
-          <h2 className="font-playfair text-3xl font-bold text-foreground">
+          <h2 className="font-playfair text-3xl font-bold text-white">
             🎓 Scholarship Finder
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-orange-400 font-tamil">
             உதவித்தொகை கண்டுபிடிப்பான்
           </p>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
+          <p className="text-slate-300 max-w-2xl mx-auto mb-4">
             Discover scholarships you're eligible for - Government schemes, corporate programs, and exclusive JKKN scholarships
           </p>
 
@@ -216,7 +216,7 @@ export const ScholarshipFinder = () => {
           <div className="flex flex-wrap justify-center gap-3">
             <Button 
               onClick={() => setIsEligibilityOpen(true)}
-              className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg"
+              className="btn-premium-primary shadow-lg"
               size="lg"
             >
               <Sparkles className="w-5 h-5 mr-2" />
@@ -224,7 +224,7 @@ export const ScholarshipFinder = () => {
             </Button>
             <Button 
               onClick={() => setActiveTab('tracker')}
-              variant="outline"
+              className="btn-premium-secondary"
               size="lg"
             >
               <ClipboardList className="w-5 h-5 mr-2" />
@@ -234,7 +234,7 @@ export const ScholarshipFinder = () => {
               <Button 
                 onClick={() => setIsCompareOpen(true)}
                 size="lg"
-                className="bg-primary"
+                className="btn-premium-primary"
               >
                 <Scale className="w-5 h-5 mr-2" />
                 Compare ({compareIds.size})
@@ -244,33 +244,33 @@ export const ScholarshipFinder = () => {
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-6">
-            <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold text-primary">{stats.total}+</div>
-              <div className="text-sm text-muted-foreground">Total Scholarships</div>
+            <div className="dark-stat-card">
+              <div className="text-2xl font-bold text-orange-400">{stats.total}+</div>
+              <div className="text-sm text-slate-400">Total Scholarships</div>
             </div>
-            <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold text-blue-600">{stats.government}+</div>
-              <div className="text-sm text-muted-foreground">Government Schemes</div>
+            <div className="dark-stat-card">
+              <div className="text-2xl font-bold text-blue-400">{stats.government}+</div>
+              <div className="text-sm text-slate-400">Government Schemes</div>
             </div>
-            <div className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold text-purple-600">{stats.corporate}+</div>
-              <div className="text-sm text-muted-foreground">Corporate Programs</div>
+            <div className="dark-stat-card">
+              <div className="text-2xl font-bold text-purple-400">{stats.corporate}+</div>
+              <div className="text-sm text-slate-400">Corporate Programs</div>
             </div>
-            <div className="bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold text-emerald-600">{stats.jkkn}+</div>
-              <div className="text-sm text-muted-foreground">JKKN Exclusive</div>
+            <div className="dark-stat-card">
+              <div className="text-2xl font-bold text-emerald-400">{stats.jkkn}+</div>
+              <div className="text-sm text-slate-400">JKKN Exclusive</div>
             </div>
           </div>
         </div>
 
         {/* Tabs for Browse/Track */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2">
-            <TabsTrigger value="browse" className="flex items-center gap-2">
+          <TabsList className="dark-tabs grid w-full max-w-md mx-auto grid-cols-2 bg-slate-800/50 p-1">
+            <TabsTrigger value="browse" className="dark-tab-btn flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-amber-500 data-[state=active]:text-white text-slate-400">
               <Search className="w-4 h-4" />
               Browse Scholarships
             </TabsTrigger>
-            <TabsTrigger value="tracker" className="flex items-center gap-2">
+            <TabsTrigger value="tracker" className="dark-tab-btn flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-amber-500 data-[state=active]:text-white text-slate-400">
               <ClipboardList className="w-4 h-4" />
               My Tracker ({trackedIds.size})
             </TabsTrigger>
@@ -347,11 +347,10 @@ export const ScholarshipFinder = () => {
               {/* Scholarships List */}
               <div className="flex-1">
                 {filteredScholarships.length === 0 ? (
-                  <div className="text-center py-12 bg-muted/30 rounded-xl">
-                    <p className="text-lg text-muted-foreground">No scholarships found matching your criteria</p>
+                  <div className="text-center py-12 bg-slate-800/50 rounded-xl border border-slate-700">
+                    <p className="text-lg text-slate-300">No scholarships found matching your criteria</p>
                     <Button 
-                      variant="outline" 
-                      className="mt-4"
+                      className="mt-4 btn-premium-secondary"
                       onClick={() => setFilters(defaultFilters)}
                     >
                       Clear Filters

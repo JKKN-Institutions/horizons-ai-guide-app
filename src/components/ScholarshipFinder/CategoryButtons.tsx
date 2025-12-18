@@ -64,16 +64,21 @@ export const CategoryButtons = ({ activeCategory, onCategoryChange, counts }: Ca
             key={category.id}
             onClick={() => onCategoryChange(category.id)}
             className={cn(
-              'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-200',
-              'hover:scale-[1.02] hover:shadow-md',
-              isActive ? category.activeColor : category.inactiveColor
+              'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300',
+              'hover:scale-[1.03] hover:shadow-lg',
+              isActive 
+                ? `${category.activeColor} shadow-lg` 
+                : 'bg-white/95 backdrop-blur-sm border-slate-200 hover:border-slate-300 text-slate-700'
             )}
           >
             <Icon className={cn('h-6 w-6', isActive ? category.activeIconColor : category.iconColor)} />
-            <span className="font-semibold text-sm text-center leading-tight">{category.label}</span>
             <span className={cn(
-              'text-xs px-2 py-0.5 rounded-full',
-              isActive ? 'bg-white/20' : 'bg-muted'
+              'font-semibold text-sm text-center leading-tight',
+              isActive ? 'text-white' : 'text-slate-700'
+            )}>{category.label}</span>
+            <span className={cn(
+              'text-xs px-2 py-0.5 rounded-full font-medium',
+              isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
             )}>
               ({count})
             </span>
