@@ -139,13 +139,13 @@ export const CollegeSearch = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <Card className="bg-gradient-to-r from-[#0A2E1F] to-[#0A2E1F]/90 text-white">
+      <Card className="bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white border-0 shadow-lg">
         <CardHeader>
-          <CardTitle className="flex items-center gap-3 text-2xl">
+          <CardTitle className="flex items-center gap-3 text-2xl text-white">
             <Building2 className="h-8 w-8" />
             College Search by District
           </CardTitle>
-          <p className="text-white/80">
+          <p className="text-[#FFD54F]">
             Find all colleges in any Tamil Nadu district with complete details
           </p>
         </CardHeader>
@@ -159,25 +159,25 @@ export const CollegeSearch = () => {
 
       {/* Summary Stats */}
       {selectedDistrict && !loading && colleges.length > 0 && (
-        <Card>
+        <Card className="bg-white border border-[#C8E6C9] shadow-md">
           <CardContent className="pt-4">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-4">
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">📍</span>
                   <div>
-                    <p className="text-sm text-muted-foreground">Colleges in</p>
-                    <p className="font-semibold">{selectedDistrict} District</p>
+                    <p className="text-sm text-[#6B7280]">Colleges in</p>
+                    <p className="font-semibold text-[#1F2937]">{selectedDistrict} District</p>
                   </div>
                 </div>
-                <div className="h-10 w-px bg-border hidden sm:block" />
+                <div className="h-10 w-px bg-[#C8E6C9] hidden sm:block" />
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary" className="text-sm py-1 font-semibold">
+                  <Badge className="text-sm py-1 font-semibold bg-[#2E7D32] text-white">
                     Total: {totalColleges} Colleges
                   </Badge>
                   {Object.entries(COLLEGE_TYPE_INFO).map(([type, info]) => (
                     typeCounts[type] > 0 && (
-                      <Badge key={type} variant="outline" className="text-sm py-1">
+                      <Badge key={type} variant="outline" className="text-sm py-1 border-[#C8E6C9] text-[#374151]">
                         {info.badge} {info.label}: {typeCounts[type]}
                       </Badge>
                     )
@@ -186,7 +186,7 @@ export const CollegeSearch = () => {
               </div>
             </div>
             {totalColleges < 30 && (
-              <p className="text-sm text-amber-600 mt-3 flex items-center gap-2">
+              <p className="text-sm text-[#F59E0B] mt-3 flex items-center gap-2">
                 <span>⚠️</span>
                 Showing {totalColleges} colleges. Some colleges may not be listed yet. 
                 We're continuously updating our database.
@@ -198,12 +198,12 @@ export const CollegeSearch = () => {
 
       {/* Loading Indicator */}
       {loading && (
-        <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
-          <Loader2 className="h-12 w-12 animate-spin text-orange-400 mb-4" />
-          <h3 className="text-lg font-semibold mb-2 text-white">
+        <div className="flex flex-col items-center justify-center py-12 px-4 text-center bg-white rounded-xl border border-[#C8E6C9] shadow-md">
+          <Loader2 className="h-12 w-12 animate-spin text-[#2E7D32] mb-4" />
+          <h3 className="text-lg font-semibold mb-2 text-[#1B5E20]">
             Searching all colleges in {selectedDistrict}...
           </h3>
-          <p className="text-slate-300 max-w-md">
+          <p className="text-[#4B5563] max-w-md">
             Fetching comprehensive data from government records, university affiliations, 
             and accreditation databases. This may take a moment for complete results.
           </p>

@@ -108,8 +108,8 @@ export const CollegeFilters = ({
             variant={selectedTypes.includes(type) ? "default" : "outline"}
             className={`cursor-pointer transition-all ${
               selectedTypes.includes(type) 
-                ? 'bg-[#0A2E1F] text-white' 
-                : 'hover:bg-muted'
+                ? 'bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white border-[#2E7D32]' 
+                : 'border-[#C8E6C9] text-[#374151] hover:bg-[#E8F5E9] hover:border-[#2E7D32]'
             }`}
             onClick={() => toggleType(type)}
           >
@@ -137,7 +137,7 @@ export const CollegeFilters = ({
         <CollapsibleContent className="mt-4 space-y-4">
           {/* Category Filters */}
           <div>
-            <Label className="text-sm font-medium mb-2 block">College Categories</Label>
+            <Label className="text-sm font-medium mb-2 block text-[#1B5E20]">College Categories</Label>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
               {COLLEGE_CATEGORIES.map((category) => (
                 <div key={category.id} className="flex items-center space-x-2">
@@ -159,7 +159,7 @@ export const CollegeFilters = ({
 
           {/* NAAC Grade Filter */}
           <div>
-            <Label className="text-sm font-medium mb-2 block">NAAC Grade</Label>
+            <Label className="text-sm font-medium mb-2 block text-[#1B5E20]">NAAC Grade</Label>
             <div className="flex flex-wrap gap-2">
               {['A++', 'A+', 'A', 'B++', 'B+', 'B', 'C'].map((grade) => (
                 <Badge
@@ -167,8 +167,8 @@ export const CollegeFilters = ({
                   variant={selectedNaacGrade === grade ? "default" : "outline"}
                   className={`cursor-pointer ${
                     selectedNaacGrade === grade 
-                      ? 'bg-[#FFB800] text-black' 
-                      : 'hover:bg-muted'
+                      ? 'bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white border-[#F59E0B]' 
+                      : 'border-[#FFE082] text-[#374151] hover:bg-[#FFF8E1] hover:border-[#F59E0B]'
                   }`}
                   onClick={() => onNaacGradeChange(selectedNaacGrade === grade ? null : grade)}
                 >

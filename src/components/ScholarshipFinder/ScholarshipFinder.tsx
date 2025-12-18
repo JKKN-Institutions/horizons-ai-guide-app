@@ -204,13 +204,13 @@ export const ScholarshipFinder = () => {
       <div className="space-y-6">
         {/* Header Section */}
         <div className="text-center space-y-4">
-          <h2 className="font-playfair text-3xl font-bold text-white">
+          <h2 className="font-playfair text-3xl font-bold text-[#1B5E20]">
             🎓 Scholarship Finder
           </h2>
-          <p className="text-lg text-orange-400 font-tamil">
+          <p className="text-lg text-[#B8860B] font-tamil">
             உதவித்தொகை கண்டுபிடிப்பான்
           </p>
-          <p className="text-slate-300 max-w-2xl mx-auto mb-4">
+          <p className="text-[#4B5563] max-w-2xl mx-auto mb-4">
             Discover scholarships you're eligible for - Government schemes, corporate programs, and exclusive JKKN scholarships
           </p>
 
@@ -218,7 +218,7 @@ export const ScholarshipFinder = () => {
           <div className="flex flex-wrap justify-center gap-3">
             <Button 
               onClick={() => setIsEligibilityOpen(true)}
-              className="btn-premium-primary shadow-lg"
+              className="btn-fresh-primary shadow-lg"
               size="lg"
             >
               <Sparkles className="w-5 h-5 mr-2" />
@@ -226,7 +226,7 @@ export const ScholarshipFinder = () => {
             </Button>
             <Button 
               onClick={() => setActiveTab('tracker')}
-              className="btn-premium-secondary"
+              className="btn-fresh-secondary"
               size="lg"
             >
               <ClipboardList className="w-5 h-5 mr-2" />
@@ -236,7 +236,7 @@ export const ScholarshipFinder = () => {
               <Button 
                 onClick={() => setIsCompareOpen(true)}
                 size="lg"
-                className="btn-premium-primary"
+                className="btn-fresh-primary"
               >
                 <Scale className="w-5 h-5 mr-2" />
                 Compare ({compareIds.size})
@@ -253,7 +253,7 @@ export const ScholarshipFinder = () => {
               }}
               size="lg"
               variant="outline"
-              className="border-emerald-500 text-emerald-400 hover:bg-emerald-500/10"
+              className="border-[#2E7D32] text-[#2E7D32] hover:bg-[#E8F5E9]"
             >
               <FileDown className="w-5 h-5 mr-2" />
               Download PDF ({filteredScholarships.length})
@@ -262,33 +262,33 @@ export const ScholarshipFinder = () => {
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-6">
-            <div className="dark-stat-card">
-              <div className="text-2xl font-bold text-orange-400">{stats.total}+</div>
-              <div className="text-sm text-slate-400">Total Scholarships</div>
+            <div className="fresh-stat-card">
+              <div className="text-2xl font-bold text-[#F59E0B]">{stats.total}+</div>
+              <div className="text-sm text-[#6B7280]">Total Scholarships</div>
             </div>
-            <div className="dark-stat-card">
-              <div className="text-2xl font-bold text-blue-400">{stats.government}+</div>
-              <div className="text-sm text-slate-400">Government Schemes</div>
+            <div className="fresh-stat-card">
+              <div className="text-2xl font-bold text-[#1976D2]">{stats.government}+</div>
+              <div className="text-sm text-[#6B7280]">Government Schemes</div>
             </div>
-            <div className="dark-stat-card">
-              <div className="text-2xl font-bold text-purple-400">{stats.corporate}+</div>
-              <div className="text-sm text-slate-400">Corporate Programs</div>
+            <div className="fresh-stat-card">
+              <div className="text-2xl font-bold text-[#7B1FA2]">{stats.corporate}+</div>
+              <div className="text-sm text-[#6B7280]">Corporate Programs</div>
             </div>
-            <div className="dark-stat-card">
-              <div className="text-2xl font-bold text-emerald-400">{stats.jkkn}+</div>
-              <div className="text-sm text-slate-400">JKKN Exclusive</div>
+            <div className="fresh-stat-card">
+              <div className="text-2xl font-bold text-[#2E7D32]">{stats.jkkn}+</div>
+              <div className="text-sm text-[#6B7280]">JKKN Exclusive</div>
             </div>
           </div>
         </div>
 
         {/* Tabs for Browse/Track */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="dark-tabs grid w-full max-w-md mx-auto grid-cols-2 bg-slate-800/50 p-1">
-            <TabsTrigger value="browse" className="dark-tab-btn flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-amber-500 data-[state=active]:text-white text-slate-400">
+          <TabsList className="fresh-tabs-container grid w-full max-w-md mx-auto grid-cols-2 bg-white/95 p-1 rounded-2xl shadow-md border border-[#C8E6C9]">
+            <TabsTrigger value="browse" className="fresh-tab-btn flex items-center gap-2 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#2E7D32] data-[state=active]:to-[#1B5E20] data-[state=active]:text-white text-[#4B5563]">
               <Search className="w-4 h-4" />
               Browse Scholarships
             </TabsTrigger>
-            <TabsTrigger value="tracker" className="dark-tab-btn flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-amber-500 data-[state=active]:text-white text-slate-400">
+            <TabsTrigger value="tracker" className="fresh-tab-btn flex items-center gap-2 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#2E7D32] data-[state=active]:to-[#1B5E20] data-[state=active]:text-white text-[#4B5563]">
               <ClipboardList className="w-4 h-4" />
               My Tracker ({trackedIds.size})
             </TabsTrigger>
@@ -365,10 +365,10 @@ export const ScholarshipFinder = () => {
               {/* Scholarships List */}
               <div className="flex-1">
                 {filteredScholarships.length === 0 ? (
-                  <div className="text-center py-12 bg-slate-800/50 rounded-xl border border-slate-700">
-                    <p className="text-lg text-slate-300">No scholarships found matching your criteria</p>
+                  <div className="text-center py-12 bg-white rounded-xl border border-[#C8E6C9] shadow-md">
+                    <p className="text-lg text-[#4B5563]">No scholarships found matching your criteria</p>
                     <Button 
-                      className="mt-4 btn-premium-secondary"
+                      className="mt-4 btn-fresh-secondary"
                       onClick={() => setFilters(defaultFilters)}
                     >
                       Clear Filters
