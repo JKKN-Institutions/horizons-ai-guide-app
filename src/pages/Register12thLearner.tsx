@@ -80,20 +80,20 @@ const Register12thLearner = () => {
   };
 
   return (
-    <div className="premium-page-bg min-h-screen py-12">
-      <div className="container mx-auto px-4 max-w-2xl">
-        <Button variant="ghost" onClick={() => navigate("/")} className="mb-6 text-white hover:bg-white/10">
+    <div className="fresh-page-wrapper py-12">
+      <div className="container mx-auto px-4 max-w-2xl relative z-10">
+        <Button variant="ghost" onClick={() => navigate("/")} className="mb-6 text-fresh-green-dark hover:text-fresh-green-medium hover:bg-fresh-green-bg">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Home
         </Button>
 
-        <Card className="glass-card-premium border-0 dark-card-green">
+        <Card className="fresh-card border-l-fresh-green-medium">
           <CardHeader className="text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-emerald-500/20 to-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <GraduationCap className="w-8 h-8 text-emerald-500" />
+            <div className="w-16 h-16 bg-gradient-to-br from-fresh-green-medium/20 to-fresh-green-light/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <GraduationCap className="w-8 h-8 text-fresh-green-medium" />
             </div>
-            <CardTitle className="text-2xl font-serif card-heading">Register as 12th Learner</CardTitle>
-            <CardDescription className="card-body">Start your career journey with JKKN AI Horizons</CardDescription>
+            <CardTitle className="text-2xl font-serif text-fresh-green-dark">Register as 12th Learner</CardTitle>
+            <CardDescription className="fresh-body">Start your career journey with JKKN AI Horizons</CardDescription>
           </CardHeader>
 
           {/* Progress Steps */}
@@ -103,20 +103,20 @@ const Register12thLearner = () => {
                 <div key={step} className="flex items-center">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all ${
                     index < currentStep 
-                      ? "bg-gradient-to-r from-emerald-500 to-green-500 text-white" 
+                      ? "bg-gradient-to-r from-fresh-green-medium to-fresh-green-light text-white" 
                       : index === currentStep 
-                        ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white" 
-                        : "bg-slate-700 text-slate-400"
+                        ? "bg-gradient-to-r from-fresh-gold-dark to-fresh-gold-medium text-white" 
+                        : "bg-gray-200 text-gray-500"
                   }`}>
                     {index < currentStep ? <CheckCircle className="w-5 h-5" /> : index + 1}
                   </div>
                   {index < steps.length - 1 && (
-                    <div className={`w-12 md:w-20 h-1 mx-2 rounded ${index < currentStep ? "bg-gradient-to-r from-emerald-500 to-green-500" : "bg-slate-700"}`} />
+                    <div className={`w-12 md:w-20 h-1 mx-2 rounded ${index < currentStep ? "bg-gradient-to-r from-fresh-green-medium to-fresh-green-light" : "bg-gray-200"}`} />
                   )}
                 </div>
               ))}
             </div>
-            <div className="flex justify-between mt-2 text-xs card-muted">
+            <div className="flex justify-between mt-2 text-xs fresh-muted">
               {steps.map(step => <span key={step}>{step}</span>)}
             </div>
           </div>
@@ -126,20 +126,20 @@ const Register12thLearner = () => {
               <div className="space-y-4">
                 <div className="grid gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="fullName" className="card-heading text-sm">Full Name *</Label>
-                    <Input id="fullName" placeholder="Enter your full name" value={formData.fullName} onChange={e => handleChange("fullName", e.target.value)} className="dark-input" />
+                    <Label htmlFor="fullName" className="fresh-label">Full Name *</Label>
+                    <Input id="fullName" placeholder="Enter your full name" value={formData.fullName} onChange={e => handleChange("fullName", e.target.value)} className="fresh-input" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-premium-navy">Email Address</Label>
-                    <Input id="email" type="email" placeholder="your@email.com (optional)" value={formData.email} onChange={e => handleChange("email", e.target.value)} className="input-premium" />
+                    <Label htmlFor="email" className="fresh-label">Email Address</Label>
+                    <Input id="email" type="email" placeholder="your@email.com (optional)" value={formData.email} onChange={e => handleChange("email", e.target.value)} className="fresh-input" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-premium-navy">Phone Number *</Label>
-                    <Input id="phone" placeholder="+91 98765 43210" value={formData.phone} onChange={e => handleChange("phone", e.target.value)} className="input-premium" />
+                    <Label htmlFor="phone" className="fresh-label">Phone Number *</Label>
+                    <Input id="phone" placeholder="+91 98765 43210" value={formData.phone} onChange={e => handleChange("phone", e.target.value)} className="fresh-input" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="dob" className="text-premium-navy">Date of Birth</Label>
-                    <Input id="dob" type="date" value={formData.dateOfBirth} onChange={e => handleChange("dateOfBirth", e.target.value)} className="input-premium" />
+                    <Label htmlFor="dob" className="fresh-label">Date of Birth</Label>
+                    <Input id="dob" type="date" value={formData.dateOfBirth} onChange={e => handleChange("dateOfBirth", e.target.value)} className="fresh-input" />
                   </div>
                 </div>
               </div>
@@ -148,14 +148,14 @@ const Register12thLearner = () => {
             {currentStep === 1 && (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="school" className="text-premium-navy">School Name *</Label>
-                  <Input id="school" placeholder="Enter your school name" value={formData.school} onChange={e => handleChange("school", e.target.value)} className="input-premium" />
+                  <Label htmlFor="school" className="fresh-label">School Name *</Label>
+                  <Input id="school" placeholder="Enter your school name" value={formData.school} onChange={e => handleChange("school", e.target.value)} className="fresh-input" />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-premium-navy">Board *</Label>
+                  <Label className="fresh-label">Board *</Label>
                   <Select value={formData.board} onValueChange={v => handleChange("board", v)}>
-                    <SelectTrigger className="input-premium"><SelectValue placeholder="Select your board" /></SelectTrigger>
-                    <SelectContent>
+                    <SelectTrigger className="fresh-input"><SelectValue placeholder="Select your board" /></SelectTrigger>
+                    <SelectContent className="bg-white border border-fresh-green-light">
                       <SelectItem value="cbse">CBSE</SelectItem>
                       <SelectItem value="state">State Board</SelectItem>
                       <SelectItem value="icse">ICSE</SelectItem>
@@ -164,10 +164,10 @@ const Register12thLearner = () => {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-premium-navy">Stream *</Label>
+                  <Label className="fresh-label">Stream *</Label>
                   <Select value={formData.stream} onValueChange={v => handleChange("stream", v)}>
-                    <SelectTrigger className="input-premium"><SelectValue placeholder="Select your stream" /></SelectTrigger>
-                    <SelectContent>
+                    <SelectTrigger className="fresh-input"><SelectValue placeholder="Select your stream" /></SelectTrigger>
+                    <SelectContent className="bg-white border border-fresh-green-light">
                       <SelectItem value="science">Science</SelectItem>
                       <SelectItem value="commerce">Commerce</SelectItem>
                       <SelectItem value="arts">Arts/Humanities</SelectItem>
@@ -175,10 +175,10 @@ const Register12thLearner = () => {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-premium-navy">Expected Year of Passing</Label>
+                  <Label className="fresh-label">Expected Year of Passing</Label>
                   <Select value={formData.expectedYear} onValueChange={v => handleChange("expectedYear", v)}>
-                    <SelectTrigger className="input-premium"><SelectValue placeholder="Select year" /></SelectTrigger>
-                    <SelectContent>
+                    <SelectTrigger className="fresh-input"><SelectValue placeholder="Select year" /></SelectTrigger>
+                    <SelectContent className="bg-white border border-fresh-green-light">
                       <SelectItem value="2025">2025</SelectItem>
                       <SelectItem value="2026">2026</SelectItem>
                       <SelectItem value="2027">2027</SelectItem>
@@ -191,18 +191,18 @@ const Register12thLearner = () => {
             {currentStep === 2 && (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="courses" className="text-premium-navy">Preferred Courses</Label>
-                  <Input id="courses" placeholder="e.g., Engineering, Medicine, Arts" value={formData.preferredCourses} onChange={e => handleChange("preferredCourses", e.target.value)} className="input-premium" />
+                  <Label htmlFor="courses" className="fresh-label">Preferred Courses</Label>
+                  <Input id="courses" placeholder="e.g., Engineering, Medicine, Arts" value={formData.preferredCourses} onChange={e => handleChange("preferredCourses", e.target.value)} className="fresh-input" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="interests" className="text-premium-navy">Career Interests</Label>
-                  <Input id="interests" placeholder="e.g., Software Development, Healthcare" value={formData.careerInterests} onChange={e => handleChange("careerInterests", e.target.value)} className="input-premium" />
+                  <Label htmlFor="interests" className="fresh-label">Career Interests</Label>
+                  <Input id="interests" placeholder="e.g., Software Development, Healthcare" value={formData.careerInterests} onChange={e => handleChange("careerInterests", e.target.value)} className="fresh-input" />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-premium-navy">Preferred Location</Label>
+                  <Label className="fresh-label">Preferred Location</Label>
                   <Select value={formData.preferredLocation} onValueChange={v => handleChange("preferredLocation", v)}>
-                    <SelectTrigger className="input-premium"><SelectValue placeholder="Select location" /></SelectTrigger>
-                    <SelectContent>
+                    <SelectTrigger className="fresh-input"><SelectValue placeholder="Select location" /></SelectTrigger>
+                    <SelectContent className="bg-white border border-fresh-green-light">
                       <SelectItem value="tamil-nadu">Tamil Nadu</SelectItem>
                       <SelectItem value="karnataka">Karnataka</SelectItem>
                       <SelectItem value="kerala">Kerala</SelectItem>
@@ -215,29 +215,29 @@ const Register12thLearner = () => {
 
             {currentStep === 3 && (
               <div className="space-y-4">
-                <h3 className="font-semibold text-lg text-premium-navy">Review Your Information</h3>
-                <div className="glass-card rounded-xl p-4 space-y-2 text-sm">
-                  <p className="text-premium-navy"><strong>Name:</strong> {formData.fullName || "Not provided"}</p>
-                  <p className="text-premium-navy"><strong>Email:</strong> {formData.email || "Not provided"}</p>
-                  <p className="text-premium-navy"><strong>Phone:</strong> {formData.phone || "Not provided"}</p>
-                  <p className="text-premium-navy"><strong>School:</strong> {formData.school || "Not provided"}</p>
-                  <p className="text-premium-navy"><strong>Board:</strong> {formData.board || "Not provided"}</p>
-                  <p className="text-premium-navy"><strong>Stream:</strong> {formData.stream || "Not provided"}</p>
-                  <p className="text-premium-navy"><strong>Career Interests:</strong> {formData.careerInterests || "Not provided"}</p>
+                <h3 className="font-semibold text-lg text-fresh-green-dark">Review Your Information</h3>
+                <div className="fresh-card rounded-xl p-4 space-y-2 text-sm bg-fresh-green-bg">
+                  <p className="fresh-card-title"><strong>Name:</strong> {formData.fullName || "Not provided"}</p>
+                  <p className="fresh-body"><strong>Email:</strong> {formData.email || "Not provided"}</p>
+                  <p className="fresh-body"><strong>Phone:</strong> {formData.phone || "Not provided"}</p>
+                  <p className="fresh-body"><strong>School:</strong> {formData.school || "Not provided"}</p>
+                  <p className="fresh-body"><strong>Board:</strong> {formData.board || "Not provided"}</p>
+                  <p className="fresh-body"><strong>Stream:</strong> {formData.stream || "Not provided"}</p>
+                  <p className="fresh-body"><strong>Career Interests:</strong> {formData.careerInterests || "Not provided"}</p>
                 </div>
               </div>
             )}
 
             <div className="flex justify-between pt-4">
-              <Button variant="outline" onClick={handleBack} disabled={currentStep === 0 || isSubmitting} className="border-premium-navy/20 text-premium-navy hover:bg-premium-navy/5">
+              <Button variant="outline" onClick={handleBack} disabled={currentStep === 0 || isSubmitting} className="btn-fresh-outline">
                 <ArrowLeft className="w-4 h-4 mr-2" /> Back
               </Button>
               {currentStep < steps.length - 1 ? (
-                <Button onClick={handleNext} className="btn-premium-primary">
+                <Button onClick={handleNext} className="btn-fresh-primary">
                   Next <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               ) : (
-                <Button onClick={handleSubmit} className="btn-premium-primary" disabled={isSubmitting}>
+                <Button onClick={handleSubmit} className="btn-fresh-primary" disabled={isSubmitting}>
                   {isSubmitting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
                   Submit Registration
                 </Button>

@@ -37,7 +37,6 @@ const Auth = () => {
   const location = useLocation();
   const { toast } = useToast();
 
-  // Query param redirect (more reliable than localStorage)
   const searchParams = new URLSearchParams(location.search);
   const redirectParam = searchParams.get('redirect');
 
@@ -45,7 +44,6 @@ const Auth = () => {
     console.log('Auth: auth state, user:', user?.id, 'loading:', loading);
 
     if (user && !loading) {
-      // Default redirect to student dashboard for students
       const redirectUrl = redirectParam || '/student-dashboard';
       console.log('Auth: redirect param =', redirectParam);
       console.log('Auth: After login, redirecting to:', redirectUrl);
@@ -105,7 +103,6 @@ const Auth = () => {
             title: "Welcome back!",
             description: "You have successfully logged in.",
           });
-          // Redirect handled by useEffect
         }
       } else {
         const { error } = await signUp(email, password, displayName);
@@ -128,7 +125,6 @@ const Auth = () => {
             title: "Account Created!",
             description: "Welcome! Your account has been created successfully.",
           });
-          // Redirect handled by useEffect
         }
       }
     } finally {
@@ -144,13 +140,13 @@ const Auth = () => {
   };
 
   return (
-    <div className="premium-page-bg min-h-screen flex items-center justify-center p-4">
-      <Card className="glass-card-premium w-full max-w-md border-0 dark-card-orange relative z-10">
+    <div className="fresh-page-wrapper flex items-center justify-center p-4">
+      <Card className="fresh-card w-full max-w-md border-l-fresh-green-medium relative z-10">
         <CardHeader className="space-y-1 text-center">
-          <CardTitle className="text-2xl font-serif card-heading">
+          <CardTitle className="text-2xl font-serif text-fresh-green-dark">
             {isLogin ? 'Welcome Back' : 'Create Account'}
           </CardTitle>
-          <CardDescription className="card-body">
+          <CardDescription className="fresh-body">
             {isLogin
               ? 'Enter your credentials to access your account'
               : 'Fill in your details to get started'}
@@ -160,14 +156,14 @@ const Auth = () => {
           <CardContent className="space-y-4">
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="displayName" className="premium-body font-medium">Display Name</Label>
+                <Label htmlFor="displayName" className="fresh-label">Display Name</Label>
                 <Input
                   id="displayName"
                   type="text"
                   placeholder="John Doe"
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
-                  className={`input-premium ${errors.displayName ? 'border-destructive' : ''}`}
+                  className={`fresh-input ${errors.displayName ? 'border-destructive' : ''}`}
                   disabled={isLoading}
                 />
                 {errors.displayName && (
@@ -177,14 +173,14 @@ const Auth = () => {
             )}
             
             <div className="space-y-2">
-              <Label htmlFor="email" className="premium-body font-medium">Email</Label>
+              <Label htmlFor="email" className="fresh-label">Email</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="name@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`input-premium ${errors.email ? 'border-destructive' : ''}`}
+                className={`fresh-input ${errors.email ? 'border-destructive' : ''}`}
                 disabled={isLoading}
               />
               {errors.email && (
@@ -193,7 +189,7 @@ const Auth = () => {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="password" className="premium-body font-medium">Password</Label>
+              <Label htmlFor="password" className="fresh-label">Password</Label>
               <div className="relative">
                 <Input
                   id="password"
@@ -201,13 +197,13 @@ const Auth = () => {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className={`input-premium pr-10 ${errors.password ? 'border-destructive' : ''}`}
+                  className={`fresh-input pr-10 ${errors.password ? 'border-destructive' : ''}`}
                   disabled={isLoading}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-premium-gold hover:text-premium-orange transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-fresh-gold-dark hover:text-fresh-gold-rich transition-colors"
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -219,14 +215,14 @@ const Auth = () => {
             
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword" className="premium-body font-medium">Confirm Password</Label>
+                <Label htmlFor="confirmPassword" className="fresh-label">Confirm Password</Label>
                 <Input
                   id="confirmPassword"
                   type={showPassword ? 'text' : 'password'}
                   placeholder="••••••••"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className={`input-premium ${errors.confirmPassword ? 'border-destructive' : ''}`}
+                  className={`fresh-input ${errors.confirmPassword ? 'border-destructive' : ''}`}
                   disabled={isLoading}
                 />
                 {errors.confirmPassword && (
@@ -239,7 +235,7 @@ const Auth = () => {
           <CardFooter className="flex flex-col space-y-4">
             <Button 
               type="submit" 
-              className="w-full btn-premium-primary"
+              className="w-full btn-fresh-primary"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -253,13 +249,13 @@ const Auth = () => {
             </Button>
             
             <div className="text-center text-sm">
-              <span className="premium-muted">
+              <span className="fresh-muted">
                 {isLogin ? "Don't have an account? " : "Already have an account? "}
               </span>
               <button
                 type="button"
                 onClick={toggleMode}
-                className="text-premium-orange hover:text-premium-gold font-medium transition-colors"
+                className="text-fresh-green-medium hover:text-fresh-green-dark font-medium transition-colors"
                 disabled={isLoading}
               >
                 {isLogin ? 'Sign Up' : 'Sign In'}

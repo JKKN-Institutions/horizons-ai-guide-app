@@ -251,9 +251,9 @@ const CareerChat = () => {
   ];
 
   return (
-    <div className="premium-page-bg min-h-screen">
-      {/* Premium Header */}
-      <header className="premium-page-header sticky top-0 z-10">
+    <div className="fresh-page-wrapper">
+      {/* Fresh Header */}
+      <header className="fresh-page-header sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -303,7 +303,7 @@ const CareerChat = () => {
               variant="outline"
               size="sm"
               onClick={() => handleQuickAction(action.prompt)}
-              className="glass-card border-premium-gold/30 hover:bg-premium-gold/10 text-premium-navy"
+              className="fresh-card border-fresh-green-light hover:bg-fresh-green-bg text-fresh-green-dark"
             >
               {action.icon}
               {action.label}

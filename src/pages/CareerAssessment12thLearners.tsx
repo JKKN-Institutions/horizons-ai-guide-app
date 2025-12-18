@@ -16,25 +16,25 @@ const streams = [
     name: "Science - PCM",
     subtitle: "Physics, Chemistry, Mathematics",
     icon: Atom,
-    color: "text-blue-500",
-    bgColor: "bg-blue-50",
-    borderColor: "border-blue-200"
+    color: "text-fresh-green-medium",
+    bgColor: "bg-fresh-green-bg",
+    borderColor: "border-fresh-green-light"
   },
   {
     id: "pcb",
     name: "Science - PCB",
     subtitle: "Physics, Chemistry, Biology",
     icon: Dna,
-    color: "text-green-500",
-    bgColor: "bg-green-50",
-    borderColor: "border-green-200"
+    color: "text-emerald-600",
+    bgColor: "bg-emerald-50",
+    borderColor: "border-emerald-200"
   },
   {
     id: "pcmb",
     name: "Science - PCMB",
     subtitle: "Physics, Chemistry, Maths & Biology",
     icon: Brain,
-    color: "text-purple-500",
+    color: "text-purple-600",
     bgColor: "bg-purple-50",
     borderColor: "border-purple-200"
   },
@@ -43,16 +43,16 @@ const streams = [
     name: "Commerce",
     subtitle: "Accountancy, Business Studies, Economics",
     icon: TrendingUp,
-    color: "text-orange-500",
-    bgColor: "bg-orange-50",
-    borderColor: "border-orange-200"
+    color: "text-fresh-gold-dark",
+    bgColor: "bg-fresh-gold-light",
+    borderColor: "border-fresh-gold-medium"
   },
   {
     id: "arts",
     name: "Arts / Humanities",
     subtitle: "History, Geography, Languages, Psychology",
     icon: BookOpen,
-    color: "text-pink-500",
+    color: "text-pink-600",
     bgColor: "bg-pink-50",
     borderColor: "border-pink-200"
   }
@@ -85,7 +85,6 @@ export default function CareerAssessment12thLearners() {
   const loadUserData = async () => {
     try {
       if (user) {
-        // Check for existing profile in database
         const { data: profile } = await supabase
           .from('student_profiles')
           .select('*')
@@ -98,7 +97,6 @@ export default function CareerAssessment12thLearners() {
           setSelectedMarks(profile.marks_range);
         }
 
-        // Count completed attempts
         const { data: attempts } = await supabase
           .from('student_assessment_attempts')
           .select('id')
@@ -107,7 +105,6 @@ export default function CareerAssessment12thLearners() {
 
         setCompletedAttempts(attempts?.length || 0);
       } else {
-        // Check localStorage for anonymous users
         const localProfile = localStorage.getItem('student_profile');
         if (localProfile) {
           const parsed = JSON.parse(localProfile);
@@ -127,7 +124,6 @@ export default function CareerAssessment12thLearners() {
   };
 
   const handleStartJourney = () => {
-    // NO LOGIN REQUIRED - go directly to stream selection or details
     if (existingProfile) {
       setStep('details');
     } else {
@@ -152,7 +148,6 @@ export default function CareerAssessment12thLearners() {
 
     try {
       if (user) {
-        // Save to database for logged-in users
         if (!existingProfile) {
           await supabase
             .from('student_profiles')
@@ -171,14 +166,12 @@ export default function CareerAssessment12thLearners() {
             .eq('user_id', user.id);
         }
       } else {
-        // Save to localStorage for anonymous users
         localStorage.setItem('student_profile', JSON.stringify({
           stream: selectedStream,
           marks_range: selectedMarks
         }));
       }
 
-      // Navigate to assessment
       navigate(`/career-assessment/12th-learners/take?stream=${selectedStream}`);
     } catch (error) {
       console.error('Error starting assessment:', error);
@@ -192,59 +185,57 @@ export default function CareerAssessment12thLearners() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      <div className="fresh-page-wrapper flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-fresh-green-medium"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="fresh-page-wrapper">
       {/* Header */}
-      <div className="bg-[#0A2E1F] text-white py-6">
-        <div className="container mx-auto px-4">
+      <div className="fresh-page-header">
+        <div className="container mx-auto px-4 relative z-10">
           <Button
             variant="ghost"
             onClick={() => navigate(-1)}
-            className="text-white hover:text-white/80 mb-4"
+            className="text-white hover:text-white/80 hover:bg-white/10 mb-4"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back
           </Button>
-          <h1 className="font-playfair text-3xl md:text-4xl font-bold">
-            What Should I Study After 12th?
-          </h1>
-          <p className="text-white/80 mt-2 text-lg">
+          <h1>What Should I Study After 12th?</h1>
+          <p className="subtitle">
             Confused about your future? Let AI help you discover the perfect course based on your interests, skills and personality
           </p>
-          <p className="text-orange-400 mt-1 text-base">
+          <p className="tamil-title">
             12-ஆம் வகுப்புக்குப் பிறகு என்ன படிக்க வேண்டும்?
           </p>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 relative z-10">
         {/* Intro Step */}
         {step === 'intro' && (
           <div className="max-w-3xl mx-auto text-center">
             <div className="mb-8">
               <div className="text-6xl mb-4">🎓</div>
-              <h2 className="font-playfair text-2xl md:text-3xl font-bold text-foreground mb-4">
+              <h2 className="fresh-heading text-2xl md:text-3xl mb-4">
                 Don't worry! Tell us your stream and we'll find the perfect course for YOU
               </h2>
-              <p className="text-muted-foreground text-lg">
+              <p className="fresh-body text-lg">
                 Take our AI-powered assessment to discover courses that match your personality, interests, and career goals.
               </p>
             </div>
 
             {existingProfile && (
-              <Card className="mb-6 border-l-4 border-l-green-500 bg-green-50">
+              <Card className="fresh-card mb-6 border-l-fresh-green-medium bg-fresh-green-bg">
                 <CardContent className="p-4">
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="h-6 w-6 text-green-500" />
+                    <CheckCircle className="h-6 w-6 text-fresh-green-medium" />
                     <div className="text-left">
-                      <p className="font-semibold text-foreground">Welcome back!</p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="font-semibold text-fresh-green-dark">Welcome back!</p>
+                      <p className="text-sm fresh-muted">
                         You're a {streams.find(s => s.id === existingProfile.stream)?.name} student with {completedAttempts} completed assessment{completedAttempts !== 1 ? 's' : ''}.
                       </p>
                     </div>
@@ -257,7 +248,7 @@ export default function CareerAssessment12thLearners() {
               <Button
                 onClick={handleStartJourney}
                 size="lg"
-                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-6 text-lg"
+                className="btn-fresh-primary px-8 py-6 text-lg"
               >
                 {existingProfile ? "Take Another Assessment" : "Start Your Discovery Journey"}
               </Button>
@@ -266,7 +257,7 @@ export default function CareerAssessment12thLearners() {
                   variant="outline"
                   size="lg"
                   onClick={() => navigate('/career-assessment/12th-learners/results')}
-                  className="px-8 py-6 text-lg"
+                  className="btn-fresh-outline px-8 py-6 text-lg"
                 >
                   View Past Results
                 </Button>
@@ -274,20 +265,20 @@ export default function CareerAssessment12thLearners() {
             </div>
 
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center p-4">
+              <div className="fresh-card text-center p-6">
                 <div className="text-3xl mb-2">📝</div>
-                <h3 className="font-semibold text-foreground">20 Questions</h3>
-                <p className="text-sm text-muted-foreground">Scenario-based questions</p>
+                <h3 className="font-semibold fresh-card-title">20 Questions</h3>
+                <p className="text-sm fresh-muted">Scenario-based questions</p>
               </div>
-              <div className="text-center p-4">
+              <div className="fresh-card text-center p-6">
                 <div className="text-3xl mb-2">⏱️</div>
-                <h3 className="font-semibold text-foreground">10-15 Minutes</h3>
-                <p className="text-sm text-muted-foreground">Quick and insightful</p>
+                <h3 className="font-semibold fresh-card-title">10-15 Minutes</h3>
+                <p className="text-sm fresh-muted">Quick and insightful</p>
               </div>
-              <div className="text-center p-4">
+              <div className="fresh-card text-center p-6">
                 <div className="text-3xl mb-2">🎯</div>
-                <h3 className="font-semibold text-foreground">50+ Courses</h3>
-                <p className="text-sm text-muted-foreground">Personalized recommendations</p>
+                <h3 className="font-semibold fresh-card-title">50+ Courses</h3>
+                <p className="text-sm fresh-muted">Personalized recommendations</p>
               </div>
             </div>
           </div>
@@ -297,18 +288,18 @@ export default function CareerAssessment12thLearners() {
         {step === 'stream' && (
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
-              <h2 className="font-playfair text-2xl md:text-3xl font-bold text-foreground mb-2">
+              <h2 className="fresh-heading text-2xl md:text-3xl mb-2">
                 First, tell us about your 12th standard
               </h2>
-              <p className="text-muted-foreground">Select your stream to get personalized course recommendations</p>
+              <p className="fresh-muted">Select your stream to get personalized course recommendations</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {streams.map((streamItem) => (
                 <Card
                   key={streamItem.id}
-                  className={`cursor-pointer transition-all hover:shadow-lg border-l-4 ${streamItem.borderColor} ${
-                    selectedStream === streamItem.id ? 'ring-2 ring-primary' : ''
+                  className={`fresh-card cursor-pointer transition-all hover:shadow-lg border-l-4 ${streamItem.borderColor} ${
+                    selectedStream === streamItem.id ? 'ring-2 ring-fresh-green-medium' : ''
                   }`}
                   onClick={() => handleStreamSelect(streamItem.id as StudentStream)}
                 >
@@ -316,8 +307,8 @@ export default function CareerAssessment12thLearners() {
                     <div className={`w-12 h-12 rounded-full ${streamItem.bgColor} flex items-center justify-center mb-4`}>
                       <streamItem.icon className={`h-6 w-6 ${streamItem.color}`} />
                     </div>
-                    <h3 className="font-semibold text-lg text-foreground mb-1">{streamItem.name}</h3>
-                    <p className="text-sm text-muted-foreground">{streamItem.subtitle}</p>
+                    <h3 className="font-semibold text-lg fresh-card-title mb-1">{streamItem.name}</h3>
+                    <p className="text-sm fresh-muted">{streamItem.subtitle}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -327,6 +318,7 @@ export default function CareerAssessment12thLearners() {
               <Button
                 variant="ghost"
                 onClick={() => setStep('intro')}
+                className="text-fresh-green-dark hover:text-fresh-green-medium"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back
@@ -339,14 +331,14 @@ export default function CareerAssessment12thLearners() {
         {step === 'details' && (
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-8">
-              <h2 className="font-playfair text-2xl md:text-3xl font-bold text-foreground mb-2">
+              <h2 className="fresh-heading text-2xl md:text-3xl mb-2">
                 A few more details...
               </h2>
-              <p className="text-muted-foreground">This helps us give you better recommendations</p>
+              <p className="fresh-muted">This helps us give you better recommendations</p>
             </div>
 
             {/* Stream display */}
-            <Card className="mb-6 border-l-4 border-l-primary">
+            <Card className="fresh-card mb-6 border-l-fresh-green-medium">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -359,8 +351,8 @@ export default function CareerAssessment12thLearners() {
                               <stream.icon className={`h-5 w-5 ${stream.color}`} />
                             </div>
                             <div>
-                              <p className="font-semibold text-foreground">{stream.name}</p>
-                              <p className="text-sm text-muted-foreground">{stream.subtitle}</p>
+                              <p className="font-semibold fresh-card-title">{stream.name}</p>
+                              <p className="text-sm fresh-muted">{stream.subtitle}</p>
                             </div>
                           </>
                         );
@@ -373,6 +365,7 @@ export default function CareerAssessment12thLearners() {
                       variant="ghost"
                       size="sm"
                       onClick={() => setStep('stream')}
+                      className="text-fresh-green-dark hover:text-fresh-green-medium"
                     >
                       Change
                     </Button>
@@ -382,8 +375,8 @@ export default function CareerAssessment12thLearners() {
             </Card>
 
             {/* Marks Range */}
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-foreground mb-3">
+            <div className="fresh-card p-6 mb-6">
+              <label className="block text-sm font-medium fresh-card-title mb-3">
                 Your expected/obtained 12th marks:
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -391,7 +384,7 @@ export default function CareerAssessment12thLearners() {
                   <Button
                     key={range}
                     variant={selectedMarks === range ? "default" : "outline"}
-                    className={selectedMarks === range ? "bg-primary" : ""}
+                    className={selectedMarks === range ? "btn-fresh-secondary" : "btn-fresh-outline text-sm"}
                     onClick={() => setSelectedMarks(range)}
                   >
                     {range}
@@ -401,7 +394,7 @@ export default function CareerAssessment12thLearners() {
             </div>
 
             {existingProfile && (
-              <Card className="mb-6 bg-blue-50 border-blue-200">
+              <Card className="fresh-card mb-6 bg-blue-50 border-l-blue-500">
                 <CardContent className="p-4">
                   <p className="text-sm text-blue-800">
                     <strong>Returning user:</strong> We'll show you completely new questions you haven't seen before!
@@ -414,6 +407,7 @@ export default function CareerAssessment12thLearners() {
               <Button
                 variant="ghost"
                 onClick={() => setStep('stream')}
+                className="text-fresh-green-dark hover:text-fresh-green-medium"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back
@@ -421,7 +415,7 @@ export default function CareerAssessment12thLearners() {
               <Button
                 onClick={handleStartAssessment}
                 disabled={!selectedMarks}
-                className="bg-orange-500 hover:bg-orange-600 text-white px-8"
+                className="btn-fresh-primary px-8"
               >
                 Start Assessment
               </Button>

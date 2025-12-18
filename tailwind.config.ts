@@ -69,6 +69,16 @@ export default {
           cream: "hsl(var(--premium-cream))",
           "cream-dark": "hsl(var(--premium-cream-dark))",
         },
+        fresh: {
+          "green-bg": "#E8F5E9",
+          "green-light": "#A5D6A7",
+          "green-medium": "#2E7D32",
+          "green-dark": "#1B5E20",
+          "gold-light": "#FFF8E1",
+          "gold-medium": "#FFD54F",
+          "gold-dark": "#F59E0B",
+          "gold-rich": "#B8860B",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
