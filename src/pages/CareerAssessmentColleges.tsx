@@ -70,15 +70,15 @@ const CareerAssessmentColleges = () => {
   const getButtonColor = () => {
     switch (activeTab) {
       case 'assessments':
-        return 'bg-emerald-600 hover:bg-emerald-700';
+        return 'bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] hover:from-[#1B5E20] hover:to-[#004D40]';
       case 'colleges':
-        return 'bg-blue-600 hover:bg-blue-700';
+        return 'bg-gradient-to-r from-[#1976D2] to-[#1565C0] hover:from-[#1565C0] hover:to-[#0D47A1]';
       case 'scholarships':
-        return 'bg-pink-600 hover:bg-pink-700';
+        return 'bg-gradient-to-r from-[#F59E0B] to-[#D97706] hover:from-[#D97706] hover:to-[#B45309]';
       case 'educutoff':
-        return 'bg-violet-600 hover:bg-violet-700';
+        return 'bg-gradient-to-r from-[#7B1FA2] to-[#6A1B9A] hover:from-[#6A1B9A] hover:to-[#4A148C]';
       default:
-        return 'bg-emerald-600 hover:bg-emerald-700';
+        return 'bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] hover:from-[#1B5E20] hover:to-[#004D40]';
     }
   };
 
@@ -223,9 +223,9 @@ const CareerAssessmentColleges = () => {
   const isInProgress = (id: AssessmentType) => !!inProgressAssessments[id];
 
   return (
-    <div className="premium-page-bg min-h-screen">
+    <div className="fresh-page-wrapper">
       {/* Header */}
-      <header className="premium-page-header">
+      <header className="fresh-page-header">
         <div className="container mx-auto px-4 relative z-10">
           <Button 
             variant="ghost" 
@@ -251,7 +251,7 @@ const CareerAssessmentColleges = () => {
         {activeTab === 'assessments' && (
           <div className="flex flex-col lg:flex-row gap-8">
           <div className="flex-1">
-              <div className="dark-section-header mb-6">
+              <div className="fresh-section-header mb-6">
                 <div className="icon-box text-white"><Target /></div>
                 <h2>Choose Your Assessment</h2>
               </div>
@@ -265,7 +265,7 @@ const CareerAssessmentColleges = () => {
                   return (
                     <Card 
                       key={assessment.id} 
-                      className="glass-card-premium dark-card-orange hover:shadow-premium transition-all relative overflow-hidden"
+                      className="fresh-card fresh-card-orange hover:shadow-lg transition-all relative overflow-hidden"
                     >
                       {completed && (
                         <div className="absolute top-3 right-3">
@@ -290,8 +290,8 @@ const CareerAssessmentColleges = () => {
                             <Icon className={`h-6 w-6 ${assessment.iconColor}`} />
                           </div>
                           <div className="flex-1">
-                            <CardTitle className="text-lg card-heading">{assessment.title}</CardTitle>
-                            <CardDescription className="mt-1 card-body">
+                            <CardTitle className="text-lg fresh-card-title">{assessment.title}</CardTitle>
+                            <CardDescription className="mt-1 fresh-body">
                               {assessment.description}
                             </CardDescription>
                           </div>
@@ -299,7 +299,7 @@ const CareerAssessmentColleges = () => {
                       </CardHeader>
                       
                       <CardContent>
-                        <div className="flex items-center gap-4 text-sm card-muted mb-4">
+                        <div className="flex items-center gap-4 text-sm fresh-muted mb-4">
                           {assessment.isChat ? (
                             <>
                               <span className="flex items-center gap-1">
@@ -338,8 +338,8 @@ const CareerAssessmentColleges = () => {
 
                         {inProgress && !completed && !assessment.isExternal && (
                           <div className="mb-4">
-                            <div className="flex justify-between text-sm mb-1 card-body">
-                              <span className="text-muted-foreground">Progress</span>
+                            <div className="flex justify-between text-sm mb-1 fresh-body">
+                              <span className="fresh-muted">Progress</span>
                               <span className="font-medium">{inProgressAssessments[assessment.id].progress}%</span>
                             </div>
                             <Progress value={inProgressAssessments[assessment.id].progress} className="h-2" />
@@ -361,34 +361,34 @@ const CareerAssessmentColleges = () => {
 
             {/* Sidebar */}
             <div className="lg:w-80">
-              <Card className="glass-card-premium dark-card-gold sticky top-4">
+              <Card className="fresh-card fresh-card-gold sticky top-4">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 card-heading text-lg">
-                    <Trophy className="h-5 w-5 text-premium-gold" />
+                  <CardTitle className="flex items-center gap-2 fresh-card-title text-lg">
+                    <Trophy className="h-5 w-5 text-fresh-gold-dark" />
                     Your Progress
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4 text-center">
-                    <div className="dark-stat-card p-3">
-                      <div className="text-2xl font-bold text-emerald-400">{completedAssessments.length}</div>
-                      <div className="text-xs dark-body-muted">Completed</div>
+                    <div className="fresh-stat-card p-3">
+                      <div className="text-2xl font-bold text-[#2E7D32]">{completedAssessments.length}</div>
+                      <div className="text-xs fresh-muted">Completed</div>
                     </div>
-                    <div className="dark-stat-card p-3">
-                      <div className="text-2xl font-bold text-orange-400">
+                    <div className="fresh-stat-card p-3">
+                      <div className="text-2xl font-bold text-[#F59E0B]">
                         {4 - completedAssessments.length}
                       </div>
-                      <div className="text-xs dark-body-muted">Pending</div>
+                      <div className="text-xs fresh-muted">Pending</div>
                     </div>
                   </div>
 
                   <div>
                     <div className="flex justify-between text-sm mb-2">
-                      <span className="dark-body-muted">Career Readiness</span>
-                      <span className="font-semibold text-white">{overallScore}%</span>
+                      <span className="fresh-muted">Career Readiness</span>
+                      <span className="font-semibold text-[#1B5E20]">{overallScore}%</span>
                     </div>
-                    <div className="progress-premium">
-                      <div className="progress-bar-premium" style={{ width: `${overallScore}%` }} />
+                    <div className="fresh-progress">
+                      <div className="fresh-progress-bar" style={{ width: `${overallScore}%` }} />
                     </div>
                   </div>
 
@@ -412,9 +412,9 @@ const CareerAssessmentColleges = () => {
                   )}
 
                   {completedAssessments.length < 4 && (
-                    <div className="dark-stat-card p-3">
-                      <p className="text-sm font-medium mb-1 text-white">Recommended Next:</p>
-                      <p className="text-sm dark-body-muted">
+                    <div className="fresh-stat-card p-3">
+                      <p className="text-sm font-medium mb-1 text-[#1B5E20]">Recommended Next:</p>
+                      <p className="text-sm fresh-muted">
                         {assessmentCards.find(a => !completedAssessments.includes(a.id))?.title}
                       </p>
                     </div>
