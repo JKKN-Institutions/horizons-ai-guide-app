@@ -17,36 +17,36 @@ const categories = [
     id: 'jkkn' as const,
     label: 'JKKN Exclusive',
     icon: Star,
-    activeColor: 'bg-emerald-500 text-white border-emerald-500',
-    inactiveColor: 'bg-white text-emerald-600 border-emerald-300 hover:border-emerald-500 hover:bg-emerald-50',
-    iconColor: 'text-emerald-500',
+    activeColor: 'bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white border-[#2E7D32] shadow-lg shadow-[#2E7D32]/30',
+    inactiveColor: 'bg-white text-[#2E7D32] border-[#A5D6A7] hover:border-[#2E7D32] hover:bg-[#E8F5E9]',
+    iconColor: 'text-[#2E7D32]',
     activeIconColor: 'text-white'
   },
   {
     id: 'government' as const,
     label: 'Government Scholarship',
     icon: Landmark,
-    activeColor: 'bg-blue-500 text-white border-blue-500',
-    inactiveColor: 'bg-white text-blue-600 border-blue-300 hover:border-blue-500 hover:bg-blue-50',
-    iconColor: 'text-blue-500',
+    activeColor: 'bg-gradient-to-r from-[#1976D2] to-[#1565C0] text-white border-[#1976D2] shadow-lg shadow-[#1976D2]/30',
+    inactiveColor: 'bg-white text-[#1976D2] border-[#90CAF9] hover:border-[#1976D2] hover:bg-[#E3F2FD]',
+    iconColor: 'text-[#1976D2]',
     activeIconColor: 'text-white'
   },
   {
     id: 'corporate' as const,
     label: 'Corporate Scholarship',
     icon: Building2,
-    activeColor: 'bg-purple-500 text-white border-purple-500',
-    inactiveColor: 'bg-white text-purple-600 border-purple-300 hover:border-purple-500 hover:bg-purple-50',
-    iconColor: 'text-purple-500',
+    activeColor: 'bg-gradient-to-r from-[#7B1FA2] to-[#6A1B9A] text-white border-[#7B1FA2] shadow-lg shadow-[#7B1FA2]/30',
+    inactiveColor: 'bg-white text-[#7B1FA2] border-[#CE93D8] hover:border-[#7B1FA2] hover:bg-[#F3E5F5]',
+    iconColor: 'text-[#7B1FA2]',
     activeIconColor: 'text-white'
   },
   {
     id: 'ngo' as const,
     label: 'NGO/Trust Scholarship',
     icon: Handshake,
-    activeColor: 'bg-orange-500 text-white border-orange-500',
-    inactiveColor: 'bg-white text-orange-600 border-orange-300 hover:border-orange-500 hover:bg-orange-50',
-    iconColor: 'text-orange-500',
+    activeColor: 'bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white border-[#F59E0B] shadow-lg shadow-[#F59E0B]/30',
+    inactiveColor: 'bg-white text-[#F59E0B] border-[#FFE082] hover:border-[#F59E0B] hover:bg-[#FFF8E1]',
+    iconColor: 'text-[#F59E0B]',
     activeIconColor: 'text-white'
   }
 ];
@@ -67,18 +67,18 @@ export const CategoryButtons = ({ activeCategory, onCategoryChange, counts }: Ca
               'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300',
               'hover:scale-[1.03] hover:shadow-lg',
               isActive 
-                ? `${category.activeColor} shadow-lg` 
-                : 'bg-white/95 backdrop-blur-sm border-slate-200 hover:border-slate-300 text-slate-700'
+                ? category.activeColor 
+                : category.inactiveColor
             )}
           >
             <Icon className={cn('h-6 w-6', isActive ? category.activeIconColor : category.iconColor)} />
             <span className={cn(
               'font-semibold text-sm text-center leading-tight',
-              isActive ? 'text-white' : 'text-slate-700'
+              isActive ? 'text-white' : 'text-[#1F2937]'
             )}>{category.label}</span>
             <span className={cn(
               'text-xs px-2 py-0.5 rounded-full font-medium',
-              isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
+              isActive ? 'bg-white/20 text-white' : 'bg-[#E8F5E9] text-[#2E7D32]'
             )}>
               ({count})
             </span>

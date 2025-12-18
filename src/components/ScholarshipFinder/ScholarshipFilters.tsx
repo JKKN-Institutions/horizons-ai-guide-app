@@ -38,14 +38,14 @@ export const ScholarshipFilters = ({ filters, onFilterChange, onClear }: Scholar
     filters.categories.length > 0 || filters.incomeRange || filters.gender !== 'all';
 
   return (
-    <div className="glass-card-premium dark-card-gold space-y-6">
+    <div className="fresh-filter-panel space-y-6">
       <div className="flex items-center justify-between">
-        <h3 className="font-semibold flex items-center gap-2 text-slate-800">
-          <Filter className="h-4 w-4 text-orange-500" />
+        <h3 className="font-semibold flex items-center gap-2 text-[#1B5E20]">
+          <Filter className="h-4 w-4 text-[#2E7D32]" />
           Filter Scholarships
         </h3>
         {hasActiveFilters && (
-          <Button variant="ghost" size="sm" onClick={onClear} className="text-slate-500 hover:text-slate-800">
+          <Button variant="ghost" size="sm" onClick={onClear} className="text-[#6B7280] hover:text-[#1F2937]">
             <X className="h-4 w-4 mr-1" />
             Clear
           </Button>
@@ -54,7 +54,7 @@ export const ScholarshipFilters = ({ filters, onFilterChange, onClear }: Scholar
 
       {/* Scholarship Type */}
       <div className="space-y-3">
-        <Label className="text-sm font-medium text-orange-600">📂 SCHOLARSHIP TYPE</Label>
+        <Label className="text-sm font-semibold text-[#F59E0B] uppercase tracking-wide">📂 SCHOLARSHIP TYPE</Label>
         <div className="space-y-2">
           {scholarshipTypes.map(type => (
             <div key={type.id} className="flex items-center space-x-2">
@@ -62,8 +62,9 @@ export const ScholarshipFilters = ({ filters, onFilterChange, onClear }: Scholar
                 id={`type-${type.id}`}
                 checked={filters.types.includes(type.id)}
                 onCheckedChange={(checked) => handleTypeChange(type.id, checked as boolean)}
+                className="border-[#C8E6C9] data-[state=checked]:bg-[#2E7D32] data-[state=checked]:border-[#2E7D32]"
               />
-              <Label htmlFor={`type-${type.id}`} className="text-sm cursor-pointer text-slate-700">{type.label}</Label>
+              <Label htmlFor={`type-${type.id}`} className="text-sm cursor-pointer text-[#374151]">{type.label}</Label>
             </div>
           ))}
         </div>
@@ -71,7 +72,7 @@ export const ScholarshipFilters = ({ filters, onFilterChange, onClear }: Scholar
 
       {/* Education Level */}
       <div className="space-y-3">
-        <Label className="text-sm font-medium text-orange-600">🎓 EDUCATION LEVEL</Label>
+        <Label className="text-sm font-semibold text-[#F59E0B] uppercase tracking-wide">🎓 EDUCATION LEVEL</Label>
         <div className="space-y-2">
           {educationLevels.map(level => (
             <div key={level.id} className="flex items-center space-x-2">
@@ -79,8 +80,9 @@ export const ScholarshipFilters = ({ filters, onFilterChange, onClear }: Scholar
                 id={`edu-${level.id}`}
                 checked={filters.educationLevels.includes(level.id)}
                 onCheckedChange={(checked) => handleEducationChange(level.id, checked as boolean)}
+                className="border-[#C8E6C9] data-[state=checked]:bg-[#2E7D32] data-[state=checked]:border-[#2E7D32]"
               />
-              <Label htmlFor={`edu-${level.id}`} className="text-sm cursor-pointer text-slate-700">{level.label}</Label>
+              <Label htmlFor={`edu-${level.id}`} className="text-sm cursor-pointer text-[#374151]">{level.label}</Label>
             </div>
           ))}
         </div>
@@ -88,7 +90,7 @@ export const ScholarshipFilters = ({ filters, onFilterChange, onClear }: Scholar
 
       {/* Category */}
       <div className="space-y-3">
-        <Label className="text-sm font-medium text-orange-600">👥 CATEGORY</Label>
+        <Label className="text-sm font-semibold text-[#F59E0B] uppercase tracking-wide">👥 CATEGORY</Label>
         <div className="space-y-2">
           {categories.map(category => (
             <div key={category.id} className="flex items-center space-x-2">
@@ -96,8 +98,9 @@ export const ScholarshipFilters = ({ filters, onFilterChange, onClear }: Scholar
                 id={`cat-${category.id}`}
                 checked={filters.categories.includes(category.id)}
                 onCheckedChange={(checked) => handleCategoryChange(category.id, checked as boolean)}
+                className="border-[#C8E6C9] data-[state=checked]:bg-[#2E7D32] data-[state=checked]:border-[#2E7D32]"
               />
-              <Label htmlFor={`cat-${category.id}`} className="text-sm cursor-pointer text-slate-700">{category.label}</Label>
+              <Label htmlFor={`cat-${category.id}`} className="text-sm cursor-pointer text-[#374151]">{category.label}</Label>
             </div>
           ))}
         </div>
@@ -105,15 +108,15 @@ export const ScholarshipFilters = ({ filters, onFilterChange, onClear }: Scholar
 
       {/* Income Range */}
       <div className="space-y-3">
-        <Label className="text-sm font-medium text-orange-600">💰 FAMILY ANNUAL INCOME</Label>
+        <Label className="text-sm font-semibold text-[#F59E0B] uppercase tracking-wide">💰 FAMILY ANNUAL INCOME</Label>
         <RadioGroup
           value={filters.incomeRange}
           onValueChange={(value) => onFilterChange({ ...filters, incomeRange: value })}
         >
           {incomeRanges.map(range => (
             <div key={range.id} className="flex items-center space-x-2">
-              <RadioGroupItem value={range.id} id={`income-${range.id}`} />
-              <Label htmlFor={`income-${range.id}`} className="text-sm cursor-pointer text-slate-700">{range.label}</Label>
+              <RadioGroupItem value={range.id} id={`income-${range.id}`} className="border-[#C8E6C9] text-[#2E7D32]" />
+              <Label htmlFor={`income-${range.id}`} className="text-sm cursor-pointer text-[#374151]">{range.label}</Label>
             </div>
           ))}
         </RadioGroup>
@@ -121,15 +124,15 @@ export const ScholarshipFilters = ({ filters, onFilterChange, onClear }: Scholar
 
       {/* Gender */}
       <div className="space-y-3">
-        <Label className="text-sm font-medium text-orange-600">👤 GENDER</Label>
+        <Label className="text-sm font-semibold text-[#F59E0B] uppercase tracking-wide">👤 GENDER</Label>
         <RadioGroup
           value={filters.gender}
           onValueChange={(value) => onFilterChange({ ...filters, gender: value })}
         >
           {genderOptions.map(option => (
             <div key={option.id} className="flex items-center space-x-2">
-              <RadioGroupItem value={option.id} id={`gender-${option.id}`} />
-              <Label htmlFor={`gender-${option.id}`} className="text-sm cursor-pointer text-slate-700">{option.label}</Label>
+              <RadioGroupItem value={option.id} id={`gender-${option.id}`} className="border-[#C8E6C9] text-[#2E7D32]" />
+              <Label htmlFor={`gender-${option.id}`} className="text-sm cursor-pointer text-[#374151]">{option.label}</Label>
             </div>
           ))}
         </RadioGroup>
@@ -137,15 +140,15 @@ export const ScholarshipFilters = ({ filters, onFilterChange, onClear }: Scholar
 
       {/* State */}
       <div className="space-y-3">
-        <Label className="text-sm font-medium text-orange-600">📍 STATE</Label>
+        <Label className="text-sm font-semibold text-[#F59E0B] uppercase tracking-wide">📍 STATE</Label>
         <Select
           value={filters.state}
           onValueChange={(value) => onFilterChange({ ...filters, state: value })}
         >
-          <SelectTrigger className="bg-white border-slate-300 text-slate-800">
+          <SelectTrigger className="bg-white border-[#C8E6C9] text-[#1F2937] focus:border-[#2E7D32] focus:ring-[#2E7D32]/20">
             <SelectValue placeholder="Select State" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-white border-[#C8E6C9]">
             <SelectItem value="all">All States</SelectItem>
             <SelectItem value="Tamil Nadu">Tamil Nadu</SelectItem>
             <SelectItem value="Karnataka">Karnataka</SelectItem>
