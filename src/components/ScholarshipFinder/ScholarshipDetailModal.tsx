@@ -14,18 +14,18 @@ interface ScholarshipDetailModalProps {
 }
 
 const typeConfig = {
-  jkkn: { icon: Star, label: 'JKKN Exclusive', color: 'text-emerald-600', bgColor: 'bg-emerald-50' },
-  government: { icon: Landmark, label: 'Government', color: 'text-blue-600', bgColor: 'bg-blue-50' },
-  corporate: { icon: Building2, label: 'Corporate', color: 'text-purple-600', bgColor: 'bg-purple-50' },
-  ngo: { icon: Heart, label: 'NGO/Trust', color: 'text-orange-600', bgColor: 'bg-orange-50' }
+  jkkn: { icon: Star, label: 'JKKN Exclusive', color: 'text-jkkn-green', bgColor: 'bg-jkkn-green/10' },
+  government: { icon: Landmark, label: 'Government', color: 'text-primary', bgColor: 'bg-primary/10' },
+  corporate: { icon: Building2, label: 'Corporate', color: 'text-accent', bgColor: 'bg-accent/10' },
+  ngo: { icon: Heart, label: 'NGO/Trust', color: 'text-jkkn-orange', bgColor: 'bg-jkkn-orange/10' }
 };
 
 const deadlineConfig = {
-  'closing-soon': { label: 'Closing Soon', color: 'text-red-600 bg-red-100', days: '< 7 days left' },
-  'one-month': { label: '1 Month Left', color: 'text-yellow-600 bg-yellow-100', days: '< 30 days left' },
-  'open': { label: 'Open', color: 'text-green-600 bg-green-100', days: '> 30 days left' },
-  'coming-soon': { label: 'Coming Soon', color: 'text-gray-600 bg-gray-100', days: 'Opening soon' },
-  'always-open': { label: 'Always Open', color: 'text-green-600 bg-green-100', days: 'No deadline' }
+  'closing-soon': { label: 'Closing Soon', color: 'text-destructive bg-destructive/10', days: '< 7 days left' },
+  'one-month': { label: '1 Month Left', color: 'text-jkkn-gold bg-jkkn-gold/10', days: '< 30 days left' },
+  'open': { label: 'Open', color: 'text-jkkn-green bg-jkkn-green/10', days: '> 30 days left' },
+  'coming-soon': { label: 'Coming Soon', color: 'text-muted-foreground bg-muted', days: 'Opening soon' },
+  'always-open': { label: 'Always Open', color: 'text-jkkn-green bg-jkkn-green/10', days: 'No deadline' }
 };
 
 export const ScholarshipDetailModal = ({ scholarship, open, onOpenChange }: ScholarshipDetailModalProps) => {
@@ -75,45 +75,45 @@ export const ScholarshipDetailModal = ({ scholarship, open, onOpenChange }: Scho
 
         <div className="space-y-6 mt-4">
           {/* Amount Section */}
-          <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl p-4">
-            <h4 className="font-semibold flex items-center gap-2 mb-3">
+          <div className="bg-gradient-to-r from-jkkn-green/10 to-jkkn-green/5 rounded-xl p-4">
+            <h4 className="font-semibold flex items-center gap-2 mb-3 text-foreground">
               💰 SCHOLARSHIP AMOUNT
             </h4>
             <div className="grid grid-cols-1 gap-2">
               {scholarship.benefits.map((benefit, idx) => (
                 <div key={idx} className="flex justify-between items-center py-1 border-b border-border/50 last:border-0">
                   <span className="text-muted-foreground">{benefit.label}</span>
-                  <span className="font-semibold">{benefit.value}</span>
+                  <span className="font-semibold text-foreground">{benefit.value}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Eligibility */}
-          <div className="bg-muted/30 rounded-xl p-4">
-            <h4 className="font-semibold flex items-center gap-2 mb-3">
-              <CheckCircle2 className="h-5 w-5 text-green-500" />
+          <div className="bg-muted/50 rounded-xl p-4">
+            <h4 className="font-semibold flex items-center gap-2 mb-3 text-foreground">
+              <CheckCircle2 className="h-5 w-5 text-jkkn-green" />
               ELIGIBILITY CRITERIA
             </h4>
             <div className="space-y-2">
               {scholarship.eligibility.map((item, idx) => (
                 <div key={idx} className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span>{item}</span>
+                  <span className="text-jkkn-green">✓</span>
+                  <span className="text-foreground">{item}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Documents */}
-          <div className="bg-muted/30 rounded-xl p-4">
-            <h4 className="font-semibold flex items-center gap-2 mb-3">
-              <FileText className="h-5 w-5 text-blue-500" />
+          <div className="bg-muted/50 rounded-xl p-4">
+            <h4 className="font-semibold flex items-center gap-2 mb-3 text-foreground">
+              <FileText className="h-5 w-5 text-primary" />
               REQUIRED DOCUMENTS
             </h4>
             <ul className="space-y-1">
               {scholarship.documents.map((doc, idx) => (
-                <li key={idx} className="flex items-center gap-2 text-sm">
+                <li key={idx} className="flex items-center gap-2 text-sm text-foreground">
                   <span className="text-muted-foreground">•</span>
                   {doc}
                 </li>
@@ -122,33 +122,33 @@ export const ScholarshipDetailModal = ({ scholarship, open, onOpenChange }: Scho
           </div>
 
           {/* Important Dates */}
-          <div className="bg-muted/30 rounded-xl p-4">
-            <h4 className="font-semibold flex items-center gap-2 mb-3">
-              <Calendar className="h-5 w-5 text-purple-500" />
+          <div className="bg-muted/50 rounded-xl p-4">
+            <h4 className="font-semibold flex items-center gap-2 mb-3 text-foreground">
+              <Calendar className="h-5 w-5 text-accent" />
               IMPORTANT DATES
             </h4>
             <div className="flex items-center justify-between">
-              <span>Application Deadline</span>
+              <span className="text-foreground">Application Deadline</span>
               <div className="flex items-center gap-2">
-                <span className="font-semibold">{scholarship.deadline}</span>
+                <span className="font-semibold text-foreground">{scholarship.deadline}</span>
                 <Badge className={deadlineInfo.color}>{deadlineInfo.days}</Badge>
               </div>
             </div>
           </div>
 
           {/* How to Apply */}
-          <div className="bg-muted/30 rounded-xl p-4">
-            <h4 className="font-semibold flex items-center gap-2 mb-3">
-              <BookOpen className="h-5 w-5 text-emerald-500" />
+          <div className="bg-muted/50 rounded-xl p-4">
+            <h4 className="font-semibold flex items-center gap-2 mb-3 text-foreground">
+              <BookOpen className="h-5 w-5 text-jkkn-green" />
               HOW TO APPLY
             </h4>
             <ol className="space-y-2">
               {scholarship.howToApply.map((step, idx) => (
                 <li key={idx} className="flex items-start gap-2 text-sm">
-                  <span className="bg-primary/10 text-primary rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 font-medium">
+                  <span className="bg-jkkn-orange/10 text-jkkn-orange rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 font-medium">
                     {idx + 1}
                   </span>
-                  <span className="pt-0.5">{step}</span>
+                  <span className="pt-0.5 text-foreground">{step}</span>
                 </li>
               ))}
             </ol>
@@ -157,7 +157,7 @@ export const ScholarshipDetailModal = ({ scholarship, open, onOpenChange }: Scho
           {/* Actions */}
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
             <Button 
-              className="flex-1 bg-[#FF6B35] hover:bg-[#FF6B35]/90"
+              className="flex-1 bg-jkkn-orange hover:bg-jkkn-orange/90 text-white"
               onClick={() => window.open(scholarship.applicationUrl, '_blank')}
             >
               <LinkIcon className="h-4 w-4 mr-2" />
@@ -165,7 +165,7 @@ export const ScholarshipDetailModal = ({ scholarship, open, onOpenChange }: Scho
               <ExternalLink className="h-4 w-4 ml-2" />
             </Button>
             {scholarship.helpline && (
-              <Button variant="outline" className="flex-1">
+              <Button variant="outline" className="flex-1 border-border text-foreground hover:bg-muted">
                 <Phone className="h-4 w-4 mr-2" />
                 Helpline: {scholarship.helpline}
               </Button>
