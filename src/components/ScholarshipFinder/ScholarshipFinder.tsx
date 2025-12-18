@@ -1,16 +1,20 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Search, SlidersHorizontal, Sparkles } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Search, SlidersHorizontal, Sparkles, ClipboardList, BookmarkPlus } from 'lucide-react';
 import { ScholarshipFilters } from './ScholarshipFilters';
 import { ScholarshipDetailModal } from './ScholarshipDetailModal';
 import { CategoryButtons } from './CategoryButtons';
 import { CategoryScholarshipList } from './CategoryScholarshipList';
 import { EligibilityChecker } from './EligibilityChecker';
+import { ApplicationTracker, TrackerContext } from './ApplicationTracker';
 import { scholarships, getJKKNScholarships, getGovernmentScholarships, getCorporateScholarships, getNGOScholarships } from './scholarshipData';
 import { Scholarship, ScholarshipFilters as FiltersType } from './types';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 const defaultFilters: FiltersType = {
   types: [],
@@ -31,6 +35,72 @@ export const ScholarshipFinder = () => {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<CategoryType>('jkkn');
   const [isEligibilityOpen, setIsEligibilityOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('browse');
+  const [user, setUser] = useState<any>(null);
+  const [trackedIds, setTrackedIds] = useState<Set<string>>(new Set());
+  const { toast } = useToast();
+
+  useEffect(() => {
+    checkUser();
+  }, []);
+
+  const checkUser = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    setUser(user);
+    if (user) {
+      fetchTrackedScholarships(user.id);
+    }
+  };
+
+  const fetchTrackedScholarships = async (userId: string) => {
+    const { data } = await supabase
+      .from('scholarship_applications')
+      .select('scholarship_id')
+      .eq('user_id', userId);
+    if (data) {
+      setTrackedIds(new Set(data.map(d => d.scholarship_id)));
+    }
+  };
+
+  const saveScholarship = async (scholarship: Scholarship) => {
+    if (!user) {
+      toast({
+        title: "Login Required",
+        description: "Please login to track scholarships",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from('scholarship_applications')
+        .insert({
+          user_id: user.id,
+          scholarship_id: scholarship.id,
+          scholarship_name: scholarship.name,
+          scholarship_provider: scholarship.provider,
+          scholarship_amount: scholarship.amount,
+          scholarship_deadline: scholarship.deadline,
+          status: 'saved'
+        });
+
+      if (error) {
+        if (error.code === '23505') {
+          toast({ title: "Already Tracked", description: "This scholarship is already in your tracker" });
+          return;
+        }
+        throw error;
+      }
+
+      setTrackedIds(prev => new Set([...prev, scholarship.id]));
+      toast({ title: "Saved!", description: "Added to your application tracker" });
+    } catch (error) {
+      toast({ title: "Error", description: "Failed to save scholarship", variant: "destructive" });
+    }
+  };
+
+  const isScholarshipTracked = (scholarshipId: string) => trackedIds.has(scholarshipId);
 
   const categoryCounts = useMemo(() => ({
     jkkn: getJKKNScholarships().length,
@@ -106,153 +176,185 @@ export const ScholarshipFinder = () => {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Header Section */}
-      <div className="text-center space-y-4">
-        <h2 className="font-playfair text-3xl font-bold text-foreground">
-          🎓 Scholarship Finder
-        </h2>
-        <p className="text-lg text-muted-foreground">
-          உதவித்தொகை கண்டுபிடிப்பான்
-        </p>
-        <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
-          Discover scholarships you're eligible for - Government schemes, corporate programs, and exclusive JKKN scholarships
-        </p>
+    <TrackerContext.Provider value={{ saveScholarship, isScholarshipTracked }}>
+      <div className="space-y-6">
+        {/* Header Section */}
+        <div className="text-center space-y-4">
+          <h2 className="font-playfair text-3xl font-bold text-foreground">
+            🎓 Scholarship Finder
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            உதவித்தொகை கண்டுபிடிப்பான்
+          </p>
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
+            Discover scholarships you're eligible for - Government schemes, corporate programs, and exclusive JKKN scholarships
+          </p>
 
-        {/* AI Eligibility Checker Button */}
-        <Button 
-          onClick={() => setIsEligibilityOpen(true)}
-          className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg"
-          size="lg"
-        >
-          <Sparkles className="w-5 h-5 mr-2" />
-          Check My Eligibility (AI-Powered)
-        </Button>
+          {/* Action Buttons */}
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button 
+              onClick={() => setIsEligibilityOpen(true)}
+              className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg"
+              size="lg"
+            >
+              <Sparkles className="w-5 h-5 mr-2" />
+              Check My Eligibility (AI-Powered)
+            </Button>
+            <Button 
+              onClick={() => setActiveTab('tracker')}
+              variant="outline"
+              size="lg"
+            >
+              <ClipboardList className="w-5 h-5 mr-2" />
+              My Applications ({trackedIds.size})
+            </Button>
+          </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-6">
-          <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-4 text-center">
-            <div className="text-2xl font-bold text-primary">{stats.total}+</div>
-            <div className="text-sm text-muted-foreground">Total Scholarships</div>
-          </div>
-          <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl p-4 text-center">
-            <div className="text-2xl font-bold text-blue-600">{stats.government}+</div>
-            <div className="text-sm text-muted-foreground">Government Schemes</div>
-          </div>
-          <div className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl p-4 text-center">
-            <div className="text-2xl font-bold text-purple-600">{stats.corporate}+</div>
-            <div className="text-sm text-muted-foreground">Corporate Programs</div>
-          </div>
-          <div className="bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-xl p-4 text-center">
-            <div className="text-2xl font-bold text-emerald-600">{stats.jkkn}+</div>
-            <div className="text-sm text-muted-foreground">JKKN Exclusive</div>
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-6">
+            <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-4 text-center">
+              <div className="text-2xl font-bold text-primary">{stats.total}+</div>
+              <div className="text-sm text-muted-foreground">Total Scholarships</div>
+            </div>
+            <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl p-4 text-center">
+              <div className="text-2xl font-bold text-blue-600">{stats.government}+</div>
+              <div className="text-sm text-muted-foreground">Government Schemes</div>
+            </div>
+            <div className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl p-4 text-center">
+              <div className="text-2xl font-bold text-purple-600">{stats.corporate}+</div>
+              <div className="text-sm text-muted-foreground">Corporate Programs</div>
+            </div>
+            <div className="bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-xl p-4 text-center">
+              <div className="text-2xl font-bold text-emerald-600">{stats.jkkn}+</div>
+              <div className="text-sm text-muted-foreground">JKKN Exclusive</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Category Buttons */}
-      <CategoryButtons 
-        activeCategory={activeCategory}
-        onCategoryChange={setActiveCategory}
-        counts={categoryCounts}
-      />
+        {/* Tabs for Browse/Track */}
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2">
+            <TabsTrigger value="browse" className="flex items-center gap-2">
+              <Search className="w-4 h-4" />
+              Browse Scholarships
+            </TabsTrigger>
+            <TabsTrigger value="tracker" className="flex items-center gap-2">
+              <ClipboardList className="w-4 h-4" />
+              My Tracker ({trackedIds.size})
+            </TabsTrigger>
+          </TabsList>
 
-      {/* Search and Sort Bar */}
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Search scholarships..."
-            value={filters.searchQuery}
-            onChange={(e) => setFilters({ ...filters, searchQuery: e.target.value })}
-            className="pl-10"
-          />
-        </div>
-        <div className="flex gap-2">
-          <Select value={sortBy} onValueChange={setSortBy}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Sort by" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="relevance">Relevance</SelectItem>
-              <SelectItem value="deadline">Deadline</SelectItem>
-              <SelectItem value="amount">Amount (High to Low)</SelectItem>
-            </SelectContent>
-          </Select>
-          
-          {/* Mobile Filter Button */}
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="outline" className="lg:hidden">
-                <SlidersHorizontal className="h-4 w-4 mr-2" />
-                Filters
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] overflow-y-auto">
-              <SheetHeader>
-                <SheetTitle>Filter Scholarships</SheetTitle>
-              </SheetHeader>
-              <div className="mt-4">
-                <ScholarshipFilters 
-                  filters={filters} 
-                  onFilterChange={setFilters}
-                  onClear={() => setFilters(defaultFilters)}
+          <TabsContent value="browse" className="mt-6">
+            {/* Category Buttons */}
+            <CategoryButtons 
+              activeCategory={activeCategory}
+              onCategoryChange={setActiveCategory}
+              counts={categoryCounts}
+            />
+
+            {/* Search and Sort Bar */}
+            <div className="flex flex-col md:flex-row gap-4 mt-6">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search scholarships..."
+                  value={filters.searchQuery}
+                  onChange={(e) => setFilters({ ...filters, searchQuery: e.target.value })}
+                  className="pl-10"
                 />
               </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex gap-6">
-        {/* Filters Sidebar - Desktop */}
-        <div className="hidden lg:block w-72 flex-shrink-0">
-          <div className="sticky top-4">
-            <ScholarshipFilters 
-              filters={filters} 
-              onFilterChange={setFilters}
-              onClear={() => setFilters(defaultFilters)}
-            />
-          </div>
-        </div>
-
-        {/* Scholarships List */}
-        <div className="flex-1">
-          {filteredScholarships.length === 0 ? (
-            <div className="text-center py-12 bg-muted/30 rounded-xl">
-              <p className="text-lg text-muted-foreground">No scholarships found matching your criteria</p>
-              <Button 
-                variant="outline" 
-                className="mt-4"
-                onClick={() => setFilters(defaultFilters)}
-              >
-                Clear Filters
-              </Button>
+              <div className="flex gap-2">
+                <Select value={sortBy} onValueChange={setSortBy}>
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Sort by" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="relevance">Relevance</SelectItem>
+                    <SelectItem value="deadline">Deadline</SelectItem>
+                    <SelectItem value="amount">Amount (High to Low)</SelectItem>
+                  </SelectContent>
+                </Select>
+                
+                {/* Mobile Filter Button */}
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Button variant="outline" className="lg:hidden">
+                      <SlidersHorizontal className="h-4 w-4 mr-2" />
+                      Filters
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent side="left" className="w-[300px] overflow-y-auto">
+                    <SheetHeader>
+                      <SheetTitle>Filter Scholarships</SheetTitle>
+                    </SheetHeader>
+                    <div className="mt-4">
+                      <ScholarshipFilters 
+                        filters={filters} 
+                        onFilterChange={setFilters}
+                        onClear={() => setFilters(defaultFilters)}
+                      />
+                    </div>
+                  </SheetContent>
+                </Sheet>
+              </div>
             </div>
-          ) : (
-            <CategoryScholarshipList
-              scholarships={filteredScholarships}
-              category={activeCategory}
-              onViewDetails={handleViewDetails}
-            />
-          )}
-        </div>
+
+            {/* Main Content */}
+            <div className="flex gap-6 mt-6">
+              {/* Filters Sidebar - Desktop */}
+              <div className="hidden lg:block w-72 flex-shrink-0">
+                <div className="sticky top-4">
+                  <ScholarshipFilters 
+                    filters={filters} 
+                    onFilterChange={setFilters}
+                    onClear={() => setFilters(defaultFilters)}
+                  />
+                </div>
+              </div>
+
+              {/* Scholarships List */}
+              <div className="flex-1">
+                {filteredScholarships.length === 0 ? (
+                  <div className="text-center py-12 bg-muted/30 rounded-xl">
+                    <p className="text-lg text-muted-foreground">No scholarships found matching your criteria</p>
+                    <Button 
+                      variant="outline" 
+                      className="mt-4"
+                      onClick={() => setFilters(defaultFilters)}
+                    >
+                      Clear Filters
+                    </Button>
+                  </div>
+                ) : (
+                  <CategoryScholarshipList
+                    scholarships={filteredScholarships}
+                    category={activeCategory}
+                    onViewDetails={handleViewDetails}
+                  />
+                )}
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="tracker" className="mt-6">
+            <ApplicationTracker scholarships={scholarships} />
+          </TabsContent>
+        </Tabs>
+
+        {/* Detail Modal */}
+        <ScholarshipDetailModal
+          scholarship={selectedScholarship}
+          open={isDetailOpen}
+          onOpenChange={setIsDetailOpen}
+        />
+
+        {/* Eligibility Checker Modal */}
+        <EligibilityChecker
+          open={isEligibilityOpen}
+          onOpenChange={setIsEligibilityOpen}
+          scholarships={scholarships}
+        />
       </div>
-
-      {/* Detail Modal */}
-      <ScholarshipDetailModal
-        scholarship={selectedScholarship}
-        open={isDetailOpen}
-        onOpenChange={setIsDetailOpen}
-      />
-
-      {/* Eligibility Checker Modal */}
-      <EligibilityChecker
-        open={isEligibilityOpen}
-        onOpenChange={setIsEligibilityOpen}
-        scholarships={scholarships}
-      />
-    </div>
+    </TrackerContext.Provider>
   );
 };

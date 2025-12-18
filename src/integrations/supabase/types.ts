@@ -239,6 +239,54 @@ export type Database = {
         }
         Relationships: []
       }
+      scholarship_applications: {
+        Row: {
+          applied_date: string | null
+          created_at: string
+          id: string
+          notes: string | null
+          reminder_date: string | null
+          scholarship_amount: string | null
+          scholarship_deadline: string | null
+          scholarship_id: string
+          scholarship_name: string
+          scholarship_provider: string
+          status: Database["public"]["Enums"]["application_status"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          applied_date?: string | null
+          created_at?: string
+          id?: string
+          notes?: string | null
+          reminder_date?: string | null
+          scholarship_amount?: string | null
+          scholarship_deadline?: string | null
+          scholarship_id: string
+          scholarship_name: string
+          scholarship_provider: string
+          status?: Database["public"]["Enums"]["application_status"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          applied_date?: string | null
+          created_at?: string
+          id?: string
+          notes?: string | null
+          reminder_date?: string | null
+          scholarship_amount?: string | null
+          scholarship_deadline?: string | null
+          scholarship_id?: string
+          scholarship_name?: string
+          scholarship_provider?: string
+          status?: Database["public"]["Enums"]["application_status"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       student_assessment_attempts: {
         Row: {
           answers_json: Json | null
@@ -501,6 +549,14 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
+      application_status:
+        | "saved"
+        | "in_progress"
+        | "documents_pending"
+        | "applied"
+        | "under_review"
+        | "accepted"
+        | "rejected"
       assessment_type:
         | "psychometric"
         | "career_interest"
@@ -635,6 +691,15 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "moderator", "user"],
+      application_status: [
+        "saved",
+        "in_progress",
+        "documents_pending",
+        "applied",
+        "under_review",
+        "accepted",
+        "rejected",
+      ],
       assessment_type: [
         "psychometric",
         "career_interest",
