@@ -22,32 +22,32 @@ const navItems: NavItem[] = [
     label: 'Career Assessments',
     shortLabel: 'Assessments',
     icon: GraduationCap,
-    activeColor: 'text-emerald-600',
-    activeBg: 'bg-emerald-50',
+    activeColor: 'text-white',
+    activeBg: 'bg-gradient-to-r from-[#2E7D32] to-[#1B5E20]',
   },
   {
     id: 'colleges',
     label: 'Find Colleges',
     shortLabel: 'Colleges',
     icon: Building2,
-    activeColor: 'text-blue-600',
-    activeBg: 'bg-blue-50',
+    activeColor: 'text-white',
+    activeBg: 'bg-gradient-to-r from-[#1976D2] to-[#1565C0]',
   },
   {
     id: 'scholarships',
     label: 'Scholarship Finder',
     shortLabel: 'Scholarships',
     icon: Bookmark,
-    activeColor: 'text-amber-600',
-    activeBg: 'bg-amber-50',
+    activeColor: 'text-white',
+    activeBg: 'bg-gradient-to-r from-[#F59E0B] to-[#D97706]',
   },
   {
     id: 'educutoff',
     label: 'EduCutoff Calculator',
     shortLabel: 'EduCutoff',
     icon: Calculator,
-    activeColor: 'text-violet-600',
-    activeBg: 'bg-violet-50',
+    activeColor: 'text-white',
+    activeBg: 'bg-gradient-to-r from-[#7B1FA2] to-[#6A1B9A]',
   },
 ];
 
@@ -134,19 +134,19 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
               }}
               onClick={() => handleTabClick(item.id)}
               className={cn(
-                'relative z-10 flex items-center gap-2 px-4 py-2.5 rounded-full font-semibold text-sm',
+                'relative z-10 flex items-center gap-2 px-5 py-3 rounded-full font-bold text-base',
                 'transition-all duration-150 ease-out',
                 'hover:scale-105 active:scale-95',
                 clickedTab === item.id && 'animate-bounce-pop',
                 isActive
                   ? item.activeColor
-                  : 'text-slate-600 hover:text-slate-800'
+                  : 'text-[#1F2937] hover:text-[#1B5E20]'
               )}
             >
               <Icon 
                 className={cn(
-                  'w-4 h-4 transition-colors duration-300',
-                  isActive ? item.activeColor : 'text-slate-400'
+                  'w-5 h-5 transition-colors duration-300',
+                  isActive ? 'text-white' : 'text-[#2E7D32]'
                 )} 
               />
               <span className="hidden sm:inline whitespace-nowrap">{item.label}</span>
