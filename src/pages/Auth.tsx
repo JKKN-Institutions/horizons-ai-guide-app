@@ -145,18 +145,12 @@ const Auth = () => {
 
   return (
     <div className="premium-page-bg min-h-screen flex items-center justify-center p-4">
-      {/* Floating Decorations */}
-      <div className="floating-decoration">
-        <div className="golden-circle top-right" />
-        <div className="golden-circle bottom-left" />
-      </div>
-
-      <Card className="glass-card-premium w-full max-w-md shadow-premium border-0 relative z-10">
+      <Card className="glass-card-premium w-full max-w-md border-0 dark-card-orange relative z-10">
         <CardHeader className="space-y-1 text-center">
-          <CardTitle className="text-2xl font-serif premium-heading">
+          <CardTitle className="text-2xl font-serif card-heading">
             {isLogin ? 'Welcome Back' : 'Create Account'}
           </CardTitle>
-          <CardDescription className="premium-muted">
+          <CardDescription className="card-body">
             {isLogin
               ? 'Enter your credentials to access your account'
               : 'Fill in your details to get started'}

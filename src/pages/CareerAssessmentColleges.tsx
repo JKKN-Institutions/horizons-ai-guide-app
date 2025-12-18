@@ -224,12 +224,6 @@ const CareerAssessmentColleges = () => {
 
   return (
     <div className="premium-page-bg min-h-screen">
-      {/* Floating Decorations */}
-      <div className="floating-decoration">
-        <div className="golden-circle top-right" />
-        <div className="golden-circle bottom-left" />
-      </div>
-
       {/* Header */}
       <header className="premium-page-header">
         <div className="container mx-auto px-4 relative z-10">
@@ -241,13 +235,11 @@ const CareerAssessmentColleges = () => {
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back
           </Button>
-          <h1 className="text-white text-3xl md:text-4xl font-bold font-serif mb-2">
-            Career Assessment Center for College Learners
-          </h1>
-          <p className="text-white/80 font-tamil text-base">
+          <h1>Career Assessment Center for College Learners</h1>
+          <p className="tamil-title font-tamil">
             கல்லூரி கற்றவர்களுக்கான வாழ்க்கை மதிப்பீட்டு மையம்
           </p>
-          <p className="text-white/90 text-lg mt-4 max-w-2xl">
+          <p className="subtitle">
             Discover your strengths, interests and find the perfect college for your future
           </p>
         </div>
@@ -258,9 +250,11 @@ const CareerAssessmentColleges = () => {
 
         {activeTab === 'assessments' && (
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Main Content */}
-            <div className="flex-1">
-              <h2 className="section-title-premium text-2xl font-semibold mb-6">Choose Your Assessment</h2>
+          <div className="flex-1">
+              <div className="dark-section-header mb-6">
+                <div className="icon-box text-white"><Target /></div>
+                <h2>Choose Your Assessment</h2>
+              </div>
               
               <div className="grid md:grid-cols-2 gap-6">
                 {assessmentCards.map((assessment) => {
@@ -271,7 +265,7 @@ const CareerAssessmentColleges = () => {
                   return (
                     <Card 
                       key={assessment.id} 
-                      className="glass-card border-l-4 border-l-premium-navy hover:shadow-premium transition-all relative overflow-hidden"
+                      className="glass-card-premium dark-card-orange hover:shadow-premium transition-all relative overflow-hidden"
                     >
                       {completed && (
                         <div className="absolute top-3 right-3">
@@ -296,8 +290,8 @@ const CareerAssessmentColleges = () => {
                             <Icon className={`h-6 w-6 ${assessment.iconColor}`} />
                           </div>
                           <div className="flex-1">
-                            <CardTitle className="text-lg">{assessment.title}</CardTitle>
-                            <CardDescription className="mt-1">
+                            <CardTitle className="text-lg card-heading">{assessment.title}</CardTitle>
+                            <CardDescription className="mt-1 card-body">
                               {assessment.description}
                             </CardDescription>
                           </div>
@@ -305,7 +299,7 @@ const CareerAssessmentColleges = () => {
                       </CardHeader>
                       
                       <CardContent>
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                        <div className="flex items-center gap-4 text-sm card-muted mb-4">
                           {assessment.isChat ? (
                             <>
                               <span className="flex items-center gap-1">
@@ -344,7 +338,7 @@ const CareerAssessmentColleges = () => {
 
                         {inProgress && !completed && !assessment.isExternal && (
                           <div className="mb-4">
-                            <div className="flex justify-between text-sm mb-1">
+                            <div className="flex justify-between text-sm mb-1 card-body">
                               <span className="text-muted-foreground">Progress</span>
                               <span className="font-medium">{inProgressAssessments[assessment.id].progress}%</span>
                             </div>
@@ -367,31 +361,31 @@ const CareerAssessmentColleges = () => {
 
             {/* Sidebar */}
             <div className="lg:w-80">
-              <Card className="glass-card-premium sticky top-4 border-l-4 border-l-premium-gold">
+              <Card className="glass-card-premium dark-card-gold sticky top-4">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 premium-heading text-lg">
+                  <CardTitle className="flex items-center gap-2 card-heading text-lg">
                     <Trophy className="h-5 w-5 text-premium-gold" />
                     Your Progress
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4 text-center">
-                    <div className="stat-card-premium p-3">
-                      <div className="text-2xl font-bold text-emerald-600">{completedAssessments.length}</div>
-                      <div className="text-xs premium-muted">Completed</div>
+                    <div className="dark-stat-card p-3">
+                      <div className="text-2xl font-bold text-emerald-400">{completedAssessments.length}</div>
+                      <div className="text-xs dark-body-muted">Completed</div>
                     </div>
-                    <div className="stat-card-premium p-3">
-                      <div className="text-2xl font-bold text-premium-orange">
+                    <div className="dark-stat-card p-3">
+                      <div className="text-2xl font-bold text-orange-400">
                         {4 - completedAssessments.length}
                       </div>
-                      <div className="text-xs premium-muted">Pending</div>
+                      <div className="text-xs dark-body-muted">Pending</div>
                     </div>
                   </div>
 
                   <div>
                     <div className="flex justify-between text-sm mb-2">
-                      <span className="premium-muted">Career Readiness</span>
-                      <span className="font-semibold premium-heading">{overallScore}%</span>
+                      <span className="dark-body-muted">Career Readiness</span>
+                      <span className="font-semibold text-white">{overallScore}%</span>
                     </div>
                     <div className="progress-premium">
                       <div className="progress-bar-premium" style={{ width: `${overallScore}%` }} />
@@ -418,9 +412,9 @@ const CareerAssessmentColleges = () => {
                   )}
 
                   {completedAssessments.length < 4 && (
-                    <div className="glass-card p-3">
-                      <p className="text-sm font-medium mb-1 premium-heading">Recommended Next:</p>
-                      <p className="text-sm premium-muted">
+                    <div className="dark-stat-card p-3">
+                      <p className="text-sm font-medium mb-1 text-white">Recommended Next:</p>
+                      <p className="text-sm dark-body-muted">
                         {assessmentCards.find(a => !completedAssessments.includes(a.id))?.title}
                       </p>
                     </div>

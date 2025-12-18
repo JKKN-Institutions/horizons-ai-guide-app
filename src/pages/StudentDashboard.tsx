@@ -119,19 +119,13 @@ const StudentDashboard = () => {
 
   return (
     <div className="premium-page-bg min-h-screen">
-      {/* Floating Decorations */}
-      <div className="floating-decoration">
-        <div className="golden-circle top-right" />
-        <div className="golden-circle bottom-left" />
-      </div>
-
       {/* Header */}
       <header className="premium-page-header">
         <div className="container mx-auto px-4 py-4 relative z-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-premium-gold/20 flex items-center justify-center">
-                <User className="h-5 w-5 text-premium-gold" />
+              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
+                <User className="h-5 w-5 text-white" />
               </div>
               <div>
                 <h1 className="text-xl font-serif font-bold text-white">JKKN AI Horizons</h1>
@@ -165,13 +159,13 @@ const StudentDashboard = () => {
       <main className="container mx-auto px-4 py-8 relative z-10">
         {/* Welcome Section */}
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold premium-heading mb-2">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-2">
             Welcome, {displayName}! 👋
           </h2>
-          <p className="text-xl premium-body mb-1">
+          <p className="text-xl dark-body-light mb-1">
             Choose your career discovery path
           </p>
-          <p className="text-lg premium-tamil">
+          <p className="text-lg dark-tamil">
             உங்கள் தொழில் கண்டறிதல் பாதையை தேர்வு செய்யுங்கள்
           </p>
 
@@ -188,32 +182,34 @@ const StudentDashboard = () => {
 
         {/* Options Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {dashboardOptions.map((option) => (
+          {dashboardOptions.map((option, index) => (
             <Card
               key={option.id}
-              className="glass-card group cursor-pointer border-l-4 border-l-premium-navy overflow-hidden"
+              className={`glass-card-premium group cursor-pointer overflow-hidden ${
+                index === 0 ? 'dark-card-green' : index === 1 ? 'dark-card-cyan' : 'dark-card-orange'
+              }`}
               onClick={() => navigate(option.link)}
             >
               <CardHeader className="pb-4">
                 <div className="mb-4">{option.icon}</div>
-                <CardTitle className="text-xl premium-heading group-hover:text-premium-orange transition-colors">
+                <CardTitle className="text-xl card-heading group-hover:text-orange-500 transition-colors">
                   {option.title}
                 </CardTitle>
-                <CardDescription className="text-base font-tamil premium-tamil">
+                <CardDescription className="text-base font-tamil dark-tamil">
                   {option.titleTamil}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <ul className="space-y-2">
-                  {option.description.map((item, index) => (
-                    <li key={index} className="flex items-start gap-2 text-sm premium-body">
-                      <span className="text-premium-orange mt-0.5">•</span>
+                  {option.description.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm card-body">
+                      <span className="text-orange-500 mt-0.5">•</span>
                       {item}
                     </li>
                   ))}
                 </ul>
 
-                <div className="flex items-center gap-2 text-sm premium-muted glass-card p-3">
+                <div className="flex items-center gap-2 text-sm card-muted dark-stat-card p-3">
                   {option.badgeIcon}
                   <span>{option.badge}</span>
                 </div>
@@ -231,13 +227,13 @@ const StudentDashboard = () => {
 
         {/* Quick Links */}
         <div className="mt-12 text-center">
-          <p className="premium-muted mb-4">
+          <p className="dark-body-muted mb-4">
             Not sure where to start? Try the 12th Learner Assessment first!
           </p>
           <Button
             variant="link"
             onClick={() => navigate('/')}
-            className="text-premium-orange hover:text-premium-gold"
+            className="text-orange-400 hover:text-amber-400"
           >
             ← Back to Home
           </Button>
