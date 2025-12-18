@@ -235,7 +235,7 @@ const CareerAssessmentColleges = () => {
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back
           </Button>
-          <h1>Career Assessment Center for College Learners</h1>
+          <h1>Career Assessment Center for Learners</h1>
           <p className="tamil-title font-tamil">
             கல்லூரி கற்றவர்களுக்கான வாழ்க்கை மதிப்பீட்டு மையம்
           </p>
