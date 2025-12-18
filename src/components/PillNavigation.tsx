@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { GraduationCap, Building2, Bookmark, LucideIcon } from 'lucide-react';
+import { GraduationCap, Building2, Bookmark, Calculator, LucideIcon } from 'lucide-react';
 
 interface NavItem {
   id: string;
   label: string;
+  shortLabel: string;
   icon: LucideIcon;
   activeColor: string;
   activeBg: string;
@@ -19,6 +20,7 @@ const navItems: NavItem[] = [
   {
     id: 'assessments',
     label: 'Career Assessments',
+    shortLabel: 'Assessments',
     icon: GraduationCap,
     activeColor: 'text-emerald-600',
     activeBg: 'bg-emerald-50',
@@ -26,6 +28,7 @@ const navItems: NavItem[] = [
   {
     id: 'colleges',
     label: 'Find Colleges',
+    shortLabel: 'Colleges',
     icon: Building2,
     activeColor: 'text-blue-600',
     activeBg: 'bg-blue-50',
@@ -33,9 +36,18 @@ const navItems: NavItem[] = [
   {
     id: 'scholarships',
     label: 'Scholarship Finder',
+    shortLabel: 'Scholarships',
     icon: Bookmark,
     activeColor: 'text-amber-600',
     activeBg: 'bg-amber-50',
+  },
+  {
+    id: 'educutoff',
+    label: 'EduCutoff Calculator',
+    shortLabel: 'EduCutoff',
+    icon: Calculator,
+    activeColor: 'text-violet-600',
+    activeBg: 'bg-violet-50',
   },
 ];
 
@@ -138,9 +150,7 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
                 )} 
               />
               <span className="hidden sm:inline whitespace-nowrap">{item.label}</span>
-              <span className="sm:hidden whitespace-nowrap">
-                {item.id === 'assessments' ? 'Assessments' : item.id === 'colleges' ? 'Colleges' : 'Scholarships'}
-              </span>
+              <span className="sm:hidden whitespace-nowrap">{item.shortLabel}</span>
             </button>
           );
         })}

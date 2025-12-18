@@ -9,6 +9,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { CollegeSearch } from '@/components/CollegeSearch';
 import { ScholarshipFinder } from '@/components/ScholarshipFinder';
+import { EduCutoff } from '@/components/EduCutoff';
 import { PillNavigation } from '@/components/PillNavigation';
 
 type AssessmentType = 'career_chat' | 'industry_trends' | 'emotional_intelligence' | 'skill_gap';
@@ -74,6 +75,8 @@ const CareerAssessmentColleges = () => {
         return 'bg-blue-600 hover:bg-blue-700';
       case 'scholarships':
         return 'bg-pink-600 hover:bg-pink-700';
+      case 'educutoff':
+        return 'bg-violet-600 hover:bg-violet-700';
       default:
         return 'bg-emerald-600 hover:bg-emerald-700';
     }
@@ -421,6 +424,8 @@ const CareerAssessmentColleges = () => {
         {activeTab === 'colleges' && <CollegeSearch />}
 
         {activeTab === 'scholarships' && <ScholarshipFinder />}
+
+        {activeTab === 'educutoff' && <EduCutoff />}
       </div>
     </div>
   );
