@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { 
   ClipboardList, 
   Calendar, 
@@ -17,7 +18,10 @@ import {
   XCircle,
   FileText,
   Loader2,
-  AlertCircle
+  AlertCircle,
+  Bell,
+  AlertTriangle,
+  X
 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -63,6 +67,15 @@ const statusConfig = {
   rejected: { label: 'Rejected', color: 'bg-red-100 text-red-700', icon: XCircle }
 };
 
+interface DeadlineReminder {
+  id: string;
+  scholarshipName: string;
+  deadline: string;
+  reminderDate: string;
+  daysUntilDeadline: number;
+  type: 'reminder' | 'deadline';
+}
+
 export const ApplicationTracker = ({ scholarships }: ApplicationTrackerProps) => {
   const [applications, setApplications] = useState<TrackedApplication[]>([]);
   const [loading, setLoading] = useState(true);
@@ -71,7 +84,84 @@ export const ApplicationTracker = ({ scholarships }: ApplicationTrackerProps) =>
   const [editNotes, setEditNotes] = useState('');
   const [editStatus, setEditStatus] = useState<string>('');
   const [editReminder, setEditReminder] = useState('');
+  const [reminders, setReminders] = useState<DeadlineReminder[]>([]);
+  const [dismissedReminders, setDismissedReminders] = useState<Set<string>>(new Set());
   const { toast } = useToast();
+
+  // Check for deadline reminders
+  useEffect(() => {
+    if (applications.length > 0) {
+      checkDeadlineReminders();
+    }
+  }, [applications]);
+
+  const checkDeadlineReminders = () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const activeReminders: DeadlineReminder[] = [];
+
+    applications.forEach((app) => {
+      // Skip if already applied or completed
+      if (['applied', 'under_review', 'accepted', 'rejected'].includes(app.status)) {
+        return;
+      }
+
+      // Check for set reminder dates
+      if (app.reminder_date) {
+        const reminderDate = new Date(app.reminder_date);
+        reminderDate.setHours(0, 0, 0, 0);
+        const daysUntilReminder = Math.ceil((reminderDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+        
+        if (daysUntilReminder <= 0 && daysUntilReminder >= -3) {
+          activeReminders.push({
+            id: `reminder-${app.id}`,
+            scholarshipName: app.scholarship_name,
+            deadline: app.scholarship_deadline || 'Not specified',
+            reminderDate: app.reminder_date,
+            daysUntilDeadline: daysUntilReminder,
+            type: 'reminder'
+          });
+        }
+      }
+
+      // Check for approaching deadlines (7 days warning)
+      if (app.scholarship_deadline) {
+        const deadlineMatch = app.scholarship_deadline.match(/(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})/i);
+        if (deadlineMatch) {
+          const months: { [key: string]: number } = {
+            jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
+            jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11
+          };
+          const deadlineDate = new Date(
+            parseInt(deadlineMatch[3]),
+            months[deadlineMatch[2].toLowerCase()],
+            parseInt(deadlineMatch[1])
+          );
+          deadlineDate.setHours(0, 0, 0, 0);
+          const daysUntilDeadline = Math.ceil((deadlineDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+
+          if (daysUntilDeadline <= 7 && daysUntilDeadline >= 0) {
+            activeReminders.push({
+              id: `deadline-${app.id}`,
+              scholarshipName: app.scholarship_name,
+              deadline: app.scholarship_deadline,
+              reminderDate: '',
+              daysUntilDeadline,
+              type: 'deadline'
+            });
+          }
+        }
+      }
+    });
+
+    // Sort by urgency
+    activeReminders.sort((a, b) => a.daysUntilDeadline - b.daysUntilDeadline);
+    setReminders(activeReminders);
+  };
+
+  const dismissReminder = (id: string) => {
+    setDismissedReminders(prev => new Set([...prev, id]));
+  };
 
   useEffect(() => {
     checkUser();
@@ -201,8 +291,58 @@ export const ApplicationTracker = ({ scholarships }: ApplicationTrackerProps) =>
     );
   }
 
+  const visibleReminders = reminders.filter(r => !dismissedReminders.has(r.id));
+
   return (
     <div className="space-y-6">
+      {/* Deadline Reminders */}
+      {visibleReminders.length > 0 && (
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+            <Bell className="w-4 h-4" />
+            Deadline Reminders ({visibleReminders.length})
+          </div>
+          {visibleReminders.map((reminder) => (
+            <Alert 
+              key={reminder.id} 
+              className={reminder.daysUntilDeadline <= 2 ? 'border-red-300 bg-red-50' : 'border-yellow-300 bg-yellow-50'}
+            >
+              <div className="flex items-start justify-between">
+                <div className="flex items-start gap-2">
+                  {reminder.daysUntilDeadline <= 2 ? (
+                    <AlertTriangle className="h-4 w-4 text-red-600 mt-0.5" />
+                  ) : (
+                    <Bell className="h-4 w-4 text-yellow-600 mt-0.5" />
+                  )}
+                  <div>
+                    <AlertTitle className={reminder.daysUntilDeadline <= 2 ? 'text-red-800' : 'text-yellow-800'}>
+                      {reminder.type === 'reminder' ? 'Reminder' : 'Deadline Approaching'}
+                    </AlertTitle>
+                    <AlertDescription className={reminder.daysUntilDeadline <= 2 ? 'text-red-700' : 'text-yellow-700'}>
+                      <strong>{reminder.scholarshipName}</strong>
+                      {reminder.daysUntilDeadline === 0 && ' - Due today!'}
+                      {reminder.daysUntilDeadline === 1 && ' - Due tomorrow!'}
+                      {reminder.daysUntilDeadline > 1 && ` - ${reminder.daysUntilDeadline} days left`}
+                      {reminder.daysUntilDeadline < 0 && ` - ${Math.abs(reminder.daysUntilDeadline)} days overdue`}
+                      <br />
+                      <span className="text-sm">Deadline: {reminder.deadline}</span>
+                    </AlertDescription>
+                  </div>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-6 w-6 -mt-1 -mr-2"
+                  onClick={() => dismissReminder(reminder.id)}
+                >
+                  <X className="h-3 w-3" />
+                </Button>
+              </div>
+            </Alert>
+          ))}
+        </div>
+      )}
+
       {/* Stats Overview */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card>
