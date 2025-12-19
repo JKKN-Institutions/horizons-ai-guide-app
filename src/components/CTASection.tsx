@@ -64,7 +64,7 @@ const CTASection = () => {
               {/* Shimmer effect */}
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
               <GraduationCap className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-              <span className="relative">Register as Student</span>
+              <span className="relative">Register as Learner</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
             </Button>
             
