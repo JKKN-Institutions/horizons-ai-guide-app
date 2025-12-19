@@ -240,7 +240,7 @@ const CareerAssessmentColleges = () => {
           <Button 
             variant="ghost" 
             className="text-white/80 hover:text-white hover:bg-white/15 mb-6 rounded-xl transition-all duration-300 group"
-            onClick={() => navigate(-1)}
+            onClick={() => navigate('/')}
           >
             <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
             Back
