@@ -1,6 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, School, ExternalLink, GraduationCap, Stethoscope, FlaskConical, BookOpen, Heart, Users, Building2 } from "lucide-react";
+import { CheckCircle, School, ExternalLink, GraduationCap } from "lucide-react";
+
+// Import institution logos
+import casLogo from "@/assets/institutions/jkkn-cas-logo.png";
+import enggLogo from "@/assets/institutions/jkkn-engg-logo.svg";
+import pharmacyLogo from "@/assets/institutions/jkkn-pharmacy-logo.png";
+import dentalLogo from "@/assets/institutions/jkkn-dental-logo.png";
+import nursingLogo from "@/assets/institutions/jkkn-nursing-logo.png";
+import ahsLogo from "@/assets/institutions/jkkn-ahs-logo.png";
+import eduLogo from "@/assets/institutions/jkkn-edu-logo.png";
 
 const benefits = [
   "Career aptitude assessments tailored for 12th Learners",
@@ -14,49 +23,49 @@ const institutions = [
   { 
     name: "JKKN College of Arts & Science", 
     url: "https://cas.jkkn.ac.in/",
-    icon: BookOpen,
+    logo: casLogo,
     color: "from-blue-500 to-indigo-600"
   },
   { 
     name: "JKKN College of Engineering and Technology", 
     url: "https://engg.jkkn.ac.in/",
-    icon: Building2,
+    logo: enggLogo,
     color: "from-emerald-500 to-green-600"
   },
   { 
     name: "JKKN College of Pharmacy", 
     url: "https://pharmacy.jkkn.ac.in/",
-    icon: FlaskConical,
+    logo: pharmacyLogo,
     color: "from-purple-500 to-violet-600"
   },
   { 
     name: "JKKN Dental College and Hospital", 
     url: "https://dental.jkkn.ac.in/",
-    icon: Stethoscope,
+    logo: dentalLogo,
     color: "from-rose-500 to-pink-600"
   },
   { 
     name: "JKKN College of Nursing", 
     url: "https://nursing.sresakthimayeil.jkkn.ac.in/",
-    icon: Heart,
+    logo: nursingLogo,
     color: "from-red-500 to-rose-600"
   },
   { 
     name: "JKKN College of Allied Health Science", 
     url: "https://ahs.jkkn.ac.in/",
-    icon: Stethoscope,
+    logo: ahsLogo,
     color: "from-teal-500 to-cyan-600"
   },
   { 
     name: "JKKN College of Education", 
     url: "https://edu.jkkn.ac.in/",
-    icon: GraduationCap,
+    logo: eduLogo,
     color: "from-amber-500 to-orange-600"
   },
   { 
     name: "JKKN Matriculation Higher Secondary School", 
     url: "https://school.jkkn.ac.in/",
-    icon: Users,
+    logo: null, // School uses a different modern website without traditional logo
     color: "from-pink-500 to-rose-600"
   },
 ];
@@ -127,31 +136,39 @@ const TwelfthLearnersSection = () => {
                   JKKN Institutions
                 </h3>
                 <p className="text-gray-500 text-sm">
-                  9 institutions. One integrated platform.
+                  8 institutions. One integrated platform.
                 </p>
               </div>
             </div>
 
             <div className="space-y-3">
-              {institutions.map((institution, index) => {
-                const Icon = institution.icon;
-                return (
-                  <button
-                    key={index}
-                    onClick={() => handleInstitutionClick(institution.url)}
-                    className="group w-full text-left px-4 py-3.5 rounded-xl bg-gradient-to-r from-gray-50 to-gray-100 border-2 border-gray-100 hover:border-emerald-300 hover:from-emerald-50 hover:to-green-50 transition-all duration-300 animate-fade-up flex items-center gap-3 hover:shadow-lg hover:shadow-emerald-100"
-                    style={{ animationDelay: `${0.4 + index * 0.05}s` }}
-                  >
-                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${institution.color} flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="flex-1 text-gray-700 font-medium text-sm group-hover:text-emerald-700 transition-colors">
-                      {institution.name}
-                    </span>
-                    <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-emerald-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                  </button>
-                );
-              })}
+              {institutions.map((institution, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleInstitutionClick(institution.url)}
+                  className="group w-full text-left px-4 py-3.5 rounded-xl bg-gradient-to-r from-gray-50 to-gray-100 border-2 border-gray-100 hover:border-emerald-300 hover:from-emerald-50 hover:to-green-50 transition-all duration-300 animate-fade-up flex items-center gap-3 hover:shadow-lg hover:shadow-emerald-100"
+                  style={{ animationDelay: `${0.4 + index * 0.05}s` }}
+                >
+                  {/* Logo or Fallback Icon */}
+                  <div className={`w-12 h-12 rounded-xl bg-white flex items-center justify-center flex-shrink-0 shadow-md border border-gray-100 group-hover:scale-110 transition-transform duration-300 overflow-hidden`}>
+                    {institution.logo ? (
+                      <img 
+                        src={institution.logo} 
+                        alt={`${institution.name} logo`}
+                        className="w-10 h-10 object-contain"
+                      />
+                    ) : (
+                      <div className={`w-full h-full bg-gradient-to-br ${institution.color} flex items-center justify-center`}>
+                        <GraduationCap className="w-6 h-6 text-white" />
+                      </div>
+                    )}
+                  </div>
+                  <span className="flex-1 text-gray-700 font-medium text-sm group-hover:text-emerald-700 transition-colors">
+                    {institution.name}
+                  </span>
+                  <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-emerald-600 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+                </button>
+              ))}
             </div>
           </div>
         </div>
