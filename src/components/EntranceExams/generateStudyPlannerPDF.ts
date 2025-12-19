@@ -9,6 +9,173 @@ interface StudyPhase {
   tips: string[];
 }
 
+interface ExamResources {
+  youtubeChannels: { name: string; url: string; description: string }[];
+  books: { title: string; author: string; purpose: string }[];
+  websites: { name: string; url: string; description: string }[];
+}
+
+const getExamResources = (examId: string): ExamResources => {
+  const resources: Record<string, ExamResources> = {
+    'tnea': {
+      youtubeChannels: [
+        { name: 'Xylem TN', url: 'youtube.com/@XylemTN', description: 'TN State Board focused content' },
+        { name: 'Learn with Tamil', url: 'youtube.com/@LearnwithTamil', description: '12th Maths & Science in Tamil' },
+        { name: 'Kalvi TV', url: 'youtube.com/@KalviTV', description: 'Official TN Govt educational channel' }
+      ],
+      books: [
+        { title: 'TN State Board Textbooks', author: 'TN Govt', purpose: 'Primary study material' },
+        { title: 'Sura\'s 12th Guides', author: 'Sura Publications', purpose: 'Question bank & solutions' },
+        { title: 'Perfect 12th Physics/Chemistry/Maths', author: 'Various', purpose: 'Practice problems' }
+      ],
+      websites: [
+        { name: 'TNEA Official', url: 'tneaonline.org', description: 'Counseling portal' },
+        { name: 'College Dunia', url: 'collegedunia.com/tnea', description: 'Cutoff analysis & college info' },
+        { name: 'Shiksha', url: 'shiksha.com/tnea', description: 'College comparison & reviews' }
+      ]
+    },
+    'jee-main': {
+      youtubeChannels: [
+        { name: 'Physics Wallah', url: 'youtube.com/@PhysicsWallah', description: 'Complete JEE preparation' },
+        { name: 'Unacademy JEE', url: 'youtube.com/@UnacademyJEE', description: 'Expert faculty lectures' },
+        { name: 'Mohit Tyagi', url: 'youtube.com/@MohitTyagi', description: 'Advanced Maths concepts' }
+      ],
+      books: [
+        { title: 'HC Verma - Concepts of Physics', author: 'HC Verma', purpose: 'Physics fundamentals' },
+        { title: 'RD Sharma Mathematics', author: 'RD Sharma', purpose: 'Maths practice' },
+        { title: 'OP Tandon Organic Chemistry', author: 'OP Tandon', purpose: 'Organic chemistry' },
+        { title: 'Cengage Series', author: 'G. Tewani', purpose: 'Advanced problem solving' }
+      ],
+      websites: [
+        { name: 'NTA Official', url: 'nta.ac.in', description: 'Official exam portal' },
+        { name: 'JEE Main NIC', url: 'jeemain.nta.nic.in', description: 'Registration & results' },
+        { name: 'Embibe', url: 'embibe.com', description: 'Free mock tests & analysis' }
+      ]
+    },
+    'neet': {
+      youtubeChannels: [
+        { name: 'Physics Wallah NEET', url: 'youtube.com/@PhysicsWallah', description: 'NEET-focused lectures' },
+        { name: 'Unacademy NEET', url: 'youtube.com/@UnacademyNEET', description: 'Biology master classes' },
+        { name: 'Dr. Sanjay Phogat', url: 'youtube.com/@DrSanjayPhogat', description: 'Biology diagrams & concepts' }
+      ],
+      books: [
+        { title: 'NCERT Biology 11th & 12th', author: 'NCERT', purpose: 'Must-read for NEET' },
+        { title: 'MTG Objective Biology', author: 'MTG', purpose: 'MCQ practice' },
+        { title: 'Trueman\'s Biology', author: 'Trueman', purpose: 'Detailed explanations' },
+        { title: 'DC Pandey Physics', author: 'DC Pandey', purpose: 'Physics for NEET' }
+      ],
+      websites: [
+        { name: 'NTA NEET', url: 'neet.nta.nic.in', description: 'Official NEET portal' },
+        { name: 'Allen NEET', url: 'allen.ac.in/neet', description: 'Free resources & tests' },
+        { name: 'Aakash NEET', url: 'aakash.ac.in', description: 'Test series & notes' }
+      ]
+    },
+    'viteee': {
+      youtubeChannels: [
+        { name: 'VIT Official', url: 'youtube.com/@VITUniversity', description: 'Official VIT content' },
+        { name: 'Examly', url: 'youtube.com/@Examly', description: 'VITEEE preparation' },
+        { name: 'Physics Wallah', url: 'youtube.com/@PhysicsWallah', description: 'Basics & concepts' }
+      ],
+      books: [
+        { title: 'NCERT 11th & 12th', author: 'NCERT', purpose: 'Core concepts' },
+        { title: 'Arihant VITEEE Guide', author: 'Arihant', purpose: 'Practice papers' },
+        { title: 'MTG VITEEE Explorer', author: 'MTG', purpose: 'Previous year papers' }
+      ],
+      websites: [
+        { name: 'VIT Official', url: 'vit.ac.in', description: 'Official VIT website' },
+        { name: 'VITEEE Portal', url: 'viteee.vit.ac.in', description: 'Registration portal' },
+        { name: 'Careers360', url: 'careers360.com/viteee', description: 'Cutoffs & analysis' }
+      ]
+    },
+    'tnau': {
+      youtubeChannels: [
+        { name: 'TNAU Official', url: 'youtube.com/@TNAUofficial', description: 'University content' },
+        { name: 'Agri Learner', url: 'youtube.com/@AgriLearner', description: 'Agriculture basics' },
+        { name: 'Kalvi TV', url: 'youtube.com/@KalviTV', description: 'TN Board preparation' }
+      ],
+      books: [
+        { title: 'TN 12th Biology', author: 'TN Govt', purpose: 'Primary textbook' },
+        { title: 'TNAU UG Guide', author: 'Sura', purpose: 'Counseling preparation' },
+        { title: 'Agriculture at a Glance', author: 'R. Barla', purpose: 'Quick revision' }
+      ],
+      websites: [
+        { name: 'TNAU Official', url: 'tnau.ac.in', description: 'University website' },
+        { name: 'TNAU Counseling', url: 'tnagriculture.in', description: 'Admission portal' },
+        { name: 'Agriinfo', url: 'agriinfo.in', description: 'Agriculture news & info' }
+      ]
+    },
+    'clat': {
+      youtubeChannels: [
+        { name: 'LegalEdge', url: 'youtube.com/@LegalEdge', description: 'CLAT preparation expert' },
+        { name: 'Unacademy Law', url: 'youtube.com/@UnacademyLaw', description: 'Legal reasoning & GK' },
+        { name: 'Law Prep Tutorial', url: 'youtube.com/@LawPrepTutorial', description: 'CLAT strategies' }
+      ],
+      books: [
+        { title: 'Word Power Made Easy', author: 'Norman Lewis', purpose: 'Vocabulary building' },
+        { title: 'Legal Aptitude for CLAT', author: 'AP Bhardwaj', purpose: 'Legal reasoning' },
+        { title: 'Universal\'s CLAT Guide', author: 'Universal', purpose: 'Complete preparation' },
+        { title: 'Manorama Yearbook', author: 'Manorama', purpose: 'Current affairs & GK' }
+      ],
+      websites: [
+        { name: 'CLAT Consortium', url: 'consortiumofnlus.ac.in', description: 'Official CLAT portal' },
+        { name: 'CLATapult', url: 'clatapult.com', description: 'Free mocks & resources' },
+        { name: 'Legal Edge', url: 'toprankers.com/clat', description: 'Test series' }
+      ]
+    },
+    'nda': {
+      youtubeChannels: [
+        { name: 'Defence Adda247', url: 'youtube.com/@DefenceAdda247', description: 'NDA preparation' },
+        { name: 'MKC NDA', url: 'youtube.com/@MajorKalshiClasses', description: 'Defence exam expert' },
+        { name: 'Unacademy Defence', url: 'youtube.com/@UnacademyDefence', description: 'Complete NDA course' }
+      ],
+      books: [
+        { title: 'Pathfinder NDA', author: 'Arihant', purpose: 'Complete guide' },
+        { title: 'RS Aggarwal Maths', author: 'RS Aggarwal', purpose: 'Maths practice' },
+        { title: 'Lucent\'s GK', author: 'Lucent', purpose: 'General knowledge' },
+        { title: 'Let\'s Crack SSB', author: 'Rajveer Singh', purpose: 'SSB interview prep' }
+      ],
+      websites: [
+        { name: 'UPSC NDA', url: 'upsc.gov.in', description: 'Official UPSC portal' },
+        { name: 'Join Indian Army', url: 'joinindianarmy.nic.in', description: 'Army recruitment' },
+        { name: 'SSBCrack', url: 'ssbcrack.com', description: 'SSB preparation tips' }
+      ]
+    },
+    'nift': {
+      youtubeChannels: [
+        { name: 'NIFT Prep', url: 'youtube.com/@NIFTPrep', description: 'NIFT exam strategies' },
+        { name: 'Design Mentor', url: 'youtube.com/@DesignMentor', description: 'Creative ability tips' },
+        { name: 'Sketch Art', url: 'youtube.com/@SketchArt', description: 'Drawing techniques' }
+      ],
+      books: [
+        { title: 'Arihant NIFT Guide', author: 'Arihant', purpose: 'Complete preparation' },
+        { title: 'Fashion Designing by B.P. Singh', author: 'B.P. Singh', purpose: 'Fashion fundamentals' },
+        { title: 'Human Figure Drawing', author: 'Jack Hamm', purpose: 'Figure sketching' }
+      ],
+      websites: [
+        { name: 'NIFT Official', url: 'nift.ac.in', description: 'Official NIFT website' },
+        { name: 'NIFT Admissions', url: 'niftadmissions.in', description: 'Registration portal' },
+        { name: 'Design Adda', url: 'designadda.in', description: 'Design resources' }
+      ]
+    }
+  };
+
+  return resources[examId] || getDefaultResources();
+};
+
+const getDefaultResources = (): ExamResources => ({
+  youtubeChannels: [
+    { name: 'Khan Academy', url: 'youtube.com/@khanacademy', description: 'Free educational content' },
+    { name: 'Byju\'s', url: 'youtube.com/@BYJUS', description: 'Concept explanations' }
+  ],
+  books: [
+    { title: 'NCERT Textbooks', author: 'NCERT', purpose: 'Foundation building' },
+    { title: 'Previous Year Papers', author: 'Various', purpose: 'Exam pattern familiarity' }
+  ],
+  websites: [
+    { name: 'Official Exam Website', url: 'Check exam notification', description: 'Registration & updates' }
+  ]
+});
+
 const getStudyPlan = (examId: string): StudyPhase[] => {
   const studyPlans: Record<string, StudyPhase[]> = {
     'tnea': [
@@ -428,6 +595,149 @@ export const generateStudyPlannerPDF = (exam: EntranceExam) => {
   doc.text(`Exam Date: ${exam.importantDates.examDate}`, 15, yPos);
   yPos += 7;
   doc.text(`Result: ${exam.importantDates.resultDate}`, 15, yPos);
+
+  yPos += 15;
+
+  // Resources Section - New Page
+  doc.addPage();
+  yPos = 20;
+
+  // Resources Header
+  doc.setFillColor(46, 125, 50);
+  doc.rect(0, 0, pageWidth, 30, 'F');
+  doc.setFillColor(245, 158, 11);
+  doc.rect(0, 27, pageWidth, 3, 'F');
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(18);
+  doc.setFont('helvetica', 'bold');
+  doc.text('STUDY RESOURCES', pageWidth / 2, 18, { align: 'center' });
+
+  yPos = 40;
+
+  const resources = getExamResources(exam.id);
+
+  // YouTube Channels Section
+  doc.setTextColor(220, 38, 38); // Red for YouTube
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('YOUTUBE CHANNELS', 15, yPos);
+  yPos += 8;
+
+  doc.setFillColor(254, 242, 242);
+  const ytHeight = resources.youtubeChannels.length * 18 + 8;
+  doc.roundedRect(10, yPos, pageWidth - 20, ytHeight, 3, 3, 'F');
+  yPos += 8;
+
+  resources.youtubeChannels.forEach((channel) => {
+    doc.setTextColor(55, 65, 81);
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'bold');
+    doc.text(channel.name, 15, yPos);
+    
+    doc.setTextColor(107, 114, 128);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.text(channel.url, pageWidth - 15, yPos, { align: 'right' });
+    yPos += 6;
+    
+    doc.setTextColor(75, 85, 99);
+    doc.setFontSize(9);
+    doc.text(`  - ${channel.description}`, 15, yPos);
+    yPos += 12;
+  });
+
+  yPos += 10;
+
+  // Books Section
+  doc.setTextColor(124, 58, 237); // Purple for books
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('RECOMMENDED BOOKS', 15, yPos);
+  yPos += 8;
+
+  doc.setFillColor(245, 243, 255);
+  const booksHeight = resources.books.length * 18 + 8;
+  doc.roundedRect(10, yPos, pageWidth - 20, booksHeight, 3, 3, 'F');
+  yPos += 8;
+
+  resources.books.forEach((book) => {
+    doc.setTextColor(55, 65, 81);
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'bold');
+    doc.text(book.title, 15, yPos);
+    
+    doc.setTextColor(107, 114, 128);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'italic');
+    doc.text(`by ${book.author}`, pageWidth - 15, yPos, { align: 'right' });
+    yPos += 6;
+    
+    doc.setTextColor(75, 85, 99);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`  Purpose: ${book.purpose}`, 15, yPos);
+    yPos += 12;
+  });
+
+  yPos += 10;
+
+  // Check if we need a new page for websites
+  if (yPos > pageHeight - 80) {
+    doc.addPage();
+    yPos = 20;
+  }
+
+  // Websites Section
+  doc.setTextColor(37, 99, 235); // Blue for websites
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('USEFUL WEBSITES', 15, yPos);
+  yPos += 8;
+
+  doc.setFillColor(239, 246, 255);
+  const webHeight = resources.websites.length * 18 + 8;
+  doc.roundedRect(10, yPos, pageWidth - 20, webHeight, 3, 3, 'F');
+  yPos += 8;
+
+  resources.websites.forEach((website) => {
+    doc.setTextColor(55, 65, 81);
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'bold');
+    doc.text(website.name, 15, yPos);
+    
+    doc.setTextColor(37, 99, 235);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.text(website.url, pageWidth - 15, yPos, { align: 'right' });
+    yPos += 6;
+    
+    doc.setTextColor(75, 85, 99);
+    doc.setFontSize(9);
+    doc.text(`  - ${website.description}`, 15, yPos);
+    yPos += 12;
+  });
+
+  yPos += 15;
+
+  // Pro Tips Box
+  doc.setFillColor(255, 251, 235);
+  doc.roundedRect(10, yPos, pageWidth - 20, 35, 3, 3, 'F');
+  doc.setDrawColor(245, 158, 11);
+  doc.setLineWidth(0.5);
+  doc.roundedRect(10, yPos, pageWidth - 20, 35, 3, 3, 'S');
+  
+  doc.setTextColor(180, 83, 9);
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.text('PRO TIPS', 15, yPos + 10);
+  
+  doc.setTextColor(75, 85, 99);
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.text('* Subscribe to YouTube channels and turn on notifications for new content', 15, yPos + 18);
+  doc.text('* Buy second-hand books from seniors to save money', 15, yPos + 25);
+  doc.text('* Bookmark official websites and check regularly for updates', 15, yPos + 32);
 
   // Footer
   const addFooter = (pageNum: number) => {
