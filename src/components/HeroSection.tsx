@@ -15,7 +15,17 @@ const HeroSection = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroCampus})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/70"></div>
+        {/* Subtle brand gradient overlay */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, 
+              hsl(153 79% 22% / 0.95) 0%, 
+              hsl(163 64% 26% / 0.9) 35%, 
+              hsl(153 69% 33% / 0.85) 65%, 
+              hsl(153 79% 22% / 0.92) 100%)`
+          }}
+        ></div>
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10 py-12">
