@@ -276,7 +276,7 @@ const CareerChat = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => navigate('/student-dashboard')}
+                onClick={() => navigate('/career-assessment/colleges')}
                 className="text-white/90 hover:text-white hover:bg-white/15 rounded-xl transition-all duration-300"
               >
                 <ArrowLeft className="h-5 w-5" />
