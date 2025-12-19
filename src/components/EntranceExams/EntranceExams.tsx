@@ -7,6 +7,7 @@ import { ExamCard } from './ExamCard';
 import { ExamCompare } from './ExamCompare';
 import { PreparationTipsSection } from './PreparationTipsSection';
 import { ExamCalendar } from './ExamCalendar';
+import { ExamRecommendationQuiz } from './ExamRecommendationQuiz';
 import { examCategories, entranceExams, getExamsByCategory } from './examData';
 import { ExamCategory } from './types';
 import { useBookmarkedExams } from './useBookmarkedExams';
@@ -178,6 +179,11 @@ export const EntranceExams = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Exam Recommendation Quiz */}
+        <div className="mt-6">
+          <ExamRecommendationQuiz />
         </div>
 
         {/* Action Buttons */}
