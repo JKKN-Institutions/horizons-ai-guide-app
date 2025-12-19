@@ -547,43 +547,6 @@ const IndustryTrends = () => {
           </p>
         </section>
 
-        {/* Section 5: Action Buttons */}
-        <section>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer group" onClick={() => navigate('/career-assessment/12th-learners')}>
-              <CardContent className="p-6 text-center space-y-4">
-                <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Target className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-bold text-lg">🎯 Take Career Assessment</h3>
-                <p className="text-sm text-muted-foreground">Find your ideal career path</p>
-                <Button className="w-full">Start Now</Button>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer group" onClick={() => navigate('/college-search')}>
-              <CardContent className="p-6 text-center space-y-4">
-                <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Building2 className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-bold text-lg">🏛️ Find Colleges</h3>
-                <p className="text-sm text-muted-foreground">Explore top institutions</p>
-                <Button variant="secondary" className="w-full">Explore</Button>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer group" onClick={() => navigate('/entrance-exams')}>
-              <CardContent className="p-6 text-center space-y-4">
-                <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Briefcase className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-bold text-lg">📝 Check Entrance Exams</h3>
-                <p className="text-sm text-muted-foreground">View exam schedules</p>
-                <Button variant="outline" className="w-full">View All</Button>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
       </div>
     </div>
   );
