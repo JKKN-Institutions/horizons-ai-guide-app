@@ -141,18 +141,33 @@ const CareerChat = () => {
     setIsLoading(true);
 
     try {
+      // Get the current session for authentication
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session?.access_token) {
+        throw new Error('Please sign in to use the chat');
+      }
+      
       const response = await fetch(CHAT_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`
+          Authorization: `Bearer ${session.access_token}`
         },
         body: JSON.stringify({
           messages: userMessages.map((m) => ({ role: m.role, content: m.content }))
         })
       });
 
-      if (!response.ok) throw new Error('Chat failed');
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        if (response.status === 401) {
+          throw new Error('Please sign in to use the chat');
+        } else if (response.status === 429) {
+          throw new Error(errorData.error || 'Rate limit exceeded. Please try again later.');
+        }
+        throw new Error(errorData.error || 'Chat failed');
+      }
       if (!response.body) throw new Error('No response body');
 
       const reader = response.body.getReader();
