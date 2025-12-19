@@ -2,20 +2,18 @@ import { useState, useMemo } from 'react';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Search, GraduationCap, FileText, Building2, Calendar, Scale, MapPin, Bookmark, CalendarDays } from 'lucide-react';
+import { Search, GraduationCap, FileText, Building2, Bookmark, CalendarDays, Scale, MapPin } from 'lucide-react';
 import { ExamCard } from './ExamCard';
 import { ExamCompare } from './ExamCompare';
 import { PreparationTipsSection } from './PreparationTipsSection';
 import { ExamCalendar } from './ExamCalendar';
-import { examCategories, entranceExams, getExamsByCategoryAndState, getStatesWithExams } from './examData';
-import { ExamCategory, IndianState } from './types';
+import { examCategories, entranceExams, getExamsByCategory } from './examData';
+import { ExamCategory } from './types';
 import { useBookmarkedExams } from './useBookmarkedExams';
 import { cn } from '@/lib/utils';
 
 export const EntranceExams = () => {
   const [activeCategory, setActiveCategory] = useState<ExamCategory>('engineering');
-  const [selectedState, setSelectedState] = useState<IndianState>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [showCompare, setShowCompare] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
@@ -23,17 +21,15 @@ export const EntranceExams = () => {
   
   const { isBookmarked, toggleBookmark, getBookmarkedCount } = useBookmarkedExams();
 
-  const availableStates = useMemo(() => getStatesWithExams(), []);
-
   const stats = useMemo(() => ({
     total: entranceExams.length,
     colleges: '500+',
     updated: '2025',
-    streams: 'All Streams',
+    streams: 'PCM, PCB, Arts',
   }), []);
 
   const filteredExams = useMemo(() => {
-    let exams = getExamsByCategoryAndState(activeCategory, selectedState);
+    let exams = getExamsByCategory(activeCategory);
     
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
@@ -49,15 +45,15 @@ export const EntranceExams = () => {
     }
     
     return exams;
-  }, [activeCategory, selectedState, searchQuery, showBookmarksOnly, isBookmarked]);
+  }, [activeCategory, searchQuery, showBookmarksOnly, isBookmarked]);
 
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     examCategories.forEach(cat => {
-      counts[cat.id] = getExamsByCategoryAndState(cat.id, selectedState).length;
+      counts[cat.id] = getExamsByCategory(cat.id).length;
     });
     return counts;
-  }, [selectedState]);
+  }, []);
 
   const bookmarkedCount = getBookmarkedCount();
 
@@ -66,13 +62,22 @@ export const EntranceExams = () => {
       {/* Header Section */}
       <div className="text-center space-y-4">
         <h2 className="font-playfair text-3xl font-bold text-[#1B5E20]">
-          📝 Entrance Exams Guide for 12th Students
+          📝 Entrance Exams for Tamil Nadu 12th Students
         </h2>
         <p className="text-lg text-[#B8860B] font-tamil">
-          12-ஆம் வகுப்பு மாணவர்களுக்கான நுழைவுத் தேர்வு வழிகாட்டி
+          தமிழ்நாடு 12-ஆம் வகுப்பு மாணவர்களுக்கான நுழைவுத் தேர்வுகள்
         </p>
+        
+        {/* TN Badge */}
+        <div className="flex justify-center">
+          <Badge className="bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white px-4 py-2 text-sm">
+            <MapPin className="h-4 w-4 mr-2" />
+            Focused on Tamil Nadu Students
+          </Badge>
+        </div>
+        
         <p className="text-[#4B5563] max-w-2xl mx-auto mb-4">
-          Comprehensive guide to all major entrance exams in India - Engineering, Medical, Management, Design & more
+          Complete guide to entrance exams relevant for TN 12th students - including national level exams and TN state admissions
         </p>
 
         {/* Stats */}
@@ -80,7 +85,7 @@ export const EntranceExams = () => {
           <div className="fresh-stat-card">
             <div className="flex items-center justify-center gap-2">
               <FileText className="h-5 w-5 text-[#2E7D32]" />
-              <div className="text-2xl font-bold text-[#2E7D32]">{stats.total}+</div>
+              <div className="text-2xl font-bold text-[#2E7D32]">{stats.total}</div>
             </div>
             <div className="text-sm text-[#6B7280]">Exams Covered</div>
           </div>
@@ -93,7 +98,7 @@ export const EntranceExams = () => {
           </div>
           <div className="fresh-stat-card">
             <div className="flex items-center justify-center gap-2">
-              <Calendar className="h-5 w-5 text-[#F59E0B]" />
+              <CalendarDays className="h-5 w-5 text-[#F59E0B]" />
               <div className="text-2xl font-bold text-[#F59E0B]">{stats.updated}</div>
             </div>
             <div className="text-sm text-[#6B7280]">Updated</div>
@@ -103,7 +108,7 @@ export const EntranceExams = () => {
               <GraduationCap className="h-5 w-5 text-[#7B1FA2]" />
               <div className="text-2xl font-bold text-[#7B1FA2]">{stats.streams}</div>
             </div>
-            <div className="text-sm text-[#6B7280]">Coverage</div>
+            <div className="text-sm text-[#6B7280]">Streams</div>
           </div>
         </div>
 
@@ -136,36 +141,6 @@ export const EntranceExams = () => {
             Saved ({bookmarkedCount})
           </Button>
         </div>
-      </div>
-
-      {/* State Filter */}
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        <div className="flex items-center gap-2">
-          <MapPin className="h-4 w-4 text-[#2E7D32]" />
-          <span className="text-sm font-medium text-[#1F2937]">Filter by State:</span>
-        </div>
-        <Select value={selectedState} onValueChange={(value) => setSelectedState(value as IndianState)}>
-          <SelectTrigger className="w-[200px] border-[#C8E6C9] focus:border-[#2E7D32]">
-            <SelectValue placeholder="Select State" />
-          </SelectTrigger>
-          <SelectContent>
-            {availableStates.map((state) => (
-              <SelectItem key={state.id} value={state.id}>
-                {state.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        {selectedState !== 'all' && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setSelectedState('all')}
-            className="text-[#2E7D32] hover:text-[#1B5E20]"
-          >
-            Clear Filter
-          </Button>
-        )}
       </div>
 
       {/* Category Sub-tabs */}
@@ -235,14 +210,6 @@ export const EntranceExams = () => {
                 onClick={() => setSearchQuery('')}
               >
                 Clear search
-              </button>
-            )}
-            {selectedState !== 'all' && (
-              <button 
-                className="text-[#2E7D32] hover:underline"
-                onClick={() => setSelectedState('all')}
-              >
-                Show all states
               </button>
             )}
             {showBookmarksOnly && (
