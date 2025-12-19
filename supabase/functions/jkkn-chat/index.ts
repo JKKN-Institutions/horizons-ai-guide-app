@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -33,6 +34,11 @@ BEHAVIOR GUIDELINES:
 - Keep responses concise but informative
 - Always aim to help students achieve their educational and career goals`;
 
+// Rate limiting constants
+const HOURLY_LIMIT = 50;
+const MAX_MESSAGES = 50;
+const MAX_MESSAGE_LENGTH = 5000;
+
 // Check if the message is asking for image generation
 function isImageGenerationRequest(text: string): boolean {
   const lowerText = text.toLowerCase();
@@ -47,7 +53,6 @@ function isImageGenerationRequest(text: string): boolean {
 
 // Extract the image prompt from the user message
 function extractImagePrompt(text: string): string {
-  const lowerText = text.toLowerCase();
   const patterns = [
     /generate (?:an )?image (?:of |about |showing )?(.+)/i,
     /create (?:an )?image (?:of |about |showing )?(.+)/i,
@@ -69,13 +74,142 @@ function extractImagePrompt(text: string): string {
   return text;
 }
 
+// Check rate limit for a user
+async function checkRateLimit(userId: string): Promise<{ allowed: boolean; resetAt?: Date; remaining?: number }> {
+  const supabase = createClient(
+    Deno.env.get('SUPABASE_URL')!,
+    Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+  );
+  
+  const hourAgo = new Date(Date.now() - 3600000);
+  
+  const { data: recentRequests, error } = await supabase
+    .from('chat_rate_limits')
+    .select('id')
+    .eq('user_id', userId)
+    .gte('created_at', hourAgo.toISOString());
+  
+  if (error) {
+    console.error('Rate limit check error:', error);
+    // Allow request if rate limit check fails to avoid blocking users
+    return { allowed: true };
+  }
+  
+  const requestCount = recentRequests?.length || 0;
+  
+  if (requestCount >= HOURLY_LIMIT) {
+    return { 
+      allowed: false, 
+      resetAt: new Date(Date.now() + 3600000),
+      remaining: 0
+    };
+  }
+  
+  // Log this request
+  await supabase.from('chat_rate_limits').insert({ user_id: userId });
+  
+  return { 
+    allowed: true,
+    remaining: HOURLY_LIMIT - requestCount - 1
+  };
+}
+
+// Validate message array
+function validateMessages(messages: unknown): { valid: boolean; error?: string } {
+  if (!Array.isArray(messages)) {
+    return { valid: false, error: 'Messages must be an array' };
+  }
+  
+  if (messages.length > MAX_MESSAGES) {
+    return { valid: false, error: `Too many messages (max ${MAX_MESSAGES})` };
+  }
+  
+  for (const msg of messages) {
+    if (typeof msg !== 'object' || msg === null) {
+      return { valid: false, error: 'Invalid message format' };
+    }
+    
+    const typedMsg = msg as { content?: unknown; role?: unknown };
+    
+    if (typeof typedMsg.content !== 'string') {
+      return { valid: false, error: 'Message content must be a string' };
+    }
+    
+    if (typedMsg.content.length > MAX_MESSAGE_LENGTH) {
+      return { valid: false, error: `Message too long (max ${MAX_MESSAGE_LENGTH} chars)` };
+    }
+    
+    if (typedMsg.role !== 'user' && typedMsg.role !== 'assistant' && typedMsg.role !== 'system') {
+      return { valid: false, error: 'Invalid message role' };
+    }
+  }
+  
+  return { valid: true };
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { messages, generateImage } = await req.json();
+    // 1. Verify user authentication
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader) {
+      return new Response(
+        JSON.stringify({ error: 'Authentication required. Please sign in to use the chat.' }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const supabaseClient = createClient(
+      Deno.env.get('SUPABASE_URL')!,
+      Deno.env.get('SUPABASE_ANON_KEY')!,
+      { 
+        global: { 
+          headers: { Authorization: authHeader } 
+        } 
+      }
+    );
+
+    // Verify the JWT and get user
+    const { data: { user }, error: authError } = await supabaseClient.auth.getUser();
+    
+    if (authError || !user) {
+      console.error('Auth error:', authError);
+      return new Response(
+        JSON.stringify({ error: 'Invalid or expired token. Please sign in again.' }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    console.log(`Authenticated user: ${user.id}`);
+
+    // 2. Check rate limit
+    const rateLimit = await checkRateLimit(user.id);
+    if (!rateLimit.allowed) {
+      console.log(`Rate limit exceeded for user: ${user.id}`);
+      return new Response(
+        JSON.stringify({ 
+          error: 'Rate limit exceeded. Please try again later.',
+          resetAt: rateLimit.resetAt?.toISOString()
+        }),
+        { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // 3. Parse and validate input
+    const body = await req.json();
+    const { messages, generateImage } = body;
+    
+    const validation = validateMessages(messages);
+    if (!validation.valid) {
+      return new Response(
+        JSON.stringify({ error: validation.error }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
     if (!LOVABLE_API_KEY) {
@@ -88,7 +222,7 @@ serve(async (req) => {
     // Check if this is an image generation request
     if (generateImage || isImageGenerationRequest(userText)) {
       const imagePrompt = extractImagePrompt(userText);
-      console.log("Generating image with prompt:", imagePrompt);
+      console.log(`User ${user.id} generating image with prompt:`, imagePrompt);
       
       const imageResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
         method: "POST",
@@ -123,7 +257,7 @@ serve(async (req) => {
       }
 
       const imageData = await imageResponse.json();
-      console.log("Image generation response received");
+      console.log(`Image generation response received for user: ${user.id}`);
       
       const imageUrl = imageData.choices?.[0]?.message?.images?.[0]?.image_url?.url;
       const textContent = imageData.choices?.[0]?.message?.content || "Here's the image you requested!";
@@ -139,7 +273,7 @@ serve(async (req) => {
     }
 
     // Regular chat request
-    console.log("Processing chat request with", messages.length, "messages");
+    console.log(`User ${user.id} processing chat request with ${messages.length} messages`);
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -163,7 +297,7 @@ serve(async (req) => {
       
       if (response.status === 429) {
         return new Response(
-          JSON.stringify({ error: "Rate limit exceeded. Please try again in a moment." }),
+          JSON.stringify({ error: "AI service rate limit exceeded. Please try again in a moment." }),
           { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
@@ -180,7 +314,7 @@ serve(async (req) => {
       );
     }
 
-    console.log("Streaming response from AI Gateway");
+    console.log(`Streaming response from AI Gateway for user: ${user.id}`);
     
     return new Response(response.body, {
       headers: { ...corsHeaders, "Content-Type": "text/event-stream" },

@@ -1,7 +1,7 @@
 project_id = "ozgfjntbxogdgyjvsvha"
 
 [functions.jkkn-chat]
-verify_jwt = false
+verify_jwt = true
 
 [functions.career-assessment]
 verify_jwt = true
