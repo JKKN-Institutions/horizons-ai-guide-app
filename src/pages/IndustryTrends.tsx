@@ -1,16 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  ArrowLeft, TrendingUp, Laptop, Heart, Cog, Building2, ShoppingCart,
-  Star, Briefcase, GraduationCap, FileText, BookOpen, Target, Users,
-  MessageSquare, Lightbulb, RefreshCw, Puzzle, Handshake, Shield, Cloud,
-  Database, Code, ChevronRight
+  ArrowLeft, TrendingUp, Building2, IndianRupee, Target, Flame, 
+  Cloud, Shield, Database, Laptop, Heart, Zap, Briefcase, 
+  LineChart, BarChart3, Brain, Rocket, AlertTriangle, CheckCircle2,
+  MapPin, Sparkles, RefreshCw, Loader2, WifiOff, Filter, X, SlidersHorizontal
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Skeleton } from '@/components/ui/skeleton';
 import {
   Table,
   TableBody,
@@ -19,203 +18,508 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import {
+  LineChart as RechartsLineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  BarChart,
+  Bar,
+} from 'recharts';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
-// Sector Data
-const sectors = [
-  {
-    id: 'technology',
-    icon: Laptop,
-    title: 'Technology & IT Services',
-    titleTamil: 'தொழில்நுட்பம் & ஐடி சேவைகள்',
-    borderColor: '#2196F3',
-    badge: '🔥 Highest Demand',
-    badgeColor: 'bg-red-500',
-    subSectors: ['Artificial Intelligence & ML (AI/ML)', 'Cloud Computing', 'Cybersecurity', 'Data Science & Analytics'],
-    salaryRange: '₹4 LPA - ₹25 LPA (Entry to Mid)',
-    companies: ['TCS', 'Infosys', 'Wipro', 'HCL', 'Cognizant', 'Zoho', 'Freshworks'],
-    courses: ['B.E/B.Tech Computer Science', 'B.E/B.Tech IT', 'BCA + MCA', 'B.Sc Computer Science'],
-    colleges: ['IIT Madras', 'NIT Trichy', 'Anna University', 'VIT Vellore', 'SRM Chennai', 'JKKN Engineering ⭐'],
-    careerPaths: [
-      'Software Developer → Senior Developer → Tech Lead → Architect',
-      'Data Analyst → Data Scientist → ML Engineer → AI Lead'
-    ]
-  },
-  {
-    id: 'healthcare',
-    icon: Heart,
-    title: 'Healthcare & Life Sciences',
-    titleTamil: 'சுகாதாரம் & உயிரியல் அறிவியல்',
-    borderColor: '#4CAF50',
-    badge: '📈 Growing Fast',
-    badgeColor: 'bg-green-500',
-    subSectors: ['Pharmaceuticals', 'Biotechnology', 'Telemedicine', 'Healthcare IT'],
-    salaryRange: '₹3 LPA - ₹20 LPA',
-    companies: ['Sun Pharma', 'Cipla', "Dr. Reddy's", 'Biocon', 'Apollo', 'Fortis'],
-    courses: ['MBBS / BDS', 'B.Pharm / Pharm.D', 'B.Sc Nursing', 'B.Sc Biotechnology', 'Allied Health Sciences'],
-    colleges: ['Madras Medical College', 'JKKN College of Pharmacy ⭐', 'JKKN College of Nursing ⭐', 'JKKN Allied Health Sciences ⭐'],
-    careerPaths: [
-      'Pharmacist → Clinical Research → Drug Safety → R&D Lead',
-      'Nurse → Senior Nurse → Nursing Supervisor → Healthcare Manager'
-    ]
-  },
-  {
-    id: 'manufacturing',
-    icon: Cog,
-    title: 'Manufacturing & Engineering',
-    titleTamil: 'உற்பத்தி & பொறியியல்',
-    borderColor: '#FF9800',
-    badge: '🌟 Emerging',
-    badgeColor: 'bg-amber-500',
-    subSectors: ['Electric Vehicles (EV) 🔋', 'Renewable Energy ☀️', 'Semiconductors', 'Aerospace & Defence'],
-    salaryRange: '₹4 LPA - ₹18 LPA',
-    companies: ['Tata Motors', 'Mahindra', 'Ola Electric', 'L&T', 'BHEL', 'HAL', 'ISRO'],
-    courses: ['B.E Mechanical Engineering', 'B.E Electrical Engineering', 'B.E Electronics', 'B.E Automobile Engineering'],
-    colleges: ['IIT Madras', 'NIT Trichy', 'Anna University', 'PSG Tech Coimbatore', 'JKKN Engineering ⭐'],
-    careerPaths: [
-      'Graduate Engineer → Senior Engineer → Project Manager → Director',
-      'EV Technician → EV Engineer → Design Lead → R&D Head'
-    ],
-    whyGrowing: ["India's EV push (30% by 2030)", 'Make in India initiative', 'Semiconductor fabs coming to India', 'Defence indigenization']
-  },
-  {
-    id: 'bfsi',
-    icon: Building2,
-    title: 'BFSI - Banking & Finance',
-    titleTamil: 'வங்கி & நிதி சேவைகள்',
-    borderColor: '#9C27B0',
-    badge: '💰 High Paying',
-    badgeColor: 'bg-purple-500',
-    subSectors: ['Fintech 📱', 'Digital Banking', 'InsurTech', 'Wealth Management'],
-    salaryRange: '₹3.5 LPA - ₹20 LPA',
-    companies: ['HDFC', 'ICICI', 'SBI', 'Paytm', 'PhonePe', 'Razorpay', 'Zerodha', 'PolicyBazaar'],
-    courses: ['B.Com / B.Com (Hons)', 'BBA Finance', 'CA / CS / CMA', 'B.Sc Economics', 'MBA Finance'],
-    colleges: ['Loyola College Chennai', 'Madras Christian College', 'JKKN Arts & Science College ⭐'],
-    careerPaths: [
-      'Analyst → Senior Analyst → Manager → VP Finance',
-      'CA Intern → CA → CFO'
-    ],
-    whyGrowing: ['Digital India push', 'UPI revolution', 'Fintech startups boom', 'Insurance penetration increasing']
-  },
-  {
-    id: 'ecommerce',
-    icon: ShoppingCart,
-    title: 'E-commerce & Retail',
-    titleTamil: 'இ-காமர்ஸ் & சில்லறை வணிகம்',
-    borderColor: '#E91E63',
-    badge: '🚀 Booming',
-    badgeColor: 'bg-pink-500',
-    subSectors: ['Quick Commerce (10-min delivery)', 'Supply Chain & Logistics', 'D2C Brands', 'Warehouse Management'],
-    salaryRange: '₹3 LPA - ₹15 LPA',
-    companies: ['Amazon', 'Flipkart', 'Meesho', 'Swiggy', 'Zomato', 'BigBasket', 'Zepto', 'Blinkit'],
-    courses: ['BBA', 'B.Com', 'MBA Operations', 'B.Tech + MBA'],
-    colleges: ['IIM Bangalore', 'IIM Calcutta', 'XLRI', 'JKKN Arts & Science College ⭐'],
-    careerPaths: [
-      'Operations Exec → Team Lead → Manager → Regional Head',
-      'Supply Chain Analyst → Manager → Director'
-    ],
-    whyGrowing: ["India's internet users growing", 'Tier 2/3 city demand', 'Quick commerce revolution', 'Rural e-commerce expanding']
-  }
-];
+// Filter options
+const DEMAND_LEVELS = ['All', 'Very High', 'High', 'Medium'] as const;
+const SALARY_RANGES = [
+  { label: 'All Salaries', value: 'all' },
+  { label: '₹0-10 LPA', value: '0-10' },
+  { label: '₹10-20 LPA', value: '10-20' },
+  { label: '₹20-30 LPA', value: '20-30' },
+  { label: '₹30+ LPA', value: '30+' },
+] as const;
 
-// Technical Skills Data
-const technicalSkills = [
-  { name: 'AI/ML & Generative AI', description: 'ChatGPT, Claude, Gemini understanding, Prompt Engineering, AI tool integration', demand: 95 },
-  { name: 'Cloud Architecture', description: 'AWS (Amazon Web Services), Microsoft Azure, Google Cloud Platform (GCP)', demand: 90 },
-  { name: 'Cybersecurity', description: 'Network Security, Ethical Hacking, Security Compliance', demand: 85 },
-  { name: 'Data Engineering & Analytics', description: 'Python, SQL, Power BI, Tableau, Big Data tools', demand: 88 },
-  { name: 'Full-Stack Development', description: 'Frontend: React, Angular, Vue | Backend: Node.js, Python, Java | DBs: MongoDB, PostgreSQL', demand: 82 },
-];
+const INDUSTRY_CATEGORIES = [
+  'AI & Machine Learning',
+  'Cloud & DevOps',
+  'Healthcare',
+  'Cybersecurity',
+  'Data Science',
+  'FinTech',
+  'Renewable Energy',
+] as const;
 
-// Soft Skills Data
-const softSkills = [
-  { name: 'Communication', description: 'English fluency, Presentation skills, Written communication', importance: 95 },
-  { name: 'Leadership', description: 'Team management, Decision making, Conflict resolution', importance: 85 },
-  { name: 'Problem Solving', description: 'Critical thinking, Analytical ability, Creative solutions', importance: 92 },
-  { name: 'Adaptability', description: 'Learning new tools, Handling change, Flexibility', importance: 88 },
-  { name: 'Teamwork', description: 'Collaboration, Remote work skills, Cross-functional work', importance: 80 },
-];
+// Cache configuration
+const CACHE_KEY = 'industry_trends_cache';
+const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
 
-// Stream Roadmaps
-const streamRoadmaps = {
-  pcm: {
-    title: 'PCM (Maths Group) Students',
-    careerPaths: ['Software Engineering', 'Data Science', 'Cloud Computing', 'EV & Renewable Energy', 'Aerospace'],
-    courses: ['B.E/B.Tech CS/IT', 'B.E/B.Tech ECE/EEE', 'B.Sc Computer Science'],
-    skillsRoadmap: [
-      { year: 'Year 1', skills: 'Programming basics (Python, C++)' },
-      { year: 'Year 2', skills: 'Data Structures, Web Development' },
-      { year: 'Year 3', skills: 'Cloud, AI/ML basics' },
-      { year: 'Year 4', skills: 'Specialization + Internship' },
-    ]
-  },
-  pcb: {
-    title: 'PCB (Biology Group) Students',
-    careerPaths: ['Healthcare Professional', 'Pharmaceutical Industry', 'Biotechnology', 'Healthcare IT'],
-    courses: ['MBBS / BDS', 'B.Pharm', 'B.Sc Nursing', 'B.Sc Biotechnology'],
-    skillsRoadmap: [
-      { year: 'Year 1', skills: 'Biology fundamentals, Lab skills' },
-      { year: 'Year 2', skills: 'Clinical knowledge' },
-      { year: 'Year 3', skills: 'Research methodology' },
-      { year: 'Year 4', skills: 'Specialization + Internship' },
-    ]
-  },
-  commerce: {
-    title: 'Commerce Students',
-    careerPaths: ['Fintech', 'Banking & Finance', 'Chartered Accountancy', 'Business Analytics'],
-    courses: ['B.Com + CA/CS', 'BBA Finance', 'B.Com Banking'],
-    skillsRoadmap: [
-      { year: 'Year 1', skills: 'Accounting, Excel, Tally' },
-      { year: 'Year 2', skills: 'Financial analysis, Taxation' },
-      { year: 'Year 3', skills: 'Fintech tools, Data analysis' },
-      { year: 'Year 4', skills: 'Professional certification' },
-    ]
-  },
-  arts: {
-    title: 'Arts Students',
-    careerPaths: ['Digital Marketing', 'Content Creation', 'UI/UX Design', 'HR & Management'],
-    courses: ['BA + MBA', 'BA Mass Communication', 'BBA'],
-    skillsRoadmap: [
-      { year: 'Year 1', skills: 'Communication, Basic digital tools' },
-      { year: 'Year 2', skills: 'Marketing, Social media' },
-      { year: 'Year 3', skills: 'Analytics, Design thinking' },
-      { year: 'Year 4', skills: 'Leadership + Internship' },
-    ]
+interface CacheData {
+  data: MarketData;
+  timestamp: number;
+}
+
+const getCache = (): MarketData | null => {
+  try {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (!cached) return null;
+    
+    const { data, timestamp }: CacheData = JSON.parse(cached);
+    const isExpired = Date.now() - timestamp > CACHE_DURATION;
+    
+    if (isExpired) {
+      localStorage.removeItem(CACHE_KEY);
+      return null;
+    }
+    
+    return data;
+  } catch {
+    return null;
   }
 };
 
-// Salary Data
+const setCache = (data: MarketData): void => {
+  try {
+    const cacheData: CacheData = {
+      data,
+      timestamp: Date.now(),
+    };
+    localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+  } catch (e) {
+    console.warn('Failed to cache data:', e);
+  }
+};
+// Icon mapping for industries
+const industryIcons: Record<string, React.ElementType> = {
+  'artificial intelligence': Brain,
+  'machine learning': Brain,
+  'ai/ml': Brain,
+  'cloud': Cloud,
+  'devops': Cloud,
+  'healthcare': Heart,
+  'life sciences': Heart,
+  'cybersecurity': Shield,
+  'security': Shield,
+  'data science': Database,
+  'analytics': Database,
+  'fintech': IndianRupee,
+  'banking': IndianRupee,
+  'renewable': Zap,
+  'energy': Zap,
+  'default': TrendingUp,
+};
+
+const getIndustryIcon = (name: string): React.ElementType => {
+  const lowerName = name.toLowerCase();
+  for (const [key, icon] of Object.entries(industryIcons)) {
+    if (lowerName.includes(key)) return icon;
+  }
+  return industryIcons.default;
+};
+
+const industryColors = ['#FF6B35', '#0A2E1F', '#E91E63', '#9C27B0', '#2196F3', '#4CAF50', '#FF9800'];
+
+interface MarketData {
+  lastUpdated: string;
+  keyMetrics: {
+    totalJobOpenings: string;
+    jobOpeningsChange: string;
+    companiesHiring: string;
+    companiesChange: string;
+    avgFresherSalary: string;
+    salaryChange: string;
+    placementRate: string;
+  };
+  trendingIndustries: Array<{
+    name: string;
+    growth: number;
+    salaryRange: string;
+    openings: string;
+    demand: string;
+    topSkills: string[];
+    topRecruiters: string[];
+  }>;
+  topJobs: Array<{
+    rank: number;
+    role: string;
+    salaryRange: string;
+    openings: string;
+    demand: string;
+  }>;
+  technicalSkills: Array<{
+    name: string;
+    status: string;
+  }>;
+  futurePredictions: {
+    rising: Array<{ career: string; growth: string }>;
+    stable: Array<{ career: string; note: string }>;
+    declining: Array<{ career: string; risk: string }>;
+  };
+  tamilNaduData: {
+    cities: Array<{ name: string; openings: string }>;
+    industries: Array<{ name: string; percentage: number }>;
+  };
+}
+
+// Fallback static data
+const fallbackData: MarketData = {
+  lastUpdated: new Date().toISOString(),
+  keyMetrics: {
+    totalJobOpenings: '2.5M+',
+    jobOpeningsChange: '↑ 12% YoY',
+    companiesHiring: '45,000+',
+    companiesChange: '↑ 8% QoQ',
+    avgFresherSalary: '₹6.2 LPA',
+    salaryChange: '↑ 15% YoY',
+    placementRate: '94%',
+  },
+  trendingIndustries: [
+    { name: 'Artificial Intelligence & Machine Learning', growth: 42, salaryRange: '₹8-35 LPA', openings: '125,000+', demand: 'Very High', topSkills: ['Python', 'TensorFlow', 'Deep Learning', 'NLP'], topRecruiters: ['Google', 'Microsoft', 'Amazon', 'TCS', 'Infosys'] },
+    { name: 'Cloud Computing & DevOps', growth: 38, salaryRange: '₹7-30 LPA', openings: '98,000+', demand: 'Very High', topSkills: ['AWS', 'Azure', 'Docker', 'Kubernetes', 'CI/CD'], topRecruiters: ['AWS', 'Microsoft', 'Accenture', 'Wipro', 'HCL'] },
+    { name: 'Healthcare & Life Sciences', growth: 35, salaryRange: '₹5-25 LPA', openings: '200,000+', demand: 'Very High', topSkills: ['Clinical Research', 'Biotech', 'Healthcare IT'], topRecruiters: ['Apollo', 'Fortis', 'Sun Pharma', 'Biocon', 'Cipla'] },
+    { name: 'Cybersecurity', growth: 32, salaryRange: '₹6-28 LPA', openings: '75,000+', demand: 'Very High', topSkills: ['Ethical Hacking', 'SIEM', 'Network Security'], topRecruiters: ['Deloitte', 'EY', 'KPMG', 'IBM', 'Cisco'] },
+    { name: 'Data Science & Analytics', growth: 30, salaryRange: '₹6-25 LPA', openings: '110,000+', demand: 'High', topSkills: ['Python', 'SQL', 'Tableau', 'Power BI', 'Statistics'], topRecruiters: ['Amazon', 'Flipkart', 'Mu Sigma', 'Fractal'] },
+    { name: 'FinTech & Banking', growth: 28, salaryRange: '₹6-30 LPA', openings: '85,000+', demand: 'High', topSkills: ['Blockchain', 'Financial Modeling', 'Risk Analysis'], topRecruiters: ['PayTM', 'Razorpay', 'PhonePe', 'HDFC', 'ICICI'] },
+    { name: 'Renewable Energy', growth: 35, salaryRange: '₹5-22 LPA', openings: '45,000+', demand: 'High', topSkills: ['Solar Technology', 'Wind Energy', 'Sustainability'], topRecruiters: ['Tata Power', 'Adani Green', 'ReNew Power'] },
+  ],
+  topJobs: [
+    { rank: 1, role: 'AI/ML Engineer', salaryRange: '₹8-35 LPA', openings: '45,000+', demand: 'Very High' },
+    { rank: 2, role: 'Full Stack Developer', salaryRange: '₹5-25 LPA', openings: '120,000+', demand: 'Very High' },
+    { rank: 3, role: 'Cloud Solutions Architect', salaryRange: '₹12-40 LPA', openings: '25,000+', demand: 'Very High' },
+    { rank: 4, role: 'Data Scientist', salaryRange: '₹6-28 LPA', openings: '55,000+', demand: 'Very High' },
+    { rank: 5, role: 'Cybersecurity Analyst', salaryRange: '₹5-22 LPA', openings: '35,000+', demand: 'High' },
+    { rank: 6, role: 'DevOps Engineer', salaryRange: '₹7-30 LPA', openings: '40,000+', demand: 'High' },
+    { rank: 7, role: 'Product Manager', salaryRange: '₹10-35 LPA', openings: '18,000+', demand: 'High' },
+    { rank: 8, role: 'Digital Marketing Manager', salaryRange: '₹4-18 LPA', openings: '65,000+', demand: 'High' },
+    { rank: 9, role: 'Business Analyst', salaryRange: '₹5-20 LPA', openings: '50,000+', demand: 'Medium' },
+    { rank: 10, role: 'UI/UX Designer', salaryRange: '₹4-18 LPA', openings: '30,000+', demand: 'Medium' },
+  ],
+  technicalSkills: [
+    { name: 'Python', status: 'Hot' },
+    { name: 'AWS', status: 'Hot' },
+    { name: 'React', status: 'Hot' },
+    { name: 'SQL', status: 'Rising' },
+    { name: 'Java', status: 'Rising' },
+    { name: 'Docker', status: 'Rising' },
+    { name: 'Kubernetes', status: 'Rising' },
+    { name: 'Node.js', status: 'Hot' },
+    { name: 'TensorFlow', status: 'Hot' },
+    { name: 'Power BI', status: 'Rising' },
+  ],
+  futurePredictions: {
+    rising: [
+      { career: 'AI Specialist', growth: '50%+' },
+      { career: 'Sustainability Manager', growth: '45%+' },
+      { career: 'Robotics Engineer', growth: '40%+' },
+      { career: 'Blockchain Developer', growth: '35%+' },
+      { career: 'Mental Health Counselor', growth: '30%+' },
+    ],
+    stable: [
+      { career: 'Software Developer', note: 'Steady demand' },
+      { career: 'Healthcare Professional', note: 'Always needed' },
+      { career: 'Financial Analyst', note: 'Consistent growth' },
+      { career: 'Teacher/Educator', note: 'Essential role' },
+    ],
+    declining: [
+      { career: 'Data Entry Operator', risk: 'Automation risk' },
+      { career: 'Basic Accounting', risk: 'AI replacing' },
+      { career: 'Manual Testing', risk: 'Shifting to automation' },
+    ],
+  },
+  tamilNaduData: {
+    cities: [
+      { name: 'Chennai', openings: '150,000+' },
+      { name: 'Coimbatore', openings: '45,000+' },
+      { name: 'Madurai', openings: '18,000+' },
+      { name: 'Tiruchirappalli', openings: '12,000+' },
+      { name: 'Salem', openings: '8,000+' },
+    ],
+    industries: [
+      { name: 'IT & Software', percentage: 40 },
+      { name: 'Manufacturing', percentage: 25 },
+      { name: 'Healthcare', percentage: 15 },
+      { name: 'Education', percentage: 10 },
+      { name: 'Others', percentage: 10 },
+    ],
+  },
+};
+
 const salaryData = [
-  { industry: 'Technology & IT', entryLevel: '₹4-8 LPA', fiveYearsExp: '₹15-30 LPA', icon: '💻' },
-  { industry: 'AI/ML Specialist', entryLevel: '₹8-15 LPA', fiveYearsExp: '₹25-50 LPA', icon: '🤖' },
-  { industry: 'Healthcare', entryLevel: '₹3-6 LPA', fiveYearsExp: '₹10-25 LPA', icon: '🏥' },
-  { industry: 'Pharma', entryLevel: '₹3-5 LPA', fiveYearsExp: '₹8-18 LPA', icon: '💊' },
-  { industry: 'Manufacturing', entryLevel: '₹4-7 LPA', fiveYearsExp: '₹12-22 LPA', icon: '⚙️' },
-  { industry: 'EV Industry', entryLevel: '₹5-9 LPA', fiveYearsExp: '₹15-28 LPA', icon: '🔋' },
-  { industry: 'BFSI', entryLevel: '₹3.5-7 LPA', fiveYearsExp: '₹12-25 LPA', icon: '🏦' },
-  { industry: 'E-commerce', entryLevel: '₹3-6 LPA', fiveYearsExp: '₹10-20 LPA', icon: '🛒' },
+  { experience: 'Fresher', IT: 6, Healthcare: 4, Finance: 5, Manufacturing: 3.5 },
+  { experience: '2-5 yrs', IT: 12, Healthcare: 8, Finance: 10, Manufacturing: 7 },
+  { experience: '5-10 yrs', IT: 22, Healthcare: 15, Finance: 18, Manufacturing: 12 },
+  { experience: '10+ yrs', IT: 35, Healthcare: 25, Finance: 30, Manufacturing: 20 },
 ];
+
+const softSkills = [
+  { name: 'Communication', status: 'Essential' },
+  { name: 'Problem Solving', status: 'Essential' },
+  { name: 'Leadership', status: 'Essential' },
+  { name: 'Teamwork', status: 'Essential' },
+];
+
+const CHART_COLORS = ['#FF6B35', '#0A2E1F', '#FFB800', '#2196F3'];
 
 const IndustryTrends = () => {
   const navigate = useNavigate();
-  const [selectedStream, setSelectedStream] = useState<keyof typeof streamRoadmaps>('pcm');
+  const { toast } = useToast();
+  
+  // Initialize with cached data if available, otherwise fallback
+  const [marketData, setMarketData] = useState<MarketData>(() => {
+    const cached = getCache();
+    return cached || fallbackData;
+  });
+  const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [isLiveData, setIsLiveData] = useState(() => !!getCache());
+  const [isCachedData, setIsCachedData] = useState(() => !!getCache());
+  const [selectedChartView, setSelectedChartView] = useState<'line' | 'bar'>('line');
+  
+  // Filter states
+  const [demandFilter, setDemandFilter] = useState<string>('All');
+  const [salaryFilter, setSalaryFilter] = useState<string>('all');
+  const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const getSkillIcon = (index: number) => {
-    const icons = [Lightbulb, Cloud, Shield, Database, Code];
-    return icons[index] || Lightbulb;
+  // Parse salary range from string like "₹8-35 LPA" to { min, max }
+  const parseSalaryRange = (salaryStr: string): { min: number; max: number } => {
+    const numbers = salaryStr.match(/\d+/g);
+    if (!numbers || numbers.length < 2) return { min: 0, max: 100 };
+    return { min: parseInt(numbers[0]), max: parseInt(numbers[1]) };
   };
 
-  const getSoftSkillIcon = (index: number) => {
-    const icons = [MessageSquare, Users, Puzzle, RefreshCw, Handshake];
-    return icons[index] || MessageSquare;
+  // Check if industry matches salary filter
+  const matchesSalaryFilter = (salaryRange: string): boolean => {
+    if (salaryFilter === 'all') return true;
+    const { min, max } = parseSalaryRange(salaryRange);
+    switch (salaryFilter) {
+      case '0-10': return min <= 10;
+      case '10-20': return min <= 20 && max >= 10;
+      case '20-30': return min <= 30 && max >= 20;
+      case '30+': return max >= 30;
+      default: return true;
+    }
   };
+
+  // Check if industry matches selected industries filter
+  const matchesIndustryFilter = (industryName: string): boolean => {
+    if (selectedIndustries.length === 0) return true;
+    const lowerName = industryName.toLowerCase();
+    return selectedIndustries.some(selected => {
+      const lowerSelected = selected.toLowerCase();
+      if (lowerSelected.includes('ai') || lowerSelected.includes('machine')) {
+        return lowerName.includes('artificial') || lowerName.includes('machine') || lowerName.includes('ai');
+      }
+      if (lowerSelected.includes('cloud') || lowerSelected.includes('devops')) {
+        return lowerName.includes('cloud') || lowerName.includes('devops');
+      }
+      if (lowerSelected.includes('healthcare')) {
+        return lowerName.includes('healthcare') || lowerName.includes('life');
+      }
+      if (lowerSelected.includes('cyber')) {
+        return lowerName.includes('cyber') || lowerName.includes('security');
+      }
+      if (lowerSelected.includes('data')) {
+        return lowerName.includes('data') || lowerName.includes('analytics');
+      }
+      if (lowerSelected.includes('fintech')) {
+        return lowerName.includes('fintech') || lowerName.includes('banking') || lowerName.includes('finance');
+      }
+      if (lowerSelected.includes('renewable') || lowerSelected.includes('energy')) {
+        return lowerName.includes('renewable') || lowerName.includes('energy');
+      }
+      return false;
+    });
+  };
+
+  // Filter industries
+  const filteredIndustries = marketData.trendingIndustries.filter(industry => {
+    const matchesDemand = demandFilter === 'All' || industry.demand.toLowerCase() === demandFilter.toLowerCase();
+    const matchesSalary = matchesSalaryFilter(industry.salaryRange);
+    const matchesIndustry = matchesIndustryFilter(industry.name);
+    return matchesDemand && matchesSalary && matchesIndustry;
+  });
+
+  // Filter top jobs
+  const filteredJobs = marketData.topJobs.filter(job => {
+    const matchesDemand = demandFilter === 'All' || job.demand.toLowerCase() === demandFilter.toLowerCase();
+    const matchesSalary = matchesSalaryFilter(job.salaryRange);
+    return matchesDemand && matchesSalary;
+  });
+
+  // Toggle industry selection
+  const toggleIndustry = (industry: string) => {
+    setSelectedIndustries(prev => 
+      prev.includes(industry) 
+        ? prev.filter(i => i !== industry)
+        : [...prev, industry]
+    );
+  };
+
+  // Clear all filters
+  const clearFilters = () => {
+    setDemandFilter('All');
+    setSalaryFilter('all');
+    setSelectedIndustries([]);
+  };
+
+  // Check if any filters are active
+  const hasActiveFilters = demandFilter !== 'All' || salaryFilter !== 'all' || selectedIndustries.length > 0;
+
+  const fetchMarketData = async (showToast = false, forceRefresh = false) => {
+    try {
+      // Check cache first (unless force refresh)
+      if (!forceRefresh) {
+        const cached = getCache();
+        if (cached) {
+          setMarketData(cached);
+          setIsLiveData(true);
+          setIsCachedData(true);
+          return;
+        }
+      }
+
+      if (showToast) setRefreshing(true);
+
+      // Create a timeout promise (15 seconds)
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Request timeout')), 15000);
+      });
+
+      // Race between the API call and timeout
+      const result = await Promise.race([
+        supabase.functions.invoke('industry-trends'),
+        timeoutPromise
+      ]) as { data: MarketData | null; error: Error | null };
+
+      const { data, error } = result;
+
+      if (error) {
+        console.error('Error fetching market data:', error);
+        throw error;
+      }
+
+      if (data && !('error' in data)) {
+        setMarketData(data);
+        setCache(data); // Cache the new data
+        setIsLiveData(true);
+        setIsCachedData(false);
+        if (showToast) {
+          toast({
+            title: "Data Refreshed",
+            description: "Latest job market data has been fetched and cached.",
+          });
+        }
+      } else {
+        throw new Error((data as any)?.error || 'Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Failed to fetch live data, using fallback:', error);
+      setIsLiveData(false);
+      setIsCachedData(false);
+      if (showToast) {
+        toast({
+          title: "Using Offline Data",
+          description: "Couldn't refresh. Showing cached information.",
+          variant: "destructive",
+        });
+      }
+    } finally {
+      setRefreshing(false);
+    }
+  };
+
+  useEffect(() => {
+    // If no cache exists, fetch fresh data in background
+    const cached = getCache();
+    if (!cached) {
+      fetchMarketData();
+    }
+  }, []);
+
+  // Prepare comparison chart data from market data
+  const comparisonChartData = marketData.trendingIndustries.slice(0, 6).map(industry => ({
+    name: industry.name.split(' ')[0], // Shorten name for chart
+    fullName: industry.name,
+    growth: industry.growth,
+    openings: parseInt(industry.openings.replace(/[^0-9]/g, '')) / 1000, // Convert to K
+  }));
+
+  const keyMetrics = [
+    { icon: TrendingUp, value: marketData.keyMetrics.totalJobOpenings, label: 'Job Openings', sublabel: 'in India', change: marketData.keyMetrics.jobOpeningsChange, color: 'text-[#2E7D32]', bg: 'bg-[#E8F5E9]' },
+    { icon: Building2, value: marketData.keyMetrics.companiesHiring, label: 'Companies', sublabel: 'Hiring Now', change: marketData.keyMetrics.companiesChange, color: 'text-blue-500', bg: 'bg-blue-500/10' },
+    { icon: IndianRupee, value: marketData.keyMetrics.avgFresherSalary, label: 'Avg Salary', sublabel: 'for Freshers', change: marketData.keyMetrics.salaryChange, color: 'text-amber-500', bg: 'bg-amber-500/10' },
+    { icon: Target, value: marketData.keyMetrics.placementRate, label: 'Placement', sublabel: 'Top Colleges', change: 'Rate', color: 'text-violet-500', bg: 'bg-violet-500/10' },
+  ];
+
+  const getDemandColor = (demand: string) => {
+    switch (demand.toLowerCase()) {
+      case 'very high': return 'bg-red-500';
+      case 'high': return 'bg-orange-500';
+      case 'medium': return 'bg-yellow-500';
+      default: return 'bg-gray-500';
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="fresh-page-wrapper">
+        <header className="fresh-page-header py-8">
+          <div className="container mx-auto px-4 relative z-10">
+            <Skeleton className="h-8 w-24 bg-white/20 mb-4" />
+            <Skeleton className="h-10 w-96 bg-white/20 mb-2" />
+            <Skeleton className="h-6 w-64 bg-white/20" />
+          </div>
+        </header>
+        <div className="container mx-auto px-4 py-8 space-y-8 relative z-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="fresh-card p-6">
+                <Skeleton className="h-8 w-8 rounded-lg mb-3 bg-fresh-gold-light" />
+                <Skeleton className="h-8 w-24 mb-2 bg-fresh-green-bg" />
+                <Skeleton className="h-4 w-20 bg-gray-200" />
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center justify-center py-20">
+            <div className="flex flex-col items-center gap-4">
+              <Loader2 className="h-12 w-12 animate-spin text-fresh-gold-dark" />
+              <p className="fresh-muted">Fetching live job market data...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, hsl(153 40% 95%) 0%, hsl(153 35% 93%) 25%, hsl(48 100% 94%) 50%, hsl(153 35% 93%) 75%, hsl(153 40% 95%) 100%)' }}>
-      {/* Page Header */}
-      <header 
-        className="py-10 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, hsl(153 69% 33%) 0%, hsl(163 64% 26%) 50%, hsl(153 79% 22%) 100%)' }}
-      >
+    <div className="fresh-page-wrapper">
+      {/* Fresh Header */}
+      <header className="fresh-page-header py-8 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50"></div>
         <div className="container mx-auto px-4 relative z-10">
           <Button 
@@ -226,408 +530,675 @@ const IndustryTrends = () => {
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back
           </Button>
-
-          <div className="text-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
-              🚀 India's Job Market 2026 - Career Trends
-            </h1>
-            <p className="text-lg md:text-xl text-amber-300 font-tamil mb-4">
-              இந்தியாவின் வேலை வாய்ப்பு 2026 - தொழில் போக்குகள்
-            </p>
-            <p className="text-white/90 text-lg mb-2">Know which industries are hiring & skills you need</p>
-            <p className="text-amber-200 font-tamil">எந்த துறைகள் வேலை வழங்குகின்றன என்பதை அறியுங்கள்</p>
-          </div>
-
-          {/* Stats Bar */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            {[
-              { icon: '📈', value: '5 Top', label: 'Sectors' },
-              { icon: '🎯', value: '15+', label: 'Skills' },
-              { icon: '💼', value: 'Lakhs of', label: 'New Jobs' },
-              { icon: '🌟', value: 'Future', label: 'Ready' },
-            ].map((stat, index) => (
-              <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-                <div className="text-2xl mb-1">{stat.icon}</div>
-                <div className="text-xl font-bold text-white">{stat.value}</div>
-                <div className="text-sm text-white/80">{stat.label}</div>
+          <div className="flex items-center justify-between flex-wrap gap-4">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2 bg-fresh-gold-dark rounded-lg">
+                  <BarChart3 className="h-6 w-6 text-white" />
+                </div>
+                <h1 className="font-serif text-3xl md:text-4xl font-bold text-white">
+                  Industry Trends & Career Insights
+                </h1>
               </div>
-            ))}
+              <p className="text-fresh-gold-medium text-lg font-tamil mb-1">
+                தொழில்துறை போக்குகள் & வேலைவாய்ப்பு நுண்ணறிவு
+              </p>
+              <div className="flex items-center gap-2 text-sm text-white/80 mt-3">
+                {isLiveData ? (
+                  <Sparkles className="h-4 w-4 text-fresh-gold-medium" />
+                ) : (
+                  <WifiOff className="h-4 w-4 text-white/40" />
+                )}
+                <span>
+                  {isLiveData 
+                    ? (isCachedData ? 'Showing cached data' : 'Real-time analytics powered by AI')
+                    : 'Showing offline data'
+                  }
+                </span>
+                {isCachedData && (
+                  <Badge className="bg-blue-500 text-white text-xs">Cached</Badge>
+                )}
+                {isLiveData && !isCachedData && (
+                  <Badge className="bg-fresh-gold-dark text-white text-xs">Live</Badge>
+                )}
+                <span className="mx-2">•</span>
+                <span>Last updated: {new Date(marketData.lastUpdated).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+              </div>
+            </div>
+            <Button
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10"
+              onClick={() => fetchMarketData(true, true)}
+              disabled={refreshing}
+            >
+              {refreshing ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <RefreshCw className="mr-2 h-4 w-4" />
+              )}
+              {isCachedData ? 'Refresh Data' : 'Fetch Latest'}
+            </Button>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8 space-y-12">
-        {/* Section 1: High Growth Sectors */}
+      <div className="container mx-auto px-4 py-8 space-y-8 relative z-10">
+        {/* Key Metrics Dashboard */}
         <section>
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold" style={{ color: 'hsl(153 79% 22%)' }}>
-              🔥 Sectors with High Hiring Growth
-            </h2>
-            <p className="text-amber-700 font-tamil mt-2">அதிக வேலை வளர்ச்சி உள்ள துறைகள்</p>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {keyMetrics.map((metric, index) => (
+              <div key={index} className="fresh-card p-5 relative overflow-hidden group transition-all">
+                <div className={`absolute inset-0 ${metric.bg} opacity-20`}></div>
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-fresh-gold-dark/10 to-transparent rounded-bl-full"></div>
+                <div className="relative">
+                  <div className={`inline-flex p-2 rounded-lg ${metric.bg} mb-3`}>
+                    <metric.icon className={`h-5 w-5 ${metric.color}`} />
+                  </div>
+                  <div className="text-3xl font-bold text-[#1B5E20] mb-1">{metric.value}</div>
+                  <div className="text-sm font-medium text-[#1F2937]">{metric.label}</div>
+                  <div className="text-xs text-[#6B7280]">{metric.sublabel}</div>
+                  <Badge variant="secondary" className="mt-2 text-xs font-medium bg-fresh-gold-light text-fresh-gold-rich border-fresh-gold-medium/30">
+                    {metric.change}
+                  </Badge>
+                </div>
+              </div>
+            ))}
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {sectors.map((sector) => {
-              const Icon = sector.icon;
+        {/* Filter Panel */}
+        <section>
+          <div className="bg-slate-800/60 backdrop-blur-sm p-4 rounded-2xl border border-slate-700/50">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <SlidersHorizontal className="h-5 w-5 text-orange-400" />
+                <span className="font-semibold text-white">Filter Results</span>
+                {hasActiveFilters && (
+                  <Badge variant="secondary" className="bg-orange-500/20 text-orange-300">
+                    {(demandFilter !== 'All' ? 1 : 0) + (salaryFilter !== 'all' ? 1 : 0) + selectedIndustries.length} active
+                  </Badge>
+                )}
+              </div>
+              
+              <div className="flex flex-wrap items-center gap-3">
+                {/* Demand Filter */}
+                <Select value={demandFilter} onValueChange={setDemandFilter}>
+                  <SelectTrigger className="w-[140px] bg-slate-700/50 border-slate-600 text-white">
+                    <SelectValue placeholder="Demand Level" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-slate-800 border-slate-700 z-50">
+                    {DEMAND_LEVELS.map(level => (
+                      <SelectItem key={level} value={level} className="text-white hover:bg-slate-700">{level === 'All' ? 'All Demand' : level}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                {/* Salary Filter */}
+                <Select value={salaryFilter} onValueChange={setSalaryFilter}>
+                  <SelectTrigger className="w-[140px] bg-slate-700/50 border-slate-600 text-white">
+                    <SelectValue placeholder="Salary Range" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-slate-800 border-slate-700 z-50">
+                    {SALARY_RANGES.map(range => (
+                      <SelectItem key={range.value} value={range.value} className="text-white hover:bg-slate-700">{range.label}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                {/* Industry Filter Sheet */}
+                <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
+                  <SheetTrigger asChild>
+                    <Button variant="outline" className="gap-2 bg-slate-700/50 border-slate-600 text-white hover:bg-slate-700">
+                      <Filter className="h-4 w-4" />
+                      Industries
+                      {selectedIndustries.length > 0 && (
+                        <Badge className="ml-1 bg-orange-500 text-white text-xs">{selectedIndustries.length}</Badge>
+                      )}
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent className="bg-slate-900 border-slate-700">
+                    <SheetHeader>
+                      <SheetTitle className="text-white">Select Industries</SheetTitle>
+                      <SheetDescription className="text-slate-400">
+                        Filter trends by specific industry categories
+                      </SheetDescription>
+                    </SheetHeader>
+                    <div className="mt-6 space-y-4">
+                      {INDUSTRY_CATEGORIES.map(industry => (
+                        <div key={industry} className="flex items-center space-x-3">
+                          <Checkbox
+                            id={industry}
+                            checked={selectedIndustries.includes(industry)}
+                            onCheckedChange={() => toggleIndustry(industry)}
+                            className="border-slate-500"
+                          />
+                          <Label htmlFor={industry} className="cursor-pointer text-slate-200">{industry}</Label>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-6 flex gap-2">
+                      <Button 
+                        variant="outline" 
+                        onClick={() => setSelectedIndustries([])}
+                        className="flex-1 border-slate-600 text-slate-200 hover:bg-slate-800"
+                      >
+                        Clear Selection
+                      </Button>
+                      <Button 
+                        onClick={() => setIsFilterOpen(false)}
+                        className="flex-1 bg-orange-500 hover:bg-orange-600 text-white"
+                      >
+                        Apply
+                      </Button>
+                    </div>
+                  </SheetContent>
+                </Sheet>
+
+                {/* Clear All Filters */}
+                {hasActiveFilters && (
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={clearFilters}
+                    className="text-slate-400 hover:text-white gap-1"
+                  >
+                    <X className="h-4 w-4" />
+                    Clear All
+                  </Button>
+                )}
+              </div>
+            </div>
+
+            {/* Active Filter Tags */}
+            {hasActiveFilters && (
+              <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-700">
+                {demandFilter !== 'All' && (
+                  <Badge variant="secondary" className="gap-1 bg-slate-700 text-slate-200">
+                    Demand: {demandFilter}
+                    <X className="h-3 w-3 cursor-pointer" onClick={() => setDemandFilter('All')} />
+                  </Badge>
+                )}
+                {salaryFilter !== 'all' && (
+                  <Badge variant="secondary" className="gap-1 bg-slate-700 text-slate-200">
+                    Salary: {SALARY_RANGES.find(r => r.value === salaryFilter)?.label}
+                    <X className="h-3 w-3 cursor-pointer" onClick={() => setSalaryFilter('all')} />
+                  </Badge>
+                )}
+                {selectedIndustries.map(industry => (
+                  <Badge key={industry} variant="secondary" className="gap-1 bg-slate-700 text-slate-200">
+                    {industry}
+                    <X className="h-3 w-3 cursor-pointer" onClick={() => toggleIndustry(industry)} />
+                  </Badge>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Trending Industries */}
+        <section>
+          <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
+            <div className="flex items-center gap-2">
+              <Flame className="h-6 w-6 text-orange-400" />
+              <h2 className="text-2xl font-bold text-white">Hot Industries in 2025</h2>
+              {isLiveData && <Badge className="bg-orange-500 text-white">Live</Badge>}
+            </div>
+            <span className="text-sm text-slate-400">
+              Showing {filteredIndustries.length} of {marketData.trendingIndustries.length} industries
+            </span>
+          </div>
+          {filteredIndustries.length === 0 ? (
+            <div className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl text-center border border-slate-700/50">
+              <Filter className="h-12 w-12 text-slate-500 mx-auto mb-4" />
+              <h3 className="font-semibold text-lg mb-2 text-white">No industries match your filters</h3>
+              <p className="text-slate-400 mb-4">Try adjusting your filter criteria</p>
+              <Button variant="outline" onClick={clearFilters} className="border-slate-600 text-slate-200 hover:bg-slate-700">Clear Filters</Button>
+            </div>
+          ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredIndustries.map((industry, index) => {
+              const Icon = getIndustryIcon(industry.name);
+              const color = industryColors[index % industryColors.length];
               return (
-                <Card 
-                  key={sector.id} 
-                  className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white"
-                  style={{ borderLeft: `4px solid ${sector.borderColor}` }}
+                <div 
+                  key={index} 
+                  className="bg-slate-800/60 backdrop-blur-sm overflow-hidden rounded-2xl border-t-4 border border-slate-700/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer" 
+                  style={{ borderTopColor: color }}
                 >
-                  <CardHeader className="pb-3">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-3">
+                  <div className="p-5">
+                    {/* Header */}
+                    <div className="flex items-start gap-3 mb-4">
+                      <div className="p-2.5 rounded-xl" style={{ backgroundColor: `${color}25` }}>
+                        <Icon className="h-5 w-5" style={{ color }} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-sm text-white line-clamp-2 leading-tight">{industry.name}</h3>
+                      </div>
+                    </div>
+                    
+                    {/* Stats */}
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2 text-sm">
+                        <IndianRupee className="h-3.5 w-3.5 text-slate-400" />
+                        <span className="font-medium text-white">{industry.salaryRange}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <Briefcase className="h-3.5 w-3.5 text-slate-400" />
+                        <span className="text-slate-300">{industry.openings} Jobs</span>
+                      </div>
+                    </div>
+                    
+                    {/* Growth Bar */}
+                    <div className="mb-4">
+                      <div className="flex justify-between text-xs mb-1.5">
+                        <span className="text-slate-400">Growth</span>
+                        <span className="font-semibold" style={{ color }}>+{industry.growth}%</span>
+                      </div>
+                      <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
                         <div 
-                          className="p-3 rounded-xl"
-                          style={{ backgroundColor: `${sector.borderColor}15` }}
-                        >
-                          <Icon className="h-6 w-6" style={{ color: sector.borderColor }} />
-                        </div>
-                        <div>
-                          <CardTitle className="text-lg" style={{ color: 'hsl(153 79% 22%)' }}>
-                            {sector.title}
-                          </CardTitle>
-                          <p className="text-sm text-amber-700 font-tamil">{sector.titleTamil}</p>
-                        </div>
+                          className="h-full rounded-full transition-all duration-500"
+                          style={{ width: `${Math.min(industry.growth * 2, 100)}%`, backgroundColor: color }}
+                        ></div>
                       </div>
-                      <Badge className={`${sector.badgeColor} text-white text-xs`}>
-                        {sector.badge}
+                    </div>
+                    
+                    {/* Demand Badge */}
+                    <div className="flex items-center justify-between">
+                      <Badge 
+                        variant={industry.demand === 'Very High' ? 'destructive' : 'secondary'} 
+                        className="text-xs"
+                      >
+                        {industry.demand === 'Very High' ? '🔴' : '🟠'} {industry.demand}
                       </Badge>
+                      <span className="text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                        View Details →
+                      </span>
                     </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    {/* Sub-sectors */}
-                    <div className="flex flex-wrap gap-2">
-                      {sector.subSectors.map((sub, i) => (
-                        <Badge key={i} variant="outline" className="text-xs border-gray-300">
-                          {sub}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {/* Salary Range */}
-                    <div className="flex items-center gap-2 text-sm">
-                      <span className="font-semibold" style={{ color: sector.borderColor }}>💰 Salary:</span>
-                      <span className="text-gray-700">{sector.salaryRange}</span>
-                    </div>
-
-                    {/* Top Companies */}
-                    <div>
-                      <p className="text-sm font-semibold text-gray-600 mb-2">Top Companies Hiring:</p>
-                      <p className="text-sm text-gray-700">{sector.companies.join(' | ')}</p>
-                    </div>
-
-                    {/* Courses */}
-                    <div>
-                      <p className="text-sm font-semibold text-gray-600 mb-2">Courses to Consider:</p>
-                      <div className="flex flex-wrap gap-1">
-                        {sector.courses.map((course, i) => (
-                          <Badge key={i} variant="secondary" className="text-xs bg-gray-100">
-                            {course}
-                          </Badge>
+                    
+                    {/* Top Skills (collapsed) */}
+                    <div className="mt-4 pt-3 border-t border-slate-700">
+                      <div className="flex flex-wrap gap-1.5">
+                        {industry.topSkills.slice(0, 3).map((skill, i) => (
+                          <Badge key={i} variant="outline" className="text-[10px] px-2 py-0.5 border-slate-600 text-slate-300">{skill}</Badge>
                         ))}
-                      </div>
-                    </div>
-
-                    {/* TN Colleges */}
-                    <div>
-                      <p className="text-sm font-semibold text-gray-600 mb-2">TN Colleges:</p>
-                      <p className="text-sm text-gray-700">{sector.colleges.join(' | ')}</p>
-                    </div>
-
-                    {/* Career Paths */}
-                    <div>
-                      <p className="text-sm font-semibold text-gray-600 mb-2">Career Paths:</p>
-                      {sector.careerPaths.map((path, i) => (
-                        <p key={i} className="text-xs text-gray-600 flex items-center gap-1">
-                          <ChevronRight className="h-3 w-3" style={{ color: sector.borderColor }} />
-                          {path}
-                        </p>
-                      ))}
-                    </div>
-
-                    {/* Why Growing (if available) */}
-                    {sector.whyGrowing && (
-                      <div className="bg-amber-50 p-3 rounded-lg">
-                        <p className="text-sm font-semibold text-amber-800 mb-2">Why Growing:</p>
-                        <ul className="text-xs text-amber-700 space-y-1">
-                          {sector.whyGrowing.map((reason, i) => (
-                            <li key={i} className="flex items-center gap-2">
-                              <Star className="h-3 w-3 text-amber-500" />
-                              {reason}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* Section 2: Skills That Matter */}
-        <section>
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold" style={{ color: 'hsl(153 79% 22%)' }}>
-              🎯 Skills That Will Matter Most in 2026
-            </h2>
-            <p className="text-amber-700 font-tamil mt-2">2026-ல் மிக முக்கியமான திறன்கள்</p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Technical Skills */}
-            <Card className="bg-white">
-              <CardHeader className="border-b" style={{ backgroundColor: 'hsl(153 40% 95%)' }}>
-                <CardTitle className="text-lg flex items-center gap-2" style={{ color: 'hsl(153 79% 22%)' }}>
-                  <Code className="h-5 w-5" />
-                  Technical Skills
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-6 space-y-5">
-                {technicalSkills.map((skill, index) => {
-                  const Icon = getSkillIcon(index);
-                  return (
-                    <div key={index} className="space-y-2">
-                      <div className="flex items-start gap-3">
-                        <div className="p-2 rounded-lg" style={{ backgroundColor: 'hsl(153 40% 95%)' }}>
-                          <Icon className="h-4 w-4" style={{ color: 'hsl(153 79% 22%)' }} />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-sm" style={{ color: 'hsl(153 79% 22%)' }}>{skill.name}</h4>
-                          <p className="text-xs text-gray-600">{skill.description}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-xs text-gray-500 w-16">Demand:</span>
-                        <div className="flex-1">
-                          <Progress value={skill.demand} className="h-2" />
-                        </div>
-                        <span className="text-xs font-semibold" style={{ color: 'hsl(153 79% 22%)' }}>{skill.demand}%</span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </CardContent>
-            </Card>
-
-            {/* Soft Skills */}
-            <Card className="bg-white">
-              <CardHeader className="border-b" style={{ backgroundColor: 'hsl(48 100% 94%)' }}>
-                <CardTitle className="text-lg flex items-center gap-2 text-amber-800">
-                  <Users className="h-5 w-5" />
-                  Soft Skills
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-6 space-y-5">
-                {softSkills.map((skill, index) => {
-                  const Icon = getSoftSkillIcon(index);
-                  return (
-                    <div key={index} className="space-y-2">
-                      <div className="flex items-start gap-3">
-                        <div className="p-2 rounded-lg bg-amber-50">
-                          <Icon className="h-4 w-4 text-amber-700" />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-sm text-amber-800">{skill.name}</h4>
-                          <p className="text-xs text-gray-600">{skill.description}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-xs text-gray-500 w-16">Importance:</span>
-                        <div className="flex-1">
-                          <Progress value={skill.importance} className="h-2 [&>div]:bg-amber-500" />
-                        </div>
-                        <span className="text-xs font-semibold text-amber-700">{skill.importance}%</span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Section 3: Skill Roadmap by Stream */}
-        <section>
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold" style={{ color: 'hsl(153 79% 22%)' }}>
-              📍 Your Skill Roadmap Based on 12th Stream
-            </h2>
-            <p className="text-amber-700 font-tamil mt-2">உங்கள் 12-ஆம் வகுப்பு பிரிவின் அடிப்படையில் திறன் வழிகாட்டி</p>
-          </div>
-
-          <Card className="bg-white overflow-hidden">
-            <Tabs value={selectedStream} onValueChange={(v) => setSelectedStream(v as keyof typeof streamRoadmaps)}>
-              <TabsList className="w-full justify-start rounded-none border-b bg-gray-50 h-auto flex-wrap">
-                <TabsTrigger value="pcm" className="data-[state=active]:bg-primary data-[state=active]:text-white px-6 py-3">
-                  PCM (Maths)
-                </TabsTrigger>
-                <TabsTrigger value="pcb" className="data-[state=active]:bg-primary data-[state=active]:text-white px-6 py-3">
-                  PCB (Biology)
-                </TabsTrigger>
-                <TabsTrigger value="commerce" className="data-[state=active]:bg-primary data-[state=active]:text-white px-6 py-3">
-                  Commerce
-                </TabsTrigger>
-                <TabsTrigger value="arts" className="data-[state=active]:bg-primary data-[state=active]:text-white px-6 py-3">
-                  Arts
-                </TabsTrigger>
-              </TabsList>
-
-              {Object.entries(streamRoadmaps).map(([key, data]) => (
-                <TabsContent key={key} value={key} className="p-6 space-y-6 mt-0">
-                  <h3 className="text-xl font-bold" style={{ color: 'hsl(153 79% 22%)' }}>{data.title}</h3>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {/* Career Paths */}
-                    <div className="bg-gray-50 p-4 rounded-xl">
-                      <h4 className="font-semibold mb-3 flex items-center gap-2" style={{ color: 'hsl(153 79% 22%)' }}>
-                        <Target className="h-4 w-4" />
-                        Best Career Paths
-                      </h4>
-                      <ul className="space-y-2">
-                        {data.careerPaths.map((path, i) => (
-                          <li key={i} className="text-sm text-gray-700 flex items-center gap-2">
-                            <ChevronRight className="h-3 w-3 text-green-600" />
-                            {path}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Recommended Courses */}
-                    <div className="bg-gray-50 p-4 rounded-xl">
-                      <h4 className="font-semibold mb-3 flex items-center gap-2" style={{ color: 'hsl(153 79% 22%)' }}>
-                        <BookOpen className="h-4 w-4" />
-                        Recommended Courses
-                      </h4>
-                      <ul className="space-y-2">
-                        {data.courses.map((course, i) => (
-                          <li key={i} className="text-sm text-gray-700 flex items-center gap-2">
-                            <ChevronRight className="h-3 w-3 text-amber-600" />
-                            {course}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Skills Roadmap */}
-                    <div className="bg-gray-50 p-4 rounded-xl">
-                      <h4 className="font-semibold mb-3 flex items-center gap-2" style={{ color: 'hsl(153 79% 22%)' }}>
-                        <GraduationCap className="h-4 w-4" />
-                        Skills to Learn
-                      </h4>
-                      <div className="space-y-3">
-                        {data.skillsRoadmap.map((item, i) => (
-                          <div key={i} className="flex items-start gap-2">
-                            <Badge variant="outline" className="text-xs shrink-0" style={{ borderColor: 'hsl(153 79% 22%)', color: 'hsl(153 79% 22%)' }}>
-                              {item.year}
-                            </Badge>
-                            <span className="text-xs text-gray-700">{item.skills}</span>
-                          </div>
-                        ))}
+                        {industry.topSkills.length > 3 && (
+                          <Badge variant="outline" className="text-[10px] px-2 py-0.5 border-slate-600 text-slate-300">+{industry.topSkills.length - 3}</Badge>
+                        )}
                       </div>
                     </div>
                   </div>
-                </TabsContent>
-              ))}
-            </Tabs>
-          </Card>
-        </section>
-
-        {/* Section 4: Salary Insights */}
-        <section>
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold" style={{ color: 'hsl(153 79% 22%)' }}>
-              💰 Expected Salaries by Industry (2026)
-            </h2>
-            <p className="text-amber-700 font-tamil mt-2">துறை வாரியாக எதிர்பார்க்கப்படும் சம்பளம்</p>
+                </div>
+              );
+            })}
           </div>
-
-          <Card className="bg-white overflow-hidden">
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow style={{ backgroundColor: 'hsl(153 40% 95%)' }}>
-                    <TableHead className="font-bold" style={{ color: 'hsl(153 79% 22%)' }}>Industry</TableHead>
-                    <TableHead className="font-bold" style={{ color: 'hsl(153 79% 22%)' }}>Entry Level</TableHead>
-                    <TableHead className="font-bold" style={{ color: 'hsl(153 79% 22%)' }}>5 Years Experience</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {salaryData.map((row, index) => (
-                    <TableRow key={index} className="hover:bg-gray-50">
-                      <TableCell className="font-medium">
-                        <span className="mr-2">{row.icon}</span>
-                        {row.industry}
-                      </TableCell>
-                      <TableCell className="text-gray-700">{row.entryLevel}</TableCell>
-                      <TableCell className="font-semibold" style={{ color: 'hsl(153 79% 22%)' }}>{row.fiveYearsExp}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-            <div className="p-4 border-t bg-amber-50">
-              <p className="text-sm text-center text-amber-800">
-                <strong>Note:</strong> LPA = Lakhs Per Annum | சம்பளம் அனுபவம் மற்றும் நிறுவனத்தைப் பொறுத்து மாறுபடும்
-              </p>
-            </div>
-          </Card>
+          )}
         </section>
 
-        {/* Section 5: Action Buttons */}
-        <section className="pb-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card 
-              className="bg-white hover:shadow-xl transition-all cursor-pointer hover:-translate-y-1"
-              onClick={() => navigate('/career-assessment/12th-learners')}
-            >
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: 'hsl(153 40% 95%)' }}>
-                  <Target className="h-8 w-8" style={{ color: 'hsl(153 79% 22%)' }} />
+        {/* Top In-Demand Jobs Table */}
+        <section>
+          <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
+            <div className="flex items-center gap-2">
+              <Briefcase className="h-6 w-6 text-emerald-400" />
+              <h2 className="text-2xl font-bold text-white">Most In-Demand Jobs - 2025</h2>
+            </div>
+            <span className="text-sm text-slate-400">
+              Showing {filteredJobs.length} of {marketData.topJobs.length} jobs
+            </span>
+          </div>
+          {filteredJobs.length === 0 ? (
+            <div className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl text-center border border-slate-700/50">
+              <Briefcase className="h-12 w-12 text-slate-500 mx-auto mb-4" />
+              <h3 className="font-semibold text-lg mb-2 text-white">No jobs match your filters</h3>
+              <p className="text-slate-400 mb-4">Try adjusting your filter criteria</p>
+              <Button variant="outline" onClick={clearFilters} className="border-slate-600 text-slate-200 hover:bg-slate-700">Clear Filters</Button>
+            </div>
+          ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredJobs.map((job, index) => (
+              <div 
+                key={job.rank} 
+                className="bg-slate-800/60 backdrop-blur-sm overflow-hidden rounded-2xl border border-slate-700/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+              >
+                <div className="p-5">
+                  {/* Rank Badge */}
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="w-8 h-8 rounded-full bg-emerald-500 text-white text-sm font-bold flex items-center justify-center">
+                      {index + 1}
+                    </div>
+                    <Badge className={`${getDemandColor(job.demand)} text-white text-xs`}>
+                      {job.demand === 'Very High' ? '🔴' : job.demand === 'High' ? '🟠' : '🟡'} {job.demand}
+                    </Badge>
+                  </div>
+                  
+                  {/* Job Role */}
+                  <h3 className="font-semibold text-base text-white mb-4">{job.role}</h3>
+                  
+                  {/* Stats */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between p-2.5 bg-slate-700/50 rounded-lg">
+                      <span className="text-xs text-slate-400 flex items-center gap-1.5">
+                        <IndianRupee className="h-3.5 w-3.5" />
+                        Salary
+                      </span>
+                      <span className="font-semibold text-sm text-orange-400">{job.salaryRange}</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2.5 bg-slate-700/50 rounded-lg">
+                      <span className="text-xs text-slate-400 flex items-center gap-1.5">
+                        <Briefcase className="h-3.5 w-3.5" />
+                        Openings
+                      </span>
+                      <span className="font-semibold text-sm text-white">{job.openings}</span>
+                    </div>
+                  </div>
+                  
+                  {/* Hover Action */}
+                  <div className="mt-4 pt-3 border-t border-slate-700 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-xs text-orange-400 font-medium">Explore opportunities →</span>
+                  </div>
                 </div>
-                <h3 className="font-bold text-lg mb-2" style={{ color: 'hsl(153 79% 22%)' }}>Take Career Assessment</h3>
-                <p className="text-sm text-gray-600 mb-4">Discover your ideal career path with AI guidance</p>
-                <Button className="w-full bg-primary hover:bg-primary/90">
-                  Start Now
-                </Button>
-              </CardContent>
-            </Card>
+              </div>
+            ))}
+          </div>
+          )}
+        </section>
 
-            <Card 
-              className="bg-white hover:shadow-xl transition-all cursor-pointer hover:-translate-y-1"
-              onClick={() => navigate('/college-search')}
-            >
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center bg-amber-50">
-                  <Building2 className="h-8 w-8 text-amber-700" />
-                </div>
-                <h3 className="font-bold text-lg mb-2 text-amber-800">Find Colleges</h3>
-                <p className="text-sm text-gray-600 mb-4">Explore top colleges in Tamil Nadu</p>
-                <Button variant="outline" className="w-full border-amber-500 text-amber-700 hover:bg-amber-50">
-                  Explore
-                </Button>
-              </CardContent>
-            </Card>
+        {/* Salary Comparison Chart */}
+        <section>
+          <div className="flex items-center gap-2 mb-6">
+            <LineChart className="h-6 w-6 text-amber-400" />
+            <h2 className="text-2xl font-bold text-white">Salary Trends by Experience</h2>
+          </div>
+          <div className="bg-slate-800/60 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/50">
+            <ResponsiveContainer width="100%" height={400}>
+              <RechartsLineChart data={salaryData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
+                <XAxis dataKey="experience" tick={{ fill: '#94a3b8' }} />
+                <YAxis tick={{ fill: '#94a3b8' }} label={{ value: 'Salary (LPA)', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                <Tooltip 
+                  contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569', borderRadius: '8px', color: '#fff' }}
+                  formatter={(value) => [`₹${value} LPA`, '']}
+                  labelStyle={{ color: '#fff' }}
+                />
+                <Legend wrapperStyle={{ color: '#94a3b8' }} />
+                <Line type="monotone" dataKey="IT" stroke="#FF6B35" strokeWidth={3} dot={{ fill: '#FF6B35', strokeWidth: 2, r: 6 }} />
+                <Line type="monotone" dataKey="Healthcare" stroke="#E91E63" strokeWidth={3} dot={{ fill: '#E91E63', strokeWidth: 2, r: 6 }} />
+                <Line type="monotone" dataKey="Finance" stroke="#10b981" strokeWidth={3} dot={{ fill: '#10b981', strokeWidth: 2, r: 6 }} />
+                <Line type="monotone" dataKey="Manufacturing" stroke="#FFB800" strokeWidth={3} dot={{ fill: '#FFB800', strokeWidth: 2, r: 6 }} />
+              </RechartsLineChart>
+            </ResponsiveContainer>
+          </div>
+        </section>
 
-            <Card 
-              className="bg-white hover:shadow-xl transition-all cursor-pointer hover:-translate-y-1"
-              onClick={() => navigate('/entrance-exams')}
-            >
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center bg-blue-50">
-                  <FileText className="h-8 w-8 text-blue-600" />
+        {/* Industry Comparison Charts */}
+        <section>
+          <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
+            <div className="flex items-center gap-2">
+              <BarChart3 className="h-6 w-6 text-blue-400" />
+              <h2 className="text-2xl font-bold text-white">Industry Comparison</h2>
+            </div>
+            <Tabs value={selectedChartView} onValueChange={(v) => setSelectedChartView(v as 'line' | 'bar')}>
+              <TabsList className="bg-slate-800/50 border border-slate-700">
+                <TabsTrigger value="bar" className="gap-2 text-slate-300 data-[state=active]:bg-slate-700 data-[state=active]:text-white">
+                  <BarChart3 className="h-4 w-4" />
+                  Bar Chart
+                </TabsTrigger>
+                <TabsTrigger value="line" className="gap-2 text-slate-300 data-[state=active]:bg-slate-700 data-[state=active]:text-white">
+                  <LineChart className="h-4 w-4" />
+                  Line Chart
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+          <div className="bg-slate-800/60 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/50">
+            <p className="text-sm text-slate-400 mb-4">
+              Compare growth rates and job openings across top industries
+            </p>
+            <ResponsiveContainer width="100%" height={350}>
+              {selectedChartView === 'bar' ? (
+                <BarChart data={comparisonChartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
+                  <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 12 }} />
+                  <YAxis yAxisId="left" tick={{ fill: '#94a3b8' }} label={{ value: 'Growth %', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <YAxis yAxisId="right" orientation="right" tick={{ fill: '#94a3b8' }} label={{ value: 'Openings (K)', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569', borderRadius: '8px', color: '#fff' }}
+                    formatter={(value, name) => {
+                      if (name === 'growth') return [`${value}%`, 'Growth Rate'];
+                      if (name === 'openings') return [`${value}K`, 'Job Openings'];
+                      return [value, name];
+                    }}
+                    labelFormatter={(label) => {
+                      const item = comparisonChartData.find(d => d.name === label);
+                      return item?.fullName || label;
+                    }}
+                    labelStyle={{ color: '#fff' }}
+                  />
+                  <Legend wrapperStyle={{ color: '#94a3b8' }} />
+                  <Bar yAxisId="left" dataKey="growth" fill="#FF6B35" name="Growth %" radius={[4, 4, 0, 0]} />
+                  <Bar yAxisId="right" dataKey="openings" fill="#10b981" name="Openings (K)" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              ) : (
+                <RechartsLineChart data={comparisonChartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
+                  <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 12 }} />
+                  <YAxis yAxisId="left" tick={{ fill: '#94a3b8' }} label={{ value: 'Growth %', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <YAxis yAxisId="right" orientation="right" tick={{ fill: '#94a3b8' }} label={{ value: 'Openings (K)', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569', borderRadius: '8px', color: '#fff' }}
+                    formatter={(value, name) => {
+                      if (name === 'growth') return [`${value}%`, 'Growth Rate'];
+                      if (name === 'openings') return [`${value}K`, 'Job Openings'];
+                      return [value, name];
+                    }}
+                    labelFormatter={(label) => {
+                      const item = comparisonChartData.find(d => d.name === label);
+                      return item?.fullName || label;
+                    }}
+                    labelStyle={{ color: '#fff' }}
+                  />
+                  <Legend wrapperStyle={{ color: '#94a3b8' }} />
+                  <Line yAxisId="left" type="monotone" dataKey="growth" stroke="#FF6B35" strokeWidth={3} dot={{ fill: '#FF6B35', strokeWidth: 2, r: 6 }} name="Growth %" />
+                  <Line yAxisId="right" type="monotone" dataKey="openings" stroke="#10b981" strokeWidth={3} dot={{ fill: '#10b981', strokeWidth: 2, r: 6 }} name="Openings (K)" />
+                </RechartsLineChart>
+              )}
+            </ResponsiveContainer>
+          </div>
+        </section>
+
+        {/* Skills in Demand */}
+        <section>
+          <div className="flex items-center gap-2 mb-6">
+            <Target className="h-6 w-6 text-orange-400" />
+            <h2 className="text-2xl font-bold text-white">Most Sought-After Skills</h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {marketData.technicalSkills.map((skill, index) => (
+              <div 
+                key={index} 
+                className={`p-4 rounded-xl border hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center ${
+                  skill.status === 'Hot' 
+                    ? 'bg-orange-500/10 border-orange-500/30' 
+                    : 'bg-slate-800/60 border-slate-700/50'
+                }`}
+              >
+                <div className="flex items-center justify-center gap-1.5 mb-2">
+                  {skill.status === 'Hot' ? (
+                    <Flame className="h-4 w-4 text-orange-400" />
+                  ) : (
+                    <TrendingUp className="h-4 w-4 text-emerald-400" />
+                  )}
+                  <Badge 
+                    variant="outline" 
+                    className={`text-[10px] px-1.5 py-0 ${
+                      skill.status === 'Hot' ? 'text-orange-400 border-orange-500/30' : 'text-emerald-400 border-emerald-500/30'
+                    }`}
+                  >
+                    {skill.status}
+                  </Badge>
                 </div>
-                <h3 className="font-bold text-lg mb-2 text-blue-800">Check Entrance Exams</h3>
-                <p className="text-sm text-gray-600 mb-4">View all entrance exams and deadlines</p>
-                <Button variant="outline" className="w-full border-blue-500 text-blue-700 hover:bg-blue-50">
-                  View All
+                <h4 className="font-semibold text-sm text-white">{skill.name}</h4>
+              </div>
+            ))}
+            {softSkills.map((skill, index) => (
+              <div 
+                key={`soft-${index}`} 
+                className="p-4 rounded-xl border bg-blue-500/10 border-blue-500/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center"
+              >
+                <div className="flex items-center justify-center gap-1.5 mb-2">
+                  <CheckCircle2 className="h-4 w-4 text-blue-400" />
+                  <Badge variant="outline" className="text-[10px] px-1.5 py-0 text-blue-400 border-blue-500/30">
+                    Essential
+                  </Badge>
+                </div>
+                <h4 className="font-semibold text-sm text-white">{skill.name}</h4>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Future Job Predictions */}
+        <section>
+          <div className="flex items-center gap-2 mb-6">
+            <Rocket className="h-6 w-6 text-purple-400" />
+            <h2 className="text-2xl font-bold text-white">Career Outlook 2025-2030</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-slate-800/60 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/50 border-t-4 border-t-emerald-500">
+              <div className="flex items-center gap-2 mb-4">
+                <TrendingUp className="h-5 w-5 text-emerald-400" />
+                <h3 className="font-semibold text-emerald-400">Rising Careers</h3>
+              </div>
+              <ul className="space-y-3">
+                {marketData.futurePredictions.rising.map((item, index) => (
+                  <li key={index} className="flex items-center gap-2 text-sm">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
+                    <span className="flex-1 text-slate-200">{item.career}</span>
+                    <Badge variant="outline" className="text-emerald-400 border-emerald-500/30 text-xs">
+                      {item.growth}
+                    </Badge>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-slate-800/60 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/50 border-t-4 border-t-blue-500">
+              <div className="flex items-center gap-2 mb-4">
+                <Laptop className="h-5 w-5 text-blue-400" />
+                <h3 className="font-semibold text-blue-400">Stable Careers</h3>
+              </div>
+              <ul className="space-y-3">
+                {marketData.futurePredictions.stable.map((item, index) => (
+                  <li key={index} className="flex items-center gap-2 text-sm">
+                    <span className="text-blue-400">➡️</span>
+                    <span className="flex-1 text-slate-200">{item.career}</span>
+                    <span className="text-xs text-slate-400">{item.note}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-slate-800/60 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/50 border-t-4 border-t-amber-500">
+              <div className="flex items-center gap-2 mb-4">
+                <AlertTriangle className="h-5 w-5 text-amber-400" />
+                <h3 className="font-semibold text-amber-400">Transforming Careers</h3>
+              </div>
+              <ul className="space-y-3">
+                {marketData.futurePredictions.declining.map((item, index) => (
+                  <li key={index} className="flex items-center gap-2 text-sm">
+                    <span className="text-amber-400">⚠️</span>
+                    <span className="flex-1 text-slate-200">{item.career}</span>
+                    <span className="text-xs text-slate-400">{item.risk}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Regional Insights - Tamil Nadu */}
+        <section>
+          <div className="flex items-center gap-2 mb-6">
+            <MapPin className="h-6 w-6 text-orange-400" />
+            <h2 className="text-2xl font-bold text-white">Tamil Nadu Job Market</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-slate-800/60 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/50">
+              <h3 className="font-semibold text-lg mb-4 text-white">Top Hiring Cities</h3>
+              <div className="space-y-4">
+                {marketData.tamilNaduData.cities.map((city, index) => (
+                  <div key={index} className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="w-6 h-6 rounded-full bg-emerald-500 text-white text-xs flex items-center justify-center font-semibold">
+                        {index + 1}
+                      </span>
+                      <span className="font-medium text-white">{city.name}</span>
+                    </div>
+                    <Badge variant="secondary" className="bg-slate-700 text-slate-200">{city.openings} openings</Badge>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-slate-800/60 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/50">
+              <h3 className="font-semibold text-lg mb-4 text-white">Top Industries in TN</h3>
+              <ResponsiveContainer width="100%" height={250}>
+                <PieChart>
+                  <Pie
+                    data={marketData.tamilNaduData.industries}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={100}
+                    paddingAngle={2}
+                    dataKey="percentage"
+                    label={({ name, percentage }) => `${name}: ${percentage}%`}
+                    labelLine={false}
+                  >
+                    {marketData.tamilNaduData.industries.map((_, index) => (
+                      <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip 
+                    formatter={(value) => [`${value}%`, 'Share']} 
+                    contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569', borderRadius: '8px', color: '#fff' }}
+                    labelStyle={{ color: '#fff' }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer CTA */}
+        <section className="py-8">
+          <div className="bg-gradient-to-r from-emerald-900 to-emerald-800 rounded-2xl shadow-xl overflow-hidden relative">
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50"></div>
+            <div className="p-8 text-center relative z-10">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Target className="h-6 w-6 text-amber-400" />
+                <h3 className="text-2xl font-bold text-white">Ready to start your career journey?</h3>
+              </div>
+              <p className="text-white/70 mb-6">Take the next step towards your dream career</p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button 
+                  className="bg-orange-500 hover:bg-orange-600 text-white"
+                  onClick={() => navigate('/career-assessment/12th-learners')}
+                >
+                  Take Career Assessment
                 </Button>
-              </CardContent>
-            </Card>
+                <Button 
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10"
+                  onClick={() => navigate('/career-assessment/colleges')}
+                >
+                  Explore Colleges
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="border-amber-400 text-amber-400 hover:bg-amber-400/10"
+                  onClick={() => navigate('/career-assessment/chat')}
+                >
+                  Chat with AI
+                </Button>
+              </div>
+            </div>
           </div>
         </section>
       </div>
