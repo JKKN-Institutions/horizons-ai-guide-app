@@ -109,6 +109,77 @@ export const EntranceExams = () => {
           </div>
         </div>
 
+        {/* Quick Reference Section */}
+        <div className="mt-6 grid md:grid-cols-2 gap-4 text-left">
+          {/* Stream-wise Guide */}
+          <div className="bg-white rounded-xl p-4 border border-[#C8E6C9] shadow-sm">
+            <h3 className="font-bold text-[#1B5E20] mb-3 flex items-center gap-2">
+              📚 Stream-wise Exam Guide
+              <span className="text-xs text-[#B8860B] font-tamil">(உங்கள் பிரிவுக்கான தேர்வுகள்)</span>
+            </h3>
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center gap-2 p-2 bg-[#E3F2FD] rounded-lg">
+                <span className="font-semibold text-[#1976D2] min-w-[100px]">PCM (Maths)</span>
+                <span className="text-[#374151]">TNEA, JEE, VITEEE, SRMJEEE, BITSAT</span>
+              </div>
+              <div className="flex items-center gap-2 p-2 bg-[#FFEBEE] rounded-lg">
+                <span className="font-semibold text-[#D32F2F] min-w-[100px]">PCB (Biology)</span>
+                <span className="text-[#374151]">NEET, TNAU, TANUVAS, Nursing</span>
+              </div>
+              <div className="flex items-center gap-2 p-2 bg-[#E8F5E9] rounded-lg">
+                <span className="font-semibold text-[#2E7D32] min-w-[100px]">PCMB (Both)</span>
+                <span className="text-[#374151]">All exams eligible! Best flexibility ✓</span>
+              </div>
+              <div className="flex items-center gap-2 p-2 bg-[#F3E5F5] rounded-lg">
+                <span className="font-semibold text-[#7B1FA2] min-w-[100px]">Commerce</span>
+                <span className="text-[#374151]">CA/CS/CMA, CLAT, BBA/B.Com Direct</span>
+              </div>
+              <div className="flex items-center gap-2 p-2 bg-[#FFF8E1] rounded-lg">
+                <span className="font-semibold text-[#B8860B] min-w-[100px]">Arts</span>
+                <span className="text-[#374151]">CLAT, NIFT, BA/BSW Direct Admission</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Priority Exams */}
+          <div className="bg-white rounded-xl p-4 border border-[#FFE082] shadow-sm">
+            <h3 className="font-bold text-[#B8860B] mb-3 flex items-center gap-2">
+              ⭐ Priority Exams for TN Students
+              <span className="text-xs text-[#2E7D32] font-tamil">(முக்கிய தேர்வுகள்)</span>
+            </h3>
+            <div className="space-y-2 text-sm">
+              <div className="flex items-start gap-2 p-2 bg-gradient-to-r from-[#E3F2FD] to-white rounded-lg border-l-4 border-[#1976D2]">
+                <span className="text-lg">⚙️</span>
+                <div>
+                  <span className="font-semibold text-[#1976D2]">Engineering:</span>
+                  <span className="text-[#374151]"> TNEA (Must!), JEE Main</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2 p-2 bg-gradient-to-r from-[#FFEBEE] to-white rounded-lg border-l-4 border-[#D32F2F]">
+                <span className="text-lg">🏥</span>
+                <div>
+                  <span className="font-semibold text-[#D32F2F]">Medical:</span>
+                  <span className="text-[#374151]"> NEET (Only option! No alternative)</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2 p-2 bg-gradient-to-r from-[#E8F5E9] to-white rounded-lg border-l-4 border-[#2E7D32]">
+                <span className="text-lg">🌾</span>
+                <div>
+                  <span className="font-semibold text-[#2E7D32]">Agriculture:</span>
+                  <span className="text-[#374151]"> TNAU (No exam - 12th marks only!)</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2 p-2 bg-gradient-to-r from-[#F3E5F5] to-white rounded-lg border-l-4 border-[#7B1FA2]">
+                <span className="text-lg">💼</span>
+                <div>
+                  <span className="font-semibold text-[#7B1FA2]">Law:</span>
+                  <span className="text-[#374151]"> CLAT (For TNNLU Trichy)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Action Buttons */}
         <div className="flex flex-wrap justify-center gap-3 mt-4">
           <Button
