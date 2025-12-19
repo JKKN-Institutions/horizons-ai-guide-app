@@ -25,13 +25,13 @@ const institutions = [
   },
   { 
     name: "JKKN College of Pharmacy", 
-    url: "https://jkkncp.ac.in/",
+    url: "https://pharmacy.jkkn.ac.in/",
     icon: FlaskConical,
     color: "from-purple-500 to-violet-600"
   },
   { 
     name: "JKKN Dental College and Hospital", 
-    url: "https://jkkndch.ac.in/",
+    url: "https://dental.jkkn.ac.in/",
     icon: Stethoscope,
     color: "from-rose-500 to-pink-600"
   },
@@ -43,7 +43,7 @@ const institutions = [
   },
   { 
     name: "JKKN College of Allied Health Science", 
-    url: "https://jkknahs.ac.in/",
+    url: "https://ahs.jkkn.ac.in/",
     icon: Stethoscope,
     color: "from-teal-500 to-cyan-600"
   },
