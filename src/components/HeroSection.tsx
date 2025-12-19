@@ -69,7 +69,7 @@ const HeroSection = () => {
                 onClick={() => navigate("/register/employer")}
               >
                 <Briefcase className="w-5 h-5 mr-2" />
-                Register as Employer
+                Register as Employee
               </Button>
             </div>
 
