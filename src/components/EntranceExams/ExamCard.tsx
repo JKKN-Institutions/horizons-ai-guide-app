@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { EntranceExam } from './types';
 import { examCategories } from './examData';
+import { generateStudyPlannerPDF } from './generateStudyPlannerPDF';
 import { 
   ExternalLink, 
   Calendar, 
@@ -15,7 +16,8 @@ import {
   Bookmark,
   BookmarkCheck,
   Star,
-  MapPin
+  MapPin,
+  Download
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
@@ -34,6 +36,14 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
     toast({
       title: "Reminder Set! 🔔",
       description: `You'll be notified about ${exam.name} important dates.`,
+    });
+  };
+
+  const handleDownloadStudyPlan = () => {
+    generateStudyPlannerPDF(exam);
+    toast({
+      title: "Study Planner Downloaded! 📚",
+      description: `${exam.name} preparation guide saved as PDF.`,
     });
   };
 
@@ -222,13 +232,22 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
             Reminder
           </Button>
           <Button 
+            variant="outline"
             size="sm" 
-            className="flex-1 bg-gradient-to-r from-[#F59E0B] to-[#D97706] hover:from-[#D97706] hover:to-[#B8860B] text-white"
-            onClick={() => window.open(exam.officialWebsite, '_blank')}
+            className="flex-1 border-[#1976D2] text-[#1976D2] hover:bg-[#E3F2FD]"
+            onClick={handleDownloadStudyPlan}
           >
-            Apply Now <ExternalLink className="h-3 w-3 ml-1" />
+            <Download className="h-3 w-3 mr-1" />
+            Study Plan
           </Button>
         </div>
+        <Button 
+          size="sm" 
+          className="w-full bg-gradient-to-r from-[#F59E0B] to-[#D97706] hover:from-[#D97706] hover:to-[#B8860B] text-white"
+          onClick={() => window.open(exam.officialWebsite, '_blank')}
+        >
+          Apply Now <ExternalLink className="h-3 w-3 ml-1" />
+        </Button>
       </CardContent>
     </Card>
   );
