@@ -2,18 +2,28 @@ import { useState, useMemo } from 'react';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Search, GraduationCap, FileText, Building2, Calendar, Scale } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Search, GraduationCap, FileText, Building2, Calendar, Scale, MapPin, Bookmark, CalendarDays } from 'lucide-react';
 import { ExamCard } from './ExamCard';
 import { ExamCompare } from './ExamCompare';
 import { PreparationTipsSection } from './PreparationTipsSection';
-import { examCategories, entranceExams, getExamsByCategory } from './examData';
-import { ExamCategory } from './types';
+import { ExamCalendar } from './ExamCalendar';
+import { examCategories, entranceExams, getExamsByCategoryAndState, getStatesWithExams } from './examData';
+import { ExamCategory, IndianState } from './types';
+import { useBookmarkedExams } from './useBookmarkedExams';
 import { cn } from '@/lib/utils';
 
 export const EntranceExams = () => {
   const [activeCategory, setActiveCategory] = useState<ExamCategory>('engineering');
+  const [selectedState, setSelectedState] = useState<IndianState>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [showCompare, setShowCompare] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [showBookmarksOnly, setShowBookmarksOnly] = useState(false);
+  
+  const { isBookmarked, toggleBookmark, getBookmarkedCount } = useBookmarkedExams();
+
+  const availableStates = useMemo(() => getStatesWithExams(), []);
 
   const stats = useMemo(() => ({
     total: entranceExams.length,
@@ -23,7 +33,7 @@ export const EntranceExams = () => {
   }), []);
 
   const filteredExams = useMemo(() => {
-    let exams = getExamsByCategory(activeCategory);
+    let exams = getExamsByCategoryAndState(activeCategory, selectedState);
     
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
@@ -34,16 +44,22 @@ export const EntranceExams = () => {
       );
     }
     
+    if (showBookmarksOnly) {
+      exams = exams.filter(exam => isBookmarked(exam.id));
+    }
+    
     return exams;
-  }, [activeCategory, searchQuery]);
+  }, [activeCategory, selectedState, searchQuery, showBookmarksOnly, isBookmarked]);
 
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     examCategories.forEach(cat => {
-      counts[cat.id] = getExamsByCategory(cat.id).length;
+      counts[cat.id] = getExamsByCategoryAndState(cat.id, selectedState).length;
     });
     return counts;
-  }, []);
+  }, [selectedState]);
+
+  const bookmarkedCount = getBookmarkedCount();
 
   return (
     <div className="space-y-6">
@@ -91,14 +107,65 @@ export const EntranceExams = () => {
           </div>
         </div>
 
-        {/* Compare Button */}
-        <Button
-          onClick={() => setShowCompare(true)}
-          className="mt-4 bg-gradient-to-r from-[#1976D2] to-[#1565C0] hover:from-[#1565C0] hover:to-[#0D47A1] text-white"
-        >
-          <Scale className="h-4 w-4 mr-2" />
-          Compare Exams
-        </Button>
+        {/* Action Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mt-4">
+          <Button
+            onClick={() => setShowCompare(true)}
+            className="bg-gradient-to-r from-[#1976D2] to-[#1565C0] hover:from-[#1565C0] hover:to-[#0D47A1] text-white"
+          >
+            <Scale className="h-4 w-4 mr-2" />
+            Compare Exams
+          </Button>
+          <Button
+            onClick={() => setShowCalendar(true)}
+            className="bg-gradient-to-r from-[#7B1FA2] to-[#6A1B9A] hover:from-[#6A1B9A] hover:to-[#4A148C] text-white"
+          >
+            <CalendarDays className="h-4 w-4 mr-2" />
+            Exam Calendar
+          </Button>
+          <Button
+            variant={showBookmarksOnly ? "default" : "outline"}
+            onClick={() => setShowBookmarksOnly(!showBookmarksOnly)}
+            className={cn(
+              showBookmarksOnly 
+                ? "bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white" 
+                : "border-[#F59E0B] text-[#F59E0B] hover:bg-[#FFF8E1]"
+            )}
+          >
+            <Bookmark className="h-4 w-4 mr-2" />
+            Saved ({bookmarkedCount})
+          </Button>
+        </div>
+      </div>
+
+      {/* State Filter */}
+      <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex items-center gap-2">
+          <MapPin className="h-4 w-4 text-[#2E7D32]" />
+          <span className="text-sm font-medium text-[#1F2937]">Filter by State:</span>
+        </div>
+        <Select value={selectedState} onValueChange={(value) => setSelectedState(value as IndianState)}>
+          <SelectTrigger className="w-[200px] border-[#C8E6C9] focus:border-[#2E7D32]">
+            <SelectValue placeholder="Select State" />
+          </SelectTrigger>
+          <SelectContent>
+            {availableStates.map((state) => (
+              <SelectItem key={state.id} value={state.id}>
+                {state.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        {selectedState !== 'all' && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setSelectedState('all')}
+            className="text-[#2E7D32] hover:text-[#1B5E20]"
+          >
+            Clear Filter
+          </Button>
+        )}
       </div>
 
       {/* Category Sub-tabs */}
@@ -155,18 +222,48 @@ export const EntranceExams = () => {
       {/* Exams Grid */}
       {filteredExams.length === 0 ? (
         <div className="text-center py-12 bg-white rounded-xl border border-[#C8E6C9] shadow-md">
-          <p className="text-lg text-[#4B5563]">No exams found matching your search</p>
-          <button 
-            className="mt-4 text-[#2E7D32] hover:underline"
-            onClick={() => setSearchQuery('')}
-          >
-            Clear search
-          </button>
+          <p className="text-lg text-[#4B5563]">
+            {showBookmarksOnly 
+              ? "No saved exams in this category"
+              : "No exams found matching your criteria"
+            }
+          </p>
+          <div className="flex flex-wrap justify-center gap-2 mt-4">
+            {searchQuery && (
+              <button 
+                className="text-[#2E7D32] hover:underline"
+                onClick={() => setSearchQuery('')}
+              >
+                Clear search
+              </button>
+            )}
+            {selectedState !== 'all' && (
+              <button 
+                className="text-[#2E7D32] hover:underline"
+                onClick={() => setSelectedState('all')}
+              >
+                Show all states
+              </button>
+            )}
+            {showBookmarksOnly && (
+              <button 
+                className="text-[#2E7D32] hover:underline"
+                onClick={() => setShowBookmarksOnly(false)}
+              >
+                Show all exams
+              </button>
+            )}
+          </div>
         </div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredExams.map((exam) => (
-            <ExamCard key={exam.id} exam={exam} />
+            <ExamCard 
+              key={exam.id} 
+              exam={exam} 
+              isBookmarked={isBookmarked(exam.id)}
+              onToggleBookmark={toggleBookmark}
+            />
           ))}
         </div>
       )}
@@ -184,6 +281,9 @@ export const EntranceExams = () => {
 
       {/* Compare Modal */}
       <ExamCompare isOpen={showCompare} onClose={() => setShowCompare(false)} />
+      
+      {/* Calendar Modal */}
+      <ExamCalendar isOpen={showCalendar} onClose={() => setShowCalendar(false)} />
     </div>
   );
 };

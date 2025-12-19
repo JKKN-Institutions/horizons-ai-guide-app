@@ -21,6 +21,7 @@ export interface EntranceExam {
   syllabusUrl?: string;
   category: ExamCategory;
   preparationTips?: PreparationTips;
+  state?: IndianState; // For state-level filtering
 }
 
 export interface PreparationTips {
@@ -37,6 +38,44 @@ export type ExamCategory =
   | 'design'
   | 'agriculture'
   | 'other';
+
+export type IndianState = 
+  | 'all'
+  | 'andhra-pradesh'
+  | 'assam'
+  | 'bihar'
+  | 'chhattisgarh'
+  | 'delhi'
+  | 'goa'
+  | 'gujarat'
+  | 'haryana'
+  | 'himachal-pradesh'
+  | 'jharkhand'
+  | 'karnataka'
+  | 'kerala'
+  | 'madhya-pradesh'
+  | 'maharashtra'
+  | 'manipur'
+  | 'meghalaya'
+  | 'mizoram'
+  | 'nagaland'
+  | 'odisha'
+  | 'punjab'
+  | 'rajasthan'
+  | 'sikkim'
+  | 'tamil-nadu'
+  | 'telangana'
+  | 'tripura'
+  | 'uttar-pradesh'
+  | 'uttarakhand'
+  | 'west-bengal'
+  | 'national';
+
+export interface StateInfo {
+  id: IndianState;
+  label: string;
+  shortCode: string;
+}
 
 export interface CategoryInfo {
   id: ExamCategory;
