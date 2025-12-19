@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ArrowLeft, ArrowRight, Briefcase, CheckCircle, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { registerEmployerSchema } from "@/lib/validation/registration-schemas";
+import { z } from "zod";
 
 const steps = ["Company Info", "Contact Person", "Hiring Needs", "Review"];
 
@@ -15,6 +17,7 @@ const RegisterEmployer = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState({
     companyName: "",
     industry: "",
@@ -32,10 +35,41 @@ const RegisterEmployer = () => {
 
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: "" }));
+    }
+  };
+
+  const validateStep = (step: number): boolean => {
+    const stepFields: Record<number, string[]> = {
+      0: ["companyName", "website"],
+      1: ["contactName", "contactEmail", "contactPhone"],
+      2: [],
+      3: [],
+    };
+
+    const fieldsToValidate = stepFields[step] || [];
+    const newErrors: Record<string, string> = {};
+
+    for (const field of fieldsToValidate) {
+      try {
+        const schema = registerEmployerSchema.shape[field as keyof typeof registerEmployerSchema.shape];
+        if (schema) {
+          schema.parse(formData[field as keyof typeof formData]);
+        }
+      } catch (error) {
+        if (error instanceof z.ZodError) {
+          newErrors[field] = error.errors[0]?.message || "Invalid value";
+        }
+      }
+    }
+
+    setErrors(prev => ({ ...prev, ...newErrors }));
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleNext = () => {
-    if (currentStep < steps.length - 1) {
+    if (validateStep(currentStep) && currentStep < steps.length - 1) {
       setCurrentStep(prev => prev + 1);
     }
   };
@@ -48,25 +82,29 @@ const RegisterEmployer = () => {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
+    setErrors({});
+
     try {
+      const validatedData = registerEmployerSchema.parse(formData);
+
       const { data: { user } } = await supabase.auth.getUser();
       
       const { error } = await supabase
         .from("registrations_employers")
         .insert({
           user_id: user?.id || null,
-          company_name: formData.companyName,
-          industry: formData.industry || null,
-          company_size: formData.companySize || null,
-          website: formData.website || null,
-          contact_name: formData.contactName,
-          contact_email: formData.contactEmail,
-          contact_phone: formData.contactPhone,
-          designation: formData.designation || null,
-          roles_hiring: formData.hiringRoles || null,
-          experience_level: formData.experienceLevel || null,
-          job_location: formData.locationsHiring || null,
-          hiring_timeline: formData.hiringTimeline || null,
+          company_name: validatedData.companyName,
+          industry: validatedData.industry || null,
+          company_size: validatedData.companySize || null,
+          website: validatedData.website || null,
+          contact_name: validatedData.contactName,
+          contact_email: validatedData.contactEmail,
+          contact_phone: validatedData.contactPhone,
+          designation: validatedData.designation || null,
+          roles_hiring: validatedData.hiringRoles || null,
+          experience_level: validatedData.experienceLevel || null,
+          job_location: validatedData.locationsHiring || null,
+          hiring_timeline: validatedData.hiringTimeline || null,
         });
 
       if (error) throw error;
@@ -76,6 +114,16 @@ const RegisterEmployer = () => {
       const redirect = params.get('redirect');
       navigate(redirect || "/");
     } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          const field = err.path[0] as string;
+          fieldErrors[field] = err.message;
+        });
+        setErrors(fieldErrors);
+        toast.error(error.errors[0]?.message || "Please fix the form errors");
+        return;
+      }
       console.error("Registration error:", error);
       toast.error("Registration failed. Please try again.");
     } finally {
@@ -130,7 +178,14 @@ const RegisterEmployer = () => {
               <div className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="companyName" className="fresh-label">Company Name *</Label>
-                  <Input id="companyName" placeholder="Enter company name" value={formData.companyName} onChange={e => handleChange("companyName", e.target.value)} className="fresh-input" />
+                  <Input 
+                    id="companyName" 
+                    placeholder="Enter company name" 
+                    value={formData.companyName} 
+                    onChange={e => handleChange("companyName", e.target.value)} 
+                    className={`fresh-input ${errors.companyName ? "border-destructive" : ""}`} 
+                  />
+                  {errors.companyName && <p className="text-sm text-destructive">{errors.companyName}</p>}
                 </div>
                 <div className="space-y-2">
                   <Label className="fresh-label">Industry *</Label>
@@ -163,7 +218,14 @@ const RegisterEmployer = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="website" className="fresh-label">Website</Label>
-                  <Input id="website" placeholder="https://www.company.com" value={formData.website} onChange={e => handleChange("website", e.target.value)} className="fresh-input" />
+                  <Input 
+                    id="website" 
+                    placeholder="https://www.company.com" 
+                    value={formData.website} 
+                    onChange={e => handleChange("website", e.target.value)} 
+                    className={`fresh-input ${errors.website ? "border-destructive" : ""}`} 
+                  />
+                  {errors.website && <p className="text-sm text-destructive">{errors.website}</p>}
                 </div>
               </div>
             )}
@@ -172,15 +234,37 @@ const RegisterEmployer = () => {
               <div className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="contactName" className="fresh-label">Contact Person Name *</Label>
-                  <Input id="contactName" placeholder="Full name" value={formData.contactName} onChange={e => handleChange("contactName", e.target.value)} className="fresh-input" />
+                  <Input 
+                    id="contactName" 
+                    placeholder="Full name" 
+                    value={formData.contactName} 
+                    onChange={e => handleChange("contactName", e.target.value)} 
+                    className={`fresh-input ${errors.contactName ? "border-destructive" : ""}`} 
+                  />
+                  {errors.contactName && <p className="text-sm text-destructive">{errors.contactName}</p>}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="contactEmail" className="fresh-label">Email Address *</Label>
-                  <Input id="contactEmail" type="email" placeholder="hr@company.com" value={formData.contactEmail} onChange={e => handleChange("contactEmail", e.target.value)} className="fresh-input" />
+                  <Input 
+                    id="contactEmail" 
+                    type="email" 
+                    placeholder="hr@company.com" 
+                    value={formData.contactEmail} 
+                    onChange={e => handleChange("contactEmail", e.target.value)} 
+                    className={`fresh-input ${errors.contactEmail ? "border-destructive" : ""}`} 
+                  />
+                  {errors.contactEmail && <p className="text-sm text-destructive">{errors.contactEmail}</p>}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="contactPhone" className="fresh-label">Phone Number *</Label>
-                  <Input id="contactPhone" placeholder="+91 98765 43210" value={formData.contactPhone} onChange={e => handleChange("contactPhone", e.target.value)} className="fresh-input" />
+                  <Input 
+                    id="contactPhone" 
+                    placeholder="9876543210" 
+                    value={formData.contactPhone} 
+                    onChange={e => handleChange("contactPhone", e.target.value)} 
+                    className={`fresh-input ${errors.contactPhone ? "border-destructive" : ""}`} 
+                  />
+                  {errors.contactPhone && <p className="text-sm text-destructive">{errors.contactPhone}</p>}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="designation" className="fresh-label">Designation</Label>

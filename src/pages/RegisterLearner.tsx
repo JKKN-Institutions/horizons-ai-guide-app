@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ArrowLeft, ArrowRight, Users, CheckCircle, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { registerLearnerSchema } from "@/lib/validation/registration-schemas";
+import { z } from "zod";
 
 const steps = ["Personal Info", "Education", "Experience", "Review"];
 
@@ -15,6 +17,7 @@ const RegisterLearner = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -32,10 +35,41 @@ const RegisterLearner = () => {
 
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: "" }));
+    }
+  };
+
+  const validateStep = (step: number): boolean => {
+    const stepFields: Record<number, string[]> = {
+      0: ["fullName", "email", "phone"],
+      1: ["institution", "degree"],
+      2: [],
+      3: [],
+    };
+
+    const fieldsToValidate = stepFields[step] || [];
+    const newErrors: Record<string, string> = {};
+
+    for (const field of fieldsToValidate) {
+      try {
+        const schema = registerLearnerSchema.shape[field as keyof typeof registerLearnerSchema.shape];
+        if (schema) {
+          schema.parse(formData[field as keyof typeof formData]);
+        }
+      } catch (error) {
+        if (error instanceof z.ZodError) {
+          newErrors[field] = error.errors[0]?.message || "Invalid value";
+        }
+      }
+    }
+
+    setErrors(prev => ({ ...prev, ...newErrors }));
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleNext = () => {
-    if (currentStep < steps.length - 1) {
+    if (validateStep(currentStep) && currentStep < steps.length - 1) {
       setCurrentStep(prev => prev + 1);
     }
   };
@@ -48,25 +82,29 @@ const RegisterLearner = () => {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
+    setErrors({});
+
     try {
+      const validatedData = registerLearnerSchema.parse(formData);
+
       const { data: { user } } = await supabase.auth.getUser();
       
       const { error } = await supabase
         .from("registrations_learners")
         .insert({
           user_id: user?.id || null,
-          full_name: formData.fullName,
-          email: formData.email,
-          phone: formData.phone,
-          date_of_birth: formData.dateOfBirth || null,
-          institution: formData.institution || null,
-          degree: formData.degree || null,
-          specialization: formData.specialization || null,
-          graduation_year: formData.graduationYear || null,
-          experience: formData.experience || null,
-          job_role: formData.currentRole || null,
-          skills: formData.skills || null,
-          preferred_role: formData.preferredRole || null,
+          full_name: validatedData.fullName,
+          email: validatedData.email,
+          phone: validatedData.phone,
+          date_of_birth: validatedData.dateOfBirth || null,
+          institution: validatedData.institution || null,
+          degree: validatedData.degree || null,
+          specialization: validatedData.specialization || null,
+          graduation_year: validatedData.graduationYear || null,
+          experience: validatedData.experience || null,
+          job_role: validatedData.currentRole || null,
+          skills: validatedData.skills || null,
+          preferred_role: validatedData.preferredRole || null,
         });
 
       if (error) throw error;
@@ -76,6 +114,16 @@ const RegisterLearner = () => {
       const redirect = params.get('redirect');
       navigate(redirect || "/");
     } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          const field = err.path[0] as string;
+          fieldErrors[field] = err.message;
+        });
+        setErrors(fieldErrors);
+        toast.error(error.errors[0]?.message || "Please fix the form errors");
+        return;
+      }
       console.error("Registration error:", error);
       toast.error("Registration failed. Please try again.");
     } finally {
@@ -131,15 +179,37 @@ const RegisterLearner = () => {
                 <div className="grid gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="fullName" className="fresh-label">Full Name *</Label>
-                    <Input id="fullName" placeholder="Enter your full name" value={formData.fullName} onChange={e => handleChange("fullName", e.target.value)} className="fresh-input" />
+                    <Input 
+                      id="fullName" 
+                      placeholder="Enter your full name" 
+                      value={formData.fullName} 
+                      onChange={e => handleChange("fullName", e.target.value)} 
+                      className={`fresh-input ${errors.fullName ? "border-destructive" : ""}`} 
+                    />
+                    {errors.fullName && <p className="text-sm text-destructive">{errors.fullName}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email" className="fresh-label">Email Address *</Label>
-                    <Input id="email" type="email" placeholder="your@email.com" value={formData.email} onChange={e => handleChange("email", e.target.value)} className="fresh-input" />
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      placeholder="your@email.com" 
+                      value={formData.email} 
+                      onChange={e => handleChange("email", e.target.value)} 
+                      className={`fresh-input ${errors.email ? "border-destructive" : ""}`} 
+                    />
+                    {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="phone" className="fresh-label">Phone Number *</Label>
-                    <Input id="phone" placeholder="+91 98765 43210" value={formData.phone} onChange={e => handleChange("phone", e.target.value)} className="fresh-input" />
+                    <Input 
+                      id="phone" 
+                      placeholder="9876543210" 
+                      value={formData.phone} 
+                      onChange={e => handleChange("phone", e.target.value)} 
+                      className={`fresh-input ${errors.phone ? "border-destructive" : ""}`} 
+                    />
+                    {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="dob" className="fresh-label">Date of Birth</Label>
@@ -154,7 +224,9 @@ const RegisterLearner = () => {
                 <div className="space-y-2">
                   <Label className="fresh-label">JKKN Institution *</Label>
                   <Select value={formData.institution} onValueChange={v => handleChange("institution", v)}>
-                    <SelectTrigger className="fresh-input"><SelectValue placeholder="Select your institution" /></SelectTrigger>
+                    <SelectTrigger className={`fresh-input ${errors.institution ? "border-destructive" : ""}`}>
+                      <SelectValue placeholder="Select your institution" />
+                    </SelectTrigger>
                     <SelectContent className="bg-white border border-fresh-green-light">
                       <SelectItem value="jkkn-college-engineering">JKKN College of Engineering</SelectItem>
                       <SelectItem value="jkkn-college-arts">JKKN College of Arts & Science</SelectItem>
@@ -167,10 +239,18 @@ const RegisterLearner = () => {
                       <SelectItem value="jkkn-polytechnic">JKKN Polytechnic</SelectItem>
                     </SelectContent>
                   </Select>
+                  {errors.institution && <p className="text-sm text-destructive">{errors.institution}</p>}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="degree" className="fresh-label">Degree/Program *</Label>
-                  <Input id="degree" placeholder="e.g., B.Tech, B.Sc, M.Pharm" value={formData.degree} onChange={e => handleChange("degree", e.target.value)} className="fresh-input" />
+                  <Input 
+                    id="degree" 
+                    placeholder="e.g., B.Tech, B.Sc, M.Pharm" 
+                    value={formData.degree} 
+                    onChange={e => handleChange("degree", e.target.value)} 
+                    className={`fresh-input ${errors.degree ? "border-destructive" : ""}`} 
+                  />
+                  {errors.degree && <p className="text-sm text-destructive">{errors.degree}</p>}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="specialization" className="fresh-label">Specialization</Label>
