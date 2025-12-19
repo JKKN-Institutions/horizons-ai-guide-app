@@ -62,7 +62,7 @@ const HeroSection = () => {
                 onClick={() => navigate("/register/learner")}
               >
                 <Users className="w-5 h-5 mr-2" />
-                Register as Learner
+                Register as JKKN Learner
               </Button>
               <Button 
                 className="bg-white/10 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white hover:text-emerald-800 font-semibold px-7 py-6 text-base rounded-xl transition-all duration-300 hover:scale-105"
