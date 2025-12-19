@@ -42,9 +42,9 @@ const CTASection = () => {
 
           {/* Heading */}
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-            Ready to Shape Your{" "}
+            Take the Leap —{" "}
             <span className="relative">
-              <span className="relative z-10">Future?</span>
+              <span className="relative z-10">Build Your Career Today</span>
               <span className="absolute bottom-1 left-0 right-0 h-3 bg-accent/40 -rotate-1" />
             </span>
           </h2>
