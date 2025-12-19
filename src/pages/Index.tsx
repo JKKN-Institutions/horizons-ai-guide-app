@@ -8,6 +8,7 @@ import TwelfthLearnersSection from "@/components/TwelfthLearnersSection";
 import JobsSection from "@/components/JobsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import PartnersSection from "@/components/PartnersSection";
+import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import FloatingChatButton from "@/components/FloatingChatButton";
 import { ChatModalProvider } from "@/hooks/useChatModal";
@@ -26,6 +27,7 @@ const Index = () => {
         <JobsSection />
         <TestimonialsSection />
         <PartnersSection />
+        <CTASection />
         <Footer />
         <FloatingChatButton />
       </div>
