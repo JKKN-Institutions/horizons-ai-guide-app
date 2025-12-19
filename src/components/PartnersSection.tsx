@@ -5,6 +5,10 @@ const partners = [
   "HCL",
   "Cognizant",
   "Apollo Hospitals",
+  "Sakthi Auto Components",
+  "Foxconn",
+  "Premier Pvt Ltd",
+  "Rinex",
 ];
 
 const PartnersSection = () => {
