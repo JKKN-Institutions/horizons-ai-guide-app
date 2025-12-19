@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ArrowLeft, ArrowRight, GraduationCap, CheckCircle, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { register12thSchema } from "@/lib/validation/registration-schemas";
+import { z } from "zod";
 
 const steps = ["Personal Info", "Education", "Interests", "Review"];
 
@@ -15,6 +17,7 @@ const Register12thLearner = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -31,10 +34,42 @@ const Register12thLearner = () => {
 
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: "" }));
+    }
+  };
+
+  const validateStep = (step: number): boolean => {
+    const stepFields: Record<number, string[]> = {
+      0: ["fullName", "phone", "email"],
+      1: ["school"],
+      2: [],
+      3: [],
+    };
+
+    const fieldsToValidate = stepFields[step] || [];
+    const newErrors: Record<string, string> = {};
+
+    for (const field of fieldsToValidate) {
+      try {
+        const schema = register12thSchema.shape[field as keyof typeof register12thSchema.shape];
+        if (schema) {
+          schema.parse(formData[field as keyof typeof formData]);
+        }
+      } catch (error) {
+        if (error instanceof z.ZodError) {
+          newErrors[field] = error.errors[0]?.message || "Invalid value";
+        }
+      }
+    }
+
+    setErrors(prev => ({ ...prev, ...newErrors }));
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleNext = () => {
-    if (currentStep < steps.length - 1) {
+    if (validateStep(currentStep) && currentStep < steps.length - 1) {
       setCurrentStep(prev => prev + 1);
     }
   };
@@ -47,24 +82,29 @@ const Register12thLearner = () => {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
+    setErrors({});
+
     try {
+      // Validate all data
+      const validatedData = register12thSchema.parse(formData);
+
       const { data: { user } } = await supabase.auth.getUser();
       
       const { error } = await supabase
         .from("registrations_12th_learners")
         .insert({
           user_id: user?.id || null,
-          full_name: formData.fullName,
-          email: formData.email || null,
-          phone: formData.phone,
-          date_of_birth: formData.dateOfBirth || null,
-          school_name: formData.school || null,
-          board: formData.board || null,
-          stream: formData.stream || null,
-          percentage: formData.expectedYear || null,
-          preferred_course: formData.preferredCourses || null,
-          preferred_institution: formData.preferredLocation || null,
-          career_interests: formData.careerInterests ? [formData.careerInterests] : null,
+          full_name: validatedData.fullName,
+          email: validatedData.email || null,
+          phone: validatedData.phone,
+          date_of_birth: validatedData.dateOfBirth || null,
+          school_name: validatedData.school || null,
+          board: validatedData.board || null,
+          stream: validatedData.stream || null,
+          percentage: validatedData.expectedYear || null,
+          preferred_course: validatedData.preferredCourses || null,
+          preferred_institution: validatedData.preferredLocation || null,
+          career_interests: validatedData.careerInterests ? [validatedData.careerInterests] : null,
         });
 
       if (error) throw error;
@@ -72,6 +112,16 @@ const Register12thLearner = () => {
       toast.success("Registration successful! We'll be in touch soon.");
       navigate('/career-assessment/colleges', { replace: true });
     } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          const field = err.path[0] as string;
+          fieldErrors[field] = err.message;
+        });
+        setErrors(fieldErrors);
+        toast.error(error.errors[0]?.message || "Please fix the form errors");
+        return;
+      }
       console.error("Registration error:", error);
       toast.error("Registration failed. Please try again.");
     } finally {
@@ -127,15 +177,37 @@ const Register12thLearner = () => {
                 <div className="grid gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="fullName" className="fresh-label">Full Name *</Label>
-                    <Input id="fullName" placeholder="Enter your full name" value={formData.fullName} onChange={e => handleChange("fullName", e.target.value)} className="fresh-input" />
+                    <Input 
+                      id="fullName" 
+                      placeholder="Enter your full name" 
+                      value={formData.fullName} 
+                      onChange={e => handleChange("fullName", e.target.value)} 
+                      className={`fresh-input ${errors.fullName ? "border-destructive" : ""}`} 
+                    />
+                    {errors.fullName && <p className="text-sm text-destructive">{errors.fullName}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email" className="fresh-label">Email Address</Label>
-                    <Input id="email" type="email" placeholder="your@email.com (optional)" value={formData.email} onChange={e => handleChange("email", e.target.value)} className="fresh-input" />
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      placeholder="your@email.com (optional)" 
+                      value={formData.email} 
+                      onChange={e => handleChange("email", e.target.value)} 
+                      className={`fresh-input ${errors.email ? "border-destructive" : ""}`} 
+                    />
+                    {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="phone" className="fresh-label">Phone Number *</Label>
-                    <Input id="phone" placeholder="+91 98765 43210" value={formData.phone} onChange={e => handleChange("phone", e.target.value)} className="fresh-input" />
+                    <Input 
+                      id="phone" 
+                      placeholder="9876543210" 
+                      value={formData.phone} 
+                      onChange={e => handleChange("phone", e.target.value)} 
+                      className={`fresh-input ${errors.phone ? "border-destructive" : ""}`} 
+                    />
+                    {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="dob" className="fresh-label">Date of Birth</Label>
@@ -149,7 +221,14 @@ const Register12thLearner = () => {
               <div className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="school" className="fresh-label">School Name *</Label>
-                  <Input id="school" placeholder="Enter your school name" value={formData.school} onChange={e => handleChange("school", e.target.value)} className="fresh-input" />
+                  <Input 
+                    id="school" 
+                    placeholder="Enter your school name" 
+                    value={formData.school} 
+                    onChange={e => handleChange("school", e.target.value)} 
+                    className={`fresh-input ${errors.school ? "border-destructive" : ""}`} 
+                  />
+                  {errors.school && <p className="text-sm text-destructive">{errors.school}</p>}
                 </div>
                 <div className="space-y-2">
                   <Label className="fresh-label">Board *</Label>
