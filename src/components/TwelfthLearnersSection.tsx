@@ -13,13 +13,13 @@ const benefits = [
 const institutions = [
   { 
     name: "JKKN College of Arts & Science", 
-    url: "https://jkkncas.ac.in/",
+    url: "https://cas.jkkn.ac.in/",
     icon: BookOpen,
     color: "from-blue-500 to-indigo-600"
   },
   { 
     name: "JKKN College of Engineering and Technology", 
-    url: "https://jkkn.ac.in/",
+    url: "https://engg.jkkn.ac.in/",
     icon: Building2,
     color: "from-emerald-500 to-green-600"
   },
@@ -37,7 +37,7 @@ const institutions = [
   },
   { 
     name: "JKKN College of Nursing", 
-    url: "https://jkknnursing.ac.in/",
+    url: "https://nursing.sresakthimayeil.jkkn.ac.in/",
     icon: Heart,
     color: "from-red-500 to-rose-600"
   },
@@ -49,21 +49,15 @@ const institutions = [
   },
   { 
     name: "JKKN College of Education", 
-    url: "https://jkkneducation.ac.in/",
+    url: "https://edu.jkkn.ac.in/",
     icon: GraduationCap,
     color: "from-amber-500 to-orange-600"
   },
   { 
-    name: "JKKN Rangammal Girls Higher Secondary School", 
-    url: "https://jkknschool.ac.in/",
+    name: "JKKN Matriculation Higher Secondary School", 
+    url: "https://school.jkkn.ac.in/",
     icon: Users,
     color: "from-pink-500 to-rose-600"
-  },
-  { 
-    name: "JKKN Matric School", 
-    url: "https://jkknmatric.ac.in/",
-    icon: BookOpen,
-    color: "from-sky-500 to-blue-600"
   },
 ];
 
