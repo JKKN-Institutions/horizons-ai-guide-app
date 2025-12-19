@@ -16,7 +16,8 @@ import {
   Download,
   Bookmark,
   BookmarkCheck,
-  MapPin
+  MapPin,
+  Star
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
@@ -77,6 +78,12 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
               <Badge variant="outline" className="text-xs bg-[#E8F5E9] text-[#2E7D32] border-[#A5D6A7]">
                 <MapPin className="h-3 w-3 mr-1" />
                 {stateInfo.shortCode}
+              </Badge>
+            )}
+            {exam.hasJKKN && (
+              <Badge className="text-xs bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white border-0 animate-pulse">
+                <Star className="h-3 w-3 mr-1 fill-white" />
+                JKKN
               </Badge>
             )}
           </div>
@@ -199,6 +206,27 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
             <p className="text-xs text-[#6B7280]">SC/ST: {exam.applicationFee.scst}</p>
           </div>
         </div>
+
+        {/* JKKN Colleges Section */}
+        {exam.hasJKKN && exam.jkknColleges && exam.jkknColleges.length > 0 && (
+          <div className="bg-gradient-to-r from-[#FFF8E1] to-[#FFFDE7] rounded-lg p-3 border border-[#FFD54F]">
+            <p className="text-xs font-semibold text-[#F59E0B] mb-2 flex items-center gap-1">
+              <Star className="h-3 w-3 fill-[#F59E0B]" /> JKKN Colleges Available
+            </p>
+            <div className="flex flex-wrap gap-1">
+              {exam.jkknColleges.slice(0, 3).map((college, idx) => (
+                <Badge key={idx} className="text-xs bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white border-0">
+                  {college}
+                </Badge>
+              ))}
+              {exam.jkknColleges.length > 3 && (
+                <Badge className="text-xs bg-[#FFE082] text-[#B8860B] border-0">
+                  +{exam.jkknColleges.length - 3} more
+                </Badge>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Colleges Accepting */}
         <div>

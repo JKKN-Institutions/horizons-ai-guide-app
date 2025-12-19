@@ -21,7 +21,9 @@ export interface EntranceExam {
   syllabusUrl?: string;
   category: ExamCategory;
   preparationTips?: PreparationTips;
-  state?: IndianState; // For state-level filtering
+  state?: IndianState;
+  hasJKKN?: boolean; // Flag to show JKKN badge
+  jkknColleges?: string[]; // JKKN colleges for this exam
 }
 
 export interface PreparationTips {
