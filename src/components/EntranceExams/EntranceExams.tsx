@@ -1,8 +1,11 @@
 import { useState, useMemo } from 'react';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Search, GraduationCap, FileText, Building2, Calendar } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Search, GraduationCap, FileText, Building2, Calendar, Scale } from 'lucide-react';
 import { ExamCard } from './ExamCard';
+import { ExamCompare } from './ExamCompare';
+import { PreparationTipsSection } from './PreparationTipsSection';
 import { examCategories, entranceExams, getExamsByCategory } from './examData';
 import { ExamCategory } from './types';
 import { cn } from '@/lib/utils';
@@ -10,6 +13,7 @@ import { cn } from '@/lib/utils';
 export const EntranceExams = () => {
   const [activeCategory, setActiveCategory] = useState<ExamCategory>('engineering');
   const [searchQuery, setSearchQuery] = useState('');
+  const [showCompare, setShowCompare] = useState(false);
 
   const stats = useMemo(() => ({
     total: entranceExams.length,
@@ -86,6 +90,15 @@ export const EntranceExams = () => {
             <div className="text-sm text-[#6B7280]">Coverage</div>
           </div>
         </div>
+
+        {/* Compare Button */}
+        <Button
+          onClick={() => setShowCompare(true)}
+          className="mt-4 bg-gradient-to-r from-[#1976D2] to-[#1565C0] hover:from-[#1565C0] hover:to-[#0D47A1] text-white"
+        >
+          <Scale className="h-4 w-4 mr-2" />
+          Compare Exams
+        </Button>
       </div>
 
       {/* Category Sub-tabs */}
@@ -158,6 +171,9 @@ export const EntranceExams = () => {
         </div>
       )}
 
+      {/* Preparation Tips Section */}
+      <PreparationTipsSection />
+
       {/* Info Note */}
       <div className="bg-[#FFF8E1] border border-[#FFE082] rounded-xl p-4 text-center">
         <p className="text-sm text-[#B8860B]">
@@ -165,6 +181,9 @@ export const EntranceExams = () => {
           Always verify from official websites before applying.
         </p>
       </div>
+
+      {/* Compare Modal */}
+      <ExamCompare isOpen={showCompare} onClose={() => setShowCompare(false)} />
     </div>
   );
 };

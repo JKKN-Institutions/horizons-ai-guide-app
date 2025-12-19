@@ -20,6 +20,14 @@ export interface EntranceExam {
   officialWebsite: string;
   syllabusUrl?: string;
   category: ExamCategory;
+  preparationTips?: PreparationTips;
+}
+
+export interface PreparationTips {
+  recommendedBooks: string[];
+  onlineCourses: string[];
+  studyStrategy: string[];
+  importantTopics: string[];
 }
 
 export type ExamCategory = 
