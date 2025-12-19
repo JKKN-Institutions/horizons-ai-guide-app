@@ -9,56 +9,63 @@ const HeroSection = () => {
   const { openChat } = useChatModal();
 
   return (
-    <section className="relative min-h-[90vh] flex items-center">
-      {/* Background Image with Overlay */}
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      {/* Background Image with Enhanced Overlay */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{ backgroundImage: `url(${heroCampus})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/95 via-green-800/90 to-emerald-900/85"></div>
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-amber-400/15 to-orange-500/5 rounded-full blur-3xl transform translate-x-1/4 -translate-y-1/4" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-emerald-400/10 to-teal-500/5 rounded-full blur-3xl transform -translate-x-1/4 translate-y-1/4" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23ffffff%22 fill-opacity=%220.03%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" />
       </div>
 
-      <div className="container mx-auto px-4 md:px-8 relative z-10 py-12">
-        <div className="grid lg:grid-cols-5 gap-8 items-center">
+      <div className="container mx-auto px-4 md:px-8 relative z-10 py-16">
+        <div className="grid lg:grid-cols-5 gap-10 items-center">
           {/* Left Content - 3 columns */}
-          <div className="lg:col-span-3 text-primary-foreground">
-            <span className="inline-block bg-secondary/20 text-secondary px-4 py-1 rounded-full text-sm font-semibold mb-6 animate-fade-up">
+          <div className="lg:col-span-3 text-white">
+            <span className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/20 to-orange-500/20 backdrop-blur-sm text-amber-300 px-5 py-2 rounded-full text-sm font-semibold mb-8 border border-amber-400/30 animate-fade-up">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
               JKKN CAREER PATH - 2026-2032
             </span>
 
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold italic mb-4 animate-fade-up" style={{ animationDelay: '0.1s' }}>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold italic mb-4 animate-fade-up tracking-tight" style={{ animationDelay: '0.1s' }}>
               JKKN AI Horizons:
             </h1>
 
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold italic text-accent mb-4 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-              Discover, Design, Do
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold italic mb-5 animate-fade-up" style={{ animationDelay: '0.2s' }}>
+              <span className="bg-gradient-to-r from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">
+                Discover, Design, Do
+              </span>
             </h2>
 
-            <p className="font-tamil text-xl md:text-2xl text-primary-foreground/90 mb-6 animate-fade-up" style={{ animationDelay: '0.3s' }}>
+            <p className="font-tamil text-xl md:text-2xl lg:text-3xl text-emerald-100/90 mb-8 animate-fade-up" style={{ animationDelay: '0.3s' }}>
               கண்டறி, வடிவமை, செய்
             </p>
 
-            <p className="text-lg text-primary-foreground/80 max-w-2xl mb-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+            <p className="text-lg md:text-xl text-emerald-50/80 max-w-2xl mb-10 leading-relaxed animate-fade-up" style={{ animationDelay: '0.4s' }}>
               Empowering JKKN Learners & 12th Learners with AI-powered career guidance, skill development and placement opportunities across 9 institutions.
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-8 animate-fade-up" style={{ animationDelay: '0.5s' }}>
+            <div className="flex flex-wrap gap-4 mb-10 animate-fade-up" style={{ animationDelay: '0.5s' }}>
               <Button 
-                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold px-6 py-6 text-base"
+                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold px-7 py-6 text-base rounded-xl shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40 transition-all duration-300 hover:scale-105"
                 onClick={() => navigate("/register/12th-learner?redirect=/career-assessment/12th-learners")}
               >
                 <GraduationCap className="w-5 h-5 mr-2" />
                 Register as 12th Learner
               </Button>
               <Button 
-                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold px-6 py-6 text-base"
+                className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold px-7 py-6 text-base rounded-xl shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/40 transition-all duration-300 hover:scale-105"
                 onClick={() => navigate("/register/learner")}
               >
                 <Users className="w-5 h-5 mr-2" />
                 Register as Learner
               </Button>
               <Button 
-                className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary font-semibold px-6 py-6 text-base"
+                className="bg-white/10 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white hover:text-emerald-800 font-semibold px-7 py-6 text-base rounded-xl transition-all duration-300 hover:scale-105"
                 onClick={() => navigate("/register/employer")}
               >
                 <Briefcase className="w-5 h-5 mr-2" />
@@ -67,13 +74,12 @@ const HeroSection = () => {
             </div>
 
             <div className="flex items-center gap-4 animate-fade-up" style={{ animationDelay: '0.6s' }}>
-              <span className="text-sm text-primary-foreground/70">AI-powered guidance for every Learner journey</span>
+              <span className="text-sm text-emerald-100/70">AI-powered guidance for every Learner journey</span>
               <Button 
-                variant="outline" 
-                className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20 text-sm"
+                className="bg-white/10 backdrop-blur-sm border border-white/30 text-white hover:bg-white/20 text-sm rounded-full px-5 py-2 transition-all duration-300 group"
                 onClick={openChat}
               >
-                <Sparkles className="w-4 h-4 mr-2" />
+                <Sparkles className="w-4 h-4 mr-2 group-hover:animate-pulse" />
                 Try JKKN AI Assistant
               </Button>
             </div>
@@ -81,37 +87,51 @@ const HeroSection = () => {
 
           {/* Right Sidebar - 2 columns */}
           <div className="lg:col-span-2 animate-fade-up" style={{ animationDelay: '0.4s' }}>
-            <div className="bg-card rounded-2xl shadow-elevated p-6 space-y-6">
-              <h3 className="font-serif text-xl font-semibold text-card-foreground mb-4">
-                Who is this for?
-              </h3>
+            <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-7 space-y-6 border border-white/50">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-lg shadow-emerald-200">
+                  <Users className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="font-serif text-xl font-bold text-gray-800">
+                  Who is this for?
+                </h3>
+              </div>
 
-              <div className="space-y-5">
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
-                  <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                    <GraduationCap className="w-6 h-6 text-secondary" />
+              <div className="space-y-4">
+                <div className="group flex items-start gap-4 p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-100 hover:border-amber-300 transition-all duration-300 hover:shadow-lg hover:shadow-amber-100 cursor-pointer">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center flex-shrink-0 shadow-lg shadow-amber-200 group-hover:scale-110 transition-transform duration-300">
+                    <GraduationCap className="w-7 h-7 text-white" />
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Confused about what to do after 12th? Discover careers, explore courses, and plan your future with AI guidance.
-                  </p>
+                  <div>
+                    <p className="font-semibold text-gray-800 mb-1">12th Learners</p>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      Discover careers, explore courses, and plan your future with AI guidance.
+                    </p>
+                  </div>
                 </div>
 
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Briefcase className="w-6 h-6 text-primary" />
+                <div className="group flex items-start gap-4 p-4 rounded-2xl bg-gradient-to-r from-emerald-50 to-green-50 border-2 border-emerald-100 hover:border-emerald-300 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-100 cursor-pointer">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-emerald-200 group-hover:scale-110 transition-transform duration-300">
+                    <Briefcase className="w-7 h-7 text-white" />
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Find your dream job, build in-demand skills, and connect with top employers across India.
-                  </p>
+                  <div>
+                    <p className="font-semibold text-gray-800 mb-1">Learners</p>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      Find your dream job, build skills, and connect with top employers.
+                    </p>
+                  </div>
                 </div>
 
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
-                  <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center flex-shrink-0">
-                    <Users className="w-6 h-6 text-accent-foreground" />
+                <div className="group flex items-start gap-4 p-4 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg hover:shadow-blue-100 cursor-pointer">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-200 group-hover:scale-110 transition-transform duration-300">
+                    <Users className="w-7 h-7 text-white" />
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Hire talented graduates and 12th Learners from JKKN's 9 institutions through a curated, AI-informed talent pool.
-                  </p>
+                  <div>
+                    <p className="font-semibold text-gray-800 mb-1">Employers</p>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      Hire talented graduates from JKKN's 9 institutions.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
