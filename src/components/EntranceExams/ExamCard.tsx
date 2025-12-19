@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { EntranceExam, CategoryInfo } from './types';
-import { examCategories } from './examData';
+import { EntranceExam } from './types';
+import { examCategories, indianStates } from './examData';
 import { 
   ExternalLink, 
   Calendar, 
@@ -13,18 +13,24 @@ import {
   Building2,
   BookOpen,
   Users,
-  Download
+  Download,
+  Bookmark,
+  BookmarkCheck,
+  MapPin
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 
 interface ExamCardProps {
   exam: EntranceExam;
+  isBookmarked?: boolean;
+  onToggleBookmark?: (examId: string) => void;
 }
 
-export const ExamCard = ({ exam }: ExamCardProps) => {
+export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamCardProps) => {
   const { toast } = useToast();
   const categoryInfo = examCategories.find(c => c.id === exam.category);
+  const stateInfo = exam.state ? indianStates.find(s => s.id === exam.state) : null;
 
   const handleSetReminder = () => {
     toast({
@@ -44,6 +50,18 @@ export const ExamCard = ({ exam }: ExamCardProps) => {
     }
   };
 
+  const handleToggleBookmark = () => {
+    if (onToggleBookmark) {
+      onToggleBookmark(exam.id);
+      toast({
+        title: isBookmarked ? "Removed from Saved" : "Saved! ⭐",
+        description: isBookmarked 
+          ? `${exam.name} removed from your saved exams.`
+          : `${exam.name} added to your saved exams.`,
+      });
+    }
+  };
+
   return (
     <Card className={cn(
       "bg-white border-l-4 hover:shadow-lg transition-all duration-200 hover:-translate-y-1",
@@ -51,14 +69,39 @@ export const ExamCard = ({ exam }: ExamCardProps) => {
     )}>
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <Badge className={cn("text-xs font-medium", categoryInfo?.bgColor, categoryInfo?.color)}>
               {categoryInfo?.icon} {categoryInfo?.label}
             </Badge>
+            {stateInfo && stateInfo.id !== 'national' && (
+              <Badge variant="outline" className="text-xs bg-[#E8F5E9] text-[#2E7D32] border-[#A5D6A7]">
+                <MapPin className="h-3 w-3 mr-1" />
+                {stateInfo.shortCode}
+              </Badge>
+            )}
           </div>
-          <Badge variant="outline" className="text-xs bg-[#FFF8E1] text-[#F59E0B] border-[#FFE082]">
-            2025
-          </Badge>
+          <div className="flex items-center gap-1">
+            <Button
+              variant="ghost"
+              size="icon"
+              className={cn(
+                "h-8 w-8",
+                isBookmarked 
+                  ? "text-[#F59E0B] hover:text-[#D97706]" 
+                  : "text-[#6B7280] hover:text-[#F59E0B]"
+              )}
+              onClick={handleToggleBookmark}
+            >
+              {isBookmarked ? (
+                <BookmarkCheck className="h-5 w-5 fill-current" />
+              ) : (
+                <Bookmark className="h-5 w-5" />
+              )}
+            </Button>
+            <Badge variant="outline" className="text-xs bg-[#FFF8E1] text-[#F59E0B] border-[#FFE082]">
+              2025
+            </Badge>
+          </div>
         </div>
         
         <h3 className="font-bold text-xl mt-3 text-[#1B5E20]">

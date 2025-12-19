@@ -1,4 +1,37 @@
-import { EntranceExam, CategoryInfo } from './types';
+import { EntranceExam, CategoryInfo, StateInfo, IndianState } from './types';
+
+export const indianStates: StateInfo[] = [
+  { id: 'all', label: 'All India', shortCode: 'ALL' },
+  { id: 'national', label: 'National Level', shortCode: 'NAT' },
+  { id: 'andhra-pradesh', label: 'Andhra Pradesh', shortCode: 'AP' },
+  { id: 'assam', label: 'Assam', shortCode: 'AS' },
+  { id: 'bihar', label: 'Bihar', shortCode: 'BR' },
+  { id: 'chhattisgarh', label: 'Chhattisgarh', shortCode: 'CG' },
+  { id: 'delhi', label: 'Delhi', shortCode: 'DL' },
+  { id: 'goa', label: 'Goa', shortCode: 'GA' },
+  { id: 'gujarat', label: 'Gujarat', shortCode: 'GJ' },
+  { id: 'haryana', label: 'Haryana', shortCode: 'HR' },
+  { id: 'himachal-pradesh', label: 'Himachal Pradesh', shortCode: 'HP' },
+  { id: 'jharkhand', label: 'Jharkhand', shortCode: 'JH' },
+  { id: 'karnataka', label: 'Karnataka', shortCode: 'KA' },
+  { id: 'kerala', label: 'Kerala', shortCode: 'KL' },
+  { id: 'madhya-pradesh', label: 'Madhya Pradesh', shortCode: 'MP' },
+  { id: 'maharashtra', label: 'Maharashtra', shortCode: 'MH' },
+  { id: 'manipur', label: 'Manipur', shortCode: 'MN' },
+  { id: 'meghalaya', label: 'Meghalaya', shortCode: 'ML' },
+  { id: 'mizoram', label: 'Mizoram', shortCode: 'MZ' },
+  { id: 'nagaland', label: 'Nagaland', shortCode: 'NL' },
+  { id: 'odisha', label: 'Odisha', shortCode: 'OR' },
+  { id: 'punjab', label: 'Punjab', shortCode: 'PB' },
+  { id: 'rajasthan', label: 'Rajasthan', shortCode: 'RJ' },
+  { id: 'sikkim', label: 'Sikkim', shortCode: 'SK' },
+  { id: 'tamil-nadu', label: 'Tamil Nadu', shortCode: 'TN' },
+  { id: 'telangana', label: 'Telangana', shortCode: 'TS' },
+  { id: 'tripura', label: 'Tripura', shortCode: 'TR' },
+  { id: 'uttar-pradesh', label: 'Uttar Pradesh', shortCode: 'UP' },
+  { id: 'uttarakhand', label: 'Uttarakhand', shortCode: 'UK' },
+  { id: 'west-bengal', label: 'West Bengal', shortCode: 'WB' },
+];
 
 export const examCategories: CategoryInfo[] = [
   {
@@ -74,6 +107,7 @@ export const entranceExams: EntranceExam[] = [
     collegesAccepting: ['NITs', 'IIITs', 'GFTIs', 'State Engineering Colleges'],
     officialWebsite: 'https://jeemain.nta.nic.in',
     category: 'engineering',
+    state: 'national',
   },
   {
     id: 'jee-advanced',
@@ -96,6 +130,7 @@ export const entranceExams: EntranceExam[] = [
     collegesAccepting: ['23 IITs across India'],
     officialWebsite: 'https://jeeadv.ac.in',
     category: 'engineering',
+    state: 'national',
   },
   {
     id: 'bitsat',
@@ -118,6 +153,7 @@ export const entranceExams: EntranceExam[] = [
     collegesAccepting: ['BITS Pilani', 'BITS Goa', 'BITS Hyderabad', 'BITS Dubai'],
     officialWebsite: 'https://www.bitsadmission.com',
     category: 'engineering',
+    state: 'national',
   },
   {
     id: 'tnea',
@@ -140,6 +176,7 @@ export const entranceExams: EntranceExam[] = [
     collegesAccepting: ['Anna University', '500+ Engineering Colleges in Tamil Nadu'],
     officialWebsite: 'https://www.tneaonline.org',
     category: 'engineering',
+    state: 'tamil-nadu',
   },
   // State Level Engineering Exams
   {
@@ -163,6 +200,7 @@ export const entranceExams: EntranceExam[] = [
     collegesAccepting: ['COEP Pune', 'VJTI Mumbai', 'IIT Bombay (via JoSAA)', '400+ Maharashtra Engineering Colleges'],
     officialWebsite: 'https://cetcell.mahacet.org',
     category: 'engineering',
+    state: 'maharashtra',
   },
   {
     id: 'wbjee',
@@ -185,6 +223,7 @@ export const entranceExams: EntranceExam[] = [
     collegesAccepting: ['Jadavpur University', 'IIEST Shibpur', 'WBUT Colleges', '200+ Engineering Colleges in WB'],
     officialWebsite: 'https://wbjeeb.nic.in',
     category: 'engineering',
+    state: 'west-bengal',
   },
   {
     id: 'ap-eamcet',
@@ -207,6 +246,7 @@ export const entranceExams: EntranceExam[] = [
     collegesAccepting: ['JNTU Hyderabad', 'JNTU Kakinada', 'AU Visakhapatnam', '300+ AP Engineering Colleges'],
     officialWebsite: 'https://cets.apsche.ap.gov.in',
     category: 'engineering',
+    state: 'andhra-pradesh',
   },
   {
     id: 'ts-eamcet',
@@ -229,6 +269,7 @@ export const entranceExams: EntranceExam[] = [
     collegesAccepting: ['JNTU Hyderabad', 'OU Engineering', 'CBIT', '300+ Telangana Engineering Colleges'],
     officialWebsite: 'https://eamcet.tsche.ac.in',
     category: 'engineering',
+    state: 'telangana',
   },
   {
     id: 'keam',
@@ -251,6 +292,7 @@ export const entranceExams: EntranceExam[] = [
     collegesAccepting: ['CET Trivandrum', 'NIT Calicut', 'GEC Thrissur', '180+ Kerala Engineering Colleges'],
     officialWebsite: 'https://cee.kerala.gov.in',
     category: 'engineering',
+    state: 'kerala',
   },
   {
     id: 'kcet',
@@ -273,6 +315,7 @@ export const entranceExams: EntranceExam[] = [
     collegesAccepting: ['RVCE Bangalore', 'MSRIT', 'BMS Bangalore', '200+ Karnataka Engineering Colleges'],
     officialWebsite: 'https://cetonline.karnataka.gov.in',
     category: 'engineering',
+    state: 'karnataka',
   },
   {
     id: 'comedk',
@@ -295,6 +338,7 @@ export const entranceExams: EntranceExam[] = [
     collegesAccepting: ['RVCE', 'BMS', 'PESIT', '190+ Private Engineering Colleges in Karnataka'],
     officialWebsite: 'https://www.comedk.org',
     category: 'engineering',
+    state: 'karnataka',
   },
   {
     id: 'gujcet',
@@ -317,6 +361,7 @@ export const entranceExams: EntranceExam[] = [
     collegesAccepting: ['LDCE Ahmedabad', 'SVNIT Surat', 'DDIT Nadiad', '100+ Gujarat Engineering Colleges'],
     officialWebsite: 'https://gujcet.gseb.org',
     category: 'engineering',
+    state: 'gujarat',
   },
   {
     id: 'upsee',
@@ -339,6 +384,7 @@ export const entranceExams: EntranceExam[] = [
     collegesAccepting: ['HBTU Kanpur', 'MNNIT Allahabad', 'KNIT Sultanpur', '400+ UP Engineering Colleges'],
     officialWebsite: 'https://upsee.nic.in',
     category: 'engineering',
+    state: 'uttar-pradesh',
   },
   {
     id: 'ojee',
@@ -361,6 +407,7 @@ export const entranceExams: EntranceExam[] = [
     collegesAccepting: ['CET Bhubaneswar', 'VSSUT Burla', 'IGIT Sarang', '100+ Odisha Engineering Colleges'],
     officialWebsite: 'https://ojee.nic.in',
     category: 'engineering',
+    state: 'odisha',
   },
   {
     id: 'viteee',
@@ -1080,4 +1127,39 @@ export const entranceExams: EntranceExam[] = [
 
 export const getExamsByCategory = (category: string): EntranceExam[] => {
   return entranceExams.filter(exam => exam.category === category);
+};
+
+export const getExamsByState = (state: IndianState): EntranceExam[] => {
+  if (state === 'all') {
+    return entranceExams;
+  }
+  if (state === 'national') {
+    return entranceExams.filter(exam => exam.state === 'national' || !exam.state);
+  }
+  return entranceExams.filter(exam => exam.state === state || exam.state === 'national' || !exam.state);
+};
+
+export const getExamsByCategoryAndState = (category: string, state: IndianState): EntranceExam[] => {
+  let exams = getExamsByCategory(category);
+  if (state === 'all') {
+    return exams;
+  }
+  if (state === 'national') {
+    return exams.filter(exam => exam.state === 'national' || !exam.state);
+  }
+  return exams.filter(exam => exam.state === state || exam.state === 'national' || !exam.state);
+};
+
+export const getStatesWithExams = (): StateInfo[] => {
+  const statesWithExams = new Set<string>();
+  statesWithExams.add('all');
+  statesWithExams.add('national');
+  
+  entranceExams.forEach(exam => {
+    if (exam.state && exam.state !== 'national') {
+      statesWithExams.add(exam.state);
+    }
+  });
+  
+  return indianStates.filter(state => statesWithExams.has(state.id));
 };
