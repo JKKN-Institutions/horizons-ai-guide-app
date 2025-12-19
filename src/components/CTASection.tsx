@@ -50,8 +50,8 @@ const CTASection = () => {
           </h2>
 
           <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-            Join thousands of students who have discovered their perfect career path with JKKN. 
-            Take the first step towards a brighter tomorrow.
+            Don't wait for opportunities — create them. Get personalized career guidance, 
+            connect with top employers, and unlock your potential with JKKN's AI-powered platform.
           </p>
 
           {/* CTA Buttons */}
