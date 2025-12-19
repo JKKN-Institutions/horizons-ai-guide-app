@@ -226,42 +226,42 @@ const getDefaultStudyPlan = (): StudyPhase[] => [
 
 const getWeeklyChecklist = (examId: string): string[] => {
   const commonTasks = [
-    '☐ Complete daily study hours target',
-    '☐ Solve at least 20 practice problems',
-    '☐ Revise previous day\'s topics',
-    '☐ Make/update formula sheet',
-    '☐ Clear any pending doubts',
-    '☐ Take one timed test',
-    '☐ Analyze test performance',
-    '☐ Physical exercise (30 mins)',
-    '☐ Read current affairs (if applicable)',
-    '☐ Review week\'s progress'
+    '[ ] Complete daily study hours target',
+    '[ ] Solve at least 20 practice problems',
+    '[ ] Revise previous day\'s topics',
+    '[ ] Make/update formula sheet',
+    '[ ] Clear any pending doubts',
+    '[ ] Take one timed test',
+    '[ ] Analyze test performance',
+    '[ ] Physical exercise (30 mins)',
+    '[ ] Read current affairs (if applicable)',
+    '[ ] Review week\'s progress'
   ];
 
   const examSpecific: Record<string, string[]> = {
     'neet': [
-      '☐ Read 2 NCERT chapters thoroughly',
-      '☐ Practice Biology diagrams',
-      '☐ Solve Chemistry numericals',
-      '☐ Physics formula revision'
+      '[ ] Read 2 NCERT chapters thoroughly',
+      '[ ] Practice Biology diagrams',
+      '[ ] Solve Chemistry numericals',
+      '[ ] Physics formula revision'
     ],
     'jee-main': [
-      '☐ Solve JEE level problems',
-      '☐ Practice calculus daily',
-      '☐ Organic chemistry mechanisms',
-      '☐ Physics derivations practice'
+      '[ ] Solve JEE level problems',
+      '[ ] Practice calculus daily',
+      '[ ] Organic chemistry mechanisms',
+      '[ ] Physics derivations practice'
     ],
     'clat': [
-      '☐ Read newspaper (The Hindu)',
-      '☐ Legal reasoning practice',
-      '☐ Vocabulary building',
-      '☐ Current affairs notes'
+      '[ ] Read newspaper (The Hindu)',
+      '[ ] Legal reasoning practice',
+      '[ ] Vocabulary building',
+      '[ ] Current affairs notes'
     ],
     'nda': [
-      '☐ Physical fitness training',
-      '☐ Maths problem solving',
-      '☐ History & Geography revision',
-      '☐ English grammar practice'
+      '[ ] Physical fitness training',
+      '[ ] Maths problem solving',
+      '[ ] History & Geography revision',
+      '[ ] English grammar practice'
     ]
   };
 
@@ -319,7 +319,7 @@ export const generateStudyPlannerPDF = (exam: EntranceExam) => {
   doc.setTextColor(27, 94, 32);
   doc.setFontSize(16);
   doc.setFont('helvetica', 'bold');
-  doc.text('📚 Preparation Timeline', 15, yPos);
+  doc.text('PREPARATION TIMELINE', 15, yPos);
   yPos += 10;
 
   const studyPlan = getStudyPlan(exam.id);
@@ -349,7 +349,7 @@ export const generateStudyPlannerPDF = (exam: EntranceExam) => {
     doc.setTextColor(46, 125, 50);
     doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
-    doc.text(`⏰ Daily Study: ${phase.dailyHours}`, 15, yPos);
+    doc.text(`Daily Study: ${phase.dailyHours}`, 15, yPos);
     yPos += 8;
 
     // Topics
@@ -368,7 +368,7 @@ export const generateStudyPlannerPDF = (exam: EntranceExam) => {
     doc.setFontSize(8);
     doc.setFont('helvetica', 'italic');
     phase.tips.forEach(tip => {
-      doc.text(`💡 ${tip}`, 20, yPos);
+      doc.text(`Tip: ${tip}`, 20, yPos);
       yPos += 5;
     });
 
@@ -384,7 +384,7 @@ export const generateStudyPlannerPDF = (exam: EntranceExam) => {
   doc.setTextColor(27, 94, 32);
   doc.setFontSize(16);
   doc.setFont('helvetica', 'bold');
-  doc.text('✅ Weekly Checklist', 15, yPos);
+  doc.text('WEEKLY CHECKLIST', 15, yPos);
   yPos += 10;
 
   const checklist = getWeeklyChecklist(exam.id);
@@ -413,7 +413,7 @@ export const generateStudyPlannerPDF = (exam: EntranceExam) => {
   doc.setTextColor(27, 94, 32);
   doc.setFontSize(16);
   doc.setFont('helvetica', 'bold');
-  doc.text('📅 Important Dates 2025', 15, yPos);
+  doc.text('IMPORTANT DATES 2025', 15, yPos);
   yPos += 10;
 
   doc.setFillColor(232, 245, 233);
