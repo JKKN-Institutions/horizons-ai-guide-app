@@ -269,19 +269,19 @@ export const ExamCompare = ({ isOpen, onClose }: ExamCompareProps) => {
                         <tr className="hover:bg-[#F9FBF9]">
                           <td className="p-3 font-medium text-sm text-[#374151] sticky left-0 bg-white">
                             <Building2 className="h-4 w-4 inline mr-2 text-[#1B5E20]" />
-                            Colleges Accepting
+                            TN Colleges Accepting
                           </td>
                           {selectedExamData.map(exam => (
                             <td key={exam.id} className="p-3 text-center">
                               <div className="flex flex-wrap gap-1 justify-center">
-                                {exam.collegesAccepting.slice(0, 3).map((c, i) => (
+                                {exam.tnCollegesAccepting.slice(0, 3).map((c, i) => (
                                   <Badge key={i} variant="outline" className="text-[10px] bg-[#E8F5E9] text-[#2E7D32]">
                                     {c}
                                   </Badge>
                                 ))}
-                                {exam.collegesAccepting.length > 3 && (
+                                {exam.tnCollegesAccepting.length > 3 && (
                                   <Badge variant="outline" className="text-[10px] bg-white text-[#2E7D32]">
-                                    +{exam.collegesAccepting.length - 3}
+                                    +{exam.tnCollegesAccepting.length - 3}
                                   </Badge>
                                 )}
                               </div>

@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { EntranceExam } from './types';
-import { examCategories, indianStates } from './examData';
+import { examCategories } from './examData';
 import { 
   ExternalLink, 
   Calendar, 
@@ -11,13 +11,11 @@ import {
   FileText, 
   Bell, 
   Building2,
-  BookOpen,
   Users,
-  Download,
   Bookmark,
   BookmarkCheck,
-  MapPin,
-  Star
+  Star,
+  MapPin
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
@@ -31,24 +29,12 @@ interface ExamCardProps {
 export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamCardProps) => {
   const { toast } = useToast();
   const categoryInfo = examCategories.find(c => c.id === exam.category);
-  const stateInfo = exam.state ? indianStates.find(s => s.id === exam.state) : null;
 
   const handleSetReminder = () => {
     toast({
       title: "Reminder Set! 🔔",
       description: `You'll be notified about ${exam.name} important dates.`,
     });
-  };
-
-  const handleDownloadSyllabus = () => {
-    if (exam.syllabusUrl) {
-      window.open(exam.syllabusUrl, '_blank');
-    } else {
-      toast({
-        title: "Syllabus Download",
-        description: `Visit ${exam.officialWebsite} to download the official syllabus.`,
-      });
-    }
   };
 
   const handleToggleBookmark = () => {
@@ -65,23 +51,17 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
 
   return (
     <Card className={cn(
-      "bg-white border-l-4 hover:shadow-lg transition-all duration-200 hover:-translate-y-1",
-      categoryInfo?.borderColor
+      "bg-white border-l-4 hover:shadow-xl transition-all duration-300 hover:-translate-y-1",
+      "border-[#2E7D32]"
     )}>
-      <CardHeader className="pb-3">
+      <CardHeader className="pb-3 bg-gradient-to-r from-[#E8F5E9] to-[#FFF8E1]">
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-2 flex-wrap">
             <Badge className={cn("text-xs font-medium", categoryInfo?.bgColor, categoryInfo?.color)}>
               {categoryInfo?.icon} {categoryInfo?.label}
             </Badge>
-            {stateInfo && stateInfo.id !== 'national' && (
-              <Badge variant="outline" className="text-xs bg-[#E8F5E9] text-[#2E7D32] border-[#A5D6A7]">
-                <MapPin className="h-3 w-3 mr-1" />
-                {stateInfo.shortCode}
-              </Badge>
-            )}
             {exam.hasJKKN && (
-              <Badge className="text-xs bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white border-0 animate-pulse">
+              <Badge className="text-xs bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white border-0">
                 <Star className="h-3 w-3 mr-1 fill-white" />
                 JKKN
               </Badge>
@@ -105,78 +85,58 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
                 <Bookmark className="h-5 w-5" />
               )}
             </Button>
-            <Badge variant="outline" className="text-xs bg-[#FFF8E1] text-[#F59E0B] border-[#FFE082]">
+            <Badge variant="outline" className="text-xs bg-[#FFF8E1] text-[#B8860B] border-[#F59E0B]">
               2025
             </Badge>
           </div>
         </div>
         
-        <h3 className="font-bold text-xl mt-3 text-[#1B5E20]">
-          {exam.name}
-        </h3>
-        <p className="text-sm text-[#6B7280]">{exam.fullForm}</p>
-        <p className="text-sm text-[#4B5563] flex items-center gap-1 mt-1">
-          <Building2 className="h-3 w-3" />
-          {exam.conductingBody}
-        </p>
+        {/* Exam Name - English & Tamil */}
+        <div className="mt-3">
+          <h3 className="font-bold text-xl text-[#1B5E20]">
+            {exam.name}
+          </h3>
+          <p className="text-sm text-[#B8860B] font-tamil">{exam.tamilName}</p>
+          <p className="text-xs text-[#6B7280] mt-1">{exam.fullForm}</p>
+        </div>
       </CardHeader>
 
-      <CardContent className="space-y-4">
-        {/* Exam Details */}
-        <div className="grid grid-cols-2 gap-3 text-sm">
+      <CardContent className="space-y-3 pt-4">
+        {/* Conducting Body */}
+        <div className="flex items-center gap-2 text-sm">
+          <Building2 className="h-4 w-4 text-[#2E7D32]" />
+          <span className="text-[#374151] font-medium">{exam.conductingBody}</span>
+        </div>
+
+        {/* Exam Mode & Duration */}
+        <div className="grid grid-cols-2 gap-3 text-sm bg-[#F0FDF4] rounded-lg p-3">
           <div className="flex items-center gap-2">
             <FileText className="h-4 w-4 text-[#2E7D32]" />
             <div>
               <p className="text-[#6B7280] text-xs">Mode</p>
-              <p className="text-[#1F2937] font-medium">{exam.examMode}</p>
+              <p className="text-[#1F2937] font-medium text-xs">{exam.examMode}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Clock className="h-4 w-4 text-[#2E7D32]" />
             <div>
               <p className="text-[#6B7280] text-xs">Duration</p>
-              <p className="text-[#1F2937] font-medium">{exam.duration}</p>
+              <p className="text-[#1F2937] font-medium text-xs">{exam.duration}</p>
             </div>
           </div>
         </div>
 
-        {/* Syllabus */}
+        {/* TN Student Eligibility */}
+        <div className="bg-gradient-to-r from-[#FFF8E1] to-[#FFFDE7] rounded-lg p-3 border border-[#FFE082]">
+          <p className="text-xs font-semibold text-[#B8860B] mb-1 flex items-center gap-1">
+            <MapPin className="h-3 w-3" /> TN Student Eligibility
+          </p>
+          <p className="text-xs text-[#374151]">{exam.tnEligibility}</p>
+        </div>
+
+        {/* Important Dates 2025 */}
         <div className="bg-[#E8F5E9] rounded-lg p-3">
           <p className="text-xs font-semibold text-[#1B5E20] mb-2 flex items-center gap-1">
-            <BookOpen className="h-3 w-3" /> Syllabus
-          </p>
-          <div className="flex flex-wrap gap-1">
-            {exam.syllabus.slice(0, 4).map((item, idx) => (
-              <Badge key={idx} variant="outline" className="text-xs bg-white text-[#374151] border-[#C8E6C9]">
-                {item}
-              </Badge>
-            ))}
-            {exam.syllabus.length > 4 && (
-              <Badge variant="outline" className="text-xs bg-white text-[#2E7D32] border-[#2E7D32]">
-                +{exam.syllabus.length - 4} more
-              </Badge>
-            )}
-          </div>
-        </div>
-
-        {/* Eligibility */}
-        <div className="bg-[#FFF8E1] rounded-lg p-3">
-          <p className="text-xs font-semibold text-[#F59E0B] mb-2 flex items-center gap-1">
-            <Users className="h-3 w-3" /> Eligibility
-          </p>
-          <ul className="text-xs text-[#374151] space-y-1">
-            {exam.eligibility.slice(0, 3).map((item, idx) => (
-              <li key={idx} className="flex items-start gap-1">
-                <span className="text-[#2E7D32]">✓</span>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Important Dates */}
-        <div className="bg-[#E3F2FD] rounded-lg p-3">
-          <p className="text-xs font-semibold text-[#1976D2] mb-2 flex items-center gap-1">
             <Calendar className="h-3 w-3" /> Important Dates 2025
           </p>
           <div className="grid grid-cols-1 gap-1 text-xs">
@@ -196,80 +156,74 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
         </div>
 
         {/* Application Fee */}
-        <div className="flex items-center justify-between text-sm bg-[#F3E5F5] rounded-lg p-3">
+        <div className="flex items-center justify-between text-sm bg-[#F0FDF4] rounded-lg p-3 border border-[#C8E6C9]">
           <div className="flex items-center gap-2">
-            <IndianRupee className="h-4 w-4 text-[#7B1FA2]" />
-            <span className="text-[#6B7280]">Application Fee:</span>
+            <IndianRupee className="h-4 w-4 text-[#2E7D32]" />
+            <span className="text-[#6B7280] text-xs">Application Fee:</span>
           </div>
           <div className="text-right">
-            <p className="font-bold text-[#7B1FA2]">{exam.applicationFee.general}</p>
+            <p className="font-bold text-[#1B5E20]">{exam.applicationFee.general}</p>
             <p className="text-xs text-[#6B7280]">SC/ST: {exam.applicationFee.scst}</p>
           </div>
         </div>
 
-        {/* JKKN Colleges Section */}
+        {/* JKKN Colleges */}
         {exam.hasJKKN && exam.jkknColleges && exam.jkknColleges.length > 0 && (
           <div className="bg-gradient-to-r from-[#FFF8E1] to-[#FFFDE7] rounded-lg p-3 border border-[#FFD54F]">
             <p className="text-xs font-semibold text-[#F59E0B] mb-2 flex items-center gap-1">
-              <Star className="h-3 w-3 fill-[#F59E0B]" /> JKKN Colleges Available
+              <Star className="h-3 w-3 fill-[#F59E0B]" /> JKKN Colleges
             </p>
             <div className="flex flex-wrap gap-1">
-              {exam.jkknColleges.slice(0, 3).map((college, idx) => (
+              {exam.jkknColleges.map((college, idx) => (
                 <Badge key={idx} className="text-xs bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white border-0">
                   {college}
                 </Badge>
               ))}
-              {exam.jkknColleges.length > 3 && (
-                <Badge className="text-xs bg-[#FFE082] text-[#B8860B] border-0">
-                  +{exam.jkknColleges.length - 3} more
-                </Badge>
-              )}
             </div>
           </div>
         )}
 
-        {/* Colleges Accepting */}
+        {/* TN Colleges Accepting */}
         <div>
-          <p className="text-xs font-semibold text-[#1B5E20] mb-2">🏛️ Colleges Accepting</p>
+          <p className="text-xs font-semibold text-[#1B5E20] mb-2 flex items-center gap-1">
+            <Users className="h-3 w-3" /> TN Colleges Accepting
+          </p>
           <div className="flex flex-wrap gap-1">
-            {exam.collegesAccepting.slice(0, 3).map((college, idx) => (
+            {exam.tnCollegesAccepting.slice(0, 3).map((college, idx) => (
               <Badge key={idx} variant="outline" className="text-xs bg-[#E8F5E9] text-[#2E7D32] border-[#A5D6A7]">
                 {college}
               </Badge>
             ))}
-            {exam.collegesAccepting.length > 3 && (
+            {exam.tnCollegesAccepting.length > 3 && (
               <Badge variant="outline" className="text-xs bg-white text-[#2E7D32] border-[#2E7D32]">
-                +{exam.collegesAccepting.length - 3} more
+                +{exam.tnCollegesAccepting.length - 3} more
               </Badge>
             )}
           </div>
         </div>
 
+        {/* Official Website */}
+        <div className="text-xs text-[#6B7280] flex items-center gap-1">
+          <ExternalLink className="h-3 w-3" />
+          <a href={exam.officialWebsite} target="_blank" rel="noopener noreferrer" className="text-[#1976D2] hover:underline truncate">
+            {exam.officialWebsite}
+          </a>
+        </div>
+
         {/* Action Buttons */}
-        <div className="flex flex-col gap-2 pt-2">
-          <div className="flex gap-2">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="flex-1 border-[#2E7D32] text-[#2E7D32] hover:bg-[#E8F5E9]"
-              onClick={handleDownloadSyllabus}
-            >
-              <Download className="h-3 w-3 mr-1" />
-              Syllabus
-            </Button>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="flex-1 border-[#F59E0B] text-[#F59E0B] hover:bg-[#FFF8E1]"
-              onClick={handleSetReminder}
-            >
-              <Bell className="h-3 w-3 mr-1" />
-              Reminder
-            </Button>
-          </div>
+        <div className="flex gap-2 pt-2">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="flex-1 border-[#2E7D32] text-[#2E7D32] hover:bg-[#E8F5E9]"
+            onClick={handleSetReminder}
+          >
+            <Bell className="h-3 w-3 mr-1" />
+            Reminder
+          </Button>
           <Button 
             size="sm" 
-            className="w-full bg-gradient-to-r from-[#F59E0B] to-[#D97706] hover:from-[#D97706] hover:to-[#B8860B] text-white"
+            className="flex-1 bg-gradient-to-r from-[#F59E0B] to-[#D97706] hover:from-[#D97706] hover:to-[#B8860B] text-white"
             onClick={() => window.open(exam.officialWebsite, '_blank')}
           >
             Apply Now <ExternalLink className="h-3 w-3 ml-1" />
