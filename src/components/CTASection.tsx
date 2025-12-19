@@ -55,26 +55,31 @@ const CTASection = () => {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Button 
               size="lg"
               onClick={() => navigate("/register/12th-learner")}
-              className="group bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+              className="group relative bg-white text-primary hover:bg-white px-8 py-6 text-lg font-semibold shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_20px_50px_rgba(255,255,255,0.3)] active:scale-95 overflow-hidden"
             >
-              <GraduationCap className="w-5 h-5 mr-2" />
-              Register as Student
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              {/* Shimmer effect */}
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
+              <GraduationCap className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+              <span className="relative">Register as Student</span>
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
             </Button>
             
             <Button 
               size="lg"
               variant="outline"
               onClick={() => navigate("/register/employer")}
-              className="group border-2 border-white/30 bg-white/5 text-white hover:bg-white/10 hover:border-white/50 px-8 py-6 text-lg font-semibold backdrop-blur-sm transition-all duration-300"
+              className="group relative border-2 border-white/30 bg-white/5 text-white hover:bg-white/15 hover:border-white/60 px-8 py-6 text-lg font-semibold backdrop-blur-sm transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden"
             >
-              <Briefcase className="w-5 h-5 mr-2" />
-              Partner With Us
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              {/* Glow pulse effect */}
+              <span className="absolute inset-0 rounded-md bg-white/0 group-hover:bg-white/5 transition-colors duration-300" />
+              <span className="absolute -inset-1 rounded-lg bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
+              <Briefcase className="w-5 h-5 mr-2 group-hover:-rotate-12 group-hover:scale-110 transition-transform duration-300 relative z-10" />
+              <span className="relative z-10">Partner With Us</span>
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300 relative z-10" />
             </Button>
           </div>
 
