@@ -7,49 +7,57 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 150 53% 10%;
+    --foreground: 153 79% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 150 53% 10%;
+    --card-foreground: 153 79% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 150 53% 10%;
+    --popover-foreground: 153 79% 15%;
 
-    --primary: 156 53% 11%;
+    /* Primary: Deep Forest Green #0b6641 */
+    --primary: 153 79% 22%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 20 100% 60%;
+    /* Secondary: Light Green #1b8e59 */
+    --secondary: 153 69% 33%;
     --secondary-foreground: 0 0% 100%;
 
+    /* Accent: Golden */
     --accent: 44 100% 50%;
-    --accent-foreground: 150 53% 10%;
+    --accent-foreground: 153 79% 15%;
 
-    --muted: 150 10% 95%;
-    --muted-foreground: 150 20% 40%;
+    --muted: 153 15% 95%;
+    --muted-foreground: 153 25% 40%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 150 20% 85%;
-    --input: 150 20% 85%;
-    --ring: 156 53% 11%;
+    --border: 153 20% 85%;
+    --input: 153 20% 85%;
+    --ring: 153 79% 22%;
 
     --radius: 0.5rem;
 
-    /* Custom JKKN Colors */
-    --jkkn-green: 156 53% 11%;
-    --jkkn-green-light: 156 40% 25%;
+    /* Brand Green Colors */
+    --brand-green-light: 153 69% 33%;    /* #1b8e59 */
+    --brand-green-medium: 163 64% 26%;   /* #196e59 */
+    --brand-green-dark: 153 79% 22%;     /* #0b6641 */
+
+    /* Custom JKKN Colors (Updated to Brand) */
+    --jkkn-green: 153 79% 22%;
+    --jkkn-green-light: 153 69% 33%;
     --jkkn-orange: 20 100% 60%;
     --jkkn-gold: 44 100% 50%;
-    --jkkn-dark: 156 53% 8%;
+    --jkkn-dark: 163 64% 26%;
 
-    /* ===== NEW LIGHT GREEN + GOLDEN THEME ===== */
-    /* Light Green Colors */
-    --fresh-green-bg: 120 52% 94%;
-    --fresh-green-light: 122 39% 49%;
-    --fresh-green-medium: 123 43% 39%;
-    --fresh-green-dark: 122 47% 25%;
-    --fresh-green-darker: 122 50% 17%;
+    /* ===== FRESH GREEN + GOLDEN THEME ===== */
+    /* Light Green Colors (Updated to Brand) */
+    --fresh-green-bg: 153 40% 95%;
+    --fresh-green-light: 153 69% 33%;
+    --fresh-green-medium: 163 64% 26%;
+    --fresh-green-dark: 153 79% 22%;
+    --fresh-green-darker: 153 79% 18%;
     
     /* Golden Colors */
     --fresh-gold-light: 48 100% 94%;
@@ -58,15 +66,15 @@
     --fresh-gold-rich: 43 75% 38%;
     
     /* Text Colors for Fresh Theme */
-    --fresh-text-heading: 122 47% 25%;
+    --fresh-text-heading: 153 79% 22%;
     --fresh-text-body: 220 13% 26%;
     --fresh-text-muted: 220 9% 46%;
     --fresh-text-light: 220 9% 56%;
     --fresh-text-tamil: 43 75% 38%;
 
-    /* Legacy Premium Theme Colors (keeping for landing page) */
-    --premium-navy: 205 59% 18%;
-    --premium-navy-light: 207 44% 32%;
+    /* Legacy Premium Theme Colors */
+    --premium-navy: 163 64% 26%;
+    --premium-navy-light: 153 69% 33%;
     --premium-gold: 43 96% 56%;
     --premium-gold-light: 45 93% 70%;
     --premium-orange: 18 100% 60%;
@@ -74,66 +82,66 @@
     --premium-cream-dark: 46 76% 90%;
 
     /* Text Colors for Premium Theme */
-    --text-heading: 205 59% 18%;
+    --text-heading: 153 79% 22%;
     --text-body: 215 25% 35%;
     --text-muted: 215 20% 55%;
     --text-tamil: 30 80% 35%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(156 53% 11% / 0.9), hsl(156 53% 8% / 0.95));
-    --gradient-stats: linear-gradient(90deg, hsl(156 53% 15%), hsl(156 53% 11%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(150 10% 98%));
+    --gradient-hero: linear-gradient(135deg, hsl(153 79% 22% / 0.9), hsl(163 64% 26% / 0.95));
+    --gradient-stats: linear-gradient(90deg, hsl(153 69% 33%), hsl(153 79% 22%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(153 15% 98%));
     --gradient-golden: linear-gradient(135deg, hsl(48 100% 96%) 0%, hsl(46 80% 92%) 25%, hsl(44 70% 85%) 50%, hsl(46 80% 92%) 75%, hsl(48 100% 96%) 100%);
     --gradient-premium: linear-gradient(135deg, hsl(18 100% 60%) 0%, hsl(43 96% 56%) 50%, hsl(45 100% 65%) 100%);
-    --gradient-fresh: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 25%, #FFF8E1 50%, #F1F8E9 75%, #E8F5E9 100%);
-    --gradient-fresh-header: linear-gradient(135deg, #2E7D32 0%, #1B5E20 50%, #004D40 100%);
+    --gradient-fresh: linear-gradient(135deg, hsl(153 40% 95%) 0%, hsl(153 35% 93%) 25%, hsl(48 100% 94%) 50%, hsl(153 35% 93%) 75%, hsl(153 40% 95%) 100%);
+    --gradient-fresh-header: linear-gradient(135deg, hsl(153 69% 33%) 0%, hsl(163 64% 26%) 50%, hsl(153 79% 22%) 100%);
 
     /* Shadows */
-    --shadow-card: 0 4px 20px hsl(156 53% 11% / 0.1);
-    --shadow-elevated: 0 8px 30px hsl(156 53% 11% / 0.15);
+    --shadow-card: 0 4px 20px hsl(153 79% 22% / 0.1);
+    --shadow-elevated: 0 8px 30px hsl(153 79% 22% / 0.15);
     --shadow-glow: 0 0 30px hsl(44 100% 50% / 0.3);
     --shadow-glass: 0 8px 32px hsl(0 0% 0% / 0.1);
     --shadow-premium: 0 10px 40px hsl(43 96% 56% / 0.15);
-    --shadow-fresh-green: 0 4px 20px rgba(46, 125, 50, 0.1);
-    --shadow-fresh-gold: 0 4px 20px rgba(245, 158, 11, 0.4);
+    --shadow-fresh-green: 0 4px 20px hsl(153 79% 22% / 0.1);
+    --shadow-fresh-gold: 0 4px 20px hsl(44 100% 50% / 0.4);
 
-    --sidebar-background: 156 53% 11%;
+    --sidebar-background: 153 79% 22%;
     --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 44 100% 50%;
-    --sidebar-primary-foreground: 156 53% 11%;
-    --sidebar-accent: 156 40% 20%;
+    --sidebar-primary-foreground: 153 79% 22%;
+    --sidebar-accent: 153 69% 28%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 156 40% 20%;
+    --sidebar-border: 153 69% 28%;
     --sidebar-ring: 44 100% 50%;
   }
 
   .dark {
-    --background: 156 53% 8%;
+    --background: 153 79% 12%;
     --foreground: 0 0% 98%;
 
-    --card: 156 53% 11%;
+    --card: 153 79% 16%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 156 53% 11%;
+    --popover: 153 79% 16%;
     --popover-foreground: 0 0% 98%;
 
     --primary: 44 100% 50%;
-    --primary-foreground: 156 53% 11%;
+    --primary-foreground: 153 79% 15%;
 
-    --secondary: 20 100% 60%;
+    --secondary: 153 69% 33%;
     --secondary-foreground: 0 0% 100%;
 
-    --accent: 156 40% 20%;
+    --accent: 153 60% 25%;
     --accent-foreground: 0 0% 98%;
 
-    --muted: 156 40% 15%;
-    --muted-foreground: 150 10% 70%;
+    --muted: 153 50% 20%;
+    --muted-foreground: 153 15% 70%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 156 40% 20%;
-    --input: 156 40% 20%;
+    --border: 153 50% 25%;
+    --input: 153 50% 25%;
     --ring: 44 100% 50%;
   }
 }
