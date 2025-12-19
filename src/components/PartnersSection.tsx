@@ -1,14 +1,25 @@
+import { Building2 } from "lucide-react";
+
+// Import partner logos
+import tcsLogo from "@/assets/partners/tcs-logo.png";
+import infosysLogo from "@/assets/partners/infosys-logo.png";
+import wiproLogo from "@/assets/partners/wipro-logo.png";
+import hclLogo from "@/assets/partners/hcl-logo.png";
+import cognizantLogo from "@/assets/partners/cognizant-logo.png";
+import apolloLogo from "@/assets/partners/apollo-logo.png";
+import foxconnLogo from "@/assets/partners/foxconn-logo.jpg";
+
 const partners = [
-  "TCS",
-  "Infosys",
-  "Wipro",
-  "HCL",
-  "Cognizant",
-  "Apollo Hospitals",
-  "Sakthi Auto Components",
-  "Foxconn",
-  "Premier Pvt Ltd",
-  "Rinex",
+  { name: "TCS", logo: tcsLogo },
+  { name: "Infosys", logo: infosysLogo },
+  { name: "Wipro", logo: wiproLogo },
+  { name: "HCL", logo: hclLogo },
+  { name: "Cognizant", logo: cognizantLogo },
+  { name: "Apollo Hospitals", logo: apolloLogo },
+  { name: "Sakthi Auto Components", logo: null },
+  { name: "Foxconn", logo: foxconnLogo },
+  { name: "Premier Pvt Ltd", logo: null },
+  { name: "Rinex", logo: null },
 ];
 
 const PartnersSection = () => {
@@ -27,11 +38,26 @@ const PartnersSection = () => {
         <div className="flex flex-wrap justify-center gap-4 md:gap-6">
           {partners.map((partner, index) => (
             <div
-              key={partner}
-              className="px-8 py-4 border-2 border-primary-foreground/30 rounded-full text-primary-foreground font-medium hover:border-accent hover:text-accent transition-all duration-300 animate-fade-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              key={partner.name}
+              className="group px-6 py-4 bg-white/5 backdrop-blur-sm border-2 border-primary-foreground/20 rounded-2xl hover:border-amber-400/50 hover:bg-white/10 transition-all duration-300 animate-fade-up flex items-center gap-3 min-w-[160px] justify-center"
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
-              {partner}
+              {partner.logo ? (
+                <div className="h-8 flex items-center">
+                  <img 
+                    src={partner.logo} 
+                    alt={`${partner.name} logo`}
+                    className="h-6 md:h-8 w-auto max-w-[120px] object-contain brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity"
+                  />
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Building2 className="w-5 h-5 text-primary-foreground/60 group-hover:text-amber-400 transition-colors" />
+                  <span className="text-primary-foreground font-medium group-hover:text-amber-400 transition-colors">
+                    {partner.name}
+                  </span>
+                </div>
+              )}
             </div>
           ))}
         </div>
