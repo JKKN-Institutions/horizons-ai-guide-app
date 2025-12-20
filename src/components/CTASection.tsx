@@ -1,34 +1,10 @@
-import { ArrowRight, Sparkles, GraduationCap, Briefcase, Clock } from "lucide-react";
+import { ArrowRight, Sparkles, GraduationCap, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 const CTASection = () => {
   const navigate = useNavigate();
-  
-  // Countdown timer - set deadline to end of current month
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  
-  useEffect(() => {
-    const calculateTimeLeft = () => {
-      const now = new Date();
-      const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
-      const difference = endOfMonth.getTime() - now.getTime();
-      
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        });
-      }
-    };
-    
-    calculateTimeLeft();
-    const timer = setInterval(calculateTimeLeft, 1000);
-    return () => clearInterval(timer);
-  }, []);
+
   return (
     <section className="relative py-20 overflow-hidden">
       {/* Background gradient */}
@@ -62,35 +38,6 @@ const CTASection = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
             <Sparkles className="w-4 h-4 text-yellow-300" />
             <span className="text-sm font-medium text-white">Start Your Journey Today</span>
-          </div>
-
-          {/* Urgency Countdown Timer */}
-          <div className="mb-8 p-4 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <Clock className="w-5 h-5 text-yellow-300 animate-pulse" />
-              <span className="text-sm font-semibold text-yellow-300 uppercase tracking-wider">Limited Time Offer - Registration Closing Soon</span>
-            </div>
-            <div className="flex items-center justify-center gap-3 sm:gap-6">
-              <div className="text-center">
-                <div className="text-2xl sm:text-4xl font-bold text-white tabular-nums">{String(timeLeft.days).padStart(2, '0')}</div>
-                <div className="text-xs text-white/60 uppercase tracking-wide">Days</div>
-              </div>
-              <div className="text-2xl sm:text-3xl font-bold text-white/40">:</div>
-              <div className="text-center">
-                <div className="text-2xl sm:text-4xl font-bold text-white tabular-nums">{String(timeLeft.hours).padStart(2, '0')}</div>
-                <div className="text-xs text-white/60 uppercase tracking-wide">Hours</div>
-              </div>
-              <div className="text-2xl sm:text-3xl font-bold text-white/40">:</div>
-              <div className="text-center">
-                <div className="text-2xl sm:text-4xl font-bold text-white tabular-nums">{String(timeLeft.minutes).padStart(2, '0')}</div>
-                <div className="text-xs text-white/60 uppercase tracking-wide">Minutes</div>
-              </div>
-              <div className="text-2xl sm:text-3xl font-bold text-white/40">:</div>
-              <div className="text-center">
-                <div className="text-2xl sm:text-4xl font-bold text-white tabular-nums">{String(timeLeft.seconds).padStart(2, '0')}</div>
-                <div className="text-xs text-white/60 uppercase tracking-wide">Seconds</div>
-              </div>
-            </div>
           </div>
 
           {/* Heading */}
