@@ -46,7 +46,7 @@ const Register12thLearner = () => {
 
   const validateStep = (step: number): boolean => {
     const stepFields: Record<number, string[]> = {
-      0: ["fullName", "phone", "email"],
+      0: ["fullName", "phone", "email", "dateOfBirth"],
       1: ["school"],
       2: [],
       3: [],
@@ -323,14 +323,17 @@ const Register12thLearner = () => {
                       {errors.email && <p className="text-sm text-destructive animate-fade-in">{errors.email}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="dob" className="text-sm font-semibold text-foreground">Date of Birth</Label>
+                      <Label htmlFor="dob" className="text-sm font-semibold text-foreground">
+                        Date of Birth <span className="text-destructive">*</span>
+                      </Label>
                       <Input 
                         id="dob" 
                         type="date" 
                         value={formData.dateOfBirth} 
                         onChange={e => handleChange("dateOfBirth", e.target.value)} 
-                        className="h-12 border-2 transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10 border-border hover:border-primary/50" 
+                        className={`h-12 border-2 transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10 ${errors.dateOfBirth ? "border-destructive" : "border-border hover:border-primary/50"}`} 
                       />
+                      {errors.dateOfBirth && <p className="text-sm text-destructive animate-fade-in">{errors.dateOfBirth}</p>}
                     </div>
                   </div>
                 )}
