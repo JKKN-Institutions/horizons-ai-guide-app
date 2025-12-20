@@ -5,7 +5,7 @@ export const scholarships: Scholarship[] = [
   {
     id: 'jkkn-first-graduate',
     name: 'JKKN First Graduate Scholarship',
-    provider: 'JKKN Educational Institutions',
+    provider: 'JKKN Institutions',
     type: 'jkkn',
     amount: '₹20,000 - ₹25,000/year',
     eligibility: ['First in Family to Graduate', 'Counseling Quota', 'All JKKN Colleges'],
@@ -25,7 +25,7 @@ export const scholarships: Scholarship[] = [
   {
     id: 'jkkn-sc-st-pmss',
     name: 'JKKN SC/ST Scholarship (PMSS)',
-    provider: 'JKKN Educational Institutions',
+    provider: 'JKKN Institutions',
     type: 'jkkn',
     amount: 'Full Tuition / ₹30,000 - ₹36,000/year',
     eligibility: ['SC/ST Category', 'Family Income < ₹2.5 Lakhs', 'All JKKN Colleges'],

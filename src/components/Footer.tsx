@@ -8,7 +8,7 @@ const Footer = () => {
               JKKN AI Horizons: Discover, Design, Do
             </h3>
             <p className="text-sm text-primary-foreground/70">
-              © 2025 J.K.K. Nattraja Educational Institutions. All Rights Reserved.
+              © 2025 J.K.K. Nattraja Institutions. All Rights Reserved.
             </p>
           </div>
 
