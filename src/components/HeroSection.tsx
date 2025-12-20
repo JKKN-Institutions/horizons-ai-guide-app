@@ -75,19 +75,15 @@ const HeroSection = () => {
               </Button>
             </div>
 
-            <div className="flex items-center gap-4 animate-fade-up" style={{ animationDelay: '0.6s' }}>
+            <div className="flex items-center gap-3 animate-fade-up" style={{ animationDelay: '0.6s' }}>
+              <span className="text-sm text-emerald-100/70">AI-powered guidance</span>
               <Button 
-                className="relative bg-gradient-to-r from-purple-500 via-pink-500 to-amber-500 text-white font-semibold text-sm rounded-full px-6 py-3 transition-all duration-300 group overflow-hidden shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-500/50 hover:scale-105 animate-pulse"
+                className="bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm rounded-full px-5 py-2.5 transition-all duration-300 shadow-lg shadow-amber-500/30 hover:shadow-xl hover:scale-105"
                 onClick={openChat}
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="relative flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 animate-bounce" />
-                  <span>Try AI Assistant</span>
-                  <span className="px-2 py-0.5 bg-white/20 rounded-full text-xs font-bold">FREE</span>
-                </span>
+                <Sparkles className="w-4 h-4 mr-2" />
+                Try AI Assistant
               </Button>
-              <span className="text-sm text-emerald-100/80 hidden md:block">Get instant career guidance</span>
             </div>
           </div>
 
