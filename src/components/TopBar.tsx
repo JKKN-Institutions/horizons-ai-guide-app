@@ -27,9 +27,13 @@ const TopBar = () => {
         <div className="flex items-center gap-2 md:gap-4">
           <Button 
             size="sm" 
-            className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium text-xs h-8 px-4 rounded-full shadow-md shadow-amber-500/20 transition-all duration-300 hover:shadow-lg"
+            className="relative bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium text-xs h-8 px-4 rounded-full shadow-md shadow-amber-500/20 transition-all duration-300 hover:shadow-lg"
             onClick={openChat}
           >
+            <span className="absolute -top-1 -right-1 flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+            </span>
             <MessageSquareText className="w-3.5 h-3.5 mr-1.5" />
             AI Chat
           </Button>
