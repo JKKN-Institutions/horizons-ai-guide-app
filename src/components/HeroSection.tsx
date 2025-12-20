@@ -75,16 +75,6 @@ const HeroSection = () => {
               </Button>
             </div>
 
-            <div className="flex items-center gap-3 animate-fade-up" style={{ animationDelay: '0.6s' }}>
-              <span className="text-sm text-emerald-100/70">AI-powered guidance</span>
-              <Button 
-                className="bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm rounded-full px-5 py-2.5 transition-all duration-300 shadow-lg shadow-amber-500/30 hover:shadow-xl hover:scale-105"
-                onClick={openChat}
-              >
-                <Sparkles className="w-4 h-4 mr-2" />
-                Try AI Assistant
-              </Button>
-            </div>
           </div>
 
           {/* Right Sidebar - 2 columns */}
