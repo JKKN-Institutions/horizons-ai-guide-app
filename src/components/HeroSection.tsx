@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Users, Briefcase, GraduationCap } from "lucide-react";
+import { Sparkles, Users, Briefcase, GraduationCap, ChevronDown } from "lucide-react";
 import heroCampus from "@/assets/hero-campus.jpg";
 import { useChatModal } from "@/hooks/useChatModal";
 
@@ -137,6 +137,20 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Scroll Down Indicator */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 animate-fade-up" style={{ animationDelay: '0.8s' }}>
+        <button 
+          onClick={() => window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' })}
+          className="flex flex-col items-center gap-1 text-white/70 hover:text-white transition-colors duration-300 group cursor-pointer"
+          aria-label="Scroll down"
+        >
+          <span className="text-[10px] uppercase tracking-wider font-medium">Explore More</span>
+          <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center group-hover:border-white/60 transition-all duration-300 group-hover:bg-white/10">
+            <ChevronDown className="w-4 h-4 animate-bounce" />
+          </div>
+        </button>
       </div>
     </section>
   );
