@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, forwardRef } from "react";
 import { X, Send, Trash2, Minimize2, Maximize2, Mic, MicOff, Download, Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -64,7 +64,7 @@ declare global {
   }
 }
 
-const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
+const AIChatModal = forwardRef<HTMLDivElement, AIChatModalProps>(({ isOpen, onClose }, ref) => {
   const { user } = useAuth();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -593,6 +593,8 @@ const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
       </div>
     </div>
   );
-};
+});
+
+AIChatModal.displayName = "AIChatModal";
 
 export default AIChatModal;
