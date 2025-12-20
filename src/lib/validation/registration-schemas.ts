@@ -37,7 +37,7 @@ export const register12thSchema = z.object({
   fullName: nameSchema,
   email: optionalEmailSchema,
   phone: phoneSchema,
-  dateOfBirth: z.string().optional(),
+  dateOfBirth: z.string().min(1, "Date of birth is required"),
   school: z.string().max(200, "School name too long").optional(),
   board: z.string().optional(),
   stream: z.string().optional(),
