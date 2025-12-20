@@ -40,7 +40,7 @@ export const generateScholarshipPDF = (scholarships: Scholarship[]) => {
   
   doc.setFontSize(12);
   doc.setFont('helvetica', 'normal');
-  doc.text('JKKN Educational Institutions', pageWidth / 2, 42, { align: 'center' });
+  doc.text('JKKN Institutions', pageWidth / 2, 42, { align: 'center' });
   doc.text(`Generated on ${new Date().toLocaleDateString('en-IN')}`, pageWidth / 2, 52, { align: 'center' });
 
   yPos = 75;
@@ -225,7 +225,7 @@ export const generateScholarshipPDF = (scholarships: Scholarship[]) => {
     doc.setFontSize(8);
     doc.setTextColor(128, 128, 128);
     doc.text(
-      `Page ${i} of ${totalPages} | JKKN Educational Institutions | www.jkkn.ac.in`,
+      `Page ${i} of ${totalPages} | JKKN Institutions | www.jkkn.ac.in`,
       pageWidth / 2,
       pageHeight - 8,
       { align: 'center' }

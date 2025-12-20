@@ -31,7 +31,7 @@ const NavigationBar = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <h1 className="font-serif text-lg md:text-xl font-semibold text-foreground">
-              J.K.K. Nattraja Educational Institutions
+              J.K.K. Nattraja Institutions
             </h1>
           </div>
 
