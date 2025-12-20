@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback, forwardRef } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { X, Send, Trash2, Minimize2, Maximize2, Mic, MicOff, Download, Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,6 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+
 interface Message {
   id?: string;
   role: "user" | "assistant";
@@ -64,7 +65,7 @@ declare global {
   }
 }
 
-const AIChatModal = forwardRef<HTMLDivElement, AIChatModalProps>(({ isOpen, onClose }, ref) => {
+const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
   const { user } = useAuth();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -593,8 +594,6 @@ const AIChatModal = forwardRef<HTMLDivElement, AIChatModalProps>(({ isOpen, onCl
       </div>
     </div>
   );
-});
-
-AIChatModal.displayName = "AIChatModal";
+};
 
 export default AIChatModal;
