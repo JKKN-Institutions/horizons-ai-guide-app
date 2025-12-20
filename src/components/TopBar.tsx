@@ -1,4 +1,4 @@
-import { Bell } from "lucide-react";
+import { Bell, MessageSquareText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import UserMenu from "@/components/UserMenu";
 import { useAuth } from "@/hooks/useAuth";
@@ -27,9 +27,10 @@ const TopBar = () => {
         <div className="flex items-center gap-2 md:gap-4">
           <Button 
             size="sm" 
-            className="bg-jkkn-green-light hover:bg-jkkn-green-light/80 text-primary-foreground text-xs h-8"
+            className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium text-xs h-8 px-4 rounded-full shadow-md shadow-amber-500/20 transition-all duration-300 hover:shadow-lg"
             onClick={openChat}
           >
+            <MessageSquareText className="w-3.5 h-3.5 mr-1.5" />
             AI Chat
           </Button>
           <button className="relative p-2 hover:bg-primary-foreground/10 rounded-full transition-colors">
