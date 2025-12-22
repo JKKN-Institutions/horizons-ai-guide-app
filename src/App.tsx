@@ -22,6 +22,7 @@ import CareerAssessment12thLearners from "./pages/CareerAssessment12thLearners";
 import TakeStudentAssessment from "./pages/TakeStudentAssessment";
 import StudentAssessmentResults from "./pages/StudentAssessmentResults";
 import IndustryTrends from "./pages/IndustryTrends";
+import SavedJobs from "./pages/SavedJobs";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -52,6 +53,7 @@ const App = () => (
               <Route path="/career-assessment/12th-learners/take" element={<TakeStudentAssessment />} />
               <Route path="/career-assessment/12th-learners/results/:attemptId" element={<StudentAssessmentResults />} />
               <Route path="/career-assessment/industry-trends" element={<IndustryTrends />} />
+              <Route path="/saved-jobs" element={<SavedJobs />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

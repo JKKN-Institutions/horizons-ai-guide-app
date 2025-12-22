@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -254,10 +255,18 @@ const JobsSection = () => {
               Explore high-demand roles in AI, Cloud, EV, Healthcare & more
             </p>
           </div>
-          <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold px-6 py-6 rounded-xl shadow-lg shadow-amber-500/30 hover:shadow-xl transition-all duration-300 group">
-            View All Jobs
-            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <div className="flex items-center gap-3">
+            <Link to="/saved-jobs">
+              <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20 font-semibold px-5 py-6 rounded-xl transition-all duration-300">
+                <Bookmark className="w-4 h-4 mr-2" />
+                Saved Jobs
+              </Button>
+            </Link>
+            <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold px-6 py-6 rounded-xl shadow-lg shadow-amber-500/30 hover:shadow-xl transition-all duration-300 group">
+              View All Jobs
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </div>
         </div>
 
         {/* Industry Trends Stats */}
