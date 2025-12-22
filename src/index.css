@@ -1453,4 +1453,18 @@
   .duration-400 {
     transition-duration: 400ms;
   }
+
+  /* Progress Bar Animation */
+  @keyframes growBar {
+    from {
+      width: 0%;
+    }
+    to {
+      width: var(--bar-width, 100%);
+    }
+  }
+
+  .animate-grow-bar {
+    animation: growBar 1.5s ease-out forwards;
+  }
 }
