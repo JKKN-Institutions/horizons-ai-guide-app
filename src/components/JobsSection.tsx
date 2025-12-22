@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Sparkles, TrendingUp, Brain, Cloud, Shield, Zap, HeartPulse, Megaphone, X, Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Sparkles, TrendingUp, Brain, Cloud, Shield, Zap, HeartPulse, Megaphone, X, Search, ChevronLeft, ChevronRight, Bookmark } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const industryTrends = [
   { id: "ai", name: "AI & Machine Learning", growth: "+42%", value: 42, icon: Brain, color: "from-violet-500 to-purple-600", barColor: "bg-gradient-to-r from-violet-500 to-purple-500" },
@@ -75,7 +77,116 @@ const JobsSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLocation, setSelectedLocation] = useState<string>("All Locations");
   const [currentPage, setCurrentPage] = useState(1);
+  const [savedJobs, setSavedJobs] = useState<Set<string>>(new Set());
+  const [userId, setUserId] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<string | null>(null);
+  const { toast } = useToast();
   const jobsPerPage = 8;
+
+  // Check auth state and load saved jobs
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUserId(session?.user?.id ?? null);
+      if (session?.user?.id) {
+        loadSavedJobs(session.user.id);
+      } else {
+        setSavedJobs(new Set());
+      }
+    });
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUserId(session?.user?.id ?? null);
+      if (session?.user?.id) {
+        loadSavedJobs(session.user.id);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const loadSavedJobs = async (uid: string) => {
+    const { data, error } = await supabase
+      .from('saved_jobs')
+      .select('job_title, job_company')
+      .eq('user_id', uid);
+    
+    if (!error && data) {
+      const savedSet = new Set(data.map(job => `${job.job_title}-${job.job_company}`));
+      setSavedJobs(savedSet);
+    }
+  };
+
+  const getJobKey = (job: typeof jobs[0]) => `${job.title}-${job.company}`;
+
+  const toggleSaveJob = async (job: typeof jobs[0]) => {
+    if (!userId) {
+      toast({
+        title: "Login Required",
+        description: "Please login to save jobs",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const jobKey = getJobKey(job);
+    setIsLoading(jobKey);
+
+    if (savedJobs.has(jobKey)) {
+      // Unsave job
+      const { error } = await supabase
+        .from('saved_jobs')
+        .delete()
+        .eq('user_id', userId)
+        .eq('job_title', job.title)
+        .eq('job_company', job.company);
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: "Failed to remove job from saved list",
+          variant: "destructive",
+        });
+      } else {
+        setSavedJobs(prev => {
+          const next = new Set(prev);
+          next.delete(jobKey);
+          return next;
+        });
+        toast({
+          title: "Job Removed",
+          description: "Job removed from your saved list",
+        });
+      }
+    } else {
+      // Save job
+      const { error } = await supabase
+        .from('saved_jobs')
+        .insert({
+          user_id: userId,
+          job_title: job.title,
+          job_company: job.company,
+          job_location: job.location,
+          job_salary: job.salary,
+          job_requirement: job.requirement,
+          job_sector: job.sector,
+        });
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: "Failed to save job",
+          variant: "destructive",
+        });
+      } else {
+        setSavedJobs(prev => new Set(prev).add(jobKey));
+        toast({
+          title: "Job Saved",
+          description: "Job added to your saved list",
+        });
+      }
+    }
+    setIsLoading(null);
+  };
 
   const filteredJobs = jobs.filter(job => {
     const matchesSector = selectedSector ? job.sector === selectedSector : true;
@@ -292,21 +403,41 @@ const JobsSection = () => {
         )}
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {paginatedJobs.map((job, index) => (
-            <div
-              key={`${job.title}-${job.company}-${index}`}
-              className="group bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 animate-fade-up hover:-translate-y-2 relative overflow-hidden"
-              style={{ animationDelay: `${index * 0.05}s` }}
-            >
-              {/* Hot badge */}
-              {job.isHot && (
-                <div className="absolute top-4 right-4">
-                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-red-500 to-rose-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
-                    <Sparkles className="w-3 h-3" />
-                    Hot
-                  </span>
+          {paginatedJobs.map((job, index) => {
+            const jobKey = getJobKey(job);
+            const isSaved = savedJobs.has(jobKey);
+            const isSaving = isLoading === jobKey;
+            
+            return (
+              <div
+                key={`${job.title}-${job.company}-${index}`}
+                className="group bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 animate-fade-up hover:-translate-y-2 relative overflow-hidden"
+                style={{ animationDelay: `${index * 0.05}s` }}
+              >
+                {/* Top badges row */}
+                <div className="absolute top-4 right-4 flex items-center gap-2">
+                  {/* Bookmark button */}
+                  <button
+                    onClick={() => toggleSaveJob(job)}
+                    disabled={isSaving}
+                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      isSaved 
+                        ? "bg-amber-500 text-white shadow-md" 
+                        : "bg-gray-100 text-gray-400 hover:bg-amber-100 hover:text-amber-500"
+                    } ${isSaving ? "opacity-50" : ""}`}
+                    title={isSaved ? "Remove from saved" : "Save job"}
+                  >
+                    <Bookmark className={`w-4 h-4 ${isSaved ? "fill-current" : ""}`} />
+                  </button>
+                  
+                  {/* Hot badge */}
+                  {job.isHot && (
+                    <span className="inline-flex items-center gap-1 bg-gradient-to-r from-red-500 to-rose-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
+                      <Sparkles className="w-3 h-3" />
+                      Hot
+                    </span>
+                  )}
                 </div>
-              )}
 
               {/* Company icon */}
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-100 to-green-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -343,7 +474,8 @@ const JobsSection = () => {
                 View Details
               </Button>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Pagination */}
