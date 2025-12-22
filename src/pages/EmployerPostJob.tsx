@@ -49,7 +49,7 @@ const EmployerPostJob = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <PageHeader title="Post New Job" backTo="/employer/jobs" />
+      <PageHeader title="Post New Job" />
 
       <div className="container mx-auto p-4 space-y-6 max-w-2xl pb-20">
         {/* Basic Info */}

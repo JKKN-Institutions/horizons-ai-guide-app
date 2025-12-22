@@ -116,7 +116,6 @@ const EmployerJobs = () => {
     <div className="min-h-screen bg-background">
       <PageHeader
         title="Manage Jobs"
-        backTo="/employer/dashboard"
         rightContent={
           <Button size="sm" onClick={() => navigate("/employer/jobs/new")}>
             <Plus className="w-4 h-4 mr-1" /> New Job
