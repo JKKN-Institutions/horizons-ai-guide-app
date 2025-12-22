@@ -30,9 +30,14 @@ const NavigationBar = () => {
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <h1 className="font-serif text-lg md:text-xl font-semibold text-foreground">
-              J.K.K. Nattraja Institutions
-            </h1>
+            <div>
+              <h1 className="font-serif text-lg md:text-xl font-semibold text-foreground leading-tight">
+                J.K.K. Nattraja Institutions
+              </h1>
+              <p className="text-[10px] md:text-xs text-muted-foreground font-medium tracking-wide">
+                70+ Years of Excellence in Education & Healthcare
+              </p>
+            </div>
           </div>
 
           {/* Desktop Navigation */}
