@@ -3,13 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft, TrendingUp, Target, Briefcase, Star, Laptop, 
   Heart, Cog, Building2, ShoppingCart, Brain, Cloud, Shield,
-  Database, Code, MessageSquare, Users, Lightbulb, RefreshCw, Handshake
+  Database, Code, MessageSquare, Users, Lightbulb, RefreshCw, Handshake,
+  Download, MapPin, Banknote, Search, X, Filter
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { generateIndustryTrendsPDF } from './generateIndustryTrendsPDF';
+import { useToast } from '@/hooks/use-toast';
 
 // Sector data with all details
 const sectors = [
@@ -321,23 +326,110 @@ const salaryData = [
   { industry: '🛒 E-commerce', icon: ShoppingCart, entry: '₹3-6 LPA', experienced: '₹10-20 LPA' }
 ];
 
+// Job listings data mapped to sectors
+const jobListings = [
+  // Technology & IT
+  { title: 'AI/ML Engineer', company: 'Infosys', location: 'Bangalore', salary: '₹8-15 LPA', requirement: 'B.Tech/M.Tech', sector: 'tech', isHot: true },
+  { title: 'Data Scientist', company: 'Wipro', location: 'Hyderabad', salary: '₹10-18 LPA', requirement: 'M.Sc/M.Tech', sector: 'tech', isHot: true },
+  { title: 'Cloud Architect', company: 'TCS', location: 'Chennai', salary: '₹12-22 LPA', requirement: 'B.Tech + AWS/Azure', sector: 'tech', isHot: true },
+  { title: 'Full Stack Developer', company: 'Cognizant', location: 'Pune', salary: '₹6-12 LPA', requirement: 'B.Tech/BCA', sector: 'tech', isHot: false },
+  { title: 'Cybersecurity Analyst', company: 'HCL', location: 'Noida', salary: '₹7-14 LPA', requirement: 'B.Tech + Certifications', sector: 'tech', isHot: true },
+  
+  // Healthcare
+  { title: 'Clinical Research Associate', company: 'Apollo', location: 'Chennai', salary: '₹5-10 LPA', requirement: 'Life Sciences Degree', sector: 'healthcare', isHot: false },
+  { title: 'Healthcare Data Analyst', company: 'Fortis', location: 'Delhi', salary: '₹6-12 LPA', requirement: 'B.Sc + Analytics', sector: 'healthcare', isHot: true },
+  { title: 'Medical AI Developer', company: 'Practo', location: 'Bangalore', salary: '₹12-20 LPA', requirement: 'B.Tech + Healthcare', sector: 'healthcare', isHot: true },
+  { title: 'Telemedicine Specialist', company: '1mg', location: 'Gurgaon', salary: '₹8-15 LPA', requirement: 'MBBS/Healthcare', sector: 'healthcare', isHot: false },
+  
+  // Manufacturing
+  { title: 'EV Engineer', company: 'Tata Motors', location: 'Pune', salary: '₹8-16 LPA', requirement: 'B.Tech Mechanical/EV', sector: 'manufacturing', isHot: true },
+  { title: 'Battery Systems Engineer', company: 'Ola Electric', location: 'Bangalore', salary: '₹10-18 LPA', requirement: 'B.Tech + Battery Tech', sector: 'manufacturing', isHot: true },
+  { title: 'Renewable Energy Engineer', company: 'Adani Green', location: 'Ahmedabad', salary: '₹8-15 LPA', requirement: 'B.Tech Electrical', sector: 'manufacturing', isHot: true },
+  { title: 'Semiconductor Engineer', company: 'Intel', location: 'Bangalore', salary: '₹12-22 LPA', requirement: 'M.Tech VLSI', sector: 'manufacturing', isHot: true },
+  
+  // BFSI
+  { title: 'FinTech Product Manager', company: 'Razorpay', location: 'Bangalore', salary: '₹18-30 LPA', requirement: 'MBA + Tech', sector: 'bfsi', isHot: true },
+  { title: 'Investment Banking Analyst', company: 'ICICI Bank', location: 'Mumbai', salary: '₹12-20 LPA', requirement: 'MBA Finance', sector: 'bfsi', isHot: false },
+  { title: 'Blockchain Developer', company: 'Polygon', location: 'Bangalore', salary: '₹20-35 LPA', requirement: 'B.Tech + Blockchain', sector: 'bfsi', isHot: true },
+  { title: 'Risk Analyst', company: 'HDFC Bank', location: 'Mumbai', salary: '₹8-15 LPA', requirement: 'CA/CFA/MBA', sector: 'bfsi', isHot: false },
+  
+  // E-commerce
+  { title: 'E-Commerce Manager', company: 'Amazon', location: 'Bangalore', salary: '₹15-28 LPA', requirement: 'MBA + E-Commerce', sector: 'ecommerce', isHot: true },
+  { title: 'Supply Chain Analyst', company: 'Flipkart', location: 'Bangalore', salary: '₹8-15 LPA', requirement: 'MBA Operations', sector: 'ecommerce', isHot: false },
+  { title: 'Quick Commerce Lead', company: 'Zepto', location: 'Mumbai', salary: '₹12-22 LPA', requirement: 'MBA + Operations', sector: 'ecommerce', isHot: true },
+  
+  // Logistics
+  { title: 'Supply Chain Manager', company: 'Delhivery', location: 'Gurgaon', salary: '₹15-25 LPA', requirement: 'MBA Operations', sector: 'logistics', isHot: true },
+  { title: 'Logistics Analyst', company: 'Blue Dart', location: 'Mumbai', salary: '₹6-12 LPA', requirement: 'B.Tech/MBA', sector: 'logistics', isHot: false },
+  { title: 'Warehouse Operations Lead', company: 'Amazon Logistics', location: 'Bangalore', salary: '₹8-14 LPA', requirement: 'Any Graduate + Experience', sector: 'logistics', isHot: true },
+  
+  // Gaming
+  { title: 'Game Developer', company: 'Games24x7', location: 'Mumbai', salary: '₹12-22 LPA', requirement: 'B.Tech + Unity/Unreal', sector: 'gaming', isHot: true },
+  { title: 'Mobile Game Developer', company: 'MPL', location: 'Bangalore', salary: '₹15-28 LPA', requirement: 'B.Tech + Mobile Dev', sector: 'gaming', isHot: true },
+  { title: 'Esports Manager', company: 'JetSynthesys', location: 'Pune', salary: '₹8-15 LPA', requirement: 'Sports Management', sector: 'gaming', isHot: true },
+  
+  // AgriTech
+  { title: 'AgriTech Product Manager', company: 'DeHaat', location: 'Patna', salary: '₹12-22 LPA', requirement: 'MBA + AgriTech', sector: 'agritech', isHot: true },
+  { title: 'Agricultural Data Scientist', company: 'Ninjacart', location: 'Bangalore', salary: '₹15-25 LPA', requirement: 'M.Sc + Data Science', sector: 'agritech', isHot: true },
+  { title: 'IoT Engineer - Smart Farming', company: 'Stellapps', location: 'Bangalore', salary: '₹10-18 LPA', requirement: 'B.Tech + IoT', sector: 'agritech', isHot: false },
+  
+  // EdTech
+  { title: 'EdTech Product Manager', company: 'Unacademy', location: 'Bangalore', salary: '₹15-25 LPA', requirement: 'MBA + EdTech', sector: 'edtech', isHot: true },
+  { title: 'Curriculum Designer', company: "BYJU'S", location: 'Bangalore', salary: '₹8-14 LPA', requirement: 'M.Ed/MA Education', sector: 'edtech', isHot: false },
+  { title: 'Learning Experience Designer', company: 'upGrad', location: 'Mumbai', salary: '₹10-18 LPA', requirement: 'MA/M.Ed', sector: 'edtech', isHot: true },
+  
+  // Renewable Energy
+  { title: 'Solar Project Engineer', company: 'Adani Green', location: 'Ahmedabad', salary: '₹8-15 LPA', requirement: 'B.Tech Electrical', sector: 'renewable', isHot: true },
+  { title: 'Wind Energy Specialist', company: 'Suzlon', location: 'Pune', salary: '₹10-18 LPA', requirement: 'B.Tech Mechanical', sector: 'renewable', isHot: true },
+  { title: 'Sustainability Consultant', company: 'ReNew Power', location: 'Gurgaon', salary: '₹15-25 LPA', requirement: 'MBA + Sustainability', sector: 'renewable', isHot: false },
+];
+
 const IndustryTrends = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [expandedSector, setExpandedSector] = useState<string | null>(null);
+  const [selectedJobSector, setSelectedJobSector] = useState<string>('all');
+  const [jobSearchQuery, setJobSearchQuery] = useState('');
+
+  const handleDownloadPDF = () => {
+    generateIndustryTrendsPDF(sectors, streamRoadmaps, salaryData);
+    toast({
+      title: "PDF Downloaded",
+      description: "Industry Trends report has been downloaded successfully!",
+    });
+  };
+
+  const filteredJobs = jobListings.filter(job => {
+    const matchesSector = selectedJobSector === 'all' || job.sector === selectedJobSector;
+    const matchesSearch = jobSearchQuery === '' || 
+      job.title.toLowerCase().includes(jobSearchQuery.toLowerCase()) ||
+      job.company.toLowerCase().includes(jobSearchQuery.toLowerCase()) ||
+      job.location.toLowerCase().includes(jobSearchQuery.toLowerCase());
+    return matchesSector && matchesSearch;
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-primary/10">
       {/* Header */}
       <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground">
         <div className="container mx-auto px-4 py-6">
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate(-1)}
-            className="mb-4 text-primary-foreground hover:bg-primary-foreground/10"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back
-          </Button>
+          <div className="flex items-center justify-between">
+            <Button 
+              variant="ghost" 
+              onClick={() => navigate(-1)}
+              className="text-primary-foreground hover:bg-primary-foreground/10"
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back
+            </Button>
+            <Button 
+              onClick={handleDownloadPDF}
+              className="bg-amber-500 hover:bg-amber-600 text-white"
+            >
+              <Download className="mr-2 h-4 w-4" />
+              Download PDF
+            </Button>
+          </div>
           
           <div className="text-center space-y-3">
             <h1 className="text-3xl md:text-4xl font-bold">
@@ -629,7 +721,134 @@ const IndustryTrends = () => {
           </Tabs>
         </section>
 
-        {/* Section 4: Salary Insights */}
+        {/* Section 4: Job Listings */}
+        <section>
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground flex items-center justify-center gap-2">
+              💼 Trending Job Opportunities
+            </h2>
+            <p className="text-amber-600 dark:text-amber-400 mt-2 font-medium">
+              பிரபலமான வேலை வாய்ப்புகள்
+            </p>
+          </div>
+
+          {/* Filters */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+            <div className="relative flex-1 max-w-md">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search jobs by title, company, location..."
+                value={jobSearchQuery}
+                onChange={(e) => setJobSearchQuery(e.target.value)}
+                className="pl-10"
+              />
+              {jobSearchQuery && (
+                <button
+                  onClick={() => setJobSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+            <Select value={selectedJobSector} onValueChange={setSelectedJobSector}>
+              <SelectTrigger className="w-full sm:w-[200px]">
+                <Filter className="w-4 h-4 mr-2 text-muted-foreground" />
+                <SelectValue placeholder="Filter by sector" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Sectors</SelectItem>
+                {sectors.map((sector) => (
+                  <SelectItem key={sector.id} value={sector.id}>
+                    {sector.icon} {sector.title.split(' ')[0]}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Active filter indicator */}
+          {(selectedJobSector !== 'all' || jobSearchQuery) && (
+            <div className="flex items-center gap-2 mb-4 flex-wrap">
+              <span className="text-sm text-muted-foreground">Showing:</span>
+              {selectedJobSector !== 'all' && (
+                <Badge variant="secondary" className="gap-1">
+                  {sectors.find(s => s.id === selectedJobSector)?.title || selectedJobSector}
+                  <button onClick={() => setSelectedJobSector('all')}>
+                    <X className="w-3 h-3" />
+                  </button>
+                </Badge>
+              )}
+              {jobSearchQuery && (
+                <Badge variant="secondary" className="gap-1">
+                  Search: {jobSearchQuery}
+                  <button onClick={() => setJobSearchQuery('')}>
+                    <X className="w-3 h-3" />
+                  </button>
+                </Badge>
+              )}
+              <span className="text-sm text-muted-foreground">({filteredJobs.length} jobs)</span>
+            </div>
+          )}
+
+          {/* Job Cards Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filteredJobs.slice(0, 12).map((job, idx) => (
+              <Card key={idx} className="hover:shadow-lg transition-all duration-300 overflow-hidden">
+                <CardContent className="p-4">
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <h3 className="font-semibold text-foreground">{job.title}</h3>
+                      <p className="text-sm text-primary font-medium">{job.company}</p>
+                    </div>
+                    {job.isHot && (
+                      <Badge variant="destructive" className="text-xs">
+                        🔥 Hot
+                      </Badge>
+                    )}
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <MapPin className="w-4 h-4" />
+                      <span>{job.location}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <Banknote className="w-4 h-4" />
+                      <span className="text-primary font-medium">{job.salary}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <Briefcase className="w-4 h-4" />
+                      <span>{job.requirement}</span>
+                    </div>
+                  </div>
+                  <div className="mt-3 pt-3 border-t">
+                    <Badge variant="outline" className="text-xs">
+                      {sectors.find(s => s.id === job.sector)?.title.split(' ')[0] || job.sector}
+                    </Badge>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {filteredJobs.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">No jobs found matching your criteria.</p>
+              <Button variant="link" onClick={() => { setSelectedJobSector('all'); setJobSearchQuery(''); }}>
+                Clear filters
+              </Button>
+            </div>
+          )}
+
+          {filteredJobs.length > 12 && (
+            <p className="text-center text-sm text-muted-foreground mt-4">
+              Showing 12 of {filteredJobs.length} jobs. Visit the main Jobs section for more.
+            </p>
+          )}
+        </section>
+
+        {/* Section 5: Salary Insights */}
         <section>
           <div className="text-center mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground flex items-center justify-center gap-2">
