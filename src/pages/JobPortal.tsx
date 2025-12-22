@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Search, RefreshCw } from 'lucide-react';
+import { Search, RefreshCw, ArrowLeft } from 'lucide-react';
 import { JobCard, CategoryFilter, JobFiltersSheet, JobDetailsSheet, BottomNav } from '@/components/JobPortal';
 import { useCategories, useJobs, useSaveJob, useUnsaveJob, useSavedJobs, useLogContact } from '@/hooks/useJobPortal';
 import { Job, JobFilters } from '@/types/jobPortal';
 import { supabase } from '@/integrations/supabase/client';
 
 const JobPortal = () => {
+  const navigate = useNavigate();
   const [userId, setUserId] = useState<string | null>(null);
   const [filters, setFilters] = useState<JobFilters>({});
   const [searchQuery, setSearchQuery] = useState('');
@@ -63,7 +65,17 @@ const JobPortal = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground sticky top-0 z-40">
         <div className="container mx-auto px-4 py-4">
-          <h1 className="text-xl font-bold mb-3">Find Your Dream Job</h1>
+          <div className="flex items-center gap-3 mb-3">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate('/')}
+              className="h-10 w-10 rounded-full hover:bg-white/20 text-primary-foreground"
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <h1 className="text-xl font-bold">Find Your Dream Job</h1>
+          </div>
           <form onSubmit={handleSearch} className="flex gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />

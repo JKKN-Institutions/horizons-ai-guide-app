@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Bookmark, MapPin, DollarSign, Briefcase, Trash2, Loader2, Calendar, FileText, CheckCircle, Clock, XCircle, Download, BarChart3, Building2 } from "lucide-react";
@@ -340,13 +340,13 @@ const SavedJobs = () => {
       {/* Header */}
       <div className="bg-primary text-primary-foreground py-8">
         <div className="container mx-auto px-4">
-          <Link 
-            to="/" 
+          <button 
+            onClick={() => navigate("/")} 
             className="inline-flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground mb-4 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
-          </Link>
+          </button>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Bookmark className="w-8 h-8" />

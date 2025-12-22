@@ -159,7 +159,7 @@ const Register12thLearner = () => {
           className="mb-6 group hover:bg-primary/10 transition-all duration-300"
         >
           <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-          <span className="text-primary font-medium">Back to Home</span>
+          <span className="text-primary font-medium">Back</span>
         </Button>
 
         <div className="grid lg:grid-cols-3 gap-8">
