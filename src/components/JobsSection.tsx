@@ -3,40 +3,76 @@ import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Spar
 
 const jobs = [
   {
-    title: "Software Developer",
+    title: "AI/ML Engineer",
+    company: "Infosys",
+    location: "Bangalore",
+    salary: "₹8-15 LPA",
+    requirement: "B.Tech/M.Tech",
+    type: "Full-time",
+    isHot: true,
+  },
+  {
+    title: "Data Scientist",
+    company: "Wipro",
+    location: "Hyderabad",
+    salary: "₹10-18 LPA",
+    requirement: "M.Sc/M.Tech",
+    type: "Full-time",
+    isHot: true,
+  },
+  {
+    title: "Cloud Architect",
     company: "TCS",
     location: "Chennai",
-    salary: "₹4-6 LPA",
-    requirement: "Fresher",
+    salary: "₹12-22 LPA",
+    requirement: "B.Tech + AWS/Azure",
     type: "Full-time",
     isHot: true,
   },
   {
-    title: "Staff Nurse",
+    title: "Cybersecurity Analyst",
+    company: "HCL Technologies",
+    location: "Noida",
+    salary: "₹7-14 LPA",
+    requirement: "B.Tech + Certifications",
+    type: "Full-time",
+    isHot: true,
+  },
+  {
+    title: "Full Stack Developer",
+    company: "Cognizant",
+    location: "Pune",
+    salary: "₹6-12 LPA",
+    requirement: "B.Tech/BCA",
+    type: "Full-time",
+    isHot: false,
+  },
+  {
+    title: "Healthcare Data Analyst",
     company: "Apollo Hospitals",
-    location: "Coimbatore",
-    salary: "₹3-4 LPA",
-    requirement: "B.Sc Nursing",
+    location: "Chennai",
+    salary: "₹5-9 LPA",
+    requirement: "B.Sc + Analytics",
     type: "Full-time",
     isHot: false,
   },
   {
-    title: "Clerk",
-    company: "HDFC Bank",
-    location: "Tamil Nadu",
-    salary: "₹3-4 LPA",
-    requirement: "Any Graduate",
-    type: "Full-time",
-    isHot: false,
-  },
-  {
-    title: "Sales Executive",
-    company: "Retail Partner",
-    location: "Multiple Locations",
-    salary: "₹15,000/month",
-    requirement: "12th Pass",
+    title: "Electric Vehicle Engineer",
+    company: "Tata Motors",
+    location: "Pune",
+    salary: "₹8-16 LPA",
+    requirement: "B.Tech Mechanical/EV",
     type: "Full-time",
     isHot: true,
+  },
+  {
+    title: "Digital Marketing Manager",
+    company: "Flipkart",
+    location: "Bangalore",
+    salary: "₹6-12 LPA",
+    requirement: "MBA Marketing",
+    type: "Full-time",
+    isHot: false,
   },
 ];
 
@@ -55,11 +91,14 @@ const JobsSection = () => {
           <div>
             <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-amber-300 px-4 py-2 rounded-full text-sm font-semibold mb-4 border border-amber-400/30">
               <Briefcase className="w-4 h-4" />
-              Career Opportunities
+              India's Job Market 2026
             </span>
             <h2 className="font-serif text-4xl md:text-5xl font-bold italic text-white">
-              Latest Job Openings
+              Trending Career Opportunities
             </h2>
+            <p className="text-emerald-100/80 mt-3 max-w-xl">
+              Explore high-demand roles in AI, Cloud, EV, Healthcare & more
+            </p>
           </div>
           <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold px-6 py-6 rounded-xl shadow-lg shadow-amber-500/30 hover:shadow-xl transition-all duration-300 group">
             View All Jobs
