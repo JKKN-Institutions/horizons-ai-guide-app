@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      categories: {
+        Row: {
+          created_at: string | null
+          display_order: number | null
+          icon: string | null
+          id: string
+          is_active: boolean | null
+          jobs_count: number | null
+          name: string
+        }
+        Insert: {
+          created_at?: string | null
+          display_order?: number | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          jobs_count?: number | null
+          name: string
+        }
+        Update: {
+          created_at?: string | null
+          display_order?: number | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          jobs_count?: number | null
+          name?: string
+        }
+        Relationships: []
+      }
       chat_messages: {
         Row: {
           content: string
@@ -58,6 +88,399 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      contact_logs: {
+        Row: {
+          contact_type: string
+          contacted_at: string | null
+          id: string
+          job_id: string
+          user_id: string | null
+        }
+        Insert: {
+          contact_type: string
+          contacted_at?: string | null
+          id?: string
+          job_id: string
+          user_id?: string | null
+        }
+        Update: {
+          contact_type?: string
+          contacted_at?: string | null
+          id?: string
+          job_id?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contact_logs_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      employers: {
+        Row: {
+          address: string | null
+          city: string | null
+          company_logo_url: string | null
+          company_name: string
+          company_size: string | null
+          contact_designation: string | null
+          contact_email: string
+          contact_name: string
+          contact_phone: string
+          contact_phone_alt: string | null
+          created_at: string | null
+          description: string | null
+          expected_hires: string | null
+          hiring_categories: Json | null
+          id: string
+          industry: string | null
+          is_verified: boolean | null
+          job_types: Json | null
+          state: string | null
+          updated_at: string | null
+          user_id: string | null
+          verification_status: string | null
+          verified_at: string | null
+          website: string | null
+        }
+        Insert: {
+          address?: string | null
+          city?: string | null
+          company_logo_url?: string | null
+          company_name: string
+          company_size?: string | null
+          contact_designation?: string | null
+          contact_email: string
+          contact_name: string
+          contact_phone: string
+          contact_phone_alt?: string | null
+          created_at?: string | null
+          description?: string | null
+          expected_hires?: string | null
+          hiring_categories?: Json | null
+          id?: string
+          industry?: string | null
+          is_verified?: boolean | null
+          job_types?: Json | null
+          state?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          verification_status?: string | null
+          verified_at?: string | null
+          website?: string | null
+        }
+        Update: {
+          address?: string | null
+          city?: string | null
+          company_logo_url?: string | null
+          company_name?: string
+          company_size?: string | null
+          contact_designation?: string | null
+          contact_email?: string
+          contact_name?: string
+          contact_phone?: string
+          contact_phone_alt?: string | null
+          created_at?: string | null
+          description?: string | null
+          expected_hires?: string | null
+          hiring_categories?: Json | null
+          id?: string
+          industry?: string | null
+          is_verified?: boolean | null
+          job_types?: Json | null
+          state?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          verification_status?: string | null
+          verified_at?: string | null
+          website?: string | null
+        }
+        Relationships: []
+      }
+      job_alerts: {
+        Row: {
+          category_id: string | null
+          created_at: string | null
+          experience: string | null
+          frequency: string | null
+          id: string
+          is_active: boolean | null
+          keywords: string | null
+          last_sent_at: string | null
+          location: string | null
+          name: string | null
+          salary_max: number | null
+          salary_min: number | null
+          user_id: string
+        }
+        Insert: {
+          category_id?: string | null
+          created_at?: string | null
+          experience?: string | null
+          frequency?: string | null
+          id?: string
+          is_active?: boolean | null
+          keywords?: string | null
+          last_sent_at?: string | null
+          location?: string | null
+          name?: string | null
+          salary_max?: number | null
+          salary_min?: number | null
+          user_id: string
+        }
+        Update: {
+          category_id?: string | null
+          created_at?: string | null
+          experience?: string | null
+          frequency?: string | null
+          id?: string
+          is_active?: boolean | null
+          keywords?: string | null
+          last_sent_at?: string | null
+          location?: string | null
+          name?: string | null
+          salary_max?: number | null
+          salary_min?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "job_alerts_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      job_notifications: {
+        Row: {
+          created_at: string | null
+          id: string
+          is_read: boolean | null
+          link: string | null
+          message: string | null
+          title: string | null
+          type: string | null
+          user_id: string
+          user_type: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          is_read?: boolean | null
+          link?: string | null
+          message?: string | null
+          title?: string | null
+          type?: string | null
+          user_id: string
+          user_type?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          is_read?: boolean | null
+          link?: string | null
+          message?: string | null
+          title?: string | null
+          type?: string | null
+          user_id?: string
+          user_type?: string | null
+        }
+        Relationships: []
+      }
+      jobs: {
+        Row: {
+          area: string | null
+          benefits: Json | null
+          category_id: string | null
+          city: string
+          company_logo_url: string | null
+          company_name: string
+          contact_person: string
+          created_at: string | null
+          description: string | null
+          documents_required: Json | null
+          email: string | null
+          employer_id: string | null
+          experience_max: number | null
+          experience_min: number | null
+          full_address: string
+          gender_preference: string | null
+          id: string
+          interview_end_date: string | null
+          interview_end_time: string | null
+          interview_start_date: string | null
+          interview_start_time: string | null
+          interview_venue: string | null
+          is_featured: boolean | null
+          is_salary_negotiable: boolean | null
+          is_walkin: boolean | null
+          job_type: string | null
+          latitude: number | null
+          longitude: number | null
+          phone_primary: string
+          phone_secondary: string | null
+          pincode: string | null
+          qualification: string | null
+          requirements: string | null
+          responsibilities: string | null
+          salary_max: number | null
+          salary_min: number | null
+          salary_type: string | null
+          state: string
+          status: string | null
+          title: string
+          updated_at: string | null
+          vacancies: number | null
+          valid_until: string | null
+          views_count: number | null
+          whatsapp_number: string | null
+        }
+        Insert: {
+          area?: string | null
+          benefits?: Json | null
+          category_id?: string | null
+          city: string
+          company_logo_url?: string | null
+          company_name: string
+          contact_person: string
+          created_at?: string | null
+          description?: string | null
+          documents_required?: Json | null
+          email?: string | null
+          employer_id?: string | null
+          experience_max?: number | null
+          experience_min?: number | null
+          full_address: string
+          gender_preference?: string | null
+          id?: string
+          interview_end_date?: string | null
+          interview_end_time?: string | null
+          interview_start_date?: string | null
+          interview_start_time?: string | null
+          interview_venue?: string | null
+          is_featured?: boolean | null
+          is_salary_negotiable?: boolean | null
+          is_walkin?: boolean | null
+          job_type?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          phone_primary: string
+          phone_secondary?: string | null
+          pincode?: string | null
+          qualification?: string | null
+          requirements?: string | null
+          responsibilities?: string | null
+          salary_max?: number | null
+          salary_min?: number | null
+          salary_type?: string | null
+          state: string
+          status?: string | null
+          title: string
+          updated_at?: string | null
+          vacancies?: number | null
+          valid_until?: string | null
+          views_count?: number | null
+          whatsapp_number?: string | null
+        }
+        Update: {
+          area?: string | null
+          benefits?: Json | null
+          category_id?: string | null
+          city?: string
+          company_logo_url?: string | null
+          company_name?: string
+          contact_person?: string
+          created_at?: string | null
+          description?: string | null
+          documents_required?: Json | null
+          email?: string | null
+          employer_id?: string | null
+          experience_max?: number | null
+          experience_min?: number | null
+          full_address?: string
+          gender_preference?: string | null
+          id?: string
+          interview_end_date?: string | null
+          interview_end_time?: string | null
+          interview_start_date?: string | null
+          interview_start_time?: string | null
+          interview_venue?: string | null
+          is_featured?: boolean | null
+          is_salary_negotiable?: boolean | null
+          is_walkin?: boolean | null
+          job_type?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          phone_primary?: string
+          phone_secondary?: string | null
+          pincode?: string | null
+          qualification?: string | null
+          requirements?: string | null
+          responsibilities?: string | null
+          salary_max?: number | null
+          salary_min?: number | null
+          salary_type?: string | null
+          state?: string
+          status?: string | null
+          title?: string
+          updated_at?: string | null
+          vacancies?: number | null
+          valid_until?: string | null
+          views_count?: number | null
+          whatsapp_number?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "jobs_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "jobs_employer_id_fkey"
+            columns: ["employer_id"]
+            isOneToOne: false
+            referencedRelation: "employers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      portal_saved_jobs: {
+        Row: {
+          id: string
+          job_id: string
+          saved_at: string | null
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          job_id: string
+          saved_at?: string | null
+          user_id: string
+        }
+        Update: {
+          id?: string
+          job_id?: string
+          saved_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "portal_saved_jobs_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
