@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Sparkles, TrendingUp, Brain, Cloud, Shield, Zap, HeartPulse, Megaphone, X, Search } from "lucide-react";
+import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Sparkles, TrendingUp, Brain, Cloud, Shield, Zap, HeartPulse, Megaphone, X, Search, ChevronLeft, ChevronRight } from "lucide-react";
 
 const industryTrends = [
   { id: "ai", name: "AI & Machine Learning", growth: "+42%", value: 42, icon: Brain, color: "from-violet-500 to-purple-600", barColor: "bg-gradient-to-r from-violet-500 to-purple-500" },
@@ -74,6 +74,8 @@ const JobsSection = () => {
   const [selectedSector, setSelectedSector] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLocation, setSelectedLocation] = useState<string>("All Locations");
+  const [currentPage, setCurrentPage] = useState(1);
+  const jobsPerPage = 8;
 
   const filteredJobs = jobs.filter(job => {
     const matchesSector = selectedSector ? job.sector === selectedSector : true;
@@ -86,12 +88,35 @@ const JobsSection = () => {
     return matchesSector && matchesSearch && matchesLocation;
   });
 
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+  const startIndex = (currentPage - 1) * jobsPerPage;
+  const endIndex = startIndex + jobsPerPage;
+  const paginatedJobs = filteredJobs.slice(startIndex, endIndex);
+
   const selectedTrend = industryTrends.find(t => t.id === selectedSector);
 
   const clearFilters = () => {
     setSelectedSector(null);
     setSearchQuery("");
     setSelectedLocation("All Locations");
+    setCurrentPage(1);
+  };
+
+  // Reset to page 1 when filters change
+  const handleSectorChange = (sector: string | null) => {
+    setSelectedSector(sector);
+    setCurrentPage(1);
+  };
+
+  const handleLocationChange = (location: string) => {
+    setSelectedLocation(location);
+    setCurrentPage(1);
+  };
+
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+    setCurrentPage(1);
   };
 
   const hasActiveFilters = selectedSector || searchQuery || selectedLocation !== "All Locations";
@@ -137,7 +162,7 @@ const JobsSection = () => {
             {industryTrends.map((trend, index) => (
               <button
                 key={trend.id}
-                onClick={() => setSelectedSector(selectedSector === trend.id ? null : trend.id)}
+                onClick={() => handleSectorChange(selectedSector === trend.id ? null : trend.id)}
                 className={`group text-left bg-white/10 backdrop-blur-sm border rounded-xl p-4 transition-all duration-300 animate-fade-up cursor-pointer ${
                   selectedSector === trend.id 
                     ? "border-amber-400 bg-white/20 ring-2 ring-amber-400/50" 
@@ -178,7 +203,7 @@ const JobsSection = () => {
               type="text"
               placeholder="Search jobs by title, company..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => handleSearchChange(e.target.value)}
               className="pl-12 pr-10 py-6 bg-white/95 backdrop-blur-sm border-0 rounded-xl text-gray-800 placeholder:text-gray-400 shadow-lg focus-visible:ring-2 focus-visible:ring-amber-400"
             />
             {searchQuery && (
@@ -192,7 +217,7 @@ const JobsSection = () => {
           </div>
           
           {/* Location Dropdown */}
-          <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+          <Select value={selectedLocation} onValueChange={handleLocationChange}>
             <SelectTrigger className="w-full sm:w-[200px] py-6 bg-white/95 backdrop-blur-sm border-0 rounded-xl text-gray-800 shadow-lg focus:ring-2 focus:ring-amber-400">
               <MapPin className="w-4 h-4 text-gray-400 mr-2" />
               <SelectValue placeholder="Select Location" />
@@ -267,11 +292,11 @@ const JobsSection = () => {
         )}
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredJobs.map((job, index) => (
+          {paginatedJobs.map((job, index) => (
             <div
-              key={index}
+              key={`${job.title}-${job.company}-${index}`}
               className="group bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 animate-fade-up hover:-translate-y-2 relative overflow-hidden"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
               {/* Hot badge */}
               {job.isHot && (
@@ -321,16 +346,62 @@ const JobsSection = () => {
           ))}
         </div>
 
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className="bg-white/10 border-white/20 text-white hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </Button>
+              
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                <Button
+                  key={page}
+                  variant={currentPage === page ? "default" : "outline"}
+                  size="icon"
+                  onClick={() => setCurrentPage(page)}
+                  className={currentPage === page 
+                    ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0" 
+                    : "bg-white/10 border-white/20 text-white hover:bg-white/20"
+                  }
+                >
+                  {page}
+                </Button>
+              ))}
+              
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className="bg-white/10 border-white/20 text-white hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
+            
+            <p className="text-white/60 text-sm">
+              Showing {startIndex + 1}-{Math.min(endIndex, filteredJobs.length)} of {filteredJobs.length} jobs
+            </p>
+          </div>
+        )}
+
         {/* No jobs message */}
         {filteredJobs.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-white/70 text-lg">No jobs found in this sector. Check back soon!</p>
+            <p className="text-white/70 text-lg">No jobs found matching your criteria. Try adjusting your filters.</p>
             <Button 
               variant="outline" 
               className="mt-4 border-white/30 text-white hover:bg-white/10"
-              onClick={() => setSelectedSector(null)}
+              onClick={clearFilters}
             >
-              View All Jobs
+              Clear All Filters
             </Button>
           </div>
         )}
