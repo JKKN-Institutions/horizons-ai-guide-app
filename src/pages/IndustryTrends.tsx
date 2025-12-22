@@ -120,6 +120,126 @@ const sectors = [
       'Quick commerce revolution',
       'Rural e-commerce expanding'
     ]
+  },
+  {
+    id: 'logistics',
+    icon: '🚚',
+    borderColor: '#607D8B',
+    badge: '📦 Expanding',
+    badgeVariant: 'secondary' as const,
+    title: 'Logistics & Supply Chain',
+    tamilTitle: 'தளவாடம் & விநியோகச் சங்கிலி',
+    subSectors: ['Warehousing', 'Last Mile Delivery', 'Cold Chain', 'Fleet Management'],
+    salaryRange: '₹3 LPA - ₹18 LPA',
+    topCompanies: ['Delhivery', 'Blue Dart', 'Ecom Express', 'Rivigo', 'Amazon Logistics', 'XpressBees'],
+    courses: ['MBA Logistics', 'BBA Supply Chain', 'B.Tech Industrial Engineering'],
+    colleges: ['IIM Bangalore', 'NITIE Mumbai', 'JKKN Arts & Science College ⭐'],
+    careerPaths: [
+      'Operations Executive → Manager → Regional Head → VP Operations',
+      'Supply Chain Analyst → Planning Manager → Director'
+    ],
+    whyGrowing: [
+      'E-commerce boom driving demand',
+      'Quick commerce revolution',
+      'Make in India supply chains',
+      'Infrastructure development'
+    ]
+  },
+  {
+    id: 'gaming',
+    icon: '🎮',
+    borderColor: '#9C27B0',
+    badge: '🔥 Hot Industry',
+    badgeVariant: 'destructive' as const,
+    title: 'Gaming & Esports',
+    tamilTitle: 'கேமிங் & ஈஸ்போர்ட்ஸ்',
+    subSectors: ['Mobile Gaming', 'Esports', 'Game Development', 'VR/AR Gaming'],
+    salaryRange: '₹4 LPA - ₹25 LPA',
+    topCompanies: ['Games24x7', 'Nazara', 'Dream11', 'MPL', 'Zynga India', 'Ubisoft'],
+    courses: ['B.Tech Game Development', 'B.Des Animation', 'BCA + Game Design'],
+    colleges: ['DSK Supinfocom', 'MIT Institute of Design', 'Whistling Woods'],
+    careerPaths: [
+      'Junior Developer → Game Developer → Lead Developer → Technical Director',
+      'Game Tester → QA Lead → Production Manager'
+    ],
+    whyGrowing: [
+      'India 2nd largest gaming market',
+      'Mobile gaming explosion',
+      'Esports investment growing',
+      'Youth demographic advantage'
+    ]
+  },
+  {
+    id: 'agritech',
+    icon: '🌾',
+    borderColor: '#4CAF50',
+    badge: '🌱 Emerging',
+    badgeVariant: 'outline' as const,
+    title: 'AgriTech & Food Tech',
+    tamilTitle: 'வேளாண் தொழில்நுட்பம்',
+    subSectors: ['Precision Farming', 'Agri Marketplaces', 'Food Processing', 'Smart Irrigation'],
+    salaryRange: '₹3 LPA - ₹20 LPA',
+    topCompanies: ['DeHaat', 'Ninjacart', 'CropIn', 'BigBasket', 'Stellapps', 'AgroStar'],
+    courses: ['B.Sc Agriculture', 'B.Tech Agricultural Engineering', 'MBA Agribusiness'],
+    colleges: ['TNAU Coimbatore', 'ICAR Institutions', 'JKKN Arts & Science College ⭐'],
+    careerPaths: [
+      'Field Officer → Area Manager → Regional Head → Business Head',
+      'Agri Data Analyst → Data Scientist → AI Lead'
+    ],
+    whyGrowing: [
+      '60% workforce in agriculture',
+      'Government push for farm tech',
+      'Startup funding increasing',
+      'Climate tech integration'
+    ]
+  },
+  {
+    id: 'edtech',
+    icon: '📚',
+    borderColor: '#3F51B5',
+    badge: '📈 Growing',
+    badgeVariant: 'secondary' as const,
+    title: 'EdTech & Online Learning',
+    tamilTitle: 'கல்வி தொழில்நுட்பம்',
+    subSectors: ['K-12 Learning', 'Test Prep', 'Skill Development', 'Corporate Training'],
+    salaryRange: '₹4 LPA - ₹22 LPA',
+    topCompanies: ["BYJU'S", 'Unacademy', 'Vedantu', 'upGrad', 'Physics Wallah', 'Simplilearn'],
+    courses: ['B.Ed', 'M.Ed', 'MBA Education', 'B.Tech + Education'],
+    colleges: ['IGNOU', 'Regional Institutes of Education', 'JKKN Education College ⭐'],
+    careerPaths: [
+      'Content Creator → Subject Expert → Content Head',
+      'EdTech Sales → Team Lead → Regional Manager → VP Sales'
+    ],
+    whyGrowing: [
+      'Digital learning adoption',
+      'Upskilling demand',
+      'Hybrid learning models',
+      'Tier 2/3 city reach'
+    ]
+  },
+  {
+    id: 'renewable',
+    icon: '☀️',
+    borderColor: '#FF9800',
+    badge: '🌍 Sustainable',
+    badgeVariant: 'default' as const,
+    title: 'Renewable Energy & CleanTech',
+    tamilTitle: 'புதுப்பிக்கத்தக்க எரிசக்தி',
+    subSectors: ['Solar Power', 'Wind Energy', 'Energy Storage', 'Green Hydrogen'],
+    salaryRange: '₹4 LPA - ₹22 LPA',
+    topCompanies: ['Adani Green', 'Tata Power Solar', 'ReNew Power', 'Suzlon', 'Azure Power'],
+    courses: ['B.Tech Renewable Energy', 'B.Tech Electrical', 'M.Tech Energy Systems'],
+    colleges: ['IIT Delhi', 'TERI University', 'NIT Trichy', 'JKKN Engineering ⭐'],
+    careerPaths: [
+      'Site Engineer → Project Manager → Program Director',
+      'Energy Analyst → Consultant → Strategy Lead'
+    ],
+    whyGrowing: [
+      'India 500 GW renewable target by 2030',
+      'Global sustainability push',
+      'Green financing growth',
+      'Carbon neutrality commitments'
+    ]
   }
 ];
 
@@ -237,7 +357,7 @@ const IndustryTrends = () => {
           {/* Stats Bar */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
             {[
-              { icon: '📈', value: '5 Top', label: 'Sectors' },
+              { icon: '📈', value: '10 Top', label: 'Sectors' },
               { icon: '🎯', value: '15+', label: 'Skills' },
               { icon: '💼', value: 'Lakhs of', label: 'New Jobs' },
               { icon: '🌟', value: 'Future', label: 'Ready' }
