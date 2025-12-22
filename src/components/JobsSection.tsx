@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Sparkles, TrendingUp, Brain, Cloud, Shield, Zap, HeartPulse, Megaphone, X } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Sparkles, TrendingUp, Brain, Cloud, Shield, Zap, HeartPulse, Megaphone, X, Search } from "lucide-react";
 
 const industryTrends = [
   { id: "ai", name: "AI & Machine Learning", growth: "+42%", value: 42, icon: Brain, color: "from-violet-500 to-purple-600", barColor: "bg-gradient-to-r from-violet-500 to-purple-500" },
@@ -96,12 +97,24 @@ const jobs = [
 
 const JobsSection = () => {
   const [selectedSector, setSelectedSector] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredJobs = selectedSector 
-    ? jobs.filter(job => job.sector === selectedSector)
-    : jobs;
+  const filteredJobs = jobs.filter(job => {
+    const matchesSector = selectedSector ? job.sector === selectedSector : true;
+    const matchesSearch = searchQuery 
+      ? job.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        job.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        job.location.toLowerCase().includes(searchQuery.toLowerCase())
+      : true;
+    return matchesSector && matchesSearch;
+  });
 
   const selectedTrend = industryTrends.find(t => t.id === selectedSector);
+
+  const clearFilters = () => {
+    setSelectedSector(null);
+    setSearchQuery("");
+  };
 
   return (
     <section className="py-20 md:py-28 relative overflow-hidden" id="jobs">
@@ -178,21 +191,69 @@ const JobsSection = () => {
           </div>
         </div>
 
-        {/* Active Filter Indicator */}
-        {selectedSector && selectedTrend && (
-          <div className="mb-6 flex items-center gap-3 animate-fade-in">
-            <span className="text-white/80 text-sm">Showing jobs in:</span>
-            <span className={`inline-flex items-center gap-2 bg-gradient-to-r ${selectedTrend.color} text-white text-sm font-semibold px-4 py-2 rounded-full`}>
-              <selectedTrend.icon className="w-4 h-4" />
-              {selectedTrend.name}
-              <button 
-                onClick={() => setSelectedSector(null)}
-                className="ml-1 hover:bg-white/20 rounded-full p-0.5 transition-colors"
+        {/* Search Box */}
+        <div className="mb-8">
+          <div className="relative max-w-md">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Search jobs by title, company, or location..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-12 pr-10 py-6 bg-white/95 backdrop-blur-sm border-0 rounded-xl text-gray-800 placeholder:text-gray-400 shadow-lg focus-visible:ring-2 focus-visible:ring-amber-400"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="w-4 h-4" />
               </button>
-            </span>
-            <span className="text-white/60 text-sm">({filteredJobs.length} jobs)</span>
+            )}
+          </div>
+        </div>
+
+        {/* Active Filter Indicator */}
+        {(selectedSector || searchQuery) && (
+          <div className="mb-6 flex flex-wrap items-center gap-3 animate-fade-in">
+            <span className="text-white/80 text-sm">Active filters:</span>
+            
+            {selectedTrend && (
+              <span className={`inline-flex items-center gap-2 bg-gradient-to-r ${selectedTrend.color} text-white text-sm font-semibold px-4 py-2 rounded-full`}>
+                <selectedTrend.icon className="w-4 h-4" />
+                {selectedTrend.name}
+                <button 
+                  onClick={() => setSelectedSector(null)}
+                  className="ml-1 hover:bg-white/20 rounded-full p-0.5 transition-colors"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </span>
+            )}
+            
+            {searchQuery && (
+              <span className="inline-flex items-center gap-2 bg-white/20 text-white text-sm font-semibold px-4 py-2 rounded-full">
+                <Search className="w-3.5 h-3.5" />
+                "{searchQuery}"
+                <button 
+                  onClick={() => setSearchQuery("")}
+                  className="ml-1 hover:bg-white/20 rounded-full p-0.5 transition-colors"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </span>
+            )}
+            
+            <span className="text-white/60 text-sm">({filteredJobs.length} jobs found)</span>
+            
+            {(selectedSector || searchQuery) && (
+              <button
+                onClick={clearFilters}
+                className="text-amber-300 hover:text-amber-200 text-sm underline underline-offset-2 transition-colors"
+              >
+                Clear all
+              </button>
+            )}
           </div>
         )}
 
