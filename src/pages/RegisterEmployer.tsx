@@ -109,10 +109,8 @@ const RegisterEmployer = () => {
 
       if (error) throw error;
       
-      toast.success("Registration successful! Our team will contact you soon.");
-      const params = new URLSearchParams(window.location.search);
-      const redirect = params.get('redirect');
-      navigate(redirect || "/");
+      toast.success("Registration successful!");
+      navigate("/employer/register/success");
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors: Record<string, string> = {};
@@ -134,9 +132,9 @@ const RegisterEmployer = () => {
   return (
     <div className="fresh-page-wrapper py-12">
       <div className="container mx-auto px-4 max-w-2xl relative z-10">
-        <Button variant="ghost" onClick={() => navigate("/")} className="mb-6 text-fresh-green-dark hover:text-fresh-green-medium hover:bg-fresh-green-bg">
+        <Button variant="ghost" onClick={() => navigate(-1)} className="mb-6 text-fresh-green-dark hover:text-fresh-green-medium hover:bg-fresh-green-bg">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Home
+          Back
         </Button>
 
         <Card className="fresh-card border-l-purple-500">
