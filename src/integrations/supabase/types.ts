@@ -259,36 +259,48 @@ export type Database = {
       }
       saved_jobs: {
         Row: {
+          applied_date: string | null
           id: string
+          interview_date: string | null
           job_company: string
           job_location: string
           job_requirement: string
           job_salary: string
           job_sector: string
           job_title: string
+          notes: string | null
           saved_at: string
+          status: string
           user_id: string
         }
         Insert: {
+          applied_date?: string | null
           id?: string
+          interview_date?: string | null
           job_company: string
           job_location: string
           job_requirement: string
           job_salary: string
           job_sector: string
           job_title: string
+          notes?: string | null
           saved_at?: string
+          status?: string
           user_id: string
         }
         Update: {
+          applied_date?: string | null
           id?: string
+          interview_date?: string | null
           job_company?: string
           job_location?: string
           job_requirement?: string
           job_salary?: string
           job_sector?: string
           job_title?: string
+          notes?: string | null
           saved_at?: string
+          status?: string
           user_id?: string
         }
         Relationships: []
