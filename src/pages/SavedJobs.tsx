@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Bookmark, MapPin, DollarSign, Briefcase, Trash2, Loader2, Calendar, FileText, CheckCircle, Clock, XCircle } from "lucide-react";
+import { ArrowLeft, Bookmark, MapPin, DollarSign, Briefcase, Trash2, Loader2, Calendar, FileText, CheckCircle, Clock, XCircle, Download, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import jsPDF from "jspdf";
 
 type JobStatus = "saved" | "applied" | "interview" | "offer" | "rejected";
 
@@ -27,12 +29,12 @@ interface SavedJob {
   notes: string | null;
 }
 
-const statusConfig: Record<JobStatus, { label: string; icon: React.ElementType; color: string; bg: string }> = {
-  saved: { label: "Saved", icon: Bookmark, color: "text-muted-foreground", bg: "bg-muted" },
-  applied: { label: "Applied", icon: FileText, color: "text-blue-600", bg: "bg-blue-100" },
-  interview: { label: "Interview", icon: Calendar, color: "text-amber-600", bg: "bg-amber-100" },
-  offer: { label: "Offer", icon: CheckCircle, color: "text-green-600", bg: "bg-green-100" },
-  rejected: { label: "Rejected", icon: XCircle, color: "text-red-600", bg: "bg-red-100" },
+const statusConfig: Record<JobStatus, { label: string; icon: React.ElementType; color: string; bg: string; chartColor: string }> = {
+  saved: { label: "Saved", icon: Bookmark, color: "text-muted-foreground", bg: "bg-muted", chartColor: "#6b7280" },
+  applied: { label: "Applied", icon: FileText, color: "text-blue-600", bg: "bg-blue-100", chartColor: "#3b82f6" },
+  interview: { label: "Interview", icon: Calendar, color: "text-amber-600", bg: "bg-amber-100", chartColor: "#f59e0b" },
+  offer: { label: "Offer", icon: CheckCircle, color: "text-green-600", bg: "bg-green-100", chartColor: "#22c55e" },
+  rejected: { label: "Rejected", icon: XCircle, color: "text-red-600", bg: "bg-red-100", chartColor: "#ef4444" },
 };
 
 const SavedJobs = () => {
@@ -43,6 +45,7 @@ const SavedJobs = () => {
   const [userId, setUserId] = useState<string | null>(null);
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [editingJob, setEditingJob] = useState<SavedJob | null>(null);
+  const [showChart, setShowChart] = useState(true);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -199,6 +202,121 @@ const SavedJobs = () => {
     return acc;
   }, {} as Record<string, number>);
 
+  // Chart data for status distribution
+  const pieChartData = useMemo(() => {
+    return (Object.keys(statusConfig) as JobStatus[])
+      .map(status => ({
+        name: statusConfig[status].label,
+        value: statusCounts[status] || 0,
+        color: statusConfig[status].chartColor,
+      }))
+      .filter(item => item.value > 0);
+  }, [statusCounts]);
+
+  // Chart data for timeline (applications over time)
+  const timelineData = useMemo(() => {
+    const monthlyData: Record<string, Record<string, number>> = {};
+    
+    savedJobs.forEach(job => {
+      const date = new Date(job.saved_at);
+      const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+      const monthLabel = date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+      
+      if (!monthlyData[monthKey]) {
+        monthlyData[monthKey] = { month: monthLabel, saved: 0, applied: 0, interview: 0, offer: 0, rejected: 0 } as any;
+      }
+      monthlyData[monthKey][job.status] = (monthlyData[monthKey][job.status] || 0) + 1;
+    });
+
+    return Object.entries(monthlyData)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .slice(-6)
+      .map(([_, data]) => data);
+  }, [savedJobs]);
+
+  // Export functions
+  const exportToCSV = () => {
+    const headers = ["Title", "Company", "Location", "Salary", "Requirements", "Sector", "Status", "Saved Date", "Applied Date", "Interview Date", "Notes"];
+    const rows = savedJobs.map(job => [
+      job.job_title,
+      job.job_company,
+      job.job_location,
+      job.job_salary,
+      job.job_requirement,
+      job.job_sector,
+      statusConfig[job.status].label,
+      new Date(job.saved_at).toLocaleDateString(),
+      job.applied_date ? new Date(job.applied_date).toLocaleDateString() : "",
+      job.interview_date ? new Date(job.interview_date).toLocaleDateString() : "",
+      job.notes || "",
+    ]);
+
+    const csvContent = [headers, ...rows]
+      .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(","))
+      .join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `job-applications-${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+
+    toast({ title: "Exported", description: "Job applications exported to CSV" });
+  };
+
+  const exportToPDF = () => {
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    
+    // Title
+    doc.setFontSize(20);
+    doc.setTextColor(33, 37, 41);
+    doc.text("Job Application Tracker", pageWidth / 2, 20, { align: "center" });
+    
+    // Summary
+    doc.setFontSize(12);
+    doc.setTextColor(108, 117, 125);
+    doc.text(`Generated on ${new Date().toLocaleDateString()}`, pageWidth / 2, 28, { align: "center" });
+    
+    // Stats
+    doc.setFontSize(14);
+    doc.setTextColor(33, 37, 41);
+    doc.text("Summary", 14, 45);
+    
+    doc.setFontSize(10);
+    doc.text(`Total Applications: ${savedJobs.length}`, 14, 55);
+    doc.text(`Applied: ${statusCounts["applied"] || 0}`, 14, 62);
+    doc.text(`Interviews: ${statusCounts["interview"] || 0}`, 14, 69);
+    doc.text(`Offers: ${statusCounts["offer"] || 0}`, 14, 76);
+    doc.text(`Success Rate: ${savedJobs.length > 0 ? Math.round(((statusCounts["offer"] || 0) / savedJobs.length) * 100) : 0}%`, 14, 83);
+    
+    // Jobs list
+    let yPos = 100;
+    doc.setFontSize(14);
+    doc.text("Applications", 14, yPos);
+    yPos += 10;
+    
+    savedJobs.forEach((job, index) => {
+      if (yPos > 270) {
+        doc.addPage();
+        yPos = 20;
+      }
+      
+      doc.setFontSize(11);
+      doc.setTextColor(33, 37, 41);
+      doc.text(`${index + 1}. ${job.job_title} at ${job.job_company}`, 14, yPos);
+      
+      doc.setFontSize(9);
+      doc.setTextColor(108, 117, 125);
+      doc.text(`   ${job.job_location} | ${job.job_salary} | Status: ${statusConfig[job.status].label}`, 14, yPos + 5);
+      
+      yPos += 15;
+    });
+    
+    doc.save(`job-applications-${new Date().toISOString().split('T')[0]}.pdf`);
+    toast({ title: "Exported", description: "Job applications exported to PDF" });
+  };
+
   if (!userId && !loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-background flex items-center justify-center p-4">
@@ -226,9 +344,33 @@ const SavedJobs = () => {
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Link>
-          <div className="flex items-center gap-3">
-            <Bookmark className="w-8 h-8" />
-            <h1 className="text-3xl font-bold">Job Application Tracker</h1>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Bookmark className="w-8 h-8" />
+              <h1 className="text-3xl font-bold">Job Application Tracker</h1>
+            </div>
+            {savedJobs.length > 0 && (
+              <div className="flex items-center gap-2">
+                <Button 
+                  variant="secondary" 
+                  size="sm" 
+                  onClick={exportToCSV}
+                  className="bg-white/10 hover:bg-white/20 text-white border-0"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  CSV
+                </Button>
+                <Button 
+                  variant="secondary" 
+                  size="sm" 
+                  onClick={exportToPDF}
+                  className="bg-white/10 hover:bg-white/20 text-white border-0"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  PDF
+                </Button>
+              </div>
+            )}
           </div>
           <p className="text-primary-foreground/80 mt-2">
             Track your job applications from saved to offer
@@ -262,6 +404,95 @@ const SavedJobs = () => {
                     : 0}%
                 </p>
               </div>
+            </div>
+
+            {/* Charts Section */}
+            <div className="mb-6">
+              <button 
+                onClick={() => setShowChart(!showChart)}
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4"
+              >
+                <BarChart3 className="w-4 h-4" />
+                {showChart ? "Hide Charts" : "Show Charts"}
+              </button>
+              
+              {showChart && (
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Status Distribution Pie Chart */}
+                  <div className="bg-background rounded-xl p-4 border border-border">
+                    <h3 className="text-sm font-medium text-foreground mb-4">Status Distribution</h3>
+                    {pieChartData.length > 0 ? (
+                      <ResponsiveContainer width="100%" height={200}>
+                        <PieChart>
+                          <Pie
+                            data={pieChartData}
+                            cx="50%"
+                            cy="50%"
+                            innerRadius={50}
+                            outerRadius={80}
+                            paddingAngle={2}
+                            dataKey="value"
+                          >
+                            {pieChartData.map((entry, index) => (
+                              <Cell key={`cell-${index}`} fill={entry.color} />
+                            ))}
+                          </Pie>
+                          <Tooltip 
+                            formatter={(value: number) => [value, 'Jobs']}
+                            contentStyle={{ 
+                              backgroundColor: 'hsl(var(--background))', 
+                              border: '1px solid hsl(var(--border))',
+                              borderRadius: '8px'
+                            }}
+                          />
+                        </PieChart>
+                      </ResponsiveContainer>
+                    ) : (
+                      <div className="h-[200px] flex items-center justify-center text-muted-foreground">
+                        No data to display
+                      </div>
+                    )}
+                    <div className="flex flex-wrap justify-center gap-3 mt-2">
+                      {pieChartData.map((entry, index) => (
+                        <div key={index} className="flex items-center gap-1.5 text-xs">
+                          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: entry.color }} />
+                          <span className="text-muted-foreground">{entry.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Timeline Bar Chart */}
+                  <div className="bg-background rounded-xl p-4 border border-border">
+                    <h3 className="text-sm font-medium text-foreground mb-4">Applications Over Time</h3>
+                    {timelineData.length > 0 ? (
+                      <ResponsiveContainer width="100%" height={200}>
+                        <BarChart data={timelineData}>
+                          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                          <XAxis dataKey="month" tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
+                          <YAxis tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
+                          <Tooltip 
+                            contentStyle={{ 
+                              backgroundColor: 'hsl(var(--background))', 
+                              border: '1px solid hsl(var(--border))',
+                              borderRadius: '8px'
+                            }}
+                          />
+                          <Bar dataKey="saved" stackId="a" fill={statusConfig.saved.chartColor} name="Saved" />
+                          <Bar dataKey="applied" stackId="a" fill={statusConfig.applied.chartColor} name="Applied" />
+                          <Bar dataKey="interview" stackId="a" fill={statusConfig.interview.chartColor} name="Interview" />
+                          <Bar dataKey="offer" stackId="a" fill={statusConfig.offer.chartColor} name="Offer" />
+                          <Bar dataKey="rejected" stackId="a" fill={statusConfig.rejected.chartColor} name="Rejected" />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    ) : (
+                      <div className="h-[200px] flex items-center justify-center text-muted-foreground">
+                        No data to display
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Status Filter Pills */}
