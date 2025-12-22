@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Bookmark, MapPin, DollarSign, Briefcase, Trash2, Loader2, Calendar, FileText, CheckCircle, Clock, XCircle, Download, BarChart3 } from "lucide-react";
+import { ArrowLeft, Bookmark, MapPin, DollarSign, Briefcase, Trash2, Loader2, Calendar, FileText, CheckCircle, Clock, XCircle, Download, BarChart3, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import jsPDF from "jspdf";
+import { CompanyInsightsModal } from "@/components/CompanyInsightsModal";
 
 type JobStatus = "saved" | "applied" | "interview" | "offer" | "rejected";
 
@@ -46,6 +47,8 @@ const SavedJobs = () => {
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [editingJob, setEditingJob] = useState<SavedJob | null>(null);
   const [showChart, setShowChart] = useState(true);
+  const [companyInsightsOpen, setCompanyInsightsOpen] = useState(false);
+  const [selectedCompany, setSelectedCompany] = useState<string>("");
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -568,7 +571,16 @@ const SavedJobs = () => {
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex-1">
                         <h3 className="font-bold text-lg text-foreground mb-1">{job.job_title}</h3>
-                        <p className="text-primary font-medium">{job.job_company}</p>
+                        <button 
+                          onClick={() => {
+                            setSelectedCompany(job.job_company);
+                            setCompanyInsightsOpen(true);
+                          }}
+                          className="text-primary font-medium hover:underline flex items-center gap-1"
+                        >
+                          {job.job_company}
+                          <Building2 className="w-3.5 h-3.5" />
+                        </button>
                       </div>
                       <button
                         onClick={() => removeJob(job.id)}
@@ -656,9 +668,15 @@ const SavedJobs = () => {
                           />
                         </DialogContent>
                       </Dialog>
-                    </div>
-                  </div>
-                );
+      </div>
+      
+      <CompanyInsightsModal 
+        isOpen={companyInsightsOpen}
+        onClose={() => setCompanyInsightsOpen(false)}
+        companyName={selectedCompany}
+      />
+    </div>
+  );
               })}
             </div>
           </>
