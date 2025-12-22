@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Sparkles, TrendingUp, Brain, Cloud, Shield, Zap, HeartPulse, Megaphone, X, Search } from "lucide-react";
 
 const industryTrends = [
@@ -12,101 +13,77 @@ const industryTrends = [
   { id: "marketing", name: "Digital Marketing", growth: "+28%", value: 28, icon: Megaphone, color: "from-amber-500 to-orange-600", barColor: "bg-gradient-to-r from-amber-500 to-orange-500" },
 ];
 
+const cities = [
+  "All Locations",
+  "Bangalore",
+  "Chennai",
+  "Hyderabad",
+  "Mumbai",
+  "Pune",
+  "Delhi",
+  "Noida",
+  "Gurgaon",
+  "Coimbatore",
+  "Kolkata",
+];
+
 const jobs = [
-  {
-    title: "AI/ML Engineer",
-    company: "Infosys",
-    location: "Bangalore",
-    salary: "₹8-15 LPA",
-    requirement: "B.Tech/M.Tech",
-    type: "Full-time",
-    isHot: true,
-    sector: "ai",
-  },
-  {
-    title: "Data Scientist",
-    company: "Wipro",
-    location: "Hyderabad",
-    salary: "₹10-18 LPA",
-    requirement: "M.Sc/M.Tech",
-    type: "Full-time",
-    isHot: true,
-    sector: "ai",
-  },
-  {
-    title: "Cloud Architect",
-    company: "TCS",
-    location: "Chennai",
-    salary: "₹12-22 LPA",
-    requirement: "B.Tech + AWS/Azure",
-    type: "Full-time",
-    isHot: true,
-    sector: "cloud",
-  },
-  {
-    title: "Cybersecurity Analyst",
-    company: "HCL Technologies",
-    location: "Noida",
-    salary: "₹7-14 LPA",
-    requirement: "B.Tech + Certifications",
-    type: "Full-time",
-    isHot: true,
-    sector: "cybersecurity",
-  },
-  {
-    title: "Full Stack Developer",
-    company: "Cognizant",
-    location: "Pune",
-    salary: "₹6-12 LPA",
-    requirement: "B.Tech/BCA",
-    type: "Full-time",
-    isHot: false,
-    sector: "cloud",
-  },
-  {
-    title: "Healthcare Data Analyst",
-    company: "Apollo Hospitals",
-    location: "Chennai",
-    salary: "₹5-9 LPA",
-    requirement: "B.Sc + Analytics",
-    type: "Full-time",
-    isHot: false,
-    sector: "healthcare",
-  },
-  {
-    title: "Electric Vehicle Engineer",
-    company: "Tata Motors",
-    location: "Pune",
-    salary: "₹8-16 LPA",
-    requirement: "B.Tech Mechanical/EV",
-    type: "Full-time",
-    isHot: true,
-    sector: "ev",
-  },
-  {
-    title: "Digital Marketing Manager",
-    company: "Flipkart",
-    location: "Bangalore",
-    salary: "₹6-12 LPA",
-    requirement: "MBA Marketing",
-    type: "Full-time",
-    isHot: false,
-    sector: "marketing",
-  },
+  // AI & Machine Learning
+  { title: "AI/ML Engineer", company: "Infosys", location: "Bangalore", salary: "₹8-15 LPA", requirement: "B.Tech/M.Tech", type: "Full-time", isHot: true, sector: "ai" },
+  { title: "Data Scientist", company: "Wipro", location: "Hyderabad", salary: "₹10-18 LPA", requirement: "M.Sc/M.Tech", type: "Full-time", isHot: true, sector: "ai" },
+  { title: "Machine Learning Engineer", company: "Google", location: "Bangalore", salary: "₹25-45 LPA", requirement: "M.Tech + Experience", type: "Full-time", isHot: true, sector: "ai" },
+  { title: "AI Research Scientist", company: "Microsoft", location: "Hyderabad", salary: "₹20-35 LPA", requirement: "PhD/M.Tech", type: "Full-time", isHot: true, sector: "ai" },
+  { title: "NLP Engineer", company: "Amazon", location: "Bangalore", salary: "₹15-28 LPA", requirement: "M.Tech + Python", type: "Full-time", isHot: false, sector: "ai" },
+  
+  // Cloud Computing
+  { title: "Cloud Architect", company: "TCS", location: "Chennai", salary: "₹12-22 LPA", requirement: "B.Tech + AWS/Azure", type: "Full-time", isHot: true, sector: "cloud" },
+  { title: "Full Stack Developer", company: "Cognizant", location: "Pune", salary: "₹6-12 LPA", requirement: "B.Tech/BCA", type: "Full-time", isHot: false, sector: "cloud" },
+  { title: "DevOps Engineer", company: "Accenture", location: "Mumbai", salary: "₹8-16 LPA", requirement: "B.Tech + DevOps", type: "Full-time", isHot: true, sector: "cloud" },
+  { title: "AWS Solutions Architect", company: "Deloitte", location: "Gurgaon", salary: "₹18-30 LPA", requirement: "AWS Certified", type: "Full-time", isHot: true, sector: "cloud" },
+  { title: "Cloud Security Engineer", company: "IBM", location: "Bangalore", salary: "₹14-24 LPA", requirement: "B.Tech + Security", type: "Full-time", isHot: false, sector: "cloud" },
+  
+  // Cybersecurity
+  { title: "Cybersecurity Analyst", company: "HCL Technologies", location: "Noida", salary: "₹7-14 LPA", requirement: "B.Tech + Certifications", type: "Full-time", isHot: true, sector: "cybersecurity" },
+  { title: "Security Operations Engineer", company: "Cisco", location: "Bangalore", salary: "₹12-20 LPA", requirement: "B.Tech + CISSP", type: "Full-time", isHot: true, sector: "cybersecurity" },
+  { title: "Penetration Tester", company: "Paytm", location: "Noida", salary: "₹10-18 LPA", requirement: "CEH Certified", type: "Full-time", isHot: false, sector: "cybersecurity" },
+  { title: "Information Security Manager", company: "HDFC Bank", location: "Mumbai", salary: "₹15-25 LPA", requirement: "MBA + CISM", type: "Full-time", isHot: true, sector: "cybersecurity" },
+  
+  // Electric Vehicles
+  { title: "Electric Vehicle Engineer", company: "Tata Motors", location: "Pune", salary: "₹8-16 LPA", requirement: "B.Tech Mechanical/EV", type: "Full-time", isHot: true, sector: "ev" },
+  { title: "Battery Systems Engineer", company: "Ola Electric", location: "Bangalore", salary: "₹10-18 LPA", requirement: "B.Tech + Battery Tech", type: "Full-time", isHot: true, sector: "ev" },
+  { title: "EV Powertrain Engineer", company: "Mahindra Electric", location: "Chennai", salary: "₹9-15 LPA", requirement: "B.Tech Electrical", type: "Full-time", isHot: true, sector: "ev" },
+  { title: "Charging Infrastructure Lead", company: "Ather Energy", location: "Bangalore", salary: "₹12-20 LPA", requirement: "B.Tech + Experience", type: "Full-time", isHot: false, sector: "ev" },
+  { title: "EV Software Developer", company: "TVS Motor", location: "Chennai", salary: "₹8-14 LPA", requirement: "B.Tech CS/IT", type: "Full-time", isHot: false, sector: "ev" },
+  
+  // Healthcare Tech
+  { title: "Healthcare Data Analyst", company: "Apollo Hospitals", location: "Chennai", salary: "₹5-9 LPA", requirement: "B.Sc + Analytics", type: "Full-time", isHot: false, sector: "healthcare" },
+  { title: "Medical AI Developer", company: "Practo", location: "Bangalore", salary: "₹12-20 LPA", requirement: "B.Tech + Healthcare", type: "Full-time", isHot: true, sector: "healthcare" },
+  { title: "Health Informatics Specialist", company: "Fortis", location: "Delhi", salary: "₹8-14 LPA", requirement: "MHA/MBA Healthcare", type: "Full-time", isHot: false, sector: "healthcare" },
+  { title: "Telemedicine Platform Lead", company: "1mg", location: "Gurgaon", salary: "₹15-25 LPA", requirement: "B.Tech + Experience", type: "Full-time", isHot: true, sector: "healthcare" },
+  { title: "Clinical Data Manager", company: "Max Healthcare", location: "Delhi", salary: "₹6-11 LPA", requirement: "Life Sciences Degree", type: "Full-time", isHot: false, sector: "healthcare" },
+  
+  // Digital Marketing
+  { title: "Digital Marketing Manager", company: "Flipkart", location: "Bangalore", salary: "₹6-12 LPA", requirement: "MBA Marketing", type: "Full-time", isHot: false, sector: "marketing" },
+  { title: "SEO Specialist", company: "Zomato", location: "Gurgaon", salary: "₹5-10 LPA", requirement: "Any Graduate + SEO", type: "Full-time", isHot: false, sector: "marketing" },
+  { title: "Performance Marketing Lead", company: "Swiggy", location: "Bangalore", salary: "₹12-20 LPA", requirement: "MBA + Google Ads", type: "Full-time", isHot: true, sector: "marketing" },
+  { title: "Social Media Manager", company: "Myntra", location: "Bangalore", salary: "₹6-10 LPA", requirement: "Any Graduate", type: "Full-time", isHot: false, sector: "marketing" },
+  { title: "Content Marketing Head", company: "Nykaa", location: "Mumbai", salary: "₹10-18 LPA", requirement: "MBA + Content", type: "Full-time", isHot: true, sector: "marketing" },
 ];
 
 const JobsSection = () => {
   const [selectedSector, setSelectedSector] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState<string>("All Locations");
 
   const filteredJobs = jobs.filter(job => {
     const matchesSector = selectedSector ? job.sector === selectedSector : true;
+    const matchesLocation = selectedLocation === "All Locations" ? true : job.location === selectedLocation;
     const matchesSearch = searchQuery 
       ? job.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
         job.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
         job.location.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
-    return matchesSector && matchesSearch;
+    return matchesSector && matchesSearch && matchesLocation;
   });
 
   const selectedTrend = industryTrends.find(t => t.id === selectedSector);
@@ -114,8 +91,10 @@ const JobsSection = () => {
   const clearFilters = () => {
     setSelectedSector(null);
     setSearchQuery("");
+    setSelectedLocation("All Locations");
   };
 
+  const hasActiveFilters = selectedSector || searchQuery || selectedLocation !== "All Locations";
   return (
     <section className="py-20 md:py-28 relative overflow-hidden" id="jobs">
       {/* Background */}
@@ -191,13 +170,13 @@ const JobsSection = () => {
           </div>
         </div>
 
-        {/* Search Box */}
-        <div className="mb-8">
-          <div className="relative max-w-md">
+        {/* Search Box and Location Filter */}
+        <div className="mb-8 flex flex-col sm:flex-row gap-4">
+          <div className="relative flex-1 max-w-md">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <Input
               type="text"
-              placeholder="Search jobs by title, company, or location..."
+              placeholder="Search jobs by title, company..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-12 pr-10 py-6 bg-white/95 backdrop-blur-sm border-0 rounded-xl text-gray-800 placeholder:text-gray-400 shadow-lg focus-visible:ring-2 focus-visible:ring-amber-400"
@@ -211,10 +190,29 @@ const JobsSection = () => {
               </button>
             )}
           </div>
+          
+          {/* Location Dropdown */}
+          <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+            <SelectTrigger className="w-full sm:w-[200px] py-6 bg-white/95 backdrop-blur-sm border-0 rounded-xl text-gray-800 shadow-lg focus:ring-2 focus:ring-amber-400">
+              <MapPin className="w-4 h-4 text-gray-400 mr-2" />
+              <SelectValue placeholder="Select Location" />
+            </SelectTrigger>
+            <SelectContent className="bg-white border-0 shadow-xl rounded-xl z-50">
+              {cities.map((city) => (
+                <SelectItem 
+                  key={city} 
+                  value={city}
+                  className="hover:bg-emerald-50 focus:bg-emerald-50 cursor-pointer"
+                >
+                  {city}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Active Filter Indicator */}
-        {(selectedSector || searchQuery) && (
+        {hasActiveFilters && (
           <div className="mb-6 flex flex-wrap items-center gap-3 animate-fade-in">
             <span className="text-white/80 text-sm">Active filters:</span>
             
@@ -224,6 +222,19 @@ const JobsSection = () => {
                 {selectedTrend.name}
                 <button 
                   onClick={() => setSelectedSector(null)}
+                  className="ml-1 hover:bg-white/20 rounded-full p-0.5 transition-colors"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </span>
+            )}
+            
+            {selectedLocation !== "All Locations" && (
+              <span className="inline-flex items-center gap-2 bg-emerald-500 text-white text-sm font-semibold px-4 py-2 rounded-full">
+                <MapPin className="w-3.5 h-3.5" />
+                {selectedLocation}
+                <button 
+                  onClick={() => setSelectedLocation("All Locations")}
                   className="ml-1 hover:bg-white/20 rounded-full p-0.5 transition-colors"
                 >
                   <X className="w-3.5 h-3.5" />
@@ -246,14 +257,12 @@ const JobsSection = () => {
             
             <span className="text-white/60 text-sm">({filteredJobs.length} jobs found)</span>
             
-            {(selectedSector || searchQuery) && (
-              <button
-                onClick={clearFilters}
-                className="text-amber-300 hover:text-amber-200 text-sm underline underline-offset-2 transition-colors"
-              >
-                Clear all
-              </button>
-            )}
+            <button
+              onClick={clearFilters}
+              className="text-amber-300 hover:text-amber-200 text-sm underline underline-offset-2 transition-colors"
+            >
+              Clear all
+            </button>
           </div>
         )}
 
