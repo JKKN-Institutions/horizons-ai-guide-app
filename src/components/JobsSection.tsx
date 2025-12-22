@@ -14,6 +14,10 @@ const industryTrends = [
   { id: "ev", name: "Electric Vehicles", growth: "+48%", value: 48, icon: Zap, color: "from-emerald-500 to-green-600", barColor: "bg-gradient-to-r from-emerald-500 to-green-500" },
   { id: "healthcare", name: "Healthcare Tech", growth: "+32%", value: 32, icon: HeartPulse, color: "from-pink-500 to-rose-500", barColor: "bg-gradient-to-r from-pink-500 to-rose-400" },
   { id: "marketing", name: "Digital Marketing", growth: "+28%", value: 28, icon: Megaphone, color: "from-amber-500 to-orange-600", barColor: "bg-gradient-to-r from-amber-500 to-orange-500" },
+  { id: "fintech", name: "FinTech & Banking", growth: "+36%", value: 36, icon: Banknote, color: "from-teal-500 to-cyan-600", barColor: "bg-gradient-to-r from-teal-500 to-cyan-500" },
+  { id: "edtech", name: "EdTech", growth: "+30%", value: 30, icon: GraduationCap, color: "from-indigo-500 to-blue-600", barColor: "bg-gradient-to-r from-indigo-500 to-blue-500" },
+  { id: "ecommerce", name: "E-Commerce", growth: "+33%", value: 33, icon: Building2, color: "from-orange-500 to-red-600", barColor: "bg-gradient-to-r from-orange-500 to-red-500" },
+  { id: "renewable", name: "Renewable Energy", growth: "+45%", value: 45, icon: Sparkles, color: "from-lime-500 to-green-600", barColor: "bg-gradient-to-r from-lime-500 to-green-500" },
 ];
 
 const cities = [
@@ -71,6 +75,32 @@ const jobs = [
   { title: "Performance Marketing Lead", company: "Swiggy", location: "Bangalore", salary: "₹12-20 LPA", requirement: "MBA + Google Ads", type: "Full-time", isHot: true, sector: "marketing" },
   { title: "Social Media Manager", company: "Myntra", location: "Bangalore", salary: "₹6-10 LPA", requirement: "Any Graduate", type: "Full-time", isHot: false, sector: "marketing" },
   { title: "Content Marketing Head", company: "Nykaa", location: "Mumbai", salary: "₹10-18 LPA", requirement: "MBA + Content", type: "Full-time", isHot: true, sector: "marketing" },
+  
+  // FinTech & Banking
+  { title: "FinTech Product Manager", company: "Razorpay", location: "Bangalore", salary: "₹18-30 LPA", requirement: "MBA + Tech", type: "Full-time", isHot: true, sector: "fintech" },
+  { title: "Blockchain Developer", company: "Polygon", location: "Bangalore", salary: "₹20-35 LPA", requirement: "B.Tech + Blockchain", type: "Full-time", isHot: true, sector: "fintech" },
+  { title: "Investment Banking Analyst", company: "ICICI Bank", location: "Mumbai", salary: "₹12-20 LPA", requirement: "MBA Finance", type: "Full-time", isHot: false, sector: "fintech" },
+  { title: "Risk Analyst", company: "HDFC Bank", location: "Mumbai", salary: "₹8-15 LPA", requirement: "CA/CFA/MBA", type: "Full-time", isHot: false, sector: "fintech" },
+  { title: "Payment Systems Engineer", company: "PhonePe", location: "Bangalore", salary: "₹15-25 LPA", requirement: "B.Tech + Payments", type: "Full-time", isHot: true, sector: "fintech" },
+  
+  // EdTech
+  { title: "Curriculum Designer", company: "BYJU'S", location: "Bangalore", salary: "₹8-14 LPA", requirement: "M.Ed/MA Education", type: "Full-time", isHot: false, sector: "edtech" },
+  { title: "EdTech Product Manager", company: "Unacademy", location: "Bangalore", salary: "₹15-25 LPA", requirement: "MBA + EdTech", type: "Full-time", isHot: true, sector: "edtech" },
+  { title: "Learning Experience Designer", company: "upGrad", location: "Mumbai", salary: "₹10-18 LPA", requirement: "MA/M.Ed", type: "Full-time", isHot: false, sector: "edtech" },
+  { title: "Education Technology Specialist", company: "Vedantu", location: "Bangalore", salary: "₹12-20 LPA", requirement: "B.Tech + Education", type: "Full-time", isHot: true, sector: "edtech" },
+  
+  // E-Commerce
+  { title: "E-Commerce Manager", company: "Amazon India", location: "Bangalore", salary: "₹15-28 LPA", requirement: "MBA + E-Commerce", type: "Full-time", isHot: true, sector: "ecommerce" },
+  { title: "Supply Chain Analyst", company: "Flipkart", location: "Bangalore", salary: "₹8-15 LPA", requirement: "MBA Operations", type: "Full-time", isHot: false, sector: "ecommerce" },
+  { title: "Marketplace Manager", company: "Meesho", location: "Bangalore", salary: "₹12-22 LPA", requirement: "MBA + Sales", type: "Full-time", isHot: true, sector: "ecommerce" },
+  { title: "D2C Brand Manager", company: "boAt", location: "Delhi", salary: "₹10-18 LPA", requirement: "MBA Marketing", type: "Full-time", isHot: false, sector: "ecommerce" },
+  
+  // Renewable Energy
+  { title: "Solar Project Engineer", company: "Adani Green", location: "Ahmedabad", salary: "₹8-15 LPA", requirement: "B.Tech Electrical", type: "Full-time", isHot: true, sector: "renewable" },
+  { title: "Wind Energy Specialist", company: "Suzlon", location: "Pune", salary: "₹10-18 LPA", requirement: "B.Tech Mechanical", type: "Full-time", isHot: true, sector: "renewable" },
+  { title: "Energy Storage Engineer", company: "Tata Power", location: "Mumbai", salary: "₹12-20 LPA", requirement: "B.Tech + Battery", type: "Full-time", isHot: true, sector: "renewable" },
+  { title: "Sustainability Consultant", company: "ReNew Power", location: "Gurgaon", salary: "₹15-25 LPA", requirement: "MBA + Sustainability", type: "Full-time", isHot: false, sector: "renewable" },
+  { title: "Green Building Specialist", company: "L&T", location: "Chennai", salary: "₹9-16 LPA", requirement: "B.Arch/B.Tech", type: "Full-time", isHot: false, sector: "renewable" },
 ];
 
 const JobsSection = () => {
