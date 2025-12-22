@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Sparkles, TrendingUp, Brain, Cloud, Shield, Zap, HeartPulse, Megaphone, X, Search, ChevronLeft, ChevronRight, Bookmark } from "lucide-react";
+import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Sparkles, TrendingUp, Brain, Cloud, Shield, Zap, HeartPulse, Megaphone, X, Search, ChevronLeft, ChevronRight, Bookmark, Truck, Gamepad2, Leaf } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -18,6 +18,9 @@ const industryTrends = [
   { id: "edtech", name: "EdTech", growth: "+30%", value: 30, icon: GraduationCap, color: "from-indigo-500 to-blue-600", barColor: "bg-gradient-to-r from-indigo-500 to-blue-500" },
   { id: "ecommerce", name: "E-Commerce", growth: "+33%", value: 33, icon: Building2, color: "from-orange-500 to-red-600", barColor: "bg-gradient-to-r from-orange-500 to-red-500" },
   { id: "renewable", name: "Renewable Energy", growth: "+45%", value: 45, icon: Sparkles, color: "from-lime-500 to-green-600", barColor: "bg-gradient-to-r from-lime-500 to-green-500" },
+  { id: "logistics", name: "Logistics & Supply Chain", growth: "+34%", value: 34, icon: Truck, color: "from-slate-500 to-gray-600", barColor: "bg-gradient-to-r from-slate-500 to-gray-500" },
+  { id: "gaming", name: "Gaming & Esports", growth: "+40%", value: 40, icon: Gamepad2, color: "from-fuchsia-500 to-pink-600", barColor: "bg-gradient-to-r from-fuchsia-500 to-pink-500" },
+  { id: "agritech", name: "AgriTech", growth: "+29%", value: 29, icon: Leaf, color: "from-green-500 to-teal-600", barColor: "bg-gradient-to-r from-green-500 to-teal-500" },
 ];
 
 const cities = [
@@ -134,6 +137,27 @@ const jobs = [
   { title: "Energy Storage Engineer", company: "Tata Power", location: "Mumbai", salary: "₹12-20 LPA", requirement: "B.Tech + Battery", type: "Full-time", isHot: true, sector: "renewable" },
   { title: "Sustainability Consultant", company: "ReNew Power", location: "Gurgaon", salary: "₹15-25 LPA", requirement: "MBA + Sustainability", type: "Full-time", isHot: false, sector: "renewable" },
   { title: "Green Building Specialist", company: "L&T", location: "Chennai", salary: "₹9-16 LPA", requirement: "B.Arch/B.Tech", type: "Full-time", isHot: false, sector: "renewable" },
+  
+  // Logistics & Supply Chain
+  { title: "Supply Chain Manager", company: "Delhivery", location: "Gurgaon", salary: "₹15-25 LPA", requirement: "MBA Operations", type: "Full-time", isHot: true, sector: "logistics" },
+  { title: "Logistics Analyst", company: "Blue Dart", location: "Mumbai", salary: "₹6-12 LPA", requirement: "B.Tech/MBA", type: "Full-time", isHot: false, sector: "logistics" },
+  { title: "Warehouse Operations Lead", company: "Amazon Logistics", location: "Bangalore", salary: "₹8-14 LPA", requirement: "Any Graduate + Experience", type: "Full-time", isHot: true, sector: "logistics" },
+  { title: "Fleet Management Specialist", company: "Rivigo", location: "Delhi", salary: "₹10-18 LPA", requirement: "B.Tech + Logistics", type: "Full-time", isHot: false, sector: "logistics" },
+  { title: "Last Mile Delivery Manager", company: "Ecom Express", location: "Noida", salary: "₹7-13 LPA", requirement: "Any Graduate", type: "Full-time", isHot: true, sector: "logistics" },
+  
+  // Gaming & Esports
+  { title: "Game Developer", company: "Games24x7", location: "Mumbai", salary: "₹12-22 LPA", requirement: "B.Tech + Unity/Unreal", type: "Full-time", isHot: true, sector: "gaming" },
+  { title: "Game Designer", company: "Nazara Technologies", location: "Mumbai", salary: "₹10-18 LPA", requirement: "Game Design Degree", type: "Full-time", isHot: true, sector: "gaming" },
+  { title: "Esports Manager", company: "JetSynthesys", location: "Pune", salary: "₹8-15 LPA", requirement: "Sports Management", type: "Full-time", isHot: true, sector: "gaming" },
+  { title: "3D Artist - Games", company: "Zynga India", location: "Bangalore", salary: "₹8-16 LPA", requirement: "B.Des/Animation", type: "Full-time", isHot: false, sector: "gaming" },
+  { title: "Mobile Game Developer", company: "MPL", location: "Bangalore", salary: "₹15-28 LPA", requirement: "B.Tech + Mobile Dev", type: "Full-time", isHot: true, sector: "gaming" },
+  
+  // AgriTech
+  { title: "AgriTech Product Manager", company: "DeHaat", location: "Patna", salary: "₹12-22 LPA", requirement: "MBA + AgriTech", type: "Full-time", isHot: true, sector: "agritech" },
+  { title: "Agricultural Data Scientist", company: "Ninjacart", location: "Bangalore", salary: "₹15-25 LPA", requirement: "M.Sc + Data Science", type: "Full-time", isHot: true, sector: "agritech" },
+  { title: "Farm Technology Specialist", company: "CropIn", location: "Bangalore", salary: "₹8-14 LPA", requirement: "B.Sc Agriculture", type: "Full-time", isHot: false, sector: "agritech" },
+  { title: "Supply Chain Lead - Agri", company: "BigBasket", location: "Bangalore", salary: "₹12-20 LPA", requirement: "MBA + Experience", type: "Full-time", isHot: true, sector: "agritech" },
+  { title: "IoT Engineer - Smart Farming", company: "Stellapps", location: "Bangalore", salary: "₹10-18 LPA", requirement: "B.Tech + IoT", type: "Full-time", isHot: false, sector: "agritech" },
 ];
 
 const JobsSection = () => {
