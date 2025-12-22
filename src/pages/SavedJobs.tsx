@@ -236,10 +236,35 @@ const SavedJobs = () => {
         </div>
       </div>
 
-      {/* Stats Bar */}
+      {/* Dashboard Summary */}
       {savedJobs.length > 0 && (
         <div className="border-b border-border bg-card">
-          <div className="container mx-auto px-4 py-4">
+          <div className="container mx-auto px-4 py-6">
+            {/* Stats Cards */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-4 text-white">
+                <p className="text-sm opacity-80">Total Applications</p>
+                <p className="text-3xl font-bold">{savedJobs.length}</p>
+              </div>
+              <div className="bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl p-4 text-white">
+                <p className="text-sm opacity-80">Interviews</p>
+                <p className="text-3xl font-bold">{statusCounts["interview"] || 0}</p>
+              </div>
+              <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-4 text-white">
+                <p className="text-sm opacity-80">Offers</p>
+                <p className="text-3xl font-bold">{statusCounts["offer"] || 0}</p>
+              </div>
+              <div className="bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl p-4 text-white">
+                <p className="text-sm opacity-80">Success Rate</p>
+                <p className="text-3xl font-bold">
+                  {savedJobs.length > 0 
+                    ? Math.round(((statusCounts["offer"] || 0) / savedJobs.length) * 100) 
+                    : 0}%
+                </p>
+              </div>
+            </div>
+
+            {/* Status Filter Pills */}
             <div className="flex flex-wrap gap-3">
               {(Object.keys(statusConfig) as JobStatus[]).map(status => {
                 const config = statusConfig[status];
