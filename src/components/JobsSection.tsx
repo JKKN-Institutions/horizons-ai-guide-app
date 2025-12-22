@@ -1,5 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Sparkles } from "lucide-react";
+import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Sparkles, TrendingUp, Brain, Cloud, Shield, Zap, HeartPulse, Megaphone } from "lucide-react";
+
+const industryTrends = [
+  { name: "AI & Machine Learning", growth: "+42%", icon: Brain, color: "from-violet-500 to-purple-600" },
+  { name: "Cloud Computing", growth: "+38%", icon: Cloud, color: "from-sky-500 to-blue-600" },
+  { name: "Cybersecurity", growth: "+35%", icon: Shield, color: "from-red-500 to-rose-600" },
+  { name: "Electric Vehicles", growth: "+48%", icon: Zap, color: "from-emerald-500 to-green-600" },
+  { name: "Healthcare Tech", growth: "+32%", icon: HeartPulse, color: "from-pink-500 to-rose-500" },
+  { name: "Digital Marketing", growth: "+28%", icon: Megaphone, color: "from-amber-500 to-orange-600" },
+];
 
 const jobs = [
   {
@@ -104,6 +113,30 @@ const JobsSection = () => {
             View All Jobs
             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
+        </div>
+
+        {/* Industry Trends Stats */}
+        <div className="mb-14">
+          <div className="flex items-center gap-2 mb-6">
+            <TrendingUp className="w-5 h-5 text-amber-400" />
+            <h3 className="text-lg font-semibold text-white">Industry Growth Trends 2026</h3>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {industryTrends.map((trend, index) => (
+              <div
+                key={trend.name}
+                className="group bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 hover:bg-white/20 transition-all duration-300 animate-fade-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${trend.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
+                  <trend.icon className="w-5 h-5 text-white" />
+                </div>
+                <p className="text-xs text-emerald-100/70 mb-1 line-clamp-1">{trend.name}</p>
+                <p className="text-xl font-bold text-emerald-400">{trend.growth}</p>
+                <p className="text-[10px] text-emerald-100/50">Job Growth</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
