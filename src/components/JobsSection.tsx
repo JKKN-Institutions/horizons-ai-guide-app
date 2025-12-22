@@ -2,12 +2,12 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Sparkles, TrendingUp, Brain, Cloud, Shield, Zap, HeartPulse, Megaphone } from "lucide-react";
 
 const industryTrends = [
-  { name: "AI & Machine Learning", growth: "+42%", icon: Brain, color: "from-violet-500 to-purple-600" },
-  { name: "Cloud Computing", growth: "+38%", icon: Cloud, color: "from-sky-500 to-blue-600" },
-  { name: "Cybersecurity", growth: "+35%", icon: Shield, color: "from-red-500 to-rose-600" },
-  { name: "Electric Vehicles", growth: "+48%", icon: Zap, color: "from-emerald-500 to-green-600" },
-  { name: "Healthcare Tech", growth: "+32%", icon: HeartPulse, color: "from-pink-500 to-rose-500" },
-  { name: "Digital Marketing", growth: "+28%", icon: Megaphone, color: "from-amber-500 to-orange-600" },
+  { name: "AI & Machine Learning", growth: "+42%", value: 42, icon: Brain, color: "from-violet-500 to-purple-600", barColor: "bg-gradient-to-r from-violet-500 to-purple-500" },
+  { name: "Cloud Computing", growth: "+38%", value: 38, icon: Cloud, color: "from-sky-500 to-blue-600", barColor: "bg-gradient-to-r from-sky-500 to-blue-500" },
+  { name: "Cybersecurity", growth: "+35%", value: 35, icon: Shield, color: "from-red-500 to-rose-600", barColor: "bg-gradient-to-r from-red-500 to-rose-500" },
+  { name: "Electric Vehicles", growth: "+48%", value: 48, icon: Zap, color: "from-emerald-500 to-green-600", barColor: "bg-gradient-to-r from-emerald-500 to-green-500" },
+  { name: "Healthcare Tech", growth: "+32%", value: 32, icon: HeartPulse, color: "from-pink-500 to-rose-500", barColor: "bg-gradient-to-r from-pink-500 to-rose-400" },
+  { name: "Digital Marketing", growth: "+28%", value: 28, icon: Megaphone, color: "from-amber-500 to-orange-600", barColor: "bg-gradient-to-r from-amber-500 to-orange-500" },
 ];
 
 const jobs = [
@@ -128,12 +128,26 @@ const JobsSection = () => {
                 className="group bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 hover:bg-white/20 transition-all duration-300 animate-fade-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${trend.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
-                  <trend.icon className="w-5 h-5 text-white" />
+                <div className="flex items-center gap-3 mb-3">
+                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${trend.color} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                    <trend.icon className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-emerald-100/70 line-clamp-1">{trend.name}</p>
+                    <p className="text-lg font-bold text-white">{trend.growth}</p>
+                  </div>
                 </div>
-                <p className="text-xs text-emerald-100/70 mb-1 line-clamp-1">{trend.name}</p>
-                <p className="text-xl font-bold text-emerald-400">{trend.growth}</p>
-                <p className="text-[10px] text-emerald-100/50">Job Growth</p>
+                {/* Animated Progress Bar */}
+                <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+                  <div 
+                    className={`h-full ${trend.barColor} rounded-full transition-all duration-1000 ease-out`}
+                    style={{ 
+                      width: `${(trend.value / 50) * 100}%`,
+                      animation: `growBar 1.5s ease-out ${index * 0.15}s forwards`,
+                    }}
+                  />
+                </div>
+                <p className="text-[10px] text-emerald-100/50 mt-2">Projected Job Growth</p>
               </div>
             ))}
           </div>
