@@ -35,7 +35,7 @@ const EmployerProfile = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <PageHeader title="Company Profile" backTo="/employer/dashboard" />
+      <PageHeader title="Company Profile" />
 
       <div className="container mx-auto p-4 space-y-6 max-w-2xl">
         {/* Company Logo */}
