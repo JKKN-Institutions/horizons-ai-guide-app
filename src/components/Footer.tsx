@@ -1,10 +1,10 @@
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com/jkkninstitutions", label: "Facebook" },
-  { icon: Instagram, href: "https://instagram.com/jkkninstitutions", label: "Instagram" },
-  { icon: Linkedin, href: "https://linkedin.com/company/jkkninstitutions", label: "LinkedIn" },
-  { icon: Youtube, href: "https://youtube.com/@jkkninstitutions", label: "YouTube" },
+  { icon: Facebook, href: "https://facebook.com/jkkn", label: "Facebook" },
+  { icon: Instagram, href: "https://instagram.com/jkkn", label: "Instagram" },
+  { icon: Linkedin, href: "https://linkedin.com/company/jkkn", label: "LinkedIn" },
+  { icon: Youtube, href: "https://youtube.com/jkkn", label: "YouTube" },
 ];
 
 const Footer = () => {
