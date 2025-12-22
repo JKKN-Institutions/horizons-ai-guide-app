@@ -1,13 +1,14 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Sparkles, TrendingUp, Brain, Cloud, Shield, Zap, HeartPulse, Megaphone } from "lucide-react";
+import { MapPin, Banknote, GraduationCap, Briefcase, ArrowRight, Building2, Sparkles, TrendingUp, Brain, Cloud, Shield, Zap, HeartPulse, Megaphone, X } from "lucide-react";
 
 const industryTrends = [
-  { name: "AI & Machine Learning", growth: "+42%", value: 42, icon: Brain, color: "from-violet-500 to-purple-600", barColor: "bg-gradient-to-r from-violet-500 to-purple-500" },
-  { name: "Cloud Computing", growth: "+38%", value: 38, icon: Cloud, color: "from-sky-500 to-blue-600", barColor: "bg-gradient-to-r from-sky-500 to-blue-500" },
-  { name: "Cybersecurity", growth: "+35%", value: 35, icon: Shield, color: "from-red-500 to-rose-600", barColor: "bg-gradient-to-r from-red-500 to-rose-500" },
-  { name: "Electric Vehicles", growth: "+48%", value: 48, icon: Zap, color: "from-emerald-500 to-green-600", barColor: "bg-gradient-to-r from-emerald-500 to-green-500" },
-  { name: "Healthcare Tech", growth: "+32%", value: 32, icon: HeartPulse, color: "from-pink-500 to-rose-500", barColor: "bg-gradient-to-r from-pink-500 to-rose-400" },
-  { name: "Digital Marketing", growth: "+28%", value: 28, icon: Megaphone, color: "from-amber-500 to-orange-600", barColor: "bg-gradient-to-r from-amber-500 to-orange-500" },
+  { id: "ai", name: "AI & Machine Learning", growth: "+42%", value: 42, icon: Brain, color: "from-violet-500 to-purple-600", barColor: "bg-gradient-to-r from-violet-500 to-purple-500" },
+  { id: "cloud", name: "Cloud Computing", growth: "+38%", value: 38, icon: Cloud, color: "from-sky-500 to-blue-600", barColor: "bg-gradient-to-r from-sky-500 to-blue-500" },
+  { id: "cybersecurity", name: "Cybersecurity", growth: "+35%", value: 35, icon: Shield, color: "from-red-500 to-rose-600", barColor: "bg-gradient-to-r from-red-500 to-rose-500" },
+  { id: "ev", name: "Electric Vehicles", growth: "+48%", value: 48, icon: Zap, color: "from-emerald-500 to-green-600", barColor: "bg-gradient-to-r from-emerald-500 to-green-500" },
+  { id: "healthcare", name: "Healthcare Tech", growth: "+32%", value: 32, icon: HeartPulse, color: "from-pink-500 to-rose-500", barColor: "bg-gradient-to-r from-pink-500 to-rose-400" },
+  { id: "marketing", name: "Digital Marketing", growth: "+28%", value: 28, icon: Megaphone, color: "from-amber-500 to-orange-600", barColor: "bg-gradient-to-r from-amber-500 to-orange-500" },
 ];
 
 const jobs = [
@@ -19,6 +20,7 @@ const jobs = [
     requirement: "B.Tech/M.Tech",
     type: "Full-time",
     isHot: true,
+    sector: "ai",
   },
   {
     title: "Data Scientist",
@@ -28,6 +30,7 @@ const jobs = [
     requirement: "M.Sc/M.Tech",
     type: "Full-time",
     isHot: true,
+    sector: "ai",
   },
   {
     title: "Cloud Architect",
@@ -37,6 +40,7 @@ const jobs = [
     requirement: "B.Tech + AWS/Azure",
     type: "Full-time",
     isHot: true,
+    sector: "cloud",
   },
   {
     title: "Cybersecurity Analyst",
@@ -46,6 +50,7 @@ const jobs = [
     requirement: "B.Tech + Certifications",
     type: "Full-time",
     isHot: true,
+    sector: "cybersecurity",
   },
   {
     title: "Full Stack Developer",
@@ -55,6 +60,7 @@ const jobs = [
     requirement: "B.Tech/BCA",
     type: "Full-time",
     isHot: false,
+    sector: "cloud",
   },
   {
     title: "Healthcare Data Analyst",
@@ -64,6 +70,7 @@ const jobs = [
     requirement: "B.Sc + Analytics",
     type: "Full-time",
     isHot: false,
+    sector: "healthcare",
   },
   {
     title: "Electric Vehicle Engineer",
@@ -73,6 +80,7 @@ const jobs = [
     requirement: "B.Tech Mechanical/EV",
     type: "Full-time",
     isHot: true,
+    sector: "ev",
   },
   {
     title: "Digital Marketing Manager",
@@ -82,10 +90,19 @@ const jobs = [
     requirement: "MBA Marketing",
     type: "Full-time",
     isHot: false,
+    sector: "marketing",
   },
 ];
 
 const JobsSection = () => {
+  const [selectedSector, setSelectedSector] = useState<string | null>(null);
+
+  const filteredJobs = selectedSector 
+    ? jobs.filter(job => job.sector === selectedSector)
+    : jobs;
+
+  const selectedTrend = industryTrends.find(t => t.id === selectedSector);
+
   return (
     <section className="py-20 md:py-28 relative overflow-hidden" id="jobs">
       {/* Background */}
@@ -117,15 +134,23 @@ const JobsSection = () => {
 
         {/* Industry Trends Stats */}
         <div className="mb-14">
-          <div className="flex items-center gap-2 mb-6">
-            <TrendingUp className="w-5 h-5 text-amber-400" />
-            <h3 className="text-lg font-semibold text-white">Industry Growth Trends 2026</h3>
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-2">
+              <TrendingUp className="w-5 h-5 text-amber-400" />
+              <h3 className="text-lg font-semibold text-white">Industry Growth Trends 2026</h3>
+            </div>
+            <p className="text-xs text-emerald-100/60">Click to filter jobs by sector</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {industryTrends.map((trend, index) => (
-              <div
-                key={trend.name}
-                className="group bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 hover:bg-white/20 transition-all duration-300 animate-fade-up"
+              <button
+                key={trend.id}
+                onClick={() => setSelectedSector(selectedSector === trend.id ? null : trend.id)}
+                className={`group text-left bg-white/10 backdrop-blur-sm border rounded-xl p-4 transition-all duration-300 animate-fade-up cursor-pointer ${
+                  selectedSector === trend.id 
+                    ? "border-amber-400 bg-white/20 ring-2 ring-amber-400/50" 
+                    : "border-white/20 hover:bg-white/20"
+                }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-center gap-3 mb-3">
@@ -148,13 +173,31 @@ const JobsSection = () => {
                   />
                 </div>
                 <p className="text-[10px] text-emerald-100/50 mt-2">Projected Job Growth</p>
-              </div>
+              </button>
             ))}
           </div>
         </div>
 
+        {/* Active Filter Indicator */}
+        {selectedSector && selectedTrend && (
+          <div className="mb-6 flex items-center gap-3 animate-fade-in">
+            <span className="text-white/80 text-sm">Showing jobs in:</span>
+            <span className={`inline-flex items-center gap-2 bg-gradient-to-r ${selectedTrend.color} text-white text-sm font-semibold px-4 py-2 rounded-full`}>
+              <selectedTrend.icon className="w-4 h-4" />
+              {selectedTrend.name}
+              <button 
+                onClick={() => setSelectedSector(null)}
+                className="ml-1 hover:bg-white/20 rounded-full p-0.5 transition-colors"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </span>
+            <span className="text-white/60 text-sm">({filteredJobs.length} jobs)</span>
+          </div>
+        )}
+
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {jobs.map((job, index) => (
+          {filteredJobs.map((job, index) => (
             <div
               key={index}
               className="group bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 animate-fade-up hover:-translate-y-2 relative overflow-hidden"
@@ -207,6 +250,20 @@ const JobsSection = () => {
             </div>
           ))}
         </div>
+
+        {/* No jobs message */}
+        {filteredJobs.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-white/70 text-lg">No jobs found in this sector. Check back soon!</p>
+            <Button 
+              variant="outline" 
+              className="mt-4 border-white/30 text-white hover:bg-white/10"
+              onClick={() => setSelectedSector(null)}
+            >
+              View All Jobs
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );
