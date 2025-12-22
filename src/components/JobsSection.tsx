@@ -34,6 +34,39 @@ const cities = [
   "Kolkata",
 ];
 
+const salaryRanges = [
+  { label: "All Salaries", value: "all", min: 0, max: Infinity },
+  { label: "₹0-8 LPA", value: "0-8", min: 0, max: 8 },
+  { label: "₹8-15 LPA", value: "8-15", min: 8, max: 15 },
+  { label: "₹15-25 LPA", value: "15-25", min: 15, max: 25 },
+  { label: "₹25+ LPA", value: "25+", min: 25, max: Infinity },
+];
+
+const experienceLevels = [
+  { label: "All Levels", value: "all" },
+  { label: "Entry Level", value: "entry" },
+  { label: "Mid Level", value: "mid" },
+  { label: "Senior Level", value: "senior" },
+];
+
+// Helper to parse salary string to number (takes the lower bound)
+const parseSalary = (salary: string): number => {
+  const match = salary.match(/₹(\d+)/);
+  return match ? parseInt(match[1]) : 0;
+};
+
+// Helper to determine experience level from requirement
+const getExperienceLevel = (requirement: string): string => {
+  const req = requirement.toLowerCase();
+  if (req.includes("phd") || req.includes("experience") || req.includes("lead") || req.includes("manager") || req.includes("senior")) {
+    return "senior";
+  }
+  if (req.includes("m.tech") || req.includes("mba") || req.includes("m.sc") || req.includes("certified")) {
+    return "mid";
+  }
+  return "entry";
+};
+
 const jobs = [
   // AI & Machine Learning
   { title: "AI/ML Engineer", company: "Infosys", location: "Bangalore", salary: "₹8-15 LPA", requirement: "B.Tech/M.Tech", type: "Full-time", isHot: true, sector: "ai" },
@@ -107,6 +140,8 @@ const JobsSection = () => {
   const [selectedSector, setSelectedSector] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLocation, setSelectedLocation] = useState<string>("All Locations");
+  const [selectedSalary, setSelectedSalary] = useState<string>("all");
+  const [selectedExperience, setSelectedExperience] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [savedJobs, setSavedJobs] = useState<Set<string>>(new Set());
   const [userId, setUserId] = useState<string | null>(null);
@@ -227,7 +262,17 @@ const JobsSection = () => {
         job.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
         job.location.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
-    return matchesSector && matchesSearch && matchesLocation;
+    
+    // Salary filter
+    const salaryRange = salaryRanges.find(s => s.value === selectedSalary);
+    const jobSalary = parseSalary(job.salary);
+    const matchesSalary = selectedSalary === "all" || (salaryRange && jobSalary >= salaryRange.min && jobSalary < salaryRange.max);
+    
+    // Experience filter
+    const jobLevel = getExperienceLevel(job.requirement);
+    const matchesExperience = selectedExperience === "all" || jobLevel === selectedExperience;
+    
+    return matchesSector && matchesSearch && matchesLocation && matchesSalary && matchesExperience;
   });
 
   // Pagination calculations
@@ -242,6 +287,8 @@ const JobsSection = () => {
     setSelectedSector(null);
     setSearchQuery("");
     setSelectedLocation("All Locations");
+    setSelectedSalary("all");
+    setSelectedExperience("all");
     setCurrentPage(1);
   };
 
@@ -261,7 +308,17 @@ const JobsSection = () => {
     setCurrentPage(1);
   };
 
-  const hasActiveFilters = selectedSector || searchQuery || selectedLocation !== "All Locations";
+  const handleSalaryChange = (salary: string) => {
+    setSelectedSalary(salary);
+    setCurrentPage(1);
+  };
+
+  const handleExperienceChange = (experience: string) => {
+    setSelectedExperience(experience);
+    setCurrentPage(1);
+  };
+
+  const hasActiveFilters = selectedSector || searchQuery || selectedLocation !== "All Locations" || selectedSalary !== "all" || selectedExperience !== "all";
   return (
     <section className="py-20 md:py-28 relative overflow-hidden" id="jobs">
       {/* Background */}
@@ -345,45 +402,85 @@ const JobsSection = () => {
           </div>
         </div>
 
-        {/* Search Box and Location Filter */}
-        <div className="mb-8 flex flex-col sm:flex-row gap-4">
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <Input
-              type="text"
-              placeholder="Search jobs by title, company..."
-              value={searchQuery}
-              onChange={(e) => handleSearchChange(e.target.value)}
-              className="pl-12 pr-10 py-6 bg-white/95 backdrop-blur-sm border-0 rounded-xl text-gray-800 placeholder:text-gray-400 shadow-lg focus-visible:ring-2 focus-visible:ring-amber-400"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery("")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            )}
-          </div>
-          
-          {/* Location Dropdown */}
-          <Select value={selectedLocation} onValueChange={handleLocationChange}>
-            <SelectTrigger className="w-full sm:w-[200px] py-6 bg-white/95 backdrop-blur-sm border-0 rounded-xl text-gray-800 shadow-lg focus:ring-2 focus:ring-amber-400">
-              <MapPin className="w-4 h-4 text-gray-400 mr-2" />
-              <SelectValue placeholder="Select Location" />
-            </SelectTrigger>
-            <SelectContent className="bg-white border-0 shadow-xl rounded-xl z-50">
-              {cities.map((city) => (
-                <SelectItem 
-                  key={city} 
-                  value={city}
-                  className="hover:bg-emerald-50 focus:bg-emerald-50 cursor-pointer"
+        {/* Search Box and Filters */}
+        <div className="mb-8 flex flex-col gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
+            <div className="relative flex-1 max-w-md">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Search jobs by title, company..."
+                value={searchQuery}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                className="pl-12 pr-10 py-6 bg-white/95 backdrop-blur-sm border-0 rounded-xl text-gray-800 placeholder:text-gray-400 shadow-lg focus-visible:ring-2 focus-visible:ring-amber-400"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                 >
-                  {city}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+            
+            {/* Location Dropdown */}
+            <Select value={selectedLocation} onValueChange={handleLocationChange}>
+              <SelectTrigger className="w-full sm:w-[180px] py-6 bg-white/95 backdrop-blur-sm border-0 rounded-xl text-gray-800 shadow-lg focus:ring-2 focus:ring-amber-400">
+                <MapPin className="w-4 h-4 text-gray-400 mr-2" />
+                <SelectValue placeholder="Location" />
+              </SelectTrigger>
+              <SelectContent className="bg-white border-0 shadow-xl rounded-xl z-50">
+                {cities.map((city) => (
+                  <SelectItem 
+                    key={city} 
+                    value={city}
+                    className="hover:bg-emerald-50 focus:bg-emerald-50 cursor-pointer"
+                  >
+                    {city}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            {/* Salary Range Dropdown */}
+            <Select value={selectedSalary} onValueChange={handleSalaryChange}>
+              <SelectTrigger className="w-full sm:w-[160px] py-6 bg-white/95 backdrop-blur-sm border-0 rounded-xl text-gray-800 shadow-lg focus:ring-2 focus:ring-amber-400">
+                <Banknote className="w-4 h-4 text-gray-400 mr-2" />
+                <SelectValue placeholder="Salary" />
+              </SelectTrigger>
+              <SelectContent className="bg-white border-0 shadow-xl rounded-xl z-50">
+                {salaryRanges.map((range) => (
+                  <SelectItem 
+                    key={range.value} 
+                    value={range.value}
+                    className="hover:bg-emerald-50 focus:bg-emerald-50 cursor-pointer"
+                  >
+                    {range.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            {/* Experience Level Dropdown */}
+            <Select value={selectedExperience} onValueChange={handleExperienceChange}>
+              <SelectTrigger className="w-full sm:w-[160px] py-6 bg-white/95 backdrop-blur-sm border-0 rounded-xl text-gray-800 shadow-lg focus:ring-2 focus:ring-amber-400">
+                <GraduationCap className="w-4 h-4 text-gray-400 mr-2" />
+                <SelectValue placeholder="Experience" />
+              </SelectTrigger>
+              <SelectContent className="bg-white border-0 shadow-xl rounded-xl z-50">
+                {experienceLevels.map((level) => (
+                  <SelectItem 
+                    key={level.value} 
+                    value={level.value}
+                    className="hover:bg-emerald-50 focus:bg-emerald-50 cursor-pointer"
+                  >
+                    {level.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         {/* Active Filter Indicator */}
@@ -423,6 +520,32 @@ const JobsSection = () => {
                 "{searchQuery}"
                 <button 
                   onClick={() => setSearchQuery("")}
+                  className="ml-1 hover:bg-white/20 rounded-full p-0.5 transition-colors"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </span>
+            )}
+            
+            {selectedSalary !== "all" && (
+              <span className="inline-flex items-center gap-2 bg-teal-500 text-white text-sm font-semibold px-4 py-2 rounded-full">
+                <Banknote className="w-3.5 h-3.5" />
+                {salaryRanges.find(s => s.value === selectedSalary)?.label}
+                <button 
+                  onClick={() => setSelectedSalary("all")}
+                  className="ml-1 hover:bg-white/20 rounded-full p-0.5 transition-colors"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </span>
+            )}
+            
+            {selectedExperience !== "all" && (
+              <span className="inline-flex items-center gap-2 bg-indigo-500 text-white text-sm font-semibold px-4 py-2 rounded-full">
+                <GraduationCap className="w-3.5 h-3.5" />
+                {experienceLevels.find(e => e.value === selectedExperience)?.label}
+                <button 
+                  onClick={() => setSelectedExperience("all")}
                   className="ml-1 hover:bg-white/20 rounded-full p-0.5 transition-colors"
                 >
                   <X className="w-3.5 h-3.5" />
