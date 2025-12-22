@@ -365,7 +365,7 @@ const JobsSection = () => {
             </div>
             <p className="text-xs text-emerald-100/60">Click to filter jobs by sector</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {industryTrends.map((trend, index) => (
               <button
                 key={trend.id}
