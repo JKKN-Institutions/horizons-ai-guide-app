@@ -4,9 +4,12 @@ const Footer = () => {
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
-            <h3 className="font-serif text-xl font-bold italic text-primary-foreground mb-2">
+            <h3 className="font-serif text-xl font-bold italic text-primary-foreground mb-1">
               JKKN AI Horizons: Discover, Design, Do
             </h3>
+            <p className="text-xs text-primary-foreground/60 mb-2">
+              70+ Years of Excellence in Education & Healthcare
+            </p>
             <p className="text-sm text-primary-foreground/70">
               © 2025 J.K.K. Nattraja Institutions. All Rights Reserved.
             </p>
