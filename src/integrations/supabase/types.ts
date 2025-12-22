@@ -257,6 +257,42 @@ export type Database = {
         }
         Relationships: []
       }
+      saved_jobs: {
+        Row: {
+          id: string
+          job_company: string
+          job_location: string
+          job_requirement: string
+          job_salary: string
+          job_sector: string
+          job_title: string
+          saved_at: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          job_company: string
+          job_location: string
+          job_requirement: string
+          job_salary: string
+          job_sector: string
+          job_title: string
+          saved_at?: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          job_company?: string
+          job_location?: string
+          job_requirement?: string
+          job_salary?: string
+          job_sector?: string
+          job_title?: string
+          saved_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       scholarship_applications: {
         Row: {
           applied_date: string | null
