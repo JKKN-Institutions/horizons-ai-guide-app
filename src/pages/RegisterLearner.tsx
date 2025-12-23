@@ -115,6 +115,10 @@ const RegisterLearner = () => {
 
       if (error) throw error;
 
+      // Store learner email for personalization
+      localStorage.setItem('jkkn_learner_email', formData.email);
+      localStorage.setItem('jkkn_learner_name', formData.fullName);
+
       toast.success("Registration successful! Welcome to JKKN Career Hub.");
       navigate("/jkkn");
     } catch (error: unknown) {
