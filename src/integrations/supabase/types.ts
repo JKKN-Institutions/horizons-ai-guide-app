@@ -14,6 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      articles: {
+        Row: {
+          author: string | null
+          category: string
+          content: string | null
+          created_at: string | null
+          excerpt: string | null
+          id: string
+          published_at: string | null
+          read_time_minutes: number | null
+          thumbnail_url: string | null
+          title: string
+          views_count: number | null
+        }
+        Insert: {
+          author?: string | null
+          category: string
+          content?: string | null
+          created_at?: string | null
+          excerpt?: string | null
+          id?: string
+          published_at?: string | null
+          read_time_minutes?: number | null
+          thumbnail_url?: string | null
+          title: string
+          views_count?: number | null
+        }
+        Update: {
+          author?: string | null
+          category?: string
+          content?: string | null
+          created_at?: string | null
+          excerpt?: string | null
+          id?: string
+          published_at?: string | null
+          read_time_minutes?: number | null
+          thumbnail_url?: string | null
+          title?: string
+          views_count?: number | null
+        }
+        Relationships: []
+      }
       categories: {
         Row: {
           created_at: string | null
@@ -89,6 +131,105 @@ export type Database = {
         }
         Relationships: []
       }
+      coding_problems: {
+        Row: {
+          category: string
+          constraints: string | null
+          created_at: string | null
+          description: string | null
+          difficulty: string
+          examples: Json | null
+          external_links: Json | null
+          hints: Json | null
+          id: string
+          solution_approaches: Json | null
+          title: string
+        }
+        Insert: {
+          category: string
+          constraints?: string | null
+          created_at?: string | null
+          description?: string | null
+          difficulty: string
+          examples?: Json | null
+          external_links?: Json | null
+          hints?: Json | null
+          id?: string
+          solution_approaches?: Json | null
+          title: string
+        }
+        Update: {
+          category?: string
+          constraints?: string | null
+          created_at?: string | null
+          description?: string | null
+          difficulty?: string
+          examples?: Json | null
+          external_links?: Json | null
+          hints?: Json | null
+          id?: string
+          solution_approaches?: Json | null
+          title?: string
+        }
+        Relationships: []
+      }
+      competitions: {
+        Row: {
+          banner_url: string | null
+          created_at: string | null
+          description: string | null
+          end_date: string | null
+          id: string
+          is_featured: boolean | null
+          mode: string | null
+          organizer: string | null
+          prize_pool: string | null
+          register_link: string | null
+          registration_deadline: string | null
+          start_date: string | null
+          team_size: string | null
+          title: string
+          type: string
+          venue: string | null
+        }
+        Insert: {
+          banner_url?: string | null
+          created_at?: string | null
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          is_featured?: boolean | null
+          mode?: string | null
+          organizer?: string | null
+          prize_pool?: string | null
+          register_link?: string | null
+          registration_deadline?: string | null
+          start_date?: string | null
+          team_size?: string | null
+          title: string
+          type: string
+          venue?: string | null
+        }
+        Update: {
+          banner_url?: string | null
+          created_at?: string | null
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          is_featured?: boolean | null
+          mode?: string | null
+          organizer?: string | null
+          prize_pool?: string | null
+          register_link?: string | null
+          registration_deadline?: string | null
+          start_date?: string | null
+          team_size?: string | null
+          title?: string
+          type?: string
+          venue?: string | null
+        }
+        Relationships: []
+      }
       contact_logs: {
         Row: {
           contact_type: string
@@ -120,6 +261,57 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      courses: {
+        Row: {
+          category: string
+          created_at: string | null
+          description: string | null
+          duration_hours: number | null
+          external_link: string | null
+          id: string
+          instructor_name: string | null
+          is_free: boolean | null
+          lessons_count: number | null
+          level: string | null
+          rating: number | null
+          students_count: number | null
+          thumbnail_url: string | null
+          title: string
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          description?: string | null
+          duration_hours?: number | null
+          external_link?: string | null
+          id?: string
+          instructor_name?: string | null
+          is_free?: boolean | null
+          lessons_count?: number | null
+          level?: string | null
+          rating?: number | null
+          students_count?: number | null
+          thumbnail_url?: string | null
+          title: string
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          description?: string | null
+          duration_hours?: number | null
+          external_link?: string | null
+          id?: string
+          instructor_name?: string | null
+          is_free?: boolean | null
+          lessons_count?: number | null
+          level?: string | null
+          rating?: number | null
+          students_count?: number | null
+          thumbnail_url?: string | null
+          title?: string
+        }
+        Relationships: []
       }
       employers: {
         Row: {
@@ -199,6 +391,138 @@ export type Database = {
           verification_status?: string | null
           verified_at?: string | null
           website?: string | null
+        }
+        Relationships: []
+      }
+      jkkn_colleges: {
+        Row: {
+          branches: Json
+          courses: Json
+          created_at: string | null
+          id: string
+          name: string
+          short_name: string
+        }
+        Insert: {
+          branches?: Json
+          courses?: Json
+          created_at?: string | null
+          id?: string
+          name: string
+          short_name: string
+        }
+        Update: {
+          branches?: Json
+          courses?: Json
+          created_at?: string | null
+          id?: string
+          name?: string
+          short_name?: string
+        }
+        Relationships: []
+      }
+      jkkn_jobs: {
+        Row: {
+          application_deadline: string | null
+          apply_link: string | null
+          company_logo_url: string | null
+          company_name: string
+          created_at: string | null
+          description: string | null
+          duration: string | null
+          eligibility: string | null
+          id: string
+          is_featured: boolean | null
+          location: string | null
+          salary_max: number | null
+          salary_min: number | null
+          skills_required: Json | null
+          stipend_max: number | null
+          stipend_min: number | null
+          title: string
+          type: string
+          work_mode: string | null
+        }
+        Insert: {
+          application_deadline?: string | null
+          apply_link?: string | null
+          company_logo_url?: string | null
+          company_name: string
+          created_at?: string | null
+          description?: string | null
+          duration?: string | null
+          eligibility?: string | null
+          id?: string
+          is_featured?: boolean | null
+          location?: string | null
+          salary_max?: number | null
+          salary_min?: number | null
+          skills_required?: Json | null
+          stipend_max?: number | null
+          stipend_min?: number | null
+          title: string
+          type: string
+          work_mode?: string | null
+        }
+        Update: {
+          application_deadline?: string | null
+          apply_link?: string | null
+          company_logo_url?: string | null
+          company_name?: string
+          created_at?: string | null
+          description?: string | null
+          duration?: string | null
+          eligibility?: string | null
+          id?: string
+          is_featured?: boolean | null
+          location?: string | null
+          salary_max?: number | null
+          salary_min?: number | null
+          skills_required?: Json | null
+          stipend_max?: number | null
+          stipend_min?: number | null
+          title?: string
+          type?: string
+          work_mode?: string | null
+        }
+        Relationships: []
+      }
+      jkkn_scholarships: {
+        Row: {
+          amount: string | null
+          apply_link: string | null
+          created_at: string | null
+          deadline: string | null
+          description: string | null
+          eligibility: string | null
+          id: string
+          provider: string
+          title: string
+          type: string | null
+        }
+        Insert: {
+          amount?: string | null
+          apply_link?: string | null
+          created_at?: string | null
+          deadline?: string | null
+          description?: string | null
+          eligibility?: string | null
+          id?: string
+          provider: string
+          title: string
+          type?: string | null
+        }
+        Update: {
+          amount?: string | null
+          apply_link?: string | null
+          created_at?: string | null
+          deadline?: string | null
+          description?: string | null
+          eligibility?: string | null
+          id?: string
+          provider?: string
+          title?: string
+          type?: string | null
         }
         Relationships: []
       }
@@ -453,6 +777,105 @@ export type Database = {
           },
         ]
       }
+      learners: {
+        Row: {
+          branch: string
+          career_interest: string | null
+          college: string
+          course: string
+          email: string
+          github_url: string | null
+          graduation_year: number
+          id: string
+          learner_number: number
+          linkedin_url: string | null
+          name: string
+          phone: string
+          photo_url: string | null
+          registered_at: string | null
+          skills: Json | null
+          updated_at: string | null
+          year_of_study: string
+        }
+        Insert: {
+          branch: string
+          career_interest?: string | null
+          college: string
+          course: string
+          email: string
+          github_url?: string | null
+          graduation_year: number
+          id?: string
+          learner_number?: number
+          linkedin_url?: string | null
+          name: string
+          phone: string
+          photo_url?: string | null
+          registered_at?: string | null
+          skills?: Json | null
+          updated_at?: string | null
+          year_of_study: string
+        }
+        Update: {
+          branch?: string
+          career_interest?: string | null
+          college?: string
+          course?: string
+          email?: string
+          github_url?: string | null
+          graduation_year?: number
+          id?: string
+          learner_number?: number
+          linkedin_url?: string | null
+          name?: string
+          phone?: string
+          photo_url?: string | null
+          registered_at?: string | null
+          skills?: Json | null
+          updated_at?: string | null
+          year_of_study?: string
+        }
+        Relationships: []
+      }
+      mentors: {
+        Row: {
+          college: string | null
+          company: string | null
+          created_at: string | null
+          designation: string | null
+          expertise: Json | null
+          id: string
+          linkedin_url: string | null
+          name: string
+          photo_url: string | null
+          rating: number | null
+        }
+        Insert: {
+          college?: string | null
+          company?: string | null
+          created_at?: string | null
+          designation?: string | null
+          expertise?: Json | null
+          id?: string
+          linkedin_url?: string | null
+          name: string
+          photo_url?: string | null
+          rating?: number | null
+        }
+        Update: {
+          college?: string | null
+          company?: string | null
+          created_at?: string | null
+          designation?: string | null
+          expertise?: Json | null
+          id?: string
+          linkedin_url?: string | null
+          name?: string
+          photo_url?: string | null
+          rating?: number | null
+        }
+        Relationships: []
+      }
       portal_saved_jobs: {
         Row: {
           id: string
@@ -683,6 +1106,80 @@ export type Database = {
           specialization?: string | null
           updated_at?: string
           user_id?: string | null
+        }
+        Relationships: []
+      }
+      roadmap_steps: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          duration_weeks: number | null
+          id: string
+          resources: Json | null
+          roadmap_id: string | null
+          step_number: number
+          title: string
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          duration_weeks?: number | null
+          id?: string
+          resources?: Json | null
+          roadmap_id?: string | null
+          step_number: number
+          title: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          duration_weeks?: number | null
+          id?: string
+          resources?: Json | null
+          roadmap_id?: string | null
+          step_number?: number
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "roadmap_steps_roadmap_id_fkey"
+            columns: ["roadmap_id"]
+            isOneToOne: false
+            referencedRelation: "roadmaps"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      roadmaps: {
+        Row: {
+          category: string
+          created_at: string | null
+          description: string | null
+          duration_months: number | null
+          followers_count: number | null
+          id: string
+          steps_count: number | null
+          title: string
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          description?: string | null
+          duration_months?: number | null
+          followers_count?: number | null
+          id?: string
+          steps_count?: number | null
+          title: string
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          description?: string | null
+          duration_months?: number | null
+          followers_count?: number | null
+          id?: string
+          steps_count?: number | null
+          title?: string
         }
         Relationships: []
       }
