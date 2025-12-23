@@ -49,42 +49,28 @@ const EmployerProfilePage = () => {
   });
 
   useEffect(() => {
-    const checkAuthAndLoadProfile = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (!session?.user) {
-        toast.error("Please login to view your profile");
-        navigate("/auth?redirect=/employer/profile");
-        return;
-      }
-      
-      setUserId(session.user.id);
-      await loadEmployerProfile(session.user.id);
+    const loadProfile = async () => {
+      // Load first employer profile (demo mode - no auth required)
+      await loadEmployerProfile();
     };
 
-    checkAuthAndLoadProfile();
+    loadProfile();
+  }, []);
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
-      if (!session?.user) {
-        navigate("/auth?redirect=/employer/profile");
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, [navigate]);
-
-  const loadEmployerProfile = async (uid: string) => {
+  const loadEmployerProfile = async () => {
     try {
+      // Load first employer profile (demo mode - no auth required)
       const { data, error } = await supabase
         .from("employers")
         .select("*")
-        .eq("user_id", uid)
+        .limit(1)
         .maybeSingle();
 
       if (error) throw error;
 
       if (data) {
         setEmployerId(data.id);
+        setUserId(data.user_id || null);
         setProfile({
           companyName: data.company_name || "",
           industry: data.industry || "",

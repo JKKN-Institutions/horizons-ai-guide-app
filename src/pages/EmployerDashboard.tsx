@@ -41,19 +41,12 @@ const EmployerDashboard = () => {
 
   useEffect(() => {
     const loadDashboardData = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (!session?.user) {
-        navigate("/auth?redirect=/employer/dashboard");
-        return;
-      }
-
       try {
-        // Load employer profile
+        // Load first employer profile (demo mode - no auth required)
         const { data: employerData } = await supabase
           .from("employers")
           .select("id, company_name, is_verified, verification_status")
-          .eq("user_id", session.user.id)
+          .limit(1)
           .maybeSingle();
 
         if (employerData) {
@@ -81,15 +74,7 @@ const EmployerDashboard = () => {
     };
 
     loadDashboardData();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
-      if (!session?.user) {
-        navigate("/auth?redirect=/employer/dashboard");
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, [navigate]);
+  }, []);
 
   const getDaysLeft = (validUntil: string | null) => {
     if (!validUntil) return null;
