@@ -10,7 +10,7 @@ import Auth from "./pages/Auth";
 import StudentDashboard from "./pages/StudentDashboard";
 import CareerChat from "./pages/CareerChat";
 import Register12thLearner from "./pages/Register12thLearner";
-
+import RegisterLearner from "./pages/RegisterLearner";
 import RegisterEmployer from "./pages/RegisterEmployer";
 import EmployerRegistrationSuccess from "./pages/EmployerRegistrationSuccess";
 import EmployerDashboard from "./pages/EmployerDashboard";
@@ -51,7 +51,7 @@ function App() {
                 <Route path="/jobs" element={<JobPortal />} />
                 <Route path="/jobs/*" element={<JobPortal />} />
                 <Route path="/saved-jobs" element={<SavedJobs />} />
-                
+                <Route path="/register/learner" element={<RegisterLearner />} />
                 <Route path="/register/12th-learner" element={<Register12thLearner />} />
                 
                 {/* Employer Routes */}
