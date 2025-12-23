@@ -13,7 +13,6 @@ import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 const steps = [
   { id: 1, name: "Personal Info" },
   { id: 2, name: "Education" },
-  { id: 3, name: "Experience" },
 ];
 
 const RegisterLearner = () => {
@@ -30,10 +29,6 @@ const RegisterLearner = () => {
     degree: "",
     specialization: "",
     graduationYear: "",
-    experience: "",
-    currentRole: "",
-    skills: "",
-    preferredRole: "",
   });
 
   const handleChange = (field: string, value: string) => {
@@ -51,7 +46,6 @@ const RegisterLearner = () => {
     const stepFields: Record<number, (keyof typeof formData)[]> = {
       1: ["fullName", "email", "phone"],
       2: ["institution", "degree"],
-      3: ["experience"],
     };
 
     const fieldsToValidate = stepFields[step] || [];
@@ -91,18 +85,14 @@ const RegisterLearner = () => {
       setIsSubmitting(true);
 
       const { error } = await supabase.from("registrations_learners").insert({
-        full_name: validatedData.fullName,
-        email: validatedData.email,
-        phone: validatedData.phone,
-        date_of_birth: validatedData.dateOfBirth || null,
-        institution: validatedData.institution || null,
-        degree: validatedData.degree || null,
-        specialization: validatedData.specialization || null,
-        graduation_year: validatedData.graduationYear || null,
-        experience: validatedData.experience || null,
-        job_role: validatedData.currentRole || null,
-        skills: validatedData.skills || null,
-        preferred_role: validatedData.preferredRole || null,
+        full_name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        date_of_birth: formData.dateOfBirth || null,
+        institution: formData.institution || null,
+        degree: formData.degree || null,
+        specialization: formData.specialization || null,
+        graduation_year: formData.graduationYear || null,
       });
 
       if (error) throw error;
@@ -307,62 +297,6 @@ const RegisterLearner = () => {
                 </div>
               </div>
             )}
-
-            {/* Step 3: Experience */}
-            {currentStep === 3 && (
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="experience">Work Experience</Label>
-                  <Select
-                    value={formData.experience}
-                    onValueChange={(value) => handleChange("experience", value)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select experience" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="fresher">Fresher (0 years)</SelectItem>
-                      <SelectItem value="0-1">0-1 years</SelectItem>
-                      <SelectItem value="1-3">1-3 years</SelectItem>
-                      <SelectItem value="3-5">3-5 years</SelectItem>
-                      <SelectItem value="5-10">5-10 years</SelectItem>
-                      <SelectItem value="10+">10+ years</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <Label htmlFor="currentRole">Current/Last Role</Label>
-                  <Input
-                    id="currentRole"
-                    placeholder="e.g., Software Developer, Analyst"
-                    value={formData.currentRole}
-                    onChange={(e) => handleChange("currentRole", e.target.value)}
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="skills">Key Skills</Label>
-                  <Input
-                    id="skills"
-                    placeholder="e.g., Python, React, Data Analysis"
-                    value={formData.skills}
-                    onChange={(e) => handleChange("skills", e.target.value)}
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="preferredRole">Preferred Role</Label>
-                  <Input
-                    id="preferredRole"
-                    placeholder="e.g., Full Stack Developer, Product Manager"
-                    value={formData.preferredRole}
-                    onChange={(e) => handleChange("preferredRole", e.target.value)}
-                  />
-                </div>
-              </div>
-            )}
-
             {/* Navigation Buttons */}
             <div className="flex justify-between mt-8">
               <Button
