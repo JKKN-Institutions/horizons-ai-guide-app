@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Users, Briefcase, BookOpen, Code, MoreHorizontal, Trophy, Lightbulb, GraduationCap, UserCheck } from 'lucide-react';
+import { Home, Users, Briefcase, BookOpen, Code, MoreHorizontal, Trophy, Lightbulb, GraduationCap, UserCheck } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
@@ -14,13 +14,14 @@ interface BottomNavProps {
 }
 
 const navItems = [
-  { id: 'learners', label: 'Learners', icon: Users },
+  { id: 'home', label: 'For You', icon: Home },
   { id: 'jobs', label: 'Jobs', icon: Briefcase },
   { id: 'learn', label: 'Learn', icon: BookOpen },
   { id: 'practice', label: 'Practice', icon: Code },
 ];
 
 const moreItems = [
+  { id: 'learners', label: 'Learners', icon: Users },
   { id: 'hackathons', label: 'Hackathons', icon: Trophy },
   { id: 'tips', label: 'Tips', icon: Lightbulb },
   { id: 'scholarships', label: 'Scholarships', icon: GraduationCap },
