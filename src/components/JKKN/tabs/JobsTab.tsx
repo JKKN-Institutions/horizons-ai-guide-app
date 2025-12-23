@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Filter, MapPin, IndianRupee, Clock, Briefcase, ExternalLink, Flame, Bookmark, BookmarkCheck, X } from 'lucide-react';
+import { Search, Filter, MapPin, IndianRupee, Clock, Briefcase, ExternalLink, Flame, Bookmark, BookmarkCheck, X, Building2, TrendingUp, Users } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -56,7 +56,12 @@ const experienceLevels = [
   { value: 'senior', label: 'Senior (5+ yrs)' },
 ];
 
-const jobFilters = ['All', 'Internship', 'Full-time', 'WFH'];
+const jobFilters = [
+  { name: 'All', icon: Briefcase, gradient: 'from-[#2E7D32] to-[#4CAF50]' },
+  { name: 'Internship', icon: TrendingUp, gradient: 'from-blue-500 to-indigo-600' },
+  { name: 'Full-time', icon: Building2, gradient: 'from-purple-500 to-pink-600' },
+  { name: 'WFH', icon: Users, gradient: 'from-orange-500 to-red-600' },
+];
 
 const sampleJobs: Job[] = [
   {
@@ -185,25 +190,52 @@ export function JobsTab() {
 
   if (isLoading) {
     return (
-      <div className="p-4 space-y-4">
+      <div className="p-4 space-y-4 bg-gradient-to-b from-gray-50 to-white min-h-screen">
+        <Skeleton className="h-32 w-full rounded-2xl" />
+        <div className="flex gap-3">
+          {[1, 2, 3, 4].map((i) => (
+            <Skeleton key={i} className="w-24 h-10 rounded-full flex-shrink-0" />
+          ))}
+        </div>
         {[1, 2, 3].map((i) => (
-          <div key={i} className="bg-white rounded-xl p-4 shadow-sm">
-            <div className="flex gap-3">
-              <Skeleton className="w-14 h-14 rounded-lg" />
-              <div className="flex-1 space-y-2">
-                <Skeleton className="h-5 w-48" />
-                <Skeleton className="h-4 w-32" />
-                <Skeleton className="h-4 w-24" />
-              </div>
-            </div>
-          </div>
+          <Skeleton key={i} className="h-40 w-full rounded-2xl" />
         ))}
       </div>
     );
   }
 
   return (
-    <div className="p-4 space-y-4">
+    <div className="p-4 space-y-5 bg-gradient-to-b from-gray-50 to-white min-h-screen">
+      {/* Colorful Header */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-5 text-white shadow-lg">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-2 mb-2">
+            <Briefcase className="w-6 h-6" />
+            <span className="text-sm font-medium text-white/80">Career Opportunities</span>
+          </div>
+          <h2 className="text-2xl font-bold">Jobs & Internships</h2>
+          <p className="text-sm text-white/80 mt-1">Find your dream career opportunity</p>
+        </div>
+      </div>
+
+      {/* Stats Row */}
+      <div className="grid grid-cols-3 gap-3">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white text-center shadow-md">
+          <p className="text-2xl font-bold">{jobs.length}+</p>
+          <p className="text-xs text-blue-100">Total Jobs</p>
+        </div>
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white text-center shadow-md">
+          <p className="text-2xl font-bold">{jobs.filter(j => j.type === 'internship').length}</p>
+          <p className="text-xs text-purple-100">Internships</p>
+        </div>
+        <div className="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl p-3 text-white text-center shadow-md">
+          <p className="text-2xl font-bold">{jobs.filter(j => j.is_featured).length}</p>
+          <p className="text-xs text-emerald-100">Featured</p>
+        </div>
+      </div>
+
       {/* Search Bar */}
       <div className="flex gap-2">
         <div className="relative flex-1">
@@ -212,15 +244,15 @@ export function JobsTab() {
             placeholder="Search jobs..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 py-3 rounded-xl border-gray-200 bg-white"
+            className="pl-10 py-3 rounded-xl border-gray-200 bg-white shadow-sm"
           />
         </div>
         <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="h-12 w-12 rounded-xl relative">
+            <Button variant="outline" size="icon" className="h-12 w-12 rounded-xl relative shadow-sm">
               <Filter className="w-5 h-5" />
               {getActiveFiltersCount() > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#2E7D32] text-white text-xs rounded-full flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs rounded-full flex items-center justify-center">
                   {getActiveFiltersCount()}
                 </span>
               )}
@@ -238,7 +270,6 @@ export function JobsTab() {
               </SheetTitle>
             </SheetHeader>
             <div className="py-6 space-y-6">
-              {/* Location Filter */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Location (Tamil Nadu)</label>
                 <Select value={locationFilter} onValueChange={setLocationFilter}>
@@ -258,7 +289,6 @@ export function JobsTab() {
                 </Select>
               </div>
 
-              {/* Experience Filter */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Experience Level</label>
                 <Select value={experienceFilter} onValueChange={setExperienceFilter}>
@@ -276,7 +306,7 @@ export function JobsTab() {
               </div>
 
               <Button 
-                className="w-full bg-[#2E7D32] hover:bg-[#1B5E20]" 
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" 
                 onClick={() => setIsFilterOpen(false)}
               >
                 Apply Filters
@@ -290,7 +320,7 @@ export function JobsTab() {
       {getActiveFiltersCount() > 0 && (
         <div className="flex flex-wrap gap-2">
           {locationFilter !== 'All Locations' && (
-            <Badge variant="secondary" className="bg-[#E8F5E9] text-[#2E7D32] gap-1">
+            <Badge variant="secondary" className="bg-blue-100 text-blue-700 gap-1">
               <MapPin className="w-3 h-3" />
               {locationFilter}
               <button onClick={() => setLocationFilter('All Locations')} className="ml-1">
@@ -299,7 +329,7 @@ export function JobsTab() {
             </Badge>
           )}
           {experienceFilter !== 'all' && (
-            <Badge variant="secondary" className="bg-[#E8F5E9] text-[#2E7D32] gap-1">
+            <Badge variant="secondary" className="bg-purple-100 text-purple-700 gap-1">
               {experienceLevels.find(l => l.value === experienceFilter)?.label}
               <button onClick={() => setExperienceFilter('all')} className="ml-1">
                 <X className="w-3 h-3" />
@@ -309,131 +339,158 @@ export function JobsTab() {
         </div>
       )}
 
-      {/* Filter Chips */}
-      <div className="flex gap-2 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
-        {jobFilters.map((filter) => (
-          <button
-            key={filter}
-            onClick={() => setActiveFilter(filter)}
-            className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-              activeFilter === filter
-                ? 'bg-[#2E7D32] text-white'
-                : 'bg-white text-gray-600 border border-gray-200'
-            }`}
-          >
-            {filter}
-          </button>
-        ))}
+      {/* Colorful Filter Chips */}
+      <div className="flex gap-3 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
+        {jobFilters.map((filter) => {
+          const IconComponent = filter.icon;
+          const isActive = activeFilter === filter.name;
+          return (
+            <button
+              key={filter.name}
+              onClick={() => setActiveFilter(filter.name)}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all shadow-sm ${
+                isActive
+                  ? `bg-gradient-to-r ${filter.gradient} text-white shadow-md scale-105`
+                  : 'bg-white text-gray-600 border border-gray-200 hover:border-gray-300'
+              }`}
+            >
+              <IconComponent className="w-4 h-4" />
+              {filter.name}
+            </button>
+          );
+        })}
       </div>
 
       {/* Count */}
-      <p className="text-sm text-gray-500">{filteredJobs.length}+ Jobs Available</p>
+      <p className="text-sm text-gray-500 font-medium">{filteredJobs.length}+ Jobs Available</p>
 
       {/* Job Cards */}
-      <div className="space-y-3">
-        {filteredJobs.map((job) => (
-          <div
-            key={job.id}
-            className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
-          >
-            <div className="flex gap-3">
-              {/* Company Logo */}
-              <div className="w-14 h-14 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
-                {job.company_logo_url ? (
-                  <img src={job.company_logo_url} alt={job.company_name} className="w-full h-full object-contain" />
-                ) : (
-                  <Briefcase className="w-6 h-6 text-gray-400" />
-                )}
-              </div>
-
-              {/* Job Info */}
-              <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-gray-900 truncate">{job.title}</h3>
-                      {job.is_featured && (
-                        <Badge className="bg-orange-100 text-orange-600 text-xs">
-                          <Flame className="w-3 h-3 mr-1" />
-                          Hot
-                        </Badge>
+      <div className="space-y-4">
+        {filteredJobs.map((job) => {
+          const isInternship = job.type.toLowerCase() === 'internship';
+          const gradientClass = isInternship 
+            ? 'from-blue-500 to-indigo-600' 
+            : 'from-purple-500 to-pink-600';
+          
+          return (
+            <div
+              key={job.id}
+              className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300"
+            >
+              {/* Colorful Top Banner */}
+              <div className={`h-2 bg-gradient-to-r ${gradientClass}`} />
+              
+              <div className="p-4">
+                <div className="flex gap-3">
+                  {/* Company Logo with Gradient Border */}
+                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${gradientClass} p-0.5 flex-shrink-0`}>
+                    <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center overflow-hidden">
+                      {job.company_logo_url ? (
+                        <img src={job.company_logo_url} alt={job.company_name} className="w-full h-full object-contain" />
+                      ) : (
+                        <Briefcase className="w-6 h-6 text-gray-400" />
                       )}
                     </div>
-                    <p className="text-sm text-[#2E7D32] font-medium">{job.company_name}</p>
                   </div>
-                  {/* Bookmark Button */}
-                  <button
-                    onClick={() => handleBookmark(job.id, job.title)}
-                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                  >
-                    {isJobBookmarked(job.id) ? (
-                      <BookmarkCheck className="w-5 h-5 text-[#2E7D32]" />
-                    ) : (
-                      <Bookmark className="w-5 h-5 text-gray-400" />
+
+                  {/* Job Info */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-bold text-gray-900 truncate">{job.title}</h3>
+                          {job.is_featured && (
+                            <Badge className="bg-gradient-to-r from-orange-400 to-red-500 text-white text-xs border-0">
+                              <Flame className="w-3 h-3 mr-1" />
+                              Hot
+                            </Badge>
+                          )}
+                        </div>
+                        <p className={`text-sm font-semibold bg-gradient-to-r ${gradientClass} bg-clip-text text-transparent`}>
+                          {job.company_name}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => handleBookmark(job.id, job.title)}
+                        className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                      >
+                        {isJobBookmarked(job.id) ? (
+                          <BookmarkCheck className="w-5 h-5 text-blue-600" />
+                        ) : (
+                          <Bookmark className="w-5 h-5 text-gray-400" />
+                        )}
+                      </button>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 mt-2 text-xs text-gray-500">
+                      {job.location && (
+                        <span className="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded-full">
+                          <MapPin className="w-3 h-3" />
+                          {job.location}
+                        </span>
+                      )}
+                      {(formatSalary(job.salary_min, job.salary_max) || formatSalary(job.stipend_min, job.stipend_max, true)) && (
+                        <span className="flex items-center gap-1 bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">
+                          <IndianRupee className="w-3 h-3" />
+                          {formatSalary(job.salary_min, job.salary_max) || formatSalary(job.stipend_min, job.stipend_max, true)}
+                        </span>
+                      )}
+                    </div>
+
+                    {job.eligibility && (
+                      <p className="text-xs text-gray-500 mt-2 truncate">{job.eligibility}</p>
                     )}
-                  </button>
-                </div>
 
-                <div className="flex flex-wrap gap-2 mt-2 text-xs text-gray-500">
-                  {job.location && (
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-3 h-3" />
-                      {job.location}
-                    </span>
-                  )}
-                  {(formatSalary(job.salary_min, job.salary_max) || formatSalary(job.stipend_min, job.stipend_max, true)) && (
-                    <span className="flex items-center gap-1">
-                      <IndianRupee className="w-3 h-3" />
-                      {formatSalary(job.salary_min, job.salary_max) || formatSalary(job.stipend_min, job.stipend_max, true)}
-                    </span>
-                  )}
-                </div>
+                    {job.application_deadline && (
+                      <div className="flex items-center gap-1 text-xs text-orange-600 mt-1 font-medium">
+                        <Clock className="w-3 h-3" />
+                        Deadline: {new Date(job.application_deadline).toLocaleDateString()}
+                      </div>
+                    )}
 
-                {job.eligibility && (
-                  <p className="text-xs text-gray-500 mt-1 truncate">{job.eligibility}</p>
-                )}
+                    {/* Skills */}
+                    <div className="flex flex-wrap gap-1 mt-3">
+                      {job.skills_required.slice(0, 3).map((skill, i) => (
+                        <Badge
+                          key={i}
+                          variant="secondary"
+                          className="bg-gray-100 text-gray-700 text-xs px-2 py-0.5"
+                        >
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
 
-                {job.application_deadline && (
-                  <div className="flex items-center gap-1 text-xs text-orange-600 mt-1">
-                    <Clock className="w-3 h-3" />
-                    Deadline: {new Date(job.application_deadline).toLocaleDateString()}
+                    {/* View Details Button */}
+                    <Link to={`/jkkn/job/${job.id}`}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className={`mt-3 border-2 hover:text-white ${
+                          isInternship 
+                            ? 'border-blue-500 text-blue-600 hover:bg-blue-500' 
+                            : 'border-purple-500 text-purple-600 hover:bg-purple-500'
+                        }`}
+                      >
+                        View Details
+                        <ExternalLink className="w-3 h-3 ml-1" />
+                      </Button>
+                    </Link>
                   </div>
-                )}
-
-                {/* Skills */}
-                <div className="flex flex-wrap gap-1 mt-2">
-                  {job.skills_required.slice(0, 3).map((skill, i) => (
-                    <Badge
-                      key={i}
-                      variant="secondary"
-                      className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
                 </div>
-
-                {/* View Details Button */}
-                <Link to={`/jkkn/job/${job.id}`}>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="mt-3 text-[#2E7D32] border-[#2E7D32] hover:bg-[#E8F5E9]"
-                  >
-                    View Details
-                    <ExternalLink className="w-3 h-3 ml-1" />
-                  </Button>
-                </Link>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {filteredJobs.length === 0 && (
-        <div className="text-center py-12 text-gray-500">
-          <Briefcase className="w-12 h-12 mx-auto mb-3 text-gray-300" />
-          <p>No jobs found</p>
+        <div className="text-center py-12">
+          <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+            <Briefcase className="w-10 h-10 text-gray-400" />
+          </div>
+          <p className="text-gray-500 font-medium">No jobs found</p>
+          <p className="text-gray-400 text-sm mt-1">Try adjusting your filters</p>
         </div>
       )}
     </div>
