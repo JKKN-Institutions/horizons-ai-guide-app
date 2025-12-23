@@ -15,6 +15,17 @@ const steps = [
   { id: 2, name: "Education" },
 ];
 
+const tamilNaduDistricts = [
+  "Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore",
+  "Dharmapuri", "Dindigul", "Erode", "Kallakurichi", "Kancheepuram",
+  "Karur", "Krishnagiri", "Madurai", "Mayiladuthurai", "Nagapattinam",
+  "Namakkal", "Nilgiris", "Perambalur", "Pudukkottai", "Ramanathapuram",
+  "Ranipet", "Salem", "Sivagangai", "Tenkasi", "Thanjavur", "Theni",
+  "Thoothukudi", "Tiruchirappalli", "Tirunelveli", "Tirupathur",
+  "Tiruppur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore",
+  "Viluppuram", "Virudhunagar"
+];
+
 const RegisterLearner = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
@@ -45,15 +56,8 @@ const RegisterLearner = () => {
   };
 
   const validateStep = (step: number): boolean => {
-    const stepFields: Record<number, (keyof typeof formData)[]> = {
-      1: ["fullName", "email", "phone"],
-      2: ["institution", "degree"],
-    };
-
-    const fieldsToValidate = stepFields[step] || [];
     const newErrors: Record<string, string> = {};
     
-    // Basic validation for required fields
     if (step === 1) {
       if (!formData.fullName.trim()) newErrors.fullName = "Full name is required";
       if (!formData.email.trim()) newErrors.email = "Email is required";
@@ -62,6 +66,16 @@ const RegisterLearner = () => {
       else if (!/^[6-9]\d{9}$/.test(formData.phone.replace(/[\s\-\+]/g, '').replace(/^91/, ''))) {
         newErrors.phone = "Enter valid 10-digit mobile number starting with 6-9";
       }
+      if (!formData.dateOfBirth) newErrors.dateOfBirth = "Date of birth is required";
+      if (!formData.district) newErrors.district = "District is required";
+      if (!formData.place.trim()) newErrors.place = "Place/Town is required";
+    }
+
+    if (step === 2) {
+      if (!formData.institution.trim()) newErrors.institution = "Institution is required";
+      if (!formData.degree) newErrors.degree = "Degree is required";
+      if (!formData.specialization.trim()) newErrors.specialization = "Specialization is required";
+      if (!formData.graduationYear) newErrors.graduationYear = "Graduation year is required";
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -226,33 +240,53 @@ const RegisterLearner = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="dateOfBirth">Date of Birth</Label>
+                  <Label htmlFor="dateOfBirth">Date of Birth *</Label>
                   <Input
                     id="dateOfBirth"
                     type="date"
                     value={formData.dateOfBirth}
                     onChange={(e) => handleChange("dateOfBirth", e.target.value)}
+                    className={errors.dateOfBirth ? "border-destructive" : ""}
                   />
+                  {errors.dateOfBirth && (
+                    <p className="text-xs text-destructive mt-1">{errors.dateOfBirth}</p>
+                  )}
                 </div>
 
                 <div>
-                  <Label htmlFor="district">District</Label>
-                  <Input
-                    id="district"
-                    placeholder="e.g., Coimbatore, Chennai"
+                  <Label htmlFor="district">District *</Label>
+                  <Select
                     value={formData.district}
-                    onChange={(e) => handleChange("district", e.target.value)}
-                  />
+                    onValueChange={(value) => handleChange("district", value)}
+                  >
+                    <SelectTrigger className={errors.district ? "border-destructive" : ""}>
+                      <SelectValue placeholder="Select district" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {tamilNaduDistricts.map((district) => (
+                        <SelectItem key={district} value={district}>
+                          {district}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errors.district && (
+                    <p className="text-xs text-destructive mt-1">{errors.district}</p>
+                  )}
                 </div>
 
                 <div>
-                  <Label htmlFor="place">Place/Town</Label>
+                  <Label htmlFor="place">Place/Town *</Label>
                   <Input
                     id="place"
                     placeholder="e.g., Gandhipuram, T. Nagar"
                     value={formData.place}
                     onChange={(e) => handleChange("place", e.target.value)}
+                    className={errors.place ? "border-destructive" : ""}
                   />
+                  {errors.place && (
+                    <p className="text-xs text-destructive mt-1">{errors.place}</p>
+                  )}
                 </div>
               </div>
             )}
@@ -261,22 +295,26 @@ const RegisterLearner = () => {
             {currentStep === 2 && (
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="institution">Institution/College</Label>
+                  <Label htmlFor="institution">Institution/College *</Label>
                   <Input
                     id="institution"
                     placeholder="e.g., Anna University"
                     value={formData.institution}
                     onChange={(e) => handleChange("institution", e.target.value)}
+                    className={errors.institution ? "border-destructive" : ""}
                   />
+                  {errors.institution && (
+                    <p className="text-xs text-destructive mt-1">{errors.institution}</p>
+                  )}
                 </div>
 
                 <div>
-                  <Label htmlFor="degree">Degree/Qualification</Label>
+                  <Label htmlFor="degree">Degree/Qualification *</Label>
                   <Select
                     value={formData.degree}
                     onValueChange={(value) => handleChange("degree", value)}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger className={errors.degree ? "border-destructive" : ""}>
                       <SelectValue placeholder="Select degree" />
                     </SelectTrigger>
                     <SelectContent>
@@ -289,25 +327,32 @@ const RegisterLearner = () => {
                       <SelectItem value="phd">PhD</SelectItem>
                     </SelectContent>
                   </Select>
+                  {errors.degree && (
+                    <p className="text-xs text-destructive mt-1">{errors.degree}</p>
+                  )}
                 </div>
 
                 <div>
-                  <Label htmlFor="specialization">Specialization/Major</Label>
+                  <Label htmlFor="specialization">Specialization/Major *</Label>
                   <Input
                     id="specialization"
                     placeholder="e.g., Computer Science, Mechanical Engineering"
                     value={formData.specialization}
                     onChange={(e) => handleChange("specialization", e.target.value)}
+                    className={errors.specialization ? "border-destructive" : ""}
                   />
+                  {errors.specialization && (
+                    <p className="text-xs text-destructive mt-1">{errors.specialization}</p>
+                  )}
                 </div>
 
                 <div>
-                  <Label htmlFor="graduationYear">Graduation Year</Label>
+                  <Label htmlFor="graduationYear">Graduation Year *</Label>
                   <Select
                     value={formData.graduationYear}
                     onValueChange={(value) => handleChange("graduationYear", value)}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger className={errors.graduationYear ? "border-destructive" : ""}>
                       <SelectValue placeholder="Select year" />
                     </SelectTrigger>
                     <SelectContent>
@@ -318,6 +363,9 @@ const RegisterLearner = () => {
                       ))}
                     </SelectContent>
                   </Select>
+                  {errors.graduationYear && (
+                    <p className="text-xs text-destructive mt-1">{errors.graduationYear}</p>
+                  )}
                 </div>
               </div>
             )}
