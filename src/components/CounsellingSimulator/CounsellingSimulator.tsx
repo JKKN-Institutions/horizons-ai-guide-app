@@ -494,33 +494,68 @@ export const CounsellingSimulator = () => {
 
   const renderCollegeSelection = () => (
     <div className="space-y-6 content-fade-in">
-      <div className="flex items-center justify-between">
-        <Button variant="ghost" onClick={() => setCurrentStep('rank-entry')}>
-          <ArrowLeft className="w-4 h-4 mr-2" /> Back
-        </Button>
-        <Badge variant="secondary" className="text-lg px-4 py-2">
-          Rank: {parsedRank} | {categoryLabels[category]}
-        </Badge>
-      </div>
+      {/* Step Header Card */}
+      <Card className="border-none shadow-lg overflow-hidden bg-gradient-to-br from-white to-slate-50">
+        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 border-b border-blue-100">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <Button variant="ghost" size="sm" onClick={() => setCurrentStep('rank-entry')} className="h-8">
+                <ArrowLeft className="w-4 h-4 mr-1" /> Back
+              </Button>
+              <Badge className="bg-blue-600 hover:bg-blue-600 text-white px-4 py-1.5 rounded-full">
+                <School className="w-3.5 h-3.5 mr-1.5" />
+                Step 2 of 5
+              </Badge>
+            </div>
+            <div className="flex items-center gap-1.5">
+              {[1, 2, 3, 4, 5].map((step) => (
+                <div 
+                  key={step}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${
+                    step <= 2 ? 'bg-blue-600' : 'bg-gray-300'
+                  } ${step === 2 ? 'w-3 h-3' : ''}`}
+                />
+              ))}
+            </div>
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600">
+                <School className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-blue-800">Select Colleges</h2>
+                <p className="text-blue-600 text-sm">Choose your preferred colleges and branches</p>
+              </div>
+            </div>
+            <Badge variant="secondary" className="text-sm px-3 py-1.5 bg-white shadow-sm">
+              Cutoff: {parsedRank} | {community.toUpperCase()}
+            </Badge>
+          </div>
+        </div>
 
-      {/* Progress */}
-      <div className="flex items-center gap-2 mb-4">
-        <span className="text-sm text-gray-500">Selected:</span>
-        <Badge className="bg-teal-500">{selectedPreferences.length}/15</Badge>
-        <Progress value={(selectedPreferences.length / 15) * 100} className="flex-1 h-2" />
-      </div>
+        {/* Progress Bar */}
+        <div className="px-6 py-4 bg-white border-b">
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-medium text-gray-600">Preferences Added:</span>
+            <Badge className="bg-blue-500">{selectedPreferences.length}/15</Badge>
+            <Progress value={(selectedPreferences.length / 15) * 100} className="flex-1 h-2" />
+          </div>
+        </div>
+      </Card>
 
       <div className="grid lg:grid-cols-3 gap-6">
         {/* College List */}
         <div className="lg:col-span-2 space-y-4">
-          <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2">
-            <School className="w-5 h-5 text-teal-600" />
+          <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
+            <Building2 className="w-5 h-5 text-blue-600" />
             Eligible Colleges ({eligibleColleges.length})
           </h3>
           
-          <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
+          <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2">
             {eligibleColleges.map(({ college, eligibleBranches }) => (
-              <Card key={college.id} className="border-l-4 border-l-teal-500 shadow-md hover:shadow-lg transition-all">
+              <Card key={college.id} className="border-l-4 border-l-blue-500 shadow-md hover:shadow-lg transition-all">
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between mb-3">
                     <div>
@@ -543,9 +578,9 @@ export const CounsellingSimulator = () => {
                       </div>
                     </div>
                     <Badge className={
-                      college.type === 'Government' ? 'bg-emerald-500' :
-                      college.type === 'Government-Aided' ? 'bg-blue-500' :
-                      college.type === 'Self-Financing' ? 'bg-purple-500' : 'bg-amber-500'
+                      college.type === 'Government' || college.type === 'IIT' || college.type === 'AIIMS' ? 'bg-emerald-500' :
+                      college.type === 'Government-Aided' || college.type === 'NIT' ? 'bg-blue-500' :
+                      college.type === 'Self-Financing' || college.type === 'IIIT' ? 'bg-purple-500' : 'bg-amber-500'
                     }>
                       {college.type}
                     </Badge>
@@ -563,7 +598,7 @@ export const CounsellingSimulator = () => {
                           size="sm"
                           disabled={isAdded}
                           onClick={() => addPreference(college.id, branch.id)}
-                          className={`justify-start text-left h-auto py-2 ${isAdded ? 'bg-teal-500' : ''}`}
+                          className={`justify-start text-left h-auto py-2 ${isAdded ? 'bg-blue-500' : ''}`}
                         >
                           {isAdded ? <Check className="w-3 h-3 mr-1" /> : <Plus className="w-3 h-3 mr-1" />}
                           <span className="truncate">{branch.shortName}</span>
@@ -580,7 +615,7 @@ export const CounsellingSimulator = () => {
 
         {/* Selected Preferences Panel */}
         <div className="space-y-4">
-          <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+          <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
             <GripVertical className="w-5 h-5 text-purple-600" />
             Your Preferences
           </h3>
@@ -590,11 +625,11 @@ export const CounsellingSimulator = () => {
               {selectedPreferences.length === 0 ? (
                 <div className="text-center py-8 text-gray-500">
                   <Info className="w-10 h-10 mx-auto mb-2 opacity-50" />
-                  <p>No preferences added yet</p>
+                  <p className="font-medium">No preferences added yet</p>
                   <p className="text-sm">Click on branches to add</p>
                 </div>
               ) : (
-                <div className="space-y-2 max-h-[400px] overflow-y-auto">
+                <div className="space-y-2 max-h-[350px] overflow-y-auto">
                   {selectedPreferences.map((pref, index) => {
                     const { collegeName, branchName } = getCollegeBranchName(pref);
                     return (
@@ -623,7 +658,7 @@ export const CounsellingSimulator = () => {
           <Button 
             onClick={handleProceedToOrder}
             disabled={selectedPreferences.length === 0}
-            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 py-6"
+            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 py-6 rounded-xl shadow-lg"
           >
             Review & Order Preferences
             <ArrowRight className="w-5 h-5 ml-2" />
@@ -635,21 +670,51 @@ export const CounsellingSimulator = () => {
 
   const renderPreferenceOrder = () => (
     <div className="space-y-6 content-fade-in max-w-2xl mx-auto">
-      <Button variant="ghost" onClick={() => setCurrentStep('college-selection')}>
-        <ArrowLeft className="w-4 h-4 mr-2" /> Back to Selection
-      </Button>
+      {/* Step Header Card */}
+      <Card className="border-none shadow-lg overflow-hidden bg-gradient-to-br from-white to-slate-50">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 border-b border-purple-100">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <Button variant="ghost" size="sm" onClick={() => setCurrentStep('college-selection')} className="h-8">
+                <ArrowLeft className="w-4 h-4 mr-1" /> Back
+              </Button>
+              <Badge className="bg-purple-600 hover:bg-purple-600 text-white px-4 py-1.5 rounded-full">
+                <GripVertical className="w-3.5 h-3.5 mr-1.5" />
+                Step 3 of 5
+              </Badge>
+            </div>
+            <div className="flex items-center gap-1.5">
+              {[1, 2, 3, 4, 5].map((step) => (
+                <div 
+                  key={step}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${
+                    step <= 3 ? 'bg-purple-600' : 'bg-gray-300'
+                  } ${step === 3 ? 'w-3 h-3' : ''}`}
+                />
+              ))}
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-3">
+            <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500">
+              <GripVertical className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-purple-800">Order Preferences</h2>
+              <p className="text-purple-600 text-sm">Arrange your choices by priority</p>
+            </div>
+          </div>
+        </div>
+      </Card>
 
       <Card className="border-none shadow-xl">
-        <CardHeader className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-t-xl">
-          <CardTitle className="flex items-center gap-2">
-            <GripVertical className="w-5 h-5" />
-            Step 3: Order Your Preferences
-          </CardTitle>
-        </CardHeader>
         <CardContent className="p-6">
-          <p className="text-gray-600 mb-4">
-            Drag or use arrows to reorder. Higher priority = Better chance of allotment.
-          </p>
+          <div className="flex items-center gap-2 p-3 mb-4 bg-amber-50 rounded-xl border border-amber-200">
+            <Lightbulb className="w-5 h-5 text-amber-600" />
+            <p className="text-sm text-amber-700">
+              Use arrows to reorder. Higher priority = Better chance of allotment.
+            </p>
+          </div>
           
           <div className="space-y-2 mb-6">
             {selectedPreferences.map((pref, index) => {
@@ -693,7 +758,7 @@ export const CounsellingSimulator = () => {
                   </div>
                   
                   <div className="text-right">
-                    <p className="text-xs text-gray-500">Cutoff Rank</p>
+                    <p className="text-xs text-gray-500">Cutoff</p>
                     <p className="font-bold text-purple-600">#{branch?.cutoffs[category]}</p>
                   </div>
                 </div>
@@ -703,7 +768,7 @@ export const CounsellingSimulator = () => {
 
           <Button 
             onClick={handleSimulateAllotment}
-            className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 py-6 text-lg"
+            className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 py-6 text-lg rounded-xl shadow-lg"
           >
             <Play className="w-5 h-5 mr-2" />
             Simulate Seat Allotment
@@ -714,81 +779,156 @@ export const CounsellingSimulator = () => {
   );
 
   const renderAllotment = () => (
-    <div className="flex flex-col items-center justify-center min-h-[400px] content-fade-in">
-      <div className="text-center space-y-6">
-        <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center animate-pulse">
-          <RefreshCw className="w-12 h-12 text-white animate-spin" />
+    <div className="space-y-6 content-fade-in max-w-2xl mx-auto">
+      {/* Step Header */}
+      <Card className="border-none shadow-lg overflow-hidden bg-gradient-to-br from-white to-slate-50">
+        <div className="bg-gradient-to-r from-amber-50 to-orange-50 p-6 border-b border-amber-100">
+          <div className="flex items-center justify-between mb-4">
+            <Badge className="bg-amber-600 hover:bg-amber-600 text-white px-4 py-1.5 rounded-full">
+              <RefreshCw className="w-3.5 h-3.5 mr-1.5 animate-spin" />
+              Step 4 of 5
+            </Badge>
+            <div className="flex items-center gap-1.5">
+              {[1, 2, 3, 4, 5].map((step) => (
+                <div 
+                  key={step}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${
+                    step <= 4 ? 'bg-amber-600' : 'bg-gray-300'
+                  } ${step === 4 ? 'w-3 h-3' : ''}`}
+                />
+              ))}
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-3">
+            <div className="p-3 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500">
+              <Calculator className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-amber-800">Processing Allotment</h2>
+              <p className="text-amber-600 text-sm">Simulating {counsellingInfo.name} Round 1</p>
+            </div>
+          </div>
         </div>
-        <div>
-          <h3 className="text-2xl font-bold text-gray-800 mb-2">Processing Allotment...</h3>
-          <p className="text-gray-500">Simulating {counsellingInfo.name} Round 1 seat allocation</p>
+      </Card>
+
+      <div className="flex flex-col items-center justify-center min-h-[300px]">
+        <div className="text-center space-y-6">
+          <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center animate-pulse">
+            <RefreshCw className="w-12 h-12 text-white animate-spin" />
+          </div>
+          <div>
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Analyzing your preferences...</h3>
+            <p className="text-gray-500">Matching with available seats</p>
+          </div>
+          <Progress value={66} className="w-64 mx-auto" />
         </div>
-        <Progress value={66} className="w-64 mx-auto" />
       </div>
     </div>
   );
 
   const renderResult = () => (
     <div className="space-y-6 content-fade-in max-w-2xl mx-auto">
-      <Card className={`border-none shadow-xl overflow-hidden ${
-        allotmentResult?.status === 'allotted' ? 'ring-4 ring-emerald-200' :
-        allotmentResult?.status === 'waitlisted' ? 'ring-4 ring-amber-200' :
-        'ring-4 ring-red-200'
-      }`}>
-        <div className={`p-6 text-white ${
-          allotmentResult?.status === 'allotted' ? 'bg-gradient-to-r from-emerald-500 to-teal-600' :
-          allotmentResult?.status === 'waitlisted' ? 'bg-gradient-to-r from-amber-500 to-orange-500' :
-          'bg-gradient-to-r from-red-500 to-rose-600'
+      {/* Step Header */}
+      <Card className="border-none shadow-lg overflow-hidden bg-gradient-to-br from-white to-slate-50">
+        <div className={`p-6 border-b ${
+          allotmentResult?.status === 'allotted' ? 'bg-gradient-to-r from-emerald-50 to-teal-50 border-emerald-100' :
+          allotmentResult?.status === 'waitlisted' ? 'bg-gradient-to-r from-amber-50 to-orange-50 border-amber-100' :
+          'bg-gradient-to-r from-red-50 to-rose-50 border-red-100'
         }`}>
-          <div className="flex items-center gap-3 mb-4">
-            {allotmentResult?.status === 'allotted' ? (
-              <CheckCircle className="w-12 h-12" />
-            ) : allotmentResult?.status === 'waitlisted' ? (
-              <AlertCircle className="w-12 h-12" />
-            ) : (
-              <X className="w-12 h-12" />
-            )}
+          <div className="flex items-center justify-between mb-4">
+            <Badge className={`px-4 py-1.5 rounded-full ${
+              allotmentResult?.status === 'allotted' ? 'bg-emerald-600 hover:bg-emerald-600' :
+              allotmentResult?.status === 'waitlisted' ? 'bg-amber-600 hover:bg-amber-600' :
+              'bg-red-600 hover:bg-red-600'
+            } text-white`}>
+              <Trophy className="w-3.5 h-3.5 mr-1.5" />
+              Step 5 of 5
+            </Badge>
+            <div className="flex items-center gap-1.5">
+              {[1, 2, 3, 4, 5].map((step) => (
+                <div 
+                  key={step}
+                  className={`w-2.5 h-2.5 rounded-full ${
+                    allotmentResult?.status === 'allotted' ? 'bg-emerald-600' :
+                    allotmentResult?.status === 'waitlisted' ? 'bg-amber-600' :
+                    'bg-red-600'
+                  } ${step === 5 ? 'w-3 h-3' : ''}`}
+                />
+              ))}
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-3">
+            <div className={`p-3 rounded-xl ${
+              allotmentResult?.status === 'allotted' ? 'bg-gradient-to-br from-emerald-500 to-teal-600' :
+              allotmentResult?.status === 'waitlisted' ? 'bg-gradient-to-br from-amber-500 to-orange-500' :
+              'bg-gradient-to-br from-red-500 to-rose-600'
+            }`}>
+              {allotmentResult?.status === 'allotted' ? (
+                <CheckCircle className="w-6 h-6 text-white" />
+              ) : allotmentResult?.status === 'waitlisted' ? (
+                <AlertCircle className="w-6 h-6 text-white" />
+              ) : (
+                <X className="w-6 h-6 text-white" />
+              )}
+            </div>
             <div>
-              <h2 className="text-2xl font-bold">
-                {allotmentResult?.status === 'allotted' ? '🎉 Seat Allotted!' :
+              <h2 className={`text-2xl font-bold ${
+                allotmentResult?.status === 'allotted' ? 'text-emerald-800' :
+                allotmentResult?.status === 'waitlisted' ? 'text-amber-800' :
+                'text-red-800'
+              }`}>
+                {allotmentResult?.status === 'allotted' ? '🎉 Congratulations!' :
                  allotmentResult?.status === 'waitlisted' ? '⏳ Waitlisted' :
                  '❌ Not Allotted'}
               </h2>
-              <p className="opacity-90">Round 1 Result</p>
+              <p className={`text-sm ${
+                allotmentResult?.status === 'allotted' ? 'text-emerald-600' :
+                allotmentResult?.status === 'waitlisted' ? 'text-amber-600' :
+                'text-red-600'
+              }`}>
+                {counsellingInfo.name} - Round 1 Result
+              </p>
             </div>
           </div>
         </div>
-        
+      </Card>
+
+      <Card className="border-none shadow-xl overflow-hidden">
         <CardContent className="p-6 space-y-6">
           {allotmentResult?.college && allotmentResult?.branch ? (
             <>
-              <div className="text-center py-4">
-                <p className="text-gray-500 mb-1">Allotted College</p>
+              <div className="text-center py-4 bg-gradient-to-br from-slate-50 to-white rounded-xl">
+                <p className="text-gray-500 mb-1 text-sm">Allotted College</p>
                 <h3 className="text-xl font-bold text-gray-800">{allotmentResult.college.name}</h3>
-                <p className="text-lg text-teal-600 font-semibold">{allotmentResult.branch.name}</p>
+                <p className="text-lg text-emerald-600 font-semibold">{allotmentResult.branch.name}</p>
               </div>
               
               <div className="grid grid-cols-3 gap-4 text-center">
-                <div className="p-3 bg-slate-50 rounded-lg">
-                  <p className="text-xs text-gray-500">Location</p>
-                  <p className="font-bold">{allotmentResult.college.location}</p>
+                <div className="p-4 bg-blue-50 rounded-xl border border-blue-100">
+                  <MapPin className="w-5 h-5 mx-auto mb-1 text-blue-600" />
+                  <p className="text-xs text-blue-600 font-medium">Location</p>
+                  <p className="font-bold text-gray-800">{allotmentResult.college.location}</p>
                 </div>
-                <div className="p-3 bg-slate-50 rounded-lg">
-                  <p className="text-xs text-gray-500">Avg Package</p>
-                  <p className="font-bold text-emerald-600">{allotmentResult.branch.avgPackage}</p>
+                <div className="p-4 bg-emerald-50 rounded-xl border border-emerald-100">
+                  <Briefcase className="w-5 h-5 mx-auto mb-1 text-emerald-600" />
+                  <p className="text-xs text-emerald-600 font-medium">Avg Package</p>
+                  <p className="font-bold text-emerald-700">{allotmentResult.branch.avgPackage}</p>
                 </div>
-                <div className="p-3 bg-slate-50 rounded-lg">
-                  <p className="text-xs text-gray-500">Placement</p>
-                  <p className="font-bold">{allotmentResult.college.placementRate}%</p>
+                <div className="p-4 bg-purple-50 rounded-xl border border-purple-100">
+                  <TrendingUp className="w-5 h-5 mx-auto mb-1 text-purple-600" />
+                  <p className="text-xs text-purple-600 font-medium">Placement</p>
+                  <p className="font-bold text-gray-800">{allotmentResult.college.placementRate}%</p>
                 </div>
               </div>
               
               {allotmentResult.branch.topRecruiters && (
-                <div>
-                  <p className="text-sm text-gray-500 mb-2">Top Recruiters</p>
+                <div className="p-4 bg-slate-50 rounded-xl">
+                  <p className="text-sm text-gray-600 mb-2 font-medium">Top Recruiters</p>
                   <div className="flex flex-wrap gap-2">
                     {allotmentResult.branch.topRecruiters.map((company, i) => (
-                      <Badge key={i} variant="outline">{company}</Badge>
+                      <Badge key={i} variant="outline" className="bg-white">{company}</Badge>
                     ))}
                   </div>
                 </div>
@@ -797,21 +937,22 @@ export const CounsellingSimulator = () => {
           ) : (
             <div className="text-center py-8">
               <AlertCircle className="w-16 h-16 mx-auto text-gray-300 mb-4" />
-              <p className="text-gray-600">{allotmentResult?.message}</p>
+              <p className="text-gray-600 mb-2">{allotmentResult?.message}</p>
+              <p className="text-sm text-gray-500">Try adding more preferences or adjusting your choices.</p>
             </div>
           )}
           
-          <div className="flex gap-3">
+          <div className="flex gap-3 pt-4">
             <Button 
               variant="outline" 
-              className="flex-1"
+              className="flex-1 py-6 rounded-xl"
               onClick={() => handleStartSimulation(counsellingType)}
             >
               <RefreshCw className="w-4 h-4 mr-2" />
               Try Again
             </Button>
             <Button 
-              className={`flex-1 bg-gradient-to-r ${counsellingInfo.color}`}
+              className={`flex-1 py-6 rounded-xl bg-gradient-to-r ${counsellingInfo.color}`}
               onClick={() => setCurrentStep('home')}
             >
               Back to Home
