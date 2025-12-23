@@ -11,6 +11,8 @@ import { CollegeSearch } from '@/components/CollegeSearch';
 import { ScholarshipFinder } from '@/components/ScholarshipFinder';
 import { EduCutoff } from '@/components/EduCutoff';
 import { EntranceExams } from '@/components/EntranceExams';
+import { CounsellingSimulator } from '@/components/CounsellingSimulator';
+import { PreviousYearQuestions } from '@/components/PreviousYearQuestions';
 import { PillNavigation } from '@/components/PillNavigation';
 
 type AssessmentType = 'career_chat' | 'industry_trends' | 'emotional_intelligence' | 'skill_gap';
@@ -466,6 +468,10 @@ const CareerAssessmentColleges = () => {
         {activeTab === 'educutoff' && <EduCutoff />}
 
         {activeTab === 'entranceexams' && <EntranceExams />}
+
+        {activeTab === 'counselling' && <CounsellingSimulator />}
+
+        {activeTab === 'pyq' && <PreviousYearQuestions />}
       </div>
     </div>
   );
