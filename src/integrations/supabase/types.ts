@@ -628,6 +628,7 @@ export type Database = {
           created_at: string
           date_of_birth: string | null
           degree: string | null
+          district: string | null
           email: string
           experience: string | null
           full_name: string
@@ -636,6 +637,7 @@ export type Database = {
           institution: string | null
           job_role: string | null
           phone: string
+          place: string | null
           preferred_role: string | null
           skills: string | null
           specialization: string | null
@@ -646,6 +648,7 @@ export type Database = {
           created_at?: string
           date_of_birth?: string | null
           degree?: string | null
+          district?: string | null
           email: string
           experience?: string | null
           full_name: string
@@ -654,6 +657,7 @@ export type Database = {
           institution?: string | null
           job_role?: string | null
           phone: string
+          place?: string | null
           preferred_role?: string | null
           skills?: string | null
           specialization?: string | null
@@ -664,6 +668,7 @@ export type Database = {
           created_at?: string
           date_of_birth?: string | null
           degree?: string | null
+          district?: string | null
           email?: string
           experience?: string | null
           full_name?: string
@@ -672,6 +677,7 @@ export type Database = {
           institution?: string | null
           job_role?: string | null
           phone?: string
+          place?: string | null
           preferred_role?: string | null
           skills?: string | null
           specialization?: string | null
