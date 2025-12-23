@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Home, Users, Briefcase, BookOpen, Code, MoreHorizontal, Trophy, Lightbulb, GraduationCap, UserCheck } from 'lucide-react';
+import { Home, Briefcase, BookOpen, Code, MoreHorizontal, Trophy, Lightbulb, GraduationCap, UserCheck, Map } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
@@ -21,7 +21,7 @@ const navItems = [
 ];
 
 const moreItems = [
-  { id: 'learners', label: 'Learners', icon: Users },
+  { id: 'roadmaps', label: 'Roadmaps', icon: Map },
   { id: 'hackathons', label: 'Hackathons', icon: Trophy },
   { id: 'tips', label: 'Tips', icon: Lightbulb },
   { id: 'scholarships', label: 'Scholarships', icon: GraduationCap },

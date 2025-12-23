@@ -3,7 +3,6 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { Users, Briefcase, BookOpen, Code, Map, Trophy, Lightbulb, GraduationCap, UserCheck, Menu, Bell, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HomeTab } from '@/components/JKKN/tabs/HomeTab';
-import { LearnersTab } from '@/components/JKKN/tabs/LearnersTab';
 import { JobsTab } from '@/components/JKKN/tabs/JobsTab';
 import { LearnTab } from '@/components/JKKN/tabs/LearnTab';
 import { PracticeTab } from '@/components/JKKN/tabs/PracticeTab';
@@ -19,7 +18,6 @@ import { Json } from '@/integrations/supabase/types';
 
 const tabs = [
   { id: 'home', label: 'For You', icon: Home },
-  { id: 'learners', label: 'Learners', icon: Users },
   { id: 'jobs', label: 'Jobs', icon: Briefcase },
   { id: 'learn', label: 'Learn', icon: BookOpen },
   { id: 'practice', label: 'Practice', icon: Code },
@@ -90,8 +88,6 @@ export default function JKKNCareerHub() {
     switch (activeTab) {
       case 'home':
         return <HomeTab />;
-      case 'learners':
-        return <LearnersTab />;
       case 'jobs':
         return <JobsTab />;
       case 'learn':

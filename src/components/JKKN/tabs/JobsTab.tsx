@@ -28,6 +28,109 @@ interface Job {
   created_at: string;
 }
 
+const sampleJobs: Job[] = [
+  {
+    id: '1',
+    company_name: 'TCS',
+    company_logo_url: null,
+    title: 'Software Developer Trainee',
+    description: 'Join TCS as a fresher and work on cutting-edge technologies',
+    type: 'full-time',
+    work_mode: 'Hybrid',
+    location: 'Chennai, Tamil Nadu',
+    salary_min: 350000,
+    salary_max: 450000,
+    stipend_min: null,
+    stipend_max: null,
+    skills_required: ['Java', 'Python', 'SQL', 'Problem Solving'],
+    eligibility: 'B.E/B.Tech with 60% and above',
+    application_deadline: '2025-01-15',
+    apply_link: '#',
+    is_featured: true,
+    created_at: new Date().toISOString(),
+  },
+  {
+    id: '2',
+    company_name: 'Infosys',
+    company_logo_url: null,
+    title: 'Systems Engineer',
+    description: 'Build enterprise solutions with Infosys',
+    type: 'full-time',
+    work_mode: 'On-site',
+    location: 'Bangalore, Karnataka',
+    salary_min: 380000,
+    salary_max: 480000,
+    stipend_min: null,
+    stipend_max: null,
+    skills_required: ['JavaScript', 'React', 'Node.js'],
+    eligibility: 'Any Graduate with 65%+',
+    application_deadline: '2025-01-20',
+    apply_link: '#',
+    is_featured: true,
+    created_at: new Date().toISOString(),
+  },
+  {
+    id: '3',
+    company_name: 'Wipro',
+    company_logo_url: null,
+    title: 'Data Science Intern',
+    description: '6-month internship with PPO opportunity',
+    type: 'internship',
+    work_mode: 'Remote',
+    location: 'Work From Home',
+    salary_min: null,
+    salary_max: null,
+    stipend_min: 25000,
+    stipend_max: 35000,
+    skills_required: ['Python', 'Machine Learning', 'SQL', 'Statistics'],
+    eligibility: 'Final year B.Tech/M.Tech students',
+    application_deadline: '2025-01-10',
+    apply_link: '#',
+    is_featured: false,
+    created_at: new Date().toISOString(),
+  },
+  {
+    id: '4',
+    company_name: 'Cognizant',
+    company_logo_url: null,
+    title: 'Full Stack Developer',
+    description: 'Work on modern web applications',
+    type: 'full-time',
+    work_mode: 'Hybrid',
+    location: 'Coimbatore, Tamil Nadu',
+    salary_min: 400000,
+    salary_max: 550000,
+    stipend_min: null,
+    stipend_max: null,
+    skills_required: ['React', 'Node.js', 'MongoDB', 'AWS'],
+    eligibility: 'B.E/B.Tech CSE/IT',
+    application_deadline: '2025-01-25',
+    apply_link: '#',
+    is_featured: false,
+    created_at: new Date().toISOString(),
+  },
+  {
+    id: '5',
+    company_name: 'HCL Technologies',
+    company_logo_url: null,
+    title: 'Cloud Engineer Trainee',
+    description: 'Learn and grow with cloud technologies',
+    type: 'full-time',
+    work_mode: 'On-site',
+    location: 'Madurai, Tamil Nadu',
+    salary_min: 320000,
+    salary_max: 420000,
+    stipend_min: null,
+    stipend_max: null,
+    skills_required: ['AWS', 'Azure', 'Linux', 'Docker'],
+    eligibility: 'Any B.E/B.Tech with 55%+',
+    application_deadline: '2025-02-01',
+    apply_link: '#',
+    is_featured: false,
+    created_at: new Date().toISOString(),
+  },
+];
+
 const jobFilters = ['All', 'Internship', 'Full-time', 'WFH'];
 
 export function JobsTab() {
@@ -54,9 +157,11 @@ export function JobsTab() {
         skills_required: Array.isArray(job.skills_required) ? (job.skills_required as any[]).map(s => String(s)) : [],
       }));
 
-      setJobs(formattedJobs as Job[]);
+      // Use sample data if no jobs in database
+      setJobs(formattedJobs.length > 0 ? (formattedJobs as Job[]) : sampleJobs);
     } catch (error) {
       console.error('Error fetching jobs:', error);
+      setJobs(sampleJobs);
     } finally {
       setIsLoading(false);
     }

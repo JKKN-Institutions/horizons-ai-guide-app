@@ -19,6 +19,19 @@ interface Problem {
   external_links: any[] | null;
 }
 
+const sampleProblems: Problem[] = [
+  { id: '1', title: 'Two Sum', description: 'Find two numbers that add up to target', difficulty: 'Easy', category: 'Arrays', examples: null, constraints: null, hints: null, solution_approaches: null, external_links: null },
+  { id: '2', title: 'Reverse Linked List', description: 'Reverse a singly linked list', difficulty: 'Easy', category: 'Linked List', examples: null, constraints: null, hints: null, solution_approaches: null, external_links: null },
+  { id: '3', title: 'Valid Parentheses', description: 'Check if brackets are balanced', difficulty: 'Easy', category: 'Strings', examples: null, constraints: null, hints: null, solution_approaches: null, external_links: null },
+  { id: '4', title: 'Binary Tree Inorder Traversal', description: 'Traverse tree inorder', difficulty: 'Medium', category: 'Trees', examples: null, constraints: null, hints: null, solution_approaches: null, external_links: null },
+  { id: '5', title: 'Merge Sorted Arrays', description: 'Merge two sorted arrays', difficulty: 'Easy', category: 'Arrays', examples: null, constraints: null, hints: null, solution_approaches: null, external_links: null },
+  { id: '6', title: 'Longest Palindromic Substring', description: 'Find longest palindrome', difficulty: 'Medium', category: 'Dynamic Programming', examples: null, constraints: null, hints: null, solution_approaches: null, external_links: null },
+  { id: '7', title: 'Number of Islands', description: 'Count islands in grid', difficulty: 'Medium', category: 'Graphs', examples: null, constraints: null, hints: null, solution_approaches: null, external_links: null },
+  { id: '8', title: 'Quick Sort', description: 'Implement quick sort algorithm', difficulty: 'Medium', category: 'Sorting', examples: null, constraints: null, hints: null, solution_approaches: null, external_links: null },
+  { id: '9', title: 'Factorial using Recursion', description: 'Calculate factorial recursively', difficulty: 'Easy', category: 'Recursion', examples: null, constraints: null, hints: null, solution_approaches: null, external_links: null },
+  { id: '10', title: 'Longest Common Subsequence', description: 'Find LCS of two strings', difficulty: 'Hard', category: 'Dynamic Programming', examples: null, constraints: null, hints: null, solution_approaches: null, external_links: null },
+];
+
 const difficultyFilters = ['All', 'Easy', 'Medium', 'Hard'];
 
 const topicIcons: Record<string, { count: number; color: string }> = {
@@ -49,9 +62,11 @@ export function PracticeTab() {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setProblems((data || []) as Problem[]);
+      // Use sample data if no problems in database
+      setProblems(data && data.length > 0 ? (data as Problem[]) : sampleProblems);
     } catch (error) {
       console.error('Error fetching problems:', error);
+      setProblems(sampleProblems);
     } finally {
       setIsLoading(false);
     }
