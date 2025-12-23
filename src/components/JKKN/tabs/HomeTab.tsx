@@ -74,10 +74,12 @@ export function HomeTab() {
 
   const fetchData = async () => {
     try {
-      // Check if learner is registered (using localStorage for demo)
+      // Check if learner is registered (using localStorage)
       const learnerEmail = localStorage.getItem('jkkn_learner_email');
+      const learnerName = localStorage.getItem('jkkn_learner_name');
       
       if (learnerEmail) {
+        // First try to get from learners table (for existing learners)
         const { data: learnerData } = await supabase
           .from('learners')
           .select('name, skills, branch, college')
@@ -93,6 +95,30 @@ export function HomeTab() {
             branch: learnerData.branch,
             college: learnerData.college,
           });
+        } else {
+          // Try registrations_learners table (for new registrations)
+          const { data: regData } = await supabase
+            .from('registrations_learners')
+            .select('full_name, specialization, institution')
+            .eq('email', learnerEmail)
+            .maybeSingle();
+
+          if (regData) {
+            setLearnerProfile({
+              name: regData.full_name,
+              skills: [],
+              branch: regData.specialization || '',
+              college: regData.institution || '',
+            });
+          } else if (learnerName) {
+            // Fallback to localStorage name for immediate welcome
+            setLearnerProfile({
+              name: learnerName,
+              skills: [],
+              branch: '',
+              college: '',
+            });
+          }
         }
       }
 
