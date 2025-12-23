@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   User, Mail, Phone, Building2, GraduationCap, Briefcase,
-  Linkedin, Github, CheckCircle, Loader2, Plus, X
+  Linkedin, Github, Loader2, Plus, X
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -34,7 +34,6 @@ export function LearnerRegistrationForm() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [skillInput, setSkillInput] = useState('');
 
   const [formData, setFormData] = useState({
@@ -88,7 +87,7 @@ export function LearnerRegistrationForm() {
     setIsLoading(true);
 
     try {
-      const { error } = await supabase.from('learners').insert({
+      const { data, error } = await supabase.from('learners').insert({
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
@@ -101,7 +100,7 @@ export function LearnerRegistrationForm() {
         career_interest: formData.career_interest || null,
         linkedin_url: formData.linkedin_url || null,
         github_url: formData.github_url || null,
-      });
+      }).select('learner_number').single();
 
       if (error) {
         if (error.code === '23505') {
@@ -116,15 +115,12 @@ export function LearnerRegistrationForm() {
         return;
       }
 
-      setIsSuccess(true);
-      toast({
-        title: "Registration Successful! 🎉",
-        description: "Welcome to JKKN Career Hub! You're now visible to recruiters.",
-      });
+      // Store learner number for success page
+      if (data?.learner_number) {
+        localStorage.setItem('jkkn_learner_number', data.learner_number.toString());
+      }
 
-      setTimeout(() => {
-        navigate('/jkkn/learners');
-      }, 2000);
+      navigate('/jkkn/register/success');
     } catch (error: any) {
       console.error('Registration error:', error);
       toast({
@@ -137,21 +133,6 @@ export function LearnerRegistrationForm() {
     }
   };
 
-  if (isSuccess) {
-    return (
-      <div className="flex flex-col items-center justify-center py-16">
-        <div className="w-24 h-24 rounded-full bg-fresh-green-medium flex items-center justify-center mb-6 animate-bounce-pop">
-          <CheckCircle className="w-12 h-12 text-white" />
-        </div>
-        <h2 className="text-2xl font-bold text-fresh-green-dark mb-2">
-          Registration Successful!
-        </h2>
-        <p className="text-muted-foreground">
-          Redirecting to learners directory...
-        </p>
-      </div>
-    );
-  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
