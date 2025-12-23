@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Search, Filter, Trophy, Clock, Linkedin, Github, ChevronDown, Users } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Input } from '@/components/ui/input';
@@ -176,9 +177,10 @@ export function LearnersTab() {
       {/* Learner Cards */}
       <div className="space-y-3">
         {displayedLearners.map((learner, index) => (
-          <div
+          <Link
             key={learner.id}
-            className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+            to={`/jkkn/learner/${learner.id}`}
+            className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow block"
           >
             <div className="flex gap-3">
               {/* Rank Badge */}
@@ -255,7 +257,7 @@ export function LearnersTab() {
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

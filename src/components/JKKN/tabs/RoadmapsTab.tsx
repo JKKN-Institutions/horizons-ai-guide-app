@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Map, Users, Clock, ChevronRight, Code, Database, Cloud, Smartphone, Palette } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -115,14 +116,16 @@ export function RoadmapsTab() {
                   )}
                 </div>
 
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="mt-3 text-[#2E7D32] border-[#2E7D32] hover:bg-[#E8F5E9]"
-                >
-                  View Roadmap
-                  <ChevronRight className="w-4 h-4 ml-1" />
-                </Button>
+                <Link to={`/jkkn/roadmap/${roadmap.id}`}>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="mt-3 text-[#2E7D32] border-[#2E7D32] hover:bg-[#E8F5E9]"
+                  >
+                    View Roadmap
+                    <ChevronRight className="w-4 h-4 ml-1" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

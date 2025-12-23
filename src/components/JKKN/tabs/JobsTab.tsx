@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Search, Filter, MapPin, IndianRupee, Clock, Briefcase, ExternalLink, Flame } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Input } from '@/components/ui/input';
@@ -215,15 +216,16 @@ export function JobsTab() {
                 </div>
 
                 {/* View Details Button */}
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="mt-3 text-[#2E7D32] border-[#2E7D32] hover:bg-[#E8F5E9]"
-                  onClick={() => job.apply_link && window.open(job.apply_link, '_blank')}
-                >
-                  View Details
-                  <ExternalLink className="w-3 h-3 ml-1" />
-                </Button>
+                <Link to={`/jkkn/job/${job.id}`}>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="mt-3 text-[#2E7D32] border-[#2E7D32] hover:bg-[#E8F5E9]"
+                  >
+                    View Details
+                    <ExternalLink className="w-3 h-3 ml-1" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

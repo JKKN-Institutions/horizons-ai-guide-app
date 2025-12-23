@@ -35,6 +35,10 @@ import NotFound from "./pages/NotFound";
 import JKKNCareerHub from "./pages/JKKNCareerHub";
 import JKKNRegister from "./pages/JKKNRegister";
 import JKKNRegisterSuccess from "./pages/JKKNRegisterSuccess";
+import JKKNJobDetail from "./pages/JKKNJobDetail";
+import JKKNProblemDetail from "./pages/JKKNProblemDetail";
+import JKKNRoadmapDetail from "./pages/JKKNRoadmapDetail";
+import JKKNLearnerProfile from "./pages/JKKNLearnerProfile";
 
 const queryClient = new QueryClient();
 
@@ -88,6 +92,10 @@ function App() {
                 <Route path="/jkkn" element={<JKKNCareerHub />} />
                 <Route path="/jkkn/register" element={<JKKNRegister />} />
                 <Route path="/jkkn/register/success" element={<JKKNRegisterSuccess />} />
+                <Route path="/jkkn/job/:id" element={<JKKNJobDetail />} />
+                <Route path="/jkkn/problem/:id" element={<JKKNProblemDetail />} />
+                <Route path="/jkkn/roadmap/:id" element={<JKKNRoadmapDetail />} />
+                <Route path="/jkkn/learner/:id" element={<JKKNLearnerProfile />} />
                 
                 {/* Catch-all */}
                 <Route path="*" element={<NotFound />} />
