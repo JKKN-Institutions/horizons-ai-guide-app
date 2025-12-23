@@ -11,6 +11,7 @@ import { HackathonsTab } from '@/components/JKKN/tabs/HackathonsTab';
 import { TipsTab } from '@/components/JKKN/tabs/TipsTab';
 import { ScholarshipsTab } from '@/components/JKKN/tabs/ScholarshipsTab';
 import { MentorsTab } from '@/components/JKKN/tabs/MentorsTab';
+import { JKKNBottomNav } from '@/components/JKKN/JKKNBottomNav';
 
 const tabs = [
   { id: 'learners', label: 'Learners', icon: Users },
@@ -124,9 +125,12 @@ export default function JKKNCareerHub() {
       </div>
 
       {/* Tab Content */}
-      <main className="pb-20">
+      <main className="pb-24 md:pb-20">
         {renderTabContent()}
       </main>
+
+      {/* Bottom Navigation */}
+      <JKKNBottomNav activeTab={activeTab} onTabChange={handleTabChange} />
     </div>
   );
 }
