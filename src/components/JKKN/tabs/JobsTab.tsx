@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Filter, MapPin, IndianRupee, Clock, Briefcase, ExternalLink, Flame } from 'lucide-react';
+import { Search, Filter, MapPin, IndianRupee, Clock, Briefcase, ExternalLink, Flame, Bookmark, BookmarkCheck, X } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { useJKKNBookmarks } from '@/hooks/useJKKNBookmarks';
+import { toast } from 'sonner';
 
 interface Job {
   id: string;
@@ -28,6 +32,32 @@ interface Job {
   created_at: string;
 }
 
+const tamilNaduCities = [
+  'All Locations',
+  'Chennai',
+  'Coimbatore',
+  'Madurai',
+  'Tiruchirappalli',
+  'Salem',
+  'Tirunelveli',
+  'Erode',
+  'Vellore',
+  'Thoothukudi',
+  'Thanjavur',
+  'Dindigul',
+  'Hosur',
+];
+
+const experienceLevels = [
+  { value: 'all', label: 'All Experience' },
+  { value: 'fresher', label: 'Fresher (0-1 yr)' },
+  { value: 'junior', label: 'Junior (1-3 yrs)' },
+  { value: 'mid', label: 'Mid-level (3-5 yrs)' },
+  { value: 'senior', label: 'Senior (5+ yrs)' },
+];
+
+const jobFilters = ['All', 'Internship', 'Full-time', 'WFH'];
+
 const sampleJobs: Job[] = [
   {
     id: '1',
@@ -49,95 +79,18 @@ const sampleJobs: Job[] = [
     is_featured: true,
     created_at: new Date().toISOString(),
   },
-  {
-    id: '2',
-    company_name: 'Infosys',
-    company_logo_url: null,
-    title: 'Systems Engineer',
-    description: 'Build enterprise solutions with Infosys',
-    type: 'full-time',
-    work_mode: 'On-site',
-    location: 'Bangalore, Karnataka',
-    salary_min: 380000,
-    salary_max: 480000,
-    stipend_min: null,
-    stipend_max: null,
-    skills_required: ['JavaScript', 'React', 'Node.js'],
-    eligibility: 'Any Graduate with 65%+',
-    application_deadline: '2025-01-20',
-    apply_link: '#',
-    is_featured: true,
-    created_at: new Date().toISOString(),
-  },
-  {
-    id: '3',
-    company_name: 'Wipro',
-    company_logo_url: null,
-    title: 'Data Science Intern',
-    description: '6-month internship with PPO opportunity',
-    type: 'internship',
-    work_mode: 'Remote',
-    location: 'Work From Home',
-    salary_min: null,
-    salary_max: null,
-    stipend_min: 25000,
-    stipend_max: 35000,
-    skills_required: ['Python', 'Machine Learning', 'SQL', 'Statistics'],
-    eligibility: 'Final year B.Tech/M.Tech students',
-    application_deadline: '2025-01-10',
-    apply_link: '#',
-    is_featured: false,
-    created_at: new Date().toISOString(),
-  },
-  {
-    id: '4',
-    company_name: 'Cognizant',
-    company_logo_url: null,
-    title: 'Full Stack Developer',
-    description: 'Work on modern web applications',
-    type: 'full-time',
-    work_mode: 'Hybrid',
-    location: 'Coimbatore, Tamil Nadu',
-    salary_min: 400000,
-    salary_max: 550000,
-    stipend_min: null,
-    stipend_max: null,
-    skills_required: ['React', 'Node.js', 'MongoDB', 'AWS'],
-    eligibility: 'B.E/B.Tech CSE/IT',
-    application_deadline: '2025-01-25',
-    apply_link: '#',
-    is_featured: false,
-    created_at: new Date().toISOString(),
-  },
-  {
-    id: '5',
-    company_name: 'HCL Technologies',
-    company_logo_url: null,
-    title: 'Cloud Engineer Trainee',
-    description: 'Learn and grow with cloud technologies',
-    type: 'full-time',
-    work_mode: 'On-site',
-    location: 'Madurai, Tamil Nadu',
-    salary_min: 320000,
-    salary_max: 420000,
-    stipend_min: null,
-    stipend_max: null,
-    skills_required: ['AWS', 'Azure', 'Linux', 'Docker'],
-    eligibility: 'Any B.E/B.Tech with 55%+',
-    application_deadline: '2025-02-01',
-    apply_link: '#',
-    is_featured: false,
-    created_at: new Date().toISOString(),
-  },
 ];
-
-const jobFilters = ['All', 'Internship', 'Full-time', 'WFH'];
 
 export function JobsTab() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState('All');
+  const [locationFilter, setLocationFilter] = useState('All Locations');
+  const [experienceFilter, setExperienceFilter] = useState('all');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  
+  const { isJobBookmarked, toggleJobBookmark } = useJKKNBookmarks();
 
   useEffect(() => {
     fetchJobs();
@@ -157,7 +110,6 @@ export function JobsTab() {
         skills_required: Array.isArray(job.skills_required) ? (job.skills_required as any[]).map(s => String(s)) : [],
       }));
 
-      // Use sample data if no jobs in database
       setJobs(formattedJobs.length > 0 ? (formattedJobs as Job[]) : sampleJobs);
     } catch (error) {
       console.error('Error fetching jobs:', error);
@@ -178,7 +130,27 @@ export function JobsTab() {
       (activeFilter === 'Full-time' && job.type.toLowerCase() === 'full-time') ||
       (activeFilter === 'WFH' && job.work_mode?.toLowerCase().includes('remote'));
 
-    return matchesSearch && matchesFilter;
+    const matchesLocation =
+      locationFilter === 'All Locations' ||
+      job.location?.toLowerCase().includes(locationFilter.toLowerCase());
+
+    const matchesExperience = experienceFilter === 'all' || (() => {
+      const eligibility = job.eligibility?.toLowerCase() || '';
+      switch (experienceFilter) {
+        case 'fresher':
+          return eligibility.includes('fresher') || eligibility.includes('0-1') || eligibility.includes('final year');
+        case 'junior':
+          return eligibility.includes('1-3') || eligibility.includes('1-2');
+        case 'mid':
+          return eligibility.includes('3-5') || eligibility.includes('3+');
+        case 'senior':
+          return eligibility.includes('5+') || eligibility.includes('senior');
+        default:
+          return true;
+      }
+    })();
+
+    return matchesSearch && matchesFilter && matchesLocation && matchesExperience;
   });
 
   const formatSalary = (min?: number | null, max?: number | null, isStipend = false) => {
@@ -188,6 +160,27 @@ export function JobsTab() {
     if (min) return `₹${(min / 1000).toFixed(0)}K+${label}`;
     if (max) return `Up to ₹${(max / 1000).toFixed(0)}K${label}`;
     return null;
+  };
+
+  const getActiveFiltersCount = () => {
+    let count = 0;
+    if (locationFilter !== 'All Locations') count++;
+    if (experienceFilter !== 'all') count++;
+    return count;
+  };
+
+  const clearFilters = () => {
+    setLocationFilter('All Locations');
+    setExperienceFilter('all');
+  };
+
+  const handleBookmark = (jobId: string, jobTitle: string) => {
+    toggleJobBookmark(jobId);
+    if (isJobBookmarked(jobId)) {
+      toast.success('Job removed from bookmarks');
+    } else {
+      toast.success(`"${jobTitle}" saved to bookmarks`);
+    }
   };
 
   if (isLoading) {
@@ -222,10 +215,99 @@ export function JobsTab() {
             className="pl-10 py-3 rounded-xl border-gray-200 bg-white"
           />
         </div>
-        <Button variant="outline" size="icon" className="h-12 w-12 rounded-xl">
-          <Filter className="w-5 h-5" />
-        </Button>
+        <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon" className="h-12 w-12 rounded-xl relative">
+              <Filter className="w-5 h-5" />
+              {getActiveFiltersCount() > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#2E7D32] text-white text-xs rounded-full flex items-center justify-center">
+                  {getActiveFiltersCount()}
+                </span>
+              )}
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="bottom" className="rounded-t-2xl">
+            <SheetHeader>
+              <SheetTitle className="flex items-center justify-between">
+                <span>Filter Jobs</span>
+                {getActiveFiltersCount() > 0 && (
+                  <Button variant="ghost" size="sm" onClick={clearFilters} className="text-red-500">
+                    <X className="w-4 h-4 mr-1" /> Clear All
+                  </Button>
+                )}
+              </SheetTitle>
+            </SheetHeader>
+            <div className="py-6 space-y-6">
+              {/* Location Filter */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700">Location (Tamil Nadu)</label>
+                <Select value={locationFilter} onValueChange={setLocationFilter}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select location" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {tamilNaduCities.map((city) => (
+                      <SelectItem key={city} value={city}>
+                        <span className="flex items-center gap-2">
+                          <MapPin className="w-4 h-4" />
+                          {city}
+                        </span>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Experience Filter */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700">Experience Level</label>
+                <Select value={experienceFilter} onValueChange={setExperienceFilter}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select experience" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {experienceLevels.map((level) => (
+                      <SelectItem key={level.value} value={level.value}>
+                        {level.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <Button 
+                className="w-full bg-[#2E7D32] hover:bg-[#1B5E20]" 
+                onClick={() => setIsFilterOpen(false)}
+              >
+                Apply Filters
+              </Button>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
+
+      {/* Active Filters Display */}
+      {getActiveFiltersCount() > 0 && (
+        <div className="flex flex-wrap gap-2">
+          {locationFilter !== 'All Locations' && (
+            <Badge variant="secondary" className="bg-[#E8F5E9] text-[#2E7D32] gap-1">
+              <MapPin className="w-3 h-3" />
+              {locationFilter}
+              <button onClick={() => setLocationFilter('All Locations')} className="ml-1">
+                <X className="w-3 h-3" />
+              </button>
+            </Badge>
+          )}
+          {experienceFilter !== 'all' && (
+            <Badge variant="secondary" className="bg-[#E8F5E9] text-[#2E7D32] gap-1">
+              {experienceLevels.find(l => l.value === experienceFilter)?.label}
+              <button onClick={() => setExperienceFilter('all')} className="ml-1">
+                <X className="w-3 h-3" />
+              </button>
+            </Badge>
+          )}
+        </div>
+      )}
 
       {/* Filter Chips */}
       <div className="flex gap-2 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
@@ -279,6 +361,17 @@ export function JobsTab() {
                     </div>
                     <p className="text-sm text-[#2E7D32] font-medium">{job.company_name}</p>
                   </div>
+                  {/* Bookmark Button */}
+                  <button
+                    onClick={() => handleBookmark(job.id, job.title)}
+                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                  >
+                    {isJobBookmarked(job.id) ? (
+                      <BookmarkCheck className="w-5 h-5 text-[#2E7D32]" />
+                    ) : (
+                      <Bookmark className="w-5 h-5 text-gray-400" />
+                    )}
+                  </button>
                 </div>
 
                 <div className="flex flex-wrap gap-2 mt-2 text-xs text-gray-500">
