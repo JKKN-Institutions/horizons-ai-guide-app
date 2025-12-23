@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
   Users, Briefcase, BookOpen, Code, Map, Trophy, 
   GraduationCap, Newspaper, Award, Menu, X, UserPlus,
-  Home
+  Home, ArrowLeft
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -23,20 +23,37 @@ const navItems = [
 export function JKKNNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-gradient-to-r from-fresh-green-dark via-fresh-green-medium to-fresh-green-dark shadow-lg">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link to="/jkkn" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-              <GraduationCap className="w-6 h-6 text-fresh-green-dark" />
-            </div>
-            <span className="text-white font-bold text-xl hidden sm:block">
-              JKKN Career Hub
-            </span>
-          </Link>
+          {/* Back Button + Logo */}
+          <div className="flex items-center gap-2">
+            {/* Back Button */}
+            <button
+              onClick={handleBack}
+              className="p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+              aria-label="Go back"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+
+            {/* Logo */}
+            <Link to="/jkkn" className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                <GraduationCap className="w-6 h-6 text-fresh-green-dark" />
+              </div>
+              <span className="text-white font-bold text-xl hidden sm:block">
+                JKKN Career Hub
+              </span>
+            </Link>
+          </div>
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-1">
