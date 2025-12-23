@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Users, Briefcase, BookOpen, Code, Map, Trophy, Lightbulb, GraduationCap, UserCheck, Menu, Bell } from 'lucide-react';
+import { Users, Briefcase, BookOpen, Code, Map, Trophy, Lightbulb, GraduationCap, UserCheck, Menu, Bell, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { HomeTab } from '@/components/JKKN/tabs/HomeTab';
 import { LearnersTab } from '@/components/JKKN/tabs/LearnersTab';
 import { JobsTab } from '@/components/JKKN/tabs/JobsTab';
 import { LearnTab } from '@/components/JKKN/tabs/LearnTab';
@@ -14,6 +15,7 @@ import { MentorsTab } from '@/components/JKKN/tabs/MentorsTab';
 import { JKKNBottomNav } from '@/components/JKKN/JKKNBottomNav';
 
 const tabs = [
+  { id: 'home', label: 'For You', icon: Home },
   { id: 'learners', label: 'Learners', icon: Users },
   { id: 'jobs', label: 'Jobs', icon: Briefcase },
   { id: 'learn', label: 'Learn', icon: BookOpen },
@@ -27,7 +29,7 @@ const tabs = [
 
 export default function JKKNCareerHub() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialTab = searchParams.get('tab') || 'learners';
+  const initialTab = searchParams.get('tab') || 'home';
   const [activeTab, setActiveTab] = useState(initialTab);
   const tabsRef = useRef<HTMLDivElement>(null);
 
@@ -45,6 +47,8 @@ export default function JKKNCareerHub() {
 
   const renderTabContent = () => {
     switch (activeTab) {
+      case 'home':
+        return <HomeTab />;
       case 'learners':
         return <LearnersTab />;
       case 'jobs':
@@ -64,7 +68,7 @@ export default function JKKNCareerHub() {
       case 'mentors':
         return <MentorsTab />;
       default:
-        return <LearnersTab />;
+        return <HomeTab />;
     }
   };
 
