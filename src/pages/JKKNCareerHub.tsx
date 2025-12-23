@@ -13,6 +13,9 @@ import { TipsTab } from '@/components/JKKN/tabs/TipsTab';
 import { ScholarshipsTab } from '@/components/JKKN/tabs/ScholarshipsTab';
 import { MentorsTab } from '@/components/JKKN/tabs/MentorsTab';
 import { JKKNBottomNav } from '@/components/JKKN/JKKNBottomNav';
+import { CareerAdvisorChat } from '@/components/JKKN/CareerAdvisorChat';
+import { supabase } from '@/integrations/supabase/client';
+import { Json } from '@/integrations/supabase/types';
 
 const tabs = [
   { id: 'home', label: 'For You', icon: Home },
@@ -27,10 +30,20 @@ const tabs = [
   { id: 'mentors', label: 'Mentors', icon: UserCheck },
 ];
 
+interface LearnerProfile {
+  name: string;
+  college: string;
+  branch: string;
+  yearOfStudy: string;
+  skills: string[];
+  careerInterest: string | null;
+}
+
 export default function JKKNCareerHub() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialTab = searchParams.get('tab') || 'home';
   const [activeTab, setActiveTab] = useState(initialTab);
+  const [learnerProfile, setLearnerProfile] = useState<LearnerProfile | null>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -39,6 +52,34 @@ export default function JKKNCareerHub() {
       setActiveTab(tabFromUrl);
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    // Try to load learner profile from localStorage
+    const loadLearnerProfile = async () => {
+      const learnerEmail = localStorage.getItem('jkkn_learner_email');
+      if (learnerEmail) {
+        const { data } = await supabase
+          .from('learners')
+          .select('name, college, branch, year_of_study, skills, career_interest')
+          .eq('email', learnerEmail)
+          .maybeSingle();
+
+        if (data) {
+          setLearnerProfile({
+            name: data.name,
+            college: data.college,
+            branch: data.branch,
+            yearOfStudy: data.year_of_study,
+            skills: Array.isArray(data.skills) 
+              ? (data.skills as Json[]).map(s => String(s)) 
+              : [],
+            careerInterest: data.career_interest,
+          });
+        }
+      }
+    };
+    loadLearnerProfile();
+  }, []);
 
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
@@ -135,6 +176,9 @@ export default function JKKNCareerHub() {
 
       {/* Bottom Navigation */}
       <JKKNBottomNav activeTab={activeTab} onTabChange={handleTabChange} />
+
+      {/* AI Career Advisor Chat */}
+      <CareerAdvisorChat learnerProfile={learnerProfile} />
     </div>
   );
 }
