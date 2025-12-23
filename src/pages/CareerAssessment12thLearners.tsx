@@ -185,14 +185,14 @@ export default function CareerAssessment12thLearners() {
 
   if (loading) {
     return (
-      <div className="fresh-page-wrapper flex items-center justify-center">
+      <div className="fresh-page-wrapper page-transition flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-fresh-green-medium"></div>
       </div>
     );
   }
 
   return (
-    <div className="fresh-page-wrapper">
+    <div className="fresh-page-wrapper page-transition">
       {/* Header */}
       <div className="fresh-page-header">
         <div className="container mx-auto px-4 relative z-10">

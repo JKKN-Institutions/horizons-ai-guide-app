@@ -330,7 +330,7 @@ export default function TakeStudentAssessment() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen bg-background page-transition flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto mb-4" />
           <p className="text-lg font-medium text-foreground">
@@ -346,7 +346,7 @@ export default function TakeStudentAssessment() {
 
   if (questions.length === 0) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen bg-background page-transition flex items-center justify-center">
         <div className="text-center">
           <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-foreground mb-2">
@@ -369,7 +369,7 @@ export default function TakeStudentAssessment() {
   const progress = ((currentQuestionIndex + 1) / TOTAL_QUESTIONS) * 100;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background page-transition">
       {/* Header */}
       <div className="bg-[#0A2E1F] text-white py-4 sticky top-0 z-10">
         <div className="container mx-auto px-4">

@@ -415,7 +415,7 @@ const TakeAssessment = () => {
 
   if (loading && !question) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen bg-background page-transition flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="h-12 w-12 animate-spin text-[#FF6B35] mx-auto mb-4" />
           <p className="text-lg text-muted-foreground">
@@ -427,7 +427,7 @@ const TakeAssessment = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0A2E1F]/5 to-background">
+    <div className="min-h-screen bg-gradient-to-b from-[#0A2E1F]/5 to-background page-transition">
       <header className="bg-[#0A2E1F] text-white py-4 sticky top-0 z-10">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
