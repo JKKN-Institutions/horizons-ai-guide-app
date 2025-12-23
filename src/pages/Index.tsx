@@ -16,7 +16,7 @@ import { ChatModalProvider } from "@/hooks/useChatModal";
 const Index = () => {
   return (
     <ChatModalProvider>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background page-transition">
         <TopBar />
         <NavigationBar />
         <NewsTicker />

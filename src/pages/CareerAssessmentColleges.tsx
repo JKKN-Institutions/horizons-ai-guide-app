@@ -226,7 +226,7 @@ const CareerAssessmentColleges = () => {
   const isInProgress = (id: AssessmentType) => !!inProgressAssessments[id];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50/50 to-amber-50/30">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50/50 to-amber-50/30 page-transition">
       {/* Enhanced Header */}
       <header className="relative overflow-hidden bg-gradient-to-br from-emerald-700 via-green-700 to-emerald-800">
         {/* Decorative elements */}

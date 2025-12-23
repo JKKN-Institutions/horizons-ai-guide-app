@@ -110,7 +110,7 @@ export default function JKKNCareerHub() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5]">
+    <div className="min-h-screen bg-[#F5F5F5] page-transition">
       {/* Header */}
       <header className="bg-[#2E7D32] text-white sticky top-0 z-50 shadow-lg">
         <div className="flex items-center justify-between px-4 py-3">

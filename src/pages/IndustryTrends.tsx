@@ -409,7 +409,7 @@ const IndustryTrends = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-primary/10">
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-primary/10 page-transition">
       {/* Header */}
       <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground">
         <div className="container mx-auto px-4 py-6">
