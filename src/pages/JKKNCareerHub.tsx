@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Users, Briefcase, BookOpen, Code, Map, Trophy, Lightbulb, GraduationCap, UserCheck, Menu, Bell } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LearnersTab } from '@/components/JKKN/tabs/LearnersTab';
@@ -25,8 +25,22 @@ const tabs = [
 ];
 
 export default function JKKNCareerHub() {
-  const [activeTab, setActiveTab] = useState('learners');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialTab = searchParams.get('tab') || 'learners';
+  const [activeTab, setActiveTab] = useState(initialTab);
   const tabsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const tabFromUrl = searchParams.get('tab');
+    if (tabFromUrl && tabs.some(t => t.id === tabFromUrl)) {
+      setActiveTab(tabFromUrl);
+    }
+  }, [searchParams]);
+
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+    setSearchParams({ tab: tabId });
+  };
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -94,7 +108,7 @@ export default function JKKNCareerHub() {
             return (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => handleTabChange(tab.id)}
                 className={`flex items-center gap-2 px-4 py-2.5 rounded-full whitespace-nowrap font-medium text-sm transition-all flex-shrink-0 ${
                   isActive
                     ? 'bg-[#2E7D32] text-white shadow-md'

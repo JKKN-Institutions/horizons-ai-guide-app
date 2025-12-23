@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Code, ChevronRight, ExternalLink, BookOpen } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Badge } from '@/components/ui/badge';
@@ -161,9 +162,10 @@ export function PracticeTab() {
         <h3 className="text-lg font-semibold text-gray-800 mb-3">Popular Problems</h3>
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 divide-y divide-gray-100">
           {filteredProblems.slice(0, 10).map((problem) => (
-            <div
+            <Link
               key={problem.id}
-              className="p-4 flex items-center gap-3 hover:bg-gray-50 transition-colors cursor-pointer"
+              to={`/jkkn/problem/${problem.id}`}
+              className="p-4 flex items-center gap-3 hover:bg-gray-50 transition-colors"
             >
               <div className={`w-2.5 h-2.5 rounded-full ${getDifficultyColor(problem.difficulty)}`} />
               <div className="flex-1 min-w-0">
@@ -174,7 +176,7 @@ export function PracticeTab() {
                 {problem.difficulty}
               </Badge>
               <ChevronRight className="w-4 h-4 text-gray-400" />
-            </div>
+            </Link>
           ))}
         </div>
       </div>
