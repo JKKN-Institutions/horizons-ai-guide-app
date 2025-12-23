@@ -115,8 +115,8 @@ const RegisterLearner = () => {
 
       if (error) throw error;
 
-      toast.success("Registration successful! We'll be in touch soon.");
-      navigate("/");
+      toast.success("Registration successful! Welcome to JKKN Career Hub.");
+      navigate("/jkkn");
     } catch (error: unknown) {
       if (error && typeof error === "object" && "errors" in error) {
         const zodError = error as { errors: Array<{ path: string[]; message: string }> };
