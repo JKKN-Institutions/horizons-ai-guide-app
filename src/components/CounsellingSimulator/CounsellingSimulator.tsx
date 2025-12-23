@@ -30,6 +30,7 @@ import { toast } from 'sonner';
 
 type SimulationStep = 'home' | 'rank-entry' | 'college-selection' | 'preference-order' | 'allotment' | 'result';
 type Category = 'oc' | 'bc' | 'mbc' | 'sc' | 'st';
+type Gender = 'male' | 'female';
 
 const categoryLabels: Record<Category, string> = {
   oc: 'OC (Open Category)',
@@ -39,11 +40,25 @@ const categoryLabels: Record<Category, string> = {
   st: 'ST (Scheduled Tribe)'
 };
 
+const communityOptions = [
+  { value: 'oc', label: 'OC - Open Category' },
+  { value: 'bc', label: 'BC - Backward Class' },
+  { value: 'bca', label: 'BC(A)' },
+  { value: 'bcb', label: 'BC(B)' },
+  { value: 'bcm', label: 'BCM - Backward Class Muslim' },
+  { value: 'mbc', label: 'MBC - Most Backward Class' },
+  { value: 'dnc', label: 'DNC - Denotified Communities' },
+  { value: 'sc', label: 'SC - Scheduled Caste' },
+  { value: 'sca', label: 'SC(A)' },
+  { value: 'st', label: 'ST - Scheduled Tribe' }
+];
+
 const stepInfo = [
-  { id: 1, title: 'Enter Rank', icon: TrendingUp },
+  { id: 1, title: 'Your Profile', icon: Users },
   { id: 2, title: 'Select Colleges', icon: School },
   { id: 3, title: 'Order Preferences', icon: GripVertical },
   { id: 4, title: 'View Allotment', icon: Award },
+  { id: 5, title: 'Result', icon: Trophy },
 ];
 
 const counsellingTypes: { type: CounsellingType; icon: any; label: string; description: string }[] = [
@@ -64,6 +79,11 @@ export const CounsellingSimulator = () => {
   const counsellingInfo = getCounsellingInfo(counsellingType);
   const colleges = getCollegesByType(counsellingType);
   const parsedRank = parseInt(rank) || 0;
+  const [gender, setGender] = useState<Gender>('male');
+  const [community, setCommunity] = useState<string>('oc');
+  const [isFirstGraduate, setIsFirstGraduate] = useState(false);
+  const [isGovtSchool, setIsGovtSchool] = useState(false);
+  
   const percentile = useMemo(() => getRankPercentile(parsedRank, counsellingType), [parsedRank, counsellingType]);
   const tierInfo = useMemo(() => getTierClassification(parsedRank, counsellingType), [parsedRank, counsellingType]);
   const eligibleColleges = useMemo(() => 
@@ -268,68 +288,185 @@ export const CounsellingSimulator = () => {
 
   const renderRankEntry = () => (
     <div className="space-y-6 content-fade-in max-w-2xl mx-auto">
-      <Button variant="ghost" onClick={() => setCurrentStep('home')} className="mb-4">
+      {/* Back Button */}
+      <Button variant="ghost" onClick={() => setCurrentStep('home')} className="mb-2">
         <ArrowLeft className="w-4 h-4 mr-2" /> Back
       </Button>
 
-      <Card className="border-none shadow-xl">
-        <CardHeader className={`bg-gradient-to-r ${counsellingInfo.color} text-white rounded-t-xl`}>
-          <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="w-5 h-5" />
-            Step 1: Enter Your {counsellingInfo.examName}
-          </CardTitle>
-        </CardHeader>
+      {/* Main Card */}
+      <Card className="border-none shadow-xl overflow-hidden bg-gradient-to-br from-white to-slate-50">
+        {/* Step Indicator Header */}
+        <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-6 border-b border-emerald-100">
+          <div className="flex items-center justify-between mb-4">
+            <Badge className="bg-emerald-600 hover:bg-emerald-600 text-white px-4 py-1.5 rounded-full">
+              <Sparkles className="w-3.5 h-3.5 mr-1.5" />
+              Step 1 of 5
+            </Badge>
+            <div className="flex items-center gap-1.5">
+              {[1, 2, 3, 4, 5].map((step) => (
+                <div 
+                  key={step}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${
+                    step === 1 ? 'bg-emerald-600 w-3 h-3' : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-3">
+            <div className={`p-3 rounded-xl bg-gradient-to-br ${counsellingInfo.color}`}>
+              <Users className="w-6 h-6 text-white" />
+            </div>
+            <h2 className="text-2xl font-bold text-emerald-800">Your Profile</h2>
+          </div>
+        </div>
+
         <CardContent className="p-6 space-y-6">
-          {/* Rank Input */}
+          {/* Cutoff/Rank Input */}
           <div className="space-y-2">
-            <Label htmlFor="rank" className="text-base font-semibold">Your {counsellingInfo.examName}</Label>
-            <Input
-              id="rank"
-              type="number"
-              placeholder={counsellingType === 'tnea' ? 'e.g., 5000' : counsellingType === 'neet' ? 'e.g., 10000' : 'e.g., 3000'}
-              value={rank}
-              onChange={(e) => setRank(e.target.value)}
-              className="text-lg py-6"
-              min={1}
-              max={counsellingInfo.maxRank}
-            />
+            <Label className="text-base font-semibold flex items-center gap-2 text-gray-700">
+              <Target className="w-4 h-4 text-emerald-600" />
+              Your {counsellingType === 'tnea' ? 'TNEA Cutoff' : counsellingInfo.examName}
+            </Label>
+            <div className="relative">
+              <Input
+                type="number"
+                placeholder="Enter your cutoff"
+                value={rank}
+                onChange={(e) => setRank(e.target.value)}
+                className="text-lg py-6 pr-20 border-2 border-gray-200 focus:border-emerald-500 rounded-xl"
+                min={1}
+                max={counsellingInfo.maxRank}
+              />
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 bg-emerald-600 text-white px-3 py-1.5 rounded-lg font-bold text-sm">
+                /{counsellingType === 'tnea' ? '200' : counsellingInfo.maxRank.toLocaleString()}
+              </div>
+            </div>
             {parsedRank > 0 && (
-              <div className="flex items-center gap-4 mt-3 p-4 bg-slate-50 rounded-lg">
-                <div>
-                  <p className="text-sm text-gray-500">Percentile</p>
-                  <p className="text-xl font-bold text-teal-600">{percentile}%</p>
+              <div className="flex items-center gap-4 mt-3 p-4 bg-emerald-50 rounded-xl border border-emerald-200">
+                <div className="text-center">
+                  <p className="text-xs text-emerald-600 font-medium">Percentile</p>
+                  <p className="text-xl font-bold text-emerald-700">{percentile}%</p>
                 </div>
-                <div className="h-10 w-px bg-gray-200" />
-                <div>
-                  <p className="text-sm text-gray-500">Classification</p>
-                  <p className={`text-xl font-bold ${tierInfo.color}`}>{tierInfo.tier}</p>
+                <div className="h-10 w-px bg-emerald-200" />
+                <div className="text-center">
+                  <p className="text-xs text-emerald-600 font-medium">Classification</p>
+                  <p className={`text-lg font-bold ${tierInfo.color}`}>{tierInfo.tier}</p>
                 </div>
-                <div className="h-10 w-px bg-gray-200" />
+                <div className="h-10 w-px bg-emerald-200" />
                 <div className="flex-1">
-                  <p className="text-sm text-gray-600">{tierInfo.description}</p>
+                  <p className="text-sm text-emerald-700">{tierInfo.description}</p>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Category Selection */}
+          {/* Community Dropdown */}
+          <div className="space-y-2">
+            <Label className="text-base font-semibold flex items-center gap-2 text-gray-700">
+              <Users className="w-4 h-4 text-emerald-600" />
+              Community
+            </Label>
+            <select
+              value={community}
+              onChange={(e) => {
+                setCommunity(e.target.value);
+                // Map community to category for eligibility check
+                const catMap: Record<string, Category> = {
+                  'oc': 'oc', 'bc': 'bc', 'bca': 'bc', 'bcb': 'bc', 'bcm': 'bc',
+                  'mbc': 'mbc', 'dnc': 'mbc', 'sc': 'sc', 'sca': 'sc', 'st': 'st'
+                };
+                setCategory(catMap[e.target.value] || 'oc');
+              }}
+              className="w-full p-4 text-base border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:outline-none bg-white cursor-pointer"
+            >
+              <option value="" disabled>Select your community</option>
+              {communityOptions.map((opt) => (
+                <option key={opt.value} value={opt.value}>{opt.label}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Gender Selection */}
           <div className="space-y-3">
-            <Label className="text-base font-semibold">Select Your Category</Label>
-            <RadioGroup value={category} onValueChange={(v) => setCategory(v as Category)}>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {(Object.keys(categoryLabels) as Category[]).map((cat) => (
-                  <div key={cat} className="flex items-center space-x-2">
-                    <RadioGroupItem value={cat} id={cat} />
-                    <Label htmlFor={cat} className="cursor-pointer text-sm">{categoryLabels[cat]}</Label>
+            <Label className="text-base font-semibold flex items-center gap-2 text-gray-700">
+              <Users className="w-4 h-4 text-emerald-600" />
+              Gender
+            </Label>
+            <div className="grid grid-cols-2 gap-4">
+              <button
+                type="button"
+                onClick={() => setGender('male')}
+                className={`flex items-center gap-3 p-4 rounded-xl border-2 transition-all ${
+                  gender === 'male' 
+                    ? 'border-emerald-500 bg-emerald-50 shadow-md' 
+                    : 'border-gray-200 bg-white hover:border-gray-300'
+                }`}
+              >
+                <span className="text-2xl">👨</span>
+                <span className="font-semibold text-gray-700">Male</span>
+                {gender === 'male' && (
+                  <div className="ml-auto w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
+                    <Check className="w-4 h-4 text-white" />
                   </div>
-                ))}
-              </div>
-            </RadioGroup>
+                )}
+              </button>
+              <button
+                type="button"
+                onClick={() => setGender('female')}
+                className={`flex items-center gap-3 p-4 rounded-xl border-2 transition-all ${
+                  gender === 'female' 
+                    ? 'border-emerald-500 bg-emerald-50 shadow-md' 
+                    : 'border-gray-200 bg-white hover:border-gray-300'
+                }`}
+              >
+                <span className="text-2xl">👩</span>
+                <span className="font-semibold text-gray-700">Female</span>
+                {gender === 'female' && (
+                  <div className="ml-auto w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
+                    <Check className="w-4 h-4 text-white" />
+                  </div>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Special Category */}
+          <div className="space-y-3">
+            <Label className="text-base font-semibold flex items-center gap-2 text-gray-700">
+              <Award className="w-4 h-4 text-emerald-600" />
+              Special Category
+            </Label>
+            <div className="grid grid-cols-2 gap-4">
+              <label className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                isFirstGraduate ? 'border-emerald-500 bg-emerald-50' : 'border-gray-200 bg-white hover:border-gray-300'
+              }`}>
+                <input
+                  type="checkbox"
+                  checked={isFirstGraduate}
+                  onChange={(e) => setIsFirstGraduate(e.target.checked)}
+                  className="w-5 h-5 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
+                />
+                <span className="font-medium text-gray-700">First Graduate</span>
+              </label>
+              <label className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                isGovtSchool ? 'border-emerald-500 bg-emerald-50' : 'border-gray-200 bg-white hover:border-gray-300'
+              }`}>
+                <input
+                  type="checkbox"
+                  checked={isGovtSchool}
+                  onChange={(e) => setIsGovtSchool(e.target.checked)}
+                  className="w-5 h-5 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
+                />
+                <span className="font-medium text-gray-700">7.5% Govt School</span>
+              </label>
+            </div>
           </div>
 
           {/* Eligible Colleges Preview */}
-          {parsedRank > 0 && (
-            <div className="p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+          {parsedRank > 0 && eligibleColleges.length > 0 && (
+            <div className="p-4 bg-emerald-50 rounded-xl border border-emerald-200">
               <div className="flex items-center gap-2 mb-2">
                 <CheckCircle className="w-5 h-5 text-emerald-600" />
                 <span className="font-semibold text-emerald-800">
@@ -337,7 +474,7 @@ export const CounsellingSimulator = () => {
                 </span>
               </div>
               <p className="text-sm text-emerald-700">
-                Based on your rank, you are eligible for {eligibleColleges.reduce((acc, c) => acc + c.eligibleBranches.length, 0)} branch options across {eligibleColleges.length} colleges.
+                Based on your cutoff, you are eligible for {eligibleColleges.reduce((acc, c) => acc + c.eligibleBranches.length, 0)} branch options.
               </p>
             </div>
           )}
@@ -345,7 +482,7 @@ export const CounsellingSimulator = () => {
           <Button 
             onClick={handleRankSubmit}
             disabled={parsedRank < 1}
-            className={`w-full bg-gradient-to-r ${counsellingInfo.color} py-6 text-lg`}
+            className={`w-full bg-gradient-to-r ${counsellingInfo.color} py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all`}
           >
             Proceed to College Selection
             <ArrowRight className="w-5 h-5 ml-2" />
