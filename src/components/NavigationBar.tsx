@@ -6,12 +6,11 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "Home", href: "/", isRoute: true },
+  { label: "Career Hub", href: "/jkkn", isRoute: true },
   { label: "Dashboard", href: "/student-dashboard", isRoute: true },
   { label: "About JKKN", href: "#about", isRoute: false },
   { label: "Career Guidance", href: "#services", isRoute: false },
   { label: "Job Portal", href: "#jobs", isRoute: false },
-  { label: "Learning Hub", href: "#learning", isRoute: false },
-  { label: "Events", href: "#events", isRoute: false },
   { label: "Contact", href: "#contact", isRoute: false },
 ];
 
