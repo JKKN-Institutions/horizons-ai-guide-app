@@ -4,7 +4,7 @@ import {
   ChevronRight, ChevronLeft, Play, CheckCircle, Lightbulb, Star,
   GraduationCap, Building2, Calculator, ArrowRight, ArrowLeft,
   MapPin, Briefcase, Trophy, AlertCircle, RefreshCw, GripVertical,
-  X, Plus, Check, Info, Sparkles
+  X, Plus, Check, Info, Sparkles, Stethoscope, Atom
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -14,15 +14,17 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { 
-  tneaColleges, 
+  getCollegesByType,
   getEligibleColleges, 
   getRankPercentile, 
   getTierClassification,
   simulateSeatAllocation,
+  getCounsellingInfo,
   type College,
   type Branch,
   type CollegePreference,
-  type AllotmentResult
+  type AllotmentResult,
+  type CounsellingType
 } from './collegeData';
 import { toast } from 'sonner';
 
@@ -44,23 +46,33 @@ const stepInfo = [
   { id: 4, title: 'View Allotment', icon: Award },
 ];
 
+const counsellingTypes: { type: CounsellingType; icon: any; label: string; description: string }[] = [
+  { type: 'tnea', icon: Building2, label: 'TNEA', description: 'Tamil Nadu Engineering' },
+  { type: 'neet', icon: Stethoscope, label: 'NEET UG', description: 'Medical Admissions' },
+  { type: 'josaa', icon: Atom, label: 'JoSAA', description: 'IIT/NIT/IIIT' }
+];
+
 export const CounsellingSimulator = () => {
   const [currentStep, setCurrentStep] = useState<SimulationStep>('home');
+  const [counsellingType, setCounsellingType] = useState<CounsellingType>('tnea');
   const [rank, setRank] = useState<string>('');
   const [category, setCategory] = useState<Category>('oc');
   const [selectedPreferences, setSelectedPreferences] = useState<CollegePreference[]>([]);
   const [allotmentResult, setAllotmentResult] = useState<AllotmentResult | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  const counsellingInfo = getCounsellingInfo(counsellingType);
+  const colleges = getCollegesByType(counsellingType);
   const parsedRank = parseInt(rank) || 0;
-  const percentile = useMemo(() => getRankPercentile(parsedRank), [parsedRank]);
-  const tierInfo = useMemo(() => getTierClassification(parsedRank), [parsedRank]);
+  const percentile = useMemo(() => getRankPercentile(parsedRank, counsellingType), [parsedRank, counsellingType]);
+  const tierInfo = useMemo(() => getTierClassification(parsedRank, counsellingType), [parsedRank, counsellingType]);
   const eligibleColleges = useMemo(() => 
-    parsedRank > 0 ? getEligibleColleges(parsedRank, category) : [], 
-    [parsedRank, category]
+    parsedRank > 0 ? getEligibleColleges(parsedRank, category, counsellingType) : [], 
+    [parsedRank, category, counsellingType]
   );
 
-  const handleStartSimulation = () => {
+  const handleStartSimulation = (type: CounsellingType) => {
+    setCounsellingType(type);
     setCurrentStep('rank-entry');
     setRank('');
     setCategory('oc');
@@ -69,8 +81,8 @@ export const CounsellingSimulator = () => {
   };
 
   const handleRankSubmit = () => {
-    if (parsedRank < 1 || parsedRank > 250000) {
-      toast.error('Please enter a valid rank between 1 and 250000');
+    if (parsedRank < 1 || parsedRank > counsellingInfo.maxRank) {
+      toast.error(`Please enter a valid rank between 1 and ${counsellingInfo.maxRank.toLocaleString()}`);
       return;
     }
     setCurrentStep('college-selection');
@@ -126,7 +138,7 @@ export const CounsellingSimulator = () => {
     
     // Simulate processing delay
     setTimeout(() => {
-      const result = simulateSeatAllocation(parsedRank, category, selectedPreferences);
+      const result = simulateSeatAllocation(parsedRank, category, selectedPreferences, counsellingType);
       setAllotmentResult(result);
       setIsProcessing(false);
       setCurrentStep('result');
@@ -134,7 +146,7 @@ export const CounsellingSimulator = () => {
   };
 
   const getCollegeBranchName = (pref: CollegePreference) => {
-    const college = tneaColleges.find(c => c.id === pref.collegeId);
+    const college = colleges.find(c => c.id === pref.collegeId);
     const branch = college?.branches.find(b => b.id === pref.branchId);
     return { collegeName: college?.shortName || '', branchName: branch?.shortName || '' };
   };
@@ -155,32 +167,50 @@ export const CounsellingSimulator = () => {
               <Star className="w-3 h-3 mr-1" /> Featured Tool
             </Badge>
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">TNEA Counselling Simulator</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Counselling Simulator</h2>
           <p className="text-teal-100 text-lg mb-4">
-            Practice Tamil Nadu Engineering Admission counselling with real college data
+            Practice TNEA, NEET & JoSAA counselling with real college data and cutoffs
           </p>
           <p className="text-cyan-200 font-tamil text-base">
-            உண்மையான கல்லூரி தரவுகளுடன் TNEA கலந்தாய்வை பயிற்சி செய்யுங்கள்
+            உண்மையான கல்லூரி தரவுகளுடன் கலந்தாய்வை பயிற்சி செய்யுங்கள்
           </p>
         </div>
       </div>
 
-      {/* Stats Row */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {[
-          { label: 'Colleges in Database', value: tneaColleges.length + '+', icon: Building2, color: 'text-blue-600' },
-          { label: 'Branches Available', value: '40+', icon: BookOpen, color: 'text-emerald-600' },
-          { label: 'Cutoff Data Points', value: '500+', icon: Target, color: 'text-purple-600' },
-          { label: 'Real-time Simulation', value: '100%', icon: Sparkles, color: 'text-amber-600' },
-        ].map((stat, index) => (
-          <Card key={index} className="bg-white border-none shadow-md hover:shadow-lg transition-shadow">
-            <CardContent className="p-4 text-center">
-              <stat.icon className={`w-6 h-6 mx-auto mb-2 ${stat.color}`} />
-              <div className="text-2xl font-bold text-gray-800">{stat.value}</div>
-              <div className="text-xs text-gray-500">{stat.label}</div>
-            </CardContent>
-          </Card>
-        ))}
+      {/* Counselling Type Selection */}
+      <div>
+        <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <GraduationCap className="w-5 h-5 text-teal-600" />
+          Choose Counselling Type
+        </h3>
+        <div className="grid md:grid-cols-3 gap-4">
+          {counsellingTypes.map((ct) => (
+            <Card 
+              key={ct.type} 
+              className={`cursor-pointer border-2 transition-all hover:shadow-lg ${
+                ct.type === 'tnea' ? 'hover:border-teal-400' :
+                ct.type === 'neet' ? 'hover:border-rose-400' :
+                'hover:border-indigo-400'
+              }`}
+              onClick={() => handleStartSimulation(ct.type)}
+            >
+              <CardContent className="p-6 text-center">
+                <div className={`w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-4 ${
+                  ct.type === 'tnea' ? 'bg-gradient-to-br from-teal-500 to-cyan-600' :
+                  ct.type === 'neet' ? 'bg-gradient-to-br from-rose-500 to-pink-600' :
+                  'bg-gradient-to-br from-indigo-500 to-violet-600'
+                }`}>
+                  <ct.icon className="w-7 h-7 text-white" />
+                </div>
+                <h4 className="font-bold text-lg text-gray-800 mb-1">{ct.label}</h4>
+                <p className="text-sm text-gray-500">{ct.description}</p>
+                {ct.type === 'tnea' && <Badge className="mt-2 bg-teal-100 text-teal-700">25+ Colleges</Badge>}
+                {ct.type === 'neet' && <Badge className="mt-2 bg-rose-100 text-rose-700">20+ Medical Colleges</Badge>}
+                {ct.type === 'josaa' && <Badge className="mt-2 bg-indigo-100 text-indigo-700">15+ IITs/NITs</Badge>}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
 
       {/* How it works */}
@@ -233,18 +263,6 @@ export const CounsellingSimulator = () => {
         </CardContent>
       </Card>
 
-      {/* Start Button */}
-      <div className="flex justify-center">
-        <Button 
-          size="lg"
-          onClick={handleStartSimulation}
-          className="bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all"
-        >
-          <Play className="w-5 h-5 mr-2" />
-          Start TNEA Simulation
-          <ArrowRight className="w-5 h-5 ml-2" />
-        </Button>
-      </div>
     </div>
   );
 
@@ -255,25 +273,25 @@ export const CounsellingSimulator = () => {
       </Button>
 
       <Card className="border-none shadow-xl">
-        <CardHeader className="bg-gradient-to-r from-teal-500 to-cyan-600 text-white rounded-t-xl">
+        <CardHeader className={`bg-gradient-to-r ${counsellingInfo.color} text-white rounded-t-xl`}>
           <CardTitle className="flex items-center gap-2">
             <TrendingUp className="w-5 h-5" />
-            Step 1: Enter Your Rank Details
+            Step 1: Enter Your {counsellingInfo.examName}
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6 space-y-6">
           {/* Rank Input */}
           <div className="space-y-2">
-            <Label htmlFor="rank" className="text-base font-semibold">Your TNEA Rank</Label>
+            <Label htmlFor="rank" className="text-base font-semibold">Your {counsellingInfo.examName}</Label>
             <Input
               id="rank"
               type="number"
-              placeholder="e.g., 5000"
+              placeholder={counsellingType === 'tnea' ? 'e.g., 5000' : counsellingType === 'neet' ? 'e.g., 10000' : 'e.g., 3000'}
               value={rank}
               onChange={(e) => setRank(e.target.value)}
               className="text-lg py-6"
               min={1}
-              max={250000}
+              max={counsellingInfo.maxRank}
             />
             {parsedRank > 0 && (
               <div className="flex items-center gap-4 mt-3 p-4 bg-slate-50 rounded-lg">
@@ -327,7 +345,7 @@ export const CounsellingSimulator = () => {
           <Button 
             onClick={handleRankSubmit}
             disabled={parsedRank < 1}
-            className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 py-6 text-lg"
+            className={`w-full bg-gradient-to-r ${counsellingInfo.color} py-6 text-lg`}
           >
             Proceed to College Selection
             <ArrowRight className="w-5 h-5 ml-2" />
@@ -499,7 +517,7 @@ export const CounsellingSimulator = () => {
           <div className="space-y-2 mb-6">
             {selectedPreferences.map((pref, index) => {
               const { collegeName, branchName } = getCollegeBranchName(pref);
-              const college = tneaColleges.find(c => c.id === pref.collegeId);
+              const college = colleges.find(c => c.id === pref.collegeId);
               const branch = college?.branches.find(b => b.id === pref.branchId);
               
               return (
@@ -566,7 +584,7 @@ export const CounsellingSimulator = () => {
         </div>
         <div>
           <h3 className="text-2xl font-bold text-gray-800 mb-2">Processing Allotment...</h3>
-          <p className="text-gray-500">Simulating TNEA Round 1 seat allocation</p>
+          <p className="text-gray-500">Simulating {counsellingInfo.name} Round 1 seat allocation</p>
         </div>
         <Progress value={66} className="w-64 mx-auto" />
       </div>
@@ -650,13 +668,13 @@ export const CounsellingSimulator = () => {
             <Button 
               variant="outline" 
               className="flex-1"
-              onClick={handleStartSimulation}
+              onClick={() => handleStartSimulation(counsellingType)}
             >
               <RefreshCw className="w-4 h-4 mr-2" />
               Try Again
             </Button>
             <Button 
-              className="flex-1 bg-gradient-to-r from-teal-500 to-cyan-600"
+              className={`flex-1 bg-gradient-to-r ${counsellingInfo.color}`}
               onClick={() => setCurrentStep('home')}
             >
               Back to Home
