@@ -17,6 +17,15 @@ interface Article {
   published_at: string | null;
 }
 
+const sampleArticles: Article[] = [
+  { id: '1', title: 'Top 10 Interview Tips for Freshers in 2025', content: null, excerpt: 'Master these essential tips to crack your first job interview', author: 'Career Expert', category: 'Interview', thumbnail_url: null, read_time_minutes: 5, views_count: 12500, published_at: new Date().toISOString() },
+  { id: '2', title: 'How to Build a Strong Resume with No Experience', content: null, excerpt: 'Create an impressive resume even as a fresher', author: 'HR Professional', category: 'Career', thumbnail_url: null, read_time_minutes: 7, views_count: 8900, published_at: new Date().toISOString() },
+  { id: '3', title: 'DSA Preparation Strategy for Tech Interviews', content: null, excerpt: 'Step-by-step guide to master Data Structures & Algorithms', author: 'Tech Lead', category: 'Tech', thumbnail_url: null, read_time_minutes: 10, views_count: 15000, published_at: new Date().toISOString() },
+  { id: '4', title: '5 Soft Skills Every Fresher Must Develop', content: null, excerpt: 'Beyond technical skills - what employers really look for', author: 'Industry Mentor', category: 'Career', thumbnail_url: null, read_time_minutes: 6, views_count: 7200, published_at: new Date().toISOString() },
+  { id: '5', title: 'Common Mistakes to Avoid in Technical Interviews', content: null, excerpt: 'Learn from others mistakes and ace your tech interview', author: 'Senior Developer', category: 'Interview', thumbnail_url: null, read_time_minutes: 8, views_count: 11000, published_at: new Date().toISOString() },
+  { id: '6', title: 'How to Use LinkedIn for Job Hunting', content: null, excerpt: 'Optimize your LinkedIn profile and get noticed by recruiters', author: 'Career Coach', category: 'Career', thumbnail_url: null, read_time_minutes: 6, views_count: 9500, published_at: new Date().toISOString() },
+];
+
 const categoryFilters = ['All', 'Tech', 'Interview', 'Career'];
 
 export function TipsTab() {
@@ -36,9 +45,11 @@ export function TipsTab() {
         .order('published_at', { ascending: false });
 
       if (error) throw error;
-      setArticles(data || []);
+      // Use sample data if no articles in database
+      setArticles(data && data.length > 0 ? data : sampleArticles);
     } catch (error) {
       console.error('Error fetching articles:', error);
+      setArticles(sampleArticles);
     } finally {
       setIsLoading(false);
     }

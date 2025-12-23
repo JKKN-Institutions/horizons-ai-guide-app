@@ -22,6 +22,84 @@ interface Course {
   is_free: boolean | null;
 }
 
+const sampleCourses: Course[] = [
+  {
+    id: '1',
+    title: 'Complete Python Programming Bootcamp',
+    description: 'Learn Python from scratch to advanced level',
+    category: 'Programming',
+    instructor_name: 'Dr. Ramesh Kumar',
+    thumbnail_url: null,
+    duration_hours: 40,
+    lessons_count: 120,
+    rating: 4.8,
+    students_count: 15000,
+    level: 'Beginner',
+    external_link: 'https://youtube.com',
+    is_free: true,
+  },
+  {
+    id: '2',
+    title: 'Full Stack Web Development with React & Node.js',
+    description: 'Build modern web applications from frontend to backend',
+    category: 'Web',
+    instructor_name: 'Priya Sharma',
+    thumbnail_url: null,
+    duration_hours: 60,
+    lessons_count: 180,
+    rating: 4.9,
+    students_count: 22000,
+    level: 'Intermediate',
+    external_link: 'https://youtube.com',
+    is_free: true,
+  },
+  {
+    id: '3',
+    title: 'Data Science & Machine Learning Masterclass',
+    description: 'Master data science with hands-on projects',
+    category: 'Data',
+    instructor_name: 'Dr. Suresh Venkat',
+    thumbnail_url: null,
+    duration_hours: 50,
+    lessons_count: 150,
+    rating: 4.7,
+    students_count: 18000,
+    level: 'Intermediate',
+    external_link: 'https://youtube.com',
+    is_free: true,
+  },
+  {
+    id: '4',
+    title: 'AWS Cloud Practitioner Certification',
+    description: 'Prepare for AWS certification exam',
+    category: 'Cloud',
+    instructor_name: 'Arun Krishnan',
+    thumbnail_url: null,
+    duration_hours: 25,
+    lessons_count: 80,
+    rating: 4.6,
+    students_count: 12000,
+    level: 'Beginner',
+    external_link: 'https://youtube.com',
+    is_free: true,
+  },
+  {
+    id: '5',
+    title: 'Java Programming for Beginners',
+    description: 'Core Java concepts with practical examples',
+    category: 'Programming',
+    instructor_name: 'Karthik Rajan',
+    thumbnail_url: null,
+    duration_hours: 35,
+    lessons_count: 100,
+    rating: 4.5,
+    students_count: 25000,
+    level: 'Beginner',
+    external_link: 'https://youtube.com',
+    is_free: true,
+  },
+];
+
 const categoryFilters = ['All', 'Programming', 'Web', 'Data', 'Cloud'];
 
 export function LearnTab() {
@@ -42,9 +120,11 @@ export function LearnTab() {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setCourses(data || []);
+      // Use sample data if no courses in database
+      setCourses(data && data.length > 0 ? data : sampleCourses);
     } catch (error) {
       console.error('Error fetching courses:', error);
+      setCourses(sampleCourses);
     } finally {
       setIsLoading(false);
     }

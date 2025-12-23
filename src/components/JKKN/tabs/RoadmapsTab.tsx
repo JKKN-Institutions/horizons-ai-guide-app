@@ -16,12 +16,22 @@ interface Roadmap {
   followers_count: number | null;
 }
 
+const sampleRoadmaps: Roadmap[] = [
+  { id: '1', title: 'Software Developer', description: 'Learn programming fundamentals, data structures, algorithms, and build projects to become a software developer', category: 'Tech', duration_months: 6, steps_count: 12, followers_count: 15000 },
+  { id: '2', title: 'Data Scientist', description: 'Master Python, statistics, machine learning, and data visualization to become a data scientist', category: 'Data', duration_months: 8, steps_count: 15, followers_count: 12000 },
+  { id: '3', title: 'Cloud Engineer', description: 'Learn AWS, Azure, DevOps practices, and cloud architecture to become a cloud engineer', category: 'Cloud', duration_months: 5, steps_count: 10, followers_count: 8000 },
+  { id: '4', title: 'Mobile Developer', description: 'Master React Native or Flutter to build cross-platform mobile applications', category: 'Mobile', duration_months: 4, steps_count: 8, followers_count: 10000 },
+  { id: '5', title: 'UI/UX Designer', description: 'Learn design principles, Figma, user research, and prototyping to become a UI/UX designer', category: 'Design', duration_months: 4, steps_count: 10, followers_count: 6000 },
+  { id: '6', title: 'DevOps Engineer', description: 'Master CI/CD, Docker, Kubernetes, and infrastructure automation', category: 'DevOps', duration_months: 6, steps_count: 12, followers_count: 9000 },
+];
+
 const roadmapIcons: Record<string, React.ReactNode> = {
   'Software Developer': <Code className="w-6 h-6" />,
   'Data Scientist': <Database className="w-6 h-6" />,
   'Cloud Engineer': <Cloud className="w-6 h-6" />,
   'Mobile Developer': <Smartphone className="w-6 h-6" />,
   'UI/UX Designer': <Palette className="w-6 h-6" />,
+  'DevOps Engineer': <Cloud className="w-6 h-6" />,
 };
 
 export function RoadmapsTab() {
@@ -40,9 +50,11 @@ export function RoadmapsTab() {
         .order('followers_count', { ascending: false });
 
       if (error) throw error;
-      setRoadmaps(data || []);
+      // Use sample data if no roadmaps in database
+      setRoadmaps(data && data.length > 0 ? data : sampleRoadmaps);
     } catch (error) {
       console.error('Error fetching roadmaps:', error);
+      setRoadmaps(sampleRoadmaps);
     } finally {
       setIsLoading(false);
     }
