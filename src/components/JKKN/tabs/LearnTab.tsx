@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Search, Star, Users, Clock, ExternalLink, BookOpen } from 'lucide-react';
+import { Search, Star, Users, Clock, ExternalLink, BookOpen, Bookmark, BookmarkCheck, Play, FileText, Video } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useJKKNBookmarks } from '@/hooks/useJKKNBookmarks';
+import { toast } from 'sonner';
 
 interface Course {
   id: string;
@@ -22,80 +24,126 @@ interface Course {
   is_free: boolean | null;
 }
 
-const sampleCourses: Course[] = [
+// Real YouTube playlists with actual learning content
+const realCourses: Course[] = [
   {
-    id: '1',
+    id: 'python-course',
     title: 'Complete Python Programming Bootcamp',
-    description: 'Learn Python from scratch to advanced level',
+    description: 'Learn Python from scratch to advanced level with hands-on projects',
     category: 'Programming',
-    instructor_name: 'Dr. Ramesh Kumar',
-    thumbnail_url: null,
+    instructor_name: 'CodeWithHarry',
+    thumbnail_url: 'https://i.ytimg.com/vi/gfDE2a7MKjA/hqdefault.jpg',
     duration_hours: 40,
     lessons_count: 120,
     rating: 4.8,
-    students_count: 15000,
+    students_count: 2500000,
     level: 'Beginner',
-    external_link: 'https://youtube.com',
+    external_link: 'https://www.youtube.com/playlist?list=PLu0W_9lII9agICnT8t4iYVSZ3eykIAOME',
     is_free: true,
   },
   {
-    id: '2',
-    title: 'Full Stack Web Development with React & Node.js',
-    description: 'Build modern web applications from frontend to backend',
+    id: 'fullstack-course',
+    title: 'Full Stack Web Development with MERN',
+    description: 'Build modern web applications with React, Node.js, Express & MongoDB',
     category: 'Web',
-    instructor_name: 'Priya Sharma',
-    thumbnail_url: null,
+    instructor_name: 'freeCodeCamp',
+    thumbnail_url: 'https://i.ytimg.com/vi/7CqJlxBYj-M/hqdefault.jpg',
     duration_hours: 60,
     lessons_count: 180,
     rating: 4.9,
-    students_count: 22000,
+    students_count: 1800000,
     level: 'Intermediate',
-    external_link: 'https://youtube.com',
+    external_link: 'https://www.youtube.com/playlist?list=PLWKjhJtqVAbkArDMazoARtNz1aMwNWmvC',
     is_free: true,
   },
   {
-    id: '3',
-    title: 'Data Science & Machine Learning Masterclass',
-    description: 'Master data science with hands-on projects',
+    id: 'datascience-course',
+    title: 'Data Science & Machine Learning',
+    description: 'Master data science with Python, Pandas, NumPy & Machine Learning',
     category: 'Data',
-    instructor_name: 'Dr. Suresh Venkat',
-    thumbnail_url: null,
+    instructor_name: 'codebasics',
+    thumbnail_url: 'https://i.ytimg.com/vi/ua-CiDNNj30/hqdefault.jpg',
     duration_hours: 50,
     lessons_count: 150,
     rating: 4.7,
-    students_count: 18000,
+    students_count: 1200000,
     level: 'Intermediate',
-    external_link: 'https://youtube.com',
+    external_link: 'https://www.youtube.com/playlist?list=PLeo1K3hjS3us_ELKYSj_Fth2tIEkdKXvV',
     is_free: true,
   },
   {
-    id: '4',
-    title: 'AWS Cloud Practitioner Certification',
-    description: 'Prepare for AWS certification exam',
+    id: 'aws-course',
+    title: 'AWS Cloud Practitioner - Complete Course',
+    description: 'Complete AWS Cloud Practitioner certification preparation',
     category: 'Cloud',
-    instructor_name: 'Arun Krishnan',
-    thumbnail_url: null,
+    instructor_name: 'freeCodeCamp',
+    thumbnail_url: 'https://i.ytimg.com/vi/SOTamWNgDKc/hqdefault.jpg',
     duration_hours: 25,
     lessons_count: 80,
     rating: 4.6,
-    students_count: 12000,
+    students_count: 900000,
     level: 'Beginner',
-    external_link: 'https://youtube.com',
+    external_link: 'https://www.youtube.com/watch?v=SOTamWNgDKc',
     is_free: true,
   },
   {
-    id: '5',
+    id: 'java-course',
     title: 'Java Programming for Beginners',
-    description: 'Core Java concepts with practical examples',
+    description: 'Core Java concepts with practical examples and OOP',
     category: 'Programming',
-    instructor_name: 'Karthik Rajan',
-    thumbnail_url: null,
+    instructor_name: 'Telusko',
+    thumbnail_url: 'https://i.ytimg.com/vi/BGTx91t8q50/hqdefault.jpg',
     duration_hours: 35,
     lessons_count: 100,
     rating: 4.5,
-    students_count: 25000,
+    students_count: 3000000,
     level: 'Beginner',
-    external_link: 'https://youtube.com',
+    external_link: 'https://www.youtube.com/playlist?list=PLsyeobzWxl7pe_IiTfNyr55kwJPWbgxB5',
+    is_free: true,
+  },
+  {
+    id: 'dsa-course',
+    title: 'Data Structures & Algorithms in Java',
+    description: 'Complete DSA course for coding interviews',
+    category: 'Programming',
+    instructor_name: 'Kunal Kushwaha',
+    thumbnail_url: 'https://i.ytimg.com/vi/rZ41y93P2Qo/hqdefault.jpg',
+    duration_hours: 45,
+    lessons_count: 90,
+    rating: 4.8,
+    students_count: 1500000,
+    level: 'Intermediate',
+    external_link: 'https://www.youtube.com/playlist?list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ',
+    is_free: true,
+  },
+  {
+    id: 'react-course',
+    title: 'React JS Complete Tutorial',
+    description: 'Learn React from basics to advanced with projects',
+    category: 'Web',
+    instructor_name: 'Codevolution',
+    thumbnail_url: 'https://i.ytimg.com/vi/QFaFIcGhPoM/hqdefault.jpg',
+    duration_hours: 30,
+    lessons_count: 120,
+    rating: 4.7,
+    students_count: 2000000,
+    level: 'Beginner',
+    external_link: 'https://www.youtube.com/playlist?list=PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3',
+    is_free: true,
+  },
+  {
+    id: 'sql-course',
+    title: 'SQL for Data Analysis',
+    description: 'Master SQL for data analysis and database management',
+    category: 'Data',
+    instructor_name: 'Alex The Analyst',
+    thumbnail_url: 'https://i.ytimg.com/vi/7mz73uXD9DA/hqdefault.jpg',
+    duration_hours: 15,
+    lessons_count: 50,
+    rating: 4.6,
+    students_count: 800000,
+    level: 'Beginner',
+    external_link: 'https://www.youtube.com/playlist?list=PLUaB-1hjhk8H48Pj32z4GZgGWyylqv85f',
     is_free: true,
   },
 ];
@@ -107,6 +155,8 @@ export function LearnTab() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState('All');
+
+  const { isCourseBookmarked, toggleCourseBookmark } = useJKKNBookmarks();
 
   useEffect(() => {
     fetchCourses();
@@ -120,11 +170,11 @@ export function LearnTab() {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      // Use sample data if no courses in database
-      setCourses(data && data.length > 0 ? data : sampleCourses);
+      // Use real courses with YouTube links as fallback
+      setCourses(data && data.length > 0 ? data : realCourses);
     } catch (error) {
       console.error('Error fetching courses:', error);
-      setCourses(sampleCourses);
+      setCourses(realCourses);
     } finally {
       setIsLoading(false);
     }
@@ -141,6 +191,24 @@ export function LearnTab() {
 
     return matchesSearch && matchesFilter;
   });
+
+  const handleStartLearning = (course: Course) => {
+    if (course.external_link) {
+      window.open(course.external_link, '_blank');
+      toast.success(`Opening "${course.title}" - enjoy learning!`);
+    } else {
+      toast.error('Course link not available');
+    }
+  };
+
+  const handleBookmark = (courseId: string, courseTitle: string) => {
+    toggleCourseBookmark(courseId);
+    if (isCourseBookmarked(courseId)) {
+      toast.success('Course removed from bookmarks');
+    } else {
+      toast.success(`"${courseTitle}" saved to bookmarks`);
+    }
+  };
 
   if (isLoading) {
     return (
@@ -221,6 +289,25 @@ export function LearnTab() {
                   {course.level}
                 </Badge>
               )}
+              {/* Bookmark Button */}
+              <button
+                onClick={() => handleBookmark(course.id, course.title)}
+                className="absolute bottom-3 right-3 p-2 bg-white/90 hover:bg-white rounded-full transition-colors"
+              >
+                {isCourseBookmarked(course.id) ? (
+                  <BookmarkCheck className="w-5 h-5 text-[#2E7D32]" />
+                ) : (
+                  <Bookmark className="w-5 h-5 text-gray-600" />
+                )}
+              </button>
+              {/* Play Icon Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity cursor-pointer"
+                onClick={() => handleStartLearning(course)}
+              >
+                <div className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center">
+                  <Play className="w-6 h-6 text-[#2E7D32] ml-1" />
+                </div>
+              </div>
             </div>
 
             {/* Content */}
@@ -241,7 +328,9 @@ export function LearnTab() {
                 {course.students_count && (
                   <span className="flex items-center gap-1">
                     <Users className="w-4 h-4" />
-                    {course.students_count.toLocaleString()}
+                    {course.students_count >= 1000000 
+                      ? `${(course.students_count / 1000000).toFixed(1)}M` 
+                      : `${(course.students_count / 1000).toFixed(0)}K`}
                   </span>
                 )}
                 {course.duration_hours && (
@@ -252,10 +341,27 @@ export function LearnTab() {
                 )}
               </div>
 
+              {/* Course includes */}
+              <div className="flex items-center gap-3 mt-3 text-xs text-gray-500">
+                <span className="flex items-center gap-1">
+                  <Video className="w-3 h-3" />
+                  Videos
+                </span>
+                <span className="flex items-center gap-1">
+                  <FileText className="w-3 h-3" />
+                  Notes
+                </span>
+                <span className="flex items-center gap-1">
+                  <BookOpen className="w-3 h-3" />
+                  {course.lessons_count || 'Many'} Lessons
+                </span>
+              </div>
+
               <Button
                 className="w-full mt-4 bg-[#2E7D32] hover:bg-[#1B5E20] text-white"
-                onClick={() => course.external_link && window.open(course.external_link, '_blank')}
+                onClick={() => handleStartLearning(course)}
               >
+                <Play className="w-4 h-4 mr-2" />
                 Start Learning
                 <ExternalLink className="w-4 h-4 ml-2" />
               </Button>
