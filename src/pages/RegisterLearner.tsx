@@ -25,6 +25,8 @@ const RegisterLearner = () => {
     email: "",
     phone: "",
     dateOfBirth: "",
+    district: "",
+    place: "",
     institution: "",
     degree: "",
     specialization: "",
@@ -89,6 +91,8 @@ const RegisterLearner = () => {
         email: formData.email,
         phone: formData.phone,
         date_of_birth: formData.dateOfBirth || null,
+        district: formData.district || null,
+        place: formData.place || null,
         institution: formData.institution || null,
         degree: formData.degree || null,
         specialization: formData.specialization || null,
@@ -228,6 +232,26 @@ const RegisterLearner = () => {
                     type="date"
                     value={formData.dateOfBirth}
                     onChange={(e) => handleChange("dateOfBirth", e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="district">District</Label>
+                  <Input
+                    id="district"
+                    placeholder="e.g., Coimbatore, Chennai"
+                    value={formData.district}
+                    onChange={(e) => handleChange("district", e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="place">Place/Town</Label>
+                  <Input
+                    id="place"
+                    placeholder="e.g., Gandhipuram, T. Nagar"
+                    value={formData.place}
+                    onChange={(e) => handleChange("place", e.target.value)}
                   />
                 </div>
               </div>
