@@ -4,8 +4,9 @@ import {
   ChevronRight, ChevronLeft, Play, CheckCircle, Lightbulb, Star,
   GraduationCap, Building2, Calculator, ArrowRight, ArrowLeft,
   MapPin, Briefcase, Trophy, AlertCircle, RefreshCw, GripVertical,
-  X, Plus, Check, Info, Sparkles, Stethoscope, Atom
+  X, Plus, Check, Info, Sparkles, Stethoscope, Atom, Video
 } from 'lucide-react';
+import CounsellingTipsGuide from './CounsellingTipsGuide';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -75,6 +76,7 @@ export const CounsellingSimulator = () => {
   const [selectedPreferences, setSelectedPreferences] = useState<CollegePreference[]>([]);
   const [allotmentResult, setAllotmentResult] = useState<AllotmentResult | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showTipsGuide, setShowTipsGuide] = useState(false);
 
   const counsellingInfo = getCounsellingInfo(counsellingType);
   const colleges = getCollegesByType(counsellingType);
@@ -259,13 +261,22 @@ export const CounsellingSimulator = () => {
         </div>
       </div>
 
-      {/* Quick Tips */}
+      {/* Quick Tips & Strategy Guide Button */}
       <Card className="bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200">
         <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2 text-amber-800">
-            <Lightbulb className="w-5 h-5" />
-            Counselling Tips
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2 text-amber-800">
+              <Lightbulb className="w-5 h-5" />
+              Counselling Tips
+            </CardTitle>
+            <Button 
+              onClick={() => setShowTipsGuide(true)}
+              className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white"
+            >
+              <Video className="w-4 h-4 mr-2" />
+              Video Tutorials & Strategy Guide
+            </Button>
+          </div>
         </CardHeader>
         <CardContent>
           <div className="grid md:grid-cols-3 gap-3">
@@ -965,12 +976,26 @@ export const CounsellingSimulator = () => {
 
   return (
     <div className="min-h-[600px]">
-      {currentStep === 'home' && renderHome()}
-      {currentStep === 'rank-entry' && renderRankEntry()}
-      {currentStep === 'college-selection' && renderCollegeSelection()}
-      {currentStep === 'preference-order' && renderPreferenceOrder()}
-      {currentStep === 'allotment' && renderAllotment()}
-      {currentStep === 'result' && renderResult()}
+      {showTipsGuide ? (
+        <div className="space-y-4">
+          <Button variant="ghost" onClick={() => setShowTipsGuide(false)} className="mb-2">
+            <ArrowLeft className="w-4 h-4 mr-2" /> Back to Simulator
+          </Button>
+          <CounsellingTipsGuide 
+            counsellingType={counsellingType} 
+            onClose={() => setShowTipsGuide(false)} 
+          />
+        </div>
+      ) : (
+        <>
+          {currentStep === 'home' && renderHome()}
+          {currentStep === 'rank-entry' && renderRankEntry()}
+          {currentStep === 'college-selection' && renderCollegeSelection()}
+          {currentStep === 'preference-order' && renderPreferenceOrder()}
+          {currentStep === 'allotment' && renderAllotment()}
+          {currentStep === 'result' && renderResult()}
+        </>
+      )}
     </div>
   );
 };
