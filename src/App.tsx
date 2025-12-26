@@ -29,6 +29,7 @@ import StudentAssessmentResults from "./pages/StudentAssessmentResults";
 import IndustryTrends from "./pages/IndustryTrends";
 import SavedJobs from "./pages/SavedJobs";
 import JobPortal from "./pages/JobPortal";
+import PYQPractice from "./pages/PYQPractice";
 import NotFound from "./pages/NotFound";
 
 // JKKN Career Hub Pages
@@ -82,6 +83,7 @@ function App() {
                 <Route path="/career-assessment/12th-learners/take" element={<TakeStudentAssessment />} />
                 <Route path="/career-assessment/12th-learners/results/:attemptId" element={<StudentAssessmentResults />} />
                 <Route path="/career-assessment/industry-trends" element={<IndustryTrends />} />
+                <Route path="/career-assessment/pyq-practice" element={<PYQPractice />} />
                 
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
