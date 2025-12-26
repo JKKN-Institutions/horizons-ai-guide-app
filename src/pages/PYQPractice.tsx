@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { 
   BookOpen, Search, Filter, ChevronLeft, ChevronRight, Check, X,
   Clock, Eye, Bookmark, BookmarkCheck, Lightbulb, RotateCcw,
-  GraduationCap, Trophy, Target, Timer, Languages, ChevronDown
+  GraduationCap, Trophy, Target, Timer, Languages, ChevronDown,
+  Download, Loader2
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -23,6 +24,7 @@ import {
   type PYQQuestion,
   type PYQExam
 } from '@/data/pyq-database';
+import { generatePYQPDF } from '@/components/PYQ';
 
 const PYQPractice = () => {
   // Filter states
@@ -42,6 +44,42 @@ const PYQPractice = () => {
   const [language, setLanguage] = useState<'en' | 'ta'>('en');
   const [showHint, setShowHint] = useState(false);
   const [isPracticeMode, setIsPracticeMode] = useState(false);
+  const [downloadingExamId, setDownloadingExamId] = useState<string | null>(null);
+
+  // Handle PDF download
+  const handleDownloadPDF = async (exam: PYQExam, year?: number, e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    
+    setDownloadingExamId(exam.id);
+    toast.loading('Generating PDF...', { id: 'pdf-download' });
+    
+    try {
+      // Small delay to show loading state
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      const questions = pyqQuestions.filter(q => {
+        const matchesExam = q.examId === exam.id;
+        const matchesYear = year ? q.year === year : true;
+        return matchesExam && matchesYear;
+      });
+      
+      if (questions.length === 0) {
+        toast.error('No questions found for this exam', { id: 'pdf-download' });
+        return;
+      }
+      
+      generatePYQPDF({ exam, questions, year });
+      
+      toast.success(`Download complete! ${questions.length} questions`, { id: 'pdf-download' });
+    } catch (error) {
+      console.error('PDF generation error:', error);
+      toast.error('Failed to generate PDF', { id: 'pdf-download' });
+    } finally {
+      setDownloadingExamId(null);
+    }
+  };
 
   // Get available exams based on selected category
   const availableExams = useMemo(() => {
@@ -365,34 +403,73 @@ const PYQPractice = () => {
 
           {/* Quick Exam Selection */}
           <h3 className="font-semibold mb-4">{language === 'en' ? 'Popular Exams' : 'பிரபலமான தேர்வுகள்'}</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {pyqExams.filter(e => e.isPopular).slice(0, 8).map(exam => {
               const examQuestions = pyqQuestions.filter(q => q.examId === exam.id).length;
+              const isDownloading = downloadingExamId === exam.id;
               return (
                 <Card 
                   key={exam.id}
-                  className="cursor-pointer hover:shadow-lg transition-all hover:scale-[1.02] border-none shadow-md"
-                  onClick={() => {
-                    setSelectedExam(exam.id);
-                    setSelectedCategory(exam.category);
-                    setIsPracticeMode(true);
-                  }}
+                  className="hover:shadow-lg transition-all hover:scale-[1.01] border-none shadow-md overflow-hidden"
                 >
                   <CardContent className="p-4">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 bg-primary/10 rounded-lg">
-                        <GraduationCap className="w-5 h-5 text-primary" />
+                    <div 
+                      className="cursor-pointer"
+                      onClick={() => {
+                        setSelectedExam(exam.id);
+                        setSelectedCategory(exam.category);
+                        setIsPracticeMode(true);
+                      }}
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="p-2 bg-primary/10 rounded-lg">
+                          <GraduationCap className="w-5 h-5 text-primary" />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-semibold text-sm line-clamp-1">
+                            {language === 'en' ? exam.name.en : exam.name.ta}
+                          </h4>
+                          <p className="text-xs text-muted-foreground">{examQuestions} questions</p>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-sm line-clamp-1">
-                          {language === 'en' ? exam.name.en : exam.name.ta}
-                        </h4>
-                        <p className="text-xs text-muted-foreground">{examQuestions} questions</p>
+                      <div className="flex items-center gap-2 mb-3">
+                        <Badge variant="outline" className="text-xs">
+                          {exam.difficultyLevel}
+                        </Badge>
+                        <Badge variant="secondary" className="text-xs">
+                          {exam.duration} min
+                        </Badge>
                       </div>
                     </div>
-                    <Badge variant="outline" className="text-xs">
-                      {exam.difficultyLevel}
-                    </Badge>
+                    <div className="flex items-center gap-2 pt-3 border-t border-border">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex-1 text-xs"
+                        onClick={() => {
+                          setSelectedExam(exam.id);
+                          setSelectedCategory(exam.category);
+                          setIsPracticeMode(true);
+                        }}
+                      >
+                        <Target className="w-3 h-3 mr-1" />
+                        Practice
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        className="flex-1 text-xs"
+                        onClick={(e) => handleDownloadPDF(exam, undefined, e)}
+                        disabled={isDownloading}
+                      >
+                        {isDownloading ? (
+                          <Loader2 className="w-3 h-3 mr-1 animate-spin" />
+                        ) : (
+                          <Download className="w-3 h-3 mr-1" />
+                        )}
+                        {isDownloading ? 'Generating...' : 'Download'}
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               );
