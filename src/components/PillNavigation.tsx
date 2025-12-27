@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { GraduationCap, Building2, Bookmark, Calculator, FileText, Users, BookOpen, LucideIcon, Target } from 'lucide-react';
+import { GraduationCap, Building2, Bookmark, Calculator, FileText, Users, BookOpen, LucideIcon } from 'lucide-react';
 
 interface NavItem {
   id: string;
@@ -19,15 +19,6 @@ interface PillNavigationProps {
 }
 
 const navItems: NavItem[] = [
-  {
-    id: 'career-assessment',
-    label: 'Career Assessment',
-    shortLabel: 'Career',
-    icon: Target,
-    activeColor: 'text-white',
-    activeBg: 'bg-gradient-to-r from-[#F97316] to-[#EA580C]',
-    isFeatured: true,
-  },
   {
     id: 'assessments',
     label: 'Career Assessments',
@@ -147,7 +138,7 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
       >
         {/* Main tools row */}
         <div className="flex items-center gap-1 flex-wrap justify-center">
-          {navItems.slice(0, 6).map((item) => {
+          {navItems.slice(0, 5).map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
             
@@ -190,7 +181,7 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
 
         {/* More tools row */}
         <div className="flex items-center gap-1 flex-wrap justify-center">
-          {navItems.slice(6).map((item) => {
+          {navItems.slice(5).map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
             
