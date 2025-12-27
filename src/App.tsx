@@ -40,6 +40,7 @@ import JKKNJobDetail from "./pages/JKKNJobDetail";
 import JKKNProblemDetail from "./pages/JKKNProblemDetail";
 import JKKNRoadmapDetail from "./pages/JKKNRoadmapDetail";
 import JKKNLearnerProfile from "./pages/JKKNLearnerProfile";
+import CareerAssessment from "./pages/CareerAssessment";
 
 const queryClient = new QueryClient();
 
@@ -84,6 +85,7 @@ function App() {
                 <Route path="/career-assessment/12th-learners/results/:attemptId" element={<StudentAssessmentResults />} />
                 <Route path="/career-assessment/industry-trends" element={<IndustryTrends />} />
                 <Route path="/career-assessment/pyq-practice" element={<PYQPractice />} />
+                <Route path="/career-assessment/boosting" element={<CareerAssessment />} />
                 
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
