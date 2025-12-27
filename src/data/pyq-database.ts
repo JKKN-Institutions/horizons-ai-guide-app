@@ -2675,6 +2675,1085 @@ export const pyqQuestions: PYQQuestion[] = [
     isBookmarked: false,
     isAttempted: false,
     userAnswer: null
+  },
+
+  // ============================================
+  // JEE ADVANCED 2024 - PHYSICS
+  // ============================================
+  {
+    id: "JEE_ADV_2024_PHY_001",
+    examId: "JEE_ADVANCED",
+    year: 2024,
+    session: "Paper 1",
+    date: "2024-05-26",
+    category: "Engineering",
+    subject: "Physics",
+    topic: "Mechanics",
+    subtopic: "Rotational Motion",
+    questionNumber: 1,
+    questionType: "MCQ",
+    difficulty: "Hard",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 180,
+    question: {
+      en: "A uniform solid cylinder of mass M and radius R is rolling without slipping on a horizontal surface with velocity v. The kinetic energy of the cylinder is:",
+      ta: "M நிறை மற்றும் R ஆரம் கொண்ட ஒரு சீரான திட உருளை v வேகத்தில் கிடைமட்ட மேற்பரப்பில் வழுக்காமல் உருளுகிறது. உருளையின் இயக்க ஆற்றல்:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "½Mv²" },
+        { id: "B", text: "¾Mv²" },
+        { id: "C", text: "Mv²" },
+        { id: "D", text: "⅔Mv²" }
+      ],
+      ta: [
+        { id: "A", text: "½Mv²" },
+        { id: "B", text: "¾Mv²" },
+        { id: "C", text: "Mv²" },
+        { id: "D", text: "⅔Mv²" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "Total KE = Translational KE + Rotational KE = ½Mv² + ½Iω². For solid cylinder, I = ½MR² and ω = v/R. So KE = ½Mv² + ½(½MR²)(v/R)² = ½Mv² + ¼Mv² = ¾Mv²",
+      ta: "மொத்த KE = இடப்பெயர்வு KE + சுழற்சி KE = ½Mv² + ½Iω². திட உருளைக்கு, I = ½MR² மற்றும் ω = v/R. எனவே KE = ½Mv² + ½(½MR²)(v/R)² = ½Mv² + ¼Mv² = ¾Mv²"
+    },
+    hints: ["Consider both translational and rotational KE", "Use moment of inertia of cylinder"],
+    conceptsTested: ["Rolling motion", "Moment of inertia", "Kinetic energy"],
+    commonMistakes: ["Forgetting rotational KE", "Wrong moment of inertia"],
+    relatedQuestions: ["JEE_ADV_2023_PHY_005"],
+    tags: ["rotation", "energy", "jee-advanced-important"],
+    statistics: { totalAttempts: 28000, correctPercentage: 35, averageTime: 200 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "JEE_ADV_2024_PHY_002",
+    examId: "JEE_ADVANCED",
+    year: 2024,
+    session: "Paper 1",
+    date: "2024-05-26",
+    category: "Engineering",
+    subject: "Physics",
+    topic: "Electromagnetism",
+    subtopic: "Electromagnetic Induction",
+    questionNumber: 2,
+    questionType: "MCQ",
+    difficulty: "Hard",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 180,
+    question: {
+      en: "A conducting rod of length L moves with velocity v perpendicular to a uniform magnetic field B. The induced EMF across the rod is:",
+      ta: "L நீளமுள்ள ஒரு கடத்தும் தண்டு ஒரு சீரான காந்தப்புலம் B க்கு செங்குத்தாக v வேகத்தில் நகர்கிறது. தண்டு முழுவதும் தூண்டப்பட்ட EMF:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "BL" },
+        { id: "B", text: "BLv" },
+        { id: "C", text: "BL²v" },
+        { id: "D", text: "B²Lv" }
+      ],
+      ta: [
+        { id: "A", text: "BL" },
+        { id: "B", text: "BLv" },
+        { id: "C", text: "BL²v" },
+        { id: "D", text: "B²Lv" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "The motional EMF induced in a conducting rod moving in a magnetic field is given by ε = BLv, where B is the magnetic field, L is length, and v is velocity.",
+      ta: "காந்தப்புலத்தில் நகரும் கடத்தும் தண்டில் தூண்டப்படும் இயக்க EMF ε = BLv என்று கொடுக்கப்படுகிறது, இங்கு B காந்தப்புலம், L நீளம், v வேகம்."
+    },
+    hints: ["Use Faraday's law", "Consider motional EMF formula"],
+    conceptsTested: ["Electromagnetic induction", "Faraday's law"],
+    commonMistakes: ["Wrong formula application", "Unit confusion"],
+    relatedQuestions: ["JEE_ADV_2023_PHY_012"],
+    tags: ["electromagnetism", "induction", "important"],
+    statistics: { totalAttempts: 32000, correctPercentage: 58, averageTime: 120 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "JEE_ADV_2024_PHY_003",
+    examId: "JEE_ADVANCED",
+    year: 2024,
+    session: "Paper 1",
+    date: "2024-05-26",
+    category: "Engineering",
+    subject: "Physics",
+    topic: "Thermodynamics",
+    subtopic: "Heat Engines",
+    questionNumber: 3,
+    questionType: "MCQ",
+    difficulty: "Hard",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 180,
+    question: {
+      en: "A Carnot engine operates between temperatures 500K and 300K. Its efficiency is:",
+      ta: "ஒரு கார்னோ இயந்திரம் 500K மற்றும் 300K வெப்பநிலைகளுக்கு இடையில் இயங்குகிறது. அதன் திறன்:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "20%" },
+        { id: "B", text: "40%" },
+        { id: "C", text: "60%" },
+        { id: "D", text: "80%" }
+      ],
+      ta: [
+        { id: "A", text: "20%" },
+        { id: "B", text: "40%" },
+        { id: "C", text: "60%" },
+        { id: "D", text: "80%" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "Carnot efficiency η = 1 - T₂/T₁ = 1 - 300/500 = 1 - 0.6 = 0.4 = 40%",
+      ta: "கார்னோ திறன் η = 1 - T₂/T₁ = 1 - 300/500 = 1 - 0.6 = 0.4 = 40%"
+    },
+    hints: ["Use Carnot efficiency formula", "Temperature must be in Kelvin"],
+    conceptsTested: ["Carnot cycle", "Thermodynamic efficiency"],
+    commonMistakes: ["Using Celsius instead of Kelvin", "Inverting the ratio"],
+    relatedQuestions: ["JEE_ADV_2023_PHY_018"],
+    tags: ["thermodynamics", "carnot", "efficiency"],
+    statistics: { totalAttempts: 35000, correctPercentage: 65, averageTime: 90 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "JEE_ADV_2024_CHE_001",
+    examId: "JEE_ADVANCED",
+    year: 2024,
+    session: "Paper 1",
+    date: "2024-05-26",
+    category: "Engineering",
+    subject: "Chemistry",
+    topic: "Organic Chemistry",
+    subtopic: "Reaction Mechanisms",
+    questionNumber: 4,
+    questionType: "MCQ",
+    difficulty: "Hard",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 180,
+    question: {
+      en: "Which of the following is the most stable carbocation?",
+      ta: "பின்வருவனவற்றில் எது மிகவும் நிலையான கார்போகேஷன்?"
+    },
+    options: {
+      en: [
+        { id: "A", text: "Methyl carbocation" },
+        { id: "B", text: "Ethyl carbocation" },
+        { id: "C", text: "Isopropyl carbocation" },
+        { id: "D", text: "tert-Butyl carbocation" }
+      ],
+      ta: [
+        { id: "A", text: "மெத்தில் கார்போகேஷன்" },
+        { id: "B", text: "எத்தில் கார்போகேஷன்" },
+        { id: "C", text: "ஐசோப்ரோப்பில் கார்போகேஷன்" },
+        { id: "D", text: "டெர்ட்-பியூட்டில் கார்போகேஷன்" }
+      ]
+    },
+    correctAnswer: "D",
+    solution: {
+      en: "Carbocation stability: 3° > 2° > 1° > methyl. tert-Butyl carbocation is tertiary and most stable due to hyperconjugation and +I effect of three methyl groups.",
+      ta: "கார்போகேஷன் நிலைப்புத்தன்மை: 3° > 2° > 1° > மெத்தில். டெர்ட்-பியூட்டில் கார்போகேஷன் மூன்றாம் நிலை மற்றும் மூன்று மெத்தில் குழுக்களின் ஹைபர்கன்ஜுகேஷன் மற்றும் +I விளைவு காரணமாக மிகவும் நிலையானது."
+    },
+    hints: ["Consider hyperconjugation", "More alkyl groups = more stable"],
+    conceptsTested: ["Carbocation stability", "Hyperconjugation"],
+    commonMistakes: ["Confusing with carbanion stability"],
+    relatedQuestions: ["JEE_ADV_2023_CHE_005"],
+    tags: ["organic", "carbocation", "stability"],
+    statistics: { totalAttempts: 40000, correctPercentage: 72, averageTime: 80 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "JEE_ADV_2024_CHE_002",
+    examId: "JEE_ADVANCED",
+    year: 2024,
+    session: "Paper 1",
+    date: "2024-05-26",
+    category: "Engineering",
+    subject: "Chemistry",
+    topic: "Physical Chemistry",
+    subtopic: "Chemical Kinetics",
+    questionNumber: 5,
+    questionType: "MCQ",
+    difficulty: "Moderate",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 150,
+    question: {
+      en: "The half-life of a first-order reaction is 10 minutes. What fraction of the reactant remains after 30 minutes?",
+      ta: "முதல் வரிசை வினையின் அரை-ஆயுள் 10 நிமிடங்கள். 30 நிமிடங்களுக்குப் பிறகு வினைபொருளின் எந்த பகுதி மீதமுள்ளது?"
+    },
+    options: {
+      en: [
+        { id: "A", text: "1/2" },
+        { id: "B", text: "1/4" },
+        { id: "C", text: "1/8" },
+        { id: "D", text: "1/16" }
+      ],
+      ta: [
+        { id: "A", text: "1/2" },
+        { id: "B", text: "1/4" },
+        { id: "C", text: "1/8" },
+        { id: "D", text: "1/16" }
+      ]
+    },
+    correctAnswer: "C",
+    solution: {
+      en: "After n half-lives, fraction remaining = (1/2)ⁿ. n = 30/10 = 3 half-lives. Fraction = (1/2)³ = 1/8",
+      ta: "n அரை-ஆயுள்களுக்குப் பிறகு, மீதமுள்ள பகுதி = (1/2)ⁿ. n = 30/10 = 3 அரை-ஆயுள்கள். பகுதி = (1/2)³ = 1/8"
+    },
+    hints: ["Count number of half-lives", "Use (1/2)^n formula"],
+    conceptsTested: ["First-order kinetics", "Half-life"],
+    commonMistakes: ["Wrong number of half-lives", "Using wrong formula"],
+    relatedQuestions: ["JEE_ADV_2023_CHE_012"],
+    tags: ["kinetics", "half-life", "first-order"],
+    statistics: { totalAttempts: 38000, correctPercentage: 68, averageTime: 100 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "JEE_ADV_2024_MAT_001",
+    examId: "JEE_ADVANCED",
+    year: 2024,
+    session: "Paper 1",
+    date: "2024-05-26",
+    category: "Engineering",
+    subject: "Mathematics",
+    topic: "Calculus",
+    subtopic: "Integration",
+    questionNumber: 6,
+    questionType: "MCQ",
+    difficulty: "Hard",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 180,
+    question: {
+      en: "The value of ∫₀^π sin³x dx is:",
+      ta: "∫₀^π sin³x dx இன் மதிப்பு:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "0" },
+        { id: "B", text: "2/3" },
+        { id: "C", text: "4/3" },
+        { id: "D", text: "π/2" }
+      ],
+      ta: [
+        { id: "A", text: "0" },
+        { id: "B", text: "2/3" },
+        { id: "C", text: "4/3" },
+        { id: "D", text: "π/2" }
+      ]
+    },
+    correctAnswer: "C",
+    solution: {
+      en: "sin³x = sinx(1-cos²x). Let cosx = t, -sinx dx = dt. ∫sin³x dx = ∫(1-t²)(-dt) = -t + t³/3 + C. Evaluating from 0 to π: [(-(-1) + (-1)³/3) - ((-1) + 1³/3)] = (1 - 1/3) - (-1 + 1/3) = 2/3 + 2/3 = 4/3",
+      ta: "sin³x = sinx(1-cos²x). cosx = t என்க, -sinx dx = dt. ∫sin³x dx = ∫(1-t²)(-dt) = -t + t³/3 + C. 0 முதல் π வரை மதிப்பிடுதல்: 4/3"
+    },
+    hints: ["Use sin³x = sinx(1-cos²x)", "Substitution method"],
+    conceptsTested: ["Definite integration", "Substitution"],
+    commonMistakes: ["Wrong limits", "Sign errors"],
+    relatedQuestions: ["JEE_ADV_2023_MAT_008"],
+    tags: ["calculus", "integration", "trigonometric"],
+    statistics: { totalAttempts: 30000, correctPercentage: 42, averageTime: 200 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "JEE_ADV_2024_MAT_002",
+    examId: "JEE_ADVANCED",
+    year: 2024,
+    session: "Paper 1",
+    date: "2024-05-26",
+    category: "Engineering",
+    subject: "Mathematics",
+    topic: "Algebra",
+    subtopic: "Matrices",
+    questionNumber: 7,
+    questionType: "MCQ",
+    difficulty: "Moderate",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 150,
+    question: {
+      en: "If A is a 3×3 matrix such that det(A) = 5, then det(2A) is:",
+      ta: "A என்பது 3×3 அணி மற்றும் det(A) = 5 எனில், det(2A) என்பது:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "10" },
+        { id: "B", text: "20" },
+        { id: "C", text: "40" },
+        { id: "D", text: "80" }
+      ],
+      ta: [
+        { id: "A", text: "10" },
+        { id: "B", text: "20" },
+        { id: "C", text: "40" },
+        { id: "D", text: "80" }
+      ]
+    },
+    correctAnswer: "C",
+    solution: {
+      en: "For an n×n matrix, det(kA) = k^n × det(A). Here n=3, k=2. So det(2A) = 2³ × 5 = 8 × 5 = 40",
+      ta: "n×n அணிக்கு, det(kA) = k^n × det(A). இங்கு n=3, k=2. எனவே det(2A) = 2³ × 5 = 8 × 5 = 40"
+    },
+    hints: ["Use det(kA) = k^n × det(A)", "n is the order of matrix"],
+    conceptsTested: ["Determinant properties", "Scalar multiplication"],
+    commonMistakes: ["Using k instead of k^n", "Wrong matrix order"],
+    relatedQuestions: ["JEE_ADV_2023_MAT_015"],
+    tags: ["matrices", "determinant", "algebra"],
+    statistics: { totalAttempts: 35000, correctPercentage: 55, averageTime: 120 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+
+  // ============================================
+  // BITSAT 2024 - PHYSICS
+  // ============================================
+  {
+    id: "BITSAT_2024_PHY_001",
+    examId: "BITSAT",
+    year: 2024,
+    date: "2024-05-20",
+    category: "Engineering",
+    subject: "Physics",
+    topic: "Optics",
+    subtopic: "Wave Optics",
+    questionNumber: 1,
+    questionType: "MCQ",
+    difficulty: "Moderate",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 120,
+    question: {
+      en: "In Young's double slit experiment, if the distance between the slits is halved, the fringe width will:",
+      ta: "யங்கின் இரட்டை பிளவு சோதனையில், பிளவுகளுக்கு இடையேயான தூரம் பாதியாகக் குறைக்கப்பட்டால், விளிம்பு அகலம்:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "Become half" },
+        { id: "B", text: "Become double" },
+        { id: "C", text: "Remain same" },
+        { id: "D", text: "Become four times" }
+      ],
+      ta: [
+        { id: "A", text: "பாதியாகும்" },
+        { id: "B", text: "இரட்டிப்பாகும்" },
+        { id: "C", text: "அப்படியே இருக்கும்" },
+        { id: "D", text: "நான்கு மடங்காகும்" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "Fringe width β = λD/d. If d becomes d/2, then β' = λD/(d/2) = 2λD/d = 2β. So fringe width doubles.",
+      ta: "விளிம்பு அகலம் β = λD/d. d என்பது d/2 ஆனால், β' = λD/(d/2) = 2λD/d = 2β. எனவே விளிம்பு அகலம் இரட்டிப்பாகும்."
+    },
+    hints: ["Use fringe width formula", "β is inversely proportional to d"],
+    conceptsTested: ["Wave optics", "Young's experiment"],
+    commonMistakes: ["Confusing direct and inverse proportionality"],
+    relatedQuestions: ["BITSAT_2023_PHY_008"],
+    tags: ["optics", "interference", "ydse"],
+    statistics: { totalAttempts: 25000, correctPercentage: 62, averageTime: 90 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "BITSAT_2024_PHY_002",
+    examId: "BITSAT",
+    year: 2024,
+    date: "2024-05-20",
+    category: "Engineering",
+    subject: "Physics",
+    topic: "Modern Physics",
+    subtopic: "Photoelectric Effect",
+    questionNumber: 2,
+    questionType: "MCQ",
+    difficulty: "Easy",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 90,
+    question: {
+      en: "The work function of a metal is 4.2 eV. The threshold wavelength for photoelectric emission is approximately:",
+      ta: "ஒரு உலோகத்தின் வேலை செயல்பாடு 4.2 eV. ஒளிமின் உமிழ்வுக்கான வரம்பு அலைநீளம் தோராயமாக:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "2950 Å" },
+        { id: "B", text: "3500 Å" },
+        { id: "C", text: "4200 Å" },
+        { id: "D", text: "5000 Å" }
+      ],
+      ta: [
+        { id: "A", text: "2950 Å" },
+        { id: "B", text: "3500 Å" },
+        { id: "C", text: "4200 Å" },
+        { id: "D", text: "5000 Å" }
+      ]
+    },
+    correctAnswer: "A",
+    solution: {
+      en: "Work function W = hc/λ₀. λ₀ = hc/W = (6.63×10⁻³⁴ × 3×10⁸)/(4.2 × 1.6×10⁻¹⁹) = 2950 Å",
+      ta: "வேலை செயல்பாடு W = hc/λ₀. λ₀ = hc/W = (6.63×10⁻³⁴ × 3×10⁸)/(4.2 × 1.6×10⁻¹⁹) = 2950 Å"
+    },
+    hints: ["Use λ₀ = hc/W", "Convert eV to Joules"],
+    conceptsTested: ["Photoelectric effect", "Threshold wavelength"],
+    commonMistakes: ["Unit conversion errors", "Using wrong formula"],
+    relatedQuestions: ["BITSAT_2023_PHY_012"],
+    tags: ["modern-physics", "photoelectric", "important"],
+    statistics: { totalAttempts: 28000, correctPercentage: 58, averageTime: 100 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "BITSAT_2024_PHY_003",
+    examId: "BITSAT",
+    year: 2024,
+    date: "2024-05-20",
+    category: "Engineering",
+    subject: "Physics",
+    topic: "Mechanics",
+    subtopic: "Simple Harmonic Motion",
+    questionNumber: 3,
+    questionType: "MCQ",
+    difficulty: "Moderate",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 120,
+    question: {
+      en: "A simple pendulum has time period T. If its length is increased by 21%, the new time period will be:",
+      ta: "ஒரு எளிய ஊசல் T கால அளவைக் கொண்டுள்ளது. அதன் நீளம் 21% அதிகரித்தால், புதிய கால அளவு:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "1.05T" },
+        { id: "B", text: "1.1T" },
+        { id: "C", text: "1.21T" },
+        { id: "D", text: "1.44T" }
+      ],
+      ta: [
+        { id: "A", text: "1.05T" },
+        { id: "B", text: "1.1T" },
+        { id: "C", text: "1.21T" },
+        { id: "D", text: "1.44T" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "T = 2π√(L/g). T ∝ √L. If L' = 1.21L, then T' = T√1.21 = T × 1.1 = 1.1T",
+      ta: "T = 2π√(L/g). T ∝ √L. L' = 1.21L எனில், T' = T√1.21 = T × 1.1 = 1.1T"
+    },
+    hints: ["T is proportional to √L", "√1.21 = 1.1"],
+    conceptsTested: ["Simple pendulum", "Time period"],
+    commonMistakes: ["Not taking square root", "Wrong proportionality"],
+    relatedQuestions: ["BITSAT_2023_PHY_018"],
+    tags: ["shm", "pendulum", "time-period"],
+    statistics: { totalAttempts: 30000, correctPercentage: 55, averageTime: 110 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "BITSAT_2024_CHE_001",
+    examId: "BITSAT",
+    year: 2024,
+    date: "2024-05-20",
+    category: "Engineering",
+    subject: "Chemistry",
+    topic: "Inorganic Chemistry",
+    subtopic: "Periodic Table",
+    questionNumber: 4,
+    questionType: "MCQ",
+    difficulty: "Easy",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 60,
+    question: {
+      en: "Which of the following has the highest ionization energy?",
+      ta: "பின்வருவனவற்றில் எது அதிக அயனியாக்க ஆற்றலைக் கொண்டுள்ளது?"
+    },
+    options: {
+      en: [
+        { id: "A", text: "Na" },
+        { id: "B", text: "Mg" },
+        { id: "C", text: "Al" },
+        { id: "D", text: "Ne" }
+      ],
+      ta: [
+        { id: "A", text: "Na" },
+        { id: "B", text: "Mg" },
+        { id: "C", text: "Al" },
+        { id: "D", text: "Ne" }
+      ]
+    },
+    correctAnswer: "D",
+    solution: {
+      en: "Noble gases have highest ionization energy due to stable electronic configuration. Ne has the highest IE among the given options.",
+      ta: "உயர்குடி வாயுக்கள் நிலையான எலக்ட்ரான் அமைப்பின் காரணமாக அதிக அயனியாக்க ஆற்றலைக் கொண்டுள்ளன. கொடுக்கப்பட்ட விருப்பங்களில் Ne அதிக IE கொண்டுள்ளது."
+    },
+    hints: ["Noble gases have complete octet", "IE increases across period"],
+    conceptsTested: ["Ionization energy", "Periodic trends"],
+    commonMistakes: ["Confusing with electronegativity"],
+    relatedQuestions: ["BITSAT_2023_CHE_005"],
+    tags: ["periodic-table", "ionization-energy", "basic"],
+    statistics: { totalAttempts: 32000, correctPercentage: 78, averageTime: 50 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "BITSAT_2024_CHE_002",
+    examId: "BITSAT",
+    year: 2024,
+    date: "2024-05-20",
+    category: "Engineering",
+    subject: "Chemistry",
+    topic: "Organic Chemistry",
+    subtopic: "Hydrocarbons",
+    questionNumber: 5,
+    questionType: "MCQ",
+    difficulty: "Moderate",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 90,
+    question: {
+      en: "The IUPAC name of CH₃-CH=CH-CH₃ is:",
+      ta: "CH₃-CH=CH-CH₃ இன் IUPAC பெயர்:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "But-1-ene" },
+        { id: "B", text: "But-2-ene" },
+        { id: "C", text: "Butane" },
+        { id: "D", text: "Propene" }
+      ],
+      ta: [
+        { id: "A", text: "பியூட்-1-ஈன்" },
+        { id: "B", text: "பியூட்-2-ஈன்" },
+        { id: "C", text: "பியூட்டேன்" },
+        { id: "D", text: "புரோப்பீன்" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "The double bond is between C2 and C3, so it's But-2-ene. Count from the end closer to double bond.",
+      ta: "இரட்டைப் பிணைப்பு C2 மற்றும் C3 இடையே உள்ளது, எனவே இது பியூட்-2-ஈன். இரட்டைப் பிணைப்புக்கு அருகிலுள்ள முனையிலிருந்து எண்ணவும்."
+    },
+    hints: ["Locate the double bond position", "Number from end closer to double bond"],
+    conceptsTested: ["IUPAC nomenclature", "Alkenes"],
+    commonMistakes: ["Wrong numbering", "Not identifying double bond position"],
+    relatedQuestions: ["BITSAT_2023_CHE_012"],
+    tags: ["organic", "nomenclature", "alkenes"],
+    statistics: { totalAttempts: 35000, correctPercentage: 72, averageTime: 70 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "BITSAT_2024_MAT_001",
+    examId: "BITSAT",
+    year: 2024,
+    date: "2024-05-20",
+    category: "Engineering",
+    subject: "Mathematics",
+    topic: "Calculus",
+    subtopic: "Limits",
+    questionNumber: 6,
+    questionType: "MCQ",
+    difficulty: "Easy",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 60,
+    question: {
+      en: "The value of lim(x→0) (sin x)/x is:",
+      ta: "lim(x→0) (sin x)/x இன் மதிப்பு:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "0" },
+        { id: "B", text: "1" },
+        { id: "C", text: "∞" },
+        { id: "D", text: "-1" }
+      ],
+      ta: [
+        { id: "A", text: "0" },
+        { id: "B", text: "1" },
+        { id: "C", text: "∞" },
+        { id: "D", text: "-1" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "This is a standard limit. lim(x→0) (sin x)/x = 1. Can be proved using L'Hopital's rule or squeeze theorem.",
+      ta: "இது ஒரு நிலையான வரம்பு. lim(x→0) (sin x)/x = 1. எல்ஹாப்பிட்டல் விதி அல்லது அழுத்த தேற்றத்தைப் பயன்படுத்தி நிரூபிக்கலாம்."
+    },
+    hints: ["Standard limit formula", "x must be in radians"],
+    conceptsTested: ["Limits", "Standard results"],
+    commonMistakes: ["Using degrees instead of radians"],
+    relatedQuestions: ["BITSAT_2023_MAT_001"],
+    tags: ["calculus", "limits", "standard-limit"],
+    statistics: { totalAttempts: 40000, correctPercentage: 85, averageTime: 40 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "BITSAT_2024_MAT_002",
+    examId: "BITSAT",
+    year: 2024,
+    date: "2024-05-20",
+    category: "Engineering",
+    subject: "Mathematics",
+    topic: "Algebra",
+    subtopic: "Quadratic Equations",
+    questionNumber: 7,
+    questionType: "MCQ",
+    difficulty: "Moderate",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 90,
+    question: {
+      en: "If α and β are roots of x² - 5x + 6 = 0, then α² + β² is:",
+      ta: "α மற்றும் β என்பவை x² - 5x + 6 = 0 இன் மூலங்கள் எனில், α² + β² என்பது:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "11" },
+        { id: "B", text: "13" },
+        { id: "C", text: "25" },
+        { id: "D", text: "37" }
+      ],
+      ta: [
+        { id: "A", text: "11" },
+        { id: "B", text: "13" },
+        { id: "C", text: "25" },
+        { id: "D", text: "37" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "α + β = 5, αβ = 6. α² + β² = (α + β)² - 2αβ = 25 - 12 = 13",
+      ta: "α + β = 5, αβ = 6. α² + β² = (α + β)² - 2αβ = 25 - 12 = 13"
+    },
+    hints: ["Use sum and product of roots", "α² + β² = (α + β)² - 2αβ"],
+    conceptsTested: ["Quadratic equations", "Sum and product of roots"],
+    commonMistakes: ["Using wrong formula", "Calculation errors"],
+    relatedQuestions: ["BITSAT_2023_MAT_008"],
+    tags: ["algebra", "quadratic", "roots"],
+    statistics: { totalAttempts: 38000, correctPercentage: 68, averageTime: 80 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "BITSAT_2024_ENG_001",
+    examId: "BITSAT",
+    year: 2024,
+    date: "2024-05-20",
+    category: "Engineering",
+    subject: "English",
+    topic: "Grammar",
+    subtopic: "Error Correction",
+    questionNumber: 8,
+    questionType: "MCQ",
+    difficulty: "Easy",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 60,
+    question: {
+      en: "Choose the grammatically correct sentence:",
+      ta: "இலக்கணப்படி சரியான வாக்கியத்தைத் தேர்ந்தெடுக்கவும்:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "He don't know the answer." },
+        { id: "B", text: "He doesn't knows the answer." },
+        { id: "C", text: "He doesn't know the answer." },
+        { id: "D", text: "He do not knows the answer." }
+      ],
+      ta: [
+        { id: "A", text: "He don't know the answer." },
+        { id: "B", text: "He doesn't knows the answer." },
+        { id: "C", text: "He doesn't know the answer." },
+        { id: "D", text: "He do not knows the answer." }
+      ]
+    },
+    correctAnswer: "C",
+    solution: {
+      en: "With third person singular (He/She/It), we use 'doesn't' + base form of verb. 'He doesn't know' is correct.",
+      ta: "மூன்றாம் நபர் ஒருமையுடன் (He/She/It), 'doesn't' + வினைச்சொல்லின் அடிப்படை வடிவத்தைப் பயன்படுத்துகிறோம். 'He doesn't know' சரியானது."
+    },
+    hints: ["Subject-verb agreement", "Doesn't + base form"],
+    conceptsTested: ["Grammar", "Subject-verb agreement"],
+    commonMistakes: ["Double negative", "Wrong verb form"],
+    relatedQuestions: ["BITSAT_2023_ENG_005"],
+    tags: ["english", "grammar", "basic"],
+    statistics: { totalAttempts: 42000, correctPercentage: 82, averageTime: 45 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "BITSAT_2024_LR_001",
+    examId: "BITSAT",
+    year: 2024,
+    date: "2024-05-20",
+    category: "Engineering",
+    subject: "Logical Reasoning",
+    topic: "Series",
+    subtopic: "Number Series",
+    questionNumber: 9,
+    questionType: "MCQ",
+    difficulty: "Easy",
+    marks: 3,
+    negativeMarks: 1,
+    timeRecommended: 60,
+    question: {
+      en: "Find the next number in the series: 2, 6, 12, 20, 30, ?",
+      ta: "தொடரில் அடுத்த எண்ணைக் கண்டறியவும்: 2, 6, 12, 20, 30, ?"
+    },
+    options: {
+      en: [
+        { id: "A", text: "40" },
+        { id: "B", text: "42" },
+        { id: "C", text: "44" },
+        { id: "D", text: "48" }
+      ],
+      ta: [
+        { id: "A", text: "40" },
+        { id: "B", text: "42" },
+        { id: "C", text: "44" },
+        { id: "D", text: "48" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "Pattern: n(n+1). For n=1: 1×2=2, n=2: 2×3=6, n=3: 3×4=12, n=4: 4×5=20, n=5: 5×6=30, n=6: 6×7=42",
+      ta: "முறை: n(n+1). n=1க்கு: 1×2=2, n=2: 2×3=6, n=3: 3×4=12, n=4: 4×5=20, n=5: 5×6=30, n=6: 6×7=42"
+    },
+    hints: ["Look at differences", "Product of consecutive numbers"],
+    conceptsTested: ["Number series", "Pattern recognition"],
+    commonMistakes: ["Wrong pattern identification"],
+    relatedQuestions: ["BITSAT_2023_LR_008"],
+    tags: ["reasoning", "series", "number-pattern"],
+    statistics: { totalAttempts: 35000, correctPercentage: 72, averageTime: 55 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+
+  // ============================================
+  // VITEEE 2024
+  // ============================================
+  {
+    id: "VITEEE_2024_PHY_001",
+    examId: "VITEEE",
+    year: 2024,
+    date: "2024-04-19",
+    category: "Engineering",
+    subject: "Physics",
+    topic: "Electrostatics",
+    subtopic: "Coulomb's Law",
+    questionNumber: 1,
+    questionType: "MCQ",
+    difficulty: "Easy",
+    marks: 1,
+    negativeMarks: 0,
+    timeRecommended: 60,
+    question: {
+      en: "Two identical charges of 2 μC each are placed 10 cm apart. The force between them is:",
+      ta: "2 μC கொண்ட இரண்டு ஒத்த மின்னூட்டங்கள் 10 செமீ தூரத்தில் வைக்கப்பட்டுள்ளன. அவற்றுக்கிடையேயான விசை:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "3.6 N" },
+        { id: "B", text: "0.36 N" },
+        { id: "C", text: "36 N" },
+        { id: "D", text: "0.036 N" }
+      ],
+      ta: [
+        { id: "A", text: "3.6 N" },
+        { id: "B", text: "0.36 N" },
+        { id: "C", text: "36 N" },
+        { id: "D", text: "0.036 N" }
+      ]
+    },
+    correctAnswer: "A",
+    solution: {
+      en: "F = kq₁q₂/r² = 9×10⁹ × (2×10⁻⁶)² / (0.1)² = 9×10⁹ × 4×10⁻¹² / 0.01 = 3.6 N",
+      ta: "F = kq₁q₂/r² = 9×10⁹ × (2×10⁻⁶)² / (0.1)² = 9×10⁹ × 4×10⁻¹² / 0.01 = 3.6 N"
+    },
+    hints: ["Use Coulomb's law", "Convert units properly"],
+    conceptsTested: ["Coulomb's law", "Electrostatic force"],
+    commonMistakes: ["Unit conversion errors", "Using wrong formula"],
+    relatedQuestions: ["VITEEE_2023_PHY_005"],
+    tags: ["electrostatics", "coulomb-law", "basic"],
+    statistics: { totalAttempts: 20000, correctPercentage: 65, averageTime: 70 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "VITEEE_2024_CHE_001",
+    examId: "VITEEE",
+    year: 2024,
+    date: "2024-04-19",
+    category: "Engineering",
+    subject: "Chemistry",
+    topic: "Electrochemistry",
+    subtopic: "Electrochemical Cells",
+    questionNumber: 2,
+    questionType: "MCQ",
+    difficulty: "Moderate",
+    marks: 1,
+    negativeMarks: 0,
+    timeRecommended: 90,
+    question: {
+      en: "In a galvanic cell, oxidation occurs at:",
+      ta: "ஒரு கால்வானிக் கலத்தில், ஆக்ஸிஜனேற்றம் நிகழும் இடம்:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "Cathode" },
+        { id: "B", text: "Anode" },
+        { id: "C", text: "Both electrodes" },
+        { id: "D", text: "Salt bridge" }
+      ],
+      ta: [
+        { id: "A", text: "கேத்தோடு" },
+        { id: "B", text: "ஆனோடு" },
+        { id: "C", text: "இரண்டு மின்முனைகளிலும்" },
+        { id: "D", text: "உப்புப் பாலம்" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "In a galvanic cell, oxidation (loss of electrons) occurs at the anode, and reduction (gain of electrons) occurs at the cathode. Remember: AN OX, RED CAT.",
+      ta: "கால்வானிக் கலத்தில், ஆக்ஸிஜனேற்றம் (எலக்ட்ரான்கள் இழப்பு) ஆனோடில் நிகழ்கிறது, மற்றும் ஒடுக்கம் (எலக்ட்ரான்கள் பெறுதல்) கேத்தோடில் நிகழ்கிறது."
+    },
+    hints: ["Anode = Oxidation", "Cathode = Reduction"],
+    conceptsTested: ["Galvanic cell", "Electrode reactions"],
+    commonMistakes: ["Confusing anode and cathode"],
+    relatedQuestions: ["VITEEE_2023_CHE_008"],
+    tags: ["electrochemistry", "galvanic-cell", "basic"],
+    statistics: { totalAttempts: 22000, correctPercentage: 75, averageTime: 50 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "VITEEE_2024_MAT_001",
+    examId: "VITEEE",
+    year: 2024,
+    date: "2024-04-19",
+    category: "Engineering",
+    subject: "Mathematics",
+    topic: "Probability",
+    subtopic: "Basic Probability",
+    questionNumber: 3,
+    questionType: "MCQ",
+    difficulty: "Easy",
+    marks: 1,
+    negativeMarks: 0,
+    timeRecommended: 60,
+    question: {
+      en: "A fair die is thrown once. The probability of getting a prime number is:",
+      ta: "ஒரு நியாயமான பகடை ஒரு முறை எறியப்படுகிறது. பகா எண் கிடைக்கும் நிகழ்தகவு:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "1/2" },
+        { id: "B", text: "1/3" },
+        { id: "C", text: "2/3" },
+        { id: "D", text: "5/6" }
+      ],
+      ta: [
+        { id: "A", text: "1/2" },
+        { id: "B", text: "1/3" },
+        { id: "C", text: "2/3" },
+        { id: "D", text: "5/6" }
+      ]
+    },
+    correctAnswer: "A",
+    solution: {
+      en: "Prime numbers on a die: 2, 3, 5 (three numbers). Total outcomes: 6. Probability = 3/6 = 1/2",
+      ta: "பகடையில் பகா எண்கள்: 2, 3, 5 (மூன்று எண்கள்). மொத்த விளைவுகள்: 6. நிகழ்தகவு = 3/6 = 1/2"
+    },
+    hints: ["Identify prime numbers 1-6", "Prime numbers: 2, 3, 5"],
+    conceptsTested: ["Basic probability", "Prime numbers"],
+    commonMistakes: ["Including 1 as prime", "Wrong counting"],
+    relatedQuestions: ["VITEEE_2023_MAT_005"],
+    tags: ["probability", "basic", "prime-numbers"],
+    statistics: { totalAttempts: 25000, correctPercentage: 72, averageTime: 45 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+
+  // ============================================
+  // SRMJEEE 2024
+  // ============================================
+  {
+    id: "SRMJEEE_2024_PHY_001",
+    examId: "SRMJEEE",
+    year: 2024,
+    date: "2024-04-15",
+    category: "Engineering",
+    subject: "Physics",
+    topic: "Current Electricity",
+    subtopic: "Ohm's Law",
+    questionNumber: 1,
+    questionType: "MCQ",
+    difficulty: "Easy",
+    marks: 1,
+    negativeMarks: 0,
+    timeRecommended: 60,
+    question: {
+      en: "The resistance of a wire is 10 Ω. If it is stretched to double its length, the new resistance will be:",
+      ta: "ஒரு கம்பியின் மின்தடை 10 Ω. அது இரட்டிப்பு நீளத்திற்கு நீட்டப்பட்டால், புதிய மின்தடை:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "10 Ω" },
+        { id: "B", text: "20 Ω" },
+        { id: "C", text: "40 Ω" },
+        { id: "D", text: "5 Ω" }
+      ],
+      ta: [
+        { id: "A", text: "10 Ω" },
+        { id: "B", text: "20 Ω" },
+        { id: "C", text: "40 Ω" },
+        { id: "D", text: "5 Ω" }
+      ]
+    },
+    correctAnswer: "C",
+    solution: {
+      en: "R = ρL/A. When stretched to double length, L' = 2L and A' = A/2 (volume constant). R' = ρ(2L)/(A/2) = 4ρL/A = 4R = 40 Ω",
+      ta: "R = ρL/A. இரட்டிப்பு நீளத்திற்கு நீட்டும்போது, L' = 2L மற்றும் A' = A/2 (கன அளவு மாறாது). R' = ρ(2L)/(A/2) = 4ρL/A = 4R = 40 Ω"
+    },
+    hints: ["Volume remains constant", "R ∝ L²"],
+    conceptsTested: ["Resistance", "Wire stretching"],
+    commonMistakes: ["Forgetting area change", "Wrong proportionality"],
+    relatedQuestions: ["SRMJEEE_2023_PHY_008"],
+    tags: ["electricity", "resistance", "important"],
+    statistics: { totalAttempts: 18000, correctPercentage: 55, averageTime: 80 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "SRMJEEE_2024_CHE_001",
+    examId: "SRMJEEE",
+    year: 2024,
+    date: "2024-04-15",
+    category: "Engineering",
+    subject: "Chemistry",
+    topic: "Chemical Bonding",
+    subtopic: "Hybridization",
+    questionNumber: 2,
+    questionType: "MCQ",
+    difficulty: "Easy",
+    marks: 1,
+    negativeMarks: 0,
+    timeRecommended: 60,
+    question: {
+      en: "The hybridization of carbon in methane (CH₄) is:",
+      ta: "மீத்தேனில் (CH₄) கார்பனின் கலப்பினமாக்கம்:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "sp" },
+        { id: "B", text: "sp²" },
+        { id: "C", text: "sp³" },
+        { id: "D", text: "sp³d" }
+      ],
+      ta: [
+        { id: "A", text: "sp" },
+        { id: "B", text: "sp²" },
+        { id: "C", text: "sp³" },
+        { id: "D", text: "sp³d" }
+      ]
+    },
+    correctAnswer: "C",
+    solution: {
+      en: "In CH₄, carbon forms 4 sigma bonds with hydrogen atoms. This requires sp³ hybridization, resulting in a tetrahedral geometry.",
+      ta: "CH₄ இல், கார்பன் ஹைட்ரஜன் அணுக்களுடன் 4 சிக்மா பிணைப்புகளை உருவாக்குகிறது. இதற்கு sp³ கலப்பினமாக்கம் தேவை, இது நான்முக வடிவியலை விளைவிக்கிறது."
+    },
+    hints: ["Count sigma bonds + lone pairs", "4 bonds = sp³"],
+    conceptsTested: ["Hybridization", "Molecular geometry"],
+    commonMistakes: ["Wrong counting of bonds"],
+    relatedQuestions: ["SRMJEEE_2023_CHE_005"],
+    tags: ["bonding", "hybridization", "basic"],
+    statistics: { totalAttempts: 20000, correctPercentage: 82, averageTime: 40 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
+  },
+  {
+    id: "SRMJEEE_2024_MAT_001",
+    examId: "SRMJEEE",
+    year: 2024,
+    date: "2024-04-15",
+    category: "Engineering",
+    subject: "Mathematics",
+    topic: "Trigonometry",
+    subtopic: "Basic Identities",
+    questionNumber: 3,
+    questionType: "MCQ",
+    difficulty: "Easy",
+    marks: 1,
+    negativeMarks: 0,
+    timeRecommended: 45,
+    question: {
+      en: "The value of sin²30° + cos²30° is:",
+      ta: "sin²30° + cos²30° இன் மதிப்பு:"
+    },
+    options: {
+      en: [
+        { id: "A", text: "0" },
+        { id: "B", text: "1" },
+        { id: "C", text: "1/2" },
+        { id: "D", text: "√3/2" }
+      ],
+      ta: [
+        { id: "A", text: "0" },
+        { id: "B", text: "1" },
+        { id: "C", text: "1/2" },
+        { id: "D", text: "√3/2" }
+      ]
+    },
+    correctAnswer: "B",
+    solution: {
+      en: "sin²θ + cos²θ = 1 for any angle θ. This is a fundamental trigonometric identity.",
+      ta: "எந்த கோணம் θ க்கும் sin²θ + cos²θ = 1. இது ஒரு அடிப்படை முக்கோணவியல் அடையாளம்."
+    },
+    hints: ["Fundamental identity", "sin²θ + cos²θ = 1"],
+    conceptsTested: ["Trigonometric identities"],
+    commonMistakes: ["Calculating individual values"],
+    relatedQuestions: ["SRMJEEE_2023_MAT_001"],
+    tags: ["trigonometry", "identity", "basic"],
+    statistics: { totalAttempts: 22000, correctPercentage: 92, averageTime: 30 },
+    isBookmarked: false,
+    isAttempted: false,
+    userAnswer: null
   }
 ];
 
