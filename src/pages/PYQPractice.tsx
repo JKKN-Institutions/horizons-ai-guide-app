@@ -24,7 +24,7 @@ import {
   type PYQQuestion,
   type PYQExam
 } from '@/data/pyq-database';
-import { generatePYQPDF, generateBookmarkedPDF, YearSelectionDialog, MockTest, MockTestConfigDialog } from '@/components/PYQ';
+import { generatePYQPDF, generateBookmarkedPDF, YearSelectionDialog, MockTest, MockTestConfigDialog, MockTestLeaderboard } from '@/components/PYQ';
 import { usePYQBookmarks } from '@/hooks/usePYQBookmarks';
 
 const PYQPractice = () => {
@@ -413,6 +413,11 @@ const PYQPractice = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Mock Test Leaderboard */}
+          <div className="mb-10">
+            <MockTestLeaderboard language={language} />
           </div>
 
           {/* Filters */}
