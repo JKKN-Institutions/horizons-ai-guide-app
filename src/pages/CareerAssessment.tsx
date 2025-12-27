@@ -3,8 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { ChevronLeft, ChevronRight, RotateCcw, Share2, Sparkles, ArrowLeft } from 'lucide-react';
+import { ChevronLeft, ChevronRight, RotateCcw, Share2, Sparkles, ArrowLeft, Lightbulb, Loader2 } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
+interface CareerTip {
+  emoji: string;
+  title: string;
+  description: string;
+}
 type Language = 'en' | 'ta';
 type Screen = 'intro' | 'questions' | 'results';
 
@@ -32,6 +39,8 @@ interface Result {
   score: number;
   percentage: number;
 }
+
+// Will reference careerClusters, defined later in the file
 
 interface CareerCluster {
   name: { en: string; ta: string };
@@ -424,12 +433,15 @@ const careerClusters: Record<string, CareerCluster> = {
 
 const CareerAssessment = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [language, setLanguage] = useState<Language>('en');
   const [currentScreen, setCurrentScreen] = useState<Screen>('intro');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [responses, setResponses] = useState<Response[]>([]);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [results, setResults] = useState<Result[]>([]);
+  const [careerTips, setCareerTips] = useState<CareerTip[]>([]);
+  const [loadingTips, setLoadingTips] = useState(false);
 
   // Load saved state from localStorage
   useEffect(() => {
@@ -448,6 +460,41 @@ const CareerAssessment = () => {
       }
     }
   }, []);
+
+  // Fetch personalized tips when results are available
+  const fetchCareerTips = async (resultsData: Result[]) => {
+    setLoadingTips(true);
+    try {
+      const topCareers = resultsData.map(r => ({
+        name: careerClusters[r.career]?.name?.en || r.career,
+        percentage: r.percentage
+      }));
+
+      const { data, error } = await supabase.functions.invoke('career-tips', {
+        body: { topCareers, language }
+      });
+
+      if (error) {
+        console.error('Error fetching tips:', error);
+        if (error.message?.includes('429')) {
+          toast({
+            title: language === 'en' ? 'Please wait' : 'காத்திருக்கவும்',
+            description: language === 'en' ? 'Too many requests. Try again in a moment.' : 'பல கோரிக்கைகள். சிறிது நேரம் கழித்து முயற்சிக்கவும்.',
+            variant: 'destructive'
+          });
+        }
+        return;
+      }
+
+      if (data?.tips) {
+        setCareerTips(data.tips);
+      }
+    } catch (err) {
+      console.error('Error fetching career tips:', err);
+    } finally {
+      setLoadingTips(false);
+    }
+  };
 
   const calculateResults = (allResponses: Response[]) => {
     const scores: Record<string, number> = {
@@ -476,6 +523,8 @@ const CareerAssessment = () => {
     
     setResults(sortedResults);
     localStorage.setItem('careerAssessmentResults', JSON.stringify(sortedResults));
+    // Fetch personalized tips
+    fetchCareerTips(sortedResults);
   };
 
   const handleNext = () => {
@@ -516,6 +565,7 @@ const CareerAssessment = () => {
     setResponses([]);
     setSelectedOption(null);
     setResults([]);
+    setCareerTips([]);
   };
 
   const handleShare = () => {
@@ -800,6 +850,53 @@ const CareerAssessment = () => {
                 );
               })}
             </div>
+
+            {/* Personalized Career Tips */}
+            <Card className="bg-gradient-to-br from-amber-50 to-orange-50 shadow-lg rounded-2xl border-0 overflow-hidden">
+              <div className="p-5">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-md">
+                    <Lightbulb className="h-5 w-5 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-800">
+                    {language === 'en' ? 'Personalized Career Tips' : 'தனிப்பயனாக்கப்பட்ட தொழில் குறிப்புகள்'}
+                  </h3>
+                </div>
+
+                {loadingTips ? (
+                  <div className="flex items-center justify-center py-8">
+                    <Loader2 className="h-8 w-8 animate-spin text-amber-500" />
+                    <span className="ml-3 text-gray-600">
+                      {language === 'en' ? 'Generating personalized tips...' : 'தனிப்பயனாக்கப்பட்ட குறிப்புகளை உருவாக்குகிறது...'}
+                    </span>
+                  </div>
+                ) : careerTips.length > 0 ? (
+                  <div className="space-y-3">
+                    {careerTips.map((tip, index) => (
+                      <div 
+                        key={index}
+                        className="flex items-start gap-3 p-3 bg-white rounded-xl shadow-sm"
+                      >
+                        <span className="text-2xl flex-shrink-0">{tip.emoji}</span>
+                        <div>
+                          <h4 className="font-semibold text-gray-800 text-sm">{tip.title}</h4>
+                          <p className="text-xs text-gray-600 mt-0.5">{tip.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <Button
+                    variant="outline"
+                    onClick={() => fetchCareerTips(results)}
+                    className="w-full py-4 border-amber-200 text-amber-700 hover:bg-amber-50"
+                  >
+                    <Sparkles className="h-4 w-4 mr-2" />
+                    {language === 'en' ? 'Get AI-Powered Tips' : 'AI குறிப்புகளைப் பெறுங்கள்'}
+                  </Button>
+                )}
+              </div>
+            </Card>
 
             {/* Action Buttons */}
             <div className="space-y-3 pt-4">
