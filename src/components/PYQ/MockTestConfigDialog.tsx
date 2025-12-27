@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Timer, Shuffle, Play, Settings, RotateCcw } from 'lucide-react';
+import { Timer, Shuffle, Play, Settings, RotateCcw, X } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -150,17 +150,74 @@ export const MockTestConfigDialog = ({
           </DialogDescription>
         </DialogHeader>
 
-        {/* Reset Filters Button */}
+        {/* Active Filters Display */}
         {hasActiveFilters && (
-          <Button 
-            variant="outline" 
-            size="sm" 
-            onClick={handleResetFilters}
-            className="w-fit self-end flex-shrink-0"
-          >
-            <RotateCcw className="w-3 h-3 mr-1" />
-            Reset Filters
-          </Button>
+          <div className="flex flex-wrap gap-2 items-center flex-shrink-0">
+            {selectedYear !== 'all' && (
+              <Badge variant="secondary" className="flex items-center gap-1 pr-1">
+                Year: {selectedYear}
+                <button 
+                  onClick={() => setSelectedYear('all')}
+                  className="ml-1 hover:bg-muted rounded-full p-0.5"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </Badge>
+            )}
+            {selectedSubject !== 'all' && (
+              <Badge variant="secondary" className="flex items-center gap-1 pr-1">
+                {selectedSubject}
+                <button 
+                  onClick={() => handleSubjectChange('all')}
+                  className="ml-1 hover:bg-muted rounded-full p-0.5"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </Badge>
+            )}
+            {selectedTopic !== 'all' && (
+              <Badge variant="secondary" className="flex items-center gap-1 pr-1">
+                {selectedTopic}
+                <button 
+                  onClick={() => handleTopicChange('all')}
+                  className="ml-1 hover:bg-muted rounded-full p-0.5"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </Badge>
+            )}
+            {selectedSubtopic !== 'all' && (
+              <Badge variant="secondary" className="flex items-center gap-1 pr-1">
+                {selectedSubtopic}
+                <button 
+                  onClick={() => setSelectedSubtopic('all')}
+                  className="ml-1 hover:bg-muted rounded-full p-0.5"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </Badge>
+            )}
+            {selectedDifficulty !== 'all' && (
+              <Badge variant="secondary" className="flex items-center gap-1 pr-1">
+                {selectedDifficulty}
+                <button 
+                  onClick={() => setSelectedDifficulty('all')}
+                  className="ml-1 hover:bg-muted rounded-full p-0.5"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </Badge>
+            )}
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={handleResetFilters}
+              className="h-6 px-2 text-xs"
+            >
+              <RotateCcw className="w-3 h-3 mr-1" />
+              Clear All
+            </Button>
+          </div>
         )}
 
         <ScrollArea className="flex-1 max-h-[60vh] pr-4">
