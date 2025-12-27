@@ -38,6 +38,7 @@ export const MockTestConfigDialog = ({
   const [selectedYear, setSelectedYear] = useState<string>('all');
   const [selectedSubject, setSelectedSubject] = useState<string>('all');
   const [selectedTopic, setSelectedTopic] = useState<string>('all');
+  const [selectedSubtopic, setSelectedSubtopic] = useState<string>('all');
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
   const [shuffleQuestions, setShuffleQuestions] = useState(true);
   const [timeMultiplier, setTimeMultiplier] = useState(1);
@@ -57,10 +58,33 @@ export const MockTestConfigDialog = ({
     return topics;
   }, [exam?.id, selectedSubject]);
 
-  // Reset topic when subject changes
+  // Get available subtopics based on selected topic - must be before early return
+  const availableSubtopics = useMemo(() => {
+    if (!exam) return [];
+    const subtopics = pyqQuestions
+      .filter(q => {
+        const matchesExam = q.examId === exam.id;
+        const matchesSubject = selectedSubject === 'all' || q.subject === selectedSubject;
+        const matchesTopic = selectedTopic === 'all' || q.topic === selectedTopic;
+        return matchesExam && matchesSubject && matchesTopic;
+      })
+      .map(q => q.subtopic)
+      .filter((subtopic, index, self) => subtopic && self.indexOf(subtopic) === index)
+      .sort();
+    return subtopics;
+  }, [exam?.id, selectedSubject, selectedTopic]);
+
+  // Reset topic and subtopic when subject changes
   const handleSubjectChange = (value: string) => {
     setSelectedSubject(value);
     setSelectedTopic('all');
+    setSelectedSubtopic('all');
+  };
+
+  // Reset subtopic when topic changes
+  const handleTopicChange = (value: string) => {
+    setSelectedTopic(value);
+    setSelectedSubtopic('all');
   };
 
   // Get available questions based on filters - must be before early return
@@ -71,10 +95,11 @@ export const MockTestConfigDialog = ({
       const matchesYear = selectedYear === 'all' || q.year.toString() === selectedYear;
       const matchesSubject = selectedSubject === 'all' || q.subject === selectedSubject;
       const matchesTopic = selectedTopic === 'all' || q.topic === selectedTopic;
+      const matchesSubtopic = selectedSubtopic === 'all' || q.subtopic === selectedSubtopic;
       const matchesDifficulty = selectedDifficulty === 'all' || q.difficulty === selectedDifficulty;
-      return matchesExam && matchesYear && matchesSubject && matchesTopic && matchesDifficulty;
+      return matchesExam && matchesYear && matchesSubject && matchesTopic && matchesSubtopic && matchesDifficulty;
     });
-  }, [exam?.id, selectedYear, selectedSubject, selectedTopic, selectedDifficulty]);
+  }, [exam?.id, selectedYear, selectedSubject, selectedTopic, selectedSubtopic, selectedDifficulty]);
 
   if (!exam) return null;
 
@@ -149,7 +174,7 @@ export const MockTestConfigDialog = ({
           {/* Topic Selection */}
           <div className="space-y-2">
             <Label>Topic</Label>
-            <Select value={selectedTopic} onValueChange={setSelectedTopic}>
+            <Select value={selectedTopic} onValueChange={handleTopicChange}>
               <SelectTrigger>
                 <SelectValue placeholder="Select topic" />
               </SelectTrigger>
@@ -157,6 +182,22 @@ export const MockTestConfigDialog = ({
                 <SelectItem value="all">All Topics</SelectItem>
                 {availableTopics.map(topic => (
                   <SelectItem key={topic} value={topic}>{topic}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Subtopic Selection */}
+          <div className="space-y-2">
+            <Label>Subtopic</Label>
+            <Select value={selectedSubtopic} onValueChange={setSelectedSubtopic}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select subtopic" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Subtopics</SelectItem>
+                {availableSubtopics.map(subtopic => (
+                  <SelectItem key={subtopic} value={subtopic}>{subtopic}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
