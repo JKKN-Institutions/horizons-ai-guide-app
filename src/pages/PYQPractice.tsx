@@ -278,67 +278,125 @@ const PYQPractice = () => {
 
   if (!isPracticeMode) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50/40 to-amber-50/30 relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-emerald-200/40 to-teal-200/30 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute top-40 right-20 w-96 h-96 bg-gradient-to-br from-amber-200/30 to-orange-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-gradient-to-br from-teal-200/30 to-emerald-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        </div>
+
         {/* Header */}
-        <header className="bg-card/80 backdrop-blur-sm border-b border-border sticky top-0 z-50">
+        <header className="bg-white/70 backdrop-blur-xl border-b border-emerald-100/50 sticky top-0 z-50 shadow-sm">
           <div className="container mx-auto px-4 py-4">
             <div className="flex items-center justify-between">
-              <Link to="/career-assessment/colleges" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-                <ChevronLeft className="w-5 h-5" />
-                <span>Back</span>
+              <Link to="/career-assessment/colleges" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-all duration-300 group">
+                <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+                <span className="font-medium">Back</span>
               </Link>
-              <h1 className="text-xl font-bold text-foreground">PYQ Practice</h1>
+              <div className="flex items-center gap-2">
+                <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
+                  <BookOpen className="w-4 h-4 text-white" />
+                </div>
+                <h1 className="text-xl font-bold bg-gradient-to-r from-emerald-700 to-teal-700 bg-clip-text text-transparent">PYQ Practice</h1>
+              </div>
               <Button 
                 variant="outline" 
                 size="sm"
                 onClick={() => setLanguage(language === 'en' ? 'ta' : 'en')}
+                className="border-emerald-200 hover:bg-emerald-50 hover:border-emerald-300 transition-all duration-300"
               >
-                <Languages className="w-4 h-4 mr-2" />
-                {language === 'en' ? 'தமிழ்' : 'English'}
+                <Languages className="w-4 h-4 mr-2 text-emerald-600" />
+                <span className="font-medium">{language === 'en' ? 'தமிழ்' : 'English'}</span>
               </Button>
             </div>
           </div>
         </header>
 
-        <main className="container mx-auto px-4 py-8 max-w-6xl">
+        <main className="container mx-auto px-4 py-8 max-w-6xl relative z-10">
           {/* Hero Section */}
-          <div className="bg-gradient-to-br from-primary via-primary/90 to-primary/80 rounded-3xl p-8 text-primary-foreground mb-8 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl">
-                  <BookOpen className="w-6 h-6" />
+          <div className="relative rounded-3xl overflow-hidden mb-10 shadow-2xl shadow-emerald-900/20">
+            {/* Gradient Background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-teal-600 to-emerald-700" />
+            
+            {/* Decorative Elements */}
+            <div className="absolute inset-0">
+              <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-white/20 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-amber-400/20 to-transparent rounded-full blur-2xl translate-y-1/2 -translate-x-1/4" />
+              <div className="absolute top-1/2 left-1/2 w-40 h-40 bg-white/10 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2" />
+              {/* Grid Pattern */}
+              <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '24px 24px' }} />
+            </div>
+            
+            {/* Content */}
+            <div className="relative z-10 p-8 md:p-10">
+              <div className="flex items-start justify-between flex-wrap gap-6">
+                <div className="flex-1">
+                  <div className="flex items-center gap-4 mb-5">
+                    <div className="p-3.5 bg-white/20 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg">
+                      <BookOpen className="w-7 h-7 text-white" />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Badge className="bg-amber-400 text-amber-900 border-0 font-semibold px-3 py-1 shadow-lg">
+                        <Trophy className="w-3.5 h-3.5 mr-1.5" />
+                        50+ Exams
+                      </Badge>
+                    </div>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-3 tracking-tight">
+                    {language === 'en' ? 'Previous Year Questions Practice' : 'முந்தைய ஆண்டு கேள்விகள் பயிற்சி'}
+                  </h2>
+                  <p className="text-emerald-100 text-lg max-w-xl leading-relaxed">
+                    {language === 'en' 
+                      ? 'Master competitive exams with real questions, detailed solutions & smart analytics'
+                      : '50+ போட்டித் தேர்வுகளின் உண்மையான கேள்விகளுடன் பயிற்சி செய்யுங்கள்'}
+                  </p>
+                </div>
+                
+                {/* Quick Action */}
+                <div className="flex items-center gap-3">
+                  <Button 
+                    size="lg" 
+                    className="bg-white text-emerald-700 hover:bg-emerald-50 font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5"
+                    onClick={() => {
+                      setCurrentQuestionIndex(0);
+                      setIsPracticeMode(true);
+                    }}
+                  >
+                    <Play className="w-5 h-5 mr-2" />
+                    Start Practice
+                  </Button>
                 </div>
               </div>
-              <h2 className="text-3xl font-bold mb-2">
-                {language === 'en' ? 'Previous Year Questions Practice' : 'முந்தைய ஆண்டு கேள்விகள் பயிற்சி'}
-              </h2>
-              <p className="text-primary-foreground/80 text-lg">
-                {language === 'en' 
-                  ? 'Practice with real exam questions from 50+ competitive exams'
-                  : '50+ போட்டித் தேர்வுகளின் உண்மையான கேள்விகளுடன் பயிற்சி செய்யுங்கள்'}
-              </p>
             </div>
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-10">
             {[
-              { label: language === 'en' ? 'Total Questions' : 'மொத்த கேள்விகள்', value: pyqQuestions.length, icon: Target, color: 'text-blue-600', action: null },
-              { label: language === 'en' ? 'Exams Covered' : 'தேர்வுகள்', value: pyqExams.length, icon: GraduationCap, color: 'text-purple-600', action: null },
-              { label: language === 'en' ? 'Categories' : 'வகைகள்', value: pyqCategories.length, icon: BookOpen, color: 'text-emerald-600', action: null },
-              { label: language === 'en' ? 'Bookmarked' : 'புக்மார்க்', value: bookmarkedQuestions.length, icon: Bookmark, color: 'text-rose-600', action: 'export' },
+              { label: language === 'en' ? 'Total Questions' : 'மொத்த கேள்விகள்', value: pyqQuestions.length, icon: Target, gradient: 'from-blue-500 to-indigo-600', bgGradient: 'from-blue-50 to-indigo-50', borderColor: 'border-blue-200', action: null },
+              { label: language === 'en' ? 'Exams Covered' : 'தேர்வுகள்', value: pyqExams.length, icon: GraduationCap, gradient: 'from-purple-500 to-violet-600', bgGradient: 'from-purple-50 to-violet-50', borderColor: 'border-purple-200', action: null },
+              { label: language === 'en' ? 'Categories' : 'வகைகள்', value: pyqCategories.length, icon: BookOpen, gradient: 'from-emerald-500 to-teal-600', bgGradient: 'from-emerald-50 to-teal-50', borderColor: 'border-emerald-200', action: null },
+              { label: language === 'en' ? 'Bookmarked' : 'புக்மார்க்', value: bookmarkedQuestions.length, icon: Bookmark, gradient: 'from-rose-500 to-pink-600', bgGradient: 'from-rose-50 to-pink-50', borderColor: 'border-rose-200', action: 'export' },
             ].map((stat, index) => (
-              <Card key={index} className="border-none shadow-md">
-                <CardContent className="p-4 text-center">
-                  <stat.icon className={`w-6 h-6 mx-auto mb-2 ${stat.color}`} />
-                  <div className="text-2xl font-bold">{stat.value}</div>
-                  <div className="text-xs text-muted-foreground">{stat.label}</div>
+              <Card 
+                key={index} 
+                className={`relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br ${stat.bgGradient}`}
+              >
+                {/* Decorative corner */}
+                <div className={`absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-br ${stat.gradient} rounded-full opacity-20 blur-xl`} />
+                
+                <CardContent className="p-5 text-center relative">
+                  <div className={`w-14 h-14 mx-auto mb-3 rounded-2xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center shadow-lg`}>
+                    <stat.icon className="w-7 h-7 text-white" />
+                  </div>
+                  <div className="text-3xl font-bold text-foreground mb-1">{stat.value}</div>
+                  <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
                   {stat.action === 'export' && bookmarkedQuestions.length > 0 && (
                     <Button
                       variant="outline"
                       size="sm"
-                      className="mt-2 text-xs h-7"
+                      className="mt-3 text-xs h-8 border-rose-200 hover:bg-rose-50 hover:border-rose-300 text-rose-600"
                       onClick={() => {
                         const bookmarked = pyqQuestions.filter(q => bookmarkedQuestions.includes(q.id));
                         if (bookmarked.length > 0) {
@@ -350,7 +408,7 @@ const PYQPractice = () => {
                         }
                       }}
                     >
-                      <Download className="w-3 h-3 mr-1" />
+                      <Download className="w-3.5 h-3.5 mr-1.5" />
                       Export PDF
                     </Button>
                   )}
@@ -360,21 +418,29 @@ const PYQPractice = () => {
           </div>
 
           {/* Filters */}
-          <Card className="mb-8 border-none shadow-md">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <Filter className="w-5 h-5 text-primary" />
-                <h3 className="font-semibold">{language === 'en' ? 'Filter Questions' : 'கேள்விகளை வடிகட்டு'}</h3>
+          <Card className="mb-10 border-0 shadow-xl bg-white/80 backdrop-blur-sm overflow-hidden">
+            {/* Filter Header */}
+            <div className="bg-gradient-to-r from-slate-50 to-gray-50 border-b border-gray-100 px-6 py-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg shadow">
+                  <Filter className="w-4 h-4 text-white" />
+                </div>
+                <h3 className="font-semibold text-lg text-foreground">{language === 'en' ? 'Filter Questions' : 'கேள்விகளை வடிகட்டு'}</h3>
+                <Badge variant="secondary" className="ml-2 bg-emerald-100 text-emerald-700">
+                  {filteredQuestions.length} results
+                </Badge>
               </div>
+            </div>
+            <CardContent className="p-6">
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {/* Category Filter */}
                 <Select value={selectedCategory} onValueChange={(val) => {
                   setSelectedCategory(val);
                   setSelectedExam('all');
                   setSelectedSubject('all');
                 }}>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white border-gray-200 hover:border-emerald-300 focus:border-emerald-500 transition-colors">
                     <SelectValue placeholder={language === 'en' ? 'Select Category' : 'வகையை தேர்ந்தெடு'} />
                   </SelectTrigger>
                   <SelectContent>
@@ -392,7 +458,7 @@ const PYQPractice = () => {
                   setSelectedExam(val);
                   setSelectedSubject('all');
                 }}>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white border-gray-200 hover:border-emerald-300 focus:border-emerald-500 transition-colors">
                     <SelectValue placeholder={language === 'en' ? 'Select Exam' : 'தேர்வை தேர்ந்தெடு'} />
                   </SelectTrigger>
                   <SelectContent>
@@ -407,7 +473,7 @@ const PYQPractice = () => {
 
                 {/* Year Filter */}
                 <Select value={selectedYear} onValueChange={setSelectedYear}>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white border-gray-200 hover:border-emerald-300 focus:border-emerald-500 transition-colors">
                     <SelectValue placeholder={language === 'en' ? 'Select Year' : 'ஆண்டை தேர்ந்தெடு'} />
                   </SelectTrigger>
                   <SelectContent>
@@ -420,7 +486,7 @@ const PYQPractice = () => {
 
                 {/* Subject Filter */}
                 <Select value={selectedSubject} onValueChange={setSelectedSubject}>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white border-gray-200 hover:border-emerald-300 focus:border-emerald-500 transition-colors">
                     <SelectValue placeholder={language === 'en' ? 'Select Subject' : 'பாடத்தை தேர்ந்தெடு'} />
                   </SelectTrigger>
                   <SelectContent>
@@ -433,7 +499,7 @@ const PYQPractice = () => {
 
                 {/* Difficulty Filter */}
                 <Select value={selectedDifficulty} onValueChange={setSelectedDifficulty}>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white border-gray-200 hover:border-emerald-300 focus:border-emerald-500 transition-colors">
                     <SelectValue placeholder={language === 'en' ? 'Select Difficulty' : 'கடினத்தை தேர்ந்தெடு'} />
                   </SelectTrigger>
                   <SelectContent>
@@ -446,18 +512,21 @@ const PYQPractice = () => {
 
                 {/* Search */}
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-emerald-500" />
                   <Input
                     placeholder={language === 'en' ? 'Search topics...' : 'தலைப்புகளை தேடு...'}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10"
+                    className="pl-10 bg-white border-gray-200 hover:border-emerald-300 focus:border-emerald-500 transition-colors"
                   />
                 </div>
               </div>
-
-              <div className="flex items-center justify-between pt-4 border-t">
-                <p className="text-sm text-muted-foreground">
+            </CardContent>
+            
+            {/* Filter Footer */}
+            <div className="bg-gradient-to-r from-slate-50 to-gray-50 border-t border-gray-100 px-6 py-4">
+              <div className="flex items-center justify-between">
+                <p className="text-sm text-muted-foreground font-medium">
                   {language === 'en' 
                     ? `${filteredQuestions.length} questions found`
                     : `${filteredQuestions.length} கேள்விகள் கண்டுபிடிக்கப்பட்டன`}
@@ -465,27 +534,51 @@ const PYQPractice = () => {
                 <Button 
                   onClick={() => setIsPracticeMode(true)} 
                   disabled={filteredQuestions.length === 0}
-                  className="bg-gradient-to-r from-primary to-primary/80"
+                  className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <Target className="w-4 h-4 mr-2" />
                   {language === 'en' ? 'Start Practice' : 'பயிற்சி தொடங்கு'}
                 </Button>
               </div>
-            </CardContent>
+            </div>
           </Card>
 
           {/* Quick Exam Selection */}
-          <h3 className="font-semibold mb-4">{language === 'en' ? 'Popular Exams' : 'பிரபலமான தேர்வுகள்'}</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {pyqExams.filter(e => e.isPopular).slice(0, 8).map(exam => {
+          <div className="flex items-center gap-3 mb-6 mt-10">
+            <div className="p-2 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg shadow">
+              <Trophy className="w-5 h-5 text-white" />
+            </div>
+            <h3 className="text-xl font-bold text-foreground">{language === 'en' ? 'Popular Exams' : 'பிரபலமான தேர்வுகள்'}</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            {pyqExams.filter(e => e.isPopular).slice(0, 8).map((exam, idx) => {
               const examQuestions = pyqQuestions.filter(q => q.examId === exam.id).length;
               const isDownloading = downloadingExamId === exam.id;
+              const gradientColors = [
+                'from-blue-500 to-indigo-600',
+                'from-purple-500 to-violet-600',
+                'from-emerald-500 to-teal-600',
+                'from-rose-500 to-pink-600',
+                'from-amber-500 to-orange-600',
+                'from-cyan-500 to-blue-600',
+                'from-green-500 to-emerald-600',
+                'from-fuchsia-500 to-purple-600',
+              ];
+              const gradient = gradientColors[idx % gradientColors.length];
+              
               return (
                 <Card 
                   key={exam.id}
-                  className="hover:shadow-lg transition-all hover:scale-[1.01] border-none shadow-md overflow-hidden"
+                  className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white"
                 >
-                  <CardContent className="p-4">
+                  {/* Decorative gradient top */}
+                  <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${gradient}`} />
+                  
+                  {/* Glow effect on hover */}
+                  <div className={`absolute -inset-1 bg-gradient-to-r ${gradient} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500`} />
+                  
+                  <CardContent className="p-5 relative">
                     <div 
                       className="cursor-pointer"
                       onClick={() => {
@@ -494,60 +587,68 @@ const PYQPractice = () => {
                         setIsPracticeMode(true);
                       }}
                     >
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="p-2 bg-primary/10 rounded-lg">
-                          <GraduationCap className="w-5 h-5 text-primary" />
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className={`p-3 bg-gradient-to-br ${gradient} rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                          <GraduationCap className="w-6 h-6 text-white" />
                         </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-sm line-clamp-1">
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-bold text-base text-foreground line-clamp-1 group-hover:text-primary transition-colors">
                             {language === 'en' ? exam.name.en : exam.name.ta}
                           </h4>
-                          <p className="text-xs text-muted-foreground">{examQuestions} questions</p>
+                          <p className="text-sm text-muted-foreground">{examQuestions} questions</p>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <Badge variant="outline" className="text-xs">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Badge 
+                          className={`text-xs font-medium ${
+                            exam.difficultyLevel === 'Moderate' 
+                              ? 'bg-amber-100 text-amber-700 border-amber-200' 
+                              : exam.difficultyLevel === 'Hard'
+                              ? 'bg-red-100 text-red-700 border-red-200'
+                              : 'bg-emerald-100 text-emerald-700 border-emerald-200'
+                          }`}
+                        >
                           {exam.difficultyLevel}
                         </Badge>
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-slate-100 text-slate-700">
+                          <Clock className="w-3 h-3 mr-1" />
                           {exam.duration} min
                         </Badge>
                       </div>
                     </div>
-                    <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-border">
+                    <div className="flex items-center gap-2 pt-4 border-t border-gray-100">
                       <Button
                         variant="outline"
                         size="sm"
-                        className="flex-1 text-xs"
+                        className="flex-1 text-xs font-medium border-emerald-200 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700"
                         onClick={() => {
                           setSelectedExam(exam.id);
                           setSelectedCategory(exam.category);
                           setIsPracticeMode(true);
                         }}
                       >
-                        <Target className="w-3 h-3 mr-1" />
+                        <Target className="w-3.5 h-3.5 mr-1.5" />
                         Practice
                       </Button>
                       <Button
-                        variant="default"
                         size="sm"
-                        className="flex-1 text-xs"
+                        className={`flex-1 text-xs font-medium bg-gradient-to-r ${gradient} hover:opacity-90`}
                         onClick={(e) => handleOpenMockTestConfig(exam, e)}
                       >
-                        <Play className="w-3 h-3 mr-1" />
+                        <Play className="w-3.5 h-3.5 mr-1.5" />
                         Mock Test
                       </Button>
                       <Button
                         variant="secondary"
                         size="sm"
-                        className="text-xs px-2"
+                        className="text-xs px-3 bg-slate-100 hover:bg-slate-200"
                         onClick={(e) => handleOpenYearDialog(exam, e)}
                         disabled={isDownloading}
                       >
                         {isDownloading ? (
-                          <Loader2 className="w-3 h-3 animate-spin" />
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
                         ) : (
-                          <Download className="w-3 h-3" />
+                          <Download className="w-3.5 h-3.5" />
                         )}
                       </Button>
                     </div>
@@ -579,27 +680,34 @@ const PYQPractice = () => {
 
   // Practice Mode UI
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50/40 to-amber-50/30 relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-emerald-200/30 to-teal-200/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-40 left-10 w-80 h-80 bg-gradient-to-br from-amber-200/20 to-orange-200/10 rounded-full blur-3xl" />
+      </div>
+
       {/* Header */}
-      <header className="bg-card/80 backdrop-blur-sm border-b border-border sticky top-0 z-50">
+      <header className="bg-white/70 backdrop-blur-xl border-b border-emerald-100/50 sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <Button 
               variant="ghost" 
               size="sm"
               onClick={() => setIsPracticeMode(false)}
+              className="hover:bg-emerald-50 group"
             >
-              <ChevronLeft className="w-4 h-4 mr-1" />
+              <ChevronLeft className="w-4 h-4 mr-1 group-hover:-translate-x-0.5 transition-transform" />
               {language === 'en' ? 'Back to Filters' : 'வடிப்பான்களுக்கு திரும்பு'}
             </Button>
             
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="gap-1">
-                <Trophy className="w-3 h-3" />
+              <Badge className="gap-1.5 bg-amber-100 text-amber-700 border-amber-200">
+                <Trophy className="w-3.5 h-3.5" />
                 {accuracy}%
               </Badge>
-              <Badge variant="outline" className="gap-1">
-                <Check className="w-3 h-3 text-emerald-600" />
+              <Badge className="gap-1.5 bg-emerald-100 text-emerald-700 border-emerald-200">
+                <Check className="w-3.5 h-3.5" />
                 {correctAnswers}/{Object.keys(answeredQuestions).length}
               </Badge>
             </div>
@@ -609,11 +717,17 @@ const PYQPractice = () => {
                 variant="outline" 
                 size="sm"
                 onClick={() => setLanguage(language === 'en' ? 'ta' : 'en')}
+                className="border-emerald-200 hover:bg-emerald-50"
               >
-                <Languages className="w-4 h-4" />
+                <Languages className="w-4 h-4 text-emerald-600" />
               </Button>
-              <Button variant="outline" size="sm" onClick={handleReset}>
-                <RotateCcw className="w-4 h-4" />
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={handleReset}
+                className="border-rose-200 hover:bg-rose-50"
+              >
+                <RotateCcw className="w-4 h-4 text-rose-600" />
               </Button>
             </div>
           </div>
@@ -621,21 +735,28 @@ const PYQPractice = () => {
       </header>
 
       {/* Progress Bar */}
-      <div className="bg-card border-b border-border px-4 py-2">
+      <div className="bg-white/60 backdrop-blur-sm border-b border-emerald-100/50 px-4 py-3">
         <div className="container mx-auto max-w-4xl">
-          <div className="flex items-center justify-between text-sm text-muted-foreground mb-1">
-            <span>{language === 'en' ? 'Progress' : 'முன்னேற்றம்'}</span>
-            <span>{currentQuestionIndex + 1} / {totalQuestions}</span>
+          <div className="flex items-center justify-between text-sm text-muted-foreground mb-2">
+            <span className="font-medium">{language === 'en' ? 'Progress' : 'முன்னேற்றம்'}</span>
+            <span className="font-semibold text-emerald-700">{currentQuestionIndex + 1} / {totalQuestions}</span>
           </div>
-          <Progress value={((currentQuestionIndex + 1) / totalQuestions) * 100} className="h-2" />
+          <div className="relative h-3 bg-emerald-100 rounded-full overflow-hidden">
+            <div 
+              className="absolute inset-y-0 left-0 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-500 ease-out"
+              style={{ width: `${((currentQuestionIndex + 1) / totalQuestions) * 100}%` }}
+            />
+          </div>
         </div>
       </div>
 
-      <main className="container mx-auto px-4 py-6 max-w-4xl">
+      <main className="container mx-auto px-4 py-6 max-w-4xl relative z-10">
         {filteredQuestions.length === 0 ? (
-          <Card className="border-none shadow-md">
+          <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm">
             <CardContent className="p-8 text-center">
-              <BookOpen className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+                <BookOpen className="w-8 h-8 text-slate-400" />
+              </div>
               <h3 className="text-lg font-semibold mb-2">
                 {language === 'en' ? 'No questions found' : 'கேள்விகள் கிடைக்கவில்லை'}
               </h3>
@@ -644,7 +765,10 @@ const PYQPractice = () => {
                   ? 'Try adjusting your filters to find questions'
                   : 'கேள்விகளைக் கண்டறிய உங்கள் வடிகட்டிகளை சரிசெய்யுங்கள்'}
               </p>
-              <Button onClick={() => setIsPracticeMode(false)}>
+              <Button 
+                onClick={() => setIsPracticeMode(false)}
+                className="bg-gradient-to-r from-emerald-600 to-teal-600"
+              >
                 {language === 'en' ? 'Adjust Filters' : 'வடிகட்டிகளை மாற்று'}
               </Button>
             </CardContent>
@@ -652,7 +776,10 @@ const PYQPractice = () => {
         ) : currentQuestion && (
           <>
             {/* Question Card */}
-            <Card className="border-none shadow-lg mb-6">
+            <Card className="border-0 shadow-xl bg-white/90 backdrop-blur-sm mb-6 overflow-hidden">
+              {/* Gradient top bar */}
+              <div className="h-1.5 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500" />
+              
               <CardContent className="p-6">
                 {/* Question Header */}
                 <div className="flex items-start justify-between gap-4 mb-4">
@@ -745,6 +872,7 @@ const PYQPractice = () => {
                         variant="outline"
                         onClick={() => setShowHint(true)}
                         disabled={showHint}
+                        className="border-amber-200 hover:bg-amber-50 hover:border-amber-300 text-amber-700"
                       >
                         <Lightbulb className="w-4 h-4 mr-2" />
                         {language === 'en' ? 'Show Hint' : 'குறிப்பு காட்டு'}
@@ -752,7 +880,7 @@ const PYQPractice = () => {
                       <Button
                         onClick={handleSubmitAnswer}
                         disabled={!selectedAnswer}
-                        className="flex-1 bg-gradient-to-r from-primary to-primary/80"
+                        className="flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-lg hover:shadow-xl transition-all duration-300"
                       >
                         {language === 'en' ? 'Submit Answer' : 'பதிலை சமர்ப்பி'}
                       </Button>
@@ -761,7 +889,7 @@ const PYQPractice = () => {
                     <Button
                       onClick={handleNextQuestion}
                       disabled={currentQuestionIndex >= totalQuestions - 1}
-                      className="flex-1 bg-gradient-to-r from-primary to-primary/80"
+                      className="flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                       {language === 'en' ? 'Next Question' : 'அடுத்த கேள்வி'}
                       <ChevronRight className="w-4 h-4 ml-2" />
@@ -773,13 +901,16 @@ const PYQPractice = () => {
 
             {/* Hint Section */}
             {showHint && !showSolution && (
-              <Card className="border-none shadow-md mb-6 border-l-4 border-l-amber-500">
-                <CardContent className="p-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Lightbulb className="w-5 h-5 text-amber-500" />
-                    <h4 className="font-semibold">{language === 'en' ? 'Hints' : 'குறிப்புகள்'}</h4>
+              <Card className="border-0 shadow-xl bg-gradient-to-br from-amber-50 to-orange-50 mb-6 overflow-hidden">
+                <div className="h-1 bg-gradient-to-r from-amber-400 to-orange-400" />
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="p-2 bg-amber-100 rounded-lg">
+                      <Lightbulb className="w-5 h-5 text-amber-600" />
+                    </div>
+                    <h4 className="font-semibold text-amber-900">{language === 'en' ? 'Hints' : 'குறிப்புகள்'}</h4>
                   </div>
-                  <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                  <ul className="list-disc list-inside space-y-1.5 text-amber-800">
                     {currentQuestion.hints.map((hint, idx) => (
                       <li key={idx}>{hint}</li>
                     ))}
@@ -790,44 +921,56 @@ const PYQPractice = () => {
 
             {/* Solution Section */}
             {showSolution && (
-              <Card className="border-none shadow-md mb-6 border-l-4 border-l-emerald-500">
+              <Card className="border-0 shadow-xl bg-gradient-to-br from-emerald-50 to-teal-50 mb-6 overflow-hidden">
+                <div className="h-1 bg-gradient-to-r from-emerald-500 to-teal-500" />
                 <CardContent className="p-6">
                   <h4 className="font-semibold mb-3 flex items-center gap-2">
-                    <Check className="w-5 h-5 text-emerald-600" />
-                    {language === 'en' ? 'Solution' : 'தீர்வு'}
+                    <div className="p-2 bg-emerald-100 rounded-lg">
+                      <Check className="w-5 h-5 text-emerald-600" />
+                    </div>
+                    <span className="text-emerald-900">{language === 'en' ? 'Solution' : 'தீர்வு'}</span>
                   </h4>
-                  <p className="text-muted-foreground mb-4">
+                  <p className="text-emerald-800 mb-4 leading-relaxed">
                     {language === 'en' ? currentQuestion.solution.en : currentQuestion.solution.ta}
                   </p>
 
                   <Collapsible>
                     <CollapsibleTrigger asChild>
-                      <Button variant="ghost" size="sm" className="gap-2">
+                      <Button variant="ghost" size="sm" className="gap-2 text-emerald-700 hover:bg-emerald-100">
                         <ChevronDown className="w-4 h-4" />
                         {language === 'en' ? 'More Details' : 'மேலும் விவரங்கள்'}
                       </Button>
                     </CollapsibleTrigger>
                     <CollapsibleContent className="pt-4 space-y-4">
-                      <div>
-                        <h5 className="font-medium text-sm mb-2">{language === 'en' ? 'Concepts Tested' : 'சோதிக்கப்பட்ட கருத்துக்கள்'}</h5>
+                      <div className="bg-white/60 rounded-xl p-4">
+                        <h5 className="font-medium text-sm mb-2 text-emerald-900">{language === 'en' ? 'Concepts Tested' : 'சோதிக்கப்பட்ட கருத்துக்கள்'}</h5>
                         <div className="flex flex-wrap gap-2">
                           {currentQuestion.conceptsTested.map((concept, idx) => (
-                            <Badge key={idx} variant="secondary">{concept}</Badge>
+                            <Badge key={idx} className="bg-emerald-100 text-emerald-700 border-emerald-200">{concept}</Badge>
                           ))}
                         </div>
                       </div>
-                      <div>
-                        <h5 className="font-medium text-sm mb-2">{language === 'en' ? 'Common Mistakes' : 'பொதுவான தவறுகள்'}</h5>
-                        <ul className="list-disc list-inside text-sm text-muted-foreground">
+                      <div className="bg-white/60 rounded-xl p-4">
+                        <h5 className="font-medium text-sm mb-2 text-emerald-900">{language === 'en' ? 'Common Mistakes' : 'பொதுவான தவறுகள்'}</h5>
+                        <ul className="list-disc list-inside text-sm text-emerald-700">
                           {currentQuestion.commonMistakes.map((mistake, idx) => (
                             <li key={idx}>{mistake}</li>
                           ))}
                         </ul>
                       </div>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <span>Accuracy: {currentQuestion.statistics.correctPercentage}%</span>
-                        <span>Avg. Time: {currentQuestion.statistics.averageTime}s</span>
-                        <span>Attempts: {currentQuestion.statistics.totalAttempts.toLocaleString()}</span>
+                      <div className="flex items-center gap-4 text-sm text-emerald-700 bg-white/60 rounded-xl p-3">
+                        <span className="flex items-center gap-1.5">
+                          <Target className="w-4 h-4" />
+                          Accuracy: {currentQuestion.statistics.correctPercentage}%
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <Clock className="w-4 h-4" />
+                          Avg. Time: {currentQuestion.statistics.averageTime}s
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <Eye className="w-4 h-4" />
+                          Attempts: {currentQuestion.statistics.totalAttempts.toLocaleString()}
+                        </span>
                       </div>
                     </CollapsibleContent>
                   </Collapsible>
@@ -836,17 +979,18 @@ const PYQPractice = () => {
             )}
 
             {/* Navigation */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between bg-white/70 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
               <Button
                 variant="outline"
                 onClick={handlePrevQuestion}
                 disabled={currentQuestionIndex === 0}
+                className="border-gray-200 hover:bg-gray-50 hover:border-gray-300"
               >
                 <ChevronLeft className="w-4 h-4 mr-2" />
                 {language === 'en' ? 'Previous' : 'முந்தைய'}
               </Button>
               
-              <span className="text-sm text-muted-foreground">
+              <span className="text-sm text-muted-foreground font-medium bg-slate-100 px-4 py-2 rounded-full">
                 {currentQuestionIndex + 1} of {totalQuestions}
               </span>
 
@@ -854,6 +998,7 @@ const PYQPractice = () => {
                 variant="outline"
                 onClick={handleNextQuestion}
                 disabled={currentQuestionIndex >= totalQuestions - 1}
+                className="border-gray-200 hover:bg-gray-50 hover:border-gray-300"
               >
                 {language === 'en' ? 'Next' : 'அடுத்து'}
                 <ChevronRight className="w-4 h-4 ml-2" />
