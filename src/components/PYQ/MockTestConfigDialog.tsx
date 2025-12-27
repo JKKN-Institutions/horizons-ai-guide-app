@@ -460,7 +460,11 @@ export const MockTestConfigDialog = ({
             </div>
           </div>
 
-          {/* Start Button */}
+          </div>
+        </ScrollArea>
+
+        {/* Start Button - Fixed at bottom */}
+        <div className="flex-shrink-0 pt-4 border-t space-y-2">
           <Button 
             className="w-full" 
             size="lg"
@@ -476,8 +480,7 @@ export const MockTestConfigDialog = ({
               Need at least 5 questions to start a test. Try adjusting filters.
             </p>
           )}
-          </div>
-        </ScrollArea>
+        </div>
       </DialogContent>
     </Dialog>
   );
