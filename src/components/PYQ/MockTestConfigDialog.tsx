@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Timer, Shuffle, BookOpen, Play, Settings } from 'lucide-react';
+import { Timer, Shuffle, Play, Settings } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Select,
   SelectContent,
@@ -127,8 +128,8 @@ export const MockTestConfigDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
+      <DialogContent className="sm:max-w-md max-h-[90vh] flex flex-col">
+        <DialogHeader className="flex-shrink-0">
           <DialogTitle className="flex items-center gap-2">
             <Timer className="w-5 h-5 text-primary" />
             Configure Mock Test
@@ -138,7 +139,7 @@ export const MockTestConfigDialog = ({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-6 py-4">
+        <ScrollArea className="flex-1 max-h-[60vh] pr-4">
           {/* Year Selection */}
           <div className="space-y-2">
             <Label>Year</Label>
@@ -300,7 +301,7 @@ export const MockTestConfigDialog = ({
               Need at least 5 questions to start a test. Try adjusting filters.
             </p>
           )}
-        </div>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );
