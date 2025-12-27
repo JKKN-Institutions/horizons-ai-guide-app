@@ -40,17 +40,18 @@ export const MockTestConfigDialog = ({
   const [shuffleQuestions, setShuffleQuestions] = useState(true);
   const [timeMultiplier, setTimeMultiplier] = useState(1);
 
-  if (!exam) return null;
-
-  // Get available questions based on filters
+  // Get available questions based on filters - must be before early return
   const availableQuestions = useMemo(() => {
+    if (!exam) return [];
     return pyqQuestions.filter(q => {
       const matchesExam = q.examId === exam.id;
       const matchesYear = selectedYear === 'all' || q.year.toString() === selectedYear;
       const matchesDifficulty = selectedDifficulty === 'all' || q.difficulty === selectedDifficulty;
       return matchesExam && matchesYear && matchesDifficulty;
     });
-  }, [exam.id, selectedYear, selectedDifficulty]);
+  }, [exam?.id, selectedYear, selectedDifficulty]);
+
+  if (!exam) return null;
 
   const maxQuestions = Math.min(availableQuestions.length, 100);
   const adjustedQuestionCount = Math.min(questionCount, maxQuestions);
