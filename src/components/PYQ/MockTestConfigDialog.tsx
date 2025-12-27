@@ -132,8 +132,15 @@ export const MockTestConfigDialog = ({
     setSelectedDifficulty('all');
   };
 
-  const hasActiveFilters = selectedYear !== 'all' || selectedSubject !== 'all' || 
-    selectedTopic !== 'all' || selectedSubtopic !== 'all' || selectedDifficulty !== 'all';
+  const activeFilterCount = [
+    selectedYear !== 'all',
+    selectedSubject !== 'all',
+    selectedTopic !== 'all',
+    selectedSubtopic !== 'all',
+    selectedDifficulty !== 'all'
+  ].filter(Boolean).length;
+
+  const hasActiveFilters = activeFilterCount > 0;
 
   const sortedYears = [...exam.years].sort((a, b) => b - a);
 
@@ -144,6 +151,11 @@ export const MockTestConfigDialog = ({
           <DialogTitle className="flex items-center gap-2">
             <Timer className="w-5 h-5 text-primary" />
             Configure Mock Test
+            {hasActiveFilters && (
+              <Badge variant="default" className="ml-auto text-xs">
+                {activeFilterCount} filter{activeFilterCount > 1 ? 's' : ''} active
+              </Badge>
+            )}
           </DialogTitle>
           <DialogDescription>
             Customize your {exam.name.en} mock test settings
