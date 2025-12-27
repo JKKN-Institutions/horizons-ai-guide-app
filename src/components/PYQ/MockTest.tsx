@@ -21,6 +21,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { toast } from 'sonner';
 import { PYQQuestion, PYQExam } from '@/data/pyq-database';
+import { useMockTestScores } from '@/hooks/useMockTestScores';
 
 interface MockTestProps {
   exam: PYQExam;
@@ -50,6 +51,8 @@ interface TestResult {
 }
 
 export const MockTest = ({ exam, questions, onExit }: MockTestProps) => {
+  const { addScore } = useMockTestScores();
+  
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string | null>>({});
   const [markedForReview, setMarkedForReview] = useState<string[]>([]);
@@ -224,8 +227,9 @@ export const MockTest = ({ exam, questions, onExit }: MockTestProps) => {
     const obtainedMarks = (correct * 4) - (incorrect * 1);
     const totalMarks = questions.length * 4;
     const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+    const timePerQuestion = Math.round(totalTimeTaken / questions.length);
     
-    setTestResult({
+    const result: TestResult = {
       totalQuestions: questions.length,
       attempted,
       correct,
@@ -235,12 +239,33 @@ export const MockTest = ({ exam, questions, onExit }: MockTestProps) => {
       obtainedMarks: Math.max(0, obtainedMarks),
       accuracy,
       timeTaken: totalTimeTaken,
-      timePerQuestion: Math.round(totalTimeTaken / questions.length),
+      timePerQuestion,
       subjectWise,
       difficultyWise,
       questionAnalysis
+    };
+    
+    setTestResult(result);
+    
+    // Save score to localStorage
+    addScore({
+      examId: exam.id,
+      examName: typeof exam.name === 'string' ? exam.name : exam.name.en,
+      totalQuestions: questions.length,
+      attempted,
+      correct,
+      incorrect,
+      unattempted,
+      totalMarks,
+      obtainedMarks: Math.max(0, obtainedMarks),
+      accuracy,
+      timeTaken: totalTimeTaken,
+      timePerQuestion,
+      subjectWise,
+      difficultyWise,
     });
     
+    toast.success('Score saved to your history!');
     setIsTestComplete(true);
   };
 
