@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { GraduationCap, Building2, Bookmark, Calculator, FileText, Users, BookOpen, LucideIcon } from 'lucide-react';
+import { GraduationCap, Building2, Bookmark, Calculator, FileText, Users, BookOpen, LucideIcon, Target } from 'lucide-react';
 
 interface NavItem {
   id: string;
@@ -20,9 +20,17 @@ interface PillNavigationProps {
 
 const navItems: NavItem[] = [
   {
+    id: 'career-assessment',
+    label: 'Career Assessment',
+    shortLabel: 'Assessment',
+    icon: Target,
+    activeColor: 'text-white',
+    activeBg: 'bg-gradient-to-r from-[#7C3AED] to-[#5B21B6]',
+  },
+  {
     id: 'assessments',
-    label: 'Career Assessments',
-    shortLabel: 'Assessments',
+    label: 'AI Chatbot',
+    shortLabel: 'AI Chat',
     icon: GraduationCap,
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#2E7D32] to-[#1B5E20]',
@@ -138,7 +146,7 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
       >
         {/* Main tools row */}
         <div className="flex items-center gap-1 flex-wrap justify-center">
-          {navItems.slice(0, 5).map((item) => {
+          {navItems.slice(0, 6).map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
             
@@ -181,7 +189,7 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
 
         {/* More tools row */}
         <div className="flex items-center gap-1 flex-wrap justify-center">
-          {navItems.slice(5).map((item) => {
+          {navItems.slice(6).map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
             
