@@ -25,8 +25,12 @@ import {
   type PYQExam
 } from '@/data/pyq-database';
 import { generatePYQPDF, generateBookmarkedPDF, YearSelectionDialog, MockTest, MockTestConfigDialog } from '@/components/PYQ';
+import { usePYQBookmarks } from '@/hooks/usePYQBookmarks';
 
 const PYQPractice = () => {
+  // Persistent bookmarks from localStorage
+  const { bookmarkedQuestions, toggleBookmark, isBookmarked, bookmarkCount } = usePYQBookmarks();
+  
   // Filter states
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedExam, setSelectedExam] = useState<string>('all');
@@ -40,7 +44,6 @@ const PYQPractice = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showSolution, setShowSolution] = useState(false);
   const [answeredQuestions, setAnsweredQuestions] = useState<Record<string, string>>({});
-  const [bookmarkedQuestions, setBookmarkedQuestions] = useState<string[]>([]);
   const [language, setLanguage] = useState<'en' | 'ta'>('en');
   const [showHint, setShowHint] = useState(false);
   const [isPracticeMode, setIsPracticeMode] = useState(false);
@@ -232,11 +235,6 @@ const PYQPractice = () => {
     toast.success('Practice reset successfully!');
   };
 
-  const toggleBookmark = (qId: string) => {
-    setBookmarkedQuestions(prev => 
-      prev.includes(qId) ? prev.filter(id => id !== qId) : [...prev, qId]
-    );
-  };
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -377,7 +375,7 @@ const PYQPractice = () => {
               { label: language === 'en' ? 'Total Questions' : 'மொத்த கேள்விகள்', value: pyqQuestions.length, icon: Target, gradient: 'from-blue-500 to-indigo-600', bgGradient: 'from-blue-50 to-indigo-50', borderColor: 'border-blue-200', action: null },
               { label: language === 'en' ? 'Exams Covered' : 'தேர்வுகள்', value: pyqExams.length, icon: GraduationCap, gradient: 'from-purple-500 to-violet-600', bgGradient: 'from-purple-50 to-violet-50', borderColor: 'border-purple-200', action: null },
               { label: language === 'en' ? 'Categories' : 'வகைகள்', value: pyqCategories.length, icon: BookOpen, gradient: 'from-emerald-500 to-teal-600', bgGradient: 'from-emerald-50 to-teal-50', borderColor: 'border-emerald-200', action: null },
-              { label: language === 'en' ? 'Bookmarked' : 'புக்மார்க்', value: bookmarkedQuestions.length, icon: Bookmark, gradient: 'from-rose-500 to-pink-600', bgGradient: 'from-rose-50 to-pink-50', borderColor: 'border-rose-200', action: 'export' },
+              { label: language === 'en' ? 'Bookmarked' : 'புக்மார்க்', value: bookmarkCount, icon: Bookmark, gradient: 'from-rose-500 to-pink-600', bgGradient: 'from-rose-50 to-pink-50', borderColor: 'border-rose-200', action: 'export' },
             ].map((stat, index) => (
               <Card 
                 key={index} 
@@ -392,13 +390,13 @@ const PYQPractice = () => {
                   </div>
                   <div className="text-3xl font-bold text-foreground mb-1">{stat.value}</div>
                   <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
-                  {stat.action === 'export' && bookmarkedQuestions.length > 0 && (
+                  {stat.action === 'export' && bookmarkCount > 0 && (
                     <Button
                       variant="outline"
                       size="sm"
                       className="mt-3 text-xs h-8 border-rose-200 hover:bg-rose-50 hover:border-rose-300 text-rose-600"
                       onClick={() => {
-                        const bookmarked = pyqQuestions.filter(q => bookmarkedQuestions.includes(q.id));
+                        const bookmarked = pyqQuestions.filter(q => isBookmarked(q.id));
                         if (bookmarked.length > 0) {
                           toast.loading('Generating bookmarked PDF...', { id: 'bookmark-pdf' });
                           setTimeout(() => {
@@ -796,7 +794,7 @@ const PYQPractice = () => {
                     size="icon"
                     onClick={() => toggleBookmark(currentQuestion.id)}
                   >
-                    {bookmarkedQuestions.includes(currentQuestion.id) ? (
+                    {isBookmarked(currentQuestion.id) ? (
                       <BookmarkCheck className="w-5 h-5 text-primary fill-primary" />
                     ) : (
                       <Bookmark className="w-5 h-5" />
