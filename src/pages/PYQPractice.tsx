@@ -24,7 +24,7 @@ import {
   type PYQQuestion,
   type PYQExam
 } from '@/data/pyq-database';
-import { generatePYQPDF } from '@/components/PYQ';
+import { generatePYQPDF, YearSelectionDialog } from '@/components/PYQ';
 
 const PYQPractice = () => {
   // Filter states
@@ -45,13 +45,20 @@ const PYQPractice = () => {
   const [showHint, setShowHint] = useState(false);
   const [isPracticeMode, setIsPracticeMode] = useState(false);
   const [downloadingExamId, setDownloadingExamId] = useState<string | null>(null);
+  const [yearDialogOpen, setYearDialogOpen] = useState(false);
+  const [selectedExamForDownload, setSelectedExamForDownload] = useState<PYQExam | null>(null);
 
-  // Handle PDF download
-  const handleDownloadPDF = async (exam: PYQExam, year?: number, e?: React.MouseEvent) => {
+  // Open year selection dialog
+  const handleOpenYearDialog = (exam: PYQExam, e?: React.MouseEvent) => {
     if (e) {
       e.stopPropagation();
     }
-    
+    setSelectedExamForDownload(exam);
+    setYearDialogOpen(true);
+  };
+
+  // Handle PDF download with selected years
+  const handleDownloadPDF = async (exam: PYQExam, selectedYears: number[]) => {
     setDownloadingExamId(exam.id);
     toast.loading('Generating PDF...', { id: 'pdf-download' });
     
@@ -61,18 +68,23 @@ const PYQPractice = () => {
       
       const questions = pyqQuestions.filter(q => {
         const matchesExam = q.examId === exam.id;
-        const matchesYear = year ? q.year === year : true;
+        const matchesYear = selectedYears.includes(q.year);
         return matchesExam && matchesYear;
       });
       
       if (questions.length === 0) {
-        toast.error('No questions found for this exam', { id: 'pdf-download' });
+        toast.error('No questions found for selected years', { id: 'pdf-download' });
         return;
       }
       
-      generatePYQPDF({ exam, questions, year });
+      // Generate PDF with year range in filename
+      const yearLabel = selectedYears.length === 1 
+        ? selectedYears[0].toString()
+        : `${Math.min(...selectedYears)}-${Math.max(...selectedYears)}`;
       
-      toast.success(`Download complete! ${questions.length} questions`, { id: 'pdf-download' });
+      generatePYQPDF({ exam, questions, year: selectedYears.length === 1 ? selectedYears[0] : undefined });
+      
+      toast.success(`Download complete! ${questions.length} questions from ${selectedYears.length} year(s)`, { id: 'pdf-download' });
     } catch (error) {
       console.error('PDF generation error:', error);
       toast.error('Failed to generate PDF', { id: 'pdf-download' });
@@ -459,7 +471,7 @@ const PYQPractice = () => {
                         variant="secondary"
                         size="sm"
                         className="flex-1 text-xs"
-                        onClick={(e) => handleDownloadPDF(exam, undefined, e)}
+                        onClick={(e) => handleOpenYearDialog(exam, e)}
                         disabled={isDownloading}
                       >
                         {isDownloading ? (
@@ -476,6 +488,14 @@ const PYQPractice = () => {
             })}
           </div>
         </main>
+
+        {/* Year Selection Dialog */}
+        <YearSelectionDialog
+          open={yearDialogOpen}
+          onOpenChange={setYearDialogOpen}
+          exam={selectedExamForDownload}
+          onDownload={handleDownloadPDF}
+        />
       </div>
     );
   }
