@@ -4,7 +4,7 @@ import {
   BookOpen, Search, Filter, ChevronLeft, ChevronRight, Check, X,
   Clock, Eye, Bookmark, BookmarkCheck, Lightbulb, RotateCcw,
   GraduationCap, Trophy, Target, Timer, Languages, ChevronDown,
-  Download, Loader2
+  Download, Loader2, Play
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -24,7 +24,7 @@ import {
   type PYQQuestion,
   type PYQExam
 } from '@/data/pyq-database';
-import { generatePYQPDF, generateBookmarkedPDF, YearSelectionDialog } from '@/components/PYQ';
+import { generatePYQPDF, generateBookmarkedPDF, YearSelectionDialog, MockTest, MockTestConfigDialog } from '@/components/PYQ';
 
 const PYQPractice = () => {
   // Filter states
@@ -47,6 +47,13 @@ const PYQPractice = () => {
   const [downloadingExamId, setDownloadingExamId] = useState<string | null>(null);
   const [yearDialogOpen, setYearDialogOpen] = useState(false);
   const [selectedExamForDownload, setSelectedExamForDownload] = useState<PYQExam | null>(null);
+  
+  // Mock test states
+  const [mockTestConfigOpen, setMockTestConfigOpen] = useState(false);
+  const [selectedExamForMockTest, setSelectedExamForMockTest] = useState<PYQExam | null>(null);
+  const [isMockTestMode, setIsMockTestMode] = useState(false);
+  const [mockTestQuestions, setMockTestQuestions] = useState<PYQQuestion[]>([]);
+  const [mockTestDuration, setMockTestDuration] = useState(60);
 
   // Open year selection dialog
   const handleOpenYearDialog = (exam: PYQExam, e?: React.MouseEvent) => {
@@ -91,6 +98,29 @@ const PYQPractice = () => {
     } finally {
       setDownloadingExamId(null);
     }
+  };
+
+  // Open mock test config dialog
+  const handleOpenMockTestConfig = (exam: PYQExam, e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    setSelectedExamForMockTest(exam);
+    setMockTestConfigOpen(true);
+  };
+
+  // Start mock test
+  const handleStartMockTest = (questions: PYQQuestion[], duration: number) => {
+    setMockTestQuestions(questions);
+    setMockTestDuration(duration);
+    setIsMockTestMode(true);
+  };
+
+  // Exit mock test
+  const handleExitMockTest = () => {
+    setIsMockTestMode(false);
+    setMockTestQuestions([]);
+    setSelectedExamForMockTest(null);
   };
 
   // Get available exams based on selected category
@@ -234,6 +264,17 @@ const PYQPractice = () => {
     
     return 'border-border opacity-50';
   };
+
+  // Mock Test Mode
+  if (isMockTestMode && selectedExamForMockTest && mockTestQuestions.length > 0) {
+    return (
+      <MockTest
+        exam={selectedExamForMockTest}
+        questions={mockTestQuestions}
+        onExit={handleExitMockTest}
+      />
+    );
+  }
 
   if (!isPracticeMode) {
     return (
@@ -473,7 +514,7 @@ const PYQPractice = () => {
                         </Badge>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 pt-3 border-t border-border">
+                    <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-border">
                       <Button
                         variant="outline"
                         size="sm"
@@ -488,18 +529,26 @@ const PYQPractice = () => {
                         Practice
                       </Button>
                       <Button
-                        variant="secondary"
+                        variant="default"
                         size="sm"
                         className="flex-1 text-xs"
+                        onClick={(e) => handleOpenMockTestConfig(exam, e)}
+                      >
+                        <Play className="w-3 h-3 mr-1" />
+                        Mock Test
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        className="text-xs px-2"
                         onClick={(e) => handleOpenYearDialog(exam, e)}
                         disabled={isDownloading}
                       >
                         {isDownloading ? (
-                          <Loader2 className="w-3 h-3 mr-1 animate-spin" />
+                          <Loader2 className="w-3 h-3 animate-spin" />
                         ) : (
-                          <Download className="w-3 h-3 mr-1" />
+                          <Download className="w-3 h-3" />
                         )}
-                        {isDownloading ? 'Generating...' : 'Download'}
                       </Button>
                     </div>
                   </CardContent>
@@ -515,6 +564,14 @@ const PYQPractice = () => {
           onOpenChange={setYearDialogOpen}
           exam={selectedExamForDownload}
           onDownload={handleDownloadPDF}
+        />
+
+        {/* Mock Test Config Dialog */}
+        <MockTestConfigDialog
+          open={mockTestConfigOpen}
+          onOpenChange={setMockTestConfigOpen}
+          exam={selectedExamForMockTest}
+          onStartTest={handleStartMockTest}
         />
       </div>
     );
