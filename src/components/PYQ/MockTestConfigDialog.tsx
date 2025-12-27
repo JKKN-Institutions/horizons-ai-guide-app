@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Timer, Shuffle, Play, Settings } from 'lucide-react';
+import { Timer, Shuffle, Play, Settings, RotateCcw } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -124,6 +124,17 @@ export const MockTestConfigDialog = ({
     onOpenChange(false);
   };
 
+  const handleResetFilters = () => {
+    setSelectedYear('all');
+    setSelectedSubject('all');
+    setSelectedTopic('all');
+    setSelectedSubtopic('all');
+    setSelectedDifficulty('all');
+  };
+
+  const hasActiveFilters = selectedYear !== 'all' || selectedSubject !== 'all' || 
+    selectedTopic !== 'all' || selectedSubtopic !== 'all' || selectedDifficulty !== 'all';
+
   const sortedYears = [...exam.years].sort((a, b) => b - a);
 
   return (
@@ -139,7 +150,21 @@ export const MockTestConfigDialog = ({
           </DialogDescription>
         </DialogHeader>
 
+        {/* Reset Filters Button */}
+        {hasActiveFilters && (
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={handleResetFilters}
+            className="w-fit self-end flex-shrink-0"
+          >
+            <RotateCcw className="w-3 h-3 mr-1" />
+            Reset Filters
+          </Button>
+        )}
+
         <ScrollArea className="flex-1 max-h-[60vh] pr-4">
+          <div className="space-y-6 py-2">
           {/* Year Selection */}
           <div className="space-y-2">
             <Label>Year</Label>
@@ -301,6 +326,7 @@ export const MockTestConfigDialog = ({
               Need at least 5 questions to start a test. Try adjusting filters.
             </p>
           )}
+          </div>
         </ScrollArea>
       </DialogContent>
     </Dialog>
