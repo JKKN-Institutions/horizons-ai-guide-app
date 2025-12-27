@@ -36,6 +36,7 @@ export const MockTestConfigDialog = ({
 }: MockTestConfigDialogProps) => {
   const [questionCount, setQuestionCount] = useState(30);
   const [selectedYear, setSelectedYear] = useState<string>('all');
+  const [selectedSubject, setSelectedSubject] = useState<string>('all');
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
   const [shuffleQuestions, setShuffleQuestions] = useState(true);
   const [timeMultiplier, setTimeMultiplier] = useState(1);
@@ -46,10 +47,11 @@ export const MockTestConfigDialog = ({
     return pyqQuestions.filter(q => {
       const matchesExam = q.examId === exam.id;
       const matchesYear = selectedYear === 'all' || q.year.toString() === selectedYear;
+      const matchesSubject = selectedSubject === 'all' || q.subject === selectedSubject;
       const matchesDifficulty = selectedDifficulty === 'all' || q.difficulty === selectedDifficulty;
-      return matchesExam && matchesYear && matchesDifficulty;
+      return matchesExam && matchesYear && matchesSubject && matchesDifficulty;
     });
-  }, [exam?.id, selectedYear, selectedDifficulty]);
+  }, [exam?.id, selectedYear, selectedSubject, selectedDifficulty]);
 
   if (!exam) return null;
 
@@ -100,6 +102,22 @@ export const MockTestConfigDialog = ({
                 <SelectItem value="all">All Years</SelectItem>
                 {sortedYears.map(year => (
                   <SelectItem key={year} value={year.toString()}>{year}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Subject Selection */}
+          <div className="space-y-2">
+            <Label>Subject</Label>
+            <Select value={selectedSubject} onValueChange={setSelectedSubject}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select subject" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Subjects</SelectItem>
+                {exam.subjects.map(subject => (
+                  <SelectItem key={subject} value={subject}>{subject}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
