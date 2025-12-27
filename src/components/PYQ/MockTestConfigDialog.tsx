@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Timer, Shuffle, Play, Settings, RotateCcw, X } from 'lucide-react';
+import { Timer, Shuffle, Play, Settings, RotateCcw, X, Bookmark } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -22,6 +22,19 @@ import {
 } from '@/components/ui/select';
 import { PYQExam, PYQQuestion, pyqQuestions } from '@/data/pyq-database';
 
+interface FilterPreset {
+  id: string;
+  name: string;
+  icon: string;
+  filters: {
+    year: string;
+    subject: string;
+    topic: string;
+    subtopic: string;
+    difficulty: string;
+  };
+}
+
 interface MockTestConfigDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -43,6 +56,52 @@ export const MockTestConfigDialog = ({
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
   const [shuffleQuestions, setShuffleQuestions] = useState(true);
   const [timeMultiplier, setTimeMultiplier] = useState(1);
+
+  // Filter presets based on exam subjects
+  const filterPresets = useMemo<FilterPreset[]>(() => {
+    if (!exam) return [];
+    
+    const presets: FilterPreset[] = [
+      {
+        id: 'easy-mode',
+        name: 'Easy Mode',
+        icon: '🟢',
+        filters: { year: 'all', subject: 'all', topic: 'all', subtopic: 'all', difficulty: 'Easy' }
+      },
+      {
+        id: 'hard-mode',
+        name: 'Hard Mode',
+        icon: '🔴',
+        filters: { year: 'all', subject: 'all', topic: 'all', subtopic: 'all', difficulty: 'Hard' }
+      },
+      {
+        id: 'recent-years',
+        name: 'Recent (2023-24)',
+        icon: '📅',
+        filters: { year: '2024', subject: 'all', topic: 'all', subtopic: 'all', difficulty: 'all' }
+      }
+    ];
+
+    // Add subject-specific presets
+    exam.subjects.slice(0, 3).forEach(subject => {
+      presets.push({
+        id: `subject-${subject.toLowerCase().replace(/\s+/g, '-')}`,
+        name: `${subject} Only`,
+        icon: subject.includes('Physics') ? '⚛️' : subject.includes('Chemistry') ? '🧪' : subject.includes('Math') ? '📐' : subject.includes('Biology') ? '🧬' : '📚',
+        filters: { year: 'all', subject, topic: 'all', subtopic: 'all', difficulty: 'all' }
+      });
+    });
+
+    return presets;
+  }, [exam]);
+
+  const applyPreset = (preset: FilterPreset) => {
+    setSelectedYear(preset.filters.year);
+    setSelectedSubject(preset.filters.subject);
+    setSelectedTopic(preset.filters.topic);
+    setSelectedSubtopic(preset.filters.subtopic);
+    setSelectedDifficulty(preset.filters.difficulty);
+  };
 
   // Get available topics based on selected subject - must be before early return
   const availableTopics = useMemo(() => {
@@ -161,6 +220,28 @@ export const MockTestConfigDialog = ({
             Customize your {exam.name.en} mock test settings
           </DialogDescription>
         </DialogHeader>
+
+        {/* Quick Filter Presets */}
+        <div className="flex-shrink-0 space-y-2">
+          <Label className="flex items-center gap-1 text-xs text-muted-foreground">
+            <Bookmark className="w-3 h-3" />
+            Quick Presets
+          </Label>
+          <div className="flex flex-wrap gap-1.5">
+            {filterPresets.map(preset => (
+              <Button
+                key={preset.id}
+                variant="outline"
+                size="sm"
+                onClick={() => applyPreset(preset)}
+                className="h-7 text-xs px-2"
+              >
+                <span className="mr-1">{preset.icon}</span>
+                {preset.name}
+              </Button>
+            ))}
+          </div>
+        </div>
 
         {/* Active Filters Display */}
         {hasActiveFilters && (
