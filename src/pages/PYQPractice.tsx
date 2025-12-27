@@ -24,7 +24,7 @@ import {
   type PYQQuestion,
   type PYQExam
 } from '@/data/pyq-database';
-import { generatePYQPDF, YearSelectionDialog } from '@/components/PYQ';
+import { generatePYQPDF, generateBookmarkedPDF, YearSelectionDialog } from '@/components/PYQ';
 
 const PYQPractice = () => {
   // Filter states
@@ -283,16 +283,36 @@ const PYQPractice = () => {
           {/* Stats Cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {[
-              { label: language === 'en' ? 'Total Questions' : 'மொத்த கேள்விகள்', value: pyqQuestions.length, icon: Target, color: 'text-blue-600' },
-              { label: language === 'en' ? 'Exams Covered' : 'தேர்வுகள்', value: pyqExams.length, icon: GraduationCap, color: 'text-purple-600' },
-              { label: language === 'en' ? 'Categories' : 'வகைகள்', value: pyqCategories.length, icon: BookOpen, color: 'text-emerald-600' },
-              { label: language === 'en' ? 'Bookmarked' : 'புக்மார்க்', value: bookmarkedQuestions.length, icon: Bookmark, color: 'text-rose-600' },
+              { label: language === 'en' ? 'Total Questions' : 'மொத்த கேள்விகள்', value: pyqQuestions.length, icon: Target, color: 'text-blue-600', action: null },
+              { label: language === 'en' ? 'Exams Covered' : 'தேர்வுகள்', value: pyqExams.length, icon: GraduationCap, color: 'text-purple-600', action: null },
+              { label: language === 'en' ? 'Categories' : 'வகைகள்', value: pyqCategories.length, icon: BookOpen, color: 'text-emerald-600', action: null },
+              { label: language === 'en' ? 'Bookmarked' : 'புக்மார்க்', value: bookmarkedQuestions.length, icon: Bookmark, color: 'text-rose-600', action: 'export' },
             ].map((stat, index) => (
               <Card key={index} className="border-none shadow-md">
                 <CardContent className="p-4 text-center">
                   <stat.icon className={`w-6 h-6 mx-auto mb-2 ${stat.color}`} />
                   <div className="text-2xl font-bold">{stat.value}</div>
                   <div className="text-xs text-muted-foreground">{stat.label}</div>
+                  {stat.action === 'export' && bookmarkedQuestions.length > 0 && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="mt-2 text-xs h-7"
+                      onClick={() => {
+                        const bookmarked = pyqQuestions.filter(q => bookmarkedQuestions.includes(q.id));
+                        if (bookmarked.length > 0) {
+                          toast.loading('Generating bookmarked PDF...', { id: 'bookmark-pdf' });
+                          setTimeout(() => {
+                            generateBookmarkedPDF({ questions: bookmarked });
+                            toast.success(`Downloaded ${bookmarked.length} bookmarked questions!`, { id: 'bookmark-pdf' });
+                          }, 500);
+                        }
+                      }}
+                    >
+                      <Download className="w-3 h-3 mr-1" />
+                      Export PDF
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             ))}
