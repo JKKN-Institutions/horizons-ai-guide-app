@@ -718,11 +718,17 @@ const CareerAssessment = () => {
             {/* Question Card */}
             <Card className="bg-white shadow-xl rounded-3xl border-0 overflow-hidden">
               <div className="p-6">
-                <h2 className="text-xl font-bold text-gray-800 mb-6 text-center leading-relaxed">
-                  {questions[currentQuestion].question[language]}
-                </h2>
+                {/* Bilingual Question */}
+                <div className="mb-6 text-center">
+                  <h2 className="text-xl font-bold text-gray-800 leading-relaxed">
+                    {questions[currentQuestion].question.en}
+                  </h2>
+                  <p className="text-base text-gray-600 mt-2 leading-relaxed">
+                    {questions[currentQuestion].question.ta}
+                  </p>
+                </div>
 
-                {/* Options */}
+                {/* Options - Bilingual */}
                 <div className="space-y-3">
                   {questions[currentQuestion].options.map((option) => (
                     <button
@@ -734,9 +740,12 @@ const CareerAssessment = () => {
                           : 'border-gray-200 bg-white hover:border-purple-200 hover:bg-purple-50/50'
                       }`}
                     >
-                      <div className="flex items-center gap-4">
-                        <span className="text-2xl">{option.icon}</span>
-                        <span className="text-gray-700 font-medium">{option.text[language]}</span>
+                      <div className="flex items-start gap-4">
+                        <span className="text-2xl mt-0.5">{option.icon}</span>
+                        <div className="flex-1">
+                          <span className="text-gray-800 font-medium block">{option.text.en}</span>
+                          <span className="text-gray-500 text-sm block mt-0.5">{option.text.ta}</span>
+                        </div>
                       </div>
                     </button>
                   ))}
