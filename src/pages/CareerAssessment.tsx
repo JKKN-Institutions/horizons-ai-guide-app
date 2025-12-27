@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { ChevronLeft, ChevronRight, RotateCcw, Share2, Sparkles, ArrowLeft, Lightbulb, Loader2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, RotateCcw, Share2, Sparkles, ArrowLeft, Lightbulb, Loader2, Download } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { generateCareerAssessmentPDF } from './generateCareerAssessmentPDF';
 
 interface CareerTip {
   emoji: string;
@@ -707,12 +708,84 @@ const CareerAssessment = () => {
             {/* Progress Bar */}
             <Progress value={((currentQuestion + 1) / 20) * 100} className="h-2" />
 
-            {/* Category Badge */}
-            <div className="flex justify-center">
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm text-sm font-medium text-gray-700">
-                {getCategoryIcon(questions[currentQuestion].category)}
-                {questions[currentQuestion].category.charAt(0).toUpperCase() + questions[currentQuestion].category.slice(1)}
-              </span>
+            {/* Category Progress Indicator */}
+            <div className="bg-white rounded-2xl p-4 shadow-sm">
+              <div className="flex items-center justify-between gap-2">
+                {/* Aptitude */}
+                <div className="flex-1 text-center">
+                  <div className={`flex items-center justify-center gap-1.5 mb-1 ${currentQuestion < 5 ? 'text-purple-600' : currentQuestion >= 5 ? 'text-green-600' : 'text-gray-400'}`}>
+                    <span className="text-lg">🧠</span>
+                    <span className="text-xs font-semibold hidden sm:inline">Aptitude</span>
+                  </div>
+                  <div className="flex gap-0.5 justify-center">
+                    {[0, 1, 2, 3, 4].map((i) => (
+                      <div
+                        key={i}
+                        className={`w-2 h-2 rounded-full transition-all ${
+                          currentQuestion === i
+                            ? 'bg-purple-500 ring-2 ring-purple-300'
+                            : currentQuestion > i
+                            ? 'bg-green-500'
+                            : 'bg-gray-200'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-[10px] text-gray-500 mt-1 block">{Math.min(currentQuestion + 1, 5)}/5</span>
+                </div>
+
+                {/* Divider */}
+                <div className="w-px h-10 bg-gray-200" />
+
+                {/* Interest */}
+                <div className="flex-1 text-center">
+                  <div className={`flex items-center justify-center gap-1.5 mb-1 ${currentQuestion >= 5 && currentQuestion < 15 ? 'text-purple-600' : currentQuestion >= 15 ? 'text-green-600' : 'text-gray-400'}`}>
+                    <span className="text-lg">❤️</span>
+                    <span className="text-xs font-semibold hidden sm:inline">Interest</span>
+                  </div>
+                  <div className="flex gap-0.5 justify-center">
+                    {[5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((i) => (
+                      <div
+                        key={i}
+                        className={`w-2 h-2 rounded-full transition-all ${
+                          currentQuestion === i
+                            ? 'bg-purple-500 ring-2 ring-purple-300'
+                            : currentQuestion > i
+                            ? 'bg-green-500'
+                            : 'bg-gray-200'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-[10px] text-gray-500 mt-1 block">{Math.max(0, Math.min(currentQuestion - 4, 10))}/10</span>
+                </div>
+
+                {/* Divider */}
+                <div className="w-px h-10 bg-gray-200" />
+
+                {/* Personality */}
+                <div className="flex-1 text-center">
+                  <div className={`flex items-center justify-center gap-1.5 mb-1 ${currentQuestion >= 15 ? 'text-purple-600' : 'text-gray-400'}`}>
+                    <span className="text-lg">👤</span>
+                    <span className="text-xs font-semibold hidden sm:inline">Personality</span>
+                  </div>
+                  <div className="flex gap-0.5 justify-center">
+                    {[15, 16, 17, 18, 19].map((i) => (
+                      <div
+                        key={i}
+                        className={`w-2 h-2 rounded-full transition-all ${
+                          currentQuestion === i
+                            ? 'bg-purple-500 ring-2 ring-purple-300'
+                            : currentQuestion > i
+                            ? 'bg-green-500'
+                            : 'bg-gray-200'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-[10px] text-gray-500 mt-1 block">{Math.max(0, Math.min(currentQuestion - 14, 5))}/5</span>
+                </div>
+              </div>
             </div>
 
             {/* Question Card */}
@@ -910,8 +983,17 @@ const CareerAssessment = () => {
             {/* Action Buttons */}
             <div className="space-y-3 pt-4">
               <Button
-                onClick={handleRetake}
+                onClick={() => generateCareerAssessmentPDF(results, careerClusters, careerTips)}
                 className="w-full bg-gradient-to-r from-purple-500 to-violet-600 hover:from-purple-600 hover:to-violet-700 py-6 rounded-2xl"
+              >
+                <Download className="h-5 w-5 mr-2" />
+                {language === 'en' ? 'Download PDF Report' : 'PDF அறிக்கையைப் பதிவிறக்கவும்'}
+              </Button>
+
+              <Button
+                variant="outline"
+                onClick={handleRetake}
+                className="w-full py-6 rounded-2xl border-2"
               >
                 <RotateCcw className="h-5 w-5 mr-2" />
                 {language === 'en' ? 'Retake Assessment' : 'மீண்டும் எடுக்கவும்'}
