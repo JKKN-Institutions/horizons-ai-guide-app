@@ -67,11 +67,13 @@ const CareerAssessmentColleges = () => {
   const [inProgressAssessments, setInProgressAssessments] = useState<Record<AssessmentType, { attemptId: string; progress: number }>>({} as any);
   const [loading, setLoading] = useState(true);
   const [overallScore, setOverallScore] = useState(0);
-  const [activeTab, setActiveTab] = useState('assessments');
+  const [activeTab, setActiveTab] = useState('career-assessment');
 
   // Dynamic button colors based on active tab
   const getButtonColor = () => {
     switch (activeTab) {
+      case 'career-assessment':
+        return 'bg-gradient-to-r from-[#7C3AED] to-[#5B21B6] hover:from-[#5B21B6] hover:to-[#4C1D95]';
       case 'assessments':
         return 'bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] hover:from-[#1B5E20] hover:to-[#004D40]';
       case 'colleges':
@@ -267,6 +269,125 @@ const CareerAssessmentColleges = () => {
 
       <div className="container mx-auto px-4 py-8 relative z-10">
         <PillNavigation activeTab={activeTab} onTabChange={setActiveTab} />
+
+        {activeTab === 'career-assessment' && (
+          <div className="flex flex-col lg:flex-row gap-8">
+            <div className="flex-1">
+              {/* Two Feature Cards */}
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                {/* Career AI Chat Card */}
+                <Card className="bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 border-2 border-orange-200/60 hover:border-orange-300 hover:shadow-[0_8px_30px_rgba(251,146,60,0.2)] rounded-2xl transition-all duration-300 relative overflow-hidden group hover:scale-[1.02] hover:-translate-y-1">
+                  <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity bg-orange-300" />
+                  <CardHeader className="pb-4 relative z-10">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3.5 rounded-xl bg-gradient-to-br from-orange-400 to-amber-500 shadow-lg shadow-orange-200 transform group-hover:scale-110 transition-transform duration-300">
+                        <MessageCircle className="h-6 w-6 text-white" />
+                      </div>
+                      <div className="flex-1 pt-1">
+                        <CardTitle className="text-xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors">Career AI Chat</CardTitle>
+                        <CardDescription className="mt-2 text-gray-600 leading-relaxed">
+                          Chat with AI Career Counselor - Ask any career-related questions instantly
+                        </CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="relative z-10">
+                    <div className="flex items-center gap-4 text-sm mb-5">
+                      <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-orange-700 font-medium shadow-sm">
+                        <MessageCircle className="h-4 w-4" />
+                        Unlimited
+                      </span>
+                      <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-orange-700 font-medium shadow-sm">
+                        <Mic className="h-4 w-4" />
+                        Voice Support
+                      </span>
+                    </div>
+                    <Button
+                      onClick={() => navigate('/career-assessment/chat')}
+                      className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                    >
+                      Start Chat
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                {/* Industry Trends Card */}
+                <Card className="bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 border-2 border-emerald-200/60 hover:border-emerald-300 hover:shadow-[0_8px_30px_rgba(16,185,129,0.2)] rounded-2xl transition-all duration-300 relative overflow-hidden group hover:scale-[1.02] hover:-translate-y-1">
+                  <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity bg-emerald-300" />
+                  <CardHeader className="pb-4 relative z-10">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3.5 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-200 transform group-hover:scale-110 transition-transform duration-300">
+                        <BarChart3 className="h-6 w-6 text-white" />
+                      </div>
+                      <div className="flex-1 pt-1">
+                        <CardTitle className="text-xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors">Industry Trends & Insights</CardTitle>
+                        <CardDescription className="mt-2 text-gray-600 leading-relaxed">
+                          Real-time job market analytics, salary benchmarks & future career predictions
+                        </CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="relative z-10">
+                    <div className="flex items-center gap-4 text-sm mb-5">
+                      <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-emerald-700 font-medium shadow-sm">
+                        <Radio className="h-4 w-4" />
+                        Live Data
+                      </span>
+                      <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-emerald-700 font-medium shadow-sm">
+                        <Sparkles className="h-4 w-4" />
+                        AI-Powered Insights
+                      </span>
+                    </div>
+                    <Button
+                      onClick={() => navigate('/career-assessment/industry-trends')}
+                      className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                    >
+                      View Insights →
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Your Progress Section */}
+              <Card className="bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl shadow-sm">
+                <CardHeader className="pb-4">
+                  <div className="flex items-center gap-3">
+                    <Trophy className="h-6 w-6 text-amber-500" />
+                    <CardTitle className="text-xl font-bold text-gray-800">Your Progress</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 text-center border border-green-100">
+                      <div className="text-3xl font-bold text-emerald-600">{completedAssessments.length}</div>
+                      <div className="text-sm text-gray-600">Completed</div>
+                    </div>
+                    <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-4 text-center border border-orange-100">
+                      <div className="text-3xl font-bold text-orange-600">{assessmentCards.length - completedAssessments.length}</div>
+                      <div className="text-sm text-gray-600">Pending</div>
+                    </div>
+                    <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-4 text-center border border-purple-100 col-span-2 md:col-span-1">
+                      <div className="text-sm text-gray-600 mb-2">Career Readiness</div>
+                      <div className="text-3xl font-bold text-purple-600">{Math.round((completedAssessments.length / assessmentCards.length) * 100)}%</div>
+                    </div>
+                  </div>
+                  
+                  {completedAssessments.length > 0 && (
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <Button
+                        onClick={() => navigate('/career-assessment/results')}
+                        variant="outline"
+                        className="w-full border-purple-200 text-purple-700 hover:bg-purple-50"
+                      >
+                        View All Results
+                      </Button>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        )}
 
         {activeTab === 'assessments' && (
           <div className="flex flex-col lg:flex-row gap-8">
