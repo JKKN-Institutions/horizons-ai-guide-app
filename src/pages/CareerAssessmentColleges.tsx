@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, MessageCircle, Mic, Sparkles, Radio, Target } from 'lucide-react';
+import { BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, MessageCircle, Mic, Sparkles, Radio, Target, Rocket, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -15,7 +15,7 @@ import { CounsellingSimulator } from '@/components/CounsellingSimulator';
 import { PreviousYearQuestions } from '@/components/PreviousYearQuestions';
 import { PillNavigation } from '@/components/PillNavigation';
 
-type AssessmentType = 'career_chat' | 'industry_trends' | 'emotional_intelligence' | 'skill_gap';
+type AssessmentType = 'career_chat' | 'industry_trends' | 'career_boosting' | 'emotional_intelligence' | 'skill_gap';
 type DbAssessmentType = 'career_interest' | 'emotional_intelligence' | 'skill_gap' | 'psychometric';
 
 interface AssessmentCard {
@@ -29,6 +29,7 @@ interface AssessmentCard {
   bgColor: string;
   isChat?: boolean;
   isExternal?: boolean;
+  isBoosting?: boolean;
   secondaryIcon?: React.ElementType;
 }
 
@@ -56,6 +57,18 @@ const assessmentCards: AssessmentCard[] = [
     bgColor: 'bg-emerald-100',
     isExternal: true,
     secondaryIcon: Target,
+  },
+  {
+    id: 'career_boosting',
+    title: 'Career Boosting',
+    description: 'Personalized tips, skill recommendations & action plans to accelerate your career growth',
+    duration: 'Personalized',
+    questions: 'Smart Tips',
+    icon: Rocket,
+    iconColor: 'text-purple-600',
+    bgColor: 'bg-purple-100',
+    isBoosting: true,
+    secondaryIcon: Zap,
   },
 ];
 
@@ -150,6 +163,12 @@ const CareerAssessmentColleges = () => {
     // Handle Industry Trends separately (external page)
     if (assessment.isExternal) {
       navigate('/career-assessment/industry-trends');
+      return;
+    }
+
+    // Handle Career Boosting separately
+    if (assessment.isBoosting) {
+      navigate('/career-assessment/boosting');
       return;
     }
 
@@ -284,10 +303,14 @@ const CareerAssessmentColleges = () => {
 
                   const cardGradient = assessment.isChat 
                     ? 'bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 border-2 border-orange-200/60 hover:border-orange-300 hover:shadow-[0_8px_30px_rgba(251,146,60,0.2)]'
+                    : assessment.isBoosting
+                    ? 'bg-gradient-to-br from-purple-50 via-violet-50 to-indigo-50 border-2 border-purple-200/60 hover:border-purple-300 hover:shadow-[0_8px_30px_rgba(139,92,246,0.2)]'
                     : 'bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 border-2 border-emerald-200/60 hover:border-emerald-300 hover:shadow-[0_8px_30px_rgba(16,185,129,0.2)]';
 
                   const iconGradient = assessment.isChat
                     ? 'bg-gradient-to-br from-orange-400 to-amber-500 shadow-lg shadow-orange-200'
+                    : assessment.isBoosting
+                    ? 'bg-gradient-to-br from-purple-500 to-violet-600 shadow-lg shadow-purple-200'
                     : 'bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-200';
 
                   return (
@@ -297,7 +320,7 @@ const CareerAssessmentColleges = () => {
                       style={{ animationDelay: `${index * 0.1}s` }}
                     >
                       {/* Decorative gradient orb */}
-                      <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity ${assessment.isChat ? 'bg-orange-300' : 'bg-emerald-300'}`} />
+                      <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity ${assessment.isChat ? 'bg-orange-300' : assessment.isBoosting ? 'bg-purple-300' : 'bg-emerald-300'}`} />
                       
                       {completed && (
                         <div className="absolute top-4 right-4 z-10">
@@ -354,6 +377,17 @@ const CareerAssessmentColleges = () => {
                                 {assessment.questions} Insights
                               </span>
                             </>
+                          ) : assessment.isBoosting ? (
+                            <>
+                              <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-purple-700 font-medium shadow-sm">
+                                <Rocket className="h-4 w-4" />
+                                {assessment.duration}
+                              </span>
+                              <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-purple-700 font-medium shadow-sm">
+                                <Zap className="h-4 w-4" />
+                                {assessment.questions}
+                              </span>
+                            </>
                           ) : (
                             <>
                               <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-gray-600 font-medium shadow-sm">
@@ -382,6 +416,8 @@ const CareerAssessmentColleges = () => {
                           className={`w-full py-6 text-base font-semibold rounded-xl shadow-lg transition-all duration-300 ${
                             assessment.isChat 
                               ? 'bg-gradient-to-r from-orange-500 via-amber-500 to-orange-500 hover:from-orange-600 hover:via-amber-600 hover:to-orange-600 text-white shadow-orange-200 hover:shadow-orange-300'
+                              : assessment.isBoosting
+                              ? 'bg-gradient-to-r from-purple-500 via-violet-500 to-purple-500 hover:from-purple-600 hover:via-violet-600 hover:to-purple-600 text-white shadow-purple-200 hover:shadow-purple-300'
                               : 'bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 hover:from-emerald-700 hover:via-green-700 hover:to-emerald-700 text-white shadow-emerald-200 hover:shadow-emerald-300'
                           } group-hover:shadow-xl`}
                           onClick={() => handleStartAssessment(assessment)}
