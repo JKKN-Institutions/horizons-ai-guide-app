@@ -37,9 +37,31 @@ export const MockTestConfigDialog = ({
   const [questionCount, setQuestionCount] = useState(30);
   const [selectedYear, setSelectedYear] = useState<string>('all');
   const [selectedSubject, setSelectedSubject] = useState<string>('all');
+  const [selectedTopic, setSelectedTopic] = useState<string>('all');
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
   const [shuffleQuestions, setShuffleQuestions] = useState(true);
   const [timeMultiplier, setTimeMultiplier] = useState(1);
+
+  // Get available topics based on selected subject - must be before early return
+  const availableTopics = useMemo(() => {
+    if (!exam) return [];
+    const topics = pyqQuestions
+      .filter(q => {
+        const matchesExam = q.examId === exam.id;
+        const matchesSubject = selectedSubject === 'all' || q.subject === selectedSubject;
+        return matchesExam && matchesSubject;
+      })
+      .map(q => q.topic)
+      .filter((topic, index, self) => topic && self.indexOf(topic) === index)
+      .sort();
+    return topics;
+  }, [exam?.id, selectedSubject]);
+
+  // Reset topic when subject changes
+  const handleSubjectChange = (value: string) => {
+    setSelectedSubject(value);
+    setSelectedTopic('all');
+  };
 
   // Get available questions based on filters - must be before early return
   const availableQuestions = useMemo(() => {
@@ -48,10 +70,11 @@ export const MockTestConfigDialog = ({
       const matchesExam = q.examId === exam.id;
       const matchesYear = selectedYear === 'all' || q.year.toString() === selectedYear;
       const matchesSubject = selectedSubject === 'all' || q.subject === selectedSubject;
+      const matchesTopic = selectedTopic === 'all' || q.topic === selectedTopic;
       const matchesDifficulty = selectedDifficulty === 'all' || q.difficulty === selectedDifficulty;
-      return matchesExam && matchesYear && matchesSubject && matchesDifficulty;
+      return matchesExam && matchesYear && matchesSubject && matchesTopic && matchesDifficulty;
     });
-  }, [exam?.id, selectedYear, selectedSubject, selectedDifficulty]);
+  }, [exam?.id, selectedYear, selectedSubject, selectedTopic, selectedDifficulty]);
 
   if (!exam) return null;
 
@@ -110,7 +133,7 @@ export const MockTestConfigDialog = ({
           {/* Subject Selection */}
           <div className="space-y-2">
             <Label>Subject</Label>
-            <Select value={selectedSubject} onValueChange={setSelectedSubject}>
+            <Select value={selectedSubject} onValueChange={handleSubjectChange}>
               <SelectTrigger>
                 <SelectValue placeholder="Select subject" />
               </SelectTrigger>
@@ -118,6 +141,22 @@ export const MockTestConfigDialog = ({
                 <SelectItem value="all">All Subjects</SelectItem>
                 {exam.subjects.map(subject => (
                   <SelectItem key={subject} value={subject}>{subject}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Topic Selection */}
+          <div className="space-y-2">
+            <Label>Topic</Label>
+            <Select value={selectedTopic} onValueChange={setSelectedTopic}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select topic" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Topics</SelectItem>
+                {availableTopics.map(topic => (
+                  <SelectItem key={topic} value={topic}>{topic}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
