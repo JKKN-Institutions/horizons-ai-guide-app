@@ -456,7 +456,25 @@ const IndustryTrends = () => {
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [newJobsCount, setNewJobsCount] = useState(0);
 
+  // Saved jobs state
+  const [savedJobs, setSavedJobs] = useState<typeof jobListings>([]);
+  const [showSavedJobs, setShowSavedJobs] = useState(false);
+
   const locations = ['Bangalore', 'Chennai', 'Mumbai', 'Hyderabad', 'Delhi', 'Pune', 'Noida', 'Gurgaon', 'Coimbatore', 'Ahmedabad'];
+
+  // Load saved jobs from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('industryTrendsSavedJobs');
+    if (saved) {
+      try {
+        const savedJobIds = JSON.parse(saved) as string[];
+        const jobs = jobListings.filter((_, idx) => savedJobIds.includes(idx.toString()));
+        setSavedJobs(jobs);
+      } catch (e) {
+        console.error('Error loading saved jobs:', e);
+      }
+    }
+  }, []);
 
   // Check for existing subscription
   useEffect(() => {
@@ -590,6 +608,48 @@ const IndustryTrends = () => {
       title: "PDF Downloaded",
       description: "Industry Trends report has been downloaded successfully!",
     });
+  };
+
+  const isJobSaved = (jobIdx: number) => {
+    const saved = localStorage.getItem('industryTrendsSavedJobs');
+    if (!saved) return false;
+    try {
+      const savedJobIds = JSON.parse(saved) as string[];
+      return savedJobIds.includes(jobIdx.toString());
+    } catch {
+      return false;
+    }
+  };
+
+  const toggleSaveJob = (jobIdx: number, job: typeof jobListings[0]) => {
+    const saved = localStorage.getItem('industryTrendsSavedJobs');
+    let savedJobIds: string[] = [];
+    
+    try {
+      if (saved) savedJobIds = JSON.parse(saved);
+    } catch {
+      savedJobIds = [];
+    }
+
+    if (savedJobIds.includes(jobIdx.toString())) {
+      // Remove from saved
+      savedJobIds = savedJobIds.filter(id => id !== jobIdx.toString());
+      setSavedJobs(prev => prev.filter((_, idx) => idx !== jobIdx));
+      toast({
+        title: "Job Removed",
+        description: `${job.title} removed from saved jobs.`,
+      });
+    } else {
+      // Add to saved
+      savedJobIds.push(jobIdx.toString());
+      setSavedJobs(prev => [...prev, job]);
+      toast({
+        title: "Job Saved! 🔖",
+        description: `${job.title} at ${job.company} saved successfully.`,
+      });
+    }
+
+    localStorage.setItem('industryTrendsSavedJobs', JSON.stringify(savedJobIds));
   };
 
   const filteredJobs = jobListings.filter(job => {
@@ -1094,105 +1154,245 @@ const IndustryTrends = () => {
             </p>
           </div>
 
-          {/* Filters */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-6">
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Search jobs by title, company, location..."
-                value={jobSearchQuery}
-                onChange={(e) => setJobSearchQuery(e.target.value)}
-                className="pl-10"
-              />
-              {jobSearchQuery && (
-                <button
-                  onClick={() => setJobSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                >
-                  <X className="w-4 h-4" />
-                </button>
+          {/* Toggle between All Jobs and Saved Jobs */}
+          <div className="flex items-center gap-4 mb-6">
+            <Button
+              variant={!showSavedJobs ? "default" : "outline"}
+              onClick={() => setShowSavedJobs(false)}
+              className="gap-2"
+            >
+              <Briefcase className="w-4 h-4" />
+              All Jobs ({jobListings.length})
+            </Button>
+            <Button
+              variant={showSavedJobs ? "default" : "outline"}
+              onClick={() => setShowSavedJobs(true)}
+              className="gap-2 relative"
+            >
+              <Star className="w-4 h-4" />
+              Saved Jobs
+              {savedJobs.length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {savedJobs.length}
+                </span>
               )}
-            </div>
-            <Select value={selectedJobSector} onValueChange={setSelectedJobSector}>
-              <SelectTrigger className="w-full sm:w-[200px]">
-                <Filter className="w-4 h-4 mr-2 text-muted-foreground" />
-                <SelectValue placeholder="Filter by sector" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Sectors</SelectItem>
-                {sectors.map((sector) => (
-                  <SelectItem key={sector.id} value={sector.id}>
-                    {sector.icon} {sector.title.split(' ')[0]}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            </Button>
           </div>
 
-          {/* Active filter indicator */}
-          {(selectedJobSector !== 'all' || jobSearchQuery) && (
-            <div className="flex items-center gap-2 mb-4 flex-wrap">
-              <span className="text-sm text-muted-foreground">Showing:</span>
-              {selectedJobSector !== 'all' && (
-                <Badge variant="secondary" className="gap-1">
-                  {sectors.find(s => s.id === selectedJobSector)?.title || selectedJobSector}
-                  <button onClick={() => setSelectedJobSector('all')}>
-                    <X className="w-3 h-3" />
-                  </button>
-                </Badge>
+          {!showSavedJobs ? (
+            <>
+              {/* Filters */}
+              <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                <div className="relative flex-1 max-w-md">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    type="text"
+                    placeholder="Search jobs by title, company, location..."
+                    value={jobSearchQuery}
+                    onChange={(e) => setJobSearchQuery(e.target.value)}
+                    className="pl-10"
+                  />
+                  {jobSearchQuery && (
+                    <button
+                      onClick={() => setJobSearchQuery('')}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+                <Select value={selectedJobSector} onValueChange={setSelectedJobSector}>
+                  <SelectTrigger className="w-full sm:w-[200px]">
+                    <Filter className="w-4 h-4 mr-2 text-muted-foreground" />
+                    <SelectValue placeholder="Filter by sector" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Sectors</SelectItem>
+                    {sectors.map((sector) => (
+                      <SelectItem key={sector.id} value={sector.id}>
+                        {sector.icon} {sector.title.split(' ')[0]}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Active filter indicator */}
+              {(selectedJobSector !== 'all' || jobSearchQuery) && (
+                <div className="flex items-center gap-2 mb-4 flex-wrap">
+                  <span className="text-sm text-muted-foreground">Showing:</span>
+                  {selectedJobSector !== 'all' && (
+                    <Badge variant="secondary" className="gap-1">
+                      {sectors.find(s => s.id === selectedJobSector)?.title || selectedJobSector}
+                      <button onClick={() => setSelectedJobSector('all')}>
+                        <X className="w-3 h-3" />
+                      </button>
+                    </Badge>
+                  )}
+                  {jobSearchQuery && (
+                    <Badge variant="secondary" className="gap-1">
+                      Search: {jobSearchQuery}
+                      <button onClick={() => setJobSearchQuery('')}>
+                        <X className="w-3 h-3" />
+                      </button>
+                    </Badge>
+                  )}
+                  <span className="text-sm text-muted-foreground">({filteredJobs.length} jobs)</span>
+                </div>
               )}
-              {jobSearchQuery && (
-                <Badge variant="secondary" className="gap-1">
-                  Search: {jobSearchQuery}
-                  <button onClick={() => setJobSearchQuery('')}>
-                    <X className="w-3 h-3" />
-                  </button>
-                </Badge>
+
+              {/* Job Cards Grid */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filteredJobs.slice(0, 18).map((job, idx) => {
+                  const originalIdx = jobListings.findIndex(j => j.title === job.title && j.company === job.company);
+                  const isSaved = isJobSaved(originalIdx);
+                  
+                  return (
+                    <Card key={idx} className="hover:shadow-lg transition-all duration-300 overflow-hidden group">
+                      <CardContent className="p-4">
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex-1">
+                            <h3 className="font-semibold text-foreground">{job.title}</h3>
+                            <p className="text-sm text-primary font-medium">{job.company}</p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {job.isHot && (
+                              <Badge variant="destructive" className="text-xs">
+                                🔥 Hot
+                              </Badge>
+                            )}
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className={`h-8 w-8 ${isSaved ? 'text-amber-500' : 'text-muted-foreground opacity-0 group-hover:opacity-100'} transition-all`}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleSaveJob(originalIdx, job);
+                              }}
+                            >
+                              <Star className={`w-5 h-5 ${isSaved ? 'fill-current' : ''}`} />
+                            </Button>
+                          </div>
+                        </div>
+                        <div className="space-y-2 text-sm">
+                          <div className="flex items-center gap-2 text-muted-foreground">
+                            <MapPin className="w-4 h-4" />
+                            <span>{job.location}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-muted-foreground">
+                            <Banknote className="w-4 h-4" />
+                            <span className="text-primary font-medium">{job.salary}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-muted-foreground">
+                            <Briefcase className="w-4 h-4" />
+                            <span>{job.requirement}</span>
+                          </div>
+                        </div>
+                        <div className="mt-3 pt-3 border-t flex items-center justify-between">
+                          <Badge variant="outline" className="text-xs">
+                            {sectors.find(s => s.id === job.sector)?.title.split(' ')[0] || job.sector}
+                          </Badge>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="text-xs h-7 px-2"
+                            onClick={() => toggleSaveJob(originalIdx, job)}
+                          >
+                            {isSaved ? 'Saved ✓' : 'Save Job'}
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            </>
+          ) : (
+            /* Saved Jobs View */
+            <div>
+              {savedJobs.length === 0 ? (
+                <div className="text-center py-16 bg-muted/30 rounded-xl">
+                  <Star className="w-16 h-16 mx-auto text-muted-foreground/50 mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">No Saved Jobs</h3>
+                  <p className="text-muted-foreground mb-2">சேமிக்கப்பட்ட வேலைகள் இல்லை</p>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Click the star icon on any job card to save it for later.
+                  </p>
+                  <Button variant="outline" onClick={() => setShowSavedJobs(false)}>
+                    Browse Jobs
+                  </Button>
+                </div>
+              ) : (
+                <>
+                  <div className="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-lg p-4 mb-6">
+                    <p className="text-sm text-amber-800 dark:text-amber-300">
+                      💡 You have {savedJobs.length} saved job(s). உங்களிடம் {savedJobs.length} சேமிக்கப்பட்ட வேலை(கள்) உள்ளன.
+                    </p>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {savedJobs.map((job, idx) => {
+                      const originalIdx = jobListings.findIndex(j => j.title === job.title && j.company === job.company);
+                      
+                      return (
+                        <Card key={idx} className="hover:shadow-lg transition-all duration-300 overflow-hidden border-amber-200 dark:border-amber-500/30">
+                          <CardContent className="p-4">
+                            <div className="flex items-start justify-between mb-3">
+                              <div className="flex-1">
+                                <h3 className="font-semibold text-foreground">{job.title}</h3>
+                                <p className="text-sm text-primary font-medium">{job.company}</p>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                {job.isHot && (
+                                  <Badge variant="destructive" className="text-xs">
+                                    🔥 Hot
+                                  </Badge>
+                                )}
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="h-8 w-8 text-amber-500"
+                                  onClick={() => toggleSaveJob(originalIdx, job)}
+                                >
+                                  <Star className="w-5 h-5 fill-current" />
+                                </Button>
+                              </div>
+                            </div>
+                            <div className="space-y-2 text-sm">
+                              <div className="flex items-center gap-2 text-muted-foreground">
+                                <MapPin className="w-4 h-4" />
+                                <span>{job.location}</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-muted-foreground">
+                                <Banknote className="w-4 h-4" />
+                                <span className="text-primary font-medium">{job.salary}</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-muted-foreground">
+                                <Briefcase className="w-4 h-4" />
+                                <span>{job.requirement}</span>
+                              </div>
+                            </div>
+                            <div className="mt-3 pt-3 border-t flex items-center justify-between">
+                              <Badge variant="outline" className="text-xs">
+                                {sectors.find(s => s.id === job.sector)?.title.split(' ')[0] || job.sector}
+                              </Badge>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="text-xs h-7 px-2 text-destructive hover:text-destructive"
+                                onClick={() => toggleSaveJob(originalIdx, job)}
+                              >
+                                Remove
+                              </Button>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                </>
               )}
-              <span className="text-sm text-muted-foreground">({filteredJobs.length} jobs)</span>
             </div>
           )}
-
-          {/* Job Cards Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredJobs.slice(0, 12).map((job, idx) => (
-              <Card key={idx} className="hover:shadow-lg transition-all duration-300 overflow-hidden">
-                <CardContent className="p-4">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h3 className="font-semibold text-foreground">{job.title}</h3>
-                      <p className="text-sm text-primary font-medium">{job.company}</p>
-                    </div>
-                    {job.isHot && (
-                      <Badge variant="destructive" className="text-xs">
-                        🔥 Hot
-                      </Badge>
-                    )}
-                  </div>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <MapPin className="w-4 h-4" />
-                      <span>{job.location}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <Banknote className="w-4 h-4" />
-                      <span className="text-primary font-medium">{job.salary}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <Briefcase className="w-4 h-4" />
-                      <span>{job.requirement}</span>
-                    </div>
-                  </div>
-                  <div className="mt-3 pt-3 border-t">
-                    <Badge variant="outline" className="text-xs">
-                      {sectors.find(s => s.id === job.sector)?.title.split(' ')[0] || job.sector}
-                    </Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
 
           {filteredJobs.length === 0 && (
             <div className="text-center py-12">
