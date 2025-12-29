@@ -1,16 +1,9 @@
-import { X, MapPin, Banknote, Briefcase, Building2, ArrowLeftRight } from 'lucide-react';
+import { X, MapPin, Banknote, Briefcase, Building2, ArrowLeftRight, GraduationCap, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { Card, CardContent } from '@/components/ui/card';
 
 interface Job {
   title: string;
@@ -27,39 +20,31 @@ interface JobComparisonProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onRemoveJob: (index: number) => void;
-  sectors: Array<{ id: string; title: string; icon: string }>;
+  sectors: Array<{ id: string; title: string; icon: string; borderColor: string }>;
 }
 
-const comparisonFields = [
-  { key: 'company', label: 'Company' },
-  { key: 'location', label: 'Location' },
-  { key: 'salary', label: 'Salary' },
-  { key: 'requirement', label: 'Requirements' },
-  { key: 'sector', label: 'Sector' },
-];
+const sectorColors: Record<string, { bg: string; text: string; border: string }> = {
+  tech: { bg: 'bg-blue-50 dark:bg-blue-500/10', text: 'text-blue-700 dark:text-blue-400', border: 'border-blue-200 dark:border-blue-500/30' },
+  healthcare: { bg: 'bg-green-50 dark:bg-green-500/10', text: 'text-green-700 dark:text-green-400', border: 'border-green-200 dark:border-green-500/30' },
+  manufacturing: { bg: 'bg-orange-50 dark:bg-orange-500/10', text: 'text-orange-700 dark:text-orange-400', border: 'border-orange-200 dark:border-orange-500/30' },
+  bfsi: { bg: 'bg-purple-50 dark:bg-purple-500/10', text: 'text-purple-700 dark:text-purple-400', border: 'border-purple-200 dark:border-purple-500/30' },
+  ecommerce: { bg: 'bg-pink-50 dark:bg-pink-500/10', text: 'text-pink-700 dark:text-pink-400', border: 'border-pink-200 dark:border-pink-500/30' },
+  logistics: { bg: 'bg-amber-50 dark:bg-amber-500/10', text: 'text-amber-700 dark:text-amber-400', border: 'border-amber-200 dark:border-amber-500/30' },
+  gaming: { bg: 'bg-red-50 dark:bg-red-500/10', text: 'text-red-700 dark:text-red-400', border: 'border-red-200 dark:border-red-500/30' },
+  agritech: { bg: 'bg-lime-50 dark:bg-lime-500/10', text: 'text-lime-700 dark:text-lime-400', border: 'border-lime-200 dark:border-lime-500/30' },
+  edtech: { bg: 'bg-indigo-50 dark:bg-indigo-500/10', text: 'text-indigo-700 dark:text-indigo-400', border: 'border-indigo-200 dark:border-indigo-500/30' },
+  renewable: { bg: 'bg-teal-50 dark:bg-teal-500/10', text: 'text-teal-700 dark:text-teal-400', border: 'border-teal-200 dark:border-teal-500/30' },
+};
 
 export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }: JobComparisonProps) {
-  const getSectorName = (sectorId: string) => {
+  const getSectorInfo = (sectorId: string) => {
     const sector = sectors.find(s => s.id === sectorId);
-    return sector ? `${sector.icon} ${sector.title.split(' ')[0]}` : sectorId;
-  };
-
-  const renderValue = (job: Job, key: string) => {
-    switch (key) {
-      case 'sector':
-        return getSectorName(job.sector);
-      case 'salary':
-        return <span className="text-primary font-medium">{job.salary}</span>;
-      case 'location':
-        return (
-          <span className="flex items-center gap-1">
-            <MapPin className="w-3 h-3" />
-            {job.location}
-          </span>
-        );
-      default:
-        return job[key as keyof Job] as string;
-    }
+    const colors = sectorColors[sectorId] || { bg: 'bg-gray-50 dark:bg-gray-500/10', text: 'text-gray-700 dark:text-gray-400', border: 'border-gray-200 dark:border-gray-500/30' };
+    return {
+      name: sector ? sector.title.split(' ')[0] : sectorId,
+      icon: sector?.icon || '💼',
+      ...colors
+    };
   };
 
   if (jobs.length === 0) {
@@ -68,65 +53,186 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[90vh]">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <ArrowLeftRight className="h-5 w-5 text-primary" />
-            Compare Jobs ({jobs.length})
-          </DialogTitle>
-          <DialogDescription>
-            Compare saved jobs side by side to make better decisions.
-            வேலைகளை ஒப்பிட்டுப் பாருங்கள்
-          </DialogDescription>
-        </DialogHeader>
+      <DialogContent className="max-w-5xl max-h-[90vh] p-0 gap-0">
+        {/* Gradient Header */}
+        <div className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground p-6 rounded-t-lg">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-3 text-xl">
+              <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
+                <ArrowLeftRight className="h-5 w-5" />
+              </div>
+              Compare Jobs ({jobs.length})
+            </DialogTitle>
+            <DialogDescription className="text-primary-foreground/80 mt-2">
+              Side-by-side comparison to help you make the best decision
+            </DialogDescription>
+          </DialogHeader>
+        </div>
 
         <ScrollArea className="max-h-[60vh]">
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-muted/50">
-                <TableHead className="font-semibold w-32">Attribute</TableHead>
-                {jobs.map((job, idx) => (
-                  <TableHead key={idx} className="min-w-[180px]">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <p className="font-semibold text-foreground truncate">{job.title}</p>
-                        {job.isHot && (
-                          <Badge variant="destructive" className="text-xs mt-1">
-                            🔥 Hot
-                          </Badge>
-                        )}
+          <div className="p-6">
+            {/* Comparison Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {jobs.map((job, idx) => {
+                const sectorInfo = getSectorInfo(job.sector);
+                
+                return (
+                  <Card 
+                    key={idx} 
+                    className={`relative overflow-hidden transition-all hover:shadow-lg ${sectorInfo.border} border-2`}
+                  >
+                    {/* Remove Button */}
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="absolute top-2 right-2 h-7 w-7 rounded-full bg-background/80 hover:bg-destructive hover:text-destructive-foreground z-10"
+                      onClick={() => onRemoveJob(idx)}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+
+                    {/* Hot Badge */}
+                    {job.isHot && (
+                      <div className="absolute top-2 left-2 z-10">
+                        <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white border-0 gap-1">
+                          🔥 Hot
+                        </Badge>
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-6 w-6 text-muted-foreground hover:text-destructive flex-shrink-0"
-                        onClick={() => onRemoveJob(idx)}
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {comparisonFields.map((field) => (
-                <TableRow key={field.key} className="hover:bg-muted/30">
-                  <TableCell className="font-medium text-muted-foreground">
-                    {field.label}
-                  </TableCell>
-                  {jobs.map((job, idx) => (
-                    <TableCell key={idx} className="text-sm">
-                      {renderValue(job, field.key)}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+                    )}
+
+                    <CardContent className="p-4 pt-10">
+                      {/* Job Title & Company */}
+                      <div className="mb-4">
+                        <h3 className="font-bold text-foreground text-base leading-tight mb-1 line-clamp-2">
+                          {job.title}
+                        </h3>
+                        <p className="text-primary font-medium text-sm flex items-center gap-1">
+                          <Building2 className="w-3 h-3" />
+                          {job.company}
+                        </p>
+                      </div>
+
+                      {/* Details */}
+                      <div className="space-y-3">
+                        {/* Location */}
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                            <MapPin className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                          </div>
+                          <div>
+                            <p className="text-xs text-muted-foreground">Location</p>
+                            <p className="text-sm font-medium">{job.location}</p>
+                          </div>
+                        </div>
+
+                        {/* Salary */}
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-green-100 dark:bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                            <Banknote className="w-4 h-4 text-green-600 dark:text-green-400" />
+                          </div>
+                          <div>
+                            <p className="text-xs text-muted-foreground">Salary</p>
+                            <p className="text-sm font-semibold text-green-600 dark:text-green-400">{job.salary}</p>
+                          </div>
+                        </div>
+
+                        {/* Requirement */}
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                            <GraduationCap className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                          </div>
+                          <div>
+                            <p className="text-xs text-muted-foreground">Requirements</p>
+                            <p className="text-sm font-medium">{job.requirement}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Sector Badge */}
+                      <div className="mt-4 pt-4 border-t">
+                        <Badge 
+                          variant="outline" 
+                          className={`${sectorInfo.bg} ${sectorInfo.text} ${sectorInfo.border} border text-xs px-3 py-1`}
+                        >
+                          {sectorInfo.icon} {sectorInfo.name}
+                        </Badge>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+
+            {/* Comparison Summary Table */}
+            {jobs.length >= 2 && (
+              <div className="mt-6 rounded-xl border overflow-hidden">
+                <div className="bg-muted/50 px-4 py-3 border-b">
+                  <h4 className="font-semibold flex items-center gap-2">
+                    <TrendingUp className="w-4 h-4 text-primary" />
+                    Quick Comparison
+                  </h4>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead className="bg-muted/30">
+                      <tr>
+                        <th className="text-left p-3 text-sm font-medium text-muted-foreground">Attribute</th>
+                        {jobs.map((job, idx) => (
+                          <th key={idx} className="text-left p-3 text-sm font-semibold min-w-[150px]">
+                            {job.title.length > 20 ? job.title.slice(0, 20) + '...' : job.title}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-t">
+                        <td className="p-3 text-sm text-muted-foreground font-medium">Company</td>
+                        {jobs.map((job, idx) => (
+                          <td key={idx} className="p-3 text-sm font-medium text-primary">{job.company}</td>
+                        ))}
+                      </tr>
+                      <tr className="border-t bg-muted/20">
+                        <td className="p-3 text-sm text-muted-foreground font-medium">Location</td>
+                        {jobs.map((job, idx) => (
+                          <td key={idx} className="p-3 text-sm">{job.location}</td>
+                        ))}
+                      </tr>
+                      <tr className="border-t">
+                        <td className="p-3 text-sm text-muted-foreground font-medium">Salary</td>
+                        {jobs.map((job, idx) => (
+                          <td key={idx} className="p-3 text-sm font-semibold text-green-600 dark:text-green-400">{job.salary}</td>
+                        ))}
+                      </tr>
+                      <tr className="border-t bg-muted/20">
+                        <td className="p-3 text-sm text-muted-foreground font-medium">Requirements</td>
+                        {jobs.map((job, idx) => (
+                          <td key={idx} className="p-3 text-sm">{job.requirement}</td>
+                        ))}
+                      </tr>
+                      <tr className="border-t">
+                        <td className="p-3 text-sm text-muted-foreground font-medium">Sector</td>
+                        {jobs.map((job, idx) => {
+                          const sectorInfo = getSectorInfo(job.sector);
+                          return (
+                            <td key={idx} className="p-3">
+                              <Badge variant="outline" className={`${sectorInfo.bg} ${sectorInfo.text} text-xs`}>
+                                {sectorInfo.icon} {sectorInfo.name}
+                              </Badge>
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </div>
+          <ScrollBar orientation="horizontal" />
         </ScrollArea>
 
-        <div className="flex justify-end gap-2 pt-4 border-t">
+        {/* Footer */}
+        <div className="flex justify-end gap-3 p-4 border-t bg-muted/30">
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Close
           </Button>
