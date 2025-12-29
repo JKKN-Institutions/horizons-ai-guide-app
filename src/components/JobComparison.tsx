@@ -1,5 +1,6 @@
-import { X, MapPin, Banknote, Briefcase, Building2, ArrowLeftRight, GraduationCap, TrendingUp, Crown, Sparkles, Download, Loader2, PieChartIcon, Radar, Zap, Target, BookOpen } from 'lucide-react';
+import { X, MapPin, Banknote, Briefcase, Building2, ArrowLeftRight, GraduationCap, TrendingUp, Crown, Sparkles, Download, Loader2, PieChartIcon, Radar, Zap, Target, BookOpen, Percent, CheckCircle2, Star } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar as RechartsRadar, Legend } from 'recharts';
+import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
@@ -355,6 +356,236 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
                 );
               })}
             </div>
+
+            {/* Job Match Percentage Cards */}
+            {jobs.length >= 2 && (() => {
+              // Calculate comprehensive match score for each job
+              const calculateMatchScore = (job: Job): { total: number; breakdown: { label: string; score: number; icon: string; color: string }[] } => {
+                const breakdown: { label: string; score: number; icon: string; color: string }[] = [];
+                
+                // Salary Score (25% weight) - Higher salary = higher score
+                const salaryMax = parseSalaryMax(job.salary);
+                const salaryScore = Math.min(100, salaryMax * 4);
+                breakdown.push({ label: 'Salary', score: salaryScore, icon: '💰', color: 'emerald' });
+                
+                // Growth Potential (25% weight) - Based on sector and hot status
+                const growthScores: Record<string, number> = {
+                  tech: 95, bfsi: 85, healthcare: 80, edtech: 75, ecommerce: 70,
+                  renewable: 85, gaming: 65, logistics: 60, manufacturing: 55, agritech: 70
+                };
+                let growthScore = growthScores[job.sector] || 60;
+                if (job.isHot) growthScore = Math.min(100, growthScore + 15);
+                breakdown.push({ label: 'Growth', score: growthScore, icon: '📈', color: 'blue' });
+                
+                // Market Demand (20% weight)
+                const demandScores: Record<string, number> = {
+                  tech: 90, healthcare: 85, bfsi: 80, ecommerce: 75, logistics: 70,
+                  manufacturing: 65, edtech: 70, renewable: 75, gaming: 60, agritech: 55
+                };
+                const demandScore = job.isHot ? Math.min(100, (demandScores[job.sector] || 60) + 15) : (demandScores[job.sector] || 60);
+                breakdown.push({ label: 'Demand', score: demandScore, icon: '🔥', color: 'orange' });
+                
+                // Work-Life Balance (15% weight)
+                const wlbScores: Record<string, number> = {
+                  edtech: 85, healthcare: 70, bfsi: 65, tech: 60, ecommerce: 55,
+                  manufacturing: 75, logistics: 50, gaming: 45, renewable: 70, agritech: 80
+                };
+                breakdown.push({ label: 'Balance', score: wlbScores[job.sector] || 60, icon: '⚖️', color: 'violet' });
+                
+                // Accessibility (15% weight) - Based on requirements
+                const reqLower = job.requirement.toLowerCase();
+                let accessScore = 60;
+                if (reqLower.includes('12th') || reqLower.includes('diploma')) accessScore = 90;
+                else if (reqLower.includes('bca') || reqLower.includes('b.tech') || reqLower.includes('b.e')) accessScore = 70;
+                else if (reqLower.includes('m.tech') || reqLower.includes('mba') || reqLower.includes('m.sc')) accessScore = 50;
+                else if (reqLower.includes('phd')) accessScore = 30;
+                breakdown.push({ label: 'Access', score: accessScore, icon: '🎓', color: 'cyan' });
+                
+                // Calculate weighted total
+                const total = Math.round(
+                  (salaryScore * 0.25) + 
+                  (growthScore * 0.25) + 
+                  (demandScore * 0.20) + 
+                  (wlbScores[job.sector] || 60) * 0.15 + 
+                  (accessScore * 0.15)
+                );
+                
+                return { total, breakdown };
+              };
+
+              const jobMatches = jobs.map((job, idx) => ({
+                ...job,
+                idx,
+                matchData: calculateMatchScore(job)
+              })).sort((a, b) => b.matchData.total - a.matchData.total);
+
+              const getMatchLabel = (score: number): { text: string; color: string } => {
+                if (score >= 85) return { text: 'Excellent Match', color: 'emerald' };
+                if (score >= 70) return { text: 'Great Match', color: 'blue' };
+                if (score >= 55) return { text: 'Good Match', color: 'amber' };
+                return { text: 'Fair Match', color: 'orange' };
+              };
+
+              return (
+                <div className="mt-6 rounded-2xl border border-rose-200/60 dark:border-rose-500/20 overflow-hidden shadow-xl bg-gradient-to-br from-white to-rose-50/30 dark:from-background dark:to-rose-500/5">
+                  {/* Header */}
+                  <div className="bg-gradient-to-r from-rose-500 via-pink-500 to-fuchsia-500 px-5 py-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
+                          <Percent className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-white text-lg tracking-tight">Career Match Score</h4>
+                          <p className="text-rose-100 text-xs">How well each job fits ideal career criteria</p>
+                        </div>
+                      </div>
+                      <div className="hidden md:flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1.5">
+                        <Star className="w-4 h-4 text-rose-200" />
+                        <span className="text-white text-xs font-medium">AI-Powered Analysis</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Match Cards */}
+                  <div className="p-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                      {jobMatches.map((job, rankIdx) => {
+                        const sectorInfo = getSectorInfo(job.sector);
+                        const matchLabel = getMatchLabel(job.matchData.total);
+                        const isTop = rankIdx === 0;
+                        
+                        return (
+                          <div 
+                            key={job.idx}
+                            className={`relative rounded-xl overflow-hidden transition-all hover:shadow-lg ${
+                              isTop 
+                                ? 'ring-2 ring-amber-400 shadow-amber-100 dark:shadow-amber-500/20' 
+                                : 'border border-border/50'
+                            }`}
+                          >
+                            {/* Rank Badge */}
+                            <div className={`absolute top-2 left-2 z-10 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shadow-md ${
+                              rankIdx === 0 ? 'bg-gradient-to-br from-amber-400 to-orange-500 text-white' :
+                              rankIdx === 1 ? 'bg-gradient-to-br from-slate-300 to-slate-400 text-slate-700' :
+                              rankIdx === 2 ? 'bg-gradient-to-br from-orange-300 to-orange-400 text-orange-800' :
+                              'bg-muted text-muted-foreground'
+                            }`}>
+                              #{rankIdx + 1}
+                            </div>
+
+                            {/* Top Badge */}
+                            {isTop && (
+                              <div className="absolute top-0 right-0 bg-gradient-to-l from-amber-500 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg flex items-center gap-1">
+                                <Crown className="w-3 h-3" /> Best
+                              </div>
+                            )}
+
+                            {/* Score Circle */}
+                            <div className="pt-4 pb-2 px-4 bg-gradient-to-b from-muted/30 to-transparent">
+                              <div className="flex items-center justify-center">
+                                <div className="relative w-20 h-20">
+                                  <svg className="w-20 h-20 -rotate-90">
+                                    <circle
+                                      cx="40"
+                                      cy="40"
+                                      r="35"
+                                      strokeWidth="6"
+                                      fill="none"
+                                      className="stroke-muted"
+                                    />
+                                    <circle
+                                      cx="40"
+                                      cy="40"
+                                      r="35"
+                                      strokeWidth="6"
+                                      fill="none"
+                                      strokeLinecap="round"
+                                      className={`${
+                                        matchLabel.color === 'emerald' ? 'stroke-emerald-500' :
+                                        matchLabel.color === 'blue' ? 'stroke-blue-500' :
+                                        matchLabel.color === 'amber' ? 'stroke-amber-500' :
+                                        'stroke-orange-500'
+                                      }`}
+                                      strokeDasharray={`${(job.matchData.total / 100) * 220} 220`}
+                                    />
+                                  </svg>
+                                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                                    <span className="text-2xl font-bold text-foreground">{job.matchData.total}</span>
+                                    <span className="text-[10px] text-muted-foreground">/ 100</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <p className={`text-center text-xs font-semibold mt-1 ${
+                                matchLabel.color === 'emerald' ? 'text-emerald-600 dark:text-emerald-400' :
+                                matchLabel.color === 'blue' ? 'text-blue-600 dark:text-blue-400' :
+                                matchLabel.color === 'amber' ? 'text-amber-600 dark:text-amber-400' :
+                                'text-orange-600 dark:text-orange-400'
+                              }`}>
+                                {matchLabel.text}
+                              </p>
+                            </div>
+
+                            {/* Job Info */}
+                            <div className="px-4 pb-3 pt-2 border-t border-border/30">
+                              <p className="font-bold text-sm text-foreground truncate">{job.title}</p>
+                              <p className={`text-xs ${sectorInfo.text} truncate`}>{job.company}</p>
+                            </div>
+
+                            {/* Breakdown */}
+                            <div className="px-4 pb-4 space-y-2">
+                              {job.matchData.breakdown.map((item, bIdx) => (
+                                <div key={bIdx} className="flex items-center gap-2">
+                                  <span className="text-xs w-4">{item.icon}</span>
+                                  <div className="flex-1">
+                                    <div className="flex justify-between items-center mb-0.5">
+                                      <span className="text-[10px] text-muted-foreground">{item.label}</span>
+                                      <span className="text-[10px] font-medium text-foreground">{item.score}%</span>
+                                    </div>
+                                    <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+                                      <div 
+                                        className={`h-full rounded-full transition-all ${
+                                          item.color === 'emerald' ? 'bg-emerald-500' :
+                                          item.color === 'blue' ? 'bg-blue-500' :
+                                          item.color === 'orange' ? 'bg-orange-500' :
+                                          item.color === 'violet' ? 'bg-violet-500' :
+                                          'bg-cyan-500'
+                                        }`}
+                                        style={{ width: `${item.score}%` }}
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Legend */}
+                    <div className="mt-4 pt-4 border-t border-rose-100 dark:border-rose-500/10 flex flex-wrap justify-center gap-4 text-xs text-muted-foreground">
+                      <div className="flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                        <span>85+ Excellent</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-500" />
+                        <span>70-84 Great</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-amber-500" />
+                        <span>55-69 Good</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-orange-500" />
+                        <span>&lt;55 Fair</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
 
             {/* Salary Insights Chart */}
             {jobs.length >= 2 && (
