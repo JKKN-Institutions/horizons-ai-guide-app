@@ -4,8 +4,9 @@ import {
   ArrowLeft, TrendingUp, Target, Briefcase, Star, Laptop, 
   Heart, Cog, Building2, ShoppingCart, Brain, Cloud, Shield,
   Database, Code, MessageSquare, Users, Lightbulb, RefreshCw, Handshake,
-  Download, MapPin, Banknote, Search, X, Filter, Bell, BellRing, Mail, Loader2, Check
+  Download, MapPin, Banknote, Search, X, Filter, Bell, BellRing, Mail, Loader2, Check, ArrowLeftRight
 } from 'lucide-react';
+import { JobComparison } from '@/components/JobComparison';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -459,6 +460,10 @@ const IndustryTrends = () => {
   // Saved jobs state
   const [savedJobs, setSavedJobs] = useState<typeof jobListings>([]);
   const [showSavedJobs, setShowSavedJobs] = useState(false);
+  
+  // Job comparison state
+  const [compareJobs, setCompareJobs] = useState<typeof jobListings>([]);
+  const [showCompareDialog, setShowCompareDialog] = useState(false);
 
   const locations = ['Bangalore', 'Chennai', 'Mumbai', 'Hyderabad', 'Delhi', 'Pune', 'Noida', 'Gurgaon', 'Coimbatore', 'Ahmedabad'];
 
@@ -650,6 +655,40 @@ const IndustryTrends = () => {
     }
 
     localStorage.setItem('industryTrendsSavedJobs', JSON.stringify(savedJobIds));
+  };
+
+  const toggleCompareJob = (job: typeof jobListings[0]) => {
+    const isInCompare = compareJobs.some(j => j.title === job.title && j.company === job.company);
+    
+    if (isInCompare) {
+      setCompareJobs(prev => prev.filter(j => !(j.title === job.title && j.company === job.company)));
+      toast({
+        title: "Removed from Compare",
+        description: `${job.title} removed from comparison.`,
+      });
+    } else {
+      if (compareJobs.length >= 4) {
+        toast({
+          title: "Maximum 4 Jobs",
+          description: "You can compare up to 4 jobs at a time. Remove one to add another.",
+          variant: "destructive",
+        });
+        return;
+      }
+      setCompareJobs(prev => [...prev, job]);
+      toast({
+        title: "Added to Compare",
+        description: `${job.title} added for comparison.`,
+      });
+    }
+  };
+
+  const isJobInCompare = (job: typeof jobListings[0]) => {
+    return compareJobs.some(j => j.title === job.title && j.company === job.company);
+  };
+
+  const handleRemoveFromCompare = (index: number) => {
+    setCompareJobs(prev => prev.filter((_, i) => i !== index));
   };
 
   const filteredJobs = jobListings.filter(job => {
@@ -1324,24 +1363,53 @@ const IndustryTrends = () => {
                 </div>
               ) : (
                 <>
-                  <div className="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-lg p-4 mb-6">
-                    <p className="text-sm text-amber-800 dark:text-amber-300">
-                      💡 You have {savedJobs.length} saved job(s). உங்களிடம் {savedJobs.length} சேமிக்கப்பட்ட வேலை(கள்) உள்ளன.
-                    </p>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <div className="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-lg p-4 flex-1">
+                      <p className="text-sm text-amber-800 dark:text-amber-300">
+                        💡 You have {savedJobs.length} saved job(s). Select jobs to compare side by side.
+                      </p>
+                    </div>
+                    {compareJobs.length >= 2 && (
+                      <Button
+                        onClick={() => setShowCompareDialog(true)}
+                        className="gap-2"
+                      >
+                        <ArrowLeftRight className="w-4 h-4" />
+                        Compare ({compareJobs.length})
+                      </Button>
+                    )}
                   </div>
+                  
+                  {/* Compare selection hint */}
+                  {compareJobs.length > 0 && compareJobs.length < 2 && (
+                    <div className="bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 rounded-lg p-3 mb-4">
+                      <p className="text-sm text-blue-800 dark:text-blue-300">
+                        ℹ️ Select at least 2 jobs to compare. {compareJobs.length}/4 selected
+                      </p>
+                    </div>
+                  )}
+                  
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {savedJobs.map((job, idx) => {
                       const originalIdx = jobListings.findIndex(j => j.title === job.title && j.company === job.company);
+                      const isInCompare = isJobInCompare(job);
                       
                       return (
-                        <Card key={idx} className="hover:shadow-lg transition-all duration-300 overflow-hidden border-amber-200 dark:border-amber-500/30">
+                        <Card 
+                          key={idx} 
+                          className={`hover:shadow-lg transition-all duration-300 overflow-hidden ${
+                            isInCompare 
+                              ? 'ring-2 ring-primary border-primary' 
+                              : 'border-amber-200 dark:border-amber-500/30'
+                          }`}
+                        >
                           <CardContent className="p-4">
                             <div className="flex items-start justify-between mb-3">
                               <div className="flex-1">
                                 <h3 className="font-semibold text-foreground">{job.title}</h3>
                                 <p className="text-sm text-primary font-medium">{job.company}</p>
                               </div>
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1">
                                 {job.isHot && (
                                   <Badge variant="destructive" className="text-xs">
                                     🔥 Hot
@@ -1375,14 +1443,25 @@ const IndustryTrends = () => {
                               <Badge variant="outline" className="text-xs">
                                 {sectors.find(s => s.id === job.sector)?.title.split(' ')[0] || job.sector}
                               </Badge>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="text-xs h-7 px-2 text-destructive hover:text-destructive"
-                                onClick={() => toggleSaveJob(originalIdx, job)}
-                              >
-                                Remove
-                              </Button>
+                              <div className="flex items-center gap-1">
+                                <Button
+                                  variant={isInCompare ? "default" : "outline"}
+                                  size="sm"
+                                  className="text-xs h-7 px-2 gap-1"
+                                  onClick={() => toggleCompareJob(job)}
+                                >
+                                  <ArrowLeftRight className="w-3 h-3" />
+                                  {isInCompare ? 'Selected' : 'Compare'}
+                                </Button>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="text-xs h-7 px-2 text-destructive hover:text-destructive"
+                                  onClick={() => toggleSaveJob(originalIdx, job)}
+                                >
+                                  Remove
+                                </Button>
+                              </div>
                             </div>
                           </CardContent>
                         </Card>
@@ -1393,6 +1472,15 @@ const IndustryTrends = () => {
               )}
             </div>
           )}
+
+          {/* Job Comparison Dialog */}
+          <JobComparison
+            jobs={compareJobs}
+            open={showCompareDialog}
+            onOpenChange={setShowCompareDialog}
+            onRemoveJob={handleRemoveFromCompare}
+            sectors={sectors}
+          />
 
           {filteredJobs.length === 0 && (
             <div className="text-center py-12">
