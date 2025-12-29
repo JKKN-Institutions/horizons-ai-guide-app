@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { 
   GraduationCap, 
   Briefcase, 
@@ -10,13 +10,89 @@ import {
   FlaskConical,
   Calculator,
   BookOpen,
-  ChevronRight,
   Sparkles,
   TrendingUp
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+
+// Animated SVG connector component
+const AnimatedConnector = ({ 
+  startX, 
+  startY, 
+  endX, 
+  endY, 
+  isActive = false,
+  delay = 0 
+}: { 
+  startX: number; 
+  startY: number; 
+  endX: number; 
+  endY: number; 
+  isActive?: boolean;
+  delay?: number;
+}) => {
+  const midY = startY + (endY - startY) / 2;
+  const pathD = `M ${startX} ${startY} L ${startX} ${midY} L ${endX} ${midY} L ${endX} ${endY}`;
+  
+  return (
+    <g>
+      {/* Background path */}
+      <path
+        d={pathD}
+        fill="none"
+        stroke="hsl(var(--muted-foreground) / 0.2)"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      {/* Animated foreground path */}
+      <path
+        d={pathD}
+        fill="none"
+        stroke={isActive ? "hsl(var(--primary))" : "hsl(var(--muted-foreground) / 0.3)"}
+        strokeWidth={isActive ? "3" : "2"}
+        strokeLinecap="round"
+        strokeDasharray="1000"
+        strokeDashoffset={isActive ? "0" : "1000"}
+        style={{
+          transition: `stroke-dashoffset 0.8s ease-out ${delay}s, stroke 0.3s ease`,
+        }}
+      />
+      {/* Animated dot */}
+      {isActive && (
+        <circle
+          r="4"
+          fill="hsl(var(--primary))"
+          style={{
+            offsetPath: `path('${pathD}')`,
+            animation: `flowDot 2s ease-in-out infinite ${delay}s`,
+          }}
+        >
+          <animateMotion
+            dur="2s"
+            repeatCount="indefinite"
+            path={pathD}
+            begin={`${delay}s`}
+          />
+        </circle>
+      )}
+    </g>
+  );
+};
+
+// Pulsing node indicator
+const PulsingDot = ({ isActive }: { isActive: boolean }) => (
+  <span className="relative flex h-3 w-3">
+    {isActive && (
+      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+    )}
+    <span className={cn(
+      "relative inline-flex rounded-full h-3 w-3",
+      isActive ? "bg-primary" : "bg-muted-foreground/30"
+    )}></span>
+  </span>
+);
 
 interface CareerNode {
   id: string;
@@ -233,8 +309,39 @@ const careerPaths: PathData[] = [
 const CareerPathFlowchart = () => {
   const [selectedStream, setSelectedStream] = useState<string | null>("Science (PCM)");
   const [selectedPath, setSelectedPath] = useState<CareerNode | null>(null);
+  const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const startNodeRef = useRef<HTMLDivElement>(null);
+  const streamRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const currentPaths = careerPaths.find(p => p.stream === selectedStream)?.paths || [];
+  const selectedStreamIndex = careerPaths.findIndex(p => p.stream === selectedStream);
+
+  // Calculate SVG dimensions and positions
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setSvgDimensions({ width: rect.width, height: rect.height });
+      }
+    };
+
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, [selectedStream, currentPaths]);
+
+  // Get element center position relative to container
+  const getElementCenter = (el: HTMLElement | null) => {
+    if (!el || !containerRef.current) return { x: 0, y: 0 };
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    return {
+      x: elRect.left - containerRect.left + elRect.width / 2,
+      y: elRect.top - containerRect.top + elRect.height / 2,
+    };
+  };
 
   return (
     <section className="py-16 bg-gradient-to-b from-background to-muted/30">
@@ -254,87 +361,197 @@ const CareerPathFlowchart = () => {
         </div>
 
         {/* Flowchart Container */}
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto relative" ref={containerRef}>
+          {/* SVG Layer for animated connections */}
+          <svg 
+            className="absolute inset-0 pointer-events-none z-0" 
+            width={svgDimensions.width} 
+            height={svgDimensions.height}
+            style={{ overflow: 'visible' }}
+          >
+            <defs>
+              <linearGradient id="flowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="hsl(var(--primary))" />
+                <stop offset="100%" stopColor="hsl(var(--primary) / 0.3)" />
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            
+            {/* Connections from 12th to streams */}
+            {startNodeRef.current && streamRefs.current.map((streamEl, index) => {
+              if (!streamEl) return null;
+              const start = getElementCenter(startNodeRef.current);
+              const end = getElementCenter(streamEl);
+              const isActive = index === selectedStreamIndex;
+              
+              return (
+                <AnimatedConnector
+                  key={`stream-${index}`}
+                  startX={start.x}
+                  startY={start.y + 30}
+                  endX={end.x}
+                  endY={end.y - 24}
+                  isActive={isActive}
+                  delay={index * 0.1}
+                />
+              );
+            })}
+
+            {/* Connections from selected stream to career cards */}
+            {selectedStreamIndex >= 0 && streamRefs.current[selectedStreamIndex] && 
+              cardRefs.current.map((cardEl, index) => {
+                if (!cardEl) return null;
+                const streamEl = streamRefs.current[selectedStreamIndex];
+                if (!streamEl) return null;
+                const start = getElementCenter(streamEl);
+                const end = getElementCenter(cardEl);
+                const isActive = selectedPath?.id === currentPaths[index]?.id;
+                
+                return (
+                  <AnimatedConnector
+                    key={`card-${index}`}
+                    startX={start.x}
+                    startY={start.y + 24}
+                    endX={end.x}
+                    endY={end.y - 60}
+                    isActive={isActive}
+                    delay={0.3 + index * 0.1}
+                  />
+                );
+              })
+            }
+          </svg>
+
           {/* Starting Point - 12th Grade */}
-          <div className="flex justify-center mb-8">
-            <div className="relative">
-              <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-2xl shadow-lg flex items-center gap-3">
-                <GraduationCap className="w-8 h-8" />
+          <div className="flex justify-center mb-12 relative z-10">
+            <div ref={startNodeRef} className="relative group">
+              <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+              <div className="relative bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-4 rounded-2xl shadow-lg flex items-center gap-3 border-2 border-primary-foreground/20">
+                <div className="relative">
+                  <GraduationCap className="w-8 h-8" />
+                  <span className="absolute -top-1 -right-1">
+                    <PulsingDot isActive={true} />
+                  </span>
+                </div>
                 <div>
                   <h3 className="font-bold text-lg">12th Grade</h3>
                   <p className="text-sm opacity-90">Choose Your Stream</p>
                 </div>
               </div>
-              {/* Connector Line */}
-              <div className="absolute left-1/2 -translate-x-1/2 top-full w-0.5 h-8 bg-gradient-to-b from-primary to-muted-foreground/30"></div>
             </div>
           </div>
 
           {/* Stream Selection */}
-          <div className="flex flex-wrap justify-center gap-4 mb-8 relative">
-            {/* Horizontal connector */}
-            <div className="absolute top-0 left-1/4 right-1/4 h-0.5 bg-muted-foreground/20"></div>
-            
-            {careerPaths.map((path) => (
+          <div className="flex flex-wrap justify-center gap-6 mb-12 relative z-10">
+            {careerPaths.map((path, index) => (
               <button
                 key={path.stream}
+                ref={(el) => { streamRefs.current[index] = el; }}
                 onClick={() => {
                   setSelectedStream(path.stream);
                   setSelectedPath(null);
+                  // Reset card refs for new stream
+                  cardRefs.current = [];
                 }}
                 className={cn(
-                  "relative flex items-center gap-2 px-5 py-3 rounded-xl transition-all duration-300 border-2",
+                  "relative flex items-center gap-3 px-6 py-4 rounded-xl transition-all duration-300 border-2 group",
                   selectedStream === path.stream
                     ? `${path.bgColor} ${path.color} border-current shadow-lg scale-105`
-                    : "bg-card border-border hover:border-primary/50 hover:shadow-md"
+                    : "bg-card border-border hover:border-primary/50 hover:shadow-md hover:scale-102"
                 )}
               >
-                {/* Vertical connector */}
+                {/* Pulsing indicator */}
+                <span className="absolute -top-1.5 -right-1.5">
+                  <PulsingDot isActive={selectedStream === path.stream} />
+                </span>
+                
                 <div className={cn(
-                  "absolute left-1/2 -translate-x-1/2 -top-8 w-0.5 h-8",
-                  selectedStream === path.stream ? "bg-primary" : "bg-muted-foreground/30"
-                )}></div>
-                {path.icon}
+                  "p-2 rounded-lg transition-all duration-300",
+                  selectedStream === path.stream ? path.bgColor : "bg-muted"
+                )}>
+                  {path.icon}
+                </div>
                 <span className="font-medium">{path.stream}</span>
               </button>
             ))}
           </div>
 
-          {/* Arrow indicator */}
+          {/* Flow indicator */}
           {selectedStream && (
-            <div className="flex justify-center mb-6">
-              <div className="flex items-center gap-2 text-muted-foreground animate-pulse">
-                <ChevronRight className="w-5 h-5 rotate-90" />
-                <span className="text-sm">Available Career Paths</span>
-                <ChevronRight className="w-5 h-5 rotate-90" />
+            <div className="flex justify-center mb-8 relative z-10">
+              <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-muted/50 border border-border">
+                <div className="flex gap-1">
+                  {[0, 1, 2].map((i) => (
+                    <span 
+                      key={i}
+                      className="w-2 h-2 rounded-full bg-primary animate-pulse"
+                      style={{ animationDelay: `${i * 0.2}s` }}
+                    />
+                  ))}
+                </div>
+                <span className="text-sm text-muted-foreground font-medium">Available Career Paths</span>
+                <div className="flex gap-1">
+                  {[0, 1, 2].map((i) => (
+                    <span 
+                      key={i}
+                      className="w-2 h-2 rounded-full bg-primary animate-pulse"
+                      style={{ animationDelay: `${(2 - i) * 0.2}s` }}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           )}
 
           {/* Career Path Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 relative z-10">
             {currentPaths.map((path, index) => (
               <Card
                 key={path.id}
+                ref={(el) => { cardRefs.current[index] = el; }}
                 onClick={() => setSelectedPath(selectedPath?.id === path.id ? null : path)}
                 className={cn(
-                  "cursor-pointer transition-all duration-300 hover:shadow-lg border-2",
+                  "cursor-pointer transition-all duration-300 hover:shadow-xl border-2 relative overflow-hidden group",
                   path.bgColor,
                   selectedPath?.id === path.id 
                     ? "ring-2 ring-primary ring-offset-2 scale-[1.02]" 
-                    : "hover:scale-[1.01]"
+                    : "hover:scale-[1.02]"
                 )}
-                style={{ animationDelay: `${index * 100}ms` }}
+                style={{ 
+                  animationDelay: `${index * 100}ms`,
+                  animation: 'fade-in 0.5s ease-out forwards',
+                  opacity: 0,
+                }}
               >
-                <CardHeader className="pb-2">
+                {/* Animated border gradient on selection */}
+                {selectedPath?.id === path.id && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 animate-pulse" />
+                )}
+                
+                {/* Connection indicator */}
+                <span className="absolute -top-1.5 left-1/2 -translate-x-1/2">
+                  <PulsingDot isActive={selectedPath?.id === path.id} />
+                </span>
+
+                <CardHeader className="pb-2 relative">
                   <div className="flex items-center gap-3">
-                    <div className={cn("p-2 rounded-lg", path.bgColor, path.color)}>
+                    <div className={cn(
+                      "p-2 rounded-lg transition-transform duration-300 group-hover:scale-110",
+                      path.bgColor, 
+                      path.color
+                    )}>
                       {path.icon}
                     </div>
                     <CardTitle className="text-lg">{path.title}</CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="relative">
                   <p className="text-sm text-muted-foreground mb-3">{path.description}</p>
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="secondary" className="text-xs">
@@ -352,10 +569,20 @@ const CareerPathFlowchart = () => {
 
           {/* Detailed View */}
           {selectedPath && (
-            <Card className="border-2 border-primary/20 bg-gradient-to-br from-background to-muted/50 animate-in slide-in-from-bottom-4 duration-300">
-              <CardHeader>
+            <Card className="border-2 border-primary/20 bg-gradient-to-br from-background to-muted/50 animate-in slide-in-from-bottom-4 duration-300 relative z-10 overflow-hidden">
+              {/* Animated background */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 animate-pulse" />
+              
+              <CardHeader className="relative">
                 <div className="flex items-center gap-4">
-                  <div className={cn("p-3 rounded-xl", selectedPath.bgColor, selectedPath.color)}>
+                  <div className={cn(
+                    "p-3 rounded-xl relative",
+                    selectedPath.bgColor, 
+                    selectedPath.color
+                  )}>
+                    <span className="absolute -top-1 -right-1">
+                      <PulsingDot isActive={true} />
+                    </span>
                     {selectedPath.icon}
                   </div>
                   <div>
@@ -364,7 +591,7 @@ const CareerPathFlowchart = () => {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="relative">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {/* Entrance Exams */}
                   <div className="space-y-3">
@@ -373,8 +600,13 @@ const CareerPathFlowchart = () => {
                       Entrance Exams
                     </h4>
                     <div className="flex flex-wrap gap-2">
-                      {selectedPath.exams?.map((exam) => (
-                        <Badge key={exam} variant="secondary">
+                      {selectedPath.exams?.map((exam, i) => (
+                        <Badge 
+                          key={exam} 
+                          variant="secondary"
+                          className="animate-fade-in"
+                          style={{ animationDelay: `${i * 0.1}s` }}
+                        >
                           {exam}
                         </Badge>
                       ))}
@@ -388,8 +620,13 @@ const CareerPathFlowchart = () => {
                       Career Options
                     </h4>
                     <div className="flex flex-wrap gap-2">
-                      {selectedPath.careers?.map((career) => (
-                        <Badge key={career} variant="outline" className="bg-primary/5">
+                      {selectedPath.careers?.map((career, i) => (
+                        <Badge 
+                          key={career} 
+                          variant="outline" 
+                          className="bg-primary/5 animate-fade-in"
+                          style={{ animationDelay: `${i * 0.1}s` }}
+                        >
                           {career}
                         </Badge>
                       ))}
@@ -403,11 +640,11 @@ const CareerPathFlowchart = () => {
                       Key Details
                     </h4>
                     <div className="space-y-2">
-                      <div className="flex items-center justify-between p-2 rounded-lg bg-green-50 dark:bg-green-950/30">
+                      <div className="flex items-center justify-between p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
                         <span className="text-sm text-muted-foreground">Salary Range</span>
                         <span className="font-semibold text-green-600">{selectedPath.salary}</span>
                       </div>
-                      <div className="flex items-center justify-between p-2 rounded-lg bg-blue-50 dark:bg-blue-950/30">
+                      <div className="flex items-center justify-between p-3 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800">
                         <span className="text-sm text-muted-foreground">Duration</span>
                         <span className="font-semibold text-blue-600">{selectedPath.duration}</span>
                       </div>
