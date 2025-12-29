@@ -1,5 +1,5 @@
-import { X, MapPin, Banknote, Briefcase, Building2, ArrowLeftRight, GraduationCap, TrendingUp, Crown, Sparkles, Download, Loader2, BarChart3 } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import { X, MapPin, Banknote, Briefcase, Building2, ArrowLeftRight, GraduationCap, TrendingUp, Crown, Sparkles, Download, Loader2, PieChartIcon } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, PieChart, Pie } from 'recharts';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
@@ -504,6 +504,149 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
                 </div>
               </div>
             )}
+
+            {/* Sector Distribution Donut Chart */}
+            {jobs.length >= 2 && (() => {
+              // Calculate sector distribution
+              const sectorCounts: Record<string, { count: number; jobs: string[] }> = {};
+              jobs.forEach(job => {
+                if (!sectorCounts[job.sector]) {
+                  sectorCounts[job.sector] = { count: 0, jobs: [] };
+                }
+                sectorCounts[job.sector].count += 1;
+                sectorCounts[job.sector].jobs.push(job.title);
+              });
+
+              const sectorChartData = Object.entries(sectorCounts).map(([sector, data]) => {
+                const sectorInfo = getSectorInfo(sector);
+                const gradientColors: Record<string, string> = {
+                  tech: '#3b82f6',
+                  healthcare: '#22c55e',
+                  manufacturing: '#f97316',
+                  bfsi: '#a855f7',
+                  ecommerce: '#ec4899',
+                  logistics: '#f59e0b',
+                  gaming: '#ef4444',
+                  agritech: '#84cc16',
+                  edtech: '#6366f1',
+                  renewable: '#14b8a6',
+                };
+                return {
+                  name: sectorInfo.name,
+                  value: data.count,
+                  jobs: data.jobs,
+                  color: gradientColors[sector] || '#6b7280',
+                  icon: sectorInfo.icon,
+                  gradient: sectorInfo.gradient
+                };
+              });
+
+              return (
+                <div className="mt-6 rounded-2xl border border-violet-200/60 dark:border-violet-500/20 overflow-hidden shadow-xl bg-gradient-to-br from-white to-violet-50/30 dark:from-background dark:to-violet-500/5">
+                  {/* Header */}
+                  <div className="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 px-5 py-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
+                          <PieChartIcon className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-white text-lg tracking-tight">Sector Distribution</h4>
+                          <p className="text-violet-100 text-xs">Industry breakdown of selected jobs</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1.5">
+                        <Briefcase className="w-4 h-4 text-violet-200" />
+                        <span className="text-white text-xs font-medium">{Object.keys(sectorCounts).length} Sectors</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Chart Area */}
+                  <div className="p-5">
+                    <div className="flex flex-col md:flex-row items-center gap-6">
+                      {/* Donut Chart */}
+                      <div className="relative">
+                        <ResponsiveContainer width={200} height={200}>
+                          <PieChart>
+                            <Pie
+                              data={sectorChartData}
+                              cx="50%"
+                              cy="50%"
+                              innerRadius={55}
+                              outerRadius={85}
+                              paddingAngle={4}
+                              dataKey="value"
+                              stroke="none"
+                            >
+                              {sectorChartData.map((entry, idx) => (
+                                <Cell key={idx} fill={entry.color} />
+                              ))}
+                            </Pie>
+                            <Tooltip
+                              content={({ active, payload }) => {
+                                if (active && payload && payload.length) {
+                                  const data = payload[0].payload;
+                                  return (
+                                    <div className="bg-background/98 backdrop-blur-md border border-border/50 rounded-xl shadow-2xl p-3 min-w-[160px]">
+                                      <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">{data.icon}</span>
+                                        <span className="font-bold text-foreground">{data.name}</span>
+                                      </div>
+                                      <p className="text-sm text-muted-foreground">
+                                        {data.value} job{data.value > 1 ? 's' : ''} selected
+                                      </p>
+                                      <div className="mt-2 pt-2 border-t border-border/50 space-y-1">
+                                        {data.jobs.map((job: string, jIdx: number) => (
+                                          <p key={jIdx} className="text-xs text-muted-foreground truncate">• {job}</p>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              }}
+                            />
+                          </PieChart>
+                        </ResponsiveContainer>
+                        {/* Center Label */}
+                        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                          <span className="text-3xl font-bold text-foreground">{jobs.length}</span>
+                          <span className="text-xs text-muted-foreground">Jobs</span>
+                        </div>
+                      </div>
+
+                      {/* Legend */}
+                      <div className="flex-1 grid grid-cols-2 gap-3">
+                        {sectorChartData.map((sector, idx) => (
+                          <div 
+                            key={idx}
+                            className="flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-muted/50 to-muted/20 hover:from-muted/70 hover:to-muted/40 transition-all"
+                          >
+                            <div 
+                              className="w-10 h-10 rounded-xl flex items-center justify-center shadow-sm"
+                              style={{ backgroundColor: sector.color + '20' }}
+                            >
+                              <span className="text-lg">{sector.icon}</span>
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="font-semibold text-sm text-foreground truncate">{sector.name}</p>
+                              <p className="text-xs text-muted-foreground">
+                                {sector.value} job{sector.value > 1 ? 's' : ''} • {Math.round((sector.value / jobs.length) * 100)}%
+                              </p>
+                            </div>
+                            <div 
+                              className="w-3 h-3 rounded-full shadow-sm"
+                              style={{ backgroundColor: sector.color }}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
 
             {/* Comparison Summary Table */}
             {jobs.length >= 2 && (
