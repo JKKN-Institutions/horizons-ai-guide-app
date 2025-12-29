@@ -334,54 +334,104 @@ const jobListings = [
   { title: 'Cloud Architect', company: 'TCS', location: 'Chennai', salary: '₹12-22 LPA', requirement: 'B.Tech + AWS/Azure', sector: 'tech', isHot: true },
   { title: 'Full Stack Developer', company: 'Cognizant', location: 'Pune', salary: '₹6-12 LPA', requirement: 'B.Tech/BCA', sector: 'tech', isHot: false },
   { title: 'Cybersecurity Analyst', company: 'HCL', location: 'Noida', salary: '₹7-14 LPA', requirement: 'B.Tech + Certifications', sector: 'tech', isHot: true },
+  { title: 'DevOps Engineer', company: 'Zoho', location: 'Chennai', salary: '₹8-16 LPA', requirement: 'B.Tech + DevOps Tools', sector: 'tech', isHot: true },
+  { title: 'Backend Developer', company: 'Freshworks', location: 'Chennai', salary: '₹10-20 LPA', requirement: 'B.Tech CS/IT', sector: 'tech', isHot: false },
+  { title: 'Frontend Developer', company: 'Swiggy', location: 'Bangalore', salary: '₹8-15 LPA', requirement: 'B.Tech + React/Angular', sector: 'tech', isHot: false },
+  { title: 'Data Engineer', company: 'PhonePe', location: 'Bangalore', salary: '₹12-22 LPA', requirement: 'B.Tech + Big Data', sector: 'tech', isHot: true },
+  { title: 'QA Automation Engineer', company: 'Accenture', location: 'Mumbai', salary: '₹6-12 LPA', requirement: 'B.Tech + Testing', sector: 'tech', isHot: false },
+  { title: 'Site Reliability Engineer', company: 'Google', location: 'Bangalore', salary: '₹25-45 LPA', requirement: 'B.Tech + Cloud', sector: 'tech', isHot: true },
+  { title: 'Solutions Architect', company: 'Microsoft', location: 'Hyderabad', salary: '₹30-50 LPA', requirement: 'B.Tech + Azure', sector: 'tech', isHot: true },
   
   // Healthcare
   { title: 'Clinical Research Associate', company: 'Apollo', location: 'Chennai', salary: '₹5-10 LPA', requirement: 'Life Sciences Degree', sector: 'healthcare', isHot: false },
   { title: 'Healthcare Data Analyst', company: 'Fortis', location: 'Delhi', salary: '₹6-12 LPA', requirement: 'B.Sc + Analytics', sector: 'healthcare', isHot: true },
   { title: 'Medical AI Developer', company: 'Practo', location: 'Bangalore', salary: '₹12-20 LPA', requirement: 'B.Tech + Healthcare', sector: 'healthcare', isHot: true },
   { title: 'Telemedicine Specialist', company: '1mg', location: 'Gurgaon', salary: '₹8-15 LPA', requirement: 'MBBS/Healthcare', sector: 'healthcare', isHot: false },
+  { title: 'Pharmacovigilance Associate', company: 'Sun Pharma', location: 'Mumbai', salary: '₹4-8 LPA', requirement: 'B.Pharm', sector: 'healthcare', isHot: false },
+  { title: 'Medical Coder', company: 'Cognizant Healthcare', location: 'Chennai', salary: '₹3-6 LPA', requirement: 'Any Science Degree', sector: 'healthcare', isHot: false },
+  { title: 'Clinical Data Manager', company: 'Biocon', location: 'Bangalore', salary: '₹8-14 LPA', requirement: 'M.Pharm/M.Sc', sector: 'healthcare', isHot: true },
+  { title: 'Drug Safety Specialist', company: 'Cipla', location: 'Mumbai', salary: '₹6-12 LPA', requirement: 'Pharm.D', sector: 'healthcare', isHot: true },
+  { title: 'Healthcare IT Consultant', company: 'Deloitte', location: 'Hyderabad', salary: '₹12-22 LPA', requirement: 'B.Tech + Healthcare', sector: 'healthcare', isHot: true },
   
   // Manufacturing
   { title: 'EV Engineer', company: 'Tata Motors', location: 'Pune', salary: '₹8-16 LPA', requirement: 'B.Tech Mechanical/EV', sector: 'manufacturing', isHot: true },
   { title: 'Battery Systems Engineer', company: 'Ola Electric', location: 'Bangalore', salary: '₹10-18 LPA', requirement: 'B.Tech + Battery Tech', sector: 'manufacturing', isHot: true },
   { title: 'Renewable Energy Engineer', company: 'Adani Green', location: 'Ahmedabad', salary: '₹8-15 LPA', requirement: 'B.Tech Electrical', sector: 'manufacturing', isHot: true },
   { title: 'Semiconductor Engineer', company: 'Intel', location: 'Bangalore', salary: '₹12-22 LPA', requirement: 'M.Tech VLSI', sector: 'manufacturing', isHot: true },
+  { title: 'Robotics Engineer', company: 'Mahindra', location: 'Chennai', salary: '₹8-15 LPA', requirement: 'B.Tech Mechatronics', sector: 'manufacturing', isHot: true },
+  { title: 'Production Manager', company: 'L&T', location: 'Mumbai', salary: '₹12-20 LPA', requirement: 'B.Tech + MBA', sector: 'manufacturing', isHot: false },
+  { title: 'Quality Control Engineer', company: 'BHEL', location: 'Trichy', salary: '₹6-10 LPA', requirement: 'B.Tech Mechanical', sector: 'manufacturing', isHot: false },
+  { title: 'Aerospace Engineer', company: 'HAL', location: 'Bangalore', salary: '₹10-18 LPA', requirement: 'B.Tech Aerospace', sector: 'manufacturing', isHot: true },
+  { title: 'VLSI Design Engineer', company: 'Qualcomm', location: 'Hyderabad', salary: '₹15-28 LPA', requirement: 'M.Tech VLSI', sector: 'manufacturing', isHot: true },
+  { title: 'Embedded Systems Engineer', company: 'Bosch', location: 'Coimbatore', salary: '₹6-12 LPA', requirement: 'B.Tech ECE', sector: 'manufacturing', isHot: false },
   
   // BFSI
   { title: 'FinTech Product Manager', company: 'Razorpay', location: 'Bangalore', salary: '₹18-30 LPA', requirement: 'MBA + Tech', sector: 'bfsi', isHot: true },
   { title: 'Investment Banking Analyst', company: 'ICICI Bank', location: 'Mumbai', salary: '₹12-20 LPA', requirement: 'MBA Finance', sector: 'bfsi', isHot: false },
   { title: 'Blockchain Developer', company: 'Polygon', location: 'Bangalore', salary: '₹20-35 LPA', requirement: 'B.Tech + Blockchain', sector: 'bfsi', isHot: true },
   { title: 'Risk Analyst', company: 'HDFC Bank', location: 'Mumbai', salary: '₹8-15 LPA', requirement: 'CA/CFA/MBA', sector: 'bfsi', isHot: false },
+  { title: 'Quantitative Analyst', company: 'Goldman Sachs', location: 'Bangalore', salary: '₹25-45 LPA', requirement: 'M.Tech + Finance', sector: 'bfsi', isHot: true },
+  { title: 'Credit Analyst', company: 'SBI', location: 'Mumbai', salary: '₹6-12 LPA', requirement: 'B.Com/MBA', sector: 'bfsi', isHot: false },
+  { title: 'UPI Product Lead', company: 'PhonePe', location: 'Bangalore', salary: '₹20-35 LPA', requirement: 'MBA + Payments', sector: 'bfsi', isHot: true },
+  { title: 'Insurance Underwriter', company: 'PolicyBazaar', location: 'Gurgaon', salary: '₹8-15 LPA', requirement: 'B.Com/MBA', sector: 'bfsi', isHot: false },
+  { title: 'Wealth Manager', company: 'Zerodha', location: 'Bangalore', salary: '₹10-20 LPA', requirement: 'CFA/CFP', sector: 'bfsi', isHot: true },
+  { title: 'Compliance Officer', company: 'Kotak Bank', location: 'Mumbai', salary: '₹8-15 LPA', requirement: 'LLB/CA', sector: 'bfsi', isHot: false },
   
   // E-commerce
   { title: 'E-Commerce Manager', company: 'Amazon', location: 'Bangalore', salary: '₹15-28 LPA', requirement: 'MBA + E-Commerce', sector: 'ecommerce', isHot: true },
   { title: 'Supply Chain Analyst', company: 'Flipkart', location: 'Bangalore', salary: '₹8-15 LPA', requirement: 'MBA Operations', sector: 'ecommerce', isHot: false },
   { title: 'Quick Commerce Lead', company: 'Zepto', location: 'Mumbai', salary: '₹12-22 LPA', requirement: 'MBA + Operations', sector: 'ecommerce', isHot: true },
+  { title: 'Category Manager', company: 'Meesho', location: 'Bangalore', salary: '₹12-20 LPA', requirement: 'MBA', sector: 'ecommerce', isHot: true },
+  { title: 'Digital Marketing Manager', company: 'Myntra', location: 'Bangalore', salary: '₹10-18 LPA', requirement: 'MBA Marketing', sector: 'ecommerce', isHot: false },
+  { title: 'Marketplace Operations', company: 'BigBasket', location: 'Bangalore', salary: '₹6-12 LPA', requirement: 'Any Graduate', sector: 'ecommerce', isHot: false },
+  { title: 'Seller Success Manager', company: 'Shopify India', location: 'Bangalore', salary: '₹8-15 LPA', requirement: 'B.Com/MBA', sector: 'ecommerce', isHot: true },
+  { title: 'Delivery Operations Head', company: 'Blinkit', location: 'Delhi', salary: '₹15-25 LPA', requirement: 'MBA Operations', sector: 'ecommerce', isHot: true },
   
   // Logistics
   { title: 'Supply Chain Manager', company: 'Delhivery', location: 'Gurgaon', salary: '₹15-25 LPA', requirement: 'MBA Operations', sector: 'logistics', isHot: true },
   { title: 'Logistics Analyst', company: 'Blue Dart', location: 'Mumbai', salary: '₹6-12 LPA', requirement: 'B.Tech/MBA', sector: 'logistics', isHot: false },
   { title: 'Warehouse Operations Lead', company: 'Amazon Logistics', location: 'Bangalore', salary: '₹8-14 LPA', requirement: 'Any Graduate + Experience', sector: 'logistics', isHot: true },
+  { title: 'Fleet Manager', company: 'Rivigo', location: 'Gurgaon', salary: '₹10-18 LPA', requirement: 'MBA Operations', sector: 'logistics', isHot: false },
+  { title: 'Last Mile Delivery Head', company: 'Ecom Express', location: 'Delhi', salary: '₹12-20 LPA', requirement: 'MBA + Logistics', sector: 'logistics', isHot: true },
+  { title: 'Cold Chain Manager', company: 'Snowman Logistics', location: 'Mumbai', salary: '₹10-18 LPA', requirement: 'B.Tech + MBA', sector: 'logistics', isHot: true },
+  { title: 'Route Optimization Analyst', company: 'XpressBees', location: 'Pune', salary: '₹6-12 LPA', requirement: 'B.Tech + Analytics', sector: 'logistics', isHot: false },
   
   // Gaming
   { title: 'Game Developer', company: 'Games24x7', location: 'Mumbai', salary: '₹12-22 LPA', requirement: 'B.Tech + Unity/Unreal', sector: 'gaming', isHot: true },
   { title: 'Mobile Game Developer', company: 'MPL', location: 'Bangalore', salary: '₹15-28 LPA', requirement: 'B.Tech + Mobile Dev', sector: 'gaming', isHot: true },
   { title: 'Esports Manager', company: 'JetSynthesys', location: 'Pune', salary: '₹8-15 LPA', requirement: 'Sports Management', sector: 'gaming', isHot: true },
+  { title: '3D Game Artist', company: 'Zynga India', location: 'Bangalore', salary: '₹10-18 LPA', requirement: 'B.Des + 3D Tools', sector: 'gaming', isHot: false },
+  { title: 'Game Producer', company: 'Nazara', location: 'Mumbai', salary: '₹15-25 LPA', requirement: 'MBA + Gaming', sector: 'gaming', isHot: true },
+  { title: 'VR/AR Developer', company: 'Dream11', location: 'Mumbai', salary: '₹12-22 LPA', requirement: 'B.Tech + VR/AR', sector: 'gaming', isHot: true },
+  { title: 'Game QA Tester', company: 'Ubisoft', location: 'Pune', salary: '₹4-8 LPA', requirement: 'Any Graduate', sector: 'gaming', isHot: false },
   
   // AgriTech
   { title: 'AgriTech Product Manager', company: 'DeHaat', location: 'Patna', salary: '₹12-22 LPA', requirement: 'MBA + AgriTech', sector: 'agritech', isHot: true },
   { title: 'Agricultural Data Scientist', company: 'Ninjacart', location: 'Bangalore', salary: '₹15-25 LPA', requirement: 'M.Sc + Data Science', sector: 'agritech', isHot: true },
   { title: 'IoT Engineer - Smart Farming', company: 'Stellapps', location: 'Bangalore', salary: '₹10-18 LPA', requirement: 'B.Tech + IoT', sector: 'agritech', isHot: false },
+  { title: 'Agronomy Specialist', company: 'CropIn', location: 'Bangalore', salary: '₹8-14 LPA', requirement: 'B.Sc Agriculture', sector: 'agritech', isHot: false },
+  { title: 'Supply Chain Lead - Agri', company: 'AgroStar', location: 'Pune', salary: '₹10-18 LPA', requirement: 'MBA + Agri', sector: 'agritech', isHot: true },
+  { title: 'Farm Tech Advisor', company: 'Samunnati', location: 'Chennai', salary: '₹5-10 LPA', requirement: 'B.Sc Agriculture', sector: 'agritech', isHot: false },
+  { title: 'Drone Pilot - Agriculture', company: 'TartanSense', location: 'Bangalore', salary: '₹6-12 LPA', requirement: 'Drone License + Agri', sector: 'agritech', isHot: true },
   
   // EdTech
   { title: 'EdTech Product Manager', company: 'Unacademy', location: 'Bangalore', salary: '₹15-25 LPA', requirement: 'MBA + EdTech', sector: 'edtech', isHot: true },
   { title: 'Curriculum Designer', company: "BYJU'S", location: 'Bangalore', salary: '₹8-14 LPA', requirement: 'M.Ed/MA Education', sector: 'edtech', isHot: false },
   { title: 'Learning Experience Designer', company: 'upGrad', location: 'Mumbai', salary: '₹10-18 LPA', requirement: 'MA/M.Ed', sector: 'edtech', isHot: true },
+  { title: 'Academic Content Lead', company: 'Vedantu', location: 'Bangalore', salary: '₹12-20 LPA', requirement: 'M.Sc/M.Ed', sector: 'edtech', isHot: false },
+  { title: 'EdTech Sales Manager', company: 'Physics Wallah', location: 'Noida', salary: '₹8-15 LPA', requirement: 'MBA Sales', sector: 'edtech', isHot: true },
+  { title: 'Online Tutor - STEM', company: 'Cuemath', location: 'Remote', salary: '₹4-8 LPA', requirement: 'B.Sc/B.Tech', sector: 'edtech', isHot: false },
+  { title: 'Corporate Training Lead', company: 'Simplilearn', location: 'Bangalore', salary: '₹12-22 LPA', requirement: 'MBA + Training', sector: 'edtech', isHot: true },
   
   // Renewable Energy
   { title: 'Solar Project Engineer', company: 'Adani Green', location: 'Ahmedabad', salary: '₹8-15 LPA', requirement: 'B.Tech Electrical', sector: 'renewable', isHot: true },
   { title: 'Wind Energy Specialist', company: 'Suzlon', location: 'Pune', salary: '₹10-18 LPA', requirement: 'B.Tech Mechanical', sector: 'renewable', isHot: true },
   { title: 'Sustainability Consultant', company: 'ReNew Power', location: 'Gurgaon', salary: '₹15-25 LPA', requirement: 'MBA + Sustainability', sector: 'renewable', isHot: false },
+  { title: 'Energy Storage Engineer', company: 'Tata Power', location: 'Mumbai', salary: '₹10-18 LPA', requirement: 'B.Tech + Battery', sector: 'renewable', isHot: true },
+  { title: 'Green Hydrogen Specialist', company: 'NTPC', location: 'Delhi', salary: '₹12-22 LPA', requirement: 'M.Tech Energy', sector: 'renewable', isHot: true },
+  { title: 'Carbon Footprint Analyst', company: 'Infosys Green', location: 'Bangalore', salary: '₹8-14 LPA', requirement: 'Environmental Science', sector: 'renewable', isHot: false },
+  { title: 'Solar Installation Manager', company: 'Azure Power', location: 'Jaipur', salary: '₹8-15 LPA', requirement: 'B.Tech Electrical', sector: 'renewable', isHot: false },
+  { title: 'Climate Tech Researcher', company: 'IISc Bangalore', location: 'Bangalore', salary: '₹6-12 LPA', requirement: 'M.Tech/PhD', sector: 'renewable', isHot: true },
 ];
 
 const IndustryTrends = () => {
