@@ -7,9 +7,10 @@ import { Badge } from '@/components/ui/badge';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { generateComparisonPDF } from '@/components/JobComparison/generateComparisonPDF';
+import confetti from 'canvas-confetti';
 
 // Tooltip descriptions for each score factor
 const scoreFactorDescriptions: Record<string, { title: string; description: string; factors: string[] }> = {
@@ -243,15 +244,58 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
 
   // Animation state for score circles
   const [animateScores, setAnimateScores] = useState(false);
+
+  // Confetti celebration effect
+  const triggerConfetti = useCallback(() => {
+    const duration = 2000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+    const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
+
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+
+      // Burst from left side
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+        colors: ['#fbbf24', '#f59e0b', '#d97706', '#10b981', '#3b82f6']
+      });
+
+      // Burst from right side
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+        colors: ['#fbbf24', '#f59e0b', '#d97706', '#10b981', '#3b82f6']
+      });
+    }, 250);
+
+    return () => clearInterval(interval);
+  }, []);
   
   useEffect(() => {
-    if (open) {
+    if (open && jobs.length >= 2) {
       // Reset and trigger animation when modal opens
       setAnimateScores(false);
-      const timer = setTimeout(() => setAnimateScores(true), 100);
+      const timer = setTimeout(() => {
+        setAnimateScores(true);
+        // Trigger confetti after score animation reveals the winner
+        setTimeout(() => {
+          triggerConfetti();
+        }, 600);
+      }, 100);
       return () => clearTimeout(timer);
     }
-  }, [open]);
+  }, [open, jobs.length, triggerConfetti]);
 
   if (jobs.length === 0) {
     return null;
