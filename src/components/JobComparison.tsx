@@ -556,22 +556,27 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
                             <div className="px-4 pb-4 space-y-2">
                               {job.matchData.breakdown.map((item, bIdx) => (
                                 <div key={bIdx} className="flex items-center gap-2">
-                                  <span className="text-xs w-4">{item.icon}</span>
+                                  <span className={`text-xs w-4 ${animateScores ? 'breakdown-icon-animate' : 'opacity-0'}`} style={{ animationDelay: `${0.8 + rankIdx * 0.1 + bIdx * 0.05}s` }}>{item.icon}</span>
                                   <div className="flex-1">
                                     <div className="flex justify-between items-center mb-0.5">
-                                      <span className="text-[10px] text-muted-foreground">{item.label}</span>
-                                      <span className="text-[10px] font-medium text-foreground">{item.score}%</span>
+                                      <span className={`text-[10px] text-muted-foreground ${animateScores ? 'breakdown-label-animate' : 'opacity-0'}`} style={{ animationDelay: `${0.8 + rankIdx * 0.1 + bIdx * 0.05}s` }}>{item.label}</span>
+                                      <span className={`text-[10px] font-medium text-foreground ${animateScores ? 'breakdown-score-animate' : 'opacity-0'}`} style={{ animationDelay: `${1.0 + rankIdx * 0.1 + bIdx * 0.05}s` }}>{item.score}%</span>
                                     </div>
                                     <div className="h-1.5 rounded-full bg-muted overflow-hidden">
                                       <div 
-                                        className={`h-full rounded-full transition-all ${
+                                        className={`h-full rounded-full ${
+                                          animateScores ? 'breakdown-bar-animate' : ''
+                                        } ${
                                           item.color === 'emerald' ? 'bg-emerald-500' :
                                           item.color === 'blue' ? 'bg-blue-500' :
                                           item.color === 'orange' ? 'bg-orange-500' :
                                           item.color === 'violet' ? 'bg-violet-500' :
                                           'bg-cyan-500'
                                         }`}
-                                        style={{ width: `${item.score}%` }}
+                                        style={{ 
+                                          width: animateScores ? `${item.score}%` : '0%',
+                                          animationDelay: `${0.9 + rankIdx * 0.1 + bIdx * 0.08}s`
+                                        }}
                                       />
                                     </div>
                                   </div>
