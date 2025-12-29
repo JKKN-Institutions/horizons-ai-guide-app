@@ -6,6 +6,7 @@ import StatsBar from "@/components/StatsBar";
 import ServicesSection from "@/components/ServicesSection";
 import CareerBoosterSection from "@/components/CareerBoosterSection";
 import CareerPathFlowchart from "@/components/CareerPathFlowchart";
+import CareerComparison from "@/components/CareerComparison";
 import TwelfthLearnersSection from "@/components/TwelfthLearnersSection";
 import JobsSection from "@/components/JobsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -27,6 +28,7 @@ const Index = () => {
         <ServicesSection />
         <CareerBoosterSection />
         <CareerPathFlowchart />
+        <CareerComparison />
         <TwelfthLearnersSection />
         <JobsSection />
         <TestimonialsSection />
