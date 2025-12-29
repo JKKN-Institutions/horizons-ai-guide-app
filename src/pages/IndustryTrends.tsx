@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft, TrendingUp, Target, Briefcase, Star, Laptop, 
   Heart, Cog, Building2, ShoppingCart, Brain, Cloud, Shield,
   Database, Code, MessageSquare, Users, Lightbulb, RefreshCw, Handshake,
-  Download, MapPin, Banknote, Search, X, Filter
+  Download, MapPin, Banknote, Search, X, Filter, Bell, BellRing, Mail, Loader2, Check
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,8 +13,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from '@/components/ui/dialog';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
 import { generateIndustryTrendsPDF } from './generateIndustryTrendsPDF';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 // Sector data with all details
 const sectors = [
@@ -440,6 +444,145 @@ const IndustryTrends = () => {
   const [expandedSector, setExpandedSector] = useState<string | null>(null);
   const [selectedJobSector, setSelectedJobSector] = useState<string>('all');
   const [jobSearchQuery, setJobSearchQuery] = useState('');
+  
+  // Job alerts state
+  const [alertDialogOpen, setAlertDialogOpen] = useState(false);
+  const [alertEmail, setAlertEmail] = useState('');
+  const [alertName, setAlertName] = useState('');
+  const [selectedSectors, setSelectedSectors] = useState<string[]>([]);
+  const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
+  const [alertSalaryMin, setAlertSalaryMin] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [newJobsCount, setNewJobsCount] = useState(0);
+
+  const locations = ['Bangalore', 'Chennai', 'Mumbai', 'Hyderabad', 'Delhi', 'Pune', 'Noida', 'Gurgaon', 'Coimbatore', 'Ahmedabad'];
+
+  // Check for existing subscription
+  useEffect(() => {
+    const savedEmail = localStorage.getItem('jobAlertEmail');
+    if (savedEmail) {
+      setIsSubscribed(true);
+      setAlertEmail(savedEmail);
+    }
+  }, []);
+
+  // Listen for real-time job updates (simulated with new jobs notification)
+  useEffect(() => {
+    const channel = supabase
+      .channel('job-alerts')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'industry_job_subscriptions'
+        },
+        () => {
+          // Show notification for new subscribers
+          setNewJobsCount(prev => prev + 1);
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  const handleSectorToggle = (sectorId: string) => {
+    setSelectedSectors(prev => 
+      prev.includes(sectorId) 
+        ? prev.filter(s => s !== sectorId)
+        : [...prev, sectorId]
+    );
+  };
+
+  const handleLocationToggle = (location: string) => {
+    setSelectedLocations(prev => 
+      prev.includes(location) 
+        ? prev.filter(l => l !== location)
+        : [...prev, location]
+    );
+  };
+
+  const handleSubscribe = async () => {
+    if (!alertEmail) {
+      toast({
+        title: "Email Required",
+        description: "Please enter your email address to subscribe.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (selectedSectors.length === 0) {
+      toast({
+        title: "Select Sectors",
+        description: "Please select at least one sector to receive job alerts.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubscribing(true);
+
+    try {
+      const { error } = await supabase
+        .from('industry_job_subscriptions')
+        .insert({
+          email: alertEmail,
+          name: alertName || null,
+          sectors: selectedSectors,
+          locations: selectedLocations.length > 0 ? selectedLocations : null,
+          salary_min: alertSalaryMin ? parseInt(alertSalaryMin) : null,
+        });
+
+      if (error) throw error;
+
+      localStorage.setItem('jobAlertEmail', alertEmail);
+      setIsSubscribed(true);
+      setAlertDialogOpen(false);
+      
+      toast({
+        title: "🎉 Subscribed Successfully!",
+        description: `You'll receive job alerts for ${selectedSectors.length} sector(s) at ${alertEmail}`,
+      });
+    } catch (error: any) {
+      console.error('Subscription error:', error);
+      toast({
+        title: "Subscription Failed",
+        description: error.message || "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
+
+  const handleUnsubscribe = async () => {
+    const savedEmail = localStorage.getItem('jobAlertEmail');
+    if (!savedEmail) return;
+
+    try {
+      await supabase
+        .from('industry_job_subscriptions')
+        .update({ is_active: false })
+        .eq('email', savedEmail);
+
+      localStorage.removeItem('jobAlertEmail');
+      setIsSubscribed(false);
+      setAlertEmail('');
+      setSelectedSectors([]);
+      
+      toast({
+        title: "Unsubscribed",
+        description: "You've been unsubscribed from job alerts.",
+      });
+    } catch (error) {
+      console.error('Unsubscribe error:', error);
+    }
+  };
 
   const handleDownloadPDF = () => {
     generateIndustryTrendsPDF(sectors, streamRoadmaps, salaryData);
@@ -472,13 +615,182 @@ const IndustryTrends = () => {
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back
             </Button>
-            <Button 
-              onClick={handleDownloadPDF}
-              className="bg-amber-500 hover:bg-amber-600 text-white"
-            >
-              <Download className="mr-2 h-4 w-4" />
-              Download PDF
-            </Button>
+            <div className="flex items-center gap-2">
+              {/* Job Alerts Button */}
+              <Dialog open={alertDialogOpen} onOpenChange={setAlertDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button 
+                    className={isSubscribed 
+                      ? "bg-green-500 hover:bg-green-600 text-white relative" 
+                      : "bg-blue-500 hover:bg-blue-600 text-white relative"
+                    }
+                  >
+                    {isSubscribed ? <BellRing className="mr-2 h-4 w-4" /> : <Bell className="mr-2 h-4 w-4" />}
+                    {isSubscribed ? 'Subscribed' : 'Job Alerts'}
+                    {newJobsCount > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                        {newJobsCount}
+                      </span>
+                    )}
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <Bell className="h-5 w-5 text-primary" />
+                      {isSubscribed ? 'Manage Job Alerts' : 'Subscribe to Job Alerts'}
+                    </DialogTitle>
+                    <DialogDescription>
+                      {isSubscribed 
+                        ? 'You are currently subscribed to job alerts. புதிய வேலைகளுக்கு நீங்கள் குழுசேர்ந்துள்ளீர்கள்'
+                        : 'Get notified when new jobs matching your preferences are posted. உங்கள் விருப்பத்திற்கு ஏற்ற வேலைகள் வெளியிடப்படும்போது அறிவிப்புகளைப் பெறுங்கள்'
+                      }
+                    </DialogDescription>
+                  </DialogHeader>
+                  
+                  {isSubscribed ? (
+                    <div className="space-y-4 pt-4">
+                      <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
+                        <Check className="h-6 w-6 text-green-600" />
+                        <div>
+                          <p className="font-medium text-green-800">Active Subscription</p>
+                          <p className="text-sm text-green-600">{alertEmail}</p>
+                        </div>
+                      </div>
+                      <Button 
+                        variant="destructive" 
+                        onClick={handleUnsubscribe}
+                        className="w-full"
+                      >
+                        Unsubscribe from Alerts
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="space-y-4 pt-4">
+                      {/* Name */}
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Name (Optional) / பெயர்</Label>
+                        <Input 
+                          id="name"
+                          placeholder="Enter your name"
+                          value={alertName}
+                          onChange={(e) => setAlertName(e.target.value)}
+                        />
+                      </div>
+                      
+                      {/* Email */}
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email Address * / மின்னஞ்சல்</Label>
+                        <div className="relative">
+                          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                          <Input 
+                            id="email"
+                            type="email"
+                            placeholder="your@email.com"
+                            value={alertEmail}
+                            onChange={(e) => setAlertEmail(e.target.value)}
+                            className="pl-10"
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Sectors */}
+                      <div className="space-y-2">
+                        <Label>Select Sectors * / துறைகளைத் தேர்ந்தெடுக்கவும்</Label>
+                        <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto border rounded-lg p-3">
+                          {sectors.map((sector) => (
+                            <div key={sector.id} className="flex items-center space-x-2">
+                              <Checkbox 
+                                id={sector.id}
+                                checked={selectedSectors.includes(sector.id)}
+                                onCheckedChange={() => handleSectorToggle(sector.id)}
+                              />
+                              <label 
+                                htmlFor={sector.id}
+                                className="text-sm cursor-pointer"
+                              >
+                                {sector.icon} {sector.title.split(' ')[0]}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                        {selectedSectors.length > 0 && (
+                          <p className="text-xs text-muted-foreground">
+                            {selectedSectors.length} sector(s) selected
+                          </p>
+                        )}
+                      </div>
+                      
+                      {/* Locations */}
+                      <div className="space-y-2">
+                        <Label>Preferred Locations / விருப்பமான இடங்கள்</Label>
+                        <div className="flex flex-wrap gap-2">
+                          {locations.map((location) => (
+                            <Badge 
+                              key={location}
+                              variant={selectedLocations.includes(location) ? "default" : "outline"}
+                              className="cursor-pointer"
+                              onClick={() => handleLocationToggle(location)}
+                            >
+                              {location}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Min Salary */}
+                      <div className="space-y-2">
+                        <Label htmlFor="salary">Minimum Salary (LPA) / குறைந்தபட்ச சம்பளம்</Label>
+                        <Select value={alertSalaryMin} onValueChange={setAlertSalaryMin}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Any salary" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="any">Any Salary</SelectItem>
+                            <SelectItem value="3">₹3 LPA+</SelectItem>
+                            <SelectItem value="5">₹5 LPA+</SelectItem>
+                            <SelectItem value="8">₹8 LPA+</SelectItem>
+                            <SelectItem value="10">₹10 LPA+</SelectItem>
+                            <SelectItem value="15">₹15 LPA+</SelectItem>
+                            <SelectItem value="20">₹20 LPA+</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      
+                      <Button 
+                        onClick={handleSubscribe}
+                        disabled={isSubscribing}
+                        className="w-full bg-primary hover:bg-primary/90"
+                      >
+                        {isSubscribing ? (
+                          <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Subscribing...
+                          </>
+                        ) : (
+                          <>
+                            <Bell className="mr-2 h-4 w-4" />
+                            Subscribe to Alerts
+                          </>
+                        )}
+                      </Button>
+                      
+                      <p className="text-xs text-muted-foreground text-center">
+                        We'll send you relevant job alerts. You can unsubscribe anytime.
+                      </p>
+                    </div>
+                  )}
+                </DialogContent>
+              </Dialog>
+              
+              <Button 
+                onClick={handleDownloadPDF}
+                className="bg-amber-500 hover:bg-amber-600 text-white"
+              >
+                <Download className="mr-2 h-4 w-4" />
+                Download PDF
+              </Button>
+            </div>
           </div>
           
           <div className="text-center space-y-3">

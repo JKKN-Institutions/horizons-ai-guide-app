@@ -394,6 +394,42 @@ export type Database = {
         }
         Relationships: []
       }
+      industry_job_subscriptions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          is_active: boolean
+          locations: string[] | null
+          name: string | null
+          salary_min: number | null
+          sectors: string[]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          is_active?: boolean
+          locations?: string[] | null
+          name?: string | null
+          salary_min?: number | null
+          sectors?: string[]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          is_active?: boolean
+          locations?: string[] | null
+          name?: string | null
+          salary_min?: number | null
+          sectors?: string[]
+          updated_at?: string
+        }
+        Relationships: []
+      }
       jkkn_colleges: {
         Row: {
           branches: Json
