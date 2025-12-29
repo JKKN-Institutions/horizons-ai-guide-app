@@ -1,5 +1,5 @@
-import { X, MapPin, Banknote, Briefcase, Building2, ArrowLeftRight, GraduationCap, TrendingUp, Crown, Sparkles, Download, Loader2, PieChartIcon } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, PieChart, Pie } from 'recharts';
+import { X, MapPin, Banknote, Briefcase, Building2, ArrowLeftRight, GraduationCap, TrendingUp, Crown, Sparkles, Download, Loader2, PieChartIcon, Radar, Zap, Target, BookOpen } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar as RechartsRadar, Legend } from 'recharts';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
@@ -641,6 +641,221 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
                             />
                           </div>
                         ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Multi-Dimension Radar Chart */}
+            {jobs.length >= 2 && (() => {
+              // Calculate dimension scores for each job
+              const getRequirementScore = (req: string): number => {
+                const reqLower = req.toLowerCase();
+                if (reqLower.includes('phd') || reqLower.includes('doctorate')) return 100;
+                if (reqLower.includes('m.tech') || reqLower.includes('mba') || reqLower.includes('m.sc')) return 80;
+                if (reqLower.includes('b.tech') || reqLower.includes('b.e') || reqLower.includes('bca')) return 60;
+                if (reqLower.includes('diploma') || reqLower.includes('12th')) return 40;
+                return 50;
+              };
+
+              const getGrowthScore = (sector: string, isHot: boolean): number => {
+                const sectorGrowth: Record<string, number> = {
+                  tech: 95, bfsi: 85, healthcare: 80, edtech: 75,
+                  ecommerce: 70, renewable: 85, gaming: 65, logistics: 60,
+                  manufacturing: 55, agritech: 70
+                };
+                let score = sectorGrowth[sector] || 50;
+                if (isHot) score = Math.min(100, score + 15);
+                return score;
+              };
+
+              const getStabilityScore = (sector: string): number => {
+                const stability: Record<string, number> = {
+                  healthcare: 90, bfsi: 85, manufacturing: 80, tech: 70,
+                  edtech: 65, logistics: 75, renewable: 70, ecommerce: 55,
+                  gaming: 50, agritech: 60
+                };
+                return stability[sector] || 60;
+              };
+
+              const getFlexibilityScore = (sector: string): number => {
+                const flexibility: Record<string, number> = {
+                  tech: 95, edtech: 90, ecommerce: 85, gaming: 80,
+                  bfsi: 60, healthcare: 50, manufacturing: 40, logistics: 55,
+                  renewable: 65, agritech: 50
+                };
+                return flexibility[sector] || 55;
+              };
+
+              const dimensions = ['Salary', 'Growth', 'Stability', 'Entry Level', 'Flexibility'];
+              
+              const radarData = dimensions.map(dim => {
+                const dataPoint: Record<string, any> = { dimension: dim };
+                jobs.forEach((job, idx) => {
+                  let score = 0;
+                  switch(dim) {
+                    case 'Salary':
+                      score = Math.min(100, parseSalaryMax(job.salary) * 4);
+                      break;
+                    case 'Growth':
+                      score = getGrowthScore(job.sector, job.isHot);
+                      break;
+                    case 'Stability':
+                      score = getStabilityScore(job.sector);
+                      break;
+                    case 'Entry Level':
+                      score = 100 - getRequirementScore(job.requirement);
+                      break;
+                    case 'Flexibility':
+                      score = getFlexibilityScore(job.sector);
+                      break;
+                  }
+                  dataPoint[`job${idx}`] = score;
+                  dataPoint[`job${idx}Name`] = job.company;
+                });
+                return dataPoint;
+              });
+
+              const chartColors = ['#3b82f6', '#22c55e', '#f97316', '#a855f7'];
+
+              return (
+                <div className="mt-6 rounded-2xl border border-cyan-200/60 dark:border-cyan-500/20 overflow-hidden shadow-xl bg-gradient-to-br from-white to-cyan-50/30 dark:from-background dark:to-cyan-500/5">
+                  {/* Header */}
+                  <div className="bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 px-5 py-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
+                          <Radar className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-white text-lg tracking-tight">Multi-Dimension Analysis</h4>
+                          <p className="text-cyan-100 text-xs">Compare jobs across key career factors</p>
+                        </div>
+                      </div>
+                      <div className="hidden md:flex items-center gap-3">
+                        <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1.5">
+                          <Target className="w-3.5 h-3.5 text-cyan-200" />
+                          <span className="text-white text-xs font-medium">5 Factors</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Chart Area */}
+                  <div className="p-5">
+                    <div className="flex flex-col lg:flex-row items-center gap-6">
+                      {/* Radar Chart */}
+                      <div className="w-full lg:w-2/3">
+                        <ResponsiveContainer width="100%" height={300}>
+                          <RadarChart data={radarData} margin={{ top: 20, right: 30, bottom: 20, left: 30 }}>
+                            <PolarGrid 
+                              stroke="hsl(var(--border))" 
+                              strokeDasharray="3 3"
+                            />
+                            <PolarAngleAxis 
+                              dataKey="dimension" 
+                              tick={{ 
+                                fontSize: 11, 
+                                fill: 'hsl(var(--foreground))',
+                                fontWeight: 600
+                              }}
+                            />
+                            <PolarRadiusAxis 
+                              angle={90} 
+                              domain={[0, 100]}
+                              tick={{ fontSize: 10, fill: 'hsl(var(--muted-foreground))' }}
+                              tickCount={5}
+                            />
+                            {jobs.map((job, idx) => (
+                              <RechartsRadar
+                                key={idx}
+                                name={job.company}
+                                dataKey={`job${idx}`}
+                                stroke={chartColors[idx % chartColors.length]}
+                                fill={chartColors[idx % chartColors.length]}
+                                fillOpacity={0.15}
+                                strokeWidth={2}
+                              />
+                            ))}
+                            <Tooltip
+                              content={({ active, payload, label }) => {
+                                if (active && payload && payload.length) {
+                                  return (
+                                    <div className="bg-background/98 backdrop-blur-md border border-border/50 rounded-xl shadow-2xl p-3 min-w-[180px]">
+                                      <p className="font-bold text-foreground text-sm mb-2">{label}</p>
+                                      <div className="space-y-1.5">
+                                        {payload.map((entry: any, idx: number) => (
+                                          <div key={idx} className="flex items-center justify-between gap-4">
+                                            <div className="flex items-center gap-2">
+                                              <div 
+                                                className="w-2.5 h-2.5 rounded-full"
+                                                style={{ backgroundColor: entry.color }}
+                                              />
+                                              <span className="text-xs text-muted-foreground">{entry.name}</span>
+                                            </div>
+                                            <span className="text-sm font-bold" style={{ color: entry.color }}>
+                                              {entry.value}%
+                                            </span>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              }}
+                            />
+                          </RadarChart>
+                        </ResponsiveContainer>
+                      </div>
+
+                      {/* Legend & Dimension Explanations */}
+                      <div className="w-full lg:w-1/3 space-y-3">
+                        {/* Job Legend */}
+                        <div className="p-3 rounded-xl bg-gradient-to-r from-muted/50 to-muted/20 border border-border/50">
+                          <p className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">Jobs</p>
+                          <div className="space-y-2">
+                            {jobs.map((job, idx) => (
+                              <div key={idx} className="flex items-center gap-2">
+                                <div 
+                                  className="w-3 h-3 rounded-full shadow-sm"
+                                  style={{ backgroundColor: chartColors[idx % chartColors.length] }}
+                                />
+                                <span className="text-sm font-medium text-foreground truncate">{job.company}</span>
+                                {idx === bestMatchIndex && <Crown className="w-3.5 h-3.5 text-amber-500" />}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Dimension Guide */}
+                        <div className="p-3 rounded-xl bg-gradient-to-r from-cyan-50/50 to-blue-50/50 dark:from-cyan-500/5 dark:to-blue-500/5 border border-cyan-200/30 dark:border-cyan-500/10">
+                          <p className="text-xs font-semibold text-cyan-700 dark:text-cyan-400 mb-2 uppercase tracking-wider">Factor Guide</p>
+                          <div className="space-y-1.5 text-xs text-muted-foreground">
+                            <div className="flex items-center gap-2">
+                              <Banknote className="w-3.5 h-3.5 text-emerald-500" />
+                              <span><strong>Salary</strong> – Package value</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <TrendingUp className="w-3.5 h-3.5 text-blue-500" />
+                              <span><strong>Growth</strong> – Career trajectory</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Target className="w-3.5 h-3.5 text-violet-500" />
+                              <span><strong>Stability</strong> – Job security</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <BookOpen className="w-3.5 h-3.5 text-orange-500" />
+                              <span><strong>Entry Level</strong> – Accessibility</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Zap className="w-3.5 h-3.5 text-cyan-500" />
+                              <span><strong>Flexibility</strong> – Work options</span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
