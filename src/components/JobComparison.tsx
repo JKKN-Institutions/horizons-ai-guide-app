@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Card, CardContent } from '@/components/ui/card';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { generateComparisonPDF } from '@/components/JobComparison/generateComparisonPDF';
 
@@ -210,6 +210,18 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
       setIsExporting(false);
     }
   };
+
+  // Animation state for score circles
+  const [animateScores, setAnimateScores] = useState(false);
+  
+  useEffect(() => {
+    if (open) {
+      // Reset and trigger animation when modal opens
+      setAnimateScores(false);
+      const timer = setTimeout(() => setAnimateScores(true), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [open]);
 
   if (jobs.length === 0) {
     return null;
@@ -459,10 +471,13 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
                           <div 
                             key={job.idx}
                             className={`relative rounded-xl overflow-hidden transition-all hover:shadow-lg ${
+                              animateScores ? 'score-card-animate' : 'opacity-0'
+                            } ${
                               isTop 
                                 ? 'ring-2 ring-amber-400 shadow-amber-100 dark:shadow-amber-500/20' 
                                 : 'border border-border/50'
                             }`}
+                            style={{ animationDelay: `${rankIdx * 0.1}s` }}
                           >
                             {/* Rank Badge */}
                             <div className={`absolute top-2 left-2 z-10 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shadow-md ${
@@ -502,15 +517,20 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
                                       fill="none"
                                       strokeLinecap="round"
                                       className={`${
+                                        animateScores ? 'score-circle-animate' : ''
+                                      } ${
                                         matchLabel.color === 'emerald' ? 'stroke-emerald-500' :
                                         matchLabel.color === 'blue' ? 'stroke-blue-500' :
                                         matchLabel.color === 'amber' ? 'stroke-amber-500' :
                                         'stroke-orange-500'
                                       }`}
-                                      strokeDasharray={`${(job.matchData.total / 100) * 220} 220`}
+                                      strokeDasharray={animateScores ? `${(job.matchData.total / 100) * 220} 220` : '0 220'}
+                                      style={{ animationDelay: `${rankIdx * 0.15}s` }}
                                     />
                                   </svg>
-                                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                                  <div className={`absolute inset-0 flex flex-col items-center justify-center ${
+                                    animateScores ? 'score-number-animate' : 'opacity-0'
+                                  }`} style={{ animationDelay: `${0.5 + rankIdx * 0.1}s` }}>
                                     <span className="text-2xl font-bold text-foreground">{job.matchData.total}</span>
                                     <span className="text-[10px] text-muted-foreground">/ 100</span>
                                   </div>
