@@ -1,10 +1,12 @@
-import { X, MapPin, Banknote, Briefcase, Building2, ArrowLeftRight, GraduationCap, TrendingUp, Crown, Sparkles } from 'lucide-react';
+import { X, MapPin, Banknote, Briefcase, Building2, ArrowLeftRight, GraduationCap, TrendingUp, Crown, Sparkles, Download, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Card, CardContent } from '@/components/ui/card';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
+import { generateComparisonPDF } from '@/components/JobComparison/generateComparisonPDF';
 
 interface Job {
   title: string;
@@ -150,6 +152,9 @@ const calculateJobScore = (job: Job): { score: number; reasons: string[] } => {
 };
 
 export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }: JobComparisonProps) {
+  const { toast } = useToast();
+  const [isExporting, setIsExporting] = useState(false);
+
   const getSectorInfo = (sectorId: string) => {
     const sector = sectors.find(s => s.id === sectorId);
     const colors = sectorColors[sectorId] || defaultSectorColors;
@@ -182,6 +187,26 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
   const getBestMatchReasons = (idx: number): string[] => {
     if (idx !== bestMatchIndex) return [];
     return calculateJobScore(jobs[idx]).reasons;
+  };
+
+  const handleExportPDF = async () => {
+    setIsExporting(true);
+    try {
+      const fileName = generateComparisonPDF(jobs, bestMatchIndex);
+      toast({
+        title: "PDF Downloaded! 📄",
+        description: `${fileName} has been saved to your downloads.`,
+      });
+    } catch (error) {
+      console.error('PDF generation error:', error);
+      toast({
+        title: "Export Failed",
+        description: "Could not generate PDF. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsExporting(false);
+    }
   };
 
   if (jobs.length === 0) {
@@ -444,10 +469,28 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
         </ScrollArea>
 
         {/* Footer */}
-        <div className="flex justify-end gap-3 p-4 border-t bg-muted/30">
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
-            Close
-          </Button>
+        <div className="flex justify-between items-center gap-3 p-4 border-t bg-gradient-to-r from-muted/50 to-muted/20">
+          <div className="text-xs text-muted-foreground">
+            {jobs.length} job{jobs.length > 1 ? 's' : ''} compared
+          </div>
+          <div className="flex gap-3">
+            <Button 
+              variant="outline" 
+              onClick={handleExportPDF}
+              disabled={isExporting}
+              className="gap-2 border-primary/30 hover:bg-primary/5"
+            >
+              {isExporting ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Download className="h-4 w-4" />
+              )}
+              {isExporting ? 'Generating...' : 'Download PDF'}
+            </Button>
+            <Button variant="outline" onClick={() => onOpenChange(false)}>
+              Close
+            </Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
