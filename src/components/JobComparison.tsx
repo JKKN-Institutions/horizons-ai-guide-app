@@ -1,4 +1,4 @@
-import { X, MapPin, Banknote, Briefcase, Building2, ArrowLeftRight, GraduationCap, TrendingUp, Crown, Sparkles, Download, Loader2, PieChartIcon, Radar, Zap, Target, BookOpen, Percent, CheckCircle2, Star } from 'lucide-react';
+import { X, MapPin, Banknote, Briefcase, Building2, ArrowLeftRight, GraduationCap, TrendingUp, Crown, Sparkles, Download, Loader2, PieChartIcon, Radar, Zap, Target, BookOpen, Percent, CheckCircle2, Star, Volume2, VolumeX, RotateCcw } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, Cell, PieChart, Pie, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar as RechartsRadar, Legend } from 'recharts';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
@@ -7,10 +7,60 @@ import { Badge } from '@/components/ui/badge';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { useMemo, useState, useEffect, useCallback } from 'react';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import { useMemo, useState, useEffect, useCallback, useRef } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { generateComparisonPDF } from '@/components/JobComparison/generateComparisonPDF';
 import confetti from 'canvas-confetti';
+
+// Web Audio API celebration sound generator
+const createCelebrationSound = (audioContext: AudioContext) => {
+  const now = audioContext.currentTime;
+  
+  // Create a series of ascending tones for celebration
+  const frequencies = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+  
+  frequencies.forEach((freq, i) => {
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(freq, now + i * 0.1);
+    
+    gainNode.gain.setValueAtTime(0, now + i * 0.1);
+    gainNode.gain.linearRampToValueAtTime(0.15, now + i * 0.1 + 0.05);
+    gainNode.gain.linearRampToValueAtTime(0, now + i * 0.1 + 0.3);
+    
+    oscillator.start(now + i * 0.1);
+    oscillator.stop(now + i * 0.1 + 0.4);
+  });
+  
+  // Add a final triumphant chord
+  setTimeout(() => {
+    const chordFreqs = [523.25, 659.25, 783.99];
+    chordFreqs.forEach((freq) => {
+      const osc = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      
+      osc.connect(gain);
+      gain.connect(audioContext.destination);
+      
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, audioContext.currentTime);
+      
+      gain.gain.setValueAtTime(0, audioContext.currentTime);
+      gain.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.1);
+      gain.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.8);
+      
+      osc.start(audioContext.currentTime);
+      osc.stop(audioContext.currentTime + 0.9);
+    });
+  }, 500);
+};
 
 // Tooltip descriptions for each score factor
 const scoreFactorDescriptions: Record<string, { title: string; description: string; factors: string[] }> = {
@@ -244,6 +294,37 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
 
   // Animation state for score circles
   const [animateScores, setAnimateScores] = useState(false);
+  
+  // Sound effects state (persisted in localStorage for accessibility preference)
+  const [soundEnabled, setSoundEnabled] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('jobComparison_soundEnabled');
+      return stored !== null ? stored === 'true' : true;
+    }
+    return true;
+  });
+  
+  // Audio context ref
+  const audioContextRef = useRef<AudioContext | null>(null);
+  
+  // Persist sound preference
+  useEffect(() => {
+    localStorage.setItem('jobComparison_soundEnabled', String(soundEnabled));
+  }, [soundEnabled]);
+  
+  // Play celebration sound
+  const playCelebrationSound = useCallback(() => {
+    if (!soundEnabled) return;
+    
+    try {
+      if (!audioContextRef.current) {
+        audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+      }
+      createCelebrationSound(audioContextRef.current);
+    } catch (error) {
+      console.warn('Audio playback failed:', error);
+    }
+  }, [soundEnabled]);
 
   // Confetti celebration effect
   const triggerConfetti = useCallback(() => {
@@ -282,20 +363,47 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
     return () => clearInterval(interval);
   }, []);
   
+  // Full celebration effect (confetti + sound)
+  const triggerCelebration = useCallback(() => {
+    triggerConfetti();
+    playCelebrationSound();
+  }, [triggerConfetti, playCelebrationSound]);
+  
+  // Replay animation handler
+  const handleReplayAnimation = useCallback(() => {
+    setAnimateScores(false);
+    setTimeout(() => {
+      setAnimateScores(true);
+      // Trigger celebration after score animation
+      setTimeout(() => {
+        triggerCelebration();
+      }, 600);
+    }, 100);
+  }, [triggerCelebration]);
+  
   useEffect(() => {
     if (open && jobs.length >= 2) {
       // Reset and trigger animation when modal opens
       setAnimateScores(false);
       const timer = setTimeout(() => {
         setAnimateScores(true);
-        // Trigger confetti after score animation reveals the winner
+        // Trigger celebration after score animation reveals the winner
         setTimeout(() => {
-          triggerConfetti();
+          triggerCelebration();
         }, 600);
       }, 100);
       return () => clearTimeout(timer);
     }
-  }, [open, jobs.length, triggerConfetti]);
+  }, [open, jobs.length, triggerCelebration]);
+  
+  // Cleanup audio context on unmount
+  useEffect(() => {
+    return () => {
+      if (audioContextRef.current) {
+        audioContextRef.current.close();
+      }
+    };
+  }, []);
 
   if (jobs.length === 0) {
     return null;
@@ -1371,25 +1479,70 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
         </ScrollArea>
 
         {/* Footer */}
-        <div className="flex justify-between items-center gap-3 p-4 border-t bg-gradient-to-r from-muted/50 to-muted/20">
-          <div className="text-xs text-muted-foreground">
-            {jobs.length} job{jobs.length > 1 ? 's' : ''} compared
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 p-4 border-t bg-gradient-to-r from-muted/50 to-muted/20">
+          <div className="flex items-center gap-4">
+            <span className="text-xs text-muted-foreground">
+              {jobs.length} job{jobs.length > 1 ? 's' : ''} compared
+            </span>
+            
+            {/* Sound Toggle */}
+            <div className="flex items-center gap-2">
+              <Switch
+                id="sound-toggle"
+                checked={soundEnabled}
+                onCheckedChange={setSoundEnabled}
+                className="data-[state=checked]:bg-primary"
+              />
+              <Label 
+                htmlFor="sound-toggle" 
+                className="text-xs text-muted-foreground cursor-pointer flex items-center gap-1"
+              >
+                {soundEnabled ? (
+                  <Volume2 className="h-3.5 w-3.5" />
+                ) : (
+                  <VolumeX className="h-3.5 w-3.5" />
+                )}
+                Sound
+              </Label>
+            </div>
           </div>
-          <div className="flex gap-3">
+          
+          <div className="flex gap-2 sm:gap-3 flex-wrap">
+            {/* Replay Animation Button */}
+            {jobs.length >= 2 && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleReplayAnimation}
+                    className="gap-1.5 border-amber-300 text-amber-600 hover:bg-amber-50 dark:border-amber-500/30 dark:text-amber-400 dark:hover:bg-amber-500/10"
+                  >
+                    <RotateCcw className="h-3.5 w-3.5" />
+                    Replay
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Re-trigger the score reveal animation and celebration</p>
+                </TooltipContent>
+              </Tooltip>
+            )}
+            
             <Button 
               variant="outline" 
+              size="sm"
               onClick={handleExportPDF}
               disabled={isExporting}
-              className="gap-2 border-primary/30 hover:bg-primary/5"
+              className="gap-1.5 border-primary/30 hover:bg-primary/5"
             >
               {isExporting ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
               ) : (
-                <Download className="h-4 w-4" />
+                <Download className="h-3.5 w-3.5" />
               )}
-              {isExporting ? 'Generating...' : 'Download PDF'}
+              {isExporting ? 'Generating...' : 'PDF'}
             </Button>
-            <Button variant="outline" onClick={() => onOpenChange(false)}>
+            <Button variant="outline" size="sm" onClick={() => onOpenChange(false)}>
               Close
             </Button>
           </div>
