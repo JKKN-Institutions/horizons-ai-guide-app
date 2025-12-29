@@ -356,22 +356,34 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
               })}
             </div>
 
-            {/* Salary Bar Chart */}
+            {/* Salary Insights Chart */}
             {jobs.length >= 2 && (
-              <div className="mt-6 rounded-xl border-2 border-primary/20 overflow-hidden shadow-lg">
-                <div className="bg-gradient-to-r from-green-500/10 via-emerald-500/5 to-transparent px-4 py-3 border-b border-green-500/20">
-                  <h4 className="font-semibold flex items-center gap-2 text-green-700 dark:text-green-400">
-                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center">
-                      <BarChart3 className="w-4 h-4 text-white" />
+              <div className="mt-6 rounded-2xl border border-emerald-200/60 dark:border-emerald-500/20 overflow-hidden shadow-xl bg-gradient-to-br from-white to-emerald-50/30 dark:from-background dark:to-emerald-500/5">
+                {/* Header */}
+                <div className="bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 px-5 py-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
+                        <Banknote className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white text-lg tracking-tight">Salary Insights</h4>
+                        <p className="text-emerald-100 text-xs">Annual Package Comparison (in Lakhs)</p>
+                      </div>
                     </div>
-                    Salary Comparison
-                  </h4>
+                    <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1.5">
+                      <TrendingUp className="w-4 h-4 text-emerald-200" />
+                      <span className="text-white text-xs font-medium">Live Data</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="p-4 bg-gradient-to-br from-green-50/50 to-emerald-50/30 dark:from-green-500/5 dark:to-emerald-500/5">
-                  <ResponsiveContainer width="100%" height={200}>
+
+                {/* Chart Area */}
+                <div className="p-5">
+                  <ResponsiveContainer width="100%" height={220}>
                     <BarChart 
                       data={jobs.map((job, idx) => ({
-                        name: job.title.length > 15 ? job.title.slice(0, 15) + '...' : job.title,
+                        name: job.company,
                         salary: parseSalaryMax(job.salary),
                         fullTitle: job.title,
                         company: job.company,
@@ -380,40 +392,54 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
                         isBest: idx === bestMatchIndex
                       }))}
                       layout="vertical"
-                      margin={{ top: 10, right: 30, left: 10, bottom: 10 }}
+                      margin={{ top: 5, right: 40, left: 5, bottom: 5 }}
                     >
                       <XAxis 
                         type="number" 
                         tickFormatter={(value) => `₹${value}L`}
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+                        tick={{ fontSize: 11, fill: 'hsl(var(--muted-foreground))', fontWeight: 500 }}
+                        domain={[0, 'dataMax + 5']}
                       />
                       <YAxis 
                         type="category" 
                         dataKey="name" 
-                        width={120}
+                        width={90}
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fontSize: 11, fill: 'hsl(var(--foreground))' }}
+                        tick={{ fontSize: 12, fill: 'hsl(var(--foreground))', fontWeight: 600 }}
                       />
                       <Tooltip 
-                        cursor={{ fill: 'hsl(var(--muted)/0.3)' }}
+                        cursor={{ fill: 'hsl(var(--muted)/0.2)', radius: 8 }}
                         content={({ active, payload }) => {
                           if (active && payload && payload.length) {
                             const data = payload[0].payload;
+                            const sectorInfo = getSectorInfo(data.sector);
                             return (
-                              <div className="bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-xl p-3">
-                                <p className="font-bold text-foreground">{data.fullTitle}</p>
-                                <p className="text-sm text-muted-foreground">{data.company}</p>
-                                <p className="text-lg font-bold text-green-600 dark:text-green-400 mt-1">
-                                  {data.salaryText}
-                                </p>
-                                {data.isBest && (
-                                  <div className="flex items-center gap-1 mt-2 text-amber-600 dark:text-amber-400 text-xs font-medium">
-                                    <Crown className="w-3 h-3" /> Best Match
+                              <div className="bg-background/98 backdrop-blur-md border border-border/50 rounded-xl shadow-2xl p-4 min-w-[200px]">
+                                <div className="flex items-start justify-between gap-3 mb-2">
+                                  <div>
+                                    <p className="font-bold text-foreground text-sm">{data.fullTitle}</p>
+                                    <p className="text-xs text-muted-foreground">{data.company}</p>
                                   </div>
-                                )}
+                                  {data.isBest && (
+                                    <div className="flex items-center gap-1 bg-gradient-to-r from-amber-100 to-yellow-100 dark:from-amber-500/20 dark:to-yellow-500/20 text-amber-700 dark:text-amber-400 text-xs font-semibold px-2 py-1 rounded-full">
+                                      <Crown className="w-3 h-3" /> Top Pick
+                                    </div>
+                                  )}
+                                </div>
+                                <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border/50">
+                                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${sectorInfo.gradient} flex items-center justify-center`}>
+                                    <Banknote className="w-4 h-4 text-white" />
+                                  </div>
+                                  <div>
+                                    <p className="text-xs text-muted-foreground">Annual Package</p>
+                                    <p className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
+                                      {data.salaryText}
+                                    </p>
+                                  </div>
+                                </div>
                               </div>
                             );
                           }
@@ -422,46 +448,55 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
                       />
                       <Bar 
                         dataKey="salary" 
-                        radius={[0, 8, 8, 0]}
-                        maxBarSize={40}
+                        radius={[0, 12, 12, 0]}
+                        maxBarSize={36}
                       >
                         {jobs.map((job, idx) => {
-                          const sectorInfo = getSectorInfo(job.sector);
                           const gradientColors: Record<string, string> = {
-                            tech: '#3b82f6',
+                            tech: '#10b981',
                             healthcare: '#22c55e',
-                            manufacturing: '#f97316',
-                            bfsi: '#a855f7',
-                            ecommerce: '#ec4899',
-                            logistics: '#f59e0b',
-                            gaming: '#ef4444',
-                            agritech: '#84cc16',
-                            edtech: '#6366f1',
-                            renewable: '#14b8a6',
+                            manufacturing: '#059669',
+                            bfsi: '#14b8a6',
+                            ecommerce: '#34d399',
+                            logistics: '#6ee7b7',
+                            gaming: '#4ade80',
+                            agritech: '#22c55e',
+                            edtech: '#10b981',
+                            renewable: '#059669',
                           };
-                          const color = gradientColors[job.sector] || '#6b7280';
+                          const color = gradientColors[job.sector] || '#22c55e';
                           return (
                             <Cell 
                               key={idx} 
-                              fill={color}
-                              stroke={idx === bestMatchIndex ? '#fbbf24' : 'transparent'}
-                              strokeWidth={idx === bestMatchIndex ? 3 : 0}
+                              fill={idx === bestMatchIndex ? '#fbbf24' : color}
+                              stroke={idx === bestMatchIndex ? '#f59e0b' : 'transparent'}
+                              strokeWidth={idx === bestMatchIndex ? 2 : 0}
                             />
                           );
                         })}
                       </Bar>
                     </BarChart>
                   </ResponsiveContainer>
-                  <div className="flex flex-wrap justify-center gap-3 mt-3 pt-3 border-t border-green-200/50 dark:border-green-500/20">
+
+                  {/* Legend */}
+                  <div className="flex flex-wrap justify-center items-center gap-4 mt-4 pt-4 border-t border-emerald-100 dark:border-emerald-500/10">
                     {jobs.map((job, idx) => {
                       const sectorInfo = getSectorInfo(job.sector);
+                      const isBest = idx === bestMatchIndex;
                       return (
-                        <div key={idx} className="flex items-center gap-2 text-xs">
-                          <div className={`w-3 h-3 rounded-sm bg-gradient-to-r ${sectorInfo.gradient}`} />
-                          <span className="text-muted-foreground">{job.company}</span>
-                          {idx === bestMatchIndex && (
-                            <Crown className="w-3 h-3 text-amber-500" />
-                          )}
+                        <div 
+                          key={idx} 
+                          className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                            isBest 
+                              ? 'bg-gradient-to-r from-amber-100 to-yellow-100 dark:from-amber-500/20 dark:to-yellow-500/20 text-amber-700 dark:text-amber-400 shadow-sm' 
+                              : 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400'
+                          }`}
+                        >
+                          <div className={`w-2.5 h-2.5 rounded-full ${isBest ? 'bg-amber-500' : 'bg-emerald-500'}`} />
+                          <span>{job.company}</span>
+                          <span className="text-muted-foreground">•</span>
+                          <span className="font-bold">{job.salary}</span>
+                          {isBest && <Crown className="w-3 h-3 text-amber-500" />}
                         </div>
                       );
                     })}
