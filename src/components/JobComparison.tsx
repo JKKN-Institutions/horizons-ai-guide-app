@@ -1,14 +1,44 @@
 import { X, MapPin, Banknote, Briefcase, Building2, ArrowLeftRight, GraduationCap, TrendingUp, Crown, Sparkles, Download, Loader2, PieChartIcon, Radar, Zap, Target, BookOpen, Percent, CheckCircle2, Star } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar as RechartsRadar, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, Cell, PieChart, Pie, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar as RechartsRadar, Legend } from 'recharts';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Card, CardContent } from '@/components/ui/card';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useMemo, useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { generateComparisonPDF } from '@/components/JobComparison/generateComparisonPDF';
+
+// Tooltip descriptions for each score factor
+const scoreFactorDescriptions: Record<string, { title: string; description: string; factors: string[] }> = {
+  Salary: {
+    title: 'Salary Score',
+    description: 'Based on the maximum salary offered for this position.',
+    factors: ['Higher salary = Higher score', 'Compared against industry benchmarks', 'Normalized to 100-point scale']
+  },
+  Growth: {
+    title: 'Growth Potential',
+    description: 'Evaluates career advancement opportunities in this sector.',
+    factors: ['Sector growth trajectory', 'Industry expansion rate', 'Hot/trending status bonus']
+  },
+  Demand: {
+    title: 'Market Demand',
+    description: 'Measures current hiring activity and job availability.',
+    factors: ['Number of open positions', 'Competition for talent', 'Sector hiring trends']
+  },
+  Balance: {
+    title: 'Work-Life Balance',
+    description: 'Estimates typical work schedule and flexibility.',
+    factors: ['Industry work culture', 'Average working hours', 'Remote work potential']
+  },
+  Access: {
+    title: 'Accessibility',
+    description: 'How easily you can qualify for this role.',
+    factors: ['Education requirements', 'Experience needed', 'Entry barriers']
+  }
+};
 
 interface Job {
   title: string;
@@ -553,36 +583,100 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
                             </div>
 
                             {/* Breakdown */}
-                            <div className="px-4 pb-4 space-y-2">
-                              {job.matchData.breakdown.map((item, bIdx) => (
-                                <div key={bIdx} className="flex items-center gap-2">
-                                  <span className={`text-xs w-4 ${animateScores ? 'breakdown-icon-animate' : 'opacity-0'}`} style={{ animationDelay: `${0.8 + rankIdx * 0.1 + bIdx * 0.05}s` }}>{item.icon}</span>
-                                  <div className="flex-1">
-                                    <div className="flex justify-between items-center mb-0.5">
-                                      <span className={`text-[10px] text-muted-foreground ${animateScores ? 'breakdown-label-animate' : 'opacity-0'}`} style={{ animationDelay: `${0.8 + rankIdx * 0.1 + bIdx * 0.05}s` }}>{item.label}</span>
-                                      <span className={`text-[10px] font-medium text-foreground ${animateScores ? 'breakdown-score-animate' : 'opacity-0'}`} style={{ animationDelay: `${1.0 + rankIdx * 0.1 + bIdx * 0.05}s` }}>{item.score}%</span>
-                                    </div>
-                                    <div className="h-1.5 rounded-full bg-muted overflow-hidden">
-                                      <div 
-                                        className={`h-full rounded-full ${
-                                          animateScores ? 'breakdown-bar-animate' : ''
-                                        } ${
-                                          item.color === 'emerald' ? 'bg-emerald-500' :
-                                          item.color === 'blue' ? 'bg-blue-500' :
-                                          item.color === 'orange' ? 'bg-orange-500' :
-                                          item.color === 'violet' ? 'bg-violet-500' :
-                                          'bg-cyan-500'
-                                        }`}
-                                        style={{ 
-                                          width: animateScores ? `${item.score}%` : '0%',
-                                          animationDelay: `${0.9 + rankIdx * 0.1 + bIdx * 0.08}s`
-                                        }}
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
+                            <TooltipProvider delayDuration={100}>
+                              <div className="px-4 pb-4 space-y-2">
+                                {job.matchData.breakdown.map((item, bIdx) => {
+                                  const factorInfo = scoreFactorDescriptions[item.label];
+                                  const getScoreRating = (score: number) => {
+                                    if (score >= 85) return { text: 'Excellent', color: 'text-emerald-500' };
+                                    if (score >= 70) return { text: 'Good', color: 'text-blue-500' };
+                                    if (score >= 55) return { text: 'Average', color: 'text-amber-500' };
+                                    return { text: 'Below Average', color: 'text-orange-500' };
+                                  };
+                                  const rating = getScoreRating(item.score);
+                                  
+                                  return (
+                                    <Tooltip key={bIdx}>
+                                      <TooltipTrigger asChild>
+                                        <div className="flex items-center gap-2 cursor-pointer group">
+                                          <span className={`text-xs w-4 ${animateScores ? 'breakdown-icon-animate' : 'opacity-0'}`} style={{ animationDelay: `${0.8 + rankIdx * 0.1 + bIdx * 0.05}s` }}>{item.icon}</span>
+                                          <div className="flex-1">
+                                            <div className="flex justify-between items-center mb-0.5">
+                                              <span className={`text-[10px] text-muted-foreground group-hover:text-foreground transition-colors ${animateScores ? 'breakdown-label-animate' : 'opacity-0'}`} style={{ animationDelay: `${0.8 + rankIdx * 0.1 + bIdx * 0.05}s` }}>{item.label}</span>
+                                              <span className={`text-[10px] font-medium text-foreground ${animateScores ? 'breakdown-score-animate' : 'opacity-0'}`} style={{ animationDelay: `${1.0 + rankIdx * 0.1 + bIdx * 0.05}s` }}>{item.score}%</span>
+                                            </div>
+                                            <div className="h-1.5 rounded-full bg-muted overflow-hidden group-hover:h-2 transition-all">
+                                              <div 
+                                                className={`h-full rounded-full transition-all group-hover:shadow-md ${
+                                                  animateScores ? 'breakdown-bar-animate' : ''
+                                                } ${
+                                                  item.color === 'emerald' ? 'bg-emerald-500 group-hover:bg-emerald-400' :
+                                                  item.color === 'blue' ? 'bg-blue-500 group-hover:bg-blue-400' :
+                                                  item.color === 'orange' ? 'bg-orange-500 group-hover:bg-orange-400' :
+                                                  item.color === 'violet' ? 'bg-violet-500 group-hover:bg-violet-400' :
+                                                  'bg-cyan-500 group-hover:bg-cyan-400'
+                                                }`}
+                                                style={{ 
+                                                  width: animateScores ? `${item.score}%` : '0%',
+                                                  animationDelay: `${0.9 + rankIdx * 0.1 + bIdx * 0.08}s`
+                                                }}
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </TooltipTrigger>
+                                      <TooltipContent 
+                                        side="left" 
+                                        className="max-w-[240px] p-0 bg-background/98 backdrop-blur-md border border-border/50 shadow-2xl"
+                                      >
+                                        <div className="p-3 space-y-2">
+                                          <div className="flex items-center justify-between gap-2">
+                                            <div className="flex items-center gap-2">
+                                              <span className="text-base">{item.icon}</span>
+                                              <span className="font-bold text-sm text-foreground">{factorInfo?.title || item.label}</span>
+                                            </div>
+                                            <Badge variant="outline" className={`text-[10px] ${rating.color}`}>
+                                              {rating.text}
+                                            </Badge>
+                                          </div>
+                                          <p className="text-xs text-muted-foreground leading-relaxed">
+                                            {factorInfo?.description || 'Score based on job characteristics.'}
+                                          </p>
+                                          <div className="flex items-center gap-2 py-1.5 px-2 bg-muted/50 rounded-lg">
+                                            <div className={`text-xl font-bold ${rating.color}`}>{item.score}%</div>
+                                            <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                                              <div 
+                                                className={`h-full rounded-full ${
+                                                  item.color === 'emerald' ? 'bg-emerald-500' :
+                                                  item.color === 'blue' ? 'bg-blue-500' :
+                                                  item.color === 'orange' ? 'bg-orange-500' :
+                                                  item.color === 'violet' ? 'bg-violet-500' :
+                                                  'bg-cyan-500'
+                                                }`}
+                                                style={{ width: `${item.score}%` }}
+                                              />
+                                            </div>
+                                          </div>
+                                          {factorInfo?.factors && (
+                                            <div className="pt-2 border-t border-border/50">
+                                              <p className="text-[10px] font-medium text-muted-foreground mb-1.5">Factors considered:</p>
+                                              <ul className="space-y-1">
+                                                {factorInfo.factors.map((factor, fIdx) => (
+                                                  <li key={fIdx} className="flex items-start gap-1.5 text-[10px] text-muted-foreground">
+                                                    <CheckCircle2 className="w-3 h-3 text-primary flex-shrink-0 mt-0.5" />
+                                                    <span>{factor}</span>
+                                                  </li>
+                                                ))}
+                                              </ul>
+                                            </div>
+                                          )}
+                                        </div>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  );
+                                })}
+                              </div>
+                            </TooltipProvider>
                           </div>
                         );
                       })}
@@ -666,7 +760,7 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
                         tickLine={false}
                         tick={{ fontSize: 12, fill: 'hsl(var(--foreground))', fontWeight: 600 }}
                       />
-                      <Tooltip 
+                      <RechartsTooltip 
                         cursor={{ fill: 'hsl(var(--muted)/0.2)', radius: 8 }}
                         content={({ active, payload }) => {
                           if (active && payload && payload.length) {
@@ -839,7 +933,7 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
                                 <Cell key={idx} fill={entry.color} />
                               ))}
                             </Pie>
-                            <Tooltip
+                            <RechartsTooltip
                               content={({ active, payload }) => {
                                 if (active && payload && payload.length) {
                                   const data = payload[0].payload;
@@ -1035,7 +1129,7 @@ export function JobComparison({ jobs, open, onOpenChange, onRemoveJob, sectors }
                                 strokeWidth={2}
                               />
                             ))}
-                            <Tooltip
+                            <RechartsTooltip
                               content={({ active, payload, label }) => {
                                 if (active && payload && payload.length) {
                                   return (
