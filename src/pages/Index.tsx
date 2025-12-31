@@ -8,6 +8,7 @@ import CareerBoosterSection from "@/components/CareerBoosterSection";
 import CareerPathFlowchart from "@/components/CareerPathFlowchart";
 import CareerComparison from "@/components/CareerComparison";
 import SalaryGrowthTimeline from "@/components/SalaryGrowthTimeline";
+import SalaryCalculator from "@/components/SalaryCalculator";
 import TwelfthLearnersSection from "@/components/TwelfthLearnersSection";
 import JobsSection from "@/components/JobsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -31,6 +32,7 @@ const Index = () => {
         <CareerPathFlowchart />
         <CareerComparison />
         <SalaryGrowthTimeline />
+        <SalaryCalculator />
         <TwelfthLearnersSection />
         <JobsSection />
         <TestimonialsSection />
