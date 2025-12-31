@@ -38,8 +38,17 @@ import {
   X,
   Sparkles,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  FileText,
+  MessageSquare,
+  BriefcaseBusiness,
+  DollarSign,
+  Clock,
+  Star,
+  Zap,
+  MapPin
 } from 'lucide-react';
+import { Textarea } from '@/components/ui/textarea';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -102,6 +111,23 @@ const CareerChat = () => {
   const [targetCareer, setTargetCareer] = useState('');
   const [currentSkills, setCurrentSkills] = useState<string[]>([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  
+  // Resume Review state
+  const [resumeReviewOpen, setResumeReviewOpen] = useState(false);
+  const [resumeText, setResumeText] = useState('');
+  const [targetRole, setTargetRole] = useState('');
+  
+  // Mock Interview state
+  const [mockInterviewOpen, setMockInterviewOpen] = useState(false);
+  const [interviewRole, setInterviewRole] = useState('');
+  const [interviewLevel, setInterviewLevel] = useState('');
+  const [interviewType, setInterviewType] = useState('');
+  
+  // Salary Insights state
+  const [salaryInsightsOpen, setSalaryInsightsOpen] = useState(false);
+  const [salaryRole, setSalaryRole] = useState('');
+  const [salaryLocation, setSalaryLocation] = useState('');
+  const [experienceYears, setExperienceYears] = useState('');
 
   // Scroll to bottom on new messages
   useEffect(() => {
@@ -369,6 +395,152 @@ Format the response clearly with headers and bullet points.`;
     setCurrentSkills([]);
   };
 
+  // Resume Review function
+  const analyzeResume = async () => {
+    if (!resumeText.trim()) {
+      toast({
+        title: 'Missing Resume',
+        description: 'Please paste your resume content.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setIsAnalyzing(true);
+    setResumeReviewOpen(false);
+
+    const resumePrompt = `Perform a comprehensive RESUME REVIEW for a ${targetRole || 'general'} position:
+
+RESUME CONTENT:
+${resumeText}
+
+Please provide:
+1. **Overall Score** - Rate the resume from 0-100%
+2. **ATS Compatibility** - How well will this pass Applicant Tracking Systems?
+3. **Strengths** - What's working well in this resume
+4. **Areas for Improvement** - Specific sections that need enhancement
+5. **Missing Elements** - Key sections or information that should be added
+6. **Keyword Suggestions** - Industry keywords to include for better visibility
+7. **Formatting Tips** - Layout and structure recommendations
+8. **Action Verb Suggestions** - Stronger alternatives for weak phrases
+9. **Quantification Opportunities** - Where to add metrics and numbers
+10. **Rewritten Summary** - An improved professional summary
+
+Be specific and actionable in your feedback.`;
+
+    const userMessage: Message = {
+      role: 'user',
+      content: resumePrompt,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    await saveMessage(userMessage);
+    await streamChat([...messages, userMessage]);
+    setIsAnalyzing(false);
+    
+    setResumeText('');
+    setTargetRole('');
+  };
+
+  // Mock Interview function
+  const startMockInterview = async () => {
+    if (!interviewRole) {
+      toast({
+        title: 'Missing Role',
+        description: 'Please select a role for the interview.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setIsAnalyzing(true);
+    setMockInterviewOpen(false);
+
+    const interviewPrompt = `Start a MOCK INTERVIEW session for the following:
+
+ROLE: ${interviewRole}
+EXPERIENCE LEVEL: ${interviewLevel || 'Entry Level'}
+INTERVIEW TYPE: ${interviewType || 'Technical + Behavioral'}
+
+Please:
+1. Act as an interviewer from a top company
+2. Ask me 5-7 interview questions one by one
+3. Start with an introduction question, then mix technical and behavioral questions
+4. After I answer each question, provide:
+   - Score (1-10)
+   - What was good
+   - What could be improved
+   - A sample ideal answer
+
+Start with the first question now. Make it realistic and challenging but appropriate for the experience level.`;
+
+    const userMessage: Message = {
+      role: 'user',
+      content: interviewPrompt,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    await saveMessage(userMessage);
+    await streamChat([...messages, userMessage]);
+    setIsAnalyzing(false);
+    
+    setInterviewRole('');
+    setInterviewLevel('');
+    setInterviewType('');
+  };
+
+  // Salary Insights function
+  const getSalaryInsights = async () => {
+    if (!salaryRole) {
+      toast({
+        title: 'Missing Role',
+        description: 'Please select a role for salary insights.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setIsAnalyzing(true);
+    setSalaryInsightsOpen(false);
+
+    const salaryPrompt = `Provide detailed SALARY INSIGHTS for:
+
+ROLE: ${salaryRole}
+LOCATION: ${salaryLocation || 'India (Major Cities)'}
+EXPERIENCE: ${experienceYears || '0-2'} years
+
+Please provide:
+1. **Salary Range** - Minimum, Average, Maximum (in INR LPA)
+2. **Salary by Company Type** - Startups vs MNCs vs Indian IT Companies
+3. **City-wise Comparison** - Bangalore, Mumbai, Delhi, Hyderabad, Chennai, Pune
+4. **Factors Affecting Salary** - Skills, certifications, education that boost pay
+5. **Career Progression** - Expected salary at 2, 5, 10 years
+6. **Negotiation Tips** - How to negotiate for better compensation
+7. **Benefits to Expect** - Typical perks beyond base salary
+8. **Market Trends** - Is demand increasing or decreasing?
+9. **Top Paying Companies** - Companies known for best compensation
+10. **Salary Boosting Skills** - Learn these to increase earning potential
+
+Be specific with numbers and provide actionable insights.`;
+
+    const userMessage: Message = {
+      role: 'user',
+      content: salaryPrompt,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    await saveMessage(userMessage);
+    await streamChat([...messages, userMessage]);
+    setIsAnalyzing(false);
+    
+    setSalaryRole('');
+    setSalaryLocation('');
+    setExperienceYears('');
+  };
+
   const quickActions = [
     { icon: <GraduationCap className="h-4 w-4" />, label: 'Suggest courses', prompt: 'Suggest some good courses for me based on science stream' },
     { icon: <Building2 className="h-4 w-4" />, label: 'Find colleges', prompt: 'List the best engineering colleges in Tamil Nadu' },
@@ -582,6 +754,355 @@ Format the response clearly with headers and bullet points.`;
                     <>
                       <Sparkles className="h-5 w-5 mr-2" />
                       Analyze My Skill Gap
+                    </>
+                  )}
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+          
+          {/* Resume Review Button */}
+          <Sheet open={resumeReviewOpen} onOpenChange={setResumeReviewOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-gradient-to-r from-blue-50 to-cyan-50 backdrop-blur-sm border-2 border-blue-300 hover:border-blue-500 hover:from-blue-100 hover:to-cyan-100 text-blue-700 rounded-full px-4 py-2 shadow-sm hover:shadow-md transition-all duration-300 gap-2 font-medium"
+              >
+                <span className="p-1 rounded-full bg-blue-100">
+                  <FileText className="h-4 w-4" />
+                </span>
+                Resume Review
+                <Star className="h-3 w-3 text-blue-500" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl bg-gradient-to-br from-blue-50 via-cyan-50 to-sky-50">
+              <SheetHeader className="text-left pb-4 border-b border-blue-100">
+                <SheetTitle className="text-2xl font-bold text-blue-900 flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 shadow-lg">
+                    <FileText className="h-6 w-6 text-white" />
+                  </div>
+                  Resume Review
+                </SheetTitle>
+                <SheetDescription className="text-blue-700">
+                  Get AI-powered feedback on your resume with ATS optimization tips
+                </SheetDescription>
+              </SheetHeader>
+              
+              <ScrollArea className="h-[calc(85vh-180px)] mt-6">
+                <div className="space-y-6 pr-4">
+                  <div className="space-y-3">
+                    <Label className="text-blue-900 font-semibold flex items-center gap-2">
+                      <BriefcaseBusiness className="h-4 w-4" />
+                      Target Role (Optional)
+                    </Label>
+                    <Select value={targetRole} onValueChange={setTargetRole}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-blue-200 focus:border-blue-500 rounded-xl">
+                        <SelectValue placeholder="Select target role for tailored feedback..." />
+                      </SelectTrigger>
+                      <SelectContent className="max-h-[300px]">
+                        {CAREER_OPTIONS.map((career) => (
+                          <SelectItem key={career} value={career}>
+                            {career}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-blue-900 font-semibold flex items-center gap-2">
+                      <FileText className="h-4 w-4" />
+                      Paste Your Resume
+                    </Label>
+                    <Textarea
+                      value={resumeText}
+                      onChange={(e) => setResumeText(e.target.value)}
+                      placeholder="Paste your resume content here... Include your summary, experience, education, skills, and projects."
+                      className="min-h-[250px] bg-white border-2 border-blue-200 focus:border-blue-500 rounded-xl resize-none"
+                    />
+                    <p className="text-sm text-blue-600">
+                      {resumeText.length} characters • Tip: Include all sections for comprehensive feedback
+                    </p>
+                  </div>
+                </div>
+              </ScrollArea>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-blue-50 via-blue-50 to-transparent">
+                <Button
+                  onClick={analyzeResume}
+                  disabled={!resumeText.trim() || isAnalyzing}
+                  className="w-full h-14 bg-gradient-to-r from-blue-600 to-cyan-700 hover:from-blue-700 hover:to-cyan-800 text-white font-semibold text-lg rounded-xl shadow-lg shadow-blue-200 disabled:opacity-50 transition-all duration-300"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                      Analyzing Resume...
+                    </>
+                  ) : (
+                    <>
+                      <Star className="h-5 w-5 mr-2" />
+                      Review My Resume
+                    </>
+                  )}
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+          
+          {/* Mock Interview Button */}
+          <Sheet open={mockInterviewOpen} onOpenChange={setMockInterviewOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-gradient-to-r from-orange-50 to-amber-50 backdrop-blur-sm border-2 border-orange-300 hover:border-orange-500 hover:from-orange-100 hover:to-amber-100 text-orange-700 rounded-full px-4 py-2 shadow-sm hover:shadow-md transition-all duration-300 gap-2 font-medium"
+              >
+                <span className="p-1 rounded-full bg-orange-100">
+                  <MessageSquare className="h-4 w-4" />
+                </span>
+                Mock Interview
+                <Zap className="h-3 w-3 text-orange-500" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
+              <SheetHeader className="text-left pb-4 border-b border-orange-100">
+                <SheetTitle className="text-2xl font-bold text-orange-900 flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 shadow-lg">
+                    <MessageSquare className="h-6 w-6 text-white" />
+                  </div>
+                  Mock Interview
+                </SheetTitle>
+                <SheetDescription className="text-orange-700">
+                  Practice interview questions with AI feedback and scoring
+                </SheetDescription>
+              </SheetHeader>
+              
+              <ScrollArea className="h-[calc(85vh-180px)] mt-6">
+                <div className="space-y-6 pr-4">
+                  <div className="space-y-3">
+                    <Label className="text-orange-900 font-semibold flex items-center gap-2">
+                      <BriefcaseBusiness className="h-4 w-4" />
+                      Interview Role
+                    </Label>
+                    <Select value={interviewRole} onValueChange={setInterviewRole}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-orange-200 focus:border-orange-500 rounded-xl">
+                        <SelectValue placeholder="Select role you're interviewing for..." />
+                      </SelectTrigger>
+                      <SelectContent className="max-h-[300px]">
+                        {CAREER_OPTIONS.map((career) => (
+                          <SelectItem key={career} value={career}>
+                            {career}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-orange-900 font-semibold flex items-center gap-2">
+                      <Clock className="h-4 w-4" />
+                      Experience Level
+                    </Label>
+                    <Select value={interviewLevel} onValueChange={setInterviewLevel}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-orange-200 focus:border-orange-500 rounded-xl">
+                        <SelectValue placeholder="Select your experience level..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Fresher">Fresher (0 years)</SelectItem>
+                        <SelectItem value="Entry Level">Entry Level (0-2 years)</SelectItem>
+                        <SelectItem value="Mid Level">Mid Level (3-5 years)</SelectItem>
+                        <SelectItem value="Senior Level">Senior Level (5+ years)</SelectItem>
+                        <SelectItem value="Lead/Manager">Lead/Manager (8+ years)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-orange-900 font-semibold flex items-center gap-2">
+                      <Target className="h-4 w-4" />
+                      Interview Type
+                    </Label>
+                    <Select value={interviewType} onValueChange={setInterviewType}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-orange-200 focus:border-orange-500 rounded-xl">
+                        <SelectValue placeholder="Select interview type..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Technical + Behavioral">Technical + Behavioral (Recommended)</SelectItem>
+                        <SelectItem value="Technical Only">Technical Only</SelectItem>
+                        <SelectItem value="Behavioral Only">Behavioral Only</SelectItem>
+                        <SelectItem value="HR Round">HR Round</SelectItem>
+                        <SelectItem value="System Design">System Design</SelectItem>
+                        <SelectItem value="Coding Round">Coding Round</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  {interviewRole && (
+                    <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-4 border border-emerald-200">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 rounded-lg bg-emerald-100">
+                          <Sparkles className="h-5 w-5 text-emerald-600" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-emerald-900">Ready to Practice!</p>
+                          <p className="text-sm text-emerald-700 mt-1">
+                            AI will ask you {interviewLevel || 'Entry Level'} {interviewRole} interview questions
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </ScrollArea>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-orange-50 via-orange-50 to-transparent">
+                <Button
+                  onClick={startMockInterview}
+                  disabled={!interviewRole || isAnalyzing}
+                  className="w-full h-14 bg-gradient-to-r from-orange-600 to-amber-700 hover:from-orange-700 hover:to-amber-800 text-white font-semibold text-lg rounded-xl shadow-lg shadow-orange-200 disabled:opacity-50 transition-all duration-300"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                      Starting Interview...
+                    </>
+                  ) : (
+                    <>
+                      <Zap className="h-5 w-5 mr-2" />
+                      Start Mock Interview
+                    </>
+                  )}
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+          
+          {/* Salary Insights Button */}
+          <Sheet open={salaryInsightsOpen} onOpenChange={setSalaryInsightsOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-gradient-to-r from-green-50 to-emerald-50 backdrop-blur-sm border-2 border-green-300 hover:border-green-500 hover:from-green-100 hover:to-emerald-100 text-green-700 rounded-full px-4 py-2 shadow-sm hover:shadow-md transition-all duration-300 gap-2 font-medium"
+              >
+                <span className="p-1 rounded-full bg-green-100">
+                  <DollarSign className="h-4 w-4" />
+                </span>
+                Salary Insights
+                <TrendingUp className="h-3 w-3 text-green-500" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+              <SheetHeader className="text-left pb-4 border-b border-green-100">
+                <SheetTitle className="text-2xl font-bold text-green-900 flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 shadow-lg">
+                    <DollarSign className="h-6 w-6 text-white" />
+                  </div>
+                  Salary Insights
+                </SheetTitle>
+                <SheetDescription className="text-green-700">
+                  Get detailed salary data, trends, and negotiation tips for your target role
+                </SheetDescription>
+              </SheetHeader>
+              
+              <ScrollArea className="h-[calc(85vh-180px)] mt-6">
+                <div className="space-y-6 pr-4">
+                  <div className="space-y-3">
+                    <Label className="text-green-900 font-semibold flex items-center gap-2">
+                      <BriefcaseBusiness className="h-4 w-4" />
+                      Job Role
+                    </Label>
+                    <Select value={salaryRole} onValueChange={setSalaryRole}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-green-200 focus:border-green-500 rounded-xl">
+                        <SelectValue placeholder="Select role for salary insights..." />
+                      </SelectTrigger>
+                      <SelectContent className="max-h-[300px]">
+                        {CAREER_OPTIONS.map((career) => (
+                          <SelectItem key={career} value={career}>
+                            {career}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-green-900 font-semibold flex items-center gap-2">
+                      <MapPin className="h-4 w-4" />
+                      Location
+                    </Label>
+                    <Select value={salaryLocation} onValueChange={setSalaryLocation}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-green-200 focus:border-green-500 rounded-xl">
+                        <SelectValue placeholder="Select location..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="India (Major Cities)">India (Major Cities)</SelectItem>
+                        <SelectItem value="Bangalore">Bangalore</SelectItem>
+                        <SelectItem value="Mumbai">Mumbai</SelectItem>
+                        <SelectItem value="Delhi NCR">Delhi NCR</SelectItem>
+                        <SelectItem value="Hyderabad">Hyderabad</SelectItem>
+                        <SelectItem value="Chennai">Chennai</SelectItem>
+                        <SelectItem value="Pune">Pune</SelectItem>
+                        <SelectItem value="Kolkata">Kolkata</SelectItem>
+                        <SelectItem value="Tier 2 Cities">Tier 2 Cities</SelectItem>
+                        <SelectItem value="Remote/WFH">Remote/WFH</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-green-900 font-semibold flex items-center gap-2">
+                      <Clock className="h-4 w-4" />
+                      Years of Experience
+                    </Label>
+                    <Select value={experienceYears} onValueChange={setExperienceYears}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-green-200 focus:border-green-500 rounded-xl">
+                        <SelectValue placeholder="Select experience..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="0-2">0-2 years (Fresher/Entry)</SelectItem>
+                        <SelectItem value="2-4">2-4 years (Junior)</SelectItem>
+                        <SelectItem value="4-6">4-6 years (Mid-level)</SelectItem>
+                        <SelectItem value="6-10">6-10 years (Senior)</SelectItem>
+                        <SelectItem value="10+">10+ years (Lead/Principal)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  {salaryRole && (
+                    <div className="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl p-4 border border-amber-200">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 rounded-lg bg-amber-100">
+                          <DollarSign className="h-5 w-5 text-amber-600" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-amber-900">Ready for Insights!</p>
+                          <p className="text-sm text-amber-700 mt-1">
+                            Get salary data for {salaryRole} in {salaryLocation || 'India'}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </ScrollArea>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-green-50 via-green-50 to-transparent">
+                <Button
+                  onClick={getSalaryInsights}
+                  disabled={!salaryRole || isAnalyzing}
+                  className="w-full h-14 bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white font-semibold text-lg rounded-xl shadow-lg shadow-green-200 disabled:opacity-50 transition-all duration-300"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                      Getting Insights...
+                    </>
+                  ) : (
+                    <>
+                      <TrendingUp className="h-5 w-5 mr-2" />
+                      Get Salary Insights
                     </>
                   )}
                 </Button>
