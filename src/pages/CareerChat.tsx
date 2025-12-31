@@ -8,6 +8,17 @@ import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
+import { Badge } from '@/components/ui/badge';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
   ArrowLeft,
   Send,
   Mic,
@@ -20,7 +31,14 @@ import {
   Bot,
   User,
   Volume2,
-  VolumeX
+  VolumeX,
+  Target,
+  TrendingUp,
+  BookOpen,
+  X,
+  Sparkles,
+  CheckCircle2,
+  AlertCircle
 } from 'lucide-react';
 
 interface Message {
@@ -28,6 +46,40 @@ interface Message {
   content: string;
   timestamp: Date;
 }
+
+// Career options for skill gap analyzer
+const CAREER_OPTIONS = [
+  'Software Developer',
+  'Data Scientist',
+  'Web Developer',
+  'Mobile App Developer',
+  'DevOps Engineer',
+  'Cloud Architect',
+  'Machine Learning Engineer',
+  'UI/UX Designer',
+  'Product Manager',
+  'Business Analyst',
+  'Cybersecurity Analyst',
+  'Database Administrator',
+  'Network Engineer',
+  'Full Stack Developer',
+  'AI Engineer',
+  'Blockchain Developer',
+  'Game Developer',
+  'Quality Assurance Engineer',
+  'Technical Writer',
+  'IT Project Manager'
+];
+
+// Common skills for selection
+const COMMON_SKILLS = [
+  'Python', 'JavaScript', 'Java', 'C++', 'SQL', 'HTML/CSS',
+  'React', 'Node.js', 'TypeScript', 'Git', 'Docker', 'AWS',
+  'Machine Learning', 'Data Analysis', 'Excel', 'Communication',
+  'Problem Solving', 'Teamwork', 'Leadership', 'Critical Thinking',
+  'Agile/Scrum', 'REST APIs', 'MongoDB', 'PostgreSQL', 'Linux',
+  'Figma', 'Adobe XD', 'Photoshop', 'Project Management', 'Testing'
+];
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/jkkn-chat`;
 
@@ -44,6 +96,12 @@ const CareerChat = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isTtsEnabled, setIsTtsEnabled] = useState(false);
+  
+  // Skill Gap Analyzer state
+  const [skillGapOpen, setSkillGapOpen] = useState(false);
+  const [targetCareer, setTargetCareer] = useState('');
+  const [currentSkills, setCurrentSkills] = useState<string[]>([]);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   // Scroll to bottom on new messages
   useEffect(() => {
@@ -259,6 +317,58 @@ const CareerChat = () => {
     toast({ title: 'Chat cleared', description: 'Your conversation history has been deleted.' });
   };
 
+  const toggleSkill = (skill: string) => {
+    setCurrentSkills(prev => 
+      prev.includes(skill) 
+        ? prev.filter(s => s !== skill)
+        : [...prev, skill]
+    );
+  };
+
+  const analyzeSkillGap = async () => {
+    if (!targetCareer || currentSkills.length === 0) {
+      toast({
+        title: 'Missing Information',
+        description: 'Please select a target career and at least one skill.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setIsAnalyzing(true);
+    setSkillGapOpen(false);
+
+    const analysisPrompt = `Perform a detailed SKILL GAP ANALYSIS for the following:
+
+TARGET CAREER: ${targetCareer}
+CURRENT SKILLS: ${currentSkills.join(', ')}
+
+Please provide:
+1. **Skills Match Analysis** - Which of my current skills are relevant for ${targetCareer} and how well they match
+2. **Missing Critical Skills** - List the essential skills I'm missing with priority levels (High/Medium/Low)
+3. **Learning Roadmap** - A 3-6 month action plan to bridge the gap
+4. **Recommended Resources** - Specific courses, certifications, or projects for each missing skill
+5. **Career Readiness Score** - Rate my current readiness from 0-100%
+6. **Quick Wins** - Skills I can acquire in under 2 weeks that would boost my profile
+
+Format the response clearly with headers and bullet points.`;
+
+    const userMessage: Message = {
+      role: 'user',
+      content: analysisPrompt,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    await saveMessage(userMessage);
+    await streamChat([...messages, userMessage]);
+    setIsAnalyzing(false);
+    
+    // Reset form
+    setTargetCareer('');
+    setCurrentSkills([]);
+  };
+
   const quickActions = [
     { icon: <GraduationCap className="h-4 w-4" />, label: 'Suggest courses', prompt: 'Suggest some good courses for me based on science stream' },
     { icon: <Building2 className="h-4 w-4" />, label: 'Find colleges', prompt: 'List the best engineering colleges in Tamil Nadu' },
@@ -316,7 +426,7 @@ const CareerChat = () => {
       </header>
 
       <div className="container mx-auto px-4 py-6 max-w-4xl">
-        {/* Enhanced Quick Actions */}
+        {/* Enhanced Quick Actions with Skill Gap Analyzer */}
         <div className="flex flex-wrap gap-3 mb-6">
           {quickActions.map((action, index) => (
             <Button
@@ -330,6 +440,154 @@ const CareerChat = () => {
               {action.label}
             </Button>
           ))}
+          
+          {/* Skill Gap Analyzer Button */}
+          <Sheet open={skillGapOpen} onOpenChange={setSkillGapOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-gradient-to-r from-purple-50 to-violet-50 backdrop-blur-sm border-2 border-purple-300 hover:border-purple-500 hover:from-purple-100 hover:to-violet-100 text-purple-700 rounded-full px-4 py-2 shadow-sm hover:shadow-md transition-all duration-300 gap-2 font-medium"
+              >
+                <span className="p-1 rounded-full bg-purple-100">
+                  <Target className="h-4 w-4" />
+                </span>
+                Skill Gap Analyzer
+                <Sparkles className="h-3 w-3 text-purple-500" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl bg-gradient-to-br from-purple-50 via-violet-50 to-indigo-50">
+              <SheetHeader className="text-left pb-4 border-b border-purple-100">
+                <SheetTitle className="text-2xl font-bold text-purple-900 flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-gradient-to-br from-purple-500 to-violet-600 shadow-lg">
+                    <Target className="h-6 w-6 text-white" />
+                  </div>
+                  Skill Gap Analyzer
+                </SheetTitle>
+                <SheetDescription className="text-purple-700">
+                  Identify missing skills for your dream career and get a personalized learning roadmap
+                </SheetDescription>
+              </SheetHeader>
+              
+              <ScrollArea className="h-[calc(85vh-180px)] mt-6">
+                <div className="space-y-6 pr-4">
+                  {/* Target Career Selection */}
+                  <div className="space-y-3">
+                    <Label className="text-purple-900 font-semibold flex items-center gap-2">
+                      <TrendingUp className="h-4 w-4" />
+                      Target Career
+                    </Label>
+                    <Select value={targetCareer} onValueChange={setTargetCareer}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-purple-200 focus:border-purple-500 rounded-xl">
+                        <SelectValue placeholder="Select your dream career..." />
+                      </SelectTrigger>
+                      <SelectContent className="max-h-[300px]">
+                        {CAREER_OPTIONS.map((career) => (
+                          <SelectItem key={career} value={career}>
+                            {career}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  {/* Current Skills Selection */}
+                  <div className="space-y-3">
+                    <Label className="text-purple-900 font-semibold flex items-center gap-2">
+                      <BookOpen className="h-4 w-4" />
+                      Your Current Skills
+                      <Badge variant="secondary" className="ml-2 bg-purple-100 text-purple-700">
+                        {currentSkills.length} selected
+                      </Badge>
+                    </Label>
+                    <p className="text-sm text-purple-600">
+                      Click to select skills you already have:
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {COMMON_SKILLS.map((skill) => (
+                        <Badge
+                          key={skill}
+                          variant={currentSkills.includes(skill) ? "default" : "outline"}
+                          className={`cursor-pointer transition-all duration-200 px-3 py-1.5 text-sm ${
+                            currentSkills.includes(skill)
+                              ? 'bg-gradient-to-r from-purple-500 to-violet-600 text-white border-transparent shadow-md'
+                              : 'bg-white border-2 border-purple-200 text-purple-700 hover:border-purple-400 hover:bg-purple-50'
+                          }`}
+                          onClick={() => toggleSkill(skill)}
+                        >
+                          {currentSkills.includes(skill) && (
+                            <CheckCircle2 className="h-3 w-3 mr-1" />
+                          )}
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Selected Skills Summary */}
+                  {currentSkills.length > 0 && (
+                    <div className="bg-white/80 rounded-xl p-4 border border-purple-100">
+                      <p className="text-sm font-medium text-purple-900 mb-2">Selected Skills:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {currentSkills.map((skill) => (
+                          <Badge
+                            key={skill}
+                            className="bg-purple-100 text-purple-700 pr-1"
+                          >
+                            {skill}
+                            <button
+                              onClick={() => toggleSkill(skill)}
+                              className="ml-1 p-0.5 rounded-full hover:bg-purple-200 transition-colors"
+                            >
+                              <X className="h-3 w-3" />
+                            </button>
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Analysis Preview */}
+                  {targetCareer && currentSkills.length > 0 && (
+                    <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-4 border border-emerald-200">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 rounded-lg bg-emerald-100">
+                          <Sparkles className="h-5 w-5 text-emerald-600" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-emerald-900">Ready to Analyze!</p>
+                          <p className="text-sm text-emerald-700 mt-1">
+                            AI will analyze your {currentSkills.length} skills against {targetCareer} requirements
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </ScrollArea>
+              
+              {/* Analyze Button */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-purple-50 via-purple-50 to-transparent">
+                <Button
+                  onClick={analyzeSkillGap}
+                  disabled={!targetCareer || currentSkills.length === 0 || isAnalyzing}
+                  className="w-full h-14 bg-gradient-to-r from-purple-600 to-violet-700 hover:from-purple-700 hover:to-violet-800 text-white font-semibold text-lg rounded-xl shadow-lg shadow-purple-200 disabled:opacity-50 transition-all duration-300"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                      Analyzing Skills...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="h-5 w-5 mr-2" />
+                      Analyze My Skill Gap
+                    </>
+                  )}
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
 
         {/* Enhanced Chat Area */}
