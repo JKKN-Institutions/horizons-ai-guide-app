@@ -46,7 +46,12 @@ import {
   Clock,
   Star,
   Zap,
-  MapPin
+  MapPin,
+  School,
+  FlaskConical,
+  Award,
+  Route,
+  Lightbulb
 } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 
@@ -90,6 +95,48 @@ const COMMON_SKILLS = [
   'Figma', 'Adobe XD', 'Photoshop', 'Project Management', 'Testing'
 ];
 
+// 12th Student Streams
+const STUDENT_STREAMS = [
+  { value: 'pcm', label: 'Science (PCM) - Physics, Chemistry, Math' },
+  { value: 'pcb', label: 'Science (PCB) - Physics, Chemistry, Biology' },
+  { value: 'pcmb', label: 'Science (PCMB) - All Sciences' },
+  { value: 'commerce', label: 'Commerce with Maths' },
+  { value: 'commerce-no-math', label: 'Commerce without Maths' },
+  { value: 'arts', label: 'Arts / Humanities' }
+];
+
+// Entrance Exams
+const ENTRANCE_EXAMS = [
+  { value: 'jee-main', label: 'JEE Main (Engineering)' },
+  { value: 'jee-advanced', label: 'JEE Advanced (IITs)' },
+  { value: 'neet', label: 'NEET (Medical)' },
+  { value: 'bitsat', label: 'BITSAT (BITS Pilani)' },
+  { value: 'viteee', label: 'VITEEE (VIT)' },
+  { value: 'srmjeee', label: 'SRMJEEE (SRM)' },
+  { value: 'cuet', label: 'CUET (Central Universities)' },
+  { value: 'clat', label: 'CLAT (Law)' },
+  { value: 'nda', label: 'NDA (Defence)' },
+  { value: 'ca-foundation', label: 'CA Foundation' },
+  { value: 'nid-dat', label: 'NID DAT (Design)' },
+  { value: 'nift', label: 'NIFT (Fashion)' }
+];
+
+// Career Categories for 12th students
+const CAREER_CATEGORIES_12TH = [
+  'Engineering & Technology',
+  'Medical & Healthcare',
+  'Business & Management',
+  'Law & Legal Studies',
+  'Arts & Design',
+  'Pure Sciences',
+  'Commerce & Finance',
+  'Government Jobs',
+  'Defence Services',
+  'Media & Journalism',
+  'Hospitality & Tourism',
+  'Agriculture & Food Tech'
+];
+
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/jkkn-chat`;
 
 const CareerChat = () => {
@@ -128,6 +175,26 @@ const CareerChat = () => {
   const [salaryRole, setSalaryRole] = useState('');
   const [salaryLocation, setSalaryLocation] = useState('');
   const [experienceYears, setExperienceYears] = useState('');
+  
+  // 12th Student Features state
+  const [collegeGuidanceOpen, setCollegeGuidanceOpen] = useState(false);
+  const [studentStream, setStudentStream] = useState('');
+  const [marksPercentage, setMarksPercentage] = useState('');
+  const [preferredState, setPreferredState] = useState('');
+  
+  const [streamHelpOpen, setStreamHelpOpen] = useState(false);
+  const [currentClass, setCurrentClass] = useState('');
+  const [interests, setInterests] = useState<string[]>([]);
+  const [favoriteSubjects, setFavoriteSubjects] = useState<string[]>([]);
+  
+  const [examPrepOpen, setExamPrepOpen] = useState(false);
+  const [selectedExam, setSelectedExam] = useState('');
+  const [prepMonths, setPrepMonths] = useState('');
+  const [currentPrep, setCurrentPrep] = useState('');
+  
+  const [careerExplorerOpen, setCareerExplorerOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [explorerStream, setExplorerStream] = useState('');
 
   // Scroll to bottom on new messages
   useEffect(() => {
@@ -539,6 +606,225 @@ Be specific with numbers and provide actionable insights.`;
     setSalaryRole('');
     setSalaryLocation('');
     setExperienceYears('');
+  };
+
+  // 12th Student Feature: College Admission Guidance
+  const getCollegeGuidance = async () => {
+    if (!studentStream) {
+      toast({
+        title: 'Missing Stream',
+        description: 'Please select your academic stream.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setIsAnalyzing(true);
+    setCollegeGuidanceOpen(false);
+
+    const collegePrompt = `Provide comprehensive COLLEGE ADMISSION GUIDANCE for a 12th standard student:
+
+STREAM: ${STUDENT_STREAMS.find(s => s.value === studentStream)?.label || studentStream}
+MARKS: ${marksPercentage || 'Not specified'}%
+PREFERRED STATE: ${preferredState || 'Any state in India'}
+
+Please provide:
+1. **Top Colleges** - Best colleges I can target with my marks (government & private)
+2. **Entrance Exams** - Which exams I should prepare for based on my stream
+3. **Admission Process** - Step-by-step admission timeline and important dates
+4. **Counselling Tips** - How to maximize chances in counselling process
+5. **Cutoff Trends** - Expected cutoffs based on last 3 years
+6. **Backup Options** - Alternative colleges and courses if main goals aren't met
+7. **Scholarship Opportunities** - Merit and need-based scholarships available
+8. **Documents Needed** - Complete checklist for admission
+9. **State vs Central** - Comparison of state quota vs all-India seats
+10. **Action Plan** - What I should do RIGHT NOW
+
+Focus on Tamil Nadu and India context. Be specific and practical.`;
+
+    const userMessage: Message = {
+      role: 'user',
+      content: collegePrompt,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    await saveMessage(userMessage);
+    await streamChat([...messages, userMessage]);
+    setIsAnalyzing(false);
+    
+    setStudentStream('');
+    setMarksPercentage('');
+    setPreferredState('');
+  };
+
+  // 12th Student Feature: Stream Selection Help
+  const getStreamHelp = async () => {
+    if (interests.length === 0 && favoriteSubjects.length === 0) {
+      toast({
+        title: 'Missing Information',
+        description: 'Please select at least one interest or favorite subject.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setIsAnalyzing(true);
+    setStreamHelpOpen(false);
+
+    const streamPrompt = `Help me choose the RIGHT STREAM for 11th/12th based on:
+
+CURRENT CLASS: ${currentClass || '10th Standard'}
+MY INTERESTS: ${interests.join(', ') || 'Not specified'}
+FAVORITE SUBJECTS: ${favoriteSubjects.join(', ') || 'Not specified'}
+
+Please analyze and provide:
+1. **Best Stream Recommendation** - Which stream suits me best (Science PCM/PCB/PCMB, Commerce, Arts)
+2. **Why This Stream** - How it aligns with my interests and strengths
+3. **Career Paths** - Top 10 careers possible with recommended stream
+4. **Subject Breakdown** - What I'll study in 11th and 12th
+5. **Entrance Exams** - Major exams I should prepare for
+6. **Alternative Streams** - Other options if I change my mind
+7. **Common Mistakes** - What students typically regret about stream selection
+8. **Success Stories** - Examples of successful people from this stream
+9. **Future-Proof Analysis** - Which fields will grow in next 10 years
+10. **Immediate Next Steps** - What should I do now to prepare
+
+Be encouraging but realistic. Consider Indian education system and job market.`;
+
+    const userMessage: Message = {
+      role: 'user',
+      content: streamPrompt,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    await saveMessage(userMessage);
+    await streamChat([...messages, userMessage]);
+    setIsAnalyzing(false);
+    
+    setCurrentClass('');
+    setInterests([]);
+    setFavoriteSubjects([]);
+  };
+
+  // 12th Student Feature: Entrance Exam Prep
+  const getExamPrepPlan = async () => {
+    if (!selectedExam) {
+      toast({
+        title: 'Missing Exam',
+        description: 'Please select an entrance exam.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setIsAnalyzing(true);
+    setExamPrepOpen(false);
+
+    const examPrompt = `Create a comprehensive ENTRANCE EXAM PREPARATION PLAN for:
+
+EXAM: ${ENTRANCE_EXAMS.find(e => e.value === selectedExam)?.label || selectedExam}
+TIME AVAILABLE: ${prepMonths || '6'} months
+CURRENT PREPARATION: ${currentPrep || 'Just starting'}
+
+Please provide:
+1. **Exam Overview** - Pattern, syllabus, marking scheme, duration
+2. **Month-wise Study Plan** - Detailed schedule for ${prepMonths || '6'} months
+3. **Subject-wise Strategy** - How to approach each subject/section
+4. **Daily Routine** - Ideal timetable with study hours
+5. **Best Books & Resources** - Top books, YouTube channels, apps
+6. **Mock Test Strategy** - When and how to practice mock tests
+7. **Previous Year Analysis** - Important topics based on past papers
+8. **Revision Technique** - How to revise effectively
+9. **Exam Day Tips** - Time management and stress handling
+10. **Backup Exams** - Other similar exams I should apply for
+11. **Coaching vs Self-Study** - What's better for this exam
+12. **Expected Cutoffs** - Target score for top colleges
+
+Provide practical, actionable advice with specific resources.`;
+
+    const userMessage: Message = {
+      role: 'user',
+      content: examPrompt,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    await saveMessage(userMessage);
+    await streamChat([...messages, userMessage]);
+    setIsAnalyzing(false);
+    
+    setSelectedExam('');
+    setPrepMonths('');
+    setCurrentPrep('');
+  };
+
+  // 12th Student Feature: Career Explorer
+  const exploreCareer = async () => {
+    if (!selectedCategory && !explorerStream) {
+      toast({
+        title: 'Missing Selection',
+        description: 'Please select a career category or stream.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setIsAnalyzing(true);
+    setCareerExplorerOpen(false);
+
+    const explorerPrompt = `Explore CAREER OPTIONS for a 12th student:
+
+CAREER CATEGORY: ${selectedCategory || 'Any'}
+ACADEMIC STREAM: ${STUDENT_STREAMS.find(s => s.value === explorerStream)?.label || explorerStream || 'Any'}
+
+Please provide comprehensive career exploration:
+1. **Top 10 Careers** - Best careers in this category with description
+2. **Required Education** - Degree/diploma needed for each career
+3. **Top Colleges** - Best institutions in India for these careers
+4. **Entrance Exams** - Which exams to give for each career
+5. **Salary Range** - Starting and experienced salary (in LPA)
+6. **Growth Prospects** - Job demand and future outlook
+7. **Day in the Life** - What professionals actually do daily
+8. **Skills Needed** - Technical and soft skills required
+9. **Industry Leaders** - Famous people in these careers (Indian examples)
+10. **Alternative Paths** - Unconventional routes to same career
+11. **Emerging Roles** - New careers in this field
+12. **First Steps** - What to do RIGHT NOW as a 12th student
+
+Focus on realistic Indian context with specific examples and numbers.`;
+
+    const userMessage: Message = {
+      role: 'user',
+      content: explorerPrompt,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    await saveMessage(userMessage);
+    await streamChat([...messages, userMessage]);
+    setIsAnalyzing(false);
+    
+    setSelectedCategory('');
+    setExplorerStream('');
+  };
+
+  // Toggle functions for multi-select
+  const toggleInterest = (interest: string) => {
+    setInterests(prev => 
+      prev.includes(interest) 
+        ? prev.filter(i => i !== interest)
+        : [...prev, interest]
+    );
+  };
+
+  const toggleSubject = (subject: string) => {
+    setFavoriteSubjects(prev => 
+      prev.includes(subject) 
+        ? prev.filter(s => s !== subject)
+        : [...prev, subject]
+    );
   };
 
   const quickActions = [
@@ -1103,6 +1389,529 @@ Be specific with numbers and provide actionable insights.`;
                     <>
                       <TrendingUp className="h-5 w-5 mr-2" />
                       Get Salary Insights
+                    </>
+                  )}
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+          
+          {/* 12th Student Section Header */}
+          <div className="w-full flex items-center gap-2 mt-4 mb-2">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
+            <span className="text-xs font-semibold text-rose-600 bg-rose-50 px-3 py-1 rounded-full">🎓 For 12th Students</span>
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
+          </div>
+          
+          {/* College Admission Guidance */}
+          <Sheet open={collegeGuidanceOpen} onOpenChange={setCollegeGuidanceOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-gradient-to-r from-rose-50 to-pink-50 backdrop-blur-sm border-2 border-rose-300 hover:border-rose-500 hover:from-rose-100 hover:to-pink-100 text-rose-700 rounded-full px-4 py-2 shadow-sm hover:shadow-md transition-all duration-300 gap-2 font-medium"
+              >
+                <span className="p-1 rounded-full bg-rose-100">
+                  <School className="h-4 w-4" />
+                </span>
+                College Guidance
+                <Award className="h-3 w-3 text-rose-500" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl bg-gradient-to-br from-rose-50 via-pink-50 to-red-50">
+              <SheetHeader className="text-left pb-4 border-b border-rose-100">
+                <SheetTitle className="text-2xl font-bold text-rose-900 flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-gradient-to-br from-rose-500 to-pink-600 shadow-lg">
+                    <School className="h-6 w-6 text-white" />
+                  </div>
+                  College Admission Guidance
+                </SheetTitle>
+                <SheetDescription className="text-rose-700">
+                  Get personalized college recommendations, cutoffs, and admission tips
+                </SheetDescription>
+              </SheetHeader>
+              
+              <ScrollArea className="h-[calc(85vh-180px)] mt-6">
+                <div className="space-y-6 pr-4">
+                  <div className="space-y-3">
+                    <Label className="text-rose-900 font-semibold flex items-center gap-2">
+                      <BookOpen className="h-4 w-4" />
+                      Your Academic Stream
+                    </Label>
+                    <Select value={studentStream} onValueChange={setStudentStream}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-rose-200 focus:border-rose-500 rounded-xl">
+                        <SelectValue placeholder="Select your stream..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {STUDENT_STREAMS.map((stream) => (
+                          <SelectItem key={stream.value} value={stream.value}>
+                            {stream.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-rose-900 font-semibold flex items-center gap-2">
+                      <TrendingUp className="h-4 w-4" />
+                      Expected/Actual Marks (%)
+                    </Label>
+                    <Select value={marksPercentage} onValueChange={setMarksPercentage}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-rose-200 focus:border-rose-500 rounded-xl">
+                        <SelectValue placeholder="Select marks range..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="95+">95% and above (Excellent)</SelectItem>
+                        <SelectItem value="90-95">90-95% (Very Good)</SelectItem>
+                        <SelectItem value="85-90">85-90% (Good)</SelectItem>
+                        <SelectItem value="80-85">80-85% (Above Average)</SelectItem>
+                        <SelectItem value="75-80">75-80% (Average)</SelectItem>
+                        <SelectItem value="70-75">70-75% (Below Average)</SelectItem>
+                        <SelectItem value="below-70">Below 70%</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-rose-900 font-semibold flex items-center gap-2">
+                      <MapPin className="h-4 w-4" />
+                      Preferred State/Location
+                    </Label>
+                    <Select value={preferredState} onValueChange={setPreferredState}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-rose-200 focus:border-rose-500 rounded-xl">
+                        <SelectValue placeholder="Select preferred location..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Tamil Nadu">Tamil Nadu</SelectItem>
+                        <SelectItem value="Karnataka">Karnataka</SelectItem>
+                        <SelectItem value="Maharashtra">Maharashtra</SelectItem>
+                        <SelectItem value="Delhi NCR">Delhi NCR</SelectItem>
+                        <SelectItem value="Andhra/Telangana">Andhra Pradesh / Telangana</SelectItem>
+                        <SelectItem value="Kerala">Kerala</SelectItem>
+                        <SelectItem value="Any">Any State (All India)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  {studentStream && (
+                    <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-4 border border-emerald-200">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 rounded-lg bg-emerald-100">
+                          <Sparkles className="h-5 w-5 text-emerald-600" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-emerald-900">Ready for Guidance!</p>
+                          <p className="text-sm text-emerald-700 mt-1">
+                            AI will suggest best colleges for {STUDENT_STREAMS.find(s => s.value === studentStream)?.label}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </ScrollArea>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-rose-50 via-rose-50 to-transparent">
+                <Button
+                  onClick={getCollegeGuidance}
+                  disabled={!studentStream || isAnalyzing}
+                  className="w-full h-14 bg-gradient-to-r from-rose-600 to-pink-700 hover:from-rose-700 hover:to-pink-800 text-white font-semibold text-lg rounded-xl shadow-lg shadow-rose-200 disabled:opacity-50 transition-all duration-300"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                      Finding Colleges...
+                    </>
+                  ) : (
+                    <>
+                      <School className="h-5 w-5 mr-2" />
+                      Get College Recommendations
+                    </>
+                  )}
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+          
+          {/* Stream Selection Help */}
+          <Sheet open={streamHelpOpen} onOpenChange={setStreamHelpOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-gradient-to-r from-indigo-50 to-violet-50 backdrop-blur-sm border-2 border-indigo-300 hover:border-indigo-500 hover:from-indigo-100 hover:to-violet-100 text-indigo-700 rounded-full px-4 py-2 shadow-sm hover:shadow-md transition-all duration-300 gap-2 font-medium"
+              >
+                <span className="p-1 rounded-full bg-indigo-100">
+                  <Route className="h-4 w-4" />
+                </span>
+                Stream Selection
+                <Lightbulb className="h-3 w-3 text-indigo-500" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl bg-gradient-to-br from-indigo-50 via-violet-50 to-purple-50">
+              <SheetHeader className="text-left pb-4 border-b border-indigo-100">
+                <SheetTitle className="text-2xl font-bold text-indigo-900 flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 shadow-lg">
+                    <Route className="h-6 w-6 text-white" />
+                  </div>
+                  Stream Selection Help
+                </SheetTitle>
+                <SheetDescription className="text-indigo-700">
+                  Confused about which stream to choose? Let AI help you decide!
+                </SheetDescription>
+              </SheetHeader>
+              
+              <ScrollArea className="h-[calc(85vh-180px)] mt-6">
+                <div className="space-y-6 pr-4">
+                  <div className="space-y-3">
+                    <Label className="text-indigo-900 font-semibold flex items-center gap-2">
+                      <GraduationCap className="h-4 w-4" />
+                      Current Class
+                    </Label>
+                    <Select value={currentClass} onValueChange={setCurrentClass}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-indigo-200 focus:border-indigo-500 rounded-xl">
+                        <SelectValue placeholder="Select your current class..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="9th">9th Standard</SelectItem>
+                        <SelectItem value="10th">10th Standard</SelectItem>
+                        <SelectItem value="10th-completed">10th Completed</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-indigo-900 font-semibold flex items-center gap-2">
+                      <Sparkles className="h-4 w-4" />
+                      Your Interests
+                      <Badge variant="secondary" className="ml-2 bg-indigo-100 text-indigo-700">
+                        {interests.length} selected
+                      </Badge>
+                    </Label>
+                    <p className="text-sm text-indigo-600">Click to select what interests you:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {['Technology', 'Medicine', 'Business', 'Arts', 'Law', 'Science', 'Finance', 'Teaching', 'Research', 'Government Jobs', 'Sports', 'Music/Dance', 'Writing', 'Social Work'].map((interest) => (
+                        <Badge
+                          key={interest}
+                          variant={interests.includes(interest) ? "default" : "outline"}
+                          className={`cursor-pointer transition-all duration-200 px-3 py-1.5 text-sm ${
+                            interests.includes(interest)
+                              ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white border-transparent shadow-md'
+                              : 'bg-white border-2 border-indigo-200 text-indigo-700 hover:border-indigo-400 hover:bg-indigo-50'
+                          }`}
+                          onClick={() => toggleInterest(interest)}
+                        >
+                          {interests.includes(interest) && <CheckCircle2 className="h-3 w-3 mr-1" />}
+                          {interest}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-indigo-900 font-semibold flex items-center gap-2">
+                      <BookOpen className="h-4 w-4" />
+                      Favorite Subjects
+                      <Badge variant="secondary" className="ml-2 bg-indigo-100 text-indigo-700">
+                        {favoriteSubjects.length} selected
+                      </Badge>
+                    </Label>
+                    <p className="text-sm text-indigo-600">Select subjects you enjoy:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English', 'History', 'Geography', 'Economics', 'Accountancy', 'Computer Science', 'Tamil', 'Hindi', 'Social Science'].map((subject) => (
+                        <Badge
+                          key={subject}
+                          variant={favoriteSubjects.includes(subject) ? "default" : "outline"}
+                          className={`cursor-pointer transition-all duration-200 px-3 py-1.5 text-sm ${
+                            favoriteSubjects.includes(subject)
+                              ? 'bg-gradient-to-r from-indigo-500 to-violet-600 text-white border-transparent shadow-md'
+                              : 'bg-white border-2 border-indigo-200 text-indigo-700 hover:border-indigo-400 hover:bg-indigo-50'
+                          }`}
+                          onClick={() => toggleSubject(subject)}
+                        >
+                          {favoriteSubjects.includes(subject) && <CheckCircle2 className="h-3 w-3 mr-1" />}
+                          {subject}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {(interests.length > 0 || favoriteSubjects.length > 0) && (
+                    <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-4 border border-emerald-200">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 rounded-lg bg-emerald-100">
+                          <Lightbulb className="h-5 w-5 text-emerald-600" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-emerald-900">Ready to Analyze!</p>
+                          <p className="text-sm text-emerald-700 mt-1">
+                            AI will recommend the best stream based on your {interests.length} interests and {favoriteSubjects.length} favorite subjects
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </ScrollArea>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-indigo-50 via-indigo-50 to-transparent">
+                <Button
+                  onClick={getStreamHelp}
+                  disabled={(interests.length === 0 && favoriteSubjects.length === 0) || isAnalyzing}
+                  className="w-full h-14 bg-gradient-to-r from-indigo-600 to-violet-700 hover:from-indigo-700 hover:to-violet-800 text-white font-semibold text-lg rounded-xl shadow-lg shadow-indigo-200 disabled:opacity-50 transition-all duration-300"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                      Analyzing...
+                    </>
+                  ) : (
+                    <>
+                      <Route className="h-5 w-5 mr-2" />
+                      Find My Best Stream
+                    </>
+                  )}
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+          
+          {/* Entrance Exam Prep */}
+          <Sheet open={examPrepOpen} onOpenChange={setExamPrepOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-gradient-to-r from-teal-50 to-cyan-50 backdrop-blur-sm border-2 border-teal-300 hover:border-teal-500 hover:from-teal-100 hover:to-cyan-100 text-teal-700 rounded-full px-4 py-2 shadow-sm hover:shadow-md transition-all duration-300 gap-2 font-medium"
+              >
+                <span className="p-1 rounded-full bg-teal-100">
+                  <FlaskConical className="h-4 w-4" />
+                </span>
+                Exam Prep Plan
+                <Target className="h-3 w-3 text-teal-500" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl bg-gradient-to-br from-teal-50 via-cyan-50 to-sky-50">
+              <SheetHeader className="text-left pb-4 border-b border-teal-100">
+                <SheetTitle className="text-2xl font-bold text-teal-900 flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 shadow-lg">
+                    <FlaskConical className="h-6 w-6 text-white" />
+                  </div>
+                  Entrance Exam Prep Plan
+                </SheetTitle>
+                <SheetDescription className="text-teal-700">
+                  Get a personalized study plan for your entrance exam
+                </SheetDescription>
+              </SheetHeader>
+              
+              <ScrollArea className="h-[calc(85vh-180px)] mt-6">
+                <div className="space-y-6 pr-4">
+                  <div className="space-y-3">
+                    <Label className="text-teal-900 font-semibold flex items-center gap-2">
+                      <Target className="h-4 w-4" />
+                      Target Entrance Exam
+                    </Label>
+                    <Select value={selectedExam} onValueChange={setSelectedExam}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-teal-200 focus:border-teal-500 rounded-xl">
+                        <SelectValue placeholder="Select your target exam..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {ENTRANCE_EXAMS.map((exam) => (
+                          <SelectItem key={exam.value} value={exam.value}>
+                            {exam.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-teal-900 font-semibold flex items-center gap-2">
+                      <Clock className="h-4 w-4" />
+                      Time Available for Preparation
+                    </Label>
+                    <Select value={prepMonths} onValueChange={setPrepMonths}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-teal-200 focus:border-teal-500 rounded-xl">
+                        <SelectValue placeholder="Select preparation time..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1-2">1-2 months (Crash Course)</SelectItem>
+                        <SelectItem value="3-4">3-4 months (Short Term)</SelectItem>
+                        <SelectItem value="6">6 months (Recommended)</SelectItem>
+                        <SelectItem value="12">12 months (Long Term)</SelectItem>
+                        <SelectItem value="18+">18+ months (Comprehensive)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-teal-900 font-semibold flex items-center gap-2">
+                      <BookOpen className="h-4 w-4" />
+                      Current Preparation Level
+                    </Label>
+                    <Select value={currentPrep} onValueChange={setCurrentPrep}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-teal-200 focus:border-teal-500 rounded-xl">
+                        <SelectValue placeholder="Select your current level..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Just starting">Just Starting (Beginner)</SelectItem>
+                        <SelectItem value="Basics done">Basics Completed</SelectItem>
+                        <SelectItem value="Intermediate">Intermediate Level</SelectItem>
+                        <SelectItem value="Revision stage">Revision Stage</SelectItem>
+                        <SelectItem value="Drop year">Drop Year Student</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  {selectedExam && (
+                    <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-4 border border-emerald-200">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 rounded-lg bg-emerald-100">
+                          <Target className="h-5 w-5 text-emerald-600" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-emerald-900">Ready to Plan!</p>
+                          <p className="text-sm text-emerald-700 mt-1">
+                            AI will create a {prepMonths || '6'}-month plan for {ENTRANCE_EXAMS.find(e => e.value === selectedExam)?.label}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </ScrollArea>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-teal-50 via-teal-50 to-transparent">
+                <Button
+                  onClick={getExamPrepPlan}
+                  disabled={!selectedExam || isAnalyzing}
+                  className="w-full h-14 bg-gradient-to-r from-teal-600 to-cyan-700 hover:from-teal-700 hover:to-cyan-800 text-white font-semibold text-lg rounded-xl shadow-lg shadow-teal-200 disabled:opacity-50 transition-all duration-300"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                      Creating Plan...
+                    </>
+                  ) : (
+                    <>
+                      <FlaskConical className="h-5 w-5 mr-2" />
+                      Generate My Study Plan
+                    </>
+                  )}
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+          
+          {/* Career Explorer */}
+          <Sheet open={careerExplorerOpen} onOpenChange={setCareerExplorerOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-gradient-to-r from-amber-50 to-yellow-50 backdrop-blur-sm border-2 border-amber-300 hover:border-amber-500 hover:from-amber-100 hover:to-yellow-100 text-amber-700 rounded-full px-4 py-2 shadow-sm hover:shadow-md transition-all duration-300 gap-2 font-medium"
+              >
+                <span className="p-1 rounded-full bg-amber-100">
+                  <Compass className="h-4 w-4" />
+                </span>
+                Career Explorer
+                <Sparkles className="h-3 w-3 text-amber-500" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50">
+              <SheetHeader className="text-left pb-4 border-b border-amber-100">
+                <SheetTitle className="text-2xl font-bold text-amber-900 flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 shadow-lg">
+                    <Compass className="h-6 w-6 text-white" />
+                  </div>
+                  Career Explorer
+                </SheetTitle>
+                <SheetDescription className="text-amber-700">
+                  Explore careers available after 12th in different fields
+                </SheetDescription>
+              </SheetHeader>
+              
+              <ScrollArea className="h-[calc(85vh-180px)] mt-6">
+                <div className="space-y-6 pr-4">
+                  <div className="space-y-3">
+                    <Label className="text-amber-900 font-semibold flex items-center gap-2">
+                      <BookOpen className="h-4 w-4" />
+                      Your Academic Stream
+                    </Label>
+                    <Select value={explorerStream} onValueChange={setExplorerStream}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-amber-200 focus:border-amber-500 rounded-xl">
+                        <SelectValue placeholder="Select your stream..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {STUDENT_STREAMS.map((stream) => (
+                          <SelectItem key={stream.value} value={stream.value}>
+                            {stream.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-amber-900 font-semibold flex items-center gap-2">
+                      <Target className="h-4 w-4" />
+                      Career Category of Interest
+                    </Label>
+                    <p className="text-sm text-amber-600">Select a field you want to explore:</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {CAREER_CATEGORIES_12TH.map((category) => (
+                        <Badge
+                          key={category}
+                          variant={selectedCategory === category ? "default" : "outline"}
+                          className={`cursor-pointer transition-all duration-200 px-3 py-2 text-sm text-center justify-center ${
+                            selectedCategory === category
+                              ? 'bg-gradient-to-r from-amber-500 to-orange-600 text-white border-transparent shadow-md'
+                              : 'bg-white border-2 border-amber-200 text-amber-700 hover:border-amber-400 hover:bg-amber-50'
+                          }`}
+                          onClick={() => setSelectedCategory(selectedCategory === category ? '' : category)}
+                        >
+                          {selectedCategory === category && <CheckCircle2 className="h-3 w-3 mr-1" />}
+                          {category}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {(selectedCategory || explorerStream) && (
+                    <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-4 border border-emerald-200">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 rounded-lg bg-emerald-100">
+                          <Compass className="h-5 w-5 text-emerald-600" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-emerald-900">Ready to Explore!</p>
+                          <p className="text-sm text-emerald-700 mt-1">
+                            AI will show careers in {selectedCategory || 'all fields'} 
+                            {explorerStream && ` for ${STUDENT_STREAMS.find(s => s.value === explorerStream)?.label}`}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </ScrollArea>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-amber-50 via-amber-50 to-transparent">
+                <Button
+                  onClick={exploreCareer}
+                  disabled={(!selectedCategory && !explorerStream) || isAnalyzing}
+                  className="w-full h-14 bg-gradient-to-r from-amber-600 to-orange-700 hover:from-amber-700 hover:to-orange-800 text-white font-semibold text-lg rounded-xl shadow-lg shadow-amber-200 disabled:opacity-50 transition-all duration-300"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                      Exploring Careers...
+                    </>
+                  ) : (
+                    <>
+                      <Compass className="h-5 w-5 mr-2" />
+                      Explore Career Options
                     </>
                   )}
                 </Button>
