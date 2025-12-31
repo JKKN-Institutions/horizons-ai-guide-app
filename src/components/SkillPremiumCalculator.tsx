@@ -3,9 +3,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Zap, IndianRupee, TrendingUp, Briefcase, Sparkles, Star, ExternalLink, BookOpen, Video, GraduationCap } from "lucide-react";
+import { Zap, IndianRupee, TrendingUp, Briefcase, Sparkles, Star, ExternalLink, BookOpen, Video, GraduationCap, Filter } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 interface LearningResource {
   title: string;
@@ -559,84 +561,216 @@ const SkillPremiumCalculator = () => {
 
         {/* Learning Resources Section */}
         {selectedSkills.length > 0 && (
-          <div className="mt-8">
-            <Card className="border-2">
-              <CardHeader className="bg-muted/50">
-                <CardTitle className="flex items-center gap-2">
-                  <BookOpen className="w-5 h-5 text-primary" />
-                  Learning Resources for Your Selected Skills
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="space-y-6">
-                  {career.skills
-                    .filter((skill) => selectedSkills.includes(skill.name))
-                    .map((skill) => (
-                      <div key={skill.name} className="space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Badge variant="secondary" style={{ backgroundColor: `${career.color}20`, color: career.color }}>
-                            {skill.name}
-                          </Badge>
-                          <Badge variant="outline" className="text-xs">
-                            +{skill.premium}% premium
-                          </Badge>
-                        </div>
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                          {skill.resources.map((resource, idx) => (
-                            <a
-                              key={idx}
-                              href={resource.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="group flex items-start gap-3 p-3 rounded-lg border bg-card hover:border-primary/50 hover:shadow-md transition-all"
-                            >
-                              <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-muted flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                                {resource.type === "video" && <Video className="w-4 h-4 text-red-500" />}
-                                {resource.type === "course" && <BookOpen className="w-4 h-4 text-blue-500" />}
-                                {resource.type === "certification" && <GraduationCap className="w-4 h-4 text-purple-500" />}
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-1">
-                                  {resource.title}
-                                </p>
-                                <div className="flex items-center gap-2 mt-1">
-                                  <span className="text-xs text-muted-foreground">{resource.provider}</span>
-                                  {resource.isFree && (
-                                    <Badge variant="outline" className="text-[10px] bg-green-500/10 text-green-600 border-green-500/30">
-                                      Free
-                                    </Badge>
-                                  )}
-                                </div>
-                              </div>
-                              <ExternalLink className="w-3 h-3 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                </div>
-                
-                {/* Quick Stats */}
-                <div className="mt-6 pt-6 border-t flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <BookOpen className="w-4 h-4 text-blue-500" />
-                    <span>Courses</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Video className="w-4 h-4 text-red-500" />
-                    <span>Videos</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <GraduationCap className="w-4 h-4 text-purple-500" />
-                    <span>Certifications</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <LearningResourcesSection 
+            career={career} 
+            selectedSkills={selectedSkills} 
+          />
         )}
       </div>
     </section>
+  );
+};
+
+// Learning Resources Section Component with Filters
+const LearningResourcesSection = ({ 
+  career, 
+  selectedSkills 
+}: { 
+  career: CareerSkillData; 
+  selectedSkills: string[] 
+}) => {
+  const [resourceTypeFilter, setResourceTypeFilter] = useState<"all" | "course" | "video" | "certification">("all");
+  const [showFreeOnly, setShowFreeOnly] = useState(false);
+
+  const filteredSkillsWithResources = useMemo(() => {
+    return career.skills
+      .filter((skill) => selectedSkills.includes(skill.name))
+      .map((skill) => ({
+        ...skill,
+        resources: skill.resources.filter((resource) => {
+          const matchesType = resourceTypeFilter === "all" || resource.type === resourceTypeFilter;
+          const matchesFree = !showFreeOnly || resource.isFree;
+          return matchesType && matchesFree;
+        }),
+      }))
+      .filter((skill) => skill.resources.length > 0);
+  }, [career.skills, selectedSkills, resourceTypeFilter, showFreeOnly]);
+
+  const totalResourceCount = filteredSkillsWithResources.reduce(
+    (acc, skill) => acc + skill.resources.length,
+    0
+  );
+
+  return (
+    <div className="mt-8">
+      <Card className="border-2">
+        <CardHeader className="bg-muted/50">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <CardTitle className="flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-primary" />
+              Learning Resources for Your Selected Skills
+            </CardTitle>
+            
+            {/* Filters */}
+            <div className="flex flex-wrap items-center gap-4">
+              {/* Free Only Toggle */}
+              <div className="flex items-center gap-2">
+                <Switch
+                  id="free-only"
+                  checked={showFreeOnly}
+                  onCheckedChange={setShowFreeOnly}
+                />
+                <Label htmlFor="free-only" className="text-sm font-medium cursor-pointer">
+                  Free only
+                </Label>
+              </div>
+              
+              {/* Resource Type Filter */}
+              <Select 
+                value={resourceTypeFilter} 
+                onValueChange={(value) => setResourceTypeFilter(value as typeof resourceTypeFilter)}
+              >
+                <SelectTrigger className="w-[150px] h-9">
+                  <Filter className="w-4 h-4 mr-2" />
+                  <SelectValue placeholder="Filter type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Types</SelectItem>
+                  <SelectItem value="course">
+                    <span className="flex items-center gap-2">
+                      <BookOpen className="w-3 h-3 text-blue-500" />
+                      Courses
+                    </span>
+                  </SelectItem>
+                  <SelectItem value="video">
+                    <span className="flex items-center gap-2">
+                      <Video className="w-3 h-3 text-red-500" />
+                      Videos
+                    </span>
+                  </SelectItem>
+                  <SelectItem value="certification">
+                    <span className="flex items-center gap-2">
+                      <GraduationCap className="w-3 h-3 text-purple-500" />
+                      Certifications
+                    </span>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          
+          {/* Active Filters Summary */}
+          {(showFreeOnly || resourceTypeFilter !== "all") && (
+            <div className="flex items-center gap-2 mt-3 text-sm text-muted-foreground">
+              <span>Showing {totalResourceCount} resources</span>
+              {showFreeOnly && (
+                <Badge variant="outline" className="bg-green-500/10 text-green-600 border-green-500/30">
+                  Free
+                </Badge>
+              )}
+              {resourceTypeFilter !== "all" && (
+                <Badge variant="outline">
+                  {resourceTypeFilter === "course" && "Courses"}
+                  {resourceTypeFilter === "video" && "Videos"}
+                  {resourceTypeFilter === "certification" && "Certifications"}
+                </Badge>
+              )}
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-6 px-2 text-xs"
+                onClick={() => {
+                  setShowFreeOnly(false);
+                  setResourceTypeFilter("all");
+                }}
+              >
+                Clear filters
+              </Button>
+            </div>
+          )}
+        </CardHeader>
+        <CardContent className="p-6">
+          {filteredSkillsWithResources.length > 0 ? (
+            <div className="space-y-6">
+              {filteredSkillsWithResources.map((skill) => (
+                <div key={skill.name} className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <Badge variant="secondary" style={{ backgroundColor: `${career.color}20`, color: career.color }}>
+                      {skill.name}
+                    </Badge>
+                    <Badge variant="outline" className="text-xs">
+                      +{skill.premium}% premium
+                    </Badge>
+                  </div>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {skill.resources.map((resource, idx) => (
+                      <a
+                        key={idx}
+                        href={resource.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-start gap-3 p-3 rounded-lg border bg-card hover:border-primary/50 hover:shadow-md transition-all"
+                      >
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-muted flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                          {resource.type === "video" && <Video className="w-4 h-4 text-red-500" />}
+                          {resource.type === "course" && <BookOpen className="w-4 h-4 text-blue-500" />}
+                          {resource.type === "certification" && <GraduationCap className="w-4 h-4 text-purple-500" />}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                            {resource.title}
+                          </p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <span className="text-xs text-muted-foreground">{resource.provider}</span>
+                            {resource.isFree && (
+                              <Badge variant="outline" className="text-[10px] bg-green-500/10 text-green-600 border-green-500/30">
+                                Free
+                              </Badge>
+                            )}
+                          </div>
+                        </div>
+                        <ExternalLink className="w-3 h-3 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-8 text-muted-foreground">
+              <Filter className="w-8 h-8 mx-auto mb-2 opacity-50" />
+              <p>No resources match your filters.</p>
+              <Button
+                variant="link"
+                size="sm"
+                onClick={() => {
+                  setShowFreeOnly(false);
+                  setResourceTypeFilter("all");
+                }}
+              >
+                Clear filters
+              </Button>
+            </div>
+          )}
+          
+          {/* Quick Stats */}
+          <div className="mt-6 pt-6 border-t flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <BookOpen className="w-4 h-4 text-blue-500" />
+              <span>Courses</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Video className="w-4 h-4 text-red-500" />
+              <span>Videos</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <GraduationCap className="w-4 h-4 text-purple-500" />
+              <span>Certifications</span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 
