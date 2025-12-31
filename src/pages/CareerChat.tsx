@@ -53,7 +53,12 @@ import {
   Route,
   Lightbulb,
   Languages,
-  StopCircle
+  StopCircle,
+  HelpCircle,
+  Calendar,
+  IndianRupee,
+  Heart,
+  Users
 } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 
@@ -199,6 +204,27 @@ const CareerChat = () => {
   const [careerExplorerOpen, setCareerExplorerOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [explorerStream, setExplorerStream] = useState('');
+  
+  // New 12th Student Features
+  const [doubtSolverOpen, setDoubtSolverOpen] = useState(false);
+  const [doubtSubject, setDoubtSubject] = useState('');
+  const [doubtTopic, setDoubtTopic] = useState('');
+  const [doubtQuestion, setDoubtQuestion] = useState('');
+  
+  const [studyPlannerOpen, setStudyPlannerOpen] = useState(false);
+  const [studyHoursPerDay, setStudyHoursPerDay] = useState('');
+  const [weakSubjects, setWeakSubjects] = useState<string[]>([]);
+  const [studyGoal, setStudyGoal] = useState('');
+  
+  const [scholarshipFinderOpen, setScholarshipFinderOpen] = useState(false);
+  const [familyIncome, setFamilyIncome] = useState('');
+  const [scholarshipCategory, setScholarshipCategory] = useState('');
+  const [scholarshipStream, setScholarshipStream] = useState('');
+  
+  const [parentTalkOpen, setParentTalkOpen] = useState(false);
+  const [desiredCareer, setDesiredCareer] = useState('');
+  const [parentConcern, setParentConcern] = useState('');
+  const [currentSituation, setCurrentSituation] = useState('');
 
   // Scroll to bottom on new messages
   useEffect(() => {
@@ -845,6 +871,198 @@ Focus on realistic Indian context with specific examples and numbers.`;
     setExplorerStream('');
   };
 
+  // NEW: Subject Doubt Solver
+  const solveDoubt = async () => {
+    if (!doubtSubject || !doubtQuestion.trim()) {
+      toast({
+        title: 'Missing Information',
+        description: 'Please select a subject and enter your doubt.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setIsAnalyzing(true);
+    setDoubtSolverOpen(false);
+
+    const doubtPrompt = `Act as an expert ${doubtSubject} teacher for a 12th standard student in India.
+
+SUBJECT: ${doubtSubject}
+TOPIC: ${doubtTopic || 'General'}
+STUDENT'S DOUBT: ${doubtQuestion}
+
+Please explain this concept clearly:
+1. **Simple Explanation** - Explain like I'm a beginner
+2. **Step-by-Step Solution** - If it's a problem, solve it step by step
+3. **Key Formulas/Concepts** - Important formulas or rules related to this
+4. **Common Mistakes** - What students usually get wrong
+5. **Memory Tips** - Tricks to remember this concept
+6. **Related Questions** - 2-3 similar questions for practice
+7. **Exam Tips** - How this is asked in board/entrance exams
+
+Make it easy to understand with examples from daily life where possible.`;
+
+    const userMessage: Message = {
+      role: 'user',
+      content: doubtPrompt,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    await saveMessage(userMessage);
+    await streamChat([...messages, userMessage]);
+    setIsAnalyzing(false);
+    
+    setDoubtSubject('');
+    setDoubtTopic('');
+    setDoubtQuestion('');
+  };
+
+  // NEW: Study Planner
+  const createStudyPlan = async () => {
+    if (!studyGoal || !studyHoursPerDay) {
+      toast({
+        title: 'Missing Information',
+        description: 'Please fill in your study goal and hours.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setIsAnalyzing(true);
+    setStudyPlannerOpen(false);
+
+    const studyPrompt = `Create a DETAILED DAILY STUDY PLAN for a 12th standard student:
+
+STUDY GOAL: ${studyGoal}
+HOURS AVAILABLE PER DAY: ${studyHoursPerDay} hours
+WEAK SUBJECTS: ${weakSubjects.length > 0 ? weakSubjects.join(', ') : 'None specified'}
+
+Please provide:
+1. **Daily Timetable** - Hour-by-hour breakdown with breaks
+2. **Subject Rotation** - How to balance all subjects in a week
+3. **Weak Subject Strategy** - Extra focus plan for weak areas
+4. **Revision Schedule** - When and how to revise
+5. **Practice Test Plan** - Mock test schedule
+6. **Break Activities** - Healthy break suggestions
+7. **Weekend Plan** - How to use weekends effectively
+8. **One Month Calendar** - Week-by-week goals
+9. **Motivation Tips** - How to stay consistent
+10. **Exam Week Strategy** - Special plan before exams
+
+Format as an actionable, easy-to-follow schedule with Tamil encouragements!`;
+
+    const userMessage: Message = {
+      role: 'user',
+      content: studyPrompt,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    await saveMessage(userMessage);
+    await streamChat([...messages, userMessage]);
+    setIsAnalyzing(false);
+    
+    setStudyHoursPerDay('');
+    setWeakSubjects([]);
+    setStudyGoal('');
+  };
+
+  // NEW: Scholarship Finder
+  const findScholarships = async () => {
+    setIsAnalyzing(true);
+    setScholarshipFinderOpen(false);
+
+    const scholarshipPrompt = `Find SCHOLARSHIPS for a 12th standard student in India:
+
+FAMILY INCOME: ${familyIncome || 'Not specified'}
+CATEGORY: ${scholarshipCategory || 'General'}
+ACADEMIC STREAM: ${STUDENT_STREAMS.find(s => s.value === scholarshipStream)?.label || scholarshipStream || 'Any'}
+
+Please provide comprehensive scholarship information:
+1. **Government Scholarships** - Central and State government schemes
+2. **Merit-Based Scholarships** - For academic excellence
+3. **Need-Based Scholarships** - For economically weaker students
+4. **Category-Specific** - SC/ST/OBC/Minority scholarships
+5. **Private Scholarships** - From companies and NGOs
+6. **College-Specific** - Scholarships offered by top colleges
+7. **Exam-Based** - Scholarships through competitive exams
+8. **Application Process** - Step-by-step guide for each
+9. **Important Deadlines** - When to apply
+10. **Required Documents** - What papers to prepare
+11. **Scholarship Amount** - How much you can get
+12. **Tips to Increase Chances** - How to write good applications
+
+Focus on scholarships available in Tamil Nadu and India for 2024-25.`;
+
+    const userMessage: Message = {
+      role: 'user',
+      content: scholarshipPrompt,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    await saveMessage(userMessage);
+    await streamChat([...messages, userMessage]);
+    setIsAnalyzing(false);
+    
+    setFamilyIncome('');
+    setScholarshipCategory('');
+    setScholarshipStream('');
+  };
+
+  // NEW: Parent Talk Helper
+  const getParentTalkHelp = async () => {
+    if (!desiredCareer) {
+      toast({
+        title: 'Missing Information',
+        description: 'Please enter your desired career.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setIsAnalyzing(true);
+    setParentTalkOpen(false);
+
+    const parentPrompt = `Help a 12th student convince their parents about their career choice:
+
+DESIRED CAREER: ${desiredCareer}
+PARENT'S CONCERN: ${parentConcern || 'General doubts about the career'}
+CURRENT SITUATION: ${currentSituation || 'Parents want me to choose a different career'}
+
+Please provide a comprehensive guide:
+1. **Understanding Parents** - Why parents might have concerns
+2. **Research Points** - Facts and data about this career to share
+3. **Success Stories** - Famous Indians who succeeded in this field
+4. **Salary Information** - Realistic earning potential
+5. **Job Security** - Employment stability and demand
+6. **How to Start the Conversation** - Tips for approaching parents
+7. **Addressing Specific Concerns** - Responses to common parent worries
+8. **Compromise Options** - Middle-ground solutions
+9. **Backup Plan** - How to show you have alternatives
+10. **Timeline** - When to have this discussion
+11. **Sample Dialogue** - What to say in Tamil and English
+12. **If They Still Say No** - What to do next
+
+Be empathetic and respect Indian family values while helping the student communicate effectively.`;
+
+    const userMessage: Message = {
+      role: 'user',
+      content: parentPrompt,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    await saveMessage(userMessage);
+    await streamChat([...messages, userMessage]);
+    setIsAnalyzing(false);
+    
+    setDesiredCareer('');
+    setParentConcern('');
+    setCurrentSituation('');
+  };
+
   // Toggle functions for multi-select
   const toggleInterest = (interest: string) => {
     setInterests(prev => 
@@ -856,6 +1074,14 @@ Focus on realistic Indian context with specific examples and numbers.`;
 
   const toggleSubject = (subject: string) => {
     setFavoriteSubjects(prev => 
+      prev.includes(subject) 
+        ? prev.filter(s => s !== subject)
+        : [...prev, subject]
+    );
+  };
+
+  const toggleWeakSubject = (subject: string) => {
+    setWeakSubjects(prev => 
       prev.includes(subject) 
         ? prev.filter(s => s !== subject)
         : [...prev, subject]
@@ -1983,6 +2209,436 @@ Focus on realistic Indian context with specific examples and numbers.`;
                     <>
                       <Compass className="h-5 w-5 mr-2" />
                       Explore Career Options
+                    </>
+                  )}
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+          
+          {/* Subject Doubt Solver */}
+          <Sheet open={doubtSolverOpen} onOpenChange={setDoubtSolverOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-gradient-to-r from-rose-50 to-pink-50 backdrop-blur-sm border-2 border-rose-300 hover:border-rose-500 hover:from-rose-100 hover:to-pink-100 text-rose-700 rounded-full px-4 py-2 shadow-sm hover:shadow-md transition-all duration-300 gap-2 font-medium"
+              >
+                <span className="p-1 rounded-full bg-rose-100">
+                  <HelpCircle className="h-4 w-4" />
+                </span>
+                Doubt Solver
+                <BookOpen className="h-3 w-3 text-rose-500" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl bg-gradient-to-br from-rose-50 via-pink-50 to-red-50">
+              <SheetHeader className="text-left pb-4 border-b border-rose-100">
+                <SheetTitle className="text-2xl font-bold text-rose-900 flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-gradient-to-br from-rose-500 to-pink-600 shadow-lg">
+                    <HelpCircle className="h-6 w-6 text-white" />
+                  </div>
+                  Subject Doubt Solver
+                </SheetTitle>
+                <SheetDescription className="text-rose-700">
+                  Get your Physics, Chemistry, Maths, Biology doubts cleared instantly
+                </SheetDescription>
+              </SheetHeader>
+              
+              <ScrollArea className="h-[calc(85vh-180px)] mt-6">
+                <div className="space-y-6 pr-4">
+                  <div className="space-y-3">
+                    <Label className="text-rose-900 font-semibold flex items-center gap-2">
+                      <BookOpen className="h-4 w-4" />
+                      Subject
+                    </Label>
+                    <Select value={doubtSubject} onValueChange={setDoubtSubject}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-rose-200 focus:border-rose-500 rounded-xl">
+                        <SelectValue placeholder="Select subject..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Physics">Physics</SelectItem>
+                        <SelectItem value="Chemistry">Chemistry</SelectItem>
+                        <SelectItem value="Mathematics">Mathematics</SelectItem>
+                        <SelectItem value="Biology">Biology</SelectItem>
+                        <SelectItem value="Computer Science">Computer Science</SelectItem>
+                        <SelectItem value="Accountancy">Accountancy</SelectItem>
+                        <SelectItem value="Economics">Economics</SelectItem>
+                        <SelectItem value="Business Studies">Business Studies</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-rose-900 font-semibold">Topic (Optional)</Label>
+                    <Input
+                      value={doubtTopic}
+                      onChange={(e) => setDoubtTopic(e.target.value)}
+                      placeholder="e.g., Electromagnetism, Organic Chemistry..."
+                      className="h-12 bg-white border-2 border-rose-200 focus:border-rose-500 rounded-xl"
+                    />
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-rose-900 font-semibold flex items-center gap-2">
+                      <HelpCircle className="h-4 w-4" />
+                      Your Doubt / Question
+                    </Label>
+                    <Textarea
+                      value={doubtQuestion}
+                      onChange={(e) => setDoubtQuestion(e.target.value)}
+                      placeholder="Type your question here... Be as specific as possible for better explanation."
+                      className="min-h-[120px] bg-white border-2 border-rose-200 focus:border-rose-500 rounded-xl resize-none"
+                    />
+                  </div>
+                </div>
+              </ScrollArea>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-rose-50 via-rose-50 to-transparent">
+                <Button
+                  onClick={solveDoubt}
+                  disabled={!doubtSubject || !doubtQuestion.trim() || isAnalyzing}
+                  className="w-full h-14 bg-gradient-to-r from-rose-600 to-pink-700 hover:from-rose-700 hover:to-pink-800 text-white font-semibold text-lg rounded-xl shadow-lg shadow-rose-200 disabled:opacity-50 transition-all duration-300"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                      Solving...
+                    </>
+                  ) : (
+                    <>
+                      <Lightbulb className="h-5 w-5 mr-2" />
+                      Explain This Concept
+                    </>
+                  )}
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+          
+          {/* Study Planner */}
+          <Sheet open={studyPlannerOpen} onOpenChange={setStudyPlannerOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-gradient-to-r from-violet-50 to-purple-50 backdrop-blur-sm border-2 border-violet-300 hover:border-violet-500 hover:from-violet-100 hover:to-purple-100 text-violet-700 rounded-full px-4 py-2 shadow-sm hover:shadow-md transition-all duration-300 gap-2 font-medium"
+              >
+                <span className="p-1 rounded-full bg-violet-100">
+                  <Calendar className="h-4 w-4" />
+                </span>
+                Study Planner
+                <Clock className="h-3 w-3 text-violet-500" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50">
+              <SheetHeader className="text-left pb-4 border-b border-violet-100">
+                <SheetTitle className="text-2xl font-bold text-violet-900 flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 shadow-lg">
+                    <Calendar className="h-6 w-6 text-white" />
+                  </div>
+                  Study Planner
+                </SheetTitle>
+                <SheetDescription className="text-violet-700">
+                  Get a personalized daily study schedule tailored for you
+                </SheetDescription>
+              </SheetHeader>
+              
+              <ScrollArea className="h-[calc(85vh-180px)] mt-6">
+                <div className="space-y-6 pr-4">
+                  <div className="space-y-3">
+                    <Label className="text-violet-900 font-semibold flex items-center gap-2">
+                      <Target className="h-4 w-4" />
+                      Your Goal
+                    </Label>
+                    <Select value={studyGoal} onValueChange={setStudyGoal}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-violet-200 focus:border-violet-500 rounded-xl">
+                        <SelectValue placeholder="What are you preparing for?" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="board-exams">12th Board Exams</SelectItem>
+                        <SelectItem value="jee-main">JEE Main</SelectItem>
+                        <SelectItem value="jee-advanced">JEE Advanced</SelectItem>
+                        <SelectItem value="neet">NEET</SelectItem>
+                        <SelectItem value="board-and-jee">Board + JEE Both</SelectItem>
+                        <SelectItem value="board-and-neet">Board + NEET Both</SelectItem>
+                        <SelectItem value="cuet">CUET</SelectItem>
+                        <SelectItem value="ca-foundation">CA Foundation</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-violet-900 font-semibold flex items-center gap-2">
+                      <Clock className="h-4 w-4" />
+                      Hours Available Per Day
+                    </Label>
+                    <Select value={studyHoursPerDay} onValueChange={setStudyHoursPerDay}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-violet-200 focus:border-violet-500 rounded-xl">
+                        <SelectValue placeholder="How many hours can you study?" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="3-4">3-4 hours</SelectItem>
+                        <SelectItem value="5-6">5-6 hours</SelectItem>
+                        <SelectItem value="7-8">7-8 hours</SelectItem>
+                        <SelectItem value="9-10">9-10 hours</SelectItem>
+                        <SelectItem value="10+">10+ hours (Intensive)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-violet-900 font-semibold flex items-center gap-2">
+                      <AlertCircle className="h-4 w-4" />
+                      Weak Subjects (Select all that apply)
+                    </Label>
+                    <div className="flex flex-wrap gap-2">
+                      {['Physics', 'Chemistry', 'Mathematics', 'Biology', 'English'].map((subject) => (
+                        <Badge
+                          key={subject}
+                          variant={weakSubjects.includes(subject) ? "default" : "outline"}
+                          className={`cursor-pointer transition-all duration-200 px-3 py-2 ${
+                            weakSubjects.includes(subject)
+                              ? 'bg-gradient-to-r from-violet-500 to-purple-600 text-white border-transparent'
+                              : 'bg-white border-2 border-violet-200 text-violet-700 hover:border-violet-400'
+                          }`}
+                          onClick={() => toggleWeakSubject(subject)}
+                        >
+                          {weakSubjects.includes(subject) && <CheckCircle2 className="h-3 w-3 mr-1" />}
+                          {subject}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </ScrollArea>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-violet-50 via-violet-50 to-transparent">
+                <Button
+                  onClick={createStudyPlan}
+                  disabled={!studyGoal || !studyHoursPerDay || isAnalyzing}
+                  className="w-full h-14 bg-gradient-to-r from-violet-600 to-purple-700 hover:from-violet-700 hover:to-purple-800 text-white font-semibold text-lg rounded-xl shadow-lg shadow-violet-200 disabled:opacity-50 transition-all duration-300"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                      Creating Plan...
+                    </>
+                  ) : (
+                    <>
+                      <Calendar className="h-5 w-5 mr-2" />
+                      Create My Study Plan
+                    </>
+                  )}
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+          
+          {/* Scholarship Finder */}
+          <Sheet open={scholarshipFinderOpen} onOpenChange={setScholarshipFinderOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-gradient-to-r from-emerald-50 to-green-50 backdrop-blur-sm border-2 border-emerald-300 hover:border-emerald-500 hover:from-emerald-100 hover:to-green-100 text-emerald-700 rounded-full px-4 py-2 shadow-sm hover:shadow-md transition-all duration-300 gap-2 font-medium"
+              >
+                <span className="p-1 rounded-full bg-emerald-100">
+                  <IndianRupee className="h-4 w-4" />
+                </span>
+                Scholarship Finder
+                <Award className="h-3 w-3 text-emerald-500" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
+              <SheetHeader className="text-left pb-4 border-b border-emerald-100">
+                <SheetTitle className="text-2xl font-bold text-emerald-900 flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 shadow-lg">
+                    <IndianRupee className="h-6 w-6 text-white" />
+                  </div>
+                  Scholarship Finder
+                </SheetTitle>
+                <SheetDescription className="text-emerald-700">
+                  Discover scholarships you are eligible for
+                </SheetDescription>
+              </SheetHeader>
+              
+              <ScrollArea className="h-[calc(85vh-180px)] mt-6">
+                <div className="space-y-6 pr-4">
+                  <div className="space-y-3">
+                    <Label className="text-emerald-900 font-semibold flex items-center gap-2">
+                      <BookOpen className="h-4 w-4" />
+                      Your Stream
+                    </Label>
+                    <Select value={scholarshipStream} onValueChange={setScholarshipStream}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-emerald-200 focus:border-emerald-500 rounded-xl">
+                        <SelectValue placeholder="Select your stream..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {STUDENT_STREAMS.map((stream) => (
+                          <SelectItem key={stream.value} value={stream.value}>
+                            {stream.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-emerald-900 font-semibold flex items-center gap-2">
+                      <Users className="h-4 w-4" />
+                      Category
+                    </Label>
+                    <Select value={scholarshipCategory} onValueChange={setScholarshipCategory}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-emerald-200 focus:border-emerald-500 rounded-xl">
+                        <SelectValue placeholder="Select your category..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="general">General</SelectItem>
+                        <SelectItem value="obc">OBC</SelectItem>
+                        <SelectItem value="sc">SC</SelectItem>
+                        <SelectItem value="st">ST</SelectItem>
+                        <SelectItem value="ews">EWS</SelectItem>
+                        <SelectItem value="minority">Minority</SelectItem>
+                        <SelectItem value="pwd">PwD</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-emerald-900 font-semibold flex items-center gap-2">
+                      <IndianRupee className="h-4 w-4" />
+                      Family Annual Income
+                    </Label>
+                    <Select value={familyIncome} onValueChange={setFamilyIncome}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-emerald-200 focus:border-emerald-500 rounded-xl">
+                        <SelectValue placeholder="Select income range..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="below-1-lakh">Below ₹1 Lakh</SelectItem>
+                        <SelectItem value="1-2.5-lakh">₹1 - 2.5 Lakh</SelectItem>
+                        <SelectItem value="2.5-5-lakh">₹2.5 - 5 Lakh</SelectItem>
+                        <SelectItem value="5-8-lakh">₹5 - 8 Lakh</SelectItem>
+                        <SelectItem value="above-8-lakh">Above ₹8 Lakh</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </ScrollArea>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-emerald-50 via-emerald-50 to-transparent">
+                <Button
+                  onClick={findScholarships}
+                  disabled={isAnalyzing}
+                  className="w-full h-14 bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 hover:to-green-800 text-white font-semibold text-lg rounded-xl shadow-lg shadow-emerald-200 disabled:opacity-50 transition-all duration-300"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                      Finding Scholarships...
+                    </>
+                  ) : (
+                    <>
+                      <Award className="h-5 w-5 mr-2" />
+                      Find Scholarships For Me
+                    </>
+                  )}
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+          
+          {/* Parent Talk Helper */}
+          <Sheet open={parentTalkOpen} onOpenChange={setParentTalkOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-gradient-to-r from-sky-50 to-blue-50 backdrop-blur-sm border-2 border-sky-300 hover:border-sky-500 hover:from-sky-100 hover:to-blue-100 text-sky-700 rounded-full px-4 py-2 shadow-sm hover:shadow-md transition-all duration-300 gap-2 font-medium"
+              >
+                <span className="p-1 rounded-full bg-sky-100">
+                  <Heart className="h-4 w-4" />
+                </span>
+                Parent Talk Helper
+                <Users className="h-3 w-3 text-sky-500" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl bg-gradient-to-br from-sky-50 via-blue-50 to-indigo-50">
+              <SheetHeader className="text-left pb-4 border-b border-sky-100">
+                <SheetTitle className="text-2xl font-bold text-sky-900 flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 shadow-lg">
+                    <Heart className="h-6 w-6 text-white" />
+                  </div>
+                  Parent Talk Helper
+                </SheetTitle>
+                <SheetDescription className="text-sky-700">
+                  Get help convincing your parents about your career choice
+                </SheetDescription>
+              </SheetHeader>
+              
+              <ScrollArea className="h-[calc(85vh-180px)] mt-6">
+                <div className="space-y-6 pr-4">
+                  <div className="space-y-3">
+                    <Label className="text-sky-900 font-semibold flex items-center gap-2">
+                      <Target className="h-4 w-4" />
+                      Your Desired Career
+                    </Label>
+                    <Input
+                      value={desiredCareer}
+                      onChange={(e) => setDesiredCareer(e.target.value)}
+                      placeholder="e.g., Game Developer, Photographer, Data Scientist..."
+                      className="h-12 bg-white border-2 border-sky-200 focus:border-sky-500 rounded-xl"
+                    />
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-sky-900 font-semibold flex items-center gap-2">
+                      <AlertCircle className="h-4 w-4" />
+                      What are your parents concerned about?
+                    </Label>
+                    <Select value={parentConcern} onValueChange={setParentConcern}>
+                      <SelectTrigger className="h-12 bg-white border-2 border-sky-200 focus:border-sky-500 rounded-xl">
+                        <SelectValue placeholder="Select their main concern..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="salary">Low salary / Not enough money</SelectItem>
+                        <SelectItem value="job-security">No job security</SelectItem>
+                        <SelectItem value="not-respected">Not a respected career</SelectItem>
+                        <SelectItem value="different-career">They want me to do something else</SelectItem>
+                        <SelectItem value="unknown-field">They dont know about this field</SelectItem>
+                        <SelectItem value="risky">Too risky career</SelectItem>
+                        <SelectItem value="family-business">Want me to join family business</SelectItem>
+                        <SelectItem value="other">Other concerns</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-sky-900 font-semibold">Describe your situation (Optional)</Label>
+                    <Textarea
+                      value={currentSituation}
+                      onChange={(e) => setCurrentSituation(e.target.value)}
+                      placeholder="Tell us more about your situation... What have your parents said?"
+                      className="min-h-[100px] bg-white border-2 border-sky-200 focus:border-sky-500 rounded-xl resize-none"
+                    />
+                  </div>
+                </div>
+              </ScrollArea>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-sky-50 via-sky-50 to-transparent">
+                <Button
+                  onClick={getParentTalkHelp}
+                  disabled={!desiredCareer.trim() || isAnalyzing}
+                  className="w-full h-14 bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-700 hover:to-blue-800 text-white font-semibold text-lg rounded-xl shadow-lg shadow-sky-200 disabled:opacity-50 transition-all duration-300"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                      Preparing Tips...
+                    </>
+                  ) : (
+                    <>
+                      <Heart className="h-5 w-5 mr-2" />
+                      Get Talking Tips
                     </>
                   )}
                 </Button>
