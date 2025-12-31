@@ -51,7 +51,9 @@ import {
   FlaskConical,
   Award,
   Route,
-  Lightbulb
+  Lightbulb,
+  Languages,
+  StopCircle
 } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 
@@ -152,6 +154,8 @@ const CareerChat = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isTtsEnabled, setIsTtsEnabled] = useState(false);
+  const [isTamilVoice, setIsTamilVoice] = useState(true); // Default to Tamil for 12th students
+  const [isSpeaking, setIsSpeaking] = useState(false);
   
   // Skill Gap Analyzer state
   const [skillGapOpen, setSkillGapOpen] = useState(false);
@@ -264,11 +268,42 @@ const CareerChat = () => {
     [user]
   );
 
-  const speakText = (text: string) => {
+  const speakText = useCallback((text: string) => {
     if (!isTtsEnabled) return;
+    
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel();
+    
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = text.match(/[\u0B80-\u0BFF]/) ? 'ta-IN' : 'en-IN';
+    
+    // Check if text contains Tamil characters or user prefers Tamil
+    const hasTamilText = text.match(/[\u0B80-\u0BFF]/);
+    
+    if (isTamilVoice || hasTamilText) {
+      utterance.lang = 'ta-IN';
+      // Try to find a Tamil voice
+      const voices = window.speechSynthesis.getVoices();
+      const tamilVoice = voices.find(v => v.lang.includes('ta') || v.lang.includes('Tamil'));
+      if (tamilVoice) {
+        utterance.voice = tamilVoice;
+      }
+    } else {
+      utterance.lang = 'en-IN';
+    }
+    
+    utterance.rate = 0.9; // Slightly slower for better comprehension
+    utterance.pitch = 1;
+    
+    utterance.onstart = () => setIsSpeaking(true);
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => setIsSpeaking(false);
+    
     window.speechSynthesis.speak(utterance);
+  }, [isTtsEnabled, isTamilVoice]);
+
+  const stopSpeaking = () => {
+    window.speechSynthesis.cancel();
+    setIsSpeaking(false);
   };
 
   const toggleVoiceInput = () => {
@@ -859,16 +894,52 @@ Focus on realistic Indian context with specific examples and numbers.`;
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
+              {/* Stop Speaking Button - only shown when speaking */}
+              {isSpeaking && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={stopSpeaking}
+                  className="rounded-xl bg-red-500/30 text-red-200 hover:bg-red-500/40 animate-pulse transition-all duration-300"
+                  title="Stop speaking"
+                >
+                  <StopCircle className="h-5 w-5" />
+                </Button>
+              )}
+              
+              {/* Tamil Language Toggle */}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsTamilVoice(!isTamilVoice)}
+                className={`rounded-xl transition-all duration-300 gap-1.5 px-3 ${
+                  isTamilVoice 
+                    ? 'bg-orange-500/30 text-orange-200 hover:bg-orange-500/40' 
+                    : 'text-white/80 hover:text-white hover:bg-white/15'
+                }`}
+                title={isTamilVoice ? 'Switch to English voice' : 'Switch to Tamil voice'}
+              >
+                <Languages className="h-4 w-4" />
+                <span className="text-xs font-medium">{isTamilVoice ? 'தமிழ்' : 'EN'}</span>
+              </Button>
+              
+              {/* Voice Enable/Disable */}
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsTtsEnabled(!isTtsEnabled)}
-                className={`rounded-xl transition-all duration-300 ${isTtsEnabled ? 'bg-amber-500/30 text-amber-200 hover:bg-amber-500/40' : 'text-white/80 hover:text-white hover:bg-white/15'}`}
-                title={isTtsEnabled ? 'Disable voice' : 'Enable voice'}
+                className={`rounded-xl transition-all duration-300 ${
+                  isTtsEnabled 
+                    ? 'bg-amber-500/30 text-amber-200 hover:bg-amber-500/40' 
+                    : 'text-white/80 hover:text-white hover:bg-white/15'
+                }`}
+                title={isTtsEnabled ? 'Disable voice output' : 'Enable voice output'}
               >
                 {isTtsEnabled ? <Volume2 className="h-5 w-5" /> : <VolumeX className="h-5 w-5" />}
               </Button>
+              
+              {/* Clear Chat */}
               <Button
                 variant="ghost"
                 size="icon"
