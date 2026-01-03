@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award } from "lucide-react";
+import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -235,6 +236,47 @@ export default function AICareerPredictor() {
       toast.info("Select 2 careers to compare");
     }
   };
+
+  // Trigger confetti when comparison modal opens
+  useEffect(() => {
+    if (showCompareModal) {
+      const duration = 2000;
+      const end = Date.now() + duration;
+
+      const frame = () => {
+        // Left side burst
+        confetti({
+          particleCount: 3,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0, y: 0.6 },
+          colors: ['#FFD700', '#FFA500', '#FF6347', '#32CD32', '#1E90FF'],
+        });
+        // Right side burst
+        confetti({
+          particleCount: 3,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1, y: 0.6 },
+          colors: ['#FFD700', '#FFA500', '#FF6347', '#32CD32', '#1E90FF'],
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      };
+
+      // Initial big burst
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { x: 0.5, y: 0.5 },
+        colors: ['#FFD700', '#FFA500', '#FF6347', '#32CD32', '#1E90FF', '#9370DB'],
+      });
+
+      frame();
+    }
+  }, [showCompareModal]);
 
   const getComparisonCareers = () => {
     return selectedForCompare.map(i => getCareerMetrics(predictions[i]));
