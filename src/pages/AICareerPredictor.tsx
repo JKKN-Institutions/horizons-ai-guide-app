@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award } from "lucide-react";
+import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw } from "lucide-react";
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -110,6 +110,7 @@ export default function AICareerPredictor() {
   const [showResults, setShowResults] = useState(false);
   const [selectedForCompare, setSelectedForCompare] = useState<number[]>([]);
   const [showCompareModal, setShowCompareModal] = useState(false);
+  const [animationKey, setAnimationKey] = useState(0);
 
   const togglePreference = (id: string) => {
     setSelectedPreferences(prev => 
@@ -237,46 +238,57 @@ export default function AICareerPredictor() {
     }
   };
 
+  // Confetti animation function
+  const triggerConfetti = () => {
+    const duration = 2000;
+    const end = Date.now() + duration;
+
+    const frame = () => {
+      // Left side burst
+      confetti({
+        particleCount: 3,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 0.6 },
+        colors: ['#FFD700', '#FFA500', '#FF6347', '#32CD32', '#1E90FF'],
+      });
+      // Right side burst
+      confetti({
+        particleCount: 3,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1, y: 0.6 },
+        colors: ['#FFD700', '#FFA500', '#FF6347', '#32CD32', '#1E90FF'],
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    };
+
+    // Initial big burst
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { x: 0.5, y: 0.5 },
+      colors: ['#FFD700', '#FFA500', '#FF6347', '#32CD32', '#1E90FF', '#9370DB'],
+    });
+
+    frame();
+  };
+
   // Trigger confetti when comparison modal opens
   useEffect(() => {
     if (showCompareModal) {
-      const duration = 2000;
-      const end = Date.now() + duration;
-
-      const frame = () => {
-        // Left side burst
-        confetti({
-          particleCount: 3,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0, y: 0.6 },
-          colors: ['#FFD700', '#FFA500', '#FF6347', '#32CD32', '#1E90FF'],
-        });
-        // Right side burst
-        confetti({
-          particleCount: 3,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1, y: 0.6 },
-          colors: ['#FFD700', '#FFA500', '#FF6347', '#32CD32', '#1E90FF'],
-        });
-
-        if (Date.now() < end) {
-          requestAnimationFrame(frame);
-        }
-      };
-
-      // Initial big burst
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { x: 0.5, y: 0.5 },
-        colors: ['#FFD700', '#FFA500', '#FF6347', '#32CD32', '#1E90FF', '#9370DB'],
-      });
-
-      frame();
+      triggerConfetti();
     }
   }, [showCompareModal]);
+
+  // Replay animation handler
+  const handleReplayAnimation = () => {
+    setAnimationKey(prev => prev + 1);
+    triggerConfetti();
+  };
 
   const getComparisonCareers = () => {
     return selectedForCompare.map(i => getCareerMetrics(predictions[i]));
@@ -423,10 +435,21 @@ export default function AICareerPredictor() {
           <Dialog open={showCompareModal} onOpenChange={setShowCompareModal}>
             <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
               <DialogHeader>
-                <DialogTitle className="flex items-center gap-2 text-xl">
-                  <GitCompare className="h-5 w-5 text-primary" />
-                  Career Comparison
-                </DialogTitle>
+                <div className="flex items-center justify-between">
+                  <DialogTitle className="flex items-center gap-2 text-xl">
+                    <GitCompare className="h-5 w-5 text-primary" />
+                    Career Comparison
+                  </DialogTitle>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleReplayAnimation}
+                    className="gap-2"
+                  >
+                    <RotateCcw className="h-4 w-4" />
+                    Replay Animation
+                  </Button>
+                </div>
               </DialogHeader>
               
               {selectedForCompare.length === 2 && (
@@ -461,7 +484,7 @@ export default function AICareerPredictor() {
                           </CardTitle>
                         </CardHeader>
                         <CardContent className="pt-6 pb-6">
-                          <div className="grid grid-cols-2 gap-6 mb-6">
+                          <div key={animationKey} className="grid grid-cols-2 gap-6 mb-6">
                             {careers.map((career, i) => {
                               const isWinner = result.winner === i;
                               return (
