@@ -70,7 +70,6 @@ const HeroSection = () => {
                 className="bg-white/10 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white hover:text-emerald-800 font-semibold px-5 py-3 text-sm rounded-xl transition-all duration-300 hover:scale-105"
                 onClick={() => navigate("/register/employer")}
               >
-                <Briefcase className="w-4 h-4 mr-2" />
                 Register as Employer
               </Button>
             </div>
