@@ -3,20 +3,22 @@ import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-const navItems = [
-  { label: "Home", href: "/", isRoute: true },
-  { label: "Career Hub", href: "/jkkn", isRoute: true },
-  { label: "Dashboard", href: "/student-dashboard", isRoute: true },
-  { label: "About JKKN", href: "#about", isRoute: false },
-  { label: "Career Guidance", href: "#services", isRoute: false },
-  { label: "Job Portal", href: "#jobs", isRoute: false },
-  { label: "Contact", href: "#contact", isRoute: false },
-];
+import { useLanguage } from "@/hooks/useLanguage";
 
 const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
+
+  const navItems = [
+    { label: t('nav.home'), href: "/", isRoute: true },
+    { label: t('nav.careerHub'), href: "/jkkn", isRoute: true },
+    { label: t('nav.dashboard'), href: "/student-dashboard", isRoute: true },
+    { label: t('nav.aboutJkkn'), href: "#about", isRoute: false },
+    { label: t('nav.careerGuidance'), href: "#services", isRoute: false },
+    { label: t('nav.jobPortal'), href: "#jobs", isRoute: false },
+    { label: t('nav.contact'), href: "#contact", isRoute: false },
+  ];
 
   const isActive = (href: string, isRoute: boolean) => {
     if (!isRoute) return false;
@@ -31,10 +33,10 @@ const NavigationBar = () => {
           <div className="flex-shrink-0">
             <div>
               <h1 className="font-serif text-lg md:text-xl font-semibold text-foreground leading-tight">
-                J.K.K. Nattraja Institutions
+                {t('nav.institutionName')}
               </h1>
               <p className="text-[10px] md:text-xs text-muted-foreground font-medium tracking-wide">
-                70+ Years of Excellence in Education & Healthcare
+                {t('nav.tagline')}
               </p>
             </div>
           </div>

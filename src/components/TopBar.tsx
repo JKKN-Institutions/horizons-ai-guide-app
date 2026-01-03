@@ -1,13 +1,16 @@
 import { Bell, MessageSquareText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import UserMenu from "@/components/UserMenu";
+import LanguageToggle from "@/components/LanguageToggle";
 import { useAuth } from "@/hooks/useAuth";
 import { useChatModal } from "@/hooks/useChatModal";
+import { useLanguage } from "@/hooks/useLanguage";
 import { Link } from "react-router-dom";
 
 const TopBar = () => {
   const { user } = useAuth();
   const { openChat } = useChatModal();
+  const { t } = useLanguage();
 
   return (
     <div className="bg-primary text-primary-foreground py-2 px-4 md:px-8">
@@ -20,11 +23,12 @@ const TopBar = () => {
             <span className="font-semibold text-sm hidden sm:inline">JKKN AI Horizons</span>
           </div>
           <span className="text-xs opacity-80 hidden md:inline border-l border-primary-foreground/30 pl-3">
-            JKKN CAREER PATH - 2026-2032
+            {t('topbar.careerPath')}
           </span>
         </div>
 
         <div className="flex items-center gap-2 md:gap-4">
+          <LanguageToggle />
           <Button 
             size="sm" 
             className="relative bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium text-xs h-8 px-4 rounded-full shadow-md shadow-amber-500/20 transition-all duration-300 hover:shadow-lg"
@@ -35,7 +39,7 @@ const TopBar = () => {
               <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
             </span>
             <MessageSquareText className="w-3.5 h-3.5 mr-1.5" />
-            AI Chat
+            {t('topbar.aiChat')}
           </Button>
           <button className="relative p-2 hover:bg-primary-foreground/10 rounded-full transition-colors">
             <Bell className="w-4 h-4" />
@@ -47,14 +51,14 @@ const TopBar = () => {
           ) : (
             <>
               <Link to="/auth">
-                <span className="text-sm hover:underline hidden sm:inline cursor-pointer">Login</span>
+                <span className="text-sm hover:underline hidden sm:inline cursor-pointer">{t('topbar.login')}</span>
               </Link>
               <Link to="/auth">
                 <Button 
                   size="sm" 
                   className="bg-jkkn-green-light hover:bg-jkkn-green-light/80 text-primary-foreground text-xs h-8"
                 >
-                  Register
+                  {t('topbar.register')}
                 </Button>
               </Link>
             </>

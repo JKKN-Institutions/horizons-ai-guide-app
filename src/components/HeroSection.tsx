@@ -3,10 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Sparkles, Users, Briefcase, GraduationCap, ChevronDown } from "lucide-react";
 import heroCampus from "@/assets/hero-campus.jpg";
 import { useChatModal } from "@/hooks/useChatModal";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const HeroSection = () => {
   const navigate = useNavigate();
   const { openChat } = useChatModal();
+  const { t, language } = useLanguage();
 
   return (
     <section className="relative h-[calc(100vh-180px)] min-h-[500px] flex items-center overflow-hidden">
@@ -28,27 +30,27 @@ const HeroSection = () => {
           <div className="lg:col-span-3 text-white space-y-5">
             <span className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/20 to-orange-500/20 backdrop-blur-sm text-amber-300 px-4 py-2 rounded-full text-sm font-semibold border border-amber-400/30 animate-fade-up">
               <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-              JKKN CAREER PATH - 2026-2032
+              {t('hero.badge')}
             </span>
 
             <div className="space-y-3">
               <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold italic animate-fade-up tracking-tight" style={{ animationDelay: '0.1s' }}>
-                JKKN AI Horizons:
+                {t('hero.title')}
               </h1>
 
               <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold italic animate-fade-up" style={{ animationDelay: '0.2s' }}>
                 <span className="bg-gradient-to-r from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">
-                  Discover, Design, Do - வழிகாட்டி
+                  {t('hero.subtitle')}
                 </span>
               </h2>
 
               <p className="font-tamil text-lg md:text-xl lg:text-2xl text-emerald-100/90 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-                கண்டறி, வடிவமை, செய்
+                {t('hero.tamilSubtitle')}
               </p>
             </div>
 
             <p className="text-base md:text-lg text-emerald-50/80 max-w-2xl leading-relaxed animate-fade-up" style={{ animationDelay: '0.4s' }}>
-              Empowering JKKN Learners & 12th Learners with AI-powered career guidance, skill development and placement opportunities across 9 institutions.
+              {t('hero.description')}
             </p>
 
             <div className="flex flex-wrap gap-3 animate-fade-up" style={{ animationDelay: '0.5s' }}>
@@ -57,14 +59,14 @@ const HeroSection = () => {
                 onClick={() => navigate("/register/12th-learner?redirect=/career-assessment/12th-learners")}
               >
                 <GraduationCap className="w-4 h-4 mr-2" />
-                Register as 12th Learner
+                {t('hero.register12th')}
               </Button>
               <Button 
                 className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold px-5 py-3 text-sm rounded-xl shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/40 transition-all duration-300 hover:scale-105"
                 onClick={() => navigate("/register/learner")}
               >
                 <Users className="w-4 h-4 mr-2" />
-                Register as JKKN Learner
+                {t('hero.registerLearner')}
               </Button>
             </div>
 
@@ -78,7 +80,7 @@ const HeroSection = () => {
                   <Users className="w-5 h-5 text-white" />
                 </div>
                 <h3 className="font-serif text-xl font-bold text-gray-800">
-                  Who is this for?
+                  {t('hero.whoIsFor')}
                 </h3>
               </div>
 
@@ -88,9 +90,9 @@ const HeroSection = () => {
                     <GraduationCap className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-800 text-base">12th Learners</p>
+                    <p className="font-semibold text-gray-800 text-base">{t('hero.12thLearners')}</p>
                     <p className="text-sm text-gray-600">
-                      Discover careers & plan your future
+                      {t('hero.12thLearnersDesc')}
                     </p>
                   </div>
                 </div>
@@ -100,9 +102,9 @@ const HeroSection = () => {
                     <Briefcase className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-800 text-base">Learners</p>
+                    <p className="font-semibold text-gray-800 text-base">{t('hero.learners')}</p>
                     <p className="text-sm text-gray-600">
-                      Build skills & connect with employers
+                      {t('hero.learnersDesc')}
                     </p>
                   </div>
                 </div>
@@ -112,9 +114,9 @@ const HeroSection = () => {
                     <Users className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-800 text-base">Employers</p>
+                    <p className="font-semibold text-gray-800 text-base">{t('hero.employers')}</p>
                     <p className="text-sm text-gray-600">
-                      Hire talented JKKN graduates
+                      {t('hero.employersDesc')}
                     </p>
                   </div>
                 </div>
@@ -131,7 +133,7 @@ const HeroSection = () => {
           className="flex flex-col items-center gap-1 text-white/70 hover:text-white transition-colors duration-300 group cursor-pointer"
           aria-label="Scroll down"
         >
-          <span className="text-[10px] uppercase tracking-wider font-medium">Explore More</span>
+          <span className="text-[10px] uppercase tracking-wider font-medium">{t('hero.exploreMore')}</span>
           <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center group-hover:border-white/60 transition-all duration-300 group-hover:bg-white/10">
             <ChevronDown className="w-4 h-4 animate-bounce" />
           </div>

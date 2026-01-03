@@ -1,76 +1,79 @@
 import { Brain, Compass, Briefcase, BookOpen, Users, MessageCircle } from "lucide-react";
-
-const services = [
-  {
-    title: "Career Assessment",
-    description: "AI-powered psychometric tests to discover your personality, strengths, and best-fit careers.",
-    icon: Brain,
-    gradient: "from-amber-400 to-orange-500",
-    bgGradient: "from-amber-50 to-orange-50",
-    borderColor: "border-amber-200 hover:border-amber-400",
-    shadowColor: "shadow-amber-100",
-  },
-  {
-    title: "Career Path Finder",
-    description: "Explore what to do after 10th & 12th, with clear education paths mapped to real careers.",
-    icon: Compass,
-    gradient: "from-emerald-500 to-green-600",
-    bgGradient: "from-emerald-50 to-green-50",
-    borderColor: "border-emerald-200 hover:border-emerald-400",
-    shadowColor: "shadow-emerald-100",
-  },
-  {
-    title: "Job Portal",
-    description: "Apply to curated jobs, internships, and 12th-pass roles with a single profile.",
-    icon: Briefcase,
-    gradient: "from-blue-500 to-indigo-600",
-    bgGradient: "from-blue-50 to-indigo-50",
-    borderColor: "border-blue-200 hover:border-blue-400",
-    shadowColor: "shadow-blue-100",
-  },
-  {
-    title: "Skill Development",
-    description: "Learn technical, communication, and life skills with focused courses and practice tasks.",
-    icon: BookOpen,
-    gradient: "from-purple-500 to-violet-600",
-    bgGradient: "from-purple-50 to-violet-50",
-    borderColor: "border-purple-200 hover:border-purple-400",
-    shadowColor: "shadow-purple-100",
-  },
-  {
-    title: "Expert Counseling",
-    description: "Book one-on-one sessions with Senior Learners and counselors to clarify doubts.",
-    icon: Users,
-    gradient: "from-rose-500 to-pink-600",
-    bgGradient: "from-rose-50 to-pink-50",
-    borderColor: "border-rose-200 hover:border-rose-400",
-    shadowColor: "shadow-rose-100",
-  },
-  {
-    title: "AI Career Assistant",
-    description: "Ask JKKN AI anything about careers, courses, jobs, or JKKN admissions—24/7.",
-    icon: MessageCircle,
-    gradient: "from-teal-500 to-cyan-600",
-    bgGradient: "from-teal-50 to-cyan-50",
-    borderColor: "border-teal-200 hover:border-teal-400",
-    shadowColor: "shadow-teal-100",
-  },
-];
+import { useLanguage } from "@/hooks/useLanguage";
 
 const ServicesSection = () => {
+  const { t } = useLanguage();
+
+  const services = [
+    {
+      title: t('services.careerAssessment'),
+      description: t('services.careerAssessmentDesc'),
+      icon: Brain,
+      gradient: "from-amber-400 to-orange-500",
+      bgGradient: "from-amber-50 to-orange-50",
+      borderColor: "border-amber-200 hover:border-amber-400",
+      shadowColor: "shadow-amber-100",
+    },
+    {
+      title: t('services.careerPathFinder'),
+      description: t('services.careerPathFinderDesc'),
+      icon: Compass,
+      gradient: "from-emerald-500 to-green-600",
+      bgGradient: "from-emerald-50 to-green-50",
+      borderColor: "border-emerald-200 hover:border-emerald-400",
+      shadowColor: "shadow-emerald-100",
+    },
+    {
+      title: t('services.jobPortal'),
+      description: t('services.jobPortalDesc'),
+      icon: Briefcase,
+      gradient: "from-blue-500 to-indigo-600",
+      bgGradient: "from-blue-50 to-indigo-50",
+      borderColor: "border-blue-200 hover:border-blue-400",
+      shadowColor: "shadow-blue-100",
+    },
+    {
+      title: t('services.skillDevelopment'),
+      description: t('services.skillDevelopmentDesc'),
+      icon: BookOpen,
+      gradient: "from-purple-500 to-violet-600",
+      bgGradient: "from-purple-50 to-violet-50",
+      borderColor: "border-purple-200 hover:border-purple-400",
+      shadowColor: "shadow-purple-100",
+    },
+    {
+      title: t('services.expertCounseling'),
+      description: t('services.expertCounselingDesc'),
+      icon: Users,
+      gradient: "from-rose-500 to-pink-600",
+      bgGradient: "from-rose-50 to-pink-50",
+      borderColor: "border-rose-200 hover:border-rose-400",
+      shadowColor: "shadow-rose-100",
+    },
+    {
+      title: t('services.aiAssistant'),
+      description: t('services.aiAssistantDesc'),
+      icon: MessageCircle,
+      gradient: "from-teal-500 to-cyan-600",
+      bgGradient: "from-teal-50 to-cyan-50",
+      borderColor: "border-teal-200 hover:border-teal-400",
+      shadowColor: "shadow-teal-100",
+    },
+  ];
+
   return (
     <section className="py-20 md:py-28 bg-gradient-to-br from-gray-50 via-white to-emerald-50/30" id="services">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center mb-16">
           <span className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-100 to-green-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
             <Compass className="w-4 h-4" />
-            Complete Support System
+            {t('services.badge')}
           </span>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-5">
-            Your Complete Career Journey
+            {t('services.title')}
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            From self-discovery to job offers, JKKN AI Horizons supports every stage of your journey.
+            {t('services.description')}
           </p>
         </div>
 
