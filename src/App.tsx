@@ -77,6 +77,7 @@ function App() {
                 
                 {/* Student Routes */}
                 <Route path="/student-dashboard" element={<StudentDashboard />} />
+                <Route path="/career-assessment" element={<AICareerPredictor />} />
                 <Route path="/career-assessment/chat" element={<CareerChat />} />
                 <Route path="/career-assessment/colleges" element={<CareerAssessmentColleges />} />
                 <Route path="/career-assessment/take/:type" element={<TakeAssessment />} />
