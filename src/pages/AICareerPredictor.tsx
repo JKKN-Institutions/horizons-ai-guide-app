@@ -249,6 +249,47 @@ export default function AICareerPredictor() {
     return -1;
   };
 
+  // Calculate overall winner with weighted scores
+  const calculateOverallScore = (career: CareerPrediction) => {
+    const matchWeight = 0.30;
+    const salaryWeight = 0.25;
+    const growthWeight = 0.20;
+    const balanceWeight = 0.15;
+    const demandWeight = 0.10;
+
+    const matchScore = career.matchScore || 0;
+    const growthScore = parseInt(career.growthRate?.replace(/[^0-9]/g, '') || '0');
+    const balanceScore = career.workLifeBalance || 70;
+    const demandScore = career.jobDemand || 75;
+    
+    // Normalize salary to 0-100 scale (assuming ₹5-50 LPA range)
+    const salaryMatch = career.avgSalary?.match(/(\d+)/g);
+    const avgSalary = salaryMatch ? (parseInt(salaryMatch[0]) + parseInt(salaryMatch[1] || salaryMatch[0])) / 2 : 15;
+    const salaryScore = Math.min((avgSalary / 50) * 100, 100);
+
+    return Math.round(
+      matchScore * matchWeight +
+      salaryScore * salaryWeight +
+      growthScore * growthWeight +
+      balanceScore * balanceWeight +
+      demandScore * demandWeight
+    );
+  };
+
+  const getOverallWinner = () => {
+    const careers = getComparisonCareers();
+    if (careers.length < 2) return { winner: -1, scores: [0, 0] };
+    
+    const score0 = calculateOverallScore(careers[0]);
+    const score1 = calculateOverallScore(careers[1]);
+    
+    return {
+      winner: score0 > score1 ? 0 : score1 > score0 ? 1 : -1,
+      scores: [score0, score1],
+      margin: Math.abs(score0 - score1)
+    };
+  };
+
   if (showResults) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
@@ -364,6 +405,133 @@ export default function AICareerPredictor() {
                       </Card>
                     ))}
                   </div>
+
+                  {/* Overall Winner Section with Animated Score Reveal */}
+                  {(() => {
+                    const result = getOverallWinner();
+                    const careers = getComparisonCareers();
+                    return (
+                      <Card className="overflow-hidden border-2 border-amber-200 bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50">
+                        <CardHeader className="pb-3 bg-gradient-to-r from-amber-100/80 to-orange-100/80">
+                          <CardTitle className="text-center flex items-center justify-center gap-2">
+                            <Award className="h-5 w-5 text-amber-600" />
+                            Overall Comparison Score
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="pt-6 pb-6">
+                          <div className="grid grid-cols-2 gap-6 mb-6">
+                            {careers.map((career, i) => {
+                              const isWinner = result.winner === i;
+                              return (
+                                <div 
+                                  key={i} 
+                                  className={`relative text-center p-6 rounded-2xl transition-all duration-500 ${
+                                    isWinner 
+                                      ? 'bg-gradient-to-br from-green-100 to-emerald-100 ring-4 ring-green-500 shadow-lg shadow-green-200 scale-105' 
+                                      : 'bg-muted/50'
+                                  }`}
+                                  style={{ 
+                                    animation: 'fade-in 0.5s ease-out forwards',
+                                    animationDelay: `${i * 0.2}s`,
+                                    opacity: 0
+                                  }}
+                                >
+                                  {isWinner && (
+                                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full animate-scale-in">
+                                      🏆 WINNER
+                                    </div>
+                                  )}
+                                  <span className="text-3xl block mb-2">{career.icon}</span>
+                                  <p className="font-semibold text-sm mb-3 truncate">{career.career}</p>
+                                  
+                                  {/* Animated Score Circle */}
+                                  <div className="relative w-24 h-24 mx-auto">
+                                    <svg className="w-full h-full transform -rotate-90">
+                                      <circle
+                                        cx="48"
+                                        cy="48"
+                                        r="42"
+                                        fill="none"
+                                        stroke="#e5e7eb"
+                                        strokeWidth="8"
+                                      />
+                                      <circle
+                                        cx="48"
+                                        cy="48"
+                                        r="42"
+                                        fill="none"
+                                        stroke={isWinner ? "#22c55e" : i === 0 ? "#3b82f6" : "#a855f7"}
+                                        strokeWidth="8"
+                                        strokeLinecap="round"
+                                        strokeDasharray={`${2 * Math.PI * 42}`}
+                                        strokeDashoffset={`${2 * Math.PI * 42 * (1 - result.scores[i] / 100)}`}
+                                        style={{
+                                          transition: 'stroke-dashoffset 1.5s ease-out',
+                                          transitionDelay: `${0.5 + i * 0.3}s`
+                                        }}
+                                      />
+                                    </svg>
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                      <span 
+                                        className={`text-2xl font-bold ${isWinner ? 'text-green-600' : 'text-foreground'}`}
+                                        style={{
+                                          animation: 'scale-in 0.5s ease-out forwards',
+                                          animationDelay: `${0.8 + i * 0.3}s`,
+                                          opacity: 0
+                                        }}
+                                      >
+                                        {result.scores[i]}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <p className="text-xs text-muted-foreground mt-2">out of 100</p>
+                                </div>
+                              );
+                            })}
+                          </div>
+
+                          {/* Score Breakdown */}
+                          <div 
+                            className="text-center p-4 bg-white/60 rounded-xl"
+                            style={{
+                              animation: 'fade-in 0.5s ease-out forwards',
+                              animationDelay: '1.2s',
+                              opacity: 0
+                            }}
+                          >
+                            {result.winner !== -1 ? (
+                              <p className="text-sm">
+                                <span className="font-bold text-green-600">{careers[result.winner]?.career}</span>
+                                {' '}wins by{' '}
+                                <span className="font-bold">{result.margin} points</span>
+                                {' '}based on salary, growth, balance, and demand factors.
+                              </p>
+                            ) : (
+                              <p className="text-sm font-medium text-amber-700">
+                                It's a tie! Both careers score equally well.
+                              </p>
+                            )}
+                          </div>
+
+                          {/* Scoring Criteria */}
+                          <div 
+                            className="mt-4 flex flex-wrap justify-center gap-2 text-xs text-muted-foreground"
+                            style={{
+                              animation: 'fade-in 0.5s ease-out forwards',
+                              animationDelay: '1.5s',
+                              opacity: 0
+                            }}
+                          >
+                            <Badge variant="outline" className="bg-white/50">Match 30%</Badge>
+                            <Badge variant="outline" className="bg-white/50">Salary 25%</Badge>
+                            <Badge variant="outline" className="bg-white/50">Growth 20%</Badge>
+                            <Badge variant="outline" className="bg-white/50">Balance 15%</Badge>
+                            <Badge variant="outline" className="bg-white/50">Demand 10%</Badge>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })()}
 
                   {/* Radar Chart Visualization */}
                   <Card className="overflow-hidden">
