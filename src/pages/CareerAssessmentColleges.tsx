@@ -494,7 +494,7 @@ const CareerAssessmentColleges = () => {
                         
                         <Button 
                           className={`w-full py-6 text-base font-semibold rounded-xl shadow-lg transition-all duration-300 ${booster.buttonGradient} group-hover:shadow-xl`}
-                          onClick={() => navigate('#career-booster')}
+                          onClick={() => navigate(booster.id === 'ai_predictor' ? '/career-assessment/ai-predictor' : '/career-assessment/ai-predictor')}
                         >
                           {booster.buttonText}
                         </Button>
