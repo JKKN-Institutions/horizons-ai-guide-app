@@ -163,6 +163,9 @@ export default function AICareerPredictor() {
   const [showCompareModal, setShowCompareModal] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
   
+  // AbortController for cancelling API requests
+  const abortControllerRef = useRef<AbortController | null>(null);
+  
   // Sound effects state (persisted in localStorage)
   const [soundEnabled, setSoundEnabled] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -209,7 +212,19 @@ export default function AICareerPredictor() {
     );
   };
 
+  const cancelAnalysis = () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+    setIsLoading(false);
+    toast.info("Analysis cancelled");
+  };
+
   const getAIPredictions = async () => {
+    // Create new AbortController for this request
+    abortControllerRef.current = new AbortController();
+    
     setIsLoading(true);
     try {
       const streamLabel = streams.find(s => s.id === selectedStream)?.label || "";
@@ -226,6 +241,11 @@ export default function AICareerPredictor() {
         },
       });
 
+      // Check if cancelled
+      if (abortControllerRef.current?.signal.aborted) {
+        return;
+      }
+
       console.log("Career predictor response:", { data, error });
 
       if (error) {
@@ -238,7 +258,7 @@ export default function AICareerPredictor() {
         
         // Get skill recommendations for top career
         const topCareer = data.predictions[0]?.career;
-        if (topCareer) {
+        if (topCareer && !abortControllerRef.current?.signal.aborted) {
           try {
             const skillData = await supabase.functions.invoke("career-predictor", {
               body: { type: "skills", career: topCareer },
@@ -248,17 +268,19 @@ export default function AICareerPredictor() {
             }
           } catch (skillError) {
             console.error("Failed to fetch skills:", skillError);
-            // Continue without skills - not critical
           }
         }
         
         setShowResults(true);
       } else {
-        // No predictions in response, use fallback
         console.warn("No predictions in response, using fallback");
         throw new Error("No predictions received");
       }
     } catch (error) {
+      // Don't show error if cancelled
+      if (abortControllerRef.current?.signal.aborted) {
+        return;
+      }
       console.error("Error getting predictions:", error);
       toast.error("Failed to get predictions. Showing sample results.");
       // Fallback predictions
@@ -294,6 +316,7 @@ export default function AICareerPredictor() {
       setShowResults(true);
     } finally {
       setIsLoading(false);
+      abortControllerRef.current = null;
     }
   };
 
@@ -1121,30 +1144,47 @@ export default function AICareerPredictor() {
           )}
 
           {/* Navigation */}
-          <div className="flex justify-center mt-8">
-            <Button
-              size="lg"
-              onClick={handleNext}
-              disabled={!canProceed() || isLoading}
-              className="min-w-[200px]"
-            >
-              {isLoading ? (
-                <>
+          <div className="flex justify-center gap-3 mt-8">
+            {isLoading ? (
+              <>
+                <Button
+                  size="lg"
+                  disabled
+                  className="min-w-[160px]"
+                >
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                   Analyzing...
-                </>
-              ) : step === 4 ? (
-                <>
-                  <Sparkles className="h-4 w-4 mr-2" />
-                  Get Predictions
-                </>
-              ) : (
-                <>
-                  Continue
-                  <ChevronRight className="h-4 w-4 ml-2" />
-                </>
-              )}
-            </Button>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={cancelAnalysis}
+                  className="min-w-[120px]"
+                >
+                  <X className="h-4 w-4 mr-2" />
+                  Cancel
+                </Button>
+              </>
+            ) : (
+              <Button
+                size="lg"
+                onClick={handleNext}
+                disabled={!canProceed()}
+                className="min-w-[200px]"
+              >
+                {step === 4 ? (
+                  <>
+                    <Sparkles className="h-4 w-4 mr-2" />
+                    Get Predictions
+                  </>
+                ) : (
+                  <>
+                    Continue
+                    <ChevronRight className="h-4 w-4 ml-2" />
+                  </>
+                )}
+              </Button>
+            )}
           </div>
         </div>
       </div>
