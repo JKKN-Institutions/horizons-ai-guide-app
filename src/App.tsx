@@ -42,6 +42,7 @@ import JKKNRoadmapDetail from "./pages/JKKNRoadmapDetail";
 import JKKNLearnerProfile from "./pages/JKKNLearnerProfile";
 import CareerAssessment from "./pages/CareerAssessment";
 import AICareerPredictor from "./pages/AICareerPredictor";
+import SavedCourses from "./pages/SavedCourses";
 
 const queryClient = new QueryClient();
 
@@ -89,6 +90,7 @@ function App() {
                 <Route path="/career-assessment/pyq-practice" element={<PYQPractice />} />
                 <Route path="/career-assessment/boosting" element={<CareerAssessment />} />
                 <Route path="/career-assessment/ai-predictor" element={<AICareerPredictor />} />
+                <Route path="/career-assessment/saved-courses" element={<SavedCourses />} />
                 
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />

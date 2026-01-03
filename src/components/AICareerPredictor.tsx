@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Brain, Sparkles, ArrowLeft, ArrowRight, GraduationCap, Clock, 
@@ -105,6 +106,7 @@ const loadingMessages = [
 type SortOption = 'match' | 'fees-asc' | 'fees-desc' | 'duration';
 
 const AICareerPredictor: React.FC = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState<'intro' | 'form' | 'loading' | 'results'>('intro');
   const [formStep, setFormStep] = useState(1);
   const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
@@ -759,16 +761,29 @@ const AICareerPredictor: React.FC = () => {
                         </SheetHeader>
                         <div className="space-y-6 mt-6">
                           {/* Favorites Toggle */}
-                          <div className="flex items-center gap-3">
-                            <Checkbox
-                              id="favorites"
-                              checked={showFavoritesOnly}
-                              onCheckedChange={(checked) => setShowFavoritesOnly(checked === true)}
-                            />
-                            <Label htmlFor="favorites" className="flex items-center gap-2">
-                              <Heart className="w-4 h-4 text-red-500" />
-                              Show Saved Only ({getFavoritesCount()})
-                            </Label>
+                          <div className="space-y-3">
+                            <div className="flex items-center gap-3">
+                              <Checkbox
+                                id="favorites"
+                                checked={showFavoritesOnly}
+                                onCheckedChange={(checked) => setShowFavoritesOnly(checked === true)}
+                              />
+                              <Label htmlFor="favorites" className="flex items-center gap-2">
+                                <Heart className="w-4 h-4 text-red-500" />
+                                Show Saved Only ({getFavoritesCount()})
+                              </Label>
+                            </div>
+                            {getFavoritesCount() > 0 && (
+                              <Button 
+                                variant="outline" 
+                                size="sm" 
+                                className="w-full"
+                                onClick={() => navigate('/career-assessment/saved-courses')}
+                              >
+                                <Bookmark className="w-4 h-4 mr-2" />
+                                View All Saved Courses
+                              </Button>
+                            )}
                           </div>
 
                           {/* Duration Filter */}
