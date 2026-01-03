@@ -38,7 +38,7 @@ const HeroSection = () => {
 
               <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold italic animate-fade-up" style={{ animationDelay: '0.2s' }}>
                 <span className="bg-gradient-to-r from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">
-                  வழிகாட்டி
+                  Discover, Design, Do - வழிகாட்டி
                 </span>
               </h2>
 
