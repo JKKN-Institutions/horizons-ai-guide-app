@@ -162,6 +162,8 @@ export default function AICareerPredictor() {
   const [selectedForCompare, setSelectedForCompare] = useState<number[]>([]);
   const [showCompareModal, setShowCompareModal] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
+  const [showErrorState, setShowErrorState] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
   
   // AbortController for cancelling API requests
   const abortControllerRef = useRef<AbortController | null>(null);
@@ -282,43 +284,54 @@ export default function AICareerPredictor() {
         return;
       }
       console.error("Error getting predictions:", error);
-      toast.error("Failed to get predictions. Showing sample results.");
-      // Fallback predictions
-      setPredictions([
-        {
-          career: "Software Developer",
-          matchScore: 87,
-          icon: "💻",
-          color: "from-blue-500 to-indigo-600",
-          description: "Build applications and solve problems through code",
-          avgSalary: "₹8-25 LPA",
-          growthRate: "+35%",
-        },
-        {
-          career: "Data Analyst",
-          matchScore: 82,
-          icon: "📊",
-          color: "from-purple-500 to-pink-600",
-          description: "Analyze data to drive business decisions",
-          avgSalary: "₹6-18 LPA",
-          growthRate: "+28%",
-        },
-        {
-          career: "Product Manager",
-          matchScore: 78,
-          icon: "🎯",
-          color: "from-emerald-500 to-teal-600",
-          description: "Lead product development and strategy",
-          avgSalary: "₹12-35 LPA",
-          growthRate: "+25%",
-        },
-      ]);
-      setShowResults(true);
+      setShowErrorState(true);
+      toast.error("Failed to get predictions. You can retry or view sample results.");
     } finally {
       setIsLoading(false);
       abortControllerRef.current = null;
     }
   };
+
+  const useFallbackResults = () => {
+    setShowErrorState(false);
+    setPredictions([
+      {
+        career: "Software Developer",
+        matchScore: 87,
+        icon: "💻",
+        color: "from-blue-500 to-indigo-600",
+        description: "Build applications and solve problems through code",
+        avgSalary: "₹8-25 LPA",
+        growthRate: "+35%",
+      },
+      {
+        career: "Data Analyst",
+        matchScore: 82,
+        icon: "📊",
+        color: "from-purple-500 to-pink-600",
+        description: "Analyze data to drive business decisions",
+        avgSalary: "₹6-18 LPA",
+        growthRate: "+28%",
+      },
+      {
+        career: "Product Manager",
+        matchScore: 78,
+        icon: "🎯",
+        color: "from-emerald-500 to-teal-600",
+        description: "Lead product development and strategy",
+        avgSalary: "₹12-35 LPA",
+        growthRate: "+25%",
+      },
+    ]);
+    setShowResults(true);
+  };
+
+  const handleRetry = () => {
+    setShowErrorState(false);
+    setRetryCount(prev => prev + 1);
+    getAIPredictions();
+  };
+
 
   const canProceed = () => {
     if (step === 1) return selectedStream !== "";
@@ -1143,49 +1156,77 @@ export default function AICareerPredictor() {
             </div>
           )}
 
+          {/* Error State with Retry */}
+          {showErrorState && !isLoading && (
+            <Card className="border-destructive/50 bg-destructive/5">
+              <CardContent className="p-6 text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-destructive/10 mb-4">
+                  <X className="h-6 w-6 text-destructive" />
+                </div>
+                <h3 className="font-semibold text-lg mb-2">Failed to get AI predictions</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  {retryCount >= 2 
+                    ? "Multiple attempts failed. You can try again or view sample career results."
+                    : "The AI service is temporarily unavailable. You can retry or view sample results."}
+                </p>
+                <div className="flex justify-center gap-3">
+                  <Button onClick={handleRetry} className="gap-2">
+                    <RotateCcw className="h-4 w-4" />
+                    Retry {retryCount > 0 && `(${retryCount})`}
+                  </Button>
+                  <Button variant="outline" onClick={useFallbackResults}>
+                    View Sample Results
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           {/* Navigation */}
-          <div className="flex justify-center gap-3 mt-8">
-            {isLoading ? (
-              <>
+          {!showErrorState && (
+            <div className="flex justify-center gap-3 mt-8">
+              {isLoading ? (
+                <>
+                  <Button
+                    size="lg"
+                    disabled
+                    className="min-w-[160px]"
+                  >
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Analyzing...
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    onClick={cancelAnalysis}
+                    className="min-w-[120px]"
+                  >
+                    <X className="h-4 w-4 mr-2" />
+                    Cancel
+                  </Button>
+                </>
+              ) : (
                 <Button
                   size="lg"
-                  disabled
-                  className="min-w-[160px]"
+                  onClick={handleNext}
+                  disabled={!canProceed()}
+                  className="min-w-[200px]"
                 >
-                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  Analyzing...
+                  {step === 4 ? (
+                    <>
+                      <Sparkles className="h-4 w-4 mr-2" />
+                      Get Predictions
+                    </>
+                  ) : (
+                    <>
+                      Continue
+                      <ChevronRight className="h-4 w-4 ml-2" />
+                    </>
+                  )}
                 </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={cancelAnalysis}
-                  className="min-w-[120px]"
-                >
-                  <X className="h-4 w-4 mr-2" />
-                  Cancel
-                </Button>
-              </>
-            ) : (
-              <Button
-                size="lg"
-                onClick={handleNext}
-                disabled={!canProceed()}
-                className="min-w-[200px]"
-              >
-                {step === 4 ? (
-                  <>
-                    <Sparkles className="h-4 w-4 mr-2" />
-                    Get Predictions
-                  </>
-                ) : (
-                  <>
-                    Continue
-                    <ChevronRight className="h-4 w-4 ml-2" />
-                  </>
-                )}
-              </Button>
-            )}
-          </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
