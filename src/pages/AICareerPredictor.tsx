@@ -216,6 +216,8 @@ export default function AICareerPredictor() {
       const prefLabels = selectedPreferences.map(p => workPreferences.find(wp => wp.id === p)?.label).join(", ");
       const styleLabel = workStyles.find(s => s.id === selectedStyle)?.label || "";
 
+      console.log("Fetching career predictions...");
+      
       const { data, error } = await supabase.functions.invoke("career-predictor", {
         body: {
           interests: `${streamLabel} student interested in ${interests || prefLabels}`,
@@ -224,27 +226,41 @@ export default function AICareerPredictor() {
         },
       });
 
-      if (error) throw error;
+      console.log("Career predictor response:", { data, error });
 
-      if (data?.predictions) {
+      if (error) {
+        console.error("Supabase function error:", error);
+        throw error;
+      }
+
+      if (data?.predictions && data.predictions.length > 0) {
         setPredictions(data.predictions);
         
         // Get skill recommendations for top career
         const topCareer = data.predictions[0]?.career;
         if (topCareer) {
-          const skillData = await supabase.functions.invoke("career-predictor", {
-            body: { type: "skills", career: topCareer },
-          });
-          if (skillData.data?.skills) {
-            setSkills(skillData.data.skills);
+          try {
+            const skillData = await supabase.functions.invoke("career-predictor", {
+              body: { type: "skills", career: topCareer },
+            });
+            if (skillData.data?.skills) {
+              setSkills(skillData.data.skills);
+            }
+          } catch (skillError) {
+            console.error("Failed to fetch skills:", skillError);
+            // Continue without skills - not critical
           }
         }
         
         setShowResults(true);
+      } else {
+        // No predictions in response, use fallback
+        console.warn("No predictions in response, using fallback");
+        throw new Error("No predictions received");
       }
     } catch (error) {
       console.error("Error getting predictions:", error);
-      toast.error("Failed to get predictions. Please try again.");
+      toast.error("Failed to get predictions. Showing sample results.");
       // Fallback predictions
       setPredictions([
         {
