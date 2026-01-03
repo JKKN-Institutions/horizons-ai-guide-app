@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, Sparkles, ArrowLeft, ArrowRight, GraduationCap, Clock, IndianRupee, FileText, Building, ChevronRight, Loader2, Check } from 'lucide-react';
+import { 
+  Brain, Sparkles, ArrowLeft, ArrowRight, GraduationCap, Clock, 
+  IndianRupee, FileText, Building, ChevronRight, Check, Heart, 
+  Search, SlidersHorizontal, ArrowUpDown, X, Download, Share2, 
+  Printer, MessageCircle, Scale, Bookmark
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -9,7 +14,13 @@ import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Input } from '@/components/ui/input';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { toast } from '@/hooks/use-toast';
 import { courseDatabase, Course, interestToCourseCategories, priorityFeesMapping, durationMapping } from '@/data/courseDatabase';
+import { useCareerPredictorFavorites } from '@/hooks/useCareerPredictorFavorites';
+import { generateCareerPredictorPDF } from '@/pages/generateCareerPredictorPDF';
 
 // Types
 interface FormData {
@@ -20,6 +31,7 @@ interface FormData {
   budget: string;
   duration: string;
 }
+
 
 interface CourseMatch extends Course {
   matchScore: number;
@@ -90,6 +102,8 @@ const loadingMessages = [
   { message: '✨ Generating recommendations...', duration: 2000 },
 ];
 
+type SortOption = 'match' | 'fees-asc' | 'fees-desc' | 'duration';
+
 const AICareerPredictor: React.FC = () => {
   const [step, setStep] = useState<'intro' | 'form' | 'loading' | 'results'>('intro');
   const [formStep, setFormStep] = useState(1);
@@ -97,6 +111,18 @@ const AICareerPredictor: React.FC = () => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [selectedCourse, setSelectedCourse] = useState<CourseMatch | null>(null);
   const [recommendations, setRecommendations] = useState<CourseMatch[]>([]);
+  
+  // New state for features
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState<SortOption>('match');
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+  const [selectedForCompare, setSelectedForCompare] = useState<Set<string>>(new Set());
+  const [showCompareModal, setShowCompareModal] = useState(false);
+  const [filterDuration, setFilterDuration] = useState<string>('all');
+  const [filterExam, setFilterExam] = useState<string>('all');
+  const [filterFees, setFilterFees] = useState<string>('all');
+  
+  const { favorites, toggleFavorite, isFavorite, getFavoritesCount } = useCareerPredictorFavorites();
   
   const [formData, setFormData] = useState<FormData>({
     stream: '',
@@ -130,7 +156,6 @@ const AICareerPredictor: React.FC = () => {
   };
 
   const calculateRecommendations = (): CourseMatch[] => {
-    // Filter courses based on stream
     let eligibleCourses = courseDatabase.filter(course => {
       if (formData.stream === 'pcm') return course.stream === 'pcm';
       if (formData.stream === 'pcb') return course.stream === 'pcb';
@@ -141,12 +166,10 @@ const AICareerPredictor: React.FC = () => {
       return true;
     });
 
-    // Calculate match scores
     const scoredCourses: CourseMatch[] = eligibleCourses.map(course => {
-      let score = 50; // Base score
+      let score = 50;
       const matchReasons: string[] = [];
 
-      // Interest matching (up to 30 points)
       formData.interests.forEach(interest => {
         const categories = interestToCourseCategories[interest] || [];
         if (categories.includes(course.category)) {
@@ -155,7 +178,6 @@ const AICareerPredictor: React.FC = () => {
         }
       });
 
-      // Budget matching (up to 10 points)
       const budgetLimit = priorityFeesMapping[formData.budget]?.maxFees || 1000000;
       const courseFees = parseInt(course.feesRange.replace(/[^\d]/g, '')) || 100000;
       if (courseFees <= budgetLimit) {
@@ -163,7 +185,6 @@ const AICareerPredictor: React.FC = () => {
         matchReasons.push('Fits within your budget');
       }
 
-      // Duration matching (up to 10 points)
       const durationPref = durationMapping[formData.duration];
       if (durationPref) {
         const courseDuration = parseInt(course.duration) || 3;
@@ -173,7 +194,6 @@ const AICareerPredictor: React.FC = () => {
         }
       }
 
-      // Priority-based adjustments
       if (formData.priorities.includes('salary')) {
         if (['Engineering', 'Medical', 'Management', 'Law'].includes(course.category)) {
           score += 5;
@@ -206,10 +226,7 @@ const AICareerPredictor: React.FC = () => {
       };
     });
 
-    // Sort by match score and return top 10
-    return scoredCourses
-      .sort((a, b) => b.matchScore - a.matchScore)
-      .slice(0, 10);
+    return scoredCourses.sort((a, b) => b.matchScore - a.matchScore).slice(0, 15);
   };
 
   const handlePredict = async () => {
@@ -217,17 +234,135 @@ const AICareerPredictor: React.FC = () => {
     setLoadingMessageIndex(0);
     setLoadingProgress(0);
 
-    // Simulate loading animation
     for (let i = 0; i < loadingMessages.length; i++) {
       setLoadingMessageIndex(i);
       setLoadingProgress((i + 1) * 25);
       await new Promise(resolve => setTimeout(resolve, loadingMessages[i].duration));
     }
 
-    // Calculate recommendations
     const results = calculateRecommendations();
     setRecommendations(results);
     setStep('results');
+  };
+
+  // Get unique filter options from recommendations
+  const uniqueExams = useMemo(() => {
+    const exams = new Set(recommendations.map(c => c.entranceExam));
+    return Array.from(exams);
+  }, [recommendations]);
+
+  // Filtered and sorted recommendations
+  const filteredRecommendations = useMemo(() => {
+    let filtered = [...recommendations];
+
+    // Search filter
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(c => 
+        c.name.toLowerCase().includes(query) ||
+        c.category.toLowerCase().includes(query) ||
+        c.description.toLowerCase().includes(query)
+      );
+    }
+
+    // Favorites filter
+    if (showFavoritesOnly) {
+      filtered = filtered.filter(c => isFavorite(c.id));
+    }
+
+    // Duration filter
+    if (filterDuration !== 'all') {
+      filtered = filtered.filter(c => {
+        const duration = parseInt(c.duration) || 3;
+        if (filterDuration === 'short') return duration <= 3;
+        if (filterDuration === 'medium') return duration > 3 && duration <= 4;
+        if (filterDuration === 'long') return duration > 4;
+        return true;
+      });
+    }
+
+    // Exam filter
+    if (filterExam !== 'all') {
+      filtered = filtered.filter(c => c.entranceExam === filterExam);
+    }
+
+    // Fees filter
+    if (filterFees !== 'all') {
+      filtered = filtered.filter(c => {
+        const fees = parseInt(c.feesRange.replace(/[^\d]/g, '')) || 100000;
+        if (filterFees === 'low') return fees <= 100000;
+        if (filterFees === 'medium') return fees > 100000 && fees <= 300000;
+        if (filterFees === 'high') return fees > 300000;
+        return true;
+      });
+    }
+
+    // Sort
+    if (sortBy === 'match') {
+      filtered.sort((a, b) => b.matchScore - a.matchScore);
+    } else if (sortBy === 'fees-asc') {
+      filtered.sort((a, b) => {
+        const feesA = parseInt(a.feesRange.replace(/[^\d]/g, '')) || 0;
+        const feesB = parseInt(b.feesRange.replace(/[^\d]/g, '')) || 0;
+        return feesA - feesB;
+      });
+    } else if (sortBy === 'fees-desc') {
+      filtered.sort((a, b) => {
+        const feesA = parseInt(a.feesRange.replace(/[^\d]/g, '')) || 0;
+        const feesB = parseInt(b.feesRange.replace(/[^\d]/g, '')) || 0;
+        return feesB - feesA;
+      });
+    } else if (sortBy === 'duration') {
+      filtered.sort((a, b) => {
+        const durA = parseInt(a.duration) || 3;
+        const durB = parseInt(b.duration) || 3;
+        return durA - durB;
+      });
+    }
+
+    return filtered;
+  }, [recommendations, searchQuery, showFavoritesOnly, filterDuration, filterExam, filterFees, sortBy, isFavorite]);
+
+  const handleToggleCompare = (courseId: string) => {
+    setSelectedForCompare(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(courseId)) {
+        newSet.delete(courseId);
+      } else if (newSet.size < 3) {
+        newSet.add(courseId);
+      } else {
+        toast({
+          title: "Maximum 3 courses",
+          description: "You can compare up to 3 courses at a time.",
+          variant: "destructive"
+        });
+      }
+      return newSet;
+    });
+  };
+
+  const coursesForCompare = useMemo(() => {
+    return recommendations.filter(c => selectedForCompare.has(c.id));
+  }, [recommendations, selectedForCompare]);
+
+  const handleDownloadPDF = () => {
+    generateCareerPredictorPDF(filteredRecommendations, formData);
+    toast({
+      title: "PDF Downloaded",
+      description: "Your career recommendations have been saved as PDF."
+    });
+  };
+
+  const handleShareWhatsApp = () => {
+    const topCourses = filteredRecommendations.slice(0, 3).map(c => `• ${c.name} (${c.matchScore}% match)`).join('\n');
+    const message = encodeURIComponent(
+      `🎓 My AI Career Predictor Results:\n\n${topCourses}\n\nDiscover your career path at JKKN AI Horizons!`
+    );
+    window.open(`https://wa.me/?text=${message}`, '_blank');
+  };
+
+  const handlePrint = () => {
+    window.print();
   };
 
   const canProceedToStep2 = formData.stream && formData.percentage;
@@ -238,6 +373,17 @@ const AICareerPredictor: React.FC = () => {
     if (score >= 60) return 'text-amber-600 bg-amber-100';
     return 'text-blue-600 bg-blue-100';
   };
+
+  const clearFilters = () => {
+    setSearchQuery('');
+    setFilterDuration('all');
+    setFilterExam('all');
+    setFilterFees('all');
+    setSortBy('match');
+    setShowFavoritesOnly(false);
+  };
+
+  const hasActiveFilters = searchQuery || filterDuration !== 'all' || filterExam !== 'all' || filterFees !== 'all' || showFavoritesOnly;
 
   return (
     <section className="py-16 px-4 bg-gradient-to-br from-background via-background to-muted/30">
@@ -254,7 +400,6 @@ const AICareerPredictor: React.FC = () => {
             >
               <Card className="border-0 shadow-lg bg-gradient-to-br from-card to-card/80">
                 <CardContent className="pt-8 pb-8">
-                  {/* Header */}
                   <div className="flex justify-center mb-6">
                     <div className="relative">
                       <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
@@ -386,7 +531,6 @@ const AICareerPredictor: React.FC = () => {
                         exit={{ opacity: 0, x: -20 }}
                         className="space-y-6"
                       >
-                        {/* Interest Selection */}
                         <div>
                           <h3 className="text-lg font-semibold text-foreground mb-2">What interests you? (Select up to 3)</h3>
                           <p className="text-muted-foreground text-sm mb-4">Choose fields that excite you the most</p>
@@ -409,7 +553,6 @@ const AICareerPredictor: React.FC = () => {
                           </div>
                         </div>
 
-                        {/* Priorities */}
                         <div>
                           <h3 className="text-lg font-semibold text-foreground mb-2">What matters most to you? (Select top 2)</h3>
                           <div className="flex flex-wrap gap-2">
@@ -431,7 +574,6 @@ const AICareerPredictor: React.FC = () => {
                           </div>
                         </div>
 
-                        {/* Budget */}
                         <div className="space-y-2">
                           <Label>Education budget per year?</Label>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -451,7 +593,6 @@ const AICareerPredictor: React.FC = () => {
                           </div>
                         </div>
 
-                        {/* Duration */}
                         <div className="space-y-2">
                           <Label>Preferred course duration?</Label>
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
@@ -530,78 +671,286 @@ const AICareerPredictor: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
+              className="space-y-4"
             >
+              {/* Header Card */}
               <Card className="border-0 shadow-lg">
                 <CardHeader className="border-b bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between flex-wrap gap-3">
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => {
                         setStep('form');
                         setFormStep(1);
+                        setSelectedForCompare(new Set());
+                        clearFilters();
                       }}
                     >
                       <ArrowLeft className="w-4 h-4 mr-1" />
                       Start Over
                     </Button>
-                    <div className="text-center">
+                    <div className="text-center flex-1">
                       <CardTitle className="text-xl flex items-center gap-2 justify-center">
                         <GraduationCap className="w-6 h-6" />
-                        Recommended Courses for You
+                        Recommended Courses
                       </CardTitle>
                       <p className="text-sm text-muted-foreground mt-1">
-                        Based on your stream, interests & preferences
+                        {filteredRecommendations.length} courses found
                       </p>
                     </div>
-                    <div className="w-24" />
+                    {/* Share Actions */}
+                    <div className="flex items-center gap-2">
+                      <Button variant="outline" size="icon" onClick={handleDownloadPDF} title="Download PDF">
+                        <Download className="w-4 h-4" />
+                      </Button>
+                      <Button variant="outline" size="icon" onClick={handleShareWhatsApp} title="Share on WhatsApp">
+                        <MessageCircle className="w-4 h-4" />
+                      </Button>
+                      <Button variant="outline" size="icon" onClick={handlePrint} title="Print">
+                        <Printer className="w-4 h-4" />
+                      </Button>
+                    </div>
                   </div>
                 </CardHeader>
-                <CardContent className="pt-6">
-                  <div className="space-y-4">
-                    {recommendations.map((course, index) => (
-                      <motion.div
-                        key={course.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        <Card
-                          className="cursor-pointer hover:shadow-md transition-all border-l-4"
-                          style={{ borderLeftColor: course.matchScore >= 80 ? '#16a34a' : course.matchScore >= 60 ? '#d97706' : '#2563eb' }}
-                          onClick={() => setSelectedCourse(course)}
+
+                {/* Search & Filter Bar */}
+                <CardContent className="pt-4 pb-3 border-b">
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    {/* Search */}
+                    <div className="relative flex-1">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                      <Input
+                        placeholder="Search courses..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="pl-10"
+                      />
+                    </div>
+
+                    {/* Sort */}
+                    <Select value={sortBy} onValueChange={(v) => setSortBy(v as SortOption)}>
+                      <SelectTrigger className="w-full sm:w-[160px]">
+                        <ArrowUpDown className="w-4 h-4 mr-2" />
+                        <SelectValue placeholder="Sort by" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="match">Best Match</SelectItem>
+                        <SelectItem value="fees-asc">Fees: Low to High</SelectItem>
+                        <SelectItem value="fees-desc">Fees: High to Low</SelectItem>
+                        <SelectItem value="duration">Duration</SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    {/* Filters Sheet */}
+                    <Sheet>
+                      <SheetTrigger asChild>
+                        <Button variant="outline" className="relative">
+                          <SlidersHorizontal className="w-4 h-4 mr-2" />
+                          Filters
+                          {hasActiveFilters && (
+                            <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full" />
+                          )}
+                        </Button>
+                      </SheetTrigger>
+                      <SheetContent>
+                        <SheetHeader>
+                          <SheetTitle>Filter Courses</SheetTitle>
+                        </SheetHeader>
+                        <div className="space-y-6 mt-6">
+                          {/* Favorites Toggle */}
+                          <div className="flex items-center gap-3">
+                            <Checkbox
+                              id="favorites"
+                              checked={showFavoritesOnly}
+                              onCheckedChange={(checked) => setShowFavoritesOnly(checked === true)}
+                            />
+                            <Label htmlFor="favorites" className="flex items-center gap-2">
+                              <Heart className="w-4 h-4 text-red-500" />
+                              Show Saved Only ({getFavoritesCount()})
+                            </Label>
+                          </div>
+
+                          {/* Duration Filter */}
+                          <div className="space-y-2">
+                            <Label>Duration</Label>
+                            <Select value={filterDuration} onValueChange={setFilterDuration}>
+                              <SelectTrigger>
+                                <SelectValue placeholder="All durations" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="all">All Durations</SelectItem>
+                                <SelectItem value="short">2-3 years</SelectItem>
+                                <SelectItem value="medium">3-4 years</SelectItem>
+                                <SelectItem value="long">5+ years</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+
+                          {/* Entrance Exam Filter */}
+                          <div className="space-y-2">
+                            <Label>Entrance Exam</Label>
+                            <Select value={filterExam} onValueChange={setFilterExam}>
+                              <SelectTrigger>
+                                <SelectValue placeholder="All exams" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="all">All Exams</SelectItem>
+                                {uniqueExams.map(exam => (
+                                  <SelectItem key={exam} value={exam}>{exam}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+
+                          {/* Fees Filter */}
+                          <div className="space-y-2">
+                            <Label>Fees Range</Label>
+                            <Select value={filterFees} onValueChange={setFilterFees}>
+                              <SelectTrigger>
+                                <SelectValue placeholder="All fees" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="all">All Fees</SelectItem>
+                                <SelectItem value="low">Under ₹1 Lakh</SelectItem>
+                                <SelectItem value="medium">₹1-3 Lakh</SelectItem>
+                                <SelectItem value="high">Above ₹3 Lakh</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+
+                          <Button variant="outline" className="w-full" onClick={clearFilters}>
+                            <X className="w-4 h-4 mr-2" />
+                            Clear All Filters
+                          </Button>
+                        </div>
+                      </SheetContent>
+                    </Sheet>
+                  </div>
+
+                  {/* Compare Bar */}
+                  {selectedForCompare.size > 0 && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-3 p-3 bg-primary/10 rounded-lg flex items-center justify-between"
+                    >
+                      <span className="text-sm font-medium">
+                        {selectedForCompare.size} course{selectedForCompare.size > 1 ? 's' : ''} selected for comparison
+                      </span>
+                      <div className="flex gap-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={() => setSelectedForCompare(new Set())}
                         >
-                          <CardContent className="py-4">
-                            <div className="flex items-start justify-between gap-4">
-                              <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-2">
-                                  <h4 className="font-semibold text-foreground">{course.name}</h4>
-                                  <Badge className={getMatchColor(course.matchScore)}>
-                                    {course.matchScore}% Match
-                                  </Badge>
+                          Clear
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          onClick={() => setShowCompareModal(true)}
+                          disabled={selectedForCompare.size < 2}
+                        >
+                          <Scale className="w-4 h-4 mr-1" />
+                          Compare
+                        </Button>
+                      </div>
+                    </motion.div>
+                  )}
+                </CardContent>
+
+                {/* Course List */}
+                <CardContent className="pt-4">
+                  <div className="space-y-3">
+                    {filteredRecommendations.length === 0 ? (
+                      <div className="text-center py-8 text-muted-foreground">
+                        <GraduationCap className="w-12 h-12 mx-auto mb-3 opacity-50" />
+                        <p>No courses match your filters</p>
+                        <Button variant="link" onClick={clearFilters}>Clear filters</Button>
+                      </div>
+                    ) : (
+                      filteredRecommendations.map((course, index) => (
+                        <motion.div
+                          key={course.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                        >
+                          <Card
+                            className="hover:shadow-md transition-all border-l-4"
+                            style={{ borderLeftColor: course.matchScore >= 80 ? '#16a34a' : course.matchScore >= 60 ? '#d97706' : '#2563eb' }}
+                          >
+                            <CardContent className="py-4">
+                              <div className="flex items-start gap-3">
+                                {/* Compare Checkbox */}
+                                <Checkbox
+                                  checked={selectedForCompare.has(course.id)}
+                                  onCheckedChange={() => handleToggleCompare(course.id)}
+                                  className="mt-1"
+                                />
+
+                                {/* Course Info */}
+                                <div 
+                                  className="flex-1 cursor-pointer"
+                                  onClick={() => setSelectedCourse(course)}
+                                >
+                                  <div className="flex items-center gap-2 mb-2 flex-wrap">
+                                    <h4 className="font-semibold text-foreground">{course.name}</h4>
+                                    <Badge className={getMatchColor(course.matchScore)}>
+                                      {course.matchScore}% Match
+                                    </Badge>
+                                  </div>
+                                  <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{course.description}</p>
+                                  <div className="flex flex-wrap gap-3 text-xs text-muted-foreground">
+                                    <span className="flex items-center gap-1">
+                                      <Clock className="w-3 h-3" />
+                                      {course.duration}
+                                    </span>
+                                    <span className="flex items-center gap-1">
+                                      <IndianRupee className="w-3 h-3" />
+                                      {course.feesRange}
+                                    </span>
+                                    <span className="flex items-center gap-1">
+                                      <FileText className="w-3 h-3" />
+                                      {course.entranceExam}
+                                    </span>
+                                  </div>
                                 </div>
-                                <p className="text-sm text-muted-foreground mb-3">{course.description}</p>
-                                <div className="flex flex-wrap gap-3 text-xs text-muted-foreground">
-                                  <span className="flex items-center gap-1">
-                                    <Clock className="w-3 h-3" />
-                                    {course.duration}
-                                  </span>
-                                  <span className="flex items-center gap-1">
-                                    <IndianRupee className="w-3 h-3" />
-                                    {course.feesRange}
-                                  </span>
-                                  <span className="flex items-center gap-1">
-                                    <FileText className="w-3 h-3" />
-                                    {course.entranceExam}
-                                  </span>
+
+                                {/* Actions */}
+                                <div className="flex flex-col gap-2">
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      toggleFavorite(course.id);
+                                      toast({
+                                        title: isFavorite(course.id) ? "Removed from saved" : "Saved!",
+                                        description: isFavorite(course.id) 
+                                          ? `${course.name} removed from your saved courses`
+                                          : `${course.name} added to your saved courses`
+                                      });
+                                    }}
+                                    className="h-8 w-8"
+                                  >
+                                    <Heart className={`w-4 h-4 ${isFavorite(course.id) ? 'fill-red-500 text-red-500' : ''}`} />
+                                  </Button>
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={() => setSelectedCourse(course)}
+                                    className="h-8 w-8"
+                                  >
+                                    <ChevronRight className="w-4 h-4" />
+                                  </Button>
                                 </div>
                               </div>
-                              <ChevronRight className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-                    ))}
+                            </CardContent>
+                          </Card>
+                        </motion.div>
+                      ))
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -621,15 +970,26 @@ const AICareerPredictor: React.FC = () => {
             <ScrollArea className="max-h-[70vh] pr-4">
               {selectedCourse && (
                 <div className="space-y-6">
-                  {/* Match Score */}
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 flex-wrap">
                     <Badge className={`${getMatchColor(selectedCourse.matchScore)} text-lg px-4 py-1`}>
                       {selectedCourse.matchScore}% Match
                     </Badge>
                     <Badge variant="outline">{selectedCourse.category}</Badge>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        toggleFavorite(selectedCourse.id);
+                        toast({
+                          title: isFavorite(selectedCourse.id) ? "Removed" : "Saved!",
+                        });
+                      }}
+                    >
+                      <Heart className={`w-4 h-4 mr-1 ${isFavorite(selectedCourse.id) ? 'fill-red-500 text-red-500' : ''}`} />
+                      {isFavorite(selectedCourse.id) ? 'Saved' : 'Save'}
+                    </Button>
                   </div>
 
-                  {/* Match Reasons */}
                   <div>
                     <h4 className="font-medium mb-2 text-foreground">Why this is recommended:</h4>
                     <ul className="space-y-1">
@@ -642,13 +1002,11 @@ const AICareerPredictor: React.FC = () => {
                     </ul>
                   </div>
 
-                  {/* Description */}
                   <div>
                     <h4 className="font-medium mb-2 text-foreground">About this course</h4>
                     <p className="text-sm text-muted-foreground">{selectedCourse.description}</p>
                   </div>
 
-                  {/* Key Details */}
                   <div className="grid grid-cols-2 gap-4">
                     <div className="p-3 bg-muted/50 rounded-lg">
                       <p className="text-xs text-muted-foreground mb-1">Duration</p>
@@ -677,7 +1035,6 @@ const AICareerPredictor: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Career Prospects */}
                   {selectedCourse.careerProspects && (
                     <div>
                       <h4 className="font-medium mb-2 text-foreground">Career Prospects</h4>
@@ -689,7 +1046,6 @@ const AICareerPredictor: React.FC = () => {
                     </div>
                   )}
 
-                  {/* Top Colleges */}
                   {selectedCourse.topColleges && (
                     <div>
                       <h4 className="font-medium mb-2 text-foreground flex items-center gap-2">
@@ -705,6 +1061,64 @@ const AICareerPredictor: React.FC = () => {
                   )}
                 </div>
               )}
+            </ScrollArea>
+          </DialogContent>
+        </Dialog>
+
+        {/* Compare Modal */}
+        <Dialog open={showCompareModal} onOpenChange={setShowCompareModal}>
+          <DialogContent className="max-w-4xl max-h-[90vh]">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <Scale className="w-5 h-5" />
+                Compare Courses
+              </DialogTitle>
+            </DialogHeader>
+            <ScrollArea className="max-h-[70vh]">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {coursesForCompare.map(course => (
+                  <Card key={course.id} className="border-t-4" style={{ borderTopColor: course.matchScore >= 80 ? '#16a34a' : course.matchScore >= 60 ? '#d97706' : '#2563eb' }}>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-base">{course.name}</CardTitle>
+                      <Badge className={getMatchColor(course.matchScore)}>
+                        {course.matchScore}% Match
+                      </Badge>
+                    </CardHeader>
+                    <CardContent className="space-y-3 text-sm">
+                      <div>
+                        <span className="text-muted-foreground">Duration:</span>
+                        <p className="font-medium">{course.duration}</p>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground">Fees:</span>
+                        <p className="font-medium">{course.feesRange}</p>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground">Entrance Exam:</span>
+                        <p className="font-medium">{course.entranceExam}</p>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground">Eligibility:</span>
+                        <p className="font-medium">{course.eligibility}</p>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground">Category:</span>
+                        <p className="font-medium">{course.category}</p>
+                      </div>
+                      {course.careerProspects && (
+                        <div>
+                          <span className="text-muted-foreground">Careers:</span>
+                          <div className="flex flex-wrap gap-1 mt-1">
+                            {course.careerProspects.slice(0, 3).map((c, i) => (
+                              <Badge key={i} variant="outline" className="text-xs">{c}</Badge>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </ScrollArea>
           </DialogContent>
         </Dialog>
