@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw } from "lucide-react";
+import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw, Volume2, VolumeX } from "lucide-react";
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,9 +8,59 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, ResponsiveContainer } from "recharts";
+
+// Web Audio API celebration sound generator
+const createCelebrationSound = (audioContext: AudioContext) => {
+  const now = audioContext.currentTime;
+  
+  // Create ascending tones for celebration
+  const frequencies = [523.25, 659.25, 783.99, 1046.50];
+  
+  frequencies.forEach((freq, i) => {
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(freq, now + i * 0.1);
+    
+    gainNode.gain.setValueAtTime(0, now + i * 0.1);
+    gainNode.gain.linearRampToValueAtTime(0.15, now + i * 0.1 + 0.05);
+    gainNode.gain.linearRampToValueAtTime(0, now + i * 0.1 + 0.3);
+    
+    oscillator.start(now + i * 0.1);
+    oscillator.stop(now + i * 0.1 + 0.35);
+  });
+
+  // Final chord
+  setTimeout(() => {
+    const chordFreqs = [523.25, 659.25, 783.99];
+    chordFreqs.forEach((freq) => {
+      const osc = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      
+      osc.connect(gain);
+      gain.connect(audioContext.destination);
+      
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, audioContext.currentTime);
+      
+      gain.gain.setValueAtTime(0, audioContext.currentTime);
+      gain.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.1);
+      gain.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.8);
+      
+      osc.start(audioContext.currentTime);
+      osc.stop(audioContext.currentTime + 0.9);
+    });
+  }, 500);
+};
 
 interface CareerPrediction {
   career: string;
@@ -111,6 +161,46 @@ export default function AICareerPredictor() {
   const [selectedForCompare, setSelectedForCompare] = useState<number[]>([]);
   const [showCompareModal, setShowCompareModal] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
+  
+  // Sound effects state (persisted in localStorage)
+  const [soundEnabled, setSoundEnabled] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('careerPredictor_soundEnabled');
+      return stored !== null ? stored === 'true' : true;
+    }
+    return true;
+  });
+  
+  // Audio context ref
+  const audioContextRef = useRef<AudioContext | null>(null);
+  
+  // Persist sound preference
+  useEffect(() => {
+    localStorage.setItem('careerPredictor_soundEnabled', String(soundEnabled));
+  }, [soundEnabled]);
+  
+  // Cleanup audio context on unmount
+  useEffect(() => {
+    return () => {
+      if (audioContextRef.current) {
+        audioContextRef.current.close();
+      }
+    };
+  }, []);
+  
+  // Play celebration sound
+  const playCelebrationSound = useCallback(() => {
+    if (!soundEnabled) return;
+    
+    try {
+      if (!audioContextRef.current) {
+        audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+      }
+      createCelebrationSound(audioContextRef.current);
+    } catch (error) {
+      console.warn('Audio playback failed:', error);
+    }
+  }, [soundEnabled]);
 
   const togglePreference = (id: string) => {
     setSelectedPreferences(prev => 
@@ -277,17 +367,19 @@ export default function AICareerPredictor() {
     frame();
   };
 
-  // Trigger confetti when comparison modal opens
+  // Trigger confetti and sound when comparison modal opens
   useEffect(() => {
     if (showCompareModal) {
       triggerConfetti();
+      playCelebrationSound();
     }
-  }, [showCompareModal]);
+  }, [showCompareModal, playCelebrationSound]);
 
   // Replay animation handler
   const handleReplayAnimation = () => {
     setAnimationKey(prev => prev + 1);
     triggerConfetti();
+    playCelebrationSound();
   };
 
   const getComparisonCareers = () => {
@@ -435,20 +527,42 @@ export default function AICareerPredictor() {
           <Dialog open={showCompareModal} onOpenChange={setShowCompareModal}>
             <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
               <DialogHeader>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-4">
                   <DialogTitle className="flex items-center gap-2 text-xl">
                     <GitCompare className="h-5 w-5 text-primary" />
                     Career Comparison
                   </DialogTitle>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleReplayAnimation}
-                    className="gap-2"
-                  >
-                    <RotateCcw className="h-4 w-4" />
-                    Replay Animation
-                  </Button>
+                  <div className="flex items-center gap-3">
+                    {/* Sound Toggle */}
+                    <div className="flex items-center gap-2">
+                      <Switch
+                        id="sound-toggle"
+                        checked={soundEnabled}
+                        onCheckedChange={setSoundEnabled}
+                        className="data-[state=checked]:bg-primary"
+                      />
+                      <Label
+                        htmlFor="sound-toggle"
+                        className="text-xs text-muted-foreground cursor-pointer flex items-center gap-1"
+                      >
+                        {soundEnabled ? (
+                          <Volume2 className="h-3.5 w-3.5" />
+                        ) : (
+                          <VolumeX className="h-3.5 w-3.5" />
+                        )}
+                        Sound
+                      </Label>
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleReplayAnimation}
+                      className="gap-2"
+                    >
+                      <RotateCcw className="h-4 w-4" />
+                      Replay
+                    </Button>
+                  </div>
                 </div>
               </DialogHeader>
               
