@@ -346,13 +346,13 @@ const SkillPremiumCalculator = () => {
         <div className="text-center mb-12">
           <Badge variant="outline" className="mb-4 px-4 py-1">
             <Zap className="w-4 h-4 mr-2" />
-            Skill Premium
+            Skill Gap Analyzer
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Skill Premium Calculator
+            Which Skills Should You Learn?
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Discover how in-demand skills can boost your salary above the baseline. Select skills you have or plan to learn.
+            Explore different career paths and see which skills are most valuable. Pick a career you're interested in and discover the skills that can help you earn more after graduation.
           </p>
         </div>
 
