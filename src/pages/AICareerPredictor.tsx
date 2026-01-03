@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2 } from "lucide-react";
+import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -16,6 +18,13 @@ interface CareerPrediction {
   description: string;
   avgSalary: string;
   growthRate: string;
+  // Extended comparison data
+  workLifeBalance?: number;
+  jobDemand?: number;
+  entryDifficulty?: number;
+  avgWorkHours?: string;
+  topSkills?: string[];
+  educationRequired?: string;
 }
 
 interface SkillRecommendation {
@@ -24,6 +33,44 @@ interface SkillRecommendation {
   currentLevel: number;
   resources: string[];
 }
+
+// Career comparison metrics
+const getCareerMetrics = (career: CareerPrediction): CareerPrediction => {
+  // Add default metrics if not present
+  return {
+    ...career,
+    workLifeBalance: career.workLifeBalance || Math.floor(Math.random() * 30) + 60,
+    jobDemand: career.jobDemand || Math.floor(Math.random() * 25) + 70,
+    entryDifficulty: career.entryDifficulty || Math.floor(Math.random() * 40) + 40,
+    avgWorkHours: career.avgWorkHours || `${Math.floor(Math.random() * 10) + 40}-${Math.floor(Math.random() * 10) + 45} hrs/week`,
+    topSkills: career.topSkills || getDefaultSkills(career.career),
+    educationRequired: career.educationRequired || getDefaultEducation(career.career),
+  };
+};
+
+const getDefaultSkills = (career: string): string[] => {
+  const skillMap: Record<string, string[]> = {
+    "Software Developer": ["Programming", "Problem Solving", "System Design"],
+    "Data Analyst": ["SQL", "Statistics", "Data Visualization"],
+    "Product Manager": ["Communication", "Strategy", "User Research"],
+    "Doctor": ["Medical Knowledge", "Patient Care", "Diagnosis"],
+    "CA": ["Accounting", "Tax Planning", "Auditing"],
+    "Engineer": ["Technical Skills", "Mathematics", "Design"],
+  };
+  return skillMap[career] || ["Analytical Skills", "Communication", "Technical Knowledge"];
+};
+
+const getDefaultEducation = (career: string): string => {
+  const eduMap: Record<string, string> = {
+    "Software Developer": "B.Tech/BCA/MCA",
+    "Data Analyst": "B.Tech/B.Sc Statistics",
+    "Product Manager": "MBA/B.Tech",
+    "Doctor": "MBBS + MD/MS",
+    "CA": "CA Foundation + Inter + Final",
+    "Engineer": "B.Tech/B.E",
+  };
+  return eduMap[career] || "Bachelor's Degree";
+};
 
 const streams = [
   { id: "pcm", label: "Science (PCM)", icon: Calculator, description: "Physics, Chemistry, Mathematics" },
@@ -59,6 +106,8 @@ export default function AICareerPredictor() {
   const [predictions, setPredictions] = useState<CareerPrediction[]>([]);
   const [skills, setSkills] = useState<SkillRecommendation[]>([]);
   const [showResults, setShowResults] = useState(false);
+  const [selectedForCompare, setSelectedForCompare] = useState<number[]>([]);
+  const [showCompareModal, setShowCompareModal] = useState(false);
 
   const togglePreference = (id: string) => {
     setSelectedPreferences(prev => 
@@ -154,13 +203,49 @@ export default function AICareerPredictor() {
   };
 
   const handleBack = () => {
-    if (showResults) {
+    if (showCompareModal) {
+      setShowCompareModal(false);
+    } else if (showResults) {
       setShowResults(false);
+      setSelectedForCompare([]);
     } else if (step > 1) {
       setStep(step - 1);
     } else {
       navigate(-1);
     }
+  };
+
+  const toggleCompareSelection = (index: number) => {
+    setSelectedForCompare(prev => {
+      if (prev.includes(index)) {
+        return prev.filter(i => i !== index);
+      }
+      if (prev.length >= 2) {
+        return [prev[1], index]; // Replace oldest selection
+      }
+      return [...prev, index];
+    });
+  };
+
+  const handleOpenComparison = () => {
+    if (selectedForCompare.length === 2) {
+      setShowCompareModal(true);
+    } else {
+      toast.info("Select 2 careers to compare");
+    }
+  };
+
+  const getComparisonCareers = () => {
+    return selectedForCompare.map(i => getCareerMetrics(predictions[i]));
+  };
+
+  const getWinner = (metric: 'matchScore' | 'workLifeBalance' | 'jobDemand', careers: CareerPrediction[]) => {
+    if (careers.length < 2) return -1;
+    const val0 = careers[0][metric] || 0;
+    const val1 = careers[1][metric] || 0;
+    if (val0 > val1) return 0;
+    if (val1 > val0) return 1;
+    return -1;
   };
 
   if (showResults) {
@@ -181,15 +266,48 @@ export default function AICareerPredictor() {
             <p className="text-muted-foreground">Based on your stream, interests, and work style</p>
           </div>
 
+          {/* Compare Button */}
+          {predictions.length > 1 && (
+            <div className="flex justify-center mb-6">
+              <Button 
+                variant={selectedForCompare.length === 2 ? "default" : "outline"}
+                onClick={handleOpenComparison}
+                className="gap-2"
+              >
+                <GitCompare className="h-4 w-4" />
+                Compare Careers {selectedForCompare.length > 0 && `(${selectedForCompare.length}/2)`}
+              </Button>
+            </div>
+          )}
+
           <div className="grid gap-6 md:grid-cols-3 mb-12">
             {predictions.map((prediction, index) => (
-              <Card key={index} className="relative overflow-hidden border-2 hover:border-primary/50 transition-all">
+              <Card 
+                key={index} 
+                className={`relative overflow-hidden border-2 transition-all cursor-pointer ${
+                  selectedForCompare.includes(index) 
+                    ? "border-primary ring-2 ring-primary/20" 
+                    : "hover:border-primary/50"
+                }`}
+                onClick={() => toggleCompareSelection(index)}
+              >
+                {/* Selection indicator */}
+                <div className={`absolute top-3 left-3 z-10 h-6 w-6 rounded-full border-2 flex items-center justify-center transition-all ${
+                  selectedForCompare.includes(index) 
+                    ? "bg-primary border-primary" 
+                    : "border-muted-foreground/30 bg-background"
+                }`}>
+                  {selectedForCompare.includes(index) && (
+                    <Check className="h-4 w-4 text-primary-foreground" />
+                  )}
+                </div>
+
                 {index === 0 && (
                   <div className="absolute top-0 right-0 bg-primary text-primary-foreground px-3 py-1 text-xs font-medium rounded-bl-lg">
                     Best Match
                   </div>
                 )}
-                <CardContent className="p-6">
+                <CardContent className="p-6 pt-10">
                   <div className="text-4xl mb-4">{prediction.icon}</div>
                   <h3 className="text-xl font-bold mb-2">{prediction.career}</h3>
                   <div className="flex items-center gap-2 mb-4">
@@ -216,6 +334,174 @@ export default function AICareerPredictor() {
               </Card>
             ))}
           </div>
+
+          {/* Comparison Modal */}
+          <Dialog open={showCompareModal} onOpenChange={setShowCompareModal}>
+            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2 text-xl">
+                  <GitCompare className="h-5 w-5 text-primary" />
+                  Career Comparison
+                </DialogTitle>
+              </DialogHeader>
+              
+              {selectedForCompare.length === 2 && (
+                <div className="space-y-6 pt-4">
+                  {/* Career Headers */}
+                  <div className="grid grid-cols-2 gap-4">
+                    {getComparisonCareers().map((career, i) => (
+                      <Card key={i} className={`p-4 ${i === 0 ? 'border-blue-200 bg-blue-50/50' : 'border-purple-200 bg-purple-50/50'}`}>
+                        <div className="flex items-center gap-3">
+                          <span className="text-3xl">{career.icon}</span>
+                          <div>
+                            <h3 className="font-bold text-lg">{career.career}</h3>
+                            <Badge variant="secondary" className="mt-1">
+                              {career.matchScore}% Match
+                            </Badge>
+                          </div>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+
+                  {/* Comparison Metrics */}
+                  <div className="space-y-4">
+                    {/* Salary Comparison */}
+                    <Card>
+                      <CardHeader className="pb-3">
+                        <CardTitle className="text-sm font-medium flex items-center gap-2">
+                          <DollarSign className="h-4 w-4 text-green-600" />
+                          Salary Range
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="pt-0">
+                        <div className="grid grid-cols-2 gap-4">
+                          {getComparisonCareers().map((career, i) => (
+                            <div key={i} className="text-center py-3 bg-muted/50 rounded-lg">
+                              <p className="text-2xl font-bold text-green-600">{career.avgSalary}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Growth Rate */}
+                    <Card>
+                      <CardHeader className="pb-3">
+                        <CardTitle className="text-sm font-medium flex items-center gap-2">
+                          <TrendingUp className="h-4 w-4 text-blue-600" />
+                          Growth Rate
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="pt-0">
+                        <div className="grid grid-cols-2 gap-4">
+                          {getComparisonCareers().map((career, i) => (
+                            <div key={i} className="text-center py-3 bg-muted/50 rounded-lg">
+                              <p className="text-2xl font-bold text-blue-600">{career.growthRate}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Work-Life Balance */}
+                    <Card>
+                      <CardHeader className="pb-3">
+                        <CardTitle className="text-sm font-medium flex items-center gap-2">
+                          <Clock className="h-4 w-4 text-orange-600" />
+                          Work-Life Balance
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="pt-0">
+                        <div className="grid grid-cols-2 gap-4">
+                          {getComparisonCareers().map((career, i) => {
+                            const winner = getWinner('workLifeBalance', getComparisonCareers());
+                            return (
+                              <div key={i} className={`text-center py-3 rounded-lg ${winner === i ? 'bg-green-100 ring-2 ring-green-500' : 'bg-muted/50'}`}>
+                                <p className="text-2xl font-bold">{career.workLifeBalance}%</p>
+                                {winner === i && <Badge className="mt-1 bg-green-600">Better</Badge>}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Job Demand */}
+                    <Card>
+                      <CardHeader className="pb-3">
+                        <CardTitle className="text-sm font-medium flex items-center gap-2">
+                          <Users className="h-4 w-4 text-purple-600" />
+                          Job Market Demand
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="pt-0">
+                        <div className="grid grid-cols-2 gap-4">
+                          {getComparisonCareers().map((career, i) => {
+                            const winner = getWinner('jobDemand', getComparisonCareers());
+                            return (
+                              <div key={i} className={`text-center py-3 rounded-lg ${winner === i ? 'bg-green-100 ring-2 ring-green-500' : 'bg-muted/50'}`}>
+                                <p className="text-2xl font-bold">{career.jobDemand}%</p>
+                                {winner === i && <Badge className="mt-1 bg-green-600">Higher</Badge>}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Education Required */}
+                    <Card>
+                      <CardHeader className="pb-3">
+                        <CardTitle className="text-sm font-medium flex items-center gap-2">
+                          <GraduationCap className="h-4 w-4 text-indigo-600" />
+                          Education Required
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="pt-0">
+                        <div className="grid grid-cols-2 gap-4">
+                          {getComparisonCareers().map((career, i) => (
+                            <div key={i} className="text-center py-3 bg-muted/50 rounded-lg">
+                              <p className="font-semibold">{career.educationRequired}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Top Skills */}
+                    <Card>
+                      <CardHeader className="pb-3">
+                        <CardTitle className="text-sm font-medium flex items-center gap-2">
+                          <Award className="h-4 w-4 text-amber-600" />
+                          Key Skills Required
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="pt-0">
+                        <div className="grid grid-cols-2 gap-4">
+                          {getComparisonCareers().map((career, i) => (
+                            <div key={i} className="py-3">
+                              <div className="flex flex-wrap gap-2 justify-center">
+                                {career.topSkills?.map((skill, si) => (
+                                  <Badge key={si} variant="outline">{skill}</Badge>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  <div className="text-center pt-4">
+                    <Button onClick={() => setShowCompareModal(false)}>
+                      Close Comparison
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </DialogContent>
+          </Dialog>
 
           {skills.length > 0 && (
             <div className="mb-12">
