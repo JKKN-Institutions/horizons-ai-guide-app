@@ -4,7 +4,6 @@ import NewsTicker from "@/components/NewsTicker";
 import HeroSection from "@/components/HeroSection";
 import StatsBar from "@/components/StatsBar";
 import ServicesSection from "@/components/ServicesSection";
-import CareerBoosterSection from "@/components/CareerBoosterSection";
 import CareerPathFlowchart from "@/components/CareerPathFlowchart";
 import CareerComparison from "@/components/CareerComparison";
 import SalaryGrowthTimeline from "@/components/SalaryGrowthTimeline";
@@ -29,7 +28,6 @@ const Index = () => {
         <HeroSection />
         <StatsBar />
         <ServicesSection />
-        <CareerBoosterSection />
         <CareerPathFlowchart />
         <CareerComparison />
         <SalaryGrowthTimeline />
