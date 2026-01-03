@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
             <h3 className="font-serif text-xl font-bold italic text-primary-foreground mb-1">
-              JKKN AI Horizons: Discover, Design, Do
+              JKKN AI Horizons: வழிகாட்டி
             </h3>
             <p className="text-xs text-primary-foreground/60 mb-2">
               70+ Years of Excellence in Education & Healthcare
