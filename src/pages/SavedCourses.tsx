@@ -14,10 +14,15 @@ import {
   Filter,
   SortAsc,
   X,
-  Sparkles
+  Sparkles,
+  StickyNote,
+  Edit3,
+  Save,
+  MessageSquare
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -51,12 +56,14 @@ import { courseDatabase, Course } from '@/data/courseDatabase';
 const SavedCourses = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { favorites, toggleFavorite, clearAllFavorites, getFavoritesCount } = useCareerPredictorFavorites();
+  const { favorites, toggleFavorite, clearAllFavorites, getFavoritesCount, getNote, setNote, hasNote } = useCareerPredictorFavorites();
   
   const [searchQuery, setSearchQuery] = useState('');
   const [streamFilter, setStreamFilter] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('name');
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
+  const [noteInput, setNoteInput] = useState('');
 
   // Get saved courses from database
   const savedCourses = useMemo(() => {
@@ -115,6 +122,26 @@ const SavedCourses = () => {
       title: "All Courses Cleared",
       description: "Your saved courses list has been cleared.",
     });
+  };
+
+  const handleStartEditNote = (courseId: string) => {
+    setEditingNoteId(courseId);
+    setNoteInput(getNote(courseId));
+  };
+
+  const handleSaveNote = (courseId: string) => {
+    setNote(courseId, noteInput);
+    setEditingNoteId(null);
+    setNoteInput('');
+    toast({
+      title: noteInput.trim() ? "Note Saved" : "Note Removed",
+      description: noteInput.trim() ? "Your note has been saved." : "Your note has been removed.",
+    });
+  };
+
+  const handleCancelEditNote = () => {
+    setEditingNoteId(null);
+    setNoteInput('');
   };
 
   const getStreamLabel = (stream: string) => {
@@ -343,10 +370,16 @@ const SavedCourses = () => {
                           </div>
                         </div>
 
-                        <div className="mt-3 pt-3 border-t">
+                        <div className="mt-3 pt-3 border-t flex items-center justify-between">
                           <Badge variant="outline" className="text-xs">
                             {course.category}
                           </Badge>
+                          {hasNote(course.id) && (
+                            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                              <StickyNote className="h-3 w-3" />
+                              <span>Has note</span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </CardContent>
@@ -440,6 +473,75 @@ const SavedCourses = () => {
                     </div>
                   </div>
                 )}
+
+                {/* Personal Notes Section */}
+                <div className="border rounded-lg p-3 bg-muted/30">
+                  <h4 className="font-medium mb-2 flex items-center gap-2">
+                    <MessageSquare className="h-4 w-4 text-primary" />
+                    Personal Notes
+                  </h4>
+                  
+                  {editingNoteId === selectedCourse.id ? (
+                    <div className="space-y-2">
+                      <Textarea
+                        placeholder="Add your notes, reminders, or preferences for this course... (max 500 characters)"
+                        value={noteInput}
+                        onChange={(e) => setNoteInput(e.target.value.slice(0, 500))}
+                        className="min-h-[80px] resize-none text-sm"
+                        maxLength={500}
+                      />
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-muted-foreground">
+                          {noteInput.length}/500
+                        </span>
+                        <div className="flex gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={handleCancelEditNote}
+                          >
+                            Cancel
+                          </Button>
+                          <Button
+                            size="sm"
+                            onClick={() => handleSaveNote(selectedCourse.id)}
+                          >
+                            <Save className="h-3.5 w-3.5 mr-1" />
+                            Save
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      {hasNote(selectedCourse.id) ? (
+                        <div className="space-y-2">
+                          <p className="text-sm text-muted-foreground whitespace-pre-wrap bg-background p-2 rounded border">
+                            {getNote(selectedCourse.id)}
+                          </p>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleStartEditNote(selectedCourse.id)}
+                          >
+                            <Edit3 className="h-3.5 w-3.5 mr-1" />
+                            Edit Note
+                          </Button>
+                        </div>
+                      ) : (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="w-full"
+                          onClick={() => handleStartEditNote(selectedCourse.id)}
+                        >
+                          <StickyNote className="h-3.5 w-3.5 mr-1" />
+                          Add a Note
+                        </Button>
+                      )}
+                    </div>
+                  )}
+                </div>
 
                 {/* Actions */}
                 <div className="flex gap-2 pt-2">
