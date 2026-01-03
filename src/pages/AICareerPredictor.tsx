@@ -150,7 +150,7 @@ const workStyles = [
 
 export default function AICareerPredictor() {
   const navigate = useNavigate();
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0); // Start at intro step (0)
   const [selectedStream, setSelectedStream] = useState("");
   const [selectedPreferences, setSelectedPreferences] = useState<string[]>([]);
   const [selectedStyle, setSelectedStyle] = useState("");
@@ -382,6 +382,7 @@ export default function AICareerPredictor() {
 
 
   const canProceed = () => {
+    if (step === 0) return true; // Intro step can always proceed
     if (step === 1) return selectedStream !== "";
     if (step === 2) return selectedPreferences.length > 0;
     if (step === 3) return selectedStyle !== "";
@@ -402,7 +403,7 @@ export default function AICareerPredictor() {
     } else if (showResults) {
       setShowResults(false);
       setSelectedForCompare([]);
-    } else if (step > 1) {
+    } else if (step > 0) {
       setStep(step - 1);
     } else {
       navigate(-1);
@@ -1092,32 +1093,71 @@ export default function AICareerPredictor() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-4 py-8">
-        <Button variant="ghost" onClick={handleBack} className="mb-6">
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Back
-        </Button>
+        {step > 0 && (
+          <Button variant="ghost" onClick={handleBack} className="mb-6">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back
+          </Button>
+        )}
 
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
-              <Brain className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium text-primary">AI Career Predictor</span>
+        {/* Intro Step */}
+        {step === 0 && (
+          <div className="max-w-xl mx-auto text-center py-12">
+            <Button variant="ghost" onClick={() => navigate(-1)} className="mb-8">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back
+            </Button>
+            
+            <div className="flex justify-center mb-8">
+              <div className="relative">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-200">
+                  <Brain className="w-10 h-10 text-white" />
+                </div>
+                <Sparkles className="absolute -top-1 -right-1 w-6 h-6 text-amber-400" />
+              </div>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">Discover Your Career Path</h1>
-            <p className="text-muted-foreground">Answer a few questions to get AI-powered career recommendations</p>
-          </div>
+            
+            <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+              AI Career Predictor
+            </h1>
+            <p className="text-muted-foreground text-lg mb-10 max-w-md mx-auto">
+              Get AI-powered career predictions based on your interests and skills
+            </p>
 
-          {/* Progress */}
-          <div className="flex items-center justify-center gap-2 mb-8">
-            {[1, 2, 3, 4].map((s) => (
-              <div
-                key={s}
-                className={`h-2 w-12 rounded-full transition-colors ${
-                  s <= step ? "bg-primary" : "bg-muted"
-                }`}
-              />
-            ))}
+            <Button
+              onClick={() => setStep(1)}
+              size="lg"
+              className="w-full max-w-md bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white text-lg py-6 rounded-xl shadow-lg shadow-purple-200"
+            >
+              <Sparkles className="w-5 h-5 mr-2" />
+              Predict My Career
+            </Button>
           </div>
+        )}
+
+        {/* Form Steps */}
+        {step >= 1 && (
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
+                <Brain className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">AI Career Predictor</span>
+              </div>
+              <h1 className="text-3xl md:text-4xl font-bold mb-2">Discover Your Career Path</h1>
+              <p className="text-muted-foreground">Answer a few questions to get AI-powered career recommendations</p>
+            </div>
+
+            {/* Progress */}
+            <div className="flex items-center justify-center gap-2 mb-8">
+              {[1, 2, 3, 4].map((s) => (
+                <div
+                  key={s}
+                  className={`h-2 w-12 rounded-full transition-colors ${
+                    s <= step ? "bg-primary" : "bg-muted"
+                  }`}
+                />
+              ))}
+            </div>
 
           {/* Step 1: Stream Selection */}
           {step === 1 && (
@@ -1298,7 +1338,8 @@ export default function AICareerPredictor() {
               </Button>
             </div>
           )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
