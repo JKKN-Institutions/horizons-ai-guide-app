@@ -164,6 +164,9 @@ export default function AICareerPredictor() {
   const [animationKey, setAnimationKey] = useState(0);
   const [showErrorState, setShowErrorState] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [loadingMessage, setLoadingMessage] = useState("");
+  const loadingIntervalRef = useRef<NodeJS.Timeout | null>(null);
   
   // AbortController for cancelling API requests
   const abortControllerRef = useRef<AbortController | null>(null);
@@ -219,8 +222,51 @@ export default function AICareerPredictor() {
       abortControllerRef.current.abort();
       abortControllerRef.current = null;
     }
+    if (loadingIntervalRef.current) {
+      clearInterval(loadingIntervalRef.current);
+      loadingIntervalRef.current = null;
+    }
     setIsLoading(false);
+    setLoadingProgress(0);
     toast.info("Analysis cancelled");
+  };
+
+  const loadingMessages = [
+    "Analyzing your stream preferences...",
+    "Matching career patterns...",
+    "Evaluating job market trends...",
+    "Calculating skill requirements...",
+    "Generating personalized recommendations...",
+    "Almost there..."
+  ];
+
+  const startLoadingProgress = () => {
+    setLoadingProgress(0);
+    setLoadingMessage(loadingMessages[0]);
+    let progress = 0;
+    let messageIndex = 0;
+    
+    loadingIntervalRef.current = setInterval(() => {
+      progress += Math.random() * 8 + 2; // Random increment between 2-10
+      if (progress > 95) progress = 95; // Cap at 95% until complete
+      
+      // Update message based on progress
+      const newMessageIndex = Math.min(Math.floor(progress / 18), loadingMessages.length - 1);
+      if (newMessageIndex !== messageIndex) {
+        messageIndex = newMessageIndex;
+        setLoadingMessage(loadingMessages[messageIndex]);
+      }
+      
+      setLoadingProgress(progress);
+    }, 500);
+  };
+
+  const stopLoadingProgress = () => {
+    if (loadingIntervalRef.current) {
+      clearInterval(loadingIntervalRef.current);
+      loadingIntervalRef.current = null;
+    }
+    setLoadingProgress(100);
   };
 
   const getAIPredictions = async () => {
@@ -228,6 +274,7 @@ export default function AICareerPredictor() {
     abortControllerRef.current = new AbortController();
     
     setIsLoading(true);
+    startLoadingProgress();
     try {
       const streamLabel = streams.find(s => s.id === selectedStream)?.label || "";
       const prefLabels = selectedPreferences.map(p => workPreferences.find(wp => wp.id === p)?.label).join(", ");
@@ -287,6 +334,7 @@ export default function AICareerPredictor() {
       setShowErrorState(true);
       toast.error("Failed to get predictions. You can retry or view sample results.");
     } finally {
+      stopLoadingProgress();
       setIsLoading(false);
       abortControllerRef.current = null;
     }
@@ -1182,49 +1230,72 @@ export default function AICareerPredictor() {
             </Card>
           )}
 
-          {/* Navigation */}
-          {!showErrorState && (
-            <div className="flex justify-center gap-3 mt-8">
-              {isLoading ? (
-                <>
+          {/* Loading Progress Card */}
+          {isLoading && (
+            <Card className="border-primary/30 bg-primary/5 animate-fade-in">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="relative">
+                    <Loader2 className="h-8 w-8 text-primary animate-spin" />
+                    <Brain className="h-4 w-4 text-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-primary">AI Analyzing Your Profile</h3>
+                    <p className="text-sm text-muted-foreground">{loadingMessage}</p>
+                  </div>
+                </div>
+                
+                {/* Progress Bar */}
+                <div className="mb-3">
+                  <div className="h-2 bg-muted rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-gradient-to-r from-primary to-primary/70 transition-all duration-500 ease-out"
+                      style={{ width: `${loadingProgress}%` }}
+                    />
+                  </div>
+                </div>
+                
+                <div className="flex justify-between items-center text-xs text-muted-foreground">
+                  <span>{Math.round(loadingProgress)}% complete</span>
+                  <span>Est. {Math.max(1, Math.ceil((100 - loadingProgress) / 10))}s remaining</span>
+                </div>
+                
+                <div className="flex justify-center mt-4">
                   <Button
-                    size="lg"
-                    disabled
-                    className="min-w-[160px]"
-                  >
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Analyzing...
-                  </Button>
-                  <Button
-                    size="lg"
                     variant="outline"
+                    size="sm"
                     onClick={cancelAnalysis}
-                    className="min-w-[120px]"
+                    className="gap-2"
                   >
-                    <X className="h-4 w-4 mr-2" />
-                    Cancel
+                    <X className="h-4 w-4" />
+                    Cancel Analysis
                   </Button>
-                </>
-              ) : (
-                <Button
-                  size="lg"
-                  onClick={handleNext}
-                  disabled={!canProceed()}
-                  className="min-w-[200px]"
-                >
-                  {step === 4 ? (
-                    <>
-                      <Sparkles className="h-4 w-4 mr-2" />
-                      Get Predictions
-                    </>
-                  ) : (
-                    <>
-                      Continue
-                      <ChevronRight className="h-4 w-4 ml-2" />
-                    </>
-                  )}
-                </Button>
-              )}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Navigation */}
+          {!showErrorState && !isLoading && (
+            <div className="flex justify-center gap-3 mt-8">
+              <Button
+                size="lg"
+                onClick={handleNext}
+                disabled={!canProceed()}
+                className="min-w-[200px]"
+              >
+                {step === 4 ? (
+                  <>
+                    <Sparkles className="h-4 w-4 mr-2" />
+                    Get Predictions
+                  </>
+                ) : (
+                  <>
+                    Continue
+                    <ChevronRight className="h-4 w-4 ml-2" />
+                  </>
+                )}
+              </Button>
             </div>
           )}
         </div>
