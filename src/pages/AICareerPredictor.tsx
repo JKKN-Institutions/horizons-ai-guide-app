@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, ResponsiveContainer } from "recharts";
 
 interface CareerPrediction {
   career: string;
@@ -363,6 +364,75 @@ export default function AICareerPredictor() {
                       </Card>
                     ))}
                   </div>
+
+                  {/* Radar Chart Visualization */}
+                  <Card className="overflow-hidden">
+                    <CardHeader className="pb-2 bg-gradient-to-r from-blue-50 to-purple-50">
+                      <CardTitle className="text-sm font-medium flex items-center gap-2">
+                        <BarChart3 className="h-4 w-4 text-primary" />
+                        Skills & Metrics Overview
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-4">
+                      <div className="h-[300px] w-full">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <RadarChart 
+                            data={(() => {
+                              const careers = getComparisonCareers();
+                              return [
+                                { metric: 'Match Score', career1: careers[0]?.matchScore || 0, career2: careers[1]?.matchScore || 0 },
+                                { metric: 'Work-Life Balance', career1: careers[0]?.workLifeBalance || 0, career2: careers[1]?.workLifeBalance || 0 },
+                                { metric: 'Job Demand', career1: careers[0]?.jobDemand || 0, career2: careers[1]?.jobDemand || 0 },
+                                { metric: 'Entry Ease', career1: 100 - (careers[0]?.entryDifficulty || 50), career2: 100 - (careers[1]?.entryDifficulty || 50) },
+                                { metric: 'Growth Potential', career1: parseInt(careers[0]?.growthRate?.replace(/[^0-9]/g, '') || '0'), career2: parseInt(careers[1]?.growthRate?.replace(/[^0-9]/g, '') || '0') },
+                              ];
+                            })()}
+                            margin={{ top: 20, right: 30, bottom: 20, left: 30 }}
+                          >
+                            <PolarGrid stroke="#e5e7eb" />
+                            <PolarAngleAxis 
+                              dataKey="metric" 
+                              tick={{ fill: '#6b7280', fontSize: 11 }}
+                            />
+                            <PolarRadiusAxis 
+                              angle={90} 
+                              domain={[0, 100]} 
+                              tick={{ fill: '#9ca3af', fontSize: 10 }}
+                            />
+                            <Radar
+                              name={getComparisonCareers()[0]?.career || 'Career 1'}
+                              dataKey="career1"
+                              stroke="#3b82f6"
+                              fill="#3b82f6"
+                              fillOpacity={0.3}
+                              strokeWidth={2}
+                            />
+                            <Radar
+                              name={getComparisonCareers()[1]?.career || 'Career 2'}
+                              dataKey="career2"
+                              stroke="#a855f7"
+                              fill="#a855f7"
+                              fillOpacity={0.3}
+                              strokeWidth={2}
+                            />
+                            <Legend 
+                              wrapperStyle={{ paddingTop: '10px' }}
+                            />
+                          </RadarChart>
+                        </ResponsiveContainer>
+                      </div>
+                      <div className="flex justify-center gap-6 mt-2 text-xs text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                          <div className="w-3 h-3 rounded-full bg-blue-500" />
+                          <span>{getComparisonCareers()[0]?.career}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-3 h-3 rounded-full bg-purple-500" />
+                          <span>{getComparisonCareers()[1]?.career}</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
 
                   {/* Comparison Metrics */}
                   <div className="space-y-4">
