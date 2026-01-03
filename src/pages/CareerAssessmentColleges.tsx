@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, MessageCircle, Mic, Sparkles, Radio, Target } from 'lucide-react';
+import { BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, MessageCircle, Mic, Sparkles, Radio, Target, Brain, Lightbulb, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -14,7 +14,7 @@ import { EntranceExams } from '@/components/EntranceExams';
 import { CounsellingSimulator } from '@/components/CounsellingSimulator';
 import { PreviousYearQuestions } from '@/components/PreviousYearQuestions';
 import { PillNavigation } from '@/components/PillNavigation';
-import CareerBoosterSection from '@/components/CareerBoosterSection';
+
 
 type AssessmentType = 'career_chat' | 'industry_trends' | 'emotional_intelligence' | 'skill_gap';
 type DbAssessmentType = 'career_interest' | 'emotional_intelligence' | 'skill_gap' | 'psychometric';
@@ -57,6 +57,53 @@ const assessmentCards: AssessmentCard[] = [
     bgColor: 'bg-emerald-100',
     isExternal: true,
     secondaryIcon: Target,
+  },
+];
+
+// Career Booster cards - same style as assessment cards
+interface BoosterCard {
+  id: string;
+  title: string;
+  description: string;
+  badge1: string;
+  badge2: string;
+  icon: React.ElementType;
+  cardGradient: string;
+  iconGradient: string;
+  buttonGradient: string;
+  buttonText: string;
+  badge1Icon: React.ElementType;
+  badge2Icon: React.ElementType;
+}
+
+const boosterCards: BoosterCard[] = [
+  {
+    id: 'ai_predictor',
+    title: 'AI Career Predictor',
+    description: 'Get AI-powered career predictions based on your interests and skills',
+    badge1: 'Personalized',
+    badge2: 'Smart Tips',
+    icon: Brain,
+    cardGradient: 'bg-gradient-to-br from-purple-50 via-violet-50 to-fuchsia-50 border-2 border-purple-200/60 hover:border-purple-300 hover:shadow-[0_8px_30px_rgba(147,51,234,0.2)]',
+    iconGradient: 'bg-gradient-to-br from-purple-500 to-violet-600 shadow-lg shadow-purple-200',
+    buttonGradient: 'bg-gradient-to-r from-purple-500 via-violet-500 to-purple-500 hover:from-purple-600 hover:via-violet-600 hover:to-purple-600 text-white shadow-purple-200 hover:shadow-purple-300',
+    buttonText: 'Get Predictions',
+    badge1Icon: Sparkles,
+    badge2Icon: Lightbulb,
+  },
+  {
+    id: 'skill_analyzer',
+    title: 'Skill Gap Analyzer',
+    description: 'Identify missing skills for your dream career and get learning recommendations',
+    badge1: 'Action Plans',
+    badge2: 'Resources',
+    icon: Target,
+    cardGradient: 'bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50 border-2 border-blue-200/60 hover:border-blue-300 hover:shadow-[0_8px_30px_rgba(59,130,246,0.2)]',
+    iconGradient: 'bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-200',
+    buttonGradient: 'bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 hover:from-blue-600 hover:via-indigo-600 hover:to-blue-600 text-white shadow-blue-200 hover:shadow-blue-300',
+    buttonText: 'Analyze Skills',
+    badge1Icon: Zap,
+    badge2Icon: BookOpen,
   },
 ];
 
@@ -396,6 +443,66 @@ const CareerAssessmentColleges = () => {
                   );
                 })}
               </div>
+
+              {/* Career Booster Section */}
+              <div className="fresh-section-header mb-6 mt-10">
+                <div className="icon-box bg-gradient-to-br from-purple-500 to-violet-600 text-white"><Brain /></div>
+                <h2>Career Boosting</h2>
+                <p className="text-sm text-gray-500 ml-auto">Personalized tips, skill recommendations & action plans</p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                {boosterCards.map((booster, index) => {
+                  const Icon = booster.icon;
+                  const Badge1Icon = booster.badge1Icon;
+                  const Badge2Icon = booster.badge2Icon;
+
+                  return (
+                    <Card 
+                      key={booster.id} 
+                      className={`${booster.cardGradient} rounded-2xl transition-all duration-300 relative overflow-hidden group hover:scale-[1.02] hover:-translate-y-1`}
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
+                      {/* Decorative gradient orb */}
+                      <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity ${booster.id === 'ai_predictor' ? 'bg-purple-300' : 'bg-blue-300'}`} />
+                      
+                      <CardHeader className="pb-4 relative z-10">
+                        <div className="flex items-start gap-4">
+                          <div className={`p-3.5 rounded-xl ${booster.iconGradient} transform group-hover:scale-110 transition-transform duration-300`}>
+                            <Icon className="h-6 w-6 text-white" />
+                          </div>
+                          <div className="flex-1 pt-1">
+                            <CardTitle className="text-xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors">{booster.title}</CardTitle>
+                            <CardDescription className="mt-2 text-gray-600 leading-relaxed">
+                              {booster.description}
+                            </CardDescription>
+                          </div>
+                        </div>
+                      </CardHeader>
+                      
+                      <CardContent className="relative z-10">
+                        <div className="flex items-center gap-4 text-sm mb-5">
+                          <span className={`flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full font-medium shadow-sm ${booster.id === 'ai_predictor' ? 'text-purple-700' : 'text-blue-700'}`}>
+                            <Badge1Icon className="h-4 w-4" />
+                            {booster.badge1}
+                          </span>
+                          <span className={`flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full font-medium shadow-sm ${booster.id === 'ai_predictor' ? 'text-purple-700' : 'text-blue-700'}`}>
+                            <Badge2Icon className="h-4 w-4" />
+                            {booster.badge2}
+                          </span>
+                        </div>
+                        
+                        <Button 
+                          className={`w-full py-6 text-base font-semibold rounded-xl shadow-lg transition-all duration-300 ${booster.buttonGradient} group-hover:shadow-xl`}
+                          onClick={() => navigate('#career-booster')}
+                        >
+                          {booster.buttonText}
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Sidebar */}
@@ -462,9 +569,6 @@ const CareerAssessmentColleges = () => {
               </Card>
             </div>
           </div>
-          
-          {/* Career Booster Dashboard */}
-          <CareerBoosterSection />
           </>
         )}
 
