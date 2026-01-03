@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw, Volume2, VolumeX, Download } from "lucide-react";
 import confetti from "canvas-confetti";
@@ -148,7 +148,7 @@ const workStyles = [
   { id: "lead", label: "Leadership" },
 ];
 
-export default function AICareerPredictor() {
+const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(_props, ref) {
   const navigate = useNavigate();
   const [step, setStep] = useState(0); // Start at intro step (0)
   const [selectedStream, setSelectedStream] = useState("");
@@ -1343,4 +1343,6 @@ export default function AICareerPredictor() {
       </div>
     </div>
   );
-}
+});
+
+export default AICareerPredictor;
