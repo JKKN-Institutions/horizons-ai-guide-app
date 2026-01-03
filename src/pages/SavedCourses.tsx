@@ -18,7 +18,8 @@ import {
   StickyNote,
   Edit3,
   Save,
-  MessageSquare
+  MessageSquare,
+  Download
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -52,6 +53,7 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { useCareerPredictorFavorites } from '@/hooks/useCareerPredictorFavorites';
 import { courseDatabase, Course } from '@/data/courseDatabase';
+import { generateSavedCoursesPDF } from './generateSavedCoursesPDF';
 
 const SavedCourses = () => {
   const navigate = useNavigate();
@@ -144,6 +146,18 @@ const SavedCourses = () => {
     setNoteInput('');
   };
 
+  const handleDownloadPDF = () => {
+    const coursesWithNotes = savedCourses.map(course => ({
+      ...course,
+      note: getNote(course.id),
+    }));
+    generateSavedCoursesPDF(coursesWithNotes);
+    toast({
+      title: "PDF Downloaded",
+      description: "Your saved courses have been exported to PDF.",
+    });
+  };
+
   const getStreamLabel = (stream: string) => {
     const labels: Record<string, string> = {
       pcm: 'Science (PCM)',
@@ -194,28 +208,38 @@ const SavedCourses = () => {
             </div>
             
             {savedCourses.length > 0 && (
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="outline" size="sm" className="text-destructive hover:text-destructive">
-                    <Trash2 className="h-4 w-4 mr-2" />
-                    Clear All
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>Clear all saved courses?</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      This will remove all {getFavoritesCount()} saved courses. This action cannot be undone.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleClearAll} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              <div className="flex items-center gap-2">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={handleDownloadPDF}
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  Export PDF
+                </Button>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button variant="outline" size="sm" className="text-destructive hover:text-destructive">
+                      <Trash2 className="h-4 w-4 mr-2" />
                       Clear All
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Clear all saved courses?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This will remove all {getFavoritesCount()} saved courses. This action cannot be undone.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction onClick={handleClearAll} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                        Clear All
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
             )}
           </div>
 
