@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw, Volume2, VolumeX } from "lucide-react";
+import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw, Volume2, VolumeX, Download } from "lucide-react";
 import confetti from "canvas-confetti";
+import { generateCareerComparisonPDF } from "./generateCareerComparisonPDF";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -424,7 +425,7 @@ export default function AICareerPredictor() {
 
   const getOverallWinner = () => {
     const careers = getComparisonCareers();
-    if (careers.length < 2) return { winner: -1, scores: [0, 0] };
+    if (careers.length < 2) return { winner: -1, scores: [0, 0], margin: 0 };
     
     const score0 = calculateOverallScore(careers[0]);
     const score1 = calculateOverallScore(careers[1]);
@@ -561,6 +562,20 @@ export default function AICareerPredictor() {
                     >
                       <RotateCcw className="h-4 w-4" />
                       Replay
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        const careers = getComparisonCareers();
+                        const result = getOverallWinner();
+                        generateCareerComparisonPDF(careers, result);
+                        toast.success("PDF downloaded successfully!");
+                      }}
+                      className="gap-2"
+                    >
+                      <Download className="h-4 w-4" />
+                      PDF
                     </Button>
                   </div>
                 </div>
