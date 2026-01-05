@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { useLanguage } from "@/hooks/useLanguage";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,11 +11,11 @@ import { Database } from "@/integrations/supabase/types";
 
 type StudentStream = Database['public']['Enums']['student_stream'];
 
-const streams = [
+const getStreams = (t: (key: string) => string) => [
   {
     id: "pcm",
-    name: "Science - PCM",
-    subtitle: "Physics, Chemistry, Mathematics",
+    name: t('assessment12.streamPCM'),
+    subtitle: t('assessment12.streamPCMSub'),
     icon: Atom,
     color: "text-fresh-green-medium",
     bgColor: "bg-fresh-green-bg",
@@ -22,8 +23,8 @@ const streams = [
   },
   {
     id: "pcb",
-    name: "Science - PCB",
-    subtitle: "Physics, Chemistry, Biology",
+    name: t('assessment12.streamPCB'),
+    subtitle: t('assessment12.streamPCBSub'),
     icon: Dna,
     color: "text-emerald-600",
     bgColor: "bg-emerald-50",
@@ -31,8 +32,8 @@ const streams = [
   },
   {
     id: "pcmb",
-    name: "Science - PCMB",
-    subtitle: "Physics, Chemistry, Maths & Biology",
+    name: t('assessment12.streamPCMB'),
+    subtitle: t('assessment12.streamPCMBSub'),
     icon: Brain,
     color: "text-purple-600",
     bgColor: "bg-purple-50",
@@ -40,8 +41,8 @@ const streams = [
   },
   {
     id: "commerce",
-    name: "Commerce",
-    subtitle: "Accountancy, Business Studies, Economics",
+    name: t('assessment12.streamCommerce'),
+    subtitle: t('assessment12.streamCommerceSub'),
     icon: TrendingUp,
     color: "text-fresh-gold-dark",
     bgColor: "bg-fresh-gold-light",
@@ -49,8 +50,8 @@ const streams = [
   },
   {
     id: "arts",
-    name: "Arts / Humanities",
-    subtitle: "History, Geography, Languages, Psychology",
+    name: t('assessment12.streamArts'),
+    subtitle: t('assessment12.streamArtsSub'),
     icon: BookOpen,
     color: "text-pink-600",
     bgColor: "bg-pink-50",
@@ -71,6 +72,8 @@ const marksRanges = [
 export default function CareerAssessment12thLearners() {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { t, language } = useLanguage();
+  const streams = getStreams(t);
   const [step, setStep] = useState<'intro' | 'stream' | 'details'>('intro');
   const [selectedStream, setSelectedStream] = useState<StudentStream | null>(null);
   const [selectedMarks, setSelectedMarks] = useState<string | null>(null);
@@ -202,15 +205,17 @@ export default function CareerAssessment12thLearners() {
             className="text-white hover:text-white/80 hover:bg-white/10 mb-4"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back
+            {t('common.back')}
           </Button>
-          <h1>What Should I Study After 12th?</h1>
+          <h1>{language === 'ta' ? t('assessment12.tamilTitle') : t('assessment12.title')}</h1>
           <p className="subtitle">
-            Confused about your future? Let AI help you discover the perfect course based on your interests, skills and personality
+            {t('assessment12.subtitle')}
           </p>
-          <p className="tamil-title">
-            12-ஆம் வகுப்புக்குப் பிறகு என்ன படிக்க வேண்டும்?
-          </p>
+          {language === 'en' && (
+            <p className="tamil-title">
+              {t('assessment12.tamilTitle')}
+            </p>
+          )}
         </div>
       </div>
 
@@ -221,10 +226,10 @@ export default function CareerAssessment12thLearners() {
             <div className="mb-8">
               <div className="text-6xl mb-4">🎓</div>
               <h2 className="fresh-heading text-2xl md:text-3xl mb-4">
-                Don't worry! Tell us your stream and we'll find the perfect course for YOU
+                {t('assessment12.introHeading')}
               </h2>
               <p className="fresh-body text-lg">
-                Take our AI-powered assessment to discover courses that match your personality, interests, and career goals.
+                {t('assessment12.introDesc')}
               </p>
             </div>
 
@@ -234,9 +239,11 @@ export default function CareerAssessment12thLearners() {
                   <div className="flex items-center gap-3">
                     <CheckCircle className="h-6 w-6 text-fresh-green-medium" />
                     <div className="text-left">
-                      <p className="font-semibold text-fresh-green-dark">Welcome back!</p>
+                      <p className="font-semibold text-fresh-green-dark">{t('assessment12.welcomeBack')}</p>
                       <p className="text-sm fresh-muted">
-                        You're a {streams.find(s => s.id === existingProfile.stream)?.name} student with {completedAttempts} completed assessment{completedAttempts !== 1 ? 's' : ''}.
+                        {t('assessment12.completedAssessments')
+                          .replace('{stream}', streams.find(s => s.id === existingProfile.stream)?.name || '')
+                          .replace('{count}', String(completedAttempts))}
                       </p>
                     </div>
                   </div>
@@ -250,7 +257,7 @@ export default function CareerAssessment12thLearners() {
                 size="lg"
                 className="btn-fresh-primary px-8 py-6 text-lg"
               >
-                {existingProfile ? "Take Another Assessment" : "Start Your Discovery Journey"}
+                {existingProfile ? t('assessment12.takeAnother') : t('assessment12.startJourney')}
               </Button>
               {completedAttempts > 0 && (
                 <Button
@@ -259,7 +266,7 @@ export default function CareerAssessment12thLearners() {
                   onClick={() => navigate('/career-assessment/12th-learners/results')}
                   className="btn-fresh-outline px-8 py-6 text-lg"
                 >
-                  View Past Results
+                  {t('assessment12.viewPastResults')}
                 </Button>
               )}
             </div>
@@ -267,18 +274,18 @@ export default function CareerAssessment12thLearners() {
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="fresh-card text-center p-6">
                 <div className="text-3xl mb-2">📝</div>
-                <h3 className="font-semibold fresh-card-title">20 Questions</h3>
-                <p className="text-sm fresh-muted">Scenario-based questions</p>
+                <h3 className="font-semibold fresh-card-title">20 {t('assessment12.questions')}</h3>
+                <p className="text-sm fresh-muted">{t('assessment12.scenarioBased')}</p>
               </div>
               <div className="fresh-card text-center p-6">
                 <div className="text-3xl mb-2">⏱️</div>
-                <h3 className="font-semibold fresh-card-title">10-15 Minutes</h3>
-                <p className="text-sm fresh-muted">Quick and insightful</p>
+                <h3 className="font-semibold fresh-card-title">10-15 {t('assessment12.minutes')}</h3>
+                <p className="text-sm fresh-muted">{t('assessment12.quickInsightful')}</p>
               </div>
               <div className="fresh-card text-center p-6">
                 <div className="text-3xl mb-2">🎯</div>
-                <h3 className="font-semibold fresh-card-title">50+ Courses</h3>
-                <p className="text-sm fresh-muted">Personalized recommendations</p>
+                <h3 className="font-semibold fresh-card-title">50+ {t('assessment12.courses')}</h3>
+                <p className="text-sm fresh-muted">{t('assessment12.personalizedRecs')}</p>
               </div>
             </div>
           </div>
@@ -289,9 +296,9 @@ export default function CareerAssessment12thLearners() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="fresh-heading text-2xl md:text-3xl mb-2">
-                First, tell us about your 12th standard
+                {t('assessment12.selectStreamTitle')}
               </h2>
-              <p className="fresh-muted">Select your stream to get personalized course recommendations</p>
+              <p className="fresh-muted">{t('assessment12.selectStreamDesc')}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -321,7 +328,7 @@ export default function CareerAssessment12thLearners() {
                 className="text-fresh-green-dark hover:text-fresh-green-medium"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back
+                {t('common.back')}
               </Button>
             </div>
           </div>
@@ -332,9 +339,9 @@ export default function CareerAssessment12thLearners() {
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="fresh-heading text-2xl md:text-3xl mb-2">
-                A few more details...
+                {t('assessment12.detailsTitle')}
               </h2>
-              <p className="fresh-muted">This helps us give you better recommendations</p>
+              <p className="fresh-muted">{t('assessment12.detailsDesc')}</p>
             </div>
 
             {/* Stream display */}
@@ -367,7 +374,7 @@ export default function CareerAssessment12thLearners() {
                       onClick={() => setStep('stream')}
                       className="text-fresh-green-dark hover:text-fresh-green-medium"
                     >
-                      Change
+                      {t('common.change')}
                     </Button>
                   )}
                 </div>
@@ -377,7 +384,7 @@ export default function CareerAssessment12thLearners() {
             {/* Marks Range */}
             <div className="fresh-card p-6 mb-6">
               <label className="block text-sm font-medium fresh-card-title mb-3">
-                Your expected/obtained 12th marks:
+                {t('assessment12.marksLabel')}
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {marksRanges.map((range) => (
@@ -397,7 +404,7 @@ export default function CareerAssessment12thLearners() {
               <Card className="fresh-card mb-6 bg-blue-50 border-l-blue-500">
                 <CardContent className="p-4">
                   <p className="text-sm text-blue-800">
-                    <strong>Returning user:</strong> We'll show you completely new questions you haven't seen before!
+                    <strong>{t('assessment12.returningUser')}</strong>
                   </p>
                 </CardContent>
               </Card>
@@ -410,14 +417,14 @@ export default function CareerAssessment12thLearners() {
                 className="text-fresh-green-dark hover:text-fresh-green-medium"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back
+                {t('common.back')}
               </Button>
               <Button
                 onClick={handleStartAssessment}
                 disabled={!selectedMarks}
                 className="btn-fresh-primary px-8"
               >
-                Start Assessment
+                {t('common.startAssessment')}
               </Button>
             </div>
           </div>
