@@ -22,6 +22,7 @@ import { toast } from '@/hooks/use-toast';
 import { courseDatabase, Course, interestToCourseCategories, priorityFeesMapping, durationMapping } from '@/data/courseDatabase';
 import { useCareerPredictorFavorites } from '@/hooks/useCareerPredictorFavorites';
 import { generateCareerPredictorPDF } from '@/pages/generateCareerPredictorPDF';
+import { useLanguage } from '@/hooks/useLanguage';
 
 // Types
 interface FormData {
@@ -39,39 +40,39 @@ interface CourseMatch extends Course {
   matchReasons: string[];
 }
 
-// Interest cards data
-const interestCards = [
-  { id: 'technology', icon: '🖥️', label: 'Technology & Computers' },
-  { id: 'science', icon: '🔬', label: 'Science & Research' },
-  { id: 'healthcare', icon: '💊', label: 'Healthcare & Medicine' },
-  { id: 'business', icon: '💰', label: 'Business & Finance' },
-  { id: 'law', icon: '⚖️', label: 'Law & Justice' },
-  { id: 'arts', icon: '🎨', label: 'Arts & Design' },
-  { id: 'aviation', icon: '✈️', label: 'Aviation & Travel' },
-  { id: 'construction', icon: '🏗️', label: 'Building & Construction' },
-  { id: 'media', icon: '📰', label: 'Media & Journalism' },
-  { id: 'teaching', icon: '👨‍🏫', label: 'Teaching & Education' },
-  { id: 'agriculture', icon: '🌾', label: 'Agriculture & Nature' },
-  { id: 'defence', icon: '🛡️', label: 'Defence & Security' },
-  { id: 'hospitality', icon: '🏨', label: 'Hotel & Hospitality' },
-  { id: 'data', icon: '📊', label: 'Data & Analytics' },
+// Interest cards data with translation keys
+const interestCardsData = [
+  { id: 'technology', icon: '🖥️', labelKey: 'interest.technology' },
+  { id: 'science', icon: '🔬', labelKey: 'interest.science' },
+  { id: 'healthcare', icon: '💊', labelKey: 'interest.healthcare' },
+  { id: 'business', icon: '💰', labelKey: 'interest.business' },
+  { id: 'law', icon: '⚖️', labelKey: 'interest.law' },
+  { id: 'arts', icon: '🎨', labelKey: 'interest.arts' },
+  { id: 'aviation', icon: '✈️', labelKey: 'interest.aviation' },
+  { id: 'construction', icon: '🏗️', labelKey: 'interest.construction' },
+  { id: 'media', icon: '📰', labelKey: 'interest.media' },
+  { id: 'teaching', icon: '👨‍🏫', labelKey: 'interest.teaching' },
+  { id: 'agriculture', icon: '🌾', labelKey: 'interest.agriculture' },
+  { id: 'defence', icon: '🛡️', labelKey: 'interest.defence' },
+  { id: 'hospitality', icon: '🏨', labelKey: 'interest.hospitality' },
+  { id: 'data', icon: '📊', labelKey: 'interest.data' },
 ];
 
-const priorityOptions = [
-  { id: 'salary', icon: '💵', label: 'High Salary' },
-  { id: 'security', icon: '🛡️', label: 'Job Security' },
-  { id: 'balance', icon: '⚖️', label: 'Work-Life Balance' },
-  { id: 'growth', icon: '🚀', label: 'Fast Growth' },
-  { id: 'helping', icon: '🤝', label: 'Helping Others' },
+const priorityOptionsData = [
+  { id: 'salary', icon: '💵', labelKey: 'priority.salary' },
+  { id: 'security', icon: '🛡️', labelKey: 'priority.security' },
+  { id: 'balance', icon: '⚖️', labelKey: 'priority.balance' },
+  { id: 'growth', icon: '🚀', labelKey: 'priority.growth' },
+  { id: 'helping', icon: '🤝', labelKey: 'priority.helping' },
 ];
 
-const streamOptions = [
-  { value: 'pcm', label: 'Science (PCM - Physics, Chemistry, Mathematics)' },
-  { value: 'pcb', label: 'Science (PCB - Physics, Chemistry, Biology)' },
-  { value: 'pcmb', label: 'Science (PCMB - All four subjects)' },
-  { value: 'commerce_math', label: 'Commerce (with Mathematics)' },
-  { value: 'commerce', label: 'Commerce (without Mathematics)' },
-  { value: 'arts', label: 'Arts / Humanities' },
+const streamOptionsData = [
+  { value: 'pcm', labelKey: 'stream.pcm' },
+  { value: 'pcb', labelKey: 'stream.pcb' },
+  { value: 'pcmb', labelKey: 'stream.pcmb' },
+  { value: 'commerce_math', labelKey: 'stream.commerce_math' },
+  { value: 'commerce', labelKey: 'stream.commerce' },
+  { value: 'arts', labelKey: 'stream.arts' },
 ];
 
 const percentageOptions = [
@@ -96,17 +97,11 @@ const durationOptions = [
   { value: 'professional', label: '5+ years (Professional - MBBS, Law, Architecture)' },
 ];
 
-const loadingMessages = [
-  { message: '🧠 Analyzing your interests...', duration: 2000 },
-  { message: '📊 Matching with 200+ courses...', duration: 2000 },
-  { message: '🎓 Finding best courses for you...', duration: 2000 },
-  { message: '✨ Generating recommendations...', duration: 2000 },
-];
-
 type SortOption = 'match' | 'fees-asc' | 'fees-desc' | 'duration';
 
 const AICareerPredictor: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [step, setStep] = useState<'intro' | 'form' | 'loading' | 'results'>('intro');
   const [formStep, setFormStep] = useState(1);
   const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
@@ -125,6 +120,29 @@ const AICareerPredictor: React.FC = () => {
   const [filterFees, setFilterFees] = useState<string>('all');
   
   const { favorites, toggleFavorite, isFavorite, getFavoritesCount } = useCareerPredictorFavorites();
+  
+  // Translated data arrays
+  const interestCards = interestCardsData.map(item => ({
+    ...item,
+    label: t(item.labelKey)
+  }));
+  
+  const priorityOptions = priorityOptionsData.map(item => ({
+    ...item,
+    label: t(item.labelKey)
+  }));
+  
+  const streamOptions = streamOptionsData.map(item => ({
+    ...item,
+    label: t(item.labelKey)
+  }));
+  
+  const loadingMessages = [
+    { message: t('predictor.analyzing'), duration: 2000 },
+    { message: t('predictor.matching'), duration: 2000 },
+    { message: t('predictor.finding'), duration: 2000 },
+    { message: t('predictor.generating'), duration: 2000 },
+  ];
   
   const [formData, setFormData] = useState<FormData>({
     stream: '',
@@ -412,10 +430,10 @@ const AICareerPredictor: React.FC = () => {
                   </div>
                   
                   <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                    AI Career Predictor
+                    {t('predictor.title')}
                   </h2>
                   <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
-                    Get AI-powered career predictions based on your interests and skills
+                    {t('predictor.subtitle')}
                   </p>
 
                   <Button
@@ -424,7 +442,7 @@ const AICareerPredictor: React.FC = () => {
                     className="w-full max-w-md bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg py-6 rounded-xl"
                   >
                     <Sparkles className="w-5 h-5 mr-2" />
-                    Predict My Career
+                    {t('predictor.predictCareer')}
                   </Button>
                 </CardContent>
               </Card>
@@ -448,7 +466,7 @@ const AICareerPredictor: React.FC = () => {
                       onClick={() => formStep === 1 ? setStep('intro') : setFormStep(1)}
                     >
                       <ArrowLeft className="w-4 h-4 mr-1" />
-                      Back
+                      {t('common.back')}
                     </Button>
                     <div className="flex items-center gap-2">
                       <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${formStep >= 1 ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>1</span>
@@ -469,19 +487,19 @@ const AICareerPredictor: React.FC = () => {
                         className="space-y-6"
                       >
                         <div className="text-center mb-6">
-                          <h3 className="text-xl font-semibold text-foreground">Academic Details</h3>
-                          <p className="text-muted-foreground text-sm">Tell us about your 12th standard education</p>
+                          <h3 className="text-xl font-semibold text-foreground">{t('predictor.basicInfo')}</h3>
+                          <p className="text-muted-foreground text-sm">{t('assessment12.selectStreamDesc')}</p>
                         </div>
 
                         <div className="space-y-4">
                           <div className="space-y-2">
-                            <Label htmlFor="stream">Your 12th Stream *</Label>
+                            <Label htmlFor="stream">{t('predictor.selectStream')} *</Label>
                             <Select
                               value={formData.stream}
                               onValueChange={(value) => setFormData(prev => ({ ...prev, stream: value }))}
                             >
                               <SelectTrigger id="stream">
-                                <SelectValue placeholder="Select your stream" />
+                                <SelectValue placeholder={t('predictor.selectStream')} />
                               </SelectTrigger>
                               <SelectContent>
                                 {streamOptions.map(option => (
@@ -494,13 +512,13 @@ const AICareerPredictor: React.FC = () => {
                           </div>
 
                           <div className="space-y-2">
-                            <Label htmlFor="percentage">Expected/Obtained Percentage</Label>
+                            <Label htmlFor="percentage">{t('predictor.selectPercentage')}</Label>
                             <Select
                               value={formData.percentage}
                               onValueChange={(value) => setFormData(prev => ({ ...prev, percentage: value }))}
                             >
                               <SelectTrigger id="percentage">
-                                <SelectValue placeholder="Select your percentage" />
+                                <SelectValue placeholder={t('predictor.selectPercentage')} />
                               </SelectTrigger>
                               <SelectContent>
                                 {percentageOptions.map(option => (
@@ -519,7 +537,7 @@ const AICareerPredictor: React.FC = () => {
                           className="w-full"
                           size="lg"
                         >
-                          Continue
+                          {t('common.next')}
                           <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
                       </motion.div>
@@ -534,8 +552,8 @@ const AICareerPredictor: React.FC = () => {
                         className="space-y-6"
                       >
                         <div>
-                          <h3 className="text-lg font-semibold text-foreground mb-2">What interests you? (Select up to 3)</h3>
-                          <p className="text-muted-foreground text-sm mb-4">Choose fields that excite you the most</p>
+                          <h3 className="text-lg font-semibold text-foreground mb-2">{t('predictor.selectInterests')}</h3>
+                          <p className="text-muted-foreground text-sm mb-4">{t('predictor.selectInterestsDesc')}</p>
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                             {interestCards.map(interest => (
                               <button
@@ -556,7 +574,8 @@ const AICareerPredictor: React.FC = () => {
                         </div>
 
                         <div>
-                          <h3 className="text-lg font-semibold text-foreground mb-2">What matters most to you? (Select top 2)</h3>
+                          <h3 className="text-lg font-semibold text-foreground mb-2">{t('predictor.selectPriorities')}</h3>
+                          <p className="text-muted-foreground text-sm mb-2">{t('predictor.selectPrioritiesDesc')}</p>
                           <div className="flex flex-wrap gap-2">
                             {priorityOptions.map(priority => (
                               <button
@@ -577,7 +596,7 @@ const AICareerPredictor: React.FC = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <Label>Education budget per year?</Label>
+                          <Label>{t('predictor.budget')}</Label>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {budgetOptions.map(option => (
                               <button
@@ -596,7 +615,7 @@ const AICareerPredictor: React.FC = () => {
                         </div>
 
                         <div className="space-y-2">
-                          <Label>Preferred course duration?</Label>
+                          <Label>{t('predictor.duration')}</Label>
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                             {durationOptions.map(option => (
                               <button
@@ -620,7 +639,7 @@ const AICareerPredictor: React.FC = () => {
                           className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
                           size="lg"
                         >
-                          🔮 Predict Courses
+                          🔮 {t('predictor.predictCareer')}
                         </Button>
                       </motion.div>
                     )}
@@ -690,26 +709,26 @@ const AICareerPredictor: React.FC = () => {
                       }}
                     >
                       <ArrowLeft className="w-4 h-4 mr-1" />
-                      Start Over
+                      {t('common.back')}
                     </Button>
                     <div className="text-center flex-1">
                       <CardTitle className="text-xl flex items-center gap-2 justify-center">
                         <GraduationCap className="w-6 h-6" />
-                        Recommended Courses
+                        {t('predictor.yourRecommendations')}
                       </CardTitle>
                       <p className="text-sm text-muted-foreground mt-1">
-                        {filteredRecommendations.length} courses found
+                        {filteredRecommendations.length} {t('assessment12.courses').toLowerCase()}
                       </p>
                     </div>
                     {/* Share Actions */}
                     <div className="flex items-center gap-2">
-                      <Button variant="outline" size="icon" onClick={handleDownloadPDF} title="Download PDF">
+                      <Button variant="outline" size="icon" onClick={handleDownloadPDF} title={t('predictor.downloadPdf')}>
                         <Download className="w-4 h-4" />
                       </Button>
-                      <Button variant="outline" size="icon" onClick={handleShareWhatsApp} title="Share on WhatsApp">
+                      <Button variant="outline" size="icon" onClick={handleShareWhatsApp} title={t('predictor.shareWhatsApp')}>
                         <MessageCircle className="w-4 h-4" />
                       </Button>
-                      <Button variant="outline" size="icon" onClick={handlePrint} title="Print">
+                      <Button variant="outline" size="icon" onClick={handlePrint} title={t('predictor.print')}>
                         <Printer className="w-4 h-4" />
                       </Button>
                     </div>
@@ -723,7 +742,7 @@ const AICareerPredictor: React.FC = () => {
                     <div className="relative flex-1">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                       <Input
-                        placeholder="Search courses..."
+                        placeholder={`${t('common.search')}...`}
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="pl-10"
@@ -734,13 +753,13 @@ const AICareerPredictor: React.FC = () => {
                     <Select value={sortBy} onValueChange={(v) => setSortBy(v as SortOption)}>
                       <SelectTrigger className="w-full sm:w-[160px]">
                         <ArrowUpDown className="w-4 h-4 mr-2" />
-                        <SelectValue placeholder="Sort by" />
+                        <SelectValue placeholder={t('predictor.sortBy')} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="match">Best Match</SelectItem>
-                        <SelectItem value="fees-asc">Fees: Low to High</SelectItem>
-                        <SelectItem value="fees-desc">Fees: High to Low</SelectItem>
-                        <SelectItem value="duration">Duration</SelectItem>
+                        <SelectItem value="match">{t('predictor.matchScore')}</SelectItem>
+                        <SelectItem value="fees-asc">{t('predictor.fees')}: ↑</SelectItem>
+                        <SelectItem value="fees-desc">{t('predictor.fees')}: ↓</SelectItem>
+                        <SelectItem value="duration">{t('predictor.duration')}</SelectItem>
                       </SelectContent>
                     </Select>
 
@@ -749,7 +768,7 @@ const AICareerPredictor: React.FC = () => {
                       <SheetTrigger asChild>
                         <Button variant="outline" className="relative">
                           <SlidersHorizontal className="w-4 h-4 mr-2" />
-                          Filters
+                          {t('common.filter')}
                           {hasActiveFilters && (
                             <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full" />
                           )}
@@ -757,7 +776,7 @@ const AICareerPredictor: React.FC = () => {
                       </SheetTrigger>
                       <SheetContent>
                         <SheetHeader>
-                          <SheetTitle>Filter Courses</SheetTitle>
+                          <SheetTitle>{t('predictor.filterBy')}</SheetTitle>
                         </SheetHeader>
                         <div className="space-y-6 mt-6">
                           {/* Favorites Toggle */}
@@ -770,7 +789,7 @@ const AICareerPredictor: React.FC = () => {
                               />
                               <Label htmlFor="favorites" className="flex items-center gap-2">
                                 <Heart className="w-4 h-4 text-red-500" />
-                                Show Saved Only ({getFavoritesCount()})
+                                {t('predictor.showFavorites')} ({getFavoritesCount()})
                               </Label>
                             </div>
                             {getFavoritesCount() > 0 && (
@@ -781,36 +800,36 @@ const AICareerPredictor: React.FC = () => {
                                 onClick={() => navigate('/career-assessment/saved-courses')}
                               >
                                 <Bookmark className="w-4 h-4 mr-2" />
-                                View All Saved Courses
+                                {t('common.viewAll')}
                               </Button>
                             )}
                           </div>
 
                           {/* Duration Filter */}
                           <div className="space-y-2">
-                            <Label>Duration</Label>
+                            <Label>{t('predictor.duration')}</Label>
                             <Select value={filterDuration} onValueChange={setFilterDuration}>
                               <SelectTrigger>
-                                <SelectValue placeholder="All durations" />
+                                <SelectValue placeholder={t('predictor.allDurations')} />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="all">All Durations</SelectItem>
-                                <SelectItem value="short">2-3 years</SelectItem>
-                                <SelectItem value="medium">3-4 years</SelectItem>
-                                <SelectItem value="long">5+ years</SelectItem>
+                                <SelectItem value="all">{t('predictor.allDurations')}</SelectItem>
+                                <SelectItem value="short">{t('predictor.shortCourses')}</SelectItem>
+                                <SelectItem value="medium">{t('predictor.mediumCourses')}</SelectItem>
+                                <SelectItem value="long">{t('predictor.longCourses')}</SelectItem>
                               </SelectContent>
                             </Select>
                           </div>
 
                           {/* Entrance Exam Filter */}
                           <div className="space-y-2">
-                            <Label>Entrance Exam</Label>
+                            <Label>{t('predictor.entranceExam')}</Label>
                             <Select value={filterExam} onValueChange={setFilterExam}>
                               <SelectTrigger>
-                                <SelectValue placeholder="All exams" />
+                                <SelectValue placeholder={t('predictor.allExams')} />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="all">All Exams</SelectItem>
+                                <SelectItem value="all">{t('predictor.allExams')}</SelectItem>
                                 {uniqueExams.map(exam => (
                                   <SelectItem key={exam} value={exam}>{exam}</SelectItem>
                                 ))}
@@ -820,23 +839,23 @@ const AICareerPredictor: React.FC = () => {
 
                           {/* Fees Filter */}
                           <div className="space-y-2">
-                            <Label>Fees Range</Label>
+                            <Label>{t('predictor.fees')}</Label>
                             <Select value={filterFees} onValueChange={setFilterFees}>
                               <SelectTrigger>
-                                <SelectValue placeholder="All fees" />
+                                <SelectValue placeholder={t('predictor.allFees')} />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="all">All Fees</SelectItem>
-                                <SelectItem value="low">Under ₹1 Lakh</SelectItem>
-                                <SelectItem value="medium">₹1-3 Lakh</SelectItem>
-                                <SelectItem value="high">Above ₹3 Lakh</SelectItem>
+                                <SelectItem value="all">{t('predictor.allFees')}</SelectItem>
+                                <SelectItem value="low">{t('predictor.lowFees')}</SelectItem>
+                                <SelectItem value="medium">{t('predictor.mediumFees')}</SelectItem>
+                                <SelectItem value="high">{t('predictor.highFees')}</SelectItem>
                               </SelectContent>
                             </Select>
                           </div>
 
                           <Button variant="outline" className="w-full" onClick={clearFilters}>
                             <X className="w-4 h-4 mr-2" />
-                            Clear All Filters
+                            {t('predictor.clearFilters')}
                           </Button>
                         </div>
                       </SheetContent>
@@ -851,7 +870,7 @@ const AICareerPredictor: React.FC = () => {
                       className="mt-3 p-3 bg-primary/10 rounded-lg flex items-center justify-between"
                     >
                       <span className="text-sm font-medium">
-                        {selectedForCompare.size} course{selectedForCompare.size > 1 ? 's' : ''} selected for comparison
+                        {selectedForCompare.size} {t('assessment12.courses').toLowerCase()}
                       </span>
                       <div className="flex gap-2">
                         <Button 
@@ -859,7 +878,7 @@ const AICareerPredictor: React.FC = () => {
                           size="sm" 
                           onClick={() => setSelectedForCompare(new Set())}
                         >
-                          Clear
+                          {t('predictor.clearFilters')}
                         </Button>
                         <Button 
                           size="sm" 
@@ -867,7 +886,7 @@ const AICareerPredictor: React.FC = () => {
                           disabled={selectedForCompare.size < 2}
                         >
                           <Scale className="w-4 h-4 mr-1" />
-                          Compare
+                          {t('predictor.compare')}
                         </Button>
                       </div>
                     </motion.div>
@@ -880,8 +899,8 @@ const AICareerPredictor: React.FC = () => {
                     {filteredRecommendations.length === 0 ? (
                       <div className="text-center py-8 text-muted-foreground">
                         <GraduationCap className="w-12 h-12 mx-auto mb-3 opacity-50" />
-                        <p>No courses match your filters</p>
-                        <Button variant="link" onClick={clearFilters}>Clear filters</Button>
+                        <p>{t('predictor.showingResults')}</p>
+                        <Button variant="link" onClick={clearFilters}>{t('predictor.clearFilters')}</Button>
                       </div>
                     ) : (
                       filteredRecommendations.map((course, index) => (
