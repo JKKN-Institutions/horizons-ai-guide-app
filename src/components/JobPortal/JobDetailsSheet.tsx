@@ -9,6 +9,7 @@ import {
   FileText, CheckCircle, ExternalLink, Share2
 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface JobDetailsSheetProps {
   job: Job | null;
@@ -21,26 +22,28 @@ interface JobDetailsSheetProps {
   onWhatsApp?: () => void;
 }
 
-const formatSalary = (min: number | null, max: number | null, type: string) => {
-  if (!min && !max) return 'Not disclosed';
-  const formatNum = (n: number) => n >= 100000 ? `₹${(n/100000).toFixed(1)}L` : `₹${n.toLocaleString('en-IN')}`;
-  const suffix = type === 'yearly' ? '/year' : type === 'daily' ? '/day' : '/month';
-  if (min && max) return `${formatNum(min)} - ${formatNum(max)}${suffix}`;
-  if (min) return `${formatNum(min)}+${suffix}`;
-  return `Up to ${formatNum(max!)}${suffix}`;
-};
-
-const formatExperience = (min: number, max: number | null) => {
-  if (min === 0 && !max) return 'Fresher';
-  if (min === 0 && max) return `0-${max} years`;
-  if (min && max) return `${min}-${max} years`;
-  return `${min}+ years`;
-};
-
 export const JobDetailsSheet = ({ 
   job, isOpen, onClose, isSaved, onSave, onUnsave, onCall, onWhatsApp 
 }: JobDetailsSheetProps) => {
+  const { t, language } = useLanguage();
+  
   if (!job) return null;
+
+  const formatSalary = (min: number | null, max: number | null, type: string) => {
+    if (!min && !max) return language === 'ta' ? 'வெளிப்படுத்தவில்லை' : 'Not disclosed';
+    const formatNum = (n: number) => n >= 100000 ? `₹${(n/100000).toFixed(1)}L` : `₹${n.toLocaleString('en-IN')}`;
+    const suffix = type === 'yearly' ? t('jobportal.perYear') : type === 'daily' ? t('jobportal.perDay') : t('jobportal.perMonth');
+    if (min && max) return `${formatNum(min)} - ${formatNum(max)}${suffix}`;
+    if (min) return `${formatNum(min)}+${suffix}`;
+    return `${formatNum(max!)}${suffix}`;
+  };
+
+  const formatExperience = (min: number, max: number | null) => {
+    if (min === 0 && !max) return t('jobportal.fresher');
+    if (min === 0 && max) return `0-${max} ${t('jobportal.years')}`;
+    if (min && max) return `${min}-${max} ${t('jobportal.years')}`;
+    return `${min}+ ${t('jobportal.years')}`;
+  };
 
   const handleCall = () => {
     window.location.href = `tel:${job.phone_primary}`;
@@ -83,7 +86,7 @@ export const JobDetailsSheet = ({
                   {job.is_featured && (
                     <Badge className="bg-amber-500 text-white text-[10px]">
                       <Star className="w-3 h-3 mr-0.5" />
-                      Featured
+                      {t('jobportal.featured')}
                     </Badge>
                   )}
                 </div>
@@ -113,35 +116,35 @@ export const JobDetailsSheet = ({
               <div className="bg-muted/50 p-3 rounded-xl">
                 <div className="flex items-center gap-2 text-muted-foreground text-xs mb-1">
                   <Banknote className="w-4 h-4" />
-                  Salary
+                  {t('jobportal.salary')}
                 </div>
                 <p className="font-semibold text-primary">
                   {formatSalary(job.salary_min, job.salary_max, job.salary_type)}
                 </p>
                 {job.is_salary_negotiable && (
-                  <p className="text-xs text-muted-foreground">Negotiable</p>
+                  <p className="text-xs text-muted-foreground">{t('jobportal.negotiable')}</p>
                 )}
               </div>
               <div className="bg-muted/50 p-3 rounded-xl">
                 <div className="flex items-center gap-2 text-muted-foreground text-xs mb-1">
                   <Briefcase className="w-4 h-4" />
-                  Experience
+                  {t('jobportal.experience')}
                 </div>
                 <p className="font-semibold">{formatExperience(job.experience_min, job.experience_max)}</p>
               </div>
               <div className="bg-muted/50 p-3 rounded-xl">
                 <div className="flex items-center gap-2 text-muted-foreground text-xs mb-1">
                   <GraduationCap className="w-4 h-4" />
-                  Qualification
+                  {t('jobportal.qualification')}
                 </div>
-                <p className="font-semibold text-sm">{job.qualification || 'Any'}</p>
+                <p className="font-semibold text-sm">{job.qualification || (language === 'ta' ? 'ஏதேனும்' : 'Any')}</p>
               </div>
               <div className="bg-muted/50 p-3 rounded-xl">
                 <div className="flex items-center gap-2 text-muted-foreground text-xs mb-1">
                   <Users className="w-4 h-4" />
-                  Vacancies
+                  {t('jobportal.vacancies')}
                 </div>
-                <p className="font-semibold">{job.vacancies} opening{job.vacancies > 1 ? 's' : ''}</p>
+                <p className="font-semibold">{job.vacancies} {language === 'ta' ? 'இடங்கள்' : (job.vacancies > 1 ? 'openings' : 'opening')}</p>
               </div>
             </div>
 
@@ -150,7 +153,7 @@ export const JobDetailsSheet = ({
               <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-4">
                 <h4 className="font-semibold text-green-700 dark:text-green-400 mb-2 flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
-                  Walk-in Interview
+                  {t('jobportal.walkinDetails')}
                 </h4>
                 <div className="space-y-2 text-sm">
                   <p className="flex items-center gap-2">
@@ -180,12 +183,12 @@ export const JobDetailsSheet = ({
             <div>
               <h4 className="font-semibold mb-2 flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
-                Location
+                {t('jobportal.location')}
               </h4>
               <p className="text-sm text-muted-foreground mb-2">{job.full_address}</p>
               <Button variant="outline" size="sm" onClick={openMaps} className="gap-2">
                 <ExternalLink className="w-4 h-4" />
-                Open in Google Maps
+                {t('jobportal.openMaps')}
               </Button>
             </div>
 
@@ -194,7 +197,7 @@ export const JobDetailsSheet = ({
             {/* Job Description */}
             {job.description && (
               <div>
-                <h4 className="font-semibold mb-2">Job Description</h4>
+                <h4 className="font-semibold mb-2">{t('jobportal.description')}</h4>
                 <p className="text-sm text-muted-foreground whitespace-pre-line">{job.description}</p>
               </div>
             )}
@@ -202,7 +205,7 @@ export const JobDetailsSheet = ({
             {/* Responsibilities */}
             {job.responsibilities && (
               <div>
-                <h4 className="font-semibold mb-2">Responsibilities</h4>
+                <h4 className="font-semibold mb-2">{t('jobportal.responsibilities')}</h4>
                 <p className="text-sm text-muted-foreground whitespace-pre-line">{job.responsibilities}</p>
               </div>
             )}
@@ -210,7 +213,7 @@ export const JobDetailsSheet = ({
             {/* Requirements */}
             {job.requirements && (
               <div>
-                <h4 className="font-semibold mb-2">Requirements</h4>
+                <h4 className="font-semibold mb-2">{t('jobportal.requirements')}</h4>
                 <p className="text-sm text-muted-foreground whitespace-pre-line">{job.requirements}</p>
               </div>
             )}
@@ -220,7 +223,7 @@ export const JobDetailsSheet = ({
               <div>
                 <h4 className="font-semibold mb-2 flex items-center gap-2">
                   <FileText className="w-4 h-4" />
-                  Documents Required
+                  {t('jobportal.documentsRequired')}
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {job.documents_required.map((doc, idx) => (
@@ -236,7 +239,7 @@ export const JobDetailsSheet = ({
             {/* Benefits */}
             {job.benefits && job.benefits.length > 0 && (
               <div>
-                <h4 className="font-semibold mb-2">Benefits</h4>
+                <h4 className="font-semibold mb-2">{t('jobportal.benefits')}</h4>
                 <div className="flex flex-wrap gap-2">
                   {job.benefits.map((benefit, idx) => (
                     <Badge key={idx} variant="secondary" className="text-xs">
@@ -251,7 +254,7 @@ export const JobDetailsSheet = ({
 
             {/* Contact Info */}
             <div>
-              <h4 className="font-semibold mb-3">Contact Information</h4>
+              <h4 className="font-semibold mb-3">{t('jobportal.contactInfo')}</h4>
               <div className="space-y-2 text-sm">
                 <p className="flex items-center gap-2">
                   <Users className="w-4 h-4 text-muted-foreground" />
@@ -272,7 +275,7 @@ export const JobDetailsSheet = ({
             </div>
 
             <p className="text-xs text-muted-foreground text-center pt-4">
-              Posted {formatDistanceToNow(new Date(job.created_at), { addSuffix: true })}
+              {t('jobportal.postedAgo')} {formatDistanceToNow(new Date(job.created_at), { addSuffix: true })}
             </p>
           </div>
 
@@ -280,11 +283,11 @@ export const JobDetailsSheet = ({
           <div className="p-4 border-t bg-card flex gap-3 sticky bottom-0">
             <Button onClick={handleCall} className="flex-1 h-12 bg-primary hover:bg-primary/90">
               <Phone className="w-5 h-5 mr-2" />
-              Call Now
+              {t('jobportal.callNow')}
             </Button>
             <Button onClick={handleWhatsApp} className="flex-1 h-12 bg-green-600 hover:bg-green-700 text-white">
               <MessageCircle className="w-5 h-5 mr-2" />
-              WhatsApp
+              {t('jobportal.whatsapp')}
             </Button>
           </div>
         </div>

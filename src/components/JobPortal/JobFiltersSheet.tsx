@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Filter, X } from 'lucide-react';
 import { JobFilters } from '@/types/jobPortal';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface JobFiltersSheetProps {
   filters: JobFilters;
@@ -24,33 +24,34 @@ const cities = [
   'Coimbatore', 'Delhi', 'Noida', 'Gurgaon', 'Ahmedabad', 'Kochi', 'Kolkata'
 ];
 
-const jobTypes = [
-  { value: 'full-time', label: 'Full Time' },
-  { value: 'part-time', label: 'Part Time' },
-  { value: 'contract', label: 'Contract' },
-  { value: 'internship', label: 'Internship' },
-];
-
-const experienceOptions = [
-  { value: '0', label: 'Fresher (0 years)' },
-  { value: '1', label: '1+ years' },
-  { value: '2', label: '2+ years' },
-  { value: '3', label: '3+ years' },
-  { value: '5', label: '5+ years' },
-  { value: '10', label: '10+ years' },
-];
-
-const salaryOptions = [
-  { min: 0, max: 15000, label: 'Up to ₹15,000' },
-  { min: 15000, max: 25000, label: '₹15,000 - ₹25,000' },
-  { min: 25000, max: 50000, label: '₹25,000 - ₹50,000' },
-  { min: 50000, max: 100000, label: '₹50,000 - ₹1 Lakh' },
-  { min: 100000, max: null, label: 'Above ₹1 Lakh' },
-];
-
 export const JobFiltersSheet = ({ filters, onApply, onClear }: JobFiltersSheetProps) => {
+  const { t, language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [localFilters, setLocalFilters] = useState<JobFilters>(filters);
+
+  const jobTypes = [
+    { value: 'full-time', label: t('jobportal.fullTime') },
+    { value: 'part-time', label: t('jobportal.partTime') },
+    { value: 'contract', label: t('jobportal.contract') },
+    { value: 'internship', label: t('jobportal.internship') },
+  ];
+
+  const experienceOptions = [
+    { value: '0', label: language === 'ta' ? 'புதியவர் (0 ஆண்டுகள்)' : 'Fresher (0 years)' },
+    { value: '1', label: '1+ ' + t('jobportal.years') },
+    { value: '2', label: '2+ ' + t('jobportal.years') },
+    { value: '3', label: '3+ ' + t('jobportal.years') },
+    { value: '5', label: '5+ ' + t('jobportal.years') },
+    { value: '10', label: '10+ ' + t('jobportal.years') },
+  ];
+
+  const salaryOptions = [
+    { min: 0, max: 15000, label: language === 'ta' ? '₹15,000 வரை' : 'Up to ₹15,000' },
+    { min: 15000, max: 25000, label: '₹15,000 - ₹25,000' },
+    { min: 25000, max: 50000, label: '₹25,000 - ₹50,000' },
+    { min: 50000, max: 100000, label: '₹50,000 - ₹1 Lakh' },
+    { min: 100000, max: null, label: language === 'ta' ? '₹1 லட்சம் மேல்' : 'Above ₹1 Lakh' },
+  ];
 
   const handleApply = () => {
     onApply(localFilters);
@@ -70,7 +71,7 @@ export const JobFiltersSheet = ({ filters, onApply, onClear }: JobFiltersSheetPr
       <SheetTrigger asChild>
         <Button variant="outline" className="gap-2 relative">
           <Filter className="w-4 h-4" />
-          Filters
+          {t('jobportal.filters')}
           {activeFiltersCount > 0 && (
             <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center">
               {activeFiltersCount}
@@ -81,10 +82,10 @@ export const JobFiltersSheet = ({ filters, onApply, onClear }: JobFiltersSheetPr
       <SheetContent side="bottom" className="h-[85vh] rounded-t-3xl">
         <SheetHeader className="pb-4 border-b">
           <SheetTitle className="flex items-center justify-between">
-            <span>Filter Jobs</span>
+            <span>{t('jobportal.filters')}</span>
             <Button variant="ghost" size="sm" onClick={handleClear}>
               <X className="w-4 h-4 mr-1" />
-              Clear All
+              {t('jobportal.clearAll')}
             </Button>
           </SheetTitle>
         </SheetHeader>
@@ -92,13 +93,13 @@ export const JobFiltersSheet = ({ filters, onApply, onClear }: JobFiltersSheetPr
         <div className="space-y-6 py-6 overflow-y-auto max-h-[calc(85vh-180px)]">
           {/* Location */}
           <div className="space-y-3">
-            <Label className="text-base font-semibold">Location</Label>
+            <Label className="text-base font-semibold">{t('jobportal.location')}</Label>
             <Select 
               value={localFilters.city || ''} 
               onValueChange={(v) => setLocalFilters({ ...localFilters, city: v || undefined })}
             >
               <SelectTrigger>
-                <SelectValue placeholder="Select city" />
+                <SelectValue placeholder={language === 'ta' ? 'நகரத்தைத் தேர்ந்தெடுக்கவும்' : 'Select city'} />
               </SelectTrigger>
               <SelectContent>
                 {cities.map(city => (
@@ -110,7 +111,7 @@ export const JobFiltersSheet = ({ filters, onApply, onClear }: JobFiltersSheetPr
 
           {/* Salary */}
           <div className="space-y-3">
-            <Label className="text-base font-semibold">Salary Range</Label>
+            <Label className="text-base font-semibold">{t('jobportal.salaryRange')}</Label>
             <div className="grid grid-cols-2 gap-2">
               {salaryOptions.map((opt, idx) => (
                 <button
@@ -134,13 +135,13 @@ export const JobFiltersSheet = ({ filters, onApply, onClear }: JobFiltersSheetPr
 
           {/* Experience */}
           <div className="space-y-3">
-            <Label className="text-base font-semibold">Experience</Label>
+            <Label className="text-base font-semibold">{t('jobportal.experience')}</Label>
             <Select 
               value={localFilters.experienceMin?.toString() || ''} 
               onValueChange={(v) => setLocalFilters({ ...localFilters, experienceMin: v ? parseInt(v) : undefined })}
             >
               <SelectTrigger>
-                <SelectValue placeholder="Select experience" />
+                <SelectValue placeholder={language === 'ta' ? 'அனுபவத்தைத் தேர்ந்தெடுக்கவும்' : 'Select experience'} />
               </SelectTrigger>
               <SelectContent>
                 {experienceOptions.map(opt => (
@@ -152,7 +153,7 @@ export const JobFiltersSheet = ({ filters, onApply, onClear }: JobFiltersSheetPr
 
           {/* Job Type */}
           <div className="space-y-3">
-            <Label className="text-base font-semibold">Job Type</Label>
+            <Label className="text-base font-semibold">{t('jobportal.jobType')}</Label>
             <div className="flex flex-wrap gap-2">
               {jobTypes.map(type => (
                 <button
@@ -176,8 +177,10 @@ export const JobFiltersSheet = ({ filters, onApply, onClear }: JobFiltersSheetPr
           {/* Walk-in Only */}
           <div className="flex items-center justify-between">
             <div>
-              <Label className="text-base font-semibold">Walk-in Only</Label>
-              <p className="text-sm text-muted-foreground">Show only walk-in interviews</p>
+              <Label className="text-base font-semibold">{t('jobportal.walkinOnly')}</Label>
+              <p className="text-sm text-muted-foreground">
+                {language === 'ta' ? 'நேர்காணல் வேலைகள் மட்டும் காட்டு' : 'Show only walk-in interviews'}
+              </p>
             </div>
             <Switch 
               checked={localFilters.isWalkin || false}
@@ -188,10 +191,10 @@ export const JobFiltersSheet = ({ filters, onApply, onClear }: JobFiltersSheetPr
 
         <div className="pt-4 border-t flex gap-3">
           <Button variant="outline" className="flex-1" onClick={handleClear}>
-            Clear All
+            {t('jobportal.clearAll')}
           </Button>
           <Button className="flex-1" onClick={handleApply}>
-            Apply Filters
+            {t('jobportal.applyFilters')}
           </Button>
         </div>
       </SheetContent>

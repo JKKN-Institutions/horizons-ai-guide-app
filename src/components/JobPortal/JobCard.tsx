@@ -7,6 +7,7 @@ import {
   Calendar, Clock, Star, Briefcase, Users, Building2, Heart
 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface JobCardProps {
   job: Job;
@@ -18,23 +19,25 @@ interface JobCardProps {
   onClick?: () => void;
 }
 
-const formatSalary = (min: number | null, max: number | null, type: string) => {
-  if (!min && !max) return 'Not disclosed';
-  const formatNum = (n: number) => n >= 100000 ? `₹${(n/100000).toFixed(1)}L` : `₹${n.toLocaleString('en-IN')}`;
-  const suffix = type === 'yearly' ? '/year' : type === 'daily' ? '/day' : '/month';
-  if (min && max) return `${formatNum(min)} - ${formatNum(max)}${suffix}`;
-  if (min) return `${formatNum(min)}+${suffix}`;
-  return `Up to ${formatNum(max!)}${suffix}`;
-};
-
-const formatExperience = (min: number, max: number | null) => {
-  if (min === 0 && !max) return 'Fresher';
-  if (min === 0 && max) return `0-${max} years`;
-  if (min && max) return `${min}-${max} years`;
-  return `${min}+ years`;
-};
-
 export const JobCard = ({ job, isSaved, onSave, onUnsave, onCall, onWhatsApp, onClick }: JobCardProps) => {
+  const { t, language } = useLanguage();
+
+  const formatSalary = (min: number | null, max: number | null, type: string) => {
+    if (!min && !max) return language === 'ta' ? 'வெளிப்படுத்தவில்லை' : 'Not disclosed';
+    const formatNum = (n: number) => n >= 100000 ? `₹${(n/100000).toFixed(1)}L` : `₹${n.toLocaleString('en-IN')}`;
+    const suffix = type === 'yearly' ? t('jobportal.perYear') : type === 'daily' ? t('jobportal.perDay') : t('jobportal.perMonth');
+    if (min && max) return `${formatNum(min)} - ${formatNum(max)}${suffix}`;
+    if (min) return `${formatNum(min)}+${suffix}`;
+    return `${formatNum(max!)} ${language === 'ta' ? 'வரை' : 'Up to'}${suffix}`;
+  };
+
+  const formatExperience = (min: number, max: number | null) => {
+    if (min === 0 && !max) return t('jobportal.fresher');
+    if (min === 0 && max) return `0-${max} ${t('jobportal.years')}`;
+    if (min && max) return `${min}-${max} ${t('jobportal.years')}`;
+    return `${min}+ ${t('jobportal.years')}`;
+  };
+
   const handleCall = (e: React.MouseEvent) => {
     e.stopPropagation();
     window.location.href = `tel:${job.phone_primary}`;
@@ -69,7 +72,7 @@ export const JobCard = ({ job, isSaved, onSave, onUnsave, onCall, onWhatsApp, on
               {job.is_featured && (
                 <Badge className="bg-amber-500 text-white text-[10px] px-1.5">
                   <Star className="w-3 h-3 mr-0.5" />
-                  Featured
+                  {t('jobportal.featured')}
                 </Badge>
               )}
             </div>
@@ -103,7 +106,7 @@ export const JobCard = ({ job, isSaved, onSave, onUnsave, onCall, onWhatsApp, on
             </div>
             <div className="flex items-center gap-1 text-muted-foreground">
               <GraduationCap className="w-4 h-4" />
-              <span className="line-clamp-1">{job.qualification || 'Any'}</span>
+              <span className="line-clamp-1">{job.qualification || (language === 'ta' ? 'ஏதேனும்' : 'Any')}</span>
             </div>
           </div>
         </div>
@@ -113,7 +116,7 @@ export const JobCard = ({ job, isSaved, onSave, onUnsave, onCall, onWhatsApp, on
           <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-2 mb-3">
             <div className="flex items-center gap-2 text-green-700 dark:text-green-400 text-sm font-medium">
               <Calendar className="w-4 h-4" />
-              Walk-in: {new Date(job.interview_start_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
+              {t('jobportal.walkin')}: {new Date(job.interview_start_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
               {job.interview_end_date && job.interview_end_date !== job.interview_start_date && 
                 ` - ${new Date(job.interview_end_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}`
               }
@@ -135,7 +138,7 @@ export const JobCard = ({ job, isSaved, onSave, onUnsave, onCall, onWhatsApp, on
           {job.vacancies > 1 && (
             <Badge variant="secondary" className="text-xs">
               <Users className="w-3 h-3 mr-1" />
-              {job.vacancies} openings
+              {job.vacancies} {language === 'ta' ? 'இடங்கள்' : 'openings'}
             </Badge>
           )}
         </div>
@@ -147,20 +150,20 @@ export const JobCard = ({ job, isSaved, onSave, onUnsave, onCall, onWhatsApp, on
             className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground h-11"
           >
             <Phone className="w-4 h-4 mr-2" />
-            Call Now
+            {t('jobportal.callNow')}
           </Button>
           <Button 
             onClick={handleWhatsApp}
             className="flex-1 bg-green-600 hover:bg-green-700 text-white h-11"
           >
             <MessageCircle className="w-4 h-4 mr-2" />
-            WhatsApp
+            {t('jobportal.whatsapp')}
           </Button>
         </div>
 
         {/* Posted time */}
         <p className="text-xs text-muted-foreground text-center mt-2">
-          Posted {formatDistanceToNow(new Date(job.created_at), { addSuffix: true })}
+          {t('jobportal.postedAgo')} {formatDistanceToNow(new Date(job.created_at), { addSuffix: true })}
         </p>
       </CardContent>
     </Card>
