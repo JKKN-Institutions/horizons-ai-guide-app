@@ -8,9 +8,11 @@ import { JobCard, CategoryFilter, JobFiltersSheet, JobDetailsSheet, BottomNav } 
 import { useCategories, useJobs, useSaveJob, useUnsaveJob, useSavedJobs, useLogContact } from '@/hooks/useJobPortal';
 import { Job, JobFilters } from '@/types/jobPortal';
 import { supabase } from '@/integrations/supabase/client';
+import { useLanguage } from '@/hooks/useLanguage';
 
 const JobPortal = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [userId, setUserId] = useState<string | null>(null);
   const [filters, setFilters] = useState<JobFilters>({});
   const [searchQuery, setSearchQuery] = useState('');
@@ -74,7 +76,7 @@ const JobPortal = () => {
             >
               <ArrowLeft className="h-5 w-5" />
             </Button>
-            <h1 className="text-xl font-bold">Find Your Dream Job</h1>
+            <h1 className="text-xl font-bold">{t('jobportal.findDreamJob')}</h1>
           </div>
           <form onSubmit={handleSearch} className="flex gap-2">
             <div className="relative flex-1">
@@ -82,7 +84,7 @@ const JobPortal = () => {
               <Input
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search jobs, companies..."
+                placeholder={t('jobportal.searchPlaceholder')}
                 className="pl-10 bg-background text-foreground"
               />
             </div>
@@ -112,11 +114,11 @@ const JobPortal = () => {
         {/* Results count */}
         <div className="flex items-center justify-between mb-4">
           <p className="text-sm text-muted-foreground">
-            {jobsData?.total || 0} jobs found
+            {jobsData?.total || 0} {t('jobportal.jobsFound')}
           </p>
           <Button variant="ghost" size="sm" onClick={() => refetch()}>
             <RefreshCw className="w-4 h-4 mr-1" />
-            Refresh
+            {t('jobportal.refresh')}
           </Button>
         </div>
 
@@ -141,9 +143,9 @@ const JobPortal = () => {
             ))}
             {jobsData?.jobs.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-muted-foreground">No jobs found matching your criteria.</p>
+                <p className="text-muted-foreground">{t('jobportal.noJobsFound')}</p>
                 <Button variant="link" onClick={() => { setFilters({}); setSearchQuery(''); }}>
-                  Clear all filters
+                  {t('jobportal.clearFilters')}
                 </Button>
               </div>
             )}
@@ -157,7 +159,7 @@ const JobPortal = () => {
             className="w-full mt-6"
             onClick={() => setPage(p => p + 1)}
           >
-            Load More Jobs
+            {t('jobportal.loadMore')}
           </Button>
         )}
       </div>

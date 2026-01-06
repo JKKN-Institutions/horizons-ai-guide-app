@@ -5,6 +5,7 @@ import {
   Laptop, Megaphone, Calculator, HeartPulse, Factory, 
   Headphones, Store, GraduationCap, Wrench, Building, Truck, Users 
 } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface CategoryFilterProps {
   categories: Category[];
@@ -28,6 +29,8 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export const CategoryFilter = ({ categories, selected, onSelect }: CategoryFilterProps) => {
+  const { t } = useLanguage();
+  
   return (
     <ScrollArea className="w-full whitespace-nowrap">
       <div className="flex gap-2 pb-3">
@@ -39,7 +42,7 @@ export const CategoryFilter = ({ categories, selected, onSelect }: CategoryFilte
               : 'bg-muted text-muted-foreground hover:bg-muted/80'
           }`}
         >
-          All Jobs
+          {t('jobportal.allJobs')}
         </button>
         {categories.map((cat) => {
           const Icon = iconMap[cat.icon] || Laptop;
