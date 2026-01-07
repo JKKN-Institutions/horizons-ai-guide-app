@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
+import { useLanguage } from '@/hooks/useLanguage';
 import { supabase } from '@/integrations/supabase/client';
 import {
   Sheet,
@@ -150,6 +151,7 @@ const CareerChat = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { toast } = useToast();
+  const { t } = useLanguage();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recognitionRef = useRef<any>(null);
@@ -2664,13 +2666,13 @@ Be empathetic and respect Indian family values while helping the student communi
                       </div>
                     </div>
                     <h3 className="text-2xl font-serif font-bold text-gray-800 mb-3">
-                      Hello! I'm your AI Career Counselor
+                      {t('chat.welcomeTitle')}
                     </h3>
                     <p className="text-gray-600 max-w-md text-lg leading-relaxed">
-                      Ask me anything about careers, courses, colleges, or guidance. I'm here to help you find your path!
+                      {t('chat.welcomeDesc')}
                     </p>
                     <p className="text-amber-600/80 font-tamil mt-4 text-lg">
-                      தொழில், படிப்புகள், கல்லூரிகள் பற்றி என்னிடம் கேளுங்கள்!
+                      {t('chat.welcomeTamil')}
                     </p>
                     
                     {/* Curated Questions for 12th Students */}
@@ -2679,7 +2681,7 @@ Be empathetic and respect Indian family values while helping the student communi
                         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
                         <span className="text-xs font-semibold text-amber-700 bg-amber-50 px-3 py-1 rounded-full flex items-center gap-1.5">
                           <Sparkles className="h-3 w-3" />
-                          Popular Questions for 12th Students
+                          {t('chat.popularQuestions')}
                         </span>
                         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
                       </div>
@@ -2687,18 +2689,18 @@ Be empathetic and respect Indian family values while helping the student communi
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {/* Career Planning Questions */}
                         {[
-                          { question: "What are the best career options after 12th Science (PCM)?", icon: "🔬", color: "blue" },
-                          { question: "Which courses have the highest salary potential?", icon: "💰", color: "green" },
-                          { question: "How do I choose between Engineering and Medicine?", icon: "🤔", color: "purple" },
-                          { question: "What are the emerging careers with high growth?", icon: "📈", color: "orange" },
-                          { question: "Which entrance exams should I prepare for?", icon: "📝", color: "rose" },
-                          { question: "What are the best colleges in Tamil Nadu?", icon: "🏫", color: "indigo" },
-                          { question: "Can I pursue abroad studies after 12th?", icon: "✈️", color: "sky" },
-                          { question: "What skills should I develop for my career?", icon: "🎯", color: "amber" },
+                          { questionKey: "chat.q1", icon: "🔬", color: "blue" },
+                          { questionKey: "chat.q2", icon: "💰", color: "green" },
+                          { questionKey: "chat.q3", icon: "🤔", color: "purple" },
+                          { questionKey: "chat.q4", icon: "📈", color: "orange" },
+                          { questionKey: "chat.q5", icon: "📝", color: "rose" },
+                          { questionKey: "chat.q6", icon: "🏫", color: "indigo" },
+                          { questionKey: "chat.q7", icon: "✈️", color: "sky" },
+                          { questionKey: "chat.q8", icon: "🎯", color: "amber" },
                         ].map((item) => (
                           <button
-                            key={item.question}
-                            onClick={() => handleQuickAction(item.question)}
+                            key={item.questionKey}
+                            onClick={() => handleQuickAction(t(item.questionKey))}
                             className={`flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${
                               item.color === "blue" ? "bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 text-blue-800 hover:border-blue-400" :
                               item.color === "green" ? "bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 text-green-800 hover:border-green-400" :
@@ -2711,7 +2713,7 @@ Be empathetic and respect Indian family values while helping the student communi
                             }`}
                           >
                             <span className="text-lg">{item.icon}</span>
-                            <span className="text-sm font-medium leading-tight">{item.question}</span>
+                            <span className="text-sm font-medium leading-tight">{t(item.questionKey)}</span>
                           </button>
                         ))}
                       </div>
@@ -2721,24 +2723,24 @@ Be empathetic and respect Indian family values while helping the student communi
                         <div className="flex items-center gap-2 justify-center mb-3">
                           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
                           <span className="text-xs font-semibold text-rose-600 bg-rose-50 px-3 py-1 rounded-full">
-                            🎓 Stream-Specific Questions
+                            🎓 {t('chat.streamSpecificQuestions')}
                           </span>
                           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
                         </div>
                         
                         <div className="flex flex-wrap justify-center gap-2">
                           {[
-                            "Career options for PCB students",
-                            "Commerce stream best courses",
-                            "Arts stream career paths",
-                            "PCMB career combinations"
-                          ].map((chip) => (
+                            "chat.stream1",
+                            "chat.stream2",
+                            "chat.stream3",
+                            "chat.stream4"
+                          ].map((key) => (
                             <button
-                              key={chip}
-                              onClick={() => handleQuickAction(chip)}
+                              key={key}
+                              onClick={() => handleQuickAction(t(key))}
                               className="px-4 py-2 rounded-full bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 text-rose-700 text-sm font-medium hover:border-rose-400 hover:shadow-md transition-all duration-300"
                             >
-                              {chip}
+                              {t(key)}
                             </button>
                           ))}
                         </div>
@@ -2816,7 +2818,7 @@ Be empathetic and respect Indian family values while helping the student communi
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
-            placeholder="Ask me about careers, courses, or colleges..."
+            placeholder={t('chat.inputPlaceholder')}
             className="flex-1 border-0 bg-transparent text-gray-800 placeholder:text-gray-400 focus-visible:ring-0 text-base h-12"
             disabled={isLoading}
           />
