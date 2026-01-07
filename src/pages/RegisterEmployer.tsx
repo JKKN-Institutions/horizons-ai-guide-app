@@ -10,11 +10,11 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { registerEmployerSchema } from "@/lib/validation/registration-schemas";
 import { z } from "zod";
-
-const steps = ["Company Info", "Contact Person", "Hiring Needs", "Review"];
+import { useLanguage } from "@/hooks/useLanguage";
 
 const RegisterEmployer = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -32,6 +32,13 @@ const RegisterEmployer = () => {
     locationsHiring: "",
     hiringTimeline: "",
   });
+
+  const steps = [
+    t('regEmployer.companyInfo'),
+    t('regEmployer.contactPerson'),
+    t('regEmployer.hiringNeeds'),
+    t('regEmployer.review')
+  ];
 
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -109,7 +116,7 @@ const RegisterEmployer = () => {
 
       if (error) throw error;
       
-      toast.success("Registration successful!");
+      toast.success(t('regEmployer.registrationSuccess'));
       navigate("/employer/register/success");
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -123,7 +130,7 @@ const RegisterEmployer = () => {
         return;
       }
       console.error("Registration error:", error);
-      toast.error("Registration failed. Please try again.");
+      toast.error(t('regEmployer.registrationFailed'));
     } finally {
       setIsSubmitting(false);
     }
@@ -134,7 +141,7 @@ const RegisterEmployer = () => {
       <div className="container mx-auto px-4 max-w-2xl relative z-10">
         <Button variant="ghost" onClick={() => navigate(-1)} className="mb-6 text-fresh-green-dark hover:text-fresh-green-medium hover:bg-fresh-green-bg">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back
+          {t('regEmployer.back')}
         </Button>
 
         <Card className="fresh-card border-l-purple-500">
@@ -142,8 +149,8 @@ const RegisterEmployer = () => {
             <div className="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-violet-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
               <Briefcase className="w-8 h-8 text-purple-600" />
             </div>
-            <CardTitle className="text-2xl font-serif text-fresh-green-dark">Register as Employer</CardTitle>
-            <CardDescription className="fresh-body">Connect with talented graduates from JKKN institutions</CardDescription>
+            <CardTitle className="text-2xl font-serif text-fresh-green-dark">{t('regEmployer.pageTitle')}</CardTitle>
+            <CardDescription className="fresh-body">{t('regEmployer.subtitle')}</CardDescription>
           </CardHeader>
 
           {/* Progress Steps */}
@@ -175,10 +182,10 @@ const RegisterEmployer = () => {
             {currentStep === 0 && (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="companyName" className="fresh-label">Company Name *</Label>
+                  <Label htmlFor="companyName" className="fresh-label">{t('regEmployer.companyName')} *</Label>
                   <Input 
                     id="companyName" 
-                    placeholder="Enter company name" 
+                    placeholder={t('regEmployer.enterCompanyName')} 
                     value={formData.companyName} 
                     onChange={e => handleChange("companyName", e.target.value)} 
                     className={`fresh-input ${errors.companyName ? "border-destructive" : ""}`} 
@@ -186,39 +193,39 @@ const RegisterEmployer = () => {
                   {errors.companyName && <p className="text-sm text-destructive">{errors.companyName}</p>}
                 </div>
                 <div className="space-y-2">
-                  <Label className="fresh-label">Industry *</Label>
+                  <Label className="fresh-label">{t('regEmployer.industry')} *</Label>
                   <Select value={formData.industry} onValueChange={v => handleChange("industry", v)}>
-                    <SelectTrigger className="fresh-input"><SelectValue placeholder="Select industry" /></SelectTrigger>
+                    <SelectTrigger className="fresh-input"><SelectValue placeholder={t('regEmployer.selectIndustry')} /></SelectTrigger>
                     <SelectContent className="bg-white border border-fresh-green-light">
-                      <SelectItem value="it">IT / Software</SelectItem>
-                      <SelectItem value="healthcare">Healthcare / Pharma</SelectItem>
-                      <SelectItem value="manufacturing">Manufacturing</SelectItem>
-                      <SelectItem value="finance">Finance / Banking</SelectItem>
-                      <SelectItem value="education">Education</SelectItem>
-                      <SelectItem value="retail">Retail / E-commerce</SelectItem>
-                      <SelectItem value="consulting">Consulting</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
+                      <SelectItem value="it">{t('regEmployer.industryIt')}</SelectItem>
+                      <SelectItem value="healthcare">{t('regEmployer.industryHealthcare')}</SelectItem>
+                      <SelectItem value="manufacturing">{t('regEmployer.industryManufacturing')}</SelectItem>
+                      <SelectItem value="finance">{t('regEmployer.industryFinance')}</SelectItem>
+                      <SelectItem value="education">{t('regEmployer.industryEducation')}</SelectItem>
+                      <SelectItem value="retail">{t('regEmployer.industryRetail')}</SelectItem>
+                      <SelectItem value="consulting">{t('regEmployer.industryConsulting')}</SelectItem>
+                      <SelectItem value="other">{t('regEmployer.industryOther')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label className="fresh-label">Company Size</Label>
+                  <Label className="fresh-label">{t('regEmployer.companySize')}</Label>
                   <Select value={formData.companySize} onValueChange={v => handleChange("companySize", v)}>
-                    <SelectTrigger className="fresh-input"><SelectValue placeholder="Select company size" /></SelectTrigger>
+                    <SelectTrigger className="fresh-input"><SelectValue placeholder={t('regEmployer.selectCompanySize')} /></SelectTrigger>
                     <SelectContent className="bg-white border border-fresh-green-light">
-                      <SelectItem value="1-50">1-50 employees</SelectItem>
-                      <SelectItem value="51-200">51-200 employees</SelectItem>
-                      <SelectItem value="201-500">201-500 employees</SelectItem>
-                      <SelectItem value="501-1000">501-1000 employees</SelectItem>
-                      <SelectItem value="1000+">1000+ employees</SelectItem>
+                      <SelectItem value="1-50">{t('regEmployer.size1_50')}</SelectItem>
+                      <SelectItem value="51-200">{t('regEmployer.size51_200')}</SelectItem>
+                      <SelectItem value="201-500">{t('regEmployer.size201_500')}</SelectItem>
+                      <SelectItem value="501-1000">{t('regEmployer.size501_1000')}</SelectItem>
+                      <SelectItem value="1000+">{t('regEmployer.size1000plus')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="website" className="fresh-label">Website</Label>
+                  <Label htmlFor="website" className="fresh-label">{t('regEmployer.website')}</Label>
                   <Input 
                     id="website" 
-                    placeholder="https://www.company.com" 
+                    placeholder={t('regEmployer.websitePlaceholder')} 
                     value={formData.website} 
                     onChange={e => handleChange("website", e.target.value)} 
                     className={`fresh-input ${errors.website ? "border-destructive" : ""}`} 
@@ -231,10 +238,10 @@ const RegisterEmployer = () => {
             {currentStep === 1 && (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="contactName" className="fresh-label">Contact Person Name *</Label>
+                  <Label htmlFor="contactName" className="fresh-label">{t('regEmployer.contactPersonName')} *</Label>
                   <Input 
                     id="contactName" 
-                    placeholder="Full name" 
+                    placeholder={t('regEmployer.fullName')} 
                     value={formData.contactName} 
                     onChange={e => handleChange("contactName", e.target.value)} 
                     className={`fresh-input ${errors.contactName ? "border-destructive" : ""}`} 
@@ -242,11 +249,11 @@ const RegisterEmployer = () => {
                   {errors.contactName && <p className="text-sm text-destructive">{errors.contactName}</p>}
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="contactEmail" className="fresh-label">Email Address *</Label>
+                  <Label htmlFor="contactEmail" className="fresh-label">{t('regEmployer.emailAddress')} *</Label>
                   <Input 
                     id="contactEmail" 
                     type="email" 
-                    placeholder="hr@company.com" 
+                    placeholder={t('regEmployer.emailPlaceholder')} 
                     value={formData.contactEmail} 
                     onChange={e => handleChange("contactEmail", e.target.value)} 
                     className={`fresh-input ${errors.contactEmail ? "border-destructive" : ""}`} 
@@ -254,10 +261,10 @@ const RegisterEmployer = () => {
                   {errors.contactEmail && <p className="text-sm text-destructive">{errors.contactEmail}</p>}
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="contactPhone" className="fresh-label">Phone Number *</Label>
+                  <Label htmlFor="contactPhone" className="fresh-label">{t('regEmployer.phoneNumber')} *</Label>
                   <Input 
                     id="contactPhone" 
-                    placeholder="9876543210" 
+                    placeholder={t('regEmployer.phonePlaceholder')} 
                     value={formData.contactPhone} 
                     onChange={e => handleChange("contactPhone", e.target.value)} 
                     className={`fresh-input ${errors.contactPhone ? "border-destructive" : ""}`} 
@@ -265,8 +272,8 @@ const RegisterEmployer = () => {
                   {errors.contactPhone && <p className="text-sm text-destructive">{errors.contactPhone}</p>}
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="designation" className="fresh-label">Designation</Label>
-                  <Input id="designation" placeholder="e.g., HR Manager, Talent Acquisition Lead" value={formData.designation} onChange={e => handleChange("designation", e.target.value)} className="fresh-input" />
+                  <Label htmlFor="designation" className="fresh-label">{t('regEmployer.designation')}</Label>
+                  <Input id="designation" placeholder={t('regEmployer.designationPlaceholder')} value={formData.designation} onChange={e => handleChange("designation", e.target.value)} className="fresh-input" />
                 </div>
               </div>
             )}
@@ -274,34 +281,34 @@ const RegisterEmployer = () => {
             {currentStep === 2 && (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="hiringRoles" className="fresh-label">Roles You're Hiring For</Label>
-                  <Input id="hiringRoles" placeholder="e.g., Software Engineer, Data Analyst, Nurse" value={formData.hiringRoles} onChange={e => handleChange("hiringRoles", e.target.value)} className="fresh-input" />
+                  <Label htmlFor="hiringRoles" className="fresh-label">{t('regEmployer.rolesHiring')}</Label>
+                  <Input id="hiringRoles" placeholder={t('regEmployer.rolesPlaceholder')} value={formData.hiringRoles} onChange={e => handleChange("hiringRoles", e.target.value)} className="fresh-input" />
                 </div>
                 <div className="space-y-2">
-                  <Label className="fresh-label">Experience Level Required</Label>
+                  <Label className="fresh-label">{t('regEmployer.experienceLevel')}</Label>
                   <Select value={formData.experienceLevel} onValueChange={v => handleChange("experienceLevel", v)}>
-                    <SelectTrigger className="fresh-input"><SelectValue placeholder="Select experience level" /></SelectTrigger>
+                    <SelectTrigger className="fresh-input"><SelectValue placeholder={t('regEmployer.selectExperience')} /></SelectTrigger>
                     <SelectContent className="bg-white border border-fresh-green-light">
-                      <SelectItem value="fresher">Freshers Only</SelectItem>
-                      <SelectItem value="0-2">0-2 years</SelectItem>
-                      <SelectItem value="2-5">2-5 years</SelectItem>
-                      <SelectItem value="mixed">Mixed (Fresher + Experienced)</SelectItem>
+                      <SelectItem value="fresher">{t('regEmployer.expFresher')}</SelectItem>
+                      <SelectItem value="0-2">{t('regEmployer.exp0_2')}</SelectItem>
+                      <SelectItem value="2-5">{t('regEmployer.exp2_5')}</SelectItem>
+                      <SelectItem value="mixed">{t('regEmployer.expMixed')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="locations" className="fresh-label">Hiring Locations</Label>
-                  <Input id="locations" placeholder="e.g., Chennai, Bangalore, Remote" value={formData.locationsHiring} onChange={e => handleChange("locationsHiring", e.target.value)} className="fresh-input" />
+                  <Label htmlFor="locations" className="fresh-label">{t('regEmployer.hiringLocations')}</Label>
+                  <Input id="locations" placeholder={t('regEmployer.locationsPlaceholder')} value={formData.locationsHiring} onChange={e => handleChange("locationsHiring", e.target.value)} className="fresh-input" />
                 </div>
                 <div className="space-y-2">
-                  <Label className="fresh-label">Hiring Timeline</Label>
+                  <Label className="fresh-label">{t('regEmployer.hiringTimeline')}</Label>
                   <Select value={formData.hiringTimeline} onValueChange={v => handleChange("hiringTimeline", v)}>
-                    <SelectTrigger className="fresh-input"><SelectValue placeholder="Select timeline" /></SelectTrigger>
+                    <SelectTrigger className="fresh-input"><SelectValue placeholder={t('regEmployer.selectTimeline')} /></SelectTrigger>
                     <SelectContent className="bg-white border border-fresh-green-light">
-                      <SelectItem value="immediate">Immediate</SelectItem>
-                      <SelectItem value="1-month">Within 1 month</SelectItem>
-                      <SelectItem value="3-months">Within 3 months</SelectItem>
-                      <SelectItem value="6-months">Within 6 months</SelectItem>
+                      <SelectItem value="immediate">{t('regEmployer.timelineImmediate')}</SelectItem>
+                      <SelectItem value="1-month">{t('regEmployer.timeline1Month')}</SelectItem>
+                      <SelectItem value="3-months">{t('regEmployer.timeline3Months')}</SelectItem>
+                      <SelectItem value="6-months">{t('regEmployer.timeline6Months')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -310,31 +317,31 @@ const RegisterEmployer = () => {
 
             {currentStep === 3 && (
               <div className="space-y-4">
-                <h3 className="font-semibold text-lg text-fresh-green-dark">Review Your Information</h3>
+                <h3 className="font-semibold text-lg text-fresh-green-dark">{t('regEmployer.reviewYourInfo')}</h3>
                 <div className="fresh-card rounded-xl p-4 space-y-2 text-sm bg-fresh-green-bg">
-                  <p className="fresh-card-title"><strong>Company:</strong> {formData.companyName || "Not provided"}</p>
-                  <p className="fresh-body"><strong>Industry:</strong> {formData.industry || "Not provided"}</p>
-                  <p className="fresh-body"><strong>Company Size:</strong> {formData.companySize || "Not provided"}</p>
-                  <p className="fresh-body"><strong>Contact Name:</strong> {formData.contactName || "Not provided"}</p>
-                  <p className="fresh-body"><strong>Contact Email:</strong> {formData.contactEmail || "Not provided"}</p>
-                  <p className="fresh-body"><strong>Hiring Roles:</strong> {formData.hiringRoles || "Not provided"}</p>
-                  <p className="fresh-body"><strong>Locations:</strong> {formData.locationsHiring || "Not provided"}</p>
+                  <p className="fresh-card-title"><strong>{t('regEmployer.company')}:</strong> {formData.companyName || t('regEmployer.notProvided')}</p>
+                  <p className="fresh-body"><strong>{t('regEmployer.industry')}:</strong> {formData.industry || t('regEmployer.notProvided')}</p>
+                  <p className="fresh-body"><strong>{t('regEmployer.companySize')}:</strong> {formData.companySize || t('regEmployer.notProvided')}</p>
+                  <p className="fresh-body"><strong>{t('regEmployer.contactName')}:</strong> {formData.contactName || t('regEmployer.notProvided')}</p>
+                  <p className="fresh-body"><strong>{t('regEmployer.contactEmail')}:</strong> {formData.contactEmail || t('regEmployer.notProvided')}</p>
+                  <p className="fresh-body"><strong>{t('regEmployer.hiringRoles')}:</strong> {formData.hiringRoles || t('regEmployer.notProvided')}</p>
+                  <p className="fresh-body"><strong>{t('regEmployer.locations')}:</strong> {formData.locationsHiring || t('regEmployer.notProvided')}</p>
                 </div>
               </div>
             )}
 
             <div className="flex justify-between pt-4">
               <Button variant="outline" onClick={handleBack} disabled={currentStep === 0 || isSubmitting} className="btn-fresh-outline">
-                <ArrowLeft className="w-4 h-4 mr-2" /> Back
+                <ArrowLeft className="w-4 h-4 mr-2" /> {t('regEmployer.back')}
               </Button>
               {currentStep < steps.length - 1 ? (
                 <Button onClick={handleNext} className="btn-fresh-primary">
-                  Next <ArrowRight className="w-4 h-4 ml-2" />
+                  {t('regEmployer.next')} <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               ) : (
                 <Button onClick={handleSubmit} className="btn-fresh-primary" disabled={isSubmitting}>
                   {isSubmitting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
-                  Submit Registration
+                  {t('regEmployer.submitRegistration')}
                 </Button>
               )}
             </div>

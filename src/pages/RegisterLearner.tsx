@@ -9,11 +9,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { registerLearnerSchema } from "@/lib/validation/registration-schemas";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
-
-const steps = [
-  { id: 1, name: "Personal Info" },
-  { id: 2, name: "Education" },
-];
+import { useLanguage } from "@/hooks/useLanguage";
 
 const tamilNaduDistricts = [
   "Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore",
@@ -28,6 +24,7 @@ const tamilNaduDistricts = [
 
 const RegisterLearner = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -43,6 +40,11 @@ const RegisterLearner = () => {
     specialization: "",
     graduationYear: "",
   });
+
+  const steps = [
+    { id: 1, name: t('regLearner.personalInfo') },
+    { id: 2, name: t('regLearner.education') },
+  ];
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -119,7 +121,7 @@ const RegisterLearner = () => {
       localStorage.setItem('jkkn_learner_email', formData.email);
       localStorage.setItem('jkkn_learner_name', formData.fullName);
 
-      toast.success("Registration successful! Welcome to JKKN Career Hub.");
+      toast.success(t('regLearner.registrationSuccess'));
       navigate("/jkkn");
     } catch (error: unknown) {
       if (error && typeof error === "object" && "errors" in error) {
@@ -131,9 +133,9 @@ const RegisterLearner = () => {
           }
         });
         setErrors(newErrors);
-        toast.error("Please fix the errors in the form");
+        toast.error(t('regLearner.fixErrors'));
       } else {
-        toast.error("Registration failed. Please try again.");
+        toast.error(t('regLearner.registrationFailed'));
       }
     } finally {
       setIsSubmitting(false);
@@ -146,10 +148,10 @@ const RegisterLearner = () => {
         <Card className="border-0 shadow-lg">
           <CardHeader className="text-center pb-2">
             <CardTitle className="text-2xl font-serif text-primary">
-              Register as Learner
+              {t('regLearner.pageTitle')}
             </CardTitle>
             <CardDescription>
-              Find your dream job and advance your career
+              {t('regLearner.subtitle')}
             </CardDescription>
           </CardHeader>
 
@@ -201,10 +203,10 @@ const RegisterLearner = () => {
             {currentStep === 1 && (
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="fullName">Full Name *</Label>
+                  <Label htmlFor="fullName">{t('regLearner.fullName')} *</Label>
                   <Input
                     id="fullName"
-                    placeholder="e.g., Ramesh Kumar"
+                    placeholder={t('regLearner.fullNamePlaceholder')}
                     value={formData.fullName}
                     onChange={(e) => handleChange("fullName", e.target.value)}
                     className={errors.fullName ? "border-destructive" : ""}
@@ -215,11 +217,11 @@ const RegisterLearner = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="email">Email Address *</Label>
+                  <Label htmlFor="email">{t('regLearner.emailAddress')} *</Label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="e.g., ramesh@example.com"
+                    placeholder={t('regLearner.emailPlaceholder')}
                     value={formData.email}
                     onChange={(e) => handleChange("email", e.target.value)}
                     className={errors.email ? "border-destructive" : ""}
@@ -230,10 +232,10 @@ const RegisterLearner = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="phone">Mobile Number *</Label>
+                  <Label htmlFor="phone">{t('regLearner.mobileNumber')} *</Label>
                   <Input
                     id="phone"
-                    placeholder="e.g., 9876543210"
+                    placeholder={t('regLearner.mobilePlaceholder')}
                     value={formData.phone}
                     onChange={(e) => handleChange("phone", e.target.value)}
                     className={errors.phone ? "border-destructive" : ""}
@@ -244,7 +246,7 @@ const RegisterLearner = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="dateOfBirth">Date of Birth *</Label>
+                  <Label htmlFor="dateOfBirth">{t('regLearner.dateOfBirth')} *</Label>
                   <Input
                     id="dateOfBirth"
                     type="date"
@@ -258,13 +260,13 @@ const RegisterLearner = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="district">District *</Label>
+                  <Label htmlFor="district">{t('regLearner.district')} *</Label>
                   <Select
                     value={formData.district}
                     onValueChange={(value) => handleChange("district", value)}
                   >
                     <SelectTrigger className={errors.district ? "border-destructive" : ""}>
-                      <SelectValue placeholder="Select district" />
+                      <SelectValue placeholder={t('regLearner.selectDistrict')} />
                     </SelectTrigger>
                     <SelectContent>
                       {tamilNaduDistricts.map((district) => (
@@ -280,10 +282,10 @@ const RegisterLearner = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="place">Place/Town *</Label>
+                  <Label htmlFor="place">{t('regLearner.placeTown')} *</Label>
                   <Input
                     id="place"
-                    placeholder="e.g., Gandhipuram, T. Nagar"
+                    placeholder={t('regLearner.placePlaceholder')}
                     value={formData.place}
                     onChange={(e) => handleChange("place", e.target.value)}
                     className={errors.place ? "border-destructive" : ""}
@@ -299,10 +301,10 @@ const RegisterLearner = () => {
             {currentStep === 2 && (
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="institution">Institution/College *</Label>
+                  <Label htmlFor="institution">{t('regLearner.institution')} *</Label>
                   <Input
                     id="institution"
-                    placeholder="e.g., Anna University"
+                    placeholder={t('regLearner.institutionPlaceholder')}
                     value={formData.institution}
                     onChange={(e) => handleChange("institution", e.target.value)}
                     className={errors.institution ? "border-destructive" : ""}
@@ -313,22 +315,22 @@ const RegisterLearner = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="degree">Degree/Qualification *</Label>
+                  <Label htmlFor="degree">{t('regLearner.degree')} *</Label>
                   <Select
                     value={formData.degree}
                     onValueChange={(value) => handleChange("degree", value)}
                   >
                     <SelectTrigger className={errors.degree ? "border-destructive" : ""}>
-                      <SelectValue placeholder="Select degree" />
+                      <SelectValue placeholder={t('regLearner.selectDegree')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="10th">10th Pass</SelectItem>
-                      <SelectItem value="12th">12th Pass</SelectItem>
-                      <SelectItem value="diploma">Diploma</SelectItem>
-                      <SelectItem value="iti">ITI</SelectItem>
-                      <SelectItem value="bachelors">Bachelor's Degree</SelectItem>
-                      <SelectItem value="masters">Master's Degree</SelectItem>
-                      <SelectItem value="phd">PhD</SelectItem>
+                      <SelectItem value="10th">{t('regLearner.degree10th')}</SelectItem>
+                      <SelectItem value="12th">{t('regLearner.degree12th')}</SelectItem>
+                      <SelectItem value="diploma">{t('regLearner.degreeDiploma')}</SelectItem>
+                      <SelectItem value="iti">{t('regLearner.degreeIti')}</SelectItem>
+                      <SelectItem value="bachelors">{t('regLearner.degreeBachelors')}</SelectItem>
+                      <SelectItem value="masters">{t('regLearner.degreeMasters')}</SelectItem>
+                      <SelectItem value="phd">{t('regLearner.degreePhd')}</SelectItem>
                     </SelectContent>
                   </Select>
                   {errors.degree && (
@@ -337,10 +339,10 @@ const RegisterLearner = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="specialization">Specialization/Major *</Label>
+                  <Label htmlFor="specialization">{t('regLearner.specialization')} *</Label>
                   <Input
                     id="specialization"
-                    placeholder="e.g., Computer Science, Mechanical Engineering"
+                    placeholder={t('regLearner.specializationPlaceholder')}
                     value={formData.specialization}
                     onChange={(e) => handleChange("specialization", e.target.value)}
                     className={errors.specialization ? "border-destructive" : ""}
@@ -351,13 +353,13 @@ const RegisterLearner = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="graduationYear">Graduation Year *</Label>
+                  <Label htmlFor="graduationYear">{t('regLearner.graduationYear')} *</Label>
                   <Select
                     value={formData.graduationYear}
                     onValueChange={(value) => handleChange("graduationYear", value)}
                   >
                     <SelectTrigger className={errors.graduationYear ? "border-destructive" : ""}>
-                      <SelectValue placeholder="Select year" />
+                      <SelectValue placeholder={t('regLearner.selectGradYear')} />
                     </SelectTrigger>
                     <SelectContent>
                       {Array.from({ length: 10 }, (_, i) => 2025 - i).map((year) => (
@@ -381,12 +383,12 @@ const RegisterLearner = () => {
                 className="gap-2"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back
+                {t('regLearner.back')}
               </Button>
 
               {currentStep < steps.length ? (
                 <Button onClick={handleNext} className="gap-2 bg-amber-500 hover:bg-amber-600">
-                  NEXT
+                  {t('regLearner.next')}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               ) : (
@@ -395,7 +397,7 @@ const RegisterLearner = () => {
                   disabled={isSubmitting}
                   className="gap-2 bg-primary hover:bg-primary/90"
                 >
-                  {isSubmitting ? "Submitting..." : "Submit Registration"}
+                  {isSubmitting ? t('regLearner.submitting') : t('regLearner.submitRegistration')}
                 </Button>
               )}
             </div>
