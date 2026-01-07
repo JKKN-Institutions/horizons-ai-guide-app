@@ -10,16 +10,11 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { register12thSchema } from "@/lib/validation/registration-schemas";
 import { z } from "zod";
-
-const steps = [
-  { name: "Personal Info", icon: User },
-  { name: "Education", icon: BookOpen },
-  { name: "Interests", icon: Heart },
-  { name: "Review", icon: ClipboardCheck }
-];
+import { useLanguage } from "@/hooks/useLanguage";
 
 const Register12thLearner = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -36,6 +31,13 @@ const Register12thLearner = () => {
     careerInterests: "",
     preferredLocation: "",
   });
+
+  const steps = [
+    { name: t('reg12.personalInfo'), icon: User },
+    { name: t('reg12.education'), icon: BookOpen },
+    { name: t('reg12.interests'), icon: Heart },
+    { name: t('reg12.review'), icon: ClipboardCheck }
+  ];
 
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -111,7 +113,7 @@ const Register12thLearner = () => {
 
       if (error) throw error;
       
-      toast.success("Registration successful! We'll be in touch soon.");
+      toast.success(t('reg12.registrationSuccess'));
       navigate('/career-assessment/colleges', { replace: true });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -125,11 +127,36 @@ const Register12thLearner = () => {
         return;
       }
       console.error("Registration error:", error);
-      toast.error("Registration failed. Please try again.");
+      toast.error(t('reg12.registrationFailed'));
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  const stepDescriptions = [
+    t('reg12.tellAboutYourself'),
+    t('reg12.educationalBackground'),
+    t('reg12.passionateAbout'),
+    t('reg12.reviewInfo')
+  ];
+
+  const benefits = [
+    t('reg12.benefit1'),
+    t('reg12.benefit2'),
+    t('reg12.benefit3'),
+    t('reg12.benefit4')
+  ];
+
+  const reviewItems = [
+    { label: t('reg12.name'), value: formData.fullName },
+    { label: t('reg12.phone'), value: formData.phone },
+    { label: t('reg12.email'), value: formData.email },
+    { label: t('reg12.school'), value: formData.school },
+    { label: t('reg12.board'), value: formData.board },
+    { label: t('reg12.stream'), value: formData.stream },
+    { label: t('reg12.careerInterests'), value: formData.careerInterests },
+    { label: t('reg12.location'), value: formData.preferredLocation },
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-amber-50/30 relative overflow-hidden">
@@ -159,7 +186,7 @@ const Register12thLearner = () => {
           className="mb-6 group hover:bg-primary/10 transition-all duration-300"
         >
           <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-          <span className="text-primary font-medium">Back</span>
+          <span className="text-primary font-medium">{t('reg12.back')}</span>
         </Button>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -176,8 +203,8 @@ const Register12thLearner = () => {
                     <GraduationCap className="w-6 h-6" />
                   </div>
                   <div>
-                    <CardTitle className="text-xl text-white">Your Journey</CardTitle>
-                    <p className="text-white/70 text-sm">Step {currentStep + 1} of {steps.length}</p>
+                    <CardTitle className="text-xl text-white">{t('reg12.yourJourney')}</CardTitle>
+                    <p className="text-white/70 text-sm">{t('reg12.stepOf').replace('{current}', String(currentStep + 1)).replace('{total}', String(steps.length))}</p>
                   </div>
                 </div>
               </CardHeader>
@@ -216,7 +243,7 @@ const Register12thLearner = () => {
                 {/* Progress Bar */}
                 <div className="mt-6 pt-4 border-t border-white/20">
                   <div className="flex justify-between text-sm mb-2">
-                    <span className="text-white/70">Progress</span>
+                    <span className="text-white/70">{t('reg12.progress')}</span>
                     <span className="font-semibold">{Math.round(((currentStep + 1) / steps.length) * 100)}%</span>
                   </div>
                   <div className="h-2 bg-white/20 rounded-full overflow-hidden">
@@ -234,16 +261,11 @@ const Register12thLearner = () => {
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg text-primary flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-accent" />
-                  Why Register?
+                  {t('reg12.whyRegister')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                {[
-                  "AI-Powered Career Guidance",
-                  "Personalized Course Recommendations",
-                  "Connect with Top Institutions",
-                  "Free Career Assessment"
-                ].map((benefit, i) => (
+                {benefits.map((benefit, i) => (
                   <div key={i} className="flex items-center gap-3 group">
                     <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
                       <CheckCircle className="w-4 h-4 text-primary group-hover:text-white" />
@@ -269,10 +291,7 @@ const Register12thLearner = () => {
                   <div>
                     <CardTitle className="text-2xl font-bold text-primary">{steps[currentStep].name}</CardTitle>
                     <CardDescription className="text-muted-foreground">
-                      {currentStep === 0 && "Tell us about yourself"}
-                      {currentStep === 1 && "Your educational background"}
-                      {currentStep === 2 && "What are you passionate about?"}
-                      {currentStep === 3 && "Review your information"}
+                      {stepDescriptions[currentStep]}
                     </CardDescription>
                   </div>
                 </div>
@@ -285,11 +304,11 @@ const Register12thLearner = () => {
                       <div className="space-y-2">
                         <Label htmlFor="fullName" className="text-sm font-semibold text-foreground flex items-center gap-2">
                           <User className="w-4 h-4 text-primary" />
-                          Full Name <span className="text-destructive">*</span>
+                          {t('reg12.fullName')} <span className="text-destructive">*</span>
                         </Label>
                         <Input 
                           id="fullName" 
-                          placeholder="Enter your full name" 
+                          placeholder={t('reg12.enterFullName')} 
                           value={formData.fullName} 
                           onChange={e => handleChange("fullName", e.target.value)} 
                           className={`h-12 border-2 transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10 ${errors.fullName ? "border-destructive" : "border-border hover:border-primary/50"}`} 
@@ -298,7 +317,7 @@ const Register12thLearner = () => {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="phone" className="text-sm font-semibold text-foreground">
-                          Phone Number <span className="text-destructive">*</span>
+                          {t('reg12.phoneNumber')} <span className="text-destructive">*</span>
                         </Label>
                         <Input 
                           id="phone" 
@@ -311,11 +330,11 @@ const Register12thLearner = () => {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-sm font-semibold text-foreground">Email Address</Label>
+                      <Label htmlFor="email" className="text-sm font-semibold text-foreground">{t('reg12.emailAddress')}</Label>
                       <Input 
                         id="email" 
                         type="email" 
-                        placeholder="your@email.com (optional)" 
+                        placeholder={t('reg12.emailOptional')} 
                         value={formData.email} 
                         onChange={e => handleChange("email", e.target.value)} 
                         className={`h-12 border-2 transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10 ${errors.email ? "border-destructive" : "border-border hover:border-primary/50"}`} 
@@ -324,7 +343,7 @@ const Register12thLearner = () => {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="dob" className="text-sm font-semibold text-foreground">
-                        Date of Birth <span className="text-destructive">*</span>
+                        {t('reg12.dateOfBirth')} <span className="text-destructive">*</span>
                       </Label>
                       <Input 
                         id="dob" 
@@ -343,11 +362,11 @@ const Register12thLearner = () => {
                     <div className="space-y-2">
                       <Label htmlFor="school" className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <BookOpen className="w-4 h-4 text-primary" />
-                        School Name <span className="text-destructive">*</span>
+                        {t('reg12.schoolName')} <span className="text-destructive">*</span>
                       </Label>
                       <Input 
                         id="school" 
-                        placeholder="Enter your school name" 
+                        placeholder={t('reg12.enterSchoolName')} 
                         value={formData.school} 
                         onChange={e => handleChange("school", e.target.value)} 
                         className={`h-12 border-2 transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10 ${errors.school ? "border-destructive" : "border-border hover:border-primary/50"}`} 
@@ -356,10 +375,10 @@ const Register12thLearner = () => {
                     </div>
                     <div className="grid md:grid-cols-2 gap-5">
                       <div className="space-y-2">
-                        <Label className="text-sm font-semibold text-foreground">Board</Label>
+                        <Label className="text-sm font-semibold text-foreground">{t('reg12.board')}</Label>
                         <Select value={formData.board} onValueChange={v => handleChange("board", v)}>
                           <SelectTrigger className="h-12 border-2 border-border hover:border-primary/50 focus:border-primary transition-all">
-                            <SelectValue placeholder="Select your board" />
+                            <SelectValue placeholder={t('reg12.selectBoard')} />
                           </SelectTrigger>
                           <SelectContent className="bg-white border-2 shadow-xl">
                             <SelectItem value="cbse">CBSE</SelectItem>
@@ -370,24 +389,24 @@ const Register12thLearner = () => {
                         </Select>
                       </div>
                       <div className="space-y-2">
-                        <Label className="text-sm font-semibold text-foreground">Stream</Label>
+                        <Label className="text-sm font-semibold text-foreground">{t('reg12.stream')}</Label>
                         <Select value={formData.stream} onValueChange={v => handleChange("stream", v)}>
                           <SelectTrigger className="h-12 border-2 border-border hover:border-primary/50 focus:border-primary transition-all">
-                            <SelectValue placeholder="Select your stream" />
+                            <SelectValue placeholder={t('reg12.selectStream')} />
                           </SelectTrigger>
                           <SelectContent className="bg-white border-2 shadow-xl">
-                            <SelectItem value="science">Science</SelectItem>
-                            <SelectItem value="commerce">Commerce</SelectItem>
-                            <SelectItem value="arts">Arts/Humanities</SelectItem>
+                            <SelectItem value="science">{t('reg12.science')}</SelectItem>
+                            <SelectItem value="commerce">{t('reg12.commerce')}</SelectItem>
+                            <SelectItem value="arts">{t('reg12.artsHumanities')}</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-sm font-semibold text-foreground">Expected Year of Passing</Label>
+                      <Label className="text-sm font-semibold text-foreground">{t('reg12.expectedYear')}</Label>
                       <Select value={formData.expectedYear} onValueChange={v => handleChange("expectedYear", v)}>
                         <SelectTrigger className="h-12 border-2 border-border hover:border-primary/50 focus:border-primary transition-all">
-                          <SelectValue placeholder="Select year" />
+                          <SelectValue placeholder={t('reg12.selectYear')} />
                         </SelectTrigger>
                         <SelectContent className="bg-white border-2 shadow-xl">
                           <SelectItem value="2025">2025</SelectItem>
@@ -404,37 +423,37 @@ const Register12thLearner = () => {
                     <div className="space-y-2">
                       <Label htmlFor="courses" className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <Heart className="w-4 h-4 text-primary" />
-                        Preferred Courses
+                        {t('reg12.preferredCourses')}
                       </Label>
                       <Input 
                         id="courses" 
-                        placeholder="e.g., Engineering, Medicine, Arts" 
+                        placeholder={t('reg12.preferredCoursesPlaceholder')} 
                         value={formData.preferredCourses} 
                         onChange={e => handleChange("preferredCourses", e.target.value)} 
                         className="h-12 border-2 transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10 border-border hover:border-primary/50" 
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="interests" className="text-sm font-semibold text-foreground">Career Interests</Label>
+                      <Label htmlFor="interests" className="text-sm font-semibold text-foreground">{t('reg12.careerInterests')}</Label>
                       <Input 
                         id="interests" 
-                        placeholder="e.g., Software Development, Healthcare" 
+                        placeholder={t('reg12.careerInterestsPlaceholder')} 
                         value={formData.careerInterests} 
                         onChange={e => handleChange("careerInterests", e.target.value)} 
                         className="h-12 border-2 transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10 border-border hover:border-primary/50" 
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-sm font-semibold text-foreground">Preferred Location</Label>
+                      <Label className="text-sm font-semibold text-foreground">{t('reg12.preferredLocation')}</Label>
                       <Select value={formData.preferredLocation} onValueChange={v => handleChange("preferredLocation", v)}>
                         <SelectTrigger className="h-12 border-2 border-border hover:border-primary/50 focus:border-primary transition-all">
-                          <SelectValue placeholder="Select location" />
+                          <SelectValue placeholder={t('reg12.selectLocation')} />
                         </SelectTrigger>
                         <SelectContent className="bg-white border-2 shadow-xl">
-                          <SelectItem value="tamil-nadu">Tamil Nadu</SelectItem>
-                          <SelectItem value="karnataka">Karnataka</SelectItem>
-                          <SelectItem value="kerala">Kerala</SelectItem>
-                          <SelectItem value="anywhere">Anywhere in India</SelectItem>
+                          <SelectItem value="tamil-nadu">{t('reg12.tamilNadu')}</SelectItem>
+                          <SelectItem value="karnataka">{t('reg12.karnataka')}</SelectItem>
+                          <SelectItem value="kerala">{t('reg12.kerala')}</SelectItem>
+                          <SelectItem value="anywhere">{t('reg12.anywhereIndia')}</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -446,22 +465,13 @@ const Register12thLearner = () => {
                     <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-6 border border-primary/10">
                       <h3 className="font-bold text-lg text-primary mb-4 flex items-center gap-2">
                         <ClipboardCheck className="w-5 h-5" />
-                        Review Your Information
+                        {t('reg12.reviewYourInfo')}
                       </h3>
                       <div className="grid md:grid-cols-2 gap-4">
-                        {[
-                          { label: "Name", value: formData.fullName },
-                          { label: "Phone", value: formData.phone },
-                          { label: "Email", value: formData.email },
-                          { label: "School", value: formData.school },
-                          { label: "Board", value: formData.board },
-                          { label: "Stream", value: formData.stream },
-                          { label: "Career Interests", value: formData.careerInterests },
-                          { label: "Location", value: formData.preferredLocation },
-                        ].map((item, i) => (
+                        {reviewItems.map((item, i) => (
                           <div key={i} className="bg-white rounded-xl p-4 shadow-sm border border-border/50">
                             <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{item.label}</p>
-                            <p className="font-medium text-foreground">{item.value || <span className="text-muted-foreground italic">Not provided</span>}</p>
+                            <p className="font-medium text-foreground">{item.value || <span className="text-muted-foreground italic">{t('reg12.notProvided')}</span>}</p>
                           </div>
                         ))}
                       </div>
@@ -478,14 +488,14 @@ const Register12thLearner = () => {
                     className="h-12 px-6 border-2 hover:bg-primary/5 transition-all group"
                   >
                     <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" /> 
-                    Back
+                    {t('reg12.back')}
                   </Button>
                   {currentStep < steps.length - 1 ? (
                     <Button 
                       onClick={handleNext} 
                       className="h-12 px-8 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-xl transition-all group"
                     >
-                      Next 
+                      {t('reg12.next')} 
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   ) : (
@@ -495,7 +505,7 @@ const Register12thLearner = () => {
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <CheckCircle className="w-4 h-4 mr-2" />}
-                      Submit Registration
+                      {t('reg12.submitRegistration')}
                     </Button>
                   )}
                 </div>
