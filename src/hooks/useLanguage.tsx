@@ -473,6 +473,30 @@ const translations: Record<Language, Record<string, string>> = {
     'regEmployer.timeline1Month': 'Within 1 month',
     'regEmployer.timeline3Months': 'Within 3 months',
     'regEmployer.timeline6Months': 'Within 6 months',
+    
+    // Career Chat - Suggested Questions
+    'chat.popularQuestions': 'Popular Questions for 12th Students',
+    'chat.streamSpecificQuestions': 'Stream-Specific Questions',
+    'chat.welcomeTitle': "Hello! I'm your AI Career Counselor",
+    'chat.welcomeDesc': "Ask me anything about careers, courses, colleges, or guidance. I'm here to help you find your path!",
+    'chat.welcomeTamil': 'தொழில், படிப்புகள், கல்லூரிகள் பற்றி என்னிடம் கேளுங்கள்!',
+    'chat.inputPlaceholder': 'Ask me about careers, courses, or colleges...',
+    
+    // Career Planning Questions
+    'chat.q1': 'What are the best career options after 12th Science (PCM)?',
+    'chat.q2': 'Which courses have the highest salary potential?',
+    'chat.q3': 'How do I choose between Engineering and Medicine?',
+    'chat.q4': 'What are the emerging careers with high growth?',
+    'chat.q5': 'Which entrance exams should I prepare for?',
+    'chat.q6': 'What are the best colleges in Tamil Nadu?',
+    'chat.q7': 'Can I pursue abroad studies after 12th?',
+    'chat.q8': 'What skills should I develop for my career?',
+    
+    // Stream-Specific Questions
+    'chat.stream1': 'Career options for PCB students',
+    'chat.stream2': 'Commerce stream best courses',
+    'chat.stream3': 'Arts stream career paths',
+    'chat.stream4': 'PCMB career combinations',
   },
   ta: {
     // TopBar
@@ -931,6 +955,30 @@ const translations: Record<Language, Record<string, string>> = {
     'regEmployer.timeline1Month': '1 மாதத்திற்குள்',
     'regEmployer.timeline3Months': '3 மாதங்களுக்குள்',
     'regEmployer.timeline6Months': '6 மாதங்களுக்குள்',
+    
+    // Career Chat - Suggested Questions
+    'chat.popularQuestions': '12ஆம் வகுப்பு மாணவர்களுக்கான பிரபலமான கேள்விகள்',
+    'chat.streamSpecificQuestions': 'பாடப்பிரிவு சார்ந்த கேள்விகள்',
+    'chat.welcomeTitle': 'வணக்கம்! நான் உங்கள் AI தொழில் ஆலோசகர்',
+    'chat.welcomeDesc': 'தொழில்கள், படிப்புகள், கல்லூரிகள் அல்லது வழிகாட்டுதல் பற்றி என்னிடம் எதையும் கேளுங்கள்!',
+    'chat.welcomeTamil': 'Ask me about careers, courses, or colleges!',
+    'chat.inputPlaceholder': 'தொழில்கள், படிப்புகள் அல்லது கல்லூரிகள் பற்றி கேளுங்கள்...',
+    
+    // Career Planning Questions
+    'chat.q1': '12ஆம் வகுப்பு அறிவியல் (PCM) பிறகு சிறந்த தொழில் வாய்ப்புகள் என்ன?',
+    'chat.q2': 'எந்த படிப்புகள் அதிக சம்பள வாய்ப்புகளைக் கொண்டுள்ளன?',
+    'chat.q3': 'பொறியியல் மற்றும் மருத்துவத்திற்கு இடையே எப்படி தேர்வு செய்வது?',
+    'chat.q4': 'அதிக வளர்ச்சியுள்ள வளர்ந்து வரும் தொழில்கள் என்ன?',
+    'chat.q5': 'எந்த நுழைவுத் தேர்வுகளுக்கு தயாராக வேண்டும்?',
+    'chat.q6': 'தமிழ்நாட்டில் சிறந்த கல்லூரிகள் எவை?',
+    'chat.q7': '12ஆம் வகுப்புக்குப் பிறகு வெளிநாட்டில் படிக்க முடியுமா?',
+    'chat.q8': 'என் தொழிலுக்கு என்ன திறன்களை வளர்க்க வேண்டும்?',
+    
+    // Stream-Specific Questions
+    'chat.stream1': 'PCB மாணவர்களுக்கான தொழில் வாய்ப்புகள்',
+    'chat.stream2': 'வணிகப் பாடப்பிரிவு சிறந்த படிப்புகள்',
+    'chat.stream3': 'கலைப் பாடப்பிரிவு தொழில் பாதைகள்',
+    'chat.stream4': 'PCMB தொழில் சேர்க்கைகள்',
   },
 };
 
