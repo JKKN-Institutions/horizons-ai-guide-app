@@ -2673,17 +2673,76 @@ Be empathetic and respect Indian family values while helping the student communi
                       தொழில், படிப்புகள், கல்லூரிகள் பற்றி என்னிடம் கேளுங்கள்!
                     </p>
                     
-                    {/* Suggestion chips */}
-                    <div className="mt-8 flex flex-wrap justify-center gap-2">
-                      {['Career options after 12th', 'Best engineering colleges', 'Course recommendations'].map((chip) => (
-                        <button
-                          key={chip}
-                          onClick={() => handleQuickAction(chip)}
-                          className="px-4 py-2 rounded-full bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 text-emerald-700 text-sm font-medium hover:border-emerald-400 hover:shadow-md transition-all duration-300"
-                        >
-                          {chip}
-                        </button>
-                      ))}
+                    {/* Curated Questions for 12th Students */}
+                    <div className="mt-8 w-full max-w-2xl">
+                      <div className="flex items-center gap-2 justify-center mb-4">
+                        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
+                        <span className="text-xs font-semibold text-amber-700 bg-amber-50 px-3 py-1 rounded-full flex items-center gap-1.5">
+                          <Sparkles className="h-3 w-3" />
+                          Popular Questions for 12th Students
+                        </span>
+                        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
+                      </div>
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {/* Career Planning Questions */}
+                        {[
+                          { question: "What are the best career options after 12th Science (PCM)?", icon: "🔬", color: "blue" },
+                          { question: "Which courses have the highest salary potential?", icon: "💰", color: "green" },
+                          { question: "How do I choose between Engineering and Medicine?", icon: "🤔", color: "purple" },
+                          { question: "What are the emerging careers with high growth?", icon: "📈", color: "orange" },
+                          { question: "Which entrance exams should I prepare for?", icon: "📝", color: "rose" },
+                          { question: "What are the best colleges in Tamil Nadu?", icon: "🏫", color: "indigo" },
+                          { question: "Can I pursue abroad studies after 12th?", icon: "✈️", color: "sky" },
+                          { question: "What skills should I develop for my career?", icon: "🎯", color: "amber" },
+                        ].map((item) => (
+                          <button
+                            key={item.question}
+                            onClick={() => handleQuickAction(item.question)}
+                            className={`flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${
+                              item.color === "blue" ? "bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 text-blue-800 hover:border-blue-400" :
+                              item.color === "green" ? "bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 text-green-800 hover:border-green-400" :
+                              item.color === "purple" ? "bg-gradient-to-r from-purple-50 to-violet-50 border border-purple-200 text-purple-800 hover:border-purple-400" :
+                              item.color === "orange" ? "bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 text-orange-800 hover:border-orange-400" :
+                              item.color === "rose" ? "bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 text-rose-800 hover:border-rose-400" :
+                              item.color === "indigo" ? "bg-gradient-to-r from-indigo-50 to-blue-50 border border-indigo-200 text-indigo-800 hover:border-indigo-400" :
+                              item.color === "sky" ? "bg-gradient-to-r from-sky-50 to-cyan-50 border border-sky-200 text-sky-800 hover:border-sky-400" :
+                              "bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 text-amber-800 hover:border-amber-400"
+                            }`}
+                          >
+                            <span className="text-lg">{item.icon}</span>
+                            <span className="text-sm font-medium leading-tight">{item.question}</span>
+                          </button>
+                        ))}
+                      </div>
+                      
+                      {/* Stream-specific section */}
+                      <div className="mt-6">
+                        <div className="flex items-center gap-2 justify-center mb-3">
+                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
+                          <span className="text-xs font-semibold text-rose-600 bg-rose-50 px-3 py-1 rounded-full">
+                            🎓 Stream-Specific Questions
+                          </span>
+                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
+                        </div>
+                        
+                        <div className="flex flex-wrap justify-center gap-2">
+                          {[
+                            "Career options for PCB students",
+                            "Commerce stream best courses",
+                            "Arts stream career paths",
+                            "PCMB career combinations"
+                          ].map((chip) => (
+                            <button
+                              key={chip}
+                              onClick={() => handleQuickAction(chip)}
+                              className="px-4 py-2 rounded-full bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 text-rose-700 text-sm font-medium hover:border-rose-400 hover:shadow-md transition-all duration-300"
+                            >
+                              {chip}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ) : (
