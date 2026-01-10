@@ -148,19 +148,19 @@ const getDefaultEducation = (career: string): string => {
 };
 
 const streams = [
-  { id: "pcm", label: "Science (PCM)", icon: Calculator, description: "Physics, Chemistry, Mathematics" },
-  { id: "pcb", label: "Science (PCB)", icon: Stethoscope, description: "Physics, Chemistry, Biology" },
-  { id: "pcmb", label: "Science (PCMB)", icon: GraduationCap, description: "Physics, Chemistry, Math & Biology" },
-  { id: "commerce", label: "Commerce", icon: Briefcase, description: "Business, Accounts, Economics" },
-  { id: "arts", label: "Arts/Humanities", icon: Palette, description: "Literature, History, Languages" },
+  { id: "pcm", label: "Science (PCM)", icon: Calculator, description: "Physics, Chemistry, Mathematics", color: "from-blue-500 to-cyan-500", bgLight: "bg-blue-50", borderColor: "border-blue-300", textColor: "text-blue-700" },
+  { id: "pcb", label: "Science (PCB)", icon: Stethoscope, description: "Physics, Chemistry, Biology", color: "from-emerald-500 to-teal-500", bgLight: "bg-emerald-50", borderColor: "border-emerald-300", textColor: "text-emerald-700" },
+  { id: "pcmb", label: "Science (PCMB)", icon: GraduationCap, description: "Physics, Chemistry, Math & Biology", color: "from-violet-500 to-purple-500", bgLight: "bg-violet-50", borderColor: "border-violet-300", textColor: "text-violet-700" },
+  { id: "commerce", label: "Commerce", icon: Briefcase, description: "Business, Accounts, Economics", color: "from-amber-500 to-orange-500", bgLight: "bg-amber-50", borderColor: "border-amber-300", textColor: "text-amber-700" },
+  { id: "arts", label: "Arts/Humanities", icon: Palette, description: "Literature, History, Languages", color: "from-pink-500 to-rose-500", bgLight: "bg-pink-50", borderColor: "border-pink-300", textColor: "text-pink-700" },
 ];
 
 const percentageRanges = [
-  { id: "above90", label: "Above 90%", description: "Excellent" },
-  { id: "80-90", label: "80% - 90%", description: "Very Good" },
-  { id: "70-80", label: "70% - 80%", description: "Good" },
-  { id: "60-70", label: "60% - 70%", description: "Average" },
-  { id: "below60", label: "Below 60%", description: "Pass" },
+  { id: "above90", label: "Above 90%", description: "Excellent", color: "from-emerald-500 to-green-500", emoji: "🌟" },
+  { id: "80-90", label: "80% - 90%", description: "Very Good", color: "from-blue-500 to-cyan-500", emoji: "✨" },
+  { id: "70-80", label: "70% - 80%", description: "Good", color: "from-violet-500 to-purple-500", emoji: "👍" },
+  { id: "60-70", label: "60% - 70%", description: "Average", color: "from-amber-500 to-orange-500", emoji: "📚" },
+  { id: "below60", label: "Below 60%", description: "Pass", color: "from-pink-500 to-rose-500", emoji: "💪" },
 ];
 
 const workPreferences = [
@@ -1526,7 +1526,8 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="space-y-6"
             >
-              <h2 className="text-xl font-semibold text-center mb-8">Choose Your Stream</h2>
+              <h2 className="text-xl font-semibold text-center mb-2">Choose Your Stream</h2>
+              <p className="text-sm text-muted-foreground text-center mb-8">Select your 12th standard stream</p>
               <motion.div 
                 className="grid gap-4 md:grid-cols-2"
                 variants={containerVariants}
@@ -1536,32 +1537,28 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                 {streams.map((stream, index) => (
                   <motion.div key={stream.id} variants={itemVariants} transition={{ delay: index * 0.05 }}>
                     <Card
-                      className={`cursor-pointer transition-all duration-300 hover:shadow-md ${
+                      className={`cursor-pointer transition-all duration-300 hover:shadow-lg overflow-hidden ${
                         selectedStream === stream.id 
-                          ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
+                          ? `border-2 ${stream.borderColor} ${stream.bgLight} shadow-lg` 
                           : "hover:border-primary/30 hover:bg-muted/50"
                       }`}
                       onClick={() => setSelectedStream(stream.id)}
                     >
-                      <CardContent className="p-6 flex items-center gap-4">
-                        <div className={`p-3.5 rounded-xl transition-all ${
-                          selectedStream === stream.id 
-                            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30" 
-                            : "bg-muted"
-                        }`}>
+                      <CardContent className="p-5 flex items-center gap-4">
+                        <div className={`p-3.5 rounded-xl transition-all bg-gradient-to-br ${stream.color} text-white shadow-lg`}>
                           <stream.icon className="h-6 w-6" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="font-semibold text-base">{stream.label}</h3>
+                          <h3 className={`font-semibold text-base ${selectedStream === stream.id ? stream.textColor : ''}`}>{stream.label}</h3>
                           <p className="text-sm text-muted-foreground">{stream.description}</p>
                         </div>
                         {selectedStream === stream.id && (
                           <motion.div 
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            className="h-6 w-6 rounded-full bg-primary flex items-center justify-center"
+                            className={`h-7 w-7 rounded-full bg-gradient-to-br ${stream.color} flex items-center justify-center shadow-md`}
                           >
-                            <Check className="h-4 w-4 text-primary-foreground" />
+                            <Check className="h-4 w-4 text-white" />
                           </motion.div>
                         )}
                       </CardContent>
@@ -1583,7 +1580,8 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="space-y-6"
             >
-              <h2 className="text-xl font-semibold text-center mb-8">Your 12th Percentage</h2>
+              <h2 className="text-xl font-semibold text-center mb-2">Your 12th Percentage</h2>
+              <p className="text-sm text-muted-foreground text-center mb-8">Select your expected or obtained marks</p>
               <motion.div 
                 className="grid gap-3 max-w-md mx-auto"
                 variants={containerVariants}
@@ -1593,25 +1591,42 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                 {percentageRanges.map((range, index) => (
                   <motion.div key={range.id} variants={itemVariants} transition={{ delay: index * 0.05 }}>
                     <Card
-                      className={`cursor-pointer transition-all duration-300 ${
+                      className={`cursor-pointer transition-all duration-300 overflow-hidden ${
                         selectedPercentage === range.id 
-                          ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
+                          ? "border-2 border-transparent shadow-lg" 
                           : "hover:border-primary/30 hover:bg-muted/50"
                       }`}
+                      style={{
+                        borderImage: selectedPercentage === range.id ? `linear-gradient(135deg, var(--tw-gradient-stops)) 1` : undefined,
+                      }}
                       onClick={() => setSelectedPercentage(range.id)}
                     >
-                      <CardContent className="p-4 flex items-center justify-between">
+                      <CardContent className={`p-4 flex items-center justify-between ${
+                        selectedPercentage === range.id ? 'bg-gradient-to-r from-muted/80 to-muted/40' : ''
+                      }`}>
                         <div className="flex items-center gap-3">
-                          <span className="font-medium">{range.label}</span>
-                          <Badge variant="outline" className="text-xs">{range.description}</Badge>
+                          <span className="text-xl">{range.emoji}</span>
+                          <div>
+                            <span className="font-medium">{range.label}</span>
+                            <Badge 
+                              variant="outline" 
+                              className={`ml-2 text-xs ${
+                                selectedPercentage === range.id 
+                                  ? 'bg-gradient-to-r ' + range.color + ' text-white border-0' 
+                                  : ''
+                              }`}
+                            >
+                              {range.description}
+                            </Badge>
+                          </div>
                         </div>
                         {selectedPercentage === range.id && (
                           <motion.div 
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            className="h-5 w-5 rounded-full bg-primary flex items-center justify-center"
+                            className={`h-6 w-6 rounded-full bg-gradient-to-br ${range.color} flex items-center justify-center shadow-md`}
                           >
-                            <Check className="h-3 w-3 text-primary-foreground" />
+                            <Check className="h-3.5 w-3.5 text-white" />
                           </motion.div>
                         )}
                       </CardContent>
