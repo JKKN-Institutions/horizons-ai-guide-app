@@ -1,21 +1,24 @@
 const newsItems = [
-  "JKKN Founders Day Celebration 2025 - Feb 21 | Komarapalayam Campus",
-  "Career Guidance Workshop for 12th Learners - Feb 20",
-  "Founder Book Opening 2025 - Special Edition Release",
-  "JKKN Mega Job Fair 2025 - Registration Open Now",
+  "🔴 JEE Main 2026 Session 1 - Jan 22-31 | Registration Open!",
+  "📢 NEET UG 2026 Registration Opens Feb 1",
+  "🎓 JKKN Founders Day - Feb 21, 2026 | Komarapalayam Campus",
+  "💰 Scholarship Deadline Feb 28 - Apply on NSP!",
+  "🎯 Free Career Guidance Workshop - Register Now!",
+  "📚 TN 12th Exams March 1-20",
+  "🆕 AI Career Predictor Launched!",
 ];
 
 const NewsTicker = () => {
   return (
-    <div className="bg-secondary text-secondary-foreground py-2 overflow-hidden">
+    <div className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-emerald-700 text-white py-2.5 overflow-hidden shadow-sm">
       <div className="flex items-center">
-        <span className="bg-accent text-accent-foreground px-4 py-1 text-sm font-semibold flex-shrink-0 mr-4">
+        <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-1 text-sm font-bold flex-shrink-0 ml-4 mr-4 rounded shadow-md">
           Latest:
         </span>
         <div className="overflow-hidden flex-1">
           <div className="animate-ticker flex whitespace-nowrap">
             {[...newsItems, ...newsItems].map((news, index) => (
-              <span key={index} className="mx-8 text-sm font-medium">
+              <span key={index} className="mx-8 text-sm font-medium tracking-wide">
                 {news}
               </span>
             ))}
