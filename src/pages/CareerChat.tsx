@@ -2745,6 +2745,74 @@ Be empathetic and respect Indian family values while helping the student communi
                           ))}
                         </div>
                       </div>
+
+                      {/* Exam Preparation Tips section */}
+                      <div className="mt-6">
+                        <div className="flex items-center gap-2 justify-center mb-3">
+                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-violet-300 to-transparent" />
+                          <span className="text-xs font-semibold text-violet-600 bg-violet-50 px-3 py-1 rounded-full">
+                            📚 {t('chat.examPrepHeader')}
+                          </span>
+                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-violet-300 to-transparent" />
+                        </div>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {[
+                            { questionKey: "chat.exam1", icon: "🎯", color: "violet" },
+                            { questionKey: "chat.exam2", icon: "🏥", color: "teal" },
+                            { questionKey: "chat.exam3", icon: "🏛️", color: "cyan" },
+                            { questionKey: "chat.exam4", icon: "⚖️", color: "fuchsia" },
+                          ].map((item) => (
+                            <button
+                              key={item.questionKey}
+                              onClick={() => handleQuickAction(t(item.questionKey))}
+                              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${
+                                item.color === "violet" ? "bg-gradient-to-r from-violet-50 to-purple-50 border border-violet-200 text-violet-800 hover:border-violet-400" :
+                                item.color === "teal" ? "bg-gradient-to-r from-teal-50 to-emerald-50 border border-teal-200 text-teal-800 hover:border-teal-400" :
+                                item.color === "cyan" ? "bg-gradient-to-r from-cyan-50 to-sky-50 border border-cyan-200 text-cyan-800 hover:border-cyan-400" :
+                                "bg-gradient-to-r from-fuchsia-50 to-pink-50 border border-fuchsia-200 text-fuchsia-800 hover:border-fuchsia-400"
+                              }`}
+                            >
+                              <span className="text-lg">{item.icon}</span>
+                              <span className="text-sm font-medium leading-tight">{t(item.questionKey)}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Scholarship & Financial Aid section */}
+                      <div className="mt-6">
+                        <div className="flex items-center gap-2 justify-center mb-3">
+                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-emerald-300 to-transparent" />
+                          <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">
+                            💰 {t('chat.scholarshipHeader')}
+                          </span>
+                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-emerald-300 to-transparent" />
+                        </div>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {[
+                            { questionKey: "chat.scholarship1", icon: "🎓", color: "emerald" },
+                            { questionKey: "chat.scholarship2", icon: "🏦", color: "lime" },
+                            { questionKey: "chat.scholarship3", icon: "🏆", color: "green" },
+                            { questionKey: "chat.scholarship4", icon: "🌍", color: "teal" },
+                          ].map((item) => (
+                            <button
+                              key={item.questionKey}
+                              onClick={() => handleQuickAction(t(item.questionKey))}
+                              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${
+                                item.color === "emerald" ? "bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 text-emerald-800 hover:border-emerald-400" :
+                                item.color === "lime" ? "bg-gradient-to-r from-lime-50 to-green-50 border border-lime-200 text-lime-800 hover:border-lime-400" :
+                                item.color === "green" ? "bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 text-green-800 hover:border-green-400" :
+                                "bg-gradient-to-r from-teal-50 to-cyan-50 border border-teal-200 text-teal-800 hover:border-teal-400"
+                              }`}
+                            >
+                              <span className="text-lg">{item.icon}</span>
+                              <span className="text-sm font-medium leading-tight">{t(item.questionKey)}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ) : (
