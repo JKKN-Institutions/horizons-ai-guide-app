@@ -1091,10 +1091,16 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background relative overflow-hidden">
+      {/* Subtle decorative background elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/3 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4" />
+      </div>
+      
+      <div className="container mx-auto px-4 py-8 relative z-10">
         {step > 0 && (
-          <Button variant="ghost" onClick={handleBack} className="mb-6">
+          <Button variant="ghost" onClick={handleBack} className="mb-6 hover:bg-primary/5">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back
           </Button>
@@ -1103,31 +1109,33 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
         {/* Intro Step */}
         {step === 0 && (
           <div className="max-w-xl mx-auto text-center py-12">
-            <Button variant="ghost" onClick={() => navigate(-1)} className="mb-8">
+            <Button variant="ghost" onClick={() => navigate(-1)} className="mb-8 hover:bg-primary/5">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back
             </Button>
             
             <div className="flex justify-center mb-8">
               <div className="relative">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-200">
-                  <Brain className="w-10 h-10 text-white" />
+                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary/90 to-primary flex items-center justify-center shadow-xl shadow-primary/20 rotate-3 transition-transform hover:rotate-6">
+                  <Brain className="w-12 h-12 text-primary-foreground" />
                 </div>
-                <Sparkles className="absolute -top-1 -right-1 w-6 h-6 text-amber-400" />
+                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-lg bg-amber-400/90 flex items-center justify-center shadow-lg shadow-amber-200 -rotate-12">
+                  <Sparkles className="w-4 h-4 text-white" />
+                </div>
               </div>
             </div>
             
-            <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               AI Career Predictor
             </h1>
-            <p className="text-muted-foreground text-lg mb-10 max-w-md mx-auto">
+            <p className="text-muted-foreground text-lg mb-10 max-w-md mx-auto leading-relaxed">
               Get AI-powered career predictions based on your interests and skills
             </p>
 
             <Button
               onClick={() => setStep(1)}
               size="lg"
-              className="w-full max-w-md bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white text-lg py-6 rounded-xl shadow-lg shadow-purple-200"
+              className="w-full max-w-md bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-6 rounded-xl shadow-lg shadow-primary/20 transition-all hover:shadow-xl hover:shadow-primary/30"
             >
               <Sparkles className="w-5 h-5 mr-2" />
               Predict My Career
@@ -1138,48 +1146,69 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
         {/* Form Steps */}
         {step >= 1 && (
           <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
+            {/* Enhanced Header */}
+            <div className="text-center mb-10">
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary/10 border border-primary/20 rounded-full mb-6 shadow-sm">
                 <Brain className="h-4 w-4 text-primary" />
                 <span className="text-sm font-medium text-primary">AI Career Predictor</span>
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold mb-2">Discover Your Career Path</h1>
-              <p className="text-muted-foreground">Answer a few questions to get AI-powered career recommendations</p>
+              <h1 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent italic">
+                Discover Your Career Path
+              </h1>
+              <p className="text-muted-foreground max-w-md mx-auto">
+                Answer a few questions to get AI-powered career recommendations
+              </p>
             </div>
 
-            {/* Progress */}
-            <div className="flex items-center justify-center gap-2 mb-8">
+            {/* Enhanced Progress Indicator */}
+            <div className="flex items-center justify-center gap-3 mb-10">
               {[1, 2, 3, 4].map((s) => (
-                <div
-                  key={s}
-                  className={`h-2 w-12 rounded-full transition-colors ${
-                    s <= step ? "bg-primary" : "bg-muted"
-                  }`}
-                />
+                <div key={s} className="flex items-center">
+                  <div
+                    className={`h-2.5 w-14 rounded-full transition-all duration-500 ${
+                      s < step 
+                        ? "bg-primary shadow-sm shadow-primary/30" 
+                        : s === step 
+                        ? "bg-primary animate-pulse" 
+                        : "bg-muted"
+                    }`}
+                  />
+                </div>
               ))}
             </div>
 
           {/* Step 1: Stream Selection */}
           {step === 1 && (
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-center mb-6">Choose Your Stream</h2>
+            <div className="space-y-6 animate-fade-in">
+              <h2 className="text-xl font-semibold text-center mb-8">Choose Your Stream</h2>
               <div className="grid gap-4 md:grid-cols-2">
                 {streams.map((stream) => (
                   <Card
                     key={stream.id}
-                    className={`cursor-pointer transition-all hover:border-primary/50 ${
-                      selectedStream === stream.id ? "border-2 border-primary bg-primary/5" : ""
+                    className={`cursor-pointer transition-all duration-300 hover:shadow-md ${
+                      selectedStream === stream.id 
+                        ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
+                        : "hover:border-primary/30 hover:bg-muted/50"
                     }`}
                     onClick={() => setSelectedStream(stream.id)}
                   >
                     <CardContent className="p-6 flex items-center gap-4">
-                      <div className={`p-3 rounded-lg ${selectedStream === stream.id ? "bg-primary text-primary-foreground" : "bg-muted"}`}>
+                      <div className={`p-3.5 rounded-xl transition-all ${
+                        selectedStream === stream.id 
+                          ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30" 
+                          : "bg-muted"
+                      }`}>
                         <stream.icon className="h-6 w-6" />
                       </div>
-                      <div>
-                        <h3 className="font-semibold">{stream.label}</h3>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-base">{stream.label}</h3>
                         <p className="text-sm text-muted-foreground">{stream.description}</p>
                       </div>
+                      {selectedStream === stream.id && (
+                        <div className="h-6 w-6 rounded-full bg-primary flex items-center justify-center">
+                          <Check className="h-4 w-4 text-primary-foreground" />
+                        </div>
+                      )}
                     </CardContent>
                   </Card>
                 ))}
@@ -1189,16 +1218,24 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
 
           {/* Step 2: Work Preferences */}
           {step === 2 && (
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-center mb-6">What interests you? (Select multiple)</h2>
+            <div className="space-y-6 animate-fade-in">
+              <h2 className="text-xl font-semibold text-center mb-8">What interests you?</h2>
+              <p className="text-sm text-muted-foreground text-center -mt-4 mb-6">Select multiple options</p>
               <div className="flex flex-wrap justify-center gap-3">
                 {workPreferences.map((pref) => (
                   <Badge
                     key={pref.id}
                     variant={selectedPreferences.includes(pref.id) ? "default" : "outline"}
-                    className="cursor-pointer px-4 py-2 text-sm transition-all hover:scale-105"
+                    className={`cursor-pointer px-5 py-2.5 text-sm transition-all duration-300 ${
+                      selectedPreferences.includes(pref.id)
+                        ? "shadow-md shadow-primary/20 scale-105"
+                        : "hover:scale-105 hover:border-primary/50"
+                    }`}
                     onClick={() => togglePreference(pref.id)}
                   >
+                    {selectedPreferences.includes(pref.id) && (
+                      <Check className="h-3.5 w-3.5 mr-1.5" />
+                    )}
                     {pref.label}
                   </Badge>
                 ))}
@@ -1208,18 +1245,25 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
 
           {/* Step 3: Work Style */}
           {step === 3 && (
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-center mb-6">How do you prefer to work?</h2>
-              <div className="grid gap-3 md:grid-cols-2">
+            <div className="space-y-6 animate-fade-in">
+              <h2 className="text-xl font-semibold text-center mb-8">How do you prefer to work?</h2>
+              <div className="grid gap-4 md:grid-cols-2">
                 {workStyles.map((style) => (
                   <Card
                     key={style.id}
-                    className={`cursor-pointer transition-all hover:border-primary/50 ${
-                      selectedStyle === style.id ? "border-2 border-primary bg-primary/5" : ""
+                    className={`cursor-pointer transition-all duration-300 ${
+                      selectedStyle === style.id 
+                        ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
+                        : "hover:border-primary/30 hover:bg-muted/50"
                     }`}
                     onClick={() => setSelectedStyle(style.id)}
                   >
-                    <CardContent className="p-4 text-center">
+                    <CardContent className="p-5 flex items-center justify-center gap-3">
+                      {selectedStyle === style.id && (
+                        <div className="h-5 w-5 rounded-full bg-primary flex items-center justify-center">
+                          <Check className="h-3 w-3 text-primary-foreground" />
+                        </div>
+                      )}
                       <span className="font-medium">{style.label}</span>
                     </CardContent>
                   </Card>
@@ -1230,34 +1274,35 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
 
           {/* Step 4: Additional Interests */}
           {step === 4 && (
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-center mb-6">Tell us more (optional)</h2>
-              <Input
-                placeholder="E.g., I enjoy solving puzzles, creating art, helping people..."
-                value={interests}
-                onChange={(e) => setInterests(e.target.value)}
-                className="text-center"
-              />
-              <p className="text-sm text-muted-foreground text-center">
-                This helps our AI provide more personalized recommendations
-              </p>
+            <div className="space-y-6 animate-fade-in">
+              <h2 className="text-xl font-semibold text-center mb-4">Tell us more</h2>
+              <p className="text-sm text-muted-foreground text-center mb-6">Optional but helps us provide better recommendations</p>
+              <div className="relative max-w-md mx-auto">
+                <Input
+                  placeholder="E.g., I enjoy solving puzzles, creating art, helping people..."
+                  value={interests}
+                  onChange={(e) => setInterests(e.target.value)}
+                  className="text-center py-6 pr-12 rounded-xl border-2 focus:border-primary transition-colors"
+                />
+                <Lightbulb className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground/50" />
+              </div>
             </div>
           )}
 
           {/* Error State with Retry */}
           {showErrorState && !isLoading && (
-            <Card className="border-destructive/50 bg-destructive/5">
-              <CardContent className="p-6 text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-destructive/10 mb-4">
-                  <X className="h-6 w-6 text-destructive" />
+            <Card className="border-destructive/50 bg-destructive/5 animate-fade-in">
+              <CardContent className="p-8 text-center">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-destructive/10 mb-5">
+                  <X className="h-7 w-7 text-destructive" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2">Failed to get AI predictions</h3>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto">
                   {retryCount >= 2 
                     ? "Multiple attempts failed. You can try again or view sample career results."
                     : "The AI service is temporarily unavailable. You can retry or view sample results."}
                 </p>
-                <div className="flex justify-center gap-3">
+                <div className="flex flex-col sm:flex-row justify-center gap-3">
                   <Button onClick={handleRetry} className="gap-2">
                     <RotateCcw className="h-4 w-4" />
                     Retry {retryCount > 0 && `(${retryCount})`}
@@ -1272,40 +1317,42 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
 
           {/* Loading Progress Card */}
           {isLoading && (
-            <Card className="border-primary/30 bg-primary/5 animate-fade-in">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
+            <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 animate-fade-in overflow-hidden">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-5 mb-6">
                   <div className="relative">
-                    <Loader2 className="h-8 w-8 text-primary animate-spin" />
-                    <Brain className="h-4 w-4 text-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <Loader2 className="h-8 w-8 text-primary animate-spin" />
+                    </div>
+                    <Brain className="h-4 w-4 text-primary absolute -bottom-1 -right-1 bg-background rounded-full p-0.5" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-primary">AI Analyzing Your Profile</h3>
+                    <h3 className="font-semibold text-primary text-lg">AI Analyzing Your Profile</h3>
                     <p className="text-sm text-muted-foreground">{loadingMessage}</p>
                   </div>
                 </div>
                 
                 {/* Progress Bar */}
-                <div className="mb-3">
-                  <div className="h-2 bg-muted rounded-full overflow-hidden">
+                <div className="mb-4">
+                  <div className="h-3 bg-muted rounded-full overflow-hidden">
                     <div 
-                      className="h-full bg-gradient-to-r from-primary to-primary/70 transition-all duration-500 ease-out"
+                      className="h-full bg-gradient-to-r from-primary via-primary/90 to-primary/70 transition-all duration-500 ease-out rounded-full"
                       style={{ width: `${loadingProgress}%` }}
                     />
                   </div>
                 </div>
                 
-                <div className="flex justify-between items-center text-xs text-muted-foreground">
-                  <span>{Math.round(loadingProgress)}% complete</span>
+                <div className="flex justify-between items-center text-sm text-muted-foreground">
+                  <span className="font-medium">{Math.round(loadingProgress)}% complete</span>
                   <span>Est. {Math.max(1, Math.ceil((100 - loadingProgress) / 10))}s remaining</span>
                 </div>
                 
-                <div className="flex justify-center mt-4">
+                <div className="flex justify-center mt-6">
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={cancelAnalysis}
-                    className="gap-2"
+                    className="gap-2 bg-background/80"
                   >
                     <X className="h-4 w-4" />
                     Cancel Analysis
@@ -1317,22 +1364,22 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
 
           {/* Navigation */}
           {!showErrorState && !isLoading && (
-            <div className="flex justify-center gap-3 mt-8">
+            <div className="flex justify-center gap-3 mt-10">
               <Button
                 size="lg"
                 onClick={handleNext}
                 disabled={!canProceed()}
-                className="min-w-[200px]"
+                className="min-w-[220px] py-6 text-base shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all"
               >
                 {step === 4 ? (
                   <>
-                    <Sparkles className="h-4 w-4 mr-2" />
+                    <Sparkles className="h-5 w-5 mr-2" />
                     Get Predictions
                   </>
                 ) : (
                   <>
                     Continue
-                    <ChevronRight className="h-4 w-4 ml-2" />
+                    <ChevronRight className="h-5 w-5 ml-2" />
                   </>
                 )}
               </Button>
