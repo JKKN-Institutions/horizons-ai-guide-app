@@ -699,7 +699,7 @@ export const GovtMockTest = () => {
     });
   };
 
-  const submitTest = () => {
+  const submitTest = async () => {
     setShowResults(true);
     const timeTaken = Math.floor((Date.now() - startTimeRef.current) / 1000);
     
@@ -754,6 +754,49 @@ export const GovtMockTest = () => {
       subjectWise,
       difficultyWise,
     });
+
+    // Save score to leaderboard database
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      // Get display name from profile or use anonymous
+      let displayName = 'Anonymous';
+      if (user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('display_name')
+          .eq('user_id', user.id)
+          .single();
+        
+        if (profile?.display_name) {
+          displayName = profile.display_name;
+        }
+      }
+      
+      const { error } = await supabase
+        .from('govt_mock_test_scores')
+        .insert({
+          user_id: user?.id || null,
+          display_name: displayName,
+          category: selectedCategory!,
+          score: correct,
+          total_questions: currentQuestions.length,
+          accuracy: percentage,
+          time_taken: timeTaken,
+        });
+
+      if (error) {
+        console.error('Error saving score to leaderboard:', error);
+      } else {
+        toast.success(
+          language === 'ta' 
+            ? 'உங்கள் மதிப்பெண் லீடர்போர்டில் சேர்க்கப்பட்டது!' 
+            : 'Your score has been added to the leaderboard!'
+        );
+      }
+    } catch (err) {
+      console.error('Error saving to leaderboard:', err);
+    }
     
     if (correct === currentQuestions.length) {
       confetti({
