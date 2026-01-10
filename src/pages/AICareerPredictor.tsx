@@ -306,6 +306,23 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
     );
   };
 
+  const selectAllTamilNadu = () => {
+    const tnDistrictIds = locationPreferences.map(loc => loc.id);
+    setSelectedLocations(prev => {
+      const allSelected = tnDistrictIds.every(id => prev.includes(id));
+      if (allSelected) {
+        // Deselect all TN districts
+        return prev.filter(id => !tnDistrictIds.includes(id));
+      } else {
+        // Select all TN districts (keeping existing nearby states)
+        const existingStates = prev.filter(id => nearbyStates.some(s => s.id === id));
+        return [...new Set([...existingStates, ...tnDistrictIds])];
+      }
+    });
+  };
+
+  const isAllTamilNaduSelected = locationPreferences.every(loc => selectedLocations.includes(loc.id));
+
   const cancelAnalysis = () => {
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
@@ -1483,9 +1500,26 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
               
               {/* Tamil Nadu Districts */}
               <div className="space-y-3">
-                <p className="text-sm font-medium text-primary flex items-center gap-2">
-                  <MapPin className="h-4 w-4" /> Tamil Nadu Districts
-                </p>
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-medium text-primary flex items-center gap-2">
+                    <MapPin className="h-4 w-4" /> Tamil Nadu Districts
+                  </p>
+                  <Button
+                    variant={isAllTamilNaduSelected ? "default" : "outline"}
+                    size="sm"
+                    onClick={selectAllTamilNadu}
+                    className="text-xs h-7 px-3"
+                  >
+                    {isAllTamilNaduSelected ? (
+                      <>
+                        <Check className="h-3 w-3 mr-1" />
+                        All TN Selected
+                      </>
+                    ) : (
+                      "Select All Tamil Nadu"
+                    )}
+                  </Button>
+                </div>
                 <motion.div 
                   className="flex flex-wrap justify-center gap-2"
                   variants={containerVariants}
