@@ -16,6 +16,7 @@ import { Separator } from "@/components/ui/separator";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, ResponsiveContainer } from "recharts";
+import TamilNaduMap from "@/components/TamilNaduMap";
 
 // Animation variants
 const stepVariants = {
@@ -1761,7 +1762,7 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
               className="space-y-6"
             >
               <h2 className="text-xl font-semibold text-center mb-4">Preferred Study Location</h2>
-              <div className="flex items-center justify-center gap-2 mb-6">
+              <div className="flex items-center justify-center gap-2 mb-4">
                 <p className="text-sm text-muted-foreground">Select districts or states where you'd like to study</p>
                 {selectedLocations.length > 0 && (
                   <Button
@@ -1775,6 +1776,13 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                   </Button>
                 )}
               </div>
+              
+              {/* Interactive Map Visualization */}
+              <TamilNaduMap
+                districts={locationPreferences}
+                selectedLocations={selectedLocations}
+                onToggleLocation={toggleLocation}
+              />
               
               {/* Tamil Nadu Districts */}
               <div className="space-y-3">
