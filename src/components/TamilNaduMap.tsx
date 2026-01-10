@@ -16,16 +16,35 @@ interface TamilNaduMapProps {
 
 // Simplified SVG positions for Tamil Nadu districts (approximate geographic layout)
 const districtPositions: Record<string, { x: number; y: number; width: number; height: number }> = {
-  chennai: { x: 75, y: 25, width: 18, height: 18 },
-  vellore: { x: 55, y: 20, width: 22, height: 20 },
-  tiruchirappalli: { x: 45, y: 55, width: 24, height: 22 },
-  madurai: { x: 40, y: 75, width: 22, height: 20 },
-  coimbatore: { x: 15, y: 45, width: 24, height: 22 },
-  salem: { x: 35, y: 35, width: 22, height: 20 },
-  namakkal: { x: 30, y: 48, width: 20, height: 18 },
-  erode: { x: 20, y: 35, width: 20, height: 18 },
+  // North TN
+  chennai: { x: 78, y: 22, width: 18, height: 18 },
+  vellore: { x: 58, y: 18, width: 22, height: 20 },
+  kanchipuram: { x: 70, y: 32, width: 20, height: 18 },
+  krishnagiri: { x: 42, y: 18, width: 20, height: 18 },
+  dharmapuri: { x: 32, y: 22, width: 20, height: 18 },
+  // Central TN
+  salem: { x: 35, y: 34, width: 22, height: 20 },
+  erode: { x: 22, y: 34, width: 20, height: 18 },
+  namakkal: { x: 32, y: 44, width: 20, height: 18 },
+  tiruchirappalli: { x: 48, y: 52, width: 24, height: 22 },
+  karur: { x: 38, y: 52, width: 18, height: 16 },
+  // West TN
+  coimbatore: { x: 12, y: 44, width: 24, height: 22 },
   tirupur: { x: 18, y: 52, width: 18, height: 16 },
-  thanjavur: { x: 55, y: 65, width: 22, height: 20 },
+  dindigul: { x: 30, y: 62, width: 20, height: 18 },
+  // East Coast
+  cuddalore: { x: 72, y: 42, width: 18, height: 18 },
+  villupuram: { x: 65, y: 35, width: 18, height: 18 },
+  thanjavur: { x: 60, y: 58, width: 22, height: 20 },
+  nagapattinam: { x: 72, y: 60, width: 18, height: 18 },
+  // South TN
+  madurai: { x: 42, y: 72, width: 22, height: 20 },
+  sivaganga: { x: 55, y: 70, width: 18, height: 16 },
+  ramanathapuram: { x: 65, y: 78, width: 20, height: 18 },
+  tirunelveli: { x: 38, y: 84, width: 22, height: 18 },
+  thoothukudi: { x: 52, y: 85, width: 18, height: 16 },
+  kanyakumari: { x: 35, y: 94, width: 20, height: 18 },
+  // Special
   tamilnadu: { x: 40, y: 50, width: 0, height: 0 }, // Center point, not rendered
 };
 
