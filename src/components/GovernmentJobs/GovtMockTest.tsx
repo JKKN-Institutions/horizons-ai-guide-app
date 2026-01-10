@@ -12,7 +12,7 @@ import {
   Play, Clock, CheckCircle2, XCircle, Trophy, Target,
   ChevronRight, ChevronLeft, Flag, RotateCcw, BookOpen,
   Shield, Train, FileText, Landmark, MapPin, Building2,
-  Zap, Award, BarChart3, Flame
+  Zap, Award, BarChart3, Flame, Download
 } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { categoryInfo } from './governmentExamsData';
@@ -21,6 +21,7 @@ import { useGovtMockTestScores } from '@/hooks/useGovtMockTestScores';
 import { useStudyStreak } from '@/hooks/useStudyStreak';
 import { GovtMockTestProgress } from './GovtMockTestProgress';
 import { StudyStreakDisplay } from './StudyStreakDisplay';
+import { generateMockTestPDF } from './generateMockTestPDF';
 import confetti from 'canvas-confetti';
 
 interface Question {
@@ -944,6 +945,22 @@ export const GovtMockTest = () => {
             <Button onClick={resetTest} variant="outline" className="flex-1 gap-2">
               <RotateCcw className="h-4 w-4" />
               {language === 'ta' ? 'புதிய தேர்வு' : 'New Test'}
+            </Button>
+            <Button 
+              onClick={() => generateMockTestPDF({
+                category: selectedCategory!,
+                questions: currentQuestions,
+                selectedAnswers,
+                score,
+                totalQuestions: currentQuestions.length,
+                timeTaken: 300 - timeLeft,
+                language
+              })}
+              variant="outline" 
+              className="flex-1 gap-2"
+            >
+              <Download className="h-4 w-4" />
+              {language === 'ta' ? 'PDF பதிவிறக்கம்' : 'Download PDF'}
             </Button>
             <Button onClick={() => startTest(selectedCategory!)} className="flex-1 gap-2">
               <Zap className="h-4 w-4" />

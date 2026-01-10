@@ -5,7 +5,7 @@ import {
   ExternalLink, ChevronDown, ChevronUp, CheckCircle2, 
   AlertCircle, Timer, Bookmark, Shield, Building2, 
   Train, FileText, Landmark, MapPin, GraduationCap,
-  Briefcase, X
+  Briefcase, X, BarChart3, CalendarDays
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -19,6 +19,8 @@ import { PreparationTipsSection } from './PreparationTipsSection';
 import { ExamReminders } from './ExamReminders';
 import { SalaryComparisonChart } from './SalaryComparisonChart';
 import { GovtMockTest } from './GovtMockTest';
+import { SubjectAnalytics } from './SubjectAnalytics';
+import { ExamCalendar } from './ExamCalendar';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const containerVariants = {
@@ -45,6 +47,8 @@ export const GovernmentJobs = () => {
   const [showTips, setShowTips] = useState(false);
   const [showSalaryChart, setShowSalaryChart] = useState(false);
   const [showMockTest, setShowMockTest] = useState(false);
+  const [showAnalytics, setShowAnalytics] = useState(false);
+  const [showExamCalendar, setShowExamCalendar] = useState(false);
   const [savedExams, setSavedExams] = useState<string[]>(() => {
     const stored = localStorage.getItem('govtJobs_saved');
     return stored ? JSON.parse(stored) : [];
@@ -224,24 +228,40 @@ export const GovernmentJobs = () => {
       <div className="flex flex-wrap gap-3 mb-4">
         <Button
           variant={showTips ? "default" : "outline"}
-          onClick={() => { setShowTips(!showTips); setShowSalaryChart(false); setShowMockTest(false); }}
+          onClick={() => { setShowTips(!showTips); setShowSalaryChart(false); setShowMockTest(false); setShowAnalytics(false); setShowExamCalendar(false); }}
           className="gap-2"
         >
           📚 {language === 'ta' ? 'தயாரிப்பு குறிப்புகள்' : 'Preparation Tips'}
         </Button>
         <Button
           variant={showSalaryChart ? "default" : "outline"}
-          onClick={() => { setShowSalaryChart(!showSalaryChart); setShowTips(false); setShowMockTest(false); }}
+          onClick={() => { setShowSalaryChart(!showSalaryChart); setShowTips(false); setShowMockTest(false); setShowAnalytics(false); setShowExamCalendar(false); }}
           className="gap-2"
         >
           💰 {language === 'ta' ? 'சம்பள ஒப்பீடு' : 'Salary Comparison'}
         </Button>
         <Button
           variant={showMockTest ? "default" : "outline"}
-          onClick={() => { setShowMockTest(!showMockTest); setShowTips(false); setShowSalaryChart(false); }}
+          onClick={() => { setShowMockTest(!showMockTest); setShowTips(false); setShowSalaryChart(false); setShowAnalytics(false); setShowExamCalendar(false); }}
           className="gap-2"
         >
           📝 {language === 'ta' ? 'மாக் டெஸ்ட்' : 'Mock Test'}
+        </Button>
+        <Button
+          variant={showAnalytics ? "default" : "outline"}
+          onClick={() => { setShowAnalytics(!showAnalytics); setShowTips(false); setShowSalaryChart(false); setShowMockTest(false); setShowExamCalendar(false); }}
+          className="gap-2"
+        >
+          <BarChart3 className="h-4 w-4" />
+          {language === 'ta' ? 'செயல்திறன்' : 'Analytics'}
+        </Button>
+        <Button
+          variant={showExamCalendar ? "default" : "outline"}
+          onClick={() => { setShowExamCalendar(!showExamCalendar); setShowTips(false); setShowSalaryChart(false); setShowMockTest(false); setShowAnalytics(false); }}
+          className="gap-2"
+        >
+          <CalendarDays className="h-4 w-4" />
+          {language === 'ta' ? 'தேர்வு நாட்காட்டி' : 'Exam Calendar'}
         </Button>
         <ExamReminders savedExams={savedExams} />
       </div>
@@ -261,6 +281,16 @@ export const GovernmentJobs = () => {
         {showMockTest && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
             <GovtMockTest />
+          </motion.div>
+        )}
+        {showAnalytics && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <SubjectAnalytics />
+          </motion.div>
+        )}
+        {showExamCalendar && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <ExamCalendar />
           </motion.div>
         )}
       </AnimatePresence>

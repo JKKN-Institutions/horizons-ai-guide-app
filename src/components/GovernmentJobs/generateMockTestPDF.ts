@@ -1,6 +1,6 @@
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import { GovtMockTestScore } from '@/hooks/useGovtMockTestScores';
+import { CategoryType } from './types';
 import { categoryInfo } from './governmentExamsData';
 
 interface Question {
@@ -16,9 +16,12 @@ interface Question {
 }
 
 interface GeneratePDFParams {
-  score: GovtMockTestScore;
+  category: CategoryType;
   questions: Question[];
   selectedAnswers: Record<string, number>;
+  score: number;
+  totalQuestions: number;
+  timeTaken: number;
   language: 'en' | 'ta';
 }
 
@@ -173,15 +176,50 @@ const getPerformanceMessage = (percentage: number, language: 'en' | 'ta'): strin
 };
 
 export const generateMockTestPDF = ({
-  score,
+  category,
   questions,
   selectedAnswers,
+  score,
+  totalQuestions,
+  timeTaken,
   language
 }: GeneratePDFParams): void => {
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
   let yPos = 20;
+
+  // Calculate statistics
+  const correct = score;
+  const incorrect = Object.keys(selectedAnswers).length - correct;
+  const unattempted = totalQuestions - Object.keys(selectedAnswers).length;
+  const percentage = totalQuestions > 0 ? Math.round((correct / totalQuestions) * 100) : 0;
+  
+  // Calculate subject-wise stats
+  const subjectWise: Record<string, { total: number; correct: number }> = {};
+  questions.forEach(q => {
+    if (!subjectWise[q.subject]) {
+      subjectWise[q.subject] = { total: 0, correct: 0 };
+    }
+    subjectWise[q.subject].total++;
+    if (selectedAnswers[q.id] === q.correctAnswer) {
+      subjectWise[q.subject].correct++;
+    }
+  });
+
+  // Calculate difficulty-wise stats
+  const difficultyWise: Record<string, { total: number; correct: number }> = {};
+  questions.forEach(q => {
+    if (!difficultyWise[q.difficulty]) {
+      difficultyWise[q.difficulty] = { total: 0, correct: 0 };
+    }
+    difficultyWise[q.difficulty].total++;
+    if (selectedAnswers[q.id] === q.correctAnswer) {
+      difficultyWise[q.difficulty].correct++;
+    }
+  });
+
+  const categoryLabel = categoryInfo[category]?.label || category;
 
   // Header background
   doc.setFillColor(88, 80, 236); // Indigo
@@ -197,7 +235,7 @@ export const generateMockTestPDF = ({
   doc.setFontSize(12);
   doc.setFont('helvetica', 'normal');
   doc.text(
-    `${score.categoryLabel} | ${new Date(score.date).toLocaleDateString()}`,
+    `${categoryLabel} | ${new Date().toLocaleDateString()}`,
     pageWidth / 2, 30, { align: 'center' }
   );
 
@@ -214,12 +252,12 @@ export const generateMockTestPDF = ({
   doc.setTextColor(34, 197, 94); // Green
   doc.setFontSize(28);
   doc.setFont('helvetica', 'bold');
-  doc.text(`${score.percentage}%`, pageWidth / 2, yPos + 18, { align: 'center' });
+  doc.text(`${percentage}%`, pageWidth / 2, yPos + 18, { align: 'center' });
   
   doc.setTextColor(55, 65, 81); // Gray
   doc.setFontSize(12);
   doc.text(
-    `${score.correct}/${score.totalQuestions} ${language === 'en' ? 'Correct' : 'Correct'}`,
+    `${correct}/${totalQuestions} ${language === 'en' ? 'Correct' : 'Correct'}`,
     pageWidth / 2, yPos + 32, { align: 'center' }
   );
 
@@ -230,7 +268,7 @@ export const generateMockTestPDF = ({
   doc.roundedRect(15, yPos, pageWidth - 30, 20, 3, 3, 'F');
   doc.setTextColor(146, 64, 14); // Amber
   doc.setFontSize(10);
-  const perfMessage = getPerformanceMessage(score.percentage, language);
+  const perfMessage = getPerformanceMessage(percentage, language);
   const splitMessage = doc.splitTextToSize(perfMessage, pageWidth - 40);
   doc.text(splitMessage, pageWidth / 2, yPos + 8, { align: 'center' });
 
@@ -251,12 +289,12 @@ export const generateMockTestPDF = ({
       language === 'en' ? 'Value' : 'Value'
     ]],
     body: [
-      [language === 'en' ? 'Total Questions' : 'Total Questions', score.totalQuestions.toString()],
-      [language === 'en' ? 'Correct Answers' : 'Correct Answers', score.correct.toString()],
-      [language === 'en' ? 'Incorrect Answers' : 'Incorrect Answers', score.incorrect.toString()],
-      [language === 'en' ? 'Unattempted' : 'Unattempted', score.unattempted.toString()],
-      [language === 'en' ? 'Time Taken' : 'Time Taken', `${Math.floor(score.timeTaken / 60)}:${(score.timeTaken % 60).toString().padStart(2, '0')}`],
-      [language === 'en' ? 'Accuracy' : 'Accuracy', `${score.percentage}%`],
+      [language === 'en' ? 'Total Questions' : 'Total Questions', totalQuestions.toString()],
+      [language === 'en' ? 'Correct Answers' : 'Correct Answers', correct.toString()],
+      [language === 'en' ? 'Incorrect Answers' : 'Incorrect Answers', incorrect.toString()],
+      [language === 'en' ? 'Unattempted' : 'Unattempted', unattempted.toString()],
+      [language === 'en' ? 'Time Taken' : 'Time Taken', `${Math.floor(timeTaken / 60)}:${(timeTaken % 60).toString().padStart(2, '0')}`],
+      [language === 'en' ? 'Accuracy' : 'Accuracy', `${percentage}%`],
     ],
     theme: 'striped',
     headStyles: { fillColor: [88, 80, 236] },
@@ -266,7 +304,7 @@ export const generateMockTestPDF = ({
   yPos = (doc as any).lastAutoTable.finalY + 15;
 
   // Subject-wise Performance
-  if (Object.keys(score.subjectWise).length > 0) {
+  if (Object.keys(subjectWise).length > 0) {
     doc.setTextColor(31, 41, 55);
     doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
@@ -274,7 +312,7 @@ export const generateMockTestPDF = ({
 
     yPos += 5;
 
-    const subjectData = Object.entries(score.subjectWise).map(([subject, data]) => [
+    const subjectData = Object.entries(subjectWise).map(([subject, data]) => [
       subject,
       data.total.toString(),
       data.correct.toString(),
@@ -299,7 +337,7 @@ export const generateMockTestPDF = ({
   }
 
   // Difficulty-wise Performance
-  if (Object.keys(score.difficultyWise).length > 0) {
+  if (Object.keys(difficultyWise).length > 0) {
     if (yPos > pageHeight - 60) {
       doc.addPage();
       yPos = 20;
@@ -312,7 +350,7 @@ export const generateMockTestPDF = ({
 
     yPos += 5;
 
-    const diffData = Object.entries(score.difficultyWise).map(([diff, data]) => [
+    const diffData = Object.entries(difficultyWise).map(([diff, data]) => [
       diff.charAt(0).toUpperCase() + diff.slice(1),
       data.total.toString(),
       data.correct.toString(),
@@ -337,7 +375,7 @@ export const generateMockTestPDF = ({
   }
 
   // Personalized Recommendations
-  const recommendations = getPersonalizedRecommendations(score.subjectWise, language);
+  const recommendations = getPersonalizedRecommendations(subjectWise, language);
   
   if (recommendations.length > 0) {
     if (yPos > pageHeight - 80) {
@@ -357,7 +395,7 @@ export const generateMockTestPDF = ({
 
     yPos += 25;
 
-    recommendations.forEach((rec, index) => {
+    recommendations.forEach((rec) => {
       if (yPos > pageHeight - 50) {
         doc.addPage();
         yPos = 20;
@@ -378,7 +416,7 @@ export const generateMockTestPDF = ({
       doc.setFontSize(9);
       doc.setFont('helvetica', 'normal');
 
-      rec.tips.forEach((tip, i) => {
+      rec.tips.forEach((tip) => {
         if (yPos > pageHeight - 20) {
           doc.addPage();
           yPos = 20;
@@ -417,13 +455,21 @@ export const generateMockTestPDF = ({
     const isCorrect = userAnswer === q.correctAnswer;
 
     // Question background
-    doc.setFillColor(isCorrect ? 220, 252, 231 : 254, 226, 226);
+    if (isCorrect) {
+      doc.setFillColor(220, 252, 231);
+    } else {
+      doc.setFillColor(254, 226, 226);
+    }
     doc.roundedRect(15, yPos, pageWidth - 30, 35, 2, 2, 'F');
 
     // Question number and status
     doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
-    doc.setTextColor(isCorrect ? 22, 163, 74 : 220, 38, 38);
+    if (isCorrect) {
+      doc.setTextColor(22, 163, 74);
+    } else {
+      doc.setTextColor(220, 38, 38);
+    }
     doc.text(`Q${index + 1}. ${isCorrect ? '✓' : '✗'}`, 20, yPos + 8);
 
     // Question text
@@ -459,6 +505,6 @@ export const generateMockTestPDF = ({
   );
 
   // Save
-  const filename = `MockTest_${score.categoryLabel.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`;
+  const filename = `MockTest_${categoryLabel.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`;
   doc.save(filename);
 };
