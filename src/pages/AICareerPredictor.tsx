@@ -1496,7 +1496,20 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
               className="space-y-6"
             >
               <h2 className="text-xl font-semibold text-center mb-4">Preferred Study Location</h2>
-              <p className="text-sm text-muted-foreground text-center mb-6">Select districts or states where you'd like to study</p>
+              <div className="flex items-center justify-center gap-2 mb-6">
+                <p className="text-sm text-muted-foreground">Select districts or states where you'd like to study</p>
+                {selectedLocations.length > 0 && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setSelectedLocations([])}
+                    className="text-xs h-6 px-2 text-muted-foreground hover:text-destructive"
+                  >
+                    <X className="h-3 w-3 mr-1" />
+                    Clear All
+                  </Button>
+                )}
+              </div>
               
               {/* Tamil Nadu Districts */}
               <div className="space-y-3">
