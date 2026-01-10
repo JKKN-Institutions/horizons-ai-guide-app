@@ -394,6 +394,42 @@ export type Database = {
         }
         Relationships: []
       }
+      govt_mock_test_scores: {
+        Row: {
+          accuracy: number
+          category: string
+          created_at: string
+          display_name: string
+          id: string
+          score: number
+          time_taken: number
+          total_questions: number
+          user_id: string | null
+        }
+        Insert: {
+          accuracy: number
+          category: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          score: number
+          time_taken: number
+          total_questions: number
+          user_id?: string | null
+        }
+        Update: {
+          accuracy?: number
+          category?: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          score?: number
+          time_taken?: number
+          total_questions?: number
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       industry_job_subscriptions: {
         Row: {
           created_at: string
