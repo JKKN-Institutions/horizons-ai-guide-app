@@ -4,5 +4,6 @@ export { ExamReminders } from './ExamReminders';
 export { SalaryComparisonChart } from './SalaryComparisonChart';
 export { GovtMockTest } from './GovtMockTest';
 export { GovtMockTestProgress } from './GovtMockTestProgress';
+export { StudyStreakDisplay } from './StudyStreakDisplay';
 export { governmentExams, categoryInfo } from './governmentExamsData';
 export type { GovernmentExam, CategoryType, SalaryRangeType, StatusType } from './types';

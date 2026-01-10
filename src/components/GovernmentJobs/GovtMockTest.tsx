@@ -12,13 +12,15 @@ import {
   Play, Clock, CheckCircle2, XCircle, Trophy, Target,
   ChevronRight, ChevronLeft, Flag, RotateCcw, BookOpen,
   Shield, Train, FileText, Landmark, MapPin, Building2,
-  Zap, Award, BarChart3
+  Zap, Award, BarChart3, Flame
 } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { categoryInfo } from './governmentExamsData';
 import { CategoryType } from './types';
 import { useGovtMockTestScores } from '@/hooks/useGovtMockTestScores';
+import { useStudyStreak } from '@/hooks/useStudyStreak';
 import { GovtMockTestProgress } from './GovtMockTestProgress';
+import { StudyStreakDisplay } from './StudyStreakDisplay';
 import confetti from 'canvas-confetti';
 
 interface Question {
@@ -567,6 +569,7 @@ const getCategoryIcon = (category: string) => {
 export const GovtMockTest = () => {
   const { language } = useLanguage();
   const { addScore, totalAttempts } = useGovtMockTestScores();
+  const { currentStreak, recordPractice, newAchievements, clearNewAchievements } = useStudyStreak();
   const [selectedCategory, setSelectedCategory] = useState<CategoryType | null>(null);
   const [isTestActive, setIsTestActive] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -575,6 +578,7 @@ export const GovtMockTest = () => {
   const [timeLeft, setTimeLeft] = useState(0);
   const [flaggedQuestions, setFlaggedQuestions] = useState<Set<string>>(new Set());
   const [showProgress, setShowProgress] = useState(false);
+  const [showStreak, setShowStreak] = useState(false);
   const startTimeRef = useRef<number>(0);
   const totalTimeRef = useRef<number>(0);
 
@@ -635,6 +639,9 @@ export const GovtMockTest = () => {
   const submitTest = () => {
     setShowResults(true);
     const timeTaken = Math.floor((Date.now() - startTimeRef.current) / 1000);
+    
+    // Record practice for streak tracking
+    recordPractice();
     
     // Calculate detailed results
     let correct = 0;
@@ -734,73 +741,116 @@ export const GovtMockTest = () => {
       );
     }
 
+    if (showStreak) {
+      return (
+        <div className="space-y-4">
+          <Button 
+            variant="outline" 
+            onClick={() => setShowStreak(false)}
+            className="gap-2"
+          >
+            <ChevronLeft className="h-4 w-4" />
+            {language === 'ta' ? 'திரும்பு' : 'Back to Tests'}
+          </Button>
+          <StudyStreakDisplay />
+        </div>
+      );
+    }
+
     return (
-      <Card className="border-2 border-violet-200 bg-gradient-to-br from-violet-50/50 to-purple-50/50">
-        <CardHeader className="pb-4">
-          <div className="flex items-center justify-between">
-            <CardTitle className="flex items-center gap-3 text-lg">
-              <div className="p-2 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg">
-                <BookOpen className="h-5 w-5 text-white" />
-              </div>
-              {language === 'ta' ? 'அரசு தேர்வு மாக் டெஸ்ட்' : 'Government Exam Mock Test'}
-            </CardTitle>
-            {totalAttempts > 0 && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowProgress(true)}
-                className="gap-2 bg-indigo-50 border-indigo-200 text-indigo-700 hover:bg-indigo-100"
-              >
-                <BarChart3 className="h-4 w-4" />
-                {language === 'ta' ? 'முன்னேற்றம்' : 'Progress'}
-                <Badge variant="secondary" className="ml-1 bg-indigo-100 text-indigo-600">
-                  {totalAttempts}
-                </Badge>
-              </Button>
-            )}
-          </div>
-        </CardHeader>
-        <CardContent>
-          <p className="text-gray-600 mb-6">
-            {language === 'ta' 
-              ? 'வகை வாரியான பயிற்சி கேள்விகளுடன் அரசு தேர்வுகளுக்கு தயாராகுங்கள்'
-              : 'Prepare for government exams with category-wise practice questions'}
-          </p>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {mockTestQuestions.map((cat) => {
-              const Icon = getCategoryIcon(cat.category);
-              const info = categoryInfo[cat.category];
-              return (
-                <motion.button
-                  key={cat.category}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => startTest(cat.category)}
-                  className={`p-4 rounded-xl border-2 ${info?.bgColor} ${info?.borderColor} hover:shadow-lg transition-all text-left`}
-                >
-                  <div className="flex items-center gap-2 mb-2">
-                    <Icon className="h-5 w-5" style={{ color: info?.borderColor?.replace('border-', '') }} />
-                    <span className="text-xl">{info?.emoji}</span>
-                  </div>
-                  <h4 className="font-semibold text-gray-800 text-sm">
-                    {info?.label}
-                  </h4>
-                  <p className="text-xs text-gray-500 mt-1">
-                    {cat.questions.length} {language === 'ta' ? 'கேள்விகள்' : 'Questions'}
+      <div className="space-y-4">
+        {/* Streak Banner */}
+        <Card 
+          className="border border-orange-200 bg-gradient-to-r from-orange-50 to-amber-50 cursor-pointer hover:shadow-sm transition-shadow"
+          onClick={() => setShowStreak(true)}
+        >
+          <CardContent className="py-3 px-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className={`p-2 rounded-lg ${currentStreak > 0 ? 'bg-orange-100' : 'bg-gray-100'}`}>
+                  <Flame className={`h-5 w-5 ${currentStreak > 0 ? 'text-orange-500' : 'text-gray-400'}`} />
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-800">
+                    {currentStreak} {language === 'ta' ? 'நாள் தொடர்' : 'Day Streak'}
                   </p>
-                  <div className="mt-2 flex items-center gap-1">
-                    <Play className="h-3 w-3 text-green-600" />
-                    <span className="text-xs text-green-600 font-medium">
-                      {language === 'ta' ? 'தொடங்கு' : 'Start'}
-                    </span>
-                  </div>
-                </motion.button>
-              );
-            })}
-          </div>
-        </CardContent>
-      </Card>
+                  <p className="text-xs text-gray-500">
+                    {language === 'ta' ? 'சாதனைகளைப் பார்க்க தட்டவும்' : 'Tap to view achievements'}
+                  </p>
+                </div>
+              </div>
+              <ChevronRight className="h-4 w-4 text-gray-400" />
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="border-2 border-violet-200 bg-gradient-to-br from-violet-50/50 to-purple-50/50">
+          <CardHeader className="pb-4">
+            <div className="flex items-center justify-between">
+              <CardTitle className="flex items-center gap-3 text-lg">
+                <div className="p-2 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg">
+                  <BookOpen className="h-5 w-5 text-white" />
+                </div>
+                {language === 'ta' ? 'அரசு தேர்வு மாக் டெஸ்ட்' : 'Government Exam Mock Test'}
+              </CardTitle>
+              {totalAttempts > 0 && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowProgress(true)}
+                  className="gap-2 bg-indigo-50 border-indigo-200 text-indigo-700 hover:bg-indigo-100"
+                >
+                  <BarChart3 className="h-4 w-4" />
+                  {language === 'ta' ? 'முன்னேற்றம்' : 'Progress'}
+                  <Badge variant="secondary" className="ml-1 bg-indigo-100 text-indigo-600">
+                    {totalAttempts}
+                  </Badge>
+                </Button>
+              )}
+            </div>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-600 mb-6">
+              {language === 'ta' 
+                ? 'வகை வாரியான பயிற்சி கேள்விகளுடன் அரசு தேர்வுகளுக்கு தயாராகுங்கள்'
+                : 'Prepare for government exams with category-wise practice questions'}
+            </p>
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {mockTestQuestions.map((cat) => {
+                const Icon = getCategoryIcon(cat.category);
+                const info = categoryInfo[cat.category];
+                return (
+                  <motion.button
+                    key={cat.category}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => startTest(cat.category)}
+                    className={`p-4 rounded-xl border-2 ${info?.bgColor} ${info?.borderColor} hover:shadow-lg transition-all text-left`}
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <Icon className="h-5 w-5" style={{ color: info?.borderColor?.replace('border-', '') }} />
+                      <span className="text-xl">{info?.emoji}</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-800 text-sm">
+                      {info?.label}
+                    </h4>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {cat.questions.length} {language === 'ta' ? 'கேள்விகள்' : 'Questions'}
+                    </p>
+                    <div className="mt-2 flex items-center gap-1">
+                      <Play className="h-3 w-3 text-green-600" />
+                      <span className="text-xs text-green-600 font-medium">
+                        {language === 'ta' ? 'தொடங்கு' : 'Start'}
+                      </span>
+                    </div>
+                  </motion.button>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 
