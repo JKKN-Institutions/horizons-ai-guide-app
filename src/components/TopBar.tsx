@@ -18,9 +18,9 @@ const TopBar = () => {
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center font-serif font-bold text-accent-foreground text-sm">
-              J
+              வ
             </div>
-            <span className="font-semibold text-sm hidden sm:inline">JKKN AI Horizons</span>
+            <span className="font-semibold text-sm hidden sm:inline">வழிகாட்டி</span>
           </div>
           <span className="text-xs opacity-80 hidden md:inline border-l border-primary-foreground/30 pl-3">
             {t('topbar.careerPath')}
