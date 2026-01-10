@@ -394,6 +394,115 @@ export type Database = {
         }
         Relationships: []
       }
+      govt_forum_comments: {
+        Row: {
+          author_name: string
+          content: string
+          created_at: string
+          id: string
+          likes_count: number
+          post_id: string
+          user_id: string | null
+        }
+        Insert: {
+          author_name?: string
+          content: string
+          created_at?: string
+          id?: string
+          likes_count?: number
+          post_id: string
+          user_id?: string | null
+        }
+        Update: {
+          author_name?: string
+          content?: string
+          created_at?: string
+          id?: string
+          likes_count?: number
+          post_id?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "govt_forum_comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "govt_forum_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      govt_forum_post_likes: {
+        Row: {
+          created_at: string
+          id: string
+          post_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          post_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          post_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "govt_forum_post_likes_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "govt_forum_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      govt_forum_posts: {
+        Row: {
+          author_name: string
+          category: string
+          comments_count: number
+          content: string
+          created_at: string
+          id: string
+          is_pinned: boolean
+          likes_count: number
+          title: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          author_name?: string
+          category: string
+          comments_count?: number
+          content: string
+          created_at?: string
+          id?: string
+          is_pinned?: boolean
+          likes_count?: number
+          title: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          author_name?: string
+          category?: string
+          comments_count?: number
+          content?: string
+          created_at?: string
+          id?: string
+          is_pinned?: boolean
+          likes_count?: number
+          title?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       govt_mock_test_scores: {
         Row: {
           accuracy: number
@@ -427,6 +536,51 @@ export type Database = {
           time_taken?: number
           total_questions?: number
           user_id?: string | null
+        }
+        Relationships: []
+      }
+      govt_study_plans: {
+        Row: {
+          category: string
+          created_at: string
+          daily_hours: number
+          description: string | null
+          difficulty: string
+          duration_weeks: number
+          exam_name: string
+          followers_count: number
+          id: string
+          phases: Json
+          resources: Json
+          title: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          daily_hours?: number
+          description?: string | null
+          difficulty?: string
+          duration_weeks?: number
+          exam_name: string
+          followers_count?: number
+          id?: string
+          phases?: Json
+          resources?: Json
+          title: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          daily_hours?: number
+          description?: string | null
+          difficulty?: string
+          duration_weeks?: number
+          exam_name?: string
+          followers_count?: number
+          id?: string
+          phases?: Json
+          resources?: Json
+          title?: string
         }
         Relationships: []
       }
