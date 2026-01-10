@@ -52,6 +52,20 @@ export const GovernmentJobs = () => {
   const [showMockTest, setShowMockTest] = useState(false);
   const [showAnalytics, setShowAnalytics] = useState(false);
   const [showExamCalendar, setShowExamCalendar] = useState(false);
+  const [showPYQ, setShowPYQ] = useState(false);
+  const [showReminders, setShowReminders] = useState(false);
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
+
+  const closeAllSections = () => {
+    setShowTips(false);
+    setShowSalaryChart(false);
+    setShowMockTest(false);
+    setShowAnalytics(false);
+    setShowExamCalendar(false);
+    setShowPYQ(false);
+    setShowReminders(false);
+    setShowLeaderboard(false);
+  };
   const [savedExams, setSavedExams] = useState<string[]>(() => {
     const stored = localStorage.getItem('govtJobs_saved');
     return stored ? JSON.parse(stored) : [];
@@ -231,28 +245,28 @@ export const GovernmentJobs = () => {
       <div className="flex flex-wrap gap-3 mb-4">
         <Button
           variant={showTips ? "default" : "outline"}
-          onClick={() => { setShowTips(!showTips); setShowSalaryChart(false); setShowMockTest(false); setShowAnalytics(false); setShowExamCalendar(false); }}
+          onClick={() => { closeAllSections(); setShowTips(!showTips); }}
           className="gap-2"
         >
           📚 {language === 'ta' ? 'தயாரிப்பு குறிப்புகள்' : 'Preparation Tips'}
         </Button>
         <Button
           variant={showSalaryChart ? "default" : "outline"}
-          onClick={() => { setShowSalaryChart(!showSalaryChart); setShowTips(false); setShowMockTest(false); setShowAnalytics(false); setShowExamCalendar(false); }}
+          onClick={() => { closeAllSections(); setShowSalaryChart(!showSalaryChart); }}
           className="gap-2"
         >
           💰 {language === 'ta' ? 'சம்பள ஒப்பீடு' : 'Salary Comparison'}
         </Button>
         <Button
           variant={showMockTest ? "default" : "outline"}
-          onClick={() => { setShowMockTest(!showMockTest); setShowTips(false); setShowSalaryChart(false); setShowAnalytics(false); setShowExamCalendar(false); }}
+          onClick={() => { closeAllSections(); setShowMockTest(!showMockTest); }}
           className="gap-2"
         >
           📝 {language === 'ta' ? 'மாக் டெஸ்ட்' : 'Mock Test'}
         </Button>
         <Button
           variant={showAnalytics ? "default" : "outline"}
-          onClick={() => { setShowAnalytics(!showAnalytics); setShowTips(false); setShowSalaryChart(false); setShowMockTest(false); setShowExamCalendar(false); }}
+          onClick={() => { closeAllSections(); setShowAnalytics(!showAnalytics); }}
           className="gap-2"
         >
           <BarChart3 className="h-4 w-4" />
@@ -260,11 +274,32 @@ export const GovernmentJobs = () => {
         </Button>
         <Button
           variant={showExamCalendar ? "default" : "outline"}
-          onClick={() => { setShowExamCalendar(!showExamCalendar); setShowTips(false); setShowSalaryChart(false); setShowMockTest(false); setShowAnalytics(false); }}
+          onClick={() => { closeAllSections(); setShowExamCalendar(!showExamCalendar); }}
           className="gap-2"
         >
           <CalendarDays className="h-4 w-4" />
           {language === 'ta' ? 'தேர்வு நாட்காட்டி' : 'Exam Calendar'}
+        </Button>
+        <Button
+          variant={showPYQ ? "default" : "outline"}
+          onClick={() => { closeAllSections(); setShowPYQ(!showPYQ); }}
+          className="gap-2"
+        >
+          📄 {language === 'ta' ? 'முந்தைய வினாத்தாள்' : 'Previous Papers'}
+        </Button>
+        <Button
+          variant={showReminders ? "default" : "outline"}
+          onClick={() => { closeAllSections(); setShowReminders(!showReminders); }}
+          className="gap-2"
+        >
+          🔔 {language === 'ta' ? 'நினைவூட்டல்கள்' : 'Reminders'}
+        </Button>
+        <Button
+          variant={showLeaderboard ? "default" : "outline"}
+          onClick={() => { closeAllSections(); setShowLeaderboard(!showLeaderboard); }}
+          className="gap-2"
+        >
+          🏆 {language === 'ta' ? 'லீடர்போர்டு' : 'Leaderboard'}
         </Button>
         <ExamReminders savedExams={savedExams} />
       </div>
@@ -294,6 +329,21 @@ export const GovernmentJobs = () => {
         {showExamCalendar && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
             <ExamCalendar />
+          </motion.div>
+        )}
+        {showPYQ && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <GovtPYQSection />
+          </motion.div>
+        )}
+        {showReminders && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <DailyPracticeReminders />
+          </motion.div>
+        )}
+        {showLeaderboard && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <GovtLeaderboard />
           </motion.div>
         )}
       </AnimatePresence>
