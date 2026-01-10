@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw, Volume2, VolumeX, Download, FileText } from "lucide-react";
+import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw, Volume2, VolumeX, Download, FileText, MapPin } from "lucide-react";
 import confetti from "canvas-confetti";
 import { generateCareerComparisonPDF } from "./generateCareerComparisonPDF";
 import { Button } from "@/components/ui/button";
@@ -204,6 +204,28 @@ const careerGoals = [
   { id: "abroad", label: "Study Abroad", icon: Target, description: "International education" },
 ];
 
+const locationPreferences = [
+  { id: "tamilnadu", label: "Tamil Nadu", description: "Any district in TN", isGroup: true },
+  { id: "chennai", label: "Chennai", description: "Capital city" },
+  { id: "coimbatore", label: "Coimbatore", description: "Manchester of South India" },
+  { id: "madurai", label: "Madurai", description: "Cultural hub" },
+  { id: "tiruchirappalli", label: "Tiruchirappalli", description: "Central TN" },
+  { id: "salem", label: "Salem", description: "Steel city" },
+  { id: "namakkal", label: "Namakkal", description: "Education hub - JKKN" },
+  { id: "erode", label: "Erode", description: "Textile city" },
+  { id: "tirupur", label: "Tirupur", description: "Knitwear capital" },
+  { id: "vellore", label: "Vellore", description: "VIT hub" },
+  { id: "thanjavur", label: "Thanjavur", description: "Rice bowl" },
+];
+
+const nearbyStates = [
+  { id: "karnataka", label: "Karnataka", description: "Bangalore, Mysore" },
+  { id: "kerala", label: "Kerala", description: "Kochi, Trivandrum" },
+  { id: "andhra", label: "Andhra Pradesh", description: "Vizag, Tirupati" },
+  { id: "telangana", label: "Telangana", description: "Hyderabad" },
+  { id: "pondicherry", label: "Pondicherry", description: "Union territory" },
+];
+
 const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(_props, ref) {
   const navigate = useNavigate();
   const [step, setStep] = useState(0); // Start at intro step (0)
@@ -214,6 +236,7 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
   const [selectedBudget, setSelectedBudget] = useState("");
   const [selectedDuration, setSelectedDuration] = useState("");
   const [selectedGoal, setSelectedGoal] = useState("");
+  const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
   const [interests, setInterests] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [predictions, setPredictions] = useState<CareerPrediction[]>([]);
@@ -274,6 +297,12 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
   const togglePreference = (id: string) => {
     setSelectedPreferences(prev => 
       prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id]
+    );
+  };
+
+  const toggleLocation = (id: string) => {
+    setSelectedLocations(prev => 
+      prev.includes(id) ? prev.filter(l => l !== id) : [...prev, id]
     );
   };
 
@@ -447,14 +476,15 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
     if (step === 2) return selectedPercentage !== "";
     if (step === 3) return selectedPreferences.length > 0;
     if (step === 4) return selectedStyle !== "";
-    if (step === 5) return selectedBudget !== "";
-    if (step === 6) return selectedDuration !== "";
-    if (step === 7) return selectedGoal !== "";
+    if (step === 5) return selectedLocations.length > 0;
+    if (step === 6) return selectedBudget !== "";
+    if (step === 7) return selectedDuration !== "";
+    if (step === 8) return selectedGoal !== "";
     return true;
   };
 
   const handleNext = () => {
-    if (step < 8) {
+    if (step < 9) {
       setStep(step + 1);
     } else {
       getAIPredictions();
@@ -1226,7 +1256,7 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
 
             {/* Enhanced Progress Indicator */}
             <div className="flex items-center justify-center gap-2 mb-10 flex-wrap">
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((s) => (
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((s) => (
                 <div key={s} className="flex items-center">
                   <div
                     className={`h-2 w-8 md:w-10 rounded-full transition-all duration-500 ${
@@ -1437,10 +1467,101 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
             </motion.div>
           )}
 
-          {/* Step 5: Budget Range */}
+          {/* Step 5: Location Preference */}
           {step === 5 && (
             <motion.div
               key="step-5"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="space-y-6"
+            >
+              <h2 className="text-xl font-semibold text-center mb-4">Preferred Study Location</h2>
+              <p className="text-sm text-muted-foreground text-center mb-6">Select districts or states where you'd like to study</p>
+              
+              {/* Tamil Nadu Districts */}
+              <div className="space-y-3">
+                <p className="text-sm font-medium text-primary flex items-center gap-2">
+                  <MapPin className="h-4 w-4" /> Tamil Nadu Districts
+                </p>
+                <motion.div 
+                  className="flex flex-wrap justify-center gap-2"
+                  variants={containerVariants}
+                  initial="initial"
+                  animate="animate"
+                >
+                  {locationPreferences.map((loc, index) => (
+                    <motion.div key={loc.id} variants={itemVariants} transition={{ delay: index * 0.02 }}>
+                      <Badge
+                        variant={selectedLocations.includes(loc.id) ? "default" : "outline"}
+                        className={`cursor-pointer px-3 py-2 text-xs transition-all duration-300 ${
+                          selectedLocations.includes(loc.id)
+                            ? "shadow-md shadow-primary/20"
+                            : "hover:border-primary/50"
+                        } ${loc.id === 'namakkal' ? 'ring-1 ring-amber-400' : ''}`}
+                        onClick={() => toggleLocation(loc.id)}
+                      >
+                        {selectedLocations.includes(loc.id) && (
+                          <Check className="h-3 w-3 mr-1" />
+                        )}
+                        {loc.label}
+                        {loc.id === 'namakkal' && <span className="ml-1">⭐</span>}
+                      </Badge>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
+
+              {/* Nearby States */}
+              <div className="space-y-3 pt-4">
+                <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                  <MapPin className="h-4 w-4" /> Nearby States
+                </p>
+                <motion.div 
+                  className="flex flex-wrap justify-center gap-2"
+                  variants={containerVariants}
+                  initial="initial"
+                  animate="animate"
+                >
+                  {nearbyStates.map((state, index) => (
+                    <motion.div key={state.id} variants={itemVariants} transition={{ delay: index * 0.03 }}>
+                      <Badge
+                        variant={selectedLocations.includes(state.id) ? "default" : "outline"}
+                        className={`cursor-pointer px-4 py-2.5 text-sm transition-all duration-300 ${
+                          selectedLocations.includes(state.id)
+                            ? "shadow-md shadow-primary/20"
+                            : "hover:border-primary/50"
+                        }`}
+                        onClick={() => toggleLocation(state.id)}
+                      >
+                        {selectedLocations.includes(state.id) && (
+                          <Check className="h-3.5 w-3.5 mr-1.5" />
+                        )}
+                        {state.label}
+                      </Badge>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
+
+              {selectedLocations.length > 0 && (
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-xs text-center text-muted-foreground mt-4"
+                >
+                  Selected: {selectedLocations.length} location{selectedLocations.length > 1 ? 's' : ''}
+                </motion.p>
+              )}
+            </motion.div>
+          )}
+
+          {/* Step 6: Budget Range */}
+          {step === 6 && (
+            <motion.div
+              key="step-6"
               variants={stepVariants}
               initial="initial"
               animate="animate"
@@ -1490,10 +1611,10 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
             </motion.div>
           )}
 
-          {/* Step 6: Course Duration */}
-          {step === 6 && (
+          {/* Step 7: Course Duration */}
+          {step === 7 && (
             <motion.div
-              key="step-6"
+              key="step-7"
               variants={stepVariants}
               initial="initial"
               animate="animate"
@@ -1543,10 +1664,10 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
             </motion.div>
           )}
 
-          {/* Step 7: Career Goal */}
-          {step === 7 && (
+          {/* Step 8: Career Goal */}
+          {step === 8 && (
             <motion.div
-              key="step-7"
+              key="step-8"
               variants={stepVariants}
               initial="initial"
               animate="animate"
@@ -1596,10 +1717,10 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
             </motion.div>
           )}
 
-          {/* Step 8: Additional Info + Summary */}
-          {step === 8 && (
+          {/* Step 9: Additional Info + Summary */}
+          {step === 9 && (
             <motion.div
-              key="step-8"
+              key="step-9"
               variants={stepVariants}
               initial="initial"
               animate="animate"
@@ -1611,7 +1732,7 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
               <p className="text-sm text-muted-foreground text-center mb-6">Optional - share any additional preferences</p>
               <div className="relative max-w-md mx-auto">
                 <Input
-                  placeholder="E.g., I enjoy solving puzzles, prefer campus in Tamil Nadu..."
+                  placeholder="E.g., I enjoy solving puzzles, prefer a quiet campus..."
                   value={interests}
                   onChange={(e) => setInterests(e.target.value)}
                   className="text-center py-6 pr-12 rounded-xl border-2 focus:border-primary transition-colors"
@@ -1662,6 +1783,21 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                         <p className="text-xs text-muted-foreground">12th Marks</p>
                         <p className="font-medium text-sm truncate">
                           {percentageRanges.find(p => p.id === selectedPercentage)?.label || "-"}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Location */}
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50">
+                      <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <MapPin className="h-4 w-4 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-muted-foreground">Location</p>
+                        <p className="font-medium text-sm truncate">
+                          {selectedLocations.length > 0 
+                            ? `${selectedLocations.length} selected` 
+                            : "-"}
                         </p>
                       </div>
                     </div>
@@ -1827,7 +1963,7 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                 disabled={!canProceed()}
                 className="min-w-[220px] py-6 text-base shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all"
               >
-                {step === 8 ? (
+                {step === 9 ? (
                   <>
                     <Sparkles className="h-5 w-5 mr-2" />
                     Get Predictions
