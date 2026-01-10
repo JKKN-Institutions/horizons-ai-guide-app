@@ -45,7 +45,7 @@ const PartnersSection = () => {
             RECRUITING PARTNERS
           </h2>
           <p className="text-emerald-100/70 max-w-2xl mx-auto text-lg">
-            A growing network of companies hiring JKKN Learners across IT, healthcare, manufacturing, and more.
+            A growing network of companies hiring our learners across IT, healthcare, manufacturing, and more.
           </p>
         </div>
 

@@ -1,7 +1,7 @@
 const newsItems = [
   "🔴 JEE Main 2026 Session 1 - Jan 22-31 | Registration Open!",
   "📢 NEET UG 2026 Registration Opens Feb 1",
-  "🎓 JKKN Founders Day - Feb 21, 2026 | Komarapalayam Campus",
+  "🎓 Founders Day - Feb 21, 2026 | Komarapalayam Campus",
   "💰 Scholarship Deadline Feb 28 - Apply on NSP!",
   "🎯 Free Career Guidance Workshop - Register Now!",
   "📚 TN 12th Exams March 1-20",

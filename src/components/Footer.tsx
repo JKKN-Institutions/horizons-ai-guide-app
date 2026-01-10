@@ -2,10 +2,10 @@ import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
 
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com/jkkn", label: "Facebook" },
-  { icon: Instagram, href: "https://instagram.com/jkkn", label: "Instagram" },
-  { icon: Linkedin, href: "https://linkedin.com/company/jkkn", label: "LinkedIn" },
-  { icon: Youtube, href: "https://youtube.com/jkkn", label: "YouTube" },
+  { icon: Facebook, href: "https://facebook.com/vazhikatti", label: "Facebook" },
+  { icon: Instagram, href: "https://instagram.com/vazhikatti", label: "Instagram" },
+  { icon: Linkedin, href: "https://linkedin.com/company/vazhikatti", label: "LinkedIn" },
+  { icon: Youtube, href: "https://youtube.com/vazhikatti", label: "YouTube" },
 ];
 
 const Footer = () => {
