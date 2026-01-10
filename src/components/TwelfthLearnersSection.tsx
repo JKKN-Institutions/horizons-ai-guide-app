@@ -99,7 +99,7 @@ const TwelfthLearnersSection = () => {
               Confused About Your Future After 12th?
             </h2>
             <p className="text-emerald-100/80 text-lg md:text-xl mb-10 leading-relaxed">
-              JKKN AI Horizons is designed especially for 12th Learners who want clarity about their career path. Our AI-powered platform helps you discover your strengths and find the perfect course.
+              AI Horizons is designed especially for 12th Learners who want clarity about their career path. Our AI-powered platform helps you discover your strengths and find the perfect course.
             </p>
 
             <ul className="space-y-4 mb-10">
