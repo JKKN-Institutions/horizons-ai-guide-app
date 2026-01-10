@@ -46,6 +46,18 @@ const assessmentCards: AssessmentCard[] = [
     isChat: true,
     secondaryIcon: Mic,
   },
+  {
+    id: 'industry_trends',
+    title: 'Industry Trends & Insights',
+    description: 'Real-time job market analytics, salary benchmarks & future career predictions',
+    duration: 'Live Data',
+    questions: 'AI-Powered',
+    icon: BarChart3,
+    iconColor: 'text-emerald-600',
+    bgColor: 'bg-emerald-100',
+    isExternal: true,
+    secondaryIcon: Target,
+  },
 ];
 
 // Career Booster cards - same style as assessment cards
