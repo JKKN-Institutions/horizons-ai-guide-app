@@ -164,44 +164,44 @@ const percentageRanges = [
 ];
 
 const workPreferences = [
-  { id: "tech", label: "Technology" },
-  { id: "healthcare", label: "Healthcare" },
-  { id: "design", label: "Design" },
-  { id: "business", label: "Business" },
-  { id: "education", label: "Education" },
-  { id: "research", label: "Research" },
-  { id: "law", label: "Law" },
-  { id: "media", label: "Media & Arts" },
+  { id: "tech", label: "Technology", icon: "💻", color: "from-blue-500 to-cyan-500", bgLight: "bg-blue-50", borderColor: "border-blue-300" },
+  { id: "healthcare", label: "Healthcare", icon: "🏥", color: "from-emerald-500 to-teal-500", bgLight: "bg-emerald-50", borderColor: "border-emerald-300" },
+  { id: "design", label: "Design", icon: "🎨", color: "from-pink-500 to-rose-500", bgLight: "bg-pink-50", borderColor: "border-pink-300" },
+  { id: "business", label: "Business", icon: "📊", color: "from-amber-500 to-orange-500", bgLight: "bg-amber-50", borderColor: "border-amber-300" },
+  { id: "education", label: "Education", icon: "📚", color: "from-violet-500 to-purple-500", bgLight: "bg-violet-50", borderColor: "border-violet-300" },
+  { id: "research", label: "Research", icon: "🔬", color: "from-indigo-500 to-blue-500", bgLight: "bg-indigo-50", borderColor: "border-indigo-300" },
+  { id: "law", label: "Law", icon: "⚖️", color: "from-slate-500 to-gray-600", bgLight: "bg-slate-50", borderColor: "border-slate-300" },
+  { id: "media", label: "Media & Arts", icon: "🎬", color: "from-fuchsia-500 to-pink-500", bgLight: "bg-fuchsia-50", borderColor: "border-fuchsia-300" },
 ];
 
 const workStyles = [
-  { id: "team", label: "Team Player" },
-  { id: "solo", label: "Independent" },
-  { id: "hybrid", label: "Hybrid" },
-  { id: "lead", label: "Leadership" },
+  { id: "team", label: "Team Player", icon: "👥", color: "from-blue-500 to-cyan-500", description: "Collaborate with others" },
+  { id: "solo", label: "Independent", icon: "🎯", color: "from-violet-500 to-purple-500", description: "Work on your own" },
+  { id: "hybrid", label: "Hybrid", icon: "🔄", color: "from-emerald-500 to-teal-500", description: "Mix of both" },
+  { id: "lead", label: "Leadership", icon: "👑", color: "from-amber-500 to-orange-500", description: "Lead and manage" },
 ];
 
 const budgetRanges = [
-  { id: "low", label: "Under ₹50K/year", icon: DollarSign, description: "Government/Low-cost colleges" },
-  { id: "medium", label: "₹50K - ₹2L/year", icon: DollarSign, description: "Private colleges" },
-  { id: "high", label: "₹2L - ₹5L/year", icon: DollarSign, description: "Premier institutions" },
-  { id: "premium", label: "Above ₹5L/year", icon: DollarSign, description: "Top private/International" },
-  { id: "flexible", label: "No Budget Constraint", icon: DollarSign, description: "Open to all options" },
+  { id: "low", label: "Under ₹50K/year", icon: DollarSign, description: "Government/Low-cost colleges", color: "from-emerald-500 to-green-500", emoji: "💰" },
+  { id: "medium", label: "₹50K - ₹2L/year", icon: DollarSign, description: "Private colleges", color: "from-blue-500 to-cyan-500", emoji: "💵" },
+  { id: "high", label: "₹2L - ₹5L/year", icon: DollarSign, description: "Premier institutions", color: "from-violet-500 to-purple-500", emoji: "💎" },
+  { id: "premium", label: "Above ₹5L/year", icon: DollarSign, description: "Top private/International", color: "from-amber-500 to-orange-500", emoji: "🌟" },
+  { id: "flexible", label: "No Budget Constraint", icon: DollarSign, description: "Open to all options", color: "from-pink-500 to-rose-500", emoji: "✨" },
 ];
 
 const courseDurations = [
-  { id: "3years", label: "3 Years", description: "Bachelor's degree" },
-  { id: "4years", label: "4 Years", description: "B.Tech/B.E/MBBS etc." },
-  { id: "5years", label: "5+ Years", description: "Integrated courses" },
-  { id: "flexible", label: "Any Duration", description: "Open to all options" },
+  { id: "3years", label: "3 Years", description: "Bachelor's degree", icon: "📖", color: "from-emerald-500 to-teal-500" },
+  { id: "4years", label: "4 Years", description: "B.Tech/B.E/MBBS etc.", icon: "🎓", color: "from-blue-500 to-cyan-500" },
+  { id: "5years", label: "5+ Years", description: "Integrated courses", icon: "🏆", color: "from-violet-500 to-purple-500" },
+  { id: "flexible", label: "Any Duration", description: "Open to all options", icon: "🔓", color: "from-amber-500 to-orange-500" },
 ];
 
 const careerGoals = [
-  { id: "job", label: "Get a Job", icon: Briefcase, description: "Start working after graduation" },
-  { id: "higher", label: "Higher Studies", icon: GraduationCap, description: "Masters, PhD, Research" },
-  { id: "govt", label: "Government Job", icon: Award, description: "UPSC, State PSC, Bank exams" },
-  { id: "startup", label: "Entrepreneurship", icon: TrendingUp, description: "Start your own business" },
-  { id: "abroad", label: "Study Abroad", icon: Target, description: "International education" },
+  { id: "job", label: "Get a Job", icon: Briefcase, description: "Start working after graduation", color: "from-blue-500 to-cyan-500", emoji: "💼" },
+  { id: "higher", label: "Higher Studies", icon: GraduationCap, description: "Masters, PhD, Research", color: "from-violet-500 to-purple-500", emoji: "🎓" },
+  { id: "govt", label: "Government Job", icon: Award, description: "UPSC, State PSC, Bank exams", color: "from-emerald-500 to-teal-500", emoji: "🏛️" },
+  { id: "startup", label: "Entrepreneurship", icon: TrendingUp, description: "Start your own business", color: "from-amber-500 to-orange-500", emoji: "🚀" },
+  { id: "abroad", label: "Study Abroad", icon: Target, description: "International education", color: "from-pink-500 to-rose-500", emoji: "✈️" },
 ];
 
 const locationPreferences = [
@@ -1648,33 +1648,48 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="space-y-6"
             >
-              <h2 className="text-xl font-semibold text-center mb-8">What interests you?</h2>
-              <p className="text-sm text-muted-foreground text-center -mt-4 mb-6">Select multiple options</p>
+              <h2 className="text-xl font-semibold text-center mb-2">What interests you?</h2>
+              <p className="text-sm text-muted-foreground text-center mb-6">Select multiple options</p>
               <motion.div 
-                className="flex flex-wrap justify-center gap-3"
+                className="grid grid-cols-2 md:grid-cols-4 gap-3"
                 variants={containerVariants}
                 initial="initial"
                 animate="animate"
               >
                 {workPreferences.map((pref, index) => (
                   <motion.div key={pref.id} variants={itemVariants} transition={{ delay: index * 0.03 }}>
-                    <Badge
-                      variant={selectedPreferences.includes(pref.id) ? "default" : "outline"}
-                      className={`cursor-pointer px-5 py-2.5 text-sm transition-all duration-300 ${
+                    <Card
+                      className={`cursor-pointer transition-all duration-300 h-full ${
                         selectedPreferences.includes(pref.id)
-                          ? "shadow-md shadow-primary/20 scale-105"
-                          : "hover:scale-105 hover:border-primary/50"
+                          ? `${pref.borderColor} ${pref.bgLight} border-2 shadow-lg`
+                          : "hover:border-primary/30 hover:bg-muted/50"
                       }`}
                       onClick={() => togglePreference(pref.id)}
                     >
-                      {selectedPreferences.includes(pref.id) && (
-                        <Check className="h-3.5 w-3.5 mr-1.5" />
-                      )}
-                      {pref.label}
-                    </Badge>
+                      <CardContent className="p-4 flex flex-col items-center text-center gap-2">
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl bg-gradient-to-br ${pref.color} shadow-lg`}>
+                          {pref.icon}
+                        </div>
+                        <span className="font-medium text-sm">{pref.label}</span>
+                        {selectedPreferences.includes(pref.id) && (
+                          <motion.div 
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className={`h-5 w-5 rounded-full bg-gradient-to-br ${pref.color} flex items-center justify-center`}
+                          >
+                            <Check className="h-3 w-3 text-white" />
+                          </motion.div>
+                        )}
+                      </CardContent>
+                    </Card>
                   </motion.div>
                 ))}
               </motion.div>
+              {selectedPreferences.length > 0 && (
+                <p className="text-center text-sm text-muted-foreground mt-4">
+                  {selectedPreferences.length} selected
+                </p>
+              )}
             </motion.div>
           )}
 
@@ -1689,9 +1704,10 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="space-y-6"
             >
-              <h2 className="text-xl font-semibold text-center mb-8">How do you prefer to work?</h2>
+              <h2 className="text-xl font-semibold text-center mb-2">How do you prefer to work?</h2>
+              <p className="text-sm text-muted-foreground text-center mb-8">Choose your ideal work environment</p>
               <motion.div 
-                className="grid gap-4 md:grid-cols-2"
+                className="grid gap-4 md:grid-cols-2 max-w-xl mx-auto"
                 variants={containerVariants}
                 initial="initial"
                 animate="animate"
@@ -1699,24 +1715,32 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                 {workStyles.map((style, index) => (
                   <motion.div key={style.id} variants={itemVariants} transition={{ delay: index * 0.05 }}>
                     <Card
-                      className={`cursor-pointer transition-all duration-300 ${
+                      className={`cursor-pointer transition-all duration-300 overflow-hidden ${
                         selectedStyle === style.id 
-                          ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
+                          ? "border-2 border-transparent shadow-lg" 
                           : "hover:border-primary/30 hover:bg-muted/50"
                       }`}
                       onClick={() => setSelectedStyle(style.id)}
                     >
-                      <CardContent className="p-5 flex items-center justify-center gap-3">
+                      <CardContent className={`p-5 flex items-center gap-4 ${
+                        selectedStyle === style.id ? 'bg-gradient-to-r from-muted/60 to-transparent' : ''
+                      }`}>
+                        <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl bg-gradient-to-br ${style.color} shadow-lg`}>
+                          {style.icon}
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-semibold">{style.label}</p>
+                          <p className="text-xs text-muted-foreground">{style.description}</p>
+                        </div>
                         {selectedStyle === style.id && (
                           <motion.div 
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            className="h-5 w-5 rounded-full bg-primary flex items-center justify-center"
+                            className={`h-6 w-6 rounded-full bg-gradient-to-br ${style.color} flex items-center justify-center shadow-md`}
                           >
-                            <Check className="h-3 w-3 text-primary-foreground" />
+                            <Check className="h-3.5 w-3.5 text-white" />
                           </motion.div>
                         )}
-                        <span className="font-medium">{style.label}</span>
                       </CardContent>
                     </Card>
                   </motion.div>
@@ -1857,7 +1881,8 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="space-y-6"
             >
-              <h2 className="text-xl font-semibold text-center mb-8">Your Budget for Education</h2>
+              <h2 className="text-xl font-semibold text-center mb-2">Your Budget for Education</h2>
+              <p className="text-sm text-muted-foreground text-center mb-8">Select your annual education budget</p>
               <motion.div 
                 className="grid gap-3 max-w-lg mx-auto"
                 variants={containerVariants}
@@ -1867,28 +1892,30 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                 {budgetRanges.map((budget, index) => (
                   <motion.div key={budget.id} variants={itemVariants} transition={{ delay: index * 0.05 }}>
                     <Card
-                      className={`cursor-pointer transition-all duration-300 ${
+                      className={`cursor-pointer transition-all duration-300 overflow-hidden ${
                         selectedBudget === budget.id 
-                          ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
+                          ? "border-2 border-transparent shadow-lg" 
                           : "hover:border-primary/30 hover:bg-muted/50"
                       }`}
                       onClick={() => setSelectedBudget(budget.id)}
                     >
-                      <CardContent className="p-4 flex items-center gap-4">
-                        <div className={`p-2.5 rounded-lg ${selectedBudget === budget.id ? "bg-primary text-primary-foreground" : "bg-muted"}`}>
-                          <DollarSign className="h-5 w-5" />
+                      <CardContent className={`p-4 flex items-center gap-4 ${
+                        selectedBudget === budget.id ? 'bg-gradient-to-r from-muted/60 to-transparent' : ''
+                      }`}>
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl bg-gradient-to-br ${budget.color} shadow-lg`}>
+                          {budget.emoji}
                         </div>
                         <div className="flex-1">
-                          <p className="font-medium">{budget.label}</p>
+                          <p className="font-semibold">{budget.label}</p>
                           <p className="text-xs text-muted-foreground">{budget.description}</p>
                         </div>
                         {selectedBudget === budget.id && (
                           <motion.div 
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            className="h-5 w-5 rounded-full bg-primary flex items-center justify-center"
+                            className={`h-6 w-6 rounded-full bg-gradient-to-br ${budget.color} flex items-center justify-center shadow-md`}
                           >
-                            <Check className="h-3 w-3 text-primary-foreground" />
+                            <Check className="h-3.5 w-3.5 text-white" />
                           </motion.div>
                         )}
                       </CardContent>
@@ -1910,9 +1937,10 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="space-y-6"
             >
-              <h2 className="text-xl font-semibold text-center mb-8">Preferred Course Duration</h2>
+              <h2 className="text-xl font-semibold text-center mb-2">Preferred Course Duration</h2>
+              <p className="text-sm text-muted-foreground text-center mb-8">How long do you want to study?</p>
               <motion.div 
-                className="grid gap-4 md:grid-cols-2 max-w-lg mx-auto"
+                className="grid gap-4 grid-cols-2 max-w-lg mx-auto"
                 variants={containerVariants}
                 initial="initial"
                 animate="animate"
@@ -1920,18 +1948,18 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                 {courseDurations.map((duration, index) => (
                   <motion.div key={duration.id} variants={itemVariants} transition={{ delay: index * 0.05 }}>
                     <Card
-                      className={`cursor-pointer transition-all duration-300 ${
+                      className={`cursor-pointer transition-all duration-300 overflow-hidden ${
                         selectedDuration === duration.id 
-                          ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
+                          ? "border-2 border-transparent shadow-lg" 
                           : "hover:border-primary/30 hover:bg-muted/50"
                       }`}
                       onClick={() => setSelectedDuration(duration.id)}
                     >
-                      <CardContent className="p-5 text-center">
-                        <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-3 ${
-                          selectedDuration === duration.id ? "bg-primary text-primary-foreground" : "bg-muted"
-                        }`}>
-                          <Clock className="h-6 w-6" />
+                      <CardContent className={`p-5 text-center ${
+                        selectedDuration === duration.id ? 'bg-gradient-to-br from-muted/60 to-transparent' : ''
+                      }`}>
+                        <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl mb-3 text-2xl bg-gradient-to-br ${duration.color} shadow-lg`}>
+                          {duration.icon}
                         </div>
                         <p className="font-semibold">{duration.label}</p>
                         <p className="text-xs text-muted-foreground mt-1">{duration.description}</p>
@@ -1939,9 +1967,9 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                           <motion.div 
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            className="h-5 w-5 rounded-full bg-primary flex items-center justify-center mx-auto mt-3"
+                            className={`h-6 w-6 rounded-full bg-gradient-to-br ${duration.color} flex items-center justify-center mx-auto mt-3 shadow-md`}
                           >
-                            <Check className="h-3 w-3 text-primary-foreground" />
+                            <Check className="h-3.5 w-3.5 text-white" />
                           </motion.div>
                         )}
                       </CardContent>
@@ -1963,7 +1991,8 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="space-y-6"
             >
-              <h2 className="text-xl font-semibold text-center mb-8">What's Your Career Goal?</h2>
+              <h2 className="text-xl font-semibold text-center mb-2">What's Your Career Goal?</h2>
+              <p className="text-sm text-muted-foreground text-center mb-8">Where do you see yourself after graduation?</p>
               <motion.div 
                 className="grid gap-3 max-w-lg mx-auto"
                 variants={containerVariants}
@@ -1973,28 +2002,30 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                 {careerGoals.map((goal, index) => (
                   <motion.div key={goal.id} variants={itemVariants} transition={{ delay: index * 0.05 }}>
                     <Card
-                      className={`cursor-pointer transition-all duration-300 ${
+                      className={`cursor-pointer transition-all duration-300 overflow-hidden ${
                         selectedGoal === goal.id 
-                          ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
+                          ? "border-2 border-transparent shadow-lg" 
                           : "hover:border-primary/30 hover:bg-muted/50"
                       }`}
                       onClick={() => setSelectedGoal(goal.id)}
                     >
-                      <CardContent className="p-4 flex items-center gap-4">
-                        <div className={`p-2.5 rounded-lg ${selectedGoal === goal.id ? "bg-primary text-primary-foreground" : "bg-muted"}`}>
-                          <goal.icon className="h-5 w-5" />
+                      <CardContent className={`p-4 flex items-center gap-4 ${
+                        selectedGoal === goal.id ? 'bg-gradient-to-r from-muted/60 to-transparent' : ''
+                      }`}>
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl bg-gradient-to-br ${goal.color} shadow-lg`}>
+                          {goal.emoji}
                         </div>
                         <div className="flex-1">
-                          <p className="font-medium">{goal.label}</p>
+                          <p className="font-semibold">{goal.label}</p>
                           <p className="text-xs text-muted-foreground">{goal.description}</p>
                         </div>
                         {selectedGoal === goal.id && (
                           <motion.div 
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            className="h-5 w-5 rounded-full bg-primary flex items-center justify-center"
+                            className={`h-6 w-6 rounded-full bg-gradient-to-br ${goal.color} flex items-center justify-center shadow-md`}
                           >
-                            <Check className="h-3 w-3 text-primary-foreground" />
+                            <Check className="h-3.5 w-3.5 text-white" />
                           </motion.div>
                         )}
                       </CardContent>
