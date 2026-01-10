@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -12,11 +12,13 @@ import {
   Play, Clock, CheckCircle2, XCircle, Trophy, Target,
   ChevronRight, ChevronLeft, Flag, RotateCcw, BookOpen,
   Shield, Train, FileText, Landmark, MapPin, Building2,
-  Zap, Award
+  Zap, Award, BarChart3
 } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { categoryInfo } from './governmentExamsData';
 import { CategoryType } from './types';
+import { useGovtMockTestScores } from '@/hooks/useGovtMockTestScores';
+import { GovtMockTestProgress } from './GovtMockTestProgress';
 import confetti from 'canvas-confetti';
 
 interface Question {
@@ -564,6 +566,7 @@ const getCategoryIcon = (category: string) => {
 
 export const GovtMockTest = () => {
   const { language } = useLanguage();
+  const { addScore, totalAttempts } = useGovtMockTestScores();
   const [selectedCategory, setSelectedCategory] = useState<CategoryType | null>(null);
   const [isTestActive, setIsTestActive] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -571,6 +574,9 @@ export const GovtMockTest = () => {
   const [showResults, setShowResults] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
   const [flaggedQuestions, setFlaggedQuestions] = useState<Set<string>>(new Set());
+  const [showProgress, setShowProgress] = useState(false);
+  const startTimeRef = useRef<number>(0);
+  const totalTimeRef = useRef<number>(0);
 
   const currentQuestions = useMemo(() => {
     if (!selectedCategory) return [];
@@ -603,7 +609,11 @@ export const GovtMockTest = () => {
     setSelectedAnswers({});
     setShowResults(false);
     setFlaggedQuestions(new Set());
-    setTimeLeft(5 * 60); // 5 minutes
+    setShowProgress(false);
+    const testTime = 5 * 60; // 5 minutes
+    setTimeLeft(testTime);
+    startTimeRef.current = Date.now();
+    totalTimeRef.current = testTime;
   }, []);
 
   const handleAnswer = (questionId: string, answerIndex: number) => {
@@ -624,11 +634,58 @@ export const GovtMockTest = () => {
 
   const submitTest = () => {
     setShowResults(true);
-    const score = currentQuestions.reduce((acc, q) => {
-      return acc + (selectedAnswers[q.id] === q.correctAnswer ? 1 : 0);
-    }, 0);
+    const timeTaken = Math.floor((Date.now() - startTimeRef.current) / 1000);
     
-    if (score === currentQuestions.length) {
+    // Calculate detailed results
+    let correct = 0;
+    let incorrect = 0;
+    let unattempted = 0;
+    const subjectWise: Record<string, { total: number; correct: number }> = {};
+    const difficultyWise: Record<string, { total: number; correct: number }> = {};
+
+    currentQuestions.forEach(q => {
+      // Subject tracking
+      if (!subjectWise[q.subject]) {
+        subjectWise[q.subject] = { total: 0, correct: 0 };
+      }
+      subjectWise[q.subject].total++;
+
+      // Difficulty tracking
+      if (!difficultyWise[q.difficulty]) {
+        difficultyWise[q.difficulty] = { total: 0, correct: 0 };
+      }
+      difficultyWise[q.difficulty].total++;
+
+      // Answer tracking
+      if (selectedAnswers[q.id] === undefined) {
+        unattempted++;
+      } else if (selectedAnswers[q.id] === q.correctAnswer) {
+        correct++;
+        subjectWise[q.subject].correct++;
+        difficultyWise[q.difficulty].correct++;
+      } else {
+        incorrect++;
+      }
+    });
+
+    const percentage = Math.round((correct / currentQuestions.length) * 100);
+
+    // Save score to localStorage
+    addScore({
+      category: selectedCategory!,
+      categoryLabel: categoryInfo[selectedCategory!]?.label || selectedCategory!,
+      totalQuestions: currentQuestions.length,
+      correct,
+      incorrect,
+      unattempted,
+      percentage,
+      timeTaken,
+      timeAllotted: totalTimeRef.current,
+      subjectWise,
+      difficultyWise,
+    });
+    
+    if (correct === currentQuestions.length) {
       confetti({
         particleCount: 100,
         spread: 70,
@@ -661,15 +718,47 @@ export const GovtMockTest = () => {
   const percentage = currentQuestions.length > 0 ? Math.round((score / currentQuestions.length) * 100) : 0;
 
   if (!isTestActive) {
+    if (showProgress) {
+      return (
+        <div className="space-y-4">
+          <Button 
+            variant="outline" 
+            onClick={() => setShowProgress(false)}
+            className="gap-2"
+          >
+            <ChevronLeft className="h-4 w-4" />
+            {language === 'ta' ? 'திரும்பு' : 'Back to Tests'}
+          </Button>
+          <GovtMockTestProgress />
+        </div>
+      );
+    }
+
     return (
       <Card className="border-2 border-violet-200 bg-gradient-to-br from-violet-50/50 to-purple-50/50">
         <CardHeader className="pb-4">
-          <CardTitle className="flex items-center gap-3 text-lg">
-            <div className="p-2 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg">
-              <BookOpen className="h-5 w-5 text-white" />
-            </div>
-            {language === 'ta' ? 'அரசு தேர்வு மாக் டெஸ்ட்' : 'Government Exam Mock Test'}
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-3 text-lg">
+              <div className="p-2 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg">
+                <BookOpen className="h-5 w-5 text-white" />
+              </div>
+              {language === 'ta' ? 'அரசு தேர்வு மாக் டெஸ்ட்' : 'Government Exam Mock Test'}
+            </CardTitle>
+            {totalAttempts > 0 && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowProgress(true)}
+                className="gap-2 bg-indigo-50 border-indigo-200 text-indigo-700 hover:bg-indigo-100"
+              >
+                <BarChart3 className="h-4 w-4" />
+                {language === 'ta' ? 'முன்னேற்றம்' : 'Progress'}
+                <Badge variant="secondary" className="ml-1 bg-indigo-100 text-indigo-600">
+                  {totalAttempts}
+                </Badge>
+              </Button>
+            )}
+          </div>
         </CardHeader>
         <CardContent>
           <p className="text-gray-600 mb-6">
