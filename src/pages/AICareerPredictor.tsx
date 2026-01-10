@@ -150,8 +150,17 @@ const getDefaultEducation = (career: string): string => {
 const streams = [
   { id: "pcm", label: "Science (PCM)", icon: Calculator, description: "Physics, Chemistry, Mathematics" },
   { id: "pcb", label: "Science (PCB)", icon: Stethoscope, description: "Physics, Chemistry, Biology" },
+  { id: "pcmb", label: "Science (PCMB)", icon: GraduationCap, description: "Physics, Chemistry, Math & Biology" },
   { id: "commerce", label: "Commerce", icon: Briefcase, description: "Business, Accounts, Economics" },
   { id: "arts", label: "Arts/Humanities", icon: Palette, description: "Literature, History, Languages" },
+];
+
+const percentageRanges = [
+  { id: "above90", label: "Above 90%", description: "Excellent" },
+  { id: "80-90", label: "80% - 90%", description: "Very Good" },
+  { id: "70-80", label: "70% - 80%", description: "Good" },
+  { id: "60-70", label: "60% - 70%", description: "Average" },
+  { id: "below60", label: "Below 60%", description: "Pass" },
 ];
 
 const workPreferences = [
@@ -161,6 +170,8 @@ const workPreferences = [
   { id: "business", label: "Business" },
   { id: "education", label: "Education" },
   { id: "research", label: "Research" },
+  { id: "law", label: "Law" },
+  { id: "media", label: "Media & Arts" },
 ];
 
 const workStyles = [
@@ -170,12 +181,39 @@ const workStyles = [
   { id: "lead", label: "Leadership" },
 ];
 
+const budgetRanges = [
+  { id: "low", label: "Under ₹50K/year", icon: DollarSign, description: "Government/Low-cost colleges" },
+  { id: "medium", label: "₹50K - ₹2L/year", icon: DollarSign, description: "Private colleges" },
+  { id: "high", label: "₹2L - ₹5L/year", icon: DollarSign, description: "Premier institutions" },
+  { id: "premium", label: "Above ₹5L/year", icon: DollarSign, description: "Top private/International" },
+  { id: "flexible", label: "No Budget Constraint", icon: DollarSign, description: "Open to all options" },
+];
+
+const courseDurations = [
+  { id: "3years", label: "3 Years", description: "Bachelor's degree" },
+  { id: "4years", label: "4 Years", description: "B.Tech/B.E/MBBS etc." },
+  { id: "5years", label: "5+ Years", description: "Integrated courses" },
+  { id: "flexible", label: "Any Duration", description: "Open to all options" },
+];
+
+const careerGoals = [
+  { id: "job", label: "Get a Job", icon: Briefcase, description: "Start working after graduation" },
+  { id: "higher", label: "Higher Studies", icon: GraduationCap, description: "Masters, PhD, Research" },
+  { id: "govt", label: "Government Job", icon: Award, description: "UPSC, State PSC, Bank exams" },
+  { id: "startup", label: "Entrepreneurship", icon: TrendingUp, description: "Start your own business" },
+  { id: "abroad", label: "Study Abroad", icon: Target, description: "International education" },
+];
+
 const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(_props, ref) {
   const navigate = useNavigate();
   const [step, setStep] = useState(0); // Start at intro step (0)
   const [selectedStream, setSelectedStream] = useState("");
+  const [selectedPercentage, setSelectedPercentage] = useState("");
   const [selectedPreferences, setSelectedPreferences] = useState<string[]>([]);
   const [selectedStyle, setSelectedStyle] = useState("");
+  const [selectedBudget, setSelectedBudget] = useState("");
+  const [selectedDuration, setSelectedDuration] = useState("");
+  const [selectedGoal, setSelectedGoal] = useState("");
   const [interests, setInterests] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [predictions, setPredictions] = useState<CareerPrediction[]>([]);
@@ -406,13 +444,17 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
   const canProceed = () => {
     if (step === 0) return true; // Intro step can always proceed
     if (step === 1) return selectedStream !== "";
-    if (step === 2) return selectedPreferences.length > 0;
-    if (step === 3) return selectedStyle !== "";
+    if (step === 2) return selectedPercentage !== "";
+    if (step === 3) return selectedPreferences.length > 0;
+    if (step === 4) return selectedStyle !== "";
+    if (step === 5) return selectedBudget !== "";
+    if (step === 6) return selectedDuration !== "";
+    if (step === 7) return selectedGoal !== "";
     return true;
   };
 
   const handleNext = () => {
-    if (step < 4) {
+    if (step < 8) {
       setStep(step + 1);
     } else {
       getAIPredictions();
@@ -1183,11 +1225,11 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
             </div>
 
             {/* Enhanced Progress Indicator */}
-            <div className="flex items-center justify-center gap-3 mb-10">
-              {[1, 2, 3, 4].map((s) => (
+            <div className="flex items-center justify-center gap-2 mb-10 flex-wrap">
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((s) => (
                 <div key={s} className="flex items-center">
                   <div
-                    className={`h-2.5 w-14 rounded-full transition-all duration-500 ${
+                    className={`h-2 w-8 md:w-10 rounded-full transition-all duration-500 ${
                       s < step 
                         ? "bg-primary shadow-sm shadow-primary/30" 
                         : s === step 
@@ -1257,10 +1299,60 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
             </motion.div>
           )}
 
-          {/* Step 2: Work Preferences */}
+          {/* Step 2: 12th Percentage */}
           {step === 2 && (
             <motion.div
               key="step-2"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="space-y-6"
+            >
+              <h2 className="text-xl font-semibold text-center mb-8">Your 12th Percentage</h2>
+              <motion.div 
+                className="grid gap-3 max-w-md mx-auto"
+                variants={containerVariants}
+                initial="initial"
+                animate="animate"
+              >
+                {percentageRanges.map((range, index) => (
+                  <motion.div key={range.id} variants={itemVariants} transition={{ delay: index * 0.05 }}>
+                    <Card
+                      className={`cursor-pointer transition-all duration-300 ${
+                        selectedPercentage === range.id 
+                          ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
+                          : "hover:border-primary/30 hover:bg-muted/50"
+                      }`}
+                      onClick={() => setSelectedPercentage(range.id)}
+                    >
+                      <CardContent className="p-4 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <span className="font-medium">{range.label}</span>
+                          <Badge variant="outline" className="text-xs">{range.description}</Badge>
+                        </div>
+                        {selectedPercentage === range.id && (
+                          <motion.div 
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="h-5 w-5 rounded-full bg-primary flex items-center justify-center"
+                          >
+                            <Check className="h-3 w-3 text-primary-foreground" />
+                          </motion.div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          )}
+
+          {/* Step 3: Work Preferences/Interests */}
+          {step === 3 && (
+            <motion.div
+              key="step-3"
               variants={stepVariants}
               initial="initial"
               animate="animate"
@@ -1298,10 +1390,10 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
             </motion.div>
           )}
 
-          {/* Step 3: Work Style */}
-          {step === 3 && (
+          {/* Step 4: Work Style */}
+          {step === 4 && (
             <motion.div
-              key="step-3"
+              key="step-4"
               variants={stepVariants}
               initial="initial"
               animate="animate"
@@ -1345,10 +1437,10 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
             </motion.div>
           )}
 
-          {/* Step 4: Additional Interests + Summary */}
-          {step === 4 && (
+          {/* Step 5: Budget Range */}
+          {step === 5 && (
             <motion.div
-              key="step-4"
+              key="step-5"
               variants={stepVariants}
               initial="initial"
               animate="animate"
@@ -1356,11 +1448,170 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="space-y-6"
             >
-              <h2 className="text-xl font-semibold text-center mb-4">Tell us more</h2>
-              <p className="text-sm text-muted-foreground text-center mb-6">Optional but helps us provide better recommendations</p>
+              <h2 className="text-xl font-semibold text-center mb-8">Your Budget for Education</h2>
+              <motion.div 
+                className="grid gap-3 max-w-lg mx-auto"
+                variants={containerVariants}
+                initial="initial"
+                animate="animate"
+              >
+                {budgetRanges.map((budget, index) => (
+                  <motion.div key={budget.id} variants={itemVariants} transition={{ delay: index * 0.05 }}>
+                    <Card
+                      className={`cursor-pointer transition-all duration-300 ${
+                        selectedBudget === budget.id 
+                          ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
+                          : "hover:border-primary/30 hover:bg-muted/50"
+                      }`}
+                      onClick={() => setSelectedBudget(budget.id)}
+                    >
+                      <CardContent className="p-4 flex items-center gap-4">
+                        <div className={`p-2.5 rounded-lg ${selectedBudget === budget.id ? "bg-primary text-primary-foreground" : "bg-muted"}`}>
+                          <DollarSign className="h-5 w-5" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-medium">{budget.label}</p>
+                          <p className="text-xs text-muted-foreground">{budget.description}</p>
+                        </div>
+                        {selectedBudget === budget.id && (
+                          <motion.div 
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="h-5 w-5 rounded-full bg-primary flex items-center justify-center"
+                          >
+                            <Check className="h-3 w-3 text-primary-foreground" />
+                          </motion.div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          )}
+
+          {/* Step 6: Course Duration */}
+          {step === 6 && (
+            <motion.div
+              key="step-6"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="space-y-6"
+            >
+              <h2 className="text-xl font-semibold text-center mb-8">Preferred Course Duration</h2>
+              <motion.div 
+                className="grid gap-4 md:grid-cols-2 max-w-lg mx-auto"
+                variants={containerVariants}
+                initial="initial"
+                animate="animate"
+              >
+                {courseDurations.map((duration, index) => (
+                  <motion.div key={duration.id} variants={itemVariants} transition={{ delay: index * 0.05 }}>
+                    <Card
+                      className={`cursor-pointer transition-all duration-300 ${
+                        selectedDuration === duration.id 
+                          ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
+                          : "hover:border-primary/30 hover:bg-muted/50"
+                      }`}
+                      onClick={() => setSelectedDuration(duration.id)}
+                    >
+                      <CardContent className="p-5 text-center">
+                        <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-3 ${
+                          selectedDuration === duration.id ? "bg-primary text-primary-foreground" : "bg-muted"
+                        }`}>
+                          <Clock className="h-6 w-6" />
+                        </div>
+                        <p className="font-semibold">{duration.label}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{duration.description}</p>
+                        {selectedDuration === duration.id && (
+                          <motion.div 
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="h-5 w-5 rounded-full bg-primary flex items-center justify-center mx-auto mt-3"
+                          >
+                            <Check className="h-3 w-3 text-primary-foreground" />
+                          </motion.div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          )}
+
+          {/* Step 7: Career Goal */}
+          {step === 7 && (
+            <motion.div
+              key="step-7"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="space-y-6"
+            >
+              <h2 className="text-xl font-semibold text-center mb-8">What's Your Career Goal?</h2>
+              <motion.div 
+                className="grid gap-3 max-w-lg mx-auto"
+                variants={containerVariants}
+                initial="initial"
+                animate="animate"
+              >
+                {careerGoals.map((goal, index) => (
+                  <motion.div key={goal.id} variants={itemVariants} transition={{ delay: index * 0.05 }}>
+                    <Card
+                      className={`cursor-pointer transition-all duration-300 ${
+                        selectedGoal === goal.id 
+                          ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
+                          : "hover:border-primary/30 hover:bg-muted/50"
+                      }`}
+                      onClick={() => setSelectedGoal(goal.id)}
+                    >
+                      <CardContent className="p-4 flex items-center gap-4">
+                        <div className={`p-2.5 rounded-lg ${selectedGoal === goal.id ? "bg-primary text-primary-foreground" : "bg-muted"}`}>
+                          <goal.icon className="h-5 w-5" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-medium">{goal.label}</p>
+                          <p className="text-xs text-muted-foreground">{goal.description}</p>
+                        </div>
+                        {selectedGoal === goal.id && (
+                          <motion.div 
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="h-5 w-5 rounded-full bg-primary flex items-center justify-center"
+                          >
+                            <Check className="h-3 w-3 text-primary-foreground" />
+                          </motion.div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          )}
+
+          {/* Step 8: Additional Info + Summary */}
+          {step === 8 && (
+            <motion.div
+              key="step-8"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="space-y-6"
+            >
+              <h2 className="text-xl font-semibold text-center mb-4">Anything else?</h2>
+              <p className="text-sm text-muted-foreground text-center mb-6">Optional - share any additional preferences</p>
               <div className="relative max-w-md mx-auto">
                 <Input
-                  placeholder="E.g., I enjoy solving puzzles, creating art, helping people..."
+                  placeholder="E.g., I enjoy solving puzzles, prefer campus in Tamil Nadu..."
                   value={interests}
                   onChange={(e) => setInterests(e.target.value)}
                   className="text-center py-6 pr-12 rounded-xl border-2 focus:border-primary transition-colors"
@@ -1381,9 +1632,9 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                       Your Selection Summary
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
+                  <CardContent className="grid gap-3 md:grid-cols-2">
                     {/* Stream */}
-                    <div className="flex items-start gap-3">
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50">
                       <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                         {(() => {
                           const stream = streams.find(s => s.id === selectedStream);
@@ -1395,19 +1646,82 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                         })()}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs text-muted-foreground mb-1">Stream</p>
-                        <p className="font-medium text-sm">
-                          {streams.find(s => s.id === selectedStream)?.label || "Not selected"}
+                        <p className="text-xs text-muted-foreground">Stream</p>
+                        <p className="font-medium text-sm truncate">
+                          {streams.find(s => s.id === selectedStream)?.label || "-"}
                         </p>
                       </div>
                     </div>
 
-                    <Separator className="my-2" />
+                    {/* Percentage */}
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50">
+                      <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <Award className="h-4 w-4 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-muted-foreground">12th Marks</p>
+                        <p className="font-medium text-sm truncate">
+                          {percentageRanges.find(p => p.id === selectedPercentage)?.label || "-"}
+                        </p>
+                      </div>
+                    </div>
 
-                    {/* Interests */}
-                    <div className="flex items-start gap-3">
+                    {/* Budget */}
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50">
+                      <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <DollarSign className="h-4 w-4 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-muted-foreground">Budget</p>
+                        <p className="font-medium text-sm truncate">
+                          {budgetRanges.find(b => b.id === selectedBudget)?.label || "-"}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Duration */}
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50">
+                      <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <Clock className="h-4 w-4 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-muted-foreground">Duration</p>
+                        <p className="font-medium text-sm truncate">
+                          {courseDurations.find(d => d.id === selectedDuration)?.label || "-"}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Goal */}
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50">
                       <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                         <Target className="h-4 w-4 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-muted-foreground">Career Goal</p>
+                        <p className="font-medium text-sm truncate">
+                          {careerGoals.find(g => g.id === selectedGoal)?.label || "-"}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Work Style */}
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50">
+                      <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <Users className="h-4 w-4 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-muted-foreground">Work Style</p>
+                        <p className="font-medium text-sm truncate">
+                          {workStyles.find(s => s.id === selectedStyle)?.label || "-"}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Interests - full width */}
+                    <div className="md:col-span-2 flex items-start gap-3 p-3 rounded-lg bg-background/50">
+                      <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <Sparkles className="h-4 w-4 text-primary" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs text-muted-foreground mb-1">Interests</p>
@@ -1419,41 +1733,11 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                               </Badge>
                             ))
                           ) : (
-                            <span className="text-sm text-muted-foreground">None selected</span>
+                            <span className="text-sm text-muted-foreground">-</span>
                           )}
                         </div>
                       </div>
                     </div>
-
-                    <Separator className="my-2" />
-
-                    {/* Work Style */}
-                    <div className="flex items-start gap-3">
-                      <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                        <Users className="h-4 w-4 text-primary" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs text-muted-foreground mb-1">Work Style</p>
-                        <p className="font-medium text-sm">
-                          {workStyles.find(s => s.id === selectedStyle)?.label || "Not selected"}
-                        </p>
-                      </div>
-                    </div>
-
-                    {interests && (
-                      <>
-                        <Separator className="my-2" />
-                        <div className="flex items-start gap-3">
-                          <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                            <Lightbulb className="h-4 w-4 text-primary" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-xs text-muted-foreground mb-1">Additional Info</p>
-                            <p className="text-sm text-muted-foreground italic">"{interests}"</p>
-                          </div>
-                        </div>
-                      </>
-                    )}
                   </CardContent>
                 </Card>
               </motion.div>
@@ -1543,7 +1827,7 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                 disabled={!canProceed()}
                 className="min-w-[220px] py-6 text-base shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all"
               >
-                {step === 4 ? (
+                {step === 8 ? (
                   <>
                     <Sparkles className="h-5 w-5 mr-2" />
                     Get Predictions
