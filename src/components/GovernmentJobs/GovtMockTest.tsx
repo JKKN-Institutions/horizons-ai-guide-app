@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription
 } from '@/components/ui/dialog';
@@ -12,7 +14,7 @@ import {
   Play, Clock, CheckCircle2, XCircle, Trophy, Target,
   ChevronRight, ChevronLeft, Flag, RotateCcw, BookOpen,
   Shield, Train, FileText, Landmark, MapPin, Building2,
-  Zap, Award, BarChart3, Flame, Download
+  Zap, Award, BarChart3, Flame, Download, Sparkles, Loader2
 } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { categoryInfo } from './governmentExamsData';
@@ -22,6 +24,8 @@ import { useStudyStreak } from '@/hooks/useStudyStreak';
 import { GovtMockTestProgress } from './GovtMockTestProgress';
 import { StudyStreakDisplay } from './StudyStreakDisplay';
 import { generateMockTestPDF } from './generateMockTestPDF';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 import confetti from 'canvas-confetti';
 
 interface Question {
@@ -580,13 +584,57 @@ export const GovtMockTest = () => {
   const [flaggedQuestions, setFlaggedQuestions] = useState<Set<string>>(new Set());
   const [showProgress, setShowProgress] = useState(false);
   const [showStreak, setShowStreak] = useState(false);
+  const [useAI, setUseAI] = useState(false);
+  const [isLoadingAI, setIsLoadingAI] = useState(false);
+  const [aiQuestions, setAiQuestions] = useState<Question[]>([]);
   const startTimeRef = useRef<number>(0);
   const totalTimeRef = useRef<number>(0);
 
+  // Function to fetch AI-generated questions
+  const fetchAIQuestions = useCallback(async (category: CategoryType) => {
+    setIsLoadingAI(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('generate-govt-questions', {
+        body: { category, count: 10 }
+      });
+
+      if (error) {
+        console.error('AI Question generation error:', error);
+        toast.error(language === 'ta' 
+          ? 'AI கேள்விகளை உருவாக்க முடியவில்லை. நிலையான கேள்விகளைப் பயன்படுத்துகிறோம்.'
+          : 'Failed to generate AI questions. Using standard questions.');
+        return null;
+      }
+
+      if (data?.questions && Array.isArray(data.questions)) {
+        toast.success(language === 'ta'
+          ? `${data.questions.length} AI கேள்விகள் உருவாக்கப்பட்டன!`
+          : `${data.questions.length} AI questions generated!`);
+        return data.questions as Question[];
+      }
+      
+      return null;
+    } catch (err) {
+      console.error('AI fetch error:', err);
+      toast.error(language === 'ta'
+        ? 'AI சேவை கிடைக்கவில்லை.'
+        : 'AI service unavailable.');
+      return null;
+    } finally {
+      setIsLoadingAI(false);
+    }
+  }, [language]);
+
   const currentQuestions = useMemo(() => {
     if (!selectedCategory) return [];
+    
+    // Use AI questions if available and AI mode is active
+    if (useAI && aiQuestions.length > 0) {
+      return aiQuestions;
+    }
+    
     return mockTestQuestions.find(c => c.category === selectedCategory)?.questions || [];
-  }, [selectedCategory]);
+  }, [selectedCategory, useAI, aiQuestions]);
 
   const currentQuestion = currentQuestions[currentQuestionIndex];
 
@@ -607,19 +655,33 @@ export const GovtMockTest = () => {
     return () => clearInterval(timer);
   }, [isTestActive, showResults]);
 
-  const startTest = useCallback((category: CategoryType) => {
+  const startTest = useCallback(async (category: CategoryType) => {
     setSelectedCategory(category);
-    setIsTestActive(true);
     setCurrentQuestionIndex(0);
     setSelectedAnswers({});
     setShowResults(false);
     setFlaggedQuestions(new Set());
     setShowProgress(false);
+    
+    // If AI mode is enabled, fetch AI questions first
+    if (useAI) {
+      const questions = await fetchAIQuestions(category);
+      if (questions) {
+        setAiQuestions(questions);
+      } else {
+        // Fallback to static questions if AI fails
+        setAiQuestions([]);
+      }
+    } else {
+      setAiQuestions([]);
+    }
+    
+    setIsTestActive(true);
     const testTime = 5 * 60; // 5 minutes
     setTimeLeft(testTime);
     startTimeRef.current = Date.now();
     totalTimeRef.current = testTime;
-  }, []);
+  }, [useAI, fetchAIQuestions]);
 
   const handleAnswer = (questionId: string, answerIndex: number) => {
     setSelectedAnswers(prev => ({ ...prev, [questionId]: answerIndex }));
@@ -811,11 +873,47 @@ export const GovtMockTest = () => {
             </div>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-4">
               {language === 'ta' 
                 ? 'வகை வாரியான பயிற்சி கேள்விகளுடன் அரசு தேர்வுகளுக்கு தயாராகுங்கள்'
                 : 'Prepare for government exams with category-wise practice questions'}
             </p>
+
+            {/* AI Toggle */}
+            <div className="flex items-center justify-between p-4 mb-6 rounded-xl bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-purple-100 rounded-lg">
+                  <Sparkles className="h-5 w-5 text-purple-600" />
+                </div>
+                <div>
+                  <Label htmlFor="ai-mode" className="font-semibold text-gray-800 cursor-pointer">
+                    {language === 'ta' ? 'AI கேள்விகள்' : 'AI Questions'}
+                  </Label>
+                  <p className="text-xs text-gray-500">
+                    {language === 'ta' 
+                      ? 'AI மூலம் புதிய கேள்விகளை உருவாக்கவும்'
+                      : 'Generate fresh questions using AI'}
+                  </p>
+                </div>
+              </div>
+              <Switch
+                id="ai-mode"
+                checked={useAI}
+                onCheckedChange={setUseAI}
+                className="data-[state=checked]:bg-purple-600"
+              />
+            </div>
+
+            {isLoadingAI && (
+              <div className="flex items-center justify-center gap-3 p-6 mb-6 rounded-xl bg-purple-50 border border-purple-200">
+                <Loader2 className="h-6 w-6 animate-spin text-purple-600" />
+                <span className="text-purple-700 font-medium">
+                  {language === 'ta' 
+                    ? 'AI கேள்விகளை உருவாக்குகிறது...'
+                    : 'Generating AI questions...'}
+                </span>
+              </div>
+            )}
             
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {mockTestQuestions.map((cat) => {
@@ -827,17 +925,24 @@ export const GovtMockTest = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => startTest(cat.category)}
-                    className={`p-4 rounded-xl border-2 ${info?.bgColor} ${info?.borderColor} hover:shadow-lg transition-all text-left`}
+                    disabled={isLoadingAI}
+                    className={`p-4 rounded-xl border-2 ${info?.bgColor} ${info?.borderColor} hover:shadow-lg transition-all text-left ${isLoadingAI ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >
                     <div className="flex items-center gap-2 mb-2">
                       <Icon className="h-5 w-5" style={{ color: info?.borderColor?.replace('border-', '') }} />
                       <span className="text-xl">{info?.emoji}</span>
+                      {useAI && (
+                        <Sparkles className="h-3 w-3 text-purple-500" />
+                      )}
                     </div>
                     <h4 className="font-semibold text-gray-800 text-sm">
                       {info?.label}
                     </h4>
                     <p className="text-xs text-gray-500 mt-1">
-                      {cat.questions.length} {language === 'ta' ? 'கேள்விகள்' : 'Questions'}
+                      {useAI 
+                        ? (language === 'ta' ? '10 AI கேள்விகள்' : '10 AI Questions')
+                        : `${cat.questions.length} ${language === 'ta' ? 'கேள்விகள்' : 'Questions'}`
+                      }
                     </p>
                     <div className="mt-2 flex items-center gap-1">
                       <Play className="h-3 w-3 text-green-600" />
