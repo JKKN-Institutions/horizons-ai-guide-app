@@ -366,7 +366,13 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
   const [selectedDuration, setSelectedDuration] = useState("");
   const [selectedGoal, setSelectedGoal] = useState("");
   const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
-  const [locationViewMode, setLocationViewMode] = useState<'map' | 'list'>('map');
+  const [locationViewMode, setLocationViewMode] = useState<'map' | 'list'>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('careerPredictor_locationViewMode');
+      return (stored === 'map' || stored === 'list') ? stored : 'map';
+    }
+    return 'map';
+  });
   const [interests, setInterests] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [predictions, setPredictions] = useState<CareerPrediction[]>([]);
@@ -400,6 +406,11 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
   useEffect(() => {
     localStorage.setItem('careerPredictor_soundEnabled', String(soundEnabled));
   }, [soundEnabled]);
+  
+  // Persist location view mode preference
+  useEffect(() => {
+    localStorage.setItem('careerPredictor_locationViewMode', locationViewMode);
+  }, [locationViewMode]);
   
   // Cleanup audio context on unmount
   useEffect(() => {
