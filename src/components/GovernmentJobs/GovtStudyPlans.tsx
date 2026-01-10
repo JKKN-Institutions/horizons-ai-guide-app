@@ -131,6 +131,16 @@ export const GovtStudyPlans = () => {
     return phaseProgress[planId]?.[phaseIndex] || false;
   };
 
+  const resetPlanProgress = (planId: string) => {
+    setPhaseProgress(prev => {
+      const updated = { ...prev };
+      delete updated[planId];
+      localStorage.setItem('govt_phase_progress', JSON.stringify(updated));
+      return updated;
+    });
+    toast.success(language === 'ta' ? 'முன்னேற்றம் மீட்டமைக்கப்பட்டது!' : 'Progress reset successfully!');
+  };
+
   const filteredPlans = studyPlans.filter(
     plan => selectedCategory === 'all' || plan.category === selectedCategory
   );
@@ -206,9 +216,21 @@ export const GovtStudyPlans = () => {
                 <Trophy className="h-5 w-5 text-amber-500" />
                 {language === 'ta' ? 'உங்கள் முன்னேற்றம்' : 'Your Progress'}
               </h3>
-              <span className="text-sm font-medium text-indigo-600">
-                {getPlanProgress(selectedPlan.id, selectedPlan.phases.length)}%
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium text-indigo-600">
+                  {getPlanProgress(selectedPlan.id, selectedPlan.phases.length)}%
+                </span>
+                {getPlanProgress(selectedPlan.id, selectedPlan.phases.length) > 0 && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => resetPlanProgress(selectedPlan.id)}
+                    className="text-xs text-red-500 hover:text-red-700 hover:bg-red-50 h-7 px-2"
+                  >
+                    {language === 'ta' ? 'மீட்டமை' : 'Reset'}
+                  </Button>
+                )}
+              </div>
             </div>
             <Progress 
               value={getPlanProgress(selectedPlan.id, selectedPlan.phases.length)} 
