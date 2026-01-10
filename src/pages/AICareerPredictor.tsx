@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw, Volume2, VolumeX, Download, FileText, MapPin } from "lucide-react";
+import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, ChevronLeft, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw, Volume2, VolumeX, Download, FileText, MapPin, Quote } from "lucide-react";
 import confetti from "canvas-confetti";
 import { generateCareerComparisonPDF } from "./generateCareerComparisonPDF";
 import { Button } from "@/components/ui/button";
@@ -225,6 +225,134 @@ const nearbyStates = [
   { id: "telangana", label: "Telangana", description: "Hyderabad" },
   { id: "pondicherry", label: "Pondicherry", description: "Union territory" },
 ];
+
+// Testimonial data
+const testimonials = [
+  {
+    name: "Priya Sharma",
+    role: "B.Tech CSE Student",
+    college: "JKKN College of Engineering",
+    quote: "This tool helped me discover my passion for Data Science. Now I'm pursuing my dream career!",
+    avatar: "PS",
+    color: "from-emerald-500 to-teal-500"
+  },
+  {
+    name: "Karthik Raja",
+    role: "MBBS Student",
+    college: "JKKN Medical College",
+    quote: "I was confused between Engineering and Medicine. The AI predictor showed me my true calling.",
+    avatar: "KR",
+    color: "from-violet-500 to-purple-500"
+  },
+  {
+    name: "Anitha Devi",
+    role: "B.Pharm Graduate",
+    college: "JKKN Pharmacy College",
+    quote: "Got personalized course recommendations that matched my interests perfectly. Highly recommend!",
+    avatar: "AD",
+    color: "from-amber-500 to-orange-500"
+  },
+  {
+    name: "Surya Kumar",
+    role: "MBA Student",
+    college: "JKKN Business School",
+    quote: "The career predictions were spot-on. It helped me choose the right specialization.",
+    avatar: "SK",
+    color: "from-pink-500 to-rose-500"
+  }
+];
+
+// Testimonial Carousel Component
+const TestimonialCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const goToPrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  return (
+    <motion.div 
+      className="mt-10 pt-8 border-t border-border/50"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.7 }}
+    >
+      <div className="flex items-center justify-center gap-2 mb-4">
+        <Quote className="w-4 h-4 text-muted-foreground" />
+        <p className="text-sm font-medium text-muted-foreground">Student Success Stories</p>
+      </div>
+      
+      <div className="relative max-w-lg mx-auto">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+            className="bg-gradient-to-br from-muted/50 to-muted/30 rounded-2xl p-6 border border-border/50"
+          >
+            <div className="flex items-start gap-4">
+              <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${testimonials[currentIndex].color} flex items-center justify-center text-white font-semibold text-sm flex-shrink-0`}>
+                {testimonials[currentIndex].avatar}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm text-foreground leading-relaxed mb-3">
+                  &quot;{testimonials[currentIndex].quote}&quot;
+                </p>
+                <div>
+                  <p className="font-semibold text-sm text-foreground">{testimonials[currentIndex].name}</p>
+                  <p className="text-xs text-muted-foreground">{testimonials[currentIndex].role}</p>
+                  <p className="text-xs text-primary">{testimonials[currentIndex].college}</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Navigation Buttons */}
+        <button
+          onClick={goToPrev}
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-8 h-8 rounded-full bg-background border border-border shadow-sm flex items-center justify-center hover:bg-muted transition-colors"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+        <button
+          onClick={goToNext}
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-8 h-8 rounded-full bg-background border border-border shadow-sm flex items-center justify-center hover:bg-muted transition-colors"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
+      </div>
+
+      {/* Dots Indicator */}
+      <div className="flex justify-center gap-2 mt-4">
+        {testimonials.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all ${
+              index === currentIndex 
+                ? "bg-primary w-6" 
+                : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+            }`}
+          />
+        ))}
+      </div>
+    </motion.div>
+  );
+};
 
 const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(_props, ref) {
   const navigate = useNavigate();
@@ -1346,6 +1474,9 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                 <p className="text-xs text-muted-foreground">Career Paths</p>
               </div>
             </motion.div>
+
+            {/* Testimonial Carousel */}
+            <TestimonialCarousel />
           </motion.div>
         )}
 
