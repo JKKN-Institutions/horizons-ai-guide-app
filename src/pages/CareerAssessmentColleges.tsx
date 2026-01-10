@@ -14,6 +14,7 @@ import { EduCutoff } from '@/components/EduCutoff';
 import { EntranceExams } from '@/components/EntranceExams';
 import { CounsellingSimulator } from '@/components/CounsellingSimulator';
 import { PreviousYearQuestions } from '@/components/PreviousYearQuestions';
+import { GovernmentJobs } from '@/components/GovernmentJobs';
 import { PillNavigation } from '@/components/PillNavigation';
 
 
@@ -605,6 +606,8 @@ const CareerAssessmentColleges = () => {
             </Button>
           </div>
         )}
+
+        {activeTab === 'govtjobs' && <GovernmentJobs />}
       </div>
     </div>
   );

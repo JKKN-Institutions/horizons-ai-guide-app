@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { GraduationCap, Building2, Bookmark, Calculator, FileText, Users, BookOpen, LucideIcon } from 'lucide-react';
+import { GraduationCap, Building2, Bookmark, Calculator, FileText, Users, BookOpen, LucideIcon, Landmark } from 'lucide-react';
 
 interface NavItem {
   id: string;
@@ -75,6 +75,15 @@ const navItems: NavItem[] = [
     icon: BookOpen,
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#C62828] to-[#B71C1C]',
+    isNew: true,
+  },
+  {
+    id: 'govtjobs',
+    label: 'Government Jobs',
+    shortLabel: 'Govt Jobs',
+    icon: Landmark,
+    activeColor: 'text-white',
+    activeBg: 'bg-gradient-to-r from-[#5D4037] to-[#4E342E]',
     isNew: true,
   },
 ];
