@@ -18,10 +18,38 @@ const HeroSection = () => {
         style={{ backgroundImage: `url(${heroCampus})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/95 via-green-800/90 to-emerald-900/85"></div>
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-amber-400/15 to-orange-500/5 rounded-full blur-3xl transform translate-x-1/4 -translate-y-1/4" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-emerald-400/10 to-teal-500/5 rounded-full blur-3xl transform -translate-x-1/4 translate-y-1/4" />
+        {/* Decorative elements with subtle floating animation */}
+        <div 
+          className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-amber-400/15 to-orange-500/5 rounded-full blur-3xl transform translate-x-1/4 -translate-y-1/4"
+          style={{ 
+            animation: 'float-slow 20s ease-in-out infinite',
+          }} 
+        />
+        <div 
+          className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-emerald-400/10 to-teal-500/5 rounded-full blur-3xl transform -translate-x-1/4 translate-y-1/4"
+          style={{ 
+            animation: 'float-slow 25s ease-in-out infinite reverse',
+          }} 
+        />
+        <div 
+          className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"
+          style={{ 
+            animation: 'pulse-subtle 8s ease-in-out infinite',
+          }} 
+        />
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23ffffff%22 fill-opacity=%220.03%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" />
+        
+        {/* CSS for animations */}
+        <style>{`
+          @keyframes float-slow {
+            0%, 100% { transform: translate(25%, -25%) scale(1); }
+            50% { transform: translate(20%, -20%) scale(1.05); }
+          }
+          @keyframes pulse-subtle {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+          }
+        `}</style>
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
