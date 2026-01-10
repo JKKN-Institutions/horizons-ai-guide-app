@@ -24,6 +24,8 @@ import { ExamCalendar } from './ExamCalendar';
 import { GovtPYQSection } from './GovtPYQSection';
 import { DailyPracticeReminders } from './DailyPracticeReminders';
 import { GovtLeaderboard } from './GovtLeaderboard';
+import { GovtStudyPlans } from './GovtStudyPlans';
+import { GovtForum } from './GovtForum';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const containerVariants = {
@@ -55,6 +57,8 @@ export const GovernmentJobs = () => {
   const [showPYQ, setShowPYQ] = useState(false);
   const [showReminders, setShowReminders] = useState(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [showStudyPlans, setShowStudyPlans] = useState(false);
+  const [showForum, setShowForum] = useState(false);
 
   const closeAllSections = () => {
     setShowTips(false);
@@ -65,6 +69,8 @@ export const GovernmentJobs = () => {
     setShowPYQ(false);
     setShowReminders(false);
     setShowLeaderboard(false);
+    setShowStudyPlans(false);
+    setShowForum(false);
   };
   const [savedExams, setSavedExams] = useState<string[]>(() => {
     const stored = localStorage.getItem('govtJobs_saved');
@@ -301,6 +307,20 @@ export const GovernmentJobs = () => {
         >
           🏆 {language === 'ta' ? 'லீடர்போர்டு' : 'Leaderboard'}
         </Button>
+        <Button
+          variant={showStudyPlans ? "default" : "outline"}
+          onClick={() => { closeAllSections(); setShowStudyPlans(!showStudyPlans); }}
+          className="gap-2"
+        >
+          📅 {language === 'ta' ? 'படிப்பு திட்டம்' : 'Study Plans'}
+        </Button>
+        <Button
+          variant={showForum ? "default" : "outline"}
+          onClick={() => { closeAllSections(); setShowForum(!showForum); }}
+          className="gap-2"
+        >
+          💬 {language === 'ta' ? 'சமூகம்' : 'Forum'}
+        </Button>
         <ExamReminders savedExams={savedExams} />
       </div>
 
@@ -344,6 +364,16 @@ export const GovernmentJobs = () => {
         {showLeaderboard && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
             <GovtLeaderboard />
+          </motion.div>
+        )}
+        {showStudyPlans && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <GovtStudyPlans />
+          </motion.div>
+        )}
+        {showForum && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <GovtForum />
           </motion.div>
         )}
       </AnimatePresence>
