@@ -17,6 +17,8 @@ import { governmentExams, categoryInfo } from './governmentExamsData';
 import { GovernmentExam, CategoryType, SalaryRangeType, StatusType } from './types';
 import { PreparationTipsSection } from './PreparationTipsSection';
 import { ExamReminders } from './ExamReminders';
+import { SalaryComparisonChart } from './SalaryComparisonChart';
+import { GovtMockTest } from './GovtMockTest';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const containerVariants = {
@@ -41,6 +43,8 @@ export const GovernmentJobs = () => {
   const [selectedAge, setSelectedAge] = useState<string>('all');
   const [expandedExam, setExpandedExam] = useState<string | null>(null);
   const [showTips, setShowTips] = useState(false);
+  const [showSalaryChart, setShowSalaryChart] = useState(false);
+  const [showMockTest, setShowMockTest] = useState(false);
   const [savedExams, setSavedExams] = useState<string[]>(() => {
     const stored = localStorage.getItem('govtJobs_saved');
     return stored ? JSON.parse(stored) : [];
@@ -220,24 +224,43 @@ export const GovernmentJobs = () => {
       <div className="flex flex-wrap gap-3 mb-4">
         <Button
           variant={showTips ? "default" : "outline"}
-          onClick={() => setShowTips(!showTips)}
+          onClick={() => { setShowTips(!showTips); setShowSalaryChart(false); setShowMockTest(false); }}
           className="gap-2"
         >
           📚 {language === 'ta' ? 'தயாரிப்பு குறிப்புகள்' : 'Preparation Tips'}
         </Button>
+        <Button
+          variant={showSalaryChart ? "default" : "outline"}
+          onClick={() => { setShowSalaryChart(!showSalaryChart); setShowTips(false); setShowMockTest(false); }}
+          className="gap-2"
+        >
+          💰 {language === 'ta' ? 'சம்பள ஒப்பீடு' : 'Salary Comparison'}
+        </Button>
+        <Button
+          variant={showMockTest ? "default" : "outline"}
+          onClick={() => { setShowMockTest(!showMockTest); setShowTips(false); setShowSalaryChart(false); }}
+          className="gap-2"
+        >
+          📝 {language === 'ta' ? 'மாக் டெஸ்ட்' : 'Mock Test'}
+        </Button>
         <ExamReminders savedExams={savedExams} />
       </div>
 
-      {/* Preparation Tips Section */}
+      {/* Expandable Sections */}
       <AnimatePresence>
         {showTips && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
             <PreparationTipsSection />
+          </motion.div>
+        )}
+        {showSalaryChart && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <SalaryComparisonChart />
+          </motion.div>
+        )}
+        {showMockTest && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <GovtMockTest />
           </motion.div>
         )}
       </AnimatePresence>
