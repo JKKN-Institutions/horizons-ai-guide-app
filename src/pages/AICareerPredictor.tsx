@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw, Volume2, VolumeX, Download } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw, Volume2, VolumeX, Download, FileText } from "lucide-react";
 import confetti from "canvas-confetti";
 import { generateCareerComparisonPDF } from "./generateCareerComparisonPDF";
 import { Button } from "@/components/ui/button";
@@ -11,9 +12,30 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Checkbox } from "@/components/ui/checkbox";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, ResponsiveContainer } from "recharts";
+
+// Animation variants
+const stepVariants = {
+  initial: { opacity: 0, x: 30 },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: -30 }
+};
+
+const containerVariants = {
+  initial: { opacity: 0 },
+  animate: { 
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 }
+};
 
 // Web Audio API celebration sound generator
 const createCelebrationSound = (audioContext: AudioContext) => {
@@ -1177,104 +1199,163 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
               ))}
             </div>
 
+          <AnimatePresence mode="wait">
           {/* Step 1: Stream Selection */}
           {step === 1 && (
-            <div className="space-y-6 animate-fade-in">
+            <motion.div
+              key="step-1"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="space-y-6"
+            >
               <h2 className="text-xl font-semibold text-center mb-8">Choose Your Stream</h2>
-              <div className="grid gap-4 md:grid-cols-2">
-                {streams.map((stream) => (
-                  <Card
-                    key={stream.id}
-                    className={`cursor-pointer transition-all duration-300 hover:shadow-md ${
-                      selectedStream === stream.id 
-                        ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
-                        : "hover:border-primary/30 hover:bg-muted/50"
-                    }`}
-                    onClick={() => setSelectedStream(stream.id)}
-                  >
-                    <CardContent className="p-6 flex items-center gap-4">
-                      <div className={`p-3.5 rounded-xl transition-all ${
+              <motion.div 
+                className="grid gap-4 md:grid-cols-2"
+                variants={containerVariants}
+                initial="initial"
+                animate="animate"
+              >
+                {streams.map((stream, index) => (
+                  <motion.div key={stream.id} variants={itemVariants} transition={{ delay: index * 0.05 }}>
+                    <Card
+                      className={`cursor-pointer transition-all duration-300 hover:shadow-md ${
                         selectedStream === stream.id 
-                          ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30" 
-                          : "bg-muted"
-                      }`}>
-                        <stream.icon className="h-6 w-6" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-base">{stream.label}</h3>
-                        <p className="text-sm text-muted-foreground">{stream.description}</p>
-                      </div>
-                      {selectedStream === stream.id && (
-                        <div className="h-6 w-6 rounded-full bg-primary flex items-center justify-center">
-                          <Check className="h-4 w-4 text-primary-foreground" />
+                          ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
+                          : "hover:border-primary/30 hover:bg-muted/50"
+                      }`}
+                      onClick={() => setSelectedStream(stream.id)}
+                    >
+                      <CardContent className="p-6 flex items-center gap-4">
+                        <div className={`p-3.5 rounded-xl transition-all ${
+                          selectedStream === stream.id 
+                            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30" 
+                            : "bg-muted"
+                        }`}>
+                          <stream.icon className="h-6 w-6" />
                         </div>
-                      )}
-                    </CardContent>
-                  </Card>
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-base">{stream.label}</h3>
+                          <p className="text-sm text-muted-foreground">{stream.description}</p>
+                        </div>
+                        {selectedStream === stream.id && (
+                          <motion.div 
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="h-6 w-6 rounded-full bg-primary flex items-center justify-center"
+                          >
+                            <Check className="h-4 w-4 text-primary-foreground" />
+                          </motion.div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           )}
 
           {/* Step 2: Work Preferences */}
           {step === 2 && (
-            <div className="space-y-6 animate-fade-in">
+            <motion.div
+              key="step-2"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="space-y-6"
+            >
               <h2 className="text-xl font-semibold text-center mb-8">What interests you?</h2>
               <p className="text-sm text-muted-foreground text-center -mt-4 mb-6">Select multiple options</p>
-              <div className="flex flex-wrap justify-center gap-3">
-                {workPreferences.map((pref) => (
-                  <Badge
-                    key={pref.id}
-                    variant={selectedPreferences.includes(pref.id) ? "default" : "outline"}
-                    className={`cursor-pointer px-5 py-2.5 text-sm transition-all duration-300 ${
-                      selectedPreferences.includes(pref.id)
-                        ? "shadow-md shadow-primary/20 scale-105"
-                        : "hover:scale-105 hover:border-primary/50"
-                    }`}
-                    onClick={() => togglePreference(pref.id)}
-                  >
-                    {selectedPreferences.includes(pref.id) && (
-                      <Check className="h-3.5 w-3.5 mr-1.5" />
-                    )}
-                    {pref.label}
-                  </Badge>
+              <motion.div 
+                className="flex flex-wrap justify-center gap-3"
+                variants={containerVariants}
+                initial="initial"
+                animate="animate"
+              >
+                {workPreferences.map((pref, index) => (
+                  <motion.div key={pref.id} variants={itemVariants} transition={{ delay: index * 0.03 }}>
+                    <Badge
+                      variant={selectedPreferences.includes(pref.id) ? "default" : "outline"}
+                      className={`cursor-pointer px-5 py-2.5 text-sm transition-all duration-300 ${
+                        selectedPreferences.includes(pref.id)
+                          ? "shadow-md shadow-primary/20 scale-105"
+                          : "hover:scale-105 hover:border-primary/50"
+                      }`}
+                      onClick={() => togglePreference(pref.id)}
+                    >
+                      {selectedPreferences.includes(pref.id) && (
+                        <Check className="h-3.5 w-3.5 mr-1.5" />
+                      )}
+                      {pref.label}
+                    </Badge>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           )}
 
           {/* Step 3: Work Style */}
           {step === 3 && (
-            <div className="space-y-6 animate-fade-in">
+            <motion.div
+              key="step-3"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="space-y-6"
+            >
               <h2 className="text-xl font-semibold text-center mb-8">How do you prefer to work?</h2>
-              <div className="grid gap-4 md:grid-cols-2">
-                {workStyles.map((style) => (
-                  <Card
-                    key={style.id}
-                    className={`cursor-pointer transition-all duration-300 ${
-                      selectedStyle === style.id 
-                        ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
-                        : "hover:border-primary/30 hover:bg-muted/50"
-                    }`}
-                    onClick={() => setSelectedStyle(style.id)}
-                  >
-                    <CardContent className="p-5 flex items-center justify-center gap-3">
-                      {selectedStyle === style.id && (
-                        <div className="h-5 w-5 rounded-full bg-primary flex items-center justify-center">
-                          <Check className="h-3 w-3 text-primary-foreground" />
-                        </div>
-                      )}
-                      <span className="font-medium">{style.label}</span>
-                    </CardContent>
-                  </Card>
+              <motion.div 
+                className="grid gap-4 md:grid-cols-2"
+                variants={containerVariants}
+                initial="initial"
+                animate="animate"
+              >
+                {workStyles.map((style, index) => (
+                  <motion.div key={style.id} variants={itemVariants} transition={{ delay: index * 0.05 }}>
+                    <Card
+                      className={`cursor-pointer transition-all duration-300 ${
+                        selectedStyle === style.id 
+                          ? "border-2 border-primary bg-primary/5 shadow-md shadow-primary/10" 
+                          : "hover:border-primary/30 hover:bg-muted/50"
+                      }`}
+                      onClick={() => setSelectedStyle(style.id)}
+                    >
+                      <CardContent className="p-5 flex items-center justify-center gap-3">
+                        {selectedStyle === style.id && (
+                          <motion.div 
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="h-5 w-5 rounded-full bg-primary flex items-center justify-center"
+                          >
+                            <Check className="h-3 w-3 text-primary-foreground" />
+                          </motion.div>
+                        )}
+                        <span className="font-medium">{style.label}</span>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           )}
 
-          {/* Step 4: Additional Interests */}
+          {/* Step 4: Additional Interests + Summary */}
           {step === 4 && (
-            <div className="space-y-6 animate-fade-in">
+            <motion.div
+              key="step-4"
+              variants={stepVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="space-y-6"
+            >
               <h2 className="text-xl font-semibold text-center mb-4">Tell us more</h2>
               <p className="text-sm text-muted-foreground text-center mb-6">Optional but helps us provide better recommendations</p>
               <div className="relative max-w-md mx-auto">
@@ -1286,8 +1367,99 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                 />
                 <Lightbulb className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground/50" />
               </div>
-            </div>
+
+              {/* Summary Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <Card className="mt-8 border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 to-muted/30">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base flex items-center gap-2">
+                      <FileText className="h-4 w-4 text-primary" />
+                      Your Selection Summary
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {/* Stream */}
+                    <div className="flex items-start gap-3">
+                      <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        {(() => {
+                          const stream = streams.find(s => s.id === selectedStream);
+                          if (stream) {
+                            const Icon = stream.icon;
+                            return <Icon className="h-4 w-4 text-primary" />;
+                          }
+                          return <GraduationCap className="h-4 w-4 text-primary" />;
+                        })()}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-muted-foreground mb-1">Stream</p>
+                        <p className="font-medium text-sm">
+                          {streams.find(s => s.id === selectedStream)?.label || "Not selected"}
+                        </p>
+                      </div>
+                    </div>
+
+                    <Separator className="my-2" />
+
+                    {/* Interests */}
+                    <div className="flex items-start gap-3">
+                      <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <Target className="h-4 w-4 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-muted-foreground mb-1">Interests</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {selectedPreferences.length > 0 ? (
+                            selectedPreferences.map(p => (
+                              <Badge key={p} variant="secondary" className="text-xs">
+                                {workPreferences.find(wp => wp.id === p)?.label}
+                              </Badge>
+                            ))
+                          ) : (
+                            <span className="text-sm text-muted-foreground">None selected</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    <Separator className="my-2" />
+
+                    {/* Work Style */}
+                    <div className="flex items-start gap-3">
+                      <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <Users className="h-4 w-4 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-muted-foreground mb-1">Work Style</p>
+                        <p className="font-medium text-sm">
+                          {workStyles.find(s => s.id === selectedStyle)?.label || "Not selected"}
+                        </p>
+                      </div>
+                    </div>
+
+                    {interests && (
+                      <>
+                        <Separator className="my-2" />
+                        <div className="flex items-start gap-3">
+                          <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                            <Lightbulb className="h-4 w-4 text-primary" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs text-muted-foreground mb-1">Additional Info</p>
+                            <p className="text-sm text-muted-foreground italic">"{interests}"</p>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </motion.div>
           )}
+          </AnimatePresence>
 
           {/* Error State with Retry */}
           {showErrorState && !isLoading && (
