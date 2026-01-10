@@ -497,6 +497,20 @@ const translations: Record<Language, Record<string, string>> = {
     'chat.stream2': 'Commerce stream best courses',
     'chat.stream3': 'Arts stream career paths',
     'chat.stream4': 'PCMB career combinations',
+    
+    // Exam Preparation Questions
+    'chat.examPrepHeader': 'Exam Preparation Tips',
+    'chat.exam1': 'How to prepare for JEE Main in 3 months?',
+    'chat.exam2': 'Best study plan for NEET preparation',
+    'chat.exam3': 'Tips to crack CUET for top universities',
+    'chat.exam4': 'How to manage board exams and entrance exams together?',
+    
+    // Scholarship & Financial Aid Questions
+    'chat.scholarshipHeader': 'Scholarship & Financial Aid',
+    'chat.scholarship1': 'What scholarships are available for 12th students?',
+    'chat.scholarship2': 'How to apply for government education loans?',
+    'chat.scholarship3': 'Merit-based scholarships for engineering students',
+    'chat.scholarship4': 'Financial aid options for studying abroad',
   },
   ta: {
     // TopBar
@@ -979,6 +993,20 @@ const translations: Record<Language, Record<string, string>> = {
     'chat.stream2': 'வணிகப் பாடப்பிரிவு சிறந்த படிப்புகள்',
     'chat.stream3': 'கலைப் பாடப்பிரிவு தொழில் பாதைகள்',
     'chat.stream4': 'PCMB தொழில் சேர்க்கைகள்',
+    
+    // Exam Preparation Questions
+    'chat.examPrepHeader': 'தேர்வு தயாரிப்பு குறிப்புகள்',
+    'chat.exam1': '3 மாதங்களில் JEE Main-க்கு எப்படி தயாராவது?',
+    'chat.exam2': 'NEET தயாரிப்புக்கான சிறந்த படிப்பு திட்டம்',
+    'chat.exam3': 'சிறந்த பல்கலைக்கழகங்களுக்கான CUET-ஐ வெல்ல குறிப்புகள்',
+    'chat.exam4': 'போர்டு தேர்வுகள் மற்றும் நுழைவுத் தேர்வுகளை எப்படி நிர்வகிப்பது?',
+    
+    // Scholarship & Financial Aid Questions
+    'chat.scholarshipHeader': 'உதவித்தொகை & நிதி உதவி',
+    'chat.scholarship1': '12ஆம் வகுப்பு மாணவர்களுக்கு என்ன உதவித்தொகைகள் உள்ளன?',
+    'chat.scholarship2': 'அரசு கல்விக் கடன்களுக்கு எப்படி விண்ணப்பிப்பது?',
+    'chat.scholarship3': 'பொறியியல் மாணவர்களுக்கான தகுதி அடிப்படையிலான உதவித்தொகைகள்',
+    'chat.scholarship4': 'வெளிநாட்டில் படிக்க நிதி உதவி விருப்பங்கள்',
   },
 };
 
