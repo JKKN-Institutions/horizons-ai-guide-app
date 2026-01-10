@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Users, Briefcase, GraduationCap, ChevronDown } from "lucide-react";
+import { GraduationCap, ChevronDown } from "lucide-react";
 import heroCampus from "@/assets/hero-campus.jpg";
 import { useChatModal } from "@/hooks/useChatModal";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -25,9 +25,8 @@ const HeroSection = () => {
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
-          {/* Left Content - 3 columns */}
-          <div className="lg:col-span-3 text-white space-y-5">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="text-white space-y-5">
             <span className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/20 to-orange-500/20 backdrop-blur-sm text-amber-300 px-4 py-2 rounded-full text-sm font-semibold border border-amber-400/30 animate-fade-up">
               <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
               {t('hero.badge')}
@@ -65,57 +64,6 @@ const HeroSection = () => {
 
           </div>
 
-          {/* Right Sidebar - 2 columns */}
-          <div className="lg:col-span-2 animate-fade-up" style={{ animationDelay: '0.4s' }}>
-            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-white/50">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-lg shadow-emerald-200">
-                  <Users className="w-5 h-5 text-white" />
-                </div>
-                <h3 className="font-serif text-xl font-bold text-gray-800">
-                  {t('hero.whoIsFor')}
-                </h3>
-              </div>
-
-              <div className="space-y-4">
-                <div className="group flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-100 hover:border-amber-300 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-amber-100">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center flex-shrink-0 shadow-md shadow-amber-200 group-hover:scale-110 transition-transform duration-300">
-                    <GraduationCap className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-800 text-base">{t('hero.12thLearners')}</p>
-                    <p className="text-sm text-gray-600">
-                      {t('hero.12thLearnersDesc')}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="group flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-emerald-50 to-green-50 border-2 border-emerald-100 hover:border-emerald-300 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-emerald-100">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center flex-shrink-0 shadow-md shadow-emerald-200 group-hover:scale-110 transition-transform duration-300">
-                    <Briefcase className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-800 text-base">{t('hero.learners')}</p>
-                    <p className="text-sm text-gray-600">
-                      {t('hero.learnersDesc')}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="group flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-100 hover:border-blue-300 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-blue-100">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center flex-shrink-0 shadow-md shadow-blue-200 group-hover:scale-110 transition-transform duration-300">
-                    <Users className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-800 text-base">{t('hero.employers')}</p>
-                    <p className="text-sm text-gray-600">
-                      {t('hero.employersDesc')}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
