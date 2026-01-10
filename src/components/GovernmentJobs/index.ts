@@ -5,5 +5,8 @@ export { SalaryComparisonChart } from './SalaryComparisonChart';
 export { GovtMockTest } from './GovtMockTest';
 export { GovtMockTestProgress } from './GovtMockTestProgress';
 export { StudyStreakDisplay } from './StudyStreakDisplay';
+export { GovtPYQSection } from './GovtPYQSection';
+export { DailyPracticeReminders } from './DailyPracticeReminders';
+export { GovtLeaderboard } from './GovtLeaderboard';
 export { governmentExams, categoryInfo } from './governmentExamsData';
 export type { GovernmentExam, CategoryType, SalaryRangeType, StatusType } from './types';

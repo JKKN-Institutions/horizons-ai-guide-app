@@ -21,6 +21,9 @@ import { SalaryComparisonChart } from './SalaryComparisonChart';
 import { GovtMockTest } from './GovtMockTest';
 import { SubjectAnalytics } from './SubjectAnalytics';
 import { ExamCalendar } from './ExamCalendar';
+import { GovtPYQSection } from './GovtPYQSection';
+import { DailyPracticeReminders } from './DailyPracticeReminders';
+import { GovtLeaderboard } from './GovtLeaderboard';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const containerVariants = {
