@@ -1217,41 +1217,136 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
           </Button>
         )}
 
-        {/* Intro Step */}
+        {/* Intro Step - Colorful Enhanced */}
         {step === 0 && (
-          <div className="max-w-xl mx-auto text-center py-12">
+          <motion.div 
+            className="max-w-2xl mx-auto text-center py-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <Button variant="ghost" onClick={() => navigate(-1)} className="mb-8 hover:bg-primary/5">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back
             </Button>
             
+            {/* Colorful Icon Grid */}
             <div className="flex justify-center mb-8">
               <div className="relative">
-                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary/90 to-primary flex items-center justify-center shadow-xl shadow-primary/20 rotate-3 transition-transform hover:rotate-6">
-                  <Brain className="w-12 h-12 text-primary-foreground" />
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-lg bg-amber-400/90 flex items-center justify-center shadow-lg shadow-amber-200 -rotate-12">
-                  <Sparkles className="w-4 h-4 text-white" />
-                </div>
+                {/* Main Brain Icon */}
+                <motion.div 
+                  className="w-28 h-28 rounded-3xl bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 flex items-center justify-center shadow-2xl shadow-teal-500/30 rotate-3"
+                  whileHover={{ rotate: 6, scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Brain className="w-14 h-14 text-white" />
+                </motion.div>
+                
+                {/* Floating decorative elements */}
+                <motion.div 
+                  className="absolute -top-3 -right-3 w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-300/50 -rotate-12"
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Sparkles className="w-5 h-5 text-white" />
+                </motion.div>
+                
+                <motion.div 
+                  className="absolute -bottom-2 -left-4 w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-400/50 rotate-12"
+                  animate={{ y: [0, 5, 0] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                >
+                  <Target className="w-4 h-4 text-white" />
+                </motion.div>
+                
+                <motion.div 
+                  className="absolute top-1/2 -right-8 w-6 h-6 rounded-md bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center shadow-md shadow-pink-400/50"
+                  animate={{ x: [0, 3, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                >
+                  <TrendingUp className="w-3 h-3 text-white" />
+                </motion.div>
               </div>
             </div>
             
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              AI Career Predictor
+            {/* Colorful Title */}
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                AI Career Predictor
+              </span>
             </h1>
-            <p className="text-muted-foreground text-lg mb-10 max-w-md mx-auto leading-relaxed">
+            <p className="text-muted-foreground text-lg mb-8 max-w-md mx-auto leading-relaxed">
               Get AI-powered career predictions based on your interests and skills
             </p>
 
-            <Button
-              onClick={() => setStep(1)}
-              size="lg"
-              className="w-full max-w-md bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-6 rounded-xl shadow-lg shadow-primary/20 transition-all hover:shadow-xl hover:shadow-primary/30"
+            {/* Feature Pills */}
+            <div className="flex flex-wrap justify-center gap-2 mb-10">
+              <motion.div 
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 text-emerald-700 text-sm"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>100+ Courses</span>
+              </motion.div>
+              <motion.div 
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-violet-50 to-purple-50 border border-violet-200 text-violet-700 text-sm"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                <BarChart3 className="w-3.5 h-3.5" />
+                <span>Smart Matching</span>
+              </motion.div>
+              <motion.div 
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 text-amber-700 text-sm"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                <Award className="w-3.5 h-3.5" />
+                <span>Personalized</span>
+              </motion.div>
+            </div>
+
+            {/* Gradient CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
             >
-              <Sparkles className="w-5 h-5 mr-2" />
-              Predict My Career
-            </Button>
-          </div>
+              <Button
+                onClick={() => setStep(1)}
+                size="lg"
+                className="w-full max-w-md bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-700 hover:via-teal-700 hover:to-cyan-700 text-white text-lg py-6 rounded-xl shadow-lg shadow-teal-500/25 transition-all hover:shadow-xl hover:shadow-teal-500/35"
+              >
+                <Sparkles className="w-5 h-5 mr-2" />
+                Predict My Career
+              </Button>
+            </motion.div>
+
+            {/* Stats Row */}
+            <motion.div 
+              className="flex justify-center gap-8 mt-10 pt-8 border-t border-border/50"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
+              <div className="text-center">
+                <p className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">50K+</p>
+                <p className="text-xs text-muted-foreground">Students Helped</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">95%</p>
+                <p className="text-xs text-muted-foreground">Accuracy Rate</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">100+</p>
+                <p className="text-xs text-muted-foreground">Career Paths</p>
+              </div>
+            </motion.div>
+          </motion.div>
         )}
 
         {/* Form Steps */}
