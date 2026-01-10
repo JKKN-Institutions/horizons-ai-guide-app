@@ -61,13 +61,6 @@ const HeroSection = () => {
                 <GraduationCap className="w-4 h-4 mr-2" />
                 {t('hero.register12th')}
               </Button>
-              <Button 
-                className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold px-5 py-3 text-sm rounded-xl shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/40 transition-all duration-300 hover:scale-105"
-                onClick={() => navigate("/register/learner")}
-              >
-                <Users className="w-4 h-4 mr-2" />
-                {t('hero.registerLearner')}
-              </Button>
             </div>
 
           </div>
