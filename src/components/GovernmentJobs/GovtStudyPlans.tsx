@@ -5,15 +5,17 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   BookOpen, Clock, Target, ChevronRight, ChevronLeft, Calendar,
   Shield, Train, FileText, Landmark, MapPin, Download, Users,
-  CheckCircle2, BookMarked, Laptop, GraduationCap, Loader2
+  CheckCircle2, BookMarked, Laptop, GraduationCap, Loader2, Trophy
 } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { categoryInfo } from './governmentExamsData';
 import { CategoryType } from './types';
 import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 interface StudyPhase {
   week: string;
@@ -42,6 +44,12 @@ interface StudyPlan {
   followers_count: number;
 }
 
+interface PhaseProgress {
+  [planId: string]: {
+    [phaseIndex: number]: boolean;
+  };
+}
+
 export const GovtStudyPlans = () => {
   const { language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<CategoryType | 'all'>('all');
@@ -51,6 +59,10 @@ export const GovtStudyPlans = () => {
   const [followedPlans, setFollowedPlans] = useState<string[]>(() => {
     const stored = localStorage.getItem('govt_followed_plans');
     return stored ? JSON.parse(stored) : [];
+  });
+  const [phaseProgress, setPhaseProgress] = useState<PhaseProgress>(() => {
+    const stored = localStorage.getItem('govt_phase_progress');
+    return stored ? JSON.parse(stored) : {};
   });
 
   useEffect(() => {
@@ -82,6 +94,41 @@ export const GovtStudyPlans = () => {
       localStorage.setItem('govt_followed_plans', JSON.stringify(updated));
       return updated;
     });
+  };
+
+  const togglePhaseComplete = (planId: string, phaseIndex: number) => {
+    setPhaseProgress(prev => {
+      const planProgress = prev[planId] || {};
+      const updated = {
+        ...prev,
+        [planId]: {
+          ...planProgress,
+          [phaseIndex]: !planProgress[phaseIndex]
+        }
+      };
+      localStorage.setItem('govt_phase_progress', JSON.stringify(updated));
+      
+      // Check if all phases are completed
+      const plan = studyPlans.find(p => p.id === planId);
+      if (plan) {
+        const completedCount = Object.values(updated[planId] || {}).filter(Boolean).length;
+        if (completedCount === plan.phases.length) {
+          toast.success(language === 'ta' ? '🎉 வாழ்த்துக்கள்! திட்டம் நிறைவடைந்தது!' : '🎉 Congratulations! Plan completed!');
+        }
+      }
+      
+      return updated;
+    });
+  };
+
+  const getPlanProgress = (planId: string, totalPhases: number): number => {
+    const planProgress = phaseProgress[planId] || {};
+    const completed = Object.values(planProgress).filter(Boolean).length;
+    return totalPhases > 0 ? Math.round((completed / totalPhases) * 100) : 0;
+  };
+
+  const isPhaseCompleted = (planId: string, phaseIndex: number): boolean => {
+    return phaseProgress[planId]?.[phaseIndex] || false;
   };
 
   const filteredPlans = studyPlans.filter(
@@ -151,6 +198,27 @@ export const GovtStudyPlans = () => {
               {selectedPlan.followers_count} {language === 'ta' ? 'பின்தொடர்வோர்' : 'followers'}
             </div>
           </div>
+          
+          {/* Progress Tracker */}
+          <div className="mb-6 p-4 bg-white rounded-xl border border-gray-200">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="font-semibold text-gray-800 flex items-center gap-2">
+                <Trophy className="h-5 w-5 text-amber-500" />
+                {language === 'ta' ? 'உங்கள் முன்னேற்றம்' : 'Your Progress'}
+              </h3>
+              <span className="text-sm font-medium text-indigo-600">
+                {getPlanProgress(selectedPlan.id, selectedPlan.phases.length)}%
+              </span>
+            </div>
+            <Progress 
+              value={getPlanProgress(selectedPlan.id, selectedPlan.phases.length)} 
+              className="h-3 mb-2"
+            />
+            <p className="text-xs text-gray-500">
+              {Object.values(phaseProgress[selectedPlan.id] || {}).filter(Boolean).length} / {selectedPlan.phases.length}{' '}
+              {language === 'ta' ? 'கட்டங்கள் நிறைவு' : 'phases completed'}
+            </p>
+          </div>
         </CardHeader>
         <CardContent>
           {/* Study Phases */}
@@ -160,34 +228,57 @@ export const GovtStudyPlans = () => {
               {language === 'ta' ? 'படிப்பு கட்டங்கள்' : 'Study Phases'}
             </h3>
             <div className="space-y-4">
-              {selectedPlan.phases.map((phase, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-xl p-4 border border-gray-200"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex flex-col items-center justify-center text-white">
-                      <span className="text-xs">Week</span>
-                      <span className="font-bold">{phase.week}</span>
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-gray-800">{phase.title}</h4>
-                      <p className="text-xs text-gray-500 mb-2">{phase.focus}</p>
-                      <div className="flex flex-wrap gap-1">
-                        {phase.subjects.map((subject, i) => (
-                          <Badge key={i} variant="outline" className="text-xs">
-                            {subject}
-                          </Badge>
-                        ))}
+              {selectedPlan.phases.map((phase, index) => {
+                const completed = isPhaseCompleted(selectedPlan.id, index);
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className={`rounded-xl p-4 border-2 transition-all ${
+                      completed 
+                        ? 'bg-green-50 border-green-300' 
+                        : 'bg-white border-gray-200'
+                    }`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className={`w-16 h-16 rounded-xl flex flex-col items-center justify-center text-white ${
+                        completed
+                          ? 'bg-gradient-to-br from-green-500 to-emerald-600'
+                          : 'bg-gradient-to-br from-indigo-500 to-purple-600'
+                      }`}>
+                        <span className="text-xs">Week</span>
+                        <span className="font-bold">{phase.week}</span>
+                      </div>
+                      <div className="flex-1">
+                        <h4 className={`font-semibold ${completed ? 'text-green-800' : 'text-gray-800'}`}>
+                          {phase.title}
+                        </h4>
+                        <p className="text-xs text-gray-500 mb-2">{phase.focus}</p>
+                        <div className="flex flex-wrap gap-1">
+                          {phase.subjects.map((subject, i) => (
+                            <Badge 
+                              key={i} 
+                              variant="outline" 
+                              className={`text-xs ${completed ? 'border-green-300 text-green-700' : ''}`}
+                            >
+                              {subject}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Checkbox
+                          checked={completed}
+                          onCheckedChange={() => togglePhaseComplete(selectedPlan.id, index)}
+                          className="h-6 w-6 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600"
+                        />
                       </div>
                     </div>
-                    <CheckCircle2 className="h-5 w-5 text-gray-300" />
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
@@ -306,6 +397,7 @@ export const GovtStudyPlans = () => {
                 const Icon = getCategoryIcon(plan.category);
                 const info = categoryInfo[plan.category as CategoryType];
                 const isFollowed = followedPlans.includes(plan.id);
+                const progress = getPlanProgress(plan.id, plan.phases.length);
 
                 return (
                   <motion.div
@@ -330,7 +422,7 @@ export const GovtStudyPlans = () => {
                           )}
                         </div>
                         <p className="text-sm text-gray-600 mb-2">{plan.exam_name}</p>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 mb-2">
                           <Badge className={getDifficultyColor(plan.difficulty)}>
                             {plan.difficulty}
                           </Badge>
@@ -343,6 +435,16 @@ export const GovtStudyPlans = () => {
                             {plan.daily_hours} hrs/day
                           </Badge>
                         </div>
+                        {/* Progress Bar for followed plans */}
+                        {isFollowed && progress > 0 && (
+                          <div className="mt-2">
+                            <div className="flex items-center justify-between text-xs text-gray-500 mb-1">
+                              <span>{language === 'ta' ? 'முன்னேற்றம்' : 'Progress'}</span>
+                              <span className="font-medium text-green-600">{progress}%</span>
+                            </div>
+                            <Progress value={progress} className="h-2" />
+                          </div>
+                        )}
                       </div>
                       <ChevronRight className="h-5 w-5 text-gray-400 flex-shrink-0" />
                     </div>
