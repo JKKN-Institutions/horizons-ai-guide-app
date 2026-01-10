@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, MessageCircle, Mic, Sparkles, Radio, Target, Brain, Lightbulb, Zap } from 'lucide-react';
+import { IndustryTrendsModal } from '@/components/IndustryTrendsModal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -116,6 +117,7 @@ const CareerAssessmentColleges = () => {
   const [loading, setLoading] = useState(true);
   const [overallScore, setOverallScore] = useState(0);
   const [activeTab, setActiveTab] = useState('assessments');
+  const [showIndustryTrendsModal, setShowIndustryTrendsModal] = useState(false);
 
   // Dynamic button colors based on active tab
   const getButtonColor = () => {
@@ -195,9 +197,9 @@ const CareerAssessmentColleges = () => {
       return;
     }
 
-    // Handle Industry Trends separately (external page)
+    // Handle Industry Trends separately (show modal instead of navigating)
     if (assessment.isExternal) {
-      navigate('/career-assessment/industry-trends');
+      setShowIndustryTrendsModal(true);
       return;
     }
 
@@ -278,6 +280,11 @@ const CareerAssessmentColleges = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50/50 to-amber-50/30 page-transition">
+      {/* Industry Trends Modal */}
+      <IndustryTrendsModal 
+        open={showIndustryTrendsModal} 
+        onOpenChange={setShowIndustryTrendsModal} 
+      />
       {/* Enhanced Header */}
       <header className="relative overflow-hidden bg-gradient-to-br from-emerald-700 via-green-700 to-emerald-800">
         {/* Decorative elements */}
