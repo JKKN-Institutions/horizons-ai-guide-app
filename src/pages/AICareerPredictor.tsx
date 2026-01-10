@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, ChevronLeft, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw, Volume2, VolumeX, Download, FileText, MapPin, Quote } from "lucide-react";
+import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, ChevronLeft, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw, Volume2, VolumeX, Download, FileText, MapPin, Quote, Map, List } from "lucide-react";
 import confetti from "canvas-confetti";
 import { generateCareerComparisonPDF } from "./generateCareerComparisonPDF";
 import { Button } from "@/components/ui/button";
@@ -366,6 +366,7 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
   const [selectedDuration, setSelectedDuration] = useState("");
   const [selectedGoal, setSelectedGoal] = useState("");
   const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
+  const [locationViewMode, setLocationViewMode] = useState<'map' | 'list'>('map');
   const [interests, setInterests] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [predictions, setPredictions] = useState<CareerPrediction[]>([]);
@@ -1762,119 +1763,193 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
               className="space-y-6"
             >
               <h2 className="text-xl font-semibold text-center mb-4">Preferred Study Location</h2>
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <p className="text-sm text-muted-foreground">Select districts or states where you'd like to study</p>
+              
+              {/* View Toggle and Clear Button */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-1 bg-muted/50 rounded-full p-1">
+                  <button
+                    onClick={() => setLocationViewMode('map')}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                      locationViewMode === 'map'
+                        ? 'bg-primary text-primary-foreground shadow-sm'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    <Map className="h-3.5 w-3.5" />
+                    Map
+                  </button>
+                  <button
+                    onClick={() => setLocationViewMode('list')}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                      locationViewMode === 'list'
+                        ? 'bg-primary text-primary-foreground shadow-sm'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    <List className="h-3.5 w-3.5" />
+                    List
+                  </button>
+                </div>
+                
                 {selectedLocations.length > 0 && (
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => setSelectedLocations([])}
-                    className="text-xs h-6 px-2 text-muted-foreground hover:text-destructive"
+                    className="text-xs h-7 px-2 text-muted-foreground hover:text-destructive"
                   >
                     <X className="h-3 w-3 mr-1" />
-                    Clear All
+                    Clear ({selectedLocations.length})
                   </Button>
                 )}
               </div>
               
-              {/* Interactive Map Visualization */}
-              <TamilNaduMap
-                districts={locationPreferences}
-                selectedLocations={selectedLocations}
-                onToggleLocation={toggleLocation}
-              />
+              <p className="text-sm text-muted-foreground text-center mb-4">Select districts or states where you'd like to study</p>
               
-              {/* Tamil Nadu Districts */}
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium text-primary flex items-center gap-2">
-                    <MapPin className="h-4 w-4" /> Tamil Nadu Districts
-                  </p>
-                  <Button
-                    variant={isAllTamilNaduSelected ? "default" : "outline"}
-                    size="sm"
-                    onClick={selectAllTamilNadu}
-                    className="text-xs h-7 px-3"
+              <AnimatePresence mode="wait">
+                {locationViewMode === 'map' ? (
+                  <motion.div
+                    key="map-view"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ duration: 0.2 }}
                   >
-                    {isAllTamilNaduSelected ? (
-                      <>
-                        <Check className="h-3 w-3 mr-1" />
-                        All TN Selected
-                      </>
-                    ) : (
-                      "Select All Tamil Nadu"
-                    )}
-                  </Button>
-                </div>
-                <motion.div 
-                  className="flex flex-wrap justify-center gap-2"
-                  variants={containerVariants}
-                  initial="initial"
-                  animate="animate"
-                >
-                  {locationPreferences.map((loc, index) => (
-                    <motion.div key={loc.id} variants={itemVariants} transition={{ delay: index * 0.02 }}>
-                      <div
-                        className={`cursor-pointer px-3 py-2 text-xs rounded-full transition-all duration-300 flex items-center gap-1.5 border-2 ${
-                          selectedLocations.includes(loc.id)
-                            ? `${loc.bgColor} ${loc.borderColor} shadow-lg`
-                            : `bg-background border-muted-foreground/20 hover:${loc.bgColor} hover:${loc.borderColor}`
-                        } ${loc.id === 'namakkal' ? 'ring-2 ring-amber-400 ring-offset-1' : ''}`}
-                        onClick={() => toggleLocation(loc.id)}
-                      >
-                        {selectedLocations.includes(loc.id) ? (
-                          <span className={`h-5 w-5 rounded-full bg-gradient-to-br ${loc.color} flex items-center justify-center shadow-sm`}>
-                            <Check className="h-3 w-3 text-white" />
-                          </span>
-                        ) : (
-                          <span className="text-base">{loc.emoji}</span>
-                        )}
-                        <span className={`font-medium ${selectedLocations.includes(loc.id) ? 'text-foreground' : 'text-muted-foreground'}`}>
-                          {loc.label}
-                        </span>
-                        {loc.id === 'namakkal' && <span className="ml-0.5">⭐</span>}
+                    {/* Interactive Map Visualization */}
+                    <TamilNaduMap
+                      districts={locationPreferences}
+                      selectedLocations={selectedLocations}
+                      onToggleLocation={toggleLocation}
+                    />
+                    
+                    {/* Nearby States - Compact in Map View */}
+                    <div className="mt-6 space-y-2">
+                      <p className="text-xs font-medium text-muted-foreground text-center">Nearby States</p>
+                      <div className="flex flex-wrap justify-center gap-2">
+                        {nearbyStates.map((state) => (
+                          <div
+                            key={state.id}
+                            className={`cursor-pointer px-3 py-1.5 text-xs rounded-full transition-all duration-300 flex items-center gap-1.5 border ${
+                              selectedLocations.includes(state.id)
+                                ? `${state.bgColor} ${state.borderColor} shadow-md`
+                                : `bg-background border-muted-foreground/20 hover:border-muted-foreground/40`
+                            }`}
+                            onClick={() => toggleLocation(state.id)}
+                          >
+                            {selectedLocations.includes(state.id) ? (
+                              <Check className="h-3 w-3 text-foreground" />
+                            ) : (
+                              <span className="text-sm">{state.emoji}</span>
+                            )}
+                            <span className={selectedLocations.includes(state.id) ? 'font-medium' : ''}>{state.label}</span>
+                          </div>
+                        ))}
                       </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </div>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="list-view"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.2 }}
+                    className="space-y-4"
+                  >
+                    {/* Tamil Nadu Districts */}
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm font-medium text-primary flex items-center gap-2">
+                          <MapPin className="h-4 w-4" /> Tamil Nadu Districts
+                        </p>
+                        <Button
+                          variant={isAllTamilNaduSelected ? "default" : "outline"}
+                          size="sm"
+                          onClick={selectAllTamilNadu}
+                          className="text-xs h-7 px-3"
+                        >
+                          {isAllTamilNaduSelected ? (
+                            <>
+                              <Check className="h-3 w-3 mr-1" />
+                              All TN Selected
+                            </>
+                          ) : (
+                            "Select All Tamil Nadu"
+                          )}
+                        </Button>
+                      </div>
+                      <motion.div 
+                        className="flex flex-wrap justify-center gap-2"
+                        variants={containerVariants}
+                        initial="initial"
+                        animate="animate"
+                      >
+                        {locationPreferences.map((loc, index) => (
+                          <motion.div key={loc.id} variants={itemVariants} transition={{ delay: index * 0.02 }}>
+                            <div
+                              className={`cursor-pointer px-3 py-2 text-xs rounded-full transition-all duration-300 flex items-center gap-1.5 border-2 ${
+                                selectedLocations.includes(loc.id)
+                                  ? `${loc.bgColor} ${loc.borderColor} shadow-lg`
+                                  : `bg-background border-muted-foreground/20 hover:${loc.bgColor} hover:${loc.borderColor}`
+                              } ${loc.id === 'namakkal' ? 'ring-2 ring-amber-400 ring-offset-1' : ''}`}
+                              onClick={() => toggleLocation(loc.id)}
+                            >
+                              {selectedLocations.includes(loc.id) ? (
+                                <span className={`h-5 w-5 rounded-full bg-gradient-to-br ${loc.color} flex items-center justify-center shadow-sm`}>
+                                  <Check className="h-3 w-3 text-white" />
+                                </span>
+                              ) : (
+                                <span className="text-base">{loc.emoji}</span>
+                              )}
+                              <span className={`font-medium ${selectedLocations.includes(loc.id) ? 'text-foreground' : 'text-muted-foreground'}`}>
+                                {loc.label}
+                              </span>
+                              {loc.id === 'namakkal' && <span className="ml-0.5">⭐</span>}
+                            </div>
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    </div>
 
-              {/* Nearby States */}
-              <div className="space-y-3 pt-4">
-                <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <MapPin className="h-4 w-4" /> Nearby States
-                </p>
-                <motion.div 
-                  className="flex flex-wrap justify-center gap-2"
-                  variants={containerVariants}
-                  initial="initial"
-                  animate="animate"
-                >
-                  {nearbyStates.map((state, index) => (
-                    <motion.div key={state.id} variants={itemVariants} transition={{ delay: index * 0.03 }}>
-                      <div
-                        className={`cursor-pointer px-4 py-2.5 text-sm rounded-full transition-all duration-300 flex items-center gap-2 border-2 ${
-                          selectedLocations.includes(state.id)
-                            ? `${state.bgColor} ${state.borderColor} shadow-lg`
-                            : `bg-background border-muted-foreground/20 hover:${state.bgColor} hover:${state.borderColor}`
-                        }`}
-                        onClick={() => toggleLocation(state.id)}
+                    {/* Nearby States */}
+                    <div className="space-y-3 pt-4">
+                      <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                        <MapPin className="h-4 w-4" /> Nearby States
+                      </p>
+                      <motion.div 
+                        className="flex flex-wrap justify-center gap-2"
+                        variants={containerVariants}
+                        initial="initial"
+                        animate="animate"
                       >
-                        {selectedLocations.includes(state.id) ? (
-                          <span className={`h-6 w-6 rounded-full bg-gradient-to-br ${state.color} flex items-center justify-center shadow-sm`}>
-                            <Check className="h-3.5 w-3.5 text-white" />
-                          </span>
-                        ) : (
-                          <span className="text-lg">{state.emoji}</span>
-                        )}
-                        <span className={`font-medium ${selectedLocations.includes(state.id) ? 'text-foreground' : 'text-muted-foreground'}`}>
-                          {state.label}
-                        </span>
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </div>
+                        {nearbyStates.map((state, index) => (
+                          <motion.div key={state.id} variants={itemVariants} transition={{ delay: index * 0.03 }}>
+                            <div
+                              className={`cursor-pointer px-4 py-2.5 text-sm rounded-full transition-all duration-300 flex items-center gap-2 border-2 ${
+                                selectedLocations.includes(state.id)
+                                  ? `${state.bgColor} ${state.borderColor} shadow-lg`
+                                  : `bg-background border-muted-foreground/20 hover:${state.bgColor} hover:${state.borderColor}`
+                              }`}
+                              onClick={() => toggleLocation(state.id)}
+                            >
+                              {selectedLocations.includes(state.id) ? (
+                                <span className={`h-6 w-6 rounded-full bg-gradient-to-br ${state.color} flex items-center justify-center shadow-sm`}>
+                                  <Check className="h-3.5 w-3.5 text-white" />
+                                </span>
+                              ) : (
+                                <span className="text-lg">{state.emoji}</span>
+                              )}
+                              <span className={`font-medium ${selectedLocations.includes(state.id) ? 'text-foreground' : 'text-muted-foreground'}`}>
+                                {state.label}
+                              </span>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {selectedLocations.length > 0 && (
                 <motion.p 
