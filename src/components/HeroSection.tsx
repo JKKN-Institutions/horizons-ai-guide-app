@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { GraduationCap, ChevronDown } from "lucide-react";
 import heroCampus from "@/assets/hero-campus.jpg";
@@ -9,13 +10,28 @@ const HeroSection = () => {
   const navigate = useNavigate();
   const { openChat } = useChatModal();
   const { t, language } = useLanguage();
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const parallaxOffset = scrollY * 0.4;
 
   return (
     <section className="relative h-[calc(100vh-180px)] min-h-[500px] flex items-center overflow-hidden">
-      {/* Background Image with Enhanced Overlay */}
+      {/* Background Image with Parallax Effect */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
-        style={{ backgroundImage: `url(${heroCampus})` }}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
+        style={{ 
+          backgroundImage: `url(${heroCampus})`,
+          transform: `translateY(${parallaxOffset}px) scale(1.1)`,
+        }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/95 via-green-800/90 to-emerald-900/85"></div>
         {/* Decorative elements with subtle floating animation */}
