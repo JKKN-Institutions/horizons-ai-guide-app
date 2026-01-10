@@ -217,6 +217,19 @@ const locationPreferences = [
   { id: "tirupur", label: "Tirupur", description: "Knitwear capital", color: "from-fuchsia-500 to-pink-600", bgColor: "bg-fuchsia-50", borderColor: "border-fuchsia-400", emoji: "👕" },
   { id: "vellore", label: "Vellore", description: "VIT hub", color: "from-green-500 to-emerald-600", bgColor: "bg-green-50", borderColor: "border-green-400", emoji: "🎓" },
   { id: "thanjavur", label: "Thanjavur", description: "Rice bowl", color: "from-lime-500 to-green-600", bgColor: "bg-lime-50", borderColor: "border-lime-400", emoji: "🌾" },
+  { id: "kanyakumari", label: "Kanyakumari", description: "Land's end", color: "from-sky-500 to-blue-600", bgColor: "bg-sky-50", borderColor: "border-sky-400", emoji: "🌊" },
+  { id: "tirunelveli", label: "Tirunelveli", description: "South TN hub", color: "from-orange-500 to-red-600", bgColor: "bg-orange-50", borderColor: "border-orange-400", emoji: "🏛️" },
+  { id: "sivaganga", label: "Sivaganga", description: "Historic town", color: "from-teal-500 to-cyan-600", bgColor: "bg-teal-50", borderColor: "border-teal-400", emoji: "🏯" },
+  { id: "dindigul", label: "Dindigul", description: "Lock city", color: "from-indigo-500 to-blue-600", bgColor: "bg-indigo-50", borderColor: "border-indigo-400", emoji: "🔐" },
+  { id: "karur", label: "Karur", description: "Textile hub", color: "from-pink-500 to-rose-600", bgColor: "bg-pink-50", borderColor: "border-pink-400", emoji: "🧶" },
+  { id: "cuddalore", label: "Cuddalore", description: "Port city", color: "from-blue-500 to-cyan-600", bgColor: "bg-blue-50", borderColor: "border-blue-400", emoji: "⚓" },
+  { id: "kanchipuram", label: "Kanchipuram", description: "Silk city", color: "from-yellow-500 to-orange-600", bgColor: "bg-yellow-50", borderColor: "border-yellow-400", emoji: "🥻" },
+  { id: "krishnagiri", label: "Krishnagiri", description: "Mango land", color: "from-amber-500 to-yellow-600", bgColor: "bg-amber-50", borderColor: "border-amber-400", emoji: "🥭" },
+  { id: "dharmapuri", label: "Dharmapuri", description: "North TN", color: "from-emerald-500 to-teal-600", bgColor: "bg-emerald-50", borderColor: "border-emerald-400", emoji: "🌳" },
+  { id: "nagapattinam", label: "Nagapattinam", description: "Coastal district", color: "from-cyan-500 to-blue-600", bgColor: "bg-cyan-50", borderColor: "border-cyan-400", emoji: "🐚" },
+  { id: "ramanathapuram", label: "Ramanathapuram", description: "Temple town", color: "from-violet-500 to-purple-600", bgColor: "bg-violet-50", borderColor: "border-violet-400", emoji: "🙏" },
+  { id: "thoothukudi", label: "Thoothukudi", description: "Pearl city", color: "from-slate-500 to-zinc-600", bgColor: "bg-slate-50", borderColor: "border-slate-400", emoji: "📿" },
+  { id: "villupuram", label: "Villupuram", description: "Agricultural hub", color: "from-green-500 to-lime-600", bgColor: "bg-green-50", borderColor: "border-green-400", emoji: "🌱" },
 ];
 
 const nearbyStates = [
