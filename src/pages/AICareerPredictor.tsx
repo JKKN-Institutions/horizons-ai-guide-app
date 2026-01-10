@@ -205,25 +205,25 @@ const careerGoals = [
 ];
 
 const locationPreferences = [
-  { id: "tamilnadu", label: "Tamil Nadu", description: "Any district in TN", isGroup: true },
-  { id: "chennai", label: "Chennai", description: "Capital city" },
-  { id: "coimbatore", label: "Coimbatore", description: "Manchester of South India" },
-  { id: "madurai", label: "Madurai", description: "Cultural hub" },
-  { id: "tiruchirappalli", label: "Tiruchirappalli", description: "Central TN" },
-  { id: "salem", label: "Salem", description: "Steel city" },
-  { id: "namakkal", label: "Namakkal", description: "Education hub - JKKN" },
-  { id: "erode", label: "Erode", description: "Textile city" },
-  { id: "tirupur", label: "Tirupur", description: "Knitwear capital" },
-  { id: "vellore", label: "Vellore", description: "VIT hub" },
-  { id: "thanjavur", label: "Thanjavur", description: "Rice bowl" },
+  { id: "tamilnadu", label: "Tamil Nadu", description: "Any district in TN", isGroup: true, color: "from-emerald-500 to-green-600", bgColor: "bg-emerald-50", borderColor: "border-emerald-400", emoji: "🌴" },
+  { id: "chennai", label: "Chennai", description: "Capital city", color: "from-rose-500 to-pink-600", bgColor: "bg-rose-50", borderColor: "border-rose-400", emoji: "🏛️" },
+  { id: "coimbatore", label: "Coimbatore", description: "Manchester of South India", color: "from-blue-500 to-indigo-600", bgColor: "bg-blue-50", borderColor: "border-blue-400", emoji: "🏭" },
+  { id: "madurai", label: "Madurai", description: "Cultural hub", color: "from-amber-500 to-orange-600", bgColor: "bg-amber-50", borderColor: "border-amber-400", emoji: "🛕" },
+  { id: "tiruchirappalli", label: "Tiruchirappalli", description: "Central TN", color: "from-purple-500 to-violet-600", bgColor: "bg-purple-50", borderColor: "border-purple-400", emoji: "🏰" },
+  { id: "salem", label: "Salem", description: "Steel city", color: "from-slate-500 to-gray-600", bgColor: "bg-slate-50", borderColor: "border-slate-400", emoji: "⚙️" },
+  { id: "namakkal", label: "Namakkal", description: "Education hub - JKKN", color: "from-yellow-500 to-amber-600", bgColor: "bg-yellow-50", borderColor: "border-yellow-400", emoji: "📚" },
+  { id: "erode", label: "Erode", description: "Textile city", color: "from-cyan-500 to-teal-600", bgColor: "bg-cyan-50", borderColor: "border-cyan-400", emoji: "🧵" },
+  { id: "tirupur", label: "Tirupur", description: "Knitwear capital", color: "from-fuchsia-500 to-pink-600", bgColor: "bg-fuchsia-50", borderColor: "border-fuchsia-400", emoji: "👕" },
+  { id: "vellore", label: "Vellore", description: "VIT hub", color: "from-green-500 to-emerald-600", bgColor: "bg-green-50", borderColor: "border-green-400", emoji: "🎓" },
+  { id: "thanjavur", label: "Thanjavur", description: "Rice bowl", color: "from-lime-500 to-green-600", bgColor: "bg-lime-50", borderColor: "border-lime-400", emoji: "🌾" },
 ];
 
 const nearbyStates = [
-  { id: "karnataka", label: "Karnataka", description: "Bangalore, Mysore" },
-  { id: "kerala", label: "Kerala", description: "Kochi, Trivandrum" },
-  { id: "andhra", label: "Andhra Pradesh", description: "Vizag, Tirupati" },
-  { id: "telangana", label: "Telangana", description: "Hyderabad" },
-  { id: "pondicherry", label: "Pondicherry", description: "Union territory" },
+  { id: "karnataka", label: "Karnataka", description: "Bangalore, Mysore", color: "from-red-500 to-rose-600", bgColor: "bg-red-50", borderColor: "border-red-400", emoji: "🏙️" },
+  { id: "kerala", label: "Kerala", description: "Kochi, Trivandrum", color: "from-emerald-500 to-green-600", bgColor: "bg-emerald-50", borderColor: "border-emerald-400", emoji: "🌴" },
+  { id: "andhra", label: "Andhra Pradesh", description: "Vizag, Tirupati", color: "from-blue-500 to-sky-600", bgColor: "bg-blue-50", borderColor: "border-blue-400", emoji: "⛰️" },
+  { id: "telangana", label: "Telangana", description: "Hyderabad", color: "from-orange-500 to-amber-600", bgColor: "bg-orange-50", borderColor: "border-orange-400", emoji: "🕌" },
+  { id: "pondicherry", label: "Pondicherry", description: "Union territory", color: "from-indigo-500 to-purple-600", bgColor: "bg-indigo-50", borderColor: "border-indigo-400", emoji: "🏖️" },
 ];
 
 // Testimonial data
@@ -1806,21 +1806,26 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                 >
                   {locationPreferences.map((loc, index) => (
                     <motion.div key={loc.id} variants={itemVariants} transition={{ delay: index * 0.02 }}>
-                      <Badge
-                        variant={selectedLocations.includes(loc.id) ? "default" : "outline"}
-                        className={`cursor-pointer px-3 py-2 text-xs transition-all duration-300 ${
+                      <div
+                        className={`cursor-pointer px-3 py-2 text-xs rounded-full transition-all duration-300 flex items-center gap-1.5 border-2 ${
                           selectedLocations.includes(loc.id)
-                            ? "shadow-md shadow-primary/20"
-                            : "hover:border-primary/50"
-                        } ${loc.id === 'namakkal' ? 'ring-1 ring-amber-400' : ''}`}
+                            ? `${loc.bgColor} ${loc.borderColor} shadow-lg`
+                            : `bg-background border-muted-foreground/20 hover:${loc.bgColor} hover:${loc.borderColor}`
+                        } ${loc.id === 'namakkal' ? 'ring-2 ring-amber-400 ring-offset-1' : ''}`}
                         onClick={() => toggleLocation(loc.id)}
                       >
-                        {selectedLocations.includes(loc.id) && (
-                          <Check className="h-3 w-3 mr-1" />
+                        {selectedLocations.includes(loc.id) ? (
+                          <span className={`h-5 w-5 rounded-full bg-gradient-to-br ${loc.color} flex items-center justify-center shadow-sm`}>
+                            <Check className="h-3 w-3 text-white" />
+                          </span>
+                        ) : (
+                          <span className="text-base">{loc.emoji}</span>
                         )}
-                        {loc.label}
-                        {loc.id === 'namakkal' && <span className="ml-1">⭐</span>}
-                      </Badge>
+                        <span className={`font-medium ${selectedLocations.includes(loc.id) ? 'text-foreground' : 'text-muted-foreground'}`}>
+                          {loc.label}
+                        </span>
+                        {loc.id === 'namakkal' && <span className="ml-0.5">⭐</span>}
+                      </div>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -1839,20 +1844,25 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
                 >
                   {nearbyStates.map((state, index) => (
                     <motion.div key={state.id} variants={itemVariants} transition={{ delay: index * 0.03 }}>
-                      <Badge
-                        variant={selectedLocations.includes(state.id) ? "default" : "outline"}
-                        className={`cursor-pointer px-4 py-2.5 text-sm transition-all duration-300 ${
+                      <div
+                        className={`cursor-pointer px-4 py-2.5 text-sm rounded-full transition-all duration-300 flex items-center gap-2 border-2 ${
                           selectedLocations.includes(state.id)
-                            ? "shadow-md shadow-primary/20"
-                            : "hover:border-primary/50"
+                            ? `${state.bgColor} ${state.borderColor} shadow-lg`
+                            : `bg-background border-muted-foreground/20 hover:${state.bgColor} hover:${state.borderColor}`
                         }`}
                         onClick={() => toggleLocation(state.id)}
                       >
-                        {selectedLocations.includes(state.id) && (
-                          <Check className="h-3.5 w-3.5 mr-1.5" />
+                        {selectedLocations.includes(state.id) ? (
+                          <span className={`h-6 w-6 rounded-full bg-gradient-to-br ${state.color} flex items-center justify-center shadow-sm`}>
+                            <Check className="h-3.5 w-3.5 text-white" />
+                          </span>
+                        ) : (
+                          <span className="text-lg">{state.emoji}</span>
                         )}
-                        {state.label}
-                      </Badge>
+                        <span className={`font-medium ${selectedLocations.includes(state.id) ? 'text-foreground' : 'text-muted-foreground'}`}>
+                          {state.label}
+                        </span>
+                      </div>
                     </motion.div>
                   ))}
                 </motion.div>
