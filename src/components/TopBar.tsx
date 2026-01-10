@@ -22,6 +22,9 @@ const TopBar = () => {
             </div>
             <span className="font-semibold text-sm hidden sm:inline">வழிகாட்டி</span>
           </div>
+          <span className="text-xs opacity-80 hidden md:inline border-l border-primary-foreground/30 pl-3">
+            {t('topbar.careerPath')}
+          </span>
         </div>
 
         <div className="flex items-center gap-2 md:gap-4">
