@@ -7,12 +7,14 @@ import { Progress } from '@/components/ui/progress';
 import { 
   Trophy, Star, Flame, Clock, Target, BookOpen, Award,
   Zap, Crown, Medal, Sparkles, Lock, CheckCircle2,
-  TrendingUp, Calendar, Brain, GraduationCap, Share2
+  TrendingUp, Calendar, Brain, GraduationCap, Share2, Users
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { AchievementShareCard } from './AchievementShareCard';
 import { MilestoneCelebration } from './MilestoneCelebration';
 import { AchievementCollections } from './AchievementCollections';
+import { AchievementRarityBadge } from './AchievementRarityBadge';
+import { useAchievementRarity } from '@/hooks/useAchievementRarity';
 
 const ACHIEVEMENTS_KEY = 'govt_study_achievements';
 const UNLOCKED_KEY = 'govt_unlocked_achievements';
@@ -130,6 +132,8 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
   const [shareUnlockedAt, setShareUnlockedAt] = useState<string | undefined>();
   const [celebratingMilestone, setCelebratingMilestone] = useState<MilestoneType | null>(null);
   const [achievedMilestones, setAchievedMilestones] = useState<MilestoneType[]>([]);
+  
+  const { rarityData, totalUsers, isLoading: rarityLoading, syncLocalUnlocks } = useAchievementRarity();
 
   const stats = useMemo((): StudyStats => {
     let totalMinutes = 0;
@@ -267,6 +271,13 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
     }
   }, [stats, unlockedAchievements, language]);
 
+  // Sync local unlocks to rarity database
+  useEffect(() => {
+    if (unlockedAchievements.length > 0) {
+      syncLocalUnlocks(unlockedAchievements.map(u => u.id));
+    }
+  }, [unlockedAchievements, syncLocalUnlocks]);
+
   // Check for milestone achievements
   useEffect(() => {
     const totalCount = ACHIEVEMENTS.length;
@@ -310,10 +321,18 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
     <Card className="border border-gray-200 bg-gradient-to-br from-white to-amber-50/30">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg flex items-center gap-2">
-            <Trophy className="h-5 w-5 text-amber-500" />
-            {language === 'ta' ? 'சாதனைகள்' : 'Achievements'}
-          </CardTitle>
+          <div className="flex items-center gap-2">
+            <CardTitle className="text-lg flex items-center gap-2">
+              <Trophy className="h-5 w-5 text-amber-500" />
+              {language === 'ta' ? 'சாதனைகள்' : 'Achievements'}
+            </CardTitle>
+            {totalUsers > 0 && (
+              <Badge variant="outline" className="text-[10px] gap-1 text-muted-foreground">
+                <Users className="h-3 w-3" />
+                {totalUsers.toLocaleString()}
+              </Badge>
+            )}
+          </div>
           <Badge className="bg-gradient-to-r from-amber-400 to-orange-500 text-white">
             {unlockedCount} / {totalCount}
           </Badge>
@@ -487,28 +506,62 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
                     </div>
                   )}
 
-                  <Badge 
-                    variant="outline" 
-                    className={`mt-1 text-[9px] px-1.5 py-0 ${
-                      isUnlocked ? tierConfig.border : 'border-gray-300'
-                    }`}
-                  >
-                    {achievement.tier.toUpperCase()}
-                  </Badge>
+                  <div className="flex flex-col items-center gap-1 mt-1">
+                    <Badge 
+                      variant="outline" 
+                      className={`text-[9px] px-1.5 py-0 ${
+                        isUnlocked ? tierConfig.border : 'border-gray-300'
+                      }`}
+                    >
+                      {achievement.tier.toUpperCase()}
+                    </Badge>
+                    
+                    {/* Rarity Badge */}
+                    {rarityData[achievement.id] && (
+                      <AchievementRarityBadge
+                        unlockPercent={rarityData[achievement.id].unlockPercent}
+                        totalUnlocks={rarityData[achievement.id].unlockCount}
+                        language={language}
+                        compact
+                      />
+                    )}
+                  </div>
                 </div>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Tier Legend */}
-        <div className="flex justify-center gap-2 pt-2 border-t border-gray-100">
-          {Object.entries(TIER_CONFIG).map(([tier, config]) => (
-            <div key={tier} className="flex items-center gap-1">
-              <div className={`w-3 h-3 rounded-full bg-gradient-to-br ${config.bg}`} />
-              <span className="text-[10px] text-gray-500 capitalize">{tier}</span>
-            </div>
-          ))}
+        {/* Legends Section */}
+        <div className="space-y-2 pt-2 border-t border-gray-100">
+          {/* Tier Legend */}
+          <div className="flex justify-center gap-2">
+            <span className="text-[10px] text-gray-400 mr-1">{language === 'ta' ? 'தரம்:' : 'Tier:'}</span>
+            {Object.entries(TIER_CONFIG).map(([tier, config]) => (
+              <div key={tier} className="flex items-center gap-1">
+                <div className={`w-3 h-3 rounded-full bg-gradient-to-br ${config.bg}`} />
+                <span className="text-[10px] text-gray-500 capitalize">{tier}</span>
+              </div>
+            ))}
+          </div>
+          
+          {/* Rarity Legend */}
+          <div className="flex justify-center gap-2 flex-wrap">
+            <span className="text-[10px] text-gray-400 mr-1">{language === 'ta' ? 'அரிதான நிலை:' : 'Rarity:'}</span>
+            {[
+              { label: language === 'ta' ? 'புராணம்' : 'Legendary', range: '≤1%', color: 'from-amber-400 to-yellow-400' },
+              { label: language === 'ta' ? 'காவியம்' : 'Epic', range: '≤5%', color: 'from-purple-400 to-pink-400' },
+              { label: language === 'ta' ? 'அரிது' : 'Rare', range: '≤15%', color: 'from-blue-400 to-cyan-400' },
+              { label: language === 'ta' ? 'அசாதாரணம்' : 'Uncommon', range: '≤35%', color: 'from-green-400 to-emerald-400' },
+              { label: language === 'ta' ? 'பொதுவான' : 'Common', range: '>35%', color: 'from-gray-300 to-gray-400' },
+            ].map((rarity) => (
+              <div key={rarity.label} className="flex items-center gap-1">
+                <div className={`w-2.5 h-2.5 rounded bg-gradient-to-r ${rarity.color}`} />
+                <span className="text-[9px] text-gray-500">{rarity.label}</span>
+                <span className="text-[8px] text-gray-400">({rarity.range})</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Share hint */}
