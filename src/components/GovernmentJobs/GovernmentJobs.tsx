@@ -28,6 +28,7 @@ import { GovtStudyPlans } from './GovtStudyPlans';
 import { GovtForum } from './GovtForum';
 import { StudyStreakDisplay } from './StudyStreakDisplay';
 import { DailyPracticeGoals } from './DailyPracticeGoals';
+import { StudySummaryReports } from './StudySummaryReports';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const containerVariants = {
@@ -63,6 +64,7 @@ export const GovernmentJobs = () => {
   const [showForum, setShowForum] = useState(false);
   const [showStreak, setShowStreak] = useState(false);
   const [showDailyGoals, setShowDailyGoals] = useState(false);
+  const [showSummaryReports, setShowSummaryReports] = useState(false);
   
   // Track questions completed today for daily goals - sync from localStorage
   const getQuestionsCompletedToday = (): number => {
@@ -100,6 +102,7 @@ export const GovernmentJobs = () => {
     setShowForum(false);
     setShowStreak(false);
     setShowDailyGoals(false);
+    setShowSummaryReports(false);
   };
 
   const handleQuestionsCompleted = (count: number) => {
@@ -373,6 +376,13 @@ export const GovernmentJobs = () => {
         >
           🎯 {language === 'ta' ? 'தினசரி இலக்கு' : 'Daily Goals'}
         </Button>
+        <Button
+          variant={showSummaryReports ? "default" : "outline"}
+          onClick={() => { closeAllSections(); setShowSummaryReports(!showSummaryReports); }}
+          className="gap-2"
+        >
+          📊 {language === 'ta' ? 'சுருக்க அறிக்கை' : 'Summary Reports'}
+        </Button>
         <ExamReminders savedExams={savedExams} />
       </div>
 
@@ -436,6 +446,11 @@ export const GovernmentJobs = () => {
         {showDailyGoals && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
             <DailyPracticeGoals language={language} questionsCompleted={questionsCompletedToday} />
+          </motion.div>
+        )}
+        {showSummaryReports && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <StudySummaryReports language={language} />
           </motion.div>
         )}
       </AnimatePresence>
