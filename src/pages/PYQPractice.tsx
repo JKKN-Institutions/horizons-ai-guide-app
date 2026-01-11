@@ -24,7 +24,7 @@ import {
   type PYQQuestion,
   type PYQExam
 } from '@/data/pyq-database';
-import { generatePYQPDF, generateBookmarkedPDF, YearSelectionDialog, MockTest, MockTestConfigDialog, MockTestLeaderboard, NEETSyllabus, JEEMainSyllabus, JEEAdvancedSyllabus, ChapterWeightage, HighYieldTopics } from '@/components/PYQ';
+import { generatePYQPDF, generateBookmarkedPDF, YearSelectionDialog, MockTest, MockTestConfigDialog, MockTestLeaderboard, NEETSyllabus, JEEMainSyllabus, JEEAdvancedSyllabus, ChapterWeightage, HighYieldTopics, StudyPlanner } from '@/components/PYQ';
 import { usePYQBookmarks } from '@/hooks/usePYQBookmarks';
 
 const PYQPractice = () => {
@@ -675,6 +675,9 @@ const PYQPractice = () => {
 
           {/* High-Yield Topics Section */}
           <HighYieldTopics language={language} />
+
+          {/* Study Planner Section */}
+          <StudyPlanner language={language} />
         </main>
 
         {/* Year Selection Dialog */}
