@@ -26,6 +26,7 @@ import { DailyPracticeReminders } from './DailyPracticeReminders';
 import { GovtLeaderboard } from './GovtLeaderboard';
 import { GovtStudyPlans } from './GovtStudyPlans';
 import { GovtForum } from './GovtForum';
+import { StudyStreakDisplay } from './StudyStreakDisplay';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const containerVariants = {
@@ -59,6 +60,7 @@ export const GovernmentJobs = () => {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [showStudyPlans, setShowStudyPlans] = useState(false);
   const [showForum, setShowForum] = useState(false);
+  const [showStreak, setShowStreak] = useState(false);
 
   const closeAllSections = () => {
     setShowTips(false);
@@ -71,6 +73,7 @@ export const GovernmentJobs = () => {
     setShowLeaderboard(false);
     setShowStudyPlans(false);
     setShowForum(false);
+    setShowStreak(false);
   };
   const [savedExams, setSavedExams] = useState<string[]>(() => {
     const stored = localStorage.getItem('govtJobs_saved');
@@ -321,6 +324,13 @@ export const GovernmentJobs = () => {
         >
           💬 {language === 'ta' ? 'சமூகம்' : 'Forum'}
         </Button>
+        <Button
+          variant={showStreak ? "default" : "outline"}
+          onClick={() => { closeAllSections(); setShowStreak(!showStreak); }}
+          className="gap-2"
+        >
+          🔥 {language === 'ta' ? 'படிப்பு தொடர்' : 'Study Streak'}
+        </Button>
         <ExamReminders savedExams={savedExams} />
       </div>
 
@@ -374,6 +384,11 @@ export const GovernmentJobs = () => {
         {showForum && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
             <GovtForum />
+          </motion.div>
+        )}
+        {showStreak && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <StudyStreakDisplay />
           </motion.div>
         )}
       </AnimatePresence>
