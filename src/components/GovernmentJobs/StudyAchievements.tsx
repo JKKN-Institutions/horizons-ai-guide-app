@@ -12,6 +12,7 @@ import {
 import { toast } from 'sonner';
 import { AchievementShareCard } from './AchievementShareCard';
 import { MilestoneCelebration } from './MilestoneCelebration';
+import { AchievementCollections } from './AchievementCollections';
 
 const ACHIEVEMENTS_KEY = 'govt_study_achievements';
 const UNLOCKED_KEY = 'govt_unlocked_achievements';
@@ -517,6 +518,14 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
             : '💡 Click on an unlocked achievement to share it'}
         </p>
       </CardContent>
+
+      {/* Achievement Collections Section */}
+      <div className="px-6 pb-6">
+        <AchievementCollections 
+          language={language} 
+          unlockedAchievementIds={unlockedAchievements.map(u => u.id)} 
+        />
+      </div>
 
       {/* Share Modal */}
       {shareAchievement && (
