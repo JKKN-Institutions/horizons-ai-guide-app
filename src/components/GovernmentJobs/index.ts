@@ -17,5 +17,6 @@ export { GovtStudyPlans } from './GovtStudyPlans';
 export { GovtForum } from './GovtForum';
 export { SmartStudyRecommendations } from './SmartStudyRecommendations';
 export { ProgressTracker } from './ProgressTracker';
+export { WeeklyStudyGoals } from './WeeklyStudyGoals';
 export { governmentExams, categoryInfo } from './governmentExamsData';
 export type { GovernmentExam, CategoryType, SalaryRangeType, StatusType } from './types';
