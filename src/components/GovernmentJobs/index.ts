@@ -1,4 +1,5 @@
 export { GovernmentJobs } from './GovernmentJobs';
+export { generateSummaryReportPDF } from './generateSummaryReportPDF';
 export { PreparationTipsSection } from './PreparationTipsSection';
 export { ExamReminders } from './ExamReminders';
 export { SalaryComparisonChart } from './SalaryComparisonChart';

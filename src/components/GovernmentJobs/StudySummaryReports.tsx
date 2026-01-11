@@ -11,11 +11,13 @@ import {
 } from 'recharts';
 import {
   Calendar, Clock, FileQuestion, Target, TrendingUp, Trophy,
-  Flame, Award, Download, BarChart3, PieChartIcon
+  Flame, Award, Download, BarChart3, PieChartIcon, FileDown
 } from 'lucide-react';
 import { useGovtMockTestScores, GovtMockTestScore } from '@/hooks/useGovtMockTestScores';
 import { useStudyStreak } from '@/hooks/useStudyStreak';
 import { format, subDays, startOfWeek, endOfWeek, startOfMonth, endOfMonth, isWithinInterval, parseISO } from 'date-fns';
+import { generateSummaryReportPDF } from './generateSummaryReportPDF';
+import { toast } from 'sonner';
 
 interface StudySummaryReportsProps {
   language: 'en' | 'ta';
@@ -192,6 +194,40 @@ export const StudySummaryReports = ({ language }: StudySummaryReportsProps) => {
     </div>
   );
 
+  const handleExportPDF = () => {
+    toast.info(language === 'en' ? 'Generating PDF...' : 'PDF உருவாக்கப்படுகிறது...');
+    
+    try {
+      generateSummaryReportPDF({
+        period,
+        dateRange: dateRanges[period],
+        summaryStats,
+        dailyBreakdown: dailyBreakdown.map(d => ({
+          displayDate: d.displayDate,
+          questions: d.questions,
+          timeMinutes: d.timeMinutes
+        })),
+        categoryBreakdown: categoryBreakdown.map(c => ({
+          fullCategory: c.fullCategory,
+          questions: c.questions,
+          accuracy: c.accuracy,
+          timeMinutes: c.timeMinutes
+        })),
+        streakData: {
+          currentStreak,
+          bestStreak,
+          totalDaysPracticed
+        },
+        language
+      });
+      
+      toast.success(language === 'en' ? 'PDF downloaded successfully!' : 'PDF வெற்றிகரமாக பதிவிறக்கம் செய்யப்பட்டது!');
+    } catch (error) {
+      console.error('PDF generation error:', error);
+      toast.error(language === 'en' ? 'Failed to generate PDF' : 'PDF உருவாக்க முடியவில்லை');
+    }
+  };
+
   return (
     <Card className="border border-gray-200">
       <CardHeader className="pb-3">
@@ -200,16 +236,29 @@ export const StudySummaryReports = ({ language }: StudySummaryReportsProps) => {
             <BarChart3 className="h-5 w-5 text-blue-500" />
             {language === 'ta' ? 'படிப்பு சுருக்க அறிக்கைகள்' : 'Study Summary Reports'}
           </CardTitle>
-          <Tabs value={period} onValueChange={(v) => setPeriod(v as 'week' | 'month')}>
-            <TabsList className="h-9">
-              <TabsTrigger value="week" className="text-sm">
-                {language === 'ta' ? 'வாரம்' : 'This Week'}
-              </TabsTrigger>
-              <TabsTrigger value="month" className="text-sm">
-                {language === 'ta' ? 'மாதம்' : 'This Month'}
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
+          <div className="flex items-center gap-2 flex-wrap">
+            <Tabs value={period} onValueChange={(v) => setPeriod(v as 'week' | 'month')}>
+              <TabsList className="h-9">
+                <TabsTrigger value="week" className="text-sm">
+                  {language === 'ta' ? 'வாரம்' : 'This Week'}
+                </TabsTrigger>
+                <TabsTrigger value="month" className="text-sm">
+                  {language === 'ta' ? 'மாதம்' : 'This Month'}
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleExportPDF}
+              className="gap-2 bg-gradient-to-r from-blue-50 to-green-50 hover:from-blue-100 hover:to-green-100 border-blue-200"
+            >
+              <FileDown className="h-4 w-4 text-blue-600" />
+              <span className="hidden sm:inline">
+                {language === 'ta' ? 'PDF பதிவிறக்கம்' : 'Export PDF'}
+              </span>
+            </Button>
+          </div>
         </div>
         <p className="text-sm text-gray-500">
           {format(dateRanges[period].start, 'MMM d')} - {format(dateRanges[period].end, 'MMM d, yyyy')}
