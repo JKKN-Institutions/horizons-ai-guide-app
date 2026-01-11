@@ -798,6 +798,24 @@ export const GovtMockTest = () => {
       console.error('Error saving to leaderboard:', err);
     }
     
+    // Track questions completed for daily goals
+    try {
+      const stored = localStorage.getItem('govt_questions_today');
+      let currentCount = 0;
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed.date === new Date().toISOString().split('T')[0]) {
+          currentCount = parsed.count;
+        }
+      }
+      localStorage.setItem('govt_questions_today', JSON.stringify({
+        date: new Date().toISOString().split('T')[0],
+        count: currentCount + currentQuestions.length
+      }));
+    } catch (err) {
+      console.error('Error tracking questions:', err);
+    }
+    
     if (correct === currentQuestions.length) {
       confetti({
         particleCount: 100,

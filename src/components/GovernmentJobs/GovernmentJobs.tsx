@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, Filter, Calendar, IndianRupee, Clock, Users, 
@@ -27,6 +27,7 @@ import { GovtLeaderboard } from './GovtLeaderboard';
 import { GovtStudyPlans } from './GovtStudyPlans';
 import { GovtForum } from './GovtForum';
 import { StudyStreakDisplay } from './StudyStreakDisplay';
+import { DailyPracticeGoals } from './DailyPracticeGoals';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const containerVariants = {
@@ -61,6 +62,30 @@ export const GovernmentJobs = () => {
   const [showStudyPlans, setShowStudyPlans] = useState(false);
   const [showForum, setShowForum] = useState(false);
   const [showStreak, setShowStreak] = useState(false);
+  const [showDailyGoals, setShowDailyGoals] = useState(false);
+  
+  // Track questions completed today for daily goals - sync from localStorage
+  const getQuestionsCompletedToday = (): number => {
+    try {
+      const stored = localStorage.getItem('govt_questions_today');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed.date === new Date().toISOString().split('T')[0]) {
+          return parsed.count;
+        }
+      }
+    } catch {}
+    return 0;
+  };
+  
+  const [questionsCompletedToday, setQuestionsCompletedToday] = useState<number>(getQuestionsCompletedToday);
+  
+  // Sync questions count when daily goals section is opened
+  useEffect(() => {
+    if (showDailyGoals) {
+      setQuestionsCompletedToday(getQuestionsCompletedToday());
+    }
+  }, [showDailyGoals]);
 
   const closeAllSections = () => {
     setShowTips(false);
@@ -74,6 +99,16 @@ export const GovernmentJobs = () => {
     setShowStudyPlans(false);
     setShowForum(false);
     setShowStreak(false);
+    setShowDailyGoals(false);
+  };
+
+  const handleQuestionsCompleted = (count: number) => {
+    const newTotal = questionsCompletedToday + count;
+    setQuestionsCompletedToday(newTotal);
+    localStorage.setItem('govt_questions_today', JSON.stringify({
+      date: new Date().toISOString().split('T')[0],
+      count: newTotal
+    }));
   };
   const [savedExams, setSavedExams] = useState<string[]>(() => {
     const stored = localStorage.getItem('govtJobs_saved');
@@ -331,6 +366,13 @@ export const GovernmentJobs = () => {
         >
           🔥 {language === 'ta' ? 'படிப்பு தொடர்' : 'Study Streak'}
         </Button>
+        <Button
+          variant={showDailyGoals ? "default" : "outline"}
+          onClick={() => { closeAllSections(); setShowDailyGoals(!showDailyGoals); }}
+          className="gap-2"
+        >
+          🎯 {language === 'ta' ? 'தினசரி இலக்கு' : 'Daily Goals'}
+        </Button>
         <ExamReminders savedExams={savedExams} />
       </div>
 
@@ -389,6 +431,11 @@ export const GovernmentJobs = () => {
         {showStreak && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
             <StudyStreakDisplay />
+          </motion.div>
+        )}
+        {showDailyGoals && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <DailyPracticeGoals language={language} questionsCompleted={questionsCompletedToday} />
           </motion.div>
         )}
       </AnimatePresence>
