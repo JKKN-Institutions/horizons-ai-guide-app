@@ -8,3 +8,4 @@ export { NEETSyllabus } from './NEETSyllabus';
 export { JEEMainSyllabus } from './JEEMainSyllabus';
 export { JEEAdvancedSyllabus } from './JEEAdvancedSyllabus';
 export { ChapterWeightage } from './ChapterWeightage';
+export { HighYieldTopics } from './HighYieldTopics';
