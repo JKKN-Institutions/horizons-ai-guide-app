@@ -35,6 +35,7 @@ import { ProgressTracker } from './ProgressTracker';
 import { WeeklyStudyGoals } from './WeeklyStudyGoals';
 import { StudyAchievements } from './StudyAchievements';
 import { AchievementLeaderboard } from './AchievementLeaderboard';
+import DailyLoginRewards from './DailyLoginRewards';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const containerVariants = {
@@ -254,6 +255,7 @@ export const GovernmentJobs = () => {
   };
 
   return (
+    <>
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center mb-8">
@@ -945,6 +947,10 @@ export const GovernmentJobs = () => {
         </div>
       )}
     </div>
+    
+    {/* Daily Login Rewards */}
+    <DailyLoginRewards />
+  </>
   );
 };
 
