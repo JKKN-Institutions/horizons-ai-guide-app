@@ -31,6 +31,7 @@ import { DailyPracticeGoals } from './DailyPracticeGoals';
 import { StudySummaryReports } from './StudySummaryReports';
 import { StudyPlannerCalendar } from './StudyPlannerCalendar';
 import { SmartStudyRecommendations } from './SmartStudyRecommendations';
+import { ProgressTracker } from './ProgressTracker';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const containerVariants = {
@@ -69,6 +70,7 @@ export const GovernmentJobs = () => {
   const [showSummaryReports, setShowSummaryReports] = useState(false);
   const [showStudyPlanner, setShowStudyPlanner] = useState(false);
   const [showSmartRecommendations, setShowSmartRecommendations] = useState(false);
+  const [showProgressTracker, setShowProgressTracker] = useState(false);
   
   // Track questions completed today for daily goals - sync from localStorage
   const getQuestionsCompletedToday = (): number => {
@@ -109,6 +111,7 @@ export const GovernmentJobs = () => {
     setShowSummaryReports(false);
     setShowStudyPlanner(false);
     setShowSmartRecommendations(false);
+    setShowProgressTracker(false);
   };
 
   const handleQuestionsCompleted = (count: number) => {
@@ -403,6 +406,13 @@ export const GovernmentJobs = () => {
         >
           🧠 {language === 'ta' ? 'ஸ்மார்ட் பரிந்துரைகள்' : 'Smart Recommendations'}
         </Button>
+        <Button
+          variant={showProgressTracker ? "default" : "outline"}
+          onClick={() => { closeAllSections(); setShowProgressTracker(!showProgressTracker); }}
+          className="gap-2"
+        >
+          📈 {language === 'ta' ? 'முன்னேற்றம்' : 'Progress'}
+        </Button>
         <ExamReminders savedExams={savedExams} />
       </div>
 
@@ -481,6 +491,11 @@ export const GovernmentJobs = () => {
         {showSmartRecommendations && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
             <SmartStudyRecommendations language={language} />
+          </motion.div>
+        )}
+        {showProgressTracker && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <ProgressTracker language={language} />
           </motion.div>
         )}
       </AnimatePresence>
