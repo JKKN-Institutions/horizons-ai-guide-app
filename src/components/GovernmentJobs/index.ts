@@ -15,5 +15,6 @@ export { StudySummaryReports } from './StudySummaryReports';
 export { GovtLeaderboard } from './GovtLeaderboard';
 export { GovtStudyPlans } from './GovtStudyPlans';
 export { GovtForum } from './GovtForum';
+export { SmartStudyRecommendations } from './SmartStudyRecommendations';
 export { governmentExams, categoryInfo } from './governmentExamsData';
 export type { GovernmentExam, CategoryType, SalaryRangeType, StatusType } from './types';

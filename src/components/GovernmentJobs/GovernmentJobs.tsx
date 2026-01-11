@@ -30,6 +30,7 @@ import { StudyStreakDisplay } from './StudyStreakDisplay';
 import { DailyPracticeGoals } from './DailyPracticeGoals';
 import { StudySummaryReports } from './StudySummaryReports';
 import { StudyPlannerCalendar } from './StudyPlannerCalendar';
+import { SmartStudyRecommendations } from './SmartStudyRecommendations';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const containerVariants = {
@@ -67,6 +68,7 @@ export const GovernmentJobs = () => {
   const [showDailyGoals, setShowDailyGoals] = useState(false);
   const [showSummaryReports, setShowSummaryReports] = useState(false);
   const [showStudyPlanner, setShowStudyPlanner] = useState(false);
+  const [showSmartRecommendations, setShowSmartRecommendations] = useState(false);
   
   // Track questions completed today for daily goals - sync from localStorage
   const getQuestionsCompletedToday = (): number => {
@@ -106,6 +108,7 @@ export const GovernmentJobs = () => {
     setShowDailyGoals(false);
     setShowSummaryReports(false);
     setShowStudyPlanner(false);
+    setShowSmartRecommendations(false);
   };
 
   const handleQuestionsCompleted = (count: number) => {
@@ -393,6 +396,13 @@ export const GovernmentJobs = () => {
         >
           🗓️ {language === 'ta' ? 'படிப்பு திட்டமிடுதல்' : 'Study Planner'}
         </Button>
+        <Button
+          variant={showSmartRecommendations ? "default" : "outline"}
+          onClick={() => { closeAllSections(); setShowSmartRecommendations(!showSmartRecommendations); }}
+          className="gap-2"
+        >
+          🧠 {language === 'ta' ? 'ஸ்மார்ட் பரிந்துரைகள்' : 'Smart Recommendations'}
+        </Button>
         <ExamReminders savedExams={savedExams} />
       </div>
 
@@ -466,6 +476,11 @@ export const GovernmentJobs = () => {
         {showStudyPlanner && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
             <StudyPlannerCalendar language={language} />
+          </motion.div>
+        )}
+        {showSmartRecommendations && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <SmartStudyRecommendations language={language} />
           </motion.div>
         )}
       </AnimatePresence>
