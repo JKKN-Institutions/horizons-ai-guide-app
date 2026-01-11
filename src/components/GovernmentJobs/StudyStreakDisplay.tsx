@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Flame, Trophy, Target, Calendar, Award, Sparkles, TrendingUp } from 'lucide-react';
+import { Flame, Trophy, Target, Calendar, Award, Sparkles, TrendingUp, Shield, ShieldCheck, ShieldAlert } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useStudyStreak, ACHIEVEMENTS, Achievement } from '@/hooks/useStudyStreak';
 
@@ -133,6 +133,11 @@ export const StudyStreakDisplay = () => {
     currentStreak,
     bestStreak,
     totalDaysPracticed,
+    freezesAvailable,
+    freezesUsed,
+    freezeUsedToday,
+    maxFreezes,
+    freezeEarnStreak,
     newAchievements,
     clearNewAchievements,
     getUnlockedAchievements,
@@ -180,6 +185,32 @@ export const StudyStreakDisplay = () => {
 
       <Card className="border border-gray-200 bg-gradient-to-br from-white to-orange-50/30">
         <CardContent className="p-4">
+          {/* Freeze Used Today Notification */}
+          <AnimatePresence>
+            {freezeUsedToday && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="mb-4 p-3 rounded-lg bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200"
+              >
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="h-5 w-5 text-cyan-600" />
+                  <div>
+                    <p className="text-sm font-medium text-cyan-700">
+                      {language === 'ta' ? '🛡️ தொடர் உறைநிலை பயன்படுத்தப்பட்டது!' : '🛡️ Streak Freeze Used!'}
+                    </p>
+                    <p className="text-xs text-cyan-600">
+                      {language === 'ta' 
+                        ? 'நேற்று தவறவிட்டீர்கள், ஆனால் உங்கள் தொடர் பாதுகாக்கப்பட்டது!' 
+                        : 'You missed yesterday, but your streak was protected!'}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* Motivational Banner */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -321,6 +352,50 @@ export const StudyStreakDisplay = () => {
               </div>
             </div>
           )}
+
+          {/* Streak Freeze Status */}
+          <div className="mb-4 p-3 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-lg border border-cyan-100">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <Shield className="h-4 w-4 text-cyan-600" />
+                <span className="text-sm font-medium text-gray-700">
+                  {language === 'ta' ? 'தொடர் உறைநிலைகள்' : 'Streak Freezes'}
+                </span>
+              </div>
+              <Badge variant="outline" className="text-xs border-cyan-300 text-cyan-700">
+                {freezesAvailable}/{maxFreezes}
+              </Badge>
+            </div>
+            
+            {/* Freeze Icons */}
+            <div className="flex items-center gap-1.5 mb-2">
+              {Array.from({ length: maxFreezes }).map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: i * 0.1 }}
+                  className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                    i < freezesAvailable
+                      ? 'bg-gradient-to-br from-cyan-400 to-blue-500 text-white shadow-md shadow-cyan-200'
+                      : 'bg-gray-100 text-gray-300 border border-gray-200'
+                  }`}
+                >
+                  <Shield className="h-4 w-4" />
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Freeze Info */}
+            <div className="flex items-start gap-2 text-xs text-gray-500">
+              <ShieldAlert className="h-3.5 w-3.5 mt-0.5 text-cyan-500 flex-shrink-0" />
+              <p>
+                {language === 'ta' 
+                  ? `ஒரு நாள் தவறவிட்டால் தொடர் பாதுகாக்கப்படும். ஒவ்வொரு ${freezeEarnStreak} நாள் தொடருக்கும் புதிய உறைநிலை கிடைக்கும்.`
+                  : `Protects your streak if you miss a day. Earn a new freeze every ${freezeEarnStreak}-day streak.`}
+              </p>
+            </div>
+          </div>
 
           {/* Stats Row */}
           <div className="grid grid-cols-3 gap-3 mb-4">
