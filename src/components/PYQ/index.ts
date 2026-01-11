@@ -6,3 +6,4 @@ export { MockTestConfigDialog } from './MockTestConfigDialog';
 export { MockTestLeaderboard } from './MockTestLeaderboard';
 export { NEETSyllabus } from './NEETSyllabus';
 export { JEEMainSyllabus } from './JEEMainSyllabus';
+export { JEEAdvancedSyllabus } from './JEEAdvancedSyllabus';
