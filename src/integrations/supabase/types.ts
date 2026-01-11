@@ -1636,6 +1636,66 @@ export type Database = {
           },
         ]
       }
+      user_achievement_progress: {
+        Row: {
+          achievement_points: number
+          bronze_count: number
+          created_at: string
+          diamond_count: number
+          display_name: string
+          goals_achieved: number
+          gold_count: number
+          id: string
+          longest_streak: number
+          mock_tests_completed: number
+          platinum_count: number
+          silver_count: number
+          total_achievements: number
+          total_study_hours: number
+          updated_at: string
+          user_id: string
+          week_start: string | null
+        }
+        Insert: {
+          achievement_points?: number
+          bronze_count?: number
+          created_at?: string
+          diamond_count?: number
+          display_name?: string
+          goals_achieved?: number
+          gold_count?: number
+          id?: string
+          longest_streak?: number
+          mock_tests_completed?: number
+          platinum_count?: number
+          silver_count?: number
+          total_achievements?: number
+          total_study_hours?: number
+          updated_at?: string
+          user_id: string
+          week_start?: string | null
+        }
+        Update: {
+          achievement_points?: number
+          bronze_count?: number
+          created_at?: string
+          diamond_count?: number
+          display_name?: string
+          goals_achieved?: number
+          gold_count?: number
+          id?: string
+          longest_streak?: number
+          mock_tests_completed?: number
+          platinum_count?: number
+          silver_count?: number
+          total_achievements?: number
+          total_study_hours?: number
+          updated_at?: string
+          user_id?: string
+          week_start?: string | null
+        }
+        Relationships: []
+      }
       user_assessment_attempts: {
         Row: {
           assessment_type: Database["public"]["Enums"]["assessment_type"]

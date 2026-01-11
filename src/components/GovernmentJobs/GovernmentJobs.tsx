@@ -34,6 +34,7 @@ import { SmartStudyRecommendations } from './SmartStudyRecommendations';
 import { ProgressTracker } from './ProgressTracker';
 import { WeeklyStudyGoals } from './WeeklyStudyGoals';
 import { StudyAchievements } from './StudyAchievements';
+import { AchievementLeaderboard } from './AchievementLeaderboard';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const containerVariants = {
@@ -75,6 +76,7 @@ export const GovernmentJobs = () => {
   const [showProgressTracker, setShowProgressTracker] = useState(false);
   const [showWeeklyGoals, setShowWeeklyGoals] = useState(false);
   const [showAchievements, setShowAchievements] = useState(false);
+  const [showAchievementLeaderboard, setShowAchievementLeaderboard] = useState(false);
   // Track questions completed today for daily goals - sync from localStorage
   const getQuestionsCompletedToday = (): number => {
     try {
@@ -117,6 +119,7 @@ export const GovernmentJobs = () => {
     setShowProgressTracker(false);
     setShowWeeklyGoals(false);
     setShowAchievements(false);
+    setShowAchievementLeaderboard(false);
   };
 
   const handleQuestionsCompleted = (count: number) => {
@@ -432,6 +435,13 @@ export const GovernmentJobs = () => {
         >
           🏆 {language === 'ta' ? 'சாதனைகள்' : 'Achievements'}
         </Button>
+        <Button
+          variant={showAchievementLeaderboard ? "default" : "outline"}
+          onClick={() => { closeAllSections(); setShowAchievementLeaderboard(!showAchievementLeaderboard); }}
+          className="gap-2"
+        >
+          🥇 {language === 'ta' ? 'சாதனை தரவரிசை' : 'Achievement Ranks'}
+        </Button>
         <ExamReminders savedExams={savedExams} />
       </div>
 
@@ -525,6 +535,11 @@ export const GovernmentJobs = () => {
         {showAchievements && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
             <StudyAchievements language={language} />
+          </motion.div>
+        )}
+        {showAchievementLeaderboard && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <AchievementLeaderboard language={language} />
           </motion.div>
         )}
       </AnimatePresence>
