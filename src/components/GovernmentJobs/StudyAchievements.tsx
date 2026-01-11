@@ -8,9 +8,10 @@ import {
   Trophy, Star, Flame, Clock, Target, BookOpen, Award,
   Zap, Crown, Medal, Sparkles, Lock, CheckCircle2,
   TrendingUp, Calendar, Brain, GraduationCap, Share2, Users,
-  ArrowUpDown, Gem, ArrowDown01, ArrowUp10, Crosshair, Eye
+  ArrowUpDown, Gem, ArrowDown01, ArrowUp10, Crosshair, Eye, Timer
 } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { toast } from 'sonner';
 import { AchievementShareCard } from './AchievementShareCard';
 import { MilestoneCelebration } from './MilestoneCelebration';
@@ -220,6 +221,133 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
       weeklyGoalStreak,
     };
   }, []);
+
+  // Calculate progress rates based on historical data
+  const progressRates = useMemo(() => {
+    let hoursPerDay = 0;
+    let testsPerWeek = 0;
+    let goalsPerWeek = 0;
+    let streakDaysPerWeek = 0;
+    let activeDaysPerWeek = 0;
+    let questionsPerDay = 0;
+
+    try {
+      // Calculate days since first activity
+      const schedules = localStorage.getItem('govt_practice_schedules');
+      const mockScores = localStorage.getItem('govt_mock_test_scores');
+      
+      let firstActivityDate: Date | null = null;
+      let allDates: string[] = [];
+      
+      if (schedules) {
+        const parsed = JSON.parse(schedules);
+        Object.values(parsed).forEach((daySchedules: any) => {
+          if (Array.isArray(daySchedules)) {
+            daySchedules.forEach((s: any) => {
+              if (s.completed && s.date) {
+                allDates.push(s.date);
+              }
+            });
+          }
+        });
+      }
+      
+      if (mockScores) {
+        const scores = JSON.parse(mockScores);
+        scores.forEach((s: any) => {
+          if (s.created_at) allDates.push(s.created_at.split('T')[0]);
+        });
+      }
+      
+      if (allDates.length > 0) {
+        allDates.sort();
+        firstActivityDate = new Date(allDates[0]);
+        const daysSinceStart = Math.max(1, Math.ceil((Date.now() - firstActivityDate.getTime()) / (1000 * 60 * 60 * 24)));
+        const weeksSinceStart = Math.max(1, daysSinceStart / 7);
+        
+        hoursPerDay = stats.totalHours / daysSinceStart;
+        testsPerWeek = stats.mockTestsCompleted / weeksSinceStart;
+        goalsPerWeek = stats.goalsAchieved / weeksSinceStart;
+        activeDaysPerWeek = (stats.daysActive / daysSinceStart) * 7;
+        questionsPerDay = stats.questionsAnswered / daysSinceStart;
+        
+        // Streak rate: assume user can maintain current streak growth
+        streakDaysPerWeek = Math.min(7, activeDaysPerWeek);
+      }
+    } catch (error) {
+      console.error('Error calculating progress rates:', error);
+    }
+
+    return {
+      hoursPerDay: Math.max(0.1, hoursPerDay), // Min rate to avoid division by zero
+      testsPerWeek: Math.max(0.1, testsPerWeek),
+      goalsPerWeek: Math.max(0.1, goalsPerWeek),
+      streakDaysPerWeek: Math.max(1, streakDaysPerWeek),
+      activeDaysPerWeek: Math.max(1, activeDaysPerWeek),
+      questionsPerDay: Math.max(1, questionsPerDay),
+    };
+  }, [stats]);
+
+  // Estimate time to unlock an achievement
+  const estimateTimeToUnlock = (achievement: Achievement): { days: number; label: string; labelTa: string } | null => {
+    const currentValue = achievement.checkFn(stats);
+    const remaining = achievement.requirement - currentValue;
+    
+    if (remaining <= 0) return null; // Already unlocked
+    
+    let daysToUnlock = 0;
+    
+    switch (achievement.category) {
+      case 'hours':
+        daysToUnlock = remaining / progressRates.hoursPerDay;
+        break;
+      case 'streak':
+        // Streaks require consecutive days
+        daysToUnlock = remaining;
+        break;
+      case 'tests':
+        if (achievement.id.includes('perfect')) {
+          // Perfect scores are harder to predict
+          daysToUnlock = (remaining / (progressRates.testsPerWeek * 0.1)) * 7; // Assume 10% perfect rate
+        } else {
+          daysToUnlock = (remaining / progressRates.testsPerWeek) * 7;
+        }
+        break;
+      case 'goals':
+        if (achievement.id.includes('streak')) {
+          daysToUnlock = remaining * 7; // Weekly goals
+        } else {
+          daysToUnlock = (remaining / progressRates.goalsPerWeek) * 7;
+        }
+        break;
+      case 'special':
+        if (achievement.id.includes('active')) {
+          daysToUnlock = remaining / (progressRates.activeDaysPerWeek / 7);
+        } else if (achievement.id.includes('questions')) {
+          daysToUnlock = remaining / progressRates.questionsPerDay;
+        } else {
+          daysToUnlock = remaining * 7; // Default estimate
+        }
+        break;
+    }
+    
+    daysToUnlock = Math.ceil(Math.max(1, daysToUnlock));
+    
+    // Format label
+    if (daysToUnlock <= 1) {
+      return { days: 1, label: 'Today', labelTa: 'இன்று' };
+    } else if (daysToUnlock <= 7) {
+      return { days: daysToUnlock, label: `${daysToUnlock}d`, labelTa: `${daysToUnlock}நா` };
+    } else if (daysToUnlock <= 30) {
+      const weeks = Math.ceil(daysToUnlock / 7);
+      return { days: daysToUnlock, label: `${weeks}w`, labelTa: `${weeks}வா` };
+    } else if (daysToUnlock <= 365) {
+      const months = Math.ceil(daysToUnlock / 30);
+      return { days: daysToUnlock, label: `${months}mo`, labelTa: `${months}மா` };
+    } else {
+      return { days: daysToUnlock, label: '1y+', labelTa: '1வ+' };
+    }
+  };
 
   // Load unlocked achievements and milestones
   useEffect(() => {
@@ -486,6 +614,7 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
                 <div className="space-y-2">
                   {huntableAchievements.map(({ achievement, progress, remaining, rarity, isCloseToUnlock, isRare }) => {
                     const tierConfig = TIER_CONFIG[achievement.tier];
+                    const timeEstimate = estimateTimeToUnlock(achievement);
                     return (
                       <motion.div
                         key={achievement.id}
@@ -540,9 +669,21 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
                                   }`}
                                 />
                               </div>
-                              <span className="text-[10px] text-gray-500 whitespace-nowrap">
-                                {remaining} {language === 'ta' ? 'மீதம்' : 'to go'}
-                              </span>
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-[10px] text-gray-500 whitespace-nowrap">
+                                  {remaining} {language === 'ta' ? 'மீதம்' : 'to go'}
+                                </span>
+                                {timeEstimate && (
+                                  <span className={`text-[9px] font-medium flex items-center gap-0.5 px-1 py-0.5 rounded ${
+                                    timeEstimate.days <= 7 ? 'bg-green-100 text-green-700' :
+                                    timeEstimate.days <= 30 ? 'bg-amber-100 text-amber-700' :
+                                    'bg-gray-100 text-gray-500'
+                                  }`}>
+                                    <Timer className="h-2.5 w-2.5" />
+                                    {language === 'ta' ? timeEstimate.labelTa : timeEstimate.label}
+                                  </span>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -656,6 +797,7 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
             const currentValue = achievement.checkFn(stats);
             const progress = Math.min(100, (currentValue / achievement.requirement) * 100);
             const tierConfig = TIER_CONFIG[achievement.tier];
+            const timeEstimate = !isUnlocked ? estimateTimeToUnlock(achievement) : null;
 
             const handleShareClick = (e: React.MouseEvent) => {
               e.stopPropagation();
@@ -724,9 +866,39 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
                   {!isUnlocked && (
                     <div className="w-full mt-2">
                       <Progress value={progress} className="h-1 bg-gray-200" />
-                      <span className="text-[9px] text-gray-400 mt-0.5">
-                        {currentValue.toFixed(0)} / {achievement.requirement}
-                      </span>
+                      <div className="flex items-center justify-between mt-0.5">
+                        <span className="text-[9px] text-gray-400">
+                          {currentValue.toFixed(0)} / {achievement.requirement}
+                        </span>
+                        {timeEstimate && (
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <span className={`text-[9px] font-medium flex items-center gap-0.5 ${
+                                  timeEstimate.days <= 7 ? 'text-green-600' :
+                                  timeEstimate.days <= 30 ? 'text-amber-600' :
+                                  'text-gray-400'
+                                }`}>
+                                  <Timer className="h-2.5 w-2.5" />
+                                  {language === 'ta' ? timeEstimate.labelTa : timeEstimate.label}
+                                </span>
+                              </TooltipTrigger>
+                              <TooltipContent side="top" className="text-xs">
+                                <p>
+                                  {language === 'ta' 
+                                    ? `தோராயமாக ${timeEstimate.days} நாட்களில் திறக்கலாம்`
+                                    : `Estimated unlock in ~${timeEstimate.days} days`}
+                                </p>
+                                <p className="text-muted-foreground text-[10px]">
+                                  {language === 'ta' 
+                                    ? 'உங்கள் தற்போதைய வேகத்தின் அடிப்படையில்'
+                                    : 'Based on your current pace'}
+                                </p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        )}
+                      </div>
                     </div>
                   )}
 
