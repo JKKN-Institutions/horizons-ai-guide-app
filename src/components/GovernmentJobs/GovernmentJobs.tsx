@@ -33,6 +33,7 @@ import { StudyPlannerCalendar } from './StudyPlannerCalendar';
 import { SmartStudyRecommendations } from './SmartStudyRecommendations';
 import { ProgressTracker } from './ProgressTracker';
 import { WeeklyStudyGoals } from './WeeklyStudyGoals';
+import { StudyAchievements } from './StudyAchievements';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const containerVariants = {
@@ -73,7 +74,7 @@ export const GovernmentJobs = () => {
   const [showSmartRecommendations, setShowSmartRecommendations] = useState(false);
   const [showProgressTracker, setShowProgressTracker] = useState(false);
   const [showWeeklyGoals, setShowWeeklyGoals] = useState(false);
-  
+  const [showAchievements, setShowAchievements] = useState(false);
   // Track questions completed today for daily goals - sync from localStorage
   const getQuestionsCompletedToday = (): number => {
     try {
@@ -115,6 +116,7 @@ export const GovernmentJobs = () => {
     setShowSmartRecommendations(false);
     setShowProgressTracker(false);
     setShowWeeklyGoals(false);
+    setShowAchievements(false);
   };
 
   const handleQuestionsCompleted = (count: number) => {
@@ -423,6 +425,13 @@ export const GovernmentJobs = () => {
         >
           📅 {language === 'ta' ? 'வாராந்திர இலக்கு' : 'Weekly Goals'}
         </Button>
+        <Button
+          variant={showAchievements ? "default" : "outline"}
+          onClick={() => { closeAllSections(); setShowAchievements(!showAchievements); }}
+          className="gap-2"
+        >
+          🏆 {language === 'ta' ? 'சாதனைகள்' : 'Achievements'}
+        </Button>
         <ExamReminders savedExams={savedExams} />
       </div>
 
@@ -511,6 +520,11 @@ export const GovernmentJobs = () => {
         {showWeeklyGoals && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
             <WeeklyStudyGoals language={language} />
+          </motion.div>
+        )}
+        {showAchievements && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <StudyAchievements language={language} />
           </motion.div>
         )}
       </AnimatePresence>
