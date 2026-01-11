@@ -28,6 +28,7 @@ import {
 import { toast } from 'sonner';
 import { Switch } from '@/components/ui/switch';
 import { startOfWeek, endOfWeek, format, isWithinInterval, subWeeks, addWeeks, isSameWeek, getDay } from 'date-fns';
+import { SmartGoalSuggestions } from './SmartGoalSuggestions';
 
 const STORAGE_KEY = 'govt_weekly_study_goals';
 const HISTORY_KEY = 'govt_weekly_goals_history';
@@ -802,8 +803,18 @@ export const WeeklyStudyGoals = ({ language }: WeeklyStudyGoalsProps) => {
                 {language === 'ta' ? 'வாராந்திர இலக்கை அமை' : 'Set Weekly Goal'}
               </DialogTitle>
             </DialogHeader>
-            <div className="space-y-4 py-4">
-              <div>
+            <div className="space-y-4 py-4 max-h-[70vh] overflow-y-auto">
+              {/* Smart Suggestions Section */}
+              <SmartGoalSuggestions
+                language={language}
+                weeklyHistory={weeklyHistory}
+                onSelectGoal={(hours) => {
+                  setSelectedHours(hours);
+                  setCustomHours('');
+                }}
+              />
+
+              <div className="border-t border-gray-200 pt-4">
                 <Label className="text-sm font-medium">
                   {language === 'ta' ? 'வார இலக்கு மணிநேரங்கள்' : 'Weekly Target Hours'}
                 </Label>
