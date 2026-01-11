@@ -24,7 +24,7 @@ import {
   type PYQQuestion,
   type PYQExam
 } from '@/data/pyq-database';
-import { generatePYQPDF, generateBookmarkedPDF, YearSelectionDialog, MockTest, MockTestConfigDialog, MockTestLeaderboard, NEETSyllabus } from '@/components/PYQ';
+import { generatePYQPDF, generateBookmarkedPDF, YearSelectionDialog, MockTest, MockTestConfigDialog, MockTestLeaderboard, NEETSyllabus, JEEMainSyllabus } from '@/components/PYQ';
 import { usePYQBookmarks } from '@/hooks/usePYQBookmarks';
 
 const PYQPractice = () => {
@@ -663,6 +663,9 @@ const PYQPractice = () => {
 
           {/* NEET Syllabus Section */}
           <NEETSyllabus language={language} />
+
+          {/* JEE Main Syllabus Section */}
+          <JEEMainSyllabus language={language} />
         </main>
 
         {/* Year Selection Dialog */}
