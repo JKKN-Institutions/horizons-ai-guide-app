@@ -7,7 +7,8 @@ import { Progress } from '@/components/ui/progress';
 import { 
   Trophy, Star, Flame, Clock, Target, BookOpen, Award,
   Zap, Crown, Medal, Sparkles, Lock, CheckCircle2,
-  TrendingUp, Calendar, Brain, GraduationCap, Share2, Users
+  TrendingUp, Calendar, Brain, GraduationCap, Share2, Users,
+  ArrowUpDown, Gem, ArrowDown01, ArrowUp10
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { AchievementShareCard } from './AchievementShareCard';
@@ -125,13 +126,14 @@ const getIcon = (iconName: string, className: string) => {
 };
 
 export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
-  const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchievement[]>([]);
+const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchievement[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [newlyUnlocked, setNewlyUnlocked] = useState<string[]>([]);
   const [shareAchievement, setShareAchievement] = useState<Achievement | null>(null);
   const [shareUnlockedAt, setShareUnlockedAt] = useState<string | undefined>();
   const [celebratingMilestone, setCelebratingMilestone] = useState<MilestoneType | null>(null);
   const [achievedMilestones, setAchievedMilestones] = useState<MilestoneType[]>([]);
+  const [sortOrder, setSortOrder] = useState<'default' | 'rarest' | 'common'>('default');
   
   const { rarityData, totalUsers, isLoading: rarityLoading, syncLocalUnlocks } = useAchievementRarity();
 
@@ -309,9 +311,21 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
     { id: 'special', label: language === 'ta' ? 'சிறப்பு' : 'Special', icon: <Star className="h-4 w-4" /> },
   ];
 
-  const filteredAchievements = ACHIEVEMENTS.filter(a => 
-    selectedCategory === 'all' || a.category === selectedCategory
-  );
+  const filteredAchievements = useMemo(() => {
+    let achievements = ACHIEVEMENTS.filter(a => 
+      selectedCategory === 'all' || a.category === selectedCategory
+    );
+    
+    if (sortOrder !== 'default' && Object.keys(rarityData).length > 0) {
+      achievements = [...achievements].sort((a, b) => {
+        const rarityA = rarityData[a.id]?.unlockPercent ?? 100;
+        const rarityB = rarityData[b.id]?.unlockPercent ?? 100;
+        return sortOrder === 'rarest' ? rarityA - rarityB : rarityB - rarityA;
+      });
+    }
+    
+    return achievements;
+  }, [selectedCategory, sortOrder, rarityData]);
 
   const unlockedCount = unlockedAchievements.length;
   const totalCount = ACHIEVEMENTS.length;
@@ -391,20 +405,60 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
       </CardHeader>
 
       <CardContent className="space-y-4">
-        {/* Category Filters */}
-        <div className="flex gap-1 overflow-x-auto pb-2">
-          {categories.map(cat => (
-            <Button
-              key={cat.id}
-              variant={selectedCategory === cat.id ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => setSelectedCategory(cat.id)}
-              className="gap-1.5 whitespace-nowrap text-xs"
-            >
-              {cat.icon}
-              {cat.label}
-            </Button>
-          ))}
+        {/* Category Filters & Sort */}
+        <div className="flex flex-col gap-2">
+          <div className="flex gap-1 overflow-x-auto pb-1">
+            {categories.map(cat => (
+              <Button
+                key={cat.id}
+                variant={selectedCategory === cat.id ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setSelectedCategory(cat.id)}
+                className="gap-1.5 whitespace-nowrap text-xs"
+              >
+                {cat.icon}
+                {cat.label}
+              </Button>
+            ))}
+          </div>
+          
+          {/* Sort Options */}
+          <div className="flex items-center gap-1.5">
+            <span className="text-xs text-muted-foreground flex items-center gap-1">
+              <ArrowUpDown className="h-3 w-3" />
+              {language === 'ta' ? 'வரிசைப்படுத்து:' : 'Sort:'}
+            </span>
+            <div className="flex gap-1">
+              <Button
+                variant={sortOrder === 'default' ? 'secondary' : 'ghost'}
+                size="sm"
+                onClick={() => setSortOrder('default')}
+                className="h-7 px-2 text-xs"
+              >
+                {language === 'ta' ? 'இயல்பு' : 'Default'}
+              </Button>
+              <Button
+                variant={sortOrder === 'rarest' ? 'secondary' : 'ghost'}
+                size="sm"
+                onClick={() => setSortOrder('rarest')}
+                className="h-7 px-2 text-xs gap-1"
+                disabled={rarityLoading || Object.keys(rarityData).length === 0}
+              >
+                <Gem className="h-3 w-3 text-purple-500" />
+                {language === 'ta' ? 'அரிதானது முதலில்' : 'Rarest First'}
+              </Button>
+              <Button
+                variant={sortOrder === 'common' ? 'secondary' : 'ghost'}
+                size="sm"
+                onClick={() => setSortOrder('common')}
+                className="h-7 px-2 text-xs gap-1"
+                disabled={rarityLoading || Object.keys(rarityData).length === 0}
+              >
+                <Users className="h-3 w-3 text-green-500" />
+                {language === 'ta' ? 'பொதுவானது முதலில்' : 'Common First'}
+              </Button>
+            </div>
+          </div>
         </div>
 
         {/* Stats Overview */}
