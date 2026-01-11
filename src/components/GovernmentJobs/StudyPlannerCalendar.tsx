@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -9,11 +9,14 @@ import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Calendar as CalendarIcon, FileDown, Plus, Trash2, Clock, Target,
-  BookOpen, GraduationCap, AlertCircle, CheckCircle2
+  BookOpen, GraduationCap, AlertCircle, CheckCircle2, Copy, Repeat,
+  Zap, Sparkles
 } from 'lucide-react';
-import { format, addDays, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday, isBefore, parseISO } from 'date-fns';
+import { format, addDays, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday, isBefore, parseISO, getDay, addWeeks, startOfWeek, endOfWeek } from 'date-fns';
 import { governmentExams } from './governmentExamsData';
 import { generateStudyPlannerPDF } from './generateStudyPlannerPDF';
 import { toast } from 'sonner';
@@ -34,6 +37,109 @@ interface PracticeSchedule {
   completed: boolean;
 }
 
+interface ScheduleTemplate {
+  id: string;
+  name: string;
+  nameTamil: string;
+  description: string;
+  descriptionTamil: string;
+  icon: string;
+  pattern: 'weekday' | 'weekend' | 'alternate' | 'custom';
+  weekdays: number[]; // 0=Sunday, 1=Monday, etc.
+  activities: Array<{
+    title: string;
+    titleTamil: string;
+    type: 'practice' | 'revision' | 'mock-test' | 'rest';
+    subject: string;
+    duration: number;
+  }>;
+}
+
+// Predefined templates
+const SCHEDULE_TEMPLATES: ScheduleTemplate[] = [
+  {
+    id: 'weekday-intensive',
+    name: 'Weekday Intensive',
+    nameTamil: 'வார நாள் தீவிரம்',
+    description: 'Focused study on weekdays with rest on weekends',
+    descriptionTamil: 'வார நாட்களில் கவனம் செலுத்தும் படிப்பு, வார இறுதியில் ஓய்வு',
+    icon: '📚',
+    pattern: 'weekday',
+    weekdays: [1, 2, 3, 4, 5], // Mon-Fri
+    activities: [
+      { title: 'GK Practice', titleTamil: 'பொது அறிவு பயிற்சி', type: 'practice', subject: 'gk', duration: 45 },
+      { title: 'Math Problems', titleTamil: 'கணித கேள்விகள்', type: 'practice', subject: 'math', duration: 60 },
+    ],
+  },
+  {
+    id: 'weekend-warrior',
+    name: 'Weekend Warrior',
+    nameTamil: 'வார இறுதி போராளி',
+    description: 'Intensive mock tests and revision on weekends',
+    descriptionTamil: 'வார இறுதியில் தீவிர மாக் தேர்வுகள் மற்றும் திருத்தம்',
+    icon: '🏆',
+    pattern: 'weekend',
+    weekdays: [0, 6], // Sat-Sun
+    activities: [
+      { title: 'Full Mock Test', titleTamil: 'முழு மாக் தேர்வு', type: 'mock-test', subject: 'all', duration: 120 },
+      { title: 'Weekly Revision', titleTamil: 'வார திருத்தம்', type: 'revision', subject: 'all', duration: 90 },
+    ],
+  },
+  {
+    id: 'alternate-day',
+    name: 'Alternate Day Study',
+    nameTamil: 'மாற்று நாள் படிப்பு',
+    description: 'Study one day, rest the next for balanced preparation',
+    descriptionTamil: 'ஒரு நாள் படிப்பு, அடுத்த நாள் ஓய்வு - சமநிலையான தயாரிப்பு',
+    icon: '⚖️',
+    pattern: 'alternate',
+    weekdays: [1, 3, 5], // Mon, Wed, Fri
+    activities: [
+      { title: 'Mixed Practice', titleTamil: 'கலப்பு பயிற்சி', type: 'practice', subject: 'all', duration: 90 },
+    ],
+  },
+  {
+    id: 'daily-consistent',
+    name: 'Daily Consistency',
+    nameTamil: 'தினசரி நிலைத்தன்மை',
+    description: 'Short daily sessions for steady progress',
+    descriptionTamil: 'நிலையான முன்னேற்றத்திற்கு குறுகிய தினசரி அமர்வுகள்',
+    icon: '🔥',
+    pattern: 'custom',
+    weekdays: [0, 1, 2, 3, 4, 5, 6], // All days
+    activities: [
+      { title: 'Quick Review', titleTamil: 'விரைவு மதிப்பாய்வு', type: 'practice', subject: 'all', duration: 30 },
+    ],
+  },
+  {
+    id: 'exam-prep-mode',
+    name: 'Exam Prep Mode',
+    nameTamil: 'தேர்வு தயாரிப்பு முறை',
+    description: 'Intensive preparation with daily mock tests',
+    descriptionTamil: 'தினசரி மாக் தேர்வுகளுடன் தீவிர தயாரிப்பு',
+    icon: '🎯',
+    pattern: 'custom',
+    weekdays: [1, 2, 3, 4, 5, 6], // Mon-Sat
+    activities: [
+      { title: 'Morning Revision', titleTamil: 'காலை திருத்தம்', type: 'revision', subject: 'all', duration: 45 },
+      { title: 'Afternoon Mock', titleTamil: 'மதியம் மாக்', type: 'mock-test', subject: 'all', duration: 90 },
+    ],
+  },
+  {
+    id: 'subject-rotation',
+    name: 'Subject Rotation',
+    nameTamil: 'பாட சுழற்சி',
+    description: 'Different subject focus each weekday',
+    descriptionTamil: 'ஒவ்வொரு வார நாளிலும் வெவ்வேறு பாட கவனம்',
+    icon: '🔄',
+    pattern: 'weekday',
+    weekdays: [1, 2, 3, 4, 5],
+    activities: [
+      { title: 'Subject Focus', titleTamil: 'பாட கவனம்', type: 'practice', subject: 'all', duration: 60 },
+    ],
+  },
+];
+
 const SCHEDULE_TYPES = [
   { value: 'practice', label: 'Practice', labelTa: 'பயிற்சி', color: 'bg-blue-500' },
   { value: 'revision', label: 'Revision', labelTa: 'திருத்தம்', color: 'bg-purple-500' },
@@ -49,6 +155,8 @@ const SUBJECTS = [
   { value: 'polity', label: 'Polity', labelTa: 'அரசியல்' },
   { value: 'all', label: 'All Subjects', labelTa: 'அனைத்து பாடங்கள்' },
 ];
+
+const WEEKDAY_SUBJECTS = ['gk', 'math', 'reasoning', 'english', 'polity'];
 
 const getStoredSchedules = (): PracticeSchedule[] => {
   try {
@@ -67,6 +175,11 @@ export const StudyPlannerCalendar = ({ language }: StudyPlannerCalendarProps) =>
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
   const [schedules, setSchedules] = useState<PracticeSchedule[]>(getStoredSchedules());
   const [showAddForm, setShowAddForm] = useState(false);
+  const [showTemplateDialog, setShowTemplateDialog] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<ScheduleTemplate | null>(null);
+  const [templateWeeks, setTemplateWeeks] = useState(2);
+  const [templateStartDate, setTemplateStartDate] = useState<Date>(new Date());
+  const [selectedWeekdays, setSelectedWeekdays] = useState<number[]>([]);
   
   // Form state
   const [newSchedule, setNewSchedule] = useState({
@@ -152,6 +265,87 @@ export const StudyPlannerCalendar = ({ language }: StudyPlannerCalendarProps) =>
     saveSchedules(updated);
   };
 
+  // Apply template to generate recurring schedules
+  const handleApplyTemplate = () => {
+    if (!selectedTemplate) return;
+
+    const newSchedules: PracticeSchedule[] = [];
+    const startDate = templateStartDate;
+    const weekdaysToUse = selectedWeekdays.length > 0 ? selectedWeekdays : selectedTemplate.weekdays;
+
+    // Generate schedules for the specified number of weeks
+    for (let week = 0; week < templateWeeks; week++) {
+      const weekStart = addWeeks(startDate, week);
+      
+      weekdaysToUse.forEach((dayOfWeek, dayIndex) => {
+        // Find the date for this day of week in the current week
+        const daysFromStart = (dayOfWeek - getDay(weekStart) + 7) % 7;
+        const targetDate = addDays(weekStart, daysFromStart);
+        
+        // Skip past dates
+        if (isBefore(targetDate, new Date()) && !isToday(targetDate)) return;
+
+        selectedTemplate.activities.forEach((activity, actIndex) => {
+          // For subject rotation template, rotate subjects by day
+          let subject = activity.subject;
+          if (selectedTemplate.id === 'subject-rotation') {
+            subject = WEEKDAY_SUBJECTS[dayIndex % WEEKDAY_SUBJECTS.length];
+          }
+
+          const schedule: PracticeSchedule = {
+            id: `template_${Date.now()}_${week}_${dayOfWeek}_${actIndex}`,
+            date: format(targetDate, 'yyyy-MM-dd'),
+            title: language === 'ta' ? activity.titleTamil : activity.title,
+            titleTamil: activity.titleTamil,
+            type: activity.type,
+            subject,
+            duration: activity.duration,
+            completed: false,
+          };
+          newSchedules.push(schedule);
+        });
+      });
+    }
+
+    // Merge with existing schedules (avoid duplicates on same date)
+    const updated = [...schedules];
+    newSchedules.forEach(newSch => {
+      const existingOnDate = updated.filter(s => s.date === newSch.date);
+      const isDuplicate = existingOnDate.some(s => 
+        s.title === newSch.title && s.type === newSch.type
+      );
+      if (!isDuplicate) {
+        updated.push(newSch);
+      }
+    });
+
+    setSchedules(updated);
+    saveSchedules(updated);
+    setShowTemplateDialog(false);
+    setSelectedTemplate(null);
+    setSelectedWeekdays([]);
+    
+    toast.success(
+      language === 'en' 
+        ? `Added ${newSchedules.length} scheduled activities for ${templateWeeks} weeks!` 
+        : `${templateWeeks} வாரங்களுக்கு ${newSchedules.length} திட்டமிடப்பட்ட செயல்பாடுகள் சேர்க்கப்பட்டன!`
+    );
+  };
+
+  const toggleWeekday = (day: number) => {
+    setSelectedWeekdays(prev => 
+      prev.includes(day) ? prev.filter(d => d !== day) : [...prev, day]
+    );
+  };
+
+  const getWeekdayName = (day: number, short = false) => {
+    const names = {
+      en: short ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      ta: short ? ['ஞா', 'தி', 'செ', 'பு', 'வி', 'வெ', 'ச'] : ['ஞாயிறு', 'திங்கள்', 'செவ்வாய்', 'புதன்', 'வியாழன்', 'வெள்ளி', 'சனி'],
+    };
+    return names[language][day];
+  };
+
   const handleExportPDF = () => {
     toast.info(language === 'en' ? 'Generating study planner...' : 'படிப்பு திட்டம் உருவாக்கப்படுகிறது...');
     
@@ -204,17 +398,202 @@ export const StudyPlannerCalendar = ({ language }: StudyPlannerCalendarProps) =>
             <CalendarIcon className="h-5 w-5 text-indigo-500" />
             {language === 'ta' ? 'படிப்பு திட்டமிடுதல் நாட்காட்டி' : 'Study Planner Calendar'}
           </CardTitle>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleExportPDF}
-            className="gap-2 bg-gradient-to-r from-indigo-50 to-purple-50 hover:from-indigo-100 hover:to-purple-100 border-indigo-200"
-          >
-            <FileDown className="h-4 w-4 text-indigo-600" />
-            <span className="hidden sm:inline">
-              {language === 'ta' ? 'PDF பதிவிறக்கம்' : 'Export PDF'}
-            </span>
-          </Button>
+          <div className="flex items-center gap-2">
+            <Dialog open={showTemplateDialog} onOpenChange={setShowTemplateDialog}>
+              <DialogTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-2 bg-gradient-to-r from-amber-50 to-orange-50 hover:from-amber-100 hover:to-orange-100 border-amber-200"
+                >
+                  <Sparkles className="h-4 w-4 text-amber-600" />
+                  <span className="hidden sm:inline">
+                    {language === 'ta' ? 'டெம்ப்ளேட்' : 'Templates'}
+                  </span>
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl max-h-[90vh] overflow-hidden">
+                <DialogHeader>
+                  <DialogTitle className="flex items-center gap-2">
+                    <Repeat className="h-5 w-5 text-amber-500" />
+                    {language === 'ta' ? 'மீண்டும் நிகழும் அட்டவணை டெம்ப்ளேட்கள்' : 'Recurring Schedule Templates'}
+                  </DialogTitle>
+                </DialogHeader>
+                
+                <ScrollArea className="max-h-[60vh] pr-4">
+                  {!selectedTemplate ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 py-4">
+                      {SCHEDULE_TEMPLATES.map((template) => (
+                        <motion.button
+                          key={template.id}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => {
+                            setSelectedTemplate(template);
+                            setSelectedWeekdays(template.weekdays);
+                          }}
+                          className="p-4 rounded-xl border-2 border-gray-200 hover:border-amber-300 bg-gradient-to-br from-white to-gray-50 text-left transition-all"
+                        >
+                          <div className="flex items-center gap-3 mb-2">
+                            <span className="text-2xl">{template.icon}</span>
+                            <div>
+                              <p className="font-semibold text-gray-800">
+                                {language === 'ta' ? template.nameTamil : template.name}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                {template.weekdays.map(d => getWeekdayName(d, true)).join(', ')}
+                              </p>
+                            </div>
+                          </div>
+                          <p className="text-sm text-gray-600">
+                            {language === 'ta' ? template.descriptionTamil : template.description}
+                          </p>
+                          <div className="flex flex-wrap gap-1 mt-2">
+                            {template.activities.map((act, i) => (
+                              <Badge key={i} variant="outline" className="text-[10px]">
+                                {language === 'ta' ? act.titleTamil : act.title}
+                              </Badge>
+                            ))}
+                          </div>
+                        </motion.button>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="space-y-4 py-4">
+                      {/* Selected Template Header */}
+                      <div className="p-4 rounded-xl bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200">
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="text-3xl">{selectedTemplate.icon}</span>
+                          <div>
+                            <p className="font-bold text-gray-800">
+                              {language === 'ta' ? selectedTemplate.nameTamil : selectedTemplate.name}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              {language === 'ta' ? selectedTemplate.descriptionTamil : selectedTemplate.description}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Duration Selection */}
+                      <div>
+                        <Label className="text-sm font-medium">
+                          {language === 'ta' ? 'எத்தனை வாரங்கள்?' : 'How many weeks?'}
+                        </Label>
+                        <div className="flex gap-2 mt-2">
+                          {[1, 2, 3, 4].map(weeks => (
+                            <Button
+                              key={weeks}
+                              variant={templateWeeks === weeks ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => setTemplateWeeks(weeks)}
+                              className="flex-1"
+                            >
+                              {weeks} {language === 'ta' ? 'வாரம்' : weeks === 1 ? 'Week' : 'Weeks'}
+                            </Button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Weekday Selection */}
+                      <div>
+                        <Label className="text-sm font-medium">
+                          {language === 'ta' ? 'நாட்களை தேர்ந்தெடுக்கவும்' : 'Select Days'}
+                        </Label>
+                        <div className="flex flex-wrap gap-2 mt-2">
+                          {[0, 1, 2, 3, 4, 5, 6].map(day => (
+                            <Button
+                              key={day}
+                              variant={selectedWeekdays.includes(day) ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => toggleWeekday(day)}
+                              className="min-w-[60px]"
+                            >
+                              {getWeekdayName(day, true)}
+                            </Button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Activities Preview */}
+                      <div>
+                        <Label className="text-sm font-medium">
+                          {language === 'ta' ? 'செயல்பாடுகள்' : 'Activities per day'}
+                        </Label>
+                        <div className="space-y-2 mt-2">
+                          {selectedTemplate.activities.map((activity, i) => (
+                            <div key={i} className="p-2 rounded-lg bg-gray-50 border flex items-center gap-3">
+                              <Badge className={getTypeConfig(activity.type).color}>
+                                {language === 'ta' 
+                                  ? SCHEDULE_TYPES.find(t => t.value === activity.type)?.labelTa 
+                                  : SCHEDULE_TYPES.find(t => t.value === activity.type)?.label}
+                              </Badge>
+                              <span className="font-medium text-sm">
+                                {language === 'ta' ? activity.titleTamil : activity.title}
+                              </span>
+                              <span className="text-xs text-gray-500 ml-auto">
+                                {activity.duration} {language === 'ta' ? 'நிமிடம்' : 'min'}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Summary */}
+                      <div className="p-3 rounded-lg bg-blue-50 border border-blue-200">
+                        <p className="text-sm text-blue-800">
+                          <Zap className="h-4 w-4 inline mr-1" />
+                          {language === 'ta' 
+                            ? `${templateWeeks} வாரங்களில் ${selectedWeekdays.length} நாட்களுக்கு ${selectedWeekdays.length * templateWeeks * selectedTemplate.activities.length} செயல்பாடுகள் சேர்க்கப்படும்`
+                            : `This will add ${selectedWeekdays.length * templateWeeks * selectedTemplate.activities.length} activities across ${templateWeeks} weeks on ${selectedWeekdays.length} days each week`}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </ScrollArea>
+
+                <DialogFooter className="gap-2">
+                  {selectedTemplate && (
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setSelectedTemplate(null);
+                        setSelectedWeekdays([]);
+                      }}
+                    >
+                      {language === 'ta' ? 'பின்னால்' : 'Back'}
+                    </Button>
+                  )}
+                  <Button
+                    onClick={() => {
+                      if (selectedTemplate) {
+                        handleApplyTemplate();
+                      } else {
+                        setShowTemplateDialog(false);
+                      }
+                    }}
+                    disabled={selectedTemplate !== null && selectedWeekdays.length === 0}
+                    className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600"
+                  >
+                    {selectedTemplate 
+                      ? (language === 'ta' ? 'டெம்ப்ளேட் பயன்படுத்து' : 'Apply Template')
+                      : (language === 'ta' ? 'மூடு' : 'Close')}
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleExportPDF}
+              className="gap-2 bg-gradient-to-r from-indigo-50 to-purple-50 hover:from-indigo-100 hover:to-purple-100 border-indigo-200"
+            >
+              <FileDown className="h-4 w-4 text-indigo-600" />
+              <span className="hidden sm:inline">
+                {language === 'ta' ? 'PDF பதிவிறக்கம்' : 'Export PDF'}
+              </span>
+            </Button>
+          </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
