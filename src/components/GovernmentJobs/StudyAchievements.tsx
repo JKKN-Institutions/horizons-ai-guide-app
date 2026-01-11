@@ -11,9 +11,14 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { AchievementShareCard } from './AchievementShareCard';
+import { MilestoneCelebration } from './MilestoneCelebration';
 
 const ACHIEVEMENTS_KEY = 'govt_study_achievements';
 const UNLOCKED_KEY = 'govt_unlocked_achievements';
+const MILESTONES_KEY = 'govt_achievement_milestones';
+
+const MILESTONE_THRESHOLDS = [50, 75, 90, 100] as const;
+type MilestoneType = typeof MILESTONE_THRESHOLDS[number];
 
 interface Achievement {
   id: string;
@@ -122,6 +127,8 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
   const [newlyUnlocked, setNewlyUnlocked] = useState<string[]>([]);
   const [shareAchievement, setShareAchievement] = useState<Achievement | null>(null);
   const [shareUnlockedAt, setShareUnlockedAt] = useState<string | undefined>();
+  const [celebratingMilestone, setCelebratingMilestone] = useState<MilestoneType | null>(null);
+  const [achievedMilestones, setAchievedMilestones] = useState<MilestoneType[]>([]);
 
   const stats = useMemo((): StudyStats => {
     let totalMinutes = 0;
@@ -205,12 +212,16 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
     };
   }, []);
 
-  // Load unlocked achievements
+  // Load unlocked achievements and milestones
   useEffect(() => {
     try {
       const stored = localStorage.getItem(UNLOCKED_KEY);
       if (stored) {
         setUnlockedAchievements(JSON.parse(stored));
+      }
+      const storedMilestones = localStorage.getItem(MILESTONES_KEY);
+      if (storedMilestones) {
+        setAchievedMilestones(JSON.parse(storedMilestones));
       }
     } catch {}
   }, []);
@@ -255,6 +266,28 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
     }
   }, [stats, unlockedAchievements, language]);
 
+  // Check for milestone achievements
+  useEffect(() => {
+    const totalCount = ACHIEVEMENTS.length;
+    const currentPercent = (unlockedAchievements.length / totalCount) * 100;
+
+    for (const threshold of MILESTONE_THRESHOLDS) {
+      if (currentPercent >= threshold && !achievedMilestones.includes(threshold)) {
+        // New milestone reached!
+        const updatedMilestones = [...achievedMilestones, threshold];
+        setAchievedMilestones(updatedMilestones);
+        localStorage.setItem(MILESTONES_KEY, JSON.stringify(updatedMilestones));
+        
+        // Trigger celebration with slight delay for effect
+        setTimeout(() => {
+          setCelebratingMilestone(threshold);
+        }, 500);
+        
+        break; // Only celebrate one milestone at a time
+      }
+    }
+  }, [unlockedAchievements, achievedMilestones]);
+
   const categories = [
     { id: 'all', label: language === 'ta' ? 'அனைத்தும்' : 'All', icon: <Sparkles className="h-4 w-4" /> },
     { id: 'hours', label: language === 'ta' ? 'மணிநேரம்' : 'Hours', icon: <Clock className="h-4 w-4" /> },
@@ -284,13 +317,56 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
             {unlockedCount} / {totalCount}
           </Badge>
         </div>
-        <div className="mt-2">
-          <Progress value={progressPercent} className="h-2 bg-amber-100" />
-          <p className="text-xs text-muted-foreground mt-1">
-            {language === 'ta' 
-              ? `${Math.round(progressPercent)}% சாதனைகள் திறக்கப்பட்டன`
-              : `${Math.round(progressPercent)}% achievements unlocked`}
-          </p>
+        {/* Progress with Milestone Markers */}
+        <div className="mt-2 relative">
+          <div className="relative">
+            <Progress value={progressPercent} className="h-3 bg-amber-100" />
+            {/* Milestone markers */}
+            <div className="absolute inset-0 flex items-center pointer-events-none">
+              {MILESTONE_THRESHOLDS.slice(0, -1).map((threshold) => (
+                <div
+                  key={threshold}
+                  className="absolute h-full flex items-center"
+                  style={{ left: `${threshold}%` }}
+                >
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      scale: achievedMilestones.includes(threshold) ? [1, 1.2, 1] : 1,
+                    }}
+                    className={`w-3 h-3 rounded-full border-2 border-white shadow-sm ${
+                      achievedMilestones.includes(threshold)
+                        ? 'bg-gradient-to-br from-amber-400 to-orange-500'
+                        : progressPercent >= threshold - 5
+                        ? 'bg-amber-200'
+                        : 'bg-gray-200'
+                    }`}
+                    title={`${threshold}% ${language === 'ta' ? 'மைல்கல்' : 'Milestone'}`}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex justify-between mt-1">
+            <p className="text-xs text-muted-foreground">
+              {language === 'ta' 
+                ? `${Math.round(progressPercent)}% சாதனைகள் திறக்கப்பட்டன`
+                : `${Math.round(progressPercent)}% achievements unlocked`}
+            </p>
+            {/* Next milestone indicator */}
+            {progressPercent < 100 && (
+              <p className="text-xs text-muted-foreground">
+                {(() => {
+                  const nextMilestone = MILESTONE_THRESHOLDS.find(t => progressPercent < t);
+                  if (!nextMilestone) return null;
+                  const remaining = Math.ceil((nextMilestone / 100) * totalCount) - unlockedCount;
+                  return language === 'ta' 
+                    ? `${nextMilestone}% வரை ${remaining} தேவை`
+                    : `${remaining} to ${nextMilestone}%`;
+                })()}
+              </p>
+            )}
+          </div>
         </div>
       </CardHeader>
 
@@ -453,6 +529,13 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
           onClose={() => setShareAchievement(null)}
         />
       )}
+
+      {/* Milestone Celebration Modal */}
+      <MilestoneCelebration
+        milestone={celebratingMilestone}
+        language={language}
+        onClose={() => setCelebratingMilestone(null)}
+      />
     </Card>
   );
 };

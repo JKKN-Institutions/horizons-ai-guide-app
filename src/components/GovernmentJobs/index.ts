@@ -22,5 +22,6 @@ export { SmartGoalSuggestions } from './SmartGoalSuggestions';
 export { StudyAchievements } from './StudyAchievements';
 export { AchievementLeaderboard } from './AchievementLeaderboard';
 export { AchievementShareCard } from './AchievementShareCard';
+export { MilestoneCelebration } from './MilestoneCelebration';
 export { governmentExams, categoryInfo } from './governmentExamsData';
 export type { GovernmentExam, CategoryType, SalaryRangeType, StatusType } from './types';
