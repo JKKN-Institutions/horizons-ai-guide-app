@@ -23,13 +23,16 @@ import {
 import { 
   Target, Clock, Calendar, Edit3, Trash2, Plus, Trophy, 
   TrendingUp, CheckCircle2, AlertCircle, Flame, BarChart3,
-  ChevronRight, Star, Award
+  ChevronRight, Star, Award, Bell, BellOff, BellRing
 } from 'lucide-react';
 import { toast } from 'sonner';
-import { startOfWeek, endOfWeek, format, isWithinInterval, subWeeks, addWeeks, isSameWeek } from 'date-fns';
+import { Switch } from '@/components/ui/switch';
+import { startOfWeek, endOfWeek, format, isWithinInterval, subWeeks, addWeeks, isSameWeek, getDay } from 'date-fns';
 
 const STORAGE_KEY = 'govt_weekly_study_goals';
 const HISTORY_KEY = 'govt_weekly_goals_history';
+const REMINDER_KEY = 'govt_weekly_goal_reminders';
+const LAST_REMINDER_KEY = 'govt_weekly_last_reminder';
 
 interface WeeklyGoal {
   id: string;
@@ -45,6 +48,13 @@ interface WeeklyProgress {
   goalId: string | null;
   goalTarget: number | null;
   achieved: boolean;
+}
+
+interface ReminderSettings {
+  enabled: boolean;
+  notificationsEnabled: boolean;
+  reminderDays: number[]; // 0=Sunday, 1=Monday, etc. Default: Wed(3), Fri(5)
+  lastShownDate: string | null;
 }
 
 interface WeeklyStudyGoalsProps {
@@ -68,10 +78,23 @@ export const WeeklyStudyGoals = ({ language }: WeeklyStudyGoalsProps) => {
   const [selectedHours, setSelectedHours] = useState<number>(10);
   const [customHours, setCustomHours] = useState<string>('');
   const [showHistory, setShowHistory] = useState(false);
+  const [reminderSettings, setReminderSettings] = useState<ReminderSettings>({
+    enabled: true,
+    notificationsEnabled: false,
+    reminderDays: [3, 5], // Wednesday and Friday
+    lastShownDate: null,
+  });
+  const [showReminderSettings, setShowReminderSettings] = useState(false);
+  const [behindScheduleWarning, setBehindScheduleWarning] = useState<{
+    show: boolean;
+    hoursNeeded: number;
+    daysLeft: number;
+  } | null>(null);
 
   // Load data from localStorage and aggregate study time
   useEffect(() => {
     loadGoalData();
+    loadReminderSettings();
     aggregateWeeklyProgress();
   }, []);
 
@@ -97,6 +120,62 @@ export const WeeklyStudyGoals = ({ language }: WeeklyStudyGoalsProps) => {
     } catch (error) {
       console.error('Error loading weekly goals:', error);
     }
+  };
+
+  const loadReminderSettings = () => {
+    try {
+      const stored = localStorage.getItem(REMINDER_KEY);
+      if (stored) {
+        setReminderSettings(JSON.parse(stored));
+      }
+    } catch (error) {
+      console.error('Error loading reminder settings:', error);
+    }
+  };
+
+  const saveReminderSettings = (settings: ReminderSettings) => {
+    setReminderSettings(settings);
+    localStorage.setItem(REMINDER_KEY, JSON.stringify(settings));
+  };
+
+  const requestNotificationPermission = async () => {
+    if (!('Notification' in window)) {
+      toast.error(language === 'ta' ? 'இந்த உலாவி அறிவிப்புகளை ஆதரிக்காது' : 'This browser does not support notifications');
+      return false;
+    }
+
+    if (Notification.permission === 'granted') {
+      return true;
+    }
+
+    if (Notification.permission !== 'denied') {
+      const permission = await Notification.requestPermission();
+      return permission === 'granted';
+    }
+
+    return false;
+  };
+
+  const toggleNotifications = async () => {
+    if (!reminderSettings.notificationsEnabled) {
+      const granted = await requestNotificationPermission();
+      if (granted) {
+        saveReminderSettings({ ...reminderSettings, notificationsEnabled: true });
+        toast.success(language === 'ta' ? 'அறிவிப்புகள் இயக்கப்பட்டன!' : 'Notifications enabled!');
+      } else {
+        toast.error(language === 'ta' ? 'அறிவிப்பு அனுமதி மறுக்கப்பட்டது' : 'Notification permission denied');
+      }
+    } else {
+      saveReminderSettings({ ...reminderSettings, notificationsEnabled: false });
+      toast.success(language === 'ta' ? 'அறிவிப்புகள் முடக்கப்பட்டன' : 'Notifications disabled');
+    }
+  };
+
+  const toggleReminderDay = (day: number) => {
+    const newDays = reminderSettings.reminderDays.includes(day)
+      ? reminderSettings.reminderDays.filter(d => d !== day)
+      : [...reminderSettings.reminderDays, day].sort();
+    saveReminderSettings({ ...reminderSettings, reminderDays: newDays });
   };
 
   const aggregateWeeklyProgress = () => {
@@ -272,6 +351,84 @@ export const WeeklyStudyGoals = ({ language }: WeeklyStudyGoalsProps) => {
     return { goalsSet, goalsAchieved, totalHours, avgHours, streak };
   }, [weeklyHistory]);
 
+  // Check if user is behind schedule and should show reminder
+  useEffect(() => {
+    if (!currentGoal || !reminderSettings.enabled) {
+      setBehindScheduleWarning(null);
+      return;
+    }
+
+    const today = new Date();
+    const dayOfWeek = getDay(today);
+    const todayStr = format(today, 'yyyy-MM-dd');
+    
+    // Check if today is a reminder day
+    if (!reminderSettings.reminderDays.includes(dayOfWeek)) {
+      return;
+    }
+
+    // Check if we already showed reminder today
+    const lastReminder = localStorage.getItem(LAST_REMINDER_KEY);
+    if (lastReminder === todayStr) {
+      return;
+    }
+
+    // Calculate progress and expected progress
+    const currentHoursNow = (currentWeekProgress?.totalMinutes || 0) / 60;
+    const weekEndDate = endOfWeek(today, { weekStartsOn: 1 });
+    const daysLeft = Math.ceil((weekEndDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+    
+    // Calculate expected progress (linear pace)
+    const weekStartDate = startOfWeek(today, { weekStartsOn: 1 });
+    const daysPassed = Math.ceil((today.getTime() - weekStartDate.getTime()) / (1000 * 60 * 60 * 24));
+    const expectedHours = (currentGoal.targetHours / 7) * daysPassed;
+    
+    // If behind by more than 20% of expected
+    const behindThreshold = expectedHours * 0.8;
+    
+    if (currentHoursNow < behindThreshold && currentHoursNow < currentGoal.targetHours) {
+      const hoursNeeded = currentGoal.targetHours - currentHoursNow;
+      
+      setBehindScheduleWarning({
+        show: true,
+        hoursNeeded: Math.round(hoursNeeded * 10) / 10,
+        daysLeft,
+      });
+
+      // Show toast notification
+      toast.warning(
+        language === 'ta' 
+          ? `⚠️ இலக்கை அடைய ${hoursNeeded.toFixed(1)} மணி நேரம் தேவை!` 
+          : `⚠️ ${hoursNeeded.toFixed(1)}h needed to reach your weekly goal!`,
+        {
+          duration: 5000,
+          description: language === 'ta' 
+            ? `${daysLeft} நாட்கள் மீதம்` 
+            : `${daysLeft} days remaining`,
+        }
+      );
+
+      // Try to send browser notification
+      if (reminderSettings.notificationsEnabled && 'Notification' in window) {
+        if (Notification.permission === 'granted') {
+          new Notification(
+            language === 'ta' ? 'படிப்பு இலக்கு நினைவூட்டல்' : 'Study Goal Reminder',
+            {
+              body: language === 'ta' 
+                ? `இலக்கை அடைய ${hoursNeeded.toFixed(1)} மணி நேரம் தேவை. ${daysLeft} நாட்கள் மீதம்!`
+                : `You need ${hoursNeeded.toFixed(1)} more hours to reach your goal. ${daysLeft} days left!`,
+              icon: '📚',
+              tag: 'weekly-goal-reminder',
+            }
+          );
+        }
+      }
+
+      // Mark reminder as shown today
+      localStorage.setItem(LAST_REMINDER_KEY, todayStr);
+    }
+  }, [currentGoal, currentWeekProgress, reminderSettings, language]);
+
   const getDayName = (date: string, lang: 'en' | 'ta') => {
     const dayNames = {
       en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -279,6 +436,14 @@ export const WeeklyStudyGoals = ({ language }: WeeklyStudyGoalsProps) => {
     };
     const dayIndex = new Date(date).getDay();
     return dayNames[lang][dayIndex];
+  };
+
+  const getReminderDayLabel = (day: number) => {
+    const dayNames = {
+      en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      ta: ['ஞா', 'தி', 'செ', 'பு', 'வி', 'வெ', 'ச']
+    };
+    return dayNames[language][day];
   };
 
   return (
@@ -295,6 +460,18 @@ export const WeeklyStudyGoals = ({ language }: WeeklyStudyGoalsProps) => {
               {weeklyStats.streak} {language === 'ta' ? 'வாரம்' : 'week'} {language === 'ta' ? 'தொடர்' : 'streak'}
             </Badge>
           )}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8"
+            onClick={() => setShowReminderSettings(!showReminderSettings)}
+          >
+            {reminderSettings.enabled ? (
+              <BellRing className="h-4 w-4 text-indigo-500" />
+            ) : (
+              <BellOff className="h-4 w-4 text-gray-400" />
+            )}
+          </Button>
         </div>
         <p className="text-xs text-muted-foreground mt-1">
           {format(startOfWeek(new Date(), { weekStartsOn: 1 }), 'MMM d')} - {format(endOfWeek(new Date(), { weekStartsOn: 1 }), 'MMM d, yyyy')}
@@ -302,6 +479,139 @@ export const WeeklyStudyGoals = ({ language }: WeeklyStudyGoalsProps) => {
       </CardHeader>
       
       <CardContent className="space-y-4">
+        {/* Reminder Settings Panel */}
+        <AnimatePresence>
+          {showReminderSettings && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="overflow-hidden"
+            >
+              <div className="p-4 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200 space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Bell className="h-5 w-5 text-amber-600" />
+                    <span className="font-medium text-amber-800">
+                      {language === 'ta' ? 'நினைவூட்டல் அமைப்புகள்' : 'Reminder Settings'}
+                    </span>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowReminderSettings(false)}
+                    className="h-7 w-7 p-0"
+                  >
+                    ×
+                  </Button>
+                </div>
+
+                <div className="space-y-3">
+                  {/* Enable/Disable Reminders */}
+                  <div className="flex items-center justify-between">
+                    <Label className="text-sm text-amber-700">
+                      {language === 'ta' ? 'நினைவூட்டல்களை இயக்கு' : 'Enable Reminders'}
+                    </Label>
+                    <Switch
+                      checked={reminderSettings.enabled}
+                      onCheckedChange={(checked) => saveReminderSettings({ ...reminderSettings, enabled: checked })}
+                    />
+                  </div>
+
+                  {reminderSettings.enabled && (
+                    <>
+                      {/* Browser Notifications */}
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <Label className="text-sm text-amber-700">
+                            {language === 'ta' ? 'உலாவி அறிவிப்புகள்' : 'Browser Notifications'}
+                          </Label>
+                          <p className="text-xs text-amber-600">
+                            {language === 'ta' ? 'பின்னணியில் அறிவிப்புகளைப் பெறுங்கள்' : 'Get notified even when tab is closed'}
+                          </p>
+                        </div>
+                        <Switch
+                          checked={reminderSettings.notificationsEnabled}
+                          onCheckedChange={toggleNotifications}
+                        />
+                      </div>
+
+                      {/* Reminder Days */}
+                      <div>
+                        <Label className="text-sm text-amber-700 mb-2 block">
+                          {language === 'ta' ? 'நினைவூட்டல் நாட்கள்' : 'Reminder Days'}
+                        </Label>
+                        <div className="flex gap-1">
+                          {[1, 2, 3, 4, 5, 6, 0].map((day) => (
+                            <button
+                              key={day}
+                              onClick={() => toggleReminderDay(day)}
+                              className={`w-9 h-9 rounded-full text-xs font-medium transition-all ${
+                                reminderSettings.reminderDays.includes(day)
+                                  ? 'bg-amber-500 text-white shadow-md'
+                                  : 'bg-white text-amber-700 border border-amber-200 hover:bg-amber-100'
+                              }`}
+                            >
+                              {getReminderDayLabel(day)}
+                            </button>
+                          ))}
+                        </div>
+                        <p className="text-xs text-amber-600 mt-2">
+                          {language === 'ta' 
+                            ? 'இந்த நாட்களில் நீங்கள் பின்தங்கியிருந்தால் நினைவூட்டல் பெறுவீர்கள்' 
+                            : "You'll get reminders on these days if you're behind schedule"}
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Behind Schedule Warning */}
+        <AnimatePresence>
+          {behindScheduleWarning?.show && !isGoalAchieved && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="p-4 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200"
+            >
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center flex-shrink-0">
+                  <AlertCircle className="h-5 w-5 text-white" />
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold text-amber-800">
+                    {language === 'ta' ? '⚠️ இலக்கை அடைய பின்தங்கியுள்ளீர்கள்!' : '⚠️ You\'re Behind Schedule!'}
+                  </p>
+                  <p className="text-sm text-amber-700 mt-1">
+                    {language === 'ta' 
+                      ? `இலக்கை அடைய ${behindScheduleWarning.hoursNeeded} மணி நேரம் தேவை. ${behindScheduleWarning.daysLeft} நாட்கள் மீதம்.`
+                      : `You need ${behindScheduleWarning.hoursNeeded}h more to reach your goal. ${behindScheduleWarning.daysLeft} days left.`}
+                  </p>
+                  <p className="text-xs text-amber-600 mt-2 flex items-center gap-1">
+                    <TrendingUp className="h-3 w-3" />
+                    {language === 'ta' 
+                      ? `நாளுக்கு ~${(behindScheduleWarning.hoursNeeded / behindScheduleWarning.daysLeft).toFixed(1)} மணி படிக்கவும்`
+                      : `Study ~${(behindScheduleWarning.hoursNeeded / behindScheduleWarning.daysLeft).toFixed(1)}h per day to catch up`}
+                  </p>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setBehindScheduleWarning(null)}
+                  className="h-7 w-7 p-0"
+                >
+                  ×
+                </Button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Goal Achievement Banner */}
         <AnimatePresence>
           {isGoalAchieved && (
