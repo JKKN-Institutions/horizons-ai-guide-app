@@ -7,9 +7,10 @@ import { Progress } from '@/components/ui/progress';
 import { 
   Trophy, Star, Flame, Clock, Target, BookOpen, Award,
   Zap, Crown, Medal, Sparkles, Lock, CheckCircle2,
-  TrendingUp, Calendar, Brain, GraduationCap
+  TrendingUp, Calendar, Brain, GraduationCap, Share2
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { AchievementShareCard } from './AchievementShareCard';
 
 const ACHIEVEMENTS_KEY = 'govt_study_achievements';
 const UNLOCKED_KEY = 'govt_unlocked_achievements';
@@ -119,6 +120,8 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
   const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchievement[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [newlyUnlocked, setNewlyUnlocked] = useState<string[]>([]);
+  const [shareAchievement, setShareAchievement] = useState<Achievement | null>(null);
+  const [shareUnlockedAt, setShareUnlockedAt] = useState<string | undefined>();
 
   const stats = useMemo((): StudyStats => {
     let totalMinutes = 0;
@@ -327,11 +330,20 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
         {/* Achievement Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {filteredAchievements.map((achievement, index) => {
-            const isUnlocked = unlockedAchievements.some(u => u.id === achievement.id);
+            const unlockedData = unlockedAchievements.find(u => u.id === achievement.id);
+            const isUnlocked = !!unlockedData;
             const isNew = newlyUnlocked.includes(achievement.id);
             const currentValue = achievement.checkFn(stats);
             const progress = Math.min(100, (currentValue / achievement.requirement) * 100);
             const tierConfig = TIER_CONFIG[achievement.tier];
+
+            const handleShareClick = (e: React.MouseEvent) => {
+              e.stopPropagation();
+              if (isUnlocked) {
+                setShareAchievement(achievement);
+                setShareUnlockedAt(unlockedData?.unlockedAt);
+              }
+            };
 
             return (
               <motion.div
@@ -339,11 +351,12 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
                 initial={isNew ? { scale: 0.8, opacity: 0 } : false}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: isNew ? index * 0.1 : 0 }}
-                className={`relative p-3 rounded-xl border transition-all ${
+                className={`relative p-3 rounded-xl border transition-all group ${
                   isUnlocked 
-                    ? `${tierConfig.lightBg} ${tierConfig.border}` 
+                    ? `${tierConfig.lightBg} ${tierConfig.border} cursor-pointer hover:shadow-md` 
                     : 'bg-gray-50 border-gray-200 opacity-60'
                 }`}
+                onClick={handleShareClick}
               >
                 {isNew && (
                   <motion.div
@@ -353,6 +366,19 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
                   >
                     <CheckCircle2 className="h-3 w-3 text-white" />
                   </motion.div>
+                )}
+
+                {/* Share button for unlocked achievements */}
+                {isUnlocked && (
+                  <motion.button
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileHover={{ scale: 1.1 }}
+                    className="absolute top-1 right-1 w-6 h-6 rounded-full bg-white/80 shadow-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                    onClick={handleShareClick}
+                    title={language === 'ta' ? 'பகிர்' : 'Share'}
+                  >
+                    <Share2 className="h-3 w-3 text-gray-600" />
+                  </motion.button>
                 )}
 
                 <div className="flex flex-col items-center text-center">
@@ -407,7 +433,26 @@ export const StudyAchievements = ({ language }: StudyAchievementsProps) => {
             </div>
           ))}
         </div>
+
+        {/* Share hint */}
+        <p className="text-center text-[10px] text-muted-foreground">
+          {language === 'ta' 
+            ? '💡 திறக்கப்பட்ட சாதனையை பகிர கிளிக் செய்யவும்' 
+            : '💡 Click on an unlocked achievement to share it'}
+        </p>
       </CardContent>
+
+      {/* Share Modal */}
+      {shareAchievement && (
+        <AchievementShareCard
+          achievement={shareAchievement}
+          stats={stats}
+          unlockedAt={shareUnlockedAt}
+          language={language}
+          isOpen={!!shareAchievement}
+          onClose={() => setShareAchievement(null)}
+        />
+      )}
     </Card>
   );
 };
