@@ -20,6 +20,9 @@ export interface StudyStreakData {
   totalDaysPracticed: number;
   achievements: string[]; // IDs of unlocked achievements
   practiceHistory: string[]; // Array of ISO date strings (date only)
+  freezesAvailable: number; // Number of streak freezes available
+  freezesUsed: string[]; // Dates when freeze was used
+  lastFreezeEarned: string | null; // Date when last freeze was earned
 }
 
 export const ACHIEVEMENTS: Achievement[] = [
@@ -108,11 +111,18 @@ const getDefaultData = (): StudyStreakData => ({
   totalDaysPracticed: 0,
   achievements: [],
   practiceHistory: [],
+  freezesAvailable: 1, // Start with 1 free freeze
+  freezesUsed: [],
+  lastFreezeEarned: null,
 });
+
+const MAX_FREEZES = 3; // Maximum freezes a user can stockpile
+const FREEZE_EARN_STREAK = 7; // Earn a freeze every 7-day streak
 
 export const useStudyStreak = () => {
   const [data, setData] = useState<StudyStreakData>(getDefaultData());
   const [newAchievements, setNewAchievements] = useState<Achievement[]>([]);
+  const [freezeUsedToday, setFreezeUsedToday] = useState<boolean>(false);
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -120,9 +130,18 @@ export const useStudyStreak = () => {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored);
+        // Ensure freeze fields exist for backwards compatibility
+        const withFreezeFields = {
+          ...getDefaultData(),
+          ...parsed,
+          freezesAvailable: parsed.freezesAvailable ?? 1,
+          freezesUsed: parsed.freezesUsed ?? [],
+          lastFreezeEarned: parsed.lastFreezeEarned ?? null,
+        };
         // Check and update streak based on current date
-        const updatedData = validateStreak(parsed);
+        const { data: updatedData, freezeUsed } = validateStreak(withFreezeFields);
         setData(updatedData);
+        setFreezeUsedToday(freezeUsed);
         saveToStorage(updatedData);
       }
     } catch (error) {
@@ -138,29 +157,48 @@ export const useStudyStreak = () => {
     }
   };
 
-  // Validate and potentially reset streak if a day was missed
-  const validateStreak = (storedData: StudyStreakData): StudyStreakData => {
-    if (!storedData.lastPracticeDate) return storedData;
+  // Validate and potentially reset streak if a day was missed (with freeze protection)
+  const validateStreak = (storedData: StudyStreakData): { data: StudyStreakData; freezeUsed: boolean } => {
+    if (!storedData.lastPracticeDate) return { data: storedData, freezeUsed: false };
 
     const today = getDateString(new Date());
     const lastPractice = storedData.lastPracticeDate;
 
     if (lastPractice === today) {
       // Already practiced today
-      return storedData;
+      return { data: storedData, freezeUsed: false };
     }
 
     const yesterday = getDateString(new Date(Date.now() - 24 * 60 * 60 * 1000));
 
     if (lastPractice === yesterday) {
       // Practiced yesterday, streak is still valid
-      return storedData;
+      return { data: storedData, freezeUsed: false };
+    }
+
+    // Check if we missed exactly one day and can use a freeze
+    const twoDaysAgo = getDateString(new Date(Date.now() - 2 * 24 * 60 * 60 * 1000));
+    
+    if (lastPractice === twoDaysAgo && storedData.freezesAvailable > 0 && !storedData.freezesUsed.includes(yesterday)) {
+      // Auto-use freeze to protect the streak
+      return {
+        data: {
+          ...storedData,
+          freezesAvailable: storedData.freezesAvailable - 1,
+          freezesUsed: [...storedData.freezesUsed, yesterday].slice(-30), // Keep last 30 days
+          lastPracticeDate: yesterday, // Pretend we practiced yesterday
+        },
+        freezeUsed: true,
+      };
     }
 
     // Streak broken - reset current streak but keep best streak
     return {
-      ...storedData,
-      currentStreak: 0,
+      data: {
+        ...storedData,
+        currentStreak: 0,
+      },
+      freezeUsed: false,
     };
   };
 
@@ -178,6 +216,18 @@ export const useStudyStreak = () => {
 
       let newStreak = isConsecutive ? prev.currentStreak + 1 : 1;
       const newBestStreak = Math.max(prev.bestStreak, newStreak);
+
+      // Check if user earned a new freeze (every 7-day streak milestone)
+      let newFreezesAvailable = prev.freezesAvailable;
+      let newLastFreezeEarned = prev.lastFreezeEarned;
+      
+      if (newStreak > 0 && newStreak % FREEZE_EARN_STREAK === 0 && newFreezesAvailable < MAX_FREEZES) {
+        const streakMilestone = `${newStreak}`;
+        if (newLastFreezeEarned !== streakMilestone) {
+          newFreezesAvailable = Math.min(MAX_FREEZES, newFreezesAvailable + 1);
+          newLastFreezeEarned = streakMilestone;
+        }
+      }
 
       // Check for new achievements
       const newlyUnlocked: Achievement[] = [];
@@ -208,6 +258,9 @@ export const useStudyStreak = () => {
         practiceHistory: prev.practiceHistory.includes(today)
           ? prev.practiceHistory
           : [...prev.practiceHistory, today].slice(-365), // Keep last year
+        freezesAvailable: newFreezesAvailable,
+        freezesUsed: prev.freezesUsed,
+        lastFreezeEarned: newLastFreezeEarned,
       };
 
       saveToStorage(newData);
@@ -254,6 +307,9 @@ export const useStudyStreak = () => {
 
   return {
     ...data,
+    freezeUsedToday,
+    maxFreezes: MAX_FREEZES,
+    freezeEarnStreak: FREEZE_EARN_STREAK,
     recordPractice,
     newAchievements,
     clearNewAchievements,
