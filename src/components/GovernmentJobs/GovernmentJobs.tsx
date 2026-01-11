@@ -32,6 +32,7 @@ import { StudySummaryReports } from './StudySummaryReports';
 import { StudyPlannerCalendar } from './StudyPlannerCalendar';
 import { SmartStudyRecommendations } from './SmartStudyRecommendations';
 import { ProgressTracker } from './ProgressTracker';
+import { WeeklyStudyGoals } from './WeeklyStudyGoals';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const containerVariants = {
@@ -71,6 +72,7 @@ export const GovernmentJobs = () => {
   const [showStudyPlanner, setShowStudyPlanner] = useState(false);
   const [showSmartRecommendations, setShowSmartRecommendations] = useState(false);
   const [showProgressTracker, setShowProgressTracker] = useState(false);
+  const [showWeeklyGoals, setShowWeeklyGoals] = useState(false);
   
   // Track questions completed today for daily goals - sync from localStorage
   const getQuestionsCompletedToday = (): number => {
@@ -112,6 +114,7 @@ export const GovernmentJobs = () => {
     setShowStudyPlanner(false);
     setShowSmartRecommendations(false);
     setShowProgressTracker(false);
+    setShowWeeklyGoals(false);
   };
 
   const handleQuestionsCompleted = (count: number) => {
@@ -413,6 +416,13 @@ export const GovernmentJobs = () => {
         >
           📈 {language === 'ta' ? 'முன்னேற்றம்' : 'Progress'}
         </Button>
+        <Button
+          variant={showWeeklyGoals ? "default" : "outline"}
+          onClick={() => { closeAllSections(); setShowWeeklyGoals(!showWeeklyGoals); }}
+          className="gap-2"
+        >
+          📅 {language === 'ta' ? 'வாராந்திர இலக்கு' : 'Weekly Goals'}
+        </Button>
         <ExamReminders savedExams={savedExams} />
       </div>
 
@@ -496,6 +506,11 @@ export const GovernmentJobs = () => {
         {showProgressTracker && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
             <ProgressTracker language={language} />
+          </motion.div>
+        )}
+        {showWeeklyGoals && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <WeeklyStudyGoals language={language} />
           </motion.div>
         )}
       </AnimatePresence>
