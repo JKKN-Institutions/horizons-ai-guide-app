@@ -14,6 +14,7 @@ import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { useStudyReminders } from '@/hooks/useStudyReminders';
+import { StudyPlanCalendar } from './StudyPlanCalendar';
 
 interface StudyPlannerProps {
   language: 'en' | 'ta';
@@ -777,7 +778,13 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({ language }) => {
                   ))}
                 </div>
 
-                {/* Tips Card */}
+                {/* Calendar View Integration */}
+                <StudyPlanCalendar 
+                  language={language}
+                  schedule={schedule}
+                  examName={currentExam?.name || ''}
+                  studyTime={reminderSettings.studyTime}
+                />
                 <Card className="border-dashed border-2 border-gray-200 bg-gray-50/50">
                   <CardContent className="p-4">
                     <div className="flex items-start gap-3">
