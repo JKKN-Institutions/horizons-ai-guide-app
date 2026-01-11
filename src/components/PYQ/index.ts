@@ -7,3 +7,4 @@ export { MockTestLeaderboard } from './MockTestLeaderboard';
 export { NEETSyllabus } from './NEETSyllabus';
 export { JEEMainSyllabus } from './JEEMainSyllabus';
 export { JEEAdvancedSyllabus } from './JEEAdvancedSyllabus';
+export { ChapterWeightage } from './ChapterWeightage';
