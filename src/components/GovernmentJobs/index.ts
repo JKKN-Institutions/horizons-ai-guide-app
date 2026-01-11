@@ -7,6 +7,7 @@ export { GovtMockTestProgress } from './GovtMockTestProgress';
 export { StudyStreakDisplay } from './StudyStreakDisplay';
 export { GovtPYQSection } from './GovtPYQSection';
 export { DailyPracticeReminders } from './DailyPracticeReminders';
+export { DailyPracticeGoals } from './DailyPracticeGoals';
 export { GovtLeaderboard } from './GovtLeaderboard';
 export { GovtStudyPlans } from './GovtStudyPlans';
 export { GovtForum } from './GovtForum';
