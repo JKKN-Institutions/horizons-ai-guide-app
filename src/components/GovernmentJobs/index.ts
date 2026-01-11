@@ -25,5 +25,6 @@ export { AchievementShareCard } from './AchievementShareCard';
 export { MilestoneCelebration } from './MilestoneCelebration';
 export { AchievementCollections } from './AchievementCollections';
 export { AchievementRarityBadge, getRarityTier } from './AchievementRarityBadge';
+export { default as DailyLoginRewards } from './DailyLoginRewards';
 export { governmentExams, categoryInfo } from './governmentExamsData';
 export type { GovernmentExam, CategoryType, SalaryRangeType, StatusType } from './types';
