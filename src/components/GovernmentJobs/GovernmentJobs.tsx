@@ -29,6 +29,7 @@ import { GovtForum } from './GovtForum';
 import { StudyStreakDisplay } from './StudyStreakDisplay';
 import { DailyPracticeGoals } from './DailyPracticeGoals';
 import { StudySummaryReports } from './StudySummaryReports';
+import { StudyPlannerCalendar } from './StudyPlannerCalendar';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const containerVariants = {
@@ -65,6 +66,7 @@ export const GovernmentJobs = () => {
   const [showStreak, setShowStreak] = useState(false);
   const [showDailyGoals, setShowDailyGoals] = useState(false);
   const [showSummaryReports, setShowSummaryReports] = useState(false);
+  const [showStudyPlanner, setShowStudyPlanner] = useState(false);
   
   // Track questions completed today for daily goals - sync from localStorage
   const getQuestionsCompletedToday = (): number => {
@@ -103,6 +105,7 @@ export const GovernmentJobs = () => {
     setShowStreak(false);
     setShowDailyGoals(false);
     setShowSummaryReports(false);
+    setShowStudyPlanner(false);
   };
 
   const handleQuestionsCompleted = (count: number) => {
@@ -383,6 +386,13 @@ export const GovernmentJobs = () => {
         >
           📊 {language === 'ta' ? 'சுருக்க அறிக்கை' : 'Summary Reports'}
         </Button>
+        <Button
+          variant={showStudyPlanner ? "default" : "outline"}
+          onClick={() => { closeAllSections(); setShowStudyPlanner(!showStudyPlanner); }}
+          className="gap-2"
+        >
+          🗓️ {language === 'ta' ? 'படிப்பு திட்டமிடுதல்' : 'Study Planner'}
+        </Button>
         <ExamReminders savedExams={savedExams} />
       </div>
 
@@ -451,6 +461,11 @@ export const GovernmentJobs = () => {
         {showSummaryReports && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
             <StudySummaryReports language={language} />
+          </motion.div>
+        )}
+        {showStudyPlanner && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+            <StudyPlannerCalendar language={language} />
           </motion.div>
         )}
       </AnimatePresence>
