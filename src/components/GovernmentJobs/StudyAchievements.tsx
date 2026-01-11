@@ -8,8 +8,9 @@ import {
   Trophy, Star, Flame, Clock, Target, BookOpen, Award,
   Zap, Crown, Medal, Sparkles, Lock, CheckCircle2,
   TrendingUp, Calendar, Brain, GraduationCap, Share2, Users,
-  ArrowUpDown, Gem, ArrowDown01, ArrowUp10
+  ArrowUpDown, Gem, ArrowDown01, ArrowUp10, Crosshair, Eye
 } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
 import { toast } from 'sonner';
 import { AchievementShareCard } from './AchievementShareCard';
 import { MilestoneCelebration } from './MilestoneCelebration';
@@ -134,6 +135,7 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
   const [celebratingMilestone, setCelebratingMilestone] = useState<MilestoneType | null>(null);
   const [achievedMilestones, setAchievedMilestones] = useState<MilestoneType[]>([]);
   const [sortOrder, setSortOrder] = useState<'default' | 'rarest' | 'common'>('default');
+  const [huntMode, setHuntMode] = useState<boolean>(false);
   
   const { rarityData, totalUsers, isLoading: rarityLoading, syncLocalUnlocks } = useAchievementRarity();
 
@@ -327,6 +329,40 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
     return achievements;
   }, [selectedCategory, sortOrder, rarityData]);
 
+  // Hunt mode: find close-to-unlocking rare achievements
+  const huntableAchievements = useMemo(() => {
+    const unlockedIds = unlockedAchievements.map(u => u.id);
+    
+    return ACHIEVEMENTS
+      .filter(a => !unlockedIds.includes(a.id)) // Not yet unlocked
+      .map(a => {
+        const currentValue = a.checkFn(stats);
+        const progress = (currentValue / a.requirement) * 100;
+        const remaining = a.requirement - currentValue;
+        const rarity = rarityData[a.id]?.unlockPercent ?? 100;
+        
+        // Score: higher = more huntable (close to unlock + rare)
+        // Progress weight: 0-100 mapped to 0-50 points
+        // Rarity weight: rare achievements get bonus (inverse of percent)
+        const progressScore = Math.min(progress, 100) * 0.5;
+        const rarityScore = Math.max(0, 50 - rarity); // Max 50 points for 0% unlock rate
+        const huntScore = progressScore + rarityScore;
+        
+        return {
+          achievement: a,
+          progress,
+          remaining,
+          rarity,
+          huntScore,
+          isCloseToUnlock: progress >= 50,
+          isRare: rarity <= 35,
+        };
+      })
+      .filter(h => h.progress >= 25) // At least 25% progress
+      .sort((a, b) => b.huntScore - a.huntScore)
+      .slice(0, 5); // Top 5 huntable
+  }, [unlockedAchievements, stats, rarityData]);
+
   const unlockedCount = unlockedAchievements.length;
   const totalCount = ACHIEVEMENTS.length;
   const progressPercent = (unlockedCount / totalCount) * 100;
@@ -405,6 +441,140 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
       </CardHeader>
 
       <CardContent className="space-y-4">
+        {/* Hunt Mode Toggle */}
+        <div className="flex items-center justify-between p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-100">
+          <div className="flex items-center gap-2">
+            <Crosshair className="h-4 w-4 text-purple-600" />
+            <div>
+              <span className="text-sm font-medium text-gray-700">
+                {language === 'ta' ? 'வேட்டை முறை' : 'Hunt Mode'}
+              </span>
+              <p className="text-xs text-gray-500">
+                {language === 'ta' 
+                  ? 'அரிதான சாதனைகளை கண்டறியுங்கள்' 
+                  : 'Find rare achievements to unlock'}
+              </p>
+            </div>
+          </div>
+          <Switch 
+            checked={huntMode} 
+            onCheckedChange={setHuntMode}
+            className="data-[state=checked]:bg-purple-600"
+          />
+        </div>
+
+        {/* Hunt Mode Panel */}
+        <AnimatePresence>
+          {huntMode && huntableAchievements.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="overflow-hidden"
+            >
+              <div className="p-3 bg-gradient-to-br from-purple-50 via-pink-50 to-amber-50 rounded-xl border border-purple-200 space-y-3">
+                <div className="flex items-center gap-2">
+                  <Eye className="h-4 w-4 text-purple-600" />
+                  <span className="text-sm font-semibold text-purple-800">
+                    {language === 'ta' ? 'வேட்டை இலக்குகள்' : 'Hunt Targets'}
+                  </span>
+                  <Badge className="ml-auto bg-purple-100 text-purple-700 text-xs">
+                    {huntableAchievements.length} {language === 'ta' ? 'கண்டறியப்பட்டது' : 'found'}
+                  </Badge>
+                </div>
+                
+                <div className="space-y-2">
+                  {huntableAchievements.map(({ achievement, progress, remaining, rarity, isCloseToUnlock, isRare }) => {
+                    const tierConfig = TIER_CONFIG[achievement.tier];
+                    return (
+                      <motion.div
+                        key={achievement.id}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className={`relative p-2.5 rounded-lg border-2 transition-all ${
+                          isCloseToUnlock && isRare
+                            ? 'bg-gradient-to-r from-amber-50 to-purple-50 border-purple-300 shadow-md shadow-purple-100'
+                            : isRare
+                            ? 'bg-purple-50/50 border-purple-200'
+                            : 'bg-white border-gray-200'
+                        }`}
+                      >
+                        {/* Hot target indicator */}
+                        {isCloseToUnlock && isRare && (
+                          <motion.div
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ repeat: Infinity, duration: 1.5 }}
+                            className="absolute -top-1.5 -right-1.5 px-1.5 py-0.5 bg-gradient-to-r from-orange-500 to-red-500 text-white text-[9px] font-bold rounded-full"
+                          >
+                            🔥 HOT
+                          </motion.div>
+                        )}
+                        
+                        <div className="flex items-center gap-3">
+                          <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${tierConfig.bg} flex items-center justify-center text-white text-lg shadow-sm`}>
+                            {getIcon(achievement.icon, 'h-5 w-5')}
+                          </div>
+                          
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-sm font-medium text-gray-800 truncate">
+                                {language === 'ta' ? achievement.nameTa : achievement.name}
+                              </span>
+                              {isRare && (
+                                <Badge variant="outline" className="text-[9px] px-1 py-0 border-purple-300 text-purple-600">
+                                  <Gem className="h-2.5 w-2.5 mr-0.5" />
+                                  {rarity.toFixed(0)}%
+                                </Badge>
+                              )}
+                            </div>
+                            
+                            <div className="flex items-center gap-2 mt-1">
+                              <div className="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                                <motion.div
+                                  initial={{ width: 0 }}
+                                  animate={{ width: `${Math.min(progress, 100)}%` }}
+                                  className={`h-full rounded-full ${
+                                    progress >= 75 ? 'bg-gradient-to-r from-green-400 to-emerald-500' :
+                                    progress >= 50 ? 'bg-gradient-to-r from-amber-400 to-orange-500' :
+                                    'bg-gradient-to-r from-blue-400 to-indigo-500'
+                                  }`}
+                                />
+                              </div>
+                              <span className="text-[10px] text-gray-500 whitespace-nowrap">
+                                {remaining} {language === 'ta' ? 'மீதம்' : 'to go'}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+                
+                {huntableAchievements.some(h => h.isCloseToUnlock && h.isRare) && (
+                  <p className="text-xs text-center text-purple-600 font-medium">
+                    🎯 {language === 'ta' ? 'அரிதான சாதனைகள் நெருங்கிவிட்டன!' : 'Rare achievements within reach!'}
+                  </p>
+                )}
+              </div>
+            </motion.div>
+          )}
+          
+          {huntMode && huntableAchievements.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="p-4 text-center bg-gray-50 rounded-lg border border-gray-200"
+            >
+              <p className="text-sm text-gray-500">
+                {language === 'ta' 
+                  ? 'தற்போது வேட்டையாடக்கூடிய சாதனைகள் இல்லை. மேலும் படிக்கவும்!'
+                  : 'No huntable achievements right now. Keep practicing!'}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
         {/* Category Filters & Sort */}
         <div className="flex flex-col gap-2">
           <div className="flex gap-1 overflow-x-auto pb-1">
