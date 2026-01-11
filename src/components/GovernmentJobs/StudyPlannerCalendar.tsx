@@ -11,10 +11,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Textarea } from '@/components/ui/textarea';
 import {
   Calendar as CalendarIcon, FileDown, Plus, Trash2, Clock, Target,
   BookOpen, GraduationCap, AlertCircle, CheckCircle2, Copy, Repeat,
-  Zap, Sparkles
+  Zap, Sparkles, Save, Edit3, X
 } from 'lucide-react';
 import { format, addDays, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday, isBefore, parseISO, getDay, addWeeks, startOfWeek, endOfWeek } from 'date-fns';
 import { governmentExams } from './governmentExamsData';
@@ -170,6 +171,18 @@ const saveSchedules = (schedules: PracticeSchedule[]) => {
   localStorage.setItem('govt_practice_schedules', JSON.stringify(schedules));
 };
 
+const getStoredCustomTemplates = (): ScheduleTemplate[] => {
+  try {
+    const stored = localStorage.getItem('govt_custom_templates');
+    if (stored) return JSON.parse(stored);
+  } catch {}
+  return [];
+};
+
+const saveCustomTemplates = (templates: ScheduleTemplate[]) => {
+  localStorage.setItem('govt_custom_templates', JSON.stringify(templates));
+};
+
 export const StudyPlannerCalendar = ({ language }: StudyPlannerCalendarProps) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
@@ -181,6 +194,41 @@ export const StudyPlannerCalendar = ({ language }: StudyPlannerCalendarProps) =>
   const [templateStartDate, setTemplateStartDate] = useState<Date>(new Date());
   const [selectedWeekdays, setSelectedWeekdays] = useState<number[]>([]);
   
+  // Custom template state
+  const [customTemplates, setCustomTemplates] = useState<ScheduleTemplate[]>(getStoredCustomTemplates());
+  const [showCreateTemplate, setShowCreateTemplate] = useState(false);
+  const [editingTemplateId, setEditingTemplateId] = useState<string | null>(null);
+  const [newTemplate, setNewTemplate] = useState<{
+    name: string;
+    nameTamil: string;
+    description: string;
+    descriptionTamil: string;
+    icon: string;
+    weekdays: number[];
+    activities: Array<{
+      title: string;
+      titleTamil: string;
+      type: 'practice' | 'revision' | 'mock-test' | 'rest';
+      subject: string;
+      duration: number;
+    }>;
+  }>({
+    name: '',
+    nameTamil: '',
+    description: '',
+    descriptionTamil: '',
+    icon: '📝',
+    weekdays: [1, 2, 3, 4, 5],
+    activities: [],
+  });
+  const [newActivity, setNewActivity] = useState({
+    title: '',
+    titleTamil: '',
+    type: 'practice' as 'practice' | 'revision' | 'mock-test' | 'rest',
+    subject: 'all',
+    duration: 60,
+  });
+  
   // Form state
   const [newSchedule, setNewSchedule] = useState({
     title: '',
@@ -188,6 +236,11 @@ export const StudyPlannerCalendar = ({ language }: StudyPlannerCalendarProps) =>
     subject: 'all',
     duration: 60,
   });
+
+  // All templates (predefined + custom)
+  const allTemplates = useMemo(() => {
+    return [...SCHEDULE_TEMPLATES, ...customTemplates];
+  }, [customTemplates]);
 
   // Get upcoming exams with dates
   const upcomingExams = useMemo(() => {
@@ -338,6 +391,128 @@ export const StudyPlannerCalendar = ({ language }: StudyPlannerCalendarProps) =>
     );
   };
 
+  const toggleTemplateWeekday = (day: number) => {
+    setNewTemplate(prev => ({
+      ...prev,
+      weekdays: prev.weekdays.includes(day) 
+        ? prev.weekdays.filter(d => d !== day) 
+        : [...prev.weekdays, day].sort()
+    }));
+  };
+
+  const handleAddActivity = () => {
+    if (!newActivity.title.trim()) {
+      toast.error(language === 'en' ? 'Please enter activity title' : 'செயல்பாட்டு தலைப்பை உள்ளிடவும்');
+      return;
+    }
+    setNewTemplate(prev => ({
+      ...prev,
+      activities: [...prev.activities, { ...newActivity }]
+    }));
+    setNewActivity({
+      title: '',
+      titleTamil: '',
+      type: 'practice',
+      subject: 'all',
+      duration: 60,
+    });
+    toast.success(language === 'en' ? 'Activity added!' : 'செயல்பாடு சேர்க்கப்பட்டது!');
+  };
+
+  const handleRemoveActivity = (index: number) => {
+    setNewTemplate(prev => ({
+      ...prev,
+      activities: prev.activities.filter((_, i) => i !== index)
+    }));
+  };
+
+  const handleSaveCustomTemplate = () => {
+    if (!newTemplate.name.trim()) {
+      toast.error(language === 'en' ? 'Please enter template name' : 'டெம்ப்ளேட் பெயரை உள்ளிடவும்');
+      return;
+    }
+    if (newTemplate.activities.length === 0) {
+      toast.error(language === 'en' ? 'Please add at least one activity' : 'குறைந்தது ஒரு செயல்பாட்டையாவது சேர்க்கவும்');
+      return;
+    }
+    if (newTemplate.weekdays.length === 0) {
+      toast.error(language === 'en' ? 'Please select at least one day' : 'குறைந்தது ஒரு நாளையாவது தேர்ந்தெடுக்கவும்');
+      return;
+    }
+
+    const template: ScheduleTemplate = {
+      id: editingTemplateId || `custom_${Date.now()}`,
+      name: newTemplate.name,
+      nameTamil: newTemplate.nameTamil || newTemplate.name,
+      description: newTemplate.description,
+      descriptionTamil: newTemplate.descriptionTamil || newTemplate.description,
+      icon: newTemplate.icon,
+      pattern: 'custom',
+      weekdays: newTemplate.weekdays,
+      activities: newTemplate.activities,
+    };
+
+    let updated: ScheduleTemplate[];
+    if (editingTemplateId) {
+      updated = customTemplates.map(t => t.id === editingTemplateId ? template : t);
+    } else {
+      updated = [...customTemplates, template];
+    }
+    
+    setCustomTemplates(updated);
+    saveCustomTemplates(updated);
+    resetTemplateForm();
+    toast.success(
+      language === 'en' 
+        ? (editingTemplateId ? 'Template updated!' : 'Template saved!') 
+        : (editingTemplateId ? 'டெம்ப்ளேட் புதுப்பிக்கப்பட்டது!' : 'டெம்ப்ளேட் சேமிக்கப்பட்டது!')
+    );
+  };
+
+  const handleEditTemplate = (template: ScheduleTemplate) => {
+    setEditingTemplateId(template.id);
+    setNewTemplate({
+      name: template.name,
+      nameTamil: template.nameTamil,
+      description: template.description,
+      descriptionTamil: template.descriptionTamil,
+      icon: template.icon,
+      weekdays: template.weekdays,
+      activities: template.activities,
+    });
+    setShowCreateTemplate(true);
+  };
+
+  const handleDeleteCustomTemplate = (id: string) => {
+    const updated = customTemplates.filter(t => t.id !== id);
+    setCustomTemplates(updated);
+    saveCustomTemplates(updated);
+    toast.success(language === 'en' ? 'Template deleted!' : 'டெம்ப்ளேட் நீக்கப்பட்டது!');
+  };
+
+  const resetTemplateForm = () => {
+    setShowCreateTemplate(false);
+    setEditingTemplateId(null);
+    setNewTemplate({
+      name: '',
+      nameTamil: '',
+      description: '',
+      descriptionTamil: '',
+      icon: '📝',
+      weekdays: [1, 2, 3, 4, 5],
+      activities: [],
+    });
+    setNewActivity({
+      title: '',
+      titleTamil: '',
+      type: 'practice',
+      subject: 'all',
+      duration: 60,
+    });
+  };
+
+  const TEMPLATE_ICONS = ['📝', '📚', '🎯', '⚡', '🔥', '💪', '🧠', '📖', '✨', '🌟', '📊', '🏆'];
+
   const getWeekdayName = (day: number, short = false) => {
     const names = {
       en: short ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -399,7 +574,14 @@ export const StudyPlannerCalendar = ({ language }: StudyPlannerCalendarProps) =>
             {language === 'ta' ? 'படிப்பு திட்டமிடுதல் நாட்காட்டி' : 'Study Planner Calendar'}
           </CardTitle>
           <div className="flex items-center gap-2">
-            <Dialog open={showTemplateDialog} onOpenChange={setShowTemplateDialog}>
+            <Dialog open={showTemplateDialog} onOpenChange={(open) => {
+              setShowTemplateDialog(open);
+              if (!open) {
+                resetTemplateForm();
+                setSelectedTemplate(null);
+                setSelectedWeekdays([]);
+              }
+            }}>
               <DialogTrigger asChild>
                 <Button
                   variant="outline"
@@ -416,47 +598,378 @@ export const StudyPlannerCalendar = ({ language }: StudyPlannerCalendarProps) =>
                 <DialogHeader>
                   <DialogTitle className="flex items-center gap-2">
                     <Repeat className="h-5 w-5 text-amber-500" />
-                    {language === 'ta' ? 'மீண்டும் நிகழும் அட்டவணை டெம்ப்ளேட்கள்' : 'Recurring Schedule Templates'}
+                    {showCreateTemplate 
+                      ? (language === 'ta' ? 'தனிப்பயன் டெம்ப்ளேட் உருவாக்கு' : 'Create Custom Template')
+                      : (language === 'ta' ? 'மீண்டும் நிகழும் அட்டவணை டெம்ப்ளேட்கள்' : 'Recurring Schedule Templates')}
                   </DialogTitle>
                 </DialogHeader>
                 
                 <ScrollArea className="max-h-[60vh] pr-4">
-                  {!selectedTemplate ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 py-4">
-                      {SCHEDULE_TEMPLATES.map((template) => (
-                        <motion.button
-                          key={template.id}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          onClick={() => {
-                            setSelectedTemplate(template);
-                            setSelectedWeekdays(template.weekdays);
-                          }}
-                          className="p-4 rounded-xl border-2 border-gray-200 hover:border-amber-300 bg-gradient-to-br from-white to-gray-50 text-left transition-all"
-                        >
-                          <div className="flex items-center gap-3 mb-2">
-                            <span className="text-2xl">{template.icon}</span>
-                            <div>
-                              <p className="font-semibold text-gray-800">
-                                {language === 'ta' ? template.nameTamil : template.name}
-                              </p>
-                              <p className="text-xs text-gray-500">
-                                {template.weekdays.map(d => getWeekdayName(d, true)).join(', ')}
-                              </p>
-                            </div>
-                          </div>
-                          <p className="text-sm text-gray-600">
-                            {language === 'ta' ? template.descriptionTamil : template.description}
-                          </p>
-                          <div className="flex flex-wrap gap-1 mt-2">
-                            {template.activities.map((act, i) => (
-                              <Badge key={i} variant="outline" className="text-[10px]">
-                                {language === 'ta' ? act.titleTamil : act.title}
-                              </Badge>
+                  {showCreateTemplate ? (
+                    /* Custom Template Creation Form */
+                    <div className="space-y-4 py-4">
+                      {/* Template Name & Icon */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <Label className="text-sm font-medium">
+                            {language === 'ta' ? 'டெம்ப்ளேட் பெயர் (ஆங்கிலம்)' : 'Template Name (English)'} *
+                          </Label>
+                          <Input
+                            value={newTemplate.name}
+                            onChange={(e) => setNewTemplate({ ...newTemplate, name: e.target.value })}
+                            placeholder={language === 'ta' ? 'எ.கா., என் படிப்பு திட்டம்' : 'e.g., My Study Plan'}
+                            className="mt-1"
+                          />
+                        </div>
+                        <div>
+                          <Label className="text-sm font-medium">
+                            {language === 'ta' ? 'டெம்ப்ளேட் பெயர் (தமிழ்)' : 'Template Name (Tamil)'}
+                          </Label>
+                          <Input
+                            value={newTemplate.nameTamil}
+                            onChange={(e) => setNewTemplate({ ...newTemplate, nameTamil: e.target.value })}
+                            placeholder={language === 'ta' ? 'தமிழில் பெயர்' : 'Name in Tamil'}
+                            className="mt-1"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Icon Selection */}
+                      <div>
+                        <Label className="text-sm font-medium">
+                          {language === 'ta' ? 'ஐகான் தேர்வு' : 'Choose Icon'}
+                        </Label>
+                        <div className="flex flex-wrap gap-2 mt-2">
+                          {TEMPLATE_ICONS.map((icon) => (
+                            <button
+                              key={icon}
+                              type="button"
+                              onClick={() => setNewTemplate({ ...newTemplate, icon })}
+                              className={cn(
+                                "w-10 h-10 rounded-lg border-2 text-xl flex items-center justify-center transition-all",
+                                newTemplate.icon === icon 
+                                  ? "border-amber-500 bg-amber-50" 
+                                  : "border-gray-200 hover:border-gray-300"
+                              )}
+                            >
+                              {icon}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Description */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <Label className="text-sm font-medium">
+                            {language === 'ta' ? 'விளக்கம் (ஆங்கிலம்)' : 'Description (English)'}
+                          </Label>
+                          <Textarea
+                            value={newTemplate.description}
+                            onChange={(e) => setNewTemplate({ ...newTemplate, description: e.target.value })}
+                            placeholder={language === 'ta' ? 'இந்த டெம்ப்ளேட் பற்றி...' : 'About this template...'}
+                            className="mt-1 h-16"
+                          />
+                        </div>
+                        <div>
+                          <Label className="text-sm font-medium">
+                            {language === 'ta' ? 'விளக்கம் (தமிழ்)' : 'Description (Tamil)'}
+                          </Label>
+                          <Textarea
+                            value={newTemplate.descriptionTamil}
+                            onChange={(e) => setNewTemplate({ ...newTemplate, descriptionTamil: e.target.value })}
+                            placeholder={language === 'ta' ? 'தமிழில் விளக்கம்' : 'Description in Tamil'}
+                            className="mt-1 h-16"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Weekday Selection */}
+                      <div>
+                        <Label className="text-sm font-medium">
+                          {language === 'ta' ? 'நாட்களை தேர்ந்தெடுக்கவும்' : 'Select Days'} *
+                        </Label>
+                        <div className="flex flex-wrap gap-2 mt-2">
+                          {[0, 1, 2, 3, 4, 5, 6].map(day => (
+                            <Button
+                              key={day}
+                              type="button"
+                              variant={newTemplate.weekdays.includes(day) ? "default" : "outline"}
+                              size="sm"
+                              onClick={() => toggleTemplateWeekday(day)}
+                              className="min-w-[60px]"
+                            >
+                              {getWeekdayName(day, true)}
+                            </Button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Activities */}
+                      <div className="space-y-3">
+                        <Label className="text-sm font-medium">
+                          {language === 'ta' ? 'செயல்பாடுகள்' : 'Activities'} *
+                        </Label>
+                        
+                        {/* Existing Activities */}
+                        {newTemplate.activities.length > 0 && (
+                          <div className="space-y-2">
+                            {newTemplate.activities.map((activity, i) => (
+                              <div key={i} className="p-2 rounded-lg bg-gray-50 border flex items-center gap-3">
+                                <Badge className={getTypeConfig(activity.type).color}>
+                                  {language === 'ta' 
+                                    ? SCHEDULE_TYPES.find(t => t.value === activity.type)?.labelTa 
+                                    : SCHEDULE_TYPES.find(t => t.value === activity.type)?.label}
+                                </Badge>
+                                <span className="font-medium text-sm flex-1">
+                                  {language === 'ta' && activity.titleTamil ? activity.titleTamil : activity.title}
+                                </span>
+                                <span className="text-xs text-gray-500">
+                                  {activity.duration} {language === 'ta' ? 'நிமிடம்' : 'min'}
+                                </span>
+                                <Button
+                                  type="button"
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => handleRemoveActivity(i)}
+                                  className="h-6 w-6 p-0 text-red-500 hover:text-red-700"
+                                >
+                                  <X className="h-4 w-4" />
+                                </Button>
+                              </div>
                             ))}
                           </div>
-                        </motion.button>
-                      ))}
+                        )}
+
+                        {/* Add Activity Form */}
+                        <div className="p-3 bg-blue-50 rounded-lg border border-blue-200 space-y-3">
+                          <p className="text-xs font-medium text-blue-800">
+                            {language === 'ta' ? 'புதிய செயல்பாடு சேர்க்கவும்' : 'Add New Activity'}
+                          </p>
+                          <div className="grid grid-cols-2 gap-2">
+                            <Input
+                              value={newActivity.title}
+                              onChange={(e) => setNewActivity({ ...newActivity, title: e.target.value })}
+                              placeholder={language === 'ta' ? 'தலைப்பு (ஆங்கிலம்)' : 'Title (English)'}
+                              className="h-8 text-sm bg-white"
+                            />
+                            <Input
+                              value={newActivity.titleTamil}
+                              onChange={(e) => setNewActivity({ ...newActivity, titleTamil: e.target.value })}
+                              placeholder={language === 'ta' ? 'தலைப்பு (தமிழ்)' : 'Title (Tamil)'}
+                              className="h-8 text-sm bg-white"
+                            />
+                          </div>
+                          <div className="grid grid-cols-3 gap-2">
+                            <Select
+                              value={newActivity.type}
+                              onValueChange={(v) => setNewActivity({ ...newActivity, type: v as any })}
+                            >
+                              <SelectTrigger className="h-8 text-sm bg-white">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {SCHEDULE_TYPES.map(type => (
+                                  <SelectItem key={type.value} value={type.value}>
+                                    {language === 'ta' ? type.labelTa : type.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            <Select
+                              value={newActivity.subject}
+                              onValueChange={(v) => setNewActivity({ ...newActivity, subject: v })}
+                            >
+                              <SelectTrigger className="h-8 text-sm bg-white">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {SUBJECTS.map(sub => (
+                                  <SelectItem key={sub.value} value={sub.value}>
+                                    {language === 'ta' ? sub.labelTa : sub.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            <Input
+                              type="number"
+                              value={newActivity.duration}
+                              onChange={(e) => setNewActivity({ ...newActivity, duration: parseInt(e.target.value) || 60 })}
+                              placeholder={language === 'ta' ? 'நிமிடம்' : 'Minutes'}
+                              className="h-8 text-sm bg-white"
+                            />
+                          </div>
+                          <Button
+                            type="button"
+                            size="sm"
+                            onClick={handleAddActivity}
+                            className="w-full gap-2"
+                          >
+                            <Plus className="h-4 w-4" />
+                            {language === 'ta' ? 'செயல்பாடு சேர்' : 'Add Activity'}
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* Summary */}
+                      {newTemplate.activities.length > 0 && newTemplate.weekdays.length > 0 && (
+                        <div className="p-3 rounded-lg bg-green-50 border border-green-200">
+                          <p className="text-sm text-green-800">
+                            <CheckCircle2 className="h-4 w-4 inline mr-1" />
+                            {language === 'ta' 
+                              ? `இந்த டெம்ப்ளேட் ${newTemplate.weekdays.length} நாட்களில் ${newTemplate.activities.length} செயல்பாடுகளை திட்டமிடும்`
+                              : `This template will schedule ${newTemplate.activities.length} activities on ${newTemplate.weekdays.length} days each week`}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  ) : !selectedTemplate ? (
+                    <div className="space-y-4 py-4">
+                      {/* Create Custom Template Button */}
+                      <motion.button
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => setShowCreateTemplate(true)}
+                        className="w-full p-4 rounded-xl border-2 border-dashed border-green-300 hover:border-green-400 bg-gradient-to-br from-green-50 to-emerald-50 text-left transition-all"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                            <Plus className="h-6 w-6 text-green-600" />
+                          </div>
+                          <div>
+                            <p className="font-semibold text-green-800">
+                              {language === 'ta' ? 'தனிப்பயன் டெம்ப்ளேட் உருவாக்கு' : 'Create Custom Template'}
+                            </p>
+                            <p className="text-sm text-green-600">
+                              {language === 'ta' 
+                                ? 'உங்கள் சொந்த மீண்டும் நிகழும் அட்டவணையை வடிவமைக்கவும்' 
+                                : 'Design your own recurring schedule pattern'}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.button>
+
+                      {/* Custom Templates Section */}
+                      {customTemplates.length > 0 && (
+                        <div className="space-y-2">
+                          <h4 className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                            <Save className="h-4 w-4" />
+                            {language === 'ta' ? 'உங்கள் டெம்ப்ளேட்கள்' : 'Your Templates'}
+                          </h4>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {customTemplates.map((template) => (
+                              <motion.div
+                                key={template.id}
+                                className="p-4 rounded-xl border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 to-green-50 text-left relative group"
+                              >
+                                <button
+                                  onClick={() => {
+                                    setSelectedTemplate(template);
+                                    setSelectedWeekdays(template.weekdays);
+                                  }}
+                                  className="w-full text-left"
+                                >
+                                  <div className="flex items-center gap-3 mb-2">
+                                    <span className="text-2xl">{template.icon}</span>
+                                    <div className="flex-1">
+                                      <p className="font-semibold text-gray-800">
+                                        {language === 'ta' ? template.nameTamil : template.name}
+                                      </p>
+                                      <p className="text-xs text-gray-500">
+                                        {template.weekdays.map(d => getWeekdayName(d, true)).join(', ')}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <p className="text-sm text-gray-600 line-clamp-2">
+                                    {language === 'ta' ? template.descriptionTamil : template.description}
+                                  </p>
+                                  <div className="flex flex-wrap gap-1 mt-2">
+                                    {template.activities.slice(0, 3).map((act, i) => (
+                                      <Badge key={i} variant="outline" className="text-[10px]">
+                                        {language === 'ta' ? act.titleTamil : act.title}
+                                      </Badge>
+                                    ))}
+                                    {template.activities.length > 3 && (
+                                      <Badge variant="outline" className="text-[10px]">
+                                        +{template.activities.length - 3}
+                                      </Badge>
+                                    )}
+                                  </div>
+                                </button>
+                                {/* Edit/Delete buttons */}
+                                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleEditTemplate(template);
+                                    }}
+                                    className="h-7 w-7 p-0"
+                                  >
+                                    <Edit3 className="h-3.5 w-3.5 text-blue-600" />
+                                  </Button>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleDeleteCustomTemplate(template.id);
+                                    }}
+                                    className="h-7 w-7 p-0"
+                                  >
+                                    <Trash2 className="h-3.5 w-3.5 text-red-500" />
+                                  </Button>
+                                </div>
+                              </motion.div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Predefined Templates */}
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                          <Sparkles className="h-4 w-4" />
+                          {language === 'ta' ? 'முன்வரையறுக்கப்பட்ட டெம்ப்ளேட்கள்' : 'Predefined Templates'}
+                        </h4>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {SCHEDULE_TEMPLATES.map((template) => (
+                            <motion.button
+                              key={template.id}
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                              onClick={() => {
+                                setSelectedTemplate(template);
+                                setSelectedWeekdays(template.weekdays);
+                              }}
+                              className="p-4 rounded-xl border-2 border-gray-200 hover:border-amber-300 bg-gradient-to-br from-white to-gray-50 text-left transition-all"
+                            >
+                              <div className="flex items-center gap-3 mb-2">
+                                <span className="text-2xl">{template.icon}</span>
+                                <div>
+                                  <p className="font-semibold text-gray-800">
+                                    {language === 'ta' ? template.nameTamil : template.name}
+                                  </p>
+                                  <p className="text-xs text-gray-500">
+                                    {template.weekdays.map(d => getWeekdayName(d, true)).join(', ')}
+                                  </p>
+                                </div>
+                              </div>
+                              <p className="text-sm text-gray-600">
+                                {language === 'ta' ? template.descriptionTamil : template.description}
+                              </p>
+                              <div className="flex flex-wrap gap-1 mt-2">
+                                {template.activities.map((act, i) => (
+                                  <Badge key={i} variant="outline" className="text-[10px]">
+                                    {language === 'ta' ? act.titleTamil : act.title}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </motion.button>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   ) : (
                     <div className="space-y-4 py-4">
@@ -553,7 +1066,15 @@ export const StudyPlannerCalendar = ({ language }: StudyPlannerCalendarProps) =>
                 </ScrollArea>
 
                 <DialogFooter className="gap-2">
-                  {selectedTemplate && (
+                  {showCreateTemplate && (
+                    <Button
+                      variant="outline"
+                      onClick={resetTemplateForm}
+                    >
+                      {language === 'ta' ? 'ரத்து செய்' : 'Cancel'}
+                    </Button>
+                  )}
+                  {selectedTemplate && !showCreateTemplate && (
                     <Button
                       variant="outline"
                       onClick={() => {
@@ -566,18 +1087,28 @@ export const StudyPlannerCalendar = ({ language }: StudyPlannerCalendarProps) =>
                   )}
                   <Button
                     onClick={() => {
-                      if (selectedTemplate) {
+                      if (showCreateTemplate) {
+                        handleSaveCustomTemplate();
+                      } else if (selectedTemplate) {
                         handleApplyTemplate();
                       } else {
                         setShowTemplateDialog(false);
                       }
                     }}
-                    disabled={selectedTemplate !== null && selectedWeekdays.length === 0}
+                    disabled={
+                      showCreateTemplate 
+                        ? (newTemplate.name.trim() === '' || newTemplate.activities.length === 0 || newTemplate.weekdays.length === 0)
+                        : (selectedTemplate !== null && selectedWeekdays.length === 0)
+                    }
                     className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600"
                   >
-                    {selectedTemplate 
-                      ? (language === 'ta' ? 'டெம்ப்ளேட் பயன்படுத்து' : 'Apply Template')
-                      : (language === 'ta' ? 'மூடு' : 'Close')}
+                    {showCreateTemplate 
+                      ? (language === 'ta' 
+                          ? (editingTemplateId ? 'புதுப்பி' : 'டெம்ப்ளேட் சேமி') 
+                          : (editingTemplateId ? 'Update Template' : 'Save Template'))
+                      : selectedTemplate 
+                        ? (language === 'ta' ? 'டெம்ப்ளேட் பயன்படுத்து' : 'Apply Template')
+                        : (language === 'ta' ? 'மூடு' : 'Close')}
                   </Button>
                 </DialogFooter>
               </DialogContent>
