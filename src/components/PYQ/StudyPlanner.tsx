@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { Calendar, Clock, Target, CheckCircle2, Play, Pause, RotateCcw, BookOpen, Flame, ChevronDown, Download, Sparkles } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Calendar, Clock, Target, CheckCircle2, Play, Pause, RotateCcw, BookOpen, Flame, ChevronDown, Download, Sparkles, Bell, BellOff, BellRing, Settings, X } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -8,7 +8,12 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Slider } from '@/components/ui/slider';
 import { Progress } from '@/components/ui/progress';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
+import { useStudyReminders } from '@/hooks/useStudyReminders';
 
 interface StudyPlannerProps {
   language: 'en' | 'ta';
@@ -115,6 +120,21 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({ language }) => {
   const [scheduleGenerated, setScheduleGenerated] = useState(false);
   const [schedule, setSchedule] = useState<ScheduleDay[]>([]);
   const [expandedDay, setExpandedDay] = useState<number | null>(null);
+  const [reminderDialogOpen, setReminderDialogOpen] = useState(false);
+
+  // Study reminders hook
+  const {
+    settings: reminderSettings,
+    updateSettings: updateReminderSettings,
+    permissionStatus,
+    enableReminders,
+    disableReminders,
+    scheduleReminders,
+    scheduledReminders,
+    getNextReminder,
+    testNotification,
+    clearReminders
+  } = useStudyReminders();
 
   const currentExam = studyTopicsData.find(e => e.id === selectedExam);
 
@@ -234,10 +254,43 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({ language }) => {
 
     setSchedule(generatedSchedule);
     setScheduleGenerated(true);
-    toast.success(language === 'en' 
-      ? `Study plan generated! ${generatedSchedule.length} days of focused learning` 
-      : `படிப்புத் திட்டம் உருவாக்கப்பட்டது! ${generatedSchedule.length} நாட்கள்`
-    );
+    
+    // Schedule reminders if enabled
+    if (reminderSettings.enabled) {
+      scheduleReminders(generatedSchedule);
+      toast.success(language === 'en' 
+        ? `Study plan generated with reminders! ${generatedSchedule.length} days of focused learning` 
+        : `நினைவூட்டல்களுடன் படிப்புத் திட்டம் உருவாக்கப்பட்டது! ${generatedSchedule.length} நாட்கள்`
+      );
+    } else {
+      toast.success(language === 'en' 
+        ? `Study plan generated! ${generatedSchedule.length} days of focused learning` 
+        : `படிப்புத் திட்டம் உருவாக்கப்பட்டது! ${generatedSchedule.length} நாட்கள்`
+      );
+    }
+  };
+
+  // Handle enabling reminders
+  const handleEnableReminders = async () => {
+    const enabled = await enableReminders();
+    if (enabled) {
+      toast.success(language === 'en' ? 'Reminders enabled!' : 'நினைவூட்டல்கள் இயக்கப்பட்டது!');
+      // Reschedule if we already have a schedule
+      if (schedule.length > 0) {
+        scheduleReminders(schedule);
+      }
+    } else {
+      toast.error(language === 'en' 
+        ? 'Please allow notifications to enable reminders' 
+        : 'நினைவூட்டல்களை இயக்க அறிவிப்புகளை அனுமதிக்கவும்'
+      );
+    }
+  };
+
+  // Handle disabling reminders
+  const handleDisableReminders = () => {
+    disableReminders();
+    toast.success(language === 'en' ? 'Reminders disabled' : 'நினைவூட்டல்கள் முடக்கப்பட்டது');
   };
 
   const resetPlanner = () => {
@@ -246,6 +299,16 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({ language }) => {
     setSchedule([]);
     setDailyHours([3]);
     setWeeklyDays([6]);
+    clearReminders();
+  };
+
+  const nextReminder = getNextReminder();
+  const formatReminderTime = (date: Date) => {
+    return new Date(date).toLocaleTimeString('en-US', { 
+      hour: 'numeric', 
+      minute: '2-digit',
+      hour12: true 
+    });
   };
 
   return (
@@ -481,6 +544,173 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({ language }) => {
                       </div>
                       <Progress value={100} className="h-2" />
                     </div>
+                  </CardContent>
+                </Card>
+
+                {/* Reminders Card */}
+                <Card className={`border ${reminderSettings.enabled ? 'border-emerald-200 bg-gradient-to-br from-emerald-50 to-teal-50' : 'border-gray-200'}`}>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className={`p-2 rounded-lg ${reminderSettings.enabled ? 'bg-emerald-100' : 'bg-gray-100'}`}>
+                          {reminderSettings.enabled ? (
+                            <BellRing className="w-5 h-5 text-emerald-600" />
+                          ) : (
+                            <BellOff className="w-5 h-5 text-gray-400" />
+                          )}
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-sm text-gray-900">
+                            {language === 'en' ? 'Study Reminders' : 'படிப்பு நினைவூட்டல்கள்'}
+                          </h5>
+                          {reminderSettings.enabled && nextReminder ? (
+                            <p className="text-xs text-gray-600">
+                              {language === 'en' ? 'Next reminder: ' : 'அடுத்த நினைவூட்டல்: '}
+                              <span className="font-medium text-emerald-700">
+                                Day {nextReminder.dayNumber} at {formatReminderTime(nextReminder.scheduledTime)}
+                              </span>
+                            </p>
+                          ) : reminderSettings.enabled ? (
+                            <p className="text-xs text-emerald-600">
+                              {language === 'en' ? 'Reminders active' : 'நினைவூட்டல்கள் செயலில்'}
+                            </p>
+                          ) : (
+                            <p className="text-xs text-gray-500">
+                              {language === 'en' ? 'Get notified before each study session' : 'ஒவ்வொரு படிப்பு அமர்வுக்கும் முன் அறிவிக்கப்படும்'}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-2">
+                        {reminderSettings.enabled && (
+                          <Dialog open={reminderDialogOpen} onOpenChange={setReminderDialogOpen}>
+                            <DialogTrigger asChild>
+                              <Button variant="ghost" size="sm" className="text-gray-500">
+                                <Settings className="w-4 h-4" />
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-md">
+                              <DialogHeader>
+                                <DialogTitle className="flex items-center gap-2">
+                                  <Bell className="w-5 h-5 text-indigo-600" />
+                                  {language === 'en' ? 'Reminder Settings' : 'நினைவூட்டல் அமைப்புகள்'}
+                                </DialogTitle>
+                              </DialogHeader>
+                              <div className="space-y-6 py-4">
+                                {/* Study Time */}
+                                <div className="space-y-2">
+                                  <Label className="text-sm font-medium">
+                                    {language === 'en' ? 'Preferred Study Time' : 'விருப்பமான படிப்பு நேரம்'}
+                                  </Label>
+                                  <Select
+                                    value={reminderSettings.studyTime}
+                                    onValueChange={(value) => {
+                                      updateReminderSettings({ studyTime: value });
+                                      if (schedule.length > 0) {
+                                        scheduleReminders(schedule);
+                                      }
+                                    }}
+                                  >
+                                    <SelectTrigger>
+                                      <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="06:00">6:00 AM</SelectItem>
+                                      <SelectItem value="07:00">7:00 AM</SelectItem>
+                                      <SelectItem value="08:00">8:00 AM</SelectItem>
+                                      <SelectItem value="09:00">9:00 AM</SelectItem>
+                                      <SelectItem value="10:00">10:00 AM</SelectItem>
+                                      <SelectItem value="14:00">2:00 PM</SelectItem>
+                                      <SelectItem value="16:00">4:00 PM</SelectItem>
+                                      <SelectItem value="17:00">5:00 PM</SelectItem>
+                                      <SelectItem value="18:00">6:00 PM</SelectItem>
+                                      <SelectItem value="19:00">7:00 PM</SelectItem>
+                                      <SelectItem value="20:00">8:00 PM</SelectItem>
+                                      <SelectItem value="21:00">9:00 PM</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+
+                                {/* Reminder Lead Time */}
+                                <div className="space-y-2">
+                                  <Label className="text-sm font-medium">
+                                    {language === 'en' ? 'Remind me before' : 'முன்பு நினைவூட்டு'}
+                                  </Label>
+                                  <Select
+                                    value={reminderSettings.reminderMinutesBefore.toString()}
+                                    onValueChange={(value) => {
+                                      updateReminderSettings({ reminderMinutesBefore: parseInt(value) });
+                                      if (schedule.length > 0) {
+                                        scheduleReminders(schedule);
+                                      }
+                                    }}
+                                  >
+                                    <SelectTrigger>
+                                      <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="5">5 minutes</SelectItem>
+                                      <SelectItem value="10">10 minutes</SelectItem>
+                                      <SelectItem value="15">15 minutes</SelectItem>
+                                      <SelectItem value="30">30 minutes</SelectItem>
+                                      <SelectItem value="60">1 hour</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+
+                                {/* Test Notification */}
+                                <div className="pt-2 border-t">
+                                  <Button 
+                                    variant="outline" 
+                                    size="sm" 
+                                    onClick={() => {
+                                      testNotification();
+                                      toast.success(language === 'en' ? 'Test notification sent!' : 'சோதனை அறிவிப்பு அனுப்பப்பட்டது!');
+                                    }}
+                                    className="w-full"
+                                  >
+                                    <Bell className="w-4 h-4 mr-2" />
+                                    {language === 'en' ? 'Send Test Notification' : 'சோதனை அறிவிப்பை அனுப்பு'}
+                                  </Button>
+                                </div>
+
+                                {/* Active Reminders Count */}
+                                <div className="text-center text-xs text-gray-500 bg-gray-50 rounded-lg p-3">
+                                  {language === 'en' 
+                                    ? `${scheduledReminders.filter(r => !r.notified).length} reminders scheduled`
+                                    : `${scheduledReminders.filter(r => !r.notified).length} நினைவூட்டல்கள் திட்டமிடப்பட்டுள்ளன`
+                                  }
+                                </div>
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                        )}
+                        
+                        <Switch
+                          checked={reminderSettings.enabled}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              handleEnableReminders();
+                            } else {
+                              handleDisableReminders();
+                            }
+                          }}
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Permission denied warning */}
+                    {permissionStatus === 'denied' && (
+                      <div className="mt-3 p-2 bg-amber-50 border border-amber-200 rounded-lg">
+                        <p className="text-xs text-amber-700">
+                          {language === 'en' 
+                            ? '⚠️ Notifications are blocked. Please enable them in your browser settings.'
+                            : '⚠️ அறிவிப்புகள் தடுக்கப்பட்டுள்ளன. உலாவி அமைப்புகளில் இயக்கவும்.'
+                          }
+                        </p>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
 
