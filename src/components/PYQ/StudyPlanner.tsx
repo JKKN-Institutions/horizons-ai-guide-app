@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Calendar, Clock, Target, CheckCircle2, Play, Pause, RotateCcw, BookOpen, Flame, ChevronDown, Download, Sparkles, Bell, BellOff, BellRing, Settings, X } from 'lucide-react';
+import { Calendar, Clock, Target, CheckCircle2, Play, Pause, RotateCcw, BookOpen, Flame, ChevronDown, Download, Sparkles, Bell, BellOff, BellRing, Settings, X, Check, Trophy, Zap } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -14,6 +14,7 @@ import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { useStudyReminders } from '@/hooks/useStudyReminders';
+import { useStudyProgress } from '@/hooks/useStudyProgress';
 import { StudyPlanCalendar } from './StudyPlanCalendar';
 
 interface StudyPlannerProps {
@@ -137,6 +138,20 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({ language }) => {
     clearReminders
   } = useStudyReminders();
 
+  // Study progress hook
+  const {
+    progress,
+    initializeProgress,
+    toggleTopicComplete,
+    toggleDayComplete,
+    isTopicCompleted,
+    isDayCompleted,
+    getDayCompletionPercent,
+    getOverallProgress,
+    getCurrentStreak,
+    resetProgress
+  } = useStudyProgress(selectedExam);
+
   const currentExam = studyTopicsData.find(e => e.id === selectedExam);
 
   const toggleTopic = (topicId: string) => {
@@ -256,6 +271,9 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({ language }) => {
     setSchedule(generatedSchedule);
     setScheduleGenerated(true);
     
+    // Initialize progress tracking
+    initializeProgress(generatedSchedule);
+    
     // Schedule reminders if enabled
     if (reminderSettings.enabled) {
       scheduleReminders(generatedSchedule);
@@ -301,6 +319,26 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({ language }) => {
     setDailyHours([3]);
     setWeeklyDays([6]);
     clearReminders();
+    resetProgress();
+  };
+
+  // Handle topic completion toggle
+  const handleTopicComplete = (dayNumber: number, topicId: string) => {
+    toggleTopicComplete(dayNumber, topicId);
+    const wasCompleted = isTopicCompleted(dayNumber, topicId);
+    if (!wasCompleted) {
+      toast.success(language === 'en' ? 'Topic completed! 🎉' : 'தலைப்பு முடிந்தது! 🎉');
+    }
+  };
+
+  // Handle day completion toggle
+  const handleDayComplete = (dayNumber: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleDayComplete(dayNumber);
+    const wasCompleted = isDayCompleted(dayNumber);
+    if (!wasCompleted) {
+      toast.success(language === 'en' ? 'Day completed! Keep going! 🔥' : 'நாள் முடிந்தது! தொடருங்கள்! 🔥');
+    }
   };
 
   const nextReminder = getNextReminder();
@@ -511,7 +549,7 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({ language }) => {
             ) : (
               /* Generated Schedule View */
               <div className="space-y-6">
-                {/* Schedule Header */}
+                {/* Schedule Header with Progress */}
                 <Card className="border-indigo-200 bg-gradient-to-br from-indigo-50 to-purple-50">
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-4">
@@ -533,17 +571,53 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({ language }) => {
                       </Button>
                     </div>
                     
-                    {/* Overall Progress */}
+                    {/* Overall Progress Stats */}
+                    <div className="grid grid-cols-3 gap-4 mb-4">
+                      <div className="bg-white rounded-lg p-3 border border-indigo-100 text-center">
+                        <div className="flex items-center justify-center gap-1 mb-1">
+                          <Target className="w-4 h-4 text-indigo-600" />
+                          <span className="text-2xl font-bold text-indigo-700">{getOverallProgress()}%</span>
+                        </div>
+                        <p className="text-xs text-gray-500">
+                          {language === 'en' ? 'Completed' : 'முடிந்தது'}
+                        </p>
+                      </div>
+                      <div className="bg-white rounded-lg p-3 border border-emerald-100 text-center">
+                        <div className="flex items-center justify-center gap-1 mb-1">
+                          <Trophy className="w-4 h-4 text-emerald-600" />
+                          <span className="text-2xl font-bold text-emerald-700">{progress?.completedDays || 0}</span>
+                          <span className="text-sm text-gray-400">/{schedule.length}</span>
+                        </div>
+                        <p className="text-xs text-gray-500">
+                          {language === 'en' ? 'Days Done' : 'நாட்கள்'}
+                        </p>
+                      </div>
+                      <div className="bg-white rounded-lg p-3 border border-amber-100 text-center">
+                        <div className="flex items-center justify-center gap-1 mb-1">
+                          <Zap className="w-4 h-4 text-amber-600" />
+                          <span className="text-2xl font-bold text-amber-700">{getCurrentStreak()}</span>
+                        </div>
+                        <p className="text-xs text-gray-500">
+                          {language === 'en' ? 'Day Streak' : 'தொடர்'}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* Progress Bar */}
                     <div className="bg-white rounded-lg p-4 border border-indigo-100">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-sm font-medium text-gray-700">
-                          {language === 'en' ? 'Completion Timeline' : 'முடிவு காலவரிசை'}
+                          {language === 'en' ? 'Overall Progress' : 'ஒட்டுமொத்த முன்னேற்றம்'}
                         </span>
                         <span className="text-sm text-gray-500">
-                          {schedule[0]?.date} → {schedule[schedule.length - 1]?.date}
+                          {progress?.completedTopics || 0} / {progress?.totalTopics || 0} {language === 'en' ? 'topics' : 'தலைப்புகள்'}
                         </span>
                       </div>
-                      <Progress value={100} className="h-2" />
+                      <Progress value={getOverallProgress()} className="h-3" />
+                      <div className="flex items-center justify-between mt-2 text-xs text-gray-500">
+                        <span>{schedule[0]?.date}</span>
+                        <span>{schedule[schedule.length - 1]?.date}</span>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -715,67 +789,139 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({ language }) => {
                   </CardContent>
                 </Card>
 
-                {/* Daily Schedule */}
+                {/* Daily Schedule with Progress Tracking */}
                 <div className="space-y-3">
-                  {schedule.map((day) => (
-                    <Collapsible key={day.day} open={expandedDay === day.day} onOpenChange={() => setExpandedDay(expandedDay === day.day ? null : day.day)}>
-                      <Card className={`border transition-all ${expandedDay === day.day ? 'border-indigo-300 shadow-md' : 'border-gray-200'}`}>
-                        <CollapsibleTrigger asChild>
-                          <CardContent className="p-4 cursor-pointer hover:bg-gray-50/50">
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
-                                  {day.day}
-                                </div>
-                                <div>
-                                  <p className="font-medium text-gray-900">{day.date}</p>
-                                  <p className="text-xs text-gray-500">
-                                    {day.topics.length} {language === 'en' ? 'topics' : 'தலைப்புகள்'} • {day.totalHours.toFixed(1)}h
-                                  </p>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <div className="flex gap-1">
-                                  {day.topics.slice(0, 3).map((t, idx) => (
-                                    <Badge key={idx} variant="outline" className={`text-[10px] ${getSubjectColor(t.subject)}`}>
-                                      {t.subject.slice(0, 3)}
-                                    </Badge>
-                                  ))}
-                                </div>
-                                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${expandedDay === day.day ? 'rotate-180' : ''}`} />
-                              </div>
-                            </div>
-                          </CardContent>
-                        </CollapsibleTrigger>
-                        <CollapsibleContent>
-                          <div className="px-4 pb-4 pt-0 border-t border-gray-100">
-                            <div className="space-y-3 mt-4">
-                              {day.topics.map((topic, idx) => (
-                                <div key={idx} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
-                                  <BookOpen className="w-4 h-4 text-indigo-600 mt-0.5" />
-                                  <div className="flex-1">
-                                    <div className="flex items-center justify-between">
-                                      <span className="font-medium text-sm text-gray-900">{topic.topicName}</span>
-                                      <Badge className="bg-indigo-100 text-indigo-700 text-xs">
-                                        {topic.hoursAllocated.toFixed(1)}h
-                                      </Badge>
+                  {schedule.map((day) => {
+                    const dayComplete = isDayCompleted(day.day);
+                    const dayPercent = getDayCompletionPercent(day.day);
+                    
+                    return (
+                      <Collapsible key={day.day} open={expandedDay === day.day} onOpenChange={() => setExpandedDay(expandedDay === day.day ? null : day.day)}>
+                        <Card className={`border transition-all ${
+                          dayComplete 
+                            ? 'border-emerald-300 bg-gradient-to-r from-emerald-50/50 to-teal-50/50' 
+                            : expandedDay === day.day 
+                              ? 'border-indigo-300 shadow-md' 
+                              : 'border-gray-200'
+                        }`}>
+                          <CollapsibleTrigger asChild>
+                            <CardContent className="p-4 cursor-pointer hover:bg-gray-50/50">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                  {/* Day Circle with Completion State */}
+                                  <button
+                                    onClick={(e) => handleDayComplete(day.day, e)}
+                                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all ${
+                                      dayComplete
+                                        ? 'bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md'
+                                        : 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white hover:shadow-md'
+                                    }`}
+                                    title={language === 'en' ? 'Mark day as complete' : 'நாளை முடிவாகக் குறிக்கவும்'}
+                                  >
+                                    {dayComplete ? (
+                                      <Check className="w-5 h-5" />
+                                    ) : (
+                                      day.day
+                                    )}
+                                  </button>
+                                  <div>
+                                    <div className="flex items-center gap-2">
+                                      <p className={`font-medium ${dayComplete ? 'text-emerald-700' : 'text-gray-900'}`}>
+                                        {day.date}
+                                      </p>
+                                      {dayComplete && (
+                                        <Badge className="bg-emerald-100 text-emerald-700 text-[10px] px-1.5 py-0">
+                                          ✓ {language === 'en' ? 'Done' : 'முடிந்தது'}
+                                        </Badge>
+                                      )}
                                     </div>
-                                    <div className="flex flex-wrap gap-1 mt-2">
-                                      {topic.keyAreas.map((area, areaIdx) => (
-                                        <span key={areaIdx} className="text-[10px] bg-white px-2 py-0.5 rounded border border-gray-200 text-gray-600">
-                                          {area}
-                                        </span>
-                                      ))}
+                                    <div className="flex items-center gap-2">
+                                      <p className="text-xs text-gray-500">
+                                        {day.topics.length} {language === 'en' ? 'topics' : 'தலைப்புகள்'} • {day.totalHours.toFixed(1)}h
+                                      </p>
+                                      {dayPercent > 0 && dayPercent < 100 && (
+                                        <span className="text-xs text-indigo-600 font-medium">{dayPercent}%</span>
+                                      )}
                                     </div>
                                   </div>
                                 </div>
-                              ))}
+                                <div className="flex items-center gap-2">
+                                  {/* Mini Progress Bar */}
+                                  {!dayComplete && dayPercent > 0 && (
+                                    <div className="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                                      <div 
+                                        className="h-full bg-indigo-500 rounded-full transition-all"
+                                        style={{ width: `${dayPercent}%` }}
+                                      />
+                                    </div>
+                                  )}
+                                  <div className="flex gap-1">
+                                    {day.topics.slice(0, 3).map((t, idx) => (
+                                      <Badge key={idx} variant="outline" className={`text-[10px] ${getSubjectColor(t.subject)}`}>
+                                        {t.subject.slice(0, 3)}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                  <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${expandedDay === day.day ? 'rotate-180' : ''}`} />
+                                </div>
+                              </div>
+                            </CardContent>
+                          </CollapsibleTrigger>
+                          <CollapsibleContent>
+                            <div className="px-4 pb-4 pt-0 border-t border-gray-100">
+                              <div className="space-y-3 mt-4">
+                                {day.topics.map((topic, idx) => {
+                                  const topicComplete = isTopicCompleted(day.day, topic.topicId);
+                                  
+                                  return (
+                                    <div 
+                                      key={idx} 
+                                      className={`flex items-start gap-3 p-3 rounded-lg transition-all cursor-pointer ${
+                                        topicComplete 
+                                          ? 'bg-emerald-50 border border-emerald-200' 
+                                          : 'bg-gray-50 hover:bg-gray-100'
+                                      }`}
+                                      onClick={() => handleTopicComplete(day.day, topic.topicId)}
+                                    >
+                                      {/* Topic Checkbox */}
+                                      <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 transition-all ${
+                                        topicComplete 
+                                          ? 'bg-emerald-500' 
+                                          : 'border-2 border-gray-300 hover:border-indigo-400'
+                                      }`}>
+                                        {topicComplete && <Check className="w-3 h-3 text-white" />}
+                                      </div>
+                                      <div className="flex-1">
+                                        <div className="flex items-center justify-between">
+                                          <span className={`font-medium text-sm ${topicComplete ? 'text-emerald-700 line-through' : 'text-gray-900'}`}>
+                                            {topic.topicName}
+                                          </span>
+                                          <Badge className={`text-xs ${topicComplete ? 'bg-emerald-100 text-emerald-700' : 'bg-indigo-100 text-indigo-700'}`}>
+                                            {topic.hoursAllocated.toFixed(1)}h
+                                          </Badge>
+                                        </div>
+                                        <div className="flex flex-wrap gap-1 mt-2">
+                                          {topic.keyAreas.map((area, areaIdx) => (
+                                            <span key={areaIdx} className={`text-[10px] px-2 py-0.5 rounded border ${
+                                              topicComplete 
+                                                ? 'bg-emerald-50 border-emerald-200 text-emerald-600' 
+                                                : 'bg-white border-gray-200 text-gray-600'
+                                            }`}>
+                                              {area}
+                                            </span>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
                             </div>
-                          </div>
-                        </CollapsibleContent>
-                      </Card>
-                    </Collapsible>
-                  ))}
+                          </CollapsibleContent>
+                        </Card>
+                      </Collapsible>
+                    );
+                  })}
                 </div>
 
                 {/* Calendar View Integration */}
