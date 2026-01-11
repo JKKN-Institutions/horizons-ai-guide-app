@@ -9,3 +9,4 @@ export { JEEMainSyllabus } from './JEEMainSyllabus';
 export { JEEAdvancedSyllabus } from './JEEAdvancedSyllabus';
 export { ChapterWeightage } from './ChapterWeightage';
 export { HighYieldTopics } from './HighYieldTopics';
+export { StudyPlanner } from './StudyPlanner';
