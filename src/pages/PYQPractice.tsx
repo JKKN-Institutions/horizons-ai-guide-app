@@ -326,18 +326,27 @@ const PYQPractice = () => {
                       )}
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="min-w-[140px]">
-                    <DropdownMenuItem onClick={() => setTheme('light')} className="gap-2 cursor-pointer">
-                      <Sun className="w-4 h-4 text-amber-500" />
-                      <span>Light</span>
+                  <DropdownMenuContent align="end" className="min-w-[140px] bg-background border shadow-lg z-50">
+                    <DropdownMenuItem onClick={() => setTheme('light')} className="gap-2 cursor-pointer justify-between">
+                      <div className="flex items-center gap-2">
+                        <Sun className="w-4 h-4 text-amber-500" />
+                        <span>Light</span>
+                      </div>
+                      {theme === 'light' && <Check className="w-4 h-4 text-emerald-600" />}
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setTheme('dark')} className="gap-2 cursor-pointer">
-                      <Moon className="w-4 h-4 text-slate-600" />
-                      <span>Dark</span>
+                    <DropdownMenuItem onClick={() => setTheme('dark')} className="gap-2 cursor-pointer justify-between">
+                      <div className="flex items-center gap-2">
+                        <Moon className="w-4 h-4 text-slate-600" />
+                        <span>Dark</span>
+                      </div>
+                      {theme === 'dark' && <Check className="w-4 h-4 text-emerald-600" />}
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setTheme('system')} className="gap-2 cursor-pointer">
-                      <Monitor className="w-4 h-4 text-blue-500" />
-                      <span>System</span>
+                    <DropdownMenuItem onClick={() => setTheme('system')} className="gap-2 cursor-pointer justify-between">
+                      <div className="flex items-center gap-2">
+                        <Monitor className="w-4 h-4 text-blue-500" />
+                        <span>System</span>
+                      </div>
+                      {theme === 'system' && <Check className="w-4 h-4 text-emerald-600" />}
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -795,18 +804,27 @@ const PYQPractice = () => {
                     )}
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="min-w-[140px]">
-                  <DropdownMenuItem onClick={() => setTheme('light')} className="gap-2 cursor-pointer">
-                    <Sun className="w-4 h-4 text-amber-500" />
-                    <span>Light</span>
+                <DropdownMenuContent align="end" className="min-w-[140px] bg-background border shadow-lg z-50">
+                  <DropdownMenuItem onClick={() => setTheme('light')} className="gap-2 cursor-pointer justify-between">
+                    <div className="flex items-center gap-2">
+                      <Sun className="w-4 h-4 text-amber-500" />
+                      <span>Light</span>
+                    </div>
+                    {theme === 'light' && <Check className="w-4 h-4 text-emerald-600" />}
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme('dark')} className="gap-2 cursor-pointer">
-                    <Moon className="w-4 h-4 text-slate-600" />
-                    <span>Dark</span>
+                  <DropdownMenuItem onClick={() => setTheme('dark')} className="gap-2 cursor-pointer justify-between">
+                    <div className="flex items-center gap-2">
+                      <Moon className="w-4 h-4 text-slate-600" />
+                      <span>Dark</span>
+                    </div>
+                    {theme === 'dark' && <Check className="w-4 h-4 text-emerald-600" />}
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme('system')} className="gap-2 cursor-pointer">
-                    <Monitor className="w-4 h-4 text-blue-500" />
-                    <span>System</span>
+                  <DropdownMenuItem onClick={() => setTheme('system')} className="gap-2 cursor-pointer justify-between">
+                    <div className="flex items-center gap-2">
+                      <Monitor className="w-4 h-4 text-blue-500" />
+                      <span>System</span>
+                    </div>
+                    {theme === 'system' && <Check className="w-4 h-4 text-emerald-600" />}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
