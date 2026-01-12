@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { categoryInfo } from './governmentExamsData';
+import { GovtMockTestConfigDialog } from './GovtMockTestConfigDialog';
 import { CategoryType } from './types';
 import { useGovtMockTestScores } from '@/hooks/useGovtMockTestScores';
 import { useStudyStreak } from '@/hooks/useStudyStreak';
@@ -587,15 +588,19 @@ export const GovtMockTest = () => {
   const [useAI, setUseAI] = useState(false);
   const [isLoadingAI, setIsLoadingAI] = useState(false);
   const [aiQuestions, setAiQuestions] = useState<Question[]>([]);
+  const [showConfigDialog, setShowConfigDialog] = useState(false);
+  const [pendingCategory, setPendingCategory] = useState<CategoryType | null>(null);
+  const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
+  const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
   const startTimeRef = useRef<number>(0);
   const totalTimeRef = useRef<number>(0);
 
   // Function to fetch AI-generated questions
-  const fetchAIQuestions = useCallback(async (category: CategoryType) => {
+  const fetchAIQuestions = useCallback(async (category: CategoryType, subjects?: string[], topics?: string[]) => {
     setIsLoadingAI(true);
     try {
       const { data, error } = await supabase.functions.invoke('generate-govt-questions', {
-        body: { category, count: 10 }
+        body: { category, count: 10, subjects, topics }
       });
 
       if (error) {
@@ -655,7 +660,46 @@ export const GovtMockTest = () => {
     return () => clearInterval(timer);
   }, [isTestActive, showResults]);
 
-  const startTest = useCallback(async (category: CategoryType) => {
+  // Open config dialog before starting test
+  const handleCategoryClick = (category: CategoryType) => {
+    setPendingCategory(category);
+    setShowConfigDialog(true);
+  };
+
+  // Start test with selected subjects/topics
+  const handleStartWithConfig = async (subjects: string[], topics: string[]) => {
+    if (!pendingCategory) return;
+    
+    setSelectedSubjects(subjects);
+    setSelectedTopics(topics);
+    setSelectedCategory(pendingCategory);
+    setCurrentQuestionIndex(0);
+    setSelectedAnswers({});
+    setShowResults(false);
+    setFlaggedQuestions(new Set());
+    setShowProgress(false);
+    
+    // If AI mode is enabled, fetch AI questions with subject/topic filters
+    if (useAI) {
+      const questions = await fetchAIQuestions(pendingCategory, subjects, topics);
+      if (questions) {
+        setAiQuestions(questions);
+      } else {
+        setAiQuestions([]);
+      }
+    } else {
+      setAiQuestions([]);
+    }
+    
+    setIsTestActive(true);
+    const testTime = 5 * 60; // 5 minutes
+    setTimeLeft(testTime);
+    startTimeRef.current = Date.now();
+    totalTimeRef.current = testTime;
+    setPendingCategory(null);
+  };
+
+  const startTest = useCallback(async (category: CategoryType, subjects?: string[], topics?: string[]) => {
     setSelectedCategory(category);
     setCurrentQuestionIndex(0);
     setSelectedAnswers({});
@@ -665,7 +709,7 @@ export const GovtMockTest = () => {
     
     // If AI mode is enabled, fetch AI questions first
     if (useAI) {
-      const questions = await fetchAIQuestions(category);
+      const questions = await fetchAIQuestions(category, subjects, topics);
       if (questions) {
         setAiQuestions(questions);
       } else {
@@ -985,7 +1029,7 @@ export const GovtMockTest = () => {
                     key={cat.category}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => startTest(cat.category)}
+                    onClick={() => handleCategoryClick(cat.category)}
                     disabled={isLoadingAI}
                     className={`p-4 rounded-xl border-2 ${info?.bgColor} ${info?.borderColor} hover:shadow-lg transition-all text-left ${isLoadingAI ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >
@@ -1017,6 +1061,15 @@ export const GovtMockTest = () => {
             </div>
           </CardContent>
         </Card>
+
+        {/* Topic Selection Dialog */}
+        <GovtMockTestConfigDialog
+          open={showConfigDialog}
+          onOpenChange={setShowConfigDialog}
+          category={pendingCategory}
+          useAI={useAI}
+          onStartTest={handleStartWithConfig}
+        />
       </div>
     );
   }
