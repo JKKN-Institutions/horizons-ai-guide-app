@@ -14,6 +14,7 @@ const NavigationBar = () => {
     { label: t('nav.home'), href: "/", isRoute: true },
     { label: t('nav.careerHub'), href: "/jkkn", isRoute: true },
     { label: t('nav.dashboard'), href: "/student-dashboard", isRoute: true },
+    { label: "Govt Exams", href: "/government-exams", isRoute: true },
     { label: t('nav.aboutJkkn'), href: "#about", isRoute: false },
     { label: t('nav.careerGuidance'), href: "#services", isRoute: false },
     { label: t('nav.jobPortal'), href: "#jobs", isRoute: false },
