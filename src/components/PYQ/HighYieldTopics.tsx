@@ -123,17 +123,17 @@ export const HighYieldTopics: React.FC<HighYieldTopicsProps> = ({ language }) =>
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap items-center gap-4 mb-6 p-3 bg-gray-50 rounded-lg text-xs">
-        <span className="font-medium text-gray-600">{language === 'en' ? 'Effort Required:' : 'தேவையான முயற்சி:'}</span>
-        <span className="flex items-center gap-1.5">
+      <div className="flex flex-wrap items-center gap-4 mb-6 p-3 bg-muted/50 border border-border rounded-lg text-xs">
+        <span className="font-medium text-foreground">{language === 'en' ? 'Effort Required:' : 'தேவையான முயற்சி:'}</span>
+        <span className="flex items-center gap-1.5 text-foreground">
           <span className="w-2 h-2 rounded-full bg-emerald-500" />
           {language === 'en' ? 'Quick Win (Low)' : 'விரைவான வெற்றி'}
         </span>
-        <span className="flex items-center gap-1.5">
+        <span className="flex items-center gap-1.5 text-foreground">
           <span className="w-2 h-2 rounded-full bg-amber-500" />
           {language === 'en' ? 'Moderate' : 'மிதமான'}
         </span>
-        <span className="flex items-center gap-1.5">
+        <span className="flex items-center gap-1.5 text-foreground">
           <span className="w-2 h-2 rounded-full bg-rose-500" />
           {language === 'en' ? 'Deep Study (High)' : 'ஆழ்ந்த படிப்பு'}
         </span>
@@ -141,12 +141,12 @@ export const HighYieldTopics: React.FC<HighYieldTopicsProps> = ({ language }) =>
 
       {/* Exam Tabs */}
       <Tabs value={selectedExam} onValueChange={setSelectedExam} className="w-full">
-        <TabsList className="w-full justify-start bg-gray-100/80 p-1 rounded-lg mb-6">
+        <TabsList className="w-full justify-start bg-muted p-1 rounded-lg mb-6">
           {highYieldData.map(exam => (
             <TabsTrigger 
               key={exam.id} 
               value={exam.id}
-              className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              className="flex-1 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
             >
               {exam.name}
             </TabsTrigger>
@@ -158,13 +158,13 @@ export const HighYieldTopics: React.FC<HighYieldTopicsProps> = ({ language }) =>
             {exam.topics.map((topic, idx) => (
               <Card 
                 key={idx} 
-                className={`border border-gray-200 shadow-sm overflow-hidden cursor-pointer transition-all hover:shadow-md ${expandedTopic === topic.name ? 'ring-1 ring-gray-300' : ''}`}
+                className={`border border-border bg-card shadow-sm overflow-hidden cursor-pointer transition-all hover:shadow-md ${expandedTopic === topic.name ? 'ring-1 ring-ring' : ''}`}
                 onClick={() => setExpandedTopic(expandedTopic === topic.name ? null : topic.name)}
               >
                 <CardContent className="p-4">
                   <div className="flex items-start gap-3">
                     {/* Rank */}
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center font-bold text-gray-600 text-sm">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-muted flex items-center justify-center font-bold text-foreground text-sm">
                       {idx + 1}
                     </div>
 
@@ -172,7 +172,7 @@ export const HighYieldTopics: React.FC<HighYieldTopicsProps> = ({ language }) =>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-2 mb-2">
                         <div>
-                          <h4 className="font-semibold text-gray-900 text-sm">
+                          <h4 className="font-semibold text-foreground text-sm">
                             {language === 'en' ? topic.name : topic.nameTa}
                           </h4>
                           <div className="flex items-center gap-2 mt-1">
@@ -192,25 +192,25 @@ export const HighYieldTopics: React.FC<HighYieldTopicsProps> = ({ language }) =>
                             {[...Array(5)].map((_, i) => (
                               <div 
                                 key={i} 
-                                className={`w-1.5 h-4 rounded-sm ${i < topic.roi ? 'bg-emerald-500' : 'bg-gray-200'}`}
+                                className={`w-1.5 h-4 rounded-sm ${i < topic.roi ? 'bg-emerald-500' : 'bg-muted-foreground/30'}`}
                               />
                             ))}
                           </div>
-                          <span className="text-[10px] text-gray-500 mt-0.5 block">ROI</span>
+                          <span className="text-[10px] text-muted-foreground mt-0.5 block">ROI</span>
                         </div>
                       </div>
 
                       {/* Stats Bar */}
-                      <div className="flex items-center gap-4 text-xs text-gray-600">
+                      <div className="flex items-center gap-4 text-xs text-foreground">
                         <span className="flex items-center gap-1">
                           <TrendingUp className="w-3 h-3 text-emerald-500" />
                           <span className="font-medium">{topic.frequency}%</span>
-                          <span className="text-gray-400">{language === 'en' ? 'frequency' : 'அதிர்வெண்'}</span>
+                          <span className="text-muted-foreground">{language === 'en' ? 'frequency' : 'அதிர்வெண்'}</span>
                         </span>
                         <span className="flex items-center gap-1">
                           <Target className="w-3 h-3 text-blue-500" />
                           <span className="font-medium">~{topic.avgQuestions}</span>
-                          <span className="text-gray-400">{language === 'en' ? 'questions' : 'கேள்விகள்'}</span>
+                          <span className="text-muted-foreground">{language === 'en' ? 'questions' : 'கேள்விகள்'}</span>
                         </span>
                       </div>
 
@@ -221,15 +221,15 @@ export const HighYieldTopics: React.FC<HighYieldTopicsProps> = ({ language }) =>
 
                       {/* Expanded Content */}
                       {expandedTopic === topic.name && (
-                        <div className="mt-3 pt-3 border-t border-gray-100">
-                          <p className="text-xs font-medium text-gray-600 mb-2">
+                        <div className="mt-3 pt-3 border-t border-border">
+                          <p className="text-xs font-medium text-foreground mb-2">
                             {language === 'en' ? 'Key Areas to Focus:' : 'கவனம் செலுத்த வேண்டிய முக்கிய பகுதிகள்:'}
                           </p>
                           <div className="flex flex-wrap gap-1.5">
                             {topic.keyAreas.map((area, areaIdx) => (
                               <span 
                                 key={areaIdx}
-                                className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-md"
+                                className="text-xs bg-muted text-foreground px-2 py-1 rounded-md"
                               >
                                 {area}
                               </span>
@@ -240,23 +240,23 @@ export const HighYieldTopics: React.FC<HighYieldTopicsProps> = ({ language }) =>
                     </div>
 
                     {/* Expand Icon */}
-                    <ChevronRight className={`w-4 h-4 text-gray-400 flex-shrink-0 transition-transform ${expandedTopic === topic.name ? 'rotate-90' : ''}`} />
+                    <ChevronRight className={`w-4 h-4 text-muted-foreground flex-shrink-0 transition-transform ${expandedTopic === topic.name ? 'rotate-90' : ''}`} />
                   </div>
                 </CardContent>
               </Card>
             ))}
 
             {/* Summary Card */}
-            <Card className="border-dashed border-2 border-gray-200 bg-gray-50/50 mt-4">
+            <Card className="border-dashed border-2 border-border bg-muted/30 mt-4">
               <CardContent className="p-4">
                 <div className="text-center">
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-foreground">
                     {language === 'en' 
                       ? `Focus on these ${exam.topics.length} high-yield topics to cover ~${exam.topics.reduce((sum, t) => sum + t.frequency, 0)}% of typical exam questions`
                       : `வழக்கமான தேர்வு கேள்விகளில் ~${exam.topics.reduce((sum, t) => sum + t.frequency, 0)}% உள்ளடக்க இந்த ${exam.topics.length} உயர்-விளைச்சல் தலைப்புகளில் கவனம் செலுத்துங்கள்`
                     }
                   </p>
-                  <div className="flex items-center justify-center gap-4 mt-2 text-xs text-gray-500">
+                  <div className="flex items-center justify-center gap-4 mt-2 text-xs text-muted-foreground">
                     <span>{language === 'en' ? 'Quick Wins:' : 'விரைவான வெற்றிகள்:'} <strong className="text-emerald-600">{exam.topics.filter(t => t.effort === 'low').length}</strong></span>
                     <span>{language === 'en' ? 'High ROI:' : 'உயர் ROI:'} <strong className="text-blue-600">{exam.topics.filter(t => t.roi >= 5).length}</strong></span>
                   </div>
