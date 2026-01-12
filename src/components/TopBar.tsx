@@ -1,16 +1,24 @@
-import { Bell, MessageSquareText } from "lucide-react";
+import { Bell, MessageSquareText, Moon, Sun, Monitor, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import UserMenu from "@/components/UserMenu";
 import LanguageToggle from "@/components/LanguageToggle";
 import { useAuth } from "@/hooks/useAuth";
 import { useChatModal } from "@/hooks/useChatModal";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useTheme } from "next-themes";
 import { Link } from "react-router-dom";
 
 const TopBar = () => {
   const { user } = useAuth();
   const { openChat } = useChatModal();
   const { t } = useLanguage();
+  const { theme, setTheme } = useTheme();
 
   return (
     <div className="bg-primary text-primary-foreground py-2 px-4 md:px-8">
@@ -29,6 +37,48 @@ const TopBar = () => {
 
         <div className="flex items-center gap-2 md:gap-4">
           <LanguageToggle />
+          
+          {/* Theme Toggle */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button 
+                className="p-2 hover:bg-primary-foreground/10 rounded-full transition-colors"
+                aria-label="Toggle theme"
+              >
+                {theme === 'dark' ? (
+                  <Moon className="w-4 h-4" />
+                ) : theme === 'system' ? (
+                  <Monitor className="w-4 h-4" />
+                ) : (
+                  <Sun className="w-4 h-4" />
+                )}
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="min-w-[140px] bg-background border shadow-lg z-50">
+              <DropdownMenuItem onClick={() => setTheme('light')} className="gap-2 cursor-pointer justify-between">
+                <div className="flex items-center gap-2">
+                  <Sun className="w-4 h-4 text-amber-500" />
+                  <span>Light</span>
+                </div>
+                {theme === 'light' && <Check className="w-4 h-4 text-emerald-600" />}
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme('dark')} className="gap-2 cursor-pointer justify-between">
+                <div className="flex items-center gap-2">
+                  <Moon className="w-4 h-4 text-slate-600" />
+                  <span>Dark</span>
+                </div>
+                {theme === 'dark' && <Check className="w-4 h-4 text-emerald-600" />}
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme('system')} className="gap-2 cursor-pointer justify-between">
+                <div className="flex items-center gap-2">
+                  <Monitor className="w-4 h-4 text-blue-500" />
+                  <span>System</span>
+                </div>
+                {theme === 'system' && <Check className="w-4 h-4 text-emerald-600" />}
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          
           <Button 
             size="sm" 
             className="relative bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium text-xs h-8 px-4 rounded-full shadow-md shadow-amber-500/20 transition-all duration-300 hover:shadow-lg"
