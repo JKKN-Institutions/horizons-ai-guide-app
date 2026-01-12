@@ -16,6 +16,7 @@ import { toast } from 'sonner';
 import { useStudyReminders } from '@/hooks/useStudyReminders';
 import { useStudyProgress } from '@/hooks/useStudyProgress';
 import { StudyPlanCalendar } from './StudyPlanCalendar';
+import { MilestoneCelebration } from './MilestoneCelebration';
 
 interface StudyPlannerProps {
   language: 'en' | 'ta';
@@ -149,7 +150,9 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({ language }) => {
     getDayCompletionPercent,
     getOverallProgress,
     getCurrentStreak,
-    resetProgress
+    resetProgress,
+    pendingMilestone,
+    dismissMilestone
   } = useStudyProgress(selectedExam);
 
   const currentExam = studyTopicsData.find(e => e.id === selectedExam);
@@ -955,6 +958,13 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({ language }) => {
           </TabsContent>
         ))}
       </Tabs>
+
+      {/* Milestone Celebration Modal */}
+      <MilestoneCelebration
+        milestone={pendingMilestone}
+        language={language}
+        onClose={dismissMilestone}
+      />
     </div>
   );
 };

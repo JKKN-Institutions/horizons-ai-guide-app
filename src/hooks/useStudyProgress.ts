@@ -23,13 +23,17 @@ interface StudyProgress {
   completedTopics: number;
   days: DayProgress[];
   lastUpdated: string;
+  celebratedMilestones: number[];
 }
 
 const STORAGE_KEY = 'pyq_study_progress';
+const MILESTONES = [25, 50, 75, 100] as const;
+type Milestone = typeof MILESTONES[number];
 
 export const useStudyProgress = (examId: string) => {
   const [progress, setProgress] = useState<StudyProgress | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [pendingMilestone, setPendingMilestone] = useState<Milestone | null>(null);
 
   // Load progress from localStorage
   useEffect(() => {
@@ -38,7 +42,12 @@ export const useStudyProgress = (examId: string) => {
       if (stored) {
         const allProgress: Record<string, StudyProgress> = JSON.parse(stored);
         if (allProgress[examId]) {
-          setProgress(allProgress[examId]);
+          // Ensure celebratedMilestones exists for older data
+          const loadedProgress = allProgress[examId];
+          if (!loadedProgress.celebratedMilestones) {
+            loadedProgress.celebratedMilestones = [];
+          }
+          setProgress(loadedProgress);
         }
       }
     } catch (error) {
@@ -61,6 +70,20 @@ export const useStudyProgress = (examId: string) => {
     }
   }, [examId]);
 
+  // Check for new milestones
+  const checkMilestone = useCallback((completedTopics: number, totalTopics: number, celebratedMilestones: number[]): Milestone | null => {
+    if (totalTopics === 0) return null;
+    
+    const percentage = Math.round((completedTopics / totalTopics) * 100);
+    
+    for (const milestone of MILESTONES) {
+      if (percentage >= milestone && !celebratedMilestones.includes(milestone)) {
+        return milestone;
+      }
+    }
+    return null;
+  }, []);
+
   // Initialize progress for a new plan
   const initializeProgress = useCallback((schedule: { day: number; date: string; topics: { topicId: string }[] }[]) => {
     const newProgress: StudyProgress = {
@@ -78,7 +101,8 @@ export const useStudyProgress = (examId: string) => {
           completed: false
         }))
       })),
-      lastUpdated: new Date().toISOString()
+      lastUpdated: new Date().toISOString(),
+      celebratedMilestones: []
     };
     saveProgress(newProgress);
     return newProgress;
@@ -124,13 +148,23 @@ export const useStudyProgress = (examId: string) => {
       }
     });
 
+    // Check for new milestones
+    const newMilestone = checkMilestone(completedTopics, progress.totalTopics, progress.celebratedMilestones);
+    let updatedCelebratedMilestones = progress.celebratedMilestones;
+    
+    if (newMilestone) {
+      updatedCelebratedMilestones = [...progress.celebratedMilestones, newMilestone];
+      setPendingMilestone(newMilestone);
+    }
+
     saveProgress({
       ...progress,
       days: updatedDays,
       completedDays,
-      completedTopics
+      completedTopics,
+      celebratedMilestones: updatedCelebratedMilestones
     });
-  }, [progress, saveProgress]);
+  }, [progress, saveProgress, checkMilestone]);
 
   // Mark entire day as complete/incomplete
   const toggleDayComplete = useCallback((dayNumber: number) => {
@@ -166,13 +200,23 @@ export const useStudyProgress = (examId: string) => {
       }
     });
 
+    // Check for new milestones
+    const newMilestone = checkMilestone(completedTopics, progress.totalTopics, progress.celebratedMilestones);
+    let updatedCelebratedMilestones = progress.celebratedMilestones;
+    
+    if (newMilestone) {
+      updatedCelebratedMilestones = [...progress.celebratedMilestones, newMilestone];
+      setPendingMilestone(newMilestone);
+    }
+
     saveProgress({
       ...progress,
       days: updatedDays,
       completedDays,
-      completedTopics
+      completedTopics,
+      celebratedMilestones: updatedCelebratedMilestones
     });
-  }, [progress, saveProgress]);
+  }, [progress, saveProgress, checkMilestone]);
 
   // Add notes to a topic
   const addTopicNotes = useCallback((dayNumber: number, topicId: string, notes: string) => {
@@ -259,6 +303,11 @@ export const useStudyProgress = (examId: string) => {
     return streak;
   }, [progress]);
 
+  // Dismiss milestone celebration
+  const dismissMilestone = useCallback(() => {
+    setPendingMilestone(null);
+  }, []);
+
   return {
     progress,
     isLoading,
@@ -272,6 +321,8 @@ export const useStudyProgress = (examId: string) => {
     isDayCompleted,
     getDayCompletionPercent,
     resetProgress,
-    getCurrentStreak
+    getCurrentStreak,
+    pendingMilestone,
+    dismissMilestone
   };
 };
