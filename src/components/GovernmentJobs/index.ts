@@ -6,6 +6,7 @@ export { PreparationTipsSection } from './PreparationTipsSection';
 export { ExamReminders } from './ExamReminders';
 export { SalaryComparisonChart } from './SalaryComparisonChart';
 export { GovtMockTest } from './GovtMockTest';
+export { GovtMockTestConfigDialog, govtExamSyllabus } from './GovtMockTestConfigDialog';
 export { GovtMockTestProgress } from './GovtMockTestProgress';
 export { StudyStreakDisplay } from './StudyStreakDisplay';
 export { GovtPYQSection } from './GovtPYQSection';
