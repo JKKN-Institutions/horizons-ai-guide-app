@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Trophy, Star, Sparkles, Rocket, Crown } from 'lucide-react';
+import { Trophy, Star, Sparkles, Rocket, Crown, Volume2, VolumeX } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 
 interface MilestoneCelebrationProps {
   milestone: 25 | 50 | 75 | 100 | null;
   language: 'en' | 'ta';
   onClose: () => void;
 }
+
+const STORAGE_KEY = 'pyq-milestone-sound-enabled';
 
 const MILESTONE_CONFIG = {
   25: {
@@ -21,7 +25,8 @@ const MILESTONE_CONFIG = {
     },
     gradient: 'from-amber-400 to-orange-500',
     bgGradient: 'from-amber-50 to-orange-50',
-    confettiColors: ['#f59e0b', '#fb923c', '#fbbf24']
+    confettiColors: ['#f59e0b', '#fb923c', '#fbbf24'],
+    soundFrequency: 523.25 // C5
   },
   50: {
     icon: Trophy,
@@ -32,7 +37,8 @@ const MILESTONE_CONFIG = {
     },
     gradient: 'from-blue-500 to-indigo-600',
     bgGradient: 'from-blue-50 to-indigo-50',
-    confettiColors: ['#3b82f6', '#6366f1', '#8b5cf6']
+    confettiColors: ['#3b82f6', '#6366f1', '#8b5cf6'],
+    soundFrequency: 659.25 // E5
   },
   75: {
     icon: Rocket,
@@ -43,7 +49,8 @@ const MILESTONE_CONFIG = {
     },
     gradient: 'from-purple-500 to-pink-600',
     bgGradient: 'from-purple-50 to-pink-50',
-    confettiColors: ['#a855f7', '#ec4899', '#d946ef']
+    confettiColors: ['#a855f7', '#ec4899', '#d946ef'],
+    soundFrequency: 783.99 // G5
   },
   100: {
     icon: Crown,
@@ -54,7 +61,64 @@ const MILESTONE_CONFIG = {
     },
     gradient: 'from-yellow-400 via-amber-500 to-orange-600',
     bgGradient: 'from-yellow-50 via-amber-50 to-orange-50',
-    confettiColors: ['#fbbf24', '#f59e0b', '#eab308', '#facc15']
+    confettiColors: ['#fbbf24', '#f59e0b', '#eab308', '#facc15'],
+    soundFrequency: 1046.50 // C6
+  }
+};
+
+// Web Audio API celebration sound generator
+const playCelebrationSound = (milestone: 25 | 50 | 75 | 100) => {
+  try {
+    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioContext) return;
+
+    const ctx = new AudioContext();
+    const config = MILESTONE_CONFIG[milestone];
+    const baseFreq = config.soundFrequency;
+
+    // Create a pleasant ascending arpeggio
+    const notes = milestone === 100 
+      ? [baseFreq, baseFreq * 1.25, baseFreq * 1.5, baseFreq * 2, baseFreq * 2.5] 
+      : [baseFreq, baseFreq * 1.25, baseFreq * 1.5];
+
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      
+      const startTime = ctx.currentTime + i * 0.12;
+      const duration = milestone === 100 ? 0.4 : 0.25;
+      
+      gain.gain.setValueAtTime(0, startTime);
+      gain.gain.linearRampToValueAtTime(0.15, startTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+      
+      osc.start(startTime);
+      osc.stop(startTime + duration);
+    });
+
+    // Add a subtle shimmer for 100% milestone
+    if (milestone === 100) {
+      setTimeout(() => {
+        const shimmerOsc = ctx.createOscillator();
+        const shimmerGain = ctx.createGain();
+        shimmerOsc.connect(shimmerGain);
+        shimmerGain.connect(ctx.destination);
+        shimmerOsc.type = 'triangle';
+        shimmerOsc.frequency.value = baseFreq * 3;
+        shimmerGain.gain.setValueAtTime(0.08, ctx.currentTime);
+        shimmerGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+        shimmerOsc.start();
+        shimmerOsc.stop(ctx.currentTime + 0.6);
+      }, 500);
+    }
+  } catch (e) {
+    console.warn('Audio playback failed:', e);
   }
 };
 
@@ -64,13 +128,25 @@ export const MilestoneCelebration: React.FC<MilestoneCelebrationProps> = ({
   onClose
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored !== null ? stored === 'true' : true;
+  });
+
+  const handleSoundToggle = useCallback((enabled: boolean) => {
+    setSoundEnabled(enabled);
+    localStorage.setItem(STORAGE_KEY, String(enabled));
+  }, []);
 
   useEffect(() => {
     if (milestone) {
       setIsVisible(true);
       triggerConfetti(milestone);
+      if (soundEnabled) {
+        playCelebrationSound(milestone);
+      }
     }
-  }, [milestone]);
+  }, [milestone, soundEnabled]);
 
   const triggerConfetti = (ms: 25 | 50 | 75 | 100) => {
     const config = MILESTONE_CONFIG[ms];
@@ -128,6 +204,15 @@ export const MilestoneCelebration: React.FC<MilestoneCelebrationProps> = ({
     setTimeout(onClose, 200);
   };
 
+  const replayEffects = useCallback(() => {
+    if (milestone) {
+      triggerConfetti(milestone);
+      if (soundEnabled) {
+        playCelebrationSound(milestone);
+      }
+    }
+  }, [milestone, soundEnabled]);
+
   if (!milestone) return null;
 
   const config = MILESTONE_CONFIG[milestone];
@@ -145,6 +230,23 @@ export const MilestoneCelebration: React.FC<MilestoneCelebrationProps> = ({
               transition={{ type: 'spring', duration: 0.5 }}
               className={`relative bg-gradient-to-br ${config.bgGradient} p-6`}
             >
+              {/* Sound Toggle - Top Right */}
+              <div className="absolute top-3 right-3 z-10">
+                <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-sm">
+                  {soundEnabled ? (
+                    <Volume2 className="w-4 h-4 text-gray-600" />
+                  ) : (
+                    <VolumeX className="w-4 h-4 text-gray-400" />
+                  )}
+                  <Switch
+                    id="milestone-sound"
+                    checked={soundEnabled}
+                    onCheckedChange={handleSoundToggle}
+                    className="data-[state=checked]:bg-primary"
+                  />
+                </div>
+              </div>
+
               {/* Background decoration */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <motion.div
@@ -218,17 +320,26 @@ export const MilestoneCelebration: React.FC<MilestoneCelebrationProps> = ({
                   />
                 </motion.div>
 
-                {/* Close button */}
+                {/* Action buttons */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1 }}
+                  className="flex flex-col sm:flex-row gap-2 justify-center pt-2"
                 >
                   <Button
-                    onClick={handleClose}
-                    className={`mt-2 bg-gradient-to-r ${config.gradient} text-white hover:opacity-90 transition-opacity`}
+                    variant="outline"
+                    size="sm"
+                    onClick={replayEffects}
+                    className="text-gray-600"
                   >
-                    <Sparkles className="w-4 h-4 mr-2" />
+                    <Sparkles className="w-4 h-4 mr-1" />
+                    {language === 'en' ? 'Replay' : 'மீண்டும்'}
+                  </Button>
+                  <Button
+                    onClick={handleClose}
+                    className={`bg-gradient-to-r ${config.gradient} text-white hover:opacity-90 transition-opacity`}
+                  >
                     {language === 'en' ? 'Continue Learning' : 'படிப்பைத் தொடர்'}
                   </Button>
                 </motion.div>
