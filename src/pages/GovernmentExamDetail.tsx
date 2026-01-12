@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, BookOpen, FileText, ClipboardList, Play, ChevronDown, ChevronUp, Check, X, Eye, EyeOff } from 'lucide-react';
+import { ArrowLeft, BookOpen, FileText, ClipboardList, Play, ChevronDown, ChevronUp, Check, X, Eye, EyeOff, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -9,6 +9,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { useLanguage } from '@/hooks/useLanguage';
 import { getCategoryById, getExamById, Question } from '@/data/government-exams-data';
+import { GovtMockTest, generateGovtExamPDF } from '@/components/GovernmentExams';
+import { toast } from 'sonner';
 
 const GovernmentExamDetail = () => {
   const { categoryId, examId } = useParams<{ categoryId: string; examId: string }>();
@@ -17,6 +19,7 @@ const GovernmentExamDetail = () => {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number>>({});
   const [revealedAnswers, setRevealedAnswers] = useState<Set<string>>(new Set());
+  const [showMockTest, setShowMockTest] = useState(false);
 
   const category = getCategoryById(categoryId || '');
   const exam = getExamById(categoryId || '', examId || '');
@@ -47,11 +50,16 @@ const GovernmentExamDetail = () => {
     setRevealedAnswers(newSet);
   };
 
-  const pyqBySubject = exam.pyq.reduce((acc, q) => {
-    if (!acc[q.subject]) acc[q.subject] = [];
-    acc[q.subject].push(q);
-    return acc;
-  }, {} as Record<string, Question[]>);
+  const handleDownloadPDF = async (type: 'syllabus' | 'pyq') => {
+    toast.loading(`Generating ${type === 'syllabus' ? 'Syllabus' : 'PYQ'} PDF...`);
+    await generateGovtExamPDF({ type, exam, category, language: language as 'en' | 'ta' });
+    toast.dismiss();
+    toast.success('PDF downloaded successfully!');
+  };
+
+  if (showMockTest) {
+    return <GovtMockTest exam={exam} category={category} onClose={() => setShowMockTest(false)} />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pb-20">
@@ -129,9 +137,13 @@ const GovernmentExamDetail = () => {
                 </Card>
               )}
 
-              <Button className="w-full" onClick={() => navigate(`/career-assessment/colleges`)}>
+              <Button className="w-full" onClick={() => setShowMockTest(true)}>
                 <Play className="h-4 w-4 mr-2" />
                 {language === 'ta' ? 'மாக் டெஸ்ட் தொடங்கு' : 'Start Mock Test'}
+              </Button>
+              <Button variant="outline" className="w-full gap-2" onClick={() => handleDownloadPDF('syllabus')}>
+                <Download className="h-4 w-4" />
+                {language === 'ta' ? 'பாடத்திட்டம் PDF' : 'Download Syllabus PDF'}
               </Button>
             </div>
           </TabsContent>
@@ -139,6 +151,10 @@ const GovernmentExamDetail = () => {
           {/* Syllabus Tab */}
           <TabsContent value="syllabus">
             <div className="space-y-3">
+              <Button variant="outline" size="sm" className="gap-2 mb-2" onClick={() => handleDownloadPDF('syllabus')}>
+                <Download className="h-4 w-4" />
+                {language === 'ta' ? 'PDF பதிவிறக்கம்' : 'Download PDF'}
+              </Button>
               {Object.entries(exam.syllabus).map(([key, sections]) => (
                 sections.map((section, sIdx) => (
                   <Card key={`${key}-${sIdx}`}>
@@ -184,7 +200,21 @@ const GovernmentExamDetail = () => {
               </Card>
             ) : (
               <div className="space-y-4">
-                {Object.entries(pyqBySubject).map(([subject, questions]) => (
+                <div className="flex gap-2">
+                  <Button variant="outline" size="sm" className="gap-2" onClick={() => handleDownloadPDF('pyq')}>
+                    <Download className="h-4 w-4" />
+                    {language === 'ta' ? 'PYQ PDF பதிவிறக்கம்' : 'Download PYQ PDF'}
+                  </Button>
+                  <Button size="sm" className="gap-2" onClick={() => setShowMockTest(true)}>
+                    <Play className="h-4 w-4" />
+                    {language === 'ta' ? 'மாக் டெஸ்ட்' : 'Mock Test'}
+                  </Button>
+                </div>
+                {Object.entries(exam.pyq.reduce((acc, q) => {
+                  if (!acc[q.subject]) acc[q.subject] = [];
+                  acc[q.subject].push(q);
+                  return acc;
+                }, {} as Record<string, Question[]>)).map(([subject, questions]) => (
                   <div key={subject}>
                     <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
                       <FileText className="h-4 w-4" />

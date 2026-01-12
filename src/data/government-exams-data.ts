@@ -313,11 +313,29 @@ const railwayExams: Exam[] = [
       { id: 'rrb-ga-3', question: 'The headquarters of ISRO is located in:', options: ['Chennai', 'Mumbai', 'Bengaluru', 'Hyderabad'], answer: 2, explanation: 'ISRO HQ is in Bengaluru, Karnataka', subject: 'General Awareness', difficulty: 'easy' },
       { id: 'rrb-ga-4', question: 'Which Article of Constitution abolishes untouchability?', questionTamil: 'தீண்டாமையை ஒழிக்கும் அரசியலமைப்பு சட்டப்பிரிவு எது?', options: ['Article 14', 'Article 15', 'Article 17', 'Article 21'], answer: 2, explanation: 'Article 17 abolishes untouchability and makes it punishable', subject: 'General Awareness', difficulty: 'medium' },
       { id: 'rrb-ga-5', question: 'Who invented the telephone?', options: ['Thomas Edison', 'Alexander Graham Bell', 'Marconi', 'Wright Brothers'], answer: 1, explanation: 'Alexander Graham Bell invented telephone in 1876', subject: 'General Awareness', difficulty: 'easy' },
+      { id: 'rrb-ga-6', question: 'Which river is called "Sorrow of Bengal"?', questionTamil: '"வங்காளத்தின் துக்கம்" என்று அழைக்கப்படும் ஆறு எது?', options: ['Ganga', 'Brahmaputra', 'Damodar', 'Hooghly'], answer: 2, explanation: 'Damodar river caused frequent floods in Bengal', subject: 'General Awareness', difficulty: 'easy' },
+      { id: 'rrb-ga-7', question: 'First woman President of Indian National Congress was:', options: ['Sarojini Naidu', 'Annie Besant', 'Indira Gandhi', 'Vijaya Lakshmi Pandit'], answer: 1, explanation: 'Annie Besant (1917) was first woman president of INC', subject: 'General Awareness', difficulty: 'medium' },
+      { id: 'rrb-ga-8', question: 'The chemical name of Vitamin C is:', questionTamil: 'வைட்டமின் C இன் வேதியியல் பெயர்:', options: ['Retinol', 'Thiamine', 'Ascorbic Acid', 'Calciferol'], answer: 2, explanation: 'Vitamin C = Ascorbic Acid (found in citrus fruits)', subject: 'General Awareness', difficulty: 'easy' },
+      { id: 'rrb-ga-9', question: 'Which country has the longest coastline in the world?', options: ['USA', 'Australia', 'Canada', 'Russia'], answer: 2, explanation: 'Canada has the longest coastline (202,080 km)', subject: 'General Awareness', difficulty: 'medium' },
+      { id: 'rrb-ga-10', question: 'The Quit India Movement was launched in:', questionTamil: 'வெள்ளையனே வெளியேறு இயக்கம் தொடங்கப்பட்ட ஆண்டு:', options: ['1940', '1942', '1944', '1946'], answer: 1, explanation: 'Quit India Movement - 8 August 1942 (Do or Die)', subject: 'General Awareness', difficulty: 'easy' },
       { id: 'rrb-math-1', question: 'A train 150m long passes a pole in 15 seconds. Find its speed in km/hr.', options: ['36 km/hr', '40 km/hr', '45 km/hr', '50 km/hr'], answer: 0, explanation: 'Speed = 150/15 = 10 m/s = 10 × 18/5 = 36 km/hr', subject: 'Mathematics', difficulty: 'medium' },
       { id: 'rrb-math-2', question: 'The average of 5 consecutive odd numbers is 27. Find the largest number.', options: ['29', '31', '33', '35'], answer: 1, explanation: 'If average is 27, middle number is 27. So: 23, 25, 27, 29, 31. Largest = 31', subject: 'Mathematics', difficulty: 'medium' },
       { id: 'rrb-math-3', question: 'A sum becomes ₹6050 in 2 years at 10% compound interest. Find the sum.', options: ['₹5000', '₹4500', '₹5500', '₹4000'], answer: 0, explanation: 'P(1+10/100)² = 6050 → P × 1.21 = 6050 → P = 5000', subject: 'Mathematics', difficulty: 'medium' },
+      { id: 'rrb-math-4', question: 'If x + 1/x = 5, then x² + 1/x² = ?', questionTamil: 'x + 1/x = 5 எனில், x² + 1/x² = ?', options: ['23', '25', '27', '21'], answer: 0, explanation: '(x + 1/x)² = x² + 1/x² + 2. So 25 = x² + 1/x² + 2 → x² + 1/x² = 23', subject: 'Mathematics', difficulty: 'hard' },
+      { id: 'rrb-math-5', question: 'Perimeter of rectangle is 40 cm. If length is 12 cm, find the area.', options: ['96 cm²', '80 cm²', '84 cm²', '90 cm²'], answer: 0, explanation: '2(L+B) = 40, L = 12. So B = 8. Area = 12 × 8 = 96 cm²', subject: 'Mathematics', difficulty: 'easy' },
+      { id: 'rrb-math-6', question: 'A can do work in 12 days, B in 15 days. Together in how many days?', options: ['6 days', '6⅔ days', '7 days', '8 days'], answer: 1, explanation: 'Combined rate = 1/12 + 1/15 = 9/60 = 3/20. Days = 20/3 = 6⅔', subject: 'Mathematics', difficulty: 'medium' },
+      { id: 'rrb-math-7', question: 'Find the simple interest on ₹5000 at 8% for 3 years:', options: ['₹1200', '₹1000', '₹1400', '₹1100'], answer: 0, explanation: 'SI = PRT/100 = 5000 × 8 × 3/100 = ₹1200', subject: 'Mathematics', difficulty: 'easy' },
+      { id: 'rrb-math-8', question: 'If 3:5 = x:25, find x:', options: ['15', '12', '18', '20'], answer: 0, explanation: '3/5 = x/25 → x = 3 × 25/5 = 15', subject: 'Mathematics', difficulty: 'easy' },
+      { id: 'rrb-math-9', question: 'The cost price of 15 articles equals selling price of 12 articles. Profit % is:', options: ['20%', '25%', '30%', '15%'], answer: 1, explanation: 'CP of 15 = SP of 12. Profit = 3 articles. Profit% = 3/12 × 100 = 25%', subject: 'Mathematics', difficulty: 'medium' },
+      { id: 'rrb-math-10', question: 'Area of circle with diameter 14 cm is:', options: ['154 cm²', '144 cm²', '164 cm²', '616 cm²'], answer: 0, explanation: 'r = 7 cm. Area = πr² = 22/7 × 49 = 154 cm²', subject: 'Mathematics', difficulty: 'easy' },
       { id: 'rrb-reason-1', question: 'APPLE : ELPPA :: MANGO : ?', options: ['OGNAM', 'OGANM', 'MANOG', 'NAGOM'], answer: 0, explanation: 'Reverse of MANGO = OGNAM', subject: 'Reasoning', difficulty: 'easy' },
-      { id: 'rrb-reason-2', question: 'Find the odd one out: 8, 27, 64, 100, 125', options: ['27', '64', '100', '125'], answer: 2, explanation: '8=2³, 27=3³, 64=4³, 125=5³. 100 is not a perfect cube', subject: 'Reasoning', difficulty: 'medium' }
+      { id: 'rrb-reason-2', question: 'Find the odd one out: 8, 27, 64, 100, 125', options: ['27', '64', '100', '125'], answer: 2, explanation: '8=2³, 27=3³, 64=4³, 125=5³. 100 is not a perfect cube', subject: 'Reasoning', difficulty: 'medium' },
+      { id: 'rrb-reason-3', question: 'A is B\'s brother. C is A\'s mother. D is C\'s father. What is B to D?', options: ['Grandfather', 'Grandson/Granddaughter', 'Son', 'Father'], answer: 1, explanation: 'D is grandfather of A and B. So B is grandchild of D', subject: 'Reasoning', difficulty: 'medium' },
+      { id: 'rrb-reason-4', question: 'Complete the series: 2, 5, 10, 17, 26, ?', options: ['35', '37', '39', '41'], answer: 1, explanation: 'Pattern: +3, +5, +7, +9, +11. Next: 26 + 11 = 37', subject: 'Reasoning', difficulty: 'medium' },
+      { id: 'rrb-reason-5', question: 'Pointing to a man, a woman said, "His mother is the only daughter of my mother." How is the woman related to the man?', options: ['Aunt', 'Mother', 'Sister', 'Grandmother'], answer: 1, explanation: 'Only daughter of my mother = myself. So woman is man\'s mother', subject: 'Reasoning', difficulty: 'medium' },
+      { id: 'rrb-reason-6', question: 'Which number will replace the question mark? 3, 6, 18, 72, ?', options: ['144', '216', '288', '360'], answer: 3, explanation: 'Pattern: ×2, ×3, ×4, ×5. 72 × 5 = 360', subject: 'Reasoning', difficulty: 'hard' },
+      { id: 'rrb-reason-7', question: 'If South-East becomes North, then North-East becomes:', options: ['South', 'North-West', 'West', 'South-West'], answer: 2, explanation: 'Rotating 135° anticlockwise: NE becomes West', subject: 'Reasoning', difficulty: 'hard' },
+      { id: 'rrb-reason-8', question: 'Find missing number: 4, 9, 25, 49, 121, ?', options: ['144', '169', '196', '225'], answer: 1, explanation: 'Squares of primes: 2², 3², 5², 7², 11², 13² = 169', subject: 'Reasoning', difficulty: 'hard' }
     ]
   },
   {
@@ -346,7 +364,16 @@ const railwayExams: Exam[] = [
         }
       ]
     },
-    pyq: []
+    pyq: [
+      { id: 'grpd-math-1', question: 'What is the LCM of 12 and 18?', questionTamil: '12 மற்றும் 18 இன் மீ.பொ.ம என்ன?', options: ['36', '24', '72', '54'], answer: 0, explanation: 'LCM of 12 and 18 = 36', subject: 'Mathematics', difficulty: 'easy' },
+      { id: 'grpd-math-2', question: 'A shopkeeper sells an article for ₹450 at 10% profit. What is the cost price?', options: ['₹400', '₹405', '₹410', '₹409'], answer: 3, explanation: 'CP = SP/(1+P/100) = 450/1.1 = ₹409 (approx)', subject: 'Mathematics', difficulty: 'medium' },
+      { id: 'grpd-sci-1', question: 'Which vitamin is produced by sunlight?', questionTamil: 'சூரிய ஒளியால் எந்த வைட்டமின் உற்பத்தி செய்யப்படுகிறது?', options: ['Vitamin A', 'Vitamin B', 'Vitamin C', 'Vitamin D'], answer: 3, explanation: 'Vitamin D is synthesized in skin when exposed to sunlight', subject: 'General Science', difficulty: 'easy' },
+      { id: 'grpd-sci-2', question: 'What is the chemical formula of common salt?', options: ['NaCl', 'KCl', 'CaCl2', 'MgCl2'], answer: 0, explanation: 'Common salt is Sodium Chloride - NaCl', subject: 'General Science', difficulty: 'easy' },
+      { id: 'grpd-ga-1', question: 'First Railway line in India was between:', questionTamil: 'இந்தியாவில் முதல் ரயில் பாதை எந்த இடங்களுக்கு இடையே அமைந்தது?', options: ['Delhi-Agra', 'Mumbai-Thane', 'Kolkata-Delhi', 'Chennai-Bangalore'], answer: 1, explanation: 'First railway line: Mumbai (Bori Bunder) to Thane in 1853', subject: 'General Awareness', difficulty: 'easy' },
+      { id: 'grpd-ga-2', question: 'Who is known as the Father of Indian Railways?', options: ['Lord Dalhousie', 'Lord Curzon', 'Lord Mountbatten', 'Lord Ripon'], answer: 0, explanation: 'Lord Dalhousie introduced railways in India in 1853', subject: 'General Awareness', difficulty: 'medium' },
+      { id: 'grpd-reason-1', question: 'If CAT = 24, then DOG = ?', options: ['26', '27', '28', '25'], answer: 0, explanation: 'C=3, A=1, T=20 → 3+1+20=24. D=4, O=15, G=7 → 4+15+7=26', subject: 'Reasoning', difficulty: 'medium' },
+      { id: 'grpd-reason-2', question: 'Find the next term: A, C, F, J, ?', options: ['M', 'N', 'O', 'P'], answer: 2, explanation: 'Pattern: +2, +3, +4, +5. J + 5 = O', subject: 'Reasoning', difficulty: 'medium' }
+    ]
   },
   {
     id: 'rpf-constable',
@@ -553,7 +580,18 @@ const bankingExams: Exam[] = [
         }
       ]
     },
-    pyq: []
+    pyq: [
+      { id: 'ibps-eng-1', question: 'Choose the word opposite in meaning to "AFFLUENT":', options: ['Wealthy', 'Poor', 'Rich', 'Prosperous'], answer: 1, explanation: 'Affluent means wealthy; opposite is Poor', subject: 'English', difficulty: 'easy' },
+      { id: 'ibps-eng-2', question: 'The idiom "A piece of cake" means:', options: ['Something sweet', 'A difficult task', 'Something very easy', 'A dessert'], answer: 2, explanation: 'A piece of cake = something very easy to do', subject: 'English', difficulty: 'easy' },
+      { id: 'ibps-quant-1', question: 'What is 25% of 80?', options: ['20', '25', '15', '30'], answer: 0, explanation: '25% of 80 = 25/100 × 80 = 20', subject: 'Quantitative Aptitude', difficulty: 'easy' },
+      { id: 'ibps-quant-2', question: 'A boat goes 12 km downstream in 1 hour and returns in 2 hours. Speed of current is:', options: ['3 km/hr', '4 km/hr', '2 km/hr', '5 km/hr'], answer: 0, explanation: 'Downstream = 12 km/hr, Upstream = 6 km/hr. Current = (12-6)/2 = 3 km/hr', subject: 'Quantitative Aptitude', difficulty: 'medium' },
+      { id: 'ibps-quant-3', question: 'Find the missing: 2, 6, 12, 20, 30, ?', options: ['40', '42', '44', '46'], answer: 1, explanation: 'Differences: 4, 6, 8, 10, 12. Next = 30 + 12 = 42', subject: 'Quantitative Aptitude', difficulty: 'medium' },
+      { id: 'ibps-reason-1', question: 'In a code, COMPUTER is written as RFUVQNPC. How is PRINTER written?', options: ['QSJOUFQ', 'QSJOUFS', 'OQJOUFS', 'QSJOUGE'], answer: 1, explanation: 'Pattern: +1, -1, +1, -1... for each letter position', subject: 'Reasoning', difficulty: 'hard' },
+      { id: 'ibps-reason-2', question: 'P is to the south of Q. R is to the east of Q. In which direction is P from R?', options: ['South-West', 'North-East', 'South-East', 'North-West'], answer: 0, explanation: 'If Q is center, P is south and R is east. So P is South-West of R', subject: 'Reasoning', difficulty: 'medium' },
+      { id: 'ibps-ga-1', question: 'RBI was established in:', questionTamil: 'RBI நிறுவப்பட்ட ஆண்டு:', options: ['1935', '1947', '1950', '1949'], answer: 0, explanation: 'Reserve Bank of India was established on 1st April 1935', subject: 'General Awareness', difficulty: 'easy' },
+      { id: 'ibps-ga-2', question: 'NEFT stands for:', options: ['National Electronic Funds Transfer', 'New Electronic Funds Transfer', 'National Emergency Funds Transfer', 'None of these'], answer: 0, explanation: 'NEFT = National Electronic Funds Transfer', subject: 'General Awareness', difficulty: 'easy' },
+      { id: 'ibps-ga-3', question: 'The headquarters of RBI is in:', options: ['Delhi', 'Mumbai', 'Kolkata', 'Chennai'], answer: 1, explanation: 'RBI headquarters is in Mumbai, Maharashtra', subject: 'General Awareness', difficulty: 'easy' }
+    ]
   },
   {
     id: 'sbi-clerk',
@@ -579,7 +617,14 @@ const bankingExams: Exam[] = [
         }
       ]
     },
-    pyq: []
+    pyq: [
+      { id: 'sbi-eng-1', question: 'Choose the correct synonym of "ELOQUENT":', options: ['Silent', 'Fluent', 'Quiet', 'Dumb'], answer: 1, explanation: 'Eloquent means fluent or persuasive in speaking', subject: 'English', difficulty: 'medium' },
+      { id: 'sbi-quant-1', question: 'The ratio of ages of A and B is 4:3. After 6 years, the ratio becomes 5:4. Present age of A is:', options: ['24 years', '28 years', '32 years', '20 years'], answer: 0, explanation: 'Let ages be 4x and 3x. (4x+6)/(3x+6) = 5/4. Solving: x=6. A = 24 years', subject: 'Quantitative Aptitude', difficulty: 'medium' },
+      { id: 'sbi-quant-2', question: 'If the area of a square is 196 sq cm, find its perimeter:', options: ['56 cm', '48 cm', '52 cm', '60 cm'], answer: 0, explanation: 'Side = √196 = 14 cm. Perimeter = 4 × 14 = 56 cm', subject: 'Quantitative Aptitude', difficulty: 'easy' },
+      { id: 'sbi-reason-1', question: 'How many such pairs of letters are there in WONDERFUL which have as many letters between them as in the English alphabet?', options: ['Two', 'Three', 'Four', 'Five'], answer: 1, explanation: 'WO (7 letters), ND (10 letters), UL (9 letters) - Three such pairs', subject: 'Reasoning', difficulty: 'hard' },
+      { id: 'sbi-ga-1', question: 'Which bank is known as Banker\'s Bank?', questionTamil: 'வங்கிகளின் வங்கி என்று அறியப்படுவது எது?', options: ['SBI', 'ICICI', 'RBI', 'HDFC'], answer: 2, explanation: 'RBI is called Banker\'s Bank as it provides banking services to banks', subject: 'General Awareness', difficulty: 'easy' },
+      { id: 'sbi-ga-2', question: 'What is the minimum amount required to open a Savings Account in SBI?', options: ['₹500', '₹1000', '₹100', '₹0 (Zero Balance)'], answer: 3, explanation: 'SBI offers Zero Balance Basic Savings Bank Deposit Account', subject: 'General Awareness', difficulty: 'easy' }
+    ]
   },
   {
     id: 'india-post-gds',
