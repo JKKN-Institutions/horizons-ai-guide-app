@@ -4,9 +4,15 @@ import {
   BookOpen, Search, Filter, ChevronLeft, ChevronRight, Check, X,
   Clock, Eye, Bookmark, BookmarkCheck, Lightbulb, RotateCcw,
   GraduationCap, Trophy, Target, Timer, Languages, ChevronDown,
-  Download, Loader2, Play, Moon, Sun
+  Download, Loader2, Play, Moon, Sun, Monitor
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -303,19 +309,38 @@ const PYQPractice = () => {
                 <h1 className="text-xl font-bold bg-gradient-to-r from-emerald-700 to-teal-700 bg-clip-text text-transparent">PYQ Practice</h1>
               </div>
               <div className="flex items-center gap-2">
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="border-emerald-200 hover:bg-emerald-50 hover:border-emerald-300 transition-all duration-300"
-                  aria-label="Toggle dark mode"
-                >
-                  {theme === 'dark' ? (
-                    <Sun className="w-4 h-4 text-amber-500" />
-                  ) : (
-                    <Moon className="w-4 h-4 text-emerald-600" />
-                  )}
-                </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="border-emerald-200 hover:bg-emerald-50 hover:border-emerald-300 transition-all duration-300"
+                      aria-label="Toggle theme"
+                    >
+                      {theme === 'dark' ? (
+                        <Moon className="w-4 h-4 text-emerald-600" />
+                      ) : theme === 'system' ? (
+                        <Monitor className="w-4 h-4 text-emerald-600" />
+                      ) : (
+                        <Sun className="w-4 h-4 text-amber-500" />
+                      )}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="min-w-[140px]">
+                    <DropdownMenuItem onClick={() => setTheme('light')} className="gap-2 cursor-pointer">
+                      <Sun className="w-4 h-4 text-amber-500" />
+                      <span>Light</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme('dark')} className="gap-2 cursor-pointer">
+                      <Moon className="w-4 h-4 text-slate-600" />
+                      <span>Dark</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme('system')} className="gap-2 cursor-pointer">
+                      <Monitor className="w-4 h-4 text-blue-500" />
+                      <span>System</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
                 <Button 
                   variant="outline" 
                   size="sm"
@@ -753,19 +778,38 @@ const PYQPractice = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="border-emerald-200 hover:bg-emerald-50"
-                aria-label="Toggle dark mode"
-              >
-                {theme === 'dark' ? (
-                  <Sun className="w-4 h-4 text-amber-500" />
-                ) : (
-                  <Moon className="w-4 h-4 text-emerald-600" />
-                )}
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="border-emerald-200 hover:bg-emerald-50"
+                    aria-label="Toggle theme"
+                  >
+                    {theme === 'dark' ? (
+                      <Moon className="w-4 h-4 text-emerald-600" />
+                    ) : theme === 'system' ? (
+                      <Monitor className="w-4 h-4 text-emerald-600" />
+                    ) : (
+                      <Sun className="w-4 h-4 text-amber-500" />
+                    )}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="min-w-[140px]">
+                  <DropdownMenuItem onClick={() => setTheme('light')} className="gap-2 cursor-pointer">
+                    <Sun className="w-4 h-4 text-amber-500" />
+                    <span>Light</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme('dark')} className="gap-2 cursor-pointer">
+                    <Moon className="w-4 h-4 text-slate-600" />
+                    <span>Dark</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme('system')} className="gap-2 cursor-pointer">
+                    <Monitor className="w-4 h-4 text-blue-500" />
+                    <span>System</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Button 
                 variant="outline" 
                 size="sm"
