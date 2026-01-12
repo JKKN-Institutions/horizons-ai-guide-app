@@ -82,17 +82,17 @@ const getEffortLabel = (effort: 'low' | 'medium' | 'high', lang: 'en' | 'ta') =>
 };
 
 const getEffortColor = (effort: 'low' | 'medium' | 'high') => {
-  if (effort === 'low') return 'bg-emerald-100 text-emerald-700 border-emerald-200';
-  if (effort === 'medium') return 'bg-amber-100 text-amber-700 border-amber-200';
-  return 'bg-rose-100 text-rose-700 border-rose-200';
+  if (effort === 'low') return 'bg-emerald-600 text-white border-emerald-700';
+  if (effort === 'medium') return 'bg-amber-500 text-white border-amber-600';
+  return 'bg-rose-600 text-white border-rose-700';
 };
 
 const getSubjectColor = (subject: string) => {
-  if (subject === 'Physics') return 'bg-blue-50 border-blue-200 text-blue-700';
-  if (subject === 'Chemistry') return 'bg-purple-50 border-purple-200 text-purple-700';
-  if (subject === 'Biology') return 'bg-green-50 border-green-200 text-green-700';
-  if (subject === 'Mathematics') return 'bg-orange-50 border-orange-200 text-orange-700';
-  return 'bg-gray-50 border-gray-200 text-gray-700';
+  if (subject === 'Physics') return 'bg-blue-600 border-blue-700 text-white';
+  if (subject === 'Chemistry') return 'bg-purple-600 border-purple-700 text-white';
+  if (subject === 'Biology') return 'bg-green-600 border-green-700 text-white';
+  if (subject === 'Mathematics') return 'bg-orange-500 border-orange-600 text-white';
+  return 'bg-gray-600 border-gray-700 text-white';
 };
 
 export const HighYieldTopics: React.FC<HighYieldTopicsProps> = ({ language }) => {
@@ -116,7 +116,7 @@ export const HighYieldTopics: React.FC<HighYieldTopicsProps> = ({ language }) =>
             {language === 'en' ? 'Must-study chapters with highest ROI' : 'அதிகபட்ச ROI கொண்ட கட்டாய படிப்பு அத்தியாயங்கள்'}
           </p>
         </div>
-        <Badge className="ml-auto bg-rose-100 text-rose-700 border-rose-200">
+        <Badge className="ml-auto bg-rose-600 text-white border-rose-700">
           <Target className="w-3 h-3 mr-1" />
           {language === 'en' ? 'Priority List' : 'முன்னுரிமை பட்டியல்'}
         </Badge>
