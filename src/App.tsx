@@ -45,6 +45,11 @@ import CareerAssessment from "./pages/CareerAssessment";
 import AICareerPredictor from "./pages/AICareerPredictor";
 import SavedCourses from "./pages/SavedCourses";
 
+// Government Exams Pages
+import GovernmentExams from "./pages/GovernmentExams";
+import GovernmentExamCategory from "./pages/GovernmentExamCategory";
+import GovernmentExamDetail from "./pages/GovernmentExamDetail";
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -93,6 +98,11 @@ function App() {
                 <Route path="/career-assessment/boosting" element={<CareerAssessment />} />
                 <Route path="/career-assessment/ai-predictor" element={<AICareerPredictor />} />
                 <Route path="/career-assessment/saved-courses" element={<SavedCourses />} />
+                
+                {/* Government Exams Routes */}
+                <Route path="/government-exams" element={<GovernmentExams />} />
+                <Route path="/government-exams/:categoryId" element={<GovernmentExamCategory />} />
+                <Route path="/government-exams/:categoryId/:examId" element={<GovernmentExamDetail />} />
                 
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
