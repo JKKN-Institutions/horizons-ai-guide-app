@@ -11,4 +11,5 @@ export { ChapterWeightage } from './ChapterWeightage';
 export { HighYieldTopics } from './HighYieldTopics';
 export { StudyPlanner } from './StudyPlanner';
 export { StudyPlanCalendar } from './StudyPlanCalendar';
+export { StudyReminderSettings } from './StudyReminderSettings';
 export { MilestoneCelebration } from './MilestoneCelebration';
