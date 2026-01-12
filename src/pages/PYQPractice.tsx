@@ -4,8 +4,9 @@ import {
   BookOpen, Search, Filter, ChevronLeft, ChevronRight, Check, X,
   Clock, Eye, Bookmark, BookmarkCheck, Lightbulb, RotateCcw,
   GraduationCap, Trophy, Target, Timer, Languages, ChevronDown,
-  Download, Loader2, Play
+  Download, Loader2, Play, Moon, Sun
 } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -28,6 +29,9 @@ import { generatePYQPDF, generateBookmarkedPDF, YearSelectionDialog, MockTest, M
 import { usePYQBookmarks } from '@/hooks/usePYQBookmarks';
 
 const PYQPractice = () => {
+  // Theme
+  const { theme, setTheme } = useTheme();
+  
   // Persistent bookmarks from localStorage
   const { bookmarkedQuestions, toggleBookmark, isBookmarked, bookmarkCount } = usePYQBookmarks();
   
@@ -298,15 +302,30 @@ const PYQPractice = () => {
                 </div>
                 <h1 className="text-xl font-bold bg-gradient-to-r from-emerald-700 to-teal-700 bg-clip-text text-transparent">PYQ Practice</h1>
               </div>
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => setLanguage(language === 'en' ? 'ta' : 'en')}
-                className="border-emerald-200 hover:bg-emerald-50 hover:border-emerald-300 transition-all duration-300"
-              >
-                <Languages className="w-4 h-4 mr-2 text-emerald-600" />
-                <span className="font-medium">{language === 'en' ? 'தமிழ்' : 'English'}</span>
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                  className="border-emerald-200 hover:bg-emerald-50 hover:border-emerald-300 transition-all duration-300"
+                  aria-label="Toggle dark mode"
+                >
+                  {theme === 'dark' ? (
+                    <Sun className="w-4 h-4 text-amber-500" />
+                  ) : (
+                    <Moon className="w-4 h-4 text-emerald-600" />
+                  )}
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setLanguage(language === 'en' ? 'ta' : 'en')}
+                  className="border-emerald-200 hover:bg-emerald-50 hover:border-emerald-300 transition-all duration-300"
+                >
+                  <Languages className="w-4 h-4 mr-2 text-emerald-600" />
+                  <span className="font-medium">{language === 'en' ? 'தமிழ்' : 'English'}</span>
+                </Button>
+              </div>
             </div>
           </div>
         </header>
@@ -734,6 +753,19 @@ const PYQPractice = () => {
             </div>
 
             <div className="flex items-center gap-2">
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className="border-emerald-200 hover:bg-emerald-50"
+                aria-label="Toggle dark mode"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-4 h-4 text-amber-500" />
+                ) : (
+                  <Moon className="w-4 h-4 text-emerald-600" />
+                )}
+              </Button>
               <Button 
                 variant="outline" 
                 size="sm"
