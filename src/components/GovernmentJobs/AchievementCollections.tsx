@@ -32,8 +32,10 @@ interface AchievementCollection {
   borderColor: string;
 }
 
+import { Language } from '@/hooks/useLanguage';
+
 interface AchievementCollectionsProps {
-  language: 'en' | 'ta';
+  language: Language;
   unlockedAchievementIds: string[];
 }
 

@@ -23,8 +23,10 @@ import { generateStudyPlannerPDF } from './generateStudyPlannerPDF';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 
+import { Language } from '@/hooks/useLanguage';
+
 interface StudyPlannerCalendarProps {
-  language: 'en' | 'ta';
+  language: Language;
 }
 
 interface PracticeSchedule {

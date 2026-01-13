@@ -58,8 +58,10 @@ interface ReminderSettings {
   lastShownDate: string | null;
 }
 
+import { Language } from '@/hooks/useLanguage';
+
 interface WeeklyStudyGoalsProps {
-  language: 'en' | 'ta';
+  language: Language;
 }
 
 const PRESET_HOURS = [5, 10, 15, 20, 25, 30, 35, 40];
@@ -430,13 +432,14 @@ export const WeeklyStudyGoals = ({ language }: WeeklyStudyGoalsProps) => {
     }
   }, [currentGoal, currentWeekProgress, reminderSettings, language]);
 
-  const getDayName = (date: string, lang: 'en' | 'ta') => {
+  const getDayName = (date: string, lang: Language) => {
     const dayNames = {
       en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
       ta: ['ஞா', 'தி', 'செ', 'பு', 'வி', 'வெ', 'ச']
     };
     const dayIndex = new Date(date).getDay();
-    return dayNames[lang][dayIndex];
+    const useLang = lang === 'ta' ? 'ta' : 'en';
+    return dayNames[useLang][dayIndex];
   };
 
   const getReminderDayLabel = (day: number) => {

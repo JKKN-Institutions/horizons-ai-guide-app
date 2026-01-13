@@ -33,8 +33,10 @@ interface QuestionPaper {
   pdfUrl?: string;
 }
 
+import { Language } from '@/hooks/useLanguage';
+
 interface GovtPYQSectionProps {
-  language?: 'en' | 'ta';
+  language?: Language;
 }
 
 const categoryData: Record<string, { icon: React.ElementType; label: string; labelTa: string }> = {

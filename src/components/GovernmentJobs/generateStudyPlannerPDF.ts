@@ -20,11 +20,13 @@ interface UpcomingExam {
   status: string;
 }
 
+import { Language } from '@/hooks/useLanguage';
+
 interface GenerateStudyPlannerPDFParams {
   month: Date;
   schedules: PracticeSchedule[];
   upcomingExams: UpcomingExam[];
-  language: 'en' | 'ta';
+  language: Language;
 }
 
 const SCHEDULE_TYPE_COLORS: Record<string, number[]> = {

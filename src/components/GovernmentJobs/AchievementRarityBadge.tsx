@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import { Users, Crown, Gem, Star, Sparkles, Circle } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Language } from '@/hooks/useLanguage';
 
 interface AchievementRarityBadgeProps {
   unlockPercent: number;
   totalUnlocks: number;
-  language: 'en' | 'ta';
+  language: Language;
   compact?: boolean;
 }
 

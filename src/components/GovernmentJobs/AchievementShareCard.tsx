@@ -31,11 +31,13 @@ interface StudyStats {
   goalsAchieved: number;
 }
 
+import { Language } from '@/hooks/useLanguage';
+
 interface AchievementShareCardProps {
   achievement: Achievement;
   stats: StudyStats;
   unlockedAt?: string;
-  language: 'en' | 'ta';
+  language: Language;
   isOpen: boolean;
   onClose: () => void;
 }

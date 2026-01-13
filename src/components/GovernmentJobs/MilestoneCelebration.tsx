@@ -4,9 +4,11 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Trophy, Star, Crown, Medal, Sparkles, X } from 'lucide-react';
 
+import { Language } from '@/hooks/useLanguage';
+
 interface MilestoneCelebrationProps {
   milestone: 50 | 75 | 90 | 100 | null;
-  language: 'en' | 'ta';
+  language: Language;
   onClose: () => void;
 }
 

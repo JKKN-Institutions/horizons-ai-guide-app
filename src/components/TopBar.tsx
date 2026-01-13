@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import UserMenu from "@/components/UserMenu";
-import LanguageToggle from "@/components/LanguageToggle";
+import GlobalLanguageSelector from "@/components/GlobalLanguageSelector";
 import { useAuth } from "@/hooks/useAuth";
 import { useChatModal } from "@/hooks/useChatModal";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -36,7 +36,7 @@ const TopBar = () => {
         </div>
 
         <div className="flex items-center gap-2 md:gap-4">
-          <LanguageToggle />
+          <GlobalLanguageSelector />
           
           {/* Theme Toggle */}
           <DropdownMenu>
