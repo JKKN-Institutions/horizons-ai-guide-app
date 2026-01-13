@@ -46,8 +46,10 @@ export interface DailyProgress {
   };
 }
 
+import { Language } from '@/hooks/useLanguage';
+
 interface DailyPracticeGoalsProps {
-  language: 'en' | 'ta';
+  language: Language;
   questionsCompleted?: number;
   minutesPracticed?: number;
 }

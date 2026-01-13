@@ -32,8 +32,10 @@ interface Reminder {
   createdAt: Date;
 }
 
+import { Language } from '@/hooks/useLanguage';
+
 interface DailyPracticeRemindersProps {
-  language?: 'en' | 'ta';
+  language?: Language;
 }
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];

@@ -1,6 +1,26 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-export type Language = 'en' | 'ta';
+// Support 10 Indian regional languages
+export type Language = 'en' | 'ta' | 'hi' | 'te' | 'kn' | 'ml' | 'bn' | 'mr' | 'gu' | 'pa';
+
+// Language metadata for UI display
+export const SUPPORTED_LANGUAGES: Array<{
+  code: Language;
+  name: string;
+  nativeName: string;
+  flag: string;
+}> = [
+  { code: 'en', name: 'English', nativeName: 'English', flag: '🇬🇧' },
+  { code: 'ta', name: 'Tamil', nativeName: 'தமிழ்', flag: '🇮🇳' },
+  { code: 'hi', name: 'Hindi', nativeName: 'हिंदी', flag: '🇮🇳' },
+  { code: 'te', name: 'Telugu', nativeName: 'తెలుగు', flag: '🇮🇳' },
+  { code: 'kn', name: 'Kannada', nativeName: 'ಕನ್ನಡ', flag: '🇮🇳' },
+  { code: 'ml', name: 'Malayalam', nativeName: 'മലയാളം', flag: '🇮🇳' },
+  { code: 'bn', name: 'Bengali', nativeName: 'বাংলা', flag: '🇮🇳' },
+  { code: 'mr', name: 'Marathi', nativeName: 'मराठी', flag: '🇮🇳' },
+  { code: 'gu', name: 'Gujarati', nativeName: 'ગુજરાતી', flag: '🇮🇳' },
+  { code: 'pa', name: 'Punjabi', nativeName: 'ਪੰਜਾਬੀ', flag: '🇮🇳' },
+];
 
 interface LanguageContextType {
   language: Language;
@@ -10,7 +30,7 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Translations
+// Translations - English and Tamil are fully supported, others fall back to English
 const translations: Record<Language, Record<string, string>> = {
   en: {
     // TopBar
@@ -1008,13 +1028,107 @@ const translations: Record<Language, Record<string, string>> = {
     'chat.scholarship3': 'பொறியியல் மாணவர்களுக்கான தகுதி அடிப்படையிலான உதவித்தொகைகள்',
     'chat.scholarship4': 'வெளிநாட்டில் படிக்க நிதி உதவி விருப்பங்கள்',
   },
+  // Hindi - Basic UI translations (falls back to English for missing keys)
+  hi: {
+    'topbar.aiChat': 'AI चैट',
+    'topbar.login': 'लॉगिन',
+    'topbar.register': 'रजिस्टर',
+    'nav.home': 'होम',
+    'nav.careerHub': 'करियर हब',
+    'hero.title': 'AI होराइज़न्स:',
+    'common.loading': 'लोड हो रहा है...',
+    'common.back': 'वापस',
+    'common.next': 'अगला',
+    'common.search': 'खोजें',
+  },
+  // Telugu - Basic UI translations
+  te: {
+    'topbar.aiChat': 'AI చాట్',
+    'topbar.login': 'లాగిన్',
+    'topbar.register': 'రిజిస్టర్',
+    'nav.home': 'హోమ్',
+    'nav.careerHub': 'కెరీర్ హబ్',
+    'common.loading': 'లోడ్ అవుతోంది...',
+    'common.back': 'వెనుకకు',
+    'common.next': 'తదుపరి',
+  },
+  // Kannada - Basic UI translations
+  kn: {
+    'topbar.aiChat': 'AI ಚಾಟ್',
+    'topbar.login': 'ಲಾಗಿನ್',
+    'topbar.register': 'ನೋಂದಣಿ',
+    'nav.home': 'ಮುಖಪುಟ',
+    'nav.careerHub': 'ಕೆರಿಯರ್ ಹಬ್',
+    'common.loading': 'ಲೋಡ್ ಆಗುತ್ತಿದೆ...',
+    'common.back': 'ಹಿಂದೆ',
+    'common.next': 'ಮುಂದೆ',
+  },
+  // Malayalam - Basic UI translations
+  ml: {
+    'topbar.aiChat': 'AI ചാറ്റ്',
+    'topbar.login': 'ലോഗിൻ',
+    'topbar.register': 'രജിസ്റ്റർ',
+    'nav.home': 'ഹോം',
+    'nav.careerHub': 'കരിയർ ഹബ്',
+    'common.loading': 'ലോഡ് ചെയ്യുന്നു...',
+    'common.back': 'പിന്നോട്ട്',
+    'common.next': 'അടുത്തത്',
+  },
+  // Bengali - Basic UI translations
+  bn: {
+    'topbar.aiChat': 'AI চ্যাট',
+    'topbar.login': 'লগইন',
+    'topbar.register': 'নিবন্ধন',
+    'nav.home': 'হোম',
+    'nav.careerHub': 'ক্যারিয়ার হাব',
+    'common.loading': 'লোড হচ্ছে...',
+    'common.back': 'পিছনে',
+    'common.next': 'পরবর্তী',
+  },
+  // Marathi - Basic UI translations
+  mr: {
+    'topbar.aiChat': 'AI चॅट',
+    'topbar.login': 'लॉगिन',
+    'topbar.register': 'नोंदणी',
+    'nav.home': 'मुख्यपृष्ठ',
+    'nav.careerHub': 'करिअर हब',
+    'common.loading': 'लोड होत आहे...',
+    'common.back': 'मागे',
+    'common.next': 'पुढे',
+  },
+  // Gujarati - Basic UI translations
+  gu: {
+    'topbar.aiChat': 'AI ચેટ',
+    'topbar.login': 'લૉગિન',
+    'topbar.register': 'નોંધણી',
+    'nav.home': 'હોમ',
+    'nav.careerHub': 'કારકિર્દી હબ',
+    'common.loading': 'લોડ થઈ રહ્યું છે...',
+    'common.back': 'પાછળ',
+    'common.next': 'આગળ',
+  },
+  // Punjabi - Basic UI translations
+  pa: {
+    'topbar.aiChat': 'AI ਚੈਟ',
+    'topbar.login': 'ਲੌਗਇਨ',
+    'topbar.register': 'ਰਜਿਸਟਰ',
+    'nav.home': 'ਘਰ',
+    'nav.careerHub': 'ਕੈਰੀਅਰ ਹੱਬ',
+    'common.loading': 'ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ...',
+    'common.back': 'ਪਿੱਛੇ',
+    'common.next': 'ਅੱਗੇ',
+  },
 };
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguageState] = useState<Language>(() => {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('jkkn_language');
-      return (stored as Language) || 'en';
+      // Validate stored language is still supported
+      if (stored && SUPPORTED_LANGUAGES.some(l => l.code === stored)) {
+        return stored as Language;
+      }
+      return 'en';
     }
     return 'en';
   });
@@ -1029,7 +1143,8 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const t = (key: string): string => {
-    return translations[language][key] || translations['en'][key] || key;
+    // Try current language first, then fall back to Tamil (for Tamil-specific content), then English
+    return translations[language]?.[key] || translations['ta']?.[key] || translations['en']?.[key] || key;
   };
 
   return (

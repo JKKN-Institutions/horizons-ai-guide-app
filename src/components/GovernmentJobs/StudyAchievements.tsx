@@ -58,8 +58,10 @@ interface UnlockedAchievement {
   notified: boolean;
 }
 
+import { Language } from '@/hooks/useLanguage';
+
 interface StudyAchievementsProps {
-  language: 'en' | 'ta';
+  language: Language;
 }
 
 const ACHIEVEMENTS: Achievement[] = [

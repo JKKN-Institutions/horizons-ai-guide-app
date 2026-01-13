@@ -33,8 +33,10 @@ interface SuggestionType {
   priority: number;
 }
 
+import { Language } from '@/hooks/useLanguage';
+
 interface SmartGoalSuggestionsProps {
-  language: 'en' | 'ta';
+  language: Language;
   weeklyHistory: WeeklyProgress[];
   onSelectGoal: (hours: number) => void;
 }

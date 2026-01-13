@@ -17,8 +17,10 @@ import {
 import { format, subDays, startOfWeek, endOfWeek, startOfMonth, endOfMonth, eachDayOfInterval, parseISO, isSameDay, isWithinInterval, subWeeks, subMonths } from 'date-fns';
 import { useStudyStreak, ACHIEVEMENTS } from '@/hooks/useStudyStreak';
 
+import { Language } from '@/hooks/useLanguage';
+
 interface ProgressTrackerProps {
-  language: 'en' | 'ta';
+  language: Language;
 }
 
 interface DailyProgress {

@@ -153,8 +153,10 @@ const SUBJECT_STRATEGIES = {
   },
 };
 
+import { Language } from '@/hooks/useLanguage';
+
 interface SmartStudyRecommendationsProps {
-  language?: 'en' | 'ta';
+  language?: Language;
 }
 
 export const SmartStudyRecommendations = ({ language: propLanguage }: SmartStudyRecommendationsProps) => {

@@ -33,6 +33,8 @@ interface StreakData {
   totalDaysPracticed: number;
 }
 
+import { Language } from '@/hooks/useLanguage';
+
 interface GenerateSummaryPDFParams {
   period: 'week' | 'month';
   dateRange: { start: Date; end: Date };
@@ -40,7 +42,7 @@ interface GenerateSummaryPDFParams {
   dailyBreakdown: DailyData[];
   categoryBreakdown: CategoryData[];
   streakData: StreakData;
-  language: 'en' | 'ta';
+  language: Language;
 }
 
 const getPerformanceGrade = (accuracy: number, consistency: number): { grade: string; message: string; messageTa: string } => {
@@ -59,8 +61,9 @@ const getPerformanceGrade = (accuracy: number, consistency: number): { grade: st
   }
 };
 
-const getImprovementTips = (stats: SummaryStats, language: 'en' | 'ta'): string[] => {
+const getImprovementTips = (stats: SummaryStats, language: Language): string[] => {
   const tips: string[] = [];
+  const useLang = language === 'ta' ? 'ta' : 'en';
   
   if (language === 'en') {
     if (stats.avgAccuracy < 60) {

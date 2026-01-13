@@ -38,8 +38,10 @@ interface LeaderboardEntry {
   updated_at: string;
 }
 
+import { Language } from '@/hooks/useLanguage';
+
 interface AchievementLeaderboardProps {
-  language: 'en' | 'ta';
+  language: Language;
 }
 
 const TIER_POINTS = {

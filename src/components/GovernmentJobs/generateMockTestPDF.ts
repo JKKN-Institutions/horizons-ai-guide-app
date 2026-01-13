@@ -15,6 +15,8 @@ interface Question {
   difficulty: 'easy' | 'medium' | 'hard';
 }
 
+import { Language } from '@/hooks/useLanguage';
+
 interface GeneratePDFParams {
   category: CategoryType;
   questions: Question[];
@@ -22,7 +24,7 @@ interface GeneratePDFParams {
   score: number;
   totalQuestions: number;
   timeTaken: number;
-  language: 'en' | 'ta';
+  language: Language;
 }
 
 // Subject-wise improvement recommendations
@@ -128,8 +130,9 @@ const SUBJECT_RECOMMENDATIONS: Record<string, { en: string[]; ta: string[] }> = 
 // Get personalized recommendations based on weak subjects
 const getPersonalizedRecommendations = (
   subjectWise: Record<string, { total: number; correct: number }>,
-  language: 'en' | 'ta'
+  language: Language
 ): { subject: string; accuracy: number; tips: string[] }[] => {
+  const useLang = language === 'ta' ? 'ta' : 'en';
   const weakSubjects = Object.entries(subjectWise)
     .map(([subject, data]) => ({
       subject,
@@ -151,7 +154,8 @@ const getPersonalizedRecommendations = (
 };
 
 // Get overall performance message
-const getPerformanceMessage = (percentage: number, language: 'en' | 'ta'): string => {
+const getPerformanceMessage = (percentage: number, language: Language): string => {
+  const useLang = language === 'ta' ? 'ta' : 'en';
   if (percentage >= 90) {
     return language === 'en' 
       ? 'Outstanding! You are well-prepared for the exam. Keep maintaining this level.'
