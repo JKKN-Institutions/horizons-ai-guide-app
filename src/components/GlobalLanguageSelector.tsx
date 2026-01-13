@@ -5,14 +5,11 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { useLanguage, type Language, SUPPORTED_LANGUAGES } from "@/hooks/useLanguage";
 
 const GlobalLanguageSelector = () => {
   const { language, setLanguage } = useLanguage();
-
-  const currentLang = SUPPORTED_LANGUAGES.find(l => l.code === language);
 
   return (
     <DropdownMenu>
@@ -29,24 +26,23 @@ const GlobalLanguageSelector = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent 
         align="end" 
-        className="min-w-[200px] bg-background border shadow-lg z-[100] max-h-[400px] overflow-y-auto"
+        className="w-[200px] bg-white border border-[#E5E7EB] rounded-lg shadow-lg z-[100] max-h-[400px] overflow-y-auto p-1"
       >
-        <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground">
-          Select Language / மொழியை தேர்வு செய்யவும்
-        </div>
-        <DropdownMenuSeparator />
         {SUPPORTED_LANGUAGES.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
             onClick={() => setLanguage(lang.code)}
-            className="gap-3 cursor-pointer justify-between py-2.5"
+            className={`flex items-center justify-between gap-2 cursor-pointer py-3 px-4 rounded-md transition-colors ${
+              language === lang.code 
+                ? 'bg-emerald-50 text-emerald-700' 
+                : 'hover:bg-[#F3F4F6]'
+            }`}
           >
-            <div className="flex items-center gap-3">
-              <span className="text-lg">{lang.flag}</span>
-              <div className="flex flex-col">
-                <span className="font-medium text-sm">{lang.name}</span>
-                <span className="text-xs text-muted-foreground">{lang.nativeName}</span>
-              </div>
+            <div className="flex items-center gap-2.5">
+              <span className="text-base">{lang.flag}</span>
+              <span className="text-sm font-medium">
+                {lang.nativeName} <span className="text-muted-foreground font-normal">({lang.name})</span>
+              </span>
             </div>
             {language === lang.code && (
               <Check className="w-4 h-4 text-emerald-600 flex-shrink-0" />
