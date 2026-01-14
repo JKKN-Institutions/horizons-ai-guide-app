@@ -1340,6 +1340,7 @@ export const universities: University[] = [
     phone: '0452-2458471',
     examName: 'MKU PG Entrance',
     logoColor: '#16a34a',
+    logo: '/universities/madurai-kamaraj-university-logo.jpeg',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
