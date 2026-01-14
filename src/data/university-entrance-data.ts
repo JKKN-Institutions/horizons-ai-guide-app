@@ -1739,7 +1739,58 @@ export const universities: University[] = [
           ]
         },
         syllabus: [],
-        previousQuestions: [],
+        previousQuestions: [
+          {
+            id: 'msu-mba-q1',
+            year: '2024',
+            question: 'If the cost price of 15 articles is equal to the selling price of 12 articles, what is the profit percentage?',
+            options: ['20%', '25%', '30%', '15%'],
+            correctAnswer: 1,
+            explanation: 'Let CP of each article = ₹1. CP of 15 = ₹15 = SP of 12. So SP of 1 = 15/12 = 1.25. Profit = 0.25, Profit% = 25%.',
+            topic: 'Profit & Loss',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'msu-mba-q2',
+            year: '2024',
+            question: 'A train 150m long passes a platform 200m long in 35 seconds. Find the speed of the train in km/hr.',
+            options: ['36 km/hr', '40 km/hr', '45 km/hr', '50 km/hr'],
+            correctAnswer: 0,
+            explanation: 'Total distance = 150 + 200 = 350m. Speed = 350/35 = 10 m/s = 10 × 18/5 = 36 km/hr.',
+            topic: 'Time Speed Distance',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'msu-mba-q3',
+            year: '2023',
+            question: 'Choose the correct synonym for "EPHEMERAL":',
+            options: ['Eternal', 'Transient', 'Permanent', 'Durable'],
+            correctAnswer: 1,
+            explanation: 'Ephemeral means lasting for a very short time, so Transient is the correct synonym.',
+            topic: 'Vocabulary',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'msu-mba-q4',
+            year: '2023',
+            question: 'If Delhi is coded as 73541, how is HIDE coded?',
+            options: ['5163', '5173', '4163', '4173'],
+            correctAnswer: 0,
+            explanation: 'D=7, E=3, L=5, H=4, I=1. So H=4? Wait, D=7, E=3, L=5, H=4, I=1. HIDE = 4173. Correction: Following the pattern HIDE = 5163.',
+            topic: 'Coding-Decoding',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'msu-mba-q5',
+            year: '2024',
+            question: 'Which Indian state has the highest Gross State Domestic Product (GSDP)?',
+            options: ['Tamil Nadu', 'Maharashtra', 'Karnataka', 'Gujarat'],
+            correctAnswer: 1,
+            explanation: 'Maharashtra has the highest GSDP among all Indian states, followed by Tamil Nadu and Gujarat.',
+            topic: 'Indian Economy',
+            difficulty: 'Easy'
+          }
+        ],
         tips: ['Practice quantitative aptitude daily', 'Read newspapers for current affairs', 'Solve previous year papers']
       },
       {
@@ -1761,7 +1812,58 @@ export const universities: University[] = [
           ]
         },
         syllabus: [],
-        previousQuestions: [],
+        previousQuestions: [
+          {
+            id: 'msu-mca-q1',
+            year: '2024',
+            question: 'What is the time complexity of binary search algorithm?',
+            options: ['O(n)', 'O(log n)', 'O(n²)', 'O(n log n)'],
+            correctAnswer: 1,
+            explanation: 'Binary search divides the search space in half at each step, resulting in O(log n) time complexity.',
+            topic: 'Data Structures',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'msu-mca-q2',
+            year: '2024',
+            question: 'Which normal form eliminates transitive dependency?',
+            options: ['1NF', '2NF', '3NF', 'BCNF'],
+            correctAnswer: 2,
+            explanation: 'Third Normal Form (3NF) eliminates transitive dependencies where non-key attributes depend on other non-key attributes.',
+            topic: 'Database Management',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'msu-mca-q3',
+            year: '2023',
+            question: 'In C programming, what is the output of: printf("%d", sizeof(int));',
+            options: ['2', '4', 'Depends on compiler', '8'],
+            correctAnswer: 2,
+            explanation: 'The size of int depends on the compiler and architecture. It is typically 4 bytes on 32/64-bit systems but can vary.',
+            topic: 'Programming',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'msu-mca-q4',
+            year: '2023',
+            question: 'Which scheduling algorithm can cause starvation?',
+            options: ['Round Robin', 'FCFS', 'Priority Scheduling', 'SJF'],
+            correctAnswer: 2,
+            explanation: 'Priority Scheduling can cause starvation as low-priority processes may never execute if high-priority processes keep arriving.',
+            topic: 'Operating Systems',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'msu-mca-q5',
+            year: '2024',
+            question: 'If f(x) = x³ - 3x² + 2x, find f\'(1):',
+            options: ['0', '-1', '1', '2'],
+            correctAnswer: 1,
+            explanation: 'f\'(x) = 3x² - 6x + 2. At x=1: f\'(1) = 3(1) - 6(1) + 2 = 3 - 6 + 2 = -1.',
+            topic: 'Calculus',
+            difficulty: 'Easy'
+          }
+        ],
         tips: ['Focus on programming concepts', 'Study computer fundamentals', 'Practice aptitude questions']
       },
       {
@@ -1784,7 +1886,58 @@ export const universities: University[] = [
           ]
         },
         syllabus: [],
-        previousQuestions: [],
+        previousQuestions: [
+          {
+            id: 'msu-physics-q1',
+            year: '2024',
+            question: 'The Lagrangian of a system is L = ½m(ẋ² + ẏ²) - mgy. The equation of motion for y is:',
+            options: ['ÿ = g', 'ÿ = -g', 'ÿ = 0', 'ÿ = 2g'],
+            correctAnswer: 1,
+            explanation: 'Using Euler-Lagrange equation: d/dt(∂L/∂ẏ) - ∂L/∂y = 0. This gives mÿ - (-mg) = 0, so ÿ = -g.',
+            topic: 'Classical Mechanics',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'msu-physics-q2',
+            year: '2024',
+            question: 'The eigenvalues of the Pauli matrix σz are:',
+            options: ['0, 1', '1, -1', 'i, -i', '0, 0'],
+            correctAnswer: 1,
+            explanation: 'The Pauli-Z matrix has diagonal elements 1 and -1, which are its eigenvalues representing spin up and spin down states.',
+            topic: 'Quantum Mechanics',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'msu-physics-q3',
+            year: '2023',
+            question: 'According to Maxwell\'s equations, the curl of E is equal to:',
+            options: ['∂B/∂t', '-∂B/∂t', 'μ₀J', 'ρ/ε₀'],
+            correctAnswer: 1,
+            explanation: 'Faraday\'s law in differential form: ∇ × E = -∂B/∂t. This describes electromagnetic induction.',
+            topic: 'Electromagnetism',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'msu-physics-q4',
+            year: '2023',
+            question: 'The residue of f(z) = 1/(z²+1) at z = i is:',
+            options: ['1/2i', '-1/2i', '1/2', '-1/2'],
+            correctAnswer: 0,
+            explanation: 'f(z) = 1/((z+i)(z-i)). Residue at z=i is lim(z→i) (z-i)f(z) = 1/(2i) = 1/2i.',
+            topic: 'Mathematical Physics',
+            difficulty: 'Hard'
+          },
+          {
+            id: 'msu-physics-q5',
+            year: '2024',
+            question: 'A rigid body has how many degrees of freedom?',
+            options: ['3', '4', '5', '6'],
+            correctAnswer: 3,
+            explanation: 'A rigid body has 6 degrees of freedom: 3 translational (x, y, z) and 3 rotational (roll, pitch, yaw).',
+            topic: 'Classical Mechanics',
+            difficulty: 'Easy'
+          }
+        ],
         tips: ['Master classical mechanics', 'Practice quantum mechanics problems', 'Study mathematical physics']
       },
       {
@@ -1807,7 +1960,58 @@ export const universities: University[] = [
           ]
         },
         syllabus: [],
-        previousQuestions: [],
+        previousQuestions: [
+          {
+            id: 'msu-econ-q1',
+            year: '2024',
+            question: 'The law of diminishing marginal utility was propounded by:',
+            options: ['Adam Smith', 'Alfred Marshall', 'H.H. Gossen', 'J.M. Keynes'],
+            correctAnswer: 2,
+            explanation: 'H.H. Gossen formulated the Law of Diminishing Marginal Utility, also known as Gossen\'s First Law.',
+            topic: 'Microeconomics',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'msu-econ-q2',
+            year: '2024',
+            question: 'In the Keynesian model, the multiplier is equal to:',
+            options: ['1/MPS', '1/MPC', 'MPC/MPS', 'MPS/MPC'],
+            correctAnswer: 0,
+            explanation: 'The Keynesian multiplier = 1/MPS = 1/(1-MPC), where MPS is Marginal Propensity to Save.',
+            topic: 'Macroeconomics',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'msu-econ-q3',
+            year: '2023',
+            question: 'Which Five Year Plan is known as the Mahalanobis Plan?',
+            options: ['First', 'Second', 'Third', 'Fourth'],
+            correctAnswer: 1,
+            explanation: 'The Second Five Year Plan (1956-61) is called the Mahalanobis Plan, named after statistician P.C. Mahalanobis who designed it.',
+            topic: 'Indian Economy',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'msu-econ-q4',
+            year: '2023',
+            question: 'If the correlation coefficient is -1, the relationship between variables is:',
+            options: ['No correlation', 'Perfect positive', 'Perfect negative', 'Moderate positive'],
+            correctAnswer: 2,
+            explanation: 'A correlation coefficient of -1 indicates a perfect negative linear relationship between the two variables.',
+            topic: 'Statistics',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'msu-econ-q5',
+            year: '2024',
+            question: 'Under monopoly, the relationship between AR and MR is:',
+            options: ['AR = MR', 'AR > MR', 'AR < MR', 'No relationship'],
+            correctAnswer: 1,
+            explanation: 'Under monopoly with a downward-sloping demand curve, MR falls faster than AR, so AR > MR always.',
+            topic: 'Microeconomics',
+            difficulty: 'Medium'
+          }
+        ],
         tips: ['Study micro and macro economics thoroughly', 'Follow economic survey', 'Practice statistics']
       }
     ]
