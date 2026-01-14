@@ -38,7 +38,7 @@ export const UniversityEntranceExams = () => {
           icon={Calendar}
           title="Exam Calendar"
           titleTamil="தேர்வு நாட்காட்டி"
-          onClick={() => {}}
+          onClick={() => navigate('/tn-university-entrance/exam-calendar')}
           color="#6a0dad"
         />
         <QuickToolCard
@@ -52,14 +52,14 @@ export const UniversityEntranceExams = () => {
           icon={BarChart3}
           title="Compare"
           titleTamil="ஒப்பீடு"
-          onClick={() => {}}
+          onClick={() => navigate('/tn-university-entrance/compare')}
           color="#059669"
         />
         <QuickToolCard
           icon={Bell}
           title="Reminders"
           titleTamil="நினைவூட்டல்"
-          onClick={() => {}}
+          onClick={() => navigate('/tn-university-entrance/my-reminders')}
           color="#f59e0b"
         />
       </div>
