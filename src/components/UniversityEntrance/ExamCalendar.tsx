@@ -13,7 +13,9 @@ import {
   Bell,
   CheckCircle2,
   Clock,
-  AlertCircle
+  AlertCircle,
+  BellPlus,
+  BellRing
 } from 'lucide-react';
 import { universities } from '@/data/university-entrance-data';
 import {
@@ -23,6 +25,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import { useExamReminders } from '@/hooks/useExamReminders';
+import ReminderDialog from './ReminderDialog';
 
 interface CalendarEvent {
   universityId: string;
@@ -42,6 +46,10 @@ const ExamCalendar = () => {
     universities.map(u => u.id)
   );
   const [filterOpen, setFilterOpen] = useState(false);
+  const [reminderDialogOpen, setReminderDialogOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
+  
+  const { reminders, hasReminder, notificationPermission, requestPermission } = useExamReminders();
 
   // Flatten all events from all universities
   const allEvents = useMemo(() => {
@@ -138,6 +146,14 @@ const ExamCalendar = () => {
     }
   };
 
+  const handleSetReminder = (event: CalendarEvent, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedEvent(event);
+    setReminderDialogOpen(true);
+  };
+
+  const activeRemindersCount = reminders.filter(r => r.isActive).length;
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -158,6 +174,21 @@ const ExamCalendar = () => {
               </h1>
               <p className="text-sm text-muted-foreground">தேர்வு நாட்காட்டி</p>
             </div>
+            
+            {/* My Reminders Button */}
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="gap-2"
+              onClick={() => navigate('/tn-university-entrance/my-reminders')}
+            >
+              <Bell className="w-4 h-4" />
+              {activeRemindersCount > 0 && (
+                <Badge variant="secondary" className="ml-1">
+                  {activeRemindersCount}
+                </Badge>
+              )}
+            </Button>
             
             {/* Filter Button */}
             <Sheet open={filterOpen} onOpenChange={setFilterOpen}>
@@ -280,52 +311,78 @@ const ExamCalendar = () => {
 
                 {/* Events List */}
                 <div className="ml-5 border-l-2 border-primary/20 pl-6 space-y-3 mt-3">
-                  {events.map((event, idx) => (
-                    <Card 
-                      key={`${event.universityId}-${event.event}-${idx}`}
-                      className="cursor-pointer hover:shadow-md transition-shadow"
-                      onClick={() => navigate(`/tn-university-entrance/${event.universityId}`)}
-                    >
-                      <CardContent className="p-4">
-                        <div className="flex items-start gap-3">
-                          {/* Timeline Dot */}
-                          <div className="absolute -left-[31px] w-4 h-4 rounded-full bg-background border-2 border-primary flex items-center justify-center">
-                            {getStatusIcon(event.status)}
-                          </div>
-                          
-                          {/* University Logo */}
-                          <div 
-                            className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold shrink-0"
-                            style={{ backgroundColor: event.logoColor }}
-                          >
-                            {event.universityName.charAt(0)}
-                          </div>
+                  {events.map((event, idx) => {
+                    const eventHasReminder = hasReminder(event.universityId, event.event);
+                    
+                    return (
+                      <Card 
+                        key={`${event.universityId}-${event.event}-${idx}`}
+                        className="cursor-pointer hover:shadow-md transition-shadow relative"
+                        onClick={() => navigate(`/tn-university-entrance/${event.universityId}`)}
+                      >
+                        <CardContent className="p-4">
+                          <div className="flex items-start gap-3">
+                            {/* Timeline Dot */}
+                            <div className="absolute -left-[31px] w-4 h-4 rounded-full bg-background border-2 border-primary flex items-center justify-center">
+                              {getStatusIcon(event.status)}
+                            </div>
+                            
+                            {/* University Logo */}
+                            <div 
+                              className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold shrink-0"
+                              style={{ backgroundColor: event.logoColor }}
+                            >
+                              {event.universityName.charAt(0)}
+                            </div>
 
-                          {/* Event Details */}
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-start justify-between gap-2">
-                              <div>
-                                <h3 className="font-medium">{event.event}</h3>
-                                <p className="text-xs text-muted-foreground">{event.eventTamil}</p>
+                            {/* Event Details */}
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-start justify-between gap-2">
+                                <div>
+                                  <h3 className="font-medium">{event.event}</h3>
+                                  <p className="text-xs text-muted-foreground">{event.eventTamil}</p>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  {eventHasReminder && (
+                                    <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
+                                      <BellRing className="w-3 h-3 mr-1" />
+                                      Set
+                                    </Badge>
+                                  )}
+                                  {getStatusBadge(event.status)}
+                                </div>
                               </div>
-                              {getStatusBadge(event.status)}
-                            </div>
-                            
-                            <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
-                              <span className="font-medium text-primary">{event.universityName}</span>
-                              <span className="text-muted-foreground">•</span>
-                              <span className="text-muted-foreground">{event.examName}</span>
-                            </div>
-                            
-                            <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
-                              <Calendar className="w-4 h-4" />
-                              <span>{event.date}</span>
+                              
+                              <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
+                                <span className="font-medium text-primary">{event.universityName}</span>
+                                <span className="text-muted-foreground">•</span>
+                                <span className="text-muted-foreground">{event.examName}</span>
+                              </div>
+                              
+                              <div className="mt-2 flex items-center justify-between">
+                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                  <Calendar className="w-4 h-4" />
+                                  <span>{event.date}</span>
+                                </div>
+                                
+                                {event.status !== 'completed' && !eventHasReminder && (
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="gap-1 text-primary hover:text-primary"
+                                    onClick={(e) => handleSetReminder(event, e)}
+                                  >
+                                    <BellPlus className="w-4 h-4" />
+                                    Remind
+                                  </Button>
+                                )}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
                 </div>
               </div>
             ))}
@@ -338,15 +395,28 @@ const ExamCalendar = () => {
             <Bell className="w-10 h-10 text-primary mx-auto mb-3" />
             <h3 className="font-semibold mb-1">Never Miss an Exam Date!</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Get notified about application deadlines and exam dates
+              {activeRemindersCount > 0 
+                ? `You have ${activeRemindersCount} active reminder${activeRemindersCount > 1 ? 's' : ''}. Manage them anytime.`
+                : 'Get notified about application deadlines and exam dates'
+              }
             </p>
-            <Button className="gap-2">
+            <Button 
+              className="gap-2"
+              onClick={() => navigate('/tn-university-entrance/my-reminders')}
+            >
               <Bell className="w-4 h-4" />
-              Enable Reminders
+              {activeRemindersCount > 0 ? 'Manage Reminders' : 'View My Reminders'}
             </Button>
           </CardContent>
         </Card>
       </div>
+
+      {/* Reminder Dialog */}
+      <ReminderDialog
+        open={reminderDialogOpen}
+        onOpenChange={setReminderDialogOpen}
+        eventData={selectedEvent}
+      />
     </div>
   );
 };
