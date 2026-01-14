@@ -10,3 +10,7 @@ export { UniversityCompare } from './UniversityCompare';
 export { default as ExamCalendar } from './ExamCalendar';
 export { default as MyReminders } from './MyReminders';
 export { default as ReminderDialog } from './ReminderDialog';
+export { SavedQuestions } from './SavedQuestions';
+export { PreparationTips } from './PreparationTips';
+export { TNStudyPlanner } from './TNStudyPlanner';
+export { generatePYQPDF, generateBookmarkedPDF, generateSyllabusPDF } from './generateTNUniversityPDF';
