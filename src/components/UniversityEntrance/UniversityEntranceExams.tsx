@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Calendar, Download, BarChart3, Bell } from 'lucide-react';
+import { Search, Calendar, BarChart3, Bell, Bookmark, Lightbulb, CalendarCheck } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { universities } from '@/data/university-entrance-data';
 import { UniversityCard } from './UniversityCard';
@@ -32,7 +32,7 @@ export const UniversityEntranceExams = () => {
         </p>
       </div>
 
-      {/* Quick Tools */}
+      {/* Quick Tools - Row 1 */}
       <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
         <QuickToolCard
           icon={Calendar}
@@ -40,13 +40,6 @@ export const UniversityEntranceExams = () => {
           titleTamil="தேர்வு நாட்காட்டி"
           onClick={() => navigate('/tn-university-entrance/exam-calendar')}
           color="#6a0dad"
-        />
-        <QuickToolCard
-          icon={Download}
-          title="All PYQ"
-          titleTamil="முந்தைய வினாக்கள்"
-          onClick={() => {}}
-          color="#1e3a8a"
         />
         <QuickToolCard
           icon={BarChart3}
@@ -61,6 +54,31 @@ export const UniversityEntranceExams = () => {
           titleTamil="நினைவூட்டல்"
           onClick={() => navigate('/tn-university-entrance/my-reminders')}
           color="#f59e0b"
+        />
+      </div>
+
+      {/* Quick Tools - Row 2 */}
+      <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
+        <QuickToolCard
+          icon={Bookmark}
+          title="Saved Questions"
+          titleTamil="சேமித்த கேள்விகள்"
+          onClick={() => navigate('/tn-university-entrance/saved-questions')}
+          color="#dc2626"
+        />
+        <QuickToolCard
+          icon={Lightbulb}
+          title="Prep Tips"
+          titleTamil="தயாரிப்பு குறிப்புகள்"
+          onClick={() => navigate('/tn-university-entrance/preparation-tips')}
+          color="#0891b2"
+        />
+        <QuickToolCard
+          icon={CalendarCheck}
+          title="Study Planner"
+          titleTamil="படிப்பு திட்டம்"
+          onClick={() => navigate('/tn-university-entrance/study-planner')}
+          color="#7c3aed"
         />
       </div>
 

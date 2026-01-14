@@ -54,7 +54,7 @@ import GovernmentExamDetail from "./pages/GovernmentExamDetail";
 import AlumniVerification from "./pages/AlumniVerification";
 
 // TN University Entrance Pages
-import { UniversityDetail, CourseDetail, ExamCalendar, MyReminders, UniversityCompare } from "./components/UniversityEntrance";
+import { UniversityDetail, CourseDetail, ExamCalendar, MyReminders, UniversityCompare, SavedQuestions as TNSavedQuestions, PreparationTips as TNPreparationTips, TNStudyPlanner } from "./components/UniversityEntrance";
 
 const queryClient = new QueryClient();
 
@@ -114,6 +114,9 @@ function App() {
                 <Route path="/tn-university-entrance/exam-calendar" element={<ExamCalendar />} />
                 <Route path="/tn-university-entrance/my-reminders" element={<MyReminders />} />
                 <Route path="/tn-university-entrance/compare" element={<UniversityCompare />} />
+                <Route path="/tn-university-entrance/saved-questions" element={<TNSavedQuestions />} />
+                <Route path="/tn-university-entrance/preparation-tips" element={<TNPreparationTips />} />
+                <Route path="/tn-university-entrance/study-planner" element={<TNStudyPlanner />} />
                 <Route path="/tn-university-entrance/:universityId" element={<UniversityDetail />} />
                 <Route path="/tn-university-entrance/:universityId/:courseId" element={<CourseDetail />} />
                 
