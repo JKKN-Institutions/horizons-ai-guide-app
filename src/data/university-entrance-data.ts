@@ -1819,6 +1819,7 @@ export const universities: University[] = [
     phone: '0416-2274747',
     examName: 'TVU PG Entrance',
     logoColor: '#0891b2',
+    logo: '/universities/thiruvalluvar-university-logo.jpeg',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'May 2026', status: 'upcoming' },
