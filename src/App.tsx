@@ -54,7 +54,7 @@ import GovernmentExamDetail from "./pages/GovernmentExamDetail";
 import AlumniVerification from "./pages/AlumniVerification";
 
 // TN University Entrance Pages
-import { UniversityDetail, CourseDetail, ExamCalendar } from "./components/UniversityEntrance";
+import { UniversityDetail, CourseDetail, ExamCalendar, MyReminders } from "./components/UniversityEntrance";
 
 const queryClient = new QueryClient();
 
@@ -112,6 +112,7 @@ function App() {
                 
 {/* TN University Entrance Exams Routes */}
                 <Route path="/tn-university-entrance/exam-calendar" element={<ExamCalendar />} />
+                <Route path="/tn-university-entrance/my-reminders" element={<MyReminders />} />
                 <Route path="/tn-university-entrance/:universityId" element={<UniversityDetail />} />
                 <Route path="/tn-university-entrance/:universityId/:courseId" element={<CourseDetail />} />
                 

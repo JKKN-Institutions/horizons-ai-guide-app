@@ -7,3 +7,5 @@ export { PYQSection } from './PYQSection';
 export { UniversityDetail } from './UniversityDetail';
 export { CourseDetail } from './CourseDetail';
 export { default as ExamCalendar } from './ExamCalendar';
+export { default as MyReminders } from './MyReminders';
+export { default as ReminderDialog } from './ReminderDialog';
