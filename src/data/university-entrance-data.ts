@@ -1809,6 +1809,355 @@ export const universities: University[] = [
         tips: ['Study micro and macro economics thoroughly', 'Follow economic survey', 'Practice statistics']
       }
     ]
+  },
+  {
+    id: 'thiruvalluvar-university',
+    name: 'Thiruvalluvar University',
+    nameTamil: 'திருவள்ளுவர் பல்கலைக்கழகம்',
+    location: 'Vellore',
+    website: 'www.tvu.edu.in',
+    phone: '0416-2274747',
+    examName: 'TVU PG Entrance',
+    logoColor: '#0891b2',
+    fee: { general: 500, obc: 500, scst: 250 },
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Exam Date', eventTamil: 'தேர்வு தேதி', date: 'June 2026', status: 'upcoming' },
+      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'July 2026', status: 'upcoming' }
+    ],
+    courses: [
+      {
+        id: 'tvu-mba',
+        name: 'MBA',
+        nameTamil: 'எம்.பி.ஏ',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Verbal Ability', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['Reading Comprehension', 'Grammar', 'Vocabulary'] },
+            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல் திறன்', questions: 35, marks: 35, topics: ['Arithmetic', 'Algebra', 'Data Interpretation'] },
+            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 25, marks: 25, topics: ['Puzzles', 'Coding', 'Syllogisms'] },
+            { name: 'General Awareness', nameTamil: 'பொது அறிவு', questions: 15, marks: 15, topics: ['Current Affairs', 'Business', 'Economy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Practice quantitative aptitude daily', 'Read business newspapers', 'Solve mock tests regularly']
+      },
+      {
+        id: 'tvu-mca',
+        name: 'MCA',
+        nameTamil: 'எம்.சி.ஏ',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Calculus', 'Discrete Math', 'Linear Algebra'] },
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 45, marks: 45, topics: ['Programming', 'Data Structures', 'DBMS', 'OS'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 25, marks: 25, topics: ['Reasoning', 'English', 'General Knowledge'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on programming fundamentals', 'Practice data structure problems', 'Study computer organization']
+      },
+      {
+        id: 'tvu-msc-chemistry',
+        name: 'M.Sc Chemistry',
+        nameTamil: 'எம்.எஸ்சி வேதியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Organic Chemistry', nameTamil: 'கரிம வேதியியல்', questions: 35, marks: 35, topics: ['Reaction Mechanisms', 'Stereochemistry', 'Named Reactions'] },
+            { name: 'Inorganic Chemistry', nameTamil: 'கனிம வேதியியல்', questions: 35, marks: 35, topics: ['Coordination Chemistry', 'Periodic Properties', 'Group Chemistry'] },
+            { name: 'Physical Chemistry', nameTamil: 'இயற்பியல் வேதியியல்', questions: 30, marks: 30, topics: ['Thermodynamics', 'Kinetics', 'Electrochemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Master organic reaction mechanisms', 'Practice numerical problems', 'Study coordination compounds thoroughly']
+      },
+      {
+        id: 'tvu-ma-tamil',
+        name: 'M.A Tamil',
+        nameTamil: 'எம்.ஏ தமிழ்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Tamil Literature', nameTamil: 'தமிழ் இலக்கியம்', questions: 40, marks: 40, topics: ['Sangam Literature', 'Epic Literature', 'Modern Literature'] },
+            { name: 'Tamil Grammar', nameTamil: 'தமிழ் இலக்கணம்', questions: 35, marks: 35, topics: ['Tholkappiyam', 'Nannool', 'Grammar Rules'] },
+            { name: 'History of Tamil', nameTamil: 'தமிழ் வரலாறு', questions: 25, marks: 25, topics: ['Language Evolution', 'Script Development', 'Literary History'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Read Sangam literature extensively', 'Master Tholkappiyam grammar rules', 'Study modern Tamil authors']
+      }
+    ]
+  },
+  {
+    id: 'tamil-university',
+    name: 'Tamil University',
+    nameTamil: 'தமிழ்ப் பல்கலைக்கழகம்',
+    location: 'Thanjavur',
+    website: 'www.tamiluniversity.ac.in',
+    phone: '04362-226720',
+    examName: 'TU Entrance Exam',
+    logoColor: '#9333ea',
+    fee: { general: 400, obc: 400, scst: 200 },
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Exam Date', eventTamil: 'தேர்வு தேதி', date: 'June 2026', status: 'upcoming' },
+      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'June 2026', status: 'upcoming' }
+    ],
+    courses: [
+      {
+        id: 'tu-ma-tamil',
+        name: 'M.A Tamil',
+        nameTamil: 'எம்.ஏ தமிழ்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Classical Tamil', nameTamil: 'செம்மொழி தமிழ்', questions: 35, marks: 35, topics: ['Sangam Poetry', 'Epics', 'Classical Grammar'] },
+            { name: 'Modern Tamil', nameTamil: 'நவீன தமிழ்', questions: 35, marks: 35, topics: ['Modern Literature', 'Prose', 'Short Stories'] },
+            { name: 'Tamil Grammar', nameTamil: 'தமிழ் இலக்கணம்', questions: 30, marks: 30, topics: ['Tholkappiyam', 'Nannool', 'Yapperungalam'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Specialize in Sangam literature', 'Study Tholkappiyam in depth', 'Read modern Tamil classics']
+      },
+      {
+        id: 'tu-mphil-tamil',
+        name: 'M.Phil Tamil',
+        nameTamil: 'எம்.ஃபில் தமிழ்',
+        type: 'Research',
+        examPattern: {
+          totalQuestions: 75,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Research Methodology', nameTamil: 'ஆராய்ச்சி முறையியல்', questions: 25, marks: 35, topics: ['Research Methods', 'Data Analysis', 'Thesis Writing'] },
+            { name: 'Tamil Literature', nameTamil: 'தமிழ் இலக்கியம்', questions: 30, marks: 40, topics: ['Critical Analysis', 'Literary Criticism', 'Comparative Literature'] },
+            { name: 'Language Studies', nameTamil: 'மொழியியல்', questions: 20, marks: 25, topics: ['Linguistics', 'Semantics', 'Etymology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Develop strong research methodology skills', 'Read literary criticism extensively', 'Study comparative literature']
+      },
+      {
+        id: 'tu-ma-manuscript',
+        name: 'M.A Manuscriptology',
+        nameTamil: 'எம்.ஏ சுவடியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Manuscript Studies', nameTamil: 'சுவடி ஆய்வு', questions: 40, marks: 40, topics: ['Palm Leaf Manuscripts', 'Conservation', 'Cataloguing'] },
+            { name: 'Paleography', nameTamil: 'தொல்லெழுத்தியல்', questions: 35, marks: 35, topics: ['Script Evolution', 'Reading Ancient Scripts', 'Inscriptions'] },
+            { name: 'Epigraphy', nameTamil: 'கல்வெட்டியல்', questions: 25, marks: 25, topics: ['Stone Inscriptions', 'Copper Plates', 'Dating Methods'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Learn palm leaf preservation techniques', 'Study ancient Tamil scripts', 'Visit manuscript libraries']
+      },
+      {
+        id: 'tu-ma-translation',
+        name: 'M.A Translation Studies',
+        nameTamil: 'எம்.ஏ மொழிபெயர்ப்பியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Translation Theory', nameTamil: 'மொழிபெயர்ப்பு கோட்பாடு', questions: 35, marks: 35, topics: ['Translation Theories', 'Methods', 'Approaches'] },
+            { name: 'Practical Translation', nameTamil: 'நடைமுறை மொழிபெயர்ப்பு', questions: 40, marks: 40, topics: ['Tamil-English', 'English-Tamil', 'Technical Translation'] },
+            { name: 'Comparative Literature', nameTamil: 'ஒப்பிலக்கியம்', questions: 25, marks: 25, topics: ['Cross-cultural Studies', 'Adaptation', 'Localization'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Practice translation daily', 'Build strong vocabulary in both languages', 'Study translation theory']
+      }
+    ]
+  },
+  {
+    id: 'gandhigram-university',
+    name: 'Gandhigram Rural Institute',
+    nameTamil: 'காந்திகிராம கிராமப்புற நிறுவனம்',
+    location: 'Dindigul',
+    website: 'www.ruraluniv.ac.in',
+    phone: '0451-2452371',
+    examName: 'GRI Entrance Exam',
+    logoColor: '#059669',
+    fee: { general: 500, obc: 500, scst: 250 },
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Exam Date', eventTamil: 'தேர்வு தேதி', date: 'June 2026', status: 'upcoming' },
+      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'July 2026', status: 'upcoming' }
+    ],
+    courses: [
+      {
+        id: 'gri-mba-rural',
+        name: 'MBA (Rural Management)',
+        nameTamil: 'எம்.பி.ஏ (கிராம மேலாண்மை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல் திறன்', questions: 30, marks: 30, topics: ['Mathematics', 'Data Interpretation', 'Statistics'] },
+            { name: 'Verbal Ability', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['Reading Comprehension', 'Grammar', 'Vocabulary'] },
+            { name: 'Rural Development', nameTamil: 'கிராம வளர்ச்சி', questions: 25, marks: 25, topics: ['Rural Economy', 'Agriculture', 'Panchayat Raj'] },
+            { name: 'General Awareness', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Current Affairs', 'Government Schemes', 'Rural Policies'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study rural development schemes', 'Know about Panchayat Raj system', 'Read about agricultural policies']
+      },
+      {
+        id: 'gri-msw',
+        name: 'MSW (Master of Social Work)',
+        nameTamil: 'எம்.எஸ்.டபிள்யூ (சமூக பணி முதுநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Social Work', nameTamil: 'சமூக பணி', questions: 40, marks: 40, topics: ['Case Work', 'Group Work', 'Community Organization'] },
+            { name: 'Social Sciences', nameTamil: 'சமூக அறிவியல்', questions: 35, marks: 35, topics: ['Sociology', 'Psychology', 'Economics'] },
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 25, marks: 25, topics: ['Social Issues', 'Welfare Schemes', 'NGO Sector'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study social work methods', 'Know welfare schemes well', 'Understand community development']
+      },
+      {
+        id: 'gri-msc-agriculture',
+        name: 'M.Sc Agriculture Extension',
+        nameTamil: 'எம்.எஸ்சி விவசாய விரிவாக்கம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Agriculture Science', nameTamil: 'வேளாண் அறிவியல்', questions: 40, marks: 40, topics: ['Crop Production', 'Soil Science', 'Plant Protection'] },
+            { name: 'Extension Education', nameTamil: 'விரிவாக்க கல்வி', questions: 35, marks: 35, topics: ['Extension Methods', 'Communication', 'Rural Development'] },
+            { name: 'Agricultural Economics', nameTamil: 'வேளாண் பொருளியல்', questions: 25, marks: 25, topics: ['Farm Management', 'Marketing', 'Policies'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study agricultural practices', 'Know extension methodologies', 'Understand rural farming systems']
+      },
+      {
+        id: 'gri-bed-special',
+        name: 'B.Ed (Special Education)',
+        nameTamil: 'பி.எட் (சிறப்புக் கல்வி)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 25, marks: 25, topics: ['Current Affairs', 'History', 'Geography'] },
+            { name: 'Education', nameTamil: 'கல்வியியல்', questions: 35, marks: 35, topics: ['Child Development', 'Teaching Methods', 'Educational Psychology'] },
+            { name: 'Special Education', nameTamil: 'சிறப்புக் கல்வி', questions: 25, marks: 25, topics: ['Disabilities', 'Inclusive Education', 'Rehabilitation'] },
+            { name: 'Language', nameTamil: 'மொழி', questions: 15, marks: 15, topics: ['Tamil/English', 'Communication Skills'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study child psychology', 'Understand disabilities and interventions', 'Learn about inclusive education']
+      },
+      {
+        id: 'gri-msc-rural-dev',
+        name: 'M.Sc Rural Development',
+        nameTamil: 'எம்.எஸ்சி கிராம வளர்ச்சி',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Rural Development', nameTamil: 'கிராம வளர்ச்சி', questions: 40, marks: 40, topics: ['Rural Planning', 'Decentralization', 'Sustainable Development'] },
+            { name: 'Social Sciences', nameTamil: 'சமூக அறிவியல்', questions: 35, marks: 35, topics: ['Sociology', 'Political Science', 'Economics'] },
+            { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 25, marks: 25, topics: ['Statistics', 'Survey Methods', 'Data Analysis'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study rural development theories', 'Know government rural schemes', 'Learn research methodology']
+      }
+    ]
   }
 ];
 
