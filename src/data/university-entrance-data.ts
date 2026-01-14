@@ -1490,6 +1490,7 @@ export const universities: University[] = [
     phone: '04542-241530',
     examName: 'MTWU Entrance',
     logoColor: '#ec4899',
+    logo: '/universities/mother-teresa-university-logo.jpeg',
     fee: { general: 400, obc: 400, scst: 200 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
