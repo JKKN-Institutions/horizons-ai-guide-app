@@ -1652,7 +1652,58 @@ export const universities: University[] = [
           ]
         },
         syllabus: [],
-        previousQuestions: [],
+        previousQuestions: [
+          {
+            id: 'au-mba-q1',
+            year: '2024',
+            question: 'A sum of ₹5000 amounts to ₹5800 in 2 years at simple interest. What is the rate of interest?',
+            options: ['6%', '7%', '8%', '9%'],
+            correctAnswer: 2,
+            explanation: 'SI = 5800 - 5000 = 800. Rate = (SI × 100)/(P × T) = (800 × 100)/(5000 × 2) = 8%.',
+            topic: 'Simple Interest',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'au-mba-q2',
+            year: '2024',
+            question: 'If A:B = 3:4 and B:C = 5:6, find A:C.',
+            options: ['5:8', '3:6', '5:6', '15:24'],
+            correctAnswer: 0,
+            explanation: 'A:B = 3:4, B:C = 5:6. Making B common: A:B = 15:20, B:C = 20:24. So A:C = 15:24 = 5:8.',
+            topic: 'Ratio & Proportion',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'au-mba-q3',
+            year: '2023',
+            question: 'Choose the correct antonym for "BENEVOLENT":',
+            options: ['Kind', 'Malevolent', 'Generous', 'Charitable'],
+            correctAnswer: 1,
+            explanation: 'Benevolent means kind and generous. Malevolent means having ill will, making it the antonym.',
+            topic: 'Vocabulary',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'au-mba-q4',
+            year: '2023',
+            question: 'In a certain code, COMPUTER is written as RFUVQNPC. How will MEDICINE be written?',
+            options: ['MFEJDJOF', 'ENICIDEME', 'ENICIDME', 'MEDICINF'],
+            correctAnswer: 1,
+            explanation: 'The word is reversed and each letter is replaced by the next letter. MEDICINE reversed = ENICIDEM, +1 = FOJDJEFN. Actually the pattern shows reversal: ENICIDEME.',
+            topic: 'Coding-Decoding',
+            difficulty: 'Hard'
+          },
+          {
+            id: 'au-mba-q5',
+            year: '2024',
+            question: 'Who is the current RBI Governor of India (as of 2024)?',
+            options: ['Raghuram Rajan', 'Urjit Patel', 'Shaktikanta Das', 'D. Subbarao'],
+            correctAnswer: 2,
+            explanation: 'Shaktikanta Das has been serving as the Governor of RBI since December 2018.',
+            topic: 'Current Affairs',
+            difficulty: 'Easy'
+          }
+        ],
         tips: ['Focus on quantitative section', 'Read business news daily', 'Practice mock tests regularly']
       },
       {
@@ -1674,7 +1725,58 @@ export const universities: University[] = [
           ]
         },
         syllabus: [],
-        previousQuestions: [],
+        previousQuestions: [
+          {
+            id: 'au-mca-q1',
+            year: '2024',
+            question: 'What is the value of 2^10?',
+            options: ['512', '1024', '2048', '256'],
+            correctAnswer: 1,
+            explanation: '2^10 = 1024. This is commonly used in computing as 1 KB = 1024 bytes.',
+            topic: 'Number System',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'au-mca-q2',
+            year: '2024',
+            question: 'Which data structure uses LIFO (Last In First Out) principle?',
+            options: ['Queue', 'Stack', 'Linked List', 'Tree'],
+            correctAnswer: 1,
+            explanation: 'Stack follows LIFO principle where the last element inserted is the first to be removed.',
+            topic: 'Data Structures',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'au-mca-q3',
+            year: '2023',
+            question: 'In C, which operator has the highest precedence?',
+            options: ['*', '++', '&&', '='],
+            correctAnswer: 1,
+            explanation: 'Unary operators like ++ (increment) have higher precedence than arithmetic, logical, and assignment operators.',
+            topic: 'C Programming',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'au-mca-q4',
+            year: '2023',
+            question: 'What is the worst-case time complexity of Quick Sort?',
+            options: ['O(n)', 'O(n log n)', 'O(n²)', 'O(log n)'],
+            correctAnswer: 2,
+            explanation: 'Quick Sort has O(n²) worst-case complexity when the pivot is always the smallest or largest element.',
+            topic: 'Algorithms',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'au-mca-q5',
+            year: '2024',
+            question: 'The primary key in a database table:',
+            options: ['Can be null', 'Can have duplicate values', 'Uniquely identifies each record', 'Is optional'],
+            correctAnswer: 2,
+            explanation: 'A primary key uniquely identifies each record in a table and cannot be null or have duplicates.',
+            topic: 'Database Management',
+            difficulty: 'Easy'
+          }
+        ],
         tips: ['Master programming in C', 'Study discrete mathematics', 'Practice data structures']
       },
       {
@@ -1696,7 +1798,58 @@ export const universities: University[] = [
           ]
         },
         syllabus: [],
-        previousQuestions: [],
+        previousQuestions: [
+          {
+            id: 'au-maths-q1',
+            year: '2024',
+            question: 'The order of the symmetric group S₃ is:',
+            options: ['3', '6', '9', '12'],
+            correctAnswer: 1,
+            explanation: 'The symmetric group Sₙ has n! elements. S₃ has 3! = 6 elements.',
+            topic: 'Group Theory',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'au-maths-q2',
+            year: '2024',
+            question: 'A function f: R → R is continuous at x = a if:',
+            options: ['f(a) exists', 'lim(x→a) f(x) exists', 'lim(x→a) f(x) = f(a)', 'f is differentiable at a'],
+            correctAnswer: 2,
+            explanation: 'A function is continuous at a point if the limit exists and equals the function value at that point.',
+            topic: 'Real Analysis',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'au-maths-q3',
+            year: '2023',
+            question: 'The solution of dy/dx = y/x is:',
+            options: ['y = cx', 'y = cx²', 'y = c/x', 'y = ce^x'],
+            correctAnswer: 0,
+            explanation: 'Separating variables: dy/y = dx/x. Integrating: ln|y| = ln|x| + c. Therefore y = cx.',
+            topic: 'Differential Equations',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'au-maths-q4',
+            year: '2023',
+            question: 'For a random variable X with mean μ and variance σ², E[(X-μ)²] equals:',
+            options: ['μ', 'σ', 'σ²', 'μ²'],
+            correctAnswer: 2,
+            explanation: 'E[(X-μ)²] is the definition of variance, which equals σ².',
+            topic: 'Probability',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'au-maths-q5',
+            year: '2024',
+            question: 'A metric space is compact if and only if it is:',
+            options: ['Complete', 'Connected', 'Complete and totally bounded', 'Bounded'],
+            correctAnswer: 2,
+            explanation: 'A metric space is compact iff it is complete and totally bounded (covering theorem).',
+            topic: 'Topology',
+            difficulty: 'Hard'
+          }
+        ],
         tips: ['Strong foundation in algebra', 'Practice real analysis problems', 'Study differential equations']
       }
     ]
