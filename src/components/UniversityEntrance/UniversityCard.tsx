@@ -19,13 +19,23 @@ export const UniversityCard = ({ university, onClick }: UniversityCardProps) => 
     >
       <CardContent className="p-5">
         <div className="flex items-start gap-4">
-          {/* Logo Placeholder */}
-          <div 
-            className="w-14 h-14 rounded-xl flex items-center justify-center text-white font-bold text-lg shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300"
-            style={{ backgroundColor: university.logoColor }}
-          >
-            {getInitials(university.name)}
-          </div>
+          {/* Logo or Initials */}
+          {university.logo ? (
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300 bg-white overflow-hidden p-1">
+              <img 
+                src={university.logo} 
+                alt={`${university.name} logo`}
+                className="w-full h-full object-contain"
+              />
+            </div>
+          ) : (
+            <div 
+              className="w-14 h-14 rounded-xl flex items-center justify-center text-white font-bold text-lg shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300"
+              style={{ backgroundColor: university.logoColor }}
+            >
+              {getInitials(university.name)}
+            </div>
+          )}
           
           <div className="flex-1 min-w-0">
             {/* University Name */}
