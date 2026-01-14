@@ -925,6 +925,7 @@ export const universities: University[] = [
     phone: '0422-2422222',
     examName: 'BUPGET',
     logoColor: '#dc2626',
+    logo: '/universities/bharathiar-university-logo.png',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
