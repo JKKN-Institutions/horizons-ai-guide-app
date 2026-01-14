@@ -1008,6 +1008,7 @@ export const universities: University[] = [
     phone: '0431-2407071',
     examName: 'BDU Entrance',
     logoColor: '#7c3aed',
+    logo: '/universities/bharathidasan-university-logo.png',
     fee: { general: 600, obc: 600, scst: 300 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
