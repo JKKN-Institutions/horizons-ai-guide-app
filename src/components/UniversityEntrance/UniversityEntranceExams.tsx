@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Calendar, BarChart3, Bell, Bookmark, Lightbulb, CalendarCheck, FileText, TrendingUp, Flame, Sparkles, Gift } from 'lucide-react';
+import { Search, Calendar, BarChart3, Bell, Bookmark, Lightbulb, CalendarCheck, FileText, TrendingUp, Flame, Sparkles, Gift, MessageSquare } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { universities } from '@/data/university-entrance-data';
 import { UniversityCard } from './UniversityCard';
@@ -118,6 +118,13 @@ export const UniversityEntranceExams = () => {
           titleTamil="தினசரி சவால்"
           onClick={() => navigate('/tn-university-entrance/daily-challenge')}
           color="#ec4899"
+        />
+        <QuickToolCard
+          icon={MessageSquare}
+          title="Forum"
+          titleTamil="மன்றம்"
+          onClick={() => navigate('/tn-university-entrance/forum')}
+          color="#0ea5e9"
         />
       </div>
 

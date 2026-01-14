@@ -1743,6 +1743,130 @@ export type Database = {
           },
         ]
       }
+      tn_forum_comments: {
+        Row: {
+          author_name: string
+          content: string
+          created_at: string
+          id: string
+          is_ai_response: boolean
+          likes_count: number
+          post_id: string
+          user_id: string | null
+        }
+        Insert: {
+          author_name?: string
+          content: string
+          created_at?: string
+          id?: string
+          is_ai_response?: boolean
+          likes_count?: number
+          post_id: string
+          user_id?: string | null
+        }
+        Update: {
+          author_name?: string
+          content?: string
+          created_at?: string
+          id?: string
+          is_ai_response?: boolean
+          likes_count?: number
+          post_id?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tn_forum_comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "tn_forum_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tn_forum_post_likes: {
+        Row: {
+          created_at: string
+          id: string
+          post_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          post_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          post_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tn_forum_post_likes_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "tn_forum_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tn_forum_posts: {
+        Row: {
+          ai_answer: string | null
+          author_name: string
+          category: string
+          comments_count: number
+          content: string
+          course: string | null
+          created_at: string
+          has_ai_answer: boolean
+          id: string
+          is_pinned: boolean
+          likes_count: number
+          title: string
+          university: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          ai_answer?: string | null
+          author_name?: string
+          category?: string
+          comments_count?: number
+          content: string
+          course?: string | null
+          created_at?: string
+          has_ai_answer?: boolean
+          id?: string
+          is_pinned?: boolean
+          likes_count?: number
+          title: string
+          university?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          ai_answer?: string | null
+          author_name?: string
+          category?: string
+          comments_count?: number
+          content?: string
+          course?: string | null
+          created_at?: string
+          has_ai_answer?: boolean
+          id?: string
+          is_pinned?: boolean
+          likes_count?: number
+          title?: string
+          university?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       user_achievement_progress: {
         Row: {
           achievement_points: number
