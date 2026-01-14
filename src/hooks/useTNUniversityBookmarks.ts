@@ -37,34 +37,35 @@ export const useTNUniversityBookmarks = () => {
     setBookmarks(newBookmarks);
   };
 
-  const addBookmark = (
-    questionId: string,
-    universityId: string,
-    universityName: string,
-    courseId: string,
-    courseName: string,
-    question: string,
-    options: string[],
-    correctAnswer: number,
-    explanation: string,
-    topic: string,
-    difficulty: 'Easy' | 'Medium' | 'Hard'
-  ) => {
-    const exists = bookmarks.some(b => b.id === questionId);
+  const addBookmark = (bookmark: {
+    id: string;
+    question: string;
+    options: string[];
+    correctAnswer: number;
+    explanation: string;
+    difficulty: 'Easy' | 'Medium' | 'Hard';
+    topic: string;
+    universityId: string;
+    courseId: string;
+    year?: string;
+    universityName?: string;
+    courseName?: string;
+  }) => {
+    const exists = bookmarks.some(b => b.id === bookmark.id);
     if (exists) return;
 
     const newBookmark: BookmarkedQuestion = {
-      id: questionId,
-      universityId,
-      universityName,
-      courseId,
-      courseName,
-      question,
-      options,
-      correctAnswer,
-      explanation,
-      topic,
-      difficulty,
+      id: bookmark.id,
+      universityId: bookmark.universityId,
+      universityName: bookmark.universityName || '',
+      courseId: bookmark.courseId,
+      courseName: bookmark.courseName || '',
+      question: bookmark.question,
+      options: bookmark.options,
+      correctAnswer: bookmark.correctAnswer,
+      explanation: bookmark.explanation,
+      topic: bookmark.topic,
+      difficulty: bookmark.difficulty,
       bookmarkedAt: new Date().toISOString(),
     };
 
@@ -79,36 +80,25 @@ export const useTNUniversityBookmarks = () => {
     return bookmarks.some(b => b.id === questionId);
   };
 
-  const toggleBookmark = (
-    questionId: string,
-    universityId: string,
-    universityName: string,
-    courseId: string,
-    courseName: string,
-    question: string,
-    options: string[],
-    correctAnswer: number,
-    explanation: string,
-    topic: string,
-    difficulty: 'Easy' | 'Medium' | 'Hard'
-  ) => {
-    if (isBookmarked(questionId)) {
-      removeBookmark(questionId);
+  const toggleBookmark = (bookmark: {
+    id: string;
+    question: string;
+    options: string[];
+    correctAnswer: number;
+    explanation: string;
+    difficulty: 'Easy' | 'Medium' | 'Hard';
+    topic: string;
+    universityId: string;
+    courseId: string;
+    year?: string;
+    universityName?: string;
+    courseName?: string;
+  }) => {
+    if (isBookmarked(bookmark.id)) {
+      removeBookmark(bookmark.id);
       return false;
     } else {
-      addBookmark(
-        questionId,
-        universityId,
-        universityName,
-        courseId,
-        courseName,
-        question,
-        options,
-        correctAnswer,
-        explanation,
-        topic,
-        difficulty
-      );
+      addBookmark(bookmark);
       return true;
     }
   };

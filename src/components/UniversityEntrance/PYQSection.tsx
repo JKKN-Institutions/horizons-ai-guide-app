@@ -1,18 +1,48 @@
 import { useState } from 'react';
-import { Eye, EyeOff, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Eye, ChevronRight, ChevronLeft, Bookmark, BookmarkCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { PreviousQuestion } from '@/data/university-entrance-data';
+import { useTNUniversityBookmarks } from '@/hooks/useTNUniversityBookmarks';
+import { toast } from 'sonner';
 
 interface PYQSectionProps {
   questions: PreviousQuestion[];
+  universityId?: string;
+  courseId?: string;
 }
 
-export const PYQSection = ({ questions }: PYQSectionProps) => {
+export const PYQSection = ({ questions, universityId = '', courseId = '' }: PYQSectionProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const { bookmarks, addBookmark, removeBookmark, isBookmarked } = useTNUniversityBookmarks();
+
+  const currentQuestion = questions[currentIndex];
+  const questionId = currentQuestion ? `${universityId}-${courseId}-${currentIndex}` : '';
+  const isCurrentBookmarked = isBookmarked(questionId);
+
+  const handleBookmarkToggle = () => {
+    if (isCurrentBookmarked) {
+      removeBookmark(questionId);
+      toast.success('Bookmark removed');
+    } else {
+      addBookmark({
+        id: questionId,
+        question: currentQuestion.question,
+        options: currentQuestion.options,
+        correctAnswer: currentQuestion.correctAnswer,
+        explanation: currentQuestion.explanation,
+        difficulty: currentQuestion.difficulty,
+        topic: currentQuestion.topic,
+        universityId,
+        courseId,
+        year: currentQuestion.year,
+      });
+      toast.success('Question bookmarked for revision');
+    }
+  };
 
   if (questions.length === 0) {
     return (
@@ -21,8 +51,6 @@ export const PYQSection = ({ questions }: PYQSectionProps) => {
       </div>
     );
   }
-
-  const currentQuestion = questions[currentIndex];
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -62,6 +90,18 @@ export const PYQSection = ({ questions }: PYQSectionProps) => {
           Question {currentIndex + 1} of {questions.length}
         </span>
         <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleBookmarkToggle}
+            className={isCurrentBookmarked ? 'text-amber-500 hover:text-amber-600' : 'text-muted-foreground hover:text-foreground'}
+          >
+            {isCurrentBookmarked ? (
+              <BookmarkCheck className="h-5 w-5" />
+            ) : (
+              <Bookmark className="h-5 w-5" />
+            )}
+          </Button>
           <Badge className={getDifficultyColor(currentQuestion.difficulty)}>
             {currentQuestion.difficulty}
           </Badge>
