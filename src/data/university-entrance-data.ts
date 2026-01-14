@@ -1622,6 +1622,7 @@ export const universities: University[] = [
     phone: '04565-228080',
     examName: 'AU Entrance',
     logoColor: '#ca8a04',
+    logo: '/universities/alagappa-university-logo.png',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
