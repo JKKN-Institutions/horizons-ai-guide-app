@@ -7,171 +7,27 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { 
   Plane, GraduationCap, DollarSign, Globe, BookOpen, FileText, 
   CheckCircle, Clock, MapPin, Building2, Users, Award, TrendingUp,
-  ExternalLink, Star, Sparkles, Target, Calendar, Wallet
+  Star, Sparkles, Target, Calendar, Wallet, Scale, Shield, Languages,
+  ClipboardList, Calculator
 } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
-
-interface Country {
-  id: string;
-  name: { en: string; ta: string };
-  flag: string;
-  universities: number;
-  avgTuition: string;
-  avgLiving: string;
-  workHours: string;
-  prDuration: string;
-  popularCourses: string[];
-  requirements: string[];
-  topUniversities: string[];
-  scholarships: string[];
-  gradient: string;
-}
-
-const countries: Country[] = [
-  {
-    id: 'usa',
-    name: { en: 'United States', ta: 'அமெரிக்கா' },
-    flag: '🇺🇸',
-    universities: 5000,
-    avgTuition: '$20,000 - $55,000/yr',
-    avgLiving: '$15,000 - $25,000/yr',
-    workHours: '20 hrs/week',
-    prDuration: '3-5 years (OPT + H1B)',
-    popularCourses: ['Computer Science', 'MBA', 'Data Science', 'Engineering', 'Medicine'],
-    requirements: ['GRE/GMAT', 'TOEFL/IELTS', 'SOP', 'LORs', 'Transcripts'],
-    topUniversities: ['MIT', 'Stanford', 'Harvard', 'UC Berkeley', 'CMU'],
-    scholarships: ['Fulbright', 'Hubert Humphrey', 'University Merit'],
-    gradient: 'from-blue-500 to-red-500'
-  },
-  {
-    id: 'uk',
-    name: { en: 'United Kingdom', ta: 'இங்கிலாந்து' },
-    flag: '🇬🇧',
-    universities: 160,
-    avgTuition: '£12,000 - £35,000/yr',
-    avgLiving: '£12,000 - £15,000/yr',
-    workHours: '20 hrs/week',
-    prDuration: '2 years Graduate Route',
-    popularCourses: ['Business', 'Law', 'Medicine', 'Arts', 'Finance'],
-    requirements: ['IELTS/PTE', 'SOP', 'LORs', 'Transcripts'],
-    topUniversities: ['Oxford', 'Cambridge', 'Imperial College', 'UCL', 'LSE'],
-    scholarships: ['Chevening', 'Commonwealth', 'GREAT Scholarships'],
-    gradient: 'from-blue-600 to-red-600'
-  },
-  {
-    id: 'canada',
-    name: { en: 'Canada', ta: 'கனடா' },
-    flag: '🇨🇦',
-    universities: 100,
-    avgTuition: 'CAD 15,000 - 35,000/yr',
-    avgLiving: 'CAD 12,000 - 18,000/yr',
-    workHours: '20 hrs/week',
-    prDuration: '1-3 years PGWP → PR',
-    popularCourses: ['IT', 'Business Analytics', 'Healthcare', 'Engineering', 'Hospitality'],
-    requirements: ['IELTS/PTE', 'SOP', 'LORs', 'Transcripts', 'GIC'],
-    topUniversities: ['U of Toronto', 'UBC', 'McGill', 'Waterloo', 'Alberta'],
-    scholarships: ['Vanier CGS', 'Banting', 'Ontario Graduate'],
-    gradient: 'from-red-500 to-white'
-  },
-  {
-    id: 'australia',
-    name: { en: 'Australia', ta: 'ஆஸ்திரேலியா' },
-    flag: '🇦🇺',
-    universities: 43,
-    avgTuition: 'AUD 20,000 - 45,000/yr',
-    avgLiving: 'AUD 21,000 - 25,000/yr',
-    workHours: '48 hrs/fortnight',
-    prDuration: '2-4 years (485 visa → PR)',
-    popularCourses: ['Data Science', 'Nursing', 'Engineering', 'Accounting', 'IT'],
-    requirements: ['IELTS/PTE', 'SOP', 'LORs', 'Transcripts', 'GTE'],
-    topUniversities: ['Melbourne', 'Sydney', 'ANU', 'UNSW', 'Monash'],
-    scholarships: ['Australia Awards', 'Destination Australia', 'Research Training'],
-    gradient: 'from-blue-500 to-yellow-500'
-  },
-  {
-    id: 'germany',
-    name: { en: 'Germany', ta: 'ஜெர்மனி' },
-    flag: '🇩🇪',
-    universities: 400,
-    avgTuition: '€0 - €3,000/yr (Public)',
-    avgLiving: '€10,000 - €12,000/yr',
-    workHours: '20 hrs/week',
-    prDuration: '18 months Job Seeker → PR',
-    popularCourses: ['Engineering', 'Automotive', 'AI/ML', 'Renewable Energy', 'Research'],
-    requirements: ['German (B1/B2) or English', 'APS', 'Blocked Account'],
-    topUniversities: ['TU Munich', 'RWTH Aachen', 'Heidelberg', 'LMU Munich', 'TU Berlin'],
-    scholarships: ['DAAD', 'Erasmus Mundus', 'Heinrich Böll'],
-    gradient: 'from-black to-yellow-500'
-  },
-  {
-    id: 'ireland',
-    name: { en: 'Ireland', ta: 'அயர்லாந்து' },
-    flag: '🇮🇪',
-    universities: 34,
-    avgTuition: '€10,000 - €25,000/yr',
-    avgLiving: '€10,000 - €15,000/yr',
-    workHours: '20 hrs/week',
-    prDuration: '2 years Stay Back → Stamp 4',
-    popularCourses: ['Pharma', 'IT', 'Business', 'Data Analytics', 'Biotech'],
-    requirements: ['IELTS/PTE', 'SOP', 'LORs', 'Transcripts'],
-    topUniversities: ['Trinity College Dublin', 'UCD', 'NUI Galway', 'DCU', 'UCC'],
-    scholarships: ['Government of Ireland', 'Science Foundation', 'University Scholarships'],
-    gradient: 'from-green-500 to-orange-500'
-  },
-  {
-    id: 'newzealand',
-    name: { en: 'New Zealand', ta: 'நியூசிலாந்து' },
-    flag: '🇳🇿',
-    universities: 8,
-    avgTuition: 'NZD 22,000 - 35,000/yr',
-    avgLiving: 'NZD 15,000 - 20,000/yr',
-    workHours: '20 hrs/week',
-    prDuration: '1-3 years Post-Study Work',
-    popularCourses: ['Agriculture', 'Tourism', 'Engineering', 'IT', 'Healthcare'],
-    requirements: ['IELTS/PTE', 'SOP', 'LORs', 'Transcripts'],
-    topUniversities: ['Auckland', 'Otago', 'Victoria Wellington', 'Canterbury', 'Massey'],
-    scholarships: ['New Zealand Excellence', 'MFAT', 'University Scholarships'],
-    gradient: 'from-blue-600 to-black'
-  },
-  {
-    id: 'singapore',
-    name: { en: 'Singapore', ta: 'சிங்கப்பூர்' },
-    flag: '🇸🇬',
-    universities: 6,
-    avgTuition: 'SGD 15,000 - 50,000/yr',
-    avgLiving: 'SGD 12,000 - 18,000/yr',
-    workHours: '16 hrs/week',
-    prDuration: 'Employment Pass → PR',
-    popularCourses: ['Finance', 'Engineering', 'Business', 'Biotech', 'IT'],
-    requirements: ['IELTS/TOEFL', 'SOP', 'LORs', 'Transcripts'],
-    topUniversities: ['NUS', 'NTU', 'SMU', 'SUTD', 'SIT'],
-    scholarships: ['A*STAR', 'MOE Tuition Grant', 'University Merit'],
-    gradient: 'from-red-500 to-white'
-  }
-];
-
-const exams = [
-  { name: 'IELTS', fullForm: 'International English Language Testing System', countries: 'UK, Australia, Canada, NZ', score: '6.5-7.5', icon: '📝' },
-  { name: 'TOEFL', fullForm: 'Test of English as a Foreign Language', countries: 'USA, Canada', score: '90-110', icon: '📚' },
-  { name: 'PTE', fullForm: 'Pearson Test of English', countries: 'Australia, UK, NZ, Canada', score: '58-79', icon: '💻' },
-  { name: 'GRE', fullForm: 'Graduate Record Examination', countries: 'USA, Canada, Germany', score: '310-330', icon: '🎯' },
-  { name: 'GMAT', fullForm: 'Graduate Management Admission Test', countries: 'USA, UK, Singapore', score: '650-750', icon: '📊' },
-  { name: 'SAT', fullForm: 'Scholastic Assessment Test', countries: 'USA (UG)', score: '1200-1600', icon: '✏️' },
-  { name: 'Duolingo', fullForm: 'Duolingo English Test', countries: 'USA, UK, Australia', score: '110-130', icon: '🦉' },
-];
-
-const applicationSteps = [
-  { step: 1, title: 'Research', desc: 'Research countries, universities, and courses', duration: '2-3 months' },
-  { step: 2, title: 'Exams', desc: 'Prepare and appear for IELTS/GRE/GMAT', duration: '3-4 months' },
-  { step: 3, title: 'Documents', desc: 'Prepare SOP, LORs, transcripts, certificates', duration: '1-2 months' },
-  { step: 4, title: 'Apply', desc: 'Submit applications to shortlisted universities', duration: '1-2 months' },
-  { step: 5, title: 'Admit', desc: 'Receive admission offers and accept', duration: '2-4 months' },
-  { step: 6, title: 'Visa', desc: 'Apply for student visa with required documents', duration: '1-2 months' },
-  { step: 7, title: 'Travel', desc: 'Book tickets, find accommodation, depart', duration: '1 month' },
-];
+import { countries, exams, applicationSteps } from './data';
+import { CountryMatcherQuiz } from './CountryMatcherQuiz';
+import { UniversityComparison } from './UniversityComparison';
+import { CostCalculator } from './CostCalculator';
+import { DocumentChecklist } from './DocumentChecklist';
+import { ScholarshipFinder } from './ScholarshipFinder';
+import { VisaSuccessPredictor } from './VisaSuccessPredictor';
+import { SOPReviewTool } from './SOPReviewTool';
+import { LanguageRequirementsGuide } from './LanguageRequirementsGuide';
+import { BudgetPlanner } from './BudgetPlanner';
+import { CountryComparison } from './CountryComparison';
+import { ApplicationTracker } from './ApplicationTracker';
+import { AlumniConnect } from './AlumniConnect';
+import { Country } from './types';
 
 export const AbroadStudy = () => {
-  const { language, t } = useLanguage();
+  const { language } = useLanguage();
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
   const [activeTab, setActiveTab] = useState('countries');
 
@@ -222,27 +78,58 @@ export const AbroadStudy = () => {
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <ScrollArea className="w-full whitespace-nowrap">
           <TabsList className="bg-white/80 backdrop-blur-sm p-1.5 rounded-xl shadow-sm border inline-flex w-auto">
-            <TabsTrigger value="countries" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-4">
-              <Globe className="w-4 h-4 mr-2" />
+            <TabsTrigger value="countries" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-3">
+              <Globe className="w-4 h-4 mr-1" />
               Countries
             </TabsTrigger>
-            <TabsTrigger value="exams" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-4">
-              <FileText className="w-4 h-4 mr-2" />
+            <TabsTrigger value="quiz" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-3">
+              <Target className="w-4 h-4 mr-1" />
+              Quiz
+            </TabsTrigger>
+            <TabsTrigger value="compare" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-3">
+              <Scale className="w-4 h-4 mr-1" />
+              Compare
+            </TabsTrigger>
+            <TabsTrigger value="costs" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-3">
+              <Calculator className="w-4 h-4 mr-1" />
+              Costs
+            </TabsTrigger>
+            <TabsTrigger value="documents" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-3">
+              <FileText className="w-4 h-4 mr-1" />
+              Documents
+            </TabsTrigger>
+            <TabsTrigger value="scholarships" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-3">
+              <Award className="w-4 h-4 mr-1" />
+              Scholarships
+            </TabsTrigger>
+            <TabsTrigger value="visa" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-3">
+              <Shield className="w-4 h-4 mr-1" />
+              Visa
+            </TabsTrigger>
+            <TabsTrigger value="sop" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-3">
+              <BookOpen className="w-4 h-4 mr-1" />
+              SOP
+            </TabsTrigger>
+            <TabsTrigger value="exams" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-3">
+              <Languages className="w-4 h-4 mr-1" />
               Exams
             </TabsTrigger>
-            <TabsTrigger value="timeline" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-4">
-              <Calendar className="w-4 h-4 mr-2" />
-              Timeline
+            <TabsTrigger value="budget" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-3">
+              <Wallet className="w-4 h-4 mr-1" />
+              Budget
             </TabsTrigger>
-            <TabsTrigger value="costs" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-4">
-              <Wallet className="w-4 h-4 mr-2" />
-              Costs & Loans
+            <TabsTrigger value="tracker" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-3">
+              <ClipboardList className="w-4 h-4 mr-1" />
+              Tracker
+            </TabsTrigger>
+            <TabsTrigger value="alumni" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-3">
+              <Users className="w-4 h-4 mr-1" />
+              Alumni
             </TabsTrigger>
           </TabsList>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
 
-        {/* Countries Tab */}
         <TabsContent value="countries" className="mt-6">
           {selectedCountry ? (
             <Card className="border-2 border-indigo-200">
@@ -251,19 +138,14 @@ export const AbroadStudy = () => {
                   <div className="flex items-center gap-4">
                     <span className="text-5xl">{selectedCountry.flag}</span>
                     <div>
-                      <CardTitle className="text-2xl">
-                        {selectedCountry.name[language]}
-                      </CardTitle>
+                      <CardTitle className="text-2xl">{selectedCountry.name[language]}</CardTitle>
                       <CardDescription>{selectedCountry.universities}+ Universities</CardDescription>
                     </div>
                   </div>
-                  <Button variant="outline" onClick={() => setSelectedCountry(null)}>
-                    ← Back to Countries
-                  </Button>
+                  <Button variant="outline" onClick={() => setSelectedCountry(null)}>← Back</Button>
                 </div>
               </CardHeader>
               <CardContent className="space-y-6">
-                {/* Key Stats */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="bg-blue-50 rounded-xl p-4 text-center">
                     <DollarSign className="w-5 h-5 mx-auto mb-2 text-blue-600" />
@@ -286,65 +168,27 @@ export const AbroadStudy = () => {
                     <div className="text-xs text-amber-600">{selectedCountry.prDuration}</div>
                   </div>
                 </div>
-
-                {/* Popular Courses */}
                 <div>
-                  <h4 className="font-semibold mb-3 flex items-center gap-2">
-                    <BookOpen className="w-4 h-4 text-indigo-500" />
-                    Popular Courses
-                  </h4>
+                  <h4 className="font-semibold mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 text-indigo-500" />Popular Courses</h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedCountry.popularCourses.map((course, i) => (
-                      <Badge key={i} variant="secondary" className="bg-indigo-100 text-indigo-700">
-                        {course}
-                      </Badge>
+                      <Badge key={i} variant="secondary" className="bg-indigo-100 text-indigo-700">{course}</Badge>
                     ))}
                   </div>
                 </div>
-
-                {/* Requirements */}
                 <div>
-                  <h4 className="font-semibold mb-3 flex items-center gap-2">
-                    <FileText className="w-4 h-4 text-green-500" />
-                    Requirements
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedCountry.requirements.map((req, i) => (
-                      <Badge key={i} variant="outline" className="border-green-300 text-green-700">
-                        <CheckCircle className="w-3 h-3 mr-1" />
-                        {req}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Top Universities */}
-                <div>
-                  <h4 className="font-semibold mb-3 flex items-center gap-2">
-                    <GraduationCap className="w-4 h-4 text-purple-500" />
-                    Top Universities
-                  </h4>
+                  <h4 className="font-semibold mb-3 flex items-center gap-2"><GraduationCap className="w-4 h-4 text-purple-500" />Top Universities</h4>
                   <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                     {selectedCountry.topUniversities.map((uni, i) => (
-                      <div key={i} className="bg-purple-50 rounded-lg p-3 text-center text-sm font-medium text-purple-800">
-                        {uni}
-                      </div>
+                      <div key={i} className="bg-purple-50 rounded-lg p-3 text-center text-sm font-medium text-purple-800">{uni}</div>
                     ))}
                   </div>
                 </div>
-
-                {/* Scholarships */}
                 <div>
-                  <h4 className="font-semibold mb-3 flex items-center gap-2">
-                    <Award className="w-4 h-4 text-amber-500" />
-                    Major Scholarships
-                  </h4>
+                  <h4 className="font-semibold mb-3 flex items-center gap-2"><Award className="w-4 h-4 text-amber-500" />Scholarships</h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedCountry.scholarships.map((sch, i) => (
-                      <Badge key={i} className="bg-gradient-to-r from-amber-400 to-orange-400 text-white">
-                        <Star className="w-3 h-3 mr-1" />
-                        {sch}
-                      </Badge>
+                      <Badge key={i} className="bg-gradient-to-r from-amber-400 to-orange-400 text-white"><Star className="w-3 h-3 mr-1" />{sch}</Badge>
                     ))}
                   </div>
                 </div>
@@ -353,11 +197,7 @@ export const AbroadStudy = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {countries.map((country) => (
-                <Card 
-                  key={country.id}
-                  className="cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 hover:border-indigo-300"
-                  onClick={() => setSelectedCountry(country)}
-                >
+                <Card key={country.id} className="cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 border-2 hover:border-indigo-300" onClick={() => setSelectedCountry(country)}>
                   <CardContent className="p-5">
                     <div className="flex items-center gap-3 mb-4">
                       <span className="text-4xl">{country.flag}</span>
@@ -366,33 +206,14 @@ export const AbroadStudy = () => {
                         <p className="text-sm text-gray-500">{country.universities}+ Universities</p>
                       </div>
                     </div>
-                    
                     <div className="space-y-2 text-sm">
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <DollarSign className="w-4 h-4 text-green-500" />
-                        <span>{country.avgTuition}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <Clock className="w-4 h-4 text-blue-500" />
-                        <span>{country.workHours}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <TrendingUp className="w-4 h-4 text-purple-500" />
-                        <span className="text-xs">{country.prDuration}</span>
-                      </div>
+                      <div className="flex items-center gap-2 text-gray-600"><DollarSign className="w-4 h-4 text-green-500" /><span>{country.avgTuition}</span></div>
+                      <div className="flex items-center gap-2 text-gray-600"><Clock className="w-4 h-4 text-blue-500" /><span>{country.workHours}</span></div>
                     </div>
-
                     <div className="mt-4 flex flex-wrap gap-1">
                       {country.popularCourses.slice(0, 2).map((course, i) => (
-                        <Badge key={i} variant="secondary" className="text-xs">
-                          {course}
-                        </Badge>
+                        <Badge key={i} variant="secondary" className="text-xs">{course}</Badge>
                       ))}
-                      {country.popularCourses.length > 2 && (
-                        <Badge variant="outline" className="text-xs">
-                          +{country.popularCourses.length - 2}
-                        </Badge>
-                      )}
                     </div>
                   </CardContent>
                 </Card>
@@ -401,186 +222,28 @@ export const AbroadStudy = () => {
           )}
         </TabsContent>
 
-        {/* Exams Tab */}
-        <TabsContent value="exams" className="mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {exams.map((exam, i) => (
-              <Card key={i} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-5">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-3xl">{exam.icon}</span>
-                    <div>
-                      <h3 className="font-bold text-lg">{exam.name}</h3>
-                      <p className="text-xs text-gray-500">{exam.fullForm}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
-                      <span className="text-gray-600">Target Score</span>
-                      <Badge className="bg-green-100 text-green-700">{exam.score}</Badge>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <MapPin className="w-4 h-4" />
-                      <span>{exam.countries}</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </TabsContent>
-
-        {/* Timeline Tab */}
-        <TabsContent value="timeline" className="mt-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-indigo-500" />
-                Application Timeline (12-18 months)
-              </CardTitle>
-              <CardDescription>Start early for best results!</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="relative">
-                {applicationSteps.map((step, i) => (
-                  <div key={i} className="flex gap-4 mb-6 last:mb-0">
-                    <div className="flex flex-col items-center">
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white ${
-                        i === 0 ? 'bg-green-500' : 
-                        i === applicationSteps.length - 1 ? 'bg-indigo-500' : 
-                        'bg-gray-400'
-                      }`}>
-                        {step.step}
-                      </div>
-                      {i !== applicationSteps.length - 1 && (
-                        <div className="w-0.5 h-full bg-gray-200 mt-2" />
-                      )}
-                    </div>
-                    <div className="flex-1 pb-6">
-                      <div className="flex items-center justify-between mb-1">
-                        <h4 className="font-semibold text-lg">{step.title}</h4>
-                        <Badge variant="outline">{step.duration}</Badge>
-                      </div>
-                      <p className="text-gray-600">{step.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        {/* Costs & Loans Tab */}
-        <TabsContent value="costs" className="mt-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Wallet className="w-5 h-5 text-green-500" />
-                  Education Loans
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="bg-green-50 rounded-xl p-4">
-                  <h4 className="font-semibold mb-2">Collateral-Free Loans</h4>
-                  <p className="text-sm text-gray-600 mb-3">Up to ₹7.5 Lakhs without security</p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline">SBI Scholar</Badge>
-                    <Badge variant="outline">HDFC Credila</Badge>
-                    <Badge variant="outline">Prodigy Finance</Badge>
-                  </div>
-                </div>
-                
-                <div className="bg-blue-50 rounded-xl p-4">
-                  <h4 className="font-semibold mb-2">With Collateral</h4>
-                  <p className="text-sm text-gray-600 mb-3">Up to ₹1.5 Crore with property/FD</p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline">SBI Global Ed-Vantage</Badge>
-                    <Badge variant="outline">Bank of Baroda</Badge>
-                    <Badge variant="outline">Axis Bank</Badge>
-                  </div>
-                </div>
-
-                <div className="bg-amber-50 rounded-xl p-4">
-                  <h4 className="font-semibold mb-2">Government Schemes</h4>
-                  <p className="text-sm text-gray-600 mb-3">Interest subsidies & grants</p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline">Vidya Lakshmi Portal</Badge>
-                    <Badge variant="outline">PM CARES</Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <DollarSign className="w-5 h-5 text-purple-500" />
-                  Cost Breakdown
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <span>Exam Fees (IELTS/GRE)</span>
-                    <span className="font-semibold">₹15,000 - ₹25,000</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <span>Application Fees (per uni)</span>
-                    <span className="font-semibold">₹5,000 - ₹15,000</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <span>Visa Fee</span>
-                    <span className="font-semibold">₹10,000 - ₹30,000</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <span>Health Insurance (annual)</span>
-                    <span className="font-semibold">₹30,000 - ₹80,000</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <span>Flight Tickets</span>
-                    <span className="font-semibold">₹40,000 - ₹1,00,000</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-indigo-100 rounded-lg font-semibold">
-                    <span>Initial Setup Total</span>
-                    <span className="text-indigo-700">₹1,00,000 - ₹2,50,000</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent>
+        <TabsContent value="quiz" className="mt-6"><CountryMatcherQuiz /></TabsContent>
+        <TabsContent value="compare" className="mt-6 space-y-6"><UniversityComparison /><CountryComparison /></TabsContent>
+        <TabsContent value="costs" className="mt-6"><CostCalculator /></TabsContent>
+        <TabsContent value="documents" className="mt-6"><DocumentChecklist /></TabsContent>
+        <TabsContent value="scholarships" className="mt-6"><ScholarshipFinder /></TabsContent>
+        <TabsContent value="visa" className="mt-6"><VisaSuccessPredictor /></TabsContent>
+        <TabsContent value="sop" className="mt-6"><SOPReviewTool /></TabsContent>
+        <TabsContent value="exams" className="mt-6"><LanguageRequirementsGuide /></TabsContent>
+        <TabsContent value="budget" className="mt-6"><BudgetPlanner /></TabsContent>
+        <TabsContent value="tracker" className="mt-6"><ApplicationTracker /></TabsContent>
+        <TabsContent value="alumni" className="mt-6"><AlumniConnect /></TabsContent>
       </Tabs>
 
       {/* Tips Section */}
       <Card className="bg-gradient-to-r from-amber-50 to-orange-50 border-amber-200">
         <CardContent className="p-6">
-          <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-amber-500" />
-            Pro Tips for Study Abroad
-          </h3>
+          <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><Sparkles className="w-5 h-5 text-amber-500" />Pro Tips</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="text-2xl mb-2">📅</div>
-              <h4 className="font-semibold text-sm mb-1">Start Early</h4>
-              <p className="text-xs text-gray-600">Begin preparation 18-24 months before intake</p>
-            </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="text-2xl mb-2">🎯</div>
-              <h4 className="font-semibold text-sm mb-1">Target Score</h4>
-              <p className="text-xs text-gray-600">Aim for 7+ IELTS and 320+ GRE for top universities</p>
-            </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="text-2xl mb-2">💰</div>
-              <h4 className="font-semibold text-sm mb-1">Apply Scholarships</h4>
-              <p className="text-xs text-gray-600">Apply to 10+ scholarships - don't rely on just one</p>
-            </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="text-2xl mb-2">📝</div>
-              <h4 className="font-semibold text-sm mb-1">SOP Matters</h4>
-              <p className="text-xs text-gray-600">Your Statement of Purpose can make or break admission</p>
-            </div>
+            <div className="bg-white rounded-lg p-4 shadow-sm"><div className="text-2xl mb-2">📅</div><h4 className="font-semibold text-sm mb-1">Start Early</h4><p className="text-xs text-gray-600">Begin 18-24 months before intake</p></div>
+            <div className="bg-white rounded-lg p-4 shadow-sm"><div className="text-2xl mb-2">🎯</div><h4 className="font-semibold text-sm mb-1">Target Score</h4><p className="text-xs text-gray-600">Aim for 7+ IELTS and 320+ GRE</p></div>
+            <div className="bg-white rounded-lg p-4 shadow-sm"><div className="text-2xl mb-2">💰</div><h4 className="font-semibold text-sm mb-1">Apply Scholarships</h4><p className="text-xs text-gray-600">Apply to 10+ scholarships</p></div>
+            <div className="bg-white rounded-lg p-4 shadow-sm"><div className="text-2xl mb-2">📝</div><h4 className="font-semibold text-sm mb-1">SOP Matters</h4><p className="text-xs text-gray-600">Customize for each university</p></div>
           </div>
         </CardContent>
       </Card>
