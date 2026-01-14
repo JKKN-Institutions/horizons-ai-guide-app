@@ -49,12 +49,22 @@ export const UniversityDetail = () => {
 
         {/* University Header */}
         <div className="flex items-start gap-4">
-          <div 
-            className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shrink-0"
-            style={{ backgroundColor: university.logoColor }}
-          >
-            {university.name.split(' ').map(w => w[0]).join('').slice(0, 2)}
-          </div>
+          {university.logo ? (
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center shrink-0 bg-white overflow-hidden p-2 shadow-md">
+              <img 
+                src={university.logo} 
+                alt={`${university.name} logo`}
+                className="w-full h-full object-contain"
+              />
+            </div>
+          ) : (
+            <div 
+              className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shrink-0"
+              style={{ backgroundColor: university.logoColor }}
+            >
+              {university.name.split(' ').map(w => w[0]).join('').slice(0, 2)}
+            </div>
+          )}
           <div className="flex-1 min-w-0">
             <h1 className="text-2xl md:text-3xl font-bold text-foreground">
               {university.name}

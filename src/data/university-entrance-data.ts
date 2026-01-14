@@ -8,6 +8,7 @@ export interface University {
   email?: string;
   examName: string;
   logoColor: string;
+  logo?: string;
   courses: Course[];
   importantDates: ImportantDate[];
   fee: FeeStructure;
@@ -607,6 +608,7 @@ export const universities: University[] = [
     email: 'registrar@periyaruniversity.ac.in',
     examName: 'PUPGET',
     logoColor: '#059669',
+    logo: '/universities/periyar-university-logo.png',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
