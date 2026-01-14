@@ -92,6 +92,7 @@ export const universities: University[] = [
     phone: '044-22358525',
     examName: 'TANCET',
     logoColor: '#1e3a8a',
+    logo: '/universities/anna-university-logo.jpg',
     fee: { general: 600, obc: 600, scst: 300 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'January 2026', status: 'upcoming' },
