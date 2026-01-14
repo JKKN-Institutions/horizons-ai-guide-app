@@ -6,3 +6,4 @@ export { SyllabusAccordion } from './SyllabusAccordion';
 export { PYQSection } from './PYQSection';
 export { UniversityDetail } from './UniversityDetail';
 export { CourseDetail } from './CourseDetail';
+export { default as ExamCalendar } from './ExamCalendar';
