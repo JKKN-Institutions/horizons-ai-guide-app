@@ -3,8 +3,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { Award, Search, Globe, Calendar, DollarSign, ExternalLink, Star, Filter } from 'lucide-react';
+import { Award, Search, Globe, Calendar, DollarSign, ExternalLink, Star, Filter, Download } from 'lucide-react';
 import { scholarships, countries } from './data';
+import { generateScholarshipsPDF } from './generateAbroadStudyPDF';
+import { toast } from 'sonner';
 
 export const ScholarshipFinder = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -25,14 +27,31 @@ export const ScholarshipFinder = () => {
     return countryMap[countryName] || '🌍';
   };
 
+  const handleDownloadPDF = () => {
+    if (filteredScholarships.length === 0) {
+      toast.error('No scholarships to export');
+      return;
+    }
+    generateScholarshipsPDF(filteredScholarships, 'Study Abroad Scholarships');
+    toast.success('PDF downloaded successfully!');
+  };
+
   return (
     <Card className="border-2 border-amber-200">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Award className="w-5 h-5 text-amber-500" />
-          Scholarship Finder
-        </CardTitle>
-        <CardDescription>Discover scholarships that match your profile</CardDescription>
+        <div className="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <CardTitle className="flex items-center gap-2">
+              <Award className="w-5 h-5 text-amber-500" />
+              Scholarship Finder
+            </CardTitle>
+            <CardDescription>Discover scholarships that match your profile</CardDescription>
+          </div>
+          <Button variant="outline" size="sm" onClick={handleDownloadPDF}>
+            <Download className="w-4 h-4 mr-1" />
+            Export PDF
+          </Button>
+        </div>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Search & Filter */}

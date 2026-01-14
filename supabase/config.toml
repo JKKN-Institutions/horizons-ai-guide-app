@@ -1,1 +1,4 @@
 project_id = "jahtuebykoledutqhzfx"
+
+[functions.alumni-notification]
+verify_jwt = false

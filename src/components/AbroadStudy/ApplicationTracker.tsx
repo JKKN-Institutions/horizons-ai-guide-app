@@ -7,8 +7,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Progress } from '@/components/ui/progress';
 import { 
   ClipboardList, Plus, Trash2, CheckCircle, Clock, XCircle, 
-  AlertCircle, Send, FileCheck, Calendar 
+  AlertCircle, Send, FileCheck, Calendar, Download
 } from 'lucide-react';
+import { generateApplicationTrackerPDF } from './generateAbroadStudyPDF';
+import { toast } from 'sonner';
 
 interface Application {
   id: string;
@@ -68,6 +70,15 @@ export const ApplicationTracker = () => {
 
   const progress = stats.total > 0 ? (stats.submitted / stats.total) * 100 : 0;
 
+  const handleDownloadPDF = () => {
+    if (applications.length === 0) {
+      toast.error('No applications to export');
+      return;
+    }
+    generateApplicationTrackerPDF(applications);
+    toast.success('PDF downloaded successfully!');
+  };
+
   return (
     <Card className="border-2 border-violet-200">
       <CardHeader>
@@ -79,9 +90,14 @@ export const ApplicationTracker = () => {
             </CardTitle>
             <CardDescription>Track your university applications</CardDescription>
           </div>
-          <Button onClick={() => setShowAddForm(!showAddForm)} size="sm">
-            <Plus className="w-4 h-4 mr-1" /> Add Application
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" onClick={handleDownloadPDF}>
+              <Download className="w-4 h-4 mr-1" /> PDF
+            </Button>
+            <Button onClick={() => setShowAddForm(!showAddForm)} size="sm">
+              <Plus className="w-4 h-4 mr-1" /> Add
+            </Button>
+          </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">

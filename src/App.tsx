@@ -50,6 +50,9 @@ import GovernmentExams from "./pages/GovernmentExams";
 import GovernmentExamCategory from "./pages/GovernmentExamCategory";
 import GovernmentExamDetail from "./pages/GovernmentExamDetail";
 
+// Study Abroad Pages
+import AlumniVerification from "./pages/AlumniVerification";
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -104,10 +107,11 @@ function App() {
                 <Route path="/government-exams/:categoryId" element={<GovernmentExamCategory />} />
                 <Route path="/government-exams/:categoryId/:examId" element={<GovernmentExamDetail />} />
                 
-                {/* Admin Routes */}
-                <Route path="/admin/login" element={<AdminLogin />} />
-                <Route path="/admin/setup" element={<AdminSetup />} />
-                <Route path="/admin/dashboard" element={<AdminDashboard />} />
+{/* Admin Routes */}
+<Route path="/admin/login" element={<AdminLogin />} />
+<Route path="/admin/setup" element={<AdminSetup />} />
+<Route path="/admin/dashboard" element={<AdminDashboard />} />
+<Route path="/admin/alumni-verification" element={<AlumniVerification />} />
                 
                 {/* JKKN Career Hub Routes */}
                 <Route path="/jkkn" element={<JKKNCareerHub />} />
