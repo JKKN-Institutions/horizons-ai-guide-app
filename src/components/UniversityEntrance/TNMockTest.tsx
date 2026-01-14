@@ -98,21 +98,32 @@ export const TNMockTest = () => {
 
   const handleSubmit = useCallback(() => {
     let correct = 0, wrong = 0, unattempted = 0;
+    const topicWise: Record<string, { correct: number; wrong: number; total: number }> = {};
     
     answers.forEach((answer, index) => {
+      const question = questions[index];
+      const topic = question.topic;
+      
+      if (!topicWise[topic]) {
+        topicWise[topic] = { correct: 0, wrong: 0, total: 0 };
+      }
+      topicWise[topic].total++;
+      
       if (answer.selectedOption === null) {
         unattempted++;
-      } else if (answer.selectedOption === questions[index].correctAnswer) {
+      } else if (answer.selectedOption === question.correctAnswer) {
         correct++;
+        topicWise[topic].correct++;
       } else {
         wrong++;
+        topicWise[topic].wrong++;
       }
     });
 
     setScore({ correct, wrong, unattempted });
     setIsSubmitted(true);
 
-    // Save score
+    // Save score with topic-wise breakdown
     const stored = localStorage.getItem(STORAGE_KEY);
     const scores = stored ? JSON.parse(stored) : [];
     scores.push({
@@ -124,6 +135,7 @@ export const TNMockTest = () => {
       total: questions.length,
       percentage: Math.round((correct / questions.length) * 100),
       date: new Date().toISOString(),
+      topicWise,
     });
     localStorage.setItem(STORAGE_KEY, JSON.stringify(scores));
 

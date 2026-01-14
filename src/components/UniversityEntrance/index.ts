@@ -20,4 +20,6 @@ export { StudyStreaks } from './StudyStreaks';
 export { AIQuestionGenerator } from './AIQuestionGenerator';
 export { DailyChallenge } from './DailyChallenge';
 export { TNForum } from './TNForum';
+export { WeakTopicIdentifier } from './WeakTopicIdentifier';
+export { TNLeaderboard } from './TNLeaderboard';
 export { generatePYQPDF, generateBookmarkedPDF, generateSyllabusPDF } from './generateTNUniversityPDF';
