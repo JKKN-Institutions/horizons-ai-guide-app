@@ -1318,18 +1318,317 @@ export const universities: University[] = [
   },
   {
     id: 'mgr-university',
-    name: 'MGR Medical University',
-    nameTamil: 'எம்.ஜி.ஆர். மருத்துவ பல்கலைக்கழகம்',
+    name: 'Tamil Nadu Dr. M.G.R. Medical University',
+    nameTamil: 'தமிழ்நாடு டாக்டர் எம்.ஜி.ஆர். மருத்துவ பல்கலைக்கழகம்',
     location: 'Chennai',
     website: 'www.tnmgrmu.ac.in',
     phone: '044-22353574',
-    examName: 'State Counselling',
+    examName: 'TNMGRMU Entrance',
     logoColor: '#0891b2',
-    fee: { general: 0, obc: 0, scst: 0 },
+    logo: '/universities/mgr-medical-university-logo.jpeg',
+    fee: { general: 1000, obc: 1000, scst: 500 },
     importantDates: [
-      { event: 'Counselling', eventTamil: 'கலந்தாய்வு', date: 'August-September 2026', status: 'upcoming' }
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'March 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Exam Date', eventTamil: 'தேர்வு தேதி', date: 'June 2026', status: 'upcoming' },
+      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'July 2026', status: 'upcoming' }
     ],
-    courses: []
+    courses: [
+      {
+        id: 'mgr-md-general',
+        name: 'MD (General Medicine)',
+        nameTamil: 'எம்.டி (பொது மருத்துவம்)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: true,
+          sections: [
+            { name: 'General Medicine', nameTamil: 'பொது மருத்துவம்', questions: 100, marks: 100, topics: ['Cardiology', 'Pulmonology', 'Nephrology', 'Neurology'] },
+            { name: 'Pharmacology', nameTamil: 'மருந்தியல்', questions: 50, marks: 50, topics: ['Drug Actions', 'Therapeutics', 'Adverse Effects'] },
+            { name: 'Pathology', nameTamil: 'நோயியல்', questions: 50, marks: 50, topics: ['Clinical Pathology', 'Histopathology', 'Microbiology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-md-q1',
+            year: '2024',
+            question: 'The most common cause of community-acquired pneumonia in adults is:',
+            options: ['Staphylococcus aureus', 'Streptococcus pneumoniae', 'Klebsiella pneumoniae', 'Pseudomonas aeruginosa'],
+            correctAnswer: 1,
+            explanation: 'Streptococcus pneumoniae (Pneumococcus) is the most common bacterial cause of community-acquired pneumonia worldwide.',
+            topic: 'Pulmonology',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-md-q2',
+            year: '2024',
+            question: 'Which drug is the first-line treatment for Type 2 Diabetes Mellitus?',
+            options: ['Glimepiride', 'Metformin', 'Insulin', 'Pioglitazone'],
+            correctAnswer: 1,
+            explanation: 'Metformin is the first-line drug for T2DM due to its efficacy, safety profile, and cardiovascular benefits.',
+            topic: 'Pharmacology',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-md-q3',
+            year: '2023',
+            question: 'Reed-Sternberg cells are pathognomonic of:',
+            options: ['Non-Hodgkin lymphoma', 'Hodgkin lymphoma', 'Multiple myeloma', 'Chronic lymphocytic leukemia'],
+            correctAnswer: 1,
+            explanation: 'Reed-Sternberg cells are the characteristic giant cells seen in Hodgkin lymphoma.',
+            topic: 'Pathology',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'mgr-md-q4',
+            year: '2023',
+            question: 'The most common cardiac arrhythmia is:',
+            options: ['Ventricular tachycardia', 'Atrial fibrillation', 'Complete heart block', 'Ventricular fibrillation'],
+            correctAnswer: 1,
+            explanation: 'Atrial fibrillation is the most common sustained cardiac arrhythmia, especially in elderly patients.',
+            topic: 'Cardiology',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-md-q5',
+            year: '2024',
+            question: 'The gold standard for diagnosis of pulmonary embolism is:',
+            options: ['D-dimer', 'Chest X-ray', 'CT Pulmonary Angiography', 'ECG'],
+            correctAnswer: 2,
+            explanation: 'CT Pulmonary Angiography (CTPA) is the gold standard imaging for diagnosing pulmonary embolism.',
+            topic: 'Pulmonology',
+            difficulty: 'Medium'
+          }
+        ],
+        tips: ['Focus on clinical case-based questions', 'Study Harrison\'s Principles of Internal Medicine', 'Practice NEET PG question banks']
+      },
+      {
+        id: 'mgr-ms-surgery',
+        name: 'MS (General Surgery)',
+        nameTamil: 'எம்.எஸ் (பொது அறுவை சிகிச்சை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: true,
+          sections: [
+            { name: 'General Surgery', nameTamil: 'பொது அறுவை சிகிச்சை', questions: 100, marks: 100, topics: ['GI Surgery', 'Trauma', 'Oncology', 'Vascular'] },
+            { name: 'Anatomy', nameTamil: 'உடற்கூறியல்', questions: 50, marks: 50, topics: ['Surgical Anatomy', 'Applied Anatomy'] },
+            { name: 'Anesthesiology', nameTamil: 'மயக்கவியல்', questions: 50, marks: 50, topics: ['General Anesthesia', 'Regional Anesthesia', 'Pain Management'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-ms-q1',
+            year: '2024',
+            question: 'McBurney\'s point is located at:',
+            options: ['Junction of lateral 1/3 and medial 2/3 of line joining ASIS to umbilicus', 'Junction of medial 1/3 and lateral 2/3 of line joining ASIS to umbilicus', 'Midpoint of inguinal ligament', 'Below the umbilicus'],
+            correctAnswer: 0,
+            explanation: 'McBurney\'s point is the classic site of maximum tenderness in appendicitis, located at the junction of lateral 1/3 and medial 2/3.',
+            topic: 'GI Surgery',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-ms-q2',
+            year: '2024',
+            question: 'The most common type of hernia in males is:',
+            options: ['Direct inguinal hernia', 'Indirect inguinal hernia', 'Femoral hernia', 'Umbilical hernia'],
+            correctAnswer: 1,
+            explanation: 'Indirect inguinal hernia is the most common type in males, occurring through the deep inguinal ring.',
+            topic: 'General Surgery',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-ms-q3',
+            year: '2023',
+            question: 'Virchow\'s triad includes all EXCEPT:',
+            options: ['Stasis', 'Endothelial injury', 'Hypercoagulability', 'Atherosclerosis'],
+            correctAnswer: 3,
+            explanation: 'Virchow\'s triad consists of stasis, endothelial injury, and hypercoagulability - the three factors for venous thrombosis.',
+            topic: 'Vascular Surgery',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'mgr-ms-q4',
+            year: '2023',
+            question: 'The nerve most commonly injured in posterior dislocation of hip is:',
+            options: ['Femoral nerve', 'Obturator nerve', 'Sciatic nerve', 'Tibial nerve'],
+            correctAnswer: 2,
+            explanation: 'The sciatic nerve runs posterior to the hip joint and is at risk during posterior hip dislocation.',
+            topic: 'Surgical Anatomy',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'mgr-ms-q5',
+            year: '2024',
+            question: 'Malampati classification is used for:',
+            options: ['Difficult intubation assessment', 'ASA physical status', 'Wound classification', 'Burn assessment'],
+            correctAnswer: 0,
+            explanation: 'Mallampati classification assesses the visibility of pharyngeal structures to predict difficult intubation.',
+            topic: 'Anesthesiology',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['Master surgical anatomy', 'Study Bailey & Love\'s Surgery', 'Practice operative surgery steps']
+      },
+      {
+        id: 'mgr-bpt',
+        name: 'BPT (Physiotherapy)',
+        nameTamil: 'பி.பி.டி (இயன்முறை மருத்துவம்)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 25, marks: 25, topics: ['Mechanics', 'Heat', 'Electricity'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 25, marks: 25, topics: ['Organic', 'Inorganic', 'Physical'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 35, marks: 35, topics: ['Human Anatomy', 'Physiology', 'Zoology'] },
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 15, marks: 15, topics: ['Grammar', 'Comprehension'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-bpt-q1',
+            year: '2024',
+            question: 'The largest bone in the human body is:',
+            options: ['Humerus', 'Tibia', 'Femur', 'Fibula'],
+            correctAnswer: 2,
+            explanation: 'The femur (thigh bone) is the longest and strongest bone in the human body.',
+            topic: 'Human Anatomy',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-bpt-q2',
+            year: '2024',
+            question: 'The normal resting heart rate in adults is:',
+            options: ['40-60 bpm', '60-100 bpm', '100-120 bpm', '120-140 bpm'],
+            correctAnswer: 1,
+            explanation: 'Normal resting heart rate for adults is 60-100 beats per minute.',
+            topic: 'Physiology',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-bpt-q3',
+            year: '2023',
+            question: 'pH of blood is:',
+            options: ['6.8-7.0', '7.0-7.2', '7.35-7.45', '7.6-7.8'],
+            correctAnswer: 2,
+            explanation: 'Normal blood pH is maintained between 7.35-7.45, which is slightly alkaline.',
+            topic: 'Physiology',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-bpt-q4',
+            year: '2023',
+            question: 'Ohm\'s law states that:',
+            options: ['V = IR', 'V = I/R', 'V = R/I', 'V = I + R'],
+            correctAnswer: 0,
+            explanation: 'Ohm\'s law states that voltage (V) equals current (I) times resistance (R): V = IR.',
+            topic: 'Physics',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-bpt-q5',
+            year: '2024',
+            question: 'The functional unit of kidney is:',
+            options: ['Nephron', 'Glomerulus', 'Bowman\'s capsule', 'Loop of Henle'],
+            correctAnswer: 0,
+            explanation: 'The nephron is the structural and functional unit of the kidney responsible for urine formation.',
+            topic: 'Human Anatomy',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['Focus on human anatomy and physiology', 'Study 12th standard Physics, Chemistry, Biology', 'Practice NEET-level questions']
+      },
+      {
+        id: 'mgr-mpharm',
+        name: 'M.Pharm (Pharmacy)',
+        nameTamil: 'எம்.பார்ம் (மருந்தகவியல்)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 150,
+          totalMarks: 150,
+          duration: '2.5 Hours',
+          durationMinutes: 150,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Pharmaceutics', nameTamil: 'மருந்தாக்கவியல்', questions: 50, marks: 50, topics: ['Drug Delivery', 'Formulations', 'Biopharmaceutics'] },
+            { name: 'Pharmacology', nameTamil: 'மருந்தியல்', questions: 50, marks: 50, topics: ['Drug Actions', 'Toxicology', 'Clinical Pharmacology'] },
+            { name: 'Pharmaceutical Chemistry', nameTamil: 'மருந்து வேதியியல்', questions: 50, marks: 50, topics: ['Medicinal Chemistry', 'Organic Synthesis', 'Drug Design'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-mpharm-q1',
+            year: '2024',
+            question: 'The bioavailability of a drug administered intravenously is:',
+            options: ['50%', '75%', '90%', '100%'],
+            correctAnswer: 3,
+            explanation: 'IV administration gives 100% bioavailability as the drug directly enters the systemic circulation.',
+            topic: 'Biopharmaceutics',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-mpharm-q2',
+            year: '2024',
+            question: 'Which enzyme is inhibited by Aspirin?',
+            options: ['Lipoxygenase', 'Cyclooxygenase', 'Phospholipase', 'Peroxidase'],
+            correctAnswer: 1,
+            explanation: 'Aspirin irreversibly inhibits cyclooxygenase (COX) enzymes, blocking prostaglandin synthesis.',
+            topic: 'Pharmacology',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-mpharm-q3',
+            year: '2023',
+            question: 'Enteric coating is used to:',
+            options: ['Improve taste', 'Protect drug from gastric acid', 'Increase absorption', 'Reduce cost'],
+            correctAnswer: 1,
+            explanation: 'Enteric coating protects acid-labile drugs from gastric acid degradation.',
+            topic: 'Pharmaceutics',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-mpharm-q4',
+            year: '2023',
+            question: 'SAR stands for:',
+            options: ['Structure Activity Relationship', 'Synthesis Analysis Report', 'Stable Active Radicals', 'Standard Assay Range'],
+            correctAnswer: 0,
+            explanation: 'SAR (Structure Activity Relationship) studies the relationship between chemical structure and biological activity.',
+            topic: 'Medicinal Chemistry',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-mpharm-q5',
+            year: '2024',
+            question: 'The therapeutic index is the ratio of:',
+            options: ['ED50/LD50', 'LD50/ED50', 'MIC/MEC', 'Cmax/Cmin'],
+            correctAnswer: 1,
+            explanation: 'Therapeutic Index = LD50/ED50. Higher TI indicates a safer drug with wider margin between therapeutic and toxic doses.',
+            topic: 'Pharmacology',
+            difficulty: 'Medium'
+          }
+        ],
+        tips: ['Study GPAT previous papers', 'Focus on pharmaceutics and pharmacology', 'Master drug classifications']
+      }
+    ]
   },
   {
     id: 'madurai-kamaraj-university',
