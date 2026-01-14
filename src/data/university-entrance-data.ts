@@ -423,73 +423,177 @@ export const universities: University[] = [
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
           sections: [
-            {
-              name: 'Engineering Mathematics',
-              nameTamil: 'பொறியியல் கணிதம்',
-              questions: 20,
-              marks: 20,
-              topics: ['Matrices', 'Calculus', 'Differential Equations', 'Probability']
-            },
-            {
-              name: 'Basic Engineering',
-              nameTamil: 'அடிப்படை பொறியியல்',
-              questions: 35,
-              marks: 35,
-              topics: ['Applied Mechanics', 'Engineering Physics', 'Engineering Chemistry']
-            },
-            {
-              name: 'Subject Specialization',
-              nameTamil: 'துறை சிறப்பு',
-              questions: 45,
-              marks: 45,
-              topics: ['Based on branch - CSE/ECE/Mech/Civil/EEE']
-            }
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Linear Algebra', 'Calculus', 'Differential Equations', 'Probability'] },
+            { name: 'Core Engineering', nameTamil: 'முக்கிய பொறியியல்', questions: 80, marks: 80, topics: ['Branch Specific Topics'] }
           ]
         },
-        syllabus: [
-          {
-            unitNumber: 1,
-            title: 'Engineering Mathematics',
-            titleTamil: 'பொறியியல் கணிதம்',
-            expectedQuestions: 20,
-            difficulty: 'Medium',
-            topics: [
-              { name: 'Matrices & Determinants', subtopics: ['Eigenvalues', 'Eigenvectors', 'Matrix operations'], importance: 'High' },
-              { name: 'Calculus', subtopics: ['Differentiation', 'Integration', 'Multiple integrals'], importance: 'High' },
-              { name: 'Differential Equations', subtopics: ['First order', 'Higher order', 'PDE basics'], importance: 'High' },
-              { name: 'Complex Variables', subtopics: ['Analytic functions', 'Contour integration'], importance: 'Medium' },
-              { name: 'Probability & Statistics', subtopics: ['Distributions', 'Mean', 'Variance'], importance: 'Medium' },
-              { name: 'Numerical Methods', subtopics: ['Newton-Raphson', 'Interpolation', 'Integration'], importance: 'Medium' }
-            ]
-          }
-        ],
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on Engineering Mathematics - common for all branches', 'Core engineering section is branch specific', 'Practice previous year papers']
+      },
+      {
+        id: 'tancet-mphil',
+        name: 'M.Phil',
+        nameTamil: 'எம்.ஃபில்',
+        type: 'Research',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Research Methodology', nameTamil: 'ஆராய்ச்சி முறையியல்', questions: 50, marks: 50, topics: ['Research Design', 'Data Collection', 'Statistical Analysis', 'Report Writing'] },
+            { name: 'Subject Specific', nameTamil: 'பாடம் சார்ந்த', questions: 50, marks: 50, topics: ['Domain Specific Topics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Research methodology is common for all', 'Focus on statistical methods', 'Understand research ethics']
+      },
+      {
+        id: 'barch',
+        name: 'B.Arch',
+        nameTamil: 'பி.ஆர்க்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 25, topics: ['Algebra', 'Trigonometry', 'Coordinate Geometry', 'Calculus'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 50, marks: 50, topics: ['Spatial Ability', 'Observation', 'Aesthetic Sense', 'Drawing'] },
+            { name: 'Drawing', nameTamil: 'வரைதல்', questions: 25, marks: 25, topics: ['Sketching', '3D Perception', 'Design'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Practice sketching daily', 'Develop spatial visualization', 'Focus on aesthetic sense questions']
+      },
+      {
+        id: 'msc-physics',
+        name: 'M.Sc. Physics',
+        nameTamil: 'எம்.எஸ்சி. இயற்பியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Classical Mechanics', nameTamil: 'இயற்பியல் இயக்கவியல்', questions: 20, marks: 20, topics: ['Lagrangian', 'Hamiltonian', 'Central Forces'] },
+            { name: 'Quantum Mechanics', nameTamil: 'குவாண்டம் இயக்கவியல்', questions: 20, marks: 20, topics: ['Wave Functions', 'Operators', 'Schrödinger Equation'] },
+            { name: 'Electromagnetism', nameTamil: 'மின்காந்தவியல்', questions: 20, marks: 20, topics: ['Maxwell Equations', 'EM Waves', 'Radiation'] },
+            { name: 'Statistical Mechanics', nameTamil: 'புள்ளியியல் இயக்கவியல்', questions: 20, marks: 20, topics: ['Ensembles', 'Quantum Statistics', 'Phase Transitions'] },
+            { name: 'Modern Physics', nameTamil: 'நவீன இயற்பியல்', questions: 20, marks: 20, topics: ['Special Relativity', 'Atomic Physics', 'Nuclear Physics'] }
+          ]
+        },
+        syllabus: [],
         previousQuestions: [
-          {
-            id: 'me-q1',
-            question: 'The eigenvalues of matrix [[2,1],[1,2]] are:',
-            options: ['1, 2', '1, 3', '2, 3', '0, 4'],
-            correctAnswer: 1,
-            explanation: 'det(A - λI) = 0. (2-λ)² - 1 = 0. λ² - 4λ + 3 = 0. λ = 1, 3',
-            topic: 'Matrices',
-            difficulty: 'Medium'
-          },
-          {
-            id: 'me-q2',
-            question: 'The Laplace transform of e^(at) is:',
-            options: ['1/(s-a)', '1/(s+a)', 's/(s-a)', 'a/(s-a)'],
-            correctAnswer: 0,
-            explanation: 'L{e^(at)} = 1/(s-a) for s > a',
-            topic: 'Laplace Transforms',
-            difficulty: 'Easy'
-          }
+          { id: 'phy-q1', question: 'The Lagrangian L = T - V is invariant under translation. The conserved quantity is:', options: ['Energy', 'Linear Momentum', 'Angular Momentum', 'Mass'], correctAnswer: 1, explanation: 'By Noether theorem, translational invariance leads to conservation of linear momentum.', topic: 'Classical Mechanics', difficulty: 'Medium' },
+          { id: 'phy-q2', question: 'The ground state energy of a particle in a 1D infinite potential well of width L is:', options: ['ℏ²π²/2mL²', 'ℏ²π²/mL²', '2ℏ²π²/mL²', 'ℏ²π²/4mL²'], correctAnswer: 0, explanation: 'En = n²ℏ²π²/2mL². For n=1, E₁ = ℏ²π²/2mL²', topic: 'Quantum Mechanics', difficulty: 'Easy' }
         ],
-        tips: [
-          'Engineering Mathematics is common for all branches',
-          'Focus on your branch specialization (45 marks)',
-          'Revise UG subjects thoroughly',
-          'Practice numerical problems',
-          'Time management is crucial'
-        ]
+        tips: ['Focus on Quantum Mechanics - high weightage', 'Practice mathematical physics', 'Understand Classical Mechanics concepts well']
+      },
+      {
+        id: 'msc-chemistry',
+        name: 'M.Sc. Chemistry',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Organic Chemistry', nameTamil: 'கரிம வேதியியல்', questions: 30, marks: 30, topics: ['Reaction Mechanisms', 'Stereochemistry', 'Named Reactions', 'Spectroscopy'] },
+            { name: 'Inorganic Chemistry', nameTamil: 'கனிம வேதியியல்', questions: 30, marks: 30, topics: ['Coordination Chemistry', 'Organometallics', 'Bioinorganic', 'Solid State'] },
+            { name: 'Physical Chemistry', nameTamil: 'பெளதிக வேதியியல்', questions: 30, marks: 30, topics: ['Thermodynamics', 'Kinetics', 'Quantum Chemistry', 'Electrochemistry'] },
+            { name: 'Analytical Chemistry', nameTamil: 'பகுப்பாய்வு வேதியியல்', questions: 10, marks: 10, topics: ['Instrumental Analysis', 'Separation Techniques'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'chem-q1', question: 'The product of Aldol condensation is:', options: ['α-hydroxy ketone', 'β-hydroxy aldehyde', 'α,β-unsaturated aldehyde', 'Both B & C'], correctAnswer: 3, explanation: 'Aldol condensation gives β-hydroxy aldehyde which on heating gives α,β-unsaturated aldehyde.', topic: 'Organic Chemistry', difficulty: 'Easy' }
+        ],
+        tips: ['Organic reactions and mechanisms are most important', 'Practice spectroscopy problems', 'Learn coordination compounds well']
+      },
+      {
+        id: 'msc-biotechnology',
+        name: 'M.Sc. Biotechnology',
+        nameTamil: 'எம்.எஸ்சி. உயிரி தொழில்நுட்பம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 25, marks: 25, topics: ['DNA Replication', 'Transcription', 'Translation', 'Gene Regulation'] },
+            { name: 'Genetic Engineering', nameTamil: 'மரபணு பொறியியல்', questions: 25, marks: 25, topics: ['Cloning Vectors', 'PCR', 'DNA Sequencing', 'CRISPR'] },
+            { name: 'Biochemistry', nameTamil: 'உயிர் வேதியியல்', questions: 25, marks: 25, topics: ['Enzymes', 'Metabolism', 'Proteins', 'Lipids'] },
+            { name: 'Cell Biology', nameTamil: 'உயிரணு உயிரியல்', questions: 25, marks: 25, topics: ['Cell Structure', 'Cell Cycle', 'Signaling', 'Apoptosis'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on Molecular Biology techniques', 'Learn recombinant DNA technology', 'Understand CRISPR and modern techniques']
+      },
+      {
+        id: 'msc-microbiology',
+        name: 'M.Sc. Microbiology',
+        nameTamil: 'எம்.எஸ்சி. நுண்ணுயிரியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'General Microbiology', nameTamil: 'பொது நுண்ணுயிரியல்', questions: 30, marks: 30, topics: ['Bacteria', 'Fungi', 'Viruses', 'Parasites'] },
+            { name: 'Immunology', nameTamil: 'நோயெதிர்ப்பியல்', questions: 25, marks: 25, topics: ['Antibodies', 'Antigens', 'Immunity Types', 'Vaccines'] },
+            { name: 'Medical Microbiology', nameTamil: 'மருத்துவ நுண்ணுயிரியல்', questions: 25, marks: 25, topics: ['Pathogenic Bacteria', 'Diagnostic Tests', 'Antibiotics'] },
+            { name: 'Industrial Microbiology', nameTamil: 'தொழில்துறை நுண்ணுயிரியல்', questions: 20, marks: 20, topics: ['Fermentation', 'Enzyme Production', 'Bioprocessing'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Learn bacterial classification thoroughly', 'Immunology concepts are important', 'Understand diagnostic techniques']
+      },
+      {
+        id: 'msc-electronics',
+        name: 'M.Sc. Electronics',
+        nameTamil: 'எம்.எஸ்சி. மின்னணுவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Analog Electronics', nameTamil: 'அனலாக் மின்னணுவியல்', questions: 25, marks: 25, topics: ['Amplifiers', 'Oscillators', 'Op-Amps', 'Power Supplies'] },
+            { name: 'Digital Electronics', nameTamil: 'டிஜிட்டல் மின்னணுவியல்', questions: 25, marks: 25, topics: ['Logic Gates', 'Flip-Flops', 'Counters', 'Microprocessors'] },
+            { name: 'Communication Systems', nameTamil: 'தொடர்பு அமைப்புகள்', questions: 25, marks: 25, topics: ['AM/FM', 'Digital Modulation', 'Fiber Optics'] },
+            { name: 'Semiconductor Devices', nameTamil: 'குறைகடத்தி சாதனங்கள்', questions: 25, marks: 25, topics: ['Diodes', 'Transistors', 'FETs', 'ICs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Practice circuit analysis', 'Understand semiconductor physics', 'Learn microprocessor concepts']
       }
     ]
   },
@@ -641,32 +745,172 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [
-          {
-            id: 'cs-q1',
-            question: 'Time complexity of Quick Sort in average case is:',
-            options: ['O(n)', 'O(n log n)', 'O(n²)', 'O(log n)'],
-            correctAnswer: 1,
-            explanation: 'Quick Sort has O(n log n) average case. Worst case is O(n²) when already sorted.',
-            topic: 'Data Structures',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'cs-q2',
-            question: 'Which scheduling algorithm may cause starvation?',
-            options: ['Round Robin', 'FCFS', 'Priority Scheduling', 'SJF'],
-            correctAnswer: 2,
-            explanation: 'Priority Scheduling can cause starvation of low priority processes.',
-            topic: 'Operating Systems',
-            difficulty: 'Medium'
-          }
+          { id: 'cs-q1', question: 'Time complexity of Quick Sort in average case is:', options: ['O(n)', 'O(n log n)', 'O(n²)', 'O(log n)'], correctAnswer: 1, explanation: 'Quick Sort has O(n log n) average case.', topic: 'Data Structures', difficulty: 'Easy' },
+          { id: 'cs-q2', question: 'Which scheduling algorithm may cause starvation?', options: ['Round Robin', 'FCFS', 'Priority Scheduling', 'SJF'], correctAnswer: 2, explanation: 'Priority Scheduling can cause starvation of low priority processes.', topic: 'Operating Systems', difficulty: 'Medium' }
         ],
-        tips: [
-          'Programming section is most important - 25 questions',
-          'Practice Data Structure problems',
-          'Learn SQL queries thoroughly',
-          'Understand OS concepts clearly',
-          'Network protocols - memorize layers'
-        ]
+        tips: ['Programming section is most important - 25 questions', 'Practice Data Structure problems', 'Learn SQL queries thoroughly']
+      },
+      {
+        id: 'msc-physics-pu',
+        name: 'M.Sc. Physics',
+        nameTamil: 'எம்.எஸ்சி. இயற்பியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Classical Mechanics', nameTamil: 'இயக்கவியல்', questions: 20, marks: 20, topics: ['Lagrangian', 'Hamiltonian', 'Central Forces'] },
+            { name: 'Quantum Mechanics', nameTamil: 'குவாண்டம் இயக்கவியல்', questions: 25, marks: 25, topics: ['Wave Functions', 'Operators', 'Schrödinger Equation'] },
+            { name: 'Electromagnetism', nameTamil: 'மின்காந்தவியல்', questions: 25, marks: 25, topics: ['Maxwell Equations', 'EM Waves'] },
+            { name: 'Thermodynamics', nameTamil: 'வெப்ப இயக்கவியல்', questions: 15, marks: 15, topics: ['Laws of Thermodynamics', 'Entropy'] },
+            { name: 'Modern Physics', nameTamil: 'நவீன இயற்பியல்', questions: 15, marks: 15, topics: ['Relativity', 'Atomic Physics', 'Nuclear Physics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on Quantum Mechanics', 'Practice numerical problems', 'Learn classical mechanics derivations']
+      },
+      {
+        id: 'msc-chemistry-pu',
+        name: 'M.Sc. Chemistry',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Organic Chemistry', nameTamil: 'கரிம வேதியியல்', questions: 35, marks: 35, topics: ['Reactions', 'Mechanisms', 'Spectroscopy'] },
+            { name: 'Inorganic Chemistry', nameTamil: 'கனிம வேதியியல்', questions: 35, marks: 35, topics: ['Coordination', 'Organometallics'] },
+            { name: 'Physical Chemistry', nameTamil: 'பெளதிக வேதியியல்', questions: 30, marks: 30, topics: ['Thermodynamics', 'Kinetics', 'Electrochemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Organic reactions are crucial', 'Practice spectroscopy problems', 'Learn coordination chemistry well']
+      },
+      {
+        id: 'msc-zoology',
+        name: 'M.Sc. Zoology',
+        nameTamil: 'எம்.எஸ்சி. விலங்கியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Animal Diversity', nameTamil: 'விலங்கு பன்முகத்தன்மை', questions: 25, marks: 25, topics: ['Invertebrates', 'Vertebrates', 'Classification'] },
+            { name: 'Cell Biology', nameTamil: 'உயிரணு உயிரியல்', questions: 25, marks: 25, topics: ['Cell Structure', 'Cell Division', 'Genetics'] },
+            { name: 'Physiology', nameTamil: 'உடலியல்', questions: 25, marks: 25, topics: ['Digestive', 'Respiratory', 'Nervous System'] },
+            { name: 'Ecology', nameTamil: 'சூழலியல்', questions: 25, marks: 25, topics: ['Ecosystems', 'Population', 'Conservation'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Learn animal classification', 'Focus on cell biology concepts', 'Understand physiological processes']
+      },
+      {
+        id: 'msc-botany',
+        name: 'M.Sc. Botany',
+        nameTamil: 'எம்.எஸ்சி. தாவரவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Plant Diversity', nameTamil: 'தாவர பன்முகத்தன்மை', questions: 25, marks: 25, topics: ['Algae', 'Fungi', 'Bryophytes', 'Pteridophytes', 'Angiosperms'] },
+            { name: 'Plant Physiology', nameTamil: 'தாவர உடலியல்', questions: 25, marks: 25, topics: ['Photosynthesis', 'Respiration', 'Transpiration'] },
+            { name: 'Genetics', nameTamil: 'மரபியல்', questions: 25, marks: 25, topics: ['Mendelian Genetics', 'Molecular Genetics', 'Plant Breeding'] },
+            { name: 'Ecology', nameTamil: 'சூழலியல்', questions: 25, marks: 25, topics: ['Plant Communities', 'Ecosystems'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Learn plant classification', 'Focus on photosynthesis mechanisms', 'Understand genetics well']
+      },
+      {
+        id: 'ma-english',
+        name: 'M.A. English',
+        nameTamil: 'எம்.ஏ. ஆங்கிலம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'British Literature', nameTamil: 'பிரிட்டிஷ் இலக்கியம்', questions: 30, marks: 30, topics: ['Shakespeare', 'Romantic Period', 'Victorian Era', 'Modern British'] },
+            { name: 'American Literature', nameTamil: 'அமெரிக்க இலக்கியம்', questions: 20, marks: 20, topics: ['American Renaissance', 'Modern American'] },
+            { name: 'Indian Writing in English', nameTamil: 'இந்திய ஆங்கில எழுத்துகள்', questions: 20, marks: 20, topics: ['Pre-Independence', 'Post-Independence', 'Contemporary'] },
+            { name: 'Literary Theory', nameTamil: 'இலக்கியக் கோட்பாடு', questions: 15, marks: 15, topics: ['Criticism', 'Theory'] },
+            { name: 'Language & Linguistics', nameTamil: 'மொழி & மொழியியல்', questions: 15, marks: 15, topics: ['Phonetics', 'Morphology', 'Syntax'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Read major literary works', 'Focus on Shakespeare plays', 'Learn literary theories']
+      },
+      {
+        id: 'ma-economics',
+        name: 'M.A. Economics',
+        nameTamil: 'எம்.ஏ. பொருளியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Microeconomics', nameTamil: 'நுண்பொருளியல்', questions: 25, marks: 25, topics: ['Demand & Supply', 'Consumer Theory', 'Production', 'Market Structures'] },
+            { name: 'Macroeconomics', nameTamil: 'பெரும்பொருளியல்', questions: 25, marks: 25, topics: ['National Income', 'Inflation', 'Monetary Policy', 'Fiscal Policy'] },
+            { name: 'Indian Economy', nameTamil: 'இந்திய பொருளியல்', questions: 25, marks: 25, topics: ['Agriculture', 'Industry', 'Planning', 'Reforms'] },
+            { name: 'Statistics & Econometrics', nameTamil: 'புள்ளியியல்', questions: 25, marks: 25, topics: ['Regression', 'Correlation', 'Hypothesis Testing'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on micro and macro concepts', 'Know Indian economy well', 'Practice statistics problems']
+      },
+      {
+        id: 'mcom',
+        name: 'M.Com',
+        nameTamil: 'எம்.காம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Accounting', nameTamil: 'கணக்கியல்', questions: 30, marks: 30, topics: ['Financial Accounting', 'Cost Accounting', 'Management Accounting'] },
+            { name: 'Finance', nameTamil: 'நிதி', questions: 25, marks: 25, topics: ['Financial Management', 'Investment', 'Banking'] },
+            { name: 'Business Studies', nameTamil: 'வணிகவியல்', questions: 25, marks: 25, topics: ['Management', 'Marketing', 'HRM'] },
+            { name: 'Economics', nameTamil: 'பொருளியல்', questions: 20, marks: 20, topics: ['Business Economics', 'Indian Economy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Accounting is most important', 'Learn financial ratios', 'Understand business concepts']
       }
     ]
   },
@@ -786,7 +1030,285 @@ export const universities: University[] = [
       { event: 'Exam', eventTamil: 'தேர்வு', date: 'May-June 2026', status: 'upcoming' },
       { event: 'Results', eventTamil: 'முடிவுகள்', date: 'June 2026', status: 'upcoming' }
     ],
-    courses: []
+    courses: [
+      {
+        id: 'au-mba',
+        name: 'MBA',
+        nameTamil: 'எம்.பி.ஏ',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Verbal Ability', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['Reading Comprehension', 'Vocabulary', 'Grammar'] },
+            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல்', questions: 25, marks: 25, topics: ['Arithmetic', 'Algebra', 'DI'] },
+            { name: 'Logical Reasoning', nameTamil: 'தர்க்கம்', questions: 25, marks: 25, topics: ['Puzzles', 'Seating', 'Syllogism'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 25, marks: 25, topics: ['Current Affairs', 'Business', 'Economy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'au-mba-q1', question: 'What is the full form of SEBI?', options: ['Securities and Exchange Board of India', 'Stock Exchange Board of India', 'Securities and Equity Board of India', 'None'], correctAnswer: 0, explanation: 'SEBI = Securities and Exchange Board of India', topic: 'General Knowledge', difficulty: 'Easy' }
+        ],
+        tips: ['Focus on GK and current affairs', 'Practice aptitude daily', 'Read business newspapers']
+      },
+      {
+        id: 'au-mca',
+        name: 'MCA',
+        nameTamil: 'எம்.சி.ஏ',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 40, marks: 40, topics: ['Programming', 'Data Structures', 'DBMS', 'Networks'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Discrete Math', 'Probability', 'Statistics'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 30, marks: 30, topics: ['Verbal', 'Quantitative', 'Reasoning'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Computer Science has maximum weightage', 'Practice programming concepts', 'Learn data structures well']
+      },
+      {
+        id: 'au-msc-physics',
+        name: 'M.Sc. Physics',
+        nameTamil: 'எம்.எஸ்சி. இயற்பியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Classical Mechanics', nameTamil: 'இயக்கவியல்', questions: 20, marks: 20, topics: ['Lagrangian', 'Hamiltonian'] },
+            { name: 'Quantum Mechanics', nameTamil: 'குவாண்டம்', questions: 25, marks: 25, topics: ['Wave Functions', 'Operators'] },
+            { name: 'Electromagnetism', nameTamil: 'மின்காந்தம்', questions: 25, marks: 25, topics: ['Maxwell Equations', 'EM Waves'] },
+            { name: 'Electronics', nameTamil: 'மின்னணுவியல்', questions: 15, marks: 15, topics: ['Semiconductors', 'Amplifiers'] },
+            { name: 'Modern Physics', nameTamil: 'நவீன இயற்பியல்', questions: 15, marks: 15, topics: ['Atomic', 'Nuclear', 'Solid State'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on quantum mechanics', 'Practice numerical problems', 'Learn derivations']
+      },
+      {
+        id: 'au-msc-chemistry',
+        name: 'M.Sc. Chemistry',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Organic Chemistry', nameTamil: 'கரிம வேதியியல்', questions: 35, marks: 35, topics: ['Reactions', 'Mechanisms', 'Synthesis'] },
+            { name: 'Inorganic Chemistry', nameTamil: 'கனிம வேதியியல்', questions: 35, marks: 35, topics: ['Coordination', 'Organometallics', 'Main Group'] },
+            { name: 'Physical Chemistry', nameTamil: 'பெளதிக வேதியியல்', questions: 30, marks: 30, topics: ['Thermodynamics', 'Kinetics', 'Electrochemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Organic chemistry reactions are most important', 'Learn named reactions', 'Practice thermodynamics numericals']
+      },
+      {
+        id: 'au-msc-mathematics',
+        name: 'M.Sc. Mathematics',
+        nameTamil: 'எம்.எஸ்சி. கணிதம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Algebra', nameTamil: 'இயற்கணிதம்', questions: 25, marks: 25, topics: ['Groups', 'Rings', 'Fields'] },
+            { name: 'Analysis', nameTamil: 'பகுப்பாய்வு', questions: 25, marks: 25, topics: ['Real Analysis', 'Complex Analysis'] },
+            { name: 'Differential Equations', nameTamil: 'வகைக்கெழு', questions: 25, marks: 25, topics: ['ODE', 'PDE'] },
+            { name: 'Numerical Analysis', nameTamil: 'எண் பகுப்பாய்வு', questions: 25, marks: 25, topics: ['Interpolation', 'Integration'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on algebra and analysis', 'Practice proof-based questions', 'Learn theorems thoroughly']
+      },
+      {
+        id: 'au-msc-zoology',
+        name: 'M.Sc. Zoology',
+        nameTamil: 'எம்.எஸ்சி. விலங்கியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Animal Diversity', nameTamil: 'விலங்கு பன்முகம்', questions: 30, marks: 30, topics: ['Invertebrates', 'Vertebrates'] },
+            { name: 'Cell Biology', nameTamil: 'உயிரணு உயிரியல்', questions: 25, marks: 25, topics: ['Cell Structure', 'Genetics'] },
+            { name: 'Physiology', nameTamil: 'உடலியல்', questions: 25, marks: 25, topics: ['Organ Systems'] },
+            { name: 'Ecology', nameTamil: 'சூழலியல்', questions: 20, marks: 20, topics: ['Ecosystems', 'Conservation'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Learn animal classification', 'Focus on cell biology', 'Understand physiology concepts']
+      },
+      {
+        id: 'au-msc-botany',
+        name: 'M.Sc. Botany',
+        nameTamil: 'எம்.எஸ்சி. தாவரவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Plant Diversity', nameTamil: 'தாவர பன்முகம்', questions: 30, marks: 30, topics: ['Algae', 'Fungi', 'Angiosperms'] },
+            { name: 'Plant Physiology', nameTamil: 'தாவர உடலியல்', questions: 30, marks: 30, topics: ['Photosynthesis', 'Respiration'] },
+            { name: 'Genetics & Biotechnology', nameTamil: 'மரபியல்', questions: 25, marks: 25, topics: ['Mendelian', 'Molecular'] },
+            { name: 'Ecology', nameTamil: 'சூழலியல்', questions: 15, marks: 15, topics: ['Ecosystems'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Plant classification is important', 'Learn photosynthesis in detail', 'Understand plant breeding']
+      },
+      {
+        id: 'au-msc-biochemistry',
+        name: 'M.Sc. Biochemistry',
+        nameTamil: 'எம்.எஸ்சி. உயிர்வேதியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biomolecules', nameTamil: 'உயிர் மூலக்கூறுகள்', questions: 30, marks: 30, topics: ['Carbohydrates', 'Proteins', 'Lipids', 'Nucleic Acids'] },
+            { name: 'Enzymology', nameTamil: 'நொதியியல்', questions: 25, marks: 25, topics: ['Enzyme Kinetics', 'Mechanisms'] },
+            { name: 'Metabolism', nameTamil: 'வளர்சிதை மாற்றம்', questions: 30, marks: 30, topics: ['Glycolysis', 'TCA Cycle', 'Oxidative Phosphorylation'] },
+            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 15, marks: 15, topics: ['DNA Replication', 'Transcription', 'Translation'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Learn metabolic pathways', 'Understand enzyme kinetics', 'Focus on molecular biology techniques']
+      },
+      {
+        id: 'au-ma-english',
+        name: 'M.A. English',
+        nameTamil: 'எம்.ஏ. ஆங்கிலம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'British Literature', nameTamil: 'பிரிட்டிஷ் இலக்கியம்', questions: 35, marks: 35, topics: ['Shakespeare', 'Romantic', 'Victorian', 'Modern'] },
+            { name: 'American & World Literature', nameTamil: 'உலக இலக்கியம்', questions: 25, marks: 25, topics: ['American', 'Commonwealth'] },
+            { name: 'Indian Writing in English', nameTamil: 'இந்திய எழுத்துகள்', questions: 20, marks: 20, topics: ['Novels', 'Poetry', 'Drama'] },
+            { name: 'Literary Theory', nameTamil: 'இலக்கியக் கோட்பாடு', questions: 20, marks: 20, topics: ['Criticism', 'Theory'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Read Shakespeare plays', 'Know major literary movements', 'Understand literary theories']
+      },
+      {
+        id: 'au-ma-history',
+        name: 'M.A. History',
+        nameTamil: 'எம்.ஏ. வரலாறு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Ancient India', nameTamil: 'பண்டைய இந்தியா', questions: 25, marks: 25, topics: ['Indus Valley', 'Vedic Age', 'Mauryas', 'Guptas'] },
+            { name: 'Medieval India', nameTamil: 'இடைக்கால இந்தியா', questions: 25, marks: 25, topics: ['Delhi Sultanate', 'Mughals', 'Regional Kingdoms'] },
+            { name: 'Modern India', nameTamil: 'நவீன இந்தியா', questions: 30, marks: 30, topics: ['British Rule', 'Freedom Struggle', 'Post-Independence'] },
+            { name: 'World History', nameTamil: 'உலக வரலாறு', questions: 20, marks: 20, topics: ['World Wars', 'Revolutions', 'Cold War'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on Modern India', 'Learn freedom struggle in detail', 'Know important dates and events']
+      },
+      {
+        id: 'au-mcom',
+        name: 'M.Com',
+        nameTamil: 'எம்.காம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Accounting', nameTamil: 'கணக்கியல்', questions: 35, marks: 35, topics: ['Financial', 'Cost', 'Management Accounting'] },
+            { name: 'Finance', nameTamil: 'நிதி', questions: 25, marks: 25, topics: ['Financial Management', 'Banking'] },
+            { name: 'Business', nameTamil: 'வணிகம்', questions: 25, marks: 25, topics: ['Marketing', 'HRM', 'Business Law'] },
+            { name: 'Economics', nameTamil: 'பொருளியல்', questions: 15, marks: 15, topics: ['Business Economics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Accounting is most important', 'Practice financial problems', 'Learn business concepts']
+      },
+      {
+        id: 'au-bed',
+        name: 'B.Ed',
+        nameTamil: 'பி.எட்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 25, marks: 25, topics: ['Current Affairs', 'GK'] },
+            { name: 'Teaching Aptitude', nameTamil: 'கற்பித்தல் திறன்', questions: 25, marks: 25, topics: ['Pedagogy', 'Child Psychology'] },
+            { name: 'Subject Knowledge', nameTamil: 'பாட அறிவு', questions: 25, marks: 25, topics: ['Chosen Subject'] },
+            { name: 'Language', nameTamil: 'மொழி', questions: 25, marks: 25, topics: ['English', 'Tamil'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on teaching aptitude', 'Learn child psychology', 'Know education policies']
+      }
+    ]
   },
   {
     id: 'mgr-university',
