@@ -14,6 +14,113 @@ export type Database = {
   }
   public: {
     Tables: {
+      abroad_alumni: {
+        Row: {
+          bio: string | null
+          country: string
+          course: string
+          created_at: string
+          current_company: string | null
+          email: string
+          expertise: string[] | null
+          graduation_year: number
+          id: string
+          is_available_for_mentoring: boolean | null
+          is_verified: boolean | null
+          job_title: string | null
+          linkedin_url: string | null
+          name: string
+          phone: string | null
+          photo_url: string | null
+          university: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          bio?: string | null
+          country: string
+          course: string
+          created_at?: string
+          current_company?: string | null
+          email: string
+          expertise?: string[] | null
+          graduation_year: number
+          id?: string
+          is_available_for_mentoring?: boolean | null
+          is_verified?: boolean | null
+          job_title?: string | null
+          linkedin_url?: string | null
+          name: string
+          phone?: string | null
+          photo_url?: string | null
+          university: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          bio?: string | null
+          country?: string
+          course?: string
+          created_at?: string
+          current_company?: string | null
+          email?: string
+          expertise?: string[] | null
+          graduation_year?: number
+          id?: string
+          is_available_for_mentoring?: boolean | null
+          is_verified?: boolean | null
+          job_title?: string | null
+          linkedin_url?: string | null
+          name?: string
+          phone?: string | null
+          photo_url?: string | null
+          university?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      alumni_messages: {
+        Row: {
+          created_at: string
+          id: string
+          is_read: boolean | null
+          message: string
+          receiver_id: string
+          sender_email: string
+          sender_id: string | null
+          sender_name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_read?: boolean | null
+          message: string
+          receiver_id: string
+          sender_email: string
+          sender_id?: string | null
+          sender_name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_read?: boolean | null
+          message?: string
+          receiver_id?: string
+          sender_email?: string
+          sender_id?: string | null
+          sender_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "alumni_messages_receiver_id_fkey"
+            columns: ["receiver_id"]
+            isOneToOne: false
+            referencedRelation: "abroad_alumni"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       articles: {
         Row: {
           author: string | null
