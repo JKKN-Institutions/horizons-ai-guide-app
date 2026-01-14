@@ -15,7 +15,7 @@ import { EntranceExams } from '@/components/EntranceExams';
 import { CounsellingSimulator } from '@/components/CounsellingSimulator';
 import { PreviousYearQuestions } from '@/components/PreviousYearQuestions';
 import { GovernmentJobs } from '@/components/GovernmentJobs';
-import { AbroadStudy } from '@/components/AbroadStudy';
+import { UniversityEntranceExams } from '@/components/UniversityEntrance';
 import { PillNavigation } from '@/components/PillNavigation';
 
 
@@ -610,7 +610,7 @@ const CareerAssessmentColleges = () => {
 
         {activeTab === 'govtjobs' && <GovernmentJobs />}
 
-        {activeTab === 'abroadstudy' && <AbroadStudy />}
+        {activeTab === 'tnuniversity' && <UniversityEntranceExams />}
       </div>
     </div>
   );
