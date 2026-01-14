@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Calendar, BarChart3, Bell, Bookmark, Lightbulb, CalendarCheck, FileText, TrendingUp, Flame } from 'lucide-react';
+import { Search, Calendar, BarChart3, Bell, Bookmark, Lightbulb, CalendarCheck, FileText, TrendingUp, Flame, Sparkles } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { universities } from '@/data/university-entrance-data';
 import { UniversityCard } from './UniversityCard';
@@ -104,6 +104,13 @@ export const UniversityEntranceExams = () => {
           titleTamil="தொடர்ச்சி"
           onClick={() => navigate('/tn-university-entrance/streaks')}
           color="#ea580c"
+        />
+        <QuickToolCard
+          icon={Sparkles}
+          title="AI Questions"
+          titleTamil="AI கேள்விகள்"
+          onClick={() => navigate('/tn-university-entrance/ai-questions')}
+          color="#8b5cf6"
         />
       </div>
 
