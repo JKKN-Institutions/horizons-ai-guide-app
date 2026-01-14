@@ -8,7 +8,7 @@ import {
   Plane, GraduationCap, DollarSign, Globe, BookOpen, FileText, 
   CheckCircle, Clock, MapPin, Building2, Users, Award, TrendingUp,
   Star, Sparkles, Target, Calendar, Wallet, Scale, Shield, Languages,
-  ClipboardList, Calculator
+  ClipboardList, Calculator, Inbox
 } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { countries, exams, applicationSteps } from './data';
@@ -24,6 +24,7 @@ import { BudgetPlanner } from './BudgetPlanner';
 import { CountryComparison } from './CountryComparison';
 import { ApplicationTracker } from './ApplicationTracker';
 import { AlumniConnect } from './AlumniConnect';
+import { AlumniInbox } from './AlumniInbox';
 import { Country } from './types';
 
 export const AbroadStudy = () => {
@@ -125,6 +126,10 @@ export const AbroadStudy = () => {
             <TabsTrigger value="alumni" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-3">
               <Users className="w-4 h-4 mr-1" />
               Alumni
+            </TabsTrigger>
+            <TabsTrigger value="inbox" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white rounded-lg px-3">
+              <Inbox className="w-4 h-4 mr-1" />
+              My Inbox
             </TabsTrigger>
           </TabsList>
           <ScrollBar orientation="horizontal" />
@@ -233,6 +238,7 @@ export const AbroadStudy = () => {
         <TabsContent value="budget" className="mt-6"><BudgetPlanner /></TabsContent>
         <TabsContent value="tracker" className="mt-6"><ApplicationTracker /></TabsContent>
         <TabsContent value="alumni" className="mt-6"><AlumniConnect /></TabsContent>
+        <TabsContent value="inbox" className="mt-6"><AlumniInbox /></TabsContent>
       </Tabs>
 
       {/* Tips Section */}
