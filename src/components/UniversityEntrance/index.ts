@@ -18,4 +18,5 @@ export { ChapterWeightage } from './ChapterWeightage';
 export { PerformanceAnalytics } from './PerformanceAnalytics';
 export { StudyStreaks } from './StudyStreaks';
 export { AIQuestionGenerator } from './AIQuestionGenerator';
+export { DailyChallenge } from './DailyChallenge';
 export { generatePYQPDF, generateBookmarkedPDF, generateSyllabusPDF } from './generateTNUniversityPDF';
