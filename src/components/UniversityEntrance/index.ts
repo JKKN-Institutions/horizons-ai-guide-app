@@ -19,4 +19,5 @@ export { PerformanceAnalytics } from './PerformanceAnalytics';
 export { StudyStreaks } from './StudyStreaks';
 export { AIQuestionGenerator } from './AIQuestionGenerator';
 export { DailyChallenge } from './DailyChallenge';
+export { TNForum } from './TNForum';
 export { generatePYQPDF, generateBookmarkedPDF, generateSyllabusPDF } from './generateTNUniversityPDF';
