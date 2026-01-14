@@ -1709,7 +1709,7 @@ export const universities: University[] = [
     phone: '0462-2333741',
     examName: 'MSU PG Entrance',
     logoColor: '#be185d',
-    logo: '/universities/msu-tirunelveli-logo.png',
+    logo: '/universities/msu-tirunelveli-logo.jpeg',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
