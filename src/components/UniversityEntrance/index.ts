@@ -13,4 +13,8 @@ export { default as ReminderDialog } from './ReminderDialog';
 export { SavedQuestions } from './SavedQuestions';
 export { PreparationTips } from './PreparationTips';
 export { TNStudyPlanner } from './TNStudyPlanner';
+export { TNMockTest } from './TNMockTest';
+export { ChapterWeightage } from './ChapterWeightage';
+export { PerformanceAnalytics } from './PerformanceAnalytics';
+export { StudyStreaks } from './StudyStreaks';
 export { generatePYQPDF, generateBookmarkedPDF, generateSyllabusPDF } from './generateTNUniversityPDF';
