@@ -1341,8 +1341,275 @@ export const universities: University[] = [
     examName: 'MKU PG Entrance',
     logoColor: '#16a34a',
     fee: { general: 500, obc: 500, scst: 250 },
-    importantDates: [],
-    courses: []
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Exam Date', eventTamil: 'தேர்வு தேதி', date: 'July 2026', status: 'upcoming' },
+      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'August 2026', status: 'upcoming' }
+    ],
+    courses: [
+      {
+        id: 'mku-mba',
+        name: 'MBA',
+        nameTamil: 'எம்.பி.ஏ',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Verbal Ability', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['Reading Comprehension', 'Grammar', 'Vocabulary'] },
+            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல் திறன்', questions: 35, marks: 35, topics: ['Arithmetic', 'Algebra', 'Data Interpretation'] },
+            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 25, marks: 25, topics: ['Coding', 'Puzzles', 'Syllogisms'] },
+            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', questions: 15, marks: 15, topics: ['Current Affairs', 'Business GK'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'Verbal Ability',
+            titleTamil: 'மொழித்திறன்',
+            expectedQuestions: 25,
+            difficulty: 'Medium',
+            topics: [
+              { name: 'Reading Comprehension', subtopics: ['Passage analysis', 'Inference', 'Vocabulary'], importance: 'High' },
+              { name: 'Grammar', subtopics: ['Tenses', 'Voice', 'Articles'], importance: 'Medium' },
+              { name: 'Vocabulary', subtopics: ['Synonyms', 'Antonyms', 'Idioms'], importance: 'High' }
+            ]
+          },
+          {
+            unitNumber: 2,
+            title: 'Quantitative Aptitude',
+            titleTamil: 'எண்ணியல் திறன்',
+            expectedQuestions: 35,
+            difficulty: 'Medium',
+            topics: [
+              { name: 'Arithmetic', subtopics: ['Percentage', 'Profit & Loss', 'Simple & Compound Interest'], importance: 'High' },
+              { name: 'Algebra', subtopics: ['Equations', 'Polynomials', 'Quadratic equations'], importance: 'Medium' },
+              { name: 'Data Interpretation', subtopics: ['Tables', 'Graphs', 'Charts'], importance: 'High' }
+            ]
+          }
+        ],
+        previousQuestions: [
+          { id: 'mku-mba-q1', question: 'A sum of ₹5000 amounts to ₹6050 in 2 years at simple interest. What is the rate of interest?', options: ['8%', '9%', '10.5%', '11%'], correctAnswer: 2, explanation: 'SI = 6050-5000 = 1050. R = (SI×100)/(P×T) = (1050×100)/(5000×2) = 10.5%', topic: 'Simple Interest', difficulty: 'Easy' },
+          { id: 'mku-mba-q2', question: 'If the ratio of cost price to selling price is 5:6, find the profit percentage.', options: ['16.67%', '20%', '25%', '30%'], correctAnswer: 1, explanation: 'If CP:SP = 5:6, then Profit = 6-5 = 1. Profit% = (1/5)×100 = 20%', topic: 'Profit & Loss', difficulty: 'Easy' }
+        ],
+        tips: ['Focus on Data Interpretation', 'Practice quantitative aptitude daily', 'Read business newspapers']
+      },
+      {
+        id: 'mku-mca',
+        name: 'MCA',
+        nameTamil: 'எம்.சி.ஏ',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Calculus', 'Linear Algebra', 'Probability'] },
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 40, marks: 40, topics: ['C Programming', 'Data Structures', 'DBMS'] },
+            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 20, marks: 20, topics: ['Coding', 'Series', 'Puzzles'] },
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 10, marks: 10, topics: ['Grammar', 'Comprehension'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'Mathematics',
+            titleTamil: 'கணிதம்',
+            expectedQuestions: 30,
+            difficulty: 'Hard',
+            topics: [
+              { name: 'Calculus', subtopics: ['Differentiation', 'Integration', 'Applications'], importance: 'High' },
+              { name: 'Linear Algebra', subtopics: ['Matrices', 'Determinants', 'Eigenvalues'], importance: 'High' }
+            ]
+          }
+        ],
+        previousQuestions: [],
+        tips: ['Focus on C programming concepts', 'Practice mathematical problems', 'Learn data structures well']
+      },
+      {
+        id: 'mku-msc-cs',
+        name: 'M.Sc Computer Science',
+        nameTamil: 'எம்.எஸ்சி கணினி அறிவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 60, marks: 60, topics: ['Programming', 'OS', 'DBMS', 'Networks'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 25, topics: ['Discrete Math', 'Statistics'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Logical', 'Numerical'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Master programming fundamentals', 'Study operating systems', 'Practice aptitude questions']
+      },
+      {
+        id: 'mku-ma-tamil',
+        name: 'M.A Tamil',
+        nameTamil: 'எம்.ஏ தமிழ்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Tamil Literature', nameTamil: 'தமிழ் இலக்கியம்', questions: 50, marks: 50, topics: ['Sangam Literature', 'Modern Literature'] },
+            { name: 'Tamil Grammar', nameTamil: 'தமிழ் இலக்கணம்', questions: 30, marks: 30, topics: ['Tolkappiyam', 'Nannool'] },
+            { name: 'General Tamil', nameTamil: 'பொதுத் தமிழ்', questions: 20, marks: 20, topics: ['Translation', 'Essay'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Read Sangam literature deeply', 'Study Tolkappiyam', 'Practice essay writing']
+      }
+    ]
+  },
+  {
+    id: 'mother-teresa-university',
+    name: 'Mother Teresa Women\'s University',
+    nameTamil: 'அன்னை தெரசா பெண்கள் பல்கலைக்கழகம்',
+    location: 'Kodaikanal',
+    website: 'www.motherteresawomenuniv.ac.in',
+    phone: '04542-241530',
+    examName: 'MTWU Entrance',
+    logoColor: '#ec4899',
+    fee: { general: 400, obc: 400, scst: 200 },
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Exam Date', eventTamil: 'தேர்வு தேதி', date: 'July 2026', status: 'upcoming' },
+      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'August 2026', status: 'upcoming' }
+    ],
+    courses: [
+      {
+        id: 'mtwu-mba',
+        name: 'MBA',
+        nameTamil: 'எம்.பி.ஏ',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Verbal Ability', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['Reading', 'Grammar', 'Vocabulary'] },
+            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல் திறன்', questions: 35, marks: 35, topics: ['Arithmetic', 'DI'] },
+            { name: 'Reasoning', nameTamil: 'தர்க்கம்', questions: 25, marks: 25, topics: ['Logical', 'Analytical'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 15, marks: 15, topics: ['Current Affairs', 'GK'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on quantitative section', 'Read current affairs daily', 'Practice mock tests']
+      },
+      {
+        id: 'mtwu-mca',
+        name: 'MCA',
+        nameTamil: 'எம்.சி.ஏ',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 35, marks: 35, topics: ['Calculus', 'Algebra', 'Statistics'] },
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 35, marks: 35, topics: ['Programming', 'DBMS', 'OS'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 30, marks: 30, topics: ['Logical', 'Numerical'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong foundation in mathematics', 'Practice programming problems', 'Learn computer basics']
+      },
+      {
+        id: 'mtwu-msc-cs',
+        name: 'M.Sc Computer Science',
+        nameTamil: 'எம்.எஸ்சி கணினி அறிவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 70, marks: 70, topics: ['C', 'Data Structures', 'DBMS', 'Networks'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 30, marks: 30, topics: ['Logical', 'Numerical'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Master C programming', 'Study data structures thoroughly', 'Practice numerical aptitude']
+      },
+      {
+        id: 'mtwu-msw',
+        name: 'MSW (Master of Social Work)',
+        nameTamil: 'எம்.எஸ்.டபிள்யூ',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Social Science', nameTamil: 'சமூக அறிவியல்', questions: 40, marks: 40, topics: ['Sociology', 'Psychology', 'Economics'] },
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 30, marks: 30, topics: ['Social Issues', 'Welfare Schemes'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 30, marks: 30, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study social issues in India', 'Know government welfare schemes', 'Read newspapers daily']
+      },
+      {
+        id: 'mtwu-ma-english',
+        name: 'M.A English',
+        nameTamil: 'எம்.ஏ ஆங்கிலம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'English Literature', nameTamil: 'ஆங்கில இலக்கியம்', questions: 50, marks: 50, topics: ['Poetry', 'Drama', 'Novel', 'Prose'] },
+            { name: 'Literary Criticism', nameTamil: 'இலக்கிய விமர்சனம்', questions: 25, marks: 25, topics: ['Critical Theories', 'Literary Terms'] },
+            { name: 'Language & Linguistics', nameTamil: 'மொழி & மொழியியல்', questions: 25, marks: 25, topics: ['Phonetics', 'Grammar', 'Semantics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Read Shakespeare and other major authors', 'Study literary movements', 'Practice literary criticism']
+      }
+    ]
   },
   {
     id: 'alagappa-university',
@@ -1354,8 +1621,82 @@ export const universities: University[] = [
     examName: 'AU Entrance',
     logoColor: '#ca8a04',
     fee: { general: 500, obc: 500, scst: 250 },
-    importantDates: [],
-    courses: []
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Exam Date', eventTamil: 'தேர்வு தேதி', date: 'July 2026', status: 'upcoming' },
+      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'August 2026', status: 'upcoming' }
+    ],
+    courses: [
+      {
+        id: 'au-mba',
+        name: 'MBA',
+        nameTamil: 'எம்.பி.ஏ',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல் திறன்', questions: 30, marks: 30, topics: ['Arithmetic', 'Algebra', 'DI'] },
+            { name: 'Verbal Ability', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['Grammar', 'Vocabulary', 'RC'] },
+            { name: 'Reasoning', nameTamil: 'தர்க்கம்', questions: 25, marks: 25, topics: ['Logical', 'Analytical'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Current Affairs', 'Business GK'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on quantitative section', 'Read business news daily', 'Practice mock tests regularly']
+      },
+      {
+        id: 'au-mca',
+        name: 'MCA',
+        nameTamil: 'எம்.சி.ஏ',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Discrete Math', 'Calculus', 'Algebra'] },
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 40, marks: 40, topics: ['C', 'Data Structures', 'DBMS'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 30, marks: 30, topics: ['Reasoning', 'Numerical'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Master programming in C', 'Study discrete mathematics', 'Practice data structures']
+      },
+      {
+        id: 'au-msc-maths',
+        name: 'M.Sc Mathematics',
+        nameTamil: 'எம்.எஸ்சி கணிதம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Pure Mathematics', nameTamil: 'தூய கணிதம்', questions: 50, marks: 50, topics: ['Algebra', 'Analysis', 'Topology'] },
+            { name: 'Applied Mathematics', nameTamil: 'பயன்முறை கணிதம்', questions: 30, marks: 30, topics: ['Differential Equations', 'Mechanics'] },
+            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 20, marks: 20, topics: ['Probability', 'Statistics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong foundation in algebra', 'Practice real analysis problems', 'Study differential equations']
+      }
+    ]
   },
   {
     id: 'msu-tirunelveli',
@@ -1367,8 +1708,106 @@ export const universities: University[] = [
     examName: 'MSU PG Entrance',
     logoColor: '#be185d',
     fee: { general: 500, obc: 500, scst: 250 },
-    importantDates: [],
-    courses: []
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Exam Date', eventTamil: 'தேர்வு தேதி', date: 'July 2026', status: 'upcoming' },
+      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'August 2026', status: 'upcoming' }
+    ],
+    courses: [
+      {
+        id: 'msu-mba',
+        name: 'MBA',
+        nameTamil: 'எம்.பி.ஏ',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல் திறன்', questions: 30, marks: 30, topics: ['Arithmetic', 'DI', 'Algebra'] },
+            { name: 'Verbal Ability', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['Grammar', 'RC', 'Vocabulary'] },
+            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 25, marks: 25, topics: ['Puzzles', 'Coding', 'Series'] },
+            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', questions: 20, marks: 20, topics: ['Current Affairs', 'Economy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Practice quantitative aptitude daily', 'Read newspapers for current affairs', 'Solve previous year papers']
+      },
+      {
+        id: 'msu-mca',
+        name: 'MCA',
+        nameTamil: 'எம்.சி.ஏ',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Calculus', 'Algebra', 'Statistics'] },
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 45, marks: 45, topics: ['Programming', 'DBMS', 'OS', 'Networks'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 25, marks: 25, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on programming concepts', 'Study computer fundamentals', 'Practice aptitude questions']
+      },
+      {
+        id: 'msu-msc-physics',
+        name: 'M.Sc Physics',
+        nameTamil: 'எம்.எஸ்சி இயற்பியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Classical Mechanics', nameTamil: 'பாரம்பரிய இயக்கவியல்', questions: 25, marks: 25, topics: ['Lagrangian', 'Hamiltonian', 'Rigid body'] },
+            { name: 'Quantum Mechanics', nameTamil: 'குவாண்டம் இயக்கவியல்', questions: 25, marks: 25, topics: ['Wave function', 'Operators', 'Perturbation'] },
+            { name: 'Electromagnetism', nameTamil: 'மின்காந்தவியல்', questions: 25, marks: 25, topics: ['Maxwell equations', 'EM waves'] },
+            { name: 'Mathematical Physics', nameTamil: 'கணித இயற்பியல்', questions: 25, marks: 25, topics: ['Complex analysis', 'Special functions'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Master classical mechanics', 'Practice quantum mechanics problems', 'Study mathematical physics']
+      },
+      {
+        id: 'msu-ma-economics',
+        name: 'M.A Economics',
+        nameTamil: 'எம்.ஏ பொருளியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Microeconomics', nameTamil: 'நுண் பொருளியல்', questions: 30, marks: 30, topics: ['Demand & Supply', 'Consumer Theory', 'Market Structure'] },
+            { name: 'Macroeconomics', nameTamil: 'பேரு பொருளியல்', questions: 30, marks: 30, topics: ['National Income', 'Money & Banking', 'Fiscal Policy'] },
+            { name: 'Indian Economy', nameTamil: 'இந்திய பொருளாதாரம்', questions: 25, marks: 25, topics: ['Planning', 'Agriculture', 'Industry'] },
+            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 15, marks: 15, topics: ['Mean', 'Regression', 'Index Numbers'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study micro and macro economics thoroughly', 'Follow economic survey', 'Practice statistics']
+      }
+    ]
   }
 ];
 
