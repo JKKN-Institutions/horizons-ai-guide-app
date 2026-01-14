@@ -1025,6 +1025,7 @@ export const universities: University[] = [
     phone: '04144-238282',
     examName: 'AUET',
     logoColor: '#ea580c',
+    logo: '/universities/annamalai-university-logo.png',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'March-April 2026', status: 'upcoming' },
