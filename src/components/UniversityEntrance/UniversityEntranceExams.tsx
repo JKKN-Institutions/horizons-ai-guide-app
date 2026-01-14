@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Calendar, BarChart3, Bell, Bookmark, Lightbulb, CalendarCheck } from 'lucide-react';
+import { Search, Calendar, BarChart3, Bell, Bookmark, Lightbulb, CalendarCheck, FileText, TrendingUp, Flame } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { universities } from '@/data/university-entrance-data';
 import { UniversityCard } from './UniversityCard';
@@ -79,6 +79,31 @@ export const UniversityEntranceExams = () => {
           titleTamil="படிப்பு திட்டம்"
           onClick={() => navigate('/tn-university-entrance/study-planner')}
           color="#7c3aed"
+        />
+      </div>
+
+      {/* Quick Tools - Row 3: New Features */}
+      <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
+        <QuickToolCard
+          icon={FileText}
+          title="Mock Test"
+          titleTamil="போலித் தேர்வு"
+          onClick={() => navigate('/tn-university-entrance/mock-test')}
+          color="#16a34a"
+        />
+        <QuickToolCard
+          icon={TrendingUp}
+          title="Analytics"
+          titleTamil="பகுப்பாய்வு"
+          onClick={() => navigate('/tn-university-entrance/analytics')}
+          color="#2563eb"
+        />
+        <QuickToolCard
+          icon={Flame}
+          title="Streaks"
+          titleTamil="தொடர்ச்சி"
+          onClick={() => navigate('/tn-university-entrance/streaks')}
+          color="#ea580c"
         />
       </div>
 
