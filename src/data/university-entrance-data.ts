@@ -3940,6 +3940,7 @@ export const universities: University[] = [
     phone: '04362-226720',
     examName: 'TU Entrance Exam',
     logoColor: '#9333ea',
+    logo: '/universities/tamil-university-logo.png',
     fee: { general: 400, obc: 400, scst: 200 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
