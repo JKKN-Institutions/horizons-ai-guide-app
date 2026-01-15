@@ -3345,6 +3345,517 @@ export const universities: University[] = [
         tips: ['Study rural development theories', 'Know government rural schemes', 'Learn research methodology']
       }
     ]
+  },
+  // TNAU - Tamil Nadu Agricultural University
+  {
+    id: 'tnau',
+    name: 'Tamil Nadu Agricultural University',
+    nameTamil: 'தமிழ்நாடு வேளாண் பல்கலைக்கழகம்',
+    location: 'Coimbatore',
+    website: 'www.tnau.ac.in',
+    phone: '0422-6611200',
+    email: 'registrar@tnau.ac.in',
+    examName: 'TNAU Entrance',
+    logoColor: '#15803d',
+    fee: { general: 500, obc: 500, scst: 250 },
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Exam Date', eventTamil: 'தேர்வு தேதி', date: 'June 2026', status: 'upcoming' },
+      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'July 2026', status: 'upcoming' }
+    ],
+    courses: [
+      // UG Science Stream
+      {
+        id: 'tnau-bsc-agri',
+        name: 'B.Sc (Hons) Agriculture',
+        nameTamil: 'பி.எஸ்சி (ஹானர்ஸ்) வேளாண்மை',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 60, marks: 60, topics: ['Botany', 'Zoology', 'Genetics', 'Ecology'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Organic', 'Inorganic', 'Biochemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 40, marks: 40, topics: ['Mechanics', 'Optics', 'Thermodynamics'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Algebra', 'Statistics', 'Trigonometry'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Agriculture Awareness', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tnau-agri-1', year: '2024', question: 'Which of the following is the most widely cultivated pulse crop in India?', options: ['Chickpea (Gram)', 'Pigeon Pea (Tur)', 'Black Gram', 'Green Gram'], correctAnswer: 0, explanation: 'Chickpea (Gram/Chana) is the most widely cultivated pulse crop in India, accounting for about 40% of total pulse production.', topic: 'Crop Production', difficulty: 'Easy' },
+          { id: 'tnau-agri-2', year: '2024', question: 'The process of removing anthers from a bisexual flower before dehiscence is called:', options: ['Bagging', 'Emasculation', 'Tagging', 'Selfing'], correctAnswer: 1, explanation: 'Emasculation is the removal of anthers from bisexual flowers to prevent self-pollination in hybridization programs.', topic: 'Plant Breeding', difficulty: 'Medium' },
+          { id: 'tnau-agri-3', year: '2024', question: 'Which plant hormone is responsible for fruit ripening?', options: ['Auxin', 'Gibberellin', 'Ethylene', 'Cytokinin'], correctAnswer: 2, explanation: 'Ethylene is the primary hormone responsible for fruit ripening, senescence, and abscission.', topic: 'Plant Physiology', difficulty: 'Easy' },
+          { id: 'tnau-agri-4', year: '2024', question: 'Nitrogen fixation in legumes is carried out by which bacteria?', options: ['Azotobacter', 'Rhizobium', 'Clostridium', 'Pseudomonas'], correctAnswer: 1, explanation: 'Rhizobium bacteria form symbiotic associations with legume roots and fix atmospheric nitrogen.', topic: 'Soil Science', difficulty: 'Easy' },
+          { id: 'tnau-agri-5', year: '2024', question: 'The optimum pH range for most crop plants is:', options: ['4.5 - 5.5', '5.5 - 6.5', '6.0 - 7.0', '7.5 - 8.5'], correctAnswer: 2, explanation: 'Most crops grow best in slightly acidic to neutral pH (6.0-7.0) where nutrient availability is optimal.', topic: 'Soil Science', difficulty: 'Medium' }
+        ],
+        tips: ['Focus on NCERT Biology for basics', 'Study agricultural practices of major crops', 'Learn about soil types and nutrients', 'Practice previous year papers']
+      },
+      {
+        id: 'tnau-bsc-horti',
+        name: 'B.Sc (Hons) Horticulture',
+        nameTamil: 'பி.எஸ்சி (ஹானர்ஸ்) தோட்டக்கலை',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 70, marks: 70, topics: ['Botany', 'Plant Anatomy', 'Plant Physiology'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Organic Chemistry', 'Biochemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 40, marks: 40, topics: ['Mechanics', 'Optics'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 40, marks: 40, topics: ['Reasoning', 'English', 'Horticulture Awareness'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tnau-horti-1', year: '2024', question: 'Which of the following is a climacteric fruit?', options: ['Orange', 'Mango', 'Grape', 'Strawberry'], correctAnswer: 1, explanation: 'Mango is a climacteric fruit that shows a sudden rise in respiration rate and ethylene production during ripening.', topic: 'Pomology', difficulty: 'Medium' },
+          { id: 'tnau-horti-2', year: '2024', question: 'The method of vegetative propagation used in mango is:', options: ['Layering', 'Grafting', 'Cutting', 'Tissue Culture'], correctAnswer: 1, explanation: 'Grafting (especially veneer grafting and stone grafting) is the most common method for commercial mango propagation.', topic: 'Propagation', difficulty: 'Easy' },
+          { id: 'tnau-horti-3', year: '2024', question: 'Which nutrient deficiency causes "Little Leaf" in citrus?', options: ['Nitrogen', 'Zinc', 'Iron', 'Manganese'], correctAnswer: 1, explanation: 'Zinc deficiency causes "Little Leaf" or "mottle leaf" symptoms in citrus with reduced leaf size and interveinal chlorosis.', topic: 'Plant Nutrition', difficulty: 'Medium' }
+        ],
+        tips: ['Learn about fruit and vegetable cultivation', 'Study propagation methods', 'Understand post-harvest management', 'Know about floriculture and landscaping']
+      },
+      {
+        id: 'tnau-bsc-forestry',
+        name: 'B.Sc (Hons) Forestry',
+        nameTamil: 'பி.எஸ்சி (ஹானர்ஸ்) வனவியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 70, marks: 70, topics: ['Botany', 'Ecology', 'Environmental Science'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Organic', 'Inorganic'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 40, marks: 40, topics: ['Mechanics', 'Thermodynamics'] },
+            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', questions: 40, marks: 40, topics: ['Forest Awareness', 'Environmental Issues', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tnau-forest-1', year: '2024', question: 'Which of the following is the National Tree of India?', options: ['Neem', 'Banyan', 'Teak', 'Sal'], correctAnswer: 1, explanation: 'The Banyan tree (Ficus benghalensis) is the National Tree of India, symbolizing longevity and immortality.', topic: 'Forest Ecology', difficulty: 'Easy' },
+          { id: 'tnau-forest-2', year: '2024', question: 'Social forestry aims at:', options: ['Commercial timber production', 'Fuel, fodder and small timber for rural people', 'Wildlife conservation', 'Soil conservation only'], correctAnswer: 1, explanation: 'Social forestry focuses on growing trees for meeting the basic needs of rural communities - fuel, fodder, and small timber.', topic: 'Forest Management', difficulty: 'Easy' }
+        ],
+        tips: ['Study forest ecosystems and biodiversity', 'Learn about silviculture practices', 'Understand forest policies and laws', 'Know about climate change and forests']
+      },
+      {
+        id: 'tnau-bsc-sericulture',
+        name: 'B.Sc (Hons) Sericulture',
+        nameTamil: 'பி.எஸ்சி (ஹானர்ஸ்) பட்டுப்புழு வளர்ப்பு',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 150,
+          totalMarks: 150,
+          duration: '2.5 Hours',
+          durationMinutes: 150,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 60, marks: 60, topics: ['Zoology', 'Entomology', 'Botany'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 40, marks: 40, topics: ['Organic Chemistry', 'Biochemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Mechanics', 'Optics'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Sericulture Industry', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tnau-seri-1', year: '2024', question: 'The scientific name of mulberry silkworm is:', options: ['Bombyx mori', 'Antheraea mylitta', 'Philosamia ricini', 'Antheraea assamensis'], correctAnswer: 0, explanation: 'Bombyx mori is the mulberry silkworm, the most commercially important silk-producing insect.', topic: 'Sericulture Basics', difficulty: 'Easy' },
+          { id: 'tnau-seri-2', year: '2024', question: 'Mulberry is the food plant for which type of silkworm?', options: ['Tasar', 'Eri', 'Muga', 'Mulberry silkworm'], correctAnswer: 3, explanation: 'Mulberry leaves are the exclusive food of Bombyx mori (mulberry silkworm).', topic: 'Silkworm Nutrition', difficulty: 'Easy' }
+        ],
+        tips: ['Study silkworm biology and life cycle', 'Learn mulberry cultivation techniques', 'Understand silk processing methods', 'Know about diseases of silkworm']
+      },
+      // Technology Stream
+      {
+        id: 'tnau-btech-agri-engg',
+        name: 'B.Tech Agricultural Engineering',
+        nameTamil: 'பி.டெக் வேளாண் பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 60, marks: 60, topics: ['Calculus', 'Algebra', 'Statistics', 'Trigonometry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Thermodynamics', 'Electricity'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 40, marks: 40, topics: ['Organic', 'Inorganic', 'Physical Chemistry'] },
+            { name: 'Biology/Agriculture', nameTamil: 'உயிரியல்/வேளாண்மை', questions: 30, marks: 30, topics: ['Crop Science', 'Soil Science'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 20, marks: 20, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tnau-aeng-1', year: '2024', question: 'The most efficient cross-section of an open channel is:', options: ['Rectangular', 'Triangular', 'Trapezoidal', 'Semi-circular'], correctAnswer: 3, explanation: 'Semi-circular cross-section has the minimum wetted perimeter for a given area, making it most hydraulically efficient.', topic: 'Irrigation Engineering', difficulty: 'Medium' },
+          { id: 'tnau-aeng-2', year: '2024', question: 'Drip irrigation is most suitable for:', options: ['Paddy', 'Wheat', 'Orchards', 'Sugarcane'], correctAnswer: 2, explanation: 'Drip irrigation is ideal for orchards and widely spaced crops where water can be delivered directly to the root zone.', topic: 'Irrigation Methods', difficulty: 'Easy' }
+        ],
+        tips: ['Strong foundation in Mathematics and Physics', 'Study irrigation and farm machinery concepts', 'Understand soil and water conservation', 'Learn about post-harvest technology']
+      },
+      {
+        id: 'tnau-btech-food-tech',
+        name: 'B.Tech Food Technology',
+        nameTamil: 'பி.டெக் உணவு தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 60, marks: 60, topics: ['Organic', 'Biochemistry', 'Food Chemistry'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 50, marks: 50, topics: ['Microbiology', 'Nutrition', 'Botany'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 40, marks: 40, topics: ['Mechanics', 'Thermodynamics'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Algebra', 'Statistics'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 20, marks: 20, topics: ['Food Industry Awareness', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tnau-ftech-1', year: '2024', question: 'Pasteurization of milk is done at:', options: ['100°C for 10 min', '63°C for 30 min', '121°C for 15 min', '72°C for 1 hour'], correctAnswer: 1, explanation: 'Low temperature long time (LTLT) pasteurization is done at 63°C for 30 minutes. HTST is at 72°C for 15 seconds.', topic: 'Food Processing', difficulty: 'Medium' },
+          { id: 'tnau-ftech-2', year: '2024', question: 'Which vitamin is heat stable?', options: ['Vitamin A', 'Vitamin C', 'Vitamin B12', 'Vitamin D'], correctAnswer: 3, explanation: 'Vitamin D is relatively heat stable compared to other vitamins like C and B12.', topic: 'Food Chemistry', difficulty: 'Medium' }
+        ],
+        tips: ['Focus on food chemistry and microbiology', 'Study food preservation methods', 'Understand food safety regulations (FSSAI)', 'Learn about food packaging']
+      },
+      {
+        id: 'tnau-btech-biotech',
+        name: 'B.Tech Biotechnology',
+        nameTamil: 'பி.டெக் உயிர்தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 70, marks: 70, topics: ['Molecular Biology', 'Genetics', 'Microbiology', 'Cell Biology'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Organic', 'Biochemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 40, marks: 40, topics: ['Biophysics', 'Instrumentation'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 20, marks: 20, topics: ['Statistics', 'Algebra'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 20, marks: 20, topics: ['Biotech Awareness', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tnau-biotech-1', year: '2024', question: 'Restriction enzymes are also called:', options: ['Molecular scissors', 'DNA ligase', 'Polymerase', 'Helicase'], correctAnswer: 0, explanation: 'Restriction enzymes are called molecular scissors as they cut DNA at specific recognition sequences.', topic: 'Molecular Biology', difficulty: 'Easy' },
+          { id: 'tnau-biotech-2', year: '2024', question: 'PCR technique is used for:', options: ['Protein synthesis', 'DNA amplification', 'RNA isolation', 'Cell culture'], correctAnswer: 1, explanation: 'PCR (Polymerase Chain Reaction) is used to amplify specific DNA sequences in vitro.', topic: 'Genetic Engineering', difficulty: 'Easy' }
+        ],
+        tips: ['Strong foundation in molecular biology', 'Study genetic engineering techniques', 'Understand recombinant DNA technology', 'Learn bioinformatics basics']
+      },
+      {
+        id: 'tnau-btech-bioinformatics',
+        name: 'B.Tech Bioinformatics',
+        nameTamil: 'பி.டெக் உயிர் தகவலியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 60, marks: 60, topics: ['Molecular Biology', 'Genetics', 'Genomics'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Statistics', 'Probability', 'Algebra'] },
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 40, marks: 40, topics: ['Programming Basics', 'Algorithms', 'Data Structures'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Biochemistry', 'Organic Chemistry'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 20, marks: 20, topics: ['Logical Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tnau-bioinfo-1', year: '2024', question: 'BLAST is used for:', options: ['DNA sequencing', 'Sequence similarity search', 'Protein purification', 'Cell culture'], correctAnswer: 1, explanation: 'BLAST (Basic Local Alignment Search Tool) is used to find regions of similarity between biological sequences.', topic: 'Bioinformatics Tools', difficulty: 'Medium' }
+        ],
+        tips: ['Learn programming (Python/R)', 'Study sequence analysis tools', 'Understand genomics and proteomics', 'Practice database searching']
+      },
+      // Postgraduate Courses
+      {
+        id: 'tnau-msc-agronomy',
+        name: 'M.Sc Agronomy',
+        nameTamil: 'எம்.எஸ்சி வேளாண் விஞ்ஞானம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 150,
+          totalMarks: 150,
+          duration: '2.5 Hours',
+          durationMinutes: 150,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Agronomy', nameTamil: 'வேளாண் விஞ்ஞானம்', questions: 60, marks: 60, topics: ['Crop Production', 'Tillage', 'Cropping Systems', 'Water Management'] },
+            { name: 'Crop Physiology', nameTamil: 'பயிர் உடலியல்', questions: 40, marks: 40, topics: ['Plant Growth', 'Photosynthesis', 'Stress Physiology'] },
+            { name: 'Soil Science', nameTamil: 'மண் அறிவியல்', questions: 30, marks: 30, topics: ['Soil Fertility', 'Soil Chemistry', 'Nutrient Management'] },
+            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 20, marks: 20, topics: ['Agricultural Statistics', 'Experimental Designs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study crop production techniques', 'Learn about integrated farming systems', 'Understand climate-smart agriculture', 'Know organic farming practices']
+      },
+      {
+        id: 'tnau-mba-agribusiness',
+        name: 'MBA Agri-Business Management',
+        nameTamil: 'எம்பிஏ வேளாண் வணிக மேலாண்மை',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 150,
+          totalMarks: 150,
+          duration: '2.5 Hours',
+          durationMinutes: 150,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Quantitative Aptitude', nameTamil: 'அளவீட்டுத் திறன்', questions: 40, marks: 40, topics: ['Mathematics', 'Data Interpretation', 'Statistics'] },
+            { name: 'Verbal Ability', nameTamil: 'மொழித் திறன்', questions: 35, marks: 35, topics: ['English Grammar', 'Reading Comprehension', 'Vocabulary'] },
+            { name: 'Logical Reasoning', nameTamil: 'தருக்க அறிவு', questions: 35, marks: 35, topics: ['Analytical Reasoning', 'Critical Thinking'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 40, marks: 40, topics: ['Agriculture Sector', 'Business Awareness', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Prepare for CAT/MAT type questions', 'Study agricultural economics', 'Learn about agri supply chain', 'Know about food processing industry']
+      }
+    ]
+  },
+  // TNDALU - Tamil Nadu Dr. Ambedkar Law University
+  {
+    id: 'tndalu',
+    name: 'Tamil Nadu Dr. Ambedkar Law University',
+    nameTamil: 'தமிழ்நாடு டாக்டர் அம்பேத்கர் சட்டப் பல்கலைக்கழகம்',
+    location: 'Chennai',
+    website: 'www.tndalu.ac.in',
+    phone: '044-24641212',
+    email: 'registrar@tndalu.ac.in',
+    examName: 'TNDALU Entrance / CLAT',
+    logoColor: '#7c2d12',
+    fee: { general: 1000, obc: 1000, scst: 500 },
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Exam Date', eventTamil: 'தேர்வு தேதி', date: 'June 2026', status: 'upcoming' },
+      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'July 2026', status: 'upcoming' }
+    ],
+    courses: [
+      // 5-Year Integrated Honours Courses
+      {
+        id: 'tndalu-ballb-hons',
+        name: 'B.A. LL.B. (Hons.) - 5 Years',
+        nameTamil: 'பி.ஏ. எல்.எல்.பி. (ஹானர்ஸ்) - 5 ஆண்டுகள்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 150,
+          totalMarks: 150,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Computer Based (Online)',
+          negativeMarking: true,
+          sections: [
+            { name: 'English Language', nameTamil: 'ஆங்கில மொழி', questions: 25, marks: 25, topics: ['Grammar', 'Vocabulary', 'Comprehension', 'Cloze Test'] },
+            { name: 'Current Affairs & GK', nameTamil: 'நடப்பு நிகழ்வுகள் & பொது அறிவு', questions: 35, marks: 35, topics: ['National', 'International', 'Static GK', 'Legal Awareness'] },
+            { name: 'Legal Aptitude', nameTamil: 'சட்ட திறன்', questions: 35, marks: 35, topics: ['Legal Reasoning', 'Principles of Law', 'Constitution'] },
+            { name: 'Logical Reasoning', nameTamil: 'தருக்க அறிவு', questions: 30, marks: 30, topics: ['Analytical Reasoning', 'Critical Thinking', 'Syllogisms'] },
+            { name: 'Quantitative Techniques', nameTamil: 'அளவீட்டு நுட்பங்கள்', questions: 25, marks: 25, topics: ['Basic Math', 'Data Interpretation', 'Statistics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tndalu-ballb-1', year: '2024', question: 'The Constitution of India came into force on:', options: ['15th August 1947', '26th January 1950', '26th November 1949', '15th August 1950'], correctAnswer: 1, explanation: 'The Constitution of India came into force on 26th January 1950, which is celebrated as Republic Day.', topic: 'Constitutional Law', difficulty: 'Easy' },
+          { id: 'tndalu-ballb-2', year: '2024', question: 'Article 21 of the Indian Constitution deals with:', options: ['Right to Equality', 'Right to Freedom', 'Right to Life and Personal Liberty', 'Right against Exploitation'], correctAnswer: 2, explanation: 'Article 21 protects the Right to Life and Personal Liberty, the most fundamental right under the Constitution.', topic: 'Fundamental Rights', difficulty: 'Easy' },
+          { id: 'tndalu-ballb-3', year: '2024', question: 'The principle "Ignorantia Juris Non Excusat" means:', options: ['Ignorance of fact is an excuse', 'Ignorance of law is no excuse', 'Silence is consent', 'No one can be a judge in his own case'], correctAnswer: 1, explanation: 'This Latin maxim means ignorance of law is no excuse - everyone is presumed to know the law.', topic: 'Legal Maxims', difficulty: 'Medium' },
+          { id: 'tndalu-ballb-4', year: '2024', question: 'The first woman Chief Justice of a High Court in India was:', options: ['Fatima Beevi', 'Leila Seth', 'Sujata Manohar', 'Anna Chandy'], correctAnswer: 3, explanation: 'Justice Anna Chandy became the first woman Chief Justice of a High Court (Kerala) in 1959.', topic: 'Legal History', difficulty: 'Medium' },
+          { id: 'tndalu-ballb-5', year: '2024', question: 'Writ of Habeas Corpus protects:', options: ['Property rights', 'Personal liberty', 'Freedom of speech', 'Right to education'], correctAnswer: 1, explanation: 'Habeas Corpus (meaning "produce the body") protects against illegal detention and unlawful imprisonment.', topic: 'Constitutional Remedies', difficulty: 'Easy' }
+        ],
+        tips: ['Read newspapers daily for current affairs', 'Study basic Constitution - Preamble, Fundamental Rights, DPSPs', 'Learn important legal maxims and their meanings', 'Practice reading comprehension and logical reasoning', 'Focus on landmark judgments']
+      },
+      {
+        id: 'tndalu-bcomllb-hons',
+        name: 'B.Com. LL.B. (Hons.) - 5 Years',
+        nameTamil: 'பி.காம். எல்.எல்.பி. (ஹானர்ஸ்) - 5 ஆண்டுகள்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 150,
+          totalMarks: 150,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Computer Based (Online)',
+          negativeMarking: true,
+          sections: [
+            { name: 'English Language', nameTamil: 'ஆங்கில மொழி', questions: 25, marks: 25, topics: ['Grammar', 'Vocabulary', 'Comprehension'] },
+            { name: 'Current Affairs & GK', nameTamil: 'நடப்பு நிகழ்வுகள் & பொது அறிவு', questions: 30, marks: 30, topics: ['Business News', 'Economy', 'Legal Affairs'] },
+            { name: 'Legal Aptitude', nameTamil: 'சட்ட திறன்', questions: 30, marks: 30, topics: ['Commercial Law Basics', 'Contract Law', 'Company Law'] },
+            { name: 'Logical Reasoning', nameTamil: 'தருக்க அறிவு', questions: 30, marks: 30, topics: ['Analytical Reasoning', 'Critical Thinking'] },
+            { name: 'Quantitative Techniques', nameTamil: 'அளவீட்டு நுட்பங்கள்', questions: 35, marks: 35, topics: ['Accounting Basics', 'Data Interpretation', 'Business Math'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tndalu-bcomllb-1', year: '2024', question: 'The Companies Act, 2013 came into force on:', options: ['1st April 2013', '1st April 2014', '12th September 2013', '1st January 2014'], correctAnswer: 1, explanation: 'The Companies Act, 2013 came into force on 1st April 2014, replacing the Companies Act, 1956.', topic: 'Company Law', difficulty: 'Medium' },
+          { id: 'tndalu-bcomllb-2', year: '2024', question: 'GST was implemented in India on:', options: ['1st April 2017', '1st July 2017', '1st January 2017', '1st October 2017'], correctAnswer: 1, explanation: 'GST (Goods and Services Tax) was implemented in India on 1st July 2017 as a unified indirect tax.', topic: 'Taxation Law', difficulty: 'Easy' }
+        ],
+        tips: ['Strong understanding of commerce and accounts', 'Study company law and contract act', 'Keep up with business and economic news', 'Practice quantitative aptitude regularly']
+      },
+      {
+        id: 'tndalu-bballb-hons',
+        name: 'B.B.A. LL.B. (Hons.) - 5 Years',
+        nameTamil: 'பி.பி.ஏ. எல்.எல்.பி. (ஹானர்ஸ்) - 5 ஆண்டுகள்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 150,
+          totalMarks: 150,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Computer Based (Online)',
+          negativeMarking: true,
+          sections: [
+            { name: 'English Language', nameTamil: 'ஆங்கில மொழி', questions: 25, marks: 25, topics: ['Grammar', 'Vocabulary', 'Comprehension'] },
+            { name: 'Current Affairs & GK', nameTamil: 'நடப்பு நிகழ்வுகள் & பொது அறிவு', questions: 30, marks: 30, topics: ['Business', 'Economy', 'Legal Affairs'] },
+            { name: 'Legal Aptitude', nameTamil: 'சட்ட திறன்', questions: 30, marks: 30, topics: ['Business Law', 'Corporate Law', 'Legal Reasoning'] },
+            { name: 'Logical Reasoning', nameTamil: 'தருக்க அறிவு', questions: 30, marks: 30, topics: ['Analytical Reasoning', 'Critical Thinking', 'Decision Making'] },
+            { name: 'Management Aptitude', nameTamil: 'மேலாண்மை திறன்', questions: 35, marks: 35, topics: ['Business Awareness', 'Management Concepts', 'Case Studies'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tndalu-bballb-1', year: '2024', question: 'Corporate Governance primarily deals with:', options: ['Marketing strategies', 'Ethical business conduct and accountability', 'Production management', 'Sales techniques'], correctAnswer: 1, explanation: 'Corporate governance refers to the system of rules, practices, and processes for directing and controlling companies ethically.', topic: 'Corporate Law', difficulty: 'Medium' }
+        ],
+        tips: ['Understand business management concepts', 'Study corporate law and governance', 'Follow business news and case studies', 'Develop analytical thinking skills']
+      },
+      {
+        id: 'tndalu-bcallb-hons',
+        name: 'B.C.A. LL.B. (Hons.) - 5 Years',
+        nameTamil: 'பி.சி.ஏ. எல்.எல்.பி. (ஹானர்ஸ்) - 5 ஆண்டுகள்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 150,
+          totalMarks: 150,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Computer Based (Online)',
+          negativeMarking: true,
+          sections: [
+            { name: 'English Language', nameTamil: 'ஆங்கில மொழி', questions: 25, marks: 25, topics: ['Grammar', 'Vocabulary', 'Comprehension'] },
+            { name: 'Current Affairs & GK', nameTamil: 'நடப்பு நிகழ்வுகள் & பொது அறிவு', questions: 25, marks: 25, topics: ['Tech News', 'Legal Affairs', 'Cyber World'] },
+            { name: 'Legal Aptitude', nameTamil: 'சட்ட திறன்', questions: 30, marks: 30, topics: ['Cyber Law', 'IT Act', 'Legal Reasoning'] },
+            { name: 'Logical Reasoning', nameTamil: 'தருக்க அறிவு', questions: 35, marks: 35, topics: ['Analytical Reasoning', 'Critical Thinking', 'Puzzles'] },
+            { name: 'Computer Awareness', nameTamil: 'கணினி விழிப்புணர்வு', questions: 35, marks: 35, topics: ['Computer Basics', 'Internet', 'Cyber Security Basics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tndalu-bcallb-1', year: '2024', question: 'The Information Technology Act was enacted in India in:', options: ['1998', '2000', '2002', '2008'], correctAnswer: 1, explanation: 'The IT Act 2000 was enacted to provide legal recognition for transactions carried out electronically.', topic: 'Cyber Law', difficulty: 'Easy' },
+          { id: 'tndalu-bcallb-2', year: '2024', question: 'Which section of IT Act deals with cyber terrorism?', options: ['Section 43', 'Section 66', 'Section 66F', 'Section 69'], correctAnswer: 2, explanation: 'Section 66F of IT Act, 2000 deals with cyber terrorism and prescribes punishment up to life imprisonment.', topic: 'IT Act', difficulty: 'Medium' }
+        ],
+        tips: ['Unique course for Tech + Law aspirants', 'Study IT Act and cyber laws thoroughly', 'Keep up with technology and privacy laws', 'Understand data protection regulations', 'Focus on emerging tech legal issues (AI, blockchain)']
+      },
+      // 3-Year LL.B
+      {
+        id: 'tndalu-llb-hons',
+        name: 'LL.B. (Hons.) - 3 Years',
+        nameTamil: 'எல்.எல்.பி. (ஹானர்ஸ்) - 3 ஆண்டுகள்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 120,
+          totalMarks: 120,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Computer Based (Online)',
+          negativeMarking: true,
+          sections: [
+            { name: 'English Language', nameTamil: 'ஆங்கில மொழி', questions: 20, marks: 20, topics: ['Grammar', 'Comprehension', 'Legal English'] },
+            { name: 'Current Affairs & GK', nameTamil: 'நடப்பு நிகழ்வுகள் & பொது அறிவு', questions: 30, marks: 30, topics: ['National', 'International', 'Legal News'] },
+            { name: 'Legal Aptitude', nameTamil: 'சட்ட திறன்', questions: 40, marks: 40, topics: ['Constitutional Law', 'Legal Reasoning', 'Jurisprudence'] },
+            { name: 'Logical Reasoning', nameTamil: 'தருக்க அறிவு', questions: 30, marks: 30, topics: ['Analytical Reasoning', 'Critical Analysis'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['For graduates from any discipline', 'Strong focus on legal reasoning', 'Study landmark Supreme Court judgments', 'Develop case analysis skills']
+      },
+      // Postgraduate Courses
+      {
+        id: 'tndalu-llm-ipr',
+        name: 'LL.M. (Intellectual Property Rights)',
+        nameTamil: 'எல்.எல்.எம். (அறிவுசார் சொத்துரிமை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'General Law', nameTamil: 'பொது சட்டம்', questions: 30, marks: 30, topics: ['Constitutional Law', 'Jurisprudence', 'International Law'] },
+            { name: 'Intellectual Property', nameTamil: 'அறிவுசார் சொத்து', questions: 50, marks: 50, topics: ['Patents', 'Copyrights', 'Trademarks', 'Trade Secrets'] },
+            { name: 'Current Developments', nameTamil: 'நடப்பு வளர்ச்சிகள்', questions: 20, marks: 20, topics: ['IP News', 'Case Laws', 'International Treaties'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study Patent Act, Copyright Act, Trademark Act', 'Follow IPR-related judgments', 'Understand TRIPS Agreement', 'Know about WIPO and international IP conventions']
+      },
+      {
+        id: 'tndalu-llm-cyber',
+        name: 'LL.M. (Cyber Law)',
+        nameTamil: 'எல்.எல்.எம். (இணைய சட்டம்)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'General Law', nameTamil: 'பொது சட்டம்', questions: 30, marks: 30, topics: ['Constitutional Law', 'Criminal Law', 'Evidence Act'] },
+            { name: 'Cyber & IT Law', nameTamil: 'இணைய & தகவல் தொழில்நுட்ப சட்டம்', questions: 50, marks: 50, topics: ['IT Act', 'Data Protection', 'E-Commerce', 'Cyber Crimes'] },
+            { name: 'Emerging Issues', nameTamil: 'வளர்ந்து வரும் சிக்கல்கள்', questions: 20, marks: 20, topics: ['AI Regulations', 'Blockchain Law', 'Privacy Laws'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Deep understanding of IT Act 2000', 'Study Data Protection Bill', 'Follow cyber crime cases', 'Understand global cyber laws (GDPR, CCPA)']
+      },
+      {
+        id: 'tndalu-llm-criminal',
+        name: 'LL.M. (Criminal Law)',
+        nameTamil: 'எல்.எல்.எம். (குற்றவியல் சட்டம்)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'General Law', nameTamil: 'பொது சட்டம்', questions: 25, marks: 25, topics: ['Constitutional Law', 'Jurisprudence'] },
+            { name: 'Criminal Law', nameTamil: 'குற்றவியல் சட்டம்', questions: 50, marks: 50, topics: ['IPC', 'CrPC', 'Evidence Act', 'POCSO'] },
+            { name: 'Criminology', nameTamil: 'குற்றவியல் ஆய்வு', questions: 25, marks: 25, topics: ['Theories of Crime', 'Penology', 'Victimology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Master IPC and CrPC thoroughly', 'Study landmark criminal law judgments', 'Understand forensic science basics', 'Follow criminal law amendments']
+      }
+    ]
   }
 ];
 
