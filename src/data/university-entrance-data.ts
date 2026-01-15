@@ -476,6 +476,254 @@ export const universities: University[] = [
         previousQuestions: [],
         tips: ['Practice sketching daily', 'Develop spatial visualization', 'Focus on aesthetic sense questions']
       },
+      // ========== B.E./B.Tech Courses (Engineering Streams) ==========
+      // Faculty of Information & Communication
+      {
+        id: 'anna-be-cse',
+        name: 'B.E. Computer Science & Engineering',
+        nameTamil: 'பி.இ. கணினி அறிவியல் & பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Algebra', 'Calculus', 'Matrices', 'Differential Equations'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Optics', 'Electromagnetism', 'Modern Physics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Physical', 'Organic', 'Inorganic Chemistry'] },
+            { name: 'Computer Basics', nameTamil: 'கணினி அடிப்படைகள்', questions: 50, marks: 50, topics: ['Programming Logic', 'Number Systems', 'Basic Computing'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'anna-cse-1', year: '2024', question: 'The binary equivalent of decimal 25 is:', options: ['11001', '10101', '11011', '10011'], correctAnswer: 0, explanation: '25 = 16+8+1 = 2⁴+2³+2⁰ = 11001 in binary.', topic: 'Number Systems', difficulty: 'Easy' },
+          { id: 'anna-cse-2', year: '2024', question: 'Which data structure uses LIFO principle?', options: ['Queue', 'Stack', 'Linked List', 'Array'], correctAnswer: 1, explanation: 'Stack follows Last In First Out (LIFO) principle.', topic: 'Data Structures', difficulty: 'Easy' }
+        ],
+        tips: ['Top choice in TN - very competitive', 'Strong foundation in PCM required', 'Learn basic programming before admission']
+      },
+      {
+        id: 'anna-be-ai-ds',
+        name: 'B.E. Artificial Intelligence & Data Science',
+        nameTamil: 'பி.இ. செயற்கை நுண்ணறிவு & தரவு அறிவியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 60, marks: 60, topics: ['Statistics', 'Linear Algebra', 'Probability', 'Calculus'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 45, topics: ['Modern Physics', 'Electronics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Physical Chemistry', 'Computational Chemistry'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 50, marks: 50, topics: ['Logical Reasoning', 'Pattern Recognition'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'anna-ai-1', year: '2024', question: 'Machine Learning is a subset of:', options: ['Data Science', 'Artificial Intelligence', 'Deep Learning', 'Neural Networks'], correctAnswer: 1, explanation: 'Machine Learning is a subset of AI that enables systems to learn from data.', topic: 'AI Basics', difficulty: 'Easy' }
+        ],
+        tips: ['High demand course - very high cutoff', 'Strong math background essential', 'Learn Python basics before joining']
+      },
+      {
+        id: 'anna-be-ece',
+        name: 'B.E. Electronics & Communication Engineering',
+        nameTamil: 'பி.இ. மின்னணுவியல் & தகவல் தொடர்பு பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Algebra', 'Calculus', 'Transforms'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 60, marks: 60, topics: ['Electronics', 'Semiconductors', 'Waves', 'Optics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Physical Chemistry', 'Polymers'] },
+            { name: 'Basic Electronics', nameTamil: 'அடிப்படை மின்னணுவியல்', questions: 45, marks: 45, topics: ['Circuits', 'Signals', 'Communication'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'anna-ece-1', year: '2024', question: 'The unit of capacitance is:', options: ['Ohm', 'Henry', 'Farad', 'Weber'], correctAnswer: 2, explanation: 'Farad (F) is the SI unit of electrical capacitance.', topic: 'Basic Electronics', difficulty: 'Easy' }
+        ],
+        tips: ['Strong physics foundation required', 'Learn basic circuit analysis', 'Good for VLSI and telecom careers']
+      },
+      // Faculty of Mechanical Engineering
+      {
+        id: 'anna-be-mech',
+        name: 'B.E. Mechanical Engineering',
+        nameTamil: 'பி.இ. இயந்திர பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 55, marks: 55, topics: ['Calculus', 'Vectors', 'Differential Equations'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 55, marks: 55, topics: ['Mechanics', 'Thermodynamics', 'Heat Transfer'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Materials', 'Fuels', 'Corrosion'] },
+            { name: 'Engineering Basics', nameTamil: 'பொறியியல் அடிப்படைகள்', questions: 45, marks: 45, topics: ['Engineering Drawing', 'Mechanics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'anna-mech-1', year: '2024', question: 'The first law of thermodynamics is based on:', options: ['Conservation of mass', 'Conservation of energy', 'Conservation of momentum', 'Conservation of entropy'], correctAnswer: 1, explanation: 'The first law of thermodynamics is the law of conservation of energy.', topic: 'Thermodynamics', difficulty: 'Easy' }
+        ],
+        tips: ['Evergreen branch with wide scope', 'Strong in physics and mathematics', 'Learn CAD/CAM basics']
+      },
+      {
+        id: 'anna-be-aero',
+        name: 'B.E. Aeronautical Engineering',
+        nameTamil: 'பி.இ. விமானவியல் பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 55, marks: 55, topics: ['Calculus', 'Differential Equations', 'Complex Variables'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 60, marks: 60, topics: ['Fluid Mechanics', 'Aerodynamics', 'Propulsion'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 40, marks: 40, topics: ['Fuels', 'Composites', 'Alloys'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 45, marks: 45, topics: ['Spatial Reasoning', 'Physics Application'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'anna-aero-1', year: '2024', question: 'Bernoulli\'s principle explains:', options: ['Gravity effect on fluids', 'Lift generation in aircraft', 'Thermal expansion', 'Electrical conductivity'], correctAnswer: 1, explanation: 'Bernoulli\'s principle explains how aircraft wings generate lift through pressure differences.', topic: 'Aerodynamics', difficulty: 'Medium' }
+        ],
+        tips: ['MIT Campus Anna Univ specializes in this', 'Strong physics background essential', 'Great for ISRO/DRDO careers']
+      },
+      {
+        id: 'anna-be-robotics',
+        name: 'B.E. Robotics & Automation',
+        nameTamil: 'பி.இ. ரோபோட்டிக்ஸ் & தானியக்கம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Linear Algebra', 'Calculus', 'Transforms'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 55, marks: 55, topics: ['Mechanics', 'Electronics', 'Control Systems'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Materials Science', 'Polymers'] },
+            { name: 'Computer/Electronics', nameTamil: 'கணினி/மின்னணுவியல்', questions: 50, marks: 50, topics: ['Programming', 'Sensors', 'Automation'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Emerging field with Industry 4.0', 'Mix of mechanical, electronics & CS', 'Learn Arduino/Raspberry Pi basics']
+      },
+      // Faculty of Technology
+      {
+        id: 'anna-btech-chem',
+        name: 'B.Tech Chemical Engineering',
+        nameTamil: 'பி.டெக் வேதியியல் பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 70, marks: 70, topics: ['Physical', 'Organic', 'Inorganic', 'Industrial Chemistry'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Calculus', 'Differential Equations'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Thermodynamics', 'Fluid Mechanics'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 30, marks: 30, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for petrochemical and pharma industries', 'Strong chemistry foundation needed', 'GATE Chemical has good scope']
+      },
+      {
+        id: 'anna-btech-biotech',
+        name: 'B.Tech Biotechnology',
+        nameTamil: 'பி.டெக் உயிர்தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 70, marks: 70, topics: ['Molecular Biology', 'Genetics', 'Microbiology', 'Biochemistry'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Organic', 'Biochemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 40, marks: 40, topics: ['Biophysics'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Statistics', 'Biostatistics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Ideal for PCB students', 'Good for pharma and research careers', 'Learn lab techniques']
+      },
+      // Faculty of Civil Engineering
+      {
+        id: 'anna-be-civil',
+        name: 'B.E. Civil Engineering',
+        nameTamil: 'பி.இ. குடிசார் பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 55, marks: 55, topics: ['Calculus', 'Geometry', 'Mechanics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 55, marks: 55, topics: ['Mechanics', 'Strength of Materials', 'Fluid Mechanics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Engineering Materials', 'Concrete', 'Water Chemistry'] },
+            { name: 'Engineering Basics', nameTamil: 'பொறியியல் அடிப்படைகள்', questions: 45, marks: 45, topics: ['Surveying', 'Engineering Drawing'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Essential for infrastructure careers', 'Learn surveying and AutoCAD', 'Good scope in govt sector']
+      },
+      {
+        id: 'anna-be-geoinformatics',
+        name: 'B.E. Geo-Informatics',
+        nameTamil: 'பி.இ. புவி-தகவலியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Geometry', 'Statistics', 'Algebra'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Remote Sensing', 'Optics', 'Waves'] },
+            { name: 'Geography', nameTamil: 'புவியியல்', questions: 50, marks: 50, topics: ['Physical Geography', 'Cartography', 'GIS'] },
+            { name: 'Computer Basics', nameTamil: 'கணினி அடிப்படைகள்', questions: 50, marks: 50, topics: ['Programming', 'Database', 'Spatial Analysis'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'anna-geo-1', year: '2024', question: 'GIS stands for:', options: ['Global Information System', 'Geographic Information System', 'Geological Investigation System', 'Ground Investigation Service'], correctAnswer: 1, explanation: 'GIS stands for Geographic Information System - a framework for gathering, managing, and analyzing spatial data.', topic: 'GIS Basics', difficulty: 'Easy' }
+        ],
+        tips: ['Unique course - Maps, GPS, Satellite data', 'Good for ISRO, Survey of India', 'Learn GIS software (QGIS, ArcGIS)']
+      },
       {
         id: 'msc-physics',
         name: 'M.Sc. Physics',
@@ -1840,6 +2088,176 @@ export const universities: University[] = [
         syllabus: [],
         previousQuestions: [],
         tips: ['Focus on teaching aptitude', 'Learn child psychology', 'Know education policies']
+      },
+      // ========== Annamalai Specialized Courses ==========
+      // Faculty of Agriculture
+      {
+        id: 'au-bsc-agri-hons',
+        name: 'B.Sc (Hons) Agriculture',
+        nameTamil: 'பி.எஸ்சி (ஹானர்ஸ்) வேளாண்மை',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 150,
+          totalMarks: 150,
+          duration: '2.5 Hours',
+          durationMinutes: 150,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 50, marks: 50, topics: ['Botany', 'Zoology', 'Genetics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 40, marks: 40, topics: ['Organic', 'Inorganic', 'Soil Chemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Mechanics', 'Optics'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 30, marks: 30, topics: ['Agriculture GK', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'au-agri-1', year: '2024', question: 'The father of Green Revolution in India is:', options: ['Norman Borlaug', 'M.S. Swaminathan', 'Verghese Kurien', 'C. Subramaniam'], correctAnswer: 1, explanation: 'M.S. Swaminathan is called the Father of Green Revolution in India for introducing high-yielding wheat varieties.', topic: 'Agriculture History', difficulty: 'Easy' }
+        ],
+        tips: ['Flagship course of Annamalai', 'Study crop science thoroughly', 'Learn soil types and nutrients']
+      },
+      {
+        id: 'au-bsc-horti',
+        name: 'B.Sc (Hons) Horticulture',
+        nameTamil: 'பி.எஸ்சி (ஹானர்ஸ்) தோட்டக்கலை',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 150,
+          totalMarks: 150,
+          duration: '2.5 Hours',
+          durationMinutes: 150,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 60, marks: 60, topics: ['Plant Science', 'Floriculture', 'Pomology'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 40, marks: 40, topics: ['Organic', 'Soil Chemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 25, marks: 25, topics: ['Mechanics', 'Optics'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 25, marks: 25, topics: ['Reasoning', 'GK'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study fruit and vegetable cultivation', 'Learn post-harvest management', 'Good for plantation industry']
+      },
+      // Faculty of Marine Sciences
+      {
+        id: 'au-bfsc',
+        name: 'B.F.Sc. (Bachelor of Fisheries Science)',
+        nameTamil: 'பி.எஃப்.எஸ்சி. (மீன்வளவியல் இளநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 150,
+          totalMarks: 150,
+          duration: '2.5 Hours',
+          durationMinutes: 150,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Zoology', nameTamil: 'விலங்கியல்', questions: 50, marks: 50, topics: ['Fish Biology', 'Aquatic Organisms', 'Marine Life'] },
+            { name: 'Botany', nameTamil: 'தாவரவியல்', questions: 30, marks: 30, topics: ['Aquatic Plants', 'Algae', 'Phytoplankton'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 35, marks: 35, topics: ['Water Chemistry', 'Biochemistry'] },
+            { name: 'General Science', nameTamil: 'பொது அறிவியல்', questions: 35, marks: 35, topics: ['Marine Science GK', 'Environment'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'au-fish-1', year: '2024', question: 'Aquaculture is the farming of:', options: ['Animals', 'Plants', 'Aquatic organisms', 'Birds'], correctAnswer: 2, explanation: 'Aquaculture is the farming of aquatic organisms including fish, molluscs, crustaceans and aquatic plants.', topic: 'Fisheries Basics', difficulty: 'Easy' },
+          { id: 'au-fish-2', year: '2024', question: 'Which is the largest fish?', options: ['Blue Whale', 'Whale Shark', 'Great White Shark', 'Orca'], correctAnswer: 1, explanation: 'Whale Shark is the largest fish (Blue Whale is a mammal, not a fish).', topic: 'Marine Biology', difficulty: 'Easy' }
+        ],
+        tips: ['Professional degree - 4 years', 'Strong in marine biology', 'Good for fisheries dept jobs', 'Coastal proximity advantage at Annamalai']
+      },
+      {
+        id: 'au-msc-marine-bio',
+        name: 'M.Sc. Marine Biology & Oceanography',
+        nameTamil: 'எம்.எஸ்சி. கடல் உயிரியல் & சமுத்திரவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Marine Biology', nameTamil: 'கடல் உயிரியல்', questions: 40, marks: 40, topics: ['Marine Organisms', 'Coral Reefs', 'Marine Ecosystems'] },
+            { name: 'Oceanography', nameTamil: 'சமுத்திரவியல்', questions: 30, marks: 30, topics: ['Physical Oceanography', 'Chemical Oceanography', 'Ocean Currents'] },
+            { name: 'Zoology', nameTamil: 'விலங்கியல்', questions: 20, marks: 20, topics: ['Fish Anatomy', 'Invertebrates'] },
+            { name: 'General Science', nameTamil: 'பொது அறிவியல்', questions: 10, marks: 10, topics: ['Marine Environment', 'Climate'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['CAS Marine Centre at Annamalai', 'Study marine ecosystems', 'Research opportunities with NIOT']
+      },
+      {
+        id: 'au-msc-coastal-aqua',
+        name: 'M.Sc. Coastal Aquaculture',
+        nameTamil: 'எம்.எஸ்சி. கடலோர நீர்வளர்ப்பு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Aquaculture', nameTamil: 'நீர்வளர்ப்பு', questions: 45, marks: 45, topics: ['Fish Farming', 'Shrimp Culture', 'Seaweed Farming'] },
+            { name: 'Marine Science', nameTamil: 'கடல் அறிவியல்', questions: 30, marks: 30, topics: ['Coastal Ecology', 'Water Quality'] },
+            { name: 'Biotechnology', nameTamil: 'உயிர்தொழில்நுட்பம்', questions: 15, marks: 15, topics: ['Fish Genetics', 'Disease Management'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Great for shrimp farming industry', 'Study water quality management', 'Good entrepreneurship scope']
+      },
+      // Faculty of Fine Arts
+      {
+        id: 'au-bfa-music',
+        name: 'B.F.A. Music (Vocal/Instrumental)',
+        nameTamil: 'பி.எஃப்.ஏ. இசை (குரல்/கருவி)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR + Practical',
+          negativeMarking: false,
+          sections: [
+            { name: 'Music Theory', nameTamil: 'இசைக் கோட்பாடு', questions: 40, marks: 40, topics: ['Ragas', 'Talas', 'Compositions', 'Music History'] },
+            { name: 'Practical Performance', nameTamil: 'நடைமுறை நிகழ்ச்சி', questions: 30, marks: 30, topics: ['Vocal/Instrument Performance', 'Manodharma'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Music Composers', 'Cultural History'] },
+            { name: 'Language', nameTamil: 'மொழி', questions: 10, marks: 10, topics: ['Tamil', 'Sanskrit'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Prior training in Carnatic music required', 'Know major composers (Trinity)', 'Practice performance pieces']
+      },
+      {
+        id: 'au-bfa-dance',
+        name: 'B.F.A. Dance (Bharatanatyam)',
+        nameTamil: 'பி.எஃப்.ஏ. நடனம் (பரதநாட்டியம்)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR + Practical',
+          negativeMarking: false,
+          sections: [
+            { name: 'Dance Theory', nameTamil: 'நடனக் கோட்பாடு', questions: 35, marks: 35, topics: ['Natyashastra', 'Adavus', 'Mudras', 'Dance History'] },
+            { name: 'Practical Performance', nameTamil: 'நடைமுறை நிகழ்ச்சி', questions: 35, marks: 35, topics: ['Alarippu', 'Jatiswaram', 'Varnam', 'Padam'] },
+            { name: 'Music Knowledge', nameTamil: 'இசை அறிவு', questions: 20, marks: 20, topics: ['Carnatic Music Basics', 'Ragas', 'Talas'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Cultural History', 'Temple Arts'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Prior Bharatanatyam training required', 'Study Natyashastra', 'Know dance pioneers']
       }
     ]
   },
@@ -2305,6 +2723,102 @@ export const universities: University[] = [
         syllabus: [],
         previousQuestions: [],
         tips: ['Read Sangam literature deeply', 'Study Tolkappiyam', 'Practice essay writing']
+      },
+      // ========== Specialized MKU Courses ==========
+      {
+        id: 'mku-msc-genomics',
+        name: 'M.Sc Genomics',
+        nameTamil: 'எம்.எஸ்சி ஜீனோமிக்ஸ்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 40, marks: 40, topics: ['DNA Structure', 'Replication', 'Transcription', 'Translation'] },
+            { name: 'Genetics', nameTamil: 'மரபியல்', questions: 30, marks: 30, topics: ['Mendelian', 'Population Genetics', 'Human Genetics'] },
+            { name: 'Bioinformatics', nameTamil: 'உயிர் தகவலியல்', questions: 20, marks: 20, topics: ['Sequence Analysis', 'Databases', 'Phylogenetics'] },
+            { name: 'Biochemistry', nameTamil: 'உயிர்வேதியியல்', questions: 10, marks: 10, topics: ['Proteins', 'Enzymes'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mku-gen-1', year: '2024', question: 'The Human Genome Project was completed in:', options: ['2000', '2003', '2005', '2010'], correctAnswer: 1, explanation: 'The Human Genome Project was completed in April 2003, successfully sequencing the entire human genome.', topic: 'Genomics History', difficulty: 'Easy' },
+          { id: 'mku-gen-2', year: '2024', question: 'CRISPR-Cas9 is used for:', options: ['Protein sequencing', 'Gene editing', 'RNA isolation', 'Cell culture'], correctAnswer: 1, explanation: 'CRISPR-Cas9 is a revolutionary gene editing technology that allows precise modification of DNA sequences.', topic: 'Genetic Engineering', difficulty: 'Easy' }
+        ],
+        tips: ['Very advanced - study DNA/RNA deeply', 'Learn bioinformatics tools', 'Centre of Excellence at MKU', 'Great for research careers']
+      },
+      {
+        id: 'mku-msc-microbial-gene',
+        name: 'M.Sc Microbial Gene Technology',
+        nameTamil: 'எம்.எஸ்சி நுண்ணுயிர் மரபணு தொழில்நுட்பம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Microbiology', nameTamil: 'நுண்ணுயிரியல்', questions: 35, marks: 35, topics: ['Bacteria', 'Viruses', 'Fungi', 'Microbial Physiology'] },
+            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 35, marks: 35, topics: ['Gene Expression', 'Cloning', 'PCR'] },
+            { name: 'Genetic Engineering', nameTamil: 'மரபணு பொறியியல்', questions: 20, marks: 20, topics: ['Recombinant DNA', 'Vectors', 'Transformation'] },
+            { name: 'Biochemistry', nameTamil: 'உயிர்வேதியியல்', questions: 10, marks: 10, topics: ['Enzymes', 'Metabolism'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on recombinant DNA technology', 'Learn microbial genetics', 'Study industrial applications']
+      },
+      {
+        id: 'mku-ma-folklore',
+        name: 'M.A. Folklore',
+        nameTamil: 'எம்.ஏ. நாட்டுப்புறவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Folklore Studies', nameTamil: 'நாட்டுப்புறவியல்', questions: 40, marks: 40, topics: ['Folk Tales', 'Folk Songs', 'Folk Arts', 'Rituals'] },
+            { name: 'Tamil Culture', nameTamil: 'தமிழ் பண்பாடு', questions: 30, marks: 30, topics: ['Traditional Arts', 'Cultural Practices', 'Festivals'] },
+            { name: 'Anthropology', nameTamil: 'மானிடவியல்', questions: 20, marks: 20, topics: ['Cultural Anthropology', 'Social Customs'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Current Affairs', 'Indian Culture'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Unique to MKU - study cultural traditions', 'Learn Tamil folk literature', 'Field work is part of curriculum', 'Good for cultural preservation roles']
+      },
+      {
+        id: 'mku-ma-jmc',
+        name: 'M.A. Journalism & Mass Communication',
+        nameTamil: 'எம்.ஏ. பத்திரிகையியல் & தொடர்பு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Media Studies', nameTamil: 'ஊடகவியல்', questions: 35, marks: 35, topics: ['Print', 'Electronic', 'Digital Media'] },
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 30, marks: 30, topics: ['National', 'International', 'State'] },
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 20, marks: 20, topics: ['Grammar', 'Comprehension', 'Writing'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 15, marks: 15, topics: ['History of Media', 'Press Laws'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Read newspapers daily', 'Know media history and ethics', 'Learn digital media trends']
       }
     ]
   },
@@ -2677,6 +3191,127 @@ export const universities: University[] = [
           }
         ],
         tips: ['Strong foundation in algebra', 'Practice real analysis problems', 'Study differential equations']
+      },
+      // ========== Alagappa Specialized Courses ==========
+      // Physical Education
+      {
+        id: 'alagappa-bped',
+        name: 'B.P.Ed (Bachelor of Physical Education)',
+        nameTamil: 'பி.பி.எட் (உடற்கல்வி இளநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR + Physical Tests',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physical Education', nameTamil: 'உடற்கல்வி', questions: 40, marks: 40, topics: ['History of Sports', 'Sports Psychology', 'Training Methods'] },
+            { name: 'Anatomy & Physiology', nameTamil: 'உடற்கூறு & உடலியல்', questions: 25, marks: 25, topics: ['Skeletal System', 'Muscular System', 'Exercise Physiology'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Sports GK', 'Current Affairs', 'Olympics'] },
+            { name: 'Language', nameTamil: 'மொழி', questions: 15, marks: 15, topics: ['English', 'Tamil'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'alagappa-bped-1', year: '2024', question: 'The Olympic Games are held every:', options: ['2 years', '3 years', '4 years', '5 years'], correctAnswer: 2, explanation: 'The Summer Olympic Games are held every 4 years (quadrennially).', topic: 'Sports GK', difficulty: 'Easy' },
+          { id: 'alagappa-bped-2', year: '2024', question: 'Kabaddi originated in:', options: ['China', 'Japan', 'India', 'Pakistan'], correctAnswer: 2, explanation: 'Kabaddi is an ancient contact sport that originated in India, mentioned in Mahabharata.', topic: 'Sports History', difficulty: 'Easy' }
+        ],
+        tips: ['Physical fitness test is mandatory', 'Study sports history', 'Know Olympic sports and records', 'Famous for PE at Alagappa']
+      },
+      {
+        id: 'alagappa-mped',
+        name: 'M.P.Ed (Master of Physical Education)',
+        nameTamil: 'எம்.பி.எட் (உடற்கல்வி முதுநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physical Education', nameTamil: 'உடற்கல்வி', questions: 35, marks: 35, topics: ['Pedagogy', 'Sports Management', 'Training Methodology'] },
+            { name: 'Anatomy & Physiology', nameTamil: 'உடற்கூறு & உடலியல்', questions: 25, marks: 25, topics: ['Kinesiology', 'Biomechanics', 'Exercise Physiology'] },
+            { name: 'Sports Psychology', nameTamil: 'விளையாட்டு உளவியல்', questions: 20, marks: 20, topics: ['Motivation', 'Mental Training', 'Performance Psychology'] },
+            { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 20, marks: 20, topics: ['Statistics', 'Research Design'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['For B.P.Ed graduates', 'Learn research methodology', 'Study sports science advances']
+      },
+      {
+        id: 'alagappa-yoga-diploma',
+        name: 'Diploma in Yoga',
+        nameTamil: 'யோகா டிப்ளமா',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR + Practical',
+          negativeMarking: false,
+          sections: [
+            { name: 'Yoga Philosophy', nameTamil: 'யோகா தத்துவம்', questions: 35, marks: 35, topics: ['Patanjali Yoga Sutras', 'Hatha Yoga', 'Ashtanga Yoga'] },
+            { name: 'Yoga Practice', nameTamil: 'யோகா நடைமுறை', questions: 35, marks: 35, topics: ['Asanas', 'Pranayama', 'Meditation'] },
+            { name: 'Anatomy', nameTamil: 'உடற்கூறு', questions: 20, marks: 20, topics: ['Human Body', 'Yoga Therapy'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Yoga History', 'Wellness'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Practical yoga assessment included', 'Study Yoga Sutras', 'Learn therapeutic applications']
+      },
+      // Management Courses
+      {
+        id: 'alagappa-mba-ib',
+        name: 'MBA (International Business)',
+        nameTamil: 'எம்பிஏ (சர்வதேச வணிகம்)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல் திறன்', questions: 30, marks: 30, topics: ['Mathematics', 'Data Interpretation'] },
+            { name: 'Verbal Ability', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['English', 'Comprehension'] },
+            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 25, marks: 25, topics: ['Puzzles', 'Critical Reasoning'] },
+            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', questions: 20, marks: 20, topics: ['International Trade', 'Global Business', 'Economics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Signature course at Alagappa', 'Study international trade', 'Know EXIM policies', 'Good for export industry']
+      },
+      {
+        id: 'alagappa-mba-banking',
+        name: 'MBA (Banking & Finance)',
+        nameTamil: 'எம்பிஏ (வங்கி & நிதி)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல் திறன்', questions: 30, marks: 30, topics: ['Mathematics', 'Data Interpretation'] },
+            { name: 'Banking Awareness', nameTamil: 'வங்கி விழிப்புணர்வு', questions: 25, marks: 25, topics: ['Banking System', 'RBI', 'Financial Instruments'] },
+            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 25, marks: 25, topics: ['Puzzles', 'Analytical Reasoning'] },
+            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', questions: 20, marks: 20, topics: ['Current Affairs', 'Economy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for bank job aspirants', 'Study banking operations', 'Know RBI policies']
       }
     ]
   },
