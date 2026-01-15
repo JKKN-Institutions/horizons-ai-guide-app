@@ -596,6 +596,259 @@ export const universities: University[] = [
         syllabus: [],
         previousQuestions: [],
         tips: ['Practice circuit analysis', 'Understand semiconductor physics', 'Learn microprocessor concepts']
+      },
+      {
+        id: 'bu-msc-textile',
+        name: 'M.Sc Textiles & Apparel Design',
+        nameTamil: 'எம்.எஸ்சி ஜவுளி & ஆடை வடிவமைப்பு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Textile Science', nameTamil: 'ஜவுளி அறிவியல்', questions: 40, marks: 40, topics: ['Fibres', 'Fabrics', 'Dyeing', 'Processing'] },
+            { name: 'Fashion Design', nameTamil: 'நாகரிக வடிவமைப்பு', questions: 30, marks: 30, topics: ['Pattern Making', 'Garment Construction', 'Fashion Trends'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 20, marks: 20, topics: ['Textile Chemistry', 'Dyes'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Coimbatore is textile hub - good placement', 'Study textile fibres', 'Learn fashion trends']
+      },
+      {
+        id: 'bu-msc-bioinformatics',
+        name: 'M.Sc Bioinformatics',
+        nameTamil: 'எம்.எஸ்சி உயிர் தகவலியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 35, marks: 35, topics: ['Molecular Biology', 'Genomics', 'Proteomics'] },
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 35, marks: 35, topics: ['Programming', 'Databases', 'Algorithms'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 20, marks: 20, topics: ['Statistics', 'Probability'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Blend of biology and computing', 'Learn programming languages', 'Growing field with pharma opportunities']
+      },
+      {
+        id: 'bu-msc-environmental',
+        name: 'M.Sc Environmental Sciences',
+        nameTamil: 'எம்.எஸ்சி சுற்றுச்சூழல் அறிவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Environmental Science', nameTamil: 'சுற்றுச்சூழல் அறிவியல்', questions: 40, marks: 40, topics: ['Ecology', 'Pollution', 'Conservation', 'Climate Change'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 25, marks: 25, topics: ['Environmental Chemistry', 'Toxicology'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 25, marks: 25, topics: ['Biodiversity', 'Ecosystems'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing demand in CSR and environmental consultancy', 'Study pollution control acts', 'Learn impact assessment']
+      },
+      {
+        id: 'bu-msc-cyber-security',
+        name: 'M.Sc Cyber Security',
+        nameTamil: 'எம்.எஸ்சி சைபர் பாதுகாப்பு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Networks', nameTamil: 'கணினி வலையமைப்பு', questions: 30, marks: 30, topics: ['Network Security', 'Protocols', 'Firewalls'] },
+            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 25, marks: 25, topics: ['C', 'Python', 'Shell Scripting'] },
+            { name: 'Security Concepts', nameTamil: 'பாதுகாப்பு கருத்துகள்', questions: 25, marks: 25, topics: ['Cryptography', 'Ethical Hacking', 'Malware'] },
+            { name: 'Database & OS', nameTamil: 'தரவுத்தளம் & OS', questions: 20, marks: 20, topics: ['SQL', 'Linux Security'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['High demand field', 'Learn ethical hacking basics', 'Study network protocols']
+      },
+      {
+        id: 'bu-msc-data-analytics',
+        name: 'M.Sc Data Analytics',
+        nameTamil: 'எம்.எஸ்சி தரவு பகுப்பாய்வு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 30, marks: 30, topics: ['Probability', 'Regression', 'Hypothesis Testing'] },
+            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 30, marks: 30, topics: ['Python', 'R', 'SQL'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 25, topics: ['Linear Algebra', 'Calculus'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['High-demand industry skill', 'Learn Python and R', 'Study machine learning basics']
+      },
+      {
+        id: 'bu-msc-medical-physics',
+        name: 'M.Sc Medical Physics',
+        nameTamil: 'எம்.எஸ்சி மருத்துவ இயற்பியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 40, marks: 40, topics: ['Nuclear Physics', 'Radiation Physics', 'Medical Imaging'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 25, marks: 25, topics: ['Human Anatomy', 'Physiology', 'Radiobiology'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 20, marks: 20, topics: ['Calculus', 'Statistics'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Bharathiar is famous for Medical Physics', 'Career in hospitals and cancer centres', 'Study nuclear physics thoroughly']
+      },
+      {
+        id: 'bu-msc-human-genetics',
+        name: 'M.Sc Human Genetics',
+        nameTamil: 'எம்.எஸ்சி மனித மரபியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Genetics', nameTamil: 'மரபியல்', questions: 40, marks: 40, topics: ['Molecular Genetics', 'Cytogenetics', 'Population Genetics'] },
+            { name: 'Biochemistry', nameTamil: 'உயிர்வேதியியல்', questions: 25, marks: 25, topics: ['Proteins', 'Enzymes', 'Metabolism'] },
+            { name: 'Cell Biology', nameTamil: 'உயிரணு உயிரியல்', questions: 25, marks: 25, topics: ['Cell Structure', 'Cell Division'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing field in medical diagnostics', 'Study molecular genetics', 'Career in genetic counselling']
+      },
+      {
+        id: 'bu-mjmc',
+        name: 'M.J.M.C (Journalism & Mass Comm)',
+        nameTamil: 'எம்.ஜே.எம்.சி (பத்திரிகையியல் & வெகுஜன தொடர்பு)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mass Communication', nameTamil: 'வெகுஜன தொடர்பு', questions: 35, marks: 35, topics: ['Communication Theory', 'Media Studies', 'Journalism'] },
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 30, marks: 30, topics: ['Writing', 'Comprehension', 'Grammar'] },
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 20, marks: 20, topics: ['National', 'International', 'Media News'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'GK'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good writing skills essential', 'Stay updated with news', 'Learn media laws']
+      },
+      {
+        id: 'bu-ma-economics',
+        name: 'M.A Economics',
+        nameTamil: 'எம்.ஏ பொருளியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Micro Economics', nameTamil: 'நுண் பொருளியல்', questions: 30, marks: 30, topics: ['Demand', 'Supply', 'Market Structures', 'Consumer Theory'] },
+            { name: 'Macro Economics', nameTamil: 'பேரணி பொருளியல்', questions: 30, marks: 30, topics: ['National Income', 'Inflation', 'Monetary Policy'] },
+            { name: 'Indian Economy', nameTamil: 'இந்திய பொருளாதாரம்', questions: 25, marks: 25, topics: ['Planning', 'Reforms', 'Current Issues'] },
+            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 15, marks: 15, topics: ['Basic Statistics', 'Econometrics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Excellent for UPSC Economics optional', 'Study Indian economy', 'Learn econometrics']
+      },
+      {
+        id: 'bu-msw',
+        name: 'MSW (Master of Social Work)',
+        nameTamil: 'எம்.எஸ்.டபிள்யூ (சமூக பணி முதுநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Social Work', nameTamil: 'சமூக பணி', questions: 40, marks: 40, topics: ['Case Work', 'Group Work', 'Community Organization'] },
+            { name: 'Social Sciences', nameTamil: 'சமூக அறிவியல்', questions: 30, marks: 30, topics: ['Sociology', 'Psychology', 'Anthropology'] },
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 20, marks: 20, topics: ['Social Issues', 'Government Schemes'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for NGO sector', 'Study social work methods', 'Learn about welfare schemes']
+      },
+      {
+        id: 'bu-mcom-fintech',
+        name: 'M.Com Financial Technology',
+        nameTamil: 'எம்.காம் நிதி தொழில்நுட்பம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Finance', nameTamil: 'நிதி', questions: 35, marks: 35, topics: ['Financial Management', 'Banking', 'Investment'] },
+            { name: 'Accounting', nameTamil: 'கணக்கியல்', questions: 30, marks: 30, topics: ['Financial Accounting', 'Cost Accounting'] },
+            { name: 'Technology', nameTamil: 'தொழில்நுட்பம்', questions: 20, marks: 20, topics: ['Blockchain', 'Digital Payments', 'Data Analytics'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Quantitative', 'Reasoning'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Emerging field in finance', 'Learn about blockchain', 'Study digital payments ecosystem']
       }
     ]
   },
@@ -1017,7 +1270,281 @@ export const universities: University[] = [
       { event: 'Exam', eventTamil: 'தேர்வு', date: 'June 2026', status: 'upcoming' },
       { event: 'Results', eventTamil: 'முடிவுகள்', date: 'July 2026', status: 'upcoming' }
     ],
-    courses: []
+    courses: [
+      {
+        id: 'bdu-integrated-msc-life',
+        name: '5-Year Integrated M.Sc Life Sciences',
+        nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.எஸ்சி உயிர் அறிவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Cell Biology', 'Genetics', 'Molecular Biology', 'Ecology'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Organic', 'Inorganic', 'Biochemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 20, marks: 20, topics: ['Biophysics', 'Optics'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 10, marks: 10, topics: ['Logical Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Direct entry after 12th with Biology', 'Focus on cell biology and genetics', 'Prepare NEET-level biology questions']
+      },
+      {
+        id: 'bdu-integrated-msc-biomedical',
+        name: '5-Year Integrated M.Sc Bio-Medical Science',
+        nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.எஸ்சி உயிர்-மருத்துவ அறிவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 35, marks: 35, topics: ['Human Anatomy', 'Physiology', 'Biochemistry'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Organic Chemistry', 'Medicinal Chemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 20, marks: 20, topics: ['Medical Physics', 'Instrumentation'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong foundation in human biology required', 'Study 12th Biology thoroughly', 'Good for medical research career']
+      },
+      {
+        id: 'bdu-integrated-msc-geography',
+        name: '5-Year Integrated M.Sc Geography',
+        nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.எஸ்சி புவியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physical Geography', nameTamil: 'இயற்கை புவியியல்', questions: 35, marks: 35, topics: ['Geomorphology', 'Climatology', 'Oceanography'] },
+            { name: 'Human Geography', nameTamil: 'மானுட புவியியல்', questions: 30, marks: 30, topics: ['Population', 'Settlement', 'Economic Geography'] },
+            { name: 'Cartography & GIS', nameTamil: 'வரைபடவியல் & GIS', questions: 20, marks: 20, topics: ['Map Reading', 'Remote Sensing'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'Mathematics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for UPSC Geography optional', 'Learn map reading skills', 'Study Indian geography thoroughly']
+      },
+      {
+        id: 'bdu-integrated-msc-geology',
+        name: '5-Year Integrated M.Sc Geology',
+        nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.எஸ்சி புவியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Geology', nameTamil: 'புவியியல்', questions: 40, marks: 40, topics: ['Mineralogy', 'Petrology', 'Structural Geology'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 25, marks: 25, topics: ['Geophysics', 'Crystallography'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 20, marks: 20, topics: ['Geochemistry', 'Analytical Methods'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'Mathematics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Career in mining and oil exploration', 'Study Earth sciences thoroughly', 'Good job prospects in PSUs like ONGC']
+      },
+      {
+        id: 'bdu-integrated-msc-media',
+        name: '5-Year Integrated M.Sc Media & Communication',
+        nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.எஸ்சி ஊடகம் & தொடர்பு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Media Studies', nameTamil: 'ஊடக ஆய்வுகள்', questions: 35, marks: 35, topics: ['Mass Communication', 'Journalism', 'Digital Media'] },
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 30, marks: 30, topics: ['Writing Skills', 'Comprehension', 'Grammar'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Current Affairs', 'Media Laws'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Logical Reasoning', 'Creativity'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good writing skills essential', 'Stay updated with current affairs', 'Career in journalism and media']
+      },
+      {
+        id: 'bdu-mca',
+        name: 'MCA',
+        nameTamil: 'எம்.சி.ஏ',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 40, marks: 40, topics: ['Programming', 'Data Structures', 'DBMS', 'OS'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Discrete Math', 'Linear Algebra', 'Probability'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 30, marks: 30, topics: ['Logical Reasoning', 'Numerical', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong programming foundation needed', 'Practice data structures', 'Study discrete mathematics']
+      },
+      {
+        id: 'bdu-msc-cs',
+        name: 'M.Sc Computer Science',
+        nameTamil: 'எம்.எஸ்சி கணினி அறிவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 50, marks: 50, topics: ['C/C++', 'Data Structures', 'Algorithms', 'OS', 'Networks'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Discrete Math', 'Graph Theory'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on programming concepts', 'Practice algorithm problems', 'Study computer networks']
+      },
+      {
+        id: 'bdu-msc-remote-sensing',
+        name: 'M.Sc Remote Sensing & Geoinformatics',
+        nameTamil: 'எம்.எஸ்சி தொலை உணர்வு & புவிதகவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Remote Sensing', nameTamil: 'தொலை உணர்வு', questions: 35, marks: 35, topics: ['Satellite Imaging', 'Image Processing', 'GIS'] },
+            { name: 'Geography', nameTamil: 'புவியியல்', questions: 30, marks: 30, topics: ['Physical Geography', 'Cartography'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 20, marks: 20, topics: ['Statistics', 'Spatial Analysis'] },
+            { name: 'Computer Basics', nameTamil: 'கணினி அடிப்படை', questions: 15, marks: 15, topics: ['Software', 'Database'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing field with ISRO opportunities', 'Learn GIS software', 'Good for urban planning careers']
+      },
+      {
+        id: 'bdu-msc-microbiology',
+        name: 'M.Sc Marine Biotechnology',
+        nameTamil: 'எம்.எஸ்சி கடல் உயிர் தொழில்நுட்பம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Marine Biology', nameTamil: 'கடல் உயிரியல்', questions: 35, marks: 35, topics: ['Marine Organisms', 'Oceanography', 'Marine Ecology'] },
+            { name: 'Biotechnology', nameTamil: 'உயிர் தொழில்நுட்பம்', questions: 35, marks: 35, topics: ['Molecular Biology', 'Genetic Engineering'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 20, marks: 20, topics: ['Biochemistry', 'Marine Chemistry'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Coastal universities have research advantage', 'Study marine ecosystems', 'Career in marine research']
+      },
+      {
+        id: 'bdu-ma-development',
+        name: 'M.A Development Studies',
+        nameTamil: 'எம்.ஏ வளர்ச்சி ஆய்வுகள்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Development Economics', nameTamil: 'வளர்ச்சி பொருளியல்', questions: 35, marks: 35, topics: ['Economic Development', 'Planning', 'Poverty'] },
+            { name: 'Social Sciences', nameTamil: 'சமூக அறிவியல்', questions: 30, marks: 30, topics: ['Sociology', 'Political Science', 'Public Policy'] },
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 20, marks: 20, topics: ['Government Schemes', 'SDGs'] },
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 15, marks: 15, topics: ['Comprehension', 'Writing'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for NGO and development sector', 'Study government welfare schemes', 'Excellent for UPSC preparation']
+      },
+      {
+        id: 'bdu-ma-hrm',
+        name: 'M.A Human Resource Management',
+        nameTamil: 'எம்.ஏ மனித வளமேலாண்மை',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Management', nameTamil: 'மேலாண்மை', questions: 35, marks: 35, topics: ['HRM Basics', 'OB', 'Strategic HRM'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 30, marks: 30, topics: ['Quantitative', 'Reasoning'] },
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 20, marks: 20, topics: ['Verbal Ability', 'Comprehension'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 15, marks: 15, topics: ['Current Affairs', 'Labour Laws'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Alternative to MBA-HR', 'Study HR principles', 'Learn labour laws']
+      },
+      {
+        id: 'bdu-mpa-music',
+        name: 'M.P.A (Music)',
+        nameTamil: 'எம்.பி.ஏ (இசை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Music Theory', nameTamil: 'இசைக் கோட்பாடு', questions: 40, marks: 40, topics: ['Ragas', 'Talas', 'Music History'] },
+            { name: 'Practical Awareness', nameTamil: 'நடைமுறை விழிப்புணர்வு', questions: 35, marks: 35, topics: ['Compositions', 'Instruments', 'Composers'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 25, marks: 25, topics: ['Cultural GK', 'Arts History'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Prior training in Carnatic/Hindustani required', 'Know major composers', 'Study music history']
+      }
+    ]
   },
   {
     id: 'annamalai-university',
