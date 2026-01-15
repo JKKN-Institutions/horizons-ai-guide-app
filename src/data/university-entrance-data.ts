@@ -1415,6 +1415,196 @@ export const universities: University[] = [
         syllabus: [],
         previousQuestions: [],
         tips: ['Accounting is most important', 'Learn financial ratios', 'Understand business concepts']
+      },
+      {
+        id: 'bvoc-food-science',
+        name: 'B.Voc. Food Science & Nutrition',
+        nameTamil: 'பி.வோக். உணவு அறிவியல் & ஊட்டச்சத்து',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Food Science Basics', nameTamil: 'உணவு அறிவியல் அடிப்படைகள்', questions: 30, marks: 30, topics: ['Food Chemistry', 'Food Microbiology', 'Food Preservation'] },
+            { name: 'Nutrition', nameTamil: 'ஊட்டச்சத்து', questions: 30, marks: 30, topics: ['Macronutrients', 'Micronutrients', 'Deficiency Diseases'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 25, marks: 25, topics: ['Human Physiology', 'Digestion', 'Metabolism'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 15, marks: 15, topics: ['Organic Chemistry', 'Biochemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'fsn-q1', year: '2024', question: 'Which vitamin is essential for blood clotting?', options: ['Vitamin A', 'Vitamin K', 'Vitamin C', 'Vitamin E'], correctAnswer: 1, explanation: 'Vitamin K is essential for the synthesis of clotting factors in the liver.', topic: 'Nutrition', difficulty: 'Easy' },
+          { id: 'fsn-q2', year: '2024', question: 'Pasteurization is a process used to:', options: ['Sterilize food completely', 'Kill pathogenic bacteria', 'Increase shelf life indefinitely', 'Add nutrients'], correctAnswer: 1, explanation: 'Pasteurization kills pathogenic bacteria while preserving food quality.', topic: 'Food Science', difficulty: 'Easy' },
+          { id: 'fsn-q3', year: '2023', question: 'Kwashiorkor is caused by deficiency of:', options: ['Carbohydrates', 'Fats', 'Protein', 'Vitamins'], correctAnswer: 2, explanation: 'Kwashiorkor is a severe protein deficiency disease common in children.', topic: 'Nutrition', difficulty: 'Medium' }
+        ],
+        tips: ['Focus on nutritional deficiency diseases', 'Learn food preservation methods', 'Understand digestive system well']
+      },
+      {
+        id: 'msc-food-science-tech',
+        name: 'M.Sc. Food Science & Technology',
+        nameTamil: 'எம்.எஸ்சி. உணவு அறிவியல் & தொழில்நுட்பம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Food Chemistry', nameTamil: 'உணவு வேதியியல்', questions: 25, marks: 25, topics: ['Carbohydrate Chemistry', 'Protein Chemistry', 'Lipid Chemistry', 'Food Additives'] },
+            { name: 'Food Microbiology', nameTamil: 'உணவு நுண்ணுயிரியல்', questions: 25, marks: 25, topics: ['Spoilage Organisms', 'Food-borne Pathogens', 'Fermentation'] },
+            { name: 'Food Processing', nameTamil: 'உணவு பதப்படுத்துதல்', questions: 25, marks: 25, topics: ['Thermal Processing', 'Dehydration', 'Freezing', 'Packaging'] },
+            { name: 'Quality Control', nameTamil: 'தர கட்டுப்பாடு', questions: 15, marks: 15, topics: ['HACCP', 'Food Standards', 'Sensory Evaluation'] },
+            { name: 'Nutrition', nameTamil: 'ஊட்டச்சத்து', questions: 10, marks: 10, topics: ['Therapeutic Nutrition', 'Sports Nutrition'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'fst-q1', year: '2024', question: 'HACCP stands for:', options: ['Hazard Analysis Critical Control Points', 'Health and Critical Control Process', 'Hazard and Contamination Control Program', 'Health Analysis and Control Points'], correctAnswer: 0, explanation: 'HACCP is a systematic approach to food safety management.', topic: 'Quality Control', difficulty: 'Easy' },
+          { id: 'fst-q2', year: '2024', question: 'Maillard reaction occurs between:', options: ['Amino acids and sugars', 'Fats and proteins', 'Water and starch', 'Vitamins and minerals'], correctAnswer: 0, explanation: 'Maillard reaction is a non-enzymatic browning between amino acids and reducing sugars.', topic: 'Food Chemistry', difficulty: 'Medium' },
+          { id: 'fst-q3', year: '2023', question: 'Which bacterium is used in yogurt production?', options: ['E. coli', 'Lactobacillus', 'Salmonella', 'Clostridium'], correctAnswer: 1, explanation: 'Lactobacillus is a beneficial bacterium used in yogurt and cheese making.', topic: 'Food Microbiology', difficulty: 'Easy' }
+        ],
+        tips: ['Salem/Erode region has strong food industry - practical knowledge helps', 'Focus on HACCP and food safety standards', 'Learn fermentation processes well']
+      },
+      {
+        id: 'msc-clinical-nutrition',
+        name: 'M.Sc. Clinical Nutrition & Dietetics',
+        nameTamil: 'எம்.எஸ்சி. மருத்துவ ஊட்டச்சத்து & உணவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Clinical Nutrition', nameTamil: 'மருத்துவ ஊட்டச்சத்து', questions: 30, marks: 30, topics: ['Diet Therapy', 'Therapeutic Diets', 'Nutritional Assessment'] },
+            { name: 'Biochemistry', nameTamil: 'உயிர் வேதியியல்', questions: 25, marks: 25, topics: ['Metabolism', 'Enzymes', 'Hormones'] },
+            { name: 'Human Physiology', nameTamil: 'மனித உடலியல்', questions: 25, marks: 25, topics: ['Digestive System', 'Endocrine System', 'Cardiovascular System'] },
+            { name: 'Public Health Nutrition', nameTamil: 'பொது சுகாதார ஊட்டச்சத்து', questions: 20, marks: 20, topics: ['Nutritional Programs', 'Malnutrition', 'Community Nutrition'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'cnd-q1', year: '2024', question: 'Recommended protein intake for a diabetic patient is:', options: ['0.5 g/kg body weight', '0.8-1 g/kg body weight', '2 g/kg body weight', '3 g/kg body weight'], correctAnswer: 1, explanation: 'Diabetic patients require moderate protein intake of 0.8-1 g/kg.', topic: 'Clinical Nutrition', difficulty: 'Medium' },
+          { id: 'cnd-q2', year: '2024', question: 'DASH diet is recommended for:', options: ['Diabetes', 'Hypertension', 'Cancer', 'Liver disease'], correctAnswer: 1, explanation: 'DASH (Dietary Approaches to Stop Hypertension) diet is designed to control blood pressure.', topic: 'Clinical Nutrition', difficulty: 'Easy' },
+          { id: 'cnd-q3', year: '2023', question: 'BMI of 28 indicates:', options: ['Underweight', 'Normal weight', 'Overweight', 'Obese'], correctAnswer: 2, explanation: 'BMI 25-29.9 is classified as overweight.', topic: 'Nutritional Assessment', difficulty: 'Easy' }
+        ],
+        tips: ['Focus on therapeutic diets for various diseases', 'Learn nutritional assessment methods', 'Understand metabolic pathways']
+      },
+      {
+        id: 'bsc-textiles-fashion',
+        name: 'B.Sc. Textiles & Fashion Designing',
+        nameTamil: 'பி.எஸ்சி. ஜவுளி & நாகரிக வடிவமைப்பு',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Textile Science', nameTamil: 'ஜவுளி அறிவியல்', questions: 30, marks: 30, topics: ['Fibers', 'Yarns', 'Fabric Construction', 'Dyeing'] },
+            { name: 'Fashion Design', nameTamil: 'நாகரிக வடிவமைப்பு', questions: 25, marks: 25, topics: ['Design Elements', 'Color Theory', 'Pattern Making'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 25, marks: 25, topics: ['Current Affairs', 'Fashion History', 'Industry Trends'] },
+            { name: 'Art & Creativity', nameTamil: 'கலை & படைப்பாற்றல்', questions: 20, marks: 20, topics: ['Drawing', 'Sketching', 'Visual Arts'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tfd-q1', year: '2024', question: 'Cotton fiber is classified as:', options: ['Natural cellulosic fiber', 'Synthetic fiber', 'Protein fiber', 'Mineral fiber'], correctAnswer: 0, explanation: 'Cotton is a natural cellulosic fiber obtained from cotton plant.', topic: 'Textile Science', difficulty: 'Easy' },
+          { id: 'tfd-q2', year: '2024', question: 'Primary colors in fashion design are:', options: ['Red, Green, Blue', 'Red, Yellow, Blue', 'Cyan, Magenta, Yellow', 'Black, White, Grey'], correctAnswer: 1, explanation: 'In traditional color theory for art and fashion, primary colors are Red, Yellow, and Blue.', topic: 'Fashion Design', difficulty: 'Easy' },
+          { id: 'tfd-q3', year: '2023', question: 'Batik is a technique of:', options: ['Weaving', 'Dyeing', 'Embroidery', 'Knitting'], correctAnswer: 1, explanation: 'Batik is a wax-resist dyeing technique used to create patterns on fabric.', topic: 'Textile Science', difficulty: 'Medium' }
+        ],
+        tips: ['Learn fiber properties thoroughly', 'Understand color combinations', 'Stay updated on fashion trends']
+      },
+      {
+        id: 'msc-textiles-apparel',
+        name: 'M.Sc. Textiles & Apparel Design',
+        nameTamil: 'எம்.எஸ்சி. ஜவுளி & ஆடை வடிவமைப்பு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Textile Technology', nameTamil: 'ஜவுளி தொழில்நுட்பம்', questions: 30, marks: 30, topics: ['Spinning', 'Weaving', 'Finishing', 'Quality Testing'] },
+            { name: 'Apparel Manufacturing', nameTamil: 'ஆடை உற்பத்தி', questions: 25, marks: 25, topics: ['Garment Construction', 'CAD/CAM', 'Production Planning'] },
+            { name: 'Textile Chemistry', nameTamil: 'ஜவுளி வேதியியல்', questions: 25, marks: 25, topics: ['Dyeing Chemistry', 'Printing', 'Eco-textiles'] },
+            { name: 'Fashion Merchandising', nameTamil: 'நாகரிக வணிகம்', questions: 20, marks: 20, topics: ['Retail', 'Marketing', 'Export'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tad-q1', year: '2024', question: 'Which process converts fiber to yarn?', options: ['Weaving', 'Spinning', 'Finishing', 'Dyeing'], correctAnswer: 1, explanation: 'Spinning is the process of converting fiber into yarn by twisting.', topic: 'Textile Technology', difficulty: 'Easy' },
+          { id: 'tad-q2', year: '2024', question: 'CAD in apparel industry stands for:', options: ['Computer Aided Design', 'Cloth and Design', 'Cut and Development', 'Creative Art Development'], correctAnswer: 0, explanation: 'CAD (Computer Aided Design) is used for pattern making and design in apparel.', topic: 'Apparel Manufacturing', difficulty: 'Easy' },
+          { id: 'tad-q3', year: '2023', question: 'Reactive dyes are commonly used on:', options: ['Wool', 'Polyester', 'Cotton', 'Nylon'], correctAnswer: 2, explanation: 'Reactive dyes form covalent bonds with cellulosic fibers like cotton.', topic: 'Textile Chemistry', difficulty: 'Medium' }
+        ],
+        tips: ['Salem/Erode textile hub offers great placements', 'Learn CAD software', 'Understand eco-friendly textile processes']
+      },
+      {
+        id: 'msc-energy-science',
+        name: 'M.Sc. Energy Science',
+        nameTamil: 'எம்.எஸ்சி. ஆற்றல் அறிவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Renewable Energy', nameTamil: 'புதுப்பிக்கத்தக்க ஆற்றல்', questions: 30, marks: 30, topics: ['Solar Energy', 'Wind Energy', 'Biomass', 'Hydropower'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 25, marks: 25, topics: ['Thermodynamics', 'Heat Transfer', 'Fluid Mechanics'] },
+            { name: 'Environmental Science', nameTamil: 'சுற்றுச்சூழல் அறிவியல்', questions: 25, marks: 25, topics: ['Climate Change', 'Pollution', 'Sustainability'] },
+            { name: 'Energy Economics', nameTamil: 'ஆற்றல் பொருளியல்', questions: 20, marks: 20, topics: ['Energy Policy', 'Cost Analysis', 'Energy Audit'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'es-q1', year: '2024', question: 'Photovoltaic cells convert:', options: ['Heat to electricity', 'Light to electricity', 'Wind to electricity', 'Chemical to electricity'], correctAnswer: 1, explanation: 'Photovoltaic (solar) cells convert light energy directly into electricity.', topic: 'Renewable Energy', difficulty: 'Easy' },
+          { id: 'es-q2', year: '2024', question: 'Which gas is primarily responsible for global warming?', options: ['Oxygen', 'Nitrogen', 'Carbon dioxide', 'Argon'], correctAnswer: 2, explanation: 'Carbon dioxide is the primary greenhouse gas causing global warming.', topic: 'Environmental Science', difficulty: 'Easy' },
+          { id: 'es-q3', year: '2023', question: 'Energy audit is conducted to:', options: ['Increase energy use', 'Identify energy wastage', 'Produce more power', 'Reduce solar panels'], correctAnswer: 1, explanation: 'Energy audit identifies areas of energy wastage and efficiency improvement.', topic: 'Energy Economics', difficulty: 'Medium' }
+        ],
+        tips: ['Growing field with government push for renewables', 'Focus on solar and wind energy', 'Understand energy policies and subsidies']
+      },
+      {
+        id: 'msc-applied-geology',
+        name: 'M.Sc. Applied Geology',
+        nameTamil: 'எம்.எஸ்சி. பயன்பாட்டு புவியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physical Geology', nameTamil: 'இயல் புவியியல்', questions: 25, marks: 25, topics: ['Minerals', 'Rocks', 'Plate Tectonics', 'Volcanoes'] },
+            { name: 'Structural Geology', nameTamil: 'அமைப்பு புவியியல்', questions: 25, marks: 25, topics: ['Folds', 'Faults', 'Geological Maps'] },
+            { name: 'Economic Geology', nameTamil: 'பொருளாதார புவியியல்', questions: 25, marks: 25, topics: ['Ore Deposits', 'Mining', 'Petroleum Geology'] },
+            { name: 'Hydrogeology', nameTamil: 'நீர் புவியியல்', questions: 25, marks: 25, topics: ['Groundwater', 'Aquifers', 'Water Resource Management'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'ag-q1', year: '2024', question: 'Mohs scale is used to measure:', options: ['Density of minerals', 'Hardness of minerals', 'Color of rocks', 'Size of crystals'], correctAnswer: 1, explanation: 'Mohs scale ranks minerals based on their hardness from 1 (talc) to 10 (diamond).', topic: 'Physical Geology', difficulty: 'Easy' },
+          { id: 'ag-q2', year: '2024', question: 'Anticline is a type of:', options: ['Fault', 'Fold', 'Rock', 'Mineral'], correctAnswer: 1, explanation: 'Anticline is an upward-arching fold with oldest rocks in the center.', topic: 'Structural Geology', difficulty: 'Medium' },
+          { id: 'ag-q3', year: '2023', question: 'Aquifer is a layer that:', options: ['Blocks water', 'Stores and transmits groundwater', 'Absorbs pollutants', 'Creates earthquakes'], correctAnswer: 1, explanation: 'An aquifer is a geological formation that stores and transmits groundwater.', topic: 'Hydrogeology', difficulty: 'Easy' }
+        ],
+        tips: ['Government jobs in GSI and mining sector', 'Learn to read geological maps', 'Field work experience is valuable']
       }
     ]
   },
