@@ -4049,6 +4049,7 @@ export const universities: University[] = [
     phone: '0451-2452371',
     examName: 'GRI Entrance Exam',
     logoColor: '#059669',
+    logo: '/universities/gandhigram-rural-logo.jpeg',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
