@@ -13,6 +13,10 @@ import PartnersSection from "@/components/PartnersSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import AISmartStudyPlanner from "@/components/AISmartStudyPlanner";
+import AIAdmissionPredictor from "@/components/AIAdmissionPredictor";
+import StudyStreakGamification from "@/components/StudyStreakGamification";
+import LiveExamCountdown from "@/components/LiveExamCountdown";
+import InteractiveCareerFlowchart from "@/components/InteractiveCareerFlowchart";
 import FloatingChatButton from "@/components/FloatingChatButton";
 import { ChatModalProvider } from "@/hooks/useChatModal";
 
@@ -28,6 +32,15 @@ const Index = () => {
         <ServicesSection />
         <section className="py-12 px-4 md:px-8 max-w-7xl mx-auto">
           <AISmartStudyPlanner />
+        </section>
+        <section className="py-12 px-4 md:px-8 max-w-7xl mx-auto">
+          <h2 className="text-2xl font-bold mb-6 text-center">Smart Tools for Your Success</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <AIAdmissionPredictor />
+            <StudyStreakGamification />
+            <LiveExamCountdown />
+            <InteractiveCareerFlowchart />
+          </div>
         </section>
         <SkillPremiumCalculator />
         <SalaryGrowthTimeline />
