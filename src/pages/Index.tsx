@@ -12,6 +12,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import PartnersSection from "@/components/PartnersSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import AISmartStudyPlanner from "@/components/AISmartStudyPlanner";
 import FloatingChatButton from "@/components/FloatingChatButton";
 import { ChatModalProvider } from "@/hooks/useChatModal";
 
@@ -25,6 +26,9 @@ const Index = () => {
         <HeroSection />
         <StatsBar />
         <ServicesSection />
+        <section className="py-12 px-4 md:px-8 max-w-7xl mx-auto">
+          <AISmartStudyPlanner />
+        </section>
         <SkillPremiumCalculator />
         <SalaryGrowthTimeline />
         <SalaryCalculator />
