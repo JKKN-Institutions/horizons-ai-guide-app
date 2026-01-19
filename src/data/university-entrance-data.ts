@@ -6751,6 +6751,642 @@ export const universities: University[] = [
         ]
       }
     ]
+  },
+  // Anna University (CEG Campus) - Premier Engineering
+  {
+    id: 'anna-university-ceg',
+    name: 'Anna University (CEG Campus)',
+    nameTamil: 'அண்ணா பல்கலைக்கழகம் (CEG வளாகம்)',
+    location: 'Chennai',
+    website: 'www.annauniv.edu',
+    phone: '044-22357004',
+    email: 'registrar@annauniv.edu',
+    examName: 'TNEA Counseling',
+    logoColor: '#1e40af',
+    logo: '/universities/anna-university-logo.jpg',
+    fee: { general: 50000, obc: 50000, scst: 5000 },
+    importantDates: [
+      { event: 'TNEA Notification', eventTamil: 'TNEA அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'Registration Start', eventTamil: 'பதிவு தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'Registration End', eventTamil: 'பதிவு முடிவு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Rank List Release', eventTamil: 'தரவரிசை வெளியீடு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Counseling', eventTamil: 'கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
+    ],
+    courses: [
+      // B.E. Computer Science and Engineering
+      {
+        id: 'au-ceg-cse',
+        name: 'B.E. Computer Science and Engineering',
+        nameTamil: 'பி.இ. கணினி அறிவியல் பொறியியல்',
+        type: 'UG',
+        seatMatrix: { general: 40, obc: 32, bcMbc: 24, sc: 18, st: 6, total: 120 },
+        cutoffs: [
+          { year: '2024', general: 199.5, obc: 198.75, bcMbc: 197.5, sc: 195, st: 190 },
+          { year: '2023', general: 199.25, obc: 198.5, bcMbc: 197, sc: 194, st: 188 },
+        ],
+        examPattern: {
+          totalQuestions: 0,
+          totalMarks: 200,
+          duration: 'N/A (12th Marks Based)',
+          durationMinutes: 0,
+          mode: 'TNEA Cutoff (Maths + Physics/2 + Chemistry/2)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 0, marks: 100, topics: ['All 12th Maths Topics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 0, marks: 50, topics: ['All 12th Physics Topics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 0, marks: 50, topics: ['All 12th Chemistry Topics'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'Programming Fundamentals (First Year)',
+            titleTamil: 'நிரலாக்க அடிப்படைகள்',
+            topics: [
+              { name: 'C Programming', subtopics: ['Variables', 'Loops', 'Functions', 'Pointers', 'Structures'], importance: 'High' },
+              { name: 'Problem Solving', subtopics: ['Algorithms', 'Flowcharts', 'Pseudocode'], importance: 'High' },
+            ],
+            expectedQuestions: 0,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2,
+            title: 'Data Structures & Algorithms',
+            titleTamil: 'தரவு கட்டமைப்புகள் & வழிமுறைகள்',
+            topics: [
+              { name: 'Linear Structures', subtopics: ['Arrays', 'Linked Lists', 'Stacks', 'Queues'], importance: 'High' },
+              { name: 'Non-linear Structures', subtopics: ['Trees', 'Graphs', 'Hashing'], importance: 'High' },
+              { name: 'Algorithm Design', subtopics: ['Sorting', 'Searching', 'Dynamic Programming'], importance: 'High' },
+            ],
+            expectedQuestions: 0,
+            difficulty: 'Hard'
+          },
+          {
+            unitNumber: 3,
+            title: 'Core CS Subjects',
+            titleTamil: 'முக்கிய CS பாடங்கள்',
+            topics: [
+              { name: 'Operating Systems', subtopics: ['Process Management', 'Memory Management', 'File Systems'], importance: 'High' },
+              { name: 'Database Systems', subtopics: ['SQL', 'Normalization', 'Transactions'], importance: 'High' },
+              { name: 'Computer Networks', subtopics: ['OSI Model', 'TCP/IP', 'Routing'], importance: 'Medium' },
+            ],
+            expectedQuestions: 0,
+            difficulty: 'Hard'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'au-cse-q1',
+            year: 'Model',
+            question: 'What is the time complexity of binary search?',
+            options: ['O(n)', 'O(log n)', 'O(n²)', 'O(1)'],
+            correctAnswer: 1,
+            explanation: 'Binary search divides the search space in half each iteration, giving O(log n) time complexity.',
+            topic: 'Algorithms',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'au-cse-q2',
+            year: 'Model',
+            question: 'Which data structure uses LIFO principle?',
+            options: ['Queue', 'Stack', 'Linked List', 'Tree'],
+            correctAnswer: 1,
+            explanation: 'Stack follows Last In First Out (LIFO) - the last element added is the first to be removed.',
+            topic: 'Data Structures',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'au-cse-q3',
+            year: 'Model',
+            question: 'In TNEA, what is the cutoff formula?',
+            options: ['Maths + Physics + Chemistry', 'Maths/2 + Physics + Chemistry', 'Maths + Physics/2 + Chemistry/2', 'Average of 3 subjects'],
+            correctAnswer: 2,
+            explanation: 'TNEA Cutoff = Maths (full marks) + Physics (half marks) + Chemistry (half marks). Max cutoff = 200.',
+            topic: 'TNEA',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: [
+          'TNEA-based admission - NO entrance exam, only 12th marks matter',
+          'Cutoff = Maths + Physics/2 + Chemistry/2 (Max 200)',
+          'CEG CSE requires 199+ cutoff for General category - aim for 100 in all subjects',
+          'Career paths: Software Engineer, System Architect, Tech Lead at top MNCs',
+          'Anna University CEG is the most sought-after engineering college in Tamil Nadu'
+        ]
+      },
+      // B.Tech. Information Technology
+      {
+        id: 'au-ceg-it',
+        name: 'B.Tech. Information Technology',
+        nameTamil: 'பி.டெக். தகவல் தொழில்நுட்பம்',
+        type: 'UG',
+        seatMatrix: { general: 40, obc: 32, bcMbc: 24, sc: 18, st: 6, total: 120 },
+        cutoffs: [
+          { year: '2024', general: 199, obc: 198.25, bcMbc: 197, sc: 194, st: 188 },
+          { year: '2023', general: 198.75, obc: 198, bcMbc: 196.5, sc: 193, st: 186 },
+        ],
+        examPattern: {
+          totalQuestions: 0,
+          totalMarks: 200,
+          duration: 'N/A (12th Marks Based)',
+          durationMinutes: 0,
+          mode: 'TNEA Cutoff (Maths + Physics/2 + Chemistry/2)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 0, marks: 100, topics: ['All 12th Maths Topics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 0, marks: 50, topics: ['All 12th Physics Topics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 0, marks: 50, topics: ['All 12th Chemistry Topics'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'IT Fundamentals',
+            titleTamil: 'IT அடிப்படைகள்',
+            topics: [
+              { name: 'Programming', subtopics: ['Python', 'Java', 'Web Technologies'], importance: 'High' },
+              { name: 'Databases', subtopics: ['SQL', 'NoSQL', 'Data Modeling'], importance: 'High' },
+            ],
+            expectedQuestions: 0,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2,
+            title: 'Web & Mobile Technologies',
+            titleTamil: 'இணையம் & மொபைல் தொழில்நுட்பம்',
+            topics: [
+              { name: 'Web Development', subtopics: ['HTML/CSS', 'JavaScript', 'React/Angular'], importance: 'High' },
+              { name: 'Mobile Development', subtopics: ['Android', 'iOS', 'Flutter'], importance: 'Medium' },
+            ],
+            expectedQuestions: 0,
+            difficulty: 'Medium'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'au-it-q1',
+            year: 'Model',
+            question: 'HTML stands for:',
+            options: ['Hyper Text Markup Language', 'High Tech Modern Language', 'Hyper Transfer Markup Language', 'None of these'],
+            correctAnswer: 0,
+            explanation: 'HTML (HyperText Markup Language) is the standard markup language for creating web pages.',
+            topic: 'Web Development',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'au-it-q2',
+            year: 'Model',
+            question: 'Which is NOT a valid SQL command?',
+            options: ['SELECT', 'INSERT', 'MODIFY', 'DELETE'],
+            correctAnswer: 2,
+            explanation: 'MODIFY is not a SQL command. The correct command to change data is UPDATE.',
+            topic: 'Database',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: [
+          'TNEA-based admission - cutoff slightly lower than CSE',
+          'IT focuses more on application development and web technologies',
+          'Career paths: IT Specialist, Data Analyst, Full Stack Developer',
+          'Strong placement record at TCS, Infosys, Wipro, and product companies',
+          'Good choice if you\'re interested in software development over core CS theory'
+        ]
+      },
+      // B.Tech. Chemical Engineering
+      {
+        id: 'au-ceg-chemical',
+        name: 'B.Tech. Chemical Engineering',
+        nameTamil: 'பி.டெக். வேதியியல் பொறியியல்',
+        type: 'UG',
+        seatMatrix: { general: 20, obc: 16, bcMbc: 12, sc: 9, st: 3, total: 60 },
+        cutoffs: [
+          { year: '2024', general: 196, obc: 194, bcMbc: 191, sc: 185, st: 175 },
+          { year: '2023', general: 195, obc: 193, bcMbc: 190, sc: 183, st: 172 },
+        ],
+        examPattern: {
+          totalQuestions: 0,
+          totalMarks: 200,
+          duration: 'N/A (12th Marks Based)',
+          durationMinutes: 0,
+          mode: 'TNEA Cutoff (Maths + Physics/2 + Chemistry/2)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 0, marks: 100, topics: ['All 12th Maths Topics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 0, marks: 50, topics: ['All 12th Physics Topics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 0, marks: 50, topics: ['All 12th Chemistry Topics'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'Chemical Process Principles',
+            titleTamil: 'வேதியியல் செயல்முறை கொள்கைகள்',
+            topics: [
+              { name: 'Mass & Energy Balance', subtopics: ['Material Balance', 'Energy Balance', 'Stoichiometry'], importance: 'High' },
+              { name: 'Thermodynamics', subtopics: ['Laws of Thermodynamics', 'Phase Equilibria', 'Chemical Equilibrium'], importance: 'High' },
+            ],
+            expectedQuestions: 0,
+            difficulty: 'Hard'
+          },
+          {
+            unitNumber: 2,
+            title: 'Unit Operations',
+            titleTamil: 'அலகு செயல்பாடுகள்',
+            topics: [
+              { name: 'Heat Transfer', subtopics: ['Conduction', 'Convection', 'Radiation', 'Heat Exchangers'], importance: 'High' },
+              { name: 'Mass Transfer', subtopics: ['Distillation', 'Absorption', 'Extraction'], importance: 'High' },
+            ],
+            expectedQuestions: 0,
+            difficulty: 'Hard'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'au-chem-q1',
+            year: 'Model',
+            question: 'Which law states that energy cannot be created or destroyed?',
+            options: ['Zeroth Law', 'First Law of Thermodynamics', 'Second Law of Thermodynamics', 'Third Law of Thermodynamics'],
+            correctAnswer: 1,
+            explanation: 'The First Law of Thermodynamics (Law of Conservation of Energy) states that energy cannot be created or destroyed.',
+            topic: 'Thermodynamics',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'au-chem-q2',
+            year: 'Model',
+            question: 'Distillation separates liquids based on:',
+            options: ['Density', 'Boiling point', 'Color', 'Viscosity'],
+            correctAnswer: 1,
+            explanation: 'Distillation separates liquid mixtures based on differences in their boiling points.',
+            topic: 'Unit Operations',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: [
+          'TNEA-based admission - moderate cutoff compared to IT branches',
+          'Strong chemistry background from 12th helps',
+          'Career paths: Chemical Process Engineer, Plant Manager, R&D Scientist',
+          'Opportunities in refineries, pharma, FMCG, and petrochemical industries',
+          'Consider GATE for PSU jobs in IOCL, ONGC, BPCL'
+        ]
+      }
+    ]
+  },
+  // Banaras Hindu University (BHU) - Central University
+  {
+    id: 'bhu',
+    name: 'Banaras Hindu University',
+    nameTamil: 'பனாரஸ் இந்து பல்கலைக்கழகம்',
+    location: 'Varanasi, Uttar Pradesh',
+    website: 'www.bhu.ac.in',
+    phone: '0542-2368558',
+    email: 'registrar@bhu.ac.in',
+    examName: 'CUET-UG',
+    logoColor: '#7c2d12',
+    fee: { general: 2500, obc: 2000, scst: 500 },
+    importantDates: [
+      { event: 'CUET Notification', eventTamil: 'CUET அறிவிப்பு', date: 'February 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'February 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'March 2026', status: 'upcoming' },
+      { event: 'CUET Exam', eventTamil: 'CUET தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'BHU Counseling', eventTamil: 'BHU கலந்தாய்வு', date: 'June 2026', status: 'upcoming' },
+    ],
+    courses: [
+      // B.Sc. (Hons) Mathematics
+      {
+        id: 'bhu-bsc-maths',
+        name: 'B.Sc. (Hons) Mathematics',
+        nameTamil: 'பி.எஸ்சி. (ஆனர்ஸ்) கணிதம்',
+        type: 'UG',
+        seatMatrix: { general: 50, obc: 40, bcMbc: 0, sc: 23, st: 12, ews: 15, total: 150 },
+        cutoffs: [
+          { year: '2024', general: 680, obc: 620, bcMbc: '-', sc: 500, st: 450, ews: 650 },
+          { year: '2023', general: 660, obc: 600, bcMbc: '-', sc: 480, st: 430, ews: 630 },
+        ],
+        examPattern: {
+          totalQuestions: 50,
+          totalMarks: 200,
+          duration: '45 Minutes per section',
+          durationMinutes: 195,
+          mode: 'Computer Based (CBT)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 200, topics: ['Calculus', 'Algebra', 'Trigonometry', 'Coordinate Geometry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 200, topics: ['Mechanics', 'Optics', 'Modern Physics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 200, topics: ['Organic', 'Inorganic', 'Physical Chemistry'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'Calculus & Analysis',
+            titleTamil: 'கால்குலஸ் & பகுப்பாய்வு',
+            topics: [
+              { name: 'Differential Calculus', subtopics: ['Limits', 'Derivatives', 'Applications'], importance: 'High' },
+              { name: 'Integral Calculus', subtopics: ['Definite Integrals', 'Applications', 'Differential Equations'], importance: 'High' },
+            ],
+            expectedQuestions: 20,
+            difficulty: 'Hard'
+          },
+          {
+            unitNumber: 2,
+            title: 'Algebra & Geometry',
+            titleTamil: 'இயற்கணிதம் & வடிவியல்',
+            topics: [
+              { name: 'Linear Algebra', subtopics: ['Matrices', 'Determinants', 'Vector Spaces'], importance: 'High' },
+              { name: 'Coordinate Geometry', subtopics: ['Conic Sections', '3D Geometry'], importance: 'Medium' },
+            ],
+            expectedQuestions: 15,
+            difficulty: 'Medium'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'bhu-maths-q1',
+            year: '2024',
+            question: 'The derivative of sin(x²) is:',
+            options: ['cos(x²)', '2x cos(x²)', 'x cos(x²)', '2 cos(x²)'],
+            correctAnswer: 1,
+            explanation: 'Using chain rule: d/dx[sin(x²)] = cos(x²) × 2x = 2x cos(x²)',
+            topic: 'Calculus',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'bhu-maths-q2',
+            year: '2024',
+            question: 'If A is a 3×3 matrix with |A| = 5, then |2A| = ?',
+            options: ['10', '40', '80', '20'],
+            correctAnswer: 1,
+            explanation: 'For n×n matrix, |kA| = k^n × |A|. So |2A| = 2³ × 5 = 8 × 5 = 40',
+            topic: 'Linear Algebra',
+            difficulty: 'Medium'
+          }
+        ],
+        tips: [
+          'CUET-UG based admission - strong focus on Mathematics',
+          'BHU is one of India\'s most prestigious central universities',
+          'Career paths: Data Scientist, Research Scholar, Actuary, Statistician',
+          'Excellent for students planning higher studies (M.Sc., PhD)',
+          'Focus on NCERT Maths (Class 11 & 12) for CUET preparation'
+        ]
+      },
+      // B.A. (Hons) Arts
+      {
+        id: 'bhu-ba-arts',
+        name: 'B.A. (Hons) Arts',
+        nameTamil: 'பி.ஏ. (ஆனர்ஸ்) கலை',
+        type: 'UG',
+        seatMatrix: { general: 200, obc: 160, bcMbc: 0, sc: 90, st: 45, ews: 60, total: 600 },
+        cutoffs: [
+          { year: '2024', general: 580, obc: 520, bcMbc: '-', sc: 400, st: 350, ews: 550 },
+          { year: '2023', general: 560, obc: 500, bcMbc: '-', sc: 380, st: 330, ews: 530 },
+        ],
+        examPattern: {
+          totalQuestions: 50,
+          totalMarks: 200,
+          duration: '45 Minutes per section',
+          durationMinutes: 135,
+          mode: 'Computer Based (CBT)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Language (English/Hindi)', nameTamil: 'மொழி', questions: 50, marks: 200, topics: ['Comprehension', 'Grammar', 'Vocabulary'] },
+            { name: 'General Test', nameTamil: 'பொதுத் தேர்வு', questions: 60, marks: 200, topics: ['GK', 'Reasoning', 'Quantitative', 'Current Affairs'] },
+            { name: 'Domain Subject', nameTamil: 'துறை பாடம்', questions: 50, marks: 200, topics: ['History/Political Science/Economics/etc.'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'General Awareness',
+            titleTamil: 'பொது விழிப்புணர்வு',
+            topics: [
+              { name: 'Current Affairs', subtopics: ['National', 'International', 'Sports', 'Awards'], importance: 'High' },
+              { name: 'Static GK', subtopics: ['History', 'Geography', 'Polity', 'Economy'], importance: 'High' },
+            ],
+            expectedQuestions: 25,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2,
+            title: 'Reasoning & Language',
+            titleTamil: 'தருக்கம் & மொழி',
+            topics: [
+              { name: 'Logical Reasoning', subtopics: ['Verbal', 'Non-verbal', 'Analytical'], importance: 'High' },
+              { name: 'English Language', subtopics: ['Comprehension', 'Grammar', 'Vocabulary'], importance: 'High' },
+            ],
+            expectedQuestions: 25,
+            difficulty: 'Medium'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'bhu-arts-q1',
+            year: '2024',
+            question: 'Who is known as the Father of the Indian Constitution?',
+            options: ['Mahatma Gandhi', 'Jawaharlal Nehru', 'B.R. Ambedkar', 'Sardar Patel'],
+            correctAnswer: 2,
+            explanation: 'Dr. B.R. Ambedkar is known as the Father of the Indian Constitution as he was the chairman of the Drafting Committee.',
+            topic: 'Polity',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'bhu-arts-q2',
+            year: '2024',
+            question: 'The synonym of "Ephemeral" is:',
+            options: ['Permanent', 'Short-lived', 'Ancient', 'Mysterious'],
+            correctAnswer: 1,
+            explanation: 'Ephemeral means lasting for a very short time, i.e., short-lived.',
+            topic: 'English',
+            difficulty: 'Medium'
+          }
+        ],
+        tips: [
+          'CUET-UG based admission - open to students from ANY stream',
+          'BHU Arts is excellent for Civil Services preparation',
+          'Career paths: Civil Services (IAS/IPS), Content Writer, Historian, Journalist',
+          'Read newspapers daily for current affairs',
+          'Focus on NCERT books for static GK'
+        ]
+      }
+    ]
+  },
+  // Jawaharlal Nehru University (JNU) - Central University
+  {
+    id: 'jnu',
+    name: 'Jawaharlal Nehru University',
+    nameTamil: 'ஜவஹர்லால் நேரு பல்கலைக்கழகம்',
+    location: 'New Delhi',
+    website: 'www.jnu.ac.in',
+    phone: '011-26704017',
+    email: 'registrar@jnu.ac.in',
+    examName: 'CUET-UG',
+    logoColor: '#dc2626',
+    fee: { general: 500, obc: 400, scst: 100 },
+    importantDates: [
+      { event: 'CUET Notification', eventTamil: 'CUET அறிவிப்பு', date: 'February 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'February 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'March 2026', status: 'upcoming' },
+      { event: 'CUET Exam', eventTamil: 'CUET தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'JNU Counseling', eventTamil: 'JNU கலந்தாய்வு', date: 'June 2026', status: 'upcoming' },
+    ],
+    courses: [
+      // B.A. (Hons.) French
+      {
+        id: 'jnu-ba-french',
+        name: 'B.A. (Hons.) French',
+        nameTamil: 'பி.ஏ. (ஆனர்ஸ்) பிரெஞ்சு',
+        type: 'UG',
+        seatMatrix: { general: 16, obc: 13, bcMbc: 0, sc: 7, st: 4, ews: 5, total: 48 },
+        cutoffs: [
+          { year: '2024', general: 650, obc: 580, bcMbc: '-', sc: 450, st: 400, ews: 620 },
+          { year: '2023', general: 630, obc: 560, bcMbc: '-', sc: 430, st: 380, ews: 600 },
+        ],
+        examPattern: {
+          totalQuestions: 50,
+          totalMarks: 200,
+          duration: '45 Minutes per section',
+          durationMinutes: 135,
+          mode: 'Computer Based (CBT)',
+          negativeMarking: true,
+          sections: [
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 50, marks: 200, topics: ['Comprehension', 'Grammar', 'Vocabulary', 'Literature'] },
+            { name: 'General Test', nameTamil: 'பொதுத் தேர்வு', questions: 60, marks: 200, topics: ['GK', 'Reasoning', 'Quantitative', 'Current Affairs'] },
+            { name: 'Language (Optional)', nameTamil: 'மொழி', questions: 50, marks: 200, topics: ['Any Language Paper'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'English Proficiency',
+            titleTamil: 'ஆங்கில திறன்',
+            topics: [
+              { name: 'Reading Comprehension', subtopics: ['Passages', 'Inference', 'Tone'], importance: 'High' },
+              { name: 'Grammar & Usage', subtopics: ['Tenses', 'Voice', 'Narration', 'Articles'], importance: 'High' },
+            ],
+            expectedQuestions: 25,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2,
+            title: 'General Aptitude',
+            titleTamil: 'பொது திறன்',
+            topics: [
+              { name: 'Logical Reasoning', subtopics: ['Verbal', 'Analytical', 'Critical Thinking'], importance: 'High' },
+              { name: 'General Knowledge', subtopics: ['Current Affairs', 'World Geography', 'International Relations'], importance: 'Medium' },
+            ],
+            expectedQuestions: 30,
+            difficulty: 'Medium'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'jnu-french-q1',
+            year: 'Sample',
+            question: 'Which is the official language of the United Nations?',
+            options: ['English only', 'English and French', 'All 6 official languages', 'Chinese only'],
+            correctAnswer: 2,
+            explanation: 'The UN has 6 official languages: Arabic, Chinese, English, French, Russian, and Spanish.',
+            topic: 'General Knowledge',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'jnu-french-q2',
+            year: 'Sample',
+            question: 'The passive voice of "He writes a letter" is:',
+            options: ['A letter is written by him', 'A letter was written by him', 'A letter has been written by him', 'A letter is being written by him'],
+            correctAnswer: 0,
+            explanation: 'Simple present active becomes simple present passive: Subject + is/are + V3 + by + object',
+            topic: 'English Grammar',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: [
+          'CUET-UG based admission - strong English skills required',
+          'JNU is renowned for language studies and research',
+          'Career paths: Translator, Interpreter, Foreign Service Officer, Embassy Jobs',
+          'No prior French knowledge required - taught from scratch',
+          'Opens doors to careers in diplomacy, international business, and tourism'
+        ]
+      },
+      // B.A. (Hons.) Japanese
+      {
+        id: 'jnu-ba-japanese',
+        name: 'B.A. (Hons.) Japanese',
+        nameTamil: 'பி.ஏ. (ஆனர்ஸ்) ஜப்பானியம்',
+        type: 'UG',
+        seatMatrix: { general: 16, obc: 13, bcMbc: 0, sc: 7, st: 4, ews: 5, total: 48 },
+        cutoffs: [
+          { year: '2024', general: 640, obc: 570, bcMbc: '-', sc: 440, st: 390, ews: 610 },
+          { year: '2023', general: 620, obc: 550, bcMbc: '-', sc: 420, st: 370, ews: 590 },
+        ],
+        examPattern: {
+          totalQuestions: 50,
+          totalMarks: 200,
+          duration: '45 Minutes per section',
+          durationMinutes: 135,
+          mode: 'Computer Based (CBT)',
+          negativeMarking: true,
+          sections: [
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 50, marks: 200, topics: ['Comprehension', 'Grammar', 'Vocabulary', 'Literature'] },
+            { name: 'General Test', nameTamil: 'பொதுத் தேர்வு', questions: 60, marks: 200, topics: ['GK', 'Reasoning', 'Quantitative', 'Current Affairs'] },
+            { name: 'Language (Optional)', nameTamil: 'மொழி', questions: 50, marks: 200, topics: ['Any Language Paper'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'English & Language Skills',
+            titleTamil: 'ஆங்கிலம் & மொழி திறன்கள்',
+            topics: [
+              { name: 'Comprehension', subtopics: ['Reading', 'Analysis', 'Inference'], importance: 'High' },
+              { name: 'Grammar', subtopics: ['Sentence Correction', 'Parts of Speech', 'Idioms'], importance: 'High' },
+            ],
+            expectedQuestions: 25,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2,
+            title: 'General Awareness',
+            titleTamil: 'பொது விழிப்புணர்வு',
+            topics: [
+              { name: 'Japan & Asia', subtopics: ['Geography', 'History', 'Culture', 'Economy'], importance: 'Medium' },
+              { name: 'Current Affairs', subtopics: ['India-Japan Relations', 'Technology', 'Trade'], importance: 'Medium' },
+            ],
+            expectedQuestions: 20,
+            difficulty: 'Easy'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'jnu-japanese-q1',
+            year: 'Sample',
+            question: 'What is the capital of Japan?',
+            options: ['Osaka', 'Kyoto', 'Tokyo', 'Hiroshima'],
+            correctAnswer: 2,
+            explanation: 'Tokyo is the capital and largest city of Japan, located on the southeastern coast of Honshu island.',
+            topic: 'General Knowledge',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'jnu-japanese-q2',
+            year: 'Sample',
+            question: 'Choose the correct spelling:',
+            options: ['Accomodation', 'Accommodation', 'Acomodation', 'Acommodation'],
+            correctAnswer: 1,
+            explanation: 'Accommodation has double "c" and double "m" - a common spelling error in English.',
+            topic: 'English',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: [
+          'CUET-UG based admission - English and General Test focus',
+          'No prior Japanese knowledge required',
+          'Career paths: Language Specialist, International Business Consultant, Embassy Jobs',
+          'Japan is a major investor in India - excellent job prospects',
+          'Opens opportunities in IT, automobile, electronics, and tourism sectors'
+        ]
+      }
+    ]
   }
 ];
 
