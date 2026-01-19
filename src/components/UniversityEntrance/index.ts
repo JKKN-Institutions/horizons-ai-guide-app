@@ -24,3 +24,9 @@ export { WeakTopicIdentifier } from './WeakTopicIdentifier';
 export { TNLeaderboard } from './TNLeaderboard';
 export { SeatMatrixCutoffs } from './SeatMatrixCutoffs';
 export { generatePYQPDF, generateBookmarkedPDF, generateSyllabusPDF } from './generateTNUniversityPDF';
+
+// New Eligibility System
+export { StudentProfileForm } from './StudentProfileForm';
+export { EligibleUniversities } from './EligibleUniversities';
+export { checkEligibility } from './EligibilityChecker';
+export * from './eligibilityTypes';
