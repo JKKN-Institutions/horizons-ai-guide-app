@@ -4183,6 +4183,7 @@ export const universities: University[] = [
     phone: '0422-6611200',
     email: 'registrar@tnau.ac.in',
     examName: 'TNAU Entrance',
+    logo: '/universities/tnau-logo.png',
     logoColor: '#15803d',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
