@@ -22,4 +22,5 @@ export { DailyChallenge } from './DailyChallenge';
 export { TNForum } from './TNForum';
 export { WeakTopicIdentifier } from './WeakTopicIdentifier';
 export { TNLeaderboard } from './TNLeaderboard';
+export { SeatMatrixCutoffs } from './SeatMatrixCutoffs';
 export { generatePYQPDF, generateBookmarkedPDF, generateSyllabusPDF } from './generateTNUniversityPDF';
