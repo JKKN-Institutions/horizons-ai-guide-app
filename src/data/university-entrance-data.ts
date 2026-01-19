@@ -14,6 +14,26 @@ export interface University {
   fee: FeeStructure;
 }
 
+export interface SeatMatrix {
+  general: number;
+  obc: number;
+  bcMbc: number;
+  sc: number;
+  st: number;
+  ews?: number;
+  total: number;
+}
+
+export interface YearCutoff {
+  year: string;
+  general: number | string;
+  obc: number | string;
+  bcMbc: number | string;
+  sc: number | string;
+  st: number | string;
+  ews?: number | string;
+}
+
 export interface Course {
   id: string;
   name: string;
@@ -23,6 +43,8 @@ export interface Course {
   syllabus: SyllabusUnit[];
   previousQuestions: PreviousQuestion[];
   tips: string[];
+  seatMatrix?: SeatMatrix;
+  cutoffs?: YearCutoff[];
 }
 
 export interface ExamPattern {
@@ -267,6 +289,20 @@ export const universities: University[] = [
           'Learn shortcuts for Time & Work, Percentage problems',
           'Read newspapers for vocabulary improvement',
           'Solve previous year papers under timed conditions'
+        ],
+        seatMatrix: {
+          general: 850,
+          obc: 1200,
+          bcMbc: 1450,
+          sc: 680,
+          st: 120,
+          ews: 180,
+          total: 4480
+        },
+        cutoffs: [
+          { year: '2024', general: 82.5, obc: 76.3, bcMbc: 71.2, sc: 58.4, st: 48.2, ews: 74.8 },
+          { year: '2023', general: 84.1, obc: 78.5, bcMbc: 73.6, sc: 60.2, st: 50.1, ews: 76.2 },
+          { year: '2022', general: 81.8, obc: 75.2, bcMbc: 70.5, sc: 56.8, st: 46.5, ews: 73.4 }
         ]
       },
       {
@@ -410,6 +446,20 @@ export const universities: University[] = [
           'Practice number system conversions',
           'Learn basic SQL queries',
           'Understand OOP concepts clearly'
+        ],
+        seatMatrix: {
+          general: 420,
+          obc: 680,
+          bcMbc: 850,
+          sc: 380,
+          st: 65,
+          ews: 95,
+          total: 2490
+        },
+        cutoffs: [
+          { year: '2024', general: 78.2, obc: 72.4, bcMbc: 68.5, sc: 54.2, st: 44.8, ews: 70.5 },
+          { year: '2023', general: 80.1, obc: 74.6, bcMbc: 70.2, sc: 56.4, st: 46.2, ews: 72.8 },
+          { year: '2022', general: 76.8, obc: 70.2, bcMbc: 66.4, sc: 52.8, st: 42.5, ews: 68.2 }
         ]
       },
       {
@@ -502,7 +552,21 @@ export const universities: University[] = [
           { id: 'anna-cse-1', year: '2024', question: 'The binary equivalent of decimal 25 is:', options: ['11001', '10101', '11011', '10011'], correctAnswer: 0, explanation: '25 = 16+8+1 = 2⁴+2³+2⁰ = 11001 in binary.', topic: 'Number Systems', difficulty: 'Easy' },
           { id: 'anna-cse-2', year: '2024', question: 'Which data structure uses LIFO principle?', options: ['Queue', 'Stack', 'Linked List', 'Array'], correctAnswer: 1, explanation: 'Stack follows Last In First Out (LIFO) principle.', topic: 'Data Structures', difficulty: 'Easy' }
         ],
-        tips: ['Top choice in TN - very competitive', 'Strong foundation in PCM required', 'Learn basic programming before admission']
+        tips: ['Top choice in TN - very competitive', 'Strong foundation in PCM required', 'Learn basic programming before admission'],
+        seatMatrix: {
+          general: 180,
+          obc: 320,
+          bcMbc: 420,
+          sc: 180,
+          st: 25,
+          ews: 60,
+          total: 1185
+        },
+        cutoffs: [
+          { year: '2024', general: 198.5, obc: 196.8, bcMbc: 195.2, sc: 188.4, st: 172.5, ews: 196.2 },
+          { year: '2023', general: 197.8, obc: 195.6, bcMbc: 194.1, sc: 186.2, st: 170.8, ews: 195.4 },
+          { year: '2022', general: 196.2, obc: 194.2, bcMbc: 192.8, sc: 184.6, st: 168.2, ews: 194.0 }
+        ]
       },
       {
         id: 'anna-be-ai-ds',
@@ -527,7 +591,21 @@ export const universities: University[] = [
         previousQuestions: [
           { id: 'anna-ai-1', year: '2024', question: 'Machine Learning is a subset of:', options: ['Data Science', 'Artificial Intelligence', 'Deep Learning', 'Neural Networks'], correctAnswer: 1, explanation: 'Machine Learning is a subset of AI that enables systems to learn from data.', topic: 'AI Basics', difficulty: 'Easy' }
         ],
-        tips: ['High demand course - very high cutoff', 'Strong math background essential', 'Learn Python basics before joining']
+        tips: ['High demand course - very high cutoff', 'Strong math background essential', 'Learn Python basics before joining'],
+        seatMatrix: {
+          general: 60,
+          obc: 100,
+          bcMbc: 130,
+          sc: 55,
+          st: 8,
+          ews: 20,
+          total: 373
+        },
+        cutoffs: [
+          { year: '2024', general: 199.2, obc: 198.5, bcMbc: 197.8, sc: 192.4, st: 178.6, ews: 198.2 },
+          { year: '2023', general: 198.8, obc: 197.6, bcMbc: 196.9, sc: 190.8, st: 176.2, ews: 197.4 },
+          { year: '2022', general: 198.1, obc: 196.8, bcMbc: 195.4, sc: 189.2, st: 174.5, ews: 196.2 }
+        ]
       },
       {
         id: 'anna-be-ece',
@@ -552,7 +630,21 @@ export const universities: University[] = [
         previousQuestions: [
           { id: 'anna-ece-1', year: '2024', question: 'The unit of capacitance is:', options: ['Ohm', 'Henry', 'Farad', 'Weber'], correctAnswer: 2, explanation: 'Farad (F) is the SI unit of electrical capacitance.', topic: 'Basic Electronics', difficulty: 'Easy' }
         ],
-        tips: ['Strong physics foundation required', 'Learn basic circuit analysis', 'Good for VLSI and telecom careers']
+        tips: ['Strong physics foundation required', 'Learn basic circuit analysis', 'Good for VLSI and telecom careers'],
+        seatMatrix: {
+          general: 160,
+          obc: 280,
+          bcMbc: 360,
+          sc: 150,
+          st: 22,
+          ews: 50,
+          total: 1022
+        },
+        cutoffs: [
+          { year: '2024', general: 197.2, obc: 195.4, bcMbc: 193.8, sc: 186.2, st: 168.4, ews: 194.8 },
+          { year: '2023', general: 196.5, obc: 194.2, bcMbc: 192.4, sc: 184.6, st: 166.2, ews: 193.5 },
+          { year: '2022', general: 195.8, obc: 193.2, bcMbc: 191.2, sc: 182.8, st: 164.5, ews: 192.2 }
+        ]
       },
       // Faculty of Mechanical Engineering
       {
@@ -578,7 +670,21 @@ export const universities: University[] = [
         previousQuestions: [
           { id: 'anna-mech-1', year: '2024', question: 'The first law of thermodynamics is based on:', options: ['Conservation of mass', 'Conservation of energy', 'Conservation of momentum', 'Conservation of entropy'], correctAnswer: 1, explanation: 'The first law of thermodynamics is the law of conservation of energy.', topic: 'Thermodynamics', difficulty: 'Easy' }
         ],
-        tips: ['Evergreen branch with wide scope', 'Strong in physics and mathematics', 'Learn CAD/CAM basics']
+        tips: ['Evergreen branch with wide scope', 'Strong in physics and mathematics', 'Learn CAD/CAM basics'],
+        seatMatrix: {
+          general: 220,
+          obc: 380,
+          bcMbc: 480,
+          sc: 200,
+          st: 30,
+          ews: 70,
+          total: 1380
+        },
+        cutoffs: [
+          { year: '2024', general: 192.4, obc: 188.6, bcMbc: 185.2, sc: 172.4, st: 152.8, ews: 187.5 },
+          { year: '2023', general: 193.8, obc: 189.4, bcMbc: 186.8, sc: 174.2, st: 154.6, ews: 188.8 },
+          { year: '2022', general: 191.2, obc: 186.8, bcMbc: 183.4, sc: 170.5, st: 150.2, ews: 185.5 }
+        ]
       },
       {
         id: 'anna-be-aero',

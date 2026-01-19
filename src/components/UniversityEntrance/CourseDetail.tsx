@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, BookOpen, FileText, Lightbulb, Play, RotateCcw, Trophy, Target } from 'lucide-react';
+import { ArrowLeft, BookOpen, FileText, Lightbulb, Play, RotateCcw, Trophy, Target, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -9,6 +9,7 @@ import { universities } from '@/data/university-entrance-data';
 import { ExamPatternCard } from './ExamPatternCard';
 import { SyllabusAccordion } from './SyllabusAccordion';
 import { PYQSection } from './PYQSection';
+import { SeatMatrixCutoffs } from './SeatMatrixCutoffs';
 
 type QuizMode = 'browse' | 'quiz';
 
@@ -93,6 +94,15 @@ export const CourseDetail = () => {
 
         {/* Exam Pattern */}
         <ExamPatternCard pattern={course.examPattern} />
+
+        {/* Seat Matrix & Cutoffs - Show before tabs if available */}
+        {(course.seatMatrix || course.cutoffs) && (
+          <SeatMatrixCutoffs 
+            seatMatrix={course.seatMatrix} 
+            cutoffs={course.cutoffs} 
+            courseName={course.name} 
+          />
+        )}
 
         {/* Tabs */}
         <Tabs defaultValue="syllabus" className="w-full">
