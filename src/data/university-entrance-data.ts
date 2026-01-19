@@ -5779,6 +5779,292 @@ export const universities: University[] = [
         tips: ['Master IPC and CrPC thoroughly', 'Study landmark criminal law judgments', 'Understand forensic science basics', 'Follow criminal law amendments']
       }
     ]
+  },
+  // Central University of Tamil Nadu (CUTN)
+  {
+    id: 'cutn',
+    name: 'Central University of Tamil Nadu',
+    nameTamil: 'தமிழ்நாடு மத்திய பல்கலைக்கழகம்',
+    location: 'Thiruvarur',
+    website: 'www.cutn.ac.in',
+    phone: '04366-277200',
+    email: 'registrar@cutn.ac.in',
+    examName: 'CUET-UG',
+    logoColor: '#1e40af',
+    fee: { general: 500, obc: 400, scst: 250 },
+    importantDates: [
+      { event: 'CUET Notification', eventTamil: 'CUET அறிவிப்பு', date: 'February 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'February 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'March 2026', status: 'upcoming' },
+      { event: 'CUET Exam', eventTamil: 'CUET தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Results & Counseling', eventTamil: 'முடிவுகள் & கலந்தாய்வு', date: 'June 2026', status: 'upcoming' },
+    ],
+    courses: [
+      // Integrated M.Sc. Life Sciences
+      {
+        id: 'cutn-integrated-msc-life-sciences',
+        name: 'Integrated M.Sc. Life Sciences',
+        nameTamil: 'ஒருங்கிணைந்த எம்.எஸ்சி. உயிர் அறிவியல்',
+        type: 'UG',
+        seatMatrix: { general: 10, obc: 8, bcMbc: 0, sc: 5, st: 2, ews: 3, total: 30 },
+        cutoffs: [
+          { year: '2024', general: 550, obc: 480, bcMbc: '-', sc: 380, st: 350, ews: 520 },
+          { year: '2023', general: 530, obc: 460, bcMbc: '-', sc: 360, st: 330, ews: 500 },
+        ],
+        examPattern: {
+          totalQuestions: 50,
+          totalMarks: 200,
+          duration: '45 Minutes (per section)',
+          durationMinutes: 195,
+          mode: 'Computer Based (CBT)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 200, topics: ['Mechanics', 'Optics', 'Modern Physics', 'Thermodynamics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 200, topics: ['Organic', 'Inorganic', 'Physical Chemistry'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 50, marks: 200, topics: ['Botany', 'Zoology', 'Cell Biology', 'Genetics'] },
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'Cell Biology & Genetics',
+            titleTamil: 'செல் உயிரியல் & மரபியல்',
+            topics: [
+              { name: 'Cell Structure', subtopics: ['Cell Organelles', 'Membrane Transport', 'Cell Cycle'], importance: 'High' },
+              { name: 'Genetics', subtopics: ['Mendelian Genetics', 'DNA Replication', 'Gene Expression'], importance: 'High' },
+            ],
+            expectedQuestions: 15,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2,
+            title: 'Biochemistry',
+            titleTamil: 'உயிர்வேதியியல்',
+            topics: [
+              { name: 'Biomolecules', subtopics: ['Carbohydrates', 'Proteins', 'Lipids', 'Nucleic Acids'], importance: 'High' },
+              { name: 'Enzymes', subtopics: ['Enzyme Kinetics', 'Inhibition', 'Regulation'], importance: 'Medium' },
+            ],
+            expectedQuestions: 10,
+            difficulty: 'Hard'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'cutn-life-q1',
+            year: '2024',
+            question: 'Which organelle is responsible for ATP synthesis in eukaryotic cells?',
+            options: ['Ribosome', 'Mitochondria', 'Golgi apparatus', 'Endoplasmic reticulum'],
+            correctAnswer: 1,
+            explanation: 'Mitochondria are the powerhouses of the cell, responsible for producing ATP through oxidative phosphorylation.',
+            topic: 'Cell Biology',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'cutn-life-q2',
+            year: '2024',
+            question: 'The process of DNA to RNA conversion is called:',
+            options: ['Replication', 'Transcription', 'Translation', 'Reverse transcription'],
+            correctAnswer: 1,
+            explanation: 'Transcription is the process where genetic information from DNA is copied into RNA.',
+            topic: 'Genetics',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'cutn-life-q3',
+            year: '2023',
+            question: 'Which of the following is NOT a function of proteins?',
+            options: ['Enzyme catalysis', 'Energy storage (primary)', 'Structural support', 'Signal transduction'],
+            correctAnswer: 1,
+            explanation: 'Carbohydrates and lipids are the primary energy storage molecules, not proteins.',
+            topic: 'Biochemistry',
+            difficulty: 'Medium'
+          }
+        ],
+        tips: [
+          'Focus on NCERT Biology (Class 11 & 12) for fundamentals',
+          'CUET-UG tests conceptual understanding, not rote learning',
+          'Practice previous year CUET questions extensively',
+          'Central universities offer excellent research opportunities',
+          'Career paths: CSIR Labs, Biotech Industry, Research Scientist'
+        ]
+      },
+      // Integrated B.Sc. B.Ed. (Mathematics)
+      {
+        id: 'cutn-bsc-bed-maths',
+        name: 'Integrated B.Sc. B.Ed. (Mathematics)',
+        nameTamil: 'ஒருங்கிணைந்த பி.எஸ்சி. பி.எட். (கணிதம்)',
+        type: 'UG',
+        seatMatrix: { general: 15, obc: 13, bcMbc: 0, sc: 8, st: 4, ews: 5, total: 50 },
+        cutoffs: [
+          { year: '2024', general: 520, obc: 460, bcMbc: '-', sc: 350, st: 320, ews: 490 },
+          { year: '2023', general: 500, obc: 440, bcMbc: '-', sc: 330, st: 300, ews: 470 },
+        ],
+        examPattern: {
+          totalQuestions: 50,
+          totalMarks: 200,
+          duration: '45 Minutes (per section)',
+          durationMinutes: 135,
+          mode: 'Computer Based (CBT)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 200, topics: ['Mechanics', 'Optics', 'Electricity', 'Modern Physics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 200, topics: ['Organic', 'Inorganic', 'Physical Chemistry'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 200, topics: ['Calculus', 'Algebra', 'Trigonometry', 'Statistics'] },
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'Calculus',
+            titleTamil: 'நுண்கணிதம்',
+            topics: [
+              { name: 'Differentiation', subtopics: ['Limits', 'Derivatives', 'Applications'], importance: 'High' },
+              { name: 'Integration', subtopics: ['Definite Integrals', 'Applications'], importance: 'High' },
+            ],
+            expectedQuestions: 15,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2,
+            title: 'Algebra',
+            titleTamil: 'இயற்கணிதம்',
+            topics: [
+              { name: 'Matrices', subtopics: ['Operations', 'Determinants', 'Inverse'], importance: 'High' },
+              { name: 'Sets & Relations', subtopics: ['Functions', 'Binary Operations'], importance: 'Medium' },
+            ],
+            expectedQuestions: 12,
+            difficulty: 'Medium'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'cutn-bed-q1',
+            year: '2024',
+            question: 'If f(x) = x³ - 3x² + 2, find f\'(2)',
+            options: ['0', '2', '4', '-2'],
+            correctAnswer: 0,
+            explanation: 'f\'(x) = 3x² - 6x. At x=2: f\'(2) = 3(4) - 6(2) = 12 - 12 = 0',
+            topic: 'Calculus',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'cutn-bed-q2',
+            year: '2024',
+            question: 'The determinant of a 2x2 identity matrix is:',
+            options: ['0', '1', '2', '-1'],
+            correctAnswer: 1,
+            explanation: 'The identity matrix has 1s on the diagonal and 0s elsewhere. det(I) = 1×1 - 0×0 = 1',
+            topic: 'Algebra',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: [
+          'This is a 4-year integrated program - B.Sc. + B.Ed. together',
+          'Excellent for those wanting to become Government School Teachers',
+          'Focus on NCERT Mathematics (Class 11 & 12)',
+          'Career paths: TGT/PGT Teacher, Education Policy, Academic Counselor',
+          'Central university degree has national recognition'
+        ]
+      },
+      // Integrated M.A. Economics
+      {
+        id: 'cutn-integrated-ma-economics',
+        name: 'Integrated M.A. Economics',
+        nameTamil: 'ஒருங்கிணைந்த எம்.ஏ. பொருளியல்',
+        type: 'UG',
+        seatMatrix: { general: 10, obc: 8, bcMbc: 0, sc: 5, st: 2, ews: 3, total: 30 },
+        cutoffs: [
+          { year: '2024', general: 480, obc: 420, bcMbc: '-', sc: 320, st: 290, ews: 450 },
+          { year: '2023', general: 460, obc: 400, bcMbc: '-', sc: 300, st: 270, ews: 430 },
+        ],
+        examPattern: {
+          totalQuestions: 50,
+          totalMarks: 200,
+          duration: '45 Minutes (per section)',
+          durationMinutes: 90,
+          mode: 'Computer Based (CBT)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Economics / Maths', nameTamil: 'பொருளியல் / கணிதம்', questions: 50, marks: 200, topics: ['Microeconomics', 'Macroeconomics', 'Statistics', 'Indian Economy'] },
+            { name: 'General Test', nameTamil: 'பொது தேர்வு', questions: 60, marks: 200, topics: ['General Awareness', 'Quantitative Reasoning', 'Logical Reasoning'] },
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'Microeconomics',
+            titleTamil: 'நுண்பொருளியல்',
+            topics: [
+              { name: 'Demand & Supply', subtopics: ['Law of Demand', 'Elasticity', 'Market Equilibrium'], importance: 'High' },
+              { name: 'Consumer Theory', subtopics: ['Utility', 'Indifference Curves', 'Budget Constraint'], importance: 'High' },
+            ],
+            expectedQuestions: 12,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2,
+            title: 'Macroeconomics',
+            titleTamil: 'பேரியல் பொருளியல்',
+            topics: [
+              { name: 'National Income', subtopics: ['GDP', 'GNP', 'NNP', 'Measurement Methods'], importance: 'High' },
+              { name: 'Money & Banking', subtopics: ['RBI Functions', 'Monetary Policy', 'Inflation'], importance: 'High' },
+            ],
+            expectedQuestions: 15,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 3,
+            title: 'Indian Economy',
+            titleTamil: 'இந்திய பொருளாதாரம்',
+            topics: [
+              { name: 'Economic Planning', subtopics: ['Five Year Plans', 'NITI Aayog', 'Reforms'], importance: 'Medium' },
+              { name: 'Current Issues', subtopics: ['Budget', 'Fiscal Policy', 'Trade'], importance: 'High' },
+            ],
+            expectedQuestions: 10,
+            difficulty: 'Easy'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'cutn-eco-q1',
+            year: '2024',
+            question: 'The Phillips Curve shows the relationship between:',
+            options: ['GDP and Interest Rate', 'Inflation and Unemployment', 'Savings and Investment', 'Exports and Imports'],
+            correctAnswer: 1,
+            explanation: 'The Phillips Curve demonstrates the inverse relationship between inflation and unemployment rates.',
+            topic: 'Macroeconomics',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'cutn-eco-q2',
+            year: '2024',
+            question: 'Which body is responsible for monetary policy in India?',
+            options: ['SEBI', 'Finance Ministry', 'RBI', 'NITI Aayog'],
+            correctAnswer: 2,
+            explanation: 'The Reserve Bank of India (RBI) is responsible for formulating and implementing monetary policy in India.',
+            topic: 'Indian Economy',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'cutn-eco-q3',
+            year: '2023',
+            question: 'Law of Diminishing Marginal Utility was propounded by:',
+            options: ['Adam Smith', 'Alfred Marshall', 'H.H. Gossen', 'J.M. Keynes'],
+            correctAnswer: 2,
+            explanation: 'H.H. Gossen formulated the Law of Diminishing Marginal Utility, also known as Gossen\'s First Law.',
+            topic: 'Microeconomics',
+            difficulty: 'Medium'
+          }
+        ],
+        tips: [
+          '5-year integrated program - no separate PG admission needed',
+          'Open to students from ANY stream (Science/Commerce/Arts)',
+          'Strong foundation in Maths/Economics in 12th is helpful',
+          'Career paths: Economist, RBI Grade B Officer, Data Analyst, IES',
+          'Focus on NCERT Economics and current affairs for CUET'
+        ]
+      }
+    ]
   }
 ];
 
