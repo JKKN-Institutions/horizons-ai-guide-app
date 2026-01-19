@@ -6065,6 +6065,352 @@ export const universities: University[] = [
         ]
       }
     ]
+  },
+  // Tamil University (Thanjavur) - Arts, Music & Heritage
+  {
+    id: 'tamil-university',
+    name: 'Tamil University',
+    nameTamil: 'தமிழ் பல்கலைக்கழகம்',
+    location: 'Thanjavur',
+    website: 'www.tamiluniversity.ac.in',
+    phone: '04362-226720',
+    email: 'registrar@tamiluniversity.ac.in',
+    examName: 'TU Entrance / Merit / Aptitude Test',
+    logoColor: '#7c2d12',
+    logo: '/universities/tamil-university-logo.png',
+    fee: { general: 300, obc: 200, scst: 100 },
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Aptitude/Skill Test', eventTamil: 'திறன் தேர்வு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Counseling', eventTamil: 'கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
+    ],
+    courses: [
+      // B.P.A. Music (Vocal)
+      {
+        id: 'tu-bpa-music-vocal',
+        name: 'B.P.A. Music (Vocal)',
+        nameTamil: 'பி.பி.ஏ. இசை (குரல்)',
+        type: 'UG',
+        seatMatrix: { general: 15, obc: 10, bcMbc: 8, sc: 5, st: 2, total: 40 },
+        cutoffs: [
+          { year: '2024', general: 'Audition Pass', obc: 'Audition Pass', bcMbc: 'Audition Pass', sc: 'Audition Pass', st: 'Audition Pass' },
+          { year: '2023', general: 'Audition Pass', obc: 'Audition Pass', bcMbc: 'Audition Pass', sc: 'Audition Pass', st: 'Audition Pass' },
+        ],
+        examPattern: {
+          totalQuestions: 0,
+          totalMarks: 100,
+          duration: 'Practical + Interview',
+          durationMinutes: 60,
+          mode: 'Audition / Practical Test',
+          negativeMarking: false,
+          sections: [
+            { name: 'Vocal Performance', nameTamil: 'குரல் நிகழ்ச்சி', questions: 0, marks: 50, topics: ['Ragas', 'Varnam', 'Kriti', 'Bhajan'] },
+            { name: 'Theory Knowledge', nameTamil: 'தத்துவ அறிவு', questions: 0, marks: 30, topics: ['Carnatic Music Theory', 'Swara', 'Tala', 'Ragam'] },
+            { name: 'Interview', nameTamil: 'நேர்காணல்', questions: 0, marks: 20, topics: ['Musical Background', 'Motivation', 'Career Goals'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'Carnatic Music Fundamentals',
+            titleTamil: 'கர்நாடக இசை அடிப்படைகள்',
+            topics: [
+              { name: 'Swara & Tala', subtopics: ['Sapta Swaras', 'Tala Types', 'Laya'], importance: 'High' },
+              { name: 'Raga System', subtopics: ['Melakarta', 'Janya Ragas', 'Raga Lakshanas'], importance: 'High' },
+            ],
+            expectedQuestions: 0,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2,
+            title: 'Musical Compositions',
+            titleTamil: 'இசை அமைப்புகள்',
+            topics: [
+              { name: 'Varnam', subtopics: ['Tana Varnam', 'Pada Varnam'], importance: 'High' },
+              { name: 'Kriti', subtopics: ['Trinity Compositions', 'Modern Composers'], importance: 'High' },
+              { name: 'Light Music', subtopics: ['Bhajan', 'Tillana', 'Javali'], importance: 'Medium' },
+            ],
+            expectedQuestions: 0,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 3,
+            title: 'History of Music',
+            titleTamil: 'இசையின் வரலாறு',
+            topics: [
+              { name: 'Ancient Tamil Music', subtopics: ['Sangam Literature', 'Pann', 'Yaazh'], importance: 'Medium' },
+              { name: 'Carnatic Trinity', subtopics: ['Tyagaraja', 'Muthuswami Dikshitar', 'Syama Sastri'], importance: 'High' },
+            ],
+            expectedQuestions: 0,
+            difficulty: 'Easy'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'tu-music-q1',
+            year: 'Sample',
+            question: 'How many Melakarta ragas are there in Carnatic music?',
+            options: ['36', '72', '108', '16'],
+            correctAnswer: 1,
+            explanation: 'There are 72 Melakarta (parent) ragas in Carnatic music, systematized by Venkatamakhin.',
+            topic: 'Raga System',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'tu-music-q2',
+            year: 'Sample',
+            question: 'Which is NOT part of the Carnatic Music Trinity?',
+            options: ['Tyagaraja', 'Purandara Dasa', 'Muthuswami Dikshitar', 'Syama Sastri'],
+            correctAnswer: 1,
+            explanation: 'Purandara Dasa is called the father of Carnatic music, but the Trinity consists of Tyagaraja, Dikshitar, and Syama Sastri.',
+            topic: 'Music History',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'tu-music-q3',
+            year: 'Sample',
+            question: 'Adi Tala has how many aksharas (beats)?',
+            options: ['4', '6', '8', '10'],
+            correctAnswer: 2,
+            explanation: 'Adi Tala has 8 aksharas in the pattern: 4 (Laghu) + 2 (Drutam) + 2 (Drutam).',
+            topic: 'Tala System',
+            difficulty: 'Medium'
+          }
+        ],
+        tips: [
+          'Audition-based admission - practice your vocal pieces thoroughly',
+          'Prepare at least 3-4 compositions in different ragas',
+          'Knowledge of Carnatic music theory is essential',
+          'Career paths: Professional Singer, Music Teacher, Cultural Officer, AIR Artist',
+          'Join under a Guru for structured training before applying'
+        ]
+      },
+      // B.F.A. Sculpture
+      {
+        id: 'tu-bfa-sculpture',
+        name: 'B.F.A. Sculpture',
+        nameTamil: 'பி.எஃப்.ஏ. சிற்பம்',
+        type: 'UG',
+        seatMatrix: { general: 8, obc: 5, bcMbc: 4, sc: 2, st: 1, total: 20 },
+        cutoffs: [
+          { year: '2024', general: 'Skill Test Pass', obc: 'Skill Test Pass', bcMbc: 'Skill Test Pass', sc: 'Skill Test Pass', st: 'Skill Test Pass' },
+          { year: '2023', general: 'Skill Test Pass', obc: 'Skill Test Pass', bcMbc: 'Skill Test Pass', sc: 'Skill Test Pass', st: 'Skill Test Pass' },
+        ],
+        examPattern: {
+          totalQuestions: 0,
+          totalMarks: 100,
+          duration: 'Skill Test (3 Hours) + Interview',
+          durationMinutes: 210,
+          mode: 'Practical Skill Test',
+          negativeMarking: false,
+          sections: [
+            { name: 'Drawing Test', nameTamil: 'வரைதல் தேர்வு', questions: 0, marks: 40, topics: ['Human Figure Drawing', 'Object Drawing', 'Memory Drawing'] },
+            { name: 'Clay Modelling', nameTamil: 'களிமண் வடிவமைப்பு', questions: 0, marks: 40, topics: ['3D Form Creation', 'Human Anatomy', 'Relief Work'] },
+            { name: 'Interview', nameTamil: 'நேர்காணல்', questions: 0, marks: 20, topics: ['Portfolio Review', 'Motivation', 'Art Appreciation'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'Basic Drawing & Anatomy',
+            titleTamil: 'அடிப்படை வரைதல் & உடற்கூறியல்',
+            topics: [
+              { name: 'Human Anatomy', subtopics: ['Skeletal Structure', 'Muscle Groups', 'Proportions'], importance: 'High' },
+              { name: 'Perspective Drawing', subtopics: ['One-Point', 'Two-Point', 'Foreshortening'], importance: 'High' },
+            ],
+            expectedQuestions: 0,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2,
+            title: 'Sculpture Techniques',
+            titleTamil: 'சிற்ப நுட்பங்கள்',
+            topics: [
+              { name: 'Clay Modelling', subtopics: ['Additive Technique', 'Armature Making', 'Surface Treatment'], importance: 'High' },
+              { name: 'Stone & Metal', subtopics: ['Carving', 'Casting', 'Chasing'], importance: 'Medium' },
+            ],
+            expectedQuestions: 0,
+            difficulty: 'Hard'
+          },
+          {
+            unitNumber: 3,
+            title: 'History of Indian Sculpture',
+            titleTamil: 'இந்திய சிற்பத்தின் வரலாறு',
+            topics: [
+              { name: 'Tamil Nadu Sculpture', subtopics: ['Chola Bronzes', 'Pallava Art', 'Temple Sculptures'], importance: 'High' },
+              { name: 'Indian Traditions', subtopics: ['Gandhara', 'Mathura', 'Gupta Period'], importance: 'Medium' },
+            ],
+            expectedQuestions: 0,
+            difficulty: 'Easy'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'tu-sculpture-q1',
+            year: 'Sample',
+            question: 'Which dynasty is famous for bronze sculptures of Nataraja?',
+            options: ['Pallava', 'Chola', 'Pandya', 'Chera'],
+            correctAnswer: 1,
+            explanation: 'The Chola dynasty (9th-13th century) is renowned for exquisite bronze sculptures, especially the iconic Nataraja.',
+            topic: 'Art History',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'tu-sculpture-q2',
+            year: 'Sample',
+            question: 'Lost-wax technique is used in:',
+            options: ['Stone carving', 'Metal casting', 'Clay modelling', 'Wood carving'],
+            correctAnswer: 1,
+            explanation: 'Lost-wax (Cire Perdue) is an ancient metal casting technique used to create detailed bronze sculptures.',
+            topic: 'Techniques',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'tu-sculpture-q3',
+            year: 'Sample',
+            question: 'The Descent of Ganga relief is located at:',
+            options: ['Thanjavur', 'Mahabalipuram', 'Madurai', 'Kanchipuram'],
+            correctAnswer: 1,
+            explanation: 'The famous Descent of Ganga (Arjuna\'s Penance) is a massive rock relief at Mahabalipuram, a Pallava monument.',
+            topic: 'Monuments',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: [
+          'Skill-based admission - practice drawing and clay work regularly',
+          'Visit temples and museums to study traditional sculptures',
+          'Bring a portfolio of your artwork to the interview',
+          'Career paths: Sculptor, Museum Curator, Archaeologist Assistant, Art Restorer',
+          'Knowledge of Tamil Nadu\'s rich sculpture heritage is valuable'
+        ]
+      },
+      // Integrated M.A. History & Archaeology
+      {
+        id: 'tu-integrated-ma-history-archaeology',
+        name: 'Integrated M.A. History & Archaeology',
+        nameTamil: 'ஒருங்கிணைந்த எம்.ஏ. வரலாறு & தொல்லியல்',
+        type: 'UG',
+        seatMatrix: { general: 10, obc: 6, bcMbc: 5, sc: 3, st: 1, total: 25 },
+        cutoffs: [
+          { year: '2024', general: 75, obc: 70, bcMbc: 65, sc: 55, st: 50 },
+          { year: '2023', general: 72, obc: 68, bcMbc: 62, sc: 52, st: 48 },
+        ],
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Merit)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Indian History', nameTamil: 'இந்திய வரலாறு', questions: 40, marks: 40, topics: ['Ancient', 'Medieval', 'Modern India'] },
+            { name: 'Tamil Nadu History', nameTamil: 'தமிழ்நாடு வரலாறு', questions: 30, marks: 30, topics: ['Sangam Age', 'Dynasties', 'Freedom Movement'] },
+            { name: 'Archaeology Basics', nameTamil: 'தொல்லியல் அடிப்படைகள்', questions: 20, marks: 20, topics: ['Excavation Methods', 'Dating Techniques', 'Indian Sites'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Current Affairs', 'Heritage Sites', 'Museums'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'Ancient India & Tamil Nadu',
+            titleTamil: 'பண்டைய இந்தியா & தமிழ்நாடு',
+            topics: [
+              { name: 'Indus Valley Civilization', subtopics: ['Harappa', 'Mohenjo-daro', 'Town Planning', 'Script'], importance: 'High' },
+              { name: 'Sangam Age', subtopics: ['Literature', 'Kingdoms', 'Trade', 'Society'], importance: 'High' },
+              { name: 'Vedic Period', subtopics: ['Rig Veda', 'Society', 'Religion'], importance: 'Medium' },
+            ],
+            expectedQuestions: 25,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2,
+            title: 'Medieval Period',
+            titleTamil: 'இடைக்கால காலம்',
+            topics: [
+              { name: 'Pallava Dynasty', subtopics: ['Mahabalipuram', 'Kanchipuram', 'Architecture'], importance: 'High' },
+              { name: 'Chola Empire', subtopics: ['Rajaraja I', 'Naval Power', 'Temple Architecture'], importance: 'High' },
+              { name: 'Delhi Sultanate & Mughals', subtopics: ['Administration', 'Art', 'Architecture'], importance: 'Medium' },
+            ],
+            expectedQuestions: 25,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 3,
+            title: 'Archaeology & Methods',
+            titleTamil: 'தொல்லியல் & முறைகள்',
+            topics: [
+              { name: 'Excavation Techniques', subtopics: ['Stratigraphy', 'Grid System', 'Documentation'], importance: 'High' },
+              { name: 'Dating Methods', subtopics: ['Carbon-14', 'Thermoluminescence', 'Dendrochronology'], importance: 'Medium' },
+              { name: 'Indian Archaeological Sites', subtopics: ['Adichanallur', 'Keeladi', 'Lothal'], importance: 'High' },
+            ],
+            expectedQuestions: 15,
+            difficulty: 'Hard'
+          },
+          {
+            unitNumber: 4,
+            title: 'Epigraphy & Numismatics',
+            titleTamil: 'கல்வெட்டியல் & நாணயவியல்',
+            topics: [
+              { name: 'Tamil Inscriptions', subtopics: ['Tamil Brahmi', 'Vatteluttu', 'Grantha'], importance: 'High' },
+              { name: 'Coin Studies', subtopics: ['Punch-marked', 'Roman', 'Chola Coins'], importance: 'Medium' },
+            ],
+            expectedQuestions: 10,
+            difficulty: 'Medium'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'tu-history-q1',
+            year: 'Sample',
+            question: 'The Keeladi excavation site is located near which city?',
+            options: ['Chennai', 'Madurai', 'Thanjavur', 'Coimbatore'],
+            correctAnswer: 1,
+            explanation: 'Keeladi, a significant Sangam-era archaeological site, is located near Madurai on the banks of Vaigai river.',
+            topic: 'Archaeology',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'tu-history-q2',
+            year: 'Sample',
+            question: 'Which Chola king built the Brihadisvara Temple at Thanjavur?',
+            options: ['Vijayalaya', 'Rajaraja I', 'Rajendra I', 'Kulottunga I'],
+            correctAnswer: 1,
+            explanation: 'Rajaraja I (985-1014 CE) built the magnificent Brihadisvara Temple, a UNESCO World Heritage Site.',
+            topic: 'Medieval History',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'tu-history-q3',
+            year: 'Sample',
+            question: 'Carbon-14 dating is used to determine the age of:',
+            options: ['Rocks', 'Organic remains', 'Pottery', 'Metals'],
+            correctAnswer: 1,
+            explanation: 'Carbon-14 dating measures radioactive decay in organic materials to determine their age (up to ~50,000 years).',
+            topic: 'Dating Methods',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'tu-history-q4',
+            year: 'Sample',
+            question: 'The earliest Tamil script evolved from:',
+            options: ['Devanagari', 'Tamil Brahmi', 'Grantha', 'Vatteluttu'],
+            correctAnswer: 1,
+            explanation: 'Tamil Brahmi (3rd century BCE) is the earliest script used to write Tamil, found in Sangam-era inscriptions.',
+            topic: 'Epigraphy',
+            difficulty: 'Medium'
+          }
+        ],
+        tips: [
+          'Merit-based admission - focus on 12th marks and knowledge of history',
+          '5-year integrated program with specialization in Archaeology',
+          'Study NCERT History books (Class 6-12) thoroughly',
+          'Career paths: Archaeologist, Epigraphist, ASI Officer, Museum Curator, Tour Guide',
+          'Knowledge of Tamil Nadu\'s heritage sites gives you an edge'
+        ]
+      }
+    ]
   }
 ];
 
