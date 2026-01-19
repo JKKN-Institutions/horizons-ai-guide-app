@@ -4471,6 +4471,7 @@ export const universities: University[] = [
     phone: '044-24641212',
     email: 'registrar@tndalu.ac.in',
     examName: 'TNDALU Entrance / CLAT',
+    logo: '/universities/tndalu-logo.png',
     logoColor: '#7c2d12',
     fee: { general: 1000, obc: 1000, scst: 500 },
     importantDates: [
