@@ -6411,6 +6411,346 @@ export const universities: University[] = [
         ]
       }
     ]
+  },
+  // Gandhigram Rural Institute (GRI) - Rural Development & Vocational
+  {
+    id: 'gandhigram-rural-institute',
+    name: 'Gandhigram Rural Institute',
+    nameTamil: 'காந்திகிராம கிராமிய நிறுவனம்',
+    location: 'Dindigul',
+    website: 'www.ruraluniv.ac.in',
+    phone: '0451-2452371',
+    email: 'registrar@ruraluniv.ac.in',
+    examName: 'CUET-UG / Merit',
+    logoColor: '#166534',
+    logo: '/universities/gandhigram-rural-logo.jpeg',
+    fee: { general: 500, obc: 400, scst: 250 },
+    importantDates: [
+      { event: 'CUET Notification', eventTamil: 'CUET அறிவிப்பு', date: 'February 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'February 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'March 2026', status: 'upcoming' },
+      { event: 'CUET Exam', eventTamil: 'CUET தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'GRI Counseling', eventTamil: 'GRI கலந்தாய்வு', date: 'June 2026', status: 'upcoming' },
+    ],
+    courses: [
+      // B.Sc. Agriculture (Hons)
+      {
+        id: 'gri-bsc-agriculture',
+        name: 'B.Sc. Agriculture (Hons)',
+        nameTamil: 'பி.எஸ்சி. வேளாண்மை (ஆனர்ஸ்)',
+        type: 'UG',
+        seatMatrix: { general: 20, obc: 16, bcMbc: 12, sc: 8, st: 4, total: 60 },
+        cutoffs: [
+          { year: '2024', general: 480, obc: 420, bcMbc: 380, sc: 320, st: 280 },
+          { year: '2023', general: 460, obc: 400, bcMbc: 360, sc: 300, st: 260 },
+        ],
+        examPattern: {
+          totalQuestions: 50,
+          totalMarks: 200,
+          duration: '45 Minutes per section',
+          durationMinutes: 195,
+          mode: 'Computer Based (CBT)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 200, topics: ['Mechanics', 'Heat', 'Optics', 'Modern Physics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 200, topics: ['Organic', 'Inorganic', 'Physical Chemistry'] },
+            { name: 'Biology/Agriculture', nameTamil: 'உயிரியல்/வேளாண்மை', questions: 50, marks: 200, topics: ['Botany', 'Zoology', 'Agriculture Basics'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'Crop Production',
+            titleTamil: 'பயிர் உற்பத்தி',
+            topics: [
+              { name: 'Agronomy', subtopics: ['Field Crops', 'Cropping Systems', 'Tillage', 'Irrigation'], importance: 'High' },
+              { name: 'Soil Science', subtopics: ['Soil Types', 'Fertility', 'Soil Conservation'], importance: 'High' },
+            ],
+            expectedQuestions: 15,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2,
+            title: 'Plant Sciences',
+            titleTamil: 'தாவர அறிவியல்',
+            topics: [
+              { name: 'Plant Physiology', subtopics: ['Photosynthesis', 'Respiration', 'Transpiration'], importance: 'High' },
+              { name: 'Plant Pathology', subtopics: ['Diseases', 'Pests', 'Integrated Pest Management'], importance: 'Medium' },
+            ],
+            expectedQuestions: 15,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 3,
+            title: 'Agricultural Economics',
+            titleTamil: 'வேளாண் பொருளாதாரம்',
+            topics: [
+              { name: 'Farm Management', subtopics: ['Cost Analysis', 'Marketing', 'Price Policy'], importance: 'Medium' },
+              { name: 'Agricultural Extension', subtopics: ['Rural Development', 'Farmer Welfare Schemes'], importance: 'Medium' },
+            ],
+            expectedQuestions: 10,
+            difficulty: 'Easy'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'gri-agri-q1',
+            year: '2024',
+            question: 'Which is the most important greenhouse gas contributing to global warming?',
+            options: ['Oxygen', 'Nitrogen', 'Carbon Dioxide', 'Argon'],
+            correctAnswer: 2,
+            explanation: 'Carbon dioxide (CO2) is the primary greenhouse gas responsible for global warming and climate change.',
+            topic: 'Environment',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'gri-agri-q2',
+            year: '2024',
+            question: 'NPK in fertilizers stands for:',
+            options: ['Nitrogen, Potassium, Kalium', 'Nitrogen, Phosphorus, Potassium', 'Neon, Phosphorus, Krypton', 'Nitrogen, Platinum, Potassium'],
+            correctAnswer: 1,
+            explanation: 'NPK represents Nitrogen (N), Phosphorus (P), and Potassium (K) - the three primary nutrients for plant growth.',
+            topic: 'Soil Science',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'gri-agri-q3',
+            year: '2023',
+            question: 'Which of the following is NOT a Kharif crop?',
+            options: ['Rice', 'Cotton', 'Wheat', 'Maize'],
+            correctAnswer: 2,
+            explanation: 'Wheat is a Rabi (winter) crop sown in October-December. Kharif crops are sown during monsoon (June-July).',
+            topic: 'Agronomy',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'gri-agri-q4',
+            year: '2023',
+            question: 'The process by which plants lose water through stomata is called:',
+            options: ['Respiration', 'Photosynthesis', 'Transpiration', 'Guttation'],
+            correctAnswer: 2,
+            explanation: 'Transpiration is the evaporation of water from plant leaves through stomata, creating a pull for water absorption.',
+            topic: 'Plant Physiology',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: [
+          'CUET-UG based admission - focus on Physics, Chemistry, Biology',
+          '4-year professional program with focus on practical farming',
+          'Career paths: Agricultural Officer, Farm Manager, TNAU Scientist, Agri-Business',
+          'Study NCERT Biology and basic agriculture concepts',
+          'GRI specializes in rural development - great for students from farming backgrounds'
+        ]
+      },
+      // B.Com (Cooperation)
+      {
+        id: 'gri-bcom-cooperation',
+        name: 'B.Com (Cooperation)',
+        nameTamil: 'பி.காம். (கூட்டுறவு)',
+        type: 'UG',
+        seatMatrix: { general: 18, obc: 14, bcMbc: 10, sc: 6, st: 2, total: 50 },
+        cutoffs: [
+          { year: '2024', general: 420, obc: 380, bcMbc: 340, sc: 280, st: 240 },
+          { year: '2023', general: 400, obc: 360, bcMbc: 320, sc: 260, st: 220 },
+        ],
+        examPattern: {
+          totalQuestions: 50,
+          totalMarks: 200,
+          duration: '45 Minutes',
+          durationMinutes: 45,
+          mode: 'Computer Based (CBT)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Accountancy', nameTamil: 'கணக்கியல்', questions: 25, marks: 100, topics: ['Principles', 'Financial Statements', 'Partnership'] },
+            { name: 'Business Studies', nameTamil: 'வணிகவியல்', questions: 15, marks: 60, topics: ['Business Organization', 'Management', 'Marketing'] },
+            { name: 'Economics', nameTamil: 'பொருளாதாரம்', questions: 10, marks: 40, topics: ['Microeconomics', 'Indian Economy'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'Cooperative Principles',
+            titleTamil: 'கூட்டுறவு கொள்கைகள்',
+            topics: [
+              { name: 'Cooperative Movement', subtopics: ['History', 'Rochdale Principles', 'Types of Cooperatives'], importance: 'High' },
+              { name: 'Cooperative Laws', subtopics: ['Cooperative Societies Act', 'Registration', 'Management'], importance: 'High' },
+            ],
+            expectedQuestions: 15,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2,
+            title: 'Banking & Finance',
+            titleTamil: 'வங்கி & நிதி',
+            topics: [
+              { name: 'Cooperative Banking', subtopics: ['District Cooperative Banks', 'PACS', 'NABARD'], importance: 'High' },
+              { name: 'Agricultural Finance', subtopics: ['Crop Loans', 'Kisan Credit Card', 'Subsidies'], importance: 'Medium' },
+            ],
+            expectedQuestions: 15,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 3,
+            title: 'Accountancy',
+            titleTamil: 'கணக்கியல்',
+            topics: [
+              { name: 'Financial Accounting', subtopics: ['Journal', 'Ledger', 'Trial Balance', 'Final Accounts'], importance: 'High' },
+              { name: 'Cooperative Accounts', subtopics: ['Audit', 'Reserves', 'Dividend Distribution'], importance: 'Medium' },
+            ],
+            expectedQuestions: 20,
+            difficulty: 'Medium'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'gri-coop-q1',
+            year: 'Sample',
+            question: 'The first successful cooperative was established in:',
+            options: ['France', 'Germany', 'England (Rochdale)', 'India'],
+            correctAnswer: 2,
+            explanation: 'The Rochdale Society of Equitable Pioneers (1844) in England is considered the first successful modern cooperative.',
+            topic: 'Cooperative History',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'gri-coop-q2',
+            year: 'Sample',
+            question: 'NABARD stands for:',
+            options: ['National Bank for Agriculture and Rural Development', 'National Board of Agricultural Research', 'National Bank for Asset Development', 'None of these'],
+            correctAnswer: 0,
+            explanation: 'NABARD is the apex development financial institution for agriculture and rural development in India.',
+            topic: 'Agricultural Finance',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'gri-coop-q3',
+            year: 'Sample',
+            question: 'Which of the following is NOT a principle of cooperation?',
+            options: ['Open membership', 'Democratic control', 'Profit maximization', 'Education and training'],
+            correctAnswer: 2,
+            explanation: 'Cooperatives focus on member welfare, not profit maximization. Surplus is distributed equitably among members.',
+            topic: 'Cooperative Principles',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: [
+          'CUET-UG based admission - focus on Accountancy and Business Studies',
+          'Unique course combining Commerce with Cooperative management',
+          'Career paths: Cooperative Bank Manager, Registrar of Cooperatives, NABARD Officer',
+          'Study cooperative movement history and Indian banking',
+          'Excellent opportunities in rural banking sector'
+        ]
+      },
+      // B.Voc. Food Processing
+      {
+        id: 'gri-bvoc-food-processing',
+        name: 'B.Voc. Food Processing',
+        nameTamil: 'பி.வாக். உணவு பதப்படுத்துதல்',
+        type: 'UG',
+        seatMatrix: { general: 14, obc: 11, bcMbc: 8, sc: 5, st: 2, total: 40 },
+        cutoffs: [
+          { year: '2024', general: 380, obc: 340, bcMbc: 300, sc: 250, st: 220 },
+          { year: '2023', general: 360, obc: 320, bcMbc: 280, sc: 230, st: 200 },
+        ],
+        examPattern: {
+          totalQuestions: 50,
+          totalMarks: 200,
+          duration: '45 Minutes per section',
+          durationMinutes: 135,
+          mode: 'Computer Based (CBT)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 200, topics: ['Mechanics', 'Heat', 'Thermodynamics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 200, topics: ['Organic', 'Physical Chemistry', 'Biochemistry'] },
+            { name: 'Biology (Optional)', nameTamil: 'உயிரியல்', questions: 50, marks: 200, topics: ['Microbiology', 'Nutrition', 'Food Science'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1,
+            title: 'Food Science Basics',
+            titleTamil: 'உணவு அறிவியல் அடிப்படைகள்',
+            topics: [
+              { name: 'Food Chemistry', subtopics: ['Carbohydrates', 'Proteins', 'Fats', 'Vitamins'], importance: 'High' },
+              { name: 'Food Microbiology', subtopics: ['Bacteria', 'Yeasts', 'Food Spoilage', 'Fermentation'], importance: 'High' },
+            ],
+            expectedQuestions: 15,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2,
+            title: 'Food Processing Technology',
+            titleTamil: 'உணவு பதப்படுத்தும் தொழில்நுட்பம்',
+            topics: [
+              { name: 'Preservation Methods', subtopics: ['Canning', 'Freezing', 'Drying', 'Irradiation'], importance: 'High' },
+              { name: 'Dairy Technology', subtopics: ['Milk Processing', 'Cheese', 'Yogurt', 'Ice Cream'], importance: 'Medium' },
+            ],
+            expectedQuestions: 20,
+            difficulty: 'Medium'
+          },
+          {
+            unitNumber: 3,
+            title: 'Food Safety & Quality',
+            titleTamil: 'உணவு பாதுகாப்பு & தரம்',
+            topics: [
+              { name: 'FSSAI Standards', subtopics: ['Food Regulations', 'Labeling', 'HACCP'], importance: 'High' },
+              { name: 'Quality Control', subtopics: ['Testing Methods', 'Adulteration', 'ISO Standards'], importance: 'Medium' },
+            ],
+            expectedQuestions: 15,
+            difficulty: 'Easy'
+          }
+        ],
+        previousQuestions: [
+          {
+            id: 'gri-food-q1',
+            year: 'Sample',
+            question: 'FSSAI stands for:',
+            options: ['Food Standards and Safety Authority of India', 'Food Security and Safety Administration of India', 'Federal Standards for Safe Agriculture in India', 'Food and Safety Standards Authority of India'],
+            correctAnswer: 3,
+            explanation: 'FSSAI (Food Safety and Standards Authority of India) regulates food safety in India under the FSSA 2006.',
+            topic: 'Food Safety',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'gri-food-q2',
+            year: 'Sample',
+            question: 'Pasteurization of milk is done at:',
+            options: ['100°C for 10 minutes', '72°C for 15 seconds', '60°C for 30 minutes', '121°C for 15 minutes'],
+            correctAnswer: 1,
+            explanation: 'HTST (High Temperature Short Time) pasteurization heats milk to 72°C for 15 seconds to kill pathogens.',
+            topic: 'Dairy Technology',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'gri-food-q3',
+            year: 'Sample',
+            question: 'Which vitamin is destroyed most easily by heat during cooking?',
+            options: ['Vitamin A', 'Vitamin C', 'Vitamin D', 'Vitamin K'],
+            correctAnswer: 1,
+            explanation: 'Vitamin C (ascorbic acid) is highly heat-sensitive and water-soluble, making it most susceptible to cooking losses.',
+            topic: 'Food Chemistry',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'gri-food-q4',
+            year: 'Sample',
+            question: 'HACCP stands for:',
+            options: ['Hazard Analysis Critical Control Points', 'Health and Cleanliness Control Program', 'Hygiene Assessment and Control Certification Process', 'None of these'],
+            correctAnswer: 0,
+            explanation: 'HACCP is a systematic preventive approach to food safety that identifies and controls biological, chemical, and physical hazards.',
+            topic: 'Quality Control',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: [
+          'CUET-UG or Merit-based admission (Science stream preferred)',
+          'Vocational program with 70% practical training',
+          'Career paths: Food Safety Officer, Quality Controller, Food Technologist',
+          'India\'s food processing sector is growing rapidly - great job prospects',
+          'Internships in food companies are part of curriculum'
+        ]
+      }
+    ]
   }
 ];
 
