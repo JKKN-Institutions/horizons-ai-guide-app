@@ -481,7 +481,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Focus on Engineering Mathematics - common for all branches', 'Core engineering section is branch specific', 'Practice previous year papers']
+        tips: ['Focus on Engineering Mathematics - common for all branches', 'Core engineering section is branch specific', 'Practice previous year papers'],
+        seatMatrix: {
+          general: 320,
+          obc: 520,
+          bcMbc: 680,
+          sc: 280,
+          st: 45,
+          ews: 85,
+          total: 1930
+        },
+        cutoffs: [
+          { year: '2024', general: 76.5, obc: 70.2, bcMbc: 65.8, sc: 52.4, st: 42.5, ews: 68.8 },
+          { year: '2023', general: 78.2, obc: 72.4, bcMbc: 68.2, sc: 54.6, st: 44.2, ews: 70.5 },
+          { year: '2022', general: 74.8, obc: 68.5, bcMbc: 64.2, sc: 50.8, st: 40.5, ews: 66.2 }
+        ]
       },
       {
         id: 'tancet-mphil',
@@ -502,7 +516,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Research methodology is common for all', 'Focus on statistical methods', 'Understand research ethics']
+        tips: ['Research methodology is common for all', 'Focus on statistical methods', 'Understand research ethics'],
+        seatMatrix: {
+          general: 45,
+          obc: 75,
+          bcMbc: 95,
+          sc: 40,
+          st: 8,
+          ews: 12,
+          total: 275
+        },
+        cutoffs: [
+          { year: '2024', general: 68.5, obc: 62.4, bcMbc: 58.2, sc: 48.5, st: 38.6, ews: 60.5 },
+          { year: '2023', general: 70.2, obc: 64.6, bcMbc: 60.5, sc: 50.2, st: 40.2, ews: 62.8 },
+          { year: '2022', general: 66.8, obc: 60.2, bcMbc: 56.4, sc: 46.8, st: 36.5, ews: 58.2 }
+        ]
       },
       {
         id: 'barch',
@@ -524,7 +552,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Practice sketching daily', 'Develop spatial visualization', 'Focus on aesthetic sense questions']
+        tips: ['Practice sketching daily', 'Develop spatial visualization', 'Focus on aesthetic sense questions'],
+        seatMatrix: {
+          general: 25,
+          obc: 45,
+          bcMbc: 55,
+          sc: 22,
+          st: 4,
+          ews: 8,
+          total: 159
+        },
+        cutoffs: [
+          { year: '2024', general: 172.5, obc: 165.2, bcMbc: 158.4, sc: 142.6, st: 125.8, ews: 162.5 },
+          { year: '2023', general: 175.2, obc: 168.4, bcMbc: 160.8, sc: 145.2, st: 128.5, ews: 165.8 },
+          { year: '2022', general: 170.8, obc: 162.5, bcMbc: 156.2, sc: 140.5, st: 122.4, ews: 160.2 }
+        ]
       },
       // ========== B.E./B.Tech Courses (Engineering Streams) ==========
       // Faculty of Information & Communication
@@ -709,7 +751,21 @@ export const universities: University[] = [
         previousQuestions: [
           { id: 'anna-aero-1', year: '2024', question: 'Bernoulli\'s principle explains:', options: ['Gravity effect on fluids', 'Lift generation in aircraft', 'Thermal expansion', 'Electrical conductivity'], correctAnswer: 1, explanation: 'Bernoulli\'s principle explains how aircraft wings generate lift through pressure differences.', topic: 'Aerodynamics', difficulty: 'Medium' }
         ],
-        tips: ['MIT Campus Anna Univ specializes in this', 'Strong physics background essential', 'Great for ISRO/DRDO careers']
+        tips: ['MIT Campus Anna Univ specializes in this', 'Strong physics background essential', 'Great for ISRO/DRDO careers'],
+        seatMatrix: {
+          general: 45,
+          obc: 80,
+          bcMbc: 100,
+          sc: 42,
+          st: 6,
+          ews: 15,
+          total: 288
+        },
+        cutoffs: [
+          { year: '2024', general: 189.5, obc: 185.2, bcMbc: 181.4, sc: 168.6, st: 148.2, ews: 184.2 },
+          { year: '2023', general: 191.2, obc: 187.4, bcMbc: 183.8, sc: 170.5, st: 150.8, ews: 186.5 },
+          { year: '2022', general: 187.8, obc: 183.5, bcMbc: 179.2, sc: 166.4, st: 146.5, ews: 182.2 }
+        ]
       },
       {
         id: 'anna-be-robotics',
@@ -732,7 +788,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Emerging field with Industry 4.0', 'Mix of mechanical, electronics & CS', 'Learn Arduino/Raspberry Pi basics']
+        tips: ['Emerging field with Industry 4.0', 'Mix of mechanical, electronics & CS', 'Learn Arduino/Raspberry Pi basics'],
+        seatMatrix: {
+          general: 35,
+          obc: 60,
+          bcMbc: 75,
+          sc: 32,
+          st: 5,
+          ews: 12,
+          total: 219
+        },
+        cutoffs: [
+          { year: '2024', general: 195.2, obc: 192.4, bcMbc: 189.6, sc: 178.5, st: 162.4, ews: 191.5 },
+          { year: '2023', general: 193.8, obc: 190.5, bcMbc: 187.2, sc: 176.2, st: 160.5, ews: 189.8 },
+          { year: '2022', general: 191.5, obc: 188.2, bcMbc: 184.8, sc: 174.5, st: 158.2, ews: 187.2 }
+        ]
       },
       // Faculty of Technology
       {
@@ -756,7 +826,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Good for petrochemical and pharma industries', 'Strong chemistry foundation needed', 'GATE Chemical has good scope']
+        tips: ['Good for petrochemical and pharma industries', 'Strong chemistry foundation needed', 'GATE Chemical has good scope'],
+        seatMatrix: {
+          general: 40,
+          obc: 70,
+          bcMbc: 85,
+          sc: 35,
+          st: 5,
+          ews: 12,
+          total: 247
+        },
+        cutoffs: [
+          { year: '2024', general: 182.5, obc: 176.2, bcMbc: 170.8, sc: 158.4, st: 138.5, ews: 174.5 },
+          { year: '2023', general: 184.8, obc: 178.5, bcMbc: 172.4, sc: 160.2, st: 140.8, ews: 176.8 },
+          { year: '2022', general: 180.2, obc: 174.5, bcMbc: 168.2, sc: 156.5, st: 136.2, ews: 172.5 }
+        ]
       },
       {
         id: 'anna-btech-biotech',
@@ -779,7 +863,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Ideal for PCB students', 'Good for pharma and research careers', 'Learn lab techniques']
+        tips: ['Ideal for PCB students', 'Good for pharma and research careers', 'Learn lab techniques'],
+        seatMatrix: {
+          general: 30,
+          obc: 50,
+          bcMbc: 65,
+          sc: 28,
+          st: 4,
+          ews: 10,
+          total: 187
+        },
+        cutoffs: [
+          { year: '2024', general: 178.5, obc: 172.2, bcMbc: 166.8, sc: 152.4, st: 132.5, ews: 170.5 },
+          { year: '2023', general: 180.2, obc: 174.5, bcMbc: 168.2, sc: 154.6, st: 134.8, ews: 172.8 },
+          { year: '2022', general: 176.8, obc: 170.5, bcMbc: 164.2, sc: 150.5, st: 130.2, ews: 168.2 }
+        ]
       },
       // Faculty of Civil Engineering
       {
@@ -803,7 +901,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Essential for infrastructure careers', 'Learn surveying and AutoCAD', 'Good scope in govt sector']
+        tips: ['Essential for infrastructure careers', 'Learn surveying and AutoCAD', 'Good scope in govt sector'],
+        seatMatrix: {
+          general: 180,
+          obc: 320,
+          bcMbc: 400,
+          sc: 165,
+          st: 25,
+          ews: 55,
+          total: 1145
+        },
+        cutoffs: [
+          { year: '2024', general: 185.2, obc: 180.4, bcMbc: 175.8, sc: 162.5, st: 142.8, ews: 178.5 },
+          { year: '2023', general: 187.5, obc: 182.6, bcMbc: 178.2, sc: 164.8, st: 145.2, ews: 180.8 },
+          { year: '2022', general: 183.8, obc: 178.5, bcMbc: 173.4, sc: 160.2, st: 140.5, ews: 176.2 }
+        ]
       },
       {
         id: 'anna-be-geoinformatics',
@@ -828,7 +940,21 @@ export const universities: University[] = [
         previousQuestions: [
           { id: 'anna-geo-1', year: '2024', question: 'GIS stands for:', options: ['Global Information System', 'Geographic Information System', 'Geological Investigation System', 'Ground Investigation Service'], correctAnswer: 1, explanation: 'GIS stands for Geographic Information System - a framework for gathering, managing, and analyzing spatial data.', topic: 'GIS Basics', difficulty: 'Easy' }
         ],
-        tips: ['Unique course - Maps, GPS, Satellite data', 'Good for ISRO, Survey of India', 'Learn GIS software (QGIS, ArcGIS)']
+        tips: ['Unique course - Maps, GPS, Satellite data', 'Good for ISRO, Survey of India', 'Learn GIS software (QGIS, ArcGIS)'],
+        seatMatrix: {
+          general: 25,
+          obc: 45,
+          bcMbc: 55,
+          sc: 22,
+          st: 4,
+          ews: 8,
+          total: 159
+        },
+        cutoffs: [
+          { year: '2024', general: 175.2, obc: 168.4, bcMbc: 162.5, sc: 148.2, st: 128.5, ews: 166.5 },
+          { year: '2023', general: 178.5, obc: 172.2, bcMbc: 165.8, sc: 150.4, st: 130.8, ews: 169.8 },
+          { year: '2022', general: 172.8, obc: 165.5, bcMbc: 159.2, sc: 146.5, st: 126.2, ews: 163.2 }
+        ]
       },
       {
         id: 'msc-physics',
@@ -855,7 +981,21 @@ export const universities: University[] = [
           { id: 'phy-q1', question: 'The Lagrangian L = T - V is invariant under translation. The conserved quantity is:', options: ['Energy', 'Linear Momentum', 'Angular Momentum', 'Mass'], correctAnswer: 1, explanation: 'By Noether theorem, translational invariance leads to conservation of linear momentum.', topic: 'Classical Mechanics', difficulty: 'Medium' },
           { id: 'phy-q2', question: 'The ground state energy of a particle in a 1D infinite potential well of width L is:', options: ['ℏ²π²/2mL²', 'ℏ²π²/mL²', '2ℏ²π²/mL²', 'ℏ²π²/4mL²'], correctAnswer: 0, explanation: 'En = n²ℏ²π²/2mL². For n=1, E₁ = ℏ²π²/2mL²', topic: 'Quantum Mechanics', difficulty: 'Easy' }
         ],
-        tips: ['Focus on Quantum Mechanics - high weightage', 'Practice mathematical physics', 'Understand Classical Mechanics concepts well']
+        tips: ['Focus on Quantum Mechanics - high weightage', 'Practice mathematical physics', 'Understand Classical Mechanics concepts well'],
+        seatMatrix: {
+          general: 35,
+          obc: 60,
+          bcMbc: 75,
+          sc: 32,
+          st: 5,
+          ews: 12,
+          total: 219
+        },
+        cutoffs: [
+          { year: '2024', general: 72.5, obc: 66.4, bcMbc: 62.2, sc: 48.5, st: 38.6, ews: 64.5 },
+          { year: '2023', general: 74.2, obc: 68.6, bcMbc: 64.5, sc: 50.2, st: 40.2, ews: 66.8 },
+          { year: '2022', general: 70.8, obc: 64.2, bcMbc: 60.4, sc: 46.8, st: 36.5, ews: 62.2 }
+        ]
       },
       {
         id: 'msc-chemistry',
@@ -880,7 +1020,21 @@ export const universities: University[] = [
         previousQuestions: [
           { id: 'chem-q1', question: 'The product of Aldol condensation is:', options: ['α-hydroxy ketone', 'β-hydroxy aldehyde', 'α,β-unsaturated aldehyde', 'Both B & C'], correctAnswer: 3, explanation: 'Aldol condensation gives β-hydroxy aldehyde which on heating gives α,β-unsaturated aldehyde.', topic: 'Organic Chemistry', difficulty: 'Easy' }
         ],
-        tips: ['Organic reactions and mechanisms are most important', 'Practice spectroscopy problems', 'Learn coordination compounds well']
+        tips: ['Organic reactions and mechanisms are most important', 'Practice spectroscopy problems', 'Learn coordination compounds well'],
+        seatMatrix: {
+          general: 30,
+          obc: 50,
+          bcMbc: 65,
+          sc: 28,
+          st: 4,
+          ews: 10,
+          total: 187
+        },
+        cutoffs: [
+          { year: '2024', general: 74.5, obc: 68.2, bcMbc: 64.5, sc: 50.4, st: 40.2, ews: 66.5 },
+          { year: '2023', general: 76.2, obc: 70.4, bcMbc: 66.8, sc: 52.6, st: 42.5, ews: 68.8 },
+          { year: '2022', general: 72.8, obc: 66.5, bcMbc: 62.2, sc: 48.5, st: 38.5, ews: 64.2 }
+        ]
       },
       {
         id: 'msc-biotechnology',
@@ -903,7 +1057,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Focus on Molecular Biology techniques', 'Learn recombinant DNA technology', 'Understand CRISPR and modern techniques']
+        tips: ['Focus on Molecular Biology techniques', 'Learn recombinant DNA technology', 'Understand CRISPR and modern techniques'],
+        seatMatrix: {
+          general: 25,
+          obc: 40,
+          bcMbc: 52,
+          sc: 22,
+          st: 3,
+          ews: 8,
+          total: 150
+        },
+        cutoffs: [
+          { year: '2024', general: 70.5, obc: 64.2, bcMbc: 60.4, sc: 46.5, st: 36.2, ews: 62.5 },
+          { year: '2023', general: 72.2, obc: 66.5, bcMbc: 62.8, sc: 48.8, st: 38.5, ews: 64.8 },
+          { year: '2022', general: 68.8, obc: 62.4, bcMbc: 58.2, sc: 44.5, st: 34.2, ews: 60.2 }
+        ]
       },
       {
         id: 'msc-microbiology',
@@ -926,7 +1094,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Learn bacterial classification thoroughly', 'Immunology concepts are important', 'Understand diagnostic techniques']
+        tips: ['Learn bacterial classification thoroughly', 'Immunology concepts are important', 'Understand diagnostic techniques'],
+        seatMatrix: {
+          general: 28,
+          obc: 45,
+          bcMbc: 58,
+          sc: 25,
+          st: 4,
+          ews: 9,
+          total: 169
+        },
+        cutoffs: [
+          { year: '2024', general: 68.5, obc: 62.2, bcMbc: 58.4, sc: 44.5, st: 34.2, ews: 60.5 },
+          { year: '2023', general: 70.2, obc: 64.5, bcMbc: 60.8, sc: 46.8, st: 36.5, ews: 62.8 },
+          { year: '2022', general: 66.8, obc: 60.4, bcMbc: 56.2, sc: 42.5, st: 32.2, ews: 58.2 }
+        ]
       },
       {
         id: 'msc-electronics',
@@ -949,7 +1131,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Practice circuit analysis', 'Understand semiconductor physics', 'Learn microprocessor concepts']
+        tips: ['Practice circuit analysis', 'Understand semiconductor physics', 'Learn microprocessor concepts'],
+        seatMatrix: {
+          general: 22,
+          obc: 38,
+          bcMbc: 48,
+          sc: 20,
+          st: 3,
+          ews: 7,
+          total: 138
+        },
+        cutoffs: [
+          { year: '2024', general: 66.5, obc: 60.2, bcMbc: 56.4, sc: 42.5, st: 32.2, ews: 58.5 },
+          { year: '2023', general: 68.2, obc: 62.5, bcMbc: 58.8, sc: 44.8, st: 34.5, ews: 60.8 },
+          { year: '2022', general: 64.8, obc: 58.4, bcMbc: 54.2, sc: 40.5, st: 30.2, ews: 56.2 }
+        ]
       },
       {
         id: 'bu-msc-textile',
@@ -972,7 +1168,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Coimbatore is textile hub - good placement', 'Study textile fibres', 'Learn fashion trends']
+        tips: ['Coimbatore is textile hub - good placement', 'Study textile fibres', 'Learn fashion trends'],
+        seatMatrix: {
+          general: 20,
+          obc: 35,
+          bcMbc: 44,
+          sc: 18,
+          st: 3,
+          ews: 6,
+          total: 126
+        },
+        cutoffs: [
+          { year: '2024', general: 62.5, obc: 56.2, bcMbc: 52.4, sc: 38.5, st: 28.2, ews: 54.5 },
+          { year: '2023', general: 64.2, obc: 58.5, bcMbc: 54.8, sc: 40.8, st: 30.5, ews: 56.8 },
+          { year: '2022', general: 60.8, obc: 54.4, bcMbc: 50.2, sc: 36.5, st: 26.2, ews: 52.2 }
+        ]
       },
       {
         id: 'bu-msc-bioinformatics',
@@ -995,7 +1205,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Blend of biology and computing', 'Learn programming languages', 'Growing field with pharma opportunities']
+        tips: ['Blend of biology and computing', 'Learn programming languages', 'Growing field with pharma opportunities'],
+        seatMatrix: {
+          general: 18,
+          obc: 30,
+          bcMbc: 38,
+          sc: 16,
+          st: 3,
+          ews: 6,
+          total: 111
+        },
+        cutoffs: [
+          { year: '2024', general: 64.5, obc: 58.2, bcMbc: 54.4, sc: 40.5, st: 30.2, ews: 56.5 },
+          { year: '2023', general: 66.2, obc: 60.5, bcMbc: 56.8, sc: 42.8, st: 32.5, ews: 58.8 },
+          { year: '2022', general: 62.8, obc: 56.4, bcMbc: 52.2, sc: 38.5, st: 28.2, ews: 54.2 }
+        ]
       },
       {
         id: 'bu-msc-environmental',
@@ -1018,7 +1242,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Growing demand in CSR and environmental consultancy', 'Study pollution control acts', 'Learn impact assessment']
+        tips: ['Growing demand in CSR and environmental consultancy', 'Study pollution control acts', 'Learn impact assessment'],
+        seatMatrix: {
+          general: 22,
+          obc: 38,
+          bcMbc: 48,
+          sc: 20,
+          st: 3,
+          ews: 7,
+          total: 138
+        },
+        cutoffs: [
+          { year: '2024', general: 60.5, obc: 54.2, bcMbc: 50.4, sc: 36.5, st: 26.2, ews: 52.5 },
+          { year: '2023', general: 62.2, obc: 56.5, bcMbc: 52.8, sc: 38.8, st: 28.5, ews: 54.8 },
+          { year: '2022', general: 58.8, obc: 52.4, bcMbc: 48.2, sc: 34.5, st: 24.2, ews: 50.2 }
+        ]
       },
       {
         id: 'bu-msc-cyber-security',
@@ -1041,7 +1279,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['High demand field', 'Learn ethical hacking basics', 'Study network protocols']
+        tips: ['High demand field', 'Learn ethical hacking basics', 'Study network protocols'],
+        seatMatrix: {
+          general: 25,
+          obc: 42,
+          bcMbc: 52,
+          sc: 22,
+          st: 4,
+          ews: 8,
+          total: 153
+        },
+        cutoffs: [
+          { year: '2024', general: 74.5, obc: 68.2, bcMbc: 64.4, sc: 50.5, st: 40.2, ews: 66.5 },
+          { year: '2023', general: 76.2, obc: 70.5, bcMbc: 66.8, sc: 52.8, st: 42.5, ews: 68.8 },
+          { year: '2022', general: 72.8, obc: 66.4, bcMbc: 62.2, sc: 48.5, st: 38.2, ews: 64.2 }
+        ]
       },
       {
         id: 'bu-msc-data-analytics',
@@ -1064,7 +1316,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['High-demand industry skill', 'Learn Python and R', 'Study machine learning basics']
+        tips: ['High-demand industry skill', 'Learn Python and R', 'Study machine learning basics'],
+        seatMatrix: {
+          general: 28,
+          obc: 45,
+          bcMbc: 58,
+          sc: 25,
+          st: 4,
+          ews: 9,
+          total: 169
+        },
+        cutoffs: [
+          { year: '2024', general: 78.5, obc: 72.2, bcMbc: 68.4, sc: 54.5, st: 44.2, ews: 70.5 },
+          { year: '2023', general: 80.2, obc: 74.5, bcMbc: 70.8, sc: 56.8, st: 46.5, ews: 72.8 },
+          { year: '2022', general: 76.8, obc: 70.4, bcMbc: 66.2, sc: 52.5, st: 42.2, ews: 68.2 }
+        ]
       },
       {
         id: 'bu-msc-medical-physics',
@@ -1087,7 +1353,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Bharathiar is famous for Medical Physics', 'Career in hospitals and cancer centres', 'Study nuclear physics thoroughly']
+        tips: ['Bharathiar is famous for Medical Physics', 'Career in hospitals and cancer centres', 'Study nuclear physics thoroughly'],
+        seatMatrix: {
+          general: 15,
+          obc: 25,
+          bcMbc: 32,
+          sc: 14,
+          st: 2,
+          ews: 5,
+          total: 93
+        },
+        cutoffs: [
+          { year: '2024', general: 72.5, obc: 66.2, bcMbc: 62.4, sc: 48.5, st: 38.2, ews: 64.5 },
+          { year: '2023', general: 74.2, obc: 68.5, bcMbc: 64.8, sc: 50.8, st: 40.5, ews: 66.8 },
+          { year: '2022', general: 70.8, obc: 64.4, bcMbc: 60.2, sc: 46.5, st: 36.2, ews: 62.2 }
+        ]
       },
       {
         id: 'bu-msc-human-genetics',
@@ -1110,7 +1390,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Growing field in medical diagnostics', 'Study molecular genetics', 'Career in genetic counselling']
+        tips: ['Growing field in medical diagnostics', 'Study molecular genetics', 'Career in genetic counselling'],
+        seatMatrix: {
+          general: 12,
+          obc: 20,
+          bcMbc: 26,
+          sc: 11,
+          st: 2,
+          ews: 4,
+          total: 75
+        },
+        cutoffs: [
+          { year: '2024', general: 70.5, obc: 64.2, bcMbc: 60.4, sc: 46.5, st: 36.2, ews: 62.5 },
+          { year: '2023', general: 72.2, obc: 66.5, bcMbc: 62.8, sc: 48.8, st: 38.5, ews: 64.8 },
+          { year: '2022', general: 68.8, obc: 62.4, bcMbc: 58.2, sc: 44.5, st: 34.2, ews: 60.2 }
+        ]
       },
       {
         id: 'bu-mjmc',
@@ -1133,7 +1427,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Good writing skills essential', 'Stay updated with news', 'Learn media laws']
+        tips: ['Good writing skills essential', 'Stay updated with news', 'Learn media laws'],
+        seatMatrix: {
+          general: 30,
+          obc: 50,
+          bcMbc: 65,
+          sc: 28,
+          st: 4,
+          ews: 10,
+          total: 187
+        },
+        cutoffs: [
+          { year: '2024', general: 62.5, obc: 56.2, bcMbc: 52.4, sc: 38.5, st: 28.2, ews: 54.5 },
+          { year: '2023', general: 64.2, obc: 58.5, bcMbc: 54.8, sc: 40.8, st: 30.5, ews: 56.8 },
+          { year: '2022', general: 60.8, obc: 54.4, bcMbc: 50.2, sc: 36.5, st: 26.2, ews: 52.2 }
+        ]
       },
       {
         id: 'bu-ma-economics',
@@ -1156,7 +1464,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Excellent for UPSC Economics optional', 'Study Indian economy', 'Learn econometrics']
+        tips: ['Excellent for UPSC Economics optional', 'Study Indian economy', 'Learn econometrics'],
+        seatMatrix: {
+          general: 35,
+          obc: 60,
+          bcMbc: 75,
+          sc: 32,
+          st: 5,
+          ews: 12,
+          total: 219
+        },
+        cutoffs: [
+          { year: '2024', general: 66.5, obc: 60.2, bcMbc: 56.4, sc: 42.5, st: 32.2, ews: 58.5 },
+          { year: '2023', general: 68.2, obc: 62.5, bcMbc: 58.8, sc: 44.8, st: 34.5, ews: 60.8 },
+          { year: '2022', general: 64.8, obc: 58.4, bcMbc: 54.2, sc: 40.5, st: 30.2, ews: 56.2 }
+        ]
       },
       {
         id: 'bu-msw',
@@ -1179,7 +1501,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Good for NGO sector', 'Study social work methods', 'Learn about welfare schemes']
+        tips: ['Good for NGO sector', 'Study social work methods', 'Learn about welfare schemes'],
+        seatMatrix: {
+          general: 40,
+          obc: 70,
+          bcMbc: 85,
+          sc: 35,
+          st: 6,
+          ews: 14,
+          total: 250
+        },
+        cutoffs: [
+          { year: '2024', general: 58.5, obc: 52.2, bcMbc: 48.4, sc: 34.5, st: 24.2, ews: 50.5 },
+          { year: '2023', general: 60.2, obc: 54.5, bcMbc: 50.8, sc: 36.8, st: 26.5, ews: 52.8 },
+          { year: '2022', general: 56.8, obc: 50.4, bcMbc: 46.2, sc: 32.5, st: 22.2, ews: 48.2 }
+        ]
       },
       {
         id: 'bu-mcom-fintech',
