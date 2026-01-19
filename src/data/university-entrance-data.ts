@@ -18,7 +18,7 @@ export interface Course {
   id: string;
   name: string;
   nameTamil: string;
-  type: 'UG' | 'PG' | 'Research';
+  type: 'UG' | 'PG' | 'Research' | 'Super-Specialty';
   examPattern: ExamPattern;
   syllabus: SyllabusUnit[];
   previousQuestions: PreviousQuestion[];
@@ -2762,6 +2762,658 @@ export const universities: University[] = [
           }
         ],
         tips: ['Study GPAT previous papers', 'Focus on pharmaceutics and pharmacology', 'Master drug classifications']
+      },
+      // ============= MBBS (Medical) =============
+      {
+        id: 'mgr-mbbs',
+        name: 'MBBS (Bachelor of Medicine & Surgery)',
+        nameTamil: 'எம்.பி.பி.எஸ் (மருத்துவ இளங்கலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 720,
+          duration: '3 Hours 20 Minutes',
+          durationMinutes: 200,
+          mode: 'Computer Based Test (NEET-UG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 180, topics: ['Mechanics', 'Thermodynamics', 'Electromagnetism', 'Optics', 'Modern Physics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 180, topics: ['Organic Chemistry', 'Inorganic Chemistry', 'Physical Chemistry'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 90, marks: 360, topics: ['Botany', 'Zoology', 'Human Physiology', 'Genetics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-mbbs-q1',
+            year: '2024',
+            question: 'Which organelle is known as the powerhouse of the cell?',
+            options: ['Nucleus', 'Mitochondria', 'Ribosome', 'Golgi apparatus'],
+            correctAnswer: 1,
+            explanation: 'Mitochondria are called the powerhouse because they produce ATP through cellular respiration.',
+            topic: 'Cell Biology',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-mbbs-q2',
+            year: '2024',
+            question: 'The normal blood pH range in humans is:',
+            options: ['6.8-7.0', '7.35-7.45', '7.5-7.8', '8.0-8.5'],
+            correctAnswer: 1,
+            explanation: 'Normal blood pH is maintained between 7.35-7.45 for optimal enzyme function.',
+            topic: 'Human Physiology',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-mbbs-q3',
+            year: '2023',
+            question: 'DNA replication is:',
+            options: ['Conservative', 'Semi-conservative', 'Dispersive', 'Non-conservative'],
+            correctAnswer: 1,
+            explanation: 'DNA replication is semi-conservative as each new DNA molecule contains one old and one new strand.',
+            topic: 'Genetics',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['Focus heavily on NCERT Biology', 'Practice NEET previous year papers', 'Master human physiology topics']
+      },
+      // ============= BDS (Dental) =============
+      {
+        id: 'mgr-bds',
+        name: 'BDS (Bachelor of Dental Surgery)',
+        nameTamil: 'பி.டி.எஸ் (பல் மருத்துவ இளங்கலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 720,
+          duration: '3 Hours 20 Minutes',
+          durationMinutes: 200,
+          mode: 'Computer Based Test (NEET-UG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 180, topics: ['Mechanics', 'Thermodynamics', 'Electromagnetism'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 180, topics: ['Organic', 'Inorganic', 'Physical Chemistry'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 90, marks: 360, topics: ['Botany', 'Zoology', 'Anatomy', 'Physiology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-bds-q1',
+            year: '2024',
+            question: 'The hardest substance in the human body is:',
+            options: ['Dentin', 'Bone', 'Enamel', 'Cementum'],
+            correctAnswer: 2,
+            explanation: 'Tooth enamel is the hardest substance in the human body, containing 96% minerals.',
+            topic: 'Dental Anatomy',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-bds-q2',
+            year: '2023',
+            question: 'The total number of permanent teeth in an adult is:',
+            options: ['20', '28', '32', '36'],
+            correctAnswer: 2,
+            explanation: 'Adults have 32 permanent teeth including 4 wisdom teeth.',
+            topic: 'Dental Anatomy',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['NEET-UG is the common entrance', 'Focus on Biology as it carries maximum marks', 'Study dental anatomy basics']
+      },
+      // ============= MDS (Dental PG) =============
+      {
+        id: 'mgr-mds',
+        name: 'MDS (Master of Dental Surgery)',
+        nameTamil: 'எம்.டி.எஸ் (பல் மருத்துவ முதுநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 800,
+          duration: '3 Hours 30 Minutes',
+          durationMinutes: 210,
+          mode: 'Computer Based Test (NEET-MDS)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Dental Sciences', nameTamil: 'பல் அறிவியல்', questions: 200, marks: 800, topics: ['Oral Pathology', 'Prosthodontics', 'Orthodontics', 'Periodontics', 'Oral Surgery'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-mds-q1',
+            year: '2024',
+            question: 'Leeway space in dentition is:',
+            options: ['2mm', '3mm', '4.5mm', '6mm'],
+            correctAnswer: 2,
+            explanation: 'Leeway space is approximately 4.5mm in mandible (2.5mm per side) and 3mm in maxilla.',
+            topic: 'Orthodontics',
+            difficulty: 'Medium'
+          },
+          {
+            id: 'mgr-mds-q2',
+            year: '2023',
+            question: 'Most common site of oral cancer in India is:',
+            options: ['Tongue', 'Buccal mucosa', 'Lip', 'Palate'],
+            correctAnswer: 1,
+            explanation: 'Buccal mucosa is the most common site due to tobacco chewing habits in India.',
+            topic: 'Oral Pathology',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['Prepare thoroughly for NEET-MDS', 'Study all dental specializations', 'Focus on clinical scenarios']
+      },
+      // ============= BAMS (Indian Medicine) =============
+      {
+        id: 'mgr-bams',
+        name: 'BAMS (Bachelor of Ayurvedic Medicine & Surgery)',
+        nameTamil: 'பி.ஏ.எம்.எஸ் (ஆயுர்வேத மருத்துவம்)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 720,
+          duration: '3 Hours 20 Minutes',
+          durationMinutes: 200,
+          mode: 'Computer Based Test (NEET-UG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 180, topics: ['Mechanics', 'Thermodynamics', 'Optics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 180, topics: ['Organic', 'Inorganic', 'Physical'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 90, marks: 360, topics: ['Botany', 'Zoology', 'Anatomy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-bams-q1',
+            year: '2024',
+            question: 'According to Ayurveda, the three doshas are:',
+            options: ['Vata, Pitta, Kapha', 'Sattva, Rajas, Tamas', 'Ojas, Tejas, Prana', 'Rasa, Rakta, Mamsa'],
+            correctAnswer: 0,
+            explanation: 'Vata, Pitta, and Kapha are the three fundamental doshas in Ayurveda governing body functions.',
+            topic: 'Ayurvedic Fundamentals',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['NEET-UG score is used for admission', 'Study basic Ayurveda principles after selection', 'Focus on Biology for NEET']
+      },
+      // ============= BHMS (Homoeopathy) =============
+      {
+        id: 'mgr-bhms',
+        name: 'BHMS (Bachelor of Homoeopathic Medicine & Surgery)',
+        nameTamil: 'பி.எச்.எம்.எஸ் (ஹோமியோபதி மருத்துவம்)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 720,
+          duration: '3 Hours 20 Minutes',
+          durationMinutes: 200,
+          mode: 'Computer Based Test (NEET-UG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 180, topics: ['Mechanics', 'Waves', 'Optics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 180, topics: ['Organic', 'Inorganic', 'Physical'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 90, marks: 360, topics: ['Botany', 'Zoology', 'Human Physiology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-bhms-q1',
+            year: '2024',
+            question: 'The principle of Homoeopathy "Similia Similibus Curentur" means:',
+            options: ['Opposites cure opposites', 'Like cures like', 'Nature heals', 'Prevention is cure'],
+            correctAnswer: 1,
+            explanation: 'Similia Similibus Curentur means "Like cures like" - the fundamental principle of Homoeopathy.',
+            topic: 'Homoeopathic Principles',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['NEET-UG is mandatory for admission', 'Focus on Biology sections', 'Learn Homoeopathy basics post-admission']
+      },
+      // ============= BSMS (Siddha Medicine) =============
+      {
+        id: 'mgr-bsms',
+        name: 'BSMS (Bachelor of Siddha Medicine & Surgery)',
+        nameTamil: 'பி.எஸ்.எம்.எஸ் (சித்த மருத்துவம்)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 720,
+          duration: '3 Hours 20 Minutes',
+          durationMinutes: 200,
+          mode: 'Computer Based Test (NEET-UG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 180, topics: ['Mechanics', 'Heat', 'Optics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 180, topics: ['Organic', 'Inorganic', 'Physical'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 90, marks: 360, topics: ['Botany', 'Zoology', 'Anatomy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-bsms-q1',
+            year: '2024',
+            question: 'Siddha medicine originated in:',
+            options: ['North India', 'Tamil Nadu', 'Kerala', 'Karnataka'],
+            correctAnswer: 1,
+            explanation: 'Siddha is one of the oldest medical systems originating from Tamil Nadu, practiced by Siddhars.',
+            topic: 'Siddha Fundamentals',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['NEET-UG required for admission', 'Strong Biology foundation essential', 'Unique to Tamil Nadu - learn Tamil medical terms']
+      },
+      // ============= B.Sc Nursing =============
+      {
+        id: 'mgr-bsc-nursing',
+        name: 'B.Sc Nursing',
+        nameTamil: 'பி.எஸ்சி செவிலியர்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 720,
+          duration: '3 Hours 20 Minutes',
+          durationMinutes: 200,
+          mode: 'Computer Based Test (NEET-UG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 180, topics: ['Mechanics', 'Heat', 'Optics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 180, topics: ['Organic', 'Inorganic', 'Physical'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 90, marks: 360, topics: ['Anatomy', 'Physiology', 'Microbiology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-nursing-q1',
+            year: '2024',
+            question: 'The normal respiratory rate in adults is:',
+            options: ['8-12 breaths/min', '12-20 breaths/min', '20-30 breaths/min', '30-40 breaths/min'],
+            correctAnswer: 1,
+            explanation: 'Normal adult respiratory rate is 12-20 breaths per minute at rest.',
+            topic: 'Nursing Fundamentals',
+            difficulty: 'Easy'
+          },
+          {
+            id: 'mgr-nursing-q2',
+            year: '2023',
+            question: 'The largest organ in the human body is:',
+            options: ['Liver', 'Skin', 'Brain', 'Heart'],
+            correctAnswer: 1,
+            explanation: 'Skin is the largest organ, covering approximately 2 square meters in adults.',
+            topic: 'Anatomy',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['NEET-UG required for government nursing colleges', 'Focus on anatomy and physiology', 'Clinical skills important']
+      },
+      // ============= M.Sc Nursing =============
+      {
+        id: 'mgr-msc-nursing',
+        name: 'M.Sc Nursing',
+        nameTamil: 'எம்.எஸ்சி செவிலியர்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Nursing', nameTamil: 'செவிலியர்', questions: 60, marks: 60, topics: ['Medical-Surgical', 'Community Health', 'Pediatric', 'Psychiatric'] },
+            { name: 'Research Methodology', nameTamil: 'ஆராய்ச்சி முறை', questions: 20, marks: 20, topics: ['Research Design', 'Statistics', 'Ethics'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 20, marks: 20, topics: ['Reasoning', 'English', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-msc-nursing-q1',
+            year: '2024',
+            question: 'Florence Nightingale is known as:',
+            options: ['Mother of Medicine', 'Lady with the Lamp', 'Pioneer of Surgery', 'Queen of Hospitals'],
+            correctAnswer: 1,
+            explanation: 'Florence Nightingale is called "Lady with the Lamp" for her night rounds during the Crimean War.',
+            topic: 'Nursing History',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['Study B.Sc Nursing subjects thoroughly', 'Focus on specialization areas', 'Practice research methodology']
+      },
+      // ============= B.Pharm =============
+      {
+        id: 'mgr-bpharm',
+        name: 'B.Pharm (Bachelor of Pharmacy)',
+        nameTamil: 'பி.ஃபார்ம் (மருந்தியல் இளங்கலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 720,
+          duration: '3 Hours 20 Minutes',
+          durationMinutes: 200,
+          mode: 'Computer Based Test (NEET-UG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 180, topics: ['Mechanics', 'Thermodynamics', 'Optics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 180, topics: ['Organic', 'Inorganic', 'Physical'] },
+            { name: 'Biology/Mathematics', nameTamil: 'உயிரியல்/கணிதம்', questions: 90, marks: 360, topics: ['Botany', 'Zoology', 'Mathematics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-bpharm-q1',
+            year: '2024',
+            question: 'The study of drugs and their sources is called:',
+            options: ['Pharmacology', 'Pharmacognosy', 'Pharmacokinetics', 'Pharmaceutics'],
+            correctAnswer: 1,
+            explanation: 'Pharmacognosy is the study of drugs from natural sources - plants, animals, and minerals.',
+            topic: 'Pharmacy Fundamentals',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['NEET-UG or state-level exams for admission', 'Strong chemistry foundation required', 'Focus on organic chemistry']
+      },
+      // ============= Pharm.D =============
+      {
+        id: 'mgr-pharmd',
+        name: 'Pharm.D (Doctor of Pharmacy)',
+        nameTamil: 'ஃபார்ம்.டி (மருந்தியல் முனைவர்)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 720,
+          duration: '3 Hours 20 Minutes',
+          durationMinutes: 200,
+          mode: 'Computer Based Test (NEET-UG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 180, topics: ['Mechanics', 'Thermodynamics', 'Modern Physics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 180, topics: ['Organic', 'Inorganic', 'Physical'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 90, marks: 360, topics: ['Botany', 'Zoology', 'Biochemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-pharmd-q1',
+            year: '2024',
+            question: 'Pharm.D is a:',
+            options: ['4-year course', '5-year course', '6-year course', '3-year course'],
+            correctAnswer: 2,
+            explanation: 'Pharm.D is a 6-year clinical pharmacy doctorate program (5 years + 1 year internship).',
+            topic: 'Pharmacy Courses',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['6-year integrated program', 'Clinical pharmacy focus', 'Hospital internship mandatory']
+      },
+      // ============= MPT (Physiotherapy PG) =============
+      {
+        id: 'mgr-mpt',
+        name: 'MPT (Master of Physiotherapy)',
+        nameTamil: 'எம்.பி.டி (இயன் மருத்துவ முதுநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physiotherapy', nameTamil: 'இயன் மருத்துவம்', questions: 70, marks: 70, topics: ['Musculoskeletal', 'Neurology', 'Cardiopulmonary', 'Sports PT'] },
+            { name: 'Anatomy & Physiology', nameTamil: 'உடலமைப்பு & செயலியல்', questions: 20, marks: 20, topics: ['Human Anatomy', 'Exercise Physiology'] },
+            { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறை', questions: 10, marks: 10, topics: ['Evidence-Based Practice', 'Statistics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-mpt-q1',
+            year: '2024',
+            question: 'The gait cycle is divided into:',
+            options: ['2 phases', '4 phases', 'Stance and Swing phases', '6 phases'],
+            correctAnswer: 2,
+            explanation: 'The gait cycle consists of Stance phase (60%) and Swing phase (40%).',
+            topic: 'Biomechanics',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['Study BPT subjects well', 'Focus on your specialization area', 'Clinical experience matters']
+      },
+      // ============= MOT (Occupational Therapy PG) =============
+      {
+        id: 'mgr-mot',
+        name: 'MOT (Master of Occupational Therapy)',
+        nameTamil: 'எம்.ஓ.டி (தொழில் சிகிச்சை முதுநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Occupational Therapy', nameTamil: 'தொழில் சிகிச்சை', questions: 70, marks: 70, topics: ['Pediatrics', 'Neurology', 'Hand Therapy', 'Mental Health'] },
+            { name: 'Anatomy & Kinesiology', nameTamil: 'உடலமைப்பு & இயக்கவியல்', questions: 20, marks: 20, topics: ['Functional Anatomy', 'Movement Science'] },
+            { name: 'Research', nameTamil: 'ஆராய்ச்சி', questions: 10, marks: 10, topics: ['Research Design', 'Outcome Measures'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-mot-q1',
+            year: '2024',
+            question: 'Activities of Daily Living (ADL) include:',
+            options: ['Only bathing', 'Bathing, dressing, eating, toileting', 'Only eating', 'Only dressing'],
+            correctAnswer: 1,
+            explanation: 'ADLs include basic self-care tasks: bathing, dressing, eating, toileting, and mobility.',
+            topic: 'OT Fundamentals',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['Focus on clinical reasoning', 'Study activity analysis', 'Practice case studies']
+      },
+      // ============= B.Sc Allied Health Sciences =============
+      {
+        id: 'mgr-bsc-mlt',
+        name: 'B.Sc Medical Lab Technology (MLT)',
+        nameTamil: 'பி.எஸ்சி மருத்துவ ஆய்வக தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Microbiology', 'Biochemistry', 'Pathology'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Clinical Chemistry', 'Organic Chemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Lab Instrumentation', 'Basic Physics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-mlt-q1',
+            year: '2024',
+            question: 'The normal fasting blood glucose level is:',
+            options: ['50-70 mg/dL', '70-100 mg/dL', '100-140 mg/dL', '140-180 mg/dL'],
+            correctAnswer: 1,
+            explanation: 'Normal fasting blood glucose is 70-100 mg/dL (3.9-5.6 mmol/L).',
+            topic: 'Clinical Chemistry',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['Focus on lab techniques', 'Study hematology and biochemistry', 'Practical skills essential']
+      },
+      {
+        id: 'mgr-bsc-radiology',
+        name: 'B.Sc Medical Imaging Technology',
+        nameTamil: 'பி.எஸ்சி மருத்துவ படிமவியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 40, marks: 40, topics: ['Radiation Physics', 'X-ray Production', 'CT/MRI Basics'] },
+            { name: 'Anatomy', nameTamil: 'உடலமைப்பியல்', questions: 35, marks: 35, topics: ['Cross-sectional Anatomy', 'Radiological Anatomy'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 25, marks: 25, topics: ['Radiation Biology', 'Safety'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-radiology-q1',
+            year: '2024',
+            question: 'X-rays were discovered by:',
+            options: ['Marie Curie', 'Wilhelm Roentgen', 'Albert Einstein', 'Niels Bohr'],
+            correctAnswer: 1,
+            explanation: 'Wilhelm Conrad Roentgen discovered X-rays in 1895 and received the first Nobel Prize in Physics.',
+            topic: 'History of Radiology',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['Strong physics foundation needed', 'Learn imaging modalities', 'Radiation safety is crucial']
+      },
+      {
+        id: 'mgr-bsc-ot',
+        name: 'B.Sc Operation Theatre Technology',
+        nameTamil: 'பி.எஸ்சி அறுவை சிகிச்சை தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Anatomy', nameTamil: 'உடலமைப்பியல்', questions: 35, marks: 35, topics: ['Surgical Anatomy', 'Applied Anatomy'] },
+            { name: 'Surgery Basics', nameTamil: 'அறுவை சிகிச்சை அடிப்படை', questions: 40, marks: 40, topics: ['Surgical Instruments', 'Sterilization', 'OT Setup'] },
+            { name: 'Physiology', nameTamil: 'செயலியல்', questions: 25, marks: 25, topics: ['Anesthesia Basics', 'Vital Signs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-ot-q1',
+            year: '2024',
+            question: 'The most effective method of sterilization is:',
+            options: ['Boiling', 'Autoclaving', 'Chemical disinfection', 'UV radiation'],
+            correctAnswer: 1,
+            explanation: 'Autoclaving (steam under pressure at 121°C for 15-20 min) is the most reliable sterilization method.',
+            topic: 'Sterilization',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['Learn surgical instruments', 'Sterile technique is fundamental', 'OT protocols important']
+      },
+      {
+        id: 'mgr-bsc-cardiac',
+        name: 'B.Sc Cardiac Care Technology',
+        nameTamil: 'பி.எஸ்சி இதய பராமரிப்பு தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Cardiology', nameTamil: 'இதயவியல்', questions: 40, marks: 40, topics: ['ECG', 'Cardiac Anatomy', 'Heart Diseases'] },
+            { name: 'Physiology', nameTamil: 'செயலியல்', questions: 35, marks: 35, topics: ['Cardiac Physiology', 'Hemodynamics'] },
+            { name: 'Technology', nameTamil: 'தொழில்நுட்பம்', questions: 25, marks: 25, topics: ['Cardiac Devices', 'Monitoring Equipment'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-cardiac-q1',
+            year: '2024',
+            question: 'The normal heart rate in adults at rest is:',
+            options: ['40-60 bpm', '60-100 bpm', '100-120 bpm', '120-140 bpm'],
+            correctAnswer: 1,
+            explanation: 'Normal resting heart rate for adults is 60-100 beats per minute.',
+            topic: 'Cardiac Physiology',
+            difficulty: 'Easy'
+          }
+        ],
+        tips: ['Master ECG interpretation', 'Learn cardiac procedures', 'CCU protocols important']
+      },
+      // ============= DM/MCh (Post Doctoral) =============
+      {
+        id: 'mgr-dm-cardiology',
+        name: 'DM Cardiology',
+        nameTamil: 'டி.எம் இதயவியல்',
+        type: 'Super-Specialty',
+        examPattern: {
+          totalQuestions: 90,
+          totalMarks: 360,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Computer Based Test (NEET-SS)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Cardiology', nameTamil: 'இதயவியல்', questions: 90, marks: 360, topics: ['Interventional Cardiology', 'Electrophysiology', 'Heart Failure', 'Imaging'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-dm-cardio-q1',
+            year: '2024',
+            question: 'The drug of choice for acute STEMI is:',
+            options: ['Aspirin alone', 'Primary PCI', 'Thrombolytics only', 'Beta blockers'],
+            correctAnswer: 1,
+            explanation: 'Primary PCI (Percutaneous Coronary Intervention) is the gold standard for STEMI within 90-120 minutes.',
+            topic: 'Interventional Cardiology',
+            difficulty: 'Medium'
+          }
+        ],
+        tips: ['MD Medicine prerequisite', 'Focus on interventional procedures', 'NEET-SS required']
+      },
+      {
+        id: 'mgr-mch-neuro',
+        name: 'MCh Neurosurgery',
+        nameTamil: 'எம்.சி.எச் நரம்பு அறுவை சிகிச்சை',
+        type: 'Super-Specialty',
+        examPattern: {
+          totalQuestions: 90,
+          totalMarks: 360,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Computer Based Test (NEET-SS)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Neurosurgery', nameTamil: 'நரம்பு அறுவை சிகிச்சை', questions: 90, marks: 360, topics: ['Neurotrauma', 'Brain Tumors', 'Spine Surgery', 'Vascular'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          {
+            id: 'mgr-mch-neuro-q1',
+            year: '2024',
+            question: 'Most common primary brain tumor in adults is:',
+            options: ['Meningioma', 'Glioblastoma', 'Schwannoma', 'Pituitary adenoma'],
+            correctAnswer: 1,
+            explanation: 'Glioblastoma multiforme (GBM) is the most common and aggressive primary brain tumor in adults.',
+            topic: 'Neuro-oncology',
+            difficulty: 'Medium'
+          }
+        ],
+        tips: ['MS General Surgery prerequisite', 'Intensive 3-year training', 'High competition exam']
       }
     ]
   },
