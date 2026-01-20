@@ -7778,6 +7778,7 @@ export const universities: University[] = [
     phone: '044-28271830',
     email: 'registrar@tnmusicuniversity.ac.in',
     examName: 'Audition + Interview',
+    logo: '/universities/tnmfau-logo.png',
     logoColor: '#be185d',
     fee: { general: 5000, obc: 5000, scst: 1000 },
     importantDates: [
