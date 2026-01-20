@@ -7563,6 +7563,7 @@ export const universities: University[] = [
     email: 'registrar@tnjfu.ac.in',
     examName: 'NEET / Merit-Based',
     logoColor: '#0284c7',
+    logo: '/universities/tnjfu-logo.png',
     fee: { general: 25000, obc: 25000, scst: 5000 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'May 2026', status: 'upcoming' },
