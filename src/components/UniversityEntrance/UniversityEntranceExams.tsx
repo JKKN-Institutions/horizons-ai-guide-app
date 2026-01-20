@@ -377,7 +377,7 @@ export const UniversityEntranceExams = () => {
                 variant="ghost" 
                 size="sm" 
                 className="w-full mt-4 text-primary"
-                onClick={() => navigate('/tn-university-browse')}
+                onClick={() => navigate('/tn-university-entrance/browse')}
               >
                 View All Courses <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
