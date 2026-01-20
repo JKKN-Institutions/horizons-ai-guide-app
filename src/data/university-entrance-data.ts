@@ -7399,6 +7399,7 @@ export const universities: University[] = [
     email: 'registrar@unom.ac.in',
     examName: 'Merit-Based (12th Marks)',
     logoColor: '#1e40af',
+    logo: '/universities/university-of-madras-logo.png',
     fee: { general: 1500, obc: 1500, scst: 500 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
