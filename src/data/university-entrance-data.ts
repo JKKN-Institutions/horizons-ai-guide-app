@@ -7702,6 +7702,7 @@ export const universities: University[] = [
     phone: '044-22200845',
     email: 'registrar@tnteu.ac.in',
     examName: 'Merit-Based + CET',
+    logo: '/universities/tnteu-logo.png',
     logoColor: '#7c3aed',
     fee: { general: 12000, obc: 12000, scst: 3000 },
     importantDates: [
