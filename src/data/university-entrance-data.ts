@@ -1539,6 +1539,1539 @@ export const universities: University[] = [
         syllabus: [],
         previousQuestions: [],
         tips: ['Emerging field in finance', 'Learn about blockchain', 'Study digital payments ecosystem']
+      },
+      // ========== COLLEGE OF ENGINEERING, GUINDY (CEG) - Additional Courses ==========
+      // Department of Civil Engineering - Additional PG Courses
+      {
+        id: 'anna-me-structural',
+        name: 'M.E. Structural Engineering',
+        nameTamil: 'எம்.இ. கட்டமைப்பு பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Structural Analysis', nameTamil: 'கட்டமைப்பு பகுப்பாய்வு', questions: 30, marks: 30, topics: ['Matrix Methods', 'Finite Element', 'Plastic Analysis'] },
+            { name: 'Concrete Structures', nameTamil: 'கான்கிரீட் கட்டமைப்புகள்', questions: 25, marks: 25, topics: ['RCC Design', 'Prestressed Concrete'] },
+            { name: 'Steel Structures', nameTamil: 'எஃகு கட்டமைப்புகள்', questions: 25, marks: 25, topics: ['Steel Design', 'Connections'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Linear Algebra', 'Differential Equations'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['GATE Civil required', 'Focus on structural analysis', 'Learn FEM software']
+      },
+      {
+        id: 'anna-me-construction',
+        name: 'M.E. Construction Engineering and Management',
+        nameTamil: 'எம்.இ. கட்டுமான பொறியியல் மற்றும் மேலாண்மை',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Construction Technology', nameTamil: 'கட்டுமான தொழில்நுட்பம்', questions: 30, marks: 30, topics: ['Construction Methods', 'Equipment'] },
+            { name: 'Project Management', nameTamil: 'திட்ட மேலாண்மை', questions: 30, marks: 30, topics: ['CPM', 'PERT', 'Cost Estimation'] },
+            { name: 'Contracts', nameTamil: 'ஒப்பந்தங்கள்', questions: 20, marks: 20, topics: ['Contract Law', 'Claims', 'Arbitration'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Linear Algebra', 'Probability'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for construction industry', 'Learn project management tools', 'Understand contract laws']
+      },
+      {
+        id: 'anna-me-environmental',
+        name: 'M.E. Environmental Engineering',
+        nameTamil: 'எம்.இ. சுற்றுச்சூழல் பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Water Treatment', nameTamil: 'நீர் சுத்திகரிப்பு', questions: 30, marks: 30, topics: ['Water Supply', 'Treatment Processes'] },
+            { name: 'Wastewater Treatment', nameTamil: 'கழிவுநீர் சுத்திகரிப்பு', questions: 30, marks: 30, topics: ['Sewage Treatment', 'STP Design'] },
+            { name: 'Air Pollution', nameTamil: 'காற்று மாசுபாடு', questions: 20, marks: 20, topics: ['Air Quality', 'Control Methods'] },
+            { name: 'Solid Waste', nameTamil: 'திடக்கழிவு', questions: 20, marks: 20, topics: ['SWM', 'Landfill Design'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing field with environmental concerns', 'Learn EIA process', 'Study pollution control norms']
+      },
+      {
+        id: 'anna-me-transportation',
+        name: 'M.E. Transportation Engineering',
+        nameTamil: 'எம்.இ. போக்குவரத்து பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Highway Engineering', nameTamil: 'நெடுஞ்சாலை பொறியியல்', questions: 30, marks: 30, topics: ['Pavement Design', 'Traffic Engineering'] },
+            { name: 'Traffic Engineering', nameTamil: 'போக்குவரத்து பொறியியல்', questions: 30, marks: 30, topics: ['Traffic Flow', 'Signal Design'] },
+            { name: 'Urban Transport', nameTamil: 'நகர்ப்புற போக்குவரத்து', questions: 20, marks: 20, topics: ['Mass Transit', 'Planning'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Statistics', 'Optimization'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for NHAI and transport sector', 'Learn pavement design', 'Study traffic simulation']
+      },
+      {
+        id: 'anna-me-hydrology',
+        name: 'M.E. Hydrology and Water Resources Engineering',
+        nameTamil: 'எம்.இ. நீரியல் மற்றும் நீர் வள பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Hydrology', nameTamil: 'நீரியல்', questions: 30, marks: 30, topics: ['Rainfall-Runoff', 'Groundwater', 'Flood Routing'] },
+            { name: 'Irrigation', nameTamil: 'பாசனம்', questions: 25, marks: 25, topics: ['Canal Design', 'Irrigation Methods'] },
+            { name: 'Hydraulics', nameTamil: 'நீரியக்கவியல்', questions: 25, marks: 25, topics: ['Open Channel Flow', 'Pipe Flow'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Statistics', 'Probability'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for water resources sector', 'Learn hydrological modeling', 'Study dam engineering']
+      },
+      {
+        id: 'anna-me-remote-sensing',
+        name: 'M.E. Remote Sensing and Geomatics',
+        nameTamil: 'எம்.இ. தொலையுணர்வு மற்றும் புவிமாதிரியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Remote Sensing', nameTamil: 'தொலையுணர்வு', questions: 35, marks: 35, topics: ['Image Interpretation', 'Satellite Imagery'] },
+            { name: 'GIS', nameTamil: 'புவித் தகவல் அமைப்பு', questions: 35, marks: 35, topics: ['Spatial Analysis', 'Database'] },
+            { name: 'GPS', nameTamil: 'ஜிபிஎஸ்', questions: 15, marks: 15, topics: ['Positioning', 'Surveying'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 15, marks: 15, topics: ['Statistics', 'Linear Algebra'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for ISRO, Survey of India', 'Learn GIS software', 'Study satellite image processing']
+      },
+      // Department of Mechanical Engineering - Additional PG Courses
+      {
+        id: 'anna-me-thermal',
+        name: 'M.E. Thermal Engineering',
+        nameTamil: 'எம்.இ. வெப்ப பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Thermodynamics', nameTamil: 'வெப்பவியக்கவியல்', questions: 30, marks: 30, topics: ['Laws of Thermodynamics', 'Cycles', 'Engines'] },
+            { name: 'Heat Transfer', nameTamil: 'வெப்ப பரிமாற்றம்', questions: 30, marks: 30, topics: ['Conduction', 'Convection', 'Radiation'] },
+            { name: 'IC Engines', nameTamil: 'உள் எரி இயந்திரங்கள்', questions: 20, marks: 20, topics: ['SI/CI Engines', 'Performance'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Differential Equations', 'Numerical Methods'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Core mechanical specialization', 'Focus on thermodynamics cycles', 'Learn heat exchanger design']
+      },
+      {
+        id: 'anna-me-energy',
+        name: 'M.E. Energy Engineering',
+        nameTamil: 'எம்.இ. ஆற்றல் பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Renewable Energy', nameTamil: 'புதுப்பிக்கத்தக்க ஆற்றல்', questions: 30, marks: 30, topics: ['Solar', 'Wind', 'Biomass'] },
+            { name: 'Power Plant Engineering', nameTamil: 'மின் நிலைய பொறியியல்', questions: 25, marks: 25, topics: ['Thermal', 'Nuclear', 'Hydro'] },
+            { name: 'Energy Management', nameTamil: 'ஆற்றல் மேலாண்மை', questions: 25, marks: 25, topics: ['Energy Audit', 'Conservation'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Calculus', 'Statistics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing field with green energy push', 'Learn solar and wind systems', 'Study energy audit procedures']
+      },
+      {
+        id: 'anna-me-design',
+        name: 'M.E. Engineering Design',
+        nameTamil: 'எம்.இ. பொறியியல் வடிவமைப்பு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Machine Design', nameTamil: 'இயந்திர வடிவமைப்பு', questions: 35, marks: 35, topics: ['Stress Analysis', 'Fatigue', 'Design of Elements'] },
+            { name: 'FEM', nameTamil: 'வரையறு உறுப்பு முறை', questions: 25, marks: 25, topics: ['Structural Analysis', 'Thermal Analysis'] },
+            { name: 'CAD/CAM', nameTamil: 'சிஏடி/சிஏஎம்', questions: 20, marks: 20, topics: ['Geometric Modeling', 'CNC'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Linear Algebra', 'Optimization'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for product design roles', 'Learn CAD software (CATIA, SolidWorks)', 'Study FEM analysis']
+      },
+      {
+        id: 'anna-me-manufacturing',
+        name: 'M.E. Manufacturing Systems and Management',
+        nameTamil: 'எம்.இ. உற்பத்தி அமைப்புகள் மற்றும் மேலாண்மை',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Manufacturing Processes', nameTamil: 'உற்பத்தி செயல்முறைகள்', questions: 30, marks: 30, topics: ['Machining', 'Forming', 'Joining'] },
+            { name: 'Production Management', nameTamil: 'உற்பத்தி மேலாண்மை', questions: 30, marks: 30, topics: ['Inventory', 'Scheduling', 'Quality'] },
+            { name: 'Automation', nameTamil: 'தானியக்கம்', questions: 20, marks: 20, topics: ['CNC', 'Robotics', 'FMS'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Operations Research', 'Statistics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for operations roles', 'Learn lean manufacturing', 'Study automation systems']
+      },
+      {
+        id: 'anna-me-solar',
+        name: 'M.E. Solar Energy',
+        nameTamil: 'எம்.இ. சூரிய ஆற்றல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Solar Thermal', nameTamil: 'சூரிய வெப்பம்', questions: 30, marks: 30, topics: ['Collectors', 'Storage', 'Applications'] },
+            { name: 'Photovoltaics', nameTamil: 'ஒளி மின்சாரம்', questions: 30, marks: 30, topics: ['Solar Cells', 'PV Systems', 'Grid Integration'] },
+            { name: 'Energy Storage', nameTamil: 'ஆற்றல் சேமிப்பு', questions: 20, marks: 20, topics: ['Batteries', 'Thermal Storage'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Calculus', 'Heat Transfer'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['High demand with solar industry growth', 'Learn PV system design', 'Study solar cell technology']
+      },
+      // Department of Electrical Engineering - Additional PG Courses
+      {
+        id: 'anna-me-power-systems',
+        name: 'M.E. Power Systems Engineering',
+        nameTamil: 'எம்.இ. மின்சக்தி அமைப்புகள் பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Power Systems', nameTamil: 'மின்சக்தி அமைப்புகள்', questions: 35, marks: 35, topics: ['Load Flow', 'Stability', 'Protection'] },
+            { name: 'Machines', nameTamil: 'இயந்திரங்கள்', questions: 25, marks: 25, topics: ['Generators', 'Transformers', 'Motors'] },
+            { name: 'Control Systems', nameTamil: 'கட்டுப்பாட்டு அமைப்புகள்', questions: 20, marks: 20, topics: ['Automatic Control', 'SCADA'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Complex Variables', 'Linear Algebra'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for power sector jobs', 'Learn power system protection', 'Study smart grid technology']
+      },
+      {
+        id: 'anna-me-power-electronics',
+        name: 'M.E. Power Electronics and Drives',
+        nameTamil: 'எம்.இ. மின் மின்னணுவியல் மற்றும் இயக்கிகள்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Power Electronics', nameTamil: 'மின் மின்னணுவியல்', questions: 35, marks: 35, topics: ['Converters', 'Inverters', 'Choppers'] },
+            { name: 'Electric Drives', nameTamil: 'மின் இயக்கிகள்', questions: 30, marks: 30, topics: ['DC Drives', 'AC Drives', 'Control'] },
+            { name: 'Control Systems', nameTamil: 'கட்டுப்பாட்டு அமைப்புகள்', questions: 15, marks: 15, topics: ['PID', 'State Space'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Transforms', 'Linear Algebra'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for EV industry', 'Learn converter design', 'Study motor drives']
+      },
+      {
+        id: 'anna-me-embedded',
+        name: 'M.E. Embedded System Technologies',
+        nameTamil: 'எம்.இ. உள்பொதி அமைப்பு தொழில்நுட்பங்கள்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Microcontrollers', nameTamil: 'நுண்கட்டுப்படுத்திகள்', questions: 30, marks: 30, topics: ['ARM', 'AVR', '8051'] },
+            { name: 'RTOS', nameTamil: 'நேரடி இயக்க அமைப்பு', questions: 25, marks: 25, topics: ['FreeRTOS', 'Scheduling', 'Synchronization'] },
+            { name: 'Digital Electronics', nameTamil: 'டிஜிட்டல் மின்னணுவியல்', questions: 25, marks: 25, topics: ['FPGA', 'VHDL', 'Verilog'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Discrete Math', 'Probability'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for IoT and automotive', 'Learn ARM programming', 'Study RTOS concepts']
+      },
+      {
+        id: 'anna-me-high-voltage',
+        name: 'M.E. High Voltage Engineering',
+        nameTamil: 'எம்.இ. உயர் மின்னழுத்த பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'High Voltage', nameTamil: 'உயர் மின்னழுத்தம்', questions: 35, marks: 35, topics: ['Breakdown', 'Insulation', 'Corona'] },
+            { name: 'Power Systems', nameTamil: 'மின்சக்தி அமைப்புகள்', questions: 25, marks: 25, topics: ['Transmission', 'Protection'] },
+            { name: 'Measurement', nameTamil: 'அளவீடு', questions: 20, marks: 20, topics: ['HV Testing', 'Impulse Generators'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Electromagnetic Fields', 'Statistics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Specialized field for power transmission', 'Learn insulation coordination', 'Study testing techniques']
+      },
+      // Department of ECE - Additional PG Courses
+      {
+        id: 'anna-me-communication',
+        name: 'M.E. Communication Systems',
+        nameTamil: 'எம்.இ. தொடர்பு அமைப்புகள்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Communication Theory', nameTamil: 'தொடர்பு கோட்பாடு', questions: 30, marks: 30, topics: ['Modulation', 'Detection', 'Noise'] },
+            { name: 'Digital Communication', nameTamil: 'டிஜிட்டல் தொடர்பு', questions: 30, marks: 30, topics: ['Coding', 'Multiple Access', 'OFDM'] },
+            { name: 'Wireless', nameTamil: 'வயர்லெஸ்', questions: 20, marks: 20, topics: ['Cellular', 'WiFi', '5G'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Probability', 'Random Processes'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for telecom industry', 'Learn signal processing', 'Study wireless protocols']
+      },
+      {
+        id: 'anna-me-vlsi',
+        name: 'M.E. VLSI Design',
+        nameTamil: 'எம்.இ. விஎல்எஸ்ஐ வடிவமைப்பு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Digital VLSI', nameTamil: 'டிஜிட்டல் விஎல்எஸ்ஐ', questions: 35, marks: 35, topics: ['CMOS Logic', 'Timing', 'Layout'] },
+            { name: 'Analog VLSI', nameTamil: 'அனலாக் விஎல்எஸ்ஐ', questions: 25, marks: 25, topics: ['Op-Amps', 'Converters', 'PLL'] },
+            { name: 'HDL', nameTamil: 'வன்பொருள் விவரிப்பு மொழி', questions: 20, marks: 20, topics: ['Verilog', 'VHDL', 'Synthesis'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Linear Algebra', 'Probability'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['High demand in semiconductor industry', 'Learn Cadence/Synopsys tools', 'Study CMOS design']
+      },
+      {
+        id: 'anna-me-medical-electronics',
+        name: 'M.E. Medical Electronics',
+        nameTamil: 'எம்.இ. மருத்துவ மின்னணுவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Medical Instrumentation', nameTamil: 'மருத்துவ கருவியியல்', questions: 35, marks: 35, topics: ['Biomedical Sensors', 'ECG', 'EEG'] },
+            { name: 'Medical Imaging', nameTamil: 'மருத்துவ படிமப்பிடிப்பு', questions: 30, marks: 30, topics: ['X-Ray', 'CT', 'MRI', 'Ultrasound'] },
+            { name: 'Signal Processing', nameTamil: 'சமிக்ஞை செயலாக்கம்', questions: 15, marks: 15, topics: ['DSP', 'Filters'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Transforms', 'Statistics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for healthcare equipment companies', 'Learn medical imaging principles', 'Study biosignal processing']
+      },
+      // Department of CSE - Additional PG Courses
+      {
+        id: 'anna-me-software',
+        name: 'M.E. Software Engineering',
+        nameTamil: 'எம்.இ. மென்பொருள் பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Software Engineering', nameTamil: 'மென்பொருள் பொறியியல்', questions: 30, marks: 30, topics: ['SDLC', 'Agile', 'Testing'] },
+            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 25, marks: 25, topics: ['OOP', 'Design Patterns', 'Refactoring'] },
+            { name: 'Database', nameTamil: 'தரவுத்தளம்', questions: 25, marks: 25, topics: ['DBMS', 'SQL', 'NoSQL'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Discrete Math', 'Statistics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for software development roles', 'Learn design patterns', 'Study agile methodologies']
+      },
+      {
+        id: 'anna-me-big-data',
+        name: 'M.E. Computer Science and Engineering (Big Data Analytics)',
+        nameTamil: 'எம்.இ. கணினி அறிவியல் பொறியியல் (பெரிய தரவு பகுப்பாய்வு)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Big Data', nameTamil: 'பெரிய தரவு', questions: 30, marks: 30, topics: ['Hadoop', 'Spark', 'MapReduce'] },
+            { name: 'Machine Learning', nameTamil: 'இயந்திர கற்றல்', questions: 30, marks: 30, topics: ['Supervised', 'Unsupervised', 'Deep Learning'] },
+            { name: 'Database', nameTamil: 'தரவுத்தளம்', questions: 20, marks: 20, topics: ['NoSQL', 'Data Warehousing'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Statistics', 'Linear Algebra'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['High demand specialization', 'Learn Hadoop ecosystem', 'Study machine learning algorithms']
+      },
+      // Department of Information Technology - Additional Courses
+      {
+        id: 'anna-mtech-it',
+        name: 'M.Tech. Information Technology',
+        nameTamil: 'எம்.டெக். தகவல் தொழில்நுட்பம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Networks', nameTamil: 'கணினி வலையமைப்பு', questions: 30, marks: 30, topics: ['Protocols', 'Security', 'Cloud'] },
+            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 25, marks: 25, topics: ['OOP', 'Web Development'] },
+            { name: 'Database', nameTamil: 'தரவுத்தளம்', questions: 25, marks: 25, topics: ['SQL', 'NoSQL', 'Big Data'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Discrete Math', 'Statistics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Broad IT curriculum', 'Learn cloud technologies', 'Study networking protocols']
+      },
+      // Department of Management Studies - MBA Specialization
+      {
+        id: 'anna-mba-tourism',
+        name: 'M.B.A. Tourism Management',
+        nameTamil: 'எம்.பி.ஏ. சுற்றுலா மேலாண்மை',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (TANCET)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Tourism Management', nameTamil: 'சுற்றுலா மேலாண்மை', questions: 30, marks: 30, topics: ['Tourism Industry', 'Hospitality', 'Travel'] },
+            { name: 'Marketing', nameTamil: 'சந்தைப்படுத்துதல்', questions: 25, marks: 25, topics: ['Services Marketing', 'Digital Marketing'] },
+            { name: 'General Management', nameTamil: 'பொது மேலாண்மை', questions: 25, marks: 25, topics: ['Finance', 'HR', 'Operations'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Quantitative', 'Reasoning'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing tourism industry in TN', 'Learn hospitality management', 'Study destination marketing']
+      },
+      // Science and Humanities - Additional Courses
+      {
+        id: 'anna-msc-applied-chemistry',
+        name: 'M.Sc. Applied Chemistry',
+        nameTamil: 'எம்.எஸ்சி. பயன்பாட்டு வேதியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Organic Chemistry', nameTamil: 'கரிம வேதியியல்', questions: 30, marks: 30, topics: ['Reactions', 'Mechanisms', 'Synthesis'] },
+            { name: 'Inorganic Chemistry', nameTamil: 'கனிம வேதியியல்', questions: 25, marks: 25, topics: ['Coordination', 'Organometallics'] },
+            { name: 'Physical Chemistry', nameTamil: 'பெளதிக வேதியியல்', questions: 25, marks: 25, topics: ['Thermodynamics', 'Kinetics'] },
+            { name: 'Industrial Chemistry', nameTamil: 'தொழில்துறை வேதியியல்', questions: 20, marks: 20, topics: ['Polymers', 'Petrochemicals'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for chemical industry', 'Focus on industrial applications', 'Learn polymer chemistry']
+      },
+      {
+        id: 'anna-mtech-polymer',
+        name: 'M.Tech. Polymer Science and Engineering',
+        nameTamil: 'எம்.டெக். பாலிமர் அறிவியல் மற்றும் பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Polymer Chemistry', nameTamil: 'பாலிமர் வேதியியல்', questions: 35, marks: 35, topics: ['Polymerization', 'Characterization'] },
+            { name: 'Polymer Processing', nameTamil: 'பாலிமர் செயலாக்கம்', questions: 30, marks: 30, topics: ['Molding', 'Extrusion', 'Compounding'] },
+            { name: 'Polymer Properties', nameTamil: 'பாலிமர் பண்புகள்', questions: 20, marks: 20, topics: ['Mechanical', 'Thermal', 'Optical'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 15, marks: 15, topics: ['Calculus', 'Statistics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for plastics and rubber industry', 'Learn polymer processing', 'Study polymer characterization']
+      },
+      {
+        id: 'anna-msc-geology',
+        name: 'M.Sc. Applied Geology',
+        nameTamil: 'எம்.எஸ்சி. பயன்பாட்டு புவியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physical Geology', nameTamil: 'இயல் புவியியல்', questions: 30, marks: 30, topics: ['Mineralogy', 'Petrology', 'Stratigraphy'] },
+            { name: 'Structural Geology', nameTamil: 'அமைப்பு புவியியல்', questions: 25, marks: 25, topics: ['Folds', 'Faults', 'Geological Maps'] },
+            { name: 'Economic Geology', nameTamil: 'பொருளாதார புவியியல்', questions: 25, marks: 25, topics: ['Ore Deposits', 'Mining', 'Petroleum'] },
+            { name: 'Applied Geology', nameTamil: 'பயன்பாட்டு புவியியல்', questions: 20, marks: 20, topics: ['Engineering Geology', 'Hydrogeology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for GSI and mining sector', 'Learn geological mapping', 'Study hydrogeology']
+      },
+      {
+        id: 'anna-msc-applied-math',
+        name: 'M.Sc. Applied Mathematics',
+        nameTamil: 'எம்.எஸ்சி. பயன்பாட்டு கணிதம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Pure Mathematics', nameTamil: 'தூய கணிதம்', questions: 30, marks: 30, topics: ['Algebra', 'Analysis', 'Topology'] },
+            { name: 'Applied Mathematics', nameTamil: 'பயன்பாட்டு கணிதம்', questions: 30, marks: 30, topics: ['Differential Equations', 'Numerical Methods'] },
+            { name: 'Operations Research', nameTamil: 'செயல்பாட்டு ஆராய்ச்சி', questions: 20, marks: 20, topics: ['LPP', 'Queuing', 'Game Theory'] },
+            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 20, marks: 20, topics: ['Probability', 'Statistical Inference'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for research and analytics', 'Focus on numerical methods', 'Learn statistical computing']
+      },
+      {
+        id: 'anna-msc-media',
+        name: 'M.Sc. Electronic Media',
+        nameTamil: 'எம்.எஸ்சி. மின்னணு ஊடகம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Electronic Media', nameTamil: 'மின்னணு ஊடகம்', questions: 35, marks: 35, topics: ['TV Production', 'Radio', 'Digital Media'] },
+            { name: 'Communication', nameTamil: 'தொடர்பியல்', questions: 30, marks: 30, topics: ['Mass Communication', 'Journalism'] },
+            { name: 'Technology', nameTamil: 'தொழில்நுட்பம்', questions: 20, marks: 20, topics: ['Multimedia', 'Editing'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['English', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for media industry', 'Learn video editing', 'Study digital content creation']
+      },
+      {
+        id: 'anna-msc-medical-physics',
+        name: 'M.Sc. Medical Physics',
+        nameTamil: 'எம்.எஸ்சி. மருத்துவ இயற்பியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Radiation Physics', nameTamil: 'கதிர்வீச்சு இயற்பியல்', questions: 30, marks: 30, topics: ['Radioactivity', 'X-rays', 'Dosimetry'] },
+            { name: 'Medical Imaging', nameTamil: 'மருத்துவ படிமப்பிடிப்பு', questions: 30, marks: 30, topics: ['CT', 'MRI', 'PET', 'Ultrasound'] },
+            { name: 'Radiation Therapy', nameTamil: 'கதிர்வீச்சு சிகிச்சை', questions: 25, marks: 25, topics: ['Treatment Planning', 'LINAC'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 15, marks: 15, topics: ['Nuclear Physics', 'Quantum Mechanics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Career in hospitals and cancer centres', 'Learn radiation dosimetry', 'Study treatment planning']
+      },
+      {
+        id: 'anna-msc-materials',
+        name: 'M.Sc. Materials Science',
+        nameTamil: 'எம்.எஸ்சி. பொருள் அறிவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '90 Minutes',
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Materials Science', nameTamil: 'பொருள் அறிவியல்', questions: 40, marks: 40, topics: ['Crystallography', 'Defects', 'Phase Diagrams'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 25, marks: 25, topics: ['Solid State Physics', 'Quantum Mechanics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 20, marks: 20, topics: ['Physical Chemistry', 'Polymers'] },
+            { name: 'Engineering', nameTamil: 'பொறியியல்', questions: 15, marks: 15, topics: ['Material Testing', 'Properties'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Interdisciplinary field', 'Learn material characterization', 'Study nanomaterials']
+      },
+      {
+        id: 'anna-mtech-laser',
+        name: 'M.Tech. Laser and Electro Optical Engineering',
+        nameTamil: 'எம்.டெக். லேசர் மற்றும் மின்-ஒளியியல் பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Lasers', nameTamil: 'லேசர்கள்', questions: 35, marks: 35, topics: ['Laser Principles', 'Types', 'Applications'] },
+            { name: 'Optics', nameTamil: 'ஒளியியல்', questions: 30, marks: 30, topics: ['Wave Optics', 'Fiber Optics', 'Holography'] },
+            { name: 'Electronics', nameTamil: 'மின்னணுவியல்', questions: 15, marks: 15, topics: ['Photodetectors', 'Modulators'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['EM Theory', 'Fourier Optics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Specialized field in photonics', 'Learn laser systems', 'Study fiber optic communication']
+      },
+      // Integrated 5-Year Programmes
+      {
+        id: 'anna-integrated-msc-cs',
+        name: 'M.Sc. Computer Science (5-Year Integrated)',
+        nameTamil: 'எம்.எஸ்சி. கணினி அறிவியல் (5-ஆண்டு ஒருங்கிணைந்த)',
+        type: 'Integrated',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Entrance)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Algebra', 'Calculus', 'Statistics'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 30, marks: 30, topics: ['Logical Reasoning', 'Quantitative'] },
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 15, marks: 15, topics: ['Grammar', 'Comprehension'] },
+            { name: 'General Science', nameTamil: 'பொது அறிவியல்', questions: 15, marks: 15, topics: ['Physics', 'Computer Basics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Direct PG after +2', 'Strong math foundation needed', 'Good for research career']
+      },
+      {
+        id: 'anna-integrated-msc-it',
+        name: 'M.Sc. Information Technology (5-Year Integrated)',
+        nameTamil: 'எம்.எஸ்சி. தகவல் தொழில்நுட்பம் (5-ஆண்டு ஒருங்கிணைந்த)',
+        type: 'Integrated',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Entrance)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Algebra', 'Calculus', 'Statistics'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 30, marks: 30, topics: ['Logical Reasoning', 'Quantitative'] },
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 15, marks: 15, topics: ['Grammar', 'Comprehension'] },
+            { name: 'General Science', nameTamil: 'பொது அறிவியல்', questions: 15, marks: 15, topics: ['Physics', 'Computer Basics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Direct PG after +2', 'Strong math foundation needed', 'Good for IT industry']
+      },
+      {
+        id: 'anna-integrated-media',
+        name: 'M.Sc. Electronic Media (5-Year Integrated)',
+        nameTamil: 'எம்.எஸ்சி. மின்னணு ஊடகம் (5-ஆண்டு ஒருங்கிணைந்த)',
+        type: 'Integrated',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Entrance)',
+          negativeMarking: false,
+          sections: [
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 30, marks: 30, topics: ['Current Affairs', 'Media Industry'] },
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 30, marks: 30, topics: ['Grammar', 'Comprehension', 'Writing'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 25, marks: 25, topics: ['Logical Reasoning', 'Creativity'] },
+            { name: 'Media Awareness', nameTamil: 'ஊடக விழிப்புணர்வு', questions: 15, marks: 15, topics: ['TV', 'Radio', 'Digital Media'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Direct entry after +2', 'Stay updated with news', 'Develop communication skills']
+      },
+      // ========== MADRAS INSTITUTE OF TECHNOLOGY (MIT) - Courses ==========
+      {
+        id: 'anna-be-auto',
+        name: 'B.E. Automobile Engineering',
+        nameTamil: 'பி.இ. வாகன பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 55, marks: 55, topics: ['Calculus', 'Mechanics', 'Vectors'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 55, marks: 55, topics: ['Mechanics', 'Thermodynamics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Fuels', 'Lubricants', 'Materials'] },
+            { name: 'Engineering Basics', nameTamil: 'பொறியியல் அடிப்படைகள்', questions: 45, marks: 45, topics: ['IC Engines', 'Vehicle Dynamics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['MIT Chennai campus specializes in Auto', 'Good for automotive industry', 'Learn about EV technology']
+      },
+      {
+        id: 'anna-be-instrumentation',
+        name: 'B.E. Instrumentation Engineering',
+        nameTamil: 'பி.இ. கருவியியல் பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Calculus', 'Transforms', 'Control Theory'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Electronics', 'Sensors', 'Transducers'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Analytical Chemistry'] },
+            { name: 'Electronics', nameTamil: 'மின்னணுவியல்', questions: 55, marks: 55, topics: ['Circuits', 'Digital Electronics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for process industries', 'Learn PLC and SCADA', 'Study control systems']
+      },
+      {
+        id: 'anna-be-production',
+        name: 'B.E. Production Engineering',
+        nameTamil: 'பி.இ. உற்பத்தி பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 55, marks: 55, topics: ['Statistics', 'Operations Research'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Materials'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Manufacturing Materials'] },
+            { name: 'Manufacturing', nameTamil: 'உற்பத்தி', questions: 50, marks: 50, topics: ['Machining', 'Welding', 'Casting'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for manufacturing sector', 'Learn CAD/CAM', 'Study industrial engineering']
+      },
+      {
+        id: 'anna-btech-rubber-plastics',
+        name: 'B.Tech. Rubber and Plastics Technology',
+        nameTamil: 'பி.டெக். ரப்பர் மற்றும் பிளாஸ்டிக் தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 70, marks: 70, topics: ['Polymer Chemistry', 'Organic Chemistry'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 45, marks: 45, topics: ['Calculus', 'Statistics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 45, topics: ['Material Properties'] },
+            { name: 'Technology', nameTamil: 'தொழில்நுட்பம்', questions: 40, marks: 40, topics: ['Processing', 'Compounding'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Unique course - MIT specialty', 'Good for polymer industry', 'Learn rubber compounding']
+      },
+      {
+        id: 'anna-me-aero',
+        name: 'M.E. Aeronautical Engineering',
+        nameTamil: 'எம்.இ. விமானவியல் பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Aerodynamics', nameTamil: 'காற்றியக்கவியல்', questions: 30, marks: 30, topics: ['Subsonic', 'Supersonic', 'Compressible Flow'] },
+            { name: 'Structures', nameTamil: 'கட்டமைப்புகள்', questions: 25, marks: 25, topics: ['Aircraft Structures', 'Composites'] },
+            { name: 'Propulsion', nameTamil: 'உந்து சக்தி', questions: 25, marks: 25, topics: ['Jet Engines', 'Rockets'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Fluid Mechanics', 'Numerical Methods'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['MIT Chromepet specializes in Aero', 'Good for ISRO, DRDO, HAL', 'Study CFD and FEM']
+      },
+      {
+        id: 'anna-me-avionics',
+        name: 'M.E. Avionics',
+        nameTamil: 'எம்.இ. ஏவியானிக்ஸ்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Avionics Systems', nameTamil: 'ஏவியானிக்ஸ் அமைப்புகள்', questions: 35, marks: 35, topics: ['Navigation', 'Radar', 'Communication'] },
+            { name: 'Control Systems', nameTamil: 'கட்டுப்பாட்டு அமைப்புகள்', questions: 25, marks: 25, topics: ['Flight Control', 'Autopilot'] },
+            { name: 'Electronics', nameTamil: 'மின்னணுவியல்', questions: 20, marks: 20, topics: ['Embedded Systems', 'Digital Electronics'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Signal Processing', 'Control Theory'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Combination of Aero and ECE', 'Good for avionics companies', 'Study radar and navigation systems']
+      },
+      {
+        id: 'anna-me-mechatronics',
+        name: 'M.E. Mechatronics',
+        nameTamil: 'எம்.இ. மெக்காட்ரானிக்ஸ்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mechatronics', nameTamil: 'மெக்காட்ரானிக்ஸ்', questions: 30, marks: 30, topics: ['Sensors', 'Actuators', 'Control'] },
+            { name: 'Mechanical', nameTamil: 'இயந்திரவியல்', questions: 25, marks: 25, topics: ['Mechanisms', 'Machine Design'] },
+            { name: 'Electronics', nameTamil: 'மின்னணுவியல்', questions: 25, marks: 25, topics: ['Microcontrollers', 'PLC'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Control Theory', 'Numerical Methods'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Interdisciplinary field', 'Good for automation industry', 'Learn robotics and automation']
+      },
+      {
+        id: 'anna-me-auto-pg',
+        name: 'M.E. Automobile Engineering',
+        nameTamil: 'எம்.இ. வாகன பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Vehicle Engineering', nameTamil: 'வாகன பொறியியல்', questions: 35, marks: 35, topics: ['Vehicle Dynamics', 'Chassis', 'Suspension'] },
+            { name: 'IC Engines', nameTamil: 'உள் எரி இயந்திரங்கள்', questions: 25, marks: 25, topics: ['Engine Design', 'Performance', 'Emissions'] },
+            { name: 'EV Technology', nameTamil: 'மின்வாகன தொழில்நுட்பம்', questions: 20, marks: 20, topics: ['EV Motors', 'Batteries', 'Charging'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Vehicle Dynamics', 'Control'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Chennai has major auto industry', 'Learn EV technology', 'Study vehicle dynamics']
+      },
+      // ========== ALAGAPPA COLLEGE OF TECHNOLOGY (ACT) - Courses ==========
+      {
+        id: 'anna-btech-food',
+        name: 'B.Tech. Food Technology',
+        nameTamil: 'பி.டெக். உணவு தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 60, marks: 60, topics: ['Food Chemistry', 'Organic Chemistry'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 50, marks: 50, topics: ['Microbiology', 'Nutrition'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 45, marks: 45, topics: ['Statistics', 'Calculus'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 45, topics: ['Food Physics', 'Unit Operations'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing food processing industry', 'Learn HACCP and food safety', 'Study food preservation methods']
+      },
+      {
+        id: 'anna-btech-leather',
+        name: 'B.Tech. Leather Technology',
+        nameTamil: 'பி.டெக். தோல் தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 70, marks: 70, topics: ['Leather Chemistry', 'Organic Chemistry'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 45, marks: 45, topics: ['Statistics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 45, topics: ['Material Properties'] },
+            { name: 'Technology', nameTamil: 'தொழில்நுட்பம்', questions: 40, marks: 40, topics: ['Tanning', 'Finishing'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Chennai is leather hub', 'ACT specialty course', 'Good for leather goods industry']
+      },
+      {
+        id: 'anna-btech-petrochem',
+        name: 'B.Tech. Petrochemical Engineering',
+        nameTamil: 'பி.டெக். பெட்ரோ வேதி பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 70, marks: 70, topics: ['Organic', 'Petrochemistry', 'Polymers'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 45, marks: 45, topics: ['Calculus', 'Statistics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 45, topics: ['Thermodynamics', 'Fluid Mechanics'] },
+            { name: 'Technology', nameTamil: 'தொழில்நுட்பம்', questions: 40, marks: 40, topics: ['Refining', 'Petrochemicals'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for oil & gas sector', 'Chennai has refineries', 'Study refining processes']
+      },
+      {
+        id: 'anna-btech-pharma',
+        name: 'B.Tech. Pharmaceutical Engineering',
+        nameTamil: 'பி.டெக். மருந்து பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 65, marks: 65, topics: ['Organic', 'Pharmaceutical Chemistry'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 45, marks: 45, topics: ['Pharmacology', 'Microbiology'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 45, marks: 45, topics: ['Statistics', 'Calculus'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 45, topics: ['Unit Operations'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing pharma sector', 'Learn GMP and regulatory affairs', 'Study drug formulation']
+      },
+      {
+        id: 'anna-btech-textile',
+        name: 'B.Tech. Textile Engineering',
+        nameTamil: 'பி.டெக். ஜவுளி பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 55, marks: 55, topics: ['Textile Chemistry', 'Dyeing'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Textile Physics', 'Fibers'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Statistics', 'Quality Control'] },
+            { name: 'Technology', nameTamil: 'தொழில்நுட்பம்', questions: 45, marks: 45, topics: ['Spinning', 'Weaving'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['ACT specialty', 'TN has textile industry', 'Learn textile processing']
+      },
+      {
+        id: 'anna-btech-ceramic',
+        name: 'B.Tech. Ceramic Technology',
+        nameTamil: 'பி.டெக். செராமிக் தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 60, marks: 60, topics: ['Inorganic', 'Ceramic Chemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Material Properties', 'Thermal'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 45, marks: 45, topics: ['Statistics', 'Calculus'] },
+            { name: 'Technology', nameTamil: 'தொழில்நுட்பம்', questions: 45, marks: 45, topics: ['Ceramics Processing'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Unique course in India', 'Good for tiles and sanitary industry', 'Study ceramic materials']
+      },
+      {
+        id: 'anna-btech-ind-biotech',
+        name: 'B.Tech. Industrial Biotechnology',
+        nameTamil: 'பி.டெக். தொழில்துறை உயிர்தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 65, marks: 65, topics: ['Microbiology', 'Biochemistry', 'Genetics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Organic', 'Biochemistry'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 45, marks: 45, topics: ['Statistics', 'Biostatistics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 40, marks: 40, topics: ['Biophysics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing biotech sector', 'Learn fermentation technology', 'Study bioprocess engineering']
+      },
+      // ACT PG Courses
+      {
+        id: 'anna-mtech-chem-eng',
+        name: 'M.Tech. Chemical Engineering',
+        nameTamil: 'எம்.டெக். வேதியியல் பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Process Calculations', nameTamil: 'செயல்முறை கணக்கீடுகள்', questions: 25, marks: 25, topics: ['Material Balance', 'Energy Balance'] },
+            { name: 'Unit Operations', nameTamil: 'அலகு செயல்பாடுகள்', questions: 30, marks: 30, topics: ['Heat Transfer', 'Mass Transfer', 'Fluid Mechanics'] },
+            { name: 'Chemical Reaction', nameTamil: 'வேதியியல் வினை', questions: 25, marks: 25, topics: ['Kinetics', 'Reactor Design'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['ODE', 'PDE', 'Numerical Methods'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['GATE Chemical Engineering required', 'Good for process industries', 'Study reaction engineering']
+      },
+      {
+        id: 'anna-mtech-biotech',
+        name: 'M.Tech. Biotechnology',
+        nameTamil: 'எம்.டெக். உயிர்தொழில்நுட்பம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 30, marks: 30, topics: ['Gene Expression', 'Cloning', 'PCR'] },
+            { name: 'Biochemistry', nameTamil: 'உயிர்வேதியியல்', questions: 25, marks: 25, topics: ['Enzymes', 'Metabolism'] },
+            { name: 'Bioprocess', nameTamil: 'உயிர்செயல்முறை', questions: 25, marks: 25, topics: ['Fermentation', 'Downstream Processing'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Biostatistics', 'Modeling'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for pharma and biotech companies', 'Learn fermentation technology', 'Study bioreactor design']
+      },
+      {
+        id: 'anna-mtech-food',
+        name: 'M.Tech. Food Technology',
+        nameTamil: 'எம்.டெக். உணவு தொழில்நுட்பம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Food Engineering', nameTamil: 'உணவு பொறியியல்', questions: 30, marks: 30, topics: ['Unit Operations', 'Food Processing'] },
+            { name: 'Food Chemistry', nameTamil: 'உணவு வேதியியல்', questions: 25, marks: 25, topics: ['Food Components', 'Additives'] },
+            { name: 'Food Microbiology', nameTamil: 'உணவு நுண்ணுயிரியல்', questions: 25, marks: 25, topics: ['Spoilage', 'Fermentation', 'Safety'] },
+            { name: 'Quality Control', nameTamil: 'தரக்கட்டுப்பாடு', questions: 20, marks: 20, topics: ['HACCP', 'FSSAI'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing food processing industry', 'Learn FSSAI regulations', 'Study food preservation']
+      },
+      {
+        id: 'anna-mtech-env-sci',
+        name: 'M.Tech. Environmental Science & Engineering',
+        nameTamil: 'எம்.டெக். சுற்றுச்சூழல் அறிவியல் & பொறியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (GATE/CEETA-PG)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Environmental Engineering', nameTamil: 'சுற்றுச்சூழல் பொறியியல்', questions: 35, marks: 35, topics: ['Water Treatment', 'Air Pollution Control'] },
+            { name: 'Environmental Science', nameTamil: 'சுற்றுச்சூழல் அறிவியல்', questions: 30, marks: 30, topics: ['Ecology', 'Climate Change'] },
+            { name: 'EIA', nameTamil: 'சுற்றுச்சூழல் தாக்க மதிப்பீடு', questions: 15, marks: 15, topics: ['Impact Assessment', 'Regulations'] },
+            { name: 'Engineering Mathematics', nameTamil: 'பொறியியல் கணிதம்', questions: 20, marks: 20, topics: ['Statistics', 'Modeling'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing environmental sector', 'Learn EIA process', 'Study pollution control technologies']
+      },
+      // ========== SCHOOL OF ARCHITECTURE AND PLANNING (SAP) - Courses ==========
+      {
+        id: 'anna-bplan',
+        name: 'B.Plan. Planning',
+        nameTamil: 'பி.பிளான். திட்டமிடல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Entrance)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 25, topics: ['Geometry', 'Statistics', 'Algebra'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 35, marks: 35, topics: ['Spatial Ability', 'Observation', 'Critical Thinking'] },
+            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', questions: 25, marks: 25, topics: ['Current Affairs', 'Urban Issues', 'Environment'] },
+            { name: 'Drawing', nameTamil: 'வரைதல்', questions: 15, marks: 15, topics: ['Sketching', 'Map Reading'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['4 year programme', 'Good for urban planning career', 'Learn GIS and planning tools']
+      },
+      {
+        id: 'anna-march',
+        name: 'M.Arch. Architecture',
+        nameTamil: 'எம்.ஆர்க். கட்டிடக்கலை',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Entrance)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Architectural Design', nameTamil: 'கட்டிடக்கலை வடிவமைப்பு', questions: 40, marks: 40, topics: ['Design Concepts', 'Building Design'] },
+            { name: 'Building Technology', nameTamil: 'கட்டிட தொழில்நுட்பம்', questions: 30, marks: 30, topics: ['Construction', 'Materials', 'Services'] },
+            { name: 'Theory', nameTamil: 'கோட்பாடு', questions: 20, marks: 20, topics: ['History', 'Sustainability'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Spatial Ability'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['B.Arch required', 'GATE Architecture helps', 'Study sustainable design']
+      },
+      {
+        id: 'anna-mplan-urban',
+        name: 'M.Plan. Urban Planning',
+        nameTamil: 'எம்.பிளான். நகர் திட்டமிடல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Entrance)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Urban Planning', nameTamil: 'நகர் திட்டமிடல்', questions: 40, marks: 40, topics: ['Master Plans', 'Land Use', 'Zoning'] },
+            { name: 'Planning Theory', nameTamil: 'திட்டமிடல் கோட்பாடு', questions: 25, marks: 25, topics: ['Planning History', 'Theories'] },
+            { name: 'Infrastructure', nameTamil: 'உள்கட்டமைப்பு', questions: 20, marks: 20, topics: ['Transport', 'Water Supply', 'Sanitation'] },
+            { name: 'GIS/Remote Sensing', nameTamil: 'ஜிஐஎஸ்/தொலையுணர்வு', questions: 15, marks: 15, topics: ['Spatial Analysis', 'Mapping'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for urban development agencies', 'Learn GIS software', 'Study smart city concepts']
+      },
+      {
+        id: 'anna-mplan-regional',
+        name: 'M.Plan. Regional Planning',
+        nameTamil: 'எம்.பிளான். பிராந்திய திட்டமிடல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Entrance)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Regional Planning', nameTamil: 'பிராந்திய திட்டமிடல்', questions: 40, marks: 40, topics: ['Regional Development', 'Rural Planning'] },
+            { name: 'Economics', nameTamil: 'பொருளியல்', questions: 25, marks: 25, topics: ['Regional Economics', 'Development Theory'] },
+            { name: 'Environment', nameTamil: 'சுற்றுச்சூழல்', questions: 20, marks: 20, topics: ['Environmental Planning', 'Sustainability'] },
+            { name: 'GIS/Statistics', nameTamil: 'ஜிஐஎஸ்/புள்ளியியல்', questions: 15, marks: 15, topics: ['Spatial Analysis', 'Data Analysis'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for development agencies', 'Study regional economics', 'Learn spatial analysis']
+      },
+      {
+        id: 'anna-mplan-housing',
+        name: 'M.Plan. Housing',
+        nameTamil: 'எம்.பிளான். வீட்டுவசதி',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Entrance)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Housing', nameTamil: 'வீட்டுவசதி', questions: 40, marks: 40, topics: ['Housing Policy', 'Affordable Housing', 'Slum Rehabilitation'] },
+            { name: 'Planning', nameTamil: 'திட்டமிடல்', questions: 25, marks: 25, topics: ['Settlement Planning', 'Site Planning'] },
+            { name: 'Economics', nameTamil: 'பொருளியல்', questions: 20, marks: 20, topics: ['Housing Finance', 'Real Estate'] },
+            { name: 'Social Aspects', nameTamil: 'சமூக அம்சங்கள்', questions: 15, marks: 15, topics: ['Community Development'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for housing agencies', 'Study PMAY and housing schemes', 'Learn housing finance']
+      },
+      {
+        id: 'anna-mplan-transport',
+        name: 'M.Plan. Transportation Planning',
+        nameTamil: 'எம்.பிளான். போக்குவரத்து திட்டமிடல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Entrance)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Transport Planning', nameTamil: 'போக்குவரத்து திட்டமிடல்', questions: 40, marks: 40, topics: ['Traffic Engineering', 'Public Transport', 'Highways'] },
+            { name: 'Urban Transport', nameTamil: 'நகர்ப்புற போக்குவரத்து', questions: 25, marks: 25, topics: ['Metro', 'Bus', 'NMT'] },
+            { name: 'Modeling', nameTamil: 'மாதிரியாக்கம்', questions: 20, marks: 20, topics: ['Travel Demand', 'Simulation'] },
+            { name: 'Infrastructure', nameTamil: 'உள்கட்டமைப்பு', questions: 15, marks: 15, topics: ['Design', 'Construction'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['High demand with metro expansion', 'Learn transport modeling', 'Study ITS and smart mobility']
+      },
+      // Additional UG Courses - Industrial and Mining
+      {
+        id: 'anna-be-industrial',
+        name: 'B.E. Industrial Engineering',
+        nameTamil: 'பி.இ. தொழில்துறை பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 55, marks: 55, topics: ['Statistics', 'Operations Research', 'Probability'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Thermodynamics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Materials'] },
+            { name: 'Industrial Engg', nameTamil: 'தொழில்துறை பொறியியல்', questions: 50, marks: 50, topics: ['Work Study', 'Quality', 'Ergonomics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for operations roles', 'Learn lean and six sigma', 'Study industrial automation']
+      },
+      {
+        id: 'anna-be-mining',
+        name: 'B.E. Mining Engineering',
+        nameTamil: 'பி.இ. சுரங்க பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Calculus', 'Statistics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Rock Mechanics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Minerals', 'Fuels'] },
+            { name: 'Geology', nameTamil: 'புவியியல்', questions: 50, marks: 50, topics: ['Mineralogy', 'Ore Deposits'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Only mining dept in TN', 'Good for Coal India, NMDC', 'Study mine planning']
+      },
+      {
+        id: 'anna-be-printing',
+        name: 'B.E. Printing and Packaging Technology',
+        nameTamil: 'பி.இ. அச்சு மற்றும் பேக்கேஜிங் தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 55, marks: 55, topics: ['Optics', 'Color Science'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Inks', 'Paper', 'Polymers'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 45, marks: 45, topics: ['Statistics', 'Quality Control'] },
+            { name: 'Technology', nameTamil: 'தொழில்நுட்பம்', questions: 50, marks: 50, topics: ['Printing Processes', 'Packaging'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Only course in TN', 'Growing packaging industry', 'Learn graphic design']
+      },
+      {
+        id: 'anna-be-material',
+        name: 'B.E. Material Science and Engineering',
+        nameTamil: 'பி.இ. பொருள் அறிவியல் மற்றும் பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 55, marks: 55, topics: ['Solid State', 'Crystallography'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 55, marks: 55, topics: ['Materials Chemistry', 'Polymers'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Calculus', 'Statistics'] },
+            { name: 'Materials', nameTamil: 'பொருள்', questions: 40, marks: 40, topics: ['Metals', 'Ceramics', 'Composites'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Interdisciplinary field', 'Good for R&D careers', 'Study nanomaterials']
+      },
+      {
+        id: 'anna-be-manufacturing',
+        name: 'B.E. Manufacturing Engineering',
+        nameTamil: 'பி.இ. உற்பத்தி பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 55, marks: 55, topics: ['Calculus', 'Statistics', 'Operations Research'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Materials'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Materials', 'Corrosion'] },
+            { name: 'Manufacturing', nameTamil: 'உற்பத்தி', questions: 50, marks: 50, topics: ['Machining', 'CNC', 'Automation'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Core manufacturing skills', 'Learn CNC programming', 'Study automation']
+      },
+      {
+        id: 'anna-btech-it',
+        name: 'B.Tech. Information Technology',
+        nameTamil: 'பி.டெக். தகவல் தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 55, marks: 55, topics: ['Discrete Math', 'Statistics', 'Algebra'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Electronics', 'Modern Physics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Physical Chemistry'] },
+            { name: 'Computer Basics', nameTamil: 'கணினி அடிப்படைகள்', questions: 50, marks: 50, topics: ['Programming', 'Logic'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['High demand IT course', 'Learn programming early', 'Study web development']
+      },
+      {
+        id: 'anna-be-eee',
+        name: 'B.E. Electrical and Electronics Engineering',
+        nameTamil: 'பி.இ. மின் மற்றும் மின்னணு பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 55, marks: 55, topics: ['Calculus', 'Transforms', 'Complex Variables'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 55, marks: 55, topics: ['Electronics', 'Electromagnetism'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Materials', 'Electrochemistry'] },
+            { name: 'Electrical', nameTamil: 'மின்சார', questions: 45, marks: 45, topics: ['Circuits', 'Machines'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Core electrical branch', 'Good for power sector', 'Study electrical machines']
+      },
+      {
+        id: 'anna-be-biomedical',
+        name: 'B.E. Biomedical Engineering',
+        nameTamil: 'பி.இ. உயிர்மருத்துவ பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'OMR Based (TNEA Counselling)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 55, marks: 55, topics: ['Human Physiology', 'Anatomy'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Electronics', 'Biophysics'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Signal Processing', 'Statistics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Biomaterials'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Blend of engineering and medicine', 'Good for medical device companies', 'Learn medical imaging']
       }
     ]
   },
