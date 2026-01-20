@@ -7629,6 +7629,7 @@ export const universities: University[] = [
     email: 'registrar@tnpesu.org',
     examName: 'Merit + Physical Fitness Test',
     logoColor: '#ea580c',
+    logo: '/universities/tnpesu-logo.png',
     fee: { general: 8000, obc: 8000, scst: 2000 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
