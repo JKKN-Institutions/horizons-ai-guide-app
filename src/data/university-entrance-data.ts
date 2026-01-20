@@ -7488,6 +7488,7 @@ export const universities: University[] = [
     email: 'registrar@tanuvas.ac.in',
     examName: 'NEET / Merit-Based',
     logoColor: '#166534',
+    logo: '/universities/tanuvas-logo.png',
     fee: { general: 40000, obc: 40000, scst: 5000 },
     importantDates: [
       { event: 'NEET Application', eventTamil: 'NEET விண்ணப்பம்', date: 'February 2026', status: 'upcoming' },
