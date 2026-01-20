@@ -7387,6 +7387,477 @@ export const universities: University[] = [
         ]
       }
     ]
+  },
+  // University of Madras - The Parent University for North TN
+  {
+    id: 'university-of-madras',
+    name: 'University of Madras',
+    nameTamil: 'சென்னைப் பல்கலைக்கழகம்',
+    location: 'Chennai',
+    website: 'www.unom.ac.in',
+    phone: '044-25399422',
+    email: 'registrar@unom.ac.in',
+    examName: 'Merit-Based (12th Marks)',
+    logoColor: '#1e40af',
+    fee: { general: 1500, obc: 1500, scst: 500 },
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Merit List', eventTamil: 'தகுதி பட்டியல்', date: 'July 2026', status: 'upcoming' },
+      { event: 'Counseling', eventTamil: 'கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
+    ],
+    courses: [
+      {
+        id: 'uom-ba-english',
+        name: 'B.A. English Literature',
+        nameTamil: 'பி.ஏ. ஆங்கில இலக்கியம்',
+        type: 'UG',
+        seatMatrix: { general: 40, obc: 60, bcMbc: 80, sc: 40, st: 5, ews: 10, total: 235 },
+        cutoffs: [
+          { year: '2024', general: 92, obc: 88, bcMbc: 82, sc: 70, st: 60, ews: 86 },
+          { year: '2023', general: 90, obc: 86, bcMbc: 80, sc: 68, st: 58, ews: 84 },
+        ],
+        examPattern: {
+          totalQuestions: 0, totalMarks: 600, duration: 'N/A', durationMinutes: 0,
+          mode: 'Merit-Based (12th Marks)', negativeMarking: false,
+          sections: [{ name: 'English + Best 4 Subjects', nameTamil: '12ஆம் வகுப்பு மதிப்பெண்கள்', questions: 0, marks: 600, topics: ['12th Board Marks'] }]
+        },
+        syllabus: [{
+          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
+          topics: [{ name: 'HSC Pass', subtopics: ['Any stream', 'English as a subject', 'Min 50% aggregate'], importance: 'High' }]
+        }],
+        previousQuestions: [],
+        tips: ['Flagship Arts program in Chennai', 'Direct admission based on 12th marks', 'Career paths: Teacher, Content Writer, Journalist, Civil Services']
+      },
+      {
+        id: 'uom-bsc-physics',
+        name: 'B.Sc. Physics',
+        nameTamil: 'பி.எஸ்சி. இயற்பியல்',
+        type: 'UG',
+        seatMatrix: { general: 35, obc: 50, bcMbc: 70, sc: 35, st: 5, ews: 10, total: 205 },
+        cutoffs: [
+          { year: '2024', general: 94, obc: 90, bcMbc: 85, sc: 72, st: 62, ews: 88 },
+          { year: '2023', general: 93, obc: 89, bcMbc: 84, sc: 70, st: 60, ews: 86 },
+        ],
+        examPattern: {
+          totalQuestions: 0, totalMarks: 600, duration: 'N/A', durationMinutes: 0,
+          mode: 'Merit-Based (12th Marks)', negativeMarking: false,
+          sections: [{ name: 'Physics + Maths + Chemistry + Best 2', nameTamil: '12ஆம் வகுப்பு மதிப்பெண்கள்', questions: 0, marks: 600, topics: ['PCM Marks'] }]
+        },
+        syllabus: [{
+          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
+          topics: [{ name: 'HSC Pass with PCM', subtopics: ['Physics as main subject', 'Chemistry, Maths as additional'], importance: 'High' }]
+        }],
+        previousQuestions: [],
+        tips: ['Strong research culture', 'Good placement in IT sector', 'Career paths: Scientist, Teacher, Data Analyst']
+      },
+      {
+        id: 'uom-bcom-general',
+        name: 'B.Com General',
+        nameTamil: 'பி.காம் பொது',
+        type: 'UG',
+        seatMatrix: { general: 50, obc: 70, bcMbc: 90, sc: 45, st: 5, ews: 15, total: 275 },
+        cutoffs: [
+          { year: '2024', general: 91, obc: 87, bcMbc: 81, sc: 68, st: 58, ews: 85 },
+          { year: '2023', general: 89, obc: 85, bcMbc: 79, sc: 66, st: 56, ews: 83 },
+        ],
+        examPattern: {
+          totalQuestions: 0, totalMarks: 600, duration: 'N/A', durationMinutes: 0,
+          mode: 'Merit-Based (12th Marks)', negativeMarking: false,
+          sections: [{ name: 'Commerce Subjects', nameTamil: 'வணிகவியல் பாடங்கள்', questions: 0, marks: 600, topics: ['Commerce Stream Marks'] }]
+        },
+        syllabus: [{
+          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Easy',
+          topics: [{ name: 'Commerce Stream', subtopics: ['Accountancy', 'Commerce', 'Economics'], importance: 'High' }]
+        }],
+        previousQuestions: [],
+        tips: ['Foundation for CA/CMA/CS', 'Best for banking & finance careers', 'Strong alumni network in Chennai']
+      }
+    ]
+  },
+  // Tamil Nadu Veterinary & Animal Sciences University (TANUVAS)
+  {
+    id: 'tanuvas-chennai',
+    name: 'Tamil Nadu Veterinary & Animal Sciences University',
+    nameTamil: 'தமிழ்நாடு கால்நடை மருத்துவ அறிவியல் பல்கலைக்கழகம்',
+    location: 'Chennai',
+    website: 'www.tanuvas.ac.in',
+    phone: '044-25551572',
+    email: 'registrar@tanuvas.ac.in',
+    examName: 'NEET / Merit-Based',
+    logoColor: '#166534',
+    fee: { general: 40000, obc: 40000, scst: 5000 },
+    importantDates: [
+      { event: 'NEET Application', eventTamil: 'NEET விண்ணப்பம்', date: 'February 2026', status: 'upcoming' },
+      { event: 'NEET Exam', eventTamil: 'NEET தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'June 2026', status: 'upcoming' },
+      { event: 'Counseling', eventTamil: 'கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
+    ],
+    courses: [
+      {
+        id: 'tanuvas-bvsc',
+        name: 'B.V.Sc. & A.H. (Veterinary Science)',
+        nameTamil: 'கால்நடை மருத்துவ அறிவியல் இளங்கலை',
+        type: 'UG',
+        seatMatrix: { general: 80, obc: 120, bcMbc: 160, sc: 80, st: 10, ews: 20, total: 470 },
+        cutoffs: [
+          { year: '2024', general: 520, obc: 480, bcMbc: 420, sc: 320, st: 280, ews: 460 },
+          { year: '2023', general: 505, obc: 465, bcMbc: 405, sc: 305, st: 265, ews: 445 },
+        ],
+        examPattern: {
+          totalQuestions: 180, totalMarks: 720, duration: '3 Hours 20 Minutes', durationMinutes: 200,
+          mode: 'Computer Based (CBT) - NEET UG', negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 180, topics: ['Mechanics', 'Thermodynamics', 'Optics', 'Modern Physics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 180, topics: ['Organic', 'Inorganic', 'Physical Chemistry'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 90, marks: 360, topics: ['Botany', 'Zoology', 'Human Physiology', 'Genetics'] }
+          ]
+        },
+        syllabus: [{
+          unitNumber: 1, title: 'NEET Biology', titleTamil: 'NEET உயிரியல்', expectedQuestions: 90, difficulty: 'Hard',
+          topics: [
+            { name: 'Animal Husbandry', subtopics: ['Dairy farming', 'Poultry', 'Animal breeding'], importance: 'High' },
+            { name: 'Genetics', subtopics: ['Heredity', 'Mutations', 'DNA replication'], importance: 'High' }
+          ]
+        }],
+        previousQuestions: [
+          { id: 'tanuvas-q1', question: 'Which is the largest gland in the human body?', options: ['Thyroid', 'Liver', 'Pancreas', 'Pituitary'], correctAnswer: 1, explanation: 'Liver is the largest gland, weighing about 1.5 kg in adults.', topic: 'Biology', difficulty: 'Easy' }
+        ],
+        tips: ['5.5 year course including 1 year internship', 'Career: Veterinary Doctor, Livestock Officer, Animal Welfare', 'NEET score required - aim for 500+ for govt seat']
+      },
+      {
+        id: 'tanuvas-food-tech',
+        name: 'B.Tech Food Technology',
+        nameTamil: 'உணவு தொழில்நுட்பம் பொறியியல்',
+        type: 'UG',
+        seatMatrix: { general: 30, obc: 45, bcMbc: 60, sc: 30, st: 5, ews: 10, total: 180 },
+        cutoffs: [
+          { year: '2024', general: 175, obc: 165, bcMbc: 155, sc: 140, st: 130, ews: 168 },
+          { year: '2023', general: 172, obc: 162, bcMbc: 152, sc: 138, st: 128, ews: 165 },
+        ],
+        examPattern: {
+          totalQuestions: 0, totalMarks: 200, duration: 'TNEA Cutoff Based', durationMinutes: 0,
+          mode: 'Merit-Based (TNEA Counseling)', negativeMarking: false,
+          sections: [{ name: 'TNEA Cutoff', nameTamil: 'TNEA கட்ஆப்', questions: 0, marks: 200, topics: ['Maths/Bio + Phy/2 + Chem/2'] }]
+        },
+        syllabus: [{
+          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
+          topics: [{ name: 'HSC with PCM/PCB', subtopics: ['Physics', 'Chemistry', 'Maths or Biology'], importance: 'High' }]
+        }],
+        previousQuestions: [],
+        tips: ['Admission through TNEA counseling', 'Career: Food Safety Officer, Quality Control, R&D in FMCG', 'Growing industry with excellent job prospects']
+      }
+    ]
+  },
+  // Tamil Nadu Dr. J. Jayalalithaa Fisheries University (TNJFU)
+  {
+    id: 'tnjfu-nagapattinam',
+    name: 'Tamil Nadu Dr. J. Jayalalithaa Fisheries University',
+    nameTamil: 'தமிழ்நாடு முனைவர் ஜெ. ஜெயலலிதா மீன்வளப் பல்கலைக்கழகம்',
+    location: 'Nagapattinam',
+    website: 'www.tnjfu.ac.in',
+    phone: '04365-251633',
+    email: 'registrar@tnjfu.ac.in',
+    examName: 'NEET / Merit-Based',
+    logoColor: '#0284c7',
+    fee: { general: 25000, obc: 25000, scst: 5000 },
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'June 2026', status: 'upcoming' },
+      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'July 2026', status: 'upcoming' },
+      { event: 'Counseling', eventTamil: 'கலந்தாய்வு', date: 'August 2026', status: 'upcoming' },
+    ],
+    courses: [
+      {
+        id: 'tnjfu-bfsc',
+        name: 'B.F.Sc. (Bachelor of Fisheries Science)',
+        nameTamil: 'மீன்வள அறிவியல் இளங்கலை',
+        type: 'UG',
+        seatMatrix: { general: 25, obc: 40, bcMbc: 50, sc: 25, st: 5, ews: 8, total: 153 },
+        cutoffs: [
+          { year: '2024', general: 85, obc: 80, bcMbc: 75, sc: 62, st: 52, ews: 78 },
+          { year: '2023', general: 83, obc: 78, bcMbc: 73, sc: 60, st: 50, ews: 76 },
+        ],
+        examPattern: {
+          totalQuestions: 0, totalMarks: 600, duration: 'N/A', durationMinutes: 0,
+          mode: 'Merit-Based (12th Marks with PCB)', negativeMarking: false,
+          sections: [{ name: 'PCB Marks', nameTamil: 'இயற்பியல்-வேதியியல்-உயிரியல்', questions: 0, marks: 600, topics: ['12th Science Marks'] }]
+        },
+        syllabus: [{
+          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
+          topics: [{ name: 'HSC Science', subtopics: ['Physics', 'Chemistry', 'Biology mandatory', 'Min 50% aggregate'], importance: 'High' }]
+        }],
+        previousQuestions: [],
+        tips: ['4-year professional degree', 'Career: Fisheries Officer, Aquaculture Specialist, Marine Biologist', 'Government jobs in Fisheries Department']
+      },
+      {
+        id: 'tnjfu-nautical',
+        name: 'B.Sc. Nautical Science',
+        nameTamil: 'கடல்சார் அறிவியல்',
+        type: 'UG',
+        seatMatrix: { general: 15, obc: 25, bcMbc: 30, sc: 15, st: 3, ews: 5, total: 93 },
+        cutoffs: [
+          { year: '2024', general: 88, obc: 83, bcMbc: 78, sc: 65, st: 55, ews: 81 },
+          { year: '2023', general: 86, obc: 81, bcMbc: 76, sc: 63, st: 53, ews: 79 },
+        ],
+        examPattern: {
+          totalQuestions: 0, totalMarks: 600, duration: 'N/A', durationMinutes: 0,
+          mode: 'Merit-Based + Physical Fitness', negativeMarking: false,
+          sections: [{ name: 'PCM/PCB Marks', nameTamil: 'அறிவியல் மதிப்பெண்கள்', questions: 0, marks: 600, topics: ['12th Science Marks + Physical Test'] }]
+        },
+        syllabus: [{
+          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
+          topics: [{ name: 'Requirements', subtopics: ['HSC with PCM/PCB', 'Physical fitness certificate', 'Swimming ability preferred'], importance: 'High' }]
+        }],
+        previousQuestions: [],
+        tips: ['Unique career in merchant navy', 'High-paying international careers', 'Physical fitness is mandatory']
+      }
+    ]
+  },
+  // Tamil Nadu Physical Education and Sports University
+  {
+    id: 'tnpesu-chennai',
+    name: 'Tamil Nadu Physical Education and Sports University',
+    nameTamil: 'தமிழ்நாடு உடற்கல்வி மற்றும் விளையாட்டுப் பல்கலைக்கழகம்',
+    location: 'Chennai',
+    website: 'www.tnpesu.org',
+    phone: '044-22350388',
+    email: 'registrar@tnpesu.org',
+    examName: 'Merit + Physical Fitness Test',
+    logoColor: '#ea580c',
+    fee: { general: 8000, obc: 8000, scst: 2000 },
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'Physical Test', eventTamil: 'உடல் தகுதி தேர்வு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Counseling', eventTamil: 'கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
+    ],
+    courses: [
+      {
+        id: 'tnpesu-bped',
+        name: 'B.P.Ed. (Bachelor of Physical Education)',
+        nameTamil: 'உடற்கல்வி இளங்கலை',
+        type: 'UG',
+        seatMatrix: { general: 30, obc: 45, bcMbc: 60, sc: 30, st: 5, ews: 10, total: 180 },
+        cutoffs: [
+          { year: '2024', general: 75, obc: 70, bcMbc: 65, sc: 55, st: 45, ews: 68 },
+          { year: '2023', general: 73, obc: 68, bcMbc: 63, sc: 53, st: 43, ews: 66 },
+        ],
+        examPattern: {
+          totalQuestions: 50, totalMarks: 100, duration: '1 Hour', durationMinutes: 60,
+          mode: '50% Written + 50% Physical Test', negativeMarking: false,
+          sections: [
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 25, marks: 25, topics: ['Sports GK', 'Current Affairs', 'General Awareness'] },
+            { name: 'Physical Fitness', nameTamil: 'உடல் தகுதி', questions: 0, marks: 50, topics: ['100m Sprint', 'Long Jump', 'Shot Put', 'Endurance'] }
+          ]
+        },
+        syllabus: [{
+          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
+          topics: [{ name: 'Requirements', subtopics: ['12th pass any stream', 'Sports achievements preferred', 'Good physical fitness'], importance: 'High' }]
+        }],
+        previousQuestions: [
+          { id: 'tnpesu-q1', question: 'The Olympic Games 2024 were held in which city?', options: ['Tokyo', 'Paris', 'Los Angeles', 'London'], correctAnswer: 1, explanation: 'The 2024 Summer Olympics were held in Paris, France.', topic: 'Sports GK', difficulty: 'Easy' }
+        ],
+        tips: ['2-year degree for graduates, 4-year for 12th pass', 'Physical fitness test is mandatory', 'Career: PE Teacher, Sports Coach, Fitness Trainer']
+      },
+      {
+        id: 'tnpesu-bsc-sports',
+        name: 'B.Sc. Sports Science',
+        nameTamil: 'விளையாட்டு அறிவியல் இளங்கலை',
+        type: 'UG',
+        seatMatrix: { general: 20, obc: 30, bcMbc: 40, sc: 20, st: 3, ews: 7, total: 120 },
+        cutoffs: [
+          { year: '2024', general: 78, obc: 73, bcMbc: 68, sc: 58, st: 48, ews: 71 },
+          { year: '2023', general: 76, obc: 71, bcMbc: 66, sc: 56, st: 46, ews: 69 },
+        ],
+        examPattern: {
+          totalQuestions: 50, totalMarks: 100, duration: '1 Hour', durationMinutes: 60,
+          mode: 'Written Test + Physical Assessment', negativeMarking: false,
+          sections: [
+            { name: 'Biology & Sports', nameTamil: 'உயிரியல் & விளையாட்டு', questions: 50, marks: 50, topics: ['Human Anatomy', 'Sports Physiology', 'Nutrition'] },
+            { name: 'Physical Test', nameTamil: 'உடல் தேர்வு', questions: 0, marks: 50, topics: ['Fitness Assessment', 'Sports Skills'] }
+          ]
+        },
+        syllabus: [{
+          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
+          topics: [{ name: 'Requirements', subtopics: ['12th with Science preferred', 'Interest in sports science', 'Basic fitness level'], importance: 'High' }]
+        }],
+        previousQuestions: [],
+        tips: ['Growing field with excellent prospects', 'Career: Sports Scientist, Performance Analyst, Rehabilitation Specialist', 'Can work with professional sports teams']
+      }
+    ]
+  },
+  // Tamil Nadu Teachers Education University
+  {
+    id: 'tnteu-chennai',
+    name: 'Tamil Nadu Teachers Education University',
+    nameTamil: 'தமிழ்நாடு ஆசிரியர் கல்வி பல்கலைக்கழகம்',
+    location: 'Chennai',
+    website: 'www.tnteu.ac.in',
+    phone: '044-22200845',
+    email: 'registrar@tnteu.ac.in',
+    examName: 'Merit-Based + CET',
+    logoColor: '#7c3aed',
+    fee: { general: 12000, obc: 12000, scst: 3000 },
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'CET Exam', eventTamil: 'CET தேர்வு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Counseling', eventTamil: 'கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
+    ],
+    courses: [
+      {
+        id: 'tnteu-integrated-bed',
+        name: 'B.Sc.B.Ed. Integrated (4 Years)',
+        nameTamil: 'பி.எஸ்சி.பி.எட். ஒருங்கிணைந்த பட்டம்',
+        type: 'UG',
+        seatMatrix: { general: 50, obc: 75, bcMbc: 100, sc: 50, st: 8, ews: 15, total: 298 },
+        cutoffs: [
+          { year: '2024', general: 85, obc: 80, bcMbc: 75, sc: 62, st: 52, ews: 78 },
+          { year: '2023', general: 83, obc: 78, bcMbc: 73, sc: 60, st: 50, ews: 76 },
+        ],
+        examPattern: {
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'Common Entrance Test (CET)', negativeMarking: false,
+          sections: [
+            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', questions: 25, marks: 25, topics: ['Current Affairs', 'Tamil Nadu GK', 'Education System'] },
+            { name: 'Teaching Aptitude', nameTamil: 'கற்பித்தல் திறன்', questions: 25, marks: 25, topics: ['Classroom Situations', 'Child Psychology', 'Teaching Methods'] },
+            { name: 'Subject Knowledge', nameTamil: 'பாட அறிவு', questions: 50, marks: 50, topics: ['Based on 12th subjects', 'Science/Arts/Commerce'] }
+          ]
+        },
+        syllabus: [{
+          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
+          topics: [{ name: 'Requirements', subtopics: ['12th pass with 50%', 'Any stream', 'Passion for teaching'], importance: 'High' }]
+        }],
+        previousQuestions: [
+          { id: 'tnteu-q1', question: 'Who is known as the Father of Modern Education in India?', options: ['Raja Ram Mohan Roy', 'Mahatma Gandhi', 'Dr. Zakir Hussain', 'Ishwar Chandra Vidyasagar'], correctAnswer: 0, explanation: 'Raja Ram Mohan Roy is known as the Father of Modern Education for his efforts in reforming Indian education.', topic: 'Education History', difficulty: 'Medium' }
+        ],
+        tips: ['Direct path to become a government teacher', 'Integrated program saves 1 year', 'Eligible for TET/TRB exams immediately after graduation']
+      },
+      {
+        id: 'tnteu-ba-bed',
+        name: 'B.A.B.Ed. Integrated (4 Years)',
+        nameTamil: 'பி.ஏ.பி.எட். ஒருங்கிணைந்த பட்டம்',
+        type: 'UG',
+        seatMatrix: { general: 40, obc: 60, bcMbc: 80, sc: 40, st: 6, ews: 12, total: 238 },
+        cutoffs: [
+          { year: '2024', general: 82, obc: 77, bcMbc: 72, sc: 60, st: 50, ews: 75 },
+          { year: '2023', general: 80, obc: 75, bcMbc: 70, sc: 58, st: 48, ews: 73 },
+        ],
+        examPattern: {
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'Common Entrance Test (CET)', negativeMarking: false,
+          sections: [
+            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', questions: 25, marks: 25, topics: ['Current Affairs', 'History', 'Geography'] },
+            { name: 'Language Skills', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['Tamil/English', 'Grammar', 'Comprehension'] },
+            { name: 'Social Science', nameTamil: 'சமூக அறிவியல்', questions: 50, marks: 50, topics: ['History', 'Civics', 'Economics'] }
+          ]
+        },
+        syllabus: [{
+          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Easy',
+          topics: [{ name: 'Requirements', subtopics: ['12th pass Arts stream preferred', '50% aggregate', 'Interest in teaching'], importance: 'High' }]
+        }],
+        previousQuestions: [],
+        tips: ['Best for those who want to teach Social Sciences', 'Strong employment in govt schools', 'Can teach classes 6-12 after graduation']
+      }
+    ]
+  },
+  // Tamil Nadu Dr. J. Jayalalithaa Music and Fine Arts University
+  {
+    id: 'tn-music-arts-university',
+    name: 'Tamil Nadu Dr. J. Jayalalithaa Music and Fine Arts University',
+    nameTamil: 'தமிழ்நாடு முனைவர் ஜெ. ஜெயலலிதா இசை மற்றும் நுண்கலைகள் பல்கலைக்கழகம்',
+    location: 'Chennai',
+    website: 'www.tnmusicuniversity.ac.in',
+    phone: '044-28271830',
+    email: 'registrar@tnmusicuniversity.ac.in',
+    examName: 'Audition + Interview',
+    logoColor: '#be185d',
+    fee: { general: 5000, obc: 5000, scst: 1000 },
+    importantDates: [
+      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'Audition Dates', eventTamil: 'ஆடிஷன் தேதிகள்', date: 'June 2026', status: 'upcoming' },
+      { event: 'Results & Admission', eventTamil: 'முடிவுகள் & சேர்க்கை', date: 'July 2026', status: 'upcoming' },
+    ],
+    courses: [
+      {
+        id: 'tn-music-vocal',
+        name: 'B.A. Music (Vocal)',
+        nameTamil: 'பி.ஏ. இசை (குரல்)',
+        type: 'UG',
+        seatMatrix: { general: 20, obc: 30, bcMbc: 40, sc: 20, st: 3, ews: 7, total: 120 },
+        cutoffs: [
+          { year: '2024', general: 'Audition', obc: 'Audition', bcMbc: 'Audition', sc: 'Audition', st: 'Audition', ews: 'Audition' },
+          { year: '2023', general: 'Audition', obc: 'Audition', bcMbc: 'Audition', sc: 'Audition', st: 'Audition', ews: 'Audition' },
+        ],
+        examPattern: {
+          totalQuestions: 0, totalMarks: 100, duration: '30 Minutes Performance', durationMinutes: 30,
+          mode: 'Live Audition + Theory Test', negativeMarking: false,
+          sections: [
+            { name: 'Performance', nameTamil: 'நிகழ்த்துதல்', questions: 0, marks: 70, topics: ['Carnatic/Hindustani', 'Ragas', 'Tala', 'Compositions'] },
+            { name: 'Theory', nameTamil: 'கோட்பாடு', questions: 30, marks: 30, topics: ['Music Theory', 'History of Music', 'Notation'] }
+          ]
+        },
+        syllabus: [{
+          unitNumber: 1, title: 'Audition Requirements', titleTamil: 'ஆடிஷன் தேவைகள்', expectedQuestions: 0, difficulty: 'Hard',
+          topics: [{ name: 'Musical Skills', subtopics: ['Minimum 5 years training preferred', 'Knowledge of ragas', 'Voice quality', 'Stage presence'], importance: 'High' }]
+        }],
+        previousQuestions: [],
+        tips: ['Formal training in Carnatic/Hindustani music preferred', 'Career: Professional Singer, Music Teacher, AIR Artist', 'Can perform at Sabhas and concerts', 'Government jobs in cultural departments']
+      },
+      {
+        id: 'tn-music-bharatanatyam',
+        name: 'B.A. Bharatanatyam',
+        nameTamil: 'பி.ஏ. பரதநாட்டியம்',
+        type: 'UG',
+        seatMatrix: { general: 15, obc: 22, bcMbc: 30, sc: 15, st: 2, ews: 6, total: 90 },
+        cutoffs: [
+          { year: '2024', general: 'Audition', obc: 'Audition', bcMbc: 'Audition', sc: 'Audition', st: 'Audition', ews: 'Audition' },
+          { year: '2023', general: 'Audition', obc: 'Audition', bcMbc: 'Audition', sc: 'Audition', st: 'Audition', ews: 'Audition' },
+        ],
+        examPattern: {
+          totalQuestions: 0, totalMarks: 100, duration: '45 Minutes Performance', durationMinutes: 45,
+          mode: 'Live Audition + Theory', negativeMarking: false,
+          sections: [
+            { name: 'Dance Performance', nameTamil: 'நடன நிகழ்த்துதல்', questions: 0, marks: 75, topics: ['Adavus', 'Abhinaya', 'Varnam', 'Padam'] },
+            { name: 'Theory', nameTamil: 'கோட்பாடு', questions: 25, marks: 25, topics: ['Dance History', 'Natyashastra', 'Hastas'] }
+          ]
+        },
+        syllabus: [{
+          unitNumber: 1, title: 'Audition Requirements', titleTamil: 'ஆடிஷன் தேவைகள்', expectedQuestions: 0, difficulty: 'Hard',
+          topics: [{ name: 'Dance Training', subtopics: ['Arangetram completed preferred', 'Knowledge of all adavus', 'Abhinaya skills', 'Flexibility & stamina'], importance: 'High' }]
+        }],
+        previousQuestions: [],
+        tips: ['Prior Bharatanatyam training essential (5+ years)', 'Career: Professional Dancer, Choreographer, Dance Teacher', 'Opportunities in TV, Films, and Cultural Programs']
+      },
+      {
+        id: 'tn-bfa-painting',
+        name: 'B.F.A. Painting',
+        nameTamil: 'நுண்கலை இளங்கலை (ஓவியம்)',
+        type: 'UG',
+        seatMatrix: { general: 12, obc: 18, bcMbc: 24, sc: 12, st: 2, ews: 5, total: 73 },
+        cutoffs: [
+          { year: '2024', general: 'Portfolio', obc: 'Portfolio', bcMbc: 'Portfolio', sc: 'Portfolio', st: 'Portfolio', ews: 'Portfolio' },
+          { year: '2023', general: 'Portfolio', obc: 'Portfolio', bcMbc: 'Portfolio', sc: 'Portfolio', st: 'Portfolio', ews: 'Portfolio' },
+        ],
+        examPattern: {
+          totalQuestions: 0, totalMarks: 100, duration: '3 Hours Practical', durationMinutes: 180,
+          mode: 'Practical Test + Portfolio Review', negativeMarking: false,
+          sections: [
+            { name: 'Drawing Test', nameTamil: 'வரைதல் தேர்வு', questions: 0, marks: 50, topics: ['Still Life', 'Memory Drawing', 'Composition'] },
+            { name: 'Portfolio', nameTamil: 'படைப்புத் தொகுப்பு', questions: 0, marks: 50, topics: ['Previous Artworks', 'Originality', 'Creativity'] }
+          ]
+        },
+        syllabus: [{
+          unitNumber: 1, title: 'Portfolio Requirements', titleTamil: 'படைப்புத் தொகுப்பு தேவைகள்', expectedQuestions: 0, difficulty: 'Medium',
+          topics: [{ name: 'Art Skills', subtopics: ['10-15 original artworks', 'Different mediums', 'Sketches and studies', 'Personal style development'], importance: 'High' }]
+        }],
+        previousQuestions: [],
+        tips: ['Portfolio of 10-15 works mandatory', 'Career: Fine Artist, Illustrator, Art Director', 'Can work in advertising, publishing, galleries']
+      }
+    ]
   }
 ];
 
