@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { 
   Search, Calendar, BarChart3, Bell, GraduationCap, 
   CheckCircle, Building2, ChevronRight, Star, Clock, 
-  TrendingUp, Users, ArrowRight, Sparkles, Quote
+  TrendingUp, Users, ArrowRight, Sparkles, Quote, ArrowLeft
 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -159,6 +159,9 @@ export const UniversityEntranceExams = () => {
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
+            <Button variant="ghost" size="icon" onClick={() => navigate(-1)} className="h-10 w-10 rounded-full">
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center">
               <GraduationCap className="h-6 w-6 text-primary-foreground" />
             </div>
