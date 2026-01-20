@@ -281,6 +281,111 @@ export const UniversityEntranceExams = () => {
         </div>
       </section>
 
+      {/* Quick Stats - Real-time Admission Statistics */}
+      <section className="max-w-7xl mx-auto px-4 py-6">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="text-xl font-bold flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-primary" />
+              Quick Stats
+            </h3>
+            <p className="text-sm text-muted-foreground font-tamil">நேரடி புள்ளிவிவரங்கள்</p>
+          </div>
+          <Badge variant="secondary" className="animate-pulse">
+            <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2" />
+            Live
+          </Badge>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Admission Statistics */}
+          <Card className="border-primary/20">
+            <CardContent className="p-4">
+              <h4 className="font-semibold mb-3 flex items-center gap-2">
+                <BarChart3 className="h-4 w-4 text-primary" />
+                Admission Statistics 2025
+              </h4>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">Applications Received</span>
+                  <span className="font-semibold text-foreground">2,45,000+</span>
+                </div>
+                <div className="w-full bg-muted rounded-full h-2">
+                  <div className="bg-primary h-2 rounded-full" style={{ width: '78%' }} />
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">Seats Filled</span>
+                  <span className="font-semibold text-foreground">1,85,000</span>
+                </div>
+                <div className="w-full bg-muted rounded-full h-2">
+                  <div className="bg-emerald-500 h-2 rounded-full" style={{ width: '65%' }} />
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">Average Cutoff (OC)</span>
+                  <span className="font-semibold text-foreground">185.5</span>
+                </div>
+                <div className="grid grid-cols-3 gap-2 mt-4 pt-3 border-t">
+                  <div className="text-center">
+                    <p className="text-lg font-bold text-emerald-600 dark:text-emerald-400">↑ 12%</p>
+                    <p className="text-xs text-muted-foreground">Engineering</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-lg font-bold text-primary">↑ 8%</p>
+                    <p className="text-xs text-muted-foreground">Medical</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-lg font-bold text-orange-600 dark:text-orange-400">↑ 15%</p>
+                    <p className="text-xs text-muted-foreground">Arts & Science</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Trending Courses */}
+          <Card className="border-primary/20">
+            <CardContent className="p-4">
+              <h4 className="font-semibold mb-3 flex items-center gap-2">
+                <TrendingUp className="h-4 w-4 text-primary" />
+                Trending Courses
+              </h4>
+              <div className="space-y-3">
+                {[
+                  { name: 'B.E. Computer Science', demand: 95, growth: '+25%', color: 'bg-primary' },
+                  { name: 'B.E. AI & Data Science', demand: 92, growth: '+45%', color: 'bg-emerald-500' },
+                  { name: 'MBBS', demand: 90, growth: '+8%', color: 'bg-rose-500' },
+                  { name: 'B.E. Electronics & Comm.', demand: 85, growth: '+12%', color: 'bg-orange-500' },
+                  { name: 'B.Sc. Computer Science', demand: 80, growth: '+18%', color: 'bg-violet-500' },
+                ].map((course, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <span className="text-sm font-medium text-muted-foreground w-5">{index + 1}</span>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-sm font-medium">{course.name}</span>
+                        <Badge variant="secondary" className="text-xs">
+                          {course.growth}
+                        </Badge>
+                      </div>
+                      <div className="w-full bg-muted rounded-full h-1.5">
+                        <div className={`${course.color} h-1.5 rounded-full transition-all`} style={{ width: `${course.demand}%` }} />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="w-full mt-4 text-primary"
+                onClick={() => navigate('/tn-university-browse')}
+              >
+                View All Courses <ArrowRight className="h-4 w-4 ml-1" />
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Recent Updates */}
       <section className="max-w-7xl mx-auto px-4 py-6">
         <div className="flex items-center justify-between mb-4">
