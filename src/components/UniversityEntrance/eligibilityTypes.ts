@@ -40,7 +40,7 @@ export interface EligibleCourseResult {
   courseId: string;
   courseName: string;
   courseNameTamil: string;
-  courseType: 'UG' | 'PG' | 'Research' | 'Super-Specialty';
+  courseType: 'UG' | 'PG' | 'Research' | 'Super-Specialty' | 'Integrated' | 'Diploma' | 'PG Diploma' | 'Certificate';
   admissionMode: string;
   eligibilityStatus: 'eligible' | 'borderline' | 'not_eligible';
   yourCutoff?: number;
