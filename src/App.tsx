@@ -54,7 +54,7 @@ import GovernmentExamDetail from "./pages/GovernmentExamDetail";
 import AlumniVerification from "./pages/AlumniVerification";
 
 // TN University Entrance Pages
-import { UniversityDetail, CourseDetail, ExamCalendar, MyReminders, UniversityCompare, SavedQuestions as TNSavedQuestions, PreparationTips as TNPreparationTips, TNStudyPlanner, TNMockTest, ChapterWeightage, PerformanceAnalytics, StudyStreaks, AIQuestionGenerator, DailyChallenge, TNForum, WeakTopicIdentifier, TNLeaderboard } from "./components/UniversityEntrance";
+import { UniversityEntranceExams, UniversityDetail, CourseDetail, ExamCalendar, MyReminders, UniversityCompare, SavedQuestions as TNSavedQuestions, PreparationTips as TNPreparationTips, TNStudyPlanner, TNMockTest, ChapterWeightage, PerformanceAnalytics, StudyStreaks, AIQuestionGenerator, DailyChallenge, TNForum, WeakTopicIdentifier, TNLeaderboard } from "./components/UniversityEntrance";
 import TNUniversityBrowse from "./pages/TNUniversityBrowse";
 
 const queryClient = new QueryClient();
@@ -112,6 +112,7 @@ function App() {
                 <Route path="/government-exams/:categoryId/:examId" element={<GovernmentExamDetail />} />
                 
 {/* TN University Entrance Exams Routes */}
+                <Route path="/tn-university-entrance" element={<UniversityEntranceExams />} />
                 <Route path="/tn-university-entrance/browse" element={<TNUniversityBrowse />} />
                 <Route path="/tn-university-entrance/exam-calendar" element={<ExamCalendar />} />
                 <Route path="/tn-university-entrance/my-reminders" element={<MyReminders />} />
