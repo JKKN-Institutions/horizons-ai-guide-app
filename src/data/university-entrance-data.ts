@@ -3719,6 +3719,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -3746,6 +3747,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -3773,6 +3775,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -3800,6 +3803,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -3827,6 +3831,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -3854,6 +3859,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -3881,6 +3887,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -3908,6 +3915,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -3936,6 +3944,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -3963,6 +3972,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -3990,6 +4000,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4018,6 +4029,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4044,6 +4056,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4070,6 +4083,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4097,6 +4111,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4125,6 +4140,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4152,6 +4168,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4179,6 +4196,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4206,6 +4224,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4233,6 +4252,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4259,6 +4279,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4285,6 +4306,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4313,6 +4335,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4340,6 +4363,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4367,6 +4391,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4393,6 +4418,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4421,6 +4447,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4447,6 +4474,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4473,6 +4501,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4500,6 +4529,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4527,6 +4557,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4554,6 +4585,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4581,6 +4613,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4608,6 +4641,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4636,6 +4670,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4663,6 +4698,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4689,6 +4725,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4716,6 +4753,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4742,6 +4780,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -4768,6 +4807,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
+          duration: '90 Minutes',
           durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
