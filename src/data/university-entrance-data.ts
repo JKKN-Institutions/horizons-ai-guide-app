@@ -532,356 +532,10 @@ export const universities: University[] = [
           { year: '2022', general: 66.8, obc: 60.2, bcMbc: 56.4, sc: 46.8, st: 36.5, ews: 58.2 }
         ]
       },
+      // ========== CEG CAMPUS (College of Engineering, Guindy) ==========
+      // Main Campus - Core Engineering & CS - Top 1-5000 TNEA ranks
       {
-        id: 'barch',
-        name: 'B.Arch',
-        nameTamil: 'பி.ஆர்க்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 25, topics: ['Algebra', 'Trigonometry', 'Coordinate Geometry', 'Calculus'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 50, marks: 50, topics: ['Spatial Ability', 'Observation', 'Aesthetic Sense', 'Drawing'] },
-            { name: 'Drawing', nameTamil: 'வரைதல்', questions: 25, marks: 25, topics: ['Sketching', '3D Perception', 'Design'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Practice sketching daily', 'Develop spatial visualization', 'Focus on aesthetic sense questions'],
-        seatMatrix: {
-          general: 25,
-          obc: 45,
-          bcMbc: 55,
-          sc: 22,
-          st: 4,
-          ews: 8,
-          total: 159
-        },
-        cutoffs: [
-          { year: '2024', general: 172.5, obc: 165.2, bcMbc: 158.4, sc: 142.6, st: 125.8, ews: 162.5 },
-          { year: '2023', general: 175.2, obc: 168.4, bcMbc: 160.8, sc: 145.2, st: 128.5, ews: 165.8 },
-          { year: '2022', general: 170.8, obc: 162.5, bcMbc: 156.2, sc: 140.5, st: 122.4, ews: 160.2 }
-        ]
-      },
-      // ========== B.E./B.Tech Courses (Engineering Streams) ==========
-      // Faculty of Information & Communication
-      {
-        id: 'anna-be-cse',
-        name: 'B.E. Computer Science & Engineering',
-        nameTamil: 'பி.இ. கணினி அறிவியல் & பொறியியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 200,
-          totalMarks: 200,
-          duration: '3 Hours',
-          durationMinutes: 180,
-          mode: 'OMR Based (TNEA Counselling)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Algebra', 'Calculus', 'Matrices', 'Differential Equations'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Optics', 'Electromagnetism', 'Modern Physics'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Physical', 'Organic', 'Inorganic Chemistry'] },
-            { name: 'Computer Basics', nameTamil: 'கணினி அடிப்படைகள்', questions: 50, marks: 50, topics: ['Programming Logic', 'Number Systems', 'Basic Computing'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [
-          { id: 'anna-cse-1', year: '2024', question: 'The binary equivalent of decimal 25 is:', options: ['11001', '10101', '11011', '10011'], correctAnswer: 0, explanation: '25 = 16+8+1 = 2⁴+2³+2⁰ = 11001 in binary.', topic: 'Number Systems', difficulty: 'Easy' },
-          { id: 'anna-cse-2', year: '2024', question: 'Which data structure uses LIFO principle?', options: ['Queue', 'Stack', 'Linked List', 'Array'], correctAnswer: 1, explanation: 'Stack follows Last In First Out (LIFO) principle.', topic: 'Data Structures', difficulty: 'Easy' }
-        ],
-        tips: ['Top choice in TN - very competitive', 'Strong foundation in PCM required', 'Learn basic programming before admission'],
-        seatMatrix: {
-          general: 180,
-          obc: 320,
-          bcMbc: 420,
-          sc: 180,
-          st: 25,
-          ews: 60,
-          total: 1185
-        },
-        cutoffs: [
-          { year: '2024', general: 198.5, obc: 196.8, bcMbc: 195.2, sc: 188.4, st: 172.5, ews: 196.2 },
-          { year: '2023', general: 197.8, obc: 195.6, bcMbc: 194.1, sc: 186.2, st: 170.8, ews: 195.4 },
-          { year: '2022', general: 196.2, obc: 194.2, bcMbc: 192.8, sc: 184.6, st: 168.2, ews: 194.0 }
-        ]
-      },
-      {
-        id: 'anna-be-ai-ds',
-        name: 'B.E. Artificial Intelligence & Data Science',
-        nameTamil: 'பி.இ. செயற்கை நுண்ணறிவு & தரவு அறிவியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 200,
-          totalMarks: 200,
-          duration: '3 Hours',
-          durationMinutes: 180,
-          mode: 'OMR Based (TNEA Counselling)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 60, marks: 60, topics: ['Statistics', 'Linear Algebra', 'Probability', 'Calculus'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 45, topics: ['Modern Physics', 'Electronics'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Physical Chemistry', 'Computational Chemistry'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 50, marks: 50, topics: ['Logical Reasoning', 'Pattern Recognition'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [
-          { id: 'anna-ai-1', year: '2024', question: 'Machine Learning is a subset of:', options: ['Data Science', 'Artificial Intelligence', 'Deep Learning', 'Neural Networks'], correctAnswer: 1, explanation: 'Machine Learning is a subset of AI that enables systems to learn from data.', topic: 'AI Basics', difficulty: 'Easy' }
-        ],
-        tips: ['High demand course - very high cutoff', 'Strong math background essential', 'Learn Python basics before joining'],
-        seatMatrix: {
-          general: 60,
-          obc: 100,
-          bcMbc: 130,
-          sc: 55,
-          st: 8,
-          ews: 20,
-          total: 373
-        },
-        cutoffs: [
-          { year: '2024', general: 199.2, obc: 198.5, bcMbc: 197.8, sc: 192.4, st: 178.6, ews: 198.2 },
-          { year: '2023', general: 198.8, obc: 197.6, bcMbc: 196.9, sc: 190.8, st: 176.2, ews: 197.4 },
-          { year: '2022', general: 198.1, obc: 196.8, bcMbc: 195.4, sc: 189.2, st: 174.5, ews: 196.2 }
-        ]
-      },
-      {
-        id: 'anna-be-ece',
-        name: 'B.E. Electronics & Communication Engineering',
-        nameTamil: 'பி.இ. மின்னணுவியல் & தகவல் தொடர்பு பொறியியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 200,
-          totalMarks: 200,
-          duration: '3 Hours',
-          durationMinutes: 180,
-          mode: 'OMR Based (TNEA Counselling)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Algebra', 'Calculus', 'Transforms'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 60, marks: 60, topics: ['Electronics', 'Semiconductors', 'Waves', 'Optics'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Physical Chemistry', 'Polymers'] },
-            { name: 'Basic Electronics', nameTamil: 'அடிப்படை மின்னணுவியல்', questions: 45, marks: 45, topics: ['Circuits', 'Signals', 'Communication'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [
-          { id: 'anna-ece-1', year: '2024', question: 'The unit of capacitance is:', options: ['Ohm', 'Henry', 'Farad', 'Weber'], correctAnswer: 2, explanation: 'Farad (F) is the SI unit of electrical capacitance.', topic: 'Basic Electronics', difficulty: 'Easy' }
-        ],
-        tips: ['Strong physics foundation required', 'Learn basic circuit analysis', 'Good for VLSI and telecom careers'],
-        seatMatrix: {
-          general: 160,
-          obc: 280,
-          bcMbc: 360,
-          sc: 150,
-          st: 22,
-          ews: 50,
-          total: 1022
-        },
-        cutoffs: [
-          { year: '2024', general: 197.2, obc: 195.4, bcMbc: 193.8, sc: 186.2, st: 168.4, ews: 194.8 },
-          { year: '2023', general: 196.5, obc: 194.2, bcMbc: 192.4, sc: 184.6, st: 166.2, ews: 193.5 },
-          { year: '2022', general: 195.8, obc: 193.2, bcMbc: 191.2, sc: 182.8, st: 164.5, ews: 192.2 }
-        ]
-      },
-      // Faculty of Mechanical Engineering
-      {
-        id: 'anna-be-mech',
-        name: 'B.E. Mechanical Engineering',
-        nameTamil: 'பி.இ. இயந்திர பொறியியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 200,
-          totalMarks: 200,
-          duration: '3 Hours',
-          durationMinutes: 180,
-          mode: 'OMR Based (TNEA Counselling)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 55, marks: 55, topics: ['Calculus', 'Vectors', 'Differential Equations'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 55, marks: 55, topics: ['Mechanics', 'Thermodynamics', 'Heat Transfer'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Materials', 'Fuels', 'Corrosion'] },
-            { name: 'Engineering Basics', nameTamil: 'பொறியியல் அடிப்படைகள்', questions: 45, marks: 45, topics: ['Engineering Drawing', 'Mechanics'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [
-          { id: 'anna-mech-1', year: '2024', question: 'The first law of thermodynamics is based on:', options: ['Conservation of mass', 'Conservation of energy', 'Conservation of momentum', 'Conservation of entropy'], correctAnswer: 1, explanation: 'The first law of thermodynamics is the law of conservation of energy.', topic: 'Thermodynamics', difficulty: 'Easy' }
-        ],
-        tips: ['Evergreen branch with wide scope', 'Strong in physics and mathematics', 'Learn CAD/CAM basics'],
-        seatMatrix: {
-          general: 220,
-          obc: 380,
-          bcMbc: 480,
-          sc: 200,
-          st: 30,
-          ews: 70,
-          total: 1380
-        },
-        cutoffs: [
-          { year: '2024', general: 192.4, obc: 188.6, bcMbc: 185.2, sc: 172.4, st: 152.8, ews: 187.5 },
-          { year: '2023', general: 193.8, obc: 189.4, bcMbc: 186.8, sc: 174.2, st: 154.6, ews: 188.8 },
-          { year: '2022', general: 191.2, obc: 186.8, bcMbc: 183.4, sc: 170.5, st: 150.2, ews: 185.5 }
-        ]
-      },
-      {
-        id: 'anna-be-aero',
-        name: 'B.E. Aeronautical Engineering',
-        nameTamil: 'பி.இ. விமானவியல் பொறியியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 200,
-          totalMarks: 200,
-          duration: '3 Hours',
-          durationMinutes: 180,
-          mode: 'OMR Based (TNEA Counselling)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 55, marks: 55, topics: ['Calculus', 'Differential Equations', 'Complex Variables'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 60, marks: 60, topics: ['Fluid Mechanics', 'Aerodynamics', 'Propulsion'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 40, marks: 40, topics: ['Fuels', 'Composites', 'Alloys'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 45, marks: 45, topics: ['Spatial Reasoning', 'Physics Application'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [
-          { id: 'anna-aero-1', year: '2024', question: 'Bernoulli\'s principle explains:', options: ['Gravity effect on fluids', 'Lift generation in aircraft', 'Thermal expansion', 'Electrical conductivity'], correctAnswer: 1, explanation: 'Bernoulli\'s principle explains how aircraft wings generate lift through pressure differences.', topic: 'Aerodynamics', difficulty: 'Medium' }
-        ],
-        tips: ['MIT Campus Anna Univ specializes in this', 'Strong physics background essential', 'Great for ISRO/DRDO careers'],
-        seatMatrix: {
-          general: 45,
-          obc: 80,
-          bcMbc: 100,
-          sc: 42,
-          st: 6,
-          ews: 15,
-          total: 288
-        },
-        cutoffs: [
-          { year: '2024', general: 189.5, obc: 185.2, bcMbc: 181.4, sc: 168.6, st: 148.2, ews: 184.2 },
-          { year: '2023', general: 191.2, obc: 187.4, bcMbc: 183.8, sc: 170.5, st: 150.8, ews: 186.5 },
-          { year: '2022', general: 187.8, obc: 183.5, bcMbc: 179.2, sc: 166.4, st: 146.5, ews: 182.2 }
-        ]
-      },
-      {
-        id: 'anna-be-robotics',
-        name: 'B.E. Robotics & Automation',
-        nameTamil: 'பி.இ. ரோபோட்டிக்ஸ் & தானியக்கம்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 200,
-          totalMarks: 200,
-          duration: '3 Hours',
-          durationMinutes: 180,
-          mode: 'OMR Based (TNEA Counselling)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Linear Algebra', 'Calculus', 'Transforms'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 55, marks: 55, topics: ['Mechanics', 'Electronics', 'Control Systems'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Materials Science', 'Polymers'] },
-            { name: 'Computer/Electronics', nameTamil: 'கணினி/மின்னணுவியல்', questions: 50, marks: 50, topics: ['Programming', 'Sensors', 'Automation'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Emerging field with Industry 4.0', 'Mix of mechanical, electronics & CS', 'Learn Arduino/Raspberry Pi basics'],
-        seatMatrix: {
-          general: 35,
-          obc: 60,
-          bcMbc: 75,
-          sc: 32,
-          st: 5,
-          ews: 12,
-          total: 219
-        },
-        cutoffs: [
-          { year: '2024', general: 195.2, obc: 192.4, bcMbc: 189.6, sc: 178.5, st: 162.4, ews: 191.5 },
-          { year: '2023', general: 193.8, obc: 190.5, bcMbc: 187.2, sc: 176.2, st: 160.5, ews: 189.8 },
-          { year: '2022', general: 191.5, obc: 188.2, bcMbc: 184.8, sc: 174.5, st: 158.2, ews: 187.2 }
-        ]
-      },
-      // Faculty of Technology
-      {
-        id: 'anna-btech-chem',
-        name: 'B.Tech Chemical Engineering',
-        nameTamil: 'பி.டெக் வேதியியல் பொறியியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 200,
-          totalMarks: 200,
-          duration: '3 Hours',
-          durationMinutes: 180,
-          mode: 'OMR Based (TNEA Counselling)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 70, marks: 70, topics: ['Physical', 'Organic', 'Inorganic', 'Industrial Chemistry'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Calculus', 'Differential Equations'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Thermodynamics', 'Fluid Mechanics'] },
-            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 30, marks: 30, topics: ['Reasoning', 'English'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Good for petrochemical and pharma industries', 'Strong chemistry foundation needed', 'GATE Chemical has good scope'],
-        seatMatrix: {
-          general: 40,
-          obc: 70,
-          bcMbc: 85,
-          sc: 35,
-          st: 5,
-          ews: 12,
-          total: 247
-        },
-        cutoffs: [
-          { year: '2024', general: 182.5, obc: 176.2, bcMbc: 170.8, sc: 158.4, st: 138.5, ews: 174.5 },
-          { year: '2023', general: 184.8, obc: 178.5, bcMbc: 172.4, sc: 160.2, st: 140.8, ews: 176.8 },
-          { year: '2022', general: 180.2, obc: 174.5, bcMbc: 168.2, sc: 156.5, st: 136.2, ews: 172.5 }
-        ]
-      },
-      {
-        id: 'anna-btech-biotech',
-        name: 'B.Tech Biotechnology',
-        nameTamil: 'பி.டெக் உயிர்தொழில்நுட்பம்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 200,
-          totalMarks: 200,
-          duration: '3 Hours',
-          durationMinutes: 180,
-          mode: 'OMR Based (TNEA Counselling)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 70, marks: 70, topics: ['Molecular Biology', 'Genetics', 'Microbiology', 'Biochemistry'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Organic', 'Biochemistry'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 40, marks: 40, topics: ['Biophysics'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Statistics', 'Biostatistics'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Ideal for PCB students', 'Good for pharma and research careers', 'Learn lab techniques'],
-        seatMatrix: {
-          general: 30,
-          obc: 50,
-          bcMbc: 65,
-          sc: 28,
-          st: 4,
-          ews: 10,
-          total: 187
-        },
-        cutoffs: [
-          { year: '2024', general: 178.5, obc: 172.2, bcMbc: 166.8, sc: 152.4, st: 132.5, ews: 170.5 },
-          { year: '2023', general: 180.2, obc: 174.5, bcMbc: 168.2, sc: 154.6, st: 134.8, ews: 172.8 },
-          { year: '2022', general: 176.8, obc: 170.5, bcMbc: 164.2, sc: 150.5, st: 130.2, ews: 168.2 }
-        ]
-      },
-      // Faculty of Civil Engineering
-      {
-        id: 'anna-be-civil',
+        id: 'ceg-be-civil',
         name: 'B.E. Civil Engineering',
         nameTamil: 'பி.இ. குடிசார் பொறியியல்',
         type: 'UG',
@@ -890,35 +544,25 @@ export const universities: University[] = [
           totalMarks: 200,
           duration: '3 Hours',
           durationMinutes: 180,
-          mode: 'OMR Based (TNEA Counselling)',
+          mode: 'TNEA Counselling (Based on 12th marks)',
           negativeMarking: false,
           sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 55, marks: 55, topics: ['Calculus', 'Geometry', 'Mechanics'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 55, marks: 55, topics: ['Mechanics', 'Strength of Materials', 'Fluid Mechanics'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 45, topics: ['Engineering Materials', 'Concrete', 'Water Chemistry'] },
-            { name: 'Engineering Basics', nameTamil: 'பொறியியல் அடிப்படைகள்', questions: 45, marks: 45, topics: ['Surveying', 'Engineering Drawing'] }
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Algebra', 'Calculus', 'Geometry', 'Mechanics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Strength of Materials', 'Fluid Mechanics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Engineering Materials', 'Concrete', 'Water Chemistry'] }
           ]
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Essential for infrastructure careers', 'Learn surveying and AutoCAD', 'Good scope in govt sector'],
-        seatMatrix: {
-          general: 180,
-          obc: 320,
-          bcMbc: 400,
-          sc: 165,
-          st: 25,
-          ews: 55,
-          total: 1145
-        },
+        tips: ['CEG Main Campus - Premier institution', 'Tamil & English Medium available', 'Essential for infrastructure careers'],
+        seatMatrix: { general: 180, obc: 320, bcMbc: 400, sc: 165, st: 25, ews: 55, total: 1145 },
         cutoffs: [
           { year: '2024', general: 185.2, obc: 180.4, bcMbc: 175.8, sc: 162.5, st: 142.8, ews: 178.5 },
-          { year: '2023', general: 187.5, obc: 182.6, bcMbc: 178.2, sc: 164.8, st: 145.2, ews: 180.8 },
-          { year: '2022', general: 183.8, obc: 178.5, bcMbc: 173.4, sc: 160.2, st: 140.5, ews: 176.2 }
+          { year: '2023', general: 187.5, obc: 182.6, bcMbc: 178.2, sc: 164.8, st: 145.2, ews: 180.8 }
         ]
       },
       {
-        id: 'anna-be-geoinformatics',
+        id: 'ceg-be-geoinformatics',
         name: 'B.E. Geo-Informatics',
         nameTamil: 'பி.இ. புவி-தகவலியல்',
         type: 'UG',
@@ -927,33 +571,841 @@ export const universities: University[] = [
           totalMarks: 200,
           duration: '3 Hours',
           durationMinutes: 180,
-          mode: 'OMR Based (TNEA Counselling)',
+          mode: 'TNEA Counselling (Based on 12th marks)',
           negativeMarking: false,
           sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Geometry', 'Statistics', 'Algebra'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Geometry', 'Statistics', 'Algebra'] },
             { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Remote Sensing', 'Optics', 'Waves'] },
-            { name: 'Geography', nameTamil: 'புவியியல்', questions: 50, marks: 50, topics: ['Physical Geography', 'Cartography', 'GIS'] },
-            { name: 'Computer Basics', nameTamil: 'கணினி அடிப்படைகள்', questions: 50, marks: 50, topics: ['Programming', 'Database', 'Spatial Analysis'] }
+            { name: 'Geography/Computer', nameTamil: 'புவியியல்/கணினி', questions: 50, marks: 50, topics: ['GIS', 'Cartography', 'Programming'] }
           ]
         },
         syllabus: [],
-        previousQuestions: [
-          { id: 'anna-geo-1', year: '2024', question: 'GIS stands for:', options: ['Global Information System', 'Geographic Information System', 'Geological Investigation System', 'Ground Investigation Service'], correctAnswer: 1, explanation: 'GIS stands for Geographic Information System - a framework for gathering, managing, and analyzing spatial data.', topic: 'GIS Basics', difficulty: 'Easy' }
-        ],
+        previousQuestions: [],
         tips: ['Unique course - Maps, GPS, Satellite data', 'Good for ISRO, Survey of India', 'Learn GIS software (QGIS, ArcGIS)'],
-        seatMatrix: {
-          general: 25,
-          obc: 45,
-          bcMbc: 55,
-          sc: 22,
-          st: 4,
-          ews: 8,
-          total: 159
-        },
+        seatMatrix: { general: 25, obc: 45, bcMbc: 55, sc: 22, st: 4, ews: 8, total: 159 },
         cutoffs: [
           { year: '2024', general: 175.2, obc: 168.4, bcMbc: 162.5, sc: 148.2, st: 128.5, ews: 166.5 },
-          { year: '2023', general: 178.5, obc: 172.2, bcMbc: 165.8, sc: 150.4, st: 130.8, ews: 169.8 },
-          { year: '2022', general: 172.8, obc: 165.5, bcMbc: 159.2, sc: 146.5, st: 126.2, ews: 163.2 }
+          { year: '2023', general: 178.5, obc: 172.2, bcMbc: 165.8, sc: 150.4, st: 130.8, ews: 169.8 }
+        ]
+      },
+      {
+        id: 'ceg-be-mech',
+        name: 'B.E. Mechanical Engineering',
+        nameTamil: 'பி.இ. இயந்திர பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Vectors', 'Differential Equations'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Thermodynamics', 'Heat Transfer'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Materials', 'Fuels', 'Corrosion'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['CEG Main Campus - Tamil & English Medium', 'Evergreen branch with wide scope', 'Learn CAD/CAM basics'],
+        seatMatrix: { general: 220, obc: 380, bcMbc: 480, sc: 200, st: 30, ews: 70, total: 1380 },
+        cutoffs: [
+          { year: '2024', general: 192.4, obc: 188.6, bcMbc: 185.2, sc: 172.4, st: 152.8, ews: 187.5 },
+          { year: '2023', general: 193.8, obc: 189.4, bcMbc: 186.8, sc: 174.2, st: 154.6, ews: 188.8 }
+        ]
+      },
+      {
+        id: 'ceg-be-industrial',
+        name: 'B.E. Industrial Engineering',
+        nameTamil: 'பி.இ. தொழிற்சாலை பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Statistics', 'Operations Research', 'Calculus'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Thermodynamics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Materials', 'Industrial Chemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on operations and optimization', 'Good for manufacturing sector', 'Learn Six Sigma, Lean concepts'],
+        seatMatrix: { general: 45, obc: 80, bcMbc: 100, sc: 42, st: 6, ews: 15, total: 288 },
+        cutoffs: [
+          { year: '2024', general: 175.5, obc: 168.2, bcMbc: 162.4, sc: 148.6, st: 128.2, ews: 166.2 },
+          { year: '2023', general: 178.2, obc: 171.4, bcMbc: 165.8, sc: 150.5, st: 130.8, ews: 169.5 }
+        ]
+      },
+      {
+        id: 'ceg-be-manufacturing',
+        name: 'B.E. Manufacturing Engineering',
+        nameTamil: 'பி.இ. உற்பத்தி பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Matrices', 'Differential Equations'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Materials Science'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Metallurgy', 'Polymers'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Industry 4.0 focused', 'Learn CNC, CAD/CAM', 'Good for automotive sector'],
+        seatMatrix: { general: 40, obc: 70, bcMbc: 85, sc: 35, st: 5, ews: 12, total: 247 },
+        cutoffs: [
+          { year: '2024', general: 172.5, obc: 165.2, bcMbc: 158.4, sc: 145.6, st: 125.2, ews: 163.2 },
+          { year: '2023', general: 175.2, obc: 168.4, bcMbc: 161.8, sc: 148.2, st: 128.5, ews: 166.5 }
+        ]
+      },
+      {
+        id: 'ceg-be-mining',
+        name: 'B.E. Mining Engineering',
+        nameTamil: 'பி.இ. சுரங்க பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Geology Basics', 'Surveying'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Rock Mechanics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Minerals', 'Environmental Chemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for mining and mineral industries', 'Coal India, SAIL opportunities', 'Study geology basics'],
+        seatMatrix: { general: 30, obc: 50, bcMbc: 65, sc: 28, st: 4, ews: 10, total: 187 },
+        cutoffs: [
+          { year: '2024', general: 165.2, obc: 158.4, bcMbc: 152.5, sc: 138.2, st: 118.5, ews: 156.2 },
+          { year: '2023', general: 168.5, obc: 161.2, bcMbc: 155.8, sc: 140.4, st: 120.8, ews: 159.5 }
+        ]
+      },
+      {
+        id: 'ceg-be-printing',
+        name: 'B.E. Printing Technology',
+        nameTamil: 'பி.இ. அச்சு தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Statistics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Optics', 'Color Science'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Inks', 'Polymers', 'Paper Chemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Unique niche - packaging industry', 'Learn graphic design basics', 'Good for publishing sector'],
+        seatMatrix: { general: 35, obc: 60, bcMbc: 75, sc: 32, st: 5, ews: 12, total: 219 },
+        cutoffs: [
+          { year: '2024', general: 162.5, obc: 155.2, bcMbc: 148.4, sc: 135.6, st: 115.2, ews: 153.2 },
+          { year: '2023', general: 165.2, obc: 158.4, bcMbc: 151.8, sc: 138.2, st: 118.5, ews: 156.5 }
+        ]
+      },
+      {
+        id: 'ceg-be-eee',
+        name: 'B.E. Electrical & Electronics Engineering',
+        nameTamil: 'பி.இ. மின் & மின்னணுவியல் பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Transforms', 'Linear Algebra'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Electromagnetism', 'Electronics', 'Circuits'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Electrochemistry', 'Materials'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Core electrical branch', 'Good for power sector, TNEB', 'Strong physics foundation needed'],
+        seatMatrix: { general: 150, obc: 260, bcMbc: 330, sc: 138, st: 20, ews: 45, total: 943 },
+        cutoffs: [
+          { year: '2024', general: 190.2, obc: 185.4, bcMbc: 180.8, sc: 168.2, st: 148.4, ews: 183.5 },
+          { year: '2023', general: 192.5, obc: 187.6, bcMbc: 183.2, sc: 170.4, st: 150.8, ews: 186.8 }
+        ]
+      },
+      {
+        id: 'ceg-be-ece',
+        name: 'B.E. Electronics & Communication Engineering',
+        nameTamil: 'பி.இ. மின்னணுவியல் & தகவல் தொடர்பு பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Algebra', 'Calculus', 'Transforms'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Electronics', 'Semiconductors', 'Waves'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Physical Chemistry', 'Polymers'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['High demand - VLSI, Telecom careers', 'Strong physics foundation required', 'Learn basic circuit analysis'],
+        seatMatrix: { general: 160, obc: 280, bcMbc: 360, sc: 150, st: 22, ews: 50, total: 1022 },
+        cutoffs: [
+          { year: '2024', general: 197.2, obc: 195.4, bcMbc: 193.8, sc: 186.2, st: 168.4, ews: 194.8 },
+          { year: '2023', general: 196.5, obc: 194.2, bcMbc: 192.4, sc: 184.6, st: 166.2, ews: 193.5 }
+        ]
+      },
+      {
+        id: 'ceg-be-biomedical',
+        name: 'B.E. Biomedical Engineering',
+        nameTamil: 'பி.இ. உயிரிமருத்துவ பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Statistics', 'Linear Algebra'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Electronics', 'Biophysics'] },
+            { name: 'Biology/Chemistry', nameTamil: 'உயிரியல்/வேதியியல்', questions: 50, marks: 50, topics: ['Anatomy', 'Biochemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Medical device industry focus', 'Blend of engineering and medicine', 'Good for healthcare tech careers'],
+        seatMatrix: { general: 35, obc: 60, bcMbc: 75, sc: 32, st: 5, ews: 12, total: 219 },
+        cutoffs: [
+          { year: '2024', general: 178.5, obc: 172.2, bcMbc: 166.8, sc: 152.4, st: 132.5, ews: 170.5 },
+          { year: '2023', general: 180.2, obc: 174.5, bcMbc: 168.2, sc: 154.6, st: 134.8, ews: 172.8 }
+        ]
+      },
+      {
+        id: 'ceg-be-cse',
+        name: 'B.E. Computer Science & Engineering',
+        nameTamil: 'பி.இ. கணினி அறிவியல் & பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Algebra', 'Calculus', 'Discrete Math'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Electronics', 'Modern Physics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Physical', 'Organic Chemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Top choice in TN - very competitive (Top 1-500 ranks)', 'Strong foundation in PCM required', 'Learn basic programming before admission'],
+        seatMatrix: { general: 180, obc: 320, bcMbc: 420, sc: 180, st: 25, ews: 60, total: 1185 },
+        cutoffs: [
+          { year: '2024', general: 198.5, obc: 196.8, bcMbc: 195.2, sc: 188.4, st: 172.5, ews: 196.2 },
+          { year: '2023', general: 197.8, obc: 195.6, bcMbc: 194.1, sc: 186.2, st: 170.8, ews: 195.4 }
+        ]
+      },
+      {
+        id: 'ceg-btech-it',
+        name: 'B.Tech Information Technology',
+        nameTamil: 'பி.டெக் தகவல் தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Algebra', 'Calculus', 'Discrete Math'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Electronics', 'Modern Physics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Physical', 'Organic Chemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Similar to CSE with IT focus', 'Strong software development curriculum', 'High demand in IT sector'],
+        seatMatrix: { general: 120, obc: 210, bcMbc: 270, sc: 115, st: 17, ews: 38, total: 770 },
+        cutoffs: [
+          { year: '2024', general: 197.8, obc: 195.2, bcMbc: 193.5, sc: 186.2, st: 170.5, ews: 194.5 },
+          { year: '2023', general: 196.5, obc: 194.0, bcMbc: 192.2, sc: 184.5, st: 168.2, ews: 193.2 }
+        ]
+      },
+
+      // ========== MIT CAMPUS (Madras Institute of Technology, Chromepet) ==========
+      // Famous for specialized engineering - Dr. APJ Abdul Kalam studied here
+      {
+        id: 'mit-be-aero',
+        name: 'B.E. Aeronautical Engineering',
+        nameTamil: 'பி.இ. விமானவியல் பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Differential Equations', 'Complex Variables'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Fluid Mechanics', 'Aerodynamics', 'Propulsion'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Fuels', 'Composites', 'Alloys'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['MIT Campus Top Course - APJ Kalam studied here', 'Strong physics background essential', 'Great for ISRO/DRDO/HAL careers'],
+        seatMatrix: { general: 45, obc: 80, bcMbc: 100, sc: 42, st: 6, ews: 15, total: 288 },
+        cutoffs: [
+          { year: '2024', general: 189.5, obc: 185.2, bcMbc: 181.4, sc: 168.6, st: 148.2, ews: 184.2 },
+          { year: '2023', general: 191.2, obc: 187.4, bcMbc: 183.8, sc: 170.5, st: 150.8, ews: 186.5 }
+        ]
+      },
+      {
+        id: 'mit-be-automobile',
+        name: 'B.E. Automobile Engineering',
+        nameTamil: 'பி.இ. வாகன பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Mechanics', 'Dynamics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Thermodynamics', 'Fluid Mechanics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Fuels', 'Materials', 'Lubricants'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Chennai is automotive hub', 'Good for Hyundai, TVS, Ford careers', 'Learn automotive electronics'],
+        seatMatrix: { general: 40, obc: 70, bcMbc: 85, sc: 35, st: 5, ews: 12, total: 247 },
+        cutoffs: [
+          { year: '2024', general: 182.5, obc: 176.2, bcMbc: 170.8, sc: 158.4, st: 138.5, ews: 174.5 },
+          { year: '2023', general: 185.2, obc: 179.4, bcMbc: 173.8, sc: 160.5, st: 140.8, ews: 177.5 }
+        ]
+      },
+      {
+        id: 'mit-be-eie',
+        name: 'B.E. Electronics & Instrumentation Engineering',
+        nameTamil: 'பி.இ. மின்னணுவியல் & கருவியியல் பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Transforms', 'Control Theory'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Electronics', 'Sensors', 'Measurements'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Materials', 'Semiconductors'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on control systems', 'Good for process industries', 'Learn PLC, SCADA systems'],
+        seatMatrix: { general: 35, obc: 60, bcMbc: 75, sc: 32, st: 5, ews: 12, total: 219 },
+        cutoffs: [
+          { year: '2024', general: 180.5, obc: 174.2, bcMbc: 168.8, sc: 155.4, st: 135.5, ews: 172.5 },
+          { year: '2023', general: 183.2, obc: 177.4, bcMbc: 171.8, sc: 158.2, st: 138.5, ews: 175.5 }
+        ]
+      },
+      {
+        id: 'mit-be-robotics',
+        name: 'B.E. Robotics & Automation',
+        nameTamil: 'பி.இ. ரோபோட்டிக்ஸ் & தானியக்கம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Linear Algebra', 'Calculus', 'Transforms'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Electronics', 'Control Systems'] },
+            { name: 'Computer/Electronics', nameTamil: 'கணினி/மின்னணுவியல்', questions: 50, marks: 50, topics: ['Programming', 'Sensors', 'Automation'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Emerging field with Industry 4.0', 'Mix of mechanical, electronics & CS', 'Learn Arduino/Raspberry Pi basics'],
+        seatMatrix: { general: 35, obc: 60, bcMbc: 75, sc: 32, st: 5, ews: 12, total: 219 },
+        cutoffs: [
+          { year: '2024', general: 195.2, obc: 192.4, bcMbc: 189.6, sc: 178.5, st: 162.4, ews: 191.5 },
+          { year: '2023', general: 193.8, obc: 190.5, bcMbc: 187.2, sc: 176.2, st: 160.5, ews: 189.8 }
+        ]
+      },
+      {
+        id: 'mit-btech-rubber-plastics',
+        name: 'B.Tech Rubber & Plastics Technology',
+        nameTamil: 'பி.டெக் ரப்பர் & பிளாஸ்டிக் தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 70, marks: 70, topics: ['Polymers', 'Organic Chemistry', 'Material Science'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Statistics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Material Properties', 'Mechanics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Unique specialization', 'Good for tire, polymer industries (MRF, Apollo)', 'Strong chemistry foundation needed'],
+        seatMatrix: { general: 30, obc: 50, bcMbc: 65, sc: 28, st: 4, ews: 10, total: 187 },
+        cutoffs: [
+          { year: '2024', general: 168.5, obc: 162.2, bcMbc: 156.8, sc: 142.4, st: 122.5, ews: 160.5 },
+          { year: '2023', general: 171.2, obc: 165.4, bcMbc: 159.8, sc: 145.2, st: 125.8, ews: 163.5 }
+        ]
+      },
+      {
+        id: 'mit-be-production',
+        name: 'B.E. Production Engineering',
+        nameTamil: 'பி.இ. உற்பத்தி பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Statistics', 'Operations Research'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Materials Science'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Metallurgy', 'Materials'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Manufacturing sector focus', 'Learn CNC, CAM systems', 'Good for automotive and heavy industries'],
+        seatMatrix: { general: 40, obc: 70, bcMbc: 85, sc: 35, st: 5, ews: 12, total: 247 },
+        cutoffs: [
+          { year: '2024', general: 175.5, obc: 168.2, bcMbc: 162.4, sc: 148.6, st: 128.2, ews: 166.2 },
+          { year: '2023', general: 178.2, obc: 171.4, bcMbc: 165.8, sc: 150.5, st: 130.8, ews: 169.5 }
+        ]
+      },
+      {
+        id: 'mit-be-cse',
+        name: 'B.E. Computer Science & Engineering',
+        nameTamil: 'பி.இ. கணினி அறிவியல் & பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Algebra', 'Calculus', 'Discrete Math'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Electronics', 'Modern Physics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Physical', 'Organic Chemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['MIT Campus CSE - High demand', 'Strong programming curriculum', 'Excellent placements'],
+        seatMatrix: { general: 60, obc: 100, bcMbc: 130, sc: 55, st: 8, ews: 20, total: 373 },
+        cutoffs: [
+          { year: '2024', general: 197.5, obc: 195.0, bcMbc: 192.8, sc: 185.2, st: 168.5, ews: 194.2 },
+          { year: '2023', general: 196.2, obc: 193.5, bcMbc: 191.2, sc: 183.5, st: 166.2, ews: 192.8 }
+        ]
+      },
+      {
+        id: 'mit-be-ece',
+        name: 'B.E. Electronics & Communication Engineering',
+        nameTamil: 'பி.இ. மின்னணுவியல் & தகவல் தொடர்பு பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Algebra', 'Calculus', 'Transforms'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Electronics', 'Semiconductors', 'Waves'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Physical Chemistry', 'Polymers'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['MIT Campus ECE - VLSI focus', 'Strong semiconductor curriculum', 'Good for chip design careers'],
+        seatMatrix: { general: 55, obc: 95, bcMbc: 120, sc: 50, st: 8, ews: 18, total: 346 },
+        cutoffs: [
+          { year: '2024', general: 195.8, obc: 193.2, bcMbc: 190.5, sc: 182.4, st: 165.2, ews: 192.5 },
+          { year: '2023', general: 194.5, obc: 191.8, bcMbc: 189.2, sc: 180.5, st: 163.5, ews: 190.8 }
+        ]
+      },
+      {
+        id: 'mit-btech-it',
+        name: 'B.Tech Information Technology',
+        nameTamil: 'பி.டெக் தகவல் தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Algebra', 'Calculus', 'Discrete Math'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Electronics', 'Modern Physics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Physical', 'Organic Chemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['MIT Campus IT - Strong curriculum', 'Focus on software development', 'Good industry connections'],
+        seatMatrix: { general: 45, obc: 75, bcMbc: 95, sc: 40, st: 6, ews: 15, total: 276 },
+        cutoffs: [
+          { year: '2024', general: 196.2, obc: 193.5, bcMbc: 190.8, sc: 182.5, st: 165.8, ews: 192.8 },
+          { year: '2023', general: 195.0, obc: 192.2, bcMbc: 189.5, sc: 181.2, st: 164.5, ews: 191.5 }
+        ]
+      },
+
+      // ========== ACT CAMPUS (Alagappa College of Technology, Guindy) ==========
+      // Focus on Chemical & Bio-Technology
+      {
+        id: 'act-btech-chemical',
+        name: 'B.Tech Chemical Engineering',
+        nameTamil: 'பி.டெக் வேதியியல் பொறியியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 70, marks: 70, topics: ['Physical', 'Organic', 'Inorganic', 'Industrial Chemistry'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Differential Equations'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Thermodynamics', 'Fluid Mechanics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['ACT Campus specialty', 'Good for petrochemical and pharma industries', 'GATE Chemical has good scope'],
+        seatMatrix: { general: 40, obc: 70, bcMbc: 85, sc: 35, st: 5, ews: 12, total: 247 },
+        cutoffs: [
+          { year: '2024', general: 182.5, obc: 176.2, bcMbc: 170.8, sc: 158.4, st: 138.5, ews: 174.5 },
+          { year: '2023', general: 184.8, obc: 178.5, bcMbc: 172.4, sc: 160.2, st: 140.8, ews: 176.8 }
+        ]
+      },
+      {
+        id: 'act-btech-biotech',
+        name: 'B.Tech Biotechnology',
+        nameTamil: 'பி.டெக் உயிர்தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 70, marks: 70, topics: ['Molecular Biology', 'Genetics', 'Microbiology', 'Biochemistry'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Organic', 'Biochemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Biophysics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Ideal for PCB students', 'Good for pharma and research careers', 'Learn lab techniques'],
+        seatMatrix: { general: 30, obc: 50, bcMbc: 65, sc: 28, st: 4, ews: 10, total: 187 },
+        cutoffs: [
+          { year: '2024', general: 178.5, obc: 172.2, bcMbc: 166.8, sc: 152.4, st: 132.5, ews: 170.5 },
+          { year: '2023', general: 180.2, obc: 174.5, bcMbc: 168.2, sc: 154.6, st: 134.8, ews: 172.8 }
+        ]
+      },
+      {
+        id: 'act-btech-petroleum',
+        name: 'B.Tech Petroleum Engineering & Technology',
+        nameTamil: 'பி.டெக் பெட்ரோலியம் பொறியியல் & தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 70, marks: 70, topics: ['Organic Chemistry', 'Petrochemicals', 'Refining'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Differential Equations'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Thermodynamics', 'Fluid Mechanics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Oil & Gas sector focus', 'Good for ONGC, IOCL, Reliance', 'Strong chemistry foundation needed'],
+        seatMatrix: { general: 25, obc: 45, bcMbc: 55, sc: 22, st: 4, ews: 8, total: 159 },
+        cutoffs: [
+          { year: '2024', general: 175.5, obc: 168.2, bcMbc: 162.4, sc: 148.6, st: 128.2, ews: 166.2 },
+          { year: '2023', general: 178.2, obc: 171.4, bcMbc: 165.8, sc: 150.5, st: 130.8, ews: 169.5 }
+        ]
+      },
+      {
+        id: 'act-btech-pharma',
+        name: 'B.Tech Pharmaceutical Technology',
+        nameTamil: 'பி.டெக் மருந்து தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 70, marks: 70, topics: ['Organic Chemistry', 'Medicinal Chemistry', 'Pharmaceutics'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 50, marks: 50, topics: ['Pharmacology', 'Microbiology'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Biophysics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Pharmaceutical industry focus', 'Good for Cipla, Sun Pharma, Biocon', 'Strong chemistry & biology needed'],
+        seatMatrix: { general: 30, obc: 50, bcMbc: 65, sc: 28, st: 4, ews: 10, total: 187 },
+        cutoffs: [
+          { year: '2024', general: 180.5, obc: 174.2, bcMbc: 168.8, sc: 154.4, st: 134.5, ews: 172.5 },
+          { year: '2023', general: 183.2, obc: 177.4, bcMbc: 171.8, sc: 157.2, st: 137.5, ews: 175.5 }
+        ]
+      },
+      {
+        id: 'act-btech-food',
+        name: 'B.Tech Food Technology',
+        nameTamil: 'பி.டெக் உணவு தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Food Chemistry', 'Biochemistry'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 50, marks: 50, topics: ['Microbiology', 'Nutrition'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 25, marks: 25, topics: ['Food Processing Equipment'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 75, topics: ['Statistics', 'Calculus'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Food processing industry focus', 'Good for Nestle, ITC, Britannia', 'FSSAI regulations knowledge helpful'],
+        seatMatrix: { general: 30, obc: 50, bcMbc: 65, sc: 28, st: 4, ews: 10, total: 187 },
+        cutoffs: [
+          { year: '2024', general: 172.5, obc: 166.2, bcMbc: 160.8, sc: 146.4, st: 126.5, ews: 164.5 },
+          { year: '2023', general: 175.2, obc: 169.4, bcMbc: 163.8, sc: 149.2, st: 129.5, ews: 167.5 }
+        ]
+      },
+      {
+        id: 'act-btech-textile',
+        name: 'B.Tech Textile Technology',
+        nameTamil: 'பி.டெக் ஜவுளி தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 60, marks: 60, topics: ['Textile Chemistry', 'Dyeing', 'Polymers'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Statistics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 40, marks: 40, topics: ['Fiber Physics', 'Material Science'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Coimbatore/Tirupur textile hub', 'Good for textile mills', 'Learn about fabric manufacturing'],
+        seatMatrix: { general: 35, obc: 60, bcMbc: 75, sc: 32, st: 5, ews: 12, total: 219 },
+        cutoffs: [
+          { year: '2024', general: 165.5, obc: 158.2, bcMbc: 152.4, sc: 138.6, st: 118.2, ews: 156.2 },
+          { year: '2023', general: 168.2, obc: 161.4, bcMbc: 155.8, sc: 141.2, st: 121.5, ews: 159.5 }
+        ]
+      },
+      {
+        id: 'act-btech-leather',
+        name: 'B.Tech Leather Technology',
+        nameTamil: 'பி.டெக் தோல் தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 70, marks: 70, topics: ['Leather Chemistry', 'Tanning', 'Polymers'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Statistics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Material Science'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Chennai/Ambur is leather hub', 'Good for leather export companies', 'Environmental aspects important'],
+        seatMatrix: { general: 25, obc: 45, bcMbc: 55, sc: 22, st: 4, ews: 8, total: 159 },
+        cutoffs: [
+          { year: '2024', general: 158.5, obc: 152.2, bcMbc: 146.8, sc: 132.4, st: 112.5, ews: 150.5 },
+          { year: '2023', general: 161.2, obc: 155.4, bcMbc: 149.8, sc: 135.2, st: 115.5, ews: 153.5 }
+        ]
+      },
+      {
+        id: 'act-btech-ceramic',
+        name: 'B.Tech Ceramic Technology',
+        nameTamil: 'பி.டெக் செராமிக் தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 70, marks: 70, topics: ['Inorganic Chemistry', 'Materials Science', 'Glass Technology'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Calculus', 'Statistics'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Thermal Properties', 'Crystallography'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Niche field - ceramics and refractories', 'Good for tile, sanitaryware industries', 'Strong chemistry foundation needed'],
+        seatMatrix: { general: 20, obc: 35, bcMbc: 44, sc: 18, st: 3, ews: 6, total: 126 },
+        cutoffs: [
+          { year: '2024', general: 155.5, obc: 148.2, bcMbc: 142.4, sc: 128.6, st: 108.2, ews: 146.2 },
+          { year: '2023', general: 158.2, obc: 151.4, bcMbc: 145.8, sc: 131.2, st: 111.5, ews: 149.5 }
+        ]
+      },
+      {
+        id: 'act-btech-apparel',
+        name: 'B.Tech Apparel Technology',
+        nameTamil: 'பி.டெக் ஆடை தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 50, topics: ['Textile Chemistry', 'Dyeing'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 100, topics: ['Statistics', 'Calculus'] },
+            { name: 'Design/Physics', nameTamil: 'வடிவமைப்பு/இயற்பியல்', questions: 50, marks: 50, topics: ['Pattern Making', 'Fabric Properties'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Fashion and garment industry focus', 'Good for export houses', 'Learn garment construction'],
+        seatMatrix: { general: 25, obc: 45, bcMbc: 55, sc: 22, st: 4, ews: 8, total: 159 },
+        cutoffs: [
+          { year: '2024', general: 162.5, obc: 155.2, bcMbc: 148.4, sc: 135.6, st: 115.2, ews: 153.2 },
+          { year: '2023', general: 165.2, obc: 158.4, bcMbc: 151.8, sc: 138.2, st: 118.5, ews: 156.5 }
+        ]
+      },
+
+      // ========== SAP CAMPUS (School of Architecture & Planning) ==========
+      // Architecture and Planning programs - Requires NATA for B.Arch
+      {
+        id: 'sap-barch',
+        name: 'B.Arch (Architecture)',
+        nameTamil: 'பி.ஆர்க் (கட்டிடக்கலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'NATA Exam + 12th Marks',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 50, topics: ['Algebra', 'Trigonometry', 'Coordinate Geometry', 'Calculus'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 50, marks: 100, topics: ['Spatial Ability', 'Observation', 'Aesthetic Sense', '3D Visualization'] },
+            { name: 'Drawing', nameTamil: 'வரைதல்', questions: 2, marks: 50, topics: ['Sketching', '3D Perception', 'Design', 'Composition'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['5 Year Course - Requires NATA Exam', 'Practice sketching daily', 'Develop spatial visualization', 'Focus on aesthetic sense questions'],
+        seatMatrix: { general: 25, obc: 45, bcMbc: 55, sc: 22, st: 4, ews: 8, total: 159 },
+        cutoffs: [
+          { year: '2024', general: 172.5, obc: 165.2, bcMbc: 158.4, sc: 142.6, st: 125.8, ews: 162.5 },
+          { year: '2023', general: 175.2, obc: 168.4, bcMbc: 160.8, sc: 145.2, st: 128.5, ews: 165.8 }
+        ]
+      },
+      {
+        id: 'sap-bplan',
+        name: 'B.Plan (Planning)',
+        nameTamil: 'பி.பிளான் (நகர திட்டமிடல்)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 200,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'TNEA Counselling (Based on 12th marks)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 80, topics: ['Statistics', 'Calculus', 'Geography'] },
+            { name: 'General Awareness', nameTamil: 'பொது அறிவு', questions: 30, marks: 60, topics: ['Urban Planning', 'Environment', 'Current Affairs'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 30, marks: 60, topics: ['Spatial Reasoning', 'Map Reading'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['4 Year Course - No NATA required', 'Focus on urban development concepts', 'Good for town planning careers', 'Study geography and environment'],
+        seatMatrix: { general: 20, obc: 35, bcMbc: 44, sc: 18, st: 3, ews: 6, total: 126 },
+        cutoffs: [
+          { year: '2024', general: 168.5, obc: 162.2, bcMbc: 156.8, sc: 142.4, st: 122.5, ews: 160.5 },
+          { year: '2023', general: 171.2, obc: 165.4, bcMbc: 159.8, sc: 145.2, st: 125.5, ews: 163.5 }
         ]
       },
       {
