@@ -3710,20 +3710,20 @@ export const universities: University[] = [
       { event: 'Results', eventTamil: 'முடிவுகள்', date: 'July 2026', status: 'upcoming' }
     ],
     courses: [
+      // ========== INTEGRATED MASTER'S PROGRAMS (After 12th - 5 Year) ==========
       {
         id: 'bdu-integrated-msc-life',
         name: '5-Year Integrated M.Sc Life Sciences',
         nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.எஸ்சி உயிர் அறிவியல்',
-        type: 'PG',
+        type: 'Integrated',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
-          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
           sections: [
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Cell Biology', 'Genetics', 'Molecular Biology', 'Ecology'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Botany', 'Zoology', 'Microbiology', 'Cell Biology'] },
             { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Organic', 'Inorganic', 'Biochemistry'] },
             { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 20, marks: 20, topics: ['Biophysics', 'Optics'] },
             { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 10, marks: 10, topics: ['Logical Reasoning', 'English'] }
@@ -3731,17 +3731,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Direct entry after 12th with Biology', 'Focus on cell biology and genetics', 'Prepare NEET-level biology questions']
+        tips: ['BDU famous for Integrated programs', 'Direct entry after 12th with Biology', 'Covers Botany/Zoology/Microbiology focus'],
+        seatMatrix: { general: 20, obc: 35, bcMbc: 42, sc: 18, st: 3, ews: 7, total: 125 },
+        cutoffs: [
+          { year: '2024', general: 72.5, obc: 66.2, bcMbc: 62.4, sc: 48.5, st: 38.2, ews: 64.5 },
+          { year: '2023', general: 74.2, obc: 68.5, bcMbc: 64.8, sc: 50.8, st: 40.5, ews: 66.8 }
+        ]
       },
       {
         id: 'bdu-integrated-msc-biomedical',
-        name: '5-Year Integrated M.Sc Bio-Medical Science',
-        nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.எஸ்சி உயிர்-மருத்துவ அறிவியல்',
-        type: 'PG',
+        name: '5-Year Integrated M.Sc Biomedical Science',
+        nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.எஸ்சி உயிர்மருத்துவ அறிவியல்',
+        type: 'Integrated',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
-          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -3754,17 +3758,48 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Strong foundation in human biology required', 'Study 12th Biology thoroughly', 'Good for medical research career']
+        tips: ['Strong foundation in human biology required', 'Good for medical research career', 'Alternative path to medical sciences'],
+        seatMatrix: { general: 18, obc: 30, bcMbc: 38, sc: 16, st: 3, ews: 6, total: 111 },
+        cutoffs: [
+          { year: '2024', general: 74.5, obc: 68.2, bcMbc: 64.4, sc: 50.5, st: 40.2, ews: 66.5 },
+          { year: '2023', general: 76.2, obc: 70.5, bcMbc: 66.8, sc: 52.8, st: 42.5, ews: 68.8 }
+        ]
+      },
+      {
+        id: 'bdu-integrated-msc-bioinformatics',
+        name: '5-Year Integrated M.Sc Bioinformatics',
+        nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.எஸ்சி உயிர்தகவியல்',
+        type: 'Integrated',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 30, marks: 30, topics: ['Molecular Biology', 'Genetics', 'Biochemistry'] },
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 30, marks: 30, topics: ['Programming Basics', 'Algorithms', 'Databases'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 25, topics: ['Statistics', 'Linear Algebra'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Combines Biology + Computer Science', 'High demand in pharmaceutical industry', 'Learn Python for bioinformatics'],
+        seatMatrix: { general: 15, obc: 25, bcMbc: 32, sc: 14, st: 2, ews: 5, total: 93 },
+        cutoffs: [
+          { year: '2024', general: 76.5, obc: 70.2, bcMbc: 66.4, sc: 52.5, st: 42.2, ews: 68.5 },
+          { year: '2023', general: 78.2, obc: 72.5, bcMbc: 68.8, sc: 54.8, st: 44.5, ews: 70.8 }
+        ]
       },
       {
         id: 'bdu-integrated-msc-geography',
         name: '5-Year Integrated M.Sc Geography',
         nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.எஸ்சி புவியியல்',
-        type: 'PG',
+        type: 'Integrated',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
-          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -3777,22 +3812,26 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Good for UPSC Geography optional', 'Learn map reading skills', 'Study Indian geography thoroughly']
+        tips: ['Excellent for UPSC Geography optional', 'Learn map reading skills', 'Study Indian geography thoroughly'],
+        seatMatrix: { general: 18, obc: 30, bcMbc: 38, sc: 16, st: 3, ews: 6, total: 111 },
+        cutoffs: [
+          { year: '2024', general: 68.5, obc: 62.2, bcMbc: 58.4, sc: 44.5, st: 34.2, ews: 60.5 },
+          { year: '2023', general: 70.2, obc: 64.5, bcMbc: 60.8, sc: 46.8, st: 36.5, ews: 62.8 }
+        ]
       },
       {
         id: 'bdu-integrated-msc-geology',
         name: '5-Year Integrated M.Sc Geology',
-        nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.எஸ்சி புவியியல்',
-        type: 'PG',
+        nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.எஸ்சி நிலவியல்',
+        type: 'Integrated',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
-          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
           sections: [
-            { name: 'Geology', nameTamil: 'புவியியல்', questions: 40, marks: 40, topics: ['Mineralogy', 'Petrology', 'Structural Geology'] },
+            { name: 'Geology', nameTamil: 'நிலவியல்', questions: 40, marks: 40, topics: ['Mineralogy', 'Petrology', 'Structural Geology'] },
             { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 25, marks: 25, topics: ['Geophysics', 'Crystallography'] },
             { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 20, marks: 20, topics: ['Geochemistry', 'Analytical Methods'] },
             { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'Mathematics'] }
@@ -3800,17 +3839,21 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Career in mining and oil exploration', 'Study Earth sciences thoroughly', 'Good job prospects in PSUs like ONGC']
+        tips: ['Career in mining and oil exploration', 'Good job prospects in ONGC, GSI', 'Study Earth sciences thoroughly'],
+        seatMatrix: { general: 15, obc: 25, bcMbc: 32, sc: 14, st: 2, ews: 5, total: 93 },
+        cutoffs: [
+          { year: '2024', general: 66.5, obc: 60.2, bcMbc: 56.4, sc: 42.5, st: 32.2, ews: 58.5 },
+          { year: '2023', general: 68.2, obc: 62.5, bcMbc: 58.8, sc: 44.8, st: 34.5, ews: 60.8 }
+        ]
       },
       {
         id: 'bdu-integrated-msc-media',
         name: '5-Year Integrated M.Sc Media & Communication',
         nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.எஸ்சி ஊடகம் & தொடர்பு',
-        type: 'PG',
+        type: 'Integrated',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
-          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -3823,30 +3866,150 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Good writing skills essential', 'Stay updated with current affairs', 'Career in journalism and media']
+        tips: ['Good writing skills essential', 'Stay updated with current affairs', 'Career in journalism and media'],
+        seatMatrix: { general: 20, obc: 35, bcMbc: 42, sc: 18, st: 3, ews: 7, total: 125 },
+        cutoffs: [
+          { year: '2024', general: 70.5, obc: 64.2, bcMbc: 60.4, sc: 46.5, st: 36.2, ews: 62.5 },
+          { year: '2023', general: 72.2, obc: 66.5, bcMbc: 62.8, sc: 48.8, st: 38.5, ews: 64.8 }
+        ]
       },
       {
-        id: 'bdu-mca',
-        name: 'MCA',
-        nameTamil: 'எம்.சி.ஏ',
-        type: 'PG',
+        id: 'bdu-integrated-ma-history',
+        name: '5-Year Integrated M.A History',
+        nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.ஏ வரலாறு',
+        type: 'Integrated',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
-          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
           sections: [
-            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 40, marks: 40, topics: ['Programming', 'Data Structures', 'DBMS', 'OS'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Discrete Math', 'Linear Algebra', 'Probability'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 30, marks: 30, topics: ['Logical Reasoning', 'Numerical', 'English'] }
+            { name: 'Ancient History', nameTamil: 'பண்டைய வரலாறு', questions: 30, marks: 30, topics: ['Indus Valley', 'Vedic Age', 'Maurya', 'Gupta'] },
+            { name: 'Medieval History', nameTamil: 'இடைக்கால வரலாறு', questions: 25, marks: 25, topics: ['Delhi Sultanate', 'Mughal Empire', 'Vijayanagara'] },
+            { name: 'Modern History', nameTamil: 'நவீன வரலாறு', questions: 30, marks: 30, topics: ['Colonial India', 'Freedom Struggle', 'Post-Independence'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'English'] }
           ]
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Strong programming foundation needed', 'Practice data structures', 'Study discrete mathematics']
+        tips: ['Excellent for UPSC History optional', 'Focus on Modern India', 'Study Tamil Nadu history'],
+        seatMatrix: { general: 25, obc: 42, bcMbc: 52, sc: 22, st: 4, ews: 8, total: 153 },
+        cutoffs: [
+          { year: '2024', general: 64.5, obc: 58.2, bcMbc: 54.4, sc: 40.5, st: 30.2, ews: 56.5 },
+          { year: '2023', general: 66.2, obc: 60.5, bcMbc: 56.8, sc: 42.8, st: 32.5, ews: 58.8 }
+        ]
       },
+      {
+        id: 'bdu-integrated-ma-sociology',
+        name: '5-Year Integrated M.A Sociology',
+        nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.ஏ சமூகவியல்',
+        type: 'Integrated',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Sociological Theory', nameTamil: 'சமூகவியல் கோட்பாடு', questions: 35, marks: 35, topics: ['Classical Thinkers', 'Modern Theory', 'Indian Sociology'] },
+            { name: 'Indian Society', nameTamil: 'இந்திய சமூகம்', questions: 30, marks: 30, topics: ['Caste', 'Family', 'Religion', 'Social Change'] },
+            { name: 'Research Methods', nameTamil: 'ஆய்வு முறைகள்', questions: 20, marks: 20, topics: ['Qualitative', 'Quantitative', 'Survey'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for UPSC Sociology optional', 'Study Indian sociologists', 'Focus on social issues'],
+        seatMatrix: { general: 22, obc: 38, bcMbc: 48, sc: 20, st: 3, ews: 7, total: 138 },
+        cutoffs: [
+          { year: '2024', general: 62.5, obc: 56.2, bcMbc: 52.4, sc: 38.5, st: 28.2, ews: 54.5 },
+          { year: '2023', general: 64.2, obc: 58.5, bcMbc: 54.8, sc: 40.8, st: 30.5, ews: 56.8 }
+        ]
+      },
+      // ========== 6-YEAR INTEGRATED M.TECH PROGRAMS ==========
+      {
+        id: 'bdu-integrated-mtech-cse',
+        name: '6-Year Integrated M.Tech Computer Science & Engineering',
+        nameTamil: '6 ஆண்டு ஒருங்கிணைந்த எம்.டெக் கணினி அறிவியல் & பொறியியல்',
+        type: 'Integrated',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 35, marks: 35, topics: ['Algebra', 'Calculus', 'Statistics', 'Discrete Math'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 25, marks: 25, topics: ['Electronics', 'Semiconductors', 'Optics'] },
+            { name: 'Computer Basics', nameTamil: 'கணினி அடிப்படை', questions: 25, marks: 25, topics: ['Programming Logic', 'Number Systems', 'Basics'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['BDU flagship 6-year program', 'Graduate with M.Tech after 12th', 'Highly competitive - top ranks preferred'],
+        seatMatrix: { general: 12, obc: 20, bcMbc: 26, sc: 11, st: 2, ews: 4, total: 75 },
+        cutoffs: [
+          { year: '2024', general: 82.5, obc: 76.2, bcMbc: 72.4, sc: 58.5, st: 48.2, ews: 74.5 },
+          { year: '2023', general: 84.2, obc: 78.5, bcMbc: 74.8, sc: 60.8, st: 50.5, ews: 76.8 }
+        ]
+      },
+      {
+        id: 'bdu-integrated-mtech-biotech',
+        name: '6-Year Integrated M.Tech Biotechnology',
+        nameTamil: '6 ஆண்டு ஒருங்கிணைந்த எம்.டெக் உயிர்தொழில்நுட்பம்',
+        type: 'Integrated',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Molecular Biology', 'Genetics', 'Microbiology', 'Cell Biology'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Organic', 'Biochemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 15, marks: 15, topics: ['Biophysics'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Combines B.Tech + M.Tech in 6 years', 'Strong biology foundation needed', 'Career in pharma and biotech industry'],
+        seatMatrix: { general: 10, obc: 18, bcMbc: 22, sc: 10, st: 2, ews: 4, total: 66 },
+        cutoffs: [
+          { year: '2024', general: 78.5, obc: 72.2, bcMbc: 68.4, sc: 54.5, st: 44.2, ews: 70.5 },
+          { year: '2023', general: 80.2, obc: 74.5, bcMbc: 70.8, sc: 56.8, st: 46.5, ews: 72.8 }
+        ]
+      },
+      {
+        id: 'bdu-integrated-mtech-geo',
+        name: '6-Year Integrated M.Tech Geological Technology & Geoinformatics',
+        nameTamil: '6 ஆண்டு ஒருங்கிணைந்த எம்.டெக் நிலவியல் தொழில்நுட்பம் & புவிதகவியல்',
+        type: 'Integrated',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Geology', nameTamil: 'நிலவியல்', questions: 35, marks: 35, topics: ['Mineralogy', 'Petrology', 'Structural Geology'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 25, marks: 25, topics: ['Geophysics', 'Remote Sensing'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 25, topics: ['Statistics', 'Spatial Analysis'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Unique program for geology enthusiasts', 'Career in ONGC, GSI, Mining', 'Combines geology with GIS technology'],
+        seatMatrix: { general: 8, obc: 14, bcMbc: 18, sc: 8, st: 1, ews: 3, total: 52 },
+        cutoffs: [
+          { year: '2024', general: 72.5, obc: 66.2, bcMbc: 62.4, sc: 48.5, st: 38.2, ews: 64.5 },
+          { year: '2023', general: 74.2, obc: 68.5, bcMbc: 64.8, sc: 50.8, st: 40.5, ews: 66.8 }
+        ]
+      },
+      // ========== PG PROGRAMS - SCIENCE (M.Sc) - TECH ==========
       {
         id: 'bdu-msc-cs',
         name: 'M.Sc Computer Science',
@@ -3855,7 +4018,6 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
-          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
@@ -3867,53 +4029,576 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Focus on programming concepts', 'Practice algorithm problems', 'Study computer networks']
+        tips: ['Focus on programming concepts', 'Practice algorithm problems', 'Study computer networks'],
+        seatMatrix: { general: 30, obc: 50, bcMbc: 65, sc: 28, st: 4, ews: 10, total: 187 },
+        cutoffs: [
+          { year: '2024', general: 74.5, obc: 68.2, bcMbc: 64.4, sc: 50.5, st: 40.2, ews: 66.5 },
+          { year: '2023', general: 76.2, obc: 70.5, bcMbc: 66.8, sc: 52.8, st: 42.5, ews: 68.8 }
+        ]
       },
       {
-        id: 'bdu-msc-remote-sensing',
-        name: 'M.Sc Remote Sensing & Geoinformatics',
-        nameTamil: 'எம்.எஸ்சி தொலை உணர்வு & புவிதகவியல்',
+        id: 'bdu-msc-it',
+        name: 'M.Sc Information Technology',
+        nameTamil: 'எம்.எஸ்சி தகவல் தொழில்நுட்பம்',
         type: 'PG',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
-          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
           sections: [
-            { name: 'Remote Sensing', nameTamil: 'தொலை உணர்வு', questions: 35, marks: 35, topics: ['Satellite Imaging', 'Image Processing', 'GIS'] },
-            { name: 'Geography', nameTamil: 'புவியியல்', questions: 30, marks: 30, topics: ['Physical Geography', 'Cartography'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 20, marks: 20, topics: ['Statistics', 'Spatial Analysis'] },
-            { name: 'Computer Basics', nameTamil: 'கணினி அடிப்படை', questions: 15, marks: 15, topics: ['Software', 'Database'] }
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 45, marks: 45, topics: ['Programming', 'DBMS', 'Networks', 'Web Technologies'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Discrete Math', 'Probability'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 25, marks: 25, topics: ['Reasoning', 'English'] }
           ]
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Growing field with ISRO opportunities', 'Learn GIS software', 'Good for urban planning careers']
+        tips: ['Similar to M.Sc CS but application focused', 'Learn web technologies', 'Study database concepts'],
+        seatMatrix: { general: 28, obc: 48, bcMbc: 60, sc: 26, st: 4, ews: 9, total: 175 },
+        cutoffs: [
+          { year: '2024', general: 72.5, obc: 66.2, bcMbc: 62.4, sc: 48.5, st: 38.2, ews: 64.5 },
+          { year: '2023', general: 74.2, obc: 68.5, bcMbc: 64.8, sc: 50.8, st: 40.5, ews: 66.8 }
+        ]
       },
       {
-        id: 'bdu-msc-microbiology',
-        name: 'M.Sc Marine Biotechnology',
-        nameTamil: 'எம்.எஸ்சி கடல் உயிர் தொழில்நுட்பம்',
+        id: 'bdu-msc-data-science',
+        name: 'M.Sc Data Science',
+        nameTamil: 'எம்.எஸ்சி தரவு அறிவியல்',
         type: 'PG',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
-          duration: '90 Minutes',
-          durationMinutes: 90,
+          durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
           sections: [
-            { name: 'Marine Biology', nameTamil: 'கடல் உயிரியல்', questions: 35, marks: 35, topics: ['Marine Organisms', 'Oceanography', 'Marine Ecology'] },
-            { name: 'Biotechnology', nameTamil: 'உயிர் தொழில்நுட்பம்', questions: 35, marks: 35, topics: ['Molecular Biology', 'Genetic Engineering'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 20, marks: 20, topics: ['Biochemistry', 'Marine Chemistry'] },
+            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 30, marks: 30, topics: ['Probability', 'Regression', 'Hypothesis Testing'] },
+            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 30, marks: 30, topics: ['Python', 'R', 'SQL'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 25, topics: ['Linear Algebra', 'Calculus'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['High-demand industry skill', 'Learn Python and R', 'Study machine learning basics'],
+        seatMatrix: { general: 22, obc: 38, bcMbc: 48, sc: 20, st: 3, ews: 7, total: 138 },
+        cutoffs: [
+          { year: '2024', general: 78.5, obc: 72.2, bcMbc: 68.4, sc: 54.5, st: 44.2, ews: 70.5 },
+          { year: '2023', general: 80.2, obc: 74.5, bcMbc: 70.8, sc: 56.8, st: 46.5, ews: 72.8 }
+        ]
+      },
+      {
+        id: 'bdu-msc-ai',
+        name: 'M.Sc Artificial Intelligence',
+        nameTamil: 'எம்.எஸ்சி செயற்கை நுண்ணறிவு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 40, marks: 40, topics: ['Programming', 'Algorithms', 'Data Structures'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Linear Algebra', 'Probability', 'Calculus'] },
+            { name: 'AI Basics', nameTamil: 'AI அடிப்படைகள்', questions: 20, marks: 20, topics: ['Machine Learning', 'Neural Networks'] },
             { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
           ]
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Coastal universities have research advantage', 'Study marine ecosystems', 'Career in marine research']
+        tips: ['Cutting-edge field with high demand', 'Strong math foundation needed', 'Learn Python and TensorFlow'],
+        seatMatrix: { general: 20, obc: 35, bcMbc: 42, sc: 18, st: 3, ews: 7, total: 125 },
+        cutoffs: [
+          { year: '2024', general: 80.5, obc: 74.2, bcMbc: 70.4, sc: 56.5, st: 46.2, ews: 72.5 },
+          { year: '2023', general: 82.2, obc: 76.5, bcMbc: 72.8, sc: 58.8, st: 48.5, ews: 74.8 }
+        ]
+      },
+      // ========== PG PROGRAMS - SCIENCE (M.Sc) - LIFE SCIENCES ==========
+      {
+        id: 'bdu-msc-biotechnology',
+        name: 'M.Sc Biotechnology',
+        nameTamil: 'எம்.எஸ்சி உயிர்தொழில்நுட்பம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 35, marks: 35, topics: ['DNA/RNA', 'Protein Synthesis', 'Gene Expression'] },
+            { name: 'Microbiology', nameTamil: 'நுண்ணுயிரியல்', questions: 30, marks: 30, topics: ['Bacteria', 'Viruses', 'Industrial Microbiology'] },
+            { name: 'Biochemistry', nameTamil: 'உயிர்வேதியியல்', questions: 25, marks: 25, topics: ['Enzymes', 'Metabolism'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong in molecular biology concepts', 'Study genetic engineering', 'Career in pharma and research'],
+        seatMatrix: { general: 25, obc: 42, bcMbc: 52, sc: 22, st: 4, ews: 8, total: 153 },
+        cutoffs: [
+          { year: '2024', general: 74.5, obc: 68.2, bcMbc: 64.4, sc: 50.5, st: 40.2, ews: 66.5 },
+          { year: '2023', general: 76.2, obc: 70.5, bcMbc: 66.8, sc: 52.8, st: 42.5, ews: 68.8 }
+        ]
+      },
+      {
+        id: 'bdu-msc-marine',
+        name: 'M.Sc Marine Science',
+        nameTamil: 'எம்.எஸ்சி கடல் அறிவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Marine Biology', nameTamil: 'கடல் உயிரியல்', questions: 35, marks: 35, topics: ['Marine Organisms', 'Marine Ecology', 'Fisheries'] },
+            { name: 'Oceanography', nameTamil: 'கடலியல்', questions: 30, marks: 30, topics: ['Physical', 'Chemical', 'Biological Oceanography'] },
+            { name: 'Environmental Science', nameTamil: 'சுற்றுச்சூழல்', questions: 25, marks: 25, topics: ['Coastal Ecosystems', 'Pollution'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['BDU near coast - research advantage', 'Study marine ecosystems', 'Career in NIOT, CMFRI'],
+        seatMatrix: { general: 18, obc: 30, bcMbc: 38, sc: 16, st: 3, ews: 6, total: 111 },
+        cutoffs: [
+          { year: '2024', general: 70.5, obc: 64.2, bcMbc: 60.4, sc: 46.5, st: 36.2, ews: 62.5 },
+          { year: '2023', general: 72.2, obc: 66.5, bcMbc: 62.8, sc: 48.8, st: 38.5, ews: 64.8 }
+        ]
+      },
+      {
+        id: 'bdu-msc-microbiology',
+        name: 'M.Sc Microbiology',
+        nameTamil: 'எம்.எஸ்சி நுண்ணுயிரியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Microbiology', nameTamil: 'நுண்ணுயிரியல்', questions: 45, marks: 45, topics: ['Bacteria', 'Viruses', 'Fungi', 'Industrial Applications'] },
+            { name: 'Biochemistry', nameTamil: 'உயிர்வேதியியல்', questions: 30, marks: 30, topics: ['Enzymes', 'Metabolism', 'Molecular Biology'] },
+            { name: 'Immunology', nameTamil: 'நோய்த்தடுப்பியல்', questions: 15, marks: 15, topics: ['Immune System', 'Vaccines'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong practical skills needed', 'Study bacterial genetics', 'Career in pharma and diagnostics'],
+        seatMatrix: { general: 22, obc: 38, bcMbc: 48, sc: 20, st: 3, ews: 7, total: 138 },
+        cutoffs: [
+          { year: '2024', general: 72.5, obc: 66.2, bcMbc: 62.4, sc: 48.5, st: 38.2, ews: 64.5 },
+          { year: '2023', general: 74.2, obc: 68.5, bcMbc: 64.8, sc: 50.8, st: 40.5, ews: 66.8 }
+        ]
+      },
+      {
+        id: 'bdu-msc-biochemistry',
+        name: 'M.Sc Biochemistry',
+        nameTamil: 'எம்.எஸ்சி உயிர்வேதியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biochemistry', nameTamil: 'உயிர்வேதியியல்', questions: 45, marks: 45, topics: ['Proteins', 'Enzymes', 'Metabolism', 'Molecular Biology'] },
+            { name: 'Cell Biology', nameTamil: 'உயிரணு உயிரியல்', questions: 30, marks: 30, topics: ['Cell Structure', 'Cell Signaling'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 15, marks: 15, topics: ['Organic', 'Physical Chemistry'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong chemistry foundation needed', 'Study enzyme kinetics', 'Career in research and pharma'],
+        seatMatrix: { general: 22, obc: 38, bcMbc: 48, sc: 20, st: 3, ews: 7, total: 138 },
+        cutoffs: [
+          { year: '2024', general: 70.5, obc: 64.2, bcMbc: 60.4, sc: 46.5, st: 36.2, ews: 62.5 },
+          { year: '2023', general: 72.2, obc: 66.5, bcMbc: 62.8, sc: 48.8, st: 38.5, ews: 64.8 }
+        ]
+      },
+      {
+        id: 'bdu-msc-botany',
+        name: 'M.Sc Botany',
+        nameTamil: 'எம்.எஸ்சி தாவரவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Plant Science', nameTamil: 'தாவர அறிவியல்', questions: 50, marks: 50, topics: ['Plant Anatomy', 'Taxonomy', 'Physiology', 'Ecology'] },
+            { name: 'Plant Biotechnology', nameTamil: 'தாவர உயிர்தொழில்நுட்பம்', questions: 30, marks: 30, topics: ['Tissue Culture', 'Genetic Engineering'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on plant taxonomy', 'Study plant physiology', 'Career in agriculture and research'],
+        seatMatrix: { general: 25, obc: 42, bcMbc: 52, sc: 22, st: 4, ews: 8, total: 153 },
+        cutoffs: [
+          { year: '2024', general: 66.5, obc: 60.2, bcMbc: 56.4, sc: 42.5, st: 32.2, ews: 58.5 },
+          { year: '2023', general: 68.2, obc: 62.5, bcMbc: 58.8, sc: 44.8, st: 34.5, ews: 60.8 }
+        ]
+      },
+      {
+        id: 'bdu-msc-zoology',
+        name: 'M.Sc Zoology',
+        nameTamil: 'எம்.எஸ்சி விலங்கியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Animal Science', nameTamil: 'விலங்கு அறிவியல்', questions: 50, marks: 50, topics: ['Animal Physiology', 'Taxonomy', 'Developmental Biology', 'Ecology'] },
+            { name: 'Cell & Molecular Biology', nameTamil: 'உயிரணு & மூலக்கூறு உயிரியல்', questions: 30, marks: 30, topics: ['Genetics', 'Molecular Biology'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on animal physiology', 'Study developmental biology', 'Career in wildlife and research'],
+        seatMatrix: { general: 25, obc: 42, bcMbc: 52, sc: 22, st: 4, ews: 8, total: 153 },
+        cutoffs: [
+          { year: '2024', general: 66.5, obc: 60.2, bcMbc: 56.4, sc: 42.5, st: 32.2, ews: 58.5 },
+          { year: '2023', general: 68.2, obc: 62.5, bcMbc: 58.8, sc: 44.8, st: 34.5, ews: 60.8 }
+        ]
+      },
+      {
+        id: 'bdu-msc-environmental',
+        name: 'M.Sc Environmental Science',
+        nameTamil: 'எம்.எஸ்சி சுற்றுச்சூழல் அறிவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Environmental Science', nameTamil: 'சுற்றுச்சூழல் அறிவியல்', questions: 45, marks: 45, topics: ['Ecology', 'Pollution', 'Conservation', 'Climate Change'] },
+            { name: 'Life Sciences', nameTamil: 'உயிர் அறிவியல்', questions: 30, marks: 30, topics: ['Biology', 'Biodiversity'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 15, marks: 15, topics: ['Environmental Chemistry'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing field with climate focus', 'Study environmental laws', 'Career in NGOs and pollution control'],
+        seatMatrix: { general: 22, obc: 38, bcMbc: 48, sc: 20, st: 3, ews: 7, total: 138 },
+        cutoffs: [
+          { year: '2024', general: 68.5, obc: 62.2, bcMbc: 58.4, sc: 44.5, st: 34.2, ews: 60.5 },
+          { year: '2023', general: 70.2, obc: 64.5, bcMbc: 60.8, sc: 46.8, st: 36.5, ews: 62.8 }
+        ]
+      },
+      // ========== PG PROGRAMS - SCIENCE (M.Sc) - CORE SCIENCES ==========
+      {
+        id: 'bdu-msc-mathematics',
+        name: 'M.Sc Mathematics',
+        nameTamil: 'எம்.எஸ்சி கணிதம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Algebra', nameTamil: 'இயற்கணிதம்', questions: 30, marks: 30, topics: ['Groups', 'Rings', 'Fields', 'Linear Algebra'] },
+            { name: 'Analysis', nameTamil: 'பகுப்பாய்வு', questions: 30, marks: 30, topics: ['Real Analysis', 'Complex Analysis', 'Functional Analysis'] },
+            { name: 'Applied Math', nameTamil: 'பயன்பாட்டு கணிதம்', questions: 25, marks: 25, topics: ['Differential Equations', 'Numerical Methods'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Reasoning'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong in abstract algebra', 'Practice real analysis proofs', 'Career in research and teaching'],
+        seatMatrix: { general: 35, obc: 60, bcMbc: 75, sc: 32, st: 5, ews: 12, total: 219 },
+        cutoffs: [
+          { year: '2024', general: 70.5, obc: 64.2, bcMbc: 60.4, sc: 46.5, st: 36.2, ews: 62.5 },
+          { year: '2023', general: 72.2, obc: 66.5, bcMbc: 62.8, sc: 48.8, st: 38.5, ews: 64.8 }
+        ]
+      },
+      {
+        id: 'bdu-msc-physics',
+        name: 'M.Sc Physics',
+        nameTamil: 'எம்.எஸ்சி இயற்பியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Classical Mechanics', nameTamil: 'பாரம்பரிய இயக்கவியல்', questions: 25, marks: 25, topics: ['Lagrangian', 'Hamiltonian'] },
+            { name: 'Quantum Mechanics', nameTamil: 'குவாண்டம் இயக்கவியல்', questions: 25, marks: 25, topics: ['Wave Functions', 'Operators', 'Perturbation'] },
+            { name: 'Electromagnetism', nameTamil: 'மின்காந்தவியல்', questions: 25, marks: 25, topics: ['Maxwell Equations', 'EM Waves'] },
+            { name: 'Modern Physics', nameTamil: 'நவீன இயற்பியல்', questions: 25, marks: 25, topics: ['Solid State', 'Nuclear', 'Particle'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on quantum mechanics', 'Practice numerical problems', 'Career in research and ISRO'],
+        seatMatrix: { general: 30, obc: 50, bcMbc: 65, sc: 28, st: 4, ews: 10, total: 187 },
+        cutoffs: [
+          { year: '2024', general: 72.5, obc: 66.2, bcMbc: 62.4, sc: 48.5, st: 38.2, ews: 64.5 },
+          { year: '2023', general: 74.2, obc: 68.5, bcMbc: 64.8, sc: 50.8, st: 40.5, ews: 66.8 }
+        ]
+      },
+      {
+        id: 'bdu-msc-chemistry',
+        name: 'M.Sc Chemistry',
+        nameTamil: 'எம்.எஸ்சி வேதியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Organic Chemistry', nameTamil: 'கரிம வேதியியல்', questions: 35, marks: 35, topics: ['Reactions', 'Mechanisms', 'Synthesis'] },
+            { name: 'Inorganic Chemistry', nameTamil: 'கனிம வேதியியல்', questions: 35, marks: 35, topics: ['Coordination', 'Main Group', 'Organometallics'] },
+            { name: 'Physical Chemistry', nameTamil: 'இயற்பு வேதியியல்', questions: 30, marks: 30, topics: ['Thermodynamics', 'Kinetics', 'Electrochemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong in organic reactions', 'Learn named reactions', 'Career in pharma and research'],
+        seatMatrix: { general: 30, obc: 50, bcMbc: 65, sc: 28, st: 4, ews: 10, total: 187 },
+        cutoffs: [
+          { year: '2024', general: 70.5, obc: 64.2, bcMbc: 60.4, sc: 46.5, st: 36.2, ews: 62.5 },
+          { year: '2023', general: 72.2, obc: 66.5, bcMbc: 62.8, sc: 48.8, st: 38.5, ews: 64.8 }
+        ]
+      },
+      {
+        id: 'bdu-msc-medical-physics',
+        name: 'M.Sc Medical Physics',
+        nameTamil: 'எம்.எஸ்சி மருத்துவ இயற்பியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 40, marks: 40, topics: ['Nuclear Physics', 'Radiation Physics', 'Medical Imaging'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 25, marks: 25, topics: ['Human Anatomy', 'Physiology', 'Radiobiology'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 20, marks: 20, topics: ['Calculus', 'Statistics'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Career in hospitals and cancer centres', 'Study nuclear physics', 'High-paying field'],
+        seatMatrix: { general: 15, obc: 25, bcMbc: 32, sc: 14, st: 2, ews: 5, total: 93 },
+        cutoffs: [
+          { year: '2024', general: 74.5, obc: 68.2, bcMbc: 64.4, sc: 50.5, st: 40.2, ews: 66.5 },
+          { year: '2023', general: 76.2, obc: 70.5, bcMbc: 66.8, sc: 52.8, st: 42.5, ews: 68.8 }
+        ]
+      },
+      // ========== PG PROGRAMS - ARTS (M.A) ==========
+      {
+        id: 'bdu-ma-tamil',
+        name: 'M.A Tamil',
+        nameTamil: 'எம்.ஏ தமிழ்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Tamil Literature', nameTamil: 'தமிழ் இலக்கியம்', questions: 50, marks: 50, topics: ['Sangam Literature', 'Medieval', 'Modern'] },
+            { name: 'Tamil Grammar', nameTamil: 'தமிழ் இலக்கணம்', questions: 30, marks: 30, topics: ['Tholkappiyam', 'Nannool'] },
+            { name: 'General Tamil', nameTamil: 'பொது தமிழ்', questions: 20, marks: 20, topics: ['Prose', 'Poetry', 'History of Tamil'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study Sangam literature', 'Focus on Tholkappiyam', 'Career in teaching and media'],
+        seatMatrix: { general: 40, obc: 70, bcMbc: 85, sc: 35, st: 6, ews: 14, total: 250 },
+        cutoffs: [
+          { year: '2024', general: 60.5, obc: 54.2, bcMbc: 50.4, sc: 36.5, st: 26.2, ews: 52.5 },
+          { year: '2023', general: 62.2, obc: 56.5, bcMbc: 52.8, sc: 38.8, st: 28.5, ews: 54.8 }
+        ]
+      },
+      {
+        id: 'bdu-ma-english',
+        name: 'M.A English',
+        nameTamil: 'எம்.ஏ ஆங்கிலம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'English Literature', nameTamil: 'ஆங்கில இலக்கியம்', questions: 50, marks: 50, topics: ['British', 'American', 'Indian English'] },
+            { name: 'Literary Theory', nameTamil: 'இலக்கியக் கோட்பாடு', questions: 25, marks: 25, topics: ['Criticism', 'Theory', 'Movements'] },
+            { name: 'Language & Grammar', nameTamil: 'மொழி & இலக்கணம்', questions: 25, marks: 25, topics: ['Grammar', 'Phonetics', 'Linguistics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Read Shakespeare thoroughly', 'Study literary movements', 'Career in teaching and media'],
+        seatMatrix: { general: 35, obc: 60, bcMbc: 75, sc: 32, st: 5, ews: 12, total: 219 },
+        cutoffs: [
+          { year: '2024', general: 68.5, obc: 62.2, bcMbc: 58.4, sc: 44.5, st: 34.2, ews: 60.5 },
+          { year: '2023', general: 70.2, obc: 64.5, bcMbc: 60.8, sc: 46.8, st: 36.5, ews: 62.8 }
+        ]
+      },
+      {
+        id: 'bdu-ma-history',
+        name: 'M.A History',
+        nameTamil: 'எம்.ஏ வரலாறு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Ancient History', nameTamil: 'பண்டைய வரலாறு', questions: 30, marks: 30, topics: ['Indus Valley', 'Vedic', 'Maurya', 'Gupta'] },
+            { name: 'Medieval History', nameTamil: 'இடைக்கால வரலாறு', questions: 25, marks: 25, topics: ['Delhi Sultanate', 'Mughals', 'South India'] },
+            { name: 'Modern History', nameTamil: 'நவீன வரலாறு', questions: 30, marks: 30, topics: ['Colonial India', 'Freedom Struggle'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Excellent for UPSC History optional', 'Focus on Modern India', 'Study Tamil Nadu history'],
+        seatMatrix: { general: 35, obc: 60, bcMbc: 75, sc: 32, st: 5, ews: 12, total: 219 },
+        cutoffs: [
+          { year: '2024', general: 62.5, obc: 56.2, bcMbc: 52.4, sc: 38.5, st: 28.2, ews: 54.5 },
+          { year: '2023', general: 64.2, obc: 58.5, bcMbc: 54.8, sc: 40.8, st: 30.5, ews: 56.8 }
+        ]
+      },
+      {
+        id: 'bdu-ma-economics',
+        name: 'M.A Economics',
+        nameTamil: 'எம்.ஏ பொருளியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Micro Economics', nameTamil: 'நுண் பொருளியல்', questions: 30, marks: 30, topics: ['Demand', 'Supply', 'Market Structures'] },
+            { name: 'Macro Economics', nameTamil: 'பேரண் பொருளியல்', questions: 30, marks: 30, topics: ['National Income', 'Monetary Policy', 'Fiscal Policy'] },
+            { name: 'Indian Economy', nameTamil: 'இந்திய பொருளாதாரம்', questions: 25, marks: 25, topics: ['Planning', 'Reforms', 'Current Issues'] },
+            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 15, marks: 15, topics: ['Basic Statistics', 'Econometrics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Excellent for UPSC Economics optional', 'Study Indian economy', 'Learn econometrics'],
+        seatMatrix: { general: 30, obc: 50, bcMbc: 65, sc: 28, st: 4, ews: 10, total: 187 },
+        cutoffs: [
+          { year: '2024', general: 66.5, obc: 60.2, bcMbc: 56.4, sc: 42.5, st: 32.2, ews: 58.5 },
+          { year: '2023', general: 68.2, obc: 62.5, bcMbc: 58.8, sc: 44.8, st: 34.5, ews: 60.8 }
+        ]
+      },
+      {
+        id: 'bdu-ma-sociology',
+        name: 'M.A Sociology',
+        nameTamil: 'எம்.ஏ சமூகவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Sociological Theory', nameTamil: 'சமூகவியல் கோட்பாடு', questions: 35, marks: 35, topics: ['Classical', 'Modern Theory', 'Indian Sociology'] },
+            { name: 'Indian Society', nameTamil: 'இந்திய சமூகம்', questions: 30, marks: 30, topics: ['Caste', 'Family', 'Religion'] },
+            { name: 'Research Methods', nameTamil: 'ஆய்வு முறைகள்', questions: 20, marks: 20, topics: ['Qualitative', 'Quantitative'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for UPSC Sociology optional', 'Study Indian sociologists', 'Focus on social issues'],
+        seatMatrix: { general: 28, obc: 48, bcMbc: 60, sc: 26, st: 4, ews: 9, total: 175 },
+        cutoffs: [
+          { year: '2024', general: 60.5, obc: 54.2, bcMbc: 50.4, sc: 36.5, st: 26.2, ews: 52.5 },
+          { year: '2023', general: 62.2, obc: 56.5, bcMbc: 52.8, sc: 38.8, st: 28.5, ews: 54.8 }
+        ]
+      },
+      {
+        id: 'bdu-ma-womens-studies',
+        name: "M.A Women's Studies",
+        nameTamil: 'எம்.ஏ பெண்கள் ஆய்வுகள்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Gender Studies', nameTamil: 'பாலின ஆய்வுகள்', questions: 40, marks: 40, topics: ['Feminist Theory', 'Gender Issues', 'Movements'] },
+            { name: 'Social Sciences', nameTamil: 'சமூக அறிவியல்', questions: 30, marks: 30, topics: ['Sociology', 'Political Science'] },
+            { name: 'Current Issues', nameTamil: 'நடப்பு பிரச்சினைகள்', questions: 20, marks: 20, topics: ['Women Rights', 'Laws', 'Policies'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study feminist movements', 'Know women-related laws', 'Career in NGOs and government'],
+        seatMatrix: { general: 20, obc: 35, bcMbc: 42, sc: 18, st: 3, ews: 7, total: 125 },
+        cutoffs: [
+          { year: '2024', general: 58.5, obc: 52.2, bcMbc: 48.4, sc: 34.5, st: 24.2, ews: 50.5 },
+          { year: '2023', general: 60.2, obc: 54.5, bcMbc: 50.8, sc: 36.8, st: 26.5, ews: 52.8 }
+        ]
+      },
+      {
+        id: 'bdu-ma-hrm',
+        name: 'M.A Human Resource Management',
+        nameTamil: 'எம்.ஏ மனித வள மேலாண்மை',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'HRM', nameTamil: 'மனித வள மேலாண்மை', questions: 40, marks: 40, topics: ['HR Functions', 'Recruitment', 'Training', 'Performance'] },
+            { name: 'Management', nameTamil: 'மேலாண்மை', questions: 30, marks: 30, topics: ['OB', 'Strategic HRM'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Quantitative', 'Reasoning'] },
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 10, marks: 10, topics: ['Verbal Ability'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Alternative to MBA-HR', 'Study HR principles', 'Learn labour laws'],
+        seatMatrix: { general: 25, obc: 42, bcMbc: 52, sc: 22, st: 4, ews: 8, total: 153 },
+        cutoffs: [
+          { year: '2024', general: 64.5, obc: 58.2, bcMbc: 54.4, sc: 40.5, st: 30.2, ews: 56.5 },
+          { year: '2023', general: 66.2, obc: 60.5, bcMbc: 56.8, sc: 42.8, st: 32.5, ews: 58.8 }
+        ]
       },
       {
         id: 'bdu-ma-development',
@@ -3923,8 +4608,7 @@ export const universities: University[] = [
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
+          durationMinutes: 90,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
           sections: [
@@ -3936,52 +4620,171 @@ export const universities: University[] = [
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Good for NGO and development sector', 'Study government welfare schemes', 'Excellent for UPSC preparation']
+        tips: ['Good for development sector', 'Study welfare schemes', 'Excellent for UPSC preparation'],
+        seatMatrix: { general: 22, obc: 38, bcMbc: 48, sc: 20, st: 3, ews: 7, total: 138 },
+        cutoffs: [
+          { year: '2024', general: 62.5, obc: 56.2, bcMbc: 52.4, sc: 38.5, st: 28.2, ews: 54.5 },
+          { year: '2023', general: 64.2, obc: 58.5, bcMbc: 54.8, sc: 40.8, st: 30.5, ews: 56.8 }
+        ]
       },
+      // ========== PROFESSIONAL PROGRAMS ==========
       {
-        id: 'bdu-ma-hrm',
-        name: 'M.A Human Resource Management',
-        nameTamil: 'எம்.ஏ மனித வளமேலாண்மை',
+        id: 'bdu-mba',
+        name: 'MBA (Financial Management / Environmental Mgmt)',
+        nameTamil: 'எம்.பி.ஏ (நிதி மேலாண்மை / சுற்றுச்சூழல் மேலாண்மை)',
         type: 'PG',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
-          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
           sections: [
-            { name: 'Management', nameTamil: 'மேலாண்மை', questions: 35, marks: 35, topics: ['HRM Basics', 'OB', 'Strategic HRM'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 30, marks: 30, topics: ['Quantitative', 'Reasoning'] },
-            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 20, marks: 20, topics: ['Verbal Ability', 'Comprehension'] },
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 15, marks: 15, topics: ['Current Affairs', 'Labour Laws'] }
+            { name: 'Verbal Ability', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['Reading Comprehension', 'Grammar', 'Vocabulary'] },
+            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல்', questions: 25, marks: 25, topics: ['Arithmetic', 'Algebra', 'Data Interpretation'] },
+            { name: 'Logical Reasoning', nameTamil: 'தர்க்கம்', questions: 25, marks: 25, topics: ['Puzzles', 'Seating', 'Syllogism'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 25, marks: 25, topics: ['Current Affairs', 'Business', 'Economy'] }
           ]
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Alternative to MBA-HR', 'Study HR principles', 'Learn labour laws']
+        tips: ['Practice aptitude daily', 'Focus on GK and current affairs', 'Read business newspapers'],
+        seatMatrix: { general: 35, obc: 60, bcMbc: 75, sc: 32, st: 5, ews: 12, total: 219 },
+        cutoffs: [
+          { year: '2024', general: 70.5, obc: 64.2, bcMbc: 60.4, sc: 46.5, st: 36.2, ews: 62.5 },
+          { year: '2023', general: 72.2, obc: 66.5, bcMbc: 62.8, sc: 48.8, st: 38.5, ews: 64.8 }
+        ]
       },
       {
-        id: 'bdu-mpa-music',
-        name: 'M.P.A (Music)',
-        nameTamil: 'எம்.பி.ஏ (இசை)',
+        id: 'bdu-mca',
+        name: 'MCA (Computer Applications)',
+        nameTamil: 'எம்.சி.ஏ (கணினி பயன்பாடுகள்)',
         type: 'PG',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
-          duration: '2 Hours',
           durationMinutes: 120,
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
           sections: [
-            { name: 'Music Theory', nameTamil: 'இசைக் கோட்பாடு', questions: 40, marks: 40, topics: ['Ragas', 'Talas', 'Music History'] },
-            { name: 'Practical Awareness', nameTamil: 'நடைமுறை விழிப்புணர்வு', questions: 35, marks: 35, topics: ['Compositions', 'Instruments', 'Composers'] },
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 25, marks: 25, topics: ['Cultural GK', 'Arts History'] }
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 40, marks: 40, topics: ['Programming', 'Data Structures', 'DBMS', 'OS'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Discrete Math', 'Linear Algebra', 'Probability'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 30, marks: 30, topics: ['Logical Reasoning', 'Numerical', 'English'] }
           ]
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Prior training in Carnatic/Hindustani required', 'Know major composers', 'Study music history']
+        tips: ['Strong programming foundation needed', 'Practice data structures', 'Study discrete mathematics'],
+        seatMatrix: { general: 40, obc: 70, bcMbc: 85, sc: 35, st: 6, ews: 14, total: 250 },
+        cutoffs: [
+          { year: '2024', general: 72.5, obc: 66.2, bcMbc: 62.4, sc: 48.5, st: 38.2, ews: 64.5 },
+          { year: '2023', general: 74.2, obc: 68.5, bcMbc: 64.8, sc: 50.8, st: 40.5, ews: 66.8 }
+        ]
+      },
+      {
+        id: 'bdu-msw',
+        name: 'MSW (Master of Social Work)',
+        nameTamil: 'எம்.எஸ்.டபிள்யூ (சமூக பணி முதுநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Social Work', nameTamil: 'சமூக பணி', questions: 40, marks: 40, topics: ['Case Work', 'Group Work', 'Community Organization'] },
+            { name: 'Social Sciences', nameTamil: 'சமூக அறிவியல்', questions: 30, marks: 30, topics: ['Sociology', 'Psychology', 'Anthropology'] },
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 20, marks: 20, topics: ['Social Issues', 'Government Schemes'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for NGO sector', 'Study social work methods', 'Learn welfare schemes'],
+        seatMatrix: { general: 35, obc: 60, bcMbc: 75, sc: 32, st: 5, ews: 12, total: 219 },
+        cutoffs: [
+          { year: '2024', general: 58.5, obc: 52.2, bcMbc: 48.4, sc: 34.5, st: 24.2, ews: 50.5 },
+          { year: '2023', general: 60.2, obc: 54.5, bcMbc: 50.8, sc: 36.8, st: 26.5, ews: 52.8 }
+        ]
+      },
+      {
+        id: 'bdu-med',
+        name: 'M.Ed (Master of Education)',
+        nameTamil: 'எம்.எட் (கல்வி முதுநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Education', nameTamil: 'கல்வி', questions: 50, marks: 50, topics: ['Educational Psychology', 'Pedagogy', 'Philosophy of Education'] },
+            { name: 'Teaching Methods', nameTamil: 'கற்பித்தல் முறைகள்', questions: 30, marks: 30, topics: ['Curriculum', 'Assessment', 'Technology in Education'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 20, marks: 20, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['B.Ed required for admission', 'Study educational psychology', 'Career in teaching and research'],
+        seatMatrix: { general: 25, obc: 42, bcMbc: 52, sc: 22, st: 4, ews: 8, total: 153 },
+        cutoffs: [
+          { year: '2024', general: 64.5, obc: 58.2, bcMbc: 54.4, sc: 40.5, st: 30.2, ews: 56.5 },
+          { year: '2023', general: 66.2, obc: 60.5, bcMbc: 56.8, sc: 42.8, st: 32.5, ews: 58.8 }
+        ]
+      },
+      {
+        id: 'bdu-mped',
+        name: 'M.P.Ed (Master of Physical Education)',
+        nameTamil: 'எம்.பி.எட் (உடற்கல்வி முதுநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physical Education', nameTamil: 'உடற்கல்வி', questions: 50, marks: 50, topics: ['Sports Science', 'Exercise Physiology', 'Sports Psychology'] },
+            { name: 'Health & Fitness', nameTamil: 'ஆரோக்கியம் & உடற்தகுதி', questions: 30, marks: 30, topics: ['Nutrition', 'Fitness Training', 'Health Education'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Reasoning', 'GK'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['B.P.Ed required', 'Physical fitness test may apply', 'Career in sports and coaching'],
+        seatMatrix: { general: 20, obc: 35, bcMbc: 42, sc: 18, st: 3, ews: 7, total: 125 },
+        cutoffs: [
+          { year: '2024', general: 60.5, obc: 54.2, bcMbc: 50.4, sc: 36.5, st: 26.2, ews: 52.5 },
+          { year: '2023', general: 62.2, obc: 56.5, bcMbc: 52.8, sc: 38.8, st: 28.5, ews: 54.8 }
+        ]
+      },
+      {
+        id: 'bdu-mlibisc',
+        name: 'M.Lib.I.Sc (Library & Information Science)',
+        nameTamil: 'எம்.லிப்.ஐ.எஸ்சி (நூலகம் & தகவல் அறிவியல்)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          durationMinutes: 90,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Library Science', nameTamil: 'நூலக அறிவியல்', questions: 50, marks: 50, topics: ['Classification', 'Cataloguing', 'Information Sources'] },
+            { name: 'Information Technology', nameTamil: 'தகவல் தொழில்நுட்பம்', questions: 30, marks: 30, topics: ['Digital Libraries', 'Databases', 'Automation'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Reasoning', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['B.Lib.I.Sc required', 'Learn library automation', 'Career in university libraries'],
+        seatMatrix: { general: 18, obc: 30, bcMbc: 38, sc: 16, st: 3, ews: 6, total: 111 },
+        cutoffs: [
+          { year: '2024', general: 56.5, obc: 50.2, bcMbc: 46.4, sc: 32.5, st: 22.2, ews: 48.5 },
+          { year: '2023', general: 58.2, obc: 52.5, bcMbc: 48.8, sc: 34.8, st: 24.5, ews: 50.8 }
+        ]
       }
     ]
   },
