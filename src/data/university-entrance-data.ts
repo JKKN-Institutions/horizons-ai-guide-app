@@ -4825,6 +4825,1466 @@ export const universities: University[] = [
           { year: '2024', general: 56.5, obc: 50.2, bcMbc: 46.4, sc: 32.5, st: 22.2, ews: 48.5 },
           { year: '2023', general: 58.2, obc: 52.5, bcMbc: 48.8, sc: 34.8, st: 24.5, ews: 50.8 }
         ]
+      },
+      // ========== CENTRE FOR DISTANCE EDUCATION (CDE) - UNDERGRADUATE ==========
+      {
+        id: 'bdu-cde-ba-english',
+        name: 'B.A. English (Distance)',
+        nameTamil: 'பி.ஏ. ஆங்கிலம் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'English Literature', nameTamil: 'ஆங்கில இலக்கியம்', questions: 50, marks: 50, topics: ['Poetry', 'Prose', 'Drama', 'Fiction'] },
+            { name: 'Language & Grammar', nameTamil: 'மொழி & இலக்கணம்', questions: 30, marks: 30, topics: ['Grammar', 'Composition', 'Comprehension'] },
+            { name: 'General English', nameTamil: 'பொது ஆங்கிலம்', questions: 20, marks: 20, topics: ['Vocabulary', 'Usage'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Distance mode - flexible study', 'Self-study materials provided', 'Contact classes available'],
+        seatMatrix: { general: 100, obc: 150, bcMbc: 180, sc: 80, st: 15, ews: 35, total: 560 },
+        cutoffs: [
+          { year: '2024', general: 45.0, obc: 40.0, bcMbc: 35.0, sc: 25.0, st: 20.0, ews: 38.0 },
+          { year: '2023', general: 47.0, obc: 42.0, bcMbc: 37.0, sc: 27.0, st: 22.0, ews: 40.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-ba-tamil',
+        name: 'B.A. Tamil (Distance)',
+        nameTamil: 'பி.ஏ. தமிழ் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Tamil Literature', nameTamil: 'தமிழ் இலக்கியம்', questions: 50, marks: 50, topics: ['Sangam Literature', 'Medieval Literature', 'Modern Literature'] },
+            { name: 'Grammar', nameTamil: 'இலக்கணம்', questions: 30, marks: 30, topics: ['Tolkappiyam', 'Nannool', 'Prose'] },
+            { name: 'General Tamil', nameTamil: 'பொது தமிழ்', questions: 20, marks: 20, topics: ['Composition', 'Comprehension'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Rich Tamil literary heritage', 'Flexible distance learning', 'Study materials in Tamil'],
+        seatMatrix: { general: 120, obc: 180, bcMbc: 220, sc: 95, st: 18, ews: 42, total: 675 },
+        cutoffs: [
+          { year: '2024', general: 42.0, obc: 37.0, bcMbc: 32.0, sc: 22.0, st: 17.0, ews: 35.0 },
+          { year: '2023', general: 44.0, obc: 39.0, bcMbc: 34.0, sc: 24.0, st: 19.0, ews: 37.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-ba-history',
+        name: 'B.A. History (Distance)',
+        nameTamil: 'பி.ஏ. வரலாறு (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Indian History', nameTamil: 'இந்திய வரலாறு', questions: 40, marks: 40, topics: ['Ancient', 'Medieval', 'Modern India'] },
+            { name: 'World History', nameTamil: 'உலக வரலாறு', questions: 30, marks: 30, topics: ['World Wars', 'Revolutions'] },
+            { name: 'Tamil Nadu History', nameTamil: 'தமிழ்நாடு வரலாறு', questions: 30, marks: 30, topics: ['Cholas', 'Pandyas', 'Freedom Movement'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for competitive exams', 'UPSC foundation course', 'Focus on Indian history'],
+        seatMatrix: { general: 90, obc: 140, bcMbc: 170, sc: 75, st: 14, ews: 32, total: 521 },
+        cutoffs: [
+          { year: '2024', general: 43.0, obc: 38.0, bcMbc: 33.0, sc: 23.0, st: 18.0, ews: 36.0 },
+          { year: '2023', general: 45.0, obc: 40.0, bcMbc: 35.0, sc: 25.0, st: 20.0, ews: 38.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-ba-economics',
+        name: 'B.A. Economics (Distance)',
+        nameTamil: 'பி.ஏ. பொருளாதாரம் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Microeconomics', nameTamil: 'நுண்பொருளியல்', questions: 35, marks: 35, topics: ['Demand-Supply', 'Market Structures', 'Consumer Behavior'] },
+            { name: 'Macroeconomics', nameTamil: 'பேரியல் பொருளியல்', questions: 35, marks: 35, topics: ['National Income', 'Fiscal Policy', 'Monetary Policy'] },
+            { name: 'Indian Economy', nameTamil: 'இந்திய பொருளாதாரம்', questions: 30, marks: 30, topics: ['Planning', 'Agriculture', 'Industry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong math foundation helps', 'Useful for banking exams', 'Learn economic theories'],
+        seatMatrix: { general: 85, obc: 130, bcMbc: 160, sc: 70, st: 13, ews: 30, total: 488 },
+        cutoffs: [
+          { year: '2024', general: 44.0, obc: 39.0, bcMbc: 34.0, sc: 24.0, st: 19.0, ews: 37.0 },
+          { year: '2023', general: 46.0, obc: 41.0, bcMbc: 36.0, sc: 26.0, st: 21.0, ews: 39.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-ba-polsci',
+        name: 'B.A. Political Science (Distance)',
+        nameTamil: 'பி.ஏ. அரசியல் அறிவியல் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Political Theory', nameTamil: 'அரசியல் கோட்பாடு', questions: 35, marks: 35, topics: ['State', 'Sovereignty', 'Democracy'] },
+            { name: 'Indian Politics', nameTamil: 'இந்திய அரசியல்', questions: 35, marks: 35, topics: ['Constitution', 'Parliament', 'Federalism'] },
+            { name: 'International Relations', nameTamil: 'சர்வதேச உறவுகள்', questions: 30, marks: 30, topics: ['UN', 'Foreign Policy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['UPSC foundation', 'Study Indian Constitution well', 'Current affairs important'],
+        seatMatrix: { general: 80, obc: 120, bcMbc: 150, sc: 65, st: 12, ews: 28, total: 455 },
+        cutoffs: [
+          { year: '2024', general: 42.0, obc: 37.0, bcMbc: 32.0, sc: 22.0, st: 17.0, ews: 35.0 },
+          { year: '2023', general: 44.0, obc: 39.0, bcMbc: 34.0, sc: 24.0, st: 19.0, ews: 37.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-ba-pubadmin',
+        name: 'B.A. Public Administration (Distance)',
+        nameTamil: 'பி.ஏ. பொது நிர்வாகம் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Administrative Theory', nameTamil: 'நிர்வாக கோட்பாடு', questions: 35, marks: 35, topics: ['Principles', 'Organization', 'Leadership'] },
+            { name: 'Indian Administration', nameTamil: 'இந்திய நிர்வாகம்', questions: 35, marks: 35, topics: ['Central Admin', 'State Admin', 'Local Govt'] },
+            { name: 'General Studies', nameTamil: 'பொது படிப்பு', questions: 30, marks: 30, topics: ['Current Affairs', 'Governance'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Government job preparation', 'Study administrative reforms', 'Learn about e-governance'],
+        seatMatrix: { general: 75, obc: 115, bcMbc: 140, sc: 60, st: 11, ews: 26, total: 427 },
+        cutoffs: [
+          { year: '2024', general: 41.0, obc: 36.0, bcMbc: 31.0, sc: 21.0, st: 16.0, ews: 34.0 },
+          { year: '2023', general: 43.0, obc: 38.0, bcMbc: 33.0, sc: 23.0, st: 18.0, ews: 36.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bsc-maths',
+        name: 'B.Sc. Mathematics (Distance)',
+        nameTamil: 'பி.எஸ்சி. கணிதம் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Algebra', nameTamil: 'இயற்கணிதம்', questions: 35, marks: 35, topics: ['Linear Algebra', 'Abstract Algebra', 'Number Theory'] },
+            { name: 'Calculus', nameTamil: 'நுண்கணிதம்', questions: 35, marks: 35, topics: ['Differential', 'Integral', 'Differential Equations'] },
+            { name: 'Applied Math', nameTamil: 'பயன்பாட்டு கணிதம்', questions: 30, marks: 30, topics: ['Statistics', 'Numerical Methods'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong 12th math foundation needed', 'Practice problems daily', 'Good for teaching career'],
+        seatMatrix: { general: 70, obc: 110, bcMbc: 135, sc: 58, st: 10, ews: 25, total: 408 },
+        cutoffs: [
+          { year: '2024', general: 48.0, obc: 43.0, bcMbc: 38.0, sc: 28.0, st: 23.0, ews: 41.0 },
+          { year: '2023', general: 50.0, obc: 45.0, bcMbc: 40.0, sc: 30.0, st: 25.0, ews: 43.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bsc-physics',
+        name: 'B.Sc. Physics (Distance)',
+        nameTamil: 'பி.எஸ்சி. இயற்பியல் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Classical Physics', nameTamil: 'பாரம்பரிய இயற்பியல்', questions: 35, marks: 35, topics: ['Mechanics', 'Thermodynamics', 'Optics'] },
+            { name: 'Modern Physics', nameTamil: 'நவீன இயற்பியல்', questions: 35, marks: 35, topics: ['Quantum Mechanics', 'Nuclear Physics', 'Electronics'] },
+            { name: 'Mathematical Physics', nameTamil: 'கணித இயற்பியல்', questions: 30, marks: 30, topics: ['Vector Analysis', 'Differential Equations'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Lab component via contact classes', 'Strong math needed', 'Focus on conceptual understanding'],
+        seatMatrix: { general: 65, obc: 100, bcMbc: 125, sc: 54, st: 10, ews: 23, total: 377 },
+        cutoffs: [
+          { year: '2024', general: 47.0, obc: 42.0, bcMbc: 37.0, sc: 27.0, st: 22.0, ews: 40.0 },
+          { year: '2023', general: 49.0, obc: 44.0, bcMbc: 39.0, sc: 29.0, st: 24.0, ews: 42.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bsc-chemistry',
+        name: 'B.Sc. Chemistry (Distance)',
+        nameTamil: 'பி.எஸ்சி. வேதியியல் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Organic Chemistry', nameTamil: 'கரிம வேதியியல்', questions: 35, marks: 35, topics: ['Hydrocarbons', 'Functional Groups', 'Reactions'] },
+            { name: 'Inorganic Chemistry', nameTamil: 'கனிம வேதியியல்', questions: 35, marks: 35, topics: ['Periodic Table', 'Coordination Compounds'] },
+            { name: 'Physical Chemistry', nameTamil: 'பௌதிக வேதியியல்', questions: 30, marks: 30, topics: ['Thermodynamics', 'Kinetics', 'Electrochemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Lab practicals in contact classes', 'Study reaction mechanisms', 'Memorize periodic trends'],
+        seatMatrix: { general: 60, obc: 95, bcMbc: 120, sc: 52, st: 9, ews: 22, total: 358 },
+        cutoffs: [
+          { year: '2024', general: 46.0, obc: 41.0, bcMbc: 36.0, sc: 26.0, st: 21.0, ews: 39.0 },
+          { year: '2023', general: 48.0, obc: 43.0, bcMbc: 38.0, sc: 28.0, st: 23.0, ews: 41.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bsc-botany',
+        name: 'B.Sc. Botany (Distance)',
+        nameTamil: 'பி.எஸ்சி. தாவரவியல் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Plant Taxonomy', nameTamil: 'தாவர வகைப்பாடு', questions: 35, marks: 35, topics: ['Classification', 'Morphology', 'Anatomy'] },
+            { name: 'Plant Physiology', nameTamil: 'தாவர உடலியல்', questions: 35, marks: 35, topics: ['Photosynthesis', 'Respiration', 'Growth'] },
+            { name: 'Ecology', nameTamil: 'சூழலியல்', questions: 30, marks: 30, topics: ['Ecosystems', 'Environmental Studies'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Field work during contact classes', 'Learn plant identification', 'Environmental career options'],
+        seatMatrix: { general: 55, obc: 85, bcMbc: 105, sc: 46, st: 8, ews: 20, total: 319 },
+        cutoffs: [
+          { year: '2024', general: 44.0, obc: 39.0, bcMbc: 34.0, sc: 24.0, st: 19.0, ews: 37.0 },
+          { year: '2023', general: 46.0, obc: 41.0, bcMbc: 36.0, sc: 26.0, st: 21.0, ews: 39.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bsc-zoology',
+        name: 'B.Sc. Zoology (Distance)',
+        nameTamil: 'பி.எஸ்சி. விலங்கியல் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Animal Diversity', nameTamil: 'விலங்கு பல்வகைமை', questions: 35, marks: 35, topics: ['Invertebrates', 'Vertebrates', 'Classification'] },
+            { name: 'Physiology', nameTamil: 'உடலியல்', questions: 35, marks: 35, topics: ['Animal Physiology', 'Cell Biology'] },
+            { name: 'Ecology & Evolution', nameTamil: 'சூழலியல் & பரிணாமம்', questions: 30, marks: 30, topics: ['Evolution', 'Wildlife', 'Conservation'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Practical component in contact classes', 'Good for wildlife career', 'Study animal classification'],
+        seatMatrix: { general: 55, obc: 85, bcMbc: 105, sc: 46, st: 8, ews: 20, total: 319 },
+        cutoffs: [
+          { year: '2024', general: 45.0, obc: 40.0, bcMbc: 35.0, sc: 25.0, st: 20.0, ews: 38.0 },
+          { year: '2023', general: 47.0, obc: 42.0, bcMbc: 37.0, sc: 27.0, st: 22.0, ews: 40.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bsc-cs',
+        name: 'B.Sc. Computer Science (Distance)',
+        nameTamil: 'பி.எஸ்சி. கணினி அறிவியல் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 40, marks: 40, topics: ['C', 'C++', 'Java', 'Python'] },
+            { name: 'Data Structures', nameTamil: 'தரவு கட்டமைப்புகள்', questions: 30, marks: 30, topics: ['Arrays', 'Linked Lists', 'Trees', 'Graphs'] },
+            { name: 'Database & Networks', nameTamil: 'தரவுத்தளம் & நெட்வொர்க்', questions: 30, marks: 30, topics: ['DBMS', 'SQL', 'Networking'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Practice coding regularly', 'Lab work in contact classes', 'IT industry opportunities'],
+        seatMatrix: { general: 80, obc: 120, bcMbc: 150, sc: 65, st: 12, ews: 28, total: 455 },
+        cutoffs: [
+          { year: '2024', general: 50.0, obc: 45.0, bcMbc: 40.0, sc: 30.0, st: 25.0, ews: 43.0 },
+          { year: '2023', general: 52.0, obc: 47.0, bcMbc: 42.0, sc: 32.0, st: 27.0, ews: 45.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bsc-it',
+        name: 'B.Sc. Information Technology (Distance)',
+        nameTamil: 'பி.எஸ்சி. தகவல் தொழில்நுட்பம் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'IT Fundamentals', nameTamil: 'ஐடி அடிப்படைகள்', questions: 35, marks: 35, topics: ['Hardware', 'Software', 'Operating Systems'] },
+            { name: 'Web Technologies', nameTamil: 'வலை தொழில்நுட்பங்கள்', questions: 35, marks: 35, topics: ['HTML', 'CSS', 'JavaScript', 'PHP'] },
+            { name: 'Networking', nameTamil: 'நெட்வொர்க்கிங்', questions: 30, marks: 30, topics: ['TCP/IP', 'Security', 'Cloud Computing'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Hands-on practice important', 'Web development focus', 'Cloud computing skills valuable'],
+        seatMatrix: { general: 75, obc: 115, bcMbc: 140, sc: 60, st: 11, ews: 26, total: 427 },
+        cutoffs: [
+          { year: '2024', general: 48.0, obc: 43.0, bcMbc: 38.0, sc: 28.0, st: 23.0, ews: 41.0 },
+          { year: '2023', general: 50.0, obc: 45.0, bcMbc: 40.0, sc: 30.0, st: 25.0, ews: 43.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bsc-geography',
+        name: 'B.Sc. Geography (Distance)',
+        nameTamil: 'பி.எஸ்சி. புவியியல் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physical Geography', nameTamil: 'இயற்கை புவியியல்', questions: 40, marks: 40, topics: ['Geomorphology', 'Climatology', 'Oceanography'] },
+            { name: 'Human Geography', nameTamil: 'மனித புவியியல்', questions: 30, marks: 30, topics: ['Population', 'Settlement', 'Economic'] },
+            { name: 'Cartography', nameTamil: 'வரைபடவியல்', questions: 30, marks: 30, topics: ['Map Reading', 'Remote Sensing', 'GIS'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['UPSC optional subject', 'Learn map reading', 'GIS skills valuable'],
+        seatMatrix: { general: 50, obc: 80, bcMbc: 100, sc: 44, st: 8, ews: 18, total: 300 },
+        cutoffs: [
+          { year: '2024', general: 43.0, obc: 38.0, bcMbc: 33.0, sc: 23.0, st: 18.0, ews: 36.0 },
+          { year: '2023', general: 45.0, obc: 40.0, bcMbc: 35.0, sc: 25.0, st: 20.0, ews: 38.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bsc-hospital-admin',
+        name: 'B.Sc. Hospital Administration (Distance)',
+        nameTamil: 'பி.எஸ்சி. மருத்துவமனை நிர்வாகம் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Hospital Management', nameTamil: 'மருத்துவமனை மேலாண்மை', questions: 40, marks: 40, topics: ['Healthcare Systems', 'Hospital Operations', 'Quality'] },
+            { name: 'Medical Records', nameTamil: 'மருத்துவ பதிவுகள்', questions: 30, marks: 30, topics: ['Medical Coding', 'Health Information'] },
+            { name: 'General Management', nameTamil: 'பொது மேலாண்மை', questions: 30, marks: 30, topics: ['HR', 'Finance', 'Marketing'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Healthcare sector growing', 'Hospital internship valuable', 'Learn medical terminology'],
+        seatMatrix: { general: 40, obc: 65, bcMbc: 80, sc: 35, st: 6, ews: 15, total: 241 },
+        cutoffs: [
+          { year: '2024', general: 45.0, obc: 40.0, bcMbc: 35.0, sc: 25.0, st: 20.0, ews: 38.0 },
+          { year: '2023', general: 47.0, obc: 42.0, bcMbc: 37.0, sc: 27.0, st: 22.0, ews: 40.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bsc-hotel-mgmt',
+        name: 'B.Sc. Hotel Management & Catering Science (Distance)',
+        nameTamil: 'பி.எஸ்சி. ஓட்டல் மேலாண்மை & உணவு அறிவியல் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Hotel Operations', nameTamil: 'ஓட்டல் செயல்பாடுகள்', questions: 40, marks: 40, topics: ['Front Office', 'Housekeeping', 'F&B'] },
+            { name: 'Food Production', nameTamil: 'உணவு உற்பத்தி', questions: 30, marks: 30, topics: ['Cooking', 'Bakery', 'Nutrition'] },
+            { name: 'Management', nameTamil: 'மேலாண்மை', questions: 30, marks: 30, topics: ['Tourism', 'Marketing', 'Accounts'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Hospitality industry career', 'Practical training needed', 'Communication skills important'],
+        seatMatrix: { general: 45, obc: 70, bcMbc: 88, sc: 38, st: 7, ews: 16, total: 264 },
+        cutoffs: [
+          { year: '2024', general: 42.0, obc: 37.0, bcMbc: 32.0, sc: 22.0, st: 17.0, ews: 35.0 },
+          { year: '2023', general: 44.0, obc: 39.0, bcMbc: 34.0, sc: 24.0, st: 19.0, ews: 37.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bsc-visual-media',
+        name: 'B.Sc. Visual Media & Communication (Distance)',
+        nameTamil: 'பி.எஸ்சி. காட்சி ஊடகம் & தொடர்பியல் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Media Studies', nameTamil: 'ஊடக படிப்பு', questions: 40, marks: 40, topics: ['Print Media', 'Electronic Media', 'New Media'] },
+            { name: 'Visual Communication', nameTamil: 'காட்சி தொடர்பியல்', questions: 30, marks: 30, topics: ['Photography', 'Videography', 'Graphics'] },
+            { name: 'Communication Theory', nameTamil: 'தொடர்பியல் கோட்பாடு', questions: 30, marks: 30, topics: ['Mass Communication', 'Advertising'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Creative field career', 'Build portfolio', 'Digital media skills essential'],
+        seatMatrix: { general: 50, obc: 80, bcMbc: 100, sc: 44, st: 8, ews: 18, total: 300 },
+        cutoffs: [
+          { year: '2024', general: 44.0, obc: 39.0, bcMbc: 34.0, sc: 24.0, st: 19.0, ews: 37.0 },
+          { year: '2023', general: 46.0, obc: 41.0, bcMbc: 36.0, sc: 26.0, st: 21.0, ews: 39.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bsc-yoga',
+        name: 'B.Sc. Yoga (Distance)',
+        nameTamil: 'பி.எஸ்சி. யோகா (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Yoga Philosophy', nameTamil: 'யோகா தத்துவம்', questions: 35, marks: 35, topics: ['Patanjali Yoga', 'Hatha Yoga', 'Yoga Sutras'] },
+            { name: 'Yoga Practice', nameTamil: 'யோகா பயிற்சி', questions: 35, marks: 35, topics: ['Asanas', 'Pranayama', 'Meditation'] },
+            { name: 'Yoga Therapy', nameTamil: 'யோகா சிகிச்சை', questions: 30, marks: 30, topics: ['Therapeutic Yoga', 'Anatomy', 'Health'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Practical yoga skills needed', 'Wellness industry growing', 'Yoga instructor certification'],
+        seatMatrix: { general: 40, obc: 65, bcMbc: 80, sc: 35, st: 6, ews: 15, total: 241 },
+        cutoffs: [
+          { year: '2024', general: 40.0, obc: 35.0, bcMbc: 30.0, sc: 20.0, st: 15.0, ews: 33.0 },
+          { year: '2023', general: 42.0, obc: 37.0, bcMbc: 32.0, sc: 22.0, st: 17.0, ews: 35.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bcom-general',
+        name: 'B.Com General (Distance)',
+        nameTamil: 'பி.காம் பொது (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Accountancy', nameTamil: 'கணக்கியல்', questions: 40, marks: 40, topics: ['Financial Accounting', 'Cost Accounting', 'Management Accounting'] },
+            { name: 'Commerce', nameTamil: 'வணிகவியல்', questions: 30, marks: 30, topics: ['Business Studies', 'Economics', 'Law'] },
+            { name: 'Finance', nameTamil: 'நிதி', questions: 30, marks: 30, topics: ['Banking', 'Taxation', 'Financial Markets'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['CA/CMA foundation', 'Practice accounting problems', 'Learn Tally/accounting software'],
+        seatMatrix: { general: 100, obc: 150, bcMbc: 185, sc: 80, st: 15, ews: 35, total: 565 },
+        cutoffs: [
+          { year: '2024', general: 48.0, obc: 43.0, bcMbc: 38.0, sc: 28.0, st: 23.0, ews: 41.0 },
+          { year: '2023', general: 50.0, obc: 45.0, bcMbc: 40.0, sc: 30.0, st: 25.0, ews: 43.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bcom-bank-mgmt',
+        name: 'B.Com Bank Management (Distance)',
+        nameTamil: 'பி.காம் வங்கி மேலாண்மை (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Banking', nameTamil: 'வங்கியியல்', questions: 40, marks: 40, topics: ['Banking Law', 'Banking Operations', 'RBI Policies'] },
+            { name: 'Accountancy', nameTamil: 'கணக்கியல்', questions: 30, marks: 30, topics: ['Financial Accounting', 'Banking Accounts'] },
+            { name: 'Finance', nameTamil: 'நிதி', questions: 30, marks: 30, topics: ['Financial Markets', 'Investment', 'Insurance'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Bank exam preparation', 'Learn banking regulations', 'RBI updates important'],
+        seatMatrix: { general: 70, obc: 110, bcMbc: 135, sc: 58, st: 10, ews: 25, total: 408 },
+        cutoffs: [
+          { year: '2024', general: 47.0, obc: 42.0, bcMbc: 37.0, sc: 27.0, st: 22.0, ews: 40.0 },
+          { year: '2023', general: 49.0, obc: 44.0, bcMbc: 39.0, sc: 29.0, st: 24.0, ews: 42.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bcom-ca',
+        name: 'B.Com Computer Applications (Distance)',
+        nameTamil: 'பி.காம் கணினி பயன்பாடுகள் (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Commerce', nameTamil: 'வணிகவியல்', questions: 35, marks: 35, topics: ['Accounting', 'Business Studies', 'Economics'] },
+            { name: 'Computer Applications', nameTamil: 'கணினி பயன்பாடுகள்', questions: 35, marks: 35, topics: ['Programming', 'DBMS', 'Web Design'] },
+            { name: 'E-Commerce', nameTamil: 'மின்வணிகம்', questions: 30, marks: 30, topics: ['Digital Business', 'ERP', 'Tally'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Commerce + IT skills', 'Learn Tally and accounting software', 'E-commerce career opportunities'],
+        seatMatrix: { general: 75, obc: 115, bcMbc: 140, sc: 60, st: 11, ews: 26, total: 427 },
+        cutoffs: [
+          { year: '2024', general: 49.0, obc: 44.0, bcMbc: 39.0, sc: 29.0, st: 24.0, ews: 42.0 },
+          { year: '2023', general: 51.0, obc: 46.0, bcMbc: 41.0, sc: 31.0, st: 26.0, ews: 44.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bba',
+        name: 'B.B.A. (Distance)',
+        nameTamil: 'பி.பி.ஏ. (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Management', nameTamil: 'மேலாண்மை', questions: 40, marks: 40, topics: ['Principles of Management', 'Organizational Behavior', 'HR'] },
+            { name: 'Marketing & Finance', nameTamil: 'சந்தைப்படுத்தல் & நிதி', questions: 30, marks: 30, topics: ['Marketing', 'Financial Management', 'Accounting'] },
+            { name: 'Business Studies', nameTamil: 'வணிகப் படிப்பு', questions: 30, marks: 30, topics: ['Business Environment', 'Entrepreneurship'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['MBA foundation course', 'Learn business communication', 'Case study practice important'],
+        seatMatrix: { general: 85, obc: 130, bcMbc: 160, sc: 70, st: 13, ews: 30, total: 488 },
+        cutoffs: [
+          { year: '2024', general: 46.0, obc: 41.0, bcMbc: 36.0, sc: 26.0, st: 21.0, ews: 39.0 },
+          { year: '2023', general: 48.0, obc: 43.0, bcMbc: 38.0, sc: 28.0, st: 23.0, ews: 41.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-bca',
+        name: 'B.C.A. (Distance)',
+        nameTamil: 'பி.சி.ஏ. (தொலைநிலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 40, marks: 40, topics: ['C', 'C++', 'Java', 'Python', 'Web Programming'] },
+            { name: 'Data Structures & Algorithms', nameTamil: 'தரவு கட்டமைப்புகள் & வழிமுறைகள்', questions: 30, marks: 30, topics: ['DS', 'Algorithms', 'OS'] },
+            { name: 'Database & Networks', nameTamil: 'தரவுத்தளம் & நெட்வொர்க்', questions: 30, marks: 30, topics: ['DBMS', 'SQL', 'Computer Networks'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong programming foundation', 'Practice coding daily', 'MCA or IT career path'],
+        seatMatrix: { general: 90, obc: 140, bcMbc: 170, sc: 75, st: 14, ews: 32, total: 521 },
+        cutoffs: [
+          { year: '2024', general: 50.0, obc: 45.0, bcMbc: 40.0, sc: 30.0, st: 25.0, ews: 43.0 },
+          { year: '2023', general: 52.0, obc: 47.0, bcMbc: 42.0, sc: 32.0, st: 27.0, ews: 45.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-blibisc',
+        name: 'B.Lib.I.Sc. (Distance - 1 Year)',
+        nameTamil: 'பி.லிப்.ஐ.எஸ்சி. (தொலைநிலை - 1 ஆண்டு)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Library Science', nameTamil: 'நூலக அறிவியல்', questions: 50, marks: 50, topics: ['Library Organization', 'Classification', 'Cataloguing'] },
+            { name: 'Information Science', nameTamil: 'தகவல் அறிவியல்', questions: 30, marks: 30, topics: ['Information Sources', 'Reference Services'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Current Affairs', 'Library Laws'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['1-year diploma program', 'Library assistant career', 'Public library jobs'],
+        seatMatrix: { general: 50, obc: 80, bcMbc: 100, sc: 44, st: 8, ews: 18, total: 300 },
+        cutoffs: [
+          { year: '2024', general: 40.0, obc: 35.0, bcMbc: 30.0, sc: 20.0, st: 15.0, ews: 33.0 },
+          { year: '2023', general: 42.0, obc: 37.0, bcMbc: 32.0, sc: 22.0, st: 17.0, ews: 35.0 }
+        ]
+      },
+      // ========== CENTRE FOR DISTANCE EDUCATION (CDE) - POSTGRADUATE ==========
+      {
+        id: 'bdu-cde-ma-english',
+        name: 'M.A. English (Distance)',
+        nameTamil: 'எம்.ஏ. ஆங்கிலம் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'English Literature', nameTamil: 'ஆங்கில இலக்கியம்', questions: 50, marks: 50, topics: ['British Literature', 'American Literature', 'Indian Writing'] },
+            { name: 'Literary Criticism', nameTamil: 'இலக்கிய விமர்சனம்', questions: 30, marks: 30, topics: ['Theory', 'Movements', 'Genres'] },
+            { name: 'Language Studies', nameTamil: 'மொழிப் படிப்பு', questions: 20, marks: 20, topics: ['Linguistics', 'ELT'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['NET/SET preparation', 'Read primary texts', 'English teaching career'],
+        seatMatrix: { general: 80, obc: 120, bcMbc: 150, sc: 65, st: 12, ews: 28, total: 455 },
+        cutoffs: [
+          { year: '2024', general: 50.0, obc: 45.0, bcMbc: 40.0, sc: 30.0, st: 25.0, ews: 43.0 },
+          { year: '2023', general: 52.0, obc: 47.0, bcMbc: 42.0, sc: 32.0, st: 27.0, ews: 45.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-ma-tamil',
+        name: 'M.A. Tamil (Distance)',
+        nameTamil: 'எம்.ஏ. தமிழ் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Tamil Literature', nameTamil: 'தமிழ் இலக்கியம்', questions: 50, marks: 50, topics: ['Sangam', 'Bhakti', 'Modern'] },
+            { name: 'Grammar', nameTamil: 'இலக்கணம்', questions: 30, marks: 30, topics: ['Tolkappiyam', 'Nannool'] },
+            { name: 'Criticism', nameTamil: 'விமர்சனம்', questions: 20, marks: 20, topics: ['Literary Theory', 'Research Methods'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Tamil teaching career', 'TNPSC preparation', 'Research opportunities'],
+        seatMatrix: { general: 100, obc: 150, bcMbc: 185, sc: 80, st: 15, ews: 35, total: 565 },
+        cutoffs: [
+          { year: '2024', general: 45.0, obc: 40.0, bcMbc: 35.0, sc: 25.0, st: 20.0, ews: 38.0 },
+          { year: '2023', general: 47.0, obc: 42.0, bcMbc: 37.0, sc: 27.0, st: 22.0, ews: 40.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-ma-history',
+        name: 'M.A. History (Distance)',
+        nameTamil: 'எம்.ஏ. வரலாறு (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Indian History', nameTamil: 'இந்திய வரலாறு', questions: 40, marks: 40, topics: ['Ancient', 'Medieval', 'Modern'] },
+            { name: 'World History', nameTamil: 'உலக வரலாறு', questions: 30, marks: 30, topics: ['Renaissance', 'World Wars', 'Cold War'] },
+            { name: 'Historiography', nameTamil: 'வரலாற்றியல்', questions: 30, marks: 30, topics: ['Methods', 'Sources', 'Research'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['UPSC optional', 'Archaeological career', 'Museum jobs'],
+        seatMatrix: { general: 70, obc: 110, bcMbc: 135, sc: 58, st: 10, ews: 25, total: 408 },
+        cutoffs: [
+          { year: '2024', general: 48.0, obc: 43.0, bcMbc: 38.0, sc: 28.0, st: 23.0, ews: 41.0 },
+          { year: '2023', general: 50.0, obc: 45.0, bcMbc: 40.0, sc: 30.0, st: 25.0, ews: 43.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-ma-economics',
+        name: 'M.A. Economics (Distance)',
+        nameTamil: 'எம்.ஏ. பொருளாதாரம் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Economic Theory', nameTamil: 'பொருளியல் கோட்பாடு', questions: 40, marks: 40, topics: ['Micro', 'Macro', 'International'] },
+            { name: 'Indian Economy', nameTamil: 'இந்திய பொருளாதாரம்', questions: 30, marks: 30, topics: ['Planning', 'Policies', 'Development'] },
+            { name: 'Quantitative Methods', nameTamil: 'அளவு முறைகள்', questions: 30, marks: 30, topics: ['Statistics', 'Econometrics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['RBI/Bank career', 'Economic research', 'Policy analyst jobs'],
+        seatMatrix: { general: 65, obc: 100, bcMbc: 125, sc: 54, st: 10, ews: 23, total: 377 },
+        cutoffs: [
+          { year: '2024', general: 50.0, obc: 45.0, bcMbc: 40.0, sc: 30.0, st: 25.0, ews: 43.0 },
+          { year: '2023', general: 52.0, obc: 47.0, bcMbc: 42.0, sc: 32.0, st: 27.0, ews: 45.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-ma-polsci',
+        name: 'M.A. Political Science (Distance)',
+        nameTamil: 'எம்.ஏ. அரசியல் அறிவியல் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Political Theory', nameTamil: 'அரசியல் கோட்பாடு', questions: 35, marks: 35, topics: ['Western', 'Indian', 'Modern'] },
+            { name: 'Indian Government', nameTamil: 'இந்திய அரசு', questions: 35, marks: 35, topics: ['Constitution', 'Politics', 'Administration'] },
+            { name: 'International Politics', nameTamil: 'சர்வதேச அரசியல்', questions: 30, marks: 30, topics: ['IR Theory', 'Foreign Policy', 'UN'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['UPSC optional', 'NET/SET exam', 'Political analyst career'],
+        seatMatrix: { general: 60, obc: 95, bcMbc: 120, sc: 52, st: 9, ews: 22, total: 358 },
+        cutoffs: [
+          { year: '2024', general: 47.0, obc: 42.0, bcMbc: 37.0, sc: 27.0, st: 22.0, ews: 40.0 },
+          { year: '2023', general: 49.0, obc: 44.0, bcMbc: 39.0, sc: 29.0, st: 24.0, ews: 42.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-ma-pubadmin',
+        name: 'M.A. Public Administration (Distance)',
+        nameTamil: 'எம்.ஏ. பொது நிர்வாகம் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Admin Theory', nameTamil: 'நிர்வாக கோட்பாடு', questions: 35, marks: 35, topics: ['Classical', 'Modern', 'New Public Admin'] },
+            { name: 'Indian Administration', nameTamil: 'இந்திய நிர்வாகம்', questions: 35, marks: 35, topics: ['Central', 'State', 'Local'] },
+            { name: 'Comparative Admin', nameTamil: 'ஒப்பீட்டு நிர்வாகம்', questions: 30, marks: 30, topics: ['USA', 'UK', 'France', 'Japan'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['UPSC main optional', 'Government career', 'Administrative reforms'],
+        seatMatrix: { general: 55, obc: 85, bcMbc: 105, sc: 46, st: 8, ews: 20, total: 319 },
+        cutoffs: [
+          { year: '2024', general: 46.0, obc: 41.0, bcMbc: 36.0, sc: 26.0, st: 21.0, ews: 39.0 },
+          { year: '2023', general: 48.0, obc: 43.0, bcMbc: 38.0, sc: 28.0, st: 23.0, ews: 41.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-ma-journalism',
+        name: 'M.A. Journalism & Mass Communication (Distance)',
+        nameTamil: 'எம்.ஏ. பத்திரிகை & வெகுஜன தொடர்பியல் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Media Studies', nameTamil: 'ஊடக படிப்பு', questions: 40, marks: 40, topics: ['Print', 'Electronic', 'Digital Media'] },
+            { name: 'Journalism', nameTamil: 'பத்திரிகை', questions: 30, marks: 30, topics: ['Reporting', 'Editing', 'News Writing'] },
+            { name: 'Communication Theory', nameTamil: 'தொடர்பியல் கோட்பாடு', questions: 30, marks: 30, topics: ['Mass Comm', 'Development Comm', 'Advertising'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Media career', 'Digital journalism skills', 'Build portfolio'],
+        seatMatrix: { general: 50, obc: 80, bcMbc: 100, sc: 44, st: 8, ews: 18, total: 300 },
+        cutoffs: [
+          { year: '2024', general: 48.0, obc: 43.0, bcMbc: 38.0, sc: 28.0, st: 23.0, ews: 41.0 },
+          { year: '2023', general: 50.0, obc: 45.0, bcMbc: 40.0, sc: 30.0, st: 25.0, ews: 43.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-ma-hrm',
+        name: 'M.A. Human Resource Management (Distance)',
+        nameTamil: 'எம்.ஏ. மனிதவள மேலாண்மை (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'HR Management', nameTamil: 'மனிதவள மேலாண்மை', questions: 40, marks: 40, topics: ['Recruitment', 'Training', 'Performance'] },
+            { name: 'Organizational Behavior', nameTamil: 'நிறுவன நடத்தை', questions: 30, marks: 30, topics: ['Leadership', 'Motivation', 'Culture'] },
+            { name: 'Labour Laws', nameTamil: 'தொழிலாளர் சட்டங்கள்', questions: 30, marks: 30, topics: ['Industrial Relations', 'Welfare', 'Safety'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['HR career path', 'Corporate sector jobs', 'Learn HR software'],
+        seatMatrix: { general: 55, obc: 85, bcMbc: 105, sc: 46, st: 8, ews: 20, total: 319 },
+        cutoffs: [
+          { year: '2024', general: 49.0, obc: 44.0, bcMbc: 39.0, sc: 29.0, st: 24.0, ews: 42.0 },
+          { year: '2023', general: 51.0, obc: 46.0, bcMbc: 41.0, sc: 31.0, st: 26.0, ews: 44.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-msc-maths',
+        name: 'M.Sc. Mathematics (Distance)',
+        nameTamil: 'எம்.எஸ்சி. கணிதம் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Pure Mathematics', nameTamil: 'தூய கணிதம்', questions: 40, marks: 40, topics: ['Algebra', 'Analysis', 'Topology'] },
+            { name: 'Applied Mathematics', nameTamil: 'பயன்பாட்டு கணிதம்', questions: 30, marks: 30, topics: ['Differential Equations', 'Numerical Analysis'] },
+            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 30, marks: 30, topics: ['Probability', 'Statistical Methods'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['NET/SET exam', 'Teaching career', 'Data science skills valuable'],
+        seatMatrix: { general: 50, obc: 80, bcMbc: 100, sc: 44, st: 8, ews: 18, total: 300 },
+        cutoffs: [
+          { year: '2024', general: 52.0, obc: 47.0, bcMbc: 42.0, sc: 32.0, st: 27.0, ews: 45.0 },
+          { year: '2023', general: 54.0, obc: 49.0, bcMbc: 44.0, sc: 34.0, st: 29.0, ews: 47.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-msc-physics',
+        name: 'M.Sc. Physics (Distance)',
+        nameTamil: 'எம்.எஸ்சி. இயற்பியல் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Classical Physics', nameTamil: 'பாரம்பரிய இயற்பியல்', questions: 35, marks: 35, topics: ['Mechanics', 'Electrodynamics', 'Thermodynamics'] },
+            { name: 'Modern Physics', nameTamil: 'நவீன இயற்பியல்', questions: 35, marks: 35, topics: ['Quantum Mechanics', 'Nuclear', 'Solid State'] },
+            { name: 'Mathematical Physics', nameTamil: 'கணித இயற்பியல்', questions: 30, marks: 30, topics: ['Mathematical Methods', 'Computational Physics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['NET/GATE exam', 'Research career', 'Strong math foundation needed'],
+        seatMatrix: { general: 45, obc: 70, bcMbc: 88, sc: 38, st: 7, ews: 16, total: 264 },
+        cutoffs: [
+          { year: '2024', general: 51.0, obc: 46.0, bcMbc: 41.0, sc: 31.0, st: 26.0, ews: 44.0 },
+          { year: '2023', general: 53.0, obc: 48.0, bcMbc: 43.0, sc: 33.0, st: 28.0, ews: 46.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-msc-chemistry',
+        name: 'M.Sc. Chemistry (Distance)',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Organic Chemistry', nameTamil: 'கரிம வேதியியல்', questions: 35, marks: 35, topics: ['Reaction Mechanisms', 'Spectroscopy', 'Synthesis'] },
+            { name: 'Inorganic Chemistry', nameTamil: 'கனிம வேதியியல்', questions: 35, marks: 35, topics: ['Coordination', 'Organometallics', 'Bioinorganic'] },
+            { name: 'Physical Chemistry', nameTamil: 'பௌதிக வேதியியல்', questions: 30, marks: 30, topics: ['Thermodynamics', 'Kinetics', 'Quantum'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['NET/GATE exam', 'Pharma industry', 'Lab skills via contact classes'],
+        seatMatrix: { general: 45, obc: 70, bcMbc: 88, sc: 38, st: 7, ews: 16, total: 264 },
+        cutoffs: [
+          { year: '2024', general: 50.0, obc: 45.0, bcMbc: 40.0, sc: 30.0, st: 25.0, ews: 43.0 },
+          { year: '2023', general: 52.0, obc: 47.0, bcMbc: 42.0, sc: 32.0, st: 27.0, ews: 45.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-msc-botany',
+        name: 'M.Sc. Botany (Distance)',
+        nameTamil: 'எம்.எஸ்சி. தாவரவியல் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Plant Sciences', nameTamil: 'தாவர அறிவியல்', questions: 40, marks: 40, topics: ['Taxonomy', 'Morphology', 'Anatomy'] },
+            { name: 'Plant Physiology', nameTamil: 'தாவர உடலியல்', questions: 30, marks: 30, topics: ['Biochemistry', 'Molecular Biology'] },
+            { name: 'Ecology & Environment', nameTamil: 'சூழலியல் & சுற்றுச்சூழல்', questions: 30, marks: 30, topics: ['Ecology', 'Biotechnology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['NET/SET exam', 'Environmental career', 'Field work important'],
+        seatMatrix: { general: 40, obc: 65, bcMbc: 80, sc: 35, st: 6, ews: 15, total: 241 },
+        cutoffs: [
+          { year: '2024', general: 48.0, obc: 43.0, bcMbc: 38.0, sc: 28.0, st: 23.0, ews: 41.0 },
+          { year: '2023', general: 50.0, obc: 45.0, bcMbc: 40.0, sc: 30.0, st: 25.0, ews: 43.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-msc-zoology',
+        name: 'M.Sc. Zoology (Distance)',
+        nameTamil: 'எம்.எஸ்சி. விலங்கியல் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Animal Diversity', nameTamil: 'விலங்கு பல்வகைமை', questions: 35, marks: 35, topics: ['Invertebrates', 'Vertebrates', 'Systematics'] },
+            { name: 'Physiology', nameTamil: 'உடலியல்', questions: 35, marks: 35, topics: ['Cell Biology', 'Genetics', 'Developmental'] },
+            { name: 'Ecology & Evolution', nameTamil: 'சூழலியல் & பரிணாமம்', questions: 30, marks: 30, topics: ['Evolution', 'Ethology', 'Conservation'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['NET/SET exam', 'Wildlife career', 'Research opportunities'],
+        seatMatrix: { general: 40, obc: 65, bcMbc: 80, sc: 35, st: 6, ews: 15, total: 241 },
+        cutoffs: [
+          { year: '2024', general: 49.0, obc: 44.0, bcMbc: 39.0, sc: 29.0, st: 24.0, ews: 42.0 },
+          { year: '2023', general: 51.0, obc: 46.0, bcMbc: 41.0, sc: 31.0, st: 26.0, ews: 44.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-msc-cs',
+        name: 'M.Sc. Computer Science (Distance)',
+        nameTamil: 'எம்.எஸ்சி. கணினி அறிவியல் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Core CS', nameTamil: 'முக்கிய சிஎஸ்', questions: 40, marks: 40, topics: ['Algorithms', 'Data Structures', 'OS', 'DBMS'] },
+            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 30, marks: 30, topics: ['OOP', 'Java', 'Python', 'Web'] },
+            { name: 'Advanced Topics', nameTamil: 'மேம்பட்ட தலைப்புகள்', questions: 30, marks: 30, topics: ['AI', 'ML', 'Cloud', 'Networks'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['IT industry career', 'GATE preparation', 'Programming skills essential'],
+        seatMatrix: { general: 60, obc: 95, bcMbc: 120, sc: 52, st: 9, ews: 22, total: 358 },
+        cutoffs: [
+          { year: '2024', general: 54.0, obc: 49.0, bcMbc: 44.0, sc: 34.0, st: 29.0, ews: 47.0 },
+          { year: '2023', general: 56.0, obc: 51.0, bcMbc: 46.0, sc: 36.0, st: 31.0, ews: 49.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-msc-it',
+        name: 'M.Sc. Information Technology (Distance)',
+        nameTamil: 'எம்.எஸ்சி. தகவல் தொழில்நுட்பம் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'IT Fundamentals', nameTamil: 'ஐடி அடிப்படைகள்', questions: 35, marks: 35, topics: ['Networking', 'Security', 'Cloud'] },
+            { name: 'Software Engineering', nameTamil: 'மென்பொருள் பொறியியல்', questions: 35, marks: 35, topics: ['SDLC', 'Testing', 'DevOps'] },
+            { name: 'Emerging Tech', nameTamil: 'வளர்ந்துவரும் தொழில்நுட்பம்', questions: 30, marks: 30, topics: ['IoT', 'Big Data', 'AI'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['IT industry career', 'Cloud certification valuable', 'Hands-on projects important'],
+        seatMatrix: { general: 55, obc: 85, bcMbc: 105, sc: 46, st: 8, ews: 20, total: 319 },
+        cutoffs: [
+          { year: '2024', general: 52.0, obc: 47.0, bcMbc: 42.0, sc: 32.0, st: 27.0, ews: 45.0 },
+          { year: '2023', general: 54.0, obc: 49.0, bcMbc: 44.0, sc: 34.0, st: 29.0, ews: 47.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-msc-geography',
+        name: 'M.Sc. Geography (Distance)',
+        nameTamil: 'எம்.எஸ்சி. புவியியல் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physical Geography', nameTamil: 'இயற்கை புவியியல்', questions: 35, marks: 35, topics: ['Geomorphology', 'Climatology', 'Hydrology'] },
+            { name: 'Human Geography', nameTamil: 'மனித புவியியல்', questions: 35, marks: 35, topics: ['Population', 'Urban', 'Economic'] },
+            { name: 'Techniques', nameTamil: 'நுட்பங்கள்', questions: 30, marks: 30, topics: ['GIS', 'Remote Sensing', 'Cartography'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['UPSC optional', 'GIS skills valuable', 'Urban planning career'],
+        seatMatrix: { general: 40, obc: 65, bcMbc: 80, sc: 35, st: 6, ews: 15, total: 241 },
+        cutoffs: [
+          { year: '2024', general: 47.0, obc: 42.0, bcMbc: 37.0, sc: 27.0, st: 22.0, ews: 40.0 },
+          { year: '2023', general: 49.0, obc: 44.0, bcMbc: 39.0, sc: 29.0, st: 24.0, ews: 42.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-msc-yoga',
+        name: 'M.Sc. Yoga (Distance)',
+        nameTamil: 'எம்.எஸ்சி. யோகா (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Yoga Philosophy', nameTamil: 'யோகா தத்துவம்', questions: 35, marks: 35, topics: ['Yoga Sutras', 'Upanishads', 'Bhagavad Gita'] },
+            { name: 'Yoga Therapy', nameTamil: 'யோகா சிகிச்சை', questions: 35, marks: 35, topics: ['Clinical Yoga', 'Stress Management', 'Wellness'] },
+            { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 30, marks: 30, topics: ['Yoga Research', 'Statistics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Yoga therapy career', 'Wellness industry', 'Certification courses'],
+        seatMatrix: { general: 35, obc: 55, bcMbc: 70, sc: 30, st: 5, ews: 13, total: 208 },
+        cutoffs: [
+          { year: '2024', general: 44.0, obc: 39.0, bcMbc: 34.0, sc: 24.0, st: 19.0, ews: 37.0 },
+          { year: '2023', general: 46.0, obc: 41.0, bcMbc: 36.0, sc: 26.0, st: 21.0, ews: 39.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-mcom-general',
+        name: 'M.Com General (Distance)',
+        nameTamil: 'எம்.காம் பொது (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Advanced Accounting', nameTamil: 'மேம்பட்ட கணக்கியல்', questions: 40, marks: 40, topics: ['Corporate Accounting', 'Cost Accounting', 'Auditing'] },
+            { name: 'Commerce', nameTamil: 'வணிகவியல்', questions: 30, marks: 30, topics: ['Business Law', 'Company Law', 'Taxation'] },
+            { name: 'Finance', nameTamil: 'நிதி', questions: 30, marks: 30, topics: ['Financial Management', 'Investment', 'Banking'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['CA/CMA career path', 'NET/SET exam', 'Accounting software skills'],
+        seatMatrix: { general: 70, obc: 110, bcMbc: 135, sc: 58, st: 10, ews: 25, total: 408 },
+        cutoffs: [
+          { year: '2024', general: 52.0, obc: 47.0, bcMbc: 42.0, sc: 32.0, st: 27.0, ews: 45.0 },
+          { year: '2023', general: 54.0, obc: 49.0, bcMbc: 44.0, sc: 34.0, st: 29.0, ews: 47.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-mcom-fm',
+        name: 'M.Com Financial Management (Distance)',
+        nameTamil: 'எம்.காம் நிதி மேலாண்மை (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Financial Management', nameTamil: 'நிதி மேலாண்மை', questions: 40, marks: 40, topics: ['Capital Budgeting', 'Working Capital', 'Dividend Policy'] },
+            { name: 'Investment', nameTamil: 'முதலீடு', questions: 30, marks: 30, topics: ['Portfolio', 'Security Analysis', 'Derivatives'] },
+            { name: 'Corporate Finance', nameTamil: 'கார்ப்பரேட் நிதி', questions: 30, marks: 30, topics: ['Mergers', 'Valuation', 'Restructuring'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Finance career', 'CFA certification', 'Stock market knowledge'],
+        seatMatrix: { general: 55, obc: 85, bcMbc: 105, sc: 46, st: 8, ews: 20, total: 319 },
+        cutoffs: [
+          { year: '2024', general: 53.0, obc: 48.0, bcMbc: 43.0, sc: 33.0, st: 28.0, ews: 46.0 },
+          { year: '2023', general: 55.0, obc: 50.0, bcMbc: 45.0, sc: 35.0, st: 30.0, ews: 48.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-mcom-bank',
+        name: 'M.Com Bank Management (Distance)',
+        nameTamil: 'எம்.காம் வங்கி மேலாண்மை (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Banking Theory', nameTamil: 'வங்கியியல் கோட்பாடு', questions: 40, marks: 40, topics: ['Banking Operations', 'Credit', 'Risk Management'] },
+            { name: 'Financial Services', nameTamil: 'நிதி சேவைகள்', questions: 30, marks: 30, topics: ['Insurance', 'Mutual Funds', 'Investment Banking'] },
+            { name: 'Regulations', nameTamil: 'ஒழுங்குமுறைகள்', questions: 30, marks: 30, topics: ['RBI', 'SEBI', 'Banking Law'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Bank PO preparation', 'RBI Grade B', 'Financial sector career'],
+        seatMatrix: { general: 50, obc: 80, bcMbc: 100, sc: 44, st: 8, ews: 18, total: 300 },
+        cutoffs: [
+          { year: '2024', general: 51.0, obc: 46.0, bcMbc: 41.0, sc: 31.0, st: 26.0, ews: 44.0 },
+          { year: '2023', general: 53.0, obc: 48.0, bcMbc: 43.0, sc: 33.0, st: 28.0, ews: 46.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-mcom-ca',
+        name: 'M.Com Computer Applications (Distance)',
+        nameTamil: 'எம்.காம் கணினி பயன்பாடுகள் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Commerce', nameTamil: 'வணிகவியல்', questions: 35, marks: 35, topics: ['Accounting', 'Finance', 'Business Law'] },
+            { name: 'Computer Applications', nameTamil: 'கணினி பயன்பாடுகள்', questions: 35, marks: 35, topics: ['DBMS', 'E-Commerce', 'Web Design'] },
+            { name: 'Business IT', nameTamil: 'வணிக ஐடி', questions: 30, marks: 30, topics: ['ERP', 'Tally', 'Business Analytics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Commerce + IT skills', 'ERP knowledge valuable', 'Digital business career'],
+        seatMatrix: { general: 55, obc: 85, bcMbc: 105, sc: 46, st: 8, ews: 20, total: 319 },
+        cutoffs: [
+          { year: '2024', general: 52.0, obc: 47.0, bcMbc: 42.0, sc: 32.0, st: 27.0, ews: 45.0 },
+          { year: '2023', general: 54.0, obc: 49.0, bcMbc: 44.0, sc: 34.0, st: 29.0, ews: 47.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-mba-general',
+        name: 'M.B.A. General (Distance)',
+        nameTamil: 'எம்.பி.ஏ. பொது (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Management', nameTamil: 'மேலாண்மை', questions: 40, marks: 40, topics: ['Principles', 'OB', 'HR', 'Operations'] },
+            { name: 'Marketing & Finance', nameTamil: 'சந்தைப்படுத்தல் & நிதி', questions: 30, marks: 30, topics: ['Marketing', 'Financial Management', 'Accounting'] },
+            { name: 'Quantitative', nameTamil: 'அளவு', questions: 30, marks: 30, topics: ['Statistics', 'Decision Sciences'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Management career', 'Working professionals', 'Case study method'],
+        seatMatrix: { general: 100, obc: 150, bcMbc: 185, sc: 80, st: 15, ews: 35, total: 565 },
+        cutoffs: [
+          { year: '2024', general: 55.0, obc: 50.0, bcMbc: 45.0, sc: 35.0, st: 30.0, ews: 48.0 },
+          { year: '2023', general: 57.0, obc: 52.0, bcMbc: 47.0, sc: 37.0, st: 32.0, ews: 50.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-mba-hr',
+        name: 'M.B.A. Human Resource (Distance)',
+        nameTamil: 'எம்.பி.ஏ. மனிதவளம் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'HR Management', nameTamil: 'மனிதவள மேலாண்மை', questions: 40, marks: 40, topics: ['Recruitment', 'Training', 'Performance', 'Compensation'] },
+            { name: 'General Management', nameTamil: 'பொது மேலாண்மை', questions: 30, marks: 30, topics: ['Principles', 'OB', 'Strategy'] },
+            { name: 'Labour Laws', nameTamil: 'தொழிலாளர் சட்டங்கள்', questions: 30, marks: 30, topics: ['IR', 'Labour Welfare', 'Employment Law'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['HR career path', 'Corporate HR jobs', 'Learn HRMS software'],
+        seatMatrix: { general: 70, obc: 110, bcMbc: 135, sc: 58, st: 10, ews: 25, total: 408 },
+        cutoffs: [
+          { year: '2024', general: 54.0, obc: 49.0, bcMbc: 44.0, sc: 34.0, st: 29.0, ews: 47.0 },
+          { year: '2023', general: 56.0, obc: 51.0, bcMbc: 46.0, sc: 36.0, st: 31.0, ews: 49.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-mba-finance',
+        name: 'M.B.A. Finance (Distance)',
+        nameTamil: 'எம்.பி.ஏ. நிதி (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Financial Management', nameTamil: 'நிதி மேலாண்மை', questions: 40, marks: 40, topics: ['Corporate Finance', 'Investment', 'Risk Management'] },
+            { name: 'General Management', nameTamil: 'பொது மேலாண்மை', questions: 30, marks: 30, topics: ['Principles', 'Marketing', 'Strategy'] },
+            { name: 'Accounting', nameTamil: 'கணக்கியல்', questions: 30, marks: 30, topics: ['Financial Accounting', 'Cost', 'Management Accounting'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Finance career', 'CFA/FRM certification', 'Investment banking'],
+        seatMatrix: { general: 75, obc: 115, bcMbc: 140, sc: 60, st: 11, ews: 26, total: 427 },
+        cutoffs: [
+          { year: '2024', general: 56.0, obc: 51.0, bcMbc: 46.0, sc: 36.0, st: 31.0, ews: 49.0 },
+          { year: '2023', general: 58.0, obc: 53.0, bcMbc: 48.0, sc: 38.0, st: 33.0, ews: 51.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-mba-operations',
+        name: 'M.B.A. Operations (Distance)',
+        nameTamil: 'எம்.பி.ஏ. செயல்பாடுகள் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Operations Management', nameTamil: 'செயல்பாட்டு மேலாண்மை', questions: 40, marks: 40, topics: ['Production', 'Quality', 'Supply Chain'] },
+            { name: 'General Management', nameTamil: 'பொது மேலாண்மை', questions: 30, marks: 30, topics: ['Principles', 'HR', 'Strategy'] },
+            { name: 'Quantitative Methods', nameTamil: 'அளவு முறைகள்', questions: 30, marks: 30, topics: ['OR', 'Statistics', 'Decision Analysis'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Manufacturing career', 'Supply chain management', 'Six Sigma certification'],
+        seatMatrix: { general: 60, obc: 95, bcMbc: 120, sc: 52, st: 9, ews: 22, total: 358 },
+        cutoffs: [
+          { year: '2024', general: 53.0, obc: 48.0, bcMbc: 43.0, sc: 33.0, st: 28.0, ews: 46.0 },
+          { year: '2023', general: 55.0, obc: 50.0, bcMbc: 45.0, sc: 35.0, st: 30.0, ews: 48.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-mba-systems',
+        name: 'M.B.A. Systems (Distance)',
+        nameTamil: 'எம்.பி.ஏ. அமைப்புகள் (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'IT Management', nameTamil: 'ஐடி மேலாண்மை', questions: 40, marks: 40, topics: ['MIS', 'ERP', 'IT Strategy', 'Project Management'] },
+            { name: 'General Management', nameTamil: 'பொது மேலாண்மை', questions: 30, marks: 30, topics: ['Principles', 'Marketing', 'Finance'] },
+            { name: 'Technology', nameTamil: 'தொழில்நுட்பம்', questions: 30, marks: 30, topics: ['DBMS', 'Networks', 'Security'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['IT management career', 'CIO path', 'Technical + management skills'],
+        seatMatrix: { general: 55, obc: 85, bcMbc: 105, sc: 46, st: 8, ews: 20, total: 319 },
+        cutoffs: [
+          { year: '2024', general: 54.0, obc: 49.0, bcMbc: 44.0, sc: 34.0, st: 29.0, ews: 47.0 },
+          { year: '2023', general: 56.0, obc: 51.0, bcMbc: 46.0, sc: 36.0, st: 31.0, ews: 49.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-mba-logistics',
+        name: 'M.B.A. Logistics & Supply Chain (Distance)',
+        nameTamil: 'எம்.பி.ஏ. தளவாடம் & விநியோக சங்கிலி (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Supply Chain', nameTamil: 'விநியோக சங்கிலி', questions: 40, marks: 40, topics: ['Logistics', 'Procurement', 'Distribution', 'Warehousing'] },
+            { name: 'General Management', nameTamil: 'பொது மேலாண்மை', questions: 30, marks: 30, topics: ['Principles', 'Operations', 'Strategy'] },
+            { name: 'Quantitative', nameTamil: 'அளவு', questions: 30, marks: 30, topics: ['Transportation Models', 'Inventory Management'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['E-commerce logistics career', 'Supply chain analyst', 'Global trade opportunities'],
+        seatMatrix: { general: 50, obc: 80, bcMbc: 100, sc: 44, st: 8, ews: 18, total: 300 },
+        cutoffs: [
+          { year: '2024', general: 52.0, obc: 47.0, bcMbc: 42.0, sc: 32.0, st: 27.0, ews: 45.0 },
+          { year: '2023', general: 54.0, obc: 49.0, bcMbc: 44.0, sc: 34.0, st: 29.0, ews: 47.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-mca',
+        name: 'M.C.A. (Distance)',
+        nameTamil: 'எம்.சி.ஏ. (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Core CS', nameTamil: 'முக்கிய சிஎஸ்', questions: 40, marks: 40, topics: ['Algorithms', 'Data Structures', 'OS', 'DBMS'] },
+            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 35, marks: 35, topics: ['Java', 'Python', 'Web Technologies', 'Mobile Dev'] },
+            { name: 'Software Engineering', nameTamil: 'மென்பொருள் பொறியியல்', questions: 25, marks: 25, topics: ['SDLC', 'Testing', 'Project Management'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['IT industry career', 'Strong programming skills', 'GATE preparation'],
+        seatMatrix: { general: 80, obc: 120, bcMbc: 150, sc: 65, st: 12, ews: 28, total: 455 },
+        cutoffs: [
+          { year: '2024', general: 55.0, obc: 50.0, bcMbc: 45.0, sc: 35.0, st: 30.0, ews: 48.0 },
+          { year: '2023', general: 57.0, obc: 52.0, bcMbc: 47.0, sc: 37.0, st: 32.0, ews: 50.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-msw',
+        name: 'M.S.W. (Distance)',
+        nameTamil: 'எம்.எஸ்.டபிள்யூ. (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Social Work Methods', nameTamil: 'சமூக பணி முறைகள்', questions: 40, marks: 40, topics: ['Case Work', 'Group Work', 'Community Organization'] },
+            { name: 'Social Sciences', nameTamil: 'சமூக அறிவியல்', questions: 30, marks: 30, topics: ['Sociology', 'Psychology', 'Social Problems'] },
+            { name: 'Welfare', nameTamil: 'நலன்', questions: 30, marks: 30, topics: ['Social Welfare', 'Government Schemes', 'NGO Management'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['NGO career', 'Social welfare department', 'Field work important'],
+        seatMatrix: { general: 60, obc: 95, bcMbc: 120, sc: 52, st: 9, ews: 22, total: 358 },
+        cutoffs: [
+          { year: '2024', general: 48.0, obc: 43.0, bcMbc: 38.0, sc: 28.0, st: 23.0, ews: 41.0 },
+          { year: '2023', general: 50.0, obc: 45.0, bcMbc: 40.0, sc: 30.0, st: 25.0, ews: 43.0 }
+        ]
+      },
+      {
+        id: 'bdu-cde-mlibisc',
+        name: 'M.Lib.I.Sc. (Distance)',
+        nameTamil: 'எம்.லிப்.ஐ.எஸ்சி. (தொலைநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Library Science', nameTamil: 'நூலக அறிவியல்', questions: 40, marks: 40, topics: ['Classification', 'Cataloguing', 'Reference Services'] },
+            { name: 'Information Technology', nameTamil: 'தகவல் தொழில்நுட்பம்', questions: 30, marks: 30, topics: ['Digital Libraries', 'Library Automation', 'Databases'] },
+            { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 30, marks: 30, topics: ['Research Methodology', 'Statistics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['University librarian career', 'NET exam', 'Digital library skills'],
+        seatMatrix: { general: 45, obc: 70, bcMbc: 88, sc: 38, st: 7, ews: 16, total: 264 },
+        cutoffs: [
+          { year: '2024', general: 46.0, obc: 41.0, bcMbc: 36.0, sc: 26.0, st: 21.0, ews: 39.0 },
+          { year: '2023', general: 48.0, obc: 43.0, bcMbc: 38.0, sc: 28.0, st: 23.0, ews: 41.0 }
+        ]
       }
     ]
   },
