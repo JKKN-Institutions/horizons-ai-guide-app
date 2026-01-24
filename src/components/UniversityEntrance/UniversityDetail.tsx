@@ -1,8 +1,10 @@
+import { useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, MapPin, Globe, Phone, Mail, Calendar, IndianRupee } from 'lucide-react';
+import { ArrowLeft, MapPin, Globe, Phone, Mail, Calendar, IndianRupee, GraduationCap, BookOpen, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { universities } from '@/data/university-entrance-data';
 
 export const UniversityDetail = () => {
@@ -10,6 +12,35 @@ export const UniversityDetail = () => {
   const navigate = useNavigate();
 
   const university = universities.find(u => u.id === universityId);
+
+  // Group courses by category
+  const coursesByCategory = useMemo(() => {
+    if (!university) return { onCampus: [], dde: [], affiliated: [] };
+    
+    return {
+      onCampus: university.courses.filter(c => c.category === 'On-Campus' || !c.category),
+      dde: university.courses.filter(c => c.category === 'DDE'),
+      affiliated: university.courses.filter(c => c.category === 'Affiliated')
+    };
+  }, [university]);
+
+  // Check if university has multiple categories
+  const hasMultipleCategories = useMemo(() => {
+    const categories = [
+      coursesByCategory.onCampus.length > 0,
+      coursesByCategory.dde.length > 0,
+      coursesByCategory.affiliated.length > 0
+    ].filter(Boolean).length;
+    return categories > 1;
+  }, [coursesByCategory]);
+
+  // Determine default tab
+  const defaultTab = useMemo(() => {
+    if (coursesByCategory.onCampus.length > 0) return 'on-campus';
+    if (coursesByCategory.dde.length > 0) return 'dde';
+    if (coursesByCategory.affiliated.length > 0) return 'affiliated';
+    return 'on-campus';
+  }, [coursesByCategory]);
 
   if (!university) {
     return (
@@ -34,13 +65,96 @@ export const UniversityDetail = () => {
     }
   };
 
+  const CourseGrid = ({ courses }: { courses: typeof university.courses }) => {
+    // Group by school if available
+    const groupedBySchool = useMemo(() => {
+      const groups: Record<string, typeof courses> = {};
+      courses.forEach(course => {
+        const school = course.school || 'General';
+        if (!groups[school]) groups[school] = [];
+        groups[school].push(course);
+      });
+      return groups;
+    }, [courses]);
+
+    const hasSchools = Object.keys(groupedBySchool).length > 1 || !groupedBySchool['General'];
+
+    if (courses.length === 0) {
+      return (
+        <div className="text-center py-8 text-muted-foreground bg-slate-50 dark:bg-slate-900 rounded-xl">
+          <p>No courses available in this category.</p>
+        </div>
+      );
+    }
+
+    if (hasSchools) {
+      return (
+        <div className="space-y-6">
+          {Object.entries(groupedBySchool).map(([school, schoolCourses]) => (
+            <div key={school}>
+              <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
+                <Building2 className="h-5 w-5 text-primary" />
+                {school}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {schoolCourses.map((course) => (
+                  <CourseCard key={course.id} course={course} universityId={universityId!} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {courses.map((course) => (
+          <CourseCard key={course.id} course={course} universityId={universityId!} />
+        ))}
+      </div>
+    );
+  };
+
+  const CourseCard = ({ course, universityId }: { course: typeof university.courses[0], universityId: string }) => {
+    const navigate = useNavigate();
+    
+    return (
+      <button
+        onClick={() => navigate(`/tn-university-entrance/${universityId}/${course.id}`)}
+        className="p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-[#6a0dad] hover:shadow-lg hover:shadow-[#6a0dad]/10 transition-all text-left group"
+      >
+        <div className="flex items-center justify-between mb-2 flex-wrap gap-1">
+          <Badge variant="secondary" className="text-xs">
+            {course.type}
+          </Badge>
+          {course.duration && (
+            <span className="text-xs text-muted-foreground">{course.duration}</span>
+          )}
+        </div>
+        <h3 className="font-bold text-foreground group-hover:text-[#6a0dad] transition-colors text-sm">
+          {course.name}
+        </h3>
+        <p className="text-xs text-muted-foreground font-tamil mt-1">{course.nameTamil}</p>
+        {course.eligibility && (
+          <p className="text-xs text-muted-foreground mt-2 line-clamp-1">
+            📋 {course.eligibility}
+          </p>
+        )}
+        <p className="text-xs text-primary mt-2">
+          {course.previousQuestions.length} PYQs →
+        </p>
+      </button>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-4xl mx-auto p-4 space-y-6">
+      <div className="max-w-5xl mx-auto p-4 space-y-6">
         {/* Back Button */}
         <Button 
           variant="ghost" 
-          onClick={() => navigate('/career-assessment/colleges')}
+          onClick={() => navigate('/tn-university-entrance/browse')}
           className="gap-2 -ml-2"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -86,6 +200,28 @@ export const UniversityDetail = () => {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Stats Bar */}
+        <div className="grid grid-cols-3 gap-3">
+          <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border-purple-200 dark:border-purple-800">
+            <CardContent className="p-3 text-center">
+              <p className="text-2xl font-bold text-purple-600">{coursesByCategory.onCampus.length}</p>
+              <p className="text-xs text-muted-foreground">On-Campus</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border-blue-200 dark:border-blue-800">
+            <CardContent className="p-3 text-center">
+              <p className="text-2xl font-bold text-blue-600">{coursesByCategory.dde.length}</p>
+              <p className="text-xs text-muted-foreground">Distance Ed.</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-green-200 dark:border-green-800">
+            <CardContent className="p-3 text-center">
+              <p className="text-2xl font-bold text-green-600">{coursesByCategory.affiliated.length}</p>
+              <p className="text-xs text-muted-foreground">Affiliated</p>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Contact Info */}
@@ -165,38 +301,85 @@ export const UniversityDetail = () => {
           </CardContent>
         </Card>
 
-        {/* Courses */}
+        {/* Courses with Tabs */}
         <div>
           <h2 className="text-xl font-bold text-foreground mb-4">
             📚 Select Course / பாடநெறியைத் தேர்ந்தெடுக்கவும்
           </h2>
-          {university.courses.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {university.courses.map((course) => (
-                <button
-                  key={course.id}
-                  onClick={() => navigate(`/tn-university-entrance/${universityId}/${course.id}`)}
-                  className="p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-[#6a0dad] hover:shadow-lg hover:shadow-[#6a0dad]/10 transition-all text-left group"
+          
+          {hasMultipleCategories ? (
+            <Tabs defaultValue={defaultTab} className="w-full">
+              <TabsList className="grid w-full grid-cols-3 mb-4">
+                <TabsTrigger 
+                  value="on-campus" 
+                  className="flex items-center gap-1 text-xs sm:text-sm"
+                  disabled={coursesByCategory.onCampus.length === 0}
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <Badge variant="secondary" className="text-xs">
-                      {course.type}
-                    </Badge>
-                  </div>
-                  <h3 className="font-bold text-foreground group-hover:text-[#6a0dad] transition-colors">
-                    {course.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground font-tamil">{course.nameTamil}</p>
-                  <p className="text-xs text-primary mt-2">
-                    {course.previousQuestions.length} PYQs →
-                  </p>
-                </button>
-              ))}
-            </div>
+                  <GraduationCap className="h-4 w-4 hidden sm:block" />
+                  On-Campus
+                  <Badge variant="secondary" className="ml-1 text-xs">
+                    {coursesByCategory.onCampus.length}
+                  </Badge>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="dde" 
+                  className="flex items-center gap-1 text-xs sm:text-sm"
+                  disabled={coursesByCategory.dde.length === 0}
+                >
+                  <BookOpen className="h-4 w-4 hidden sm:block" />
+                  Distance Ed.
+                  <Badge variant="secondary" className="ml-1 text-xs">
+                    {coursesByCategory.dde.length}
+                  </Badge>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="affiliated" 
+                  className="flex items-center gap-1 text-xs sm:text-sm"
+                  disabled={coursesByCategory.affiliated.length === 0}
+                >
+                  <Building2 className="h-4 w-4 hidden sm:block" />
+                  Affiliated
+                  <Badge variant="secondary" className="ml-1 text-xs">
+                    {coursesByCategory.affiliated.length}
+                  </Badge>
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="on-campus" className="mt-0">
+                <Card className="border-purple-200 dark:border-purple-800 mb-4">
+                  <CardContent className="p-3">
+                    <p className="text-sm text-muted-foreground">
+                      🏛️ <strong>On-Campus Programs</strong> are offered directly at the university's main campus with regular classroom teaching.
+                    </p>
+                  </CardContent>
+                </Card>
+                <CourseGrid courses={coursesByCategory.onCampus} />
+              </TabsContent>
+
+              <TabsContent value="dde" className="mt-0">
+                <Card className="border-blue-200 dark:border-blue-800 mb-4">
+                  <CardContent className="p-3">
+                    <p className="text-sm text-muted-foreground">
+                      📖 <strong>Distance Education</strong> programs for working professionals who cannot attend regular classes.
+                    </p>
+                  </CardContent>
+                </Card>
+                <CourseGrid courses={coursesByCategory.dde} />
+              </TabsContent>
+
+              <TabsContent value="affiliated" className="mt-0">
+                <Card className="border-green-200 dark:border-green-800 mb-4">
+                  <CardContent className="p-3">
+                    <p className="text-sm text-muted-foreground">
+                      🏫 <strong>Affiliated College Courses</strong> offered at colleges affiliated to this university across Tamil Nadu.
+                    </p>
+                  </CardContent>
+                </Card>
+                <CourseGrid courses={coursesByCategory.affiliated} />
+              </TabsContent>
+            </Tabs>
           ) : (
-            <div className="text-center py-8 text-muted-foreground bg-slate-50 dark:bg-slate-900 rounded-xl">
-              <p>Course details coming soon...</p>
-            </div>
+            <CourseGrid courses={university.courses} />
           )}
         </div>
       </div>
