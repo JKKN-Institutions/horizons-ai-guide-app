@@ -7251,6 +7251,714 @@ export const universities: University[] = [
           }
         ],
         tips: ['MS General Surgery prerequisite', 'Intensive 3-year training', 'High competition exam']
+      },
+      // ============= BUMS (Unani Medicine) =============
+      {
+        id: 'mgr-bums',
+        name: 'BUMS (Bachelor of Unani Medicine & Surgery)',
+        nameTamil: 'பி.யு.எம்.எஸ் (யுனானி மருத்துவம்)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 720,
+          duration: '3 Hours 20 Minutes',
+          durationMinutes: 200,
+          mode: 'Computer Based Test (NEET-UG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 180, topics: ['Mechanics', 'Heat', 'Optics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 180, topics: ['Organic', 'Inorganic', 'Physical'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 90, marks: 360, topics: ['Botany', 'Zoology', 'Anatomy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-bums-q1', year: '2024', question: 'The founder of Unani medicine is considered to be:', options: ['Hippocrates', 'Galen', 'Avicenna', 'Charaka'], correctAnswer: 0, explanation: 'Hippocrates is considered the father of Unani medicine, which was later developed by Greek and Arab physicians.', topic: 'Unani History', difficulty: 'Easy' }
+        ],
+        tips: ['NEET-UG is mandatory', 'Limited colleges in TN', 'Focus on Biology for NEET preparation']
+      },
+      // ============= BNYS (Naturopathy & Yoga) =============
+      {
+        id: 'mgr-bnys',
+        name: 'BNYS (Bachelor of Naturopathy & Yogic Sciences)',
+        nameTamil: 'பி.என்.ஒய்.எஸ் (இயற்கை மருத்துவம் & யோகா)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 720,
+          duration: '3 Hours 20 Minutes',
+          durationMinutes: 200,
+          mode: 'Computer Based Test (NEET-UG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 180, topics: ['Mechanics', 'Heat', 'Light'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 180, topics: ['Organic', 'Inorganic', 'Physical'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 90, marks: 360, topics: ['Botany', 'Zoology', 'Human Physiology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-bnys-q1', year: '2024', question: 'The Five Elements (Pancha Mahabhutas) in Naturopathy are:', options: ['Earth, Water, Fire, Air, Ether', 'Earth, Water, Fire, Wind, Space', 'Fire, Water, Air, Metal, Wood', 'Water, Fire, Earth, Sky, Soul'], correctAnswer: 0, explanation: 'Pancha Mahabhutas are Earth (Prithvi), Water (Jala), Fire (Agni), Air (Vayu), and Ether/Space (Akasha).', topic: 'Naturopathy Principles', difficulty: 'Easy' }
+        ],
+        tips: ['NEET-UG required', 'Growing demand for holistic medicine', 'Yoga certification beneficial']
+      },
+      // ============= BOT (Occupational Therapy UG) =============
+      {
+        id: 'mgr-bot',
+        name: 'BOT (Bachelor of Occupational Therapy)',
+        nameTamil: 'பி.ஓ.டி (தொழில் சிகிச்சை இளங்கலை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Merit Based (12th PCB)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 25, marks: 25, topics: ['Mechanics', 'Heat', 'Light'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 25, marks: 25, topics: ['Organic', 'Inorganic', 'Physical'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 35, marks: 35, topics: ['Anatomy', 'Physiology', 'Biochemistry'] },
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 15, marks: 15, topics: ['Grammar', 'Comprehension'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-bot-q1', year: '2024', question: 'OT focuses primarily on:', options: ['Surgery', 'Medication', 'Daily living activities rehabilitation', 'Lab diagnosis'], correctAnswer: 2, explanation: 'Occupational Therapy focuses on helping people perform activities of daily living (ADL) through rehabilitation.', topic: 'OT Fundamentals', difficulty: 'Easy' }
+        ],
+        tips: ['4-year program with internship', 'Focus on rehabilitation sciences', 'Good scope in pediatrics and neurology']
+      },
+      // ============= B.Sc Dialysis Technology =============
+      {
+        id: 'mgr-bsc-dialysis',
+        name: 'B.Sc Renal Dialysis Technology',
+        nameTamil: 'பி.எஸ்சி சிறுநீரக டயாலிசிஸ் தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Merit Based (12th PCB)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Renal Physiology', 'Anatomy', 'Nephrology Basics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Biochemistry', 'Clinical Chemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Dialysis Equipment', 'Fluid Mechanics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-dialysis-q1', year: '2024', question: 'The functional unit of kidney is:', options: ['Glomerulus', 'Nephron', 'Bowman capsule', 'Loop of Henle'], correctAnswer: 1, explanation: 'Nephron is the structural and functional unit of the kidney responsible for urine formation.', topic: 'Renal Anatomy', difficulty: 'Easy' }
+        ],
+        tips: ['High demand in hospitals', 'Focus on renal physiology', 'Practical skills essential']
+      },
+      // ============= B.Sc Respiratory Therapy =============
+      {
+        id: 'mgr-bsc-respiratory',
+        name: 'B.Sc Respiratory Therapy',
+        nameTamil: 'பி.எஸ்சி சுவாச சிகிச்சை',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Merit Based (12th PCB)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Pulmonary Anatomy', 'Respiratory Physiology'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Blood Gas Analysis', 'Biochemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Ventilator Physics', 'Gas Laws'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-resp-q1', year: '2024', question: 'Normal respiratory rate in adults is:', options: ['8-12/min', '12-20/min', '20-30/min', '30-40/min'], correctAnswer: 1, explanation: 'Normal adult respiratory rate is 12-20 breaths per minute at rest.', topic: 'Respiratory Physiology', difficulty: 'Easy' }
+        ],
+        tips: ['Critical care knowledge essential', 'Learn ventilator management', 'ICU exposure important']
+      },
+      // ============= B.Sc Critical Care Technology =============
+      {
+        id: 'mgr-bsc-criticalcare',
+        name: 'B.Sc Critical Care Technology',
+        nameTamil: 'பி.எஸ்சி தீவிர சிகிச்சை தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Merit Based (12th PCB)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Human Physiology', 'Anatomy', 'Pathology Basics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Biochemistry', 'Drug Chemistry'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['ICU Equipment', 'Monitoring Devices'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-cc-q1', year: '2024', question: 'Glasgow Coma Scale maximum score is:', options: ['10', '12', '15', '20'], correctAnswer: 2, explanation: 'GCS maximum is 15 (Eyes 4 + Verbal 5 + Motor 6).', topic: 'Critical Care Assessment', difficulty: 'Easy' }
+        ],
+        tips: ['ICU protocols essential', 'Learn monitoring equipment', 'Emergency care knowledge important']
+      },
+      // ============= B.Sc Physician Assistant =============
+      {
+        id: 'mgr-bsc-physician-assistant',
+        name: 'B.Sc Physician Assistant',
+        nameTamil: 'பி.எஸ்சி மருத்துவர் உதவியாளர்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Merit Based (12th PCB)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Anatomy', 'Physiology', 'Clinical Medicine Basics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Pharmacology Basics', 'Biochemistry'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 30, marks: 30, topics: ['Reasoning', 'English', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-pa-q1', year: '2024', question: 'A Physician Assistant can:', options: ['Perform surgery independently', 'Prescribe medicines under physician supervision', 'Operate a clinic alone', 'Issue death certificates'], correctAnswer: 1, explanation: 'PAs work under physician supervision and can prescribe medications as per regulations.', topic: 'PA Scope', difficulty: 'Easy' }
+        ],
+        tips: ['Growing career in India', 'Clinical rotations important', 'Learn primary care skills']
+      },
+      // ============= B.Sc Emergency & Trauma Care =============
+      {
+        id: 'mgr-bsc-emergency',
+        name: 'B.Sc Accident & Emergency Care Technology',
+        nameTamil: 'பி.எஸ்சி விபத்து & அவசர சிகிச்சை தொழில்நுட்பம்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Merit Based (12th PCB)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Trauma Anatomy', 'Emergency Physiology'] },
+            { name: 'First Aid', nameTamil: 'முதலுதவி', questions: 35, marks: 35, topics: ['CPR', 'Trauma Management', 'Triage'] },
+            { name: 'General', nameTamil: 'பொது', questions: 25, marks: 25, topics: ['Emergency Protocols', 'Equipment'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-emergency-q1', year: '2024', question: 'The correct chest compression rate for adult CPR is:', options: ['60-80/min', '80-100/min', '100-120/min', '120-140/min'], correctAnswer: 2, explanation: 'Current AHA guidelines recommend 100-120 compressions per minute for adult CPR.', topic: 'CPR', difficulty: 'Easy' }
+        ],
+        tips: ['ACLS/BLS certification helpful', 'Learn trauma protocols', 'Ambulance training essential']
+      },
+      // ============= B.Sc Optometry =============
+      {
+        id: 'mgr-bsc-optometry',
+        name: 'B.Sc Optometry',
+        nameTamil: 'பி.எஸ்சி கண் பரிசோதனை',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Merit Based (12th PCB)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 35, marks: 35, topics: ['Optics', 'Light', 'Lens Physics'] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Eye Anatomy', 'Visual Physiology'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 25, marks: 25, topics: ['Biochemistry', 'Pharmacology Basics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-optometry-q1', year: '2024', question: 'Normal vision is referred to as:', options: ['6/60', '6/36', '6/6', '6/12'], correctAnswer: 2, explanation: '6/6 (or 20/20) is considered normal visual acuity.', topic: 'Visual Acuity', difficulty: 'Easy' }
+        ],
+        tips: ['Optics knowledge essential', 'Clinical exposure important', 'Growing demand for eye care']
+      },
+      // ============= B.Sc Neuro-Electrophysiology =============
+      {
+        id: 'mgr-bsc-neuroelectro',
+        name: 'B.Sc Neuro-Electrophysiology',
+        nameTamil: 'பி.எஸ்சி நரம்பு மின்னியல்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Merit Based (12th PCB)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Neuroanatomy', 'Neurophysiology'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 35, marks: 35, topics: ['Electronics', 'EEG/EMG Technology'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 25, marks: 25, topics: ['Neurochemistry', 'Biochemistry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-neuro-q1', year: '2024', question: 'EEG stands for:', options: ['Electromyography', 'Electroencephalography', 'Electrocorticography', 'Electrooculography'], correctAnswer: 1, explanation: 'EEG (Electroencephalography) records electrical activity of the brain.', topic: 'Neurophysiology', difficulty: 'Easy' }
+        ],
+        tips: ['Learn EEG/EMG interpretation', 'Neurology department exposure', 'Technical skills important']
+      },
+      // ============= B.Sc Clinical Nutrition =============
+      {
+        id: 'mgr-bsc-nutrition',
+        name: 'B.Sc Clinical Nutrition & Dietetics',
+        nameTamil: 'பி.எஸ்சி மருத்துவ ஊட்டச்சத்து',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Merit Based (12th PCB)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Human Nutrition', 'Metabolism', 'Biochemistry'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 35, marks: 35, topics: ['Food Chemistry', 'Nutritional Biochemistry'] },
+            { name: 'General', nameTamil: 'பொது', questions: 25, marks: 25, topics: ['Diet Planning', 'Public Health Nutrition'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-nutrition-q1', year: '2024', question: 'Vitamin C deficiency causes:', options: ['Beriberi', 'Scurvy', 'Pellagra', 'Rickets'], correctAnswer: 1, explanation: 'Scurvy is caused by Vitamin C (Ascorbic acid) deficiency.', topic: 'Nutritional Deficiencies', difficulty: 'Easy' }
+        ],
+        tips: ['Therapeutic diets knowledge', 'Hospital dietetics training', 'Growing wellness industry demand']
+      },
+      // ============= BASLP (Audiology & Speech) =============
+      {
+        id: 'mgr-baslp',
+        name: 'BASLP (Audiology & Speech-Language Pathology)',
+        nameTamil: 'பி.ஏ.எஸ்.எல்.பி (செவியியல் & பேச்சு சிகிச்சை)',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Merit Based (12th PCB)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Anatomy of Ear', 'Speech Physiology', 'Neurology'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Acoustics', 'Sound Physics'] },
+            { name: 'Psychology', nameTamil: 'உளவியல்', questions: 30, marks: 30, topics: ['Language Development', 'Cognitive Psychology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-baslp-q1', year: '2024', question: 'The unit of sound intensity is:', options: ['Hertz', 'Decibel', 'Ohm', 'Watt'], correctAnswer: 1, explanation: 'Decibel (dB) is the unit used to measure sound intensity.', topic: 'Acoustics', difficulty: 'Easy' }
+        ],
+        tips: ['Growing demand for speech therapists', 'Pediatric experience valuable', 'Learn audiometry equipment']
+      },
+      // ============= B.Sc Cardio-Pulmonary Perfusion =============
+      {
+        id: 'mgr-bsc-perfusion',
+        name: 'B.Sc Cardio-Pulmonary Perfusion Technology',
+        nameTamil: 'பி.எஸ்சி இதய-நுரையீரல் பெர்ஃபியூஷன்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'Merit Based (12th PCB)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Cardiac Anatomy', 'Cardiovascular Physiology'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Blood Chemistry', 'Anticoagulation'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Heart-Lung Machine', 'Hemodynamics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-perfusion-q1', year: '2024', question: 'A perfusionist operates the:', options: ['Ventilator', 'Heart-Lung Machine', 'Dialysis Machine', 'CT Scanner'], correctAnswer: 1, explanation: 'Perfusionists operate the heart-lung machine (cardiopulmonary bypass) during open-heart surgery.', topic: 'Perfusion Technology', difficulty: 'Easy' }
+        ],
+        tips: ['High-paying specialized field', 'Cardiac surgery OT training', 'Limited seats - competitive admission']
+      },
+      // ============= Post Basic B.Sc Nursing =============
+      {
+        id: 'mgr-pb-bsc-nursing',
+        name: 'Post Basic B.Sc Nursing',
+        nameTamil: 'போஸ்ட் பேசிக் பி.எஸ்சி செவிலியர்',
+        type: 'UG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Nursing', nameTamil: 'செவிலியர்', questions: 60, marks: 60, topics: ['Medical-Surgical Nursing', 'Community Health', 'Pediatrics'] },
+            { name: 'Applied Sciences', nameTamil: 'பயன்பாட்டு அறிவியல்', questions: 25, marks: 25, topics: ['Anatomy', 'Physiology', 'Pharmacology'] },
+            { name: 'General English', nameTamil: 'ஆங்கிலம்', questions: 15, marks: 15, topics: ['Grammar', 'Comprehension'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-pbnursing-q1', year: '2024', question: 'Post Basic B.Sc Nursing is a:', options: ['4-year course', '3-year course', '2-year course', '1-year course'], correctAnswer: 2, explanation: 'Post Basic B.Sc Nursing is a 2-year course for GNM diploma holders.', topic: 'Nursing Education', difficulty: 'Easy' }
+        ],
+        tips: ['For GNM diploma holders only', 'Work experience helpful', 'Bridge course for B.Sc degree']
+      },
+      // ============= MHA (Hospital Administration) =============
+      {
+        id: 'mgr-mha',
+        name: 'MHA (Master of Hospital Administration)',
+        nameTamil: 'எம்.எச்.ஏ (மருத்துவமனை நிர்வாக முதுநிலை)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'General Management', nameTamil: 'பொது நிர்வாகம்', questions: 40, marks: 40, topics: ['Hospital Organization', 'HR Management', 'Financial Management'] },
+            { name: 'Healthcare Systems', nameTamil: 'சுகாதார அமைப்புகள்', questions: 35, marks: 35, topics: ['Public Health', 'Healthcare Policy', 'Quality Management'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 25, marks: 25, topics: ['Reasoning', 'Data Interpretation', 'English'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-mha-q1', year: '2024', question: 'NABH stands for:', options: ['National Accreditation Board for Hospitals', 'National Assessment Board for Healthcare', 'National Authority for Better Hospitals', 'None of the above'], correctAnswer: 0, explanation: 'NABH is the National Accreditation Board for Hospitals and Healthcare Providers.', topic: 'Healthcare Accreditation', difficulty: 'Easy' }
+        ],
+        tips: ['Non-medical graduates can apply', 'Hospital internship required', 'Growing healthcare sector demand']
+      },
+      // ============= More Super-Specialty Courses =============
+      {
+        id: 'mgr-dm-neurology',
+        name: 'DM Neurology',
+        nameTamil: 'டி.எம் நரம்பியல்',
+        type: 'Super-Specialty',
+        examPattern: {
+          totalQuestions: 90,
+          totalMarks: 360,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Computer Based Test (NEET-SS)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Neurology', nameTamil: 'நரம்பியல்', questions: 90, marks: 360, topics: ['Stroke', 'Epilepsy', 'Movement Disorders', 'Neuromuscular'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-dm-neuro-q1', year: '2024', question: 'Most common cause of stroke is:', options: ['Hemorrhagic', 'Ischemic', 'Embolic', 'Venous'], correctAnswer: 1, explanation: 'Ischemic stroke accounts for about 85% of all strokes.', topic: 'Cerebrovascular Disease', difficulty: 'Easy' }
+        ],
+        tips: ['MD Medicine prerequisite', 'NEET-SS required', 'Neuro-imaging knowledge essential']
+      },
+      {
+        id: 'mgr-dm-nephrology',
+        name: 'DM Nephrology',
+        nameTamil: 'டி.எம் சிறுநீரகவியல்',
+        type: 'Super-Specialty',
+        examPattern: {
+          totalQuestions: 90,
+          totalMarks: 360,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Computer Based Test (NEET-SS)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Nephrology', nameTamil: 'சிறுநீரகவியல்', questions: 90, marks: 360, topics: ['CKD', 'Dialysis', 'Transplant', 'Glomerulonephritis'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-dm-nephro-q1', year: '2024', question: 'Normal GFR is:', options: ['60 mL/min', '90 mL/min', '120 mL/min', '150 mL/min'], correctAnswer: 2, explanation: 'Normal GFR is approximately 120 mL/min/1.73m² in adults.', topic: 'Renal Physiology', difficulty: 'Easy' }
+        ],
+        tips: ['MD Medicine prerequisite', 'Dialysis experience helpful', 'Renal biopsy interpretation important']
+      },
+      {
+        id: 'mgr-dm-gastro',
+        name: 'DM Gastroenterology',
+        nameTamil: 'டி.எம் இரைப்பை குடலியல்',
+        type: 'Super-Specialty',
+        examPattern: {
+          totalQuestions: 90,
+          totalMarks: 360,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Computer Based Test (NEET-SS)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Gastroenterology', nameTamil: 'இரைப்பை குடலியல்', questions: 90, marks: 360, topics: ['Endoscopy', 'Liver Diseases', 'IBD', 'Pancreatitis'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-dm-gastro-q1', year: '2024', question: 'Most common cause of cirrhosis in India is:', options: ['Alcohol', 'Hepatitis B', 'Hepatitis C', 'NAFLD'], correctAnswer: 0, explanation: 'Alcohol is the most common cause of cirrhosis in India, followed by Hepatitis B.', topic: 'Hepatology', difficulty: 'Medium' }
+        ],
+        tips: ['MD Medicine prerequisite', 'Endoscopy skills essential', 'Liver transplant centers preferred']
+      },
+      {
+        id: 'mgr-dm-oncology',
+        name: 'DM Medical Oncology',
+        nameTamil: 'டி.எம் புற்றுநோயியல்',
+        type: 'Super-Specialty',
+        examPattern: {
+          totalQuestions: 90,
+          totalMarks: 360,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Computer Based Test (NEET-SS)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Oncology', nameTamil: 'புற்றுநோயியல்', questions: 90, marks: 360, topics: ['Chemotherapy', 'Tumor Biology', 'Palliative Care', 'Immunotherapy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-dm-onco-q1', year: '2024', question: 'Most common cancer in Indian females is:', options: ['Lung', 'Breast', 'Cervix', 'Ovary'], correctAnswer: 1, explanation: 'Breast cancer has overtaken cervical cancer as the most common cancer in Indian women.', topic: 'Cancer Epidemiology', difficulty: 'Easy' }
+        ],
+        tips: ['MD Medicine prerequisite', 'Growing field with targeted therapies', 'Research opportunities abundant']
+      },
+      {
+        id: 'mgr-mch-plastic',
+        name: 'MCh Plastic Surgery',
+        nameTamil: 'எம்.சி.எச் பிளாஸ்டிக் அறுவை சிகிச்சை',
+        type: 'Super-Specialty',
+        examPattern: {
+          totalQuestions: 90,
+          totalMarks: 360,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Computer Based Test (NEET-SS)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Plastic Surgery', nameTamil: 'பிளாஸ்டிக் அறுவை சிகிச்சை', questions: 90, marks: 360, topics: ['Reconstructive Surgery', 'Burns', 'Hand Surgery', 'Cosmetic'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-mch-plastic-q1', year: '2024', question: 'Rule of Nine is used for:', options: ['Pain assessment', 'Burn area estimation', 'Wound healing', 'Scar assessment'], correctAnswer: 1, explanation: 'Wallace Rule of Nine is used to estimate the percentage of total body surface area (TBSA) affected by burns.', topic: 'Burns', difficulty: 'Easy' }
+        ],
+        tips: ['MS Surgery prerequisite', 'Microsurgery skills essential', 'Aesthetic surgery training available']
+      },
+      {
+        id: 'mgr-mch-urology',
+        name: 'MCh Urology',
+        nameTamil: 'எம்.சி.எச் சிறுநீரகவியல் அறுவை சிகிச்சை',
+        type: 'Super-Specialty',
+        examPattern: {
+          totalQuestions: 90,
+          totalMarks: 360,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Computer Based Test (NEET-SS)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Urology', nameTamil: 'சிறுநீர் அறுவை சிகிச்சை', questions: 90, marks: 360, topics: ['Uro-oncology', 'Stone Disease', 'Reconstructive Urology', 'Transplant'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-mch-uro-q1', year: '2024', question: 'Most common type of kidney stone is:', options: ['Uric acid', 'Calcium oxalate', 'Struvite', 'Cystine'], correctAnswer: 1, explanation: 'Calcium oxalate stones account for about 80% of all kidney stones.', topic: 'Urolithiasis', difficulty: 'Easy' }
+        ],
+        tips: ['MS Surgery prerequisite', 'Endourology training important', 'Robotic surgery exposure helpful']
+      },
+      {
+        id: 'mgr-mch-cardiothoracic',
+        name: 'MCh Cardio-Thoracic Surgery',
+        nameTamil: 'எம்.சி.எச் இதய-மார்பு அறுவை சிகிச்சை',
+        type: 'Super-Specialty',
+        examPattern: {
+          totalQuestions: 90,
+          totalMarks: 360,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Computer Based Test (NEET-SS)',
+          negativeMarking: true,
+          sections: [
+            { name: 'CTVS', nameTamil: 'இதய-மார்பு அறுவை', questions: 90, marks: 360, topics: ['CABG', 'Valve Surgery', 'Congenital Heart', 'Thoracic Surgery'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-mch-ctvs-q1', year: '2024', question: 'CABG stands for:', options: ['Cardiac Artery Bypass Graft', 'Coronary Artery Bypass Grafting', 'Cardio Aortic Bypass Graft', 'Central Arterial Bypass Graft'], correctAnswer: 1, explanation: 'CABG (Coronary Artery Bypass Grafting) is a surgical procedure to treat coronary artery disease.', topic: 'Cardiac Surgery', difficulty: 'Easy' }
+        ],
+        tips: ['MS Surgery prerequisite', 'Most demanding surgical specialty', 'Excellent hand skills required']
+      },
+      // ============= MD Specializations =============
+      {
+        id: 'mgr-md-pathology',
+        name: 'MD Pathology',
+        nameTamil: 'எம்.டி நோயியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 800,
+          duration: '3 Hours 30 Minutes',
+          durationMinutes: 210,
+          mode: 'Computer Based Test (NEET-PG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Pathology', nameTamil: 'நோயியல்', questions: 200, marks: 800, topics: ['General Pathology', 'Systemic Pathology', 'Hematology', 'Clinical Pathology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-md-path-q1', year: '2024', question: 'Apoptosis is characterized by:', options: ['Cell swelling', 'Cell shrinkage', 'Inflammation', 'Necrosis'], correctAnswer: 1, explanation: 'Apoptosis (programmed cell death) is characterized by cell shrinkage without inflammation.', topic: 'General Pathology', difficulty: 'Easy' }
+        ],
+        tips: ['MBBS prerequisite', 'NEET-PG required', 'Lab-based specialty']
+      },
+      {
+        id: 'mgr-md-anaesthesia',
+        name: 'MD Anaesthesiology',
+        nameTamil: 'எம்.டி மயக்கவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 800,
+          duration: '3 Hours 30 Minutes',
+          durationMinutes: 210,
+          mode: 'Computer Based Test (NEET-PG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Anaesthesiology', nameTamil: 'மயக்கவியல்', questions: 200, marks: 800, topics: ['General Anaesthesia', 'Regional Anaesthesia', 'Critical Care', 'Pain Medicine'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-md-anaes-q1', year: '2024', question: 'ASA classification is used for:', options: ['Difficulty intubation', 'Physical status assessment', 'Pain scoring', 'Sedation level'], correctAnswer: 1, explanation: 'ASA (American Society of Anesthesiologists) classification assesses patient physical status before anesthesia.', topic: 'Pre-operative Assessment', difficulty: 'Easy' }
+        ],
+        tips: ['MBBS prerequisite', 'OT and ICU training intensive', 'Critical care exposure important']
+      },
+      {
+        id: 'mgr-md-paediatrics',
+        name: 'MD Paediatrics',
+        nameTamil: 'எம்.டி குழந்தை மருத்துவம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 800,
+          duration: '3 Hours 30 Minutes',
+          durationMinutes: 210,
+          mode: 'Computer Based Test (NEET-PG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Paediatrics', nameTamil: 'குழந்தை மருத்துவம்', questions: 200, marks: 800, topics: ['Neonatology', 'Growth & Development', 'Pediatric Infections', 'Pediatric Emergencies'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-md-paed-q1', year: '2024', question: 'Normal birth weight of a term newborn is:', options: ['1.5-2.0 kg', '2.0-2.5 kg', '2.5-4.0 kg', '4.0-5.0 kg'], correctAnswer: 2, explanation: 'Normal birth weight for a term baby is 2.5-4.0 kg, with average around 3 kg.', topic: 'Neonatology', difficulty: 'Easy' }
+        ],
+        tips: ['MBBS prerequisite', 'NEET-PG required', 'Rewarding specialty for child healthcare']
+      },
+      {
+        id: 'mgr-md-psychiatry',
+        name: 'MD Psychiatry',
+        nameTamil: 'எம்.டி உளவியல் மருத்துவம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 800,
+          duration: '3 Hours 30 Minutes',
+          durationMinutes: 210,
+          mode: 'Computer Based Test (NEET-PG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Psychiatry', nameTamil: 'உளவியல் மருத்துவம்', questions: 200, marks: 800, topics: ['Mood Disorders', 'Schizophrenia', 'Anxiety', 'Substance Abuse', 'Child Psychiatry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-md-psych-q1', year: '2024', question: 'First-line treatment for Major Depressive Disorder is:', options: ['Benzodiazepines', 'SSRIs', 'Antipsychotics', 'Mood stabilizers'], correctAnswer: 1, explanation: 'SSRIs (Selective Serotonin Reuptake Inhibitors) are first-line treatment for major depression.', topic: 'Mood Disorders', difficulty: 'Easy' }
+        ],
+        tips: ['MBBS prerequisite', 'Growing mental health awareness', 'Community psychiatry important']
+      },
+      {
+        id: 'mgr-ms-ortho',
+        name: 'MS Orthopaedics',
+        nameTamil: 'எம்.எஸ் எலும்பியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 800,
+          duration: '3 Hours 30 Minutes',
+          durationMinutes: 210,
+          mode: 'Computer Based Test (NEET-PG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Orthopaedics', nameTamil: 'எலும்பியல்', questions: 200, marks: 800, topics: ['Trauma', 'Arthroplasty', 'Spine', 'Pediatric Ortho', 'Sports Medicine'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-ms-ortho-q1', year: '2024', question: 'Most common fracture in elderly is:', options: ['Colles fracture', 'Hip fracture', 'Vertebral fracture', 'Ankle fracture'], correctAnswer: 2, explanation: 'Vertebral compression fractures are most common in elderly due to osteoporosis.', topic: 'Trauma', difficulty: 'Medium' }
+        ],
+        tips: ['MBBS prerequisite', 'Surgical skills essential', 'Trauma center exposure important']
+      },
+      {
+        id: 'mgr-ms-obg',
+        name: 'MS Obstetrics & Gynaecology',
+        nameTamil: 'எம்.எஸ் மகப்பேறு & மகளிர் மருத்துவம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 800,
+          duration: '3 Hours 30 Minutes',
+          durationMinutes: 210,
+          mode: 'Computer Based Test (NEET-PG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'OBG', nameTamil: 'மகப்பேறு மருத்துவம்', questions: 200, marks: 800, topics: ['Obstetrics', 'Gynaecology', 'Infertility', 'Oncology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-ms-obg-q1', year: '2024', question: 'Normal duration of pregnancy is:', options: ['36 weeks', '38 weeks', '40 weeks', '42 weeks'], correctAnswer: 2, explanation: 'Normal pregnancy duration is 40 weeks (280 days) from last menstrual period.', topic: 'Obstetrics', difficulty: 'Easy' }
+        ],
+        tips: ['MBBS prerequisite', 'Labor room experience essential', 'High-risk pregnancy management important']
+      },
+      {
+        id: 'mgr-ms-ent',
+        name: 'MS ENT (Otorhinolaryngology)',
+        nameTamil: 'எம்.எஸ் காது-மூக்கு-தொண்டை',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 800,
+          duration: '3 Hours 30 Minutes',
+          durationMinutes: 210,
+          mode: 'Computer Based Test (NEET-PG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'ENT', nameTamil: 'காது-மூக்கு-தொண்டை', questions: 200, marks: 800, topics: ['Otology', 'Rhinology', 'Laryngology', 'Head & Neck'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-ms-ent-q1', year: '2024', question: 'Most common cause of conductive hearing loss is:', options: ['Presbycusis', 'Otosclerosis', 'CSOM', 'Noise-induced'], correctAnswer: 2, explanation: 'Chronic Suppurative Otitis Media (CSOM) is the most common cause of conductive hearing loss.', topic: 'Otology', difficulty: 'Easy' }
+        ],
+        tips: ['MBBS prerequisite', 'Surgical and clinical specialty', 'Audiometry knowledge essential']
+      },
+      {
+        id: 'mgr-ms-ophthalmology',
+        name: 'MS Ophthalmology',
+        nameTamil: 'எம்.எஸ் கண் மருத்துவம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 200,
+          totalMarks: 800,
+          duration: '3 Hours 30 Minutes',
+          durationMinutes: 210,
+          mode: 'Computer Based Test (NEET-PG)',
+          negativeMarking: true,
+          sections: [
+            { name: 'Ophthalmology', nameTamil: 'கண் மருத்துவம்', questions: 200, marks: 800, topics: ['Cataract', 'Glaucoma', 'Retina', 'Cornea', 'Oculoplasty'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [
+          { id: 'mgr-ms-ophthal-q1', year: '2024', question: 'Most common cause of preventable blindness in India is:', options: ['Glaucoma', 'Cataract', 'Diabetic retinopathy', 'Corneal opacity'], correctAnswer: 1, explanation: 'Cataract remains the most common cause of curable and preventable blindness in India.', topic: 'Community Ophthalmology', difficulty: 'Easy' }
+        ],
+        tips: ['MBBS prerequisite', 'Microsurgery skills essential', 'Both OPD and surgical work']
       }
     ]
   },
