@@ -38,7 +38,12 @@ export interface Course {
   id: string;
   name: string;
   nameTamil: string;
-  type: 'UG' | 'PG' | 'Research' | 'Super-Specialty' | 'Integrated' | 'Diploma' | 'PG Diploma' | 'Certificate';
+  type: 'UG' | 'PG' | 'Research' | 'Super-Specialty' | 'Integrated' | 'Diploma' | 'PG Diploma' | 'Certificate' | 'Vocational';
+  category?: 'On-Campus' | 'DDE' | 'Affiliated';
+  school?: string;
+  eligibility?: string;
+  duration?: string;
+  specialty?: string;
   examPattern: ExamPattern;
   syllabus: SyllabusUnit[];
   previousQuestions: PreviousQuestion[];
@@ -7981,142 +7986,19 @@ export const universities: University[] = [
       { event: 'Results', eventTamil: 'முடிவுகள்', date: 'August 2026', status: 'upcoming' }
     ],
     courses: [
-      {
-        id: 'mku-mba',
-        name: 'MBA',
-        nameTamil: 'எம்.பி.ஏ',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Verbal Ability', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['Reading Comprehension', 'Grammar', 'Vocabulary'] },
-            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல் திறன்', questions: 35, marks: 35, topics: ['Arithmetic', 'Algebra', 'Data Interpretation'] },
-            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 25, marks: 25, topics: ['Coding', 'Puzzles', 'Syllogisms'] },
-            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', questions: 15, marks: 15, topics: ['Current Affairs', 'Business GK'] }
-          ]
-        },
-        syllabus: [
-          {
-            unitNumber: 1,
-            title: 'Verbal Ability',
-            titleTamil: 'மொழித்திறன்',
-            expectedQuestions: 25,
-            difficulty: 'Medium',
-            topics: [
-              { name: 'Reading Comprehension', subtopics: ['Passage analysis', 'Inference', 'Vocabulary'], importance: 'High' },
-              { name: 'Grammar', subtopics: ['Tenses', 'Voice', 'Articles'], importance: 'Medium' },
-              { name: 'Vocabulary', subtopics: ['Synonyms', 'Antonyms', 'Idioms'], importance: 'High' }
-            ]
-          },
-          {
-            unitNumber: 2,
-            title: 'Quantitative Aptitude',
-            titleTamil: 'எண்ணியல் திறன்',
-            expectedQuestions: 35,
-            difficulty: 'Medium',
-            topics: [
-              { name: 'Arithmetic', subtopics: ['Percentage', 'Profit & Loss', 'Simple & Compound Interest'], importance: 'High' },
-              { name: 'Algebra', subtopics: ['Equations', 'Polynomials', 'Quadratic equations'], importance: 'Medium' },
-              { name: 'Data Interpretation', subtopics: ['Tables', 'Graphs', 'Charts'], importance: 'High' }
-            ]
-          }
-        ],
-        previousQuestions: [
-          { id: 'mku-mba-q1', question: 'A sum of ₹5000 amounts to ₹6050 in 2 years at simple interest. What is the rate of interest?', options: ['8%', '9%', '10.5%', '11%'], correctAnswer: 2, explanation: 'SI = 6050-5000 = 1050. R = (SI×100)/(P×T) = (1050×100)/(5000×2) = 10.5%', topic: 'Simple Interest', difficulty: 'Easy' },
-          { id: 'mku-mba-q2', question: 'If the ratio of cost price to selling price is 5:6, find the profit percentage.', options: ['16.67%', '20%', '25%', '30%'], correctAnswer: 1, explanation: 'If CP:SP = 5:6, then Profit = 6-5 = 1. Profit% = (1/5)×100 = 20%', topic: 'Profit & Loss', difficulty: 'Easy' }
-        ],
-        tips: ['Focus on Data Interpretation', 'Practice quantitative aptitude daily', 'Read business newspapers']
-      },
-      {
-        id: 'mku-mca',
-        name: 'MCA',
-        nameTamil: 'எம்.சி.ஏ',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Calculus', 'Linear Algebra', 'Probability'] },
-            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 40, marks: 40, topics: ['C Programming', 'Data Structures', 'DBMS'] },
-            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 20, marks: 20, topics: ['Coding', 'Series', 'Puzzles'] },
-            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 10, marks: 10, topics: ['Grammar', 'Comprehension'] }
-          ]
-        },
-        syllabus: [
-          {
-            unitNumber: 1,
-            title: 'Mathematics',
-            titleTamil: 'கணிதம்',
-            expectedQuestions: 30,
-            difficulty: 'Hard',
-            topics: [
-              { name: 'Calculus', subtopics: ['Differentiation', 'Integration', 'Applications'], importance: 'High' },
-              { name: 'Linear Algebra', subtopics: ['Matrices', 'Determinants', 'Eigenvalues'], importance: 'High' }
-            ]
-          }
-        ],
-        previousQuestions: [],
-        tips: ['Focus on C programming concepts', 'Practice mathematical problems', 'Learn data structures well']
-      },
-      {
-        id: 'mku-msc-cs',
-        name: 'M.Sc Computer Science',
-        nameTamil: 'எம்.எஸ்சி கணினி அறிவியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 60, marks: 60, topics: ['Programming', 'OS', 'DBMS', 'Networks'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 25, topics: ['Discrete Math', 'Statistics'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Logical', 'Numerical'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Master programming fundamentals', 'Study operating systems', 'Practice aptitude questions']
-      },
-      {
-        id: 'mku-ma-tamil',
-        name: 'M.A Tamil',
-        nameTamil: 'எம்.ஏ தமிழ்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Tamil Literature', nameTamil: 'தமிழ் இலக்கியம்', questions: 50, marks: 50, topics: ['Sangam Literature', 'Modern Literature'] },
-            { name: 'Tamil Grammar', nameTamil: 'தமிழ் இலக்கணம்', questions: 30, marks: 30, topics: ['Tolkappiyam', 'Nannool'] },
-            { name: 'General Tamil', nameTamil: 'பொதுத் தமிழ்', questions: 20, marks: 20, topics: ['Translation', 'Essay'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Read Sangam literature deeply', 'Study Tolkappiyam', 'Practice essay writing']
-      },
-      // ========== Specialized MKU Courses ==========
+      // ============================================================
+      // 🔘 TAB 1: ON-CAMPUS PROGRAMS (Palkalai Nagar Campus)
+      // ============================================================
+      
+      // === 🔬 SCHOOL OF BIOLOGICAL SCIENCES (MKU's Pride - Best in India) ===
       {
         id: 'mku-msc-genomics',
-        name: 'M.Sc Genomics',
-        nameTamil: 'எம்.எஸ்சி ஜீனோமிக்ஸ்',
+        name: 'M.Sc. Genomics',
+        nameTamil: 'எம்.எஸ்சி. ஜீனோமிக்ஸ்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Biological Sciences',
+        eligibility: 'B.Sc. Life Sciences',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8132,17 +8014,17 @@ export const universities: University[] = [
           ]
         },
         syllabus: [],
-        previousQuestions: [
-          { id: 'mku-gen-1', year: '2024', question: 'The Human Genome Project was completed in:', options: ['2000', '2003', '2005', '2010'], correctAnswer: 1, explanation: 'The Human Genome Project was completed in April 2003, successfully sequencing the entire human genome.', topic: 'Genomics History', difficulty: 'Easy' },
-          { id: 'mku-gen-2', year: '2024', question: 'CRISPR-Cas9 is used for:', options: ['Protein sequencing', 'Gene editing', 'RNA isolation', 'Cell culture'], correctAnswer: 1, explanation: 'CRISPR-Cas9 is a revolutionary gene editing technology that allows precise modification of DNA sequences.', topic: 'Genetic Engineering', difficulty: 'Easy' }
-        ],
-        tips: ['Very advanced - study DNA/RNA deeply', 'Learn bioinformatics tools', 'Centre of Excellence at MKU', 'Great for research careers']
+        previousQuestions: [],
+        tips: ['Centre of Excellence at MKU', 'Very advanced - study DNA/RNA deeply', 'Learn bioinformatics tools', 'Great for research careers']
       },
       {
         id: 'mku-msc-microbial-gene',
-        name: 'M.Sc Microbial Gene Technology',
-        nameTamil: 'எம்.எஸ்சி நுண்ணுயிர் மரபணு தொழில்நுட்பம்',
+        name: 'M.Sc. Microbial Gene Technology',
+        nameTamil: 'எம்.எஸ்சி. நுண்ணுயிர் மரபணு தொழில்நுட்பம்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Biological Sciences',
+        eligibility: 'B.Sc. Life Sciences',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8162,57 +8044,13 @@ export const universities: University[] = [
         tips: ['Focus on recombinant DNA technology', 'Learn microbial genetics', 'Study industrial applications']
       },
       {
-        id: 'mku-ma-folklore',
-        name: 'M.A. Folklore',
-        nameTamil: 'எம்.ஏ. நாட்டுப்புறவியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Folklore Studies', nameTamil: 'நாட்டுப்புறவியல்', questions: 40, marks: 40, topics: ['Folk Tales', 'Folk Songs', 'Folk Arts', 'Rituals'] },
-            { name: 'Tamil Culture', nameTamil: 'தமிழ் பண்பாடு', questions: 30, marks: 30, topics: ['Traditional Arts', 'Cultural Practices', 'Festivals'] },
-            { name: 'Anthropology', nameTamil: 'மானிடவியல்', questions: 20, marks: 20, topics: ['Cultural Anthropology', 'Social Customs'] },
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Current Affairs', 'Indian Culture'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Unique to MKU - study cultural traditions', 'Learn Tamil folk literature', 'Field work is part of curriculum', 'Good for cultural preservation roles']
-      },
-      {
-        id: 'mku-ma-jmc',
-        name: 'M.A. Journalism & Mass Communication',
-        nameTamil: 'எம்.ஏ. பத்திரிகையியல் & தொடர்பு',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Media Studies', nameTamil: 'ஊடகவியல்', questions: 35, marks: 35, topics: ['Print', 'Electronic', 'Digital Media'] },
-            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 30, marks: 30, topics: ['National', 'International', 'State'] },
-            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 20, marks: 20, topics: ['Grammar', 'Comprehension', 'Writing'] },
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 15, marks: 15, topics: ['History of Media', 'Press Laws'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Read newspapers daily', 'Know media history and ethics', 'Learn digital media trends']
-      },
-      // === BIOLOGICAL SCIENCES ===
-      {
         id: 'mku-msc-microbiology',
         name: 'M.Sc. Microbiology',
         nameTamil: 'எம்.எஸ்சி. நுண்ணுயிரியல்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Biological Sciences',
+        eligibility: 'B.Sc. Microbiology/Life Sciences',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8235,6 +8073,9 @@ export const universities: University[] = [
         name: 'M.Sc. Biochemistry',
         nameTamil: 'எம்.எஸ்சி. உயிர் வேதியியல்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Biological Sciences',
+        eligibility: 'B.Sc. Biochemistry/Chemistry',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8257,6 +8098,9 @@ export const universities: University[] = [
         name: 'M.Sc. Biotechnology',
         nameTamil: 'எம்.எஸ்சி. உயிர்தொழில்நுட்பவியல்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Biological Sciences',
+        eligibility: 'B.Sc. Biotechnology/Life Sciences',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8280,6 +8124,9 @@ export const universities: University[] = [
         name: 'M.Sc. Marine Biology',
         nameTamil: 'எம்.எஸ்சி. கடல் உயிரியல்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Biological Sciences',
+        eligibility: 'B.Sc. Zoology/Life Sciences',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8297,12 +8144,41 @@ export const universities: University[] = [
         previousQuestions: [],
         tips: ['Unique course - study marine ecosystems', 'Learn fish taxonomy', 'Good for research careers']
       },
-      // === COMPUTING & TECH ===
+
+      // === 💻 SCHOOL OF COMPUTING & TECHNOLOGY ===
+      {
+        id: 'mku-msc-cs',
+        name: 'M.Sc. Computer Science',
+        nameTamil: 'எம்.எஸ்சி. கணினி அறிவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Computing & Technology',
+        eligibility: 'B.Sc. CS/IT/BCA',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 60, marks: 60, topics: ['Programming', 'OS', 'DBMS', 'Networks'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 25, topics: ['Discrete Math', 'Statistics'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Logical', 'Numerical'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Master programming fundamentals', 'Study operating systems', 'Practice aptitude questions']
+      },
       {
         id: 'mku-msc-data-analytics',
         name: 'M.Sc. Data Analytics',
         nameTamil: 'எம்.எஸ்சி. தரவு பகுப்பாய்வு',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Computing & Technology',
+        eligibility: 'B.Sc. CS/Maths/Statistics',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8314,18 +8190,21 @@ export const universities: University[] = [
             { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 30, marks: 30, topics: ['Probability', 'Hypothesis Testing', 'Regression'] },
             { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 30, marks: 30, topics: ['Programming', 'Database', 'Algorithms'] },
             { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 25, topics: ['Linear Algebra', 'Calculus'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Logical Reasoning', 'Data Interpretation'] }
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Logical', 'Numerical'] }
           ]
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['High demand course', 'Learn Python/R programming', 'Focus on machine learning basics']
+        tips: ['Learn Python/R for data science', 'Focus on statistics', 'High demand in industry']
       },
       {
         id: 'mku-msc-electronics',
         name: 'M.Sc. Electronics & Instrumentation',
-        nameTamil: 'எம்.எஸ்சி. மின்னணுவியல் & கருவியியல்',
+        nameTamil: 'எம்.எஸ்சி. மின்னணுவியல் & கருவியமைப்பு',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Computing & Technology',
+        eligibility: 'B.Sc. Electronics/Physics',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8334,22 +8213,25 @@ export const universities: University[] = [
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
           sections: [
-            { name: 'Electronics', nameTamil: 'மின்னணுவியல்', questions: 40, marks: 40, topics: ['Digital Electronics', 'Analog Circuits', 'Microprocessors'] },
-            { name: 'Instrumentation', nameTamil: 'கருவியியல்', questions: 30, marks: 30, topics: ['Sensors', 'Transducers', 'Control Systems'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 20, marks: 20, topics: ['Electromagnetic Theory', 'Semiconductor Physics'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Mathematics', 'Reasoning'] }
+            { name: 'Electronics', nameTamil: 'மின்னணுவியல்', questions: 50, marks: 50, topics: ['Analog', 'Digital', 'Microprocessors'] },
+            { name: 'Instrumentation', nameTamil: 'கருவியமைப்பு', questions: 30, marks: 30, topics: ['Sensors', 'Control Systems', 'Measurements'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Numerical', 'Reasoning'] }
           ]
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Strong in circuit analysis', 'Learn embedded systems', 'Industrial applications focus']
+        tips: ['Focus on analog/digital circuits', 'Learn microcontroller programming', 'Industry-ready skills']
       },
-      // === EARTH SCIENCES ===
+
+      // === 🌍 SCHOOL OF EARTH SCIENCES ===
       {
         id: 'mku-msc-remote-sensing',
         name: 'M.Sc. Earth Remote Sensing & Geo-Information Technology',
-        nameTamil: 'எம்.எஸ்சி. தொலை உணர்வு & புவி தகவல் தொழில்நுட்பம்',
+        nameTamil: 'எம்.எஸ்சி. புவி தொலை உணர்வு & புவி தகவல் தொழில்நுட்பம்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Earth Sciences',
+        eligibility: 'B.Sc. Geography/Geology',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8358,21 +8240,24 @@ export const universities: University[] = [
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
           sections: [
-            { name: 'Remote Sensing', nameTamil: 'தொலை உணர்வு', questions: 35, marks: 35, topics: ['Satellite Imagery', 'Image Processing', 'GIS'] },
-            { name: 'Geography', nameTamil: 'புவியியல்', questions: 30, marks: 30, topics: ['Physical Geography', 'Cartography'] },
-            { name: 'Computer Applications', nameTamil: 'கணினி பயன்பாடுகள்', questions: 20, marks: 20, topics: ['GIS Software', 'Database'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Mathematics', 'Reasoning'] }
+            { name: 'Remote Sensing', nameTamil: 'தொலை உணர்வு', questions: 35, marks: 35, topics: ['Satellite Imagery', 'Image Interpretation', 'Sensors'] },
+            { name: 'GIS', nameTamil: 'புவி தகவல் அமைப்பு', questions: 30, marks: 30, topics: ['Spatial Analysis', 'Mapping', 'GPS'] },
+            { name: 'Geography', nameTamil: 'புவியியல்', questions: 25, marks: 25, topics: ['Physical', 'Human', 'Cartography'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'Current Affairs'] }
           ]
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Niche course with ISRO/government job prospects', 'Learn GIS software', 'Spatial analysis important']
+        tips: ['Learn GIS software (QGIS/ArcGIS)', 'High demand in urban planning', 'ISRO career opportunities']
       },
       {
         id: 'mku-msc-geography',
         name: 'M.Sc. Geography',
         nameTamil: 'எம்.எஸ்சி. புவியியல்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Earth Sciences',
+        eligibility: 'B.A./B.Sc. Geography',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8382,20 +8267,23 @@ export const universities: University[] = [
           negativeMarking: false,
           sections: [
             { name: 'Physical Geography', nameTamil: 'இயற்கை புவியியல்', questions: 35, marks: 35, topics: ['Geomorphology', 'Climatology', 'Oceanography'] },
-            { name: 'Human Geography', nameTamil: 'மனித புவியியல்', questions: 35, marks: 35, topics: ['Population', 'Urban', 'Economic'] },
-            { name: 'Cartography & GIS', nameTamil: 'வரைபடவியல் & GIS', questions: 20, marks: 20, topics: ['Map Reading', 'Projections'] },
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Current Affairs', 'India Geography'] }
+            { name: 'Human Geography', nameTamil: 'மனித புவியியல்', questions: 30, marks: 30, topics: ['Population', 'Settlement', 'Economic'] },
+            { name: 'Cartography', nameTamil: 'நிலவரைபடவியல்', questions: 20, marks: 20, topics: ['Map Reading', 'Surveying'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 15, marks: 15, topics: ['Current Affairs', 'Environment'] }
           ]
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Good for UPSC optional', 'Learn map reading', 'Focus on Indian geography']
+        tips: ['Good for UPSC Geography optional', 'Learn map work thoroughly', 'Field work important']
       },
       {
         id: 'mku-msc-environmental',
         name: 'M.Sc. Environmental Sciences',
         nameTamil: 'எம்.எஸ்சி. சுற்றுச்சூழல் அறிவியல்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Earth Sciences',
+        eligibility: 'B.Sc. Environmental/Life Sciences',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8405,21 +8293,25 @@ export const universities: University[] = [
           negativeMarking: false,
           sections: [
             { name: 'Environmental Science', nameTamil: 'சுற்றுச்சூழல் அறிவியல்', questions: 40, marks: 40, topics: ['Ecology', 'Pollution', 'Climate Change'] },
-            { name: 'Life Sciences', nameTamil: 'உயிர் அறிவியல்', questions: 30, marks: 30, topics: ['Botany', 'Zoology', 'Microbiology'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 20, marks: 20, topics: ['Environmental Chemistry'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Current Affairs', 'Reasoning'] }
+            { name: 'Life Sciences', nameTamil: 'உயிர் அறிவியல்', questions: 30, marks: 30, topics: ['Biology', 'Biodiversity'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 20, marks: 20, topics: ['Environmental Chemistry', 'Toxicology'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 10, marks: 10, topics: ['Current Affairs', 'Policies'] }
           ]
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Growing field with government jobs', 'Learn environmental laws', 'Field work important']
+        tips: ['Growing field with green economy', 'Learn EIA procedures', 'NGO/Govt career prospects']
       },
-      // === CORE SCIENCES ===
+
+      // === 🔢 SCHOOL OF CORE SCIENCES ===
       {
         id: 'mku-msc-mathematics',
         name: 'M.Sc. Mathematics',
         nameTamil: 'எம்.எஸ்சி. கணிதம்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Core Sciences',
+        eligibility: 'B.Sc. Mathematics',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8428,21 +8320,24 @@ export const universities: University[] = [
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
           sections: [
-            { name: 'Algebra', nameTamil: 'இயற்கணிதம்', questions: 30, marks: 30, topics: ['Group Theory', 'Ring Theory', 'Linear Algebra'] },
-            { name: 'Analysis', nameTamil: 'பகுப்பாய்வு', questions: 30, marks: 30, topics: ['Real Analysis', 'Complex Analysis', 'Functional Analysis'] },
-            { name: 'Applied Mathematics', nameTamil: 'பயன்பாட்டுக் கணிதம்', questions: 25, marks: 25, topics: ['Differential Equations', 'Numerical Methods'] },
-            { name: 'Discrete Mathematics', nameTamil: 'தனித்த கணிதம்', questions: 15, marks: 15, topics: ['Graph Theory', 'Combinatorics'] }
+            { name: 'Pure Mathematics', nameTamil: 'தூய கணிதம்', questions: 40, marks: 40, topics: ['Algebra', 'Analysis', 'Topology'] },
+            { name: 'Applied Mathematics', nameTamil: 'பயன்பாட்டு கணிதம்', questions: 35, marks: 35, topics: ['Differential Equations', 'Numerical Methods'] },
+            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 15, marks: 15, topics: ['Probability', 'Distributions'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Logical', 'Numerical'] }
           ]
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Strong UG mathematics foundation needed', 'Practice problem solving', 'Good for research/teaching']
+        tips: ['Strong foundation needed', 'Good for teaching/research', 'NET/SET preparation useful']
       },
       {
         id: 'mku-msc-physics',
         name: 'M.Sc. Physics',
         nameTamil: 'எம்.எஸ்சி. இயற்பியல்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Core Sciences',
+        eligibility: 'B.Sc. Physics',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8451,21 +8346,24 @@ export const universities: University[] = [
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
           sections: [
-            { name: 'Classical Mechanics', nameTamil: 'பாரம்பரிய இயக்கவியல்', questions: 25, marks: 25, topics: ['Lagrangian', 'Hamiltonian', 'Rigid Body'] },
-            { name: 'Quantum Mechanics', nameTamil: 'குவாண்டம் இயக்கவியல்', questions: 25, marks: 25, topics: ['Schrodinger Equation', 'Operators', 'Perturbation'] },
-            { name: 'Electrodynamics', nameTamil: 'மின்னியக்கவியல்', questions: 25, marks: 25, topics: ['Maxwell Equations', 'EM Waves'] },
-            { name: 'Statistical Mechanics', nameTamil: 'புள்ளிவிவர இயக்கவியல்', questions: 25, marks: 25, topics: ['Ensembles', 'Entropy', 'Thermodynamics'] }
+            { name: 'Classical Physics', nameTamil: 'பாரம்பரிய இயற்பியல்', questions: 30, marks: 30, topics: ['Mechanics', 'Optics', 'Thermodynamics'] },
+            { name: 'Modern Physics', nameTamil: 'நவீன இயற்பியல்', questions: 35, marks: 35, topics: ['Quantum Mechanics', 'Nuclear Physics', 'Solid State'] },
+            { name: 'Electronics', nameTamil: 'மின்னணுவியல்', questions: 20, marks: 20, topics: ['Analog', 'Digital'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 15, marks: 15, topics: ['Calculus', 'Differential Equations'] }
           ]
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Strong mathematical background needed', 'Focus on classical + quantum', 'Research opportunities']
+        tips: ['Focus on quantum and nuclear physics', 'Good for ISRO/BARC', 'NET/GATE preparation']
       },
       {
         id: 'mku-msc-chemistry',
         name: 'M.Sc. Chemistry',
         nameTamil: 'எம்.எஸ்சி. வேதியியல்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Core Sciences',
+        eligibility: 'B.Sc. Chemistry',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8474,22 +8372,26 @@ export const universities: University[] = [
           mode: 'OMR Based (Offline)',
           negativeMarking: false,
           sections: [
-            { name: 'Organic Chemistry', nameTamil: 'கரிம வேதியியல்', questions: 30, marks: 30, topics: ['Reaction Mechanisms', 'Stereochemistry', 'Spectroscopy'] },
-            { name: 'Inorganic Chemistry', nameTamil: 'கனிம வேதியியல்', questions: 30, marks: 30, topics: ['Coordination', 'Organometallics', 'Bioinorganic'] },
-            { name: 'Physical Chemistry', nameTamil: 'பௌதிக வேதியியல்', questions: 30, marks: 30, topics: ['Thermodynamics', 'Kinetics', 'Electrochemistry'] },
-            { name: 'Analytical Chemistry', nameTamil: 'பகுப்பாய்வு வேதியியல்', questions: 10, marks: 10, topics: ['Instrumentation', 'Separation Techniques'] }
+            { name: 'Organic Chemistry', nameTamil: 'கரிம வேதியியல்', questions: 35, marks: 35, topics: ['Reactions', 'Mechanisms', 'Spectroscopy'] },
+            { name: 'Inorganic Chemistry', nameTamil: 'கனிம வேதியியல்', questions: 30, marks: 30, topics: ['Coordination', 'Organometallics'] },
+            { name: 'Physical Chemistry', nameTamil: 'இயற்பு வேதியியல்', questions: 25, marks: 25, topics: ['Thermodynamics', 'Kinetics', 'Electrochemistry'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'Numerical'] }
           ]
         },
         syllabus: [],
         previousQuestions: [],
-        tips: ['Balance all three branches', 'Practice numerical problems', 'Lab skills important']
+        tips: ['Focus on reaction mechanisms', 'Good for pharma/chemical industry', 'NET/GATE useful']
       },
-      // === NICHE SCIENCES ===
+
+      // === 🎬 SCHOOL OF NICHE SCIENCES (Unique Programs) ===
       {
         id: 'mku-msc-criminology',
         name: 'M.Sc. Criminology & Criminal Justice',
         nameTamil: 'எம்.எஸ்சி. குற்றவியல் & குற்றவியல் நீதி',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Niche Sciences',
+        eligibility: 'Any Degree',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8513,6 +8415,9 @@ export const universities: University[] = [
         name: 'M.Sc. Film & Electronic Media Studies',
         nameTamil: 'எம்.எஸ்சி. திரைப்படம் & மின்னணு ஊடக படிப்புகள்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Niche Sciences',
+        eligibility: 'Any Degree',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8536,6 +8441,9 @@ export const universities: University[] = [
         name: 'M.Sc. Visual Communication',
         nameTamil: 'எம்.எஸ்சி. காட்சித் தொடர்பு',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Niche Sciences',
+        eligibility: 'Any Degree',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8554,12 +8462,41 @@ export const universities: University[] = [
         previousQuestions: [],
         tips: ['Creative + technical skills needed', 'Build a portfolio', 'Learn Adobe Suite']
       },
-      // === ARTS & HUMANITIES - LANGUAGES ===
+
+      // === 📖 SCHOOL OF ARTS & HUMANITIES - LANGUAGES ===
+      {
+        id: 'mku-ma-tamil',
+        name: 'M.A. Tamil',
+        nameTamil: 'எம்.ஏ. தமிழ்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Arts & Humanities',
+        eligibility: 'B.A. Tamil',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Tamil Literature', nameTamil: 'தமிழ் இலக்கியம்', questions: 50, marks: 50, topics: ['Sangam Literature', 'Modern Literature'] },
+            { name: 'Tamil Grammar', nameTamil: 'தமிழ் இலக்கணம்', questions: 30, marks: 30, topics: ['Tolkappiyam', 'Nannool'] },
+            { name: 'General Tamil', nameTamil: 'பொதுத் தமிழ்', questions: 20, marks: 20, topics: ['Translation', 'Essay'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Read Sangam literature deeply', 'Study Tolkappiyam', 'Practice essay writing']
+      },
       {
         id: 'mku-ma-english',
         name: 'M.A. English',
         nameTamil: 'எம்.ஏ. ஆங்கிலம்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Arts & Humanities',
+        eligibility: 'B.A. English',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8583,6 +8520,9 @@ export const universities: University[] = [
         name: 'M.A. French',
         nameTamil: 'எம்.ஏ. பிரெஞ்சு',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Arts & Humanities',
+        eligibility: 'B.A. French/Any Degree',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8602,10 +8542,113 @@ export const universities: University[] = [
         tips: ['Rare language course', 'Embassy/translation job prospects', 'DELF certification helpful']
       },
       {
+        id: 'mku-ma-malayalam',
+        name: 'M.A. Malayalam',
+        nameTamil: 'எம்.ஏ. மலையாளம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Arts & Humanities',
+        eligibility: 'B.A. Malayalam',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Malayalam Literature', nameTamil: 'மலையாள இலக்கியம்', questions: 50, marks: 50, topics: ['Classical', 'Modern', 'Contemporary'] },
+            { name: 'Grammar', nameTamil: 'இலக்கணம்', questions: 30, marks: 30, topics: ['Syntax', 'Morphology'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Kerala Culture', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Rare language offering', 'Good for Kerala-based careers', 'Teaching opportunities']
+      },
+      {
+        id: 'mku-ma-kannada',
+        name: 'M.A. Kannada',
+        nameTamil: 'எம்.ஏ. கன்னடம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Arts & Humanities',
+        eligibility: 'B.A. Kannada',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Kannada Literature', nameTamil: 'கன்னட இலக்கியம்', questions: 50, marks: 50, topics: ['Classical', 'Modern', 'Contemporary'] },
+            { name: 'Grammar', nameTamil: 'இலக்கணம்', questions: 30, marks: 30, topics: ['Syntax', 'Morphology'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Karnataka Culture', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Rare language offering', 'Good for Karnataka-based careers', 'Teaching opportunities']
+      },
+      {
+        id: 'mku-ma-sanskrit',
+        name: 'M.A. Sanskrit',
+        nameTamil: 'எம்.ஏ. சமஸ்கிருதம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Arts & Humanities',
+        eligibility: 'B.A. Sanskrit',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Sanskrit Literature', nameTamil: 'சமஸ்கிருத இலக்கியம்', questions: 50, marks: 50, topics: ['Vedas', 'Epics', 'Kavya'] },
+            { name: 'Grammar', nameTamil: 'இலக்கணம்', questions: 30, marks: 30, topics: ['Panini', 'Syntax'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Indian Philosophy', 'Culture'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Classical language expertise', 'Good for Indology studies', 'Research opportunities']
+      },
+      {
+        id: 'mku-ma-telugu',
+        name: 'M.A. Telugu',
+        nameTamil: 'எம்.ஏ. தெலுங்கு',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Arts & Humanities',
+        eligibility: 'B.A. Telugu',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Telugu Literature', nameTamil: 'தெலுங்கு இலக்கியம்', questions: 50, marks: 50, topics: ['Classical', 'Modern', 'Contemporary'] },
+            { name: 'Grammar', nameTamil: 'இலக்கணம்', questions: 30, marks: 30, topics: ['Syntax', 'Morphology'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Andhra Culture', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Rare language offering', 'Good for AP/Telangana careers', 'Teaching opportunities']
+      },
+      {
         id: 'mku-ma-linguistics',
         name: 'M.A. Linguistics',
         nameTamil: 'எம்.ஏ. மொழியியல்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Arts & Humanities',
+        eligibility: 'Any Degree',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8624,12 +8667,16 @@ export const universities: University[] = [
         previousQuestions: [],
         tips: ['Interdisciplinary field', 'Good for NLP/AI careers', 'Learn computational linguistics']
       },
-      // === ARTS & HUMANITIES - SOCIAL SCIENCES ===
+
+      // === 🏛️ SCHOOL OF SOCIAL SCIENCES ===
       {
         id: 'mku-ma-history',
         name: 'M.A. History',
         nameTamil: 'எம்.ஏ. வரலாறு',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Social Sciences',
+        eligibility: 'B.A. History',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8653,6 +8700,9 @@ export const universities: University[] = [
         name: 'M.A. Political Science',
         nameTamil: 'எம்.ஏ. அரசியல் அறிவியல்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Social Sciences',
+        eligibility: 'B.A. Political Science',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8676,6 +8726,9 @@ export const universities: University[] = [
         name: 'M.A. Sociology',
         nameTamil: 'எம்.ஏ. சமூகவியல்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Social Sciences',
+        eligibility: 'B.A. Sociology',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8699,6 +8752,9 @@ export const universities: University[] = [
         name: 'M.A. Economics',
         nameTamil: 'எம்.ஏ. பொருளியல்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Social Sciences',
+        eligibility: 'B.A. Economics',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8722,6 +8778,9 @@ export const universities: University[] = [
         name: 'M.A. Philosophy & Religion',
         nameTamil: 'எம்.ஏ. தத்துவம் & மதம்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Social Sciences',
+        eligibility: 'Any Degree',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8740,12 +8799,17 @@ export const universities: University[] = [
         previousQuestions: [],
         tips: ['Unique course for deep thinkers', 'Read primary texts', 'Good for ethics/teaching roles']
       },
-      // === UNIQUE MKU COURSES ===
+
+      // === ⭐ UNIQUE PROGRAMS (MKU Specialties) ===
       {
         id: 'mku-ma-admin-studies',
         name: 'M.A. Administrative Studies',
         nameTamil: 'எம்.ஏ. நிர்வாக ஆய்வுகள்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'Unique MKU Programs',
+        eligibility: 'Any Degree',
+        specialty: 'Designed for UPSC/TNPSC Aspirants',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8765,10 +8829,41 @@ export const universities: University[] = [
         tips: ['Designed for UPSC/TNPSC aspirants', 'Faculty are ex-civil servants', 'Unique to MKU']
       },
       {
+        id: 'mku-ma-folklore',
+        name: 'M.A. Folklore',
+        nameTamil: 'எம்.ஏ. நாட்டுப்புறவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Unique MKU Programs',
+        eligibility: 'Any Degree',
+        specialty: 'Renowned Centre for Folklore',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Folklore Studies', nameTamil: 'நாட்டுப்புறவியல்', questions: 40, marks: 40, topics: ['Folk Tales', 'Folk Songs', 'Folk Arts', 'Rituals'] },
+            { name: 'Tamil Culture', nameTamil: 'தமிழ் பண்பாடு', questions: 30, marks: 30, topics: ['Traditional Arts', 'Cultural Practices', 'Festivals'] },
+            { name: 'Anthropology', nameTamil: 'மானிடவியல்', questions: 20, marks: 20, topics: ['Cultural Anthropology', 'Social Customs'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Current Affairs', 'Indian Culture'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Unique to MKU - study cultural traditions', 'Learn Tamil folk literature', 'Field work is part of curriculum', 'Good for cultural preservation roles']
+      },
+      {
         id: 'mku-ma-womens-studies',
         name: 'M.A. Women\'s Studies',
         nameTamil: 'எம்.ஏ. பெண்கள் ஆய்வுகள்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'Unique MKU Programs',
+        eligibility: 'Any Degree',
+        specialty: 'Gender & Development Focus',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8792,6 +8887,10 @@ export const universities: University[] = [
         name: 'M.Sc. Peace Making / Gandhian Thought',
         nameTamil: 'எம்.எஸ்சி. சமாதானம் / காந்தியவாதம்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'Unique MKU Programs',
+        eligibility: 'Any Degree',
+        specialty: 'Conflict Resolution & Peace Studies',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8810,12 +8909,42 @@ export const universities: University[] = [
         previousQuestions: [],
         tips: ['Unique interdisciplinary course', 'Learn conflict resolution', 'Good for UN/NGO careers']
       },
-      // === MANAGEMENT & INTEGRATED ===
+
+      // === 💼 SCHOOL OF MANAGEMENT ===
+      {
+        id: 'mku-mba',
+        name: 'M.B.A. General',
+        nameTamil: 'எம்.பி.ஏ. பொது',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Management',
+        eligibility: 'Any Degree',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Verbal Ability', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['Reading Comprehension', 'Grammar', 'Vocabulary'] },
+            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல் திறன்', questions: 35, marks: 35, topics: ['Arithmetic', 'Algebra', 'Data Interpretation'] },
+            { name: 'Reasoning', nameTamil: 'தர்க்கம்', questions: 25, marks: 25, topics: ['Logical', 'Analytical'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 15, marks: 15, topics: ['Current Affairs', 'Business GK'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on Data Interpretation', 'Practice quantitative aptitude daily', 'Read business newspapers']
+      },
       {
         id: 'mku-mba-hospital',
-        name: 'MBA Hospital Administration',
+        name: 'M.B.A. Hospital Administration',
         nameTamil: 'எம்.பி.ஏ. மருத்துவமனை நிர்வாகம்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Management',
+        eligibility: 'Any Degree',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8836,9 +8965,12 @@ export const universities: University[] = [
       },
       {
         id: 'mku-mba-entrepreneurship',
-        name: 'MBA Entrepreneurship',
+        name: 'M.B.A. Entrepreneurship',
         nameTamil: 'எம்.பி.ஏ. தொழில்முனைவு',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Management',
+        eligibility: 'Any Degree',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8859,9 +8991,12 @@ export const universities: University[] = [
       },
       {
         id: 'mku-imba-tourism',
-        name: 'Integrated MBA Tourism & Hotel Management (5 Years)',
+        name: 'Integrated M.B.A. Tourism & Hotel Management (5 Years)',
         nameTamil: 'ஒருங்கிணைந்த எம்.பி.ஏ. சுற்றுலா & ஹோட்டல் மேலாண்மை',
         type: 'Integrated',
+        category: 'On-Campus',
+        school: 'School of Management',
+        eligibility: '12th Pass (Direct Entry)',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8885,6 +9020,9 @@ export const universities: University[] = [
         name: 'M.Com',
         nameTamil: 'எம்.காம்',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Management',
+        eligibility: 'B.Com',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8908,6 +9046,9 @@ export const universities: University[] = [
         name: 'M.Ed.',
         nameTamil: 'எம்.எட்.',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Management',
+        eligibility: 'B.Ed.',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8931,6 +9072,9 @@ export const universities: University[] = [
         name: 'M.P.Ed. (Physical Education)',
         nameTamil: 'எம்.பி.எட். (உடற்கல்வி)',
         type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Management',
+        eligibility: 'B.P.Ed.',
         examPattern: {
           totalQuestions: 100,
           totalMarks: 100,
@@ -8948,6 +9092,1955 @@ export const universities: University[] = [
         syllabus: [],
         previousQuestions: [],
         tips: ['For sports teachers/coaches', 'B.P.Ed. mandatory', 'Physical fitness test included']
+      },
+      {
+        id: 'mku-mca',
+        name: 'MCA',
+        nameTamil: 'எம்.சி.ஏ',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Management',
+        eligibility: 'Any Degree with Maths',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Calculus', 'Linear Algebra', 'Probability'] },
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 40, marks: 40, topics: ['C Programming', 'Data Structures', 'DBMS'] },
+            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 20, marks: 20, topics: ['Coding', 'Series', 'Puzzles'] },
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 10, marks: 10, topics: ['Grammar', 'Comprehension'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on C programming concepts', 'Practice mathematical problems', 'Learn data structures well']
+      },
+
+      // ============================================================
+      // 🔘 TAB 2: DDE — DISTANCE EDUCATION
+      // ============================================================
+
+      // === 📘 DDE - B.A. Programs ===
+      {
+        id: 'mku-dde-ba-history',
+        name: 'B.A. History (DDE)',
+        nameTamil: 'பி.ஏ. வரலாறு (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'History', nameTamil: 'வரலாறு', questions: 100, marks: 100, topics: ['Indian History', 'World History'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Flexible for working professionals', 'Study materials provided', 'Exam centers across TN']
+      },
+      {
+        id: 'mku-dde-ba-polsci',
+        name: 'B.A. Political Science (DDE)',
+        nameTamil: 'பி.ஏ. அரசியல் அறிவியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Political Science', nameTamil: 'அரசியல் அறிவியல்', questions: 100, marks: 100, topics: ['Indian Politics', 'Political Theory'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Flexible for working professionals', 'Study materials provided', 'Good for UPSC aspirants']
+      },
+      {
+        id: 'mku-dde-ba-tamil',
+        name: 'B.A. Tamil (DDE)',
+        nameTamil: 'பி.ஏ. தமிழ் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Tamil', nameTamil: 'தமிழ்', questions: 100, marks: 100, topics: ['Literature', 'Grammar'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Flexible for working professionals', 'Study materials provided']
+      },
+      {
+        id: 'mku-dde-ba-english',
+        name: 'B.A. English (DDE)',
+        nameTamil: 'பி.ஏ. ஆங்கிலம் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 100, marks: 100, topics: ['Literature', 'Grammar'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Flexible for working professionals', 'Study materials provided']
+      },
+      {
+        id: 'mku-dde-ba-economics',
+        name: 'B.A. Economics (DDE)',
+        nameTamil: 'பி.ஏ. பொருளியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Economics', nameTamil: 'பொருளியல்', questions: 100, marks: 100, topics: ['Micro', 'Macro', 'Indian Economy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Flexible for working professionals', 'Study materials provided']
+      },
+      {
+        id: 'mku-dde-ba-sociology',
+        name: 'B.A. Sociology (DDE)',
+        nameTamil: 'பி.ஏ. சமூகவியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Sociology', nameTamil: 'சமூகவியல்', questions: 100, marks: 100, topics: ['Theory', 'Indian Society'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Flexible for working professionals', 'Study materials provided']
+      },
+      {
+        id: 'mku-dde-ba-pubadmin',
+        name: 'B.A. Public Administration (DDE)',
+        nameTamil: 'பி.ஏ. பொது நிர்வாகம் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Public Administration', nameTamil: 'பொது நிர்வாகம்', questions: 100, marks: 100, topics: ['Administrative Theory', 'Indian Administration'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for UPSC aspirants', 'Study materials provided']
+      },
+      {
+        id: 'mku-dde-ba-jmc',
+        name: 'B.A. Journalism & Mass Communication (DDE)',
+        nameTamil: 'பி.ஏ. பத்திரிகையியல் & தொடர்பு (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Journalism', nameTamil: 'பத்திரிகையியல்', questions: 100, marks: 100, topics: ['Media Studies', 'Communication'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for media careers', 'Study materials provided']
+      },
+
+      // === 🔬 DDE - B.Sc. Programs ===
+      {
+        id: 'mku-dde-bsc-maths',
+        name: 'B.Sc. Mathematics (DDE)',
+        nameTamil: 'பி.எஸ்சி. கணிதம் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass (Maths)',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 100, marks: 100, topics: ['Algebra', 'Calculus', 'Analysis'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Self-study materials provided', 'Contact classes available']
+      },
+      {
+        id: 'mku-dde-bsc-physics',
+        name: 'B.Sc. Physics (DDE)',
+        nameTamil: 'பி.எஸ்சி. இயற்பியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass (Physics)',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 100, marks: 100, topics: ['Mechanics', 'Optics', 'Modern Physics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Self-study materials provided', 'Contact classes available']
+      },
+      {
+        id: 'mku-dde-bsc-chemistry',
+        name: 'B.Sc. Chemistry (DDE)',
+        nameTamil: 'பி.எஸ்சி. வேதியியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass (Chemistry)',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 100, marks: 100, topics: ['Organic', 'Inorganic', 'Physical'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Self-study materials provided', 'Contact classes available']
+      },
+      {
+        id: 'mku-dde-bsc-botany',
+        name: 'B.Sc. Botany (DDE)',
+        nameTamil: 'பி.எஸ்சி. தாவரவியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass (Biology)',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Botany', nameTamil: 'தாவரவியல்', questions: 100, marks: 100, topics: ['Plant Anatomy', 'Physiology', 'Taxonomy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Self-study materials provided', 'Contact classes available']
+      },
+      {
+        id: 'mku-dde-bsc-zoology',
+        name: 'B.Sc. Zoology (DDE)',
+        nameTamil: 'பி.எஸ்சி. விலங்கியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass (Biology)',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Zoology', nameTamil: 'விலங்கியல்', questions: 100, marks: 100, topics: ['Animal Anatomy', 'Physiology', 'Taxonomy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Self-study materials provided', 'Contact classes available']
+      },
+      {
+        id: 'mku-dde-bsc-microbiology',
+        name: 'B.Sc. Microbiology (DDE)',
+        nameTamil: 'பி.எஸ்சி. நுண்ணுயிரியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass (Biology)',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Microbiology', nameTamil: 'நுண்ணுயிரியல்', questions: 100, marks: 100, topics: ['Bacteria', 'Viruses', 'Fungi'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Self-study materials provided', 'Contact classes available']
+      },
+      {
+        id: 'mku-dde-bsc-psychology',
+        name: 'B.Sc. Psychology (DDE)',
+        nameTamil: 'பி.எஸ்சி. உளவியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Psychology', nameTamil: 'உளவியல்', questions: 100, marks: 100, topics: ['General Psychology', 'Cognitive', 'Social'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Self-study materials provided', 'Contact classes available']
+      },
+      {
+        id: 'mku-dde-bsc-cs',
+        name: 'B.Sc. Computer Science (DDE)',
+        nameTamil: 'பி.எஸ்சி. கணினி அறிவியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass (Maths)',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 100, marks: 100, topics: ['Programming', 'DBMS', 'Networks'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Self-study materials provided', 'Contact classes available', 'IT career opportunities']
+      },
+      {
+        id: 'mku-dde-bsc-visual-comm',
+        name: 'B.Sc. Visual Communication (DDE)',
+        nameTamil: 'பி.எஸ்சி. காட்சித் தொடர்பு (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Visual Communication', nameTamil: 'காட்சித் தொடர்பு', questions: 100, marks: 100, topics: ['Photography', 'Graphic Design', 'Media'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Creative field', 'Self-study materials provided']
+      },
+      {
+        id: 'mku-dde-bsc-tourism',
+        name: 'B.Sc. Tourism & Hospitality (DDE)',
+        nameTamil: 'பி.எஸ்சி. சுற்றுலா & விருந்தோம்பல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Tourism', nameTamil: 'சுற்றுலா', questions: 100, marks: 100, topics: ['Tourism Management', 'Hospitality', 'Travel'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing industry', 'Madurai is tourism hub']
+      },
+
+      // === 💼 DDE - Commerce & Management ===
+      {
+        id: 'mku-dde-bcom',
+        name: 'B.Com (DDE)',
+        nameTamil: 'பி.காம் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass (Commerce)',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Commerce', nameTamil: 'வணிகவியல்', questions: 100, marks: 100, topics: ['Accounting', 'Business Studies', 'Economics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Popular DDE course', 'Good for CA/banking aspirants']
+      },
+      {
+        id: 'mku-dde-bba',
+        name: 'B.B.A. (DDE)',
+        nameTamil: 'பி.பி.ஏ. (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Business Administration', nameTamil: 'வணிக நிர்வாகம்', questions: 100, marks: 100, topics: ['Management', 'Marketing', 'Finance'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Foundation for MBA', 'Good for business careers']
+      },
+      {
+        id: 'mku-dde-bca',
+        name: 'B.C.A. (DDE)',
+        nameTamil: 'பி.சி.ஏ. (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: '12th Pass (Maths)',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Applications', nameTamil: 'கணினி பயன்பாடுகள்', questions: 100, marks: 100, topics: ['Programming', 'DBMS', 'Web'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['IT career path', 'Good for MCA preparation']
+      },
+      {
+        id: 'mku-dde-blisc',
+        name: 'B.Li.Sc. (DDE)',
+        nameTamil: 'பி.லி.எஸ்சி. (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        eligibility: 'Any Degree',
+        duration: '1 Year',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Library Science', nameTamil: 'நூலக அறிவியல்', questions: 100, marks: 100, topics: ['Cataloguing', 'Classification', 'IT in Libraries'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['1-year course', 'Good for library careers']
+      },
+
+      // === 📘 DDE - M.A. Programs ===
+      {
+        id: 'mku-dde-ma-tamil',
+        name: 'M.A. Tamil (DDE)',
+        nameTamil: 'எம்.ஏ. தமிழ் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.A. Tamil',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Tamil Literature', nameTamil: 'தமிழ் இலக்கியம்', questions: 100, marks: 100, topics: ['Sangam', 'Modern', 'Grammar'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Flexible for working teachers', 'Study materials provided']
+      },
+      {
+        id: 'mku-dde-ma-english',
+        name: 'M.A. English (DDE)',
+        nameTamil: 'எம்.ஏ. ஆங்கிலம் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.A. English',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'English Literature', nameTamil: 'ஆங்கில இலக்கியம்', questions: 100, marks: 100, topics: ['British', 'American', 'Indian'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Flexible for working teachers', 'Good for NET preparation']
+      },
+      {
+        id: 'mku-dde-ma-history',
+        name: 'M.A. History (DDE)',
+        nameTamil: 'எம்.ஏ. வரலாறு (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.A. History',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'History', nameTamil: 'வரலாறு', questions: 100, marks: 100, topics: ['Indian', 'World', 'Tamil Nadu'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for UPSC aspirants', 'Study materials provided']
+      },
+      {
+        id: 'mku-dde-ma-polsci',
+        name: 'M.A. Political Science (DDE)',
+        nameTamil: 'எம்.ஏ. அரசியல் அறிவியல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.A. Political Science',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Political Science', nameTamil: 'அரசியல் அறிவியல்', questions: 100, marks: 100, topics: ['Theory', 'Indian Politics', 'IR'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for UPSC aspirants', 'Study materials provided']
+      },
+      {
+        id: 'mku-dde-ma-economics',
+        name: 'M.A. Economics (DDE)',
+        nameTamil: 'எம்.ஏ. பொருளியல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.A. Economics',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Economics', nameTamil: 'பொருளியல்', questions: 100, marks: 100, topics: ['Micro', 'Macro', 'Indian Economy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for RBI/banking', 'Study materials provided']
+      },
+      {
+        id: 'mku-dde-ma-sociology',
+        name: 'M.A. Sociology (DDE)',
+        nameTamil: 'எம்.ஏ. சமூகவியல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.A. Sociology',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Sociology', nameTamil: 'சமூகவியல்', questions: 100, marks: 100, topics: ['Theory', 'Indian Society', 'Research'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for UPSC optional', 'Study materials provided']
+      },
+      {
+        id: 'mku-dde-ma-pubadmin',
+        name: 'M.A. Public Administration (DDE)',
+        nameTamil: 'எம்.ஏ. பொது நிர்வாகம் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.A. Public Admin',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Public Administration', nameTamil: 'பொது நிர்வாகம்', questions: 100, marks: 100, topics: ['Theory', 'Indian Admin', 'Local Govt'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for UPSC optional', 'Study materials provided']
+      },
+      {
+        id: 'mku-dde-ma-tourism',
+        name: 'M.A. Tourism Management (DDE)',
+        nameTamil: 'எம்.ஏ. சுற்றுலா மேலாண்மை (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'Any Degree',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Tourism', nameTamil: 'சுற்றுலா', questions: 100, marks: 100, topics: ['Tourism Management', 'Hospitality', 'Travel'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing industry', 'Madurai is tourism hub']
+      },
+      {
+        id: 'mku-dde-ma-jmc',
+        name: 'M.A. Journalism & Mass Communication (DDE)',
+        nameTamil: 'எம்.ஏ. பத்திரிகையியல் & தொடர்பு (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'Any Degree',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Journalism', nameTamil: 'பத்திரிகையியல்', questions: 100, marks: 100, topics: ['Media Studies', 'Communication', 'Digital Media'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Media career opportunities', 'Study materials provided']
+      },
+
+      // === 🔬 DDE - M.Sc. Programs ===
+      {
+        id: 'mku-dde-msc-maths',
+        name: 'M.Sc. Mathematics (DDE)',
+        nameTamil: 'எம்.எஸ்சி. கணிதம் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.Sc. Mathematics',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 100, marks: 100, topics: ['Algebra', 'Analysis', 'Differential Equations'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for NET preparation', 'Contact classes available']
+      },
+      {
+        id: 'mku-dde-msc-physics',
+        name: 'M.Sc. Physics (DDE)',
+        nameTamil: 'எம்.எஸ்சி. இயற்பியல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.Sc. Physics',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 100, marks: 100, topics: ['Classical', 'Quantum', 'Nuclear'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for NET preparation', 'Contact classes available']
+      },
+      {
+        id: 'mku-dde-msc-chemistry',
+        name: 'M.Sc. Chemistry (DDE)',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.Sc. Chemistry',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 100, marks: 100, topics: ['Organic', 'Inorganic', 'Physical'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for NET preparation', 'Contact classes available']
+      },
+      {
+        id: 'mku-dde-msc-botany',
+        name: 'M.Sc. Botany (DDE)',
+        nameTamil: 'எம்.எஸ்சி. தாவரவியல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.Sc. Botany',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Botany', nameTamil: 'தாவரவியல்', questions: 100, marks: 100, topics: ['Taxonomy', 'Physiology', 'Ecology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for NET preparation', 'Contact classes available']
+      },
+      {
+        id: 'mku-dde-msc-zoology',
+        name: 'M.Sc. Zoology (DDE)',
+        nameTamil: 'எம்.எஸ்சி. விலங்கியல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.Sc. Zoology',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Zoology', nameTamil: 'விலங்கியல்', questions: 100, marks: 100, topics: ['Taxonomy', 'Physiology', 'Ecology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for NET preparation', 'Contact classes available']
+      },
+      {
+        id: 'mku-dde-msc-psychology',
+        name: 'M.Sc. Psychology (DDE)',
+        nameTamil: 'எம்.எஸ்சி. உளவியல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.Sc. Psychology',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Psychology', nameTamil: 'உளவியல்', questions: 100, marks: 100, topics: ['General', 'Clinical', 'Social'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for counseling careers', 'Contact classes available']
+      },
+      {
+        id: 'mku-dde-msc-electronics',
+        name: 'M.Sc. Electronics & Communication (DDE)',
+        nameTamil: 'எம்.எஸ்சி. மின்னணுவியல் & தொடர்பு (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.Sc. Electronics',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Electronics', nameTamil: 'மின்னணுவியல்', questions: 100, marks: 100, topics: ['Analog', 'Digital', 'Communication'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Industry opportunities', 'Contact classes available']
+      },
+
+      // === 💼 DDE - Commerce & Management PG ===
+      {
+        id: 'mku-dde-mcom',
+        name: 'M.Com (DDE)',
+        nameTamil: 'எம்.காம் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'B.Com',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Commerce', nameTamil: 'வணிகவியல்', questions: 100, marks: 100, topics: ['Accounting', 'Finance', 'Business Law'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Popular for working professionals', 'Good for CA/CMA']
+      },
+      {
+        id: 'mku-dde-mba',
+        name: 'M.B.A. (DDE)',
+        nameTamil: 'எம்.பி.ஏ. (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'Any Degree',
+        duration: '2 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Management', nameTamil: 'மேலாண்மை', questions: 100, marks: 100, topics: ['Marketing', 'Finance', 'HR', 'Operations'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Popular for working professionals', 'Career advancement']
+      },
+      {
+        id: 'mku-dde-mca',
+        name: 'M.C.A. (DDE)',
+        nameTamil: 'எம்.சி.ஏ. (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        eligibility: 'Any Degree with Maths',
+        duration: '3 Years',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Applications', nameTamil: 'கணினி பயன்பாடுகள்', questions: 100, marks: 100, topics: ['Programming', 'DBMS', 'Networks', 'Web'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['IT career advancement', '3-year program']
+      },
+
+      // === 📜 DDE - Diploma Programs ===
+      {
+        id: 'mku-dde-dip-saiva',
+        name: 'Diploma in Saiva Siddhanta (DDE)',
+        nameTamil: 'சைவ சித்தாந்த டிப்ளமோ (தொலைநிலை)',
+        type: 'Diploma',
+        category: 'DDE',
+        eligibility: 'Any Degree',
+        duration: '1 Year',
+        specialty: 'Unique to MKU — Tamil Philosophy',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Saiva Siddhanta', nameTamil: 'சைவ சித்தாந்தம்', questions: 100, marks: 100, topics: ['Philosophy', 'Tamil Religion'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Unique to MKU', 'Tamil philosophy specialization']
+      },
+      {
+        id: 'mku-dde-dip-yoga',
+        name: 'Diploma in Yoga (DDE)',
+        nameTamil: 'யோகா டிப்ளமோ (தொலைநிலை)',
+        type: 'Diploma',
+        category: 'DDE',
+        eligibility: 'Any Degree',
+        duration: '1 Year',
+        specialty: 'Health & Wellness',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Yoga', nameTamil: 'யோகா', questions: 100, marks: 100, topics: ['Asanas', 'Pranayama', 'Philosophy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Health & wellness focus', 'Practical training included']
+      },
+      {
+        id: 'mku-dde-dip-french',
+        name: 'Diploma in French (DDE)',
+        nameTamil: 'பிரெஞ்சு டிப்ளமோ (தொலைநிலை)',
+        type: 'Diploma',
+        category: 'DDE',
+        eligibility: 'Any Degree',
+        duration: '1 Year',
+        specialty: 'Foreign Language',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'French', nameTamil: 'பிரெஞ்சு', questions: 100, marks: 100, topics: ['Grammar', 'Vocabulary', 'Conversation'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Foreign language skill', 'Embassy/translation opportunities']
+      },
+      {
+        id: 'mku-dde-dip-childcare',
+        name: 'Diploma in Child Care (DDE)',
+        nameTamil: 'குழந்தை பராமரிப்பு டிப்ளமோ (தொலைநிலை)',
+        type: 'Diploma',
+        category: 'DDE',
+        eligibility: 'Any Degree',
+        duration: '1 Year',
+        specialty: 'Early Childhood Development',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Child Care', nameTamil: 'குழந்தை பராமரிப்பு', questions: 100, marks: 100, topics: ['Child Development', 'Nutrition', 'Psychology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Early childhood education', 'Anganwadi/preschool careers']
+      },
+      {
+        id: 'mku-dde-dip-disaster',
+        name: 'Diploma in Disaster Management (DDE)',
+        nameTamil: 'பேரழிவு மேலாண்மை டிப்ளமோ (தொலைநிலை)',
+        type: 'Diploma',
+        category: 'DDE',
+        eligibility: 'Any Degree',
+        duration: '1 Year',
+        specialty: 'Emergency Response & Safety',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Disaster Management', nameTamil: 'பேரழிவு மேலாண்மை', questions: 100, marks: 100, topics: ['Types of Disasters', 'Emergency Response', 'Relief Work'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Emergency response training', 'NGO/Govt career opportunities']
+      },
+
+      // ============================================================
+      // 🔘 TAB 3: AFFILIATED COLLEGE COURSES
+      // ============================================================
+
+      // === 🎓 Affiliated - UG Arts ===
+      {
+        id: 'mku-aff-ba-tamil',
+        name: 'B.A. Tamil (Affiliated)',
+        nameTamil: 'பி.ஏ. தமிழ் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Tamil', nameTamil: 'தமிழ்', questions: 100, marks: 100, topics: ['Literature', 'Grammar'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Available at American College, Lady Doak, Thiagarajar College', 'Merit-based admission']
+      },
+      {
+        id: 'mku-aff-ba-english',
+        name: 'B.A. English (Affiliated)',
+        nameTamil: 'பி.ஏ. ஆங்கிலம் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 100, marks: 100, topics: ['Literature', 'Grammar'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Available at premier colleges', 'High demand course']
+      },
+      {
+        id: 'mku-aff-ba-history',
+        name: 'B.A. History (Affiliated)',
+        nameTamil: 'பி.ஏ. வரலாறு (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'History', nameTamil: 'வரலாறு', questions: 100, marks: 100, topics: ['Indian', 'World', 'TN History'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for UPSC preparation', 'Available at most colleges']
+      },
+      {
+        id: 'mku-aff-ba-economics',
+        name: 'B.A. Economics (Affiliated)',
+        nameTamil: 'பி.ஏ. பொருளியல் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Economics', nameTamil: 'பொருளியல்', questions: 100, marks: 100, topics: ['Micro', 'Macro', 'Indian Economy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for banking/RBI careers', 'Available at most colleges']
+      },
+      {
+        id: 'mku-aff-ba-polsci',
+        name: 'B.A. Political Science (Affiliated)',
+        nameTamil: 'பி.ஏ. அரசியல் அறிவியல் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Political Science', nameTamil: 'அரசியல் அறிவியல்', questions: 100, marks: 100, topics: ['Theory', 'Indian Politics', 'Constitution'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for UPSC preparation', 'Available at most colleges']
+      },
+      {
+        id: 'mku-aff-ba-sociology',
+        name: 'B.A. Sociology (Affiliated)',
+        nameTamil: 'பி.ஏ. சமூகவியல் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Sociology', nameTamil: 'சமூகவியல்', questions: 100, marks: 100, topics: ['Theory', 'Indian Society'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for social work', 'Available at most colleges']
+      },
+
+      // === 🔬 Affiliated - UG Science ===
+      {
+        id: 'mku-aff-bsc-maths',
+        name: 'B.Sc. Mathematics (Affiliated)',
+        nameTamil: 'பி.எஸ்சி. கணிதம் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Maths)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 100, marks: 100, topics: ['Algebra', 'Calculus', 'Analysis'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Available at American College, Thiagarajar', 'Good for teaching/IT']
+      },
+      {
+        id: 'mku-aff-bsc-physics',
+        name: 'B.Sc. Physics (Affiliated)',
+        nameTamil: 'பி.எஸ்சி. இயற்பியல் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Physics)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 100, marks: 100, topics: ['Mechanics', 'Optics', 'Modern Physics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Available at premier colleges', 'Good for research/ISRO']
+      },
+      {
+        id: 'mku-aff-bsc-chemistry',
+        name: 'B.Sc. Chemistry (Affiliated)',
+        nameTamil: 'பி.எஸ்சி. வேதியியல் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Chemistry)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 100, marks: 100, topics: ['Organic', 'Inorganic', 'Physical'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Available at premier colleges', 'Good for pharma industry']
+      },
+      {
+        id: 'mku-aff-bsc-cs',
+        name: 'B.Sc. Computer Science (Affiliated)',
+        nameTamil: 'பி.எஸ்சி. கணினி அறிவியல் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Maths)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 100, marks: 100, topics: ['Programming', 'DBMS', 'Networks'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['High demand course', 'IT career opportunities']
+      },
+      {
+        id: 'mku-aff-bsc-it',
+        name: 'B.Sc. Information Technology (Affiliated)',
+        nameTamil: 'பி.எஸ்சி. தகவல் தொழில்நுட்பம் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Maths)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'IT', nameTamil: 'தகவல் தொழில்நுட்பம்', questions: 100, marks: 100, topics: ['Programming', 'Web Development', 'Networks'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['IT career path', 'Available at most colleges']
+      },
+      {
+        id: 'mku-aff-bsc-botany',
+        name: 'B.Sc. Botany (Affiliated)',
+        nameTamil: 'பி.எஸ்சி. தாவரவியல் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Biology)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Botany', nameTamil: 'தாவரவியல்', questions: 100, marks: 100, topics: ['Taxonomy', 'Physiology', 'Ecology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for research', 'Available at most colleges']
+      },
+      {
+        id: 'mku-aff-bsc-zoology',
+        name: 'B.Sc. Zoology (Affiliated)',
+        nameTamil: 'பி.எஸ்சி. விலங்கியல் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Biology)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Zoology', nameTamil: 'விலங்கியல்', questions: 100, marks: 100, topics: ['Taxonomy', 'Physiology', 'Ecology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for research', 'Available at most colleges']
+      },
+      {
+        id: 'mku-aff-bsc-microbiology',
+        name: 'B.Sc. Microbiology (Affiliated)',
+        nameTamil: 'பி.எஸ்சி. நுண்ணுயிரியல் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Biology)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Microbiology', nameTamil: 'நுண்ணுயிரியல்', questions: 100, marks: 100, topics: ['Bacteria', 'Viruses', 'Fungi'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for pharma/biotech', 'Available at select colleges']
+      },
+      {
+        id: 'mku-aff-bsc-biochemistry',
+        name: 'B.Sc. Biochemistry (Affiliated)',
+        nameTamil: 'பி.எஸ்சி. உயிர்வேதியியல் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Biology/Chemistry)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biochemistry', nameTamil: 'உயிர்வேதியியல்', questions: 100, marks: 100, topics: ['Metabolism', 'Enzymes', 'Molecular Biology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for pharma/research', 'Available at select colleges']
+      },
+      {
+        id: 'mku-aff-bsc-electronics',
+        name: 'B.Sc. Electronics (Affiliated)',
+        nameTamil: 'பி.எஸ்சி. மின்னணுவியல் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Physics/Maths)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Electronics', nameTamil: 'மின்னணுவியல்', questions: 100, marks: 100, topics: ['Analog', 'Digital', 'Communication'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Industry opportunities', 'Available at select colleges']
+      },
+
+      // === 💼 Affiliated - Commerce & Management ===
+      {
+        id: 'mku-aff-bcom',
+        name: 'B.Com (Affiliated)',
+        nameTamil: 'பி.காம் (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Commerce)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Commerce', nameTamil: 'வணிகவியல்', questions: 100, marks: 100, topics: ['Accounting', 'Business Studies', 'Economics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Most popular UG course', 'Good for CA/banking']
+      },
+      {
+        id: 'mku-aff-bcom-ca',
+        name: 'B.Com (Computer Applications) (Affiliated)',
+        nameTamil: 'பி.காம் (கணினி பயன்பாடுகள்) (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Commerce)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Commerce + IT', nameTamil: 'வணிகவியல் + IT', questions: 100, marks: 100, topics: ['Accounting', 'Programming', 'DBMS'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Commerce + IT skills', 'High demand']
+      },
+      {
+        id: 'mku-aff-bcom-pa',
+        name: 'B.Com (Professional Accounting) (Affiliated)',
+        nameTamil: 'பி.காம் (தொழில்முறை கணக்கியல்) (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Commerce)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Accounting', nameTamil: 'கணக்கியல்', questions: 100, marks: 100, topics: ['Financial', 'Cost', 'Management Accounting'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Best for CA aspirants', 'Intensive accounting focus']
+      },
+      {
+        id: 'mku-aff-bcom-cs',
+        name: 'B.Com (Corporate Secretaryship) (Affiliated)',
+        nameTamil: 'பி.காம் (நிறுவன செயலாளர்) (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Commerce)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Corporate Law', nameTamil: 'நிறுவன சட்டம்', questions: 100, marks: 100, topics: ['Companies Act', 'Secretarial Practice', 'Corporate Governance'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for CS aspirants', 'Corporate career path']
+      },
+      {
+        id: 'mku-aff-bba',
+        name: 'B.B.A. (Affiliated)',
+        nameTamil: 'பி.பி.ஏ. (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Business Administration', nameTamil: 'வணிக நிர்வாகம்', questions: 100, marks: 100, topics: ['Management', 'Marketing', 'Finance', 'HR'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Foundation for MBA', 'Available at most colleges']
+      },
+      {
+        id: 'mku-aff-bca',
+        name: 'B.C.A. (Affiliated)',
+        nameTamil: 'பி.சி.ஏ. (இணைப்பு)',
+        type: 'UG',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass (Maths)',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Applications', nameTamil: 'கணினி பயன்பாடுகள்', questions: 100, marks: 100, topics: ['Programming', 'DBMS', 'Web Development'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['IT career path', 'Good for MCA']
+      },
+
+      // === 🎓 Affiliated - B.Voc. Programs ===
+      {
+        id: 'mku-aff-bvoc-software',
+        name: 'B.Voc. Software Development (Affiliated)',
+        nameTamil: 'பி.வொக். மென்பொருள் மேம்பாடு (இணைப்பு)',
+        type: 'Vocational',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Software Development', nameTamil: 'மென்பொருள் மேம்பாடு', questions: 100, marks: 100, topics: ['Programming', 'Web', 'Mobile'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Industry-oriented', 'Skill-based learning']
+      },
+      {
+        id: 'mku-aff-bvoc-agriculture',
+        name: 'B.Voc. Agriculture (Affiliated)',
+        nameTamil: 'பி.வொக். விவசாயம் (இணைப்பு)',
+        type: 'Vocational',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Agriculture', nameTamil: 'விவசாயம்', questions: 100, marks: 100, topics: ['Crop Science', 'Soil Science', 'Farm Management'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Practical focus', 'Rural development careers']
+      },
+      {
+        id: 'mku-aff-bvoc-banking',
+        name: 'B.Voc. Banking & Finance (Affiliated)',
+        nameTamil: 'பி.வொக். வங்கி & நிதி (இணைப்பு)',
+        type: 'Vocational',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Banking & Finance', nameTamil: 'வங்கி & நிதி', questions: 100, marks: 100, topics: ['Banking Operations', 'Finance', 'Insurance'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Bank job oriented', 'Industry internships']
+      },
+      {
+        id: 'mku-aff-bvoc-retail',
+        name: 'B.Voc. Retail Management (Affiliated)',
+        nameTamil: 'பி.வொக். சில்லறை மேலாண்மை (இணைப்பு)',
+        type: 'Vocational',
+        category: 'Affiliated',
+        duration: '3 Years',
+        eligibility: '12th Pass',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Retail Management', nameTamil: 'சில்லறை மேலாண்மை', questions: 100, marks: 100, topics: ['Retail Operations', 'Customer Service', 'Supply Chain'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing retail sector', 'Industry placements']
+      },
+
+      // === 🎓 Affiliated - PG Programs ===
+      {
+        id: 'mku-aff-ma-tamil',
+        name: 'M.A. Tamil (Affiliated)',
+        nameTamil: 'எம்.ஏ. தமிழ் (இணைப்பு)',
+        type: 'PG',
+        category: 'Affiliated',
+        duration: '2 Years',
+        eligibility: 'B.A. Tamil',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Tamil', nameTamil: 'தமிழ்', questions: 100, marks: 100, topics: ['Literature', 'Grammar'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Available at premier colleges', 'Good for NET/teaching']
+      },
+      {
+        id: 'mku-aff-ma-english',
+        name: 'M.A. English (Affiliated)',
+        nameTamil: 'எம்.ஏ. ஆங்கிலம் (இணைப்பு)',
+        type: 'PG',
+        category: 'Affiliated',
+        duration: '2 Years',
+        eligibility: 'B.A. English',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 100, marks: 100, topics: ['Literature', 'Literary Theory'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Available at premier colleges', 'Good for NET/teaching']
+      },
+      {
+        id: 'mku-aff-ma-history',
+        name: 'M.A. History (Affiliated)',
+        nameTamil: 'எம்.ஏ. வரலாறு (இணைப்பு)',
+        type: 'PG',
+        category: 'Affiliated',
+        duration: '2 Years',
+        eligibility: 'B.A. History',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'History', nameTamil: 'வரலாறு', questions: 100, marks: 100, topics: ['Indian', 'World', 'TN History'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for UPSC/teaching', 'Available at select colleges']
+      },
+      {
+        id: 'mku-aff-ma-economics',
+        name: 'M.A. Economics (Affiliated)',
+        nameTamil: 'எம்.ஏ. பொருளியல் (இணைப்பு)',
+        type: 'PG',
+        category: 'Affiliated',
+        duration: '2 Years',
+        eligibility: 'B.A. Economics',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Economics', nameTamil: 'பொருளியல்', questions: 100, marks: 100, topics: ['Micro', 'Macro', 'Indian Economy'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for RBI/banking', 'Available at select colleges']
+      },
+      {
+        id: 'mku-aff-msc-maths',
+        name: 'M.Sc. Mathematics (Affiliated)',
+        nameTamil: 'எம்.எஸ்சி. கணிதம் (இணைப்பு)',
+        type: 'PG',
+        category: 'Affiliated',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Mathematics',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 100, marks: 100, topics: ['Algebra', 'Analysis', 'Applied Math'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for NET/teaching', 'Available at premier colleges']
+      },
+      {
+        id: 'mku-aff-msc-physics',
+        name: 'M.Sc. Physics (Affiliated)',
+        nameTamil: 'எம்.எஸ்சி. இயற்பியல் (இணைப்பு)',
+        type: 'PG',
+        category: 'Affiliated',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Physics',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 100, marks: 100, topics: ['Classical', 'Quantum', 'Nuclear'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for research/ISRO', 'Available at premier colleges']
+      },
+      {
+        id: 'mku-aff-msc-chemistry',
+        name: 'M.Sc. Chemistry (Affiliated)',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல் (இணைப்பு)',
+        type: 'PG',
+        category: 'Affiliated',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Chemistry',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 100, marks: 100, topics: ['Organic', 'Inorganic', 'Physical'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for pharma industry', 'Available at premier colleges']
+      },
+      {
+        id: 'mku-aff-msc-cs',
+        name: 'M.Sc. Computer Science (Affiliated)',
+        nameTamil: 'எம்.எஸ்சி. கணினி அறிவியல் (இணைப்பு)',
+        type: 'PG',
+        category: 'Affiliated',
+        duration: '2 Years',
+        eligibility: 'B.Sc. CS/IT/BCA',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 100, marks: 100, topics: ['Programming', 'DBMS', 'Networks', 'AI/ML'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['High demand', 'IT career advancement']
+      },
+      {
+        id: 'mku-aff-mcom',
+        name: 'M.Com (Affiliated)',
+        nameTamil: 'எம்.காம் (இணைப்பு)',
+        type: 'PG',
+        category: 'Affiliated',
+        duration: '2 Years',
+        eligibility: 'B.Com',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Commerce', nameTamil: 'வணிகவியல்', questions: 100, marks: 100, topics: ['Accounting', 'Finance', 'Business Law'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for CA/banking', 'Available at most colleges']
+      },
+      {
+        id: 'mku-aff-mba',
+        name: 'M.B.A. (Affiliated)',
+        nameTamil: 'எம்.பி.ஏ. (இணைப்பு)',
+        type: 'PG',
+        category: 'Affiliated',
+        duration: '2 Years',
+        eligibility: 'Any Degree',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '3 Hours',
+          durationMinutes: 180,
+          mode: 'Written Exam',
+          negativeMarking: false,
+          sections: [
+            { name: 'Management', nameTamil: 'மேலாண்மை', questions: 100, marks: 100, topics: ['Marketing', 'Finance', 'HR', 'Operations'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['TANCET score required', 'Available at premier colleges']
       }
     ]
   },
