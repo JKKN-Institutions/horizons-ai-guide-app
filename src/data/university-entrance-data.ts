@@ -8206,6 +8206,748 @@ export const universities: University[] = [
         syllabus: [],
         previousQuestions: [],
         tips: ['Read newspapers daily', 'Know media history and ethics', 'Learn digital media trends']
+      },
+      // === BIOLOGICAL SCIENCES ===
+      {
+        id: 'mku-msc-microbiology',
+        name: 'M.Sc. Microbiology',
+        nameTamil: 'எம்.எஸ்சி. நுண்ணுயிரியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Microbiology', nameTamil: 'நுண்ணுயிரியல்', questions: 50, marks: 50, topics: ['Bacteriology', 'Virology', 'Mycology', 'Immunology'] },
+            { name: 'Biochemistry', nameTamil: 'உயிர் வேதியியல்', questions: 25, marks: 25, topics: ['Enzymes', 'Metabolism', 'Molecular Biology'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 25, marks: 25, topics: ['Reasoning', 'Basic Science'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong foundation in UG microbiology', 'Focus on applied microbiology', 'Learn laboratory techniques']
+      },
+      {
+        id: 'mku-msc-biochemistry',
+        name: 'M.Sc. Biochemistry',
+        nameTamil: 'எம்.எஸ்சி. உயிர் வேதியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biochemistry', nameTamil: 'உயிர் வேதியியல்', questions: 50, marks: 50, topics: ['Carbohydrates', 'Proteins', 'Lipids', 'Nucleic Acids'] },
+            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 30, marks: 30, topics: ['DNA', 'RNA', 'Gene Expression'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 20, marks: 20, topics: ['Chemistry', 'Basic Biology'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on metabolic pathways', 'Learn enzyme kinetics', 'Strong chemistry foundation']
+      },
+      {
+        id: 'mku-msc-biotechnology',
+        name: 'M.Sc. Biotechnology',
+        nameTamil: 'எம்.எஸ்சி. உயிர்தொழில்நுட்பவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Biotechnology', nameTamil: 'உயிர்தொழில்நுட்பம்', questions: 40, marks: 40, topics: ['Genetic Engineering', 'Tissue Culture', 'Fermentation'] },
+            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 30, marks: 30, topics: ['Gene Cloning', 'PCR', 'Blotting Techniques'] },
+            { name: 'Biochemistry', nameTamil: 'உயிர் வேதியியல்', questions: 20, marks: 20, topics: ['Enzymes', 'Proteins'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Basic Science', 'Reasoning'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Focus on recombinant DNA technology', 'Learn bioinformatics basics', 'Industry applications important']
+      },
+      {
+        id: 'mku-msc-marine-biology',
+        name: 'M.Sc. Marine Biology',
+        nameTamil: 'எம்.எஸ்சி. கடல் உயிரியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Marine Biology', nameTamil: 'கடல் உயிரியல்', questions: 50, marks: 50, topics: ['Marine Organisms', 'Oceanography', 'Marine Ecology'] },
+            { name: 'Zoology/Botany', nameTamil: 'விலங்கியல்/தாவரவியல்', questions: 30, marks: 30, topics: ['Taxonomy', 'Physiology'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 20, marks: 20, topics: ['Environmental Science', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Unique course - study marine ecosystems', 'Learn fish taxonomy', 'Good for research careers']
+      },
+      // === COMPUTING & TECH ===
+      {
+        id: 'mku-msc-data-analytics',
+        name: 'M.Sc. Data Analytics',
+        nameTamil: 'எம்.எஸ்சி. தரவு பகுப்பாய்வு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 30, marks: 30, topics: ['Probability', 'Hypothesis Testing', 'Regression'] },
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 30, marks: 30, topics: ['Programming', 'Database', 'Algorithms'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 25, topics: ['Linear Algebra', 'Calculus'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Logical Reasoning', 'Data Interpretation'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['High demand course', 'Learn Python/R programming', 'Focus on machine learning basics']
+      },
+      {
+        id: 'mku-msc-electronics',
+        name: 'M.Sc. Electronics & Instrumentation',
+        nameTamil: 'எம்.எஸ்சி. மின்னணுவியல் & கருவியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Electronics', nameTamil: 'மின்னணுவியல்', questions: 40, marks: 40, topics: ['Digital Electronics', 'Analog Circuits', 'Microprocessors'] },
+            { name: 'Instrumentation', nameTamil: 'கருவியியல்', questions: 30, marks: 30, topics: ['Sensors', 'Transducers', 'Control Systems'] },
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 20, marks: 20, topics: ['Electromagnetic Theory', 'Semiconductor Physics'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Mathematics', 'Reasoning'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong in circuit analysis', 'Learn embedded systems', 'Industrial applications focus']
+      },
+      // === EARTH SCIENCES ===
+      {
+        id: 'mku-msc-remote-sensing',
+        name: 'M.Sc. Earth Remote Sensing & Geo-Information Technology',
+        nameTamil: 'எம்.எஸ்சி. தொலை உணர்வு & புவி தகவல் தொழில்நுட்பம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Remote Sensing', nameTamil: 'தொலை உணர்வு', questions: 35, marks: 35, topics: ['Satellite Imagery', 'Image Processing', 'GIS'] },
+            { name: 'Geography', nameTamil: 'புவியியல்', questions: 30, marks: 30, topics: ['Physical Geography', 'Cartography'] },
+            { name: 'Computer Applications', nameTamil: 'கணினி பயன்பாடுகள்', questions: 20, marks: 20, topics: ['GIS Software', 'Database'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Mathematics', 'Reasoning'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Niche course with ISRO/government job prospects', 'Learn GIS software', 'Spatial analysis important']
+      },
+      {
+        id: 'mku-msc-geography',
+        name: 'M.Sc. Geography',
+        nameTamil: 'எம்.எஸ்சி. புவியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physical Geography', nameTamil: 'இயற்கை புவியியல்', questions: 35, marks: 35, topics: ['Geomorphology', 'Climatology', 'Oceanography'] },
+            { name: 'Human Geography', nameTamil: 'மனித புவியியல்', questions: 35, marks: 35, topics: ['Population', 'Urban', 'Economic'] },
+            { name: 'Cartography & GIS', nameTamil: 'வரைபடவியல் & GIS', questions: 20, marks: 20, topics: ['Map Reading', 'Projections'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Current Affairs', 'India Geography'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for UPSC optional', 'Learn map reading', 'Focus on Indian geography']
+      },
+      {
+        id: 'mku-msc-environmental',
+        name: 'M.Sc. Environmental Sciences',
+        nameTamil: 'எம்.எஸ்சி. சுற்றுச்சூழல் அறிவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Environmental Science', nameTamil: 'சுற்றுச்சூழல் அறிவியல்', questions: 40, marks: 40, topics: ['Ecology', 'Pollution', 'Climate Change'] },
+            { name: 'Life Sciences', nameTamil: 'உயிர் அறிவியல்', questions: 30, marks: 30, topics: ['Botany', 'Zoology', 'Microbiology'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 20, marks: 20, topics: ['Environmental Chemistry'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Current Affairs', 'Reasoning'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Growing field with government jobs', 'Learn environmental laws', 'Field work important']
+      },
+      // === CORE SCIENCES ===
+      {
+        id: 'mku-msc-mathematics',
+        name: 'M.Sc. Mathematics',
+        nameTamil: 'எம்.எஸ்சி. கணிதம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Algebra', nameTamil: 'இயற்கணிதம்', questions: 30, marks: 30, topics: ['Group Theory', 'Ring Theory', 'Linear Algebra'] },
+            { name: 'Analysis', nameTamil: 'பகுப்பாய்வு', questions: 30, marks: 30, topics: ['Real Analysis', 'Complex Analysis', 'Functional Analysis'] },
+            { name: 'Applied Mathematics', nameTamil: 'பயன்பாட்டுக் கணிதம்', questions: 25, marks: 25, topics: ['Differential Equations', 'Numerical Methods'] },
+            { name: 'Discrete Mathematics', nameTamil: 'தனித்த கணிதம்', questions: 15, marks: 15, topics: ['Graph Theory', 'Combinatorics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong UG mathematics foundation needed', 'Practice problem solving', 'Good for research/teaching']
+      },
+      {
+        id: 'mku-msc-physics',
+        name: 'M.Sc. Physics',
+        nameTamil: 'எம்.எஸ்சி. இயற்பியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Classical Mechanics', nameTamil: 'பாரம்பரிய இயக்கவியல்', questions: 25, marks: 25, topics: ['Lagrangian', 'Hamiltonian', 'Rigid Body'] },
+            { name: 'Quantum Mechanics', nameTamil: 'குவாண்டம் இயக்கவியல்', questions: 25, marks: 25, topics: ['Schrodinger Equation', 'Operators', 'Perturbation'] },
+            { name: 'Electrodynamics', nameTamil: 'மின்னியக்கவியல்', questions: 25, marks: 25, topics: ['Maxwell Equations', 'EM Waves'] },
+            { name: 'Statistical Mechanics', nameTamil: 'புள்ளிவிவர இயக்கவியல்', questions: 25, marks: 25, topics: ['Ensembles', 'Entropy', 'Thermodynamics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong mathematical background needed', 'Focus on classical + quantum', 'Research opportunities']
+      },
+      {
+        id: 'mku-msc-chemistry',
+        name: 'M.Sc. Chemistry',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Organic Chemistry', nameTamil: 'கரிம வேதியியல்', questions: 30, marks: 30, topics: ['Reaction Mechanisms', 'Stereochemistry', 'Spectroscopy'] },
+            { name: 'Inorganic Chemistry', nameTamil: 'கனிம வேதியியல்', questions: 30, marks: 30, topics: ['Coordination', 'Organometallics', 'Bioinorganic'] },
+            { name: 'Physical Chemistry', nameTamil: 'பௌதிக வேதியியல்', questions: 30, marks: 30, topics: ['Thermodynamics', 'Kinetics', 'Electrochemistry'] },
+            { name: 'Analytical Chemistry', nameTamil: 'பகுப்பாய்வு வேதியியல்', questions: 10, marks: 10, topics: ['Instrumentation', 'Separation Techniques'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Balance all three branches', 'Practice numerical problems', 'Lab skills important']
+      },
+      // === NICHE SCIENCES ===
+      {
+        id: 'mku-msc-criminology',
+        name: 'M.Sc. Criminology & Criminal Justice',
+        nameTamil: 'எம்.எஸ்சி. குற்றவியல் & குற்றவியல் நீதி',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Criminology', nameTamil: 'குற்றவியல்', questions: 40, marks: 40, topics: ['Theories of Crime', 'Criminal Behavior', 'Penology'] },
+            { name: 'Criminal Justice', nameTamil: 'குற்றவியல் நீதி', questions: 30, marks: 30, topics: ['Police System', 'Courts', 'Corrections'] },
+            { name: 'Legal Studies', nameTamil: 'சட்டவியல்', questions: 20, marks: 20, topics: ['IPC', 'CrPC', 'Evidence Act'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Current Affairs', 'Social Issues'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Unique MKU course', 'Good for police/forensic careers', 'Learn Indian criminal laws']
+      },
+      {
+        id: 'mku-msc-film-media',
+        name: 'M.Sc. Film & Electronic Media Studies',
+        nameTamil: 'எம்.எஸ்சி. திரைப்படம் & மின்னணு ஊடக படிப்புகள்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Film Studies', nameTamil: 'திரைப்பட படிப்புகள்', questions: 40, marks: 40, topics: ['Film History', 'Film Theory', 'Tamil Cinema'] },
+            { name: 'Electronic Media', nameTamil: 'மின்னணு ஊடகம்', questions: 30, marks: 30, topics: ['Television', 'Digital Media', 'Radio'] },
+            { name: 'Communication', nameTamil: 'தொடர்பு', questions: 20, marks: 20, topics: ['Mass Communication', 'Media Laws'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Current Affairs', 'Entertainment Industry'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Creative field - practical focus', 'Know Tamil cinema history', 'Learn digital production tools']
+      },
+      {
+        id: 'mku-msc-visual-comm',
+        name: 'M.Sc. Visual Communication',
+        nameTamil: 'எம்.எஸ்சி. காட்சித் தொடர்பு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Visual Communication', nameTamil: 'காட்சித் தொடர்பு', questions: 40, marks: 40, topics: ['Photography', 'Graphic Design', 'Animation'] },
+            { name: 'Media Studies', nameTamil: 'ஊடக படிப்புகள்', questions: 30, marks: 30, topics: ['Advertising', 'Public Relations', 'Corporate Communication'] },
+            { name: 'Technology', nameTamil: 'தொழில்நுட்பம்', questions: 20, marks: 20, topics: ['Software', 'Digital Tools', 'Web Design'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Current Affairs', 'Design Trends'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Creative + technical skills needed', 'Build a portfolio', 'Learn Adobe Suite']
+      },
+      // === ARTS & HUMANITIES - LANGUAGES ===
+      {
+        id: 'mku-ma-english',
+        name: 'M.A. English',
+        nameTamil: 'எம்.ஏ. ஆங்கிலம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'English Literature', nameTamil: 'ஆங்கில இலக்கியம்', questions: 50, marks: 50, topics: ['British Literature', 'American Literature', 'Indian Writing'] },
+            { name: 'Grammar & Usage', nameTamil: 'இலக்கணம் & பயன்பாடு', questions: 25, marks: 25, topics: ['Syntax', 'Morphology', 'Semantics'] },
+            { name: 'Literary Theory', nameTamil: 'இலக்கியக் கோட்பாடு', questions: 15, marks: 15, topics: ['Criticism', 'Schools of Thought'] },
+            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 10, marks: 10, topics: ['Comprehension', 'Vocabulary'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Read classics and modern literature', 'Know literary movements', 'Good for teaching/media careers']
+      },
+      {
+        id: 'mku-ma-french',
+        name: 'M.A. French',
+        nameTamil: 'எம்.ஏ. பிரெஞ்சு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'French Language', nameTamil: 'பிரெஞ்சு மொழி', questions: 40, marks: 40, topics: ['Grammar', 'Translation', 'Composition'] },
+            { name: 'French Literature', nameTamil: 'பிரெஞ்சு இலக்கியம்', questions: 35, marks: 35, topics: ['Poetry', 'Prose', 'Drama'] },
+            { name: 'French Culture', nameTamil: 'பிரெஞ்சு பண்பாடு', questions: 15, marks: 15, topics: ['History', 'Arts', 'Civilization'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Francophone World'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Rare language course', 'Embassy/translation job prospects', 'DELF certification helpful']
+      },
+      {
+        id: 'mku-ma-linguistics',
+        name: 'M.A. Linguistics',
+        nameTamil: 'எம்.ஏ. மொழியியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'General Linguistics', nameTamil: 'பொது மொழியியல்', questions: 40, marks: 40, topics: ['Phonology', 'Morphology', 'Syntax', 'Semantics'] },
+            { name: 'Applied Linguistics', nameTamil: 'பயன்பாட்டு மொழியியல்', questions: 30, marks: 30, topics: ['Language Teaching', 'Translation'] },
+            { name: 'Sociolinguistics', nameTamil: 'சமூக மொழியியல்', questions: 20, marks: 20, topics: ['Language & Society', 'Dialects'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Languages of India'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Interdisciplinary field', 'Good for NLP/AI careers', 'Learn computational linguistics']
+      },
+      // === ARTS & HUMANITIES - SOCIAL SCIENCES ===
+      {
+        id: 'mku-ma-history',
+        name: 'M.A. History',
+        nameTamil: 'எம்.ஏ. வரலாறு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Indian History', nameTamil: 'இந்திய வரலாறு', questions: 40, marks: 40, topics: ['Ancient', 'Medieval', 'Modern India'] },
+            { name: 'World History', nameTamil: 'உலக வரலாறு', questions: 25, marks: 25, topics: ['Europe', 'World Wars', 'Revolutions'] },
+            { name: 'Tamil Nadu History', nameTamil: 'தமிழ்நாடு வரலாறு', questions: 20, marks: 20, topics: ['Cholas', 'Pandyas', 'Freedom Struggle'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 15, marks: 15, topics: ['Culture', 'Heritage'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for UPSC/TNPSC', 'Focus on Tamil Nadu history', 'Read NCERT + standard texts']
+      },
+      {
+        id: 'mku-ma-political-science',
+        name: 'M.A. Political Science',
+        nameTamil: 'எம்.ஏ. அரசியல் அறிவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Political Theory', nameTamil: 'அரசியல் கோட்பாடு', questions: 30, marks: 30, topics: ['Justice', 'Liberty', 'Democracy', 'Rights'] },
+            { name: 'Indian Politics', nameTamil: 'இந்திய அரசியல்', questions: 30, marks: 30, topics: ['Constitution', 'Federalism', 'Party System'] },
+            { name: 'International Relations', nameTamil: 'சர்வதேச உறவுகள்', questions: 25, marks: 25, topics: ['Foreign Policy', 'Organizations', 'Conflicts'] },
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 15, marks: 15, topics: ['National', 'International'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['UPSC optional subject', 'Read The Hindu daily', 'Know Indian Constitution well']
+      },
+      {
+        id: 'mku-ma-sociology',
+        name: 'M.A. Sociology',
+        nameTamil: 'எம்.ஏ. சமூகவியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Sociological Theory', nameTamil: 'சமூகவியல் கோட்பாடு', questions: 35, marks: 35, topics: ['Classical', 'Contemporary', 'Indian Thinkers'] },
+            { name: 'Indian Society', nameTamil: 'இந்திய சமூகம்', questions: 30, marks: 30, topics: ['Caste', 'Class', 'Gender', 'Family'] },
+            { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 20, marks: 20, topics: ['Survey', 'Interview', 'Analysis'] },
+            { name: 'Social Problems', nameTamil: 'சமூகப் பிரச்சனைகள்', questions: 15, marks: 15, topics: ['Poverty', 'Crime', 'Population'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for UPSC optional', 'Understand Indian society', 'Learn research methodology']
+      },
+      {
+        id: 'mku-ma-economics',
+        name: 'M.A. Economics',
+        nameTamil: 'எம்.ஏ. பொருளியல்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Micro Economics', nameTamil: 'நுண் பொருளியல்', questions: 30, marks: 30, topics: ['Demand-Supply', 'Consumer Theory', 'Production'] },
+            { name: 'Macro Economics', nameTamil: 'மாக்ரோ பொருளியல்', questions: 30, marks: 30, topics: ['National Income', 'Monetary Policy', 'Fiscal Policy'] },
+            { name: 'Indian Economy', nameTamil: 'இந்தியப் பொருளாதாரம்', questions: 25, marks: 25, topics: ['Agriculture', 'Industry', 'Services', 'Budget'] },
+            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 15, marks: 15, topics: ['Probability', 'Hypothesis Testing'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Strong quantitative skills needed', 'Read Economic Survey', 'Good for RBI/banking careers']
+      },
+      {
+        id: 'mku-ma-philosophy',
+        name: 'M.A. Philosophy & Religion',
+        nameTamil: 'எம்.ஏ. தத்துவம் & மதம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Indian Philosophy', nameTamil: 'இந்தியத் தத்துவம்', questions: 35, marks: 35, topics: ['Vedanta', 'Buddhism', 'Jainism', 'Nyaya'] },
+            { name: 'Western Philosophy', nameTamil: 'மேற்கத்தியத் தத்துவம்', questions: 30, marks: 30, topics: ['Ancient Greek', 'Modern', 'Contemporary'] },
+            { name: 'Ethics', nameTamil: 'நெறிமுறை', questions: 20, marks: 20, topics: ['Moral Philosophy', 'Applied Ethics'] },
+            { name: 'Religion Studies', nameTamil: 'மத ஆய்வுகள்', questions: 15, marks: 15, topics: ['Comparative Religion', 'Religious Texts'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Unique course for deep thinkers', 'Read primary texts', 'Good for ethics/teaching roles']
+      },
+      // === UNIQUE MKU COURSES ===
+      {
+        id: 'mku-ma-admin-studies',
+        name: 'M.A. Administrative Studies',
+        nameTamil: 'எம்.ஏ. நிர்வாக ஆய்வுகள்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Public Administration', nameTamil: 'பொது நிர்வாகம்', questions: 35, marks: 35, topics: ['Administrative Theory', 'Indian Administration', 'Local Self Govt'] },
+            { name: 'Indian Polity', nameTamil: 'இந்திய அரசியல்', questions: 30, marks: 30, topics: ['Constitution', 'Governance', 'Committees'] },
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 20, marks: 20, topics: ['Government Schemes', 'Policies', 'Acts'] },
+            { name: 'General Studies', nameTamil: 'பொது அறிவு', questions: 15, marks: 15, topics: ['Economy', 'Science & Tech', 'Environment'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Designed for UPSC/TNPSC aspirants', 'Faculty are ex-civil servants', 'Unique to MKU']
+      },
+      {
+        id: 'mku-ma-womens-studies',
+        name: 'M.A. Women\'s Studies',
+        nameTamil: 'எம்.ஏ. பெண்கள் ஆய்வுகள்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Women\'s Studies', nameTamil: 'பெண்கள் ஆய்வுகள்', questions: 40, marks: 40, topics: ['Feminist Theory', 'Gender Studies', 'Women\'s Rights'] },
+            { name: 'Indian Context', nameTamil: 'இந்திய சூழல்', questions: 30, marks: 30, topics: ['Women in India', 'Laws', 'Social Issues'] },
+            { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 20, marks: 20, topics: ['Qualitative', 'Case Studies'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Current Affairs', 'Women Achievers'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['NGO/social work career focus', 'Learn women-centric laws', 'Field work important']
+      },
+      {
+        id: 'mku-msc-peace',
+        name: 'M.Sc. Peace Making / Gandhian Thought',
+        nameTamil: 'எம்.எஸ்சி. சமாதானம் / காந்தியவாதம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Gandhian Studies', nameTamil: 'காந்திய ஆய்வுகள்', questions: 40, marks: 40, topics: ['Philosophy', 'Nonviolence', 'Satyagraha'] },
+            { name: 'Peace Studies', nameTamil: 'சமாதான ஆய்வுகள்', questions: 30, marks: 30, topics: ['Conflict Resolution', 'International Peace'] },
+            { name: 'Indian Freedom Movement', nameTamil: 'இந்திய சுதந்திர இயக்கம்', questions: 20, marks: 20, topics: ['Gandhi\'s Role', 'Mass Movements'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Current Affairs', 'Nobel Peace Laureates'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Unique interdisciplinary course', 'Learn conflict resolution', 'Good for UN/NGO careers']
+      },
+      // === MANAGEMENT & INTEGRATED ===
+      {
+        id: 'mku-mba-hospital',
+        name: 'MBA Hospital Administration',
+        nameTamil: 'எம்.பி.ஏ. மருத்துவமனை நிர்வாகம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Healthcare Management', nameTamil: 'சுகாதார மேலாண்மை', questions: 30, marks: 30, topics: ['Hospital Operations', 'Quality Management', 'Patient Care'] },
+            { name: 'General Management', nameTamil: 'பொது மேலாண்மை', questions: 25, marks: 25, topics: ['HR', 'Finance', 'Marketing'] },
+            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல் திறன்', questions: 25, marks: 25, topics: ['Arithmetic', 'DI'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Healthcare Sector', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Healthcare sector boom', 'Learn hospital economics', 'Good for private hospital management']
+      },
+      {
+        id: 'mku-mba-entrepreneurship',
+        name: 'MBA Entrepreneurship',
+        nameTamil: 'எம்.பி.ஏ. தொழில்முனைவு',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Entrepreneurship', nameTamil: 'தொழில்முனைவு', questions: 30, marks: 30, topics: ['Startup Ecosystem', 'Business Models', 'Innovation'] },
+            { name: 'Business Management', nameTamil: 'வணிக மேலாண்மை', questions: 25, marks: 25, topics: ['Finance', 'Marketing', 'Operations'] },
+            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல் திறன்', questions: 25, marks: 25, topics: ['Arithmetic', 'DI'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Startups', 'Investors', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Practical startup focus', 'Learn business plan writing', 'Industry connects']
+      },
+      {
+        id: 'mku-imba-tourism',
+        name: 'Integrated MBA Tourism & Hotel Management (5 Years)',
+        nameTamil: 'ஒருங்கிணைந்த எம்.பி.ஏ. சுற்றுலா & ஹோட்டல் மேலாண்மை',
+        type: 'Integrated',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'General English', nameTamil: 'பொது ஆங்கிலம்', questions: 30, marks: 30, topics: ['Grammar', 'Comprehension', 'Vocabulary'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 30, marks: 30, topics: ['Tourism', 'Hotels', 'Current Affairs'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', questions: 25, marks: 25, topics: ['Numerical', 'Reasoning'] },
+            { name: 'Personality Test', nameTamil: 'ஆளுமை தேர்வு', questions: 15, marks: 15, topics: ['Communication', 'Hospitality Mindset'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Join directly after 12th', '5-year integrated program', 'Industry internships included', 'Madurai tourism hub']
+      },
+      {
+        id: 'mku-mcom',
+        name: 'M.Com',
+        nameTamil: 'எம்.காம்',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Accountancy', nameTamil: 'கணக்கியல்', questions: 30, marks: 30, topics: ['Financial Accounting', 'Cost Accounting', 'Management Accounting'] },
+            { name: 'Business Law', nameTamil: 'வணிகச் சட்டம்', questions: 25, marks: 25, topics: ['Companies Act', 'Contract Act', 'GST'] },
+            { name: 'Economics', nameTamil: 'பொருளியல்', questions: 25, marks: 25, topics: ['Micro', 'Macro', 'Indian Economy'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Banking', 'Finance', 'Current Affairs'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Core commerce course', 'Good for CA/CMA preparation', 'Learn Tally/Excel']
+      },
+      {
+        id: 'mku-med',
+        name: 'M.Ed.',
+        nameTamil: 'எம்.எட்.',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Education', nameTamil: 'கல்வியியல்', questions: 40, marks: 40, topics: ['Philosophy of Education', 'Psychology', 'Educational Technology'] },
+            { name: 'Teaching Methodology', nameTamil: 'கற்பித்தல் முறை', questions: 30, marks: 30, topics: ['Curriculum', 'Evaluation', 'Classroom Management'] },
+            { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 20, marks: 20, topics: ['Statistics', 'Action Research'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 10, marks: 10, topics: ['Education Policy', 'NEP 2020'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Required for NET/SET in Education', 'Learn education psychology', 'B.Ed. mandatory']
+      },
+      {
+        id: 'mku-mped',
+        name: 'M.P.Ed. (Physical Education)',
+        nameTamil: 'எம்.பி.எட். (உடற்கல்வி)',
+        type: 'PG',
+        examPattern: {
+          totalQuestions: 100,
+          totalMarks: 100,
+          duration: '2 Hours',
+          durationMinutes: 120,
+          mode: 'OMR Based (Offline)',
+          negativeMarking: false,
+          sections: [
+            { name: 'Physical Education', nameTamil: 'உடற்கல்வி', questions: 40, marks: 40, topics: ['Sports Science', 'Kinesiology', 'Biomechanics'] },
+            { name: 'Health Education', nameTamil: 'சுகாதாரக் கல்வி', questions: 25, marks: 25, topics: ['Nutrition', 'First Aid', 'Sports Medicine'] },
+            { name: 'Sports Management', nameTamil: 'விளையாட்டு மேலாண்மை', questions: 20, marks: 20, topics: ['Organization', 'Event Management'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 15, marks: 15, topics: ['Sports Current Affairs', 'Olympics'] }
+          ]
+        },
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['For sports teachers/coaches', 'B.P.Ed. mandatory', 'Physical fitness test included']
       }
     ]
   },
