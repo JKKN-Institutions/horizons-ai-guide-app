@@ -1,15 +1,16 @@
 import { useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, MapPin, Globe, Phone, Mail, Calendar, IndianRupee, GraduationCap, BookOpen, Building2 } from 'lucide-react';
+import { ArrowLeft, MapPin, Globe, Phone, Mail, Calendar, IndianRupee, GraduationCap, BookOpen, Building2, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { universities } from '@/data/university-entrance-data';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const UniversityDetail = () => {
   const { universityId } = useParams<{ universityId: string }>();
   const navigate = useNavigate();
+  const [expandedCategory, setExpandedCategory] = useState<'on-campus' | 'dde' | 'affiliated' | null>(null);
 
   const university = universities.find(u => u.id === universityId);
 
@@ -23,24 +24,6 @@ export const UniversityDetail = () => {
       affiliated: university.courses.filter(c => c.category === 'Affiliated')
     };
   }, [university]);
-
-  // Check if university has multiple categories
-  const hasMultipleCategories = useMemo(() => {
-    const categories = [
-      coursesByCategory.onCampus.length > 0,
-      coursesByCategory.dde.length > 0,
-      coursesByCategory.affiliated.length > 0
-    ].filter(Boolean).length;
-    return categories > 1;
-  }, [coursesByCategory]);
-
-  // Determine default tab
-  const defaultTab = useMemo(() => {
-    if (coursesByCategory.onCampus.length > 0) return 'on-campus';
-    if (coursesByCategory.dde.length > 0) return 'dde';
-    if (coursesByCategory.affiliated.length > 0) return 'affiliated';
-    return 'on-campus';
-  }, [coursesByCategory]);
 
   if (!university) {
     return (
@@ -63,6 +46,10 @@ export const UniversityDetail = () => {
       case 'completed': return 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300';
       default: return 'bg-slate-100 text-slate-700';
     }
+  };
+
+  const toggleCategory = (category: 'on-campus' | 'dde' | 'affiliated') => {
+    setExpandedCategory(expandedCategory === category ? null : category);
   };
 
   const CourseGrid = ({ courses }: { courses: typeof university.courses }) => {
@@ -92,9 +79,10 @@ export const UniversityDetail = () => {
         <div className="space-y-6">
           {Object.entries(groupedBySchool).map(([school, schoolCourses]) => (
             <div key={school}>
-              <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                <Building2 className="h-5 w-5 text-primary" />
+              <h3 className="text-md font-semibold text-foreground mb-3 flex items-center gap-2">
+                <Building2 className="h-4 w-4 text-primary" />
                 {school}
+                <Badge variant="outline" className="text-xs">{schoolCourses.length}</Badge>
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {schoolCourses.map((course) => (
@@ -117,12 +105,10 @@ export const UniversityDetail = () => {
   };
 
   const CourseCard = ({ course, universityId }: { course: typeof university.courses[0], universityId: string }) => {
-    const navigate = useNavigate();
-    
     return (
       <button
         onClick={() => navigate(`/tn-university-entrance/${universityId}/${course.id}`)}
-        className="p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-[#6a0dad] hover:shadow-lg hover:shadow-[#6a0dad]/10 transition-all text-left group"
+        className="p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-primary hover:shadow-lg transition-all text-left group"
       >
         <div className="flex items-center justify-between mb-2 flex-wrap gap-1">
           <Badge variant="secondary" className="text-xs">
@@ -132,7 +118,7 @@ export const UniversityDetail = () => {
             <span className="text-xs text-muted-foreground">{course.duration}</span>
           )}
         </div>
-        <h3 className="font-bold text-foreground group-hover:text-[#6a0dad] transition-colors text-sm">
+        <h3 className="font-bold text-foreground group-hover:text-primary transition-colors text-sm">
           {course.name}
         </h3>
         <p className="text-xs text-muted-foreground font-tamil mt-1">{course.nameTamil}</p>
@@ -145,6 +131,93 @@ export const UniversityDetail = () => {
           {course.previousQuestions.length} PYQs →
         </p>
       </button>
+    );
+  };
+
+  const CategoryCard = ({ 
+    category, 
+    count, 
+    label, 
+    icon: Icon, 
+    gradientFrom, 
+    gradientTo, 
+    borderColor,
+    textColor,
+    description
+  }: { 
+    category: 'on-campus' | 'dde' | 'affiliated';
+    count: number;
+    label: string;
+    icon: typeof GraduationCap;
+    gradientFrom: string;
+    gradientTo: string;
+    borderColor: string;
+    textColor: string;
+    description: string;
+  }) => {
+    const isExpanded = expandedCategory === category;
+    const courses = category === 'on-campus' ? coursesByCategory.onCampus : 
+                    category === 'dde' ? coursesByCategory.dde : 
+                    coursesByCategory.affiliated;
+
+    if (count === 0) return null;
+
+    return (
+      <div className="space-y-3">
+        <button
+          onClick={() => toggleCategory(category)}
+          className={`w-full p-4 rounded-2xl border-2 transition-all ${
+            isExpanded 
+              ? `${borderColor} shadow-lg` 
+              : 'border-slate-200 dark:border-slate-700 hover:border-slate-300'
+          } ${gradientFrom} ${gradientTo}`}
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className={`p-2 rounded-xl bg-white/50 dark:bg-slate-800/50`}>
+                <Icon className={`h-5 w-5 ${textColor}`} />
+              </div>
+              <div className="text-left">
+                <p className={`text-2xl font-bold ${textColor}`}>{count}</p>
+                <p className="text-sm text-muted-foreground">{label}</p>
+              </div>
+            </div>
+            <div className={`p-2 rounded-full ${isExpanded ? 'bg-white/50' : 'bg-transparent'}`}>
+              {isExpanded ? (
+                <ChevronUp className={`h-5 w-5 ${textColor}`} />
+              ) : (
+                <ChevronDown className="h-5 w-5 text-muted-foreground" />
+              )}
+            </div>
+          </div>
+          {!isExpanded && (
+            <p className="text-xs text-muted-foreground mt-2 text-left">
+              Tap to view courses →
+            </p>
+          )}
+        </button>
+
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <Card className={`${borderColor} border`}>
+                <CardContent className="p-4">
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {description}
+                  </p>
+                  <CourseGrid courses={courses} />
+                </CardContent>
+              </Card>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     );
   };
 
@@ -202,28 +275,6 @@ export const UniversityDetail = () => {
           </div>
         </div>
 
-        {/* Stats Bar */}
-        <div className="grid grid-cols-3 gap-3">
-          <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border-purple-200 dark:border-purple-800">
-            <CardContent className="p-3 text-center">
-              <p className="text-2xl font-bold text-purple-600">{coursesByCategory.onCampus.length}</p>
-              <p className="text-xs text-muted-foreground">On-Campus</p>
-            </CardContent>
-          </Card>
-          <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border-blue-200 dark:border-blue-800">
-            <CardContent className="p-3 text-center">
-              <p className="text-2xl font-bold text-blue-600">{coursesByCategory.dde.length}</p>
-              <p className="text-xs text-muted-foreground">Distance Ed.</p>
-            </CardContent>
-          </Card>
-          <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-green-200 dark:border-green-800">
-            <CardContent className="p-3 text-center">
-              <p className="text-2xl font-bold text-green-600">{coursesByCategory.affiliated.length}</p>
-              <p className="text-xs text-muted-foreground">Affiliated</p>
-            </CardContent>
-          </Card>
-        </div>
-
         {/* Contact Info */}
         <Card className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl">
           <CardContent className="p-4">
@@ -245,7 +296,7 @@ export const UniversityDetail = () => {
         {/* Important Dates */}
         {university.importantDates.length > 0 && (
           <Card className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-[#6a0dad] to-[#9333ea] text-white p-4">
+            <CardHeader className="bg-gradient-to-r from-primary to-primary/80 text-white p-4">
               <CardTitle className="text-lg flex items-center gap-2">
                 <Calendar className="h-5 w-5" />
                 Important Dates / முக்கிய தேதிகள்
@@ -301,86 +352,49 @@ export const UniversityDetail = () => {
           </CardContent>
         </Card>
 
-        {/* Courses with Tabs */}
+        {/* Courses - Tap to Expand */}
         <div>
           <h2 className="text-xl font-bold text-foreground mb-4">
-            📚 Select Course / பாடநெறியைத் தேர்ந்தெடுக்கவும்
+            📚 Select Course Category / பாடநெறி வகையைத் தேர்வு செய்க
           </h2>
           
-          {hasMultipleCategories ? (
-            <Tabs defaultValue={defaultTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-3 mb-4">
-                <TabsTrigger 
-                  value="on-campus" 
-                  className="flex items-center gap-1 text-xs sm:text-sm"
-                  disabled={coursesByCategory.onCampus.length === 0}
-                >
-                  <GraduationCap className="h-4 w-4 hidden sm:block" />
-                  On-Campus
-                  <Badge variant="secondary" className="ml-1 text-xs">
-                    {coursesByCategory.onCampus.length}
-                  </Badge>
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="dde" 
-                  className="flex items-center gap-1 text-xs sm:text-sm"
-                  disabled={coursesByCategory.dde.length === 0}
-                >
-                  <BookOpen className="h-4 w-4 hidden sm:block" />
-                  Distance Ed.
-                  <Badge variant="secondary" className="ml-1 text-xs">
-                    {coursesByCategory.dde.length}
-                  </Badge>
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="affiliated" 
-                  className="flex items-center gap-1 text-xs sm:text-sm"
-                  disabled={coursesByCategory.affiliated.length === 0}
-                >
-                  <Building2 className="h-4 w-4 hidden sm:block" />
-                  Affiliated
-                  <Badge variant="secondary" className="ml-1 text-xs">
-                    {coursesByCategory.affiliated.length}
-                  </Badge>
-                </TabsTrigger>
-              </TabsList>
+          <div className="space-y-4">
+            <CategoryCard 
+              category="on-campus"
+              count={coursesByCategory.onCampus.length}
+              label="On-Campus Programs"
+              icon={GraduationCap}
+              gradientFrom="bg-gradient-to-br from-purple-50"
+              gradientTo="to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20"
+              borderColor="border-purple-400 dark:border-purple-600"
+              textColor="text-purple-600"
+              description="🏛️ On-Campus Programs are offered directly at the university's main campus with regular classroom teaching."
+            />
 
-              <TabsContent value="on-campus" className="mt-0">
-                <Card className="border-purple-200 dark:border-purple-800 mb-4">
-                  <CardContent className="p-3">
-                    <p className="text-sm text-muted-foreground">
-                      🏛️ <strong>On-Campus Programs</strong> are offered directly at the university's main campus with regular classroom teaching.
-                    </p>
-                  </CardContent>
-                </Card>
-                <CourseGrid courses={coursesByCategory.onCampus} />
-              </TabsContent>
+            <CategoryCard 
+              category="dde"
+              count={coursesByCategory.dde.length}
+              label="Distance Education"
+              icon={BookOpen}
+              gradientFrom="bg-gradient-to-br from-blue-50"
+              gradientTo="to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20"
+              borderColor="border-blue-400 dark:border-blue-600"
+              textColor="text-blue-600"
+              description="📖 Distance Education programs for working professionals who cannot attend regular classes."
+            />
 
-              <TabsContent value="dde" className="mt-0">
-                <Card className="border-blue-200 dark:border-blue-800 mb-4">
-                  <CardContent className="p-3">
-                    <p className="text-sm text-muted-foreground">
-                      📖 <strong>Distance Education</strong> programs for working professionals who cannot attend regular classes.
-                    </p>
-                  </CardContent>
-                </Card>
-                <CourseGrid courses={coursesByCategory.dde} />
-              </TabsContent>
-
-              <TabsContent value="affiliated" className="mt-0">
-                <Card className="border-green-200 dark:border-green-800 mb-4">
-                  <CardContent className="p-3">
-                    <p className="text-sm text-muted-foreground">
-                      🏫 <strong>Affiliated College Courses</strong> offered at colleges affiliated to this university across Tamil Nadu.
-                    </p>
-                  </CardContent>
-                </Card>
-                <CourseGrid courses={coursesByCategory.affiliated} />
-              </TabsContent>
-            </Tabs>
-          ) : (
-            <CourseGrid courses={university.courses} />
-          )}
+            <CategoryCard 
+              category="affiliated"
+              count={coursesByCategory.affiliated.length}
+              label="Affiliated Colleges"
+              icon={Building2}
+              gradientFrom="bg-gradient-to-br from-green-50"
+              gradientTo="to-green-100 dark:from-green-900/20 dark:to-green-800/20"
+              borderColor="border-green-400 dark:border-green-600"
+              textColor="text-green-600"
+              description="🏫 Affiliated College Courses offered at colleges affiliated to this university across Tamil Nadu."
+            />
+          </div>
         </div>
       </div>
     </div>
