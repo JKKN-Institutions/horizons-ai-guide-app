@@ -11352,2525 +11352,1627 @@ export const universities: University[] = [
       { event: 'Results', eventTamil: 'முடிவுகள்', date: 'July 2026', status: 'upcoming' }
     ],
     courses: [
-      // ========== SCIENCE (M.Sc.) ==========
-      {
-        id: 'bu-msc-mathematics',
-        name: 'M.Sc. Mathematics',
-        nameTamil: 'எம்.எஸ்சி. கணிதம்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Pure Mathematics', nameTamil: 'தூய கணிதம்', questions: 40, marks: 40, topics: ['Real Analysis', 'Abstract Algebra', 'Complex Analysis'] },
-            { name: 'Applied Mathematics', nameTamil: 'பயன்பாட்டு கணிதம்', questions: 35, marks: 35, topics: ['Differential Equations', 'Numerical Methods', 'Operations Research'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 25, marks: 25, topics: ['Logical Reasoning', 'Quantitative Aptitude'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['Focus on Real Analysis and Algebra', 'Practice previous year papers', 'Strong foundation in calculus required']
-      },
-      {
-        id: 'bu-msc-statistics',
-        name: 'M.Sc. Statistics',
-        nameTamil: 'எம்.எஸ்சி. புள்ளியியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Probability & Distributions', nameTamil: 'நிகழ்தகவு & பரவல்', questions: 35, marks: 35, topics: ['Probability Theory', 'Distributions', 'Random Variables'] },
-            { name: 'Statistical Inference', nameTamil: 'புள்ளியியல் அனுமானம்', questions: 35, marks: 35, topics: ['Estimation', 'Hypothesis Testing', 'Regression'] },
-            { name: 'Applied Statistics', nameTamil: 'பயன்பாட்டு புள்ளியியல்', questions: 30, marks: 30, topics: ['Sampling', 'Design of Experiments'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['High demand for statisticians', 'Learn statistical software (R, SPSS)', 'Good for data science careers']
-      },
-      {
-        id: 'bu-msc-applied-mathematics',
-        name: 'M.Sc. Applied Mathematics',
-        nameTamil: 'எம்.எஸ்சி. பயன்பாட்டு கணிதம்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Differential Equations', 'Numerical Analysis', 'Mathematical Modelling'] },
-            { name: 'Applied Topics', nameTamil: 'பயன்பாட்டு பாடங்கள்', questions: 30, marks: 30, topics: ['Fluid Dynamics', 'Operations Research', 'Optimization'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Reasoning', 'Quantitative'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['Industry-oriented mathematics', 'Good for research careers', 'Learn computational methods']
-      },
-      {
-        id: 'bu-msc-physics',
-        name: 'M.Sc. Physics',
-        nameTamil: 'எம்.எஸ்சி. இயற்பியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Classical & Quantum Mechanics', nameTamil: 'பருப்பொருள் & குவாண்டம் இயக்கவியல்', questions: 30, marks: 30, topics: ['Lagrangian', 'Hamiltonian', 'Schrödinger Equation'] },
-            { name: 'Electromagnetism & Optics', nameTamil: 'மின்காந்தவியல் & ஒளியியல்', questions: 25, marks: 25, topics: ['Maxwell Equations', 'Wave Optics', 'Lasers'] },
-            { name: 'Modern Physics', nameTamil: 'நவீன இயற்பியல்', questions: 25, marks: 25, topics: ['Nuclear Physics', 'Solid State', 'Particle Physics'] },
-            { name: 'Mathematical Physics', nameTamil: 'கணித இயற்பியல்', questions: 20, marks: 20, topics: ['Complex Analysis', 'Fourier Transform'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['Strong mathematical foundation needed', 'Focus on Quantum Mechanics', 'Good for research and teaching']
-      },
-      {
-        id: 'bu-msc-medical-physics',
-        name: 'M.Sc. Medical Physics',
-        nameTamil: 'எம்.எஸ்சி. மருத்துவ இயற்பியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 40, marks: 40, topics: ['Nuclear Physics', 'Radiation Physics', 'Medical Imaging'] },
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 25, marks: 25, topics: ['Human Anatomy', 'Physiology', 'Radiobiology'] },
-            { name: 'Medical Applications', nameTamil: 'மருத்துவ பயன்பாடுகள்', questions: 20, marks: 20, topics: ['Radiotherapy', 'Diagnostic Imaging'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'English'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['Bharathiar is famous for Medical Physics in TN', 'Career in hospitals and cancer centres', 'Study nuclear physics thoroughly']
-      },
-      {
-        id: 'bu-msc-nanoscience',
-        name: 'M.Sc. Nanoscience & Technology',
-        nameTamil: 'எம்.எஸ்சி. நானோ அறிவியல் & தொழில்நுட்பம்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 35, marks: 35, topics: ['Quantum Mechanics', 'Solid State Physics', 'Materials Science'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 35, marks: 35, topics: ['Surface Chemistry', 'Nanomaterials', 'Synthesis Methods'] },
-            { name: 'Nanotechnology', nameTamil: 'நானோ தொழில்நுட்பம்', questions: 30, marks: 30, topics: ['Nanoparticles', 'Characterization', 'Applications'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['Emerging interdisciplinary field', 'Research-oriented program', 'Good for materials science careers']
-      },
-      {
-        id: 'bu-msc-chemistry',
-        name: 'M.Sc. Chemistry',
-        nameTamil: 'எம்.எஸ்சி. வேதியியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Organic Chemistry', nameTamil: 'கரிம வேதியியல்', questions: 35, marks: 35, topics: ['Reaction Mechanisms', 'Stereochemistry', 'Spectroscopy'] },
-            { name: 'Inorganic Chemistry', nameTamil: 'கனிம வேதியியல்', questions: 30, marks: 30, topics: ['Coordination', 'Organometallics', 'Solid State'] },
-            { name: 'Physical Chemistry', nameTamil: 'பெளதிக வேதியியல்', questions: 35, marks: 35, topics: ['Thermodynamics', 'Kinetics', 'Quantum Chemistry'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['Organic reactions are most important', 'Practice spectroscopy problems', 'Good for pharmaceutical industry']
-      },
-      {
-        id: 'bu-msc-botany',
-        name: 'M.Sc. Botany',
-        nameTamil: 'எம்.எஸ்சி. தாவரவியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Plant Sciences', nameTamil: 'தாவர அறிவியல்', questions: 40, marks: 40, topics: ['Plant Anatomy', 'Physiology', 'Taxonomy'] },
-            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 30, marks: 30, topics: ['Genetics', 'Biotechnology', 'Plant Breeding'] },
-            { name: 'Ecology', nameTamil: 'சூழலியல்', questions: 30, marks: 30, topics: ['Plant Ecology', 'Conservation', 'Environmental Biology'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['Strong foundation in plant taxonomy', 'Learn plant molecular biology', 'Field work experience valuable']
-      },
-      {
-        id: 'bu-msc-zoology',
-        name: 'M.Sc. Zoology',
-        nameTamil: 'எம்.எஸ்சி. விலங்கியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Animal Sciences', nameTamil: 'விலங்கு அறிவியல்', questions: 40, marks: 40, topics: ['Comparative Anatomy', 'Physiology', 'Taxonomy'] },
-            { name: 'Cell & Molecular Biology', nameTamil: 'உயிரணு & மூலக்கூறு உயிரியல்', questions: 30, marks: 30, topics: ['Genetics', 'Immunology', 'Developmental Biology'] },
-            { name: 'Applied Zoology', nameTamil: 'பயன்பாட்டு விலங்கியல்', questions: 30, marks: 30, topics: ['Wildlife', 'Fisheries', 'Entomology'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['Focus on animal physiology', 'Study developmental biology', 'Good for research and wildlife sectors']
-      },
-      {
-        id: 'bu-msc-environmental-science',
-        name: 'M.Sc. Environmental Sciences',
-        nameTamil: 'எம்.எஸ்சி. சுற்றுச்சூழல் அறிவியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Environmental Science', nameTamil: 'சுற்றுச்சூழல் அறிவியல்', questions: 40, marks: 40, topics: ['Ecology', 'Pollution', 'Climate Change'] },
-            { name: 'Environmental Management', nameTamil: 'சுற்றுச்சூழல் மேலாண்மை', questions: 30, marks: 30, topics: ['EIA', 'Waste Management', 'Conservation'] },
-            { name: 'Applied Sciences', nameTamil: 'பயன்பாட்டு அறிவியல்', questions: 30, marks: 30, topics: ['GIS', 'Remote Sensing', 'Environmental Laws'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['Growing field with environmental concerns', 'Learn EIA process', 'Good for pollution control boards']
-      },
+      // ========== ON-CAMPUS PROGRAMS ==========
+      // --- Faculty of Science: Life Sciences ---
       {
         id: 'bu-msc-biotechnology',
         name: 'M.Sc. Biotechnology',
-        nameTamil: 'எம்.எஸ்சி. உயிர்தொழில்நுட்பம்',
+        nameTamil: 'எம்.எஸ்சி. உயிர்தொழில்நுட்பவியல்',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 30, marks: 30, topics: ['DNA/RNA', 'Gene Expression', 'PCR'] },
-            { name: 'Genetic Engineering', nameTamil: 'மரபணு பொறியியல்', questions: 30, marks: 30, topics: ['Cloning', 'Vectors', 'CRISPR'] },
-            { name: 'Biochemistry', nameTamil: 'உயிர் வேதியியல்', questions: 25, marks: 25, topics: ['Enzymes', 'Metabolism', 'Proteins'] },
-            { name: 'Cell Biology', nameTamil: 'உயிரணு உயிரியல்', questions: 15, marks: 15, topics: ['Cell Structure', 'Signaling'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Life Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Biotechnology/Microbiology/Biochemistry/Life Sciences',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Biotechnology', nameTamil: 'உயிர்தொழில்நுட்பம்', questions: 60, marks: 60, topics: ['Molecular Biology', 'Genetic Engineering', 'Bioinformatics'] }, { name: 'General Sciences', nameTamil: 'பொது அறிவியல்', questions: 40, marks: 40, topics: ['Biochemistry', 'Microbiology'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Focus on molecular biology techniques', 'Learn recombinant DNA technology', 'Good for biotech industry']
+        tips: ['High-demand course for pharma and research careers']
+      },
+      {
+        id: 'bu-msc-medical-biotechnology',
+        name: 'M.Sc. Medical Biotechnology',
+        nameTamil: 'எம்.எஸ்சி. மருத்துவ உயிர்தொழில்நுட்பவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Life Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Life Sciences/Biotechnology/Microbiology',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Medical Biotechnology', nameTamil: 'மருத்துவ உயிர்தொழில்நுட்பம்', questions: 70, marks: 70, topics: ['Immunology', 'Diagnostics', 'Therapeutics'] }, { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 30, marks: 30, topics: ['Biostatistics', 'Clinical Trials'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Career in clinical research and diagnostics']
+      },
+      {
+        id: 'bu-pgd-industrial-biotechnology',
+        name: 'PG Diploma in Industrial Biotechnology',
+        nameTamil: 'பி.ஜி.டி. தொழில்துறை உயிர்தொழில்நுட்பவியல்',
+        type: 'PG Diploma',
+        category: 'On-Campus',
+        school: 'Life Sciences',
+        duration: '1 Year',
+        eligibility: 'B.Sc. Life Sciences/Chemistry',
+        examPattern: { totalQuestions: 75, totalMarks: 75, duration: '75 Minutes', durationMinutes: 75, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Industrial Biotechnology', nameTamil: 'தொழில்துறை உயிர்தொழில்நுட்பம்', questions: 75, marks: 75, topics: ['Fermentation', 'Bioprocess', 'Quality Control'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Short-term industry-ready program']
       },
       {
         id: 'bu-msc-microbiology',
-        name: 'M.Sc. Microbiology',
+        name: 'M.Sc. Microbiology / Applied Microbiology',
         nameTamil: 'எம்.எஸ்சி. நுண்ணுயிரியல்',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'General Microbiology', nameTamil: 'பொது நுண்ணுயிரியல்', questions: 35, marks: 35, topics: ['Bacteria', 'Viruses', 'Fungi'] },
-            { name: 'Medical & Industrial Microbiology', nameTamil: 'மருத்துவ & தொழில்துறை நுண்ணுயிரியல்', questions: 35, marks: 35, topics: ['Pathogens', 'Fermentation', 'Antibiotics'] },
-            { name: 'Immunology', nameTamil: 'நோயெதிர்ப்பியல்', questions: 30, marks: 30, topics: ['Antigens', 'Antibodies', 'Vaccines'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Life Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Microbiology/Biotechnology/Life Sciences',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Microbiology', nameTamil: 'நுண்ணுயிரியல்', questions: 70, marks: 70, topics: ['Bacteriology', 'Virology', 'Immunology'] }, { name: 'Applied', nameTamil: 'பயன்பாட்டு', questions: 30, marks: 30, topics: ['Industrial Microbiology', 'Food Microbiology'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Learn bacterial classification', 'Immunology is important', 'Good for pharma and diagnostics']
+        tips: ['Essential for pharma QC, food industry, research']
       },
       {
         id: 'bu-msc-biochemistry',
         name: 'M.Sc. Biochemistry',
         nameTamil: 'எம்.எஸ்சி. உயிர்வேதியியல்',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Biochemistry', nameTamil: 'உயிர்வேதியியல்', questions: 45, marks: 45, topics: ['Proteins', 'Enzymes', 'Carbohydrates', 'Lipids'] },
-            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 30, marks: 30, topics: ['DNA/RNA', 'Replication', 'Translation'] },
-            { name: 'Clinical Biochemistry', nameTamil: 'மருத்துவ உயிர்வேதியியல்', questions: 25, marks: 25, topics: ['Metabolism', 'Hormones', 'Diagnostics'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Life Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Biochemistry/Chemistry/Life Sciences',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Biochemistry', nameTamil: 'உயிர்வேதியியல்', questions: 70, marks: 70, topics: ['Enzymology', 'Metabolism', 'Molecular Biology'] }, { name: 'Clinical', nameTamil: 'மருத்துவ', questions: 30, marks: 30, topics: ['Clinical Biochemistry', 'Diagnostics'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Strong chemistry foundation needed', 'Focus on metabolic pathways', 'Good for clinical labs']
+        tips: ['Strong foundation for medical research']
       },
       {
         id: 'bu-msc-human-genetics',
-        name: 'M.Sc. Human Genetics & Molecular Biology',
-        nameTamil: 'எம்.எஸ்சி. மனித மரபியல் & மூலக்கூறு உயிரியல்',
+        name: 'M.Sc. Human Genetics and Molecular Biology',
+        nameTamil: 'எம்.எஸ்சி. மனித மரபியல் மற்றும் மூலக்கூறு உயிரியல்',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Genetics', nameTamil: 'மரபியல்', questions: 40, marks: 40, topics: ['Human Genetics', 'Cytogenetics', 'Population Genetics'] },
-            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 35, marks: 35, topics: ['Gene Structure', 'Expression', 'Techniques'] },
-            { name: 'Medical Genetics', nameTamil: 'மருத்துவ மரபியல்', questions: 25, marks: 25, topics: ['Genetic Disorders', 'Genetic Counseling'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Life Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Life Sciences/Genetics/Biotechnology',
+        specialty: 'Specialized course for genetic counseling careers',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Human Genetics', nameTamil: 'மனித மரபியல்', questions: 50, marks: 50, topics: ['Cytogenetics', 'Population Genetics', 'Genetic Disorders'] }, { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 50, marks: 50, topics: ['DNA Technology', 'Gene Expression'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Growing field in diagnostics', 'Study human chromosomes', 'Career in genetic counseling']
+        tips: ['Growing field - genetic testing and counseling']
       },
-      // ========== COMPUTER SCIENCE ==========
+      {
+        id: 'bu-msc-botany',
+        name: 'M.Sc. Botany',
+        nameTamil: 'எம்.எஸ்சி. தாவரவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Life Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Botany/Plant Science',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Botany', nameTamil: 'தாவரவியல்', questions: 70, marks: 70, topics: ['Plant Physiology', 'Plant Taxonomy', 'Plant Biotechnology'] }, { name: 'Ecology', nameTamil: 'சூழலியல்', questions: 30, marks: 30, topics: ['Environmental Botany', 'Conservation'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Good for teaching and research in plant sciences']
+      },
+      {
+        id: 'bu-msc-zoology',
+        name: 'M.Sc. Zoology',
+        nameTamil: 'எம்.எஸ்சி. விலங்கியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Life Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Zoology/Life Sciences',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Zoology', nameTamil: 'விலங்கியல்', questions: 70, marks: 70, topics: ['Animal Physiology', 'Cell Biology', 'Developmental Biology'] }, { name: 'Applied', nameTamil: 'பயன்பாட்டு', questions: 30, marks: 30, topics: ['Wildlife', 'Aquaculture'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Career in wildlife, research, teaching']
+      },
+      {
+        id: 'bu-msc-bioinformatics',
+        name: 'M.Sc. Bioinformatics',
+        nameTamil: 'எம்.எஸ்சி. உயிர்த்தகவலியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Life Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Life Sciences/Computer Science/Biotechnology',
+        specialty: 'Interdisciplinary: Biology + Computing',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Bioinformatics', nameTamil: 'உயிர்த்தகவலியல்', questions: 50, marks: 50, topics: ['Sequence Analysis', 'Structural Biology', 'Databases'] }, { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 50, marks: 50, topics: ['Python', 'R', 'Algorithms'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Hot field - drug discovery and genomics']
+      },
+      {
+        id: 'bu-msc-environmental-science',
+        name: 'M.Sc. Environmental Sciences',
+        nameTamil: 'எம்.எஸ்சி. சுற்றுச்சூழல் அறிவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Life Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Environmental Science/Life Sciences/Chemistry',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Environment', nameTamil: 'சுற்றுச்சூழல்', questions: 60, marks: 60, topics: ['Pollution Control', 'Ecology', 'Climate Change'] }, { name: 'Management', nameTamil: 'மேலாண்மை', questions: 40, marks: 40, topics: ['EIA', 'Waste Management', 'Conservation'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Career in pollution control boards, NGOs']
+      },
+      // --- Faculty of Science: Physical & Chemical Sciences ---
+      {
+        id: 'bu-msc-physics',
+        name: 'M.Sc. Physics',
+        nameTamil: 'எம்.எஸ்சி. இயற்பியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Physical & Chemical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Physics with Mathematics',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Classical & Modern Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Quantum Mechanics', 'Electrodynamics'] }, { name: 'Applied Physics', nameTamil: 'பயன்பாட்டு இயற்பியல்', questions: 30, marks: 30, topics: ['Solid State', 'Nuclear Physics'] }, { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Mathematical Physics'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Foundation for research and NET/SET exams']
+      },
+      {
+        id: 'bu-msc-medical-physics',
+        name: 'M.Sc. Medical Physics',
+        nameTamil: 'எம்.எஸ்சி. மருத்துவ இயற்பியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Physical & Chemical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Physics with Mathematics',
+        specialty: 'Specialized for cancer treatment centers (Radiation Oncology)',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Physics', nameTamil: 'இயற்பியல்', questions: 40, marks: 40, topics: ['Nuclear Physics', 'Radiation Physics'] }, { name: 'Medical Applications', nameTamil: 'மருத்துவ பயன்பாடுகள்', questions: 40, marks: 40, topics: ['Radiotherapy', 'Imaging', 'Dosimetry'] }, { name: 'Biology', nameTamil: 'உயிரியல்', questions: 20, marks: 20, topics: ['Radiobiology', 'Anatomy Basics'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['High-demand: Cancer hospitals need medical physicists']
+      },
+      {
+        id: 'bu-msc-nanoscience',
+        name: 'M.Sc. Nanoscience and Technology',
+        nameTamil: 'எம்.எஸ்சி. நானோ அறிவியல் மற்றும் தொழில்நுட்பம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Physical & Chemical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Physics/Chemistry/Materials Science',
+        specialty: 'Emerging field with industry applications',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Nanoscience', nameTamil: 'நானோ அறிவியல்', questions: 70, marks: 70, topics: ['Nanomaterials', 'Synthesis Methods', 'Characterization'] }, { name: 'Applications', nameTamil: 'பயன்பாடுகள்', questions: 30, marks: 30, topics: ['Nanoelectronics', 'Nanomedicine'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Career in R&D and materials industry']
+      },
+      {
+        id: 'bu-msc-chemistry',
+        name: 'M.Sc. Chemistry',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Physical & Chemical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Chemistry',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Organic Chemistry', nameTamil: 'கரிம வேதியியல்', questions: 35, marks: 35, topics: ['Reaction Mechanisms', 'Spectroscopy', 'Natural Products'] }, { name: 'Inorganic Chemistry', nameTamil: 'கனிம வேதியியல்', questions: 35, marks: 35, topics: ['Coordination Chemistry', 'Organometallics'] }, { name: 'Physical Chemistry', nameTamil: 'இயல் வேதியியல்', questions: 30, marks: 30, topics: ['Thermodynamics', 'Kinetics', 'Electrochemistry'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Strong base for pharma, research, teaching']
+      },
+      {
+        id: 'bu-msc-electronics',
+        name: 'M.Sc. Electronics & Instrumentation',
+        nameTamil: 'எம்.எஸ்சி. மின்னணுவியல் & கருவியியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Physical & Chemical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Physics/Electronics',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Electronics', nameTamil: 'மின்னணுவியல்', questions: 50, marks: 50, topics: ['Digital Electronics', 'Analog Circuits', 'Microprocessors'] }, { name: 'Instrumentation', nameTamil: 'கருவியியல்', questions: 30, marks: 30, topics: ['Sensors', 'Control Systems'] }, { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 20, marks: 20, topics: ['Embedded Systems', 'C Programming'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Good for electronics industry and R&D']
+      },
+      // --- Faculty of Science: Maths & Computing ---
+      {
+        id: 'bu-msc-mathematics',
+        name: 'M.Sc. Mathematics',
+        nameTamil: 'எம்.எஸ்சி. கணிதம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Maths & Computing',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Mathematics',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Pure Mathematics', nameTamil: 'தூய கணிதம்', questions: 40, marks: 40, topics: ['Real Analysis', 'Abstract Algebra', 'Complex Analysis'] }, { name: 'Applied Mathematics', nameTamil: 'பயன்பாட்டு கணிதம்', questions: 35, marks: 35, topics: ['Differential Equations', 'Numerical Methods', 'Operations Research'] }, { name: 'Aptitude', nameTamil: 'திறன்', questions: 25, marks: 25, topics: ['Logical Reasoning', 'Quantitative Aptitude'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Foundation for NET/SET and teaching careers']
+      },
+      {
+        id: 'bu-msc-applied-mathematics',
+        name: 'M.Sc. Applied Mathematics',
+        nameTamil: 'எம்.எஸ்சி. பயன்பாட்டு கணிதம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Maths & Computing',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Mathematics',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Differential Equations', 'Numerical Analysis', 'Mathematical Modelling'] }, { name: 'Applied Topics', nameTamil: 'பயன்பாட்டு பாடங்கள்', questions: 30, marks: 30, topics: ['Fluid Dynamics', 'Operations Research', 'Optimization'] }, { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Reasoning', 'Quantitative'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Good for industry applications and data science']
+      },
+      {
+        id: 'bu-msc-statistics',
+        name: 'M.Sc. Statistics',
+        nameTamil: 'எம்.எஸ்சி. புள்ளியியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Maths & Computing',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Statistics/Mathematics',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Probability & Distributions', nameTamil: 'நிகழ்தகவு & பரவல்', questions: 35, marks: 35, topics: ['Probability Theory', 'Distributions', 'Random Variables'] }, { name: 'Statistical Inference', nameTamil: 'புள்ளியியல் அனுமானம்', questions: 35, marks: 35, topics: ['Estimation', 'Hypothesis Testing', 'Regression'] }, { name: 'Applied Statistics', nameTamil: 'பயன்பாட்டு புள்ளியியல்', questions: 30, marks: 30, topics: ['Sampling', 'Design of Experiments'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['High demand for statisticians in data science']
+      },
       {
         id: 'bu-msc-computer-science',
         name: 'M.Sc. Computer Science',
         nameTamil: 'எம்.எஸ்சி. கணினி அறிவியல்',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 50, marks: 50, topics: ['Programming', 'Data Structures', 'Algorithms', 'OS'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 25, topics: ['Discrete Math', 'Linear Algebra', 'Probability'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 25, marks: 25, topics: ['Logical Reasoning', 'English'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Maths & Computing',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Computer Science/IT/BCA',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Core CS', nameTamil: 'அடிப்படை கணினி', questions: 50, marks: 50, topics: ['Data Structures', 'Algorithms', 'DBMS', 'OS'] }, { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 30, marks: 30, topics: ['C', 'Java', 'Python'] }, { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Logical Reasoning', 'Quantitative'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Focus on programming fundamentals', 'Practice coding regularly', 'Study algorithms and data structures']
+        tips: ['Strong IT placements from BU']
       },
       {
-        id: 'bu-msc-information-technology',
+        id: 'bu-msc-it',
         name: 'M.Sc. Information Technology',
         nameTamil: 'எம்.எஸ்சி. தகவல் தொழில்நுட்பம்',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'IT & Programming', nameTamil: 'தகவல் தொழில்நுட்பம் & நிரலாக்கம்', questions: 50, marks: 50, topics: ['Web Technologies', 'DBMS', 'Networking', 'Programming'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 25, topics: ['Discrete Math', 'Statistics'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 25, marks: 25, topics: ['Reasoning', 'English'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Maths & Computing',
+        duration: '2 Years',
+        eligibility: 'B.Sc. IT/CS/BCA',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'IT Fundamentals', nameTamil: 'IT அடிப்படைகள்', questions: 50, marks: 50, topics: ['Networks', 'Web Technologies', 'Databases'] }, { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 30, marks: 30, topics: ['Java', 'PHP', 'Mobile Apps'] }, { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Reasoning', 'Quantitative'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Practical IT skills focus', 'Learn web technologies', 'Good for IT industry']
+        tips: ['Industry-aligned curriculum']
       },
       {
         id: 'bu-msc-data-analytics',
         name: 'M.Sc. Data Analytics',
         nameTamil: 'எம்.எஸ்சி. தரவு பகுப்பாய்வு',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Statistics & Data Analysis', nameTamil: 'புள்ளியியல் & தரவு பகுப்பாய்வு', questions: 40, marks: 40, topics: ['Probability', 'Regression', 'Hypothesis Testing', 'Machine Learning'] },
-            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 30, marks: 30, topics: ['Python', 'R', 'SQL'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Linear Algebra', 'Calculus'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Maths & Computing',
+        duration: '2 Years',
+        eligibility: 'B.Sc. CS/IT/Statistics/Mathematics',
+        specialty: 'High-demand course for current market trends',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Data Science', nameTamil: 'தரவு அறிவியல்', questions: 40, marks: 40, topics: ['Machine Learning', 'Data Mining', 'Big Data'] }, { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 30, marks: 30, topics: ['Statistical Methods', 'Predictive Analytics'] }, { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 30, marks: 30, topics: ['Python', 'R', 'SQL'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['High-demand industry skill', 'Learn Python and R', 'Study machine learning basics']
+        tips: ['Excellent career prospects in analytics and AI']
       },
       {
         id: 'bu-msc-cyber-security',
         name: 'M.Sc. Cyber Security',
         nameTamil: 'எம்.எஸ்சி. சைபர் பாதுகாப்பு',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Computer Networks', nameTamil: 'கணினி வலையமைப்புகள்', questions: 35, marks: 35, topics: ['TCP/IP', 'Security Protocols', 'Firewalls'] },
-            { name: 'Security', nameTamil: 'பாதுகாப்பு', questions: 40, marks: 40, topics: ['Cryptography', 'Ethical Hacking', 'Malware Analysis'] },
-            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 25, marks: 25, topics: ['Python', 'Scripting', 'Tools'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Maths & Computing',
+        duration: '2 Years',
+        eligibility: 'B.Sc. CS/IT/BCA',
+        specialty: 'Growing demand in security sector',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Security', nameTamil: 'பாதுகாப்பு', questions: 50, marks: 50, topics: ['Network Security', 'Cryptography', 'Ethical Hacking'] }, { name: 'Forensics', nameTamil: 'தடயவியல்', questions: 30, marks: 30, topics: ['Digital Forensics', 'Incident Response'] }, { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 20, marks: 20, topics: ['Python', 'Shell Scripting'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['High demand for security professionals', 'Learn ethical hacking', 'Study cryptography']
+        tips: ['Hot career path - cyber security professionals needed']
       },
       {
         id: 'bu-msc-elearning',
         name: 'M.Sc. E-Learning Technology',
         nameTamil: 'எம்.எஸ்சி. மின்-கற்றல் தொழில்நுட்பம்',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Educational Technology', nameTamil: 'கல்வித் தொழில்நுட்பம்', questions: 40, marks: 40, topics: ['Learning Management Systems', 'Instructional Design', 'Multimedia'] },
-            { name: 'Computer Applications', nameTamil: 'கணினி பயன்பாடுகள்', questions: 35, marks: 35, topics: ['Web Development', 'Content Creation', 'Programming'] },
-            { name: 'Pedagogy', nameTamil: 'கற்பித்தல் முறை', questions: 25, marks: 25, topics: ['Teaching Methods', 'Assessment', 'Online Education'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Maths & Computing',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        specialty: 'Unique program for EdTech careers',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'E-Learning', nameTamil: 'மின்-கற்றல்', questions: 50, marks: 50, topics: ['Instructional Design', 'LMS', 'MOOC Development'] }, { name: 'Technology', nameTamil: 'தொழில்நுட்பம்', questions: 30, marks: 30, topics: ['Multimedia', 'Web Technologies'] }, { name: 'Pedagogy', nameTamil: 'கற்பித்தல்', questions: 20, marks: 20, topics: ['Learning Theories', 'Assessment'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['EdTech is growing rapidly', 'Learn LMS platforms', 'Good for education sector']
+        tips: ['EdTech industry boom - good career choice']
       },
-      // ========== ARTS (M.A.) ==========
+      // --- Niche Specializations ---
       {
-        id: 'bu-ma-english',
-        name: 'M.A. English Literature',
-        nameTamil: 'எம்.ஏ. ஆங்கில இலக்கியம்',
+        id: 'bu-msc-textiles',
+        name: 'M.Sc. Textiles and Apparel Design',
+        nameTamil: 'எம்.எஸ்சி. ஜவுளி மற்றும் ஆடை வடிவமைப்பு',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'English Literature', nameTamil: 'ஆங்கில இலக்கியம்', questions: 50, marks: 50, topics: ['British Literature', 'American Literature', 'Indian Writing in English'] },
-            { name: 'Language & Linguistics', nameTamil: 'மொழி & மொழியியல்', questions: 30, marks: 30, topics: ['Grammar', 'Phonetics', 'Linguistics'] },
-            { name: 'General English', nameTamil: 'பொது ஆங்கிலம்', questions: 20, marks: 20, topics: ['Comprehension', 'Vocabulary'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Textiles & Design',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Costume Design/Textiles/Home Science',
+        specialty: 'Signature course - Coimbatore textile hub',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Textiles', nameTamil: 'ஜவுளி', questions: 50, marks: 50, topics: ['Textile Science', 'Fabric Technology', 'Dyeing'] }, { name: 'Design', nameTamil: 'வடிவமைப்பு', questions: 30, marks: 30, topics: ['Fashion Design', 'CAD', 'Pattern Making'] }, { name: 'Industry', nameTamil: 'தொழில்', questions: 20, marks: 20, topics: ['Merchandising', 'Quality Control'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Read widely - classics and modern literature', 'Study literary criticism', 'Good for teaching and content writing']
+        tips: ['Coimbatore is textile capital - excellent placements']
       },
+      // --- Faculty of Arts & Social Sciences ---
       {
         id: 'bu-ma-tamil',
         name: 'M.A. Tamil',
         nameTamil: 'எம்.ஏ. தமிழ்',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Tamil Literature', nameTamil: 'தமிழ் இலக்கியம்', questions: 50, marks: 50, topics: ['Sangam Literature', 'Medieval Tamil', 'Modern Literature'] },
-            { name: 'Tamil Grammar', nameTamil: 'தமிழ் இலக்கணம்', questions: 30, marks: 30, topics: ['Tolkappiyam', 'Nannool'] },
-            { name: 'General Tamil', nameTamil: 'பொதுத் தமிழ்', questions: 20, marks: 20, topics: ['Essay', 'Translation'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Arts & Social Sciences',
+        duration: '2 Years',
+        eligibility: 'B.A. Tamil/B.Lit.',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Tamil Literature', nameTamil: 'தமிழ் இலக்கியம்', questions: 60, marks: 60, topics: ['Sangam Literature', 'Bhakti Literature', 'Modern Tamil'] }, { name: 'Grammar', nameTamil: 'இலக்கணம்', questions: 40, marks: 40, topics: ['Tolkappiyam', 'Nannul', 'Prosody'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Study Sangam literature deeply', 'Learn Tolkappiyam', 'Good for teaching and TNPSC']
+        tips: ['Good for teaching, translation, media careers']
       },
       {
         id: 'bu-ma-linguistics',
         name: 'M.A. Linguistics',
         nameTamil: 'எம்.ஏ. மொழியியல்',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Theoretical Linguistics', nameTamil: 'கோட்பாட்டு மொழியியல்', questions: 40, marks: 40, topics: ['Phonetics', 'Morphology', 'Syntax', 'Semantics'] },
-            { name: 'Applied Linguistics', nameTamil: 'பயன்பாட்டு மொழியியல்', questions: 35, marks: 35, topics: ['Sociolinguistics', 'Psycholinguistics', 'Language Teaching'] },
-            { name: 'General Language', nameTamil: 'பொது மொழி', questions: 25, marks: 25, topics: ['Comprehension', 'Analysis'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Arts & Social Sciences',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        specialty: 'Unique program for language technology',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Linguistics', nameTamil: 'மொழியியல்', questions: 70, marks: 70, topics: ['Phonetics', 'Syntax', 'Semantics', 'Sociolinguistics'] }, { name: 'Applied', nameTamil: 'பயன்பாட்டு', questions: 30, marks: 30, topics: ['Computational Linguistics', 'Translation'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Unique program - study of language structure', 'Good for NLP and AI', 'Career in translation and localization']
+        tips: ['NLP and AI-language careers emerging']
+      },
+      {
+        id: 'bu-ma-english',
+        name: 'M.A. English Literature',
+        nameTamil: 'எம்.ஏ. ஆங்கில இலக்கியம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Arts & Social Sciences',
+        duration: '2 Years',
+        eligibility: 'B.A. English',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'British Literature', nameTamil: 'பிரிட்டிஷ் இலக்கியம்', questions: 40, marks: 40, topics: ['Shakespeare', 'Victorian', 'Modern'] }, { name: 'Indian & World Lit', nameTamil: 'இந்திய & உலக இலக்கியம்', questions: 40, marks: 40, topics: ['Indian Writing', 'American Literature', 'Postcolonial'] }, { name: 'Language', nameTamil: 'மொழி', questions: 20, marks: 20, topics: ['Grammar', 'Phonetics', 'ELT'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Teaching, content writing, publishing careers']
       },
       {
         id: 'bu-ma-economics',
         name: 'M.A. Economics',
         nameTamil: 'எம்.ஏ. பொருளியல்',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Micro Economics', nameTamil: 'நுண் பொருளியல்', questions: 30, marks: 30, topics: ['Consumer Theory', 'Market Structures', 'Welfare'] },
-            { name: 'Macro Economics', nameTamil: 'பேரணி பொருளியல்', questions: 30, marks: 30, topics: ['National Income', 'Monetary Policy', 'Inflation'] },
-            { name: 'Indian Economy', nameTamil: 'இந்திய பொருளாதாரம்', questions: 25, marks: 25, topics: ['Planning', 'Reforms', 'Current Issues'] },
-            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 15, marks: 15, topics: ['Econometrics', 'Data Analysis'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Arts & Social Sciences',
+        duration: '2 Years',
+        eligibility: 'B.A. Economics/B.Com',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Microeconomics', nameTamil: 'நுண் பொருளியல்', questions: 35, marks: 35, topics: ['Consumer Theory', 'Production', 'Market Structures'] }, { name: 'Macroeconomics', nameTamil: 'பேரண் பொருளியல்', questions: 35, marks: 35, topics: ['National Income', 'Monetary Policy', 'International Trade'] }, { name: 'Quantitative', nameTamil: 'அளவீட்டு', questions: 30, marks: 30, topics: ['Statistics', 'Econometrics'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Excellent for UPSC Economics optional', 'Study Indian economy', 'Learn econometrics']
+        tips: ['Good for RBI, banking, policy research']
       },
       {
         id: 'bu-ma-history',
         name: 'M.A. History',
         nameTamil: 'எம்.ஏ. வரலாறு',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Indian History', nameTamil: 'இந்திய வரலாறு', questions: 45, marks: 45, topics: ['Ancient', 'Medieval', 'Modern India'] },
-            { name: 'World History', nameTamil: 'உலக வரலாறு', questions: 30, marks: 30, topics: ['European History', 'World Wars', 'Cold War'] },
-            { name: 'Tamil Nadu History', nameTamil: 'தமிழ்நாடு வரலாறு', questions: 25, marks: 25, topics: ['Dynasties', 'Freedom Movement'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Arts & Social Sciences',
+        duration: '2 Years',
+        eligibility: 'B.A. History',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Ancient & Medieval', nameTamil: 'பண்டைய & இடைக்கால', questions: 35, marks: 35, topics: ['Indus Valley', 'Mauryas', 'Mughals'] }, { name: 'Modern India', nameTamil: 'நவீன இந்தியா', questions: 35, marks: 35, topics: ['Colonial', 'Freedom Movement', 'Post-Independence'] }, { name: 'World History', nameTamil: 'உலக வரலாறு', questions: 30, marks: 30, topics: ['World Wars', 'Renaissance'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Good for UPSC and TNPSC', 'Study ancient India well', 'Focus on Tamil Nadu history']
+        tips: ['UPSC preparation, archaeology, museums']
       },
       {
         id: 'bu-ma-sociology',
         name: 'M.A. Sociology',
         nameTamil: 'எம்.ஏ. சமூகவியல்',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Sociological Theory', nameTamil: 'சமூகவியல் கோட்பாடு', questions: 40, marks: 40, topics: ['Classical Theories', 'Modern Theories', 'Research Methods'] },
-            { name: 'Indian Society', nameTamil: 'இந்திய சமூகம்', questions: 35, marks: 35, topics: ['Caste', 'Family', 'Religion', 'Social Change'] },
-            { name: 'Applied Sociology', nameTamil: 'பயன்பாட்டு சமூகவியல்', questions: 25, marks: 25, topics: ['Urban', 'Rural', 'Gender Studies'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Arts & Social Sciences',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Sociology', nameTamil: 'சமூகவியல்', questions: 70, marks: 70, topics: ['Social Theory', 'Indian Society', 'Research Methods'] }, { name: 'Applied', nameTamil: 'பயன்பாட்டு', questions: 30, marks: 30, topics: ['Urban Sociology', 'Gender Studies'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Good optional for UPSC', 'Study Indian society', 'Learn research methodology']
+        tips: ['NGO, social work, UPSC optional']
       },
       {
         id: 'bu-ma-womens-studies',
         name: 'M.A. Women\'s Studies',
-        nameTamil: 'எம்.ஏ. பெண்கள் ஆய்வுகள்',
+        nameTamil: 'எம்.ஏ. பெண்கள் ஆய்வு',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Gender Studies', nameTamil: 'பாலின ஆய்வுகள்', questions: 40, marks: 40, topics: ['Feminist Theory', 'Gender Issues', 'Women\'s Rights'] },
-            { name: 'Women & Society', nameTamil: 'பெண்கள் & சமூகம்', questions: 35, marks: 35, topics: ['Health', 'Education', 'Work', 'Law'] },
-            { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 25, marks: 25, topics: ['Qualitative', 'Quantitative', 'Gender Research'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Arts & Social Sciences',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        specialty: 'Interdisciplinary gender studies program',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Women\'s Studies', nameTamil: 'பெண்கள் ஆய்வு', questions: 70, marks: 70, topics: ['Feminist Theory', 'Gender & Development', 'Women\'s Rights'] }, { name: 'Research', nameTamil: 'ஆராய்ச்சி', questions: 30, marks: 30, topics: ['Qualitative Methods', 'Field Studies'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Interdisciplinary program', 'Good for NGO sector', 'Study gender policies']
+        tips: ['Career in NGOs, women empowerment programs']
       },
       {
-        id: 'bu-mjmc',
-        name: 'M.A. Journalism & Mass Communication',
-        nameTamil: 'எம்.ஏ. பத்திரிகையியல் & வெகுஜன தொடர்பு',
+        id: 'bu-ma-journalism',
+        name: 'M.A. Journalism and Mass Communication',
+        nameTamil: 'எம்.ஏ. பத்திரிகை மற்றும் வெகுஜன ஊடகம்',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Mass Communication', nameTamil: 'வெகுஜன தொடர்பு', questions: 35, marks: 35, topics: ['Communication Theory', 'Media Studies', 'Journalism'] },
-            { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 30, marks: 30, topics: ['Writing', 'Comprehension', 'Grammar'] },
-            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 20, marks: 20, topics: ['National', 'International', 'Media News'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Reasoning', 'GK'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Arts & Social Sciences',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Journalism', nameTamil: 'பத்திரிகை', questions: 50, marks: 50, topics: ['News Writing', 'Reporting', 'Ethics'] }, { name: 'Mass Media', nameTamil: 'வெகுஜன ஊடகம்', questions: 30, marks: 30, topics: ['TV', 'Radio', 'Digital Media'] }, { name: 'Advertising & PR', nameTamil: 'விளம்பரம் & PR', questions: 20, marks: 20, topics: ['Advertising', 'Public Relations'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Good writing skills essential', 'Stay updated with news', 'Learn media laws']
+        tips: ['Media houses, digital marketing, content careers']
       },
       {
         id: 'bu-ma-career-guidance',
         name: 'M.A. Career Guidance',
-        nameTamil: 'எம்.ஏ. வாழ்க்கை வழிகாட்டுதல்',
+        nameTamil: 'எம்.ஏ. தொழில் வழிகாட்டுதல்',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Psychology', nameTamil: 'உளவியல்', questions: 40, marks: 40, topics: ['Counseling Psychology', 'Developmental Psychology', 'Personality'] },
-            { name: 'Career Counseling', nameTamil: 'வாழ்க்கை ஆலோசனை', questions: 35, marks: 35, topics: ['Career Theories', 'Assessment', 'Guidance Techniques'] },
-            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 25, marks: 25, topics: ['Reasoning', 'English'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Arts & Social Sciences',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        specialty: 'Specialized for placement officers and counselors',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Career Guidance', nameTamil: 'தொழில் வழிகாட்டுதல்', questions: 50, marks: 50, topics: ['Career Counseling', 'Assessment Tools', 'Placement Strategies'] }, { name: 'Psychology', nameTamil: 'உளவியல்', questions: 30, marks: 30, topics: ['Vocational Psychology', 'Personality'] }, { name: 'Management', nameTamil: 'மேலாண்மை', questions: 20, marks: 20, topics: ['HR Basics', 'Recruitment'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Unique program for career counselors', 'Learn psychometric testing', 'Good for schools and colleges']
-      },
-      // ========== COMMERCE & MANAGEMENT ==========
-      {
-        id: 'bu-mba',
-        name: 'MBA (Master of Business Administration)',
-        nameTamil: 'எம்.பி.ஏ. (வணிக நிர்வாக முதுநிலை)',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (TANCET/CAT/MAT)', negativeMarking: false,
-          sections: [
-            { name: 'Quantitative Ability', nameTamil: 'எண்ணியல் திறன்', questions: 30, marks: 30, topics: ['Arithmetic', 'Algebra', 'Data Interpretation'] },
-            { name: 'Verbal Ability', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['Reading Comprehension', 'Grammar', 'Vocabulary'] },
-            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 25, marks: 25, topics: ['Coding', 'Puzzles', 'Syllogisms'] },
-            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', questions: 20, marks: 20, topics: ['Current Affairs', 'Business GK'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['TANCET is main entrance', 'Focus on Data Interpretation', 'Read business newspapers']
-      },
-      {
-        id: 'bu-mcom-finance',
-        name: 'M.Com (Finance & Accounting)',
-        nameTamil: 'எம்.காம் (நிதி & கணக்கியல்)',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Accounting', nameTamil: 'கணக்கியல்', questions: 35, marks: 35, topics: ['Financial Accounting', 'Cost Accounting', 'Management Accounting'] },
-            { name: 'Finance', nameTamil: 'நிதி', questions: 35, marks: 35, topics: ['Financial Management', 'Banking', 'Investment'] },
-            { name: 'Business Studies', nameTamil: 'வணிகவியல்', questions: 20, marks: 20, topics: ['Business Environment', 'Economics'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Quantitative', 'Reasoning'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['Good for CA/CMA aspirants', 'Focus on accounting standards', 'Learn financial analysis']
-      },
-      {
-        id: 'bu-mcom-fintech',
-        name: 'M.Com (Financial Technology)',
-        nameTamil: 'எம்.காம் (நிதி தொழில்நுட்பம்)',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Finance', nameTamil: 'நிதி', questions: 35, marks: 35, topics: ['Financial Management', 'Banking', 'Investment'] },
-            { name: 'Accounting', nameTamil: 'கணக்கியல்', questions: 25, marks: 25, topics: ['Financial Accounting', 'Cost Accounting'] },
-            { name: 'Technology', nameTamil: 'தொழில்நுட்பம்', questions: 25, marks: 25, topics: ['Blockchain', 'Digital Payments', 'Data Analytics'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 15, marks: 15, topics: ['Quantitative', 'Reasoning'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['Emerging field in finance', 'Learn about blockchain', 'Study digital payments ecosystem']
-      },
-      {
-        id: 'bu-mcom-finance-computer',
-        name: 'M.Com (Finance & Computer Applications)',
-        nameTamil: 'எம்.காம் (நிதி & கணினி பயன்பாடுகள்)',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Finance & Accounting', nameTamil: 'நிதி & கணக்கியல்', questions: 40, marks: 40, topics: ['Financial Management', 'Accounting', 'Banking'] },
-            { name: 'Computer Applications', nameTamil: 'கணினி பயன்பாடுகள்', questions: 35, marks: 35, topics: ['Tally', 'Excel', 'ERP', 'DBMS'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 25, marks: 25, topics: ['Quantitative', 'Reasoning'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['Blend of commerce and IT', 'Learn accounting software', 'Good for corporate jobs']
-      },
-      // ========== OTHER PG COURSES ==========
-      {
-        id: 'bu-mca',
-        name: 'MCA (Master of Computer Applications)',
-        nameTamil: 'எம்.சி.ஏ. (கணினி பயன்பாட்டு முதுநிலை)',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (TANCET)', negativeMarking: false,
-          sections: [
-            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 40, marks: 40, topics: ['Programming', 'Data Structures', 'DBMS', 'OS'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Discrete Math', 'Linear Algebra', 'Probability'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 30, marks: 30, topics: ['Logical Reasoning', 'Verbal Ability'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['TANCET MCA is main entrance', 'Focus on programming', 'Study data structures']
-      },
-      {
-        id: 'bu-mlibsc',
-        name: 'M.Lib.I.Sc. (Library & Information Science)',
-        nameTamil: 'எம்.லிப்.ஐ.எஸ்சி. (நூலக & தகவல் அறிவியல்)',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Library Science', nameTamil: 'நூலக அறிவியல்', questions: 50, marks: 50, topics: ['Classification', 'Cataloguing', 'Information Sources'] },
-            { name: 'Information Technology', nameTamil: 'தகவல் தொழில்நுட்பம்', questions: 30, marks: 30, topics: ['Digital Libraries', 'Databases', 'Web Resources'] },
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Current Affairs', 'Library Developments'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['Good for government librarian jobs', 'Learn digital library systems', 'Study classification schemes']
+        tips: ['Unique course - become a career counselor']
       },
       {
         id: 'bu-msw',
-        name: 'MSW (Master of Social Work)',
-        nameTamil: 'எம்.எஸ்.டபிள்யூ (சமூக பணி முதுநிலை)',
+        name: 'Master of Social Work (M.S.W.)',
+        nameTamil: 'சமூக பணி முதுகலை (எம்.எஸ்.டபிள்யூ.)',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Social Work', nameTamil: 'சமூக பணி', questions: 40, marks: 40, topics: ['Case Work', 'Group Work', 'Community Organization'] },
-            { name: 'Social Sciences', nameTamil: 'சமூக அறிவியல்', questions: 30, marks: 30, topics: ['Sociology', 'Psychology', 'Anthropology'] },
-            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 20, marks: 20, topics: ['Social Issues', 'Government Schemes'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', questions: 10, marks: 10, topics: ['Reasoning', 'English'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Arts & Social Sciences',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Social Work', nameTamil: 'சமூக பணி', questions: 60, marks: 60, topics: ['Casework', 'Group Work', 'Community Organization'] }, { name: 'Development', nameTamil: 'வளர்ச்சி', questions: 40, marks: 40, topics: ['Rural Development', 'NGO Management', 'Social Welfare'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['Good for NGO sector', 'Study social work methods', 'Learn about welfare schemes']
+        tips: ['NGO, CSR, government social welfare departments']
       },
       {
-        id: 'bu-med',
-        name: 'M.Ed (Master of Education)',
-        nameTamil: 'எம்.எட். (கல்வியியல் முதுநிலை)',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Education', nameTamil: 'கல்வியியல்', questions: 50, marks: 50, topics: ['Educational Philosophy', 'Psychology', 'Curriculum', 'Assessment'] },
-            { name: 'Research Methodology', nameTamil: 'ஆராய்ச்சி முறையியல்', questions: 25, marks: 25, topics: ['Statistics', 'Research Design', 'Thesis Writing'] },
-            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 25, marks: 25, topics: ['Reasoning', 'English', 'Current Affairs'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['B.Ed required for admission', 'Good for teacher training', 'Study educational philosophy']
-      },
-      {
-        id: 'bu-mped',
-        name: 'M.P.Ed (Master of Physical Education)',
-        nameTamil: 'எம்.பி.எட். (உடற்கல்வி முதுநிலை)',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Physical Education', nameTamil: 'உடற்கல்வி', questions: 50, marks: 50, topics: ['Sports Science', 'Training Methods', 'Sports Psychology'] },
-            { name: 'Anatomy & Physiology', nameTamil: 'உடற்கூறியல் & உடலியக்கவியல்', questions: 30, marks: 30, topics: ['Human Anatomy', 'Exercise Physiology', 'Biomechanics'] },
-            { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 20, marks: 20, topics: ['Sports GK', 'Reasoning'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['B.P.Ed required for admission', 'Good for sports coaching', 'Study exercise physiology']
-      }
-    ]
-  },
-  // Tamil Nadu Veterinary & Animal Sciences University (TANUVAS)
-  {
-    id: 'tanuvas-chennai',
-    name: 'Tamil Nadu Veterinary & Animal Sciences University',
-    nameTamil: 'தமிழ்நாடு கால்நடை மருத்துவ அறிவியல் பல்கலைக்கழகம்',
-    location: 'Chennai',
-    website: 'www.tanuvas.ac.in',
-    phone: '044-25551572',
-    email: 'registrar@tanuvas.ac.in',
-    examName: 'NEET / Merit-Based',
-    logoColor: '#166534',
-    logo: '/universities/tanuvas-logo.png',
-    fee: { general: 40000, obc: 40000, scst: 5000 },
-    importantDates: [
-      { event: 'NEET Application', eventTamil: 'NEET விண்ணப்பம்', date: 'February 2026', status: 'upcoming' },
-      { event: 'NEET Exam', eventTamil: 'NEET தேர்வு', date: 'May 2026', status: 'upcoming' },
-      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'June 2026', status: 'upcoming' },
-      { event: 'Counseling', eventTamil: 'கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
-    ],
-    courses: [
-      {
-        id: 'tanuvas-bvsc',
-        name: 'B.V.Sc. & A.H. (Veterinary Science)',
-        nameTamil: 'கால்நடை மருத்துவ அறிவியல் இளங்கலை',
-        type: 'UG',
-        seatMatrix: { general: 80, obc: 120, bcMbc: 160, sc: 80, st: 10, ews: 20, total: 470 },
-        cutoffs: [
-          { year: '2024', general: 520, obc: 480, bcMbc: 420, sc: 320, st: 280, ews: 460 },
-          { year: '2023', general: 505, obc: 465, bcMbc: 405, sc: 305, st: 265, ews: 445 },
-        ],
-        examPattern: {
-          totalQuestions: 180, totalMarks: 720, duration: '3 Hours 20 Minutes', durationMinutes: 200,
-          mode: 'Computer Based (CBT) - NEET UG', negativeMarking: true,
-          sections: [
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 180, topics: ['Mechanics', 'Thermodynamics', 'Optics', 'Modern Physics'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 180, topics: ['Organic', 'Inorganic', 'Physical Chemistry'] },
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 90, marks: 360, topics: ['Botany', 'Zoology', 'Human Physiology', 'Genetics'] }
-          ]
-        },
-        syllabus: [{
-          unitNumber: 1, title: 'NEET Biology', titleTamil: 'NEET உயிரியல்', expectedQuestions: 90, difficulty: 'Hard',
-          topics: [
-            { name: 'Animal Husbandry', subtopics: ['Dairy farming', 'Poultry', 'Animal breeding'], importance: 'High' },
-            { name: 'Genetics', subtopics: ['Heredity', 'Mutations', 'DNA replication'], importance: 'High' }
-          ]
-        }],
-        previousQuestions: [
-          { id: 'tanuvas-q1', question: 'Which is the largest gland in the human body?', options: ['Thyroid', 'Liver', 'Pancreas', 'Pituitary'], correctAnswer: 1, explanation: 'Liver is the largest gland, weighing about 1.5 kg in adults.', topic: 'Biology', difficulty: 'Easy' }
-        ],
-        tips: ['5.5 year course including 1 year internship', 'Career: Veterinary Doctor, Livestock Officer, Animal Welfare', 'NEET score required - aim for 500+ for govt seat']
-      },
-      {
-        id: 'tanuvas-food-tech',
-        name: 'B.Tech Food Technology',
-        nameTamil: 'உணவு தொழில்நுட்பம் பொறியியல்',
-        type: 'UG',
-        seatMatrix: { general: 30, obc: 45, bcMbc: 60, sc: 30, st: 5, ews: 10, total: 180 },
-        cutoffs: [
-          { year: '2024', general: 175, obc: 165, bcMbc: 155, sc: 140, st: 130, ews: 168 },
-          { year: '2023', general: 172, obc: 162, bcMbc: 152, sc: 138, st: 128, ews: 165 },
-        ],
-        examPattern: {
-          totalQuestions: 0, totalMarks: 200, duration: 'TNEA Cutoff Based', durationMinutes: 0,
-          mode: 'Merit-Based (TNEA Counseling)', negativeMarking: false,
-          sections: [{ name: 'TNEA Cutoff', nameTamil: 'TNEA கட்ஆப்', questions: 0, marks: 200, topics: ['Maths/Bio + Phy/2 + Chem/2'] }]
-        },
-        syllabus: [{
-          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
-          topics: [{ name: 'HSC with PCM/PCB', subtopics: ['Physics', 'Chemistry', 'Maths or Biology'], importance: 'High' }]
-        }],
-        previousQuestions: [],
-        tips: ['Admission through TNEA counseling', 'Career: Food Safety Officer, Quality Control, R&D in FMCG', 'Growing industry with excellent job prospects']
-      }
-    ]
-  },
-  // Tamil Nadu Dr. J. Jayalalithaa Fisheries University (TNJFU)
-  {
-    id: 'tnjfu-nagapattinam',
-    name: 'Tamil Nadu Dr. J. Jayalalithaa Fisheries University',
-    nameTamil: 'தமிழ்நாடு முனைவர் ஜெ. ஜெயலலிதா மீன்வளப் பல்கலைக்கழகம்',
-    location: 'Nagapattinam',
-    website: 'www.tnjfu.ac.in',
-    phone: '04365-251633',
-    email: 'registrar@tnjfu.ac.in',
-    examName: 'NEET / Merit-Based',
-    logoColor: '#0284c7',
-    logo: '/universities/tnjfu-logo.png',
-    fee: { general: 25000, obc: 25000, scst: 5000 },
-    importantDates: [
-      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'May 2026', status: 'upcoming' },
-      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'June 2026', status: 'upcoming' },
-      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'July 2026', status: 'upcoming' },
-      { event: 'Counseling', eventTamil: 'கலந்தாய்வு', date: 'August 2026', status: 'upcoming' },
-    ],
-    courses: [
-      {
-        id: 'tnjfu-bfsc',
-        name: 'B.F.Sc. (Bachelor of Fisheries Science)',
-        nameTamil: 'மீன்வள அறிவியல் இளங்கலை',
-        type: 'UG',
-        seatMatrix: { general: 25, obc: 40, bcMbc: 50, sc: 25, st: 5, ews: 8, total: 153 },
-        cutoffs: [
-          { year: '2024', general: 85, obc: 80, bcMbc: 75, sc: 62, st: 52, ews: 78 },
-          { year: '2023', general: 83, obc: 78, bcMbc: 73, sc: 60, st: 50, ews: 76 },
-        ],
-        examPattern: {
-          totalQuestions: 0, totalMarks: 600, duration: 'N/A', durationMinutes: 0,
-          mode: 'Merit-Based (12th Marks with PCB)', negativeMarking: false,
-          sections: [{ name: 'PCB Marks', nameTamil: 'இயற்பியல்-வேதியியல்-உயிரியல்', questions: 0, marks: 600, topics: ['12th Science Marks'] }]
-        },
-        syllabus: [{
-          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
-          topics: [{ name: 'HSC Science', subtopics: ['Physics', 'Chemistry', 'Biology mandatory', 'Min 50% aggregate'], importance: 'High' }]
-        }],
-        previousQuestions: [],
-        tips: ['4-year professional degree', 'Career: Fisheries Officer, Aquaculture Specialist, Marine Biologist', 'Government jobs in Fisheries Department']
-      },
-      {
-        id: 'tnjfu-nautical',
-        name: 'B.Sc. Nautical Science',
-        nameTamil: 'கடல்சார் அறிவியல்',
-        type: 'UG',
-        seatMatrix: { general: 15, obc: 25, bcMbc: 30, sc: 15, st: 3, ews: 5, total: 93 },
-        cutoffs: [
-          { year: '2024', general: 88, obc: 83, bcMbc: 78, sc: 65, st: 55, ews: 81 },
-          { year: '2023', general: 86, obc: 81, bcMbc: 76, sc: 63, st: 53, ews: 79 },
-        ],
-        examPattern: {
-          totalQuestions: 0, totalMarks: 600, duration: 'N/A', durationMinutes: 0,
-          mode: 'Merit-Based + Physical Fitness', negativeMarking: false,
-          sections: [{ name: 'PCM/PCB Marks', nameTamil: 'அறிவியல் மதிப்பெண்கள்', questions: 0, marks: 600, topics: ['12th Science Marks + Physical Test'] }]
-        },
-        syllabus: [{
-          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
-          topics: [{ name: 'Requirements', subtopics: ['HSC with PCM/PCB', 'Physical fitness certificate', 'Swimming ability preferred'], importance: 'High' }]
-        }],
-        previousQuestions: [],
-        tips: ['Unique career in merchant navy', 'High-paying international careers', 'Physical fitness is mandatory']
-      }
-    ]
-  },
-  // Tamil Nadu Physical Education and Sports University
-  {
-    id: 'tnpesu-chennai',
-    name: 'Tamil Nadu Physical Education and Sports University',
-    nameTamil: 'தமிழ்நாடு உடற்கல்வி மற்றும் விளையாட்டுப் பல்கலைக்கழகம்',
-    location: 'Chennai',
-    website: 'www.tnpesu.org',
-    phone: '044-22350388',
-    email: 'registrar@tnpesu.org',
-    examName: 'Merit + Physical Fitness Test',
-    logoColor: '#ea580c',
-    logo: '/universities/tnpesu-logo.png',
-    fee: { general: 8000, obc: 8000, scst: 2000 },
-    importantDates: [
-      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
-      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
-      { event: 'Physical Test', eventTamil: 'உடல் தகுதி தேர்வு', date: 'June 2026', status: 'upcoming' },
-      { event: 'Counseling', eventTamil: 'கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
-    ],
-    courses: [
-      {
-        id: 'tnpesu-bped',
-        name: 'B.P.Ed. (Bachelor of Physical Education)',
-        nameTamil: 'உடற்கல்வி இளங்கலை',
-        type: 'UG',
-        seatMatrix: { general: 30, obc: 45, bcMbc: 60, sc: 30, st: 5, ews: 10, total: 180 },
-        cutoffs: [
-          { year: '2024', general: 75, obc: 70, bcMbc: 65, sc: 55, st: 45, ews: 68 },
-          { year: '2023', general: 73, obc: 68, bcMbc: 63, sc: 53, st: 43, ews: 66 },
-        ],
-        examPattern: {
-          totalQuestions: 50, totalMarks: 100, duration: '1 Hour', durationMinutes: 60,
-          mode: '50% Written + 50% Physical Test', negativeMarking: false,
-          sections: [
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 25, marks: 25, topics: ['Sports GK', 'Current Affairs', 'General Awareness'] },
-            { name: 'Physical Fitness', nameTamil: 'உடல் தகுதி', questions: 0, marks: 50, topics: ['100m Sprint', 'Long Jump', 'Shot Put', 'Endurance'] }
-          ]
-        },
-        syllabus: [{
-          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
-          topics: [{ name: 'Requirements', subtopics: ['12th pass any stream', 'Sports achievements preferred', 'Good physical fitness'], importance: 'High' }]
-        }],
-        previousQuestions: [
-          { id: 'tnpesu-q1', question: 'The Olympic Games 2024 were held in which city?', options: ['Tokyo', 'Paris', 'Los Angeles', 'London'], correctAnswer: 1, explanation: 'The 2024 Summer Olympics were held in Paris, France.', topic: 'Sports GK', difficulty: 'Easy' }
-        ],
-        tips: ['2-year degree for graduates, 4-year for 12th pass', 'Physical fitness test is mandatory', 'Career: PE Teacher, Sports Coach, Fitness Trainer']
-      },
-      {
-        id: 'tnpesu-bsc-sports',
-        name: 'B.Sc. Sports Science',
-        nameTamil: 'விளையாட்டு அறிவியல் இளங்கலை',
-        type: 'UG',
-        seatMatrix: { general: 20, obc: 30, bcMbc: 40, sc: 20, st: 3, ews: 7, total: 120 },
-        cutoffs: [
-          { year: '2024', general: 78, obc: 73, bcMbc: 68, sc: 58, st: 48, ews: 71 },
-          { year: '2023', general: 76, obc: 71, bcMbc: 66, sc: 56, st: 46, ews: 69 },
-        ],
-        examPattern: {
-          totalQuestions: 50, totalMarks: 100, duration: '1 Hour', durationMinutes: 60,
-          mode: 'Written Test + Physical Assessment', negativeMarking: false,
-          sections: [
-            { name: 'Biology & Sports', nameTamil: 'உயிரியல் & விளையாட்டு', questions: 50, marks: 50, topics: ['Human Anatomy', 'Sports Physiology', 'Nutrition'] },
-            { name: 'Physical Test', nameTamil: 'உடல் தேர்வு', questions: 0, marks: 50, topics: ['Fitness Assessment', 'Sports Skills'] }
-          ]
-        },
-        syllabus: [{
-          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
-          topics: [{ name: 'Requirements', subtopics: ['12th with Science preferred', 'Interest in sports science', 'Basic fitness level'], importance: 'High' }]
-        }],
-        previousQuestions: [],
-        tips: ['Growing field with excellent prospects', 'Career: Sports Scientist, Performance Analyst, Rehabilitation Specialist', 'Can work with professional sports teams']
-      }
-    ]
-  },
-  // Tamil Nadu Teachers Education University
-  {
-    id: 'tnteu-chennai',
-    name: 'Tamil Nadu Teachers Education University',
-    nameTamil: 'தமிழ்நாடு ஆசிரியர் கல்வி பல்கலைக்கழகம்',
-    location: 'Chennai',
-    website: 'www.tnteu.ac.in',
-    phone: '044-22200845',
-    email: 'registrar@tnteu.ac.in',
-    examName: 'Merit-Based + CET',
-    logo: '/universities/tnteu-logo.png',
-    logoColor: '#7c3aed',
-    fee: { general: 12000, obc: 12000, scst: 3000 },
-    importantDates: [
-      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
-      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
-      { event: 'CET Exam', eventTamil: 'CET தேர்வு', date: 'June 2026', status: 'upcoming' },
-      { event: 'Counseling', eventTamil: 'கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
-    ],
-    courses: [
-      {
-        id: 'tnteu-integrated-bed',
-        name: 'B.Sc.B.Ed. Integrated (4 Years)',
-        nameTamil: 'பி.எஸ்சி.பி.எட். ஒருங்கிணைந்த பட்டம்',
-        type: 'UG',
-        seatMatrix: { general: 50, obc: 75, bcMbc: 100, sc: 50, st: 8, ews: 15, total: 298 },
-        cutoffs: [
-          { year: '2024', general: 85, obc: 80, bcMbc: 75, sc: 62, st: 52, ews: 78 },
-          { year: '2023', general: 83, obc: 78, bcMbc: 73, sc: 60, st: 50, ews: 76 },
-        ],
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'Common Entrance Test (CET)', negativeMarking: false,
-          sections: [
-            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', questions: 25, marks: 25, topics: ['Current Affairs', 'Tamil Nadu GK', 'Education System'] },
-            { name: 'Teaching Aptitude', nameTamil: 'கற்பித்தல் திறன்', questions: 25, marks: 25, topics: ['Classroom Situations', 'Child Psychology', 'Teaching Methods'] },
-            { name: 'Subject Knowledge', nameTamil: 'பாட அறிவு', questions: 50, marks: 50, topics: ['Based on 12th subjects', 'Science/Arts/Commerce'] }
-          ]
-        },
-        syllabus: [{
-          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
-          topics: [{ name: 'Requirements', subtopics: ['12th pass with 50%', 'Any stream', 'Passion for teaching'], importance: 'High' }]
-        }],
-        previousQuestions: [
-          { id: 'tnteu-q1', question: 'Who is known as the Father of Modern Education in India?', options: ['Raja Ram Mohan Roy', 'Mahatma Gandhi', 'Dr. Zakir Hussain', 'Ishwar Chandra Vidyasagar'], correctAnswer: 0, explanation: 'Raja Ram Mohan Roy is known as the Father of Modern Education for his efforts in reforming Indian education.', topic: 'Education History', difficulty: 'Medium' }
-        ],
-        tips: ['Direct path to become a government teacher', 'Integrated program saves 1 year', 'Eligible for TET/TRB exams immediately after graduation']
-      },
-      {
-        id: 'tnteu-ba-bed',
-        name: 'B.A.B.Ed. Integrated (4 Years)',
-        nameTamil: 'பி.ஏ.பி.எட். ஒருங்கிணைந்த பட்டம்',
-        type: 'UG',
-        seatMatrix: { general: 40, obc: 60, bcMbc: 80, sc: 40, st: 6, ews: 12, total: 238 },
-        cutoffs: [
-          { year: '2024', general: 82, obc: 77, bcMbc: 72, sc: 60, st: 50, ews: 75 },
-          { year: '2023', general: 80, obc: 75, bcMbc: 70, sc: 58, st: 48, ews: 73 },
-        ],
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'Common Entrance Test (CET)', negativeMarking: false,
-          sections: [
-            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', questions: 25, marks: 25, topics: ['Current Affairs', 'History', 'Geography'] },
-            { name: 'Language Skills', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['Tamil/English', 'Grammar', 'Comprehension'] },
-            { name: 'Social Science', nameTamil: 'சமூக அறிவியல்', questions: 50, marks: 50, topics: ['History', 'Civics', 'Economics'] }
-          ]
-        },
-        syllabus: [{
-          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Easy',
-          topics: [{ name: 'Requirements', subtopics: ['12th pass Arts stream preferred', '50% aggregate', 'Interest in teaching'], importance: 'High' }]
-        }],
-        previousQuestions: [],
-        tips: ['Best for those who want to teach Social Sciences', 'Strong employment in govt schools', 'Can teach classes 6-12 after graduation']
-      }
-    ]
-  },
-  // Tamil Nadu Dr. J. Jayalalithaa Music and Fine Arts University
-  {
-    id: 'tn-music-arts-university',
-    name: 'Tamil Nadu Dr. J. Jayalalithaa Music and Fine Arts University',
-    nameTamil: 'தமிழ்நாடு முனைவர் ஜெ. ஜெயலலிதா இசை மற்றும் நுண்கலைகள் பல்கலைக்கழகம்',
-    location: 'Chennai',
-    website: 'www.tnmusicuniversity.ac.in',
-    phone: '044-28271830',
-    email: 'registrar@tnmusicuniversity.ac.in',
-    examName: 'Audition + Interview',
-    logo: '/universities/tnmfau-logo.png',
-    logoColor: '#be185d',
-    fee: { general: 5000, obc: 5000, scst: 1000 },
-    importantDates: [
-      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
-      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
-      { event: 'Audition Dates', eventTamil: 'ஆடிஷன் தேதிகள்', date: 'June 2026', status: 'upcoming' },
-      { event: 'Results & Admission', eventTamil: 'முடிவுகள் & சேர்க்கை', date: 'July 2026', status: 'upcoming' },
-    ],
-    courses: [
-      {
-        id: 'tn-music-vocal',
-        name: 'B.A. Music (Vocal)',
-        nameTamil: 'பி.ஏ. இசை (குரல்)',
-        type: 'UG',
-        seatMatrix: { general: 20, obc: 30, bcMbc: 40, sc: 20, st: 3, ews: 7, total: 120 },
-        cutoffs: [
-          { year: '2024', general: 'Audition', obc: 'Audition', bcMbc: 'Audition', sc: 'Audition', st: 'Audition', ews: 'Audition' },
-          { year: '2023', general: 'Audition', obc: 'Audition', bcMbc: 'Audition', sc: 'Audition', st: 'Audition', ews: 'Audition' },
-        ],
-        examPattern: {
-          totalQuestions: 0, totalMarks: 100, duration: '30 Minutes Performance', durationMinutes: 30,
-          mode: 'Live Audition + Theory Test', negativeMarking: false,
-          sections: [
-            { name: 'Performance', nameTamil: 'நிகழ்த்துதல்', questions: 0, marks: 70, topics: ['Carnatic/Hindustani', 'Ragas', 'Tala', 'Compositions'] },
-            { name: 'Theory', nameTamil: 'கோட்பாடு', questions: 30, marks: 30, topics: ['Music Theory', 'History of Music', 'Notation'] }
-          ]
-        },
-        syllabus: [{
-          unitNumber: 1, title: 'Audition Requirements', titleTamil: 'ஆடிஷன் தேவைகள்', expectedQuestions: 0, difficulty: 'Hard',
-          topics: [{ name: 'Musical Skills', subtopics: ['Minimum 5 years training preferred', 'Knowledge of ragas', 'Voice quality', 'Stage presence'], importance: 'High' }]
-        }],
-        previousQuestions: [],
-        tips: ['Formal training in Carnatic/Hindustani music preferred', 'Career: Professional Singer, Music Teacher, AIR Artist', 'Can perform at Sabhas and concerts', 'Government jobs in cultural departments']
-      },
-      {
-        id: 'tn-music-bharatanatyam',
-        name: 'B.A. Bharatanatyam',
-        nameTamil: 'பி.ஏ. பரதநாட்டியம்',
-        type: 'UG',
-        seatMatrix: { general: 15, obc: 22, bcMbc: 30, sc: 15, st: 2, ews: 6, total: 90 },
-        cutoffs: [
-          { year: '2024', general: 'Audition', obc: 'Audition', bcMbc: 'Audition', sc: 'Audition', st: 'Audition', ews: 'Audition' },
-          { year: '2023', general: 'Audition', obc: 'Audition', bcMbc: 'Audition', sc: 'Audition', st: 'Audition', ews: 'Audition' },
-        ],
-        examPattern: {
-          totalQuestions: 0, totalMarks: 100, duration: '45 Minutes Performance', durationMinutes: 45,
-          mode: 'Live Audition + Theory', negativeMarking: false,
-          sections: [
-            { name: 'Dance Performance', nameTamil: 'நடன நிகழ்த்துதல்', questions: 0, marks: 75, topics: ['Adavus', 'Abhinaya', 'Varnam', 'Padam'] },
-            { name: 'Theory', nameTamil: 'கோட்பாடு', questions: 25, marks: 25, topics: ['Dance History', 'Natyashastra', 'Hastas'] }
-          ]
-        },
-        syllabus: [{
-          unitNumber: 1, title: 'Audition Requirements', titleTamil: 'ஆடிஷன் தேவைகள்', expectedQuestions: 0, difficulty: 'Hard',
-          topics: [{ name: 'Dance Training', subtopics: ['Arangetram completed preferred', 'Knowledge of all adavus', 'Abhinaya skills', 'Flexibility & stamina'], importance: 'High' }]
-        }],
-        previousQuestions: [],
-        tips: ['Prior Bharatanatyam training essential (5+ years)', 'Career: Professional Dancer, Choreographer, Dance Teacher', 'Opportunities in TV, Films, and Cultural Programs']
-      },
-      {
-        id: 'tn-bfa-painting',
-        name: 'B.F.A. Painting',
-        nameTamil: 'நுண்கலை இளங்கலை (ஓவியம்)',
-        type: 'UG',
-        seatMatrix: { general: 12, obc: 18, bcMbc: 24, sc: 12, st: 2, ews: 5, total: 73 },
-        cutoffs: [
-          { year: '2024', general: 'Portfolio', obc: 'Portfolio', bcMbc: 'Portfolio', sc: 'Portfolio', st: 'Portfolio', ews: 'Portfolio' },
-          { year: '2023', general: 'Portfolio', obc: 'Portfolio', bcMbc: 'Portfolio', sc: 'Portfolio', st: 'Portfolio', ews: 'Portfolio' },
-        ],
-        examPattern: {
-          totalQuestions: 0, totalMarks: 100, duration: '3 Hours Practical', durationMinutes: 180,
-          mode: 'Practical Test + Portfolio Review', negativeMarking: false,
-          sections: [
-            { name: 'Drawing Test', nameTamil: 'வரைதல் தேர்வு', questions: 0, marks: 50, topics: ['Still Life', 'Memory Drawing', 'Composition'] },
-            { name: 'Portfolio', nameTamil: 'படைப்புத் தொகுப்பு', questions: 0, marks: 50, topics: ['Previous Artworks', 'Originality', 'Creativity'] }
-          ]
-        },
-        syllabus: [{
-          unitNumber: 1, title: 'Portfolio Requirements', titleTamil: 'படைப்புத் தொகுப்பு தேவைகள்', expectedQuestions: 0, difficulty: 'Medium',
-          topics: [{ name: 'Art Skills', subtopics: ['10-15 original artworks', 'Different mediums', 'Sketches and studies', 'Personal style development'], importance: 'High' }]
-        }],
-        previousQuestions: [],
-        tips: ['Portfolio of 10-15 works mandatory', 'Career: Fine Artist, Illustrator, Art Director', 'Can work in advertising, publishing, galleries']
-      }
-    ]
-  },
-  {
-    id: 'annamalai-university',
-    name: 'Annamalai University',
-    nameTamil: 'அண்ணாமலைப் பல்கலைக்கழகம்',
-    location: 'Chidambaram',
-    website: 'www.annamalaiuniversity.ac.in',
-    phone: '04144-238282',
-    examName: 'AU Entrance Exam',
-    logoColor: '#1e40af',
-    logo: '/universities/annamalai-university-logo.png',
-    fee: { general: 500, obc: 500, scst: 250 },
-    importantDates: [
-      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'March 2026', status: 'upcoming' },
-      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'April 2026', status: 'upcoming' },
-      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'May 2026', status: 'upcoming' },
-      { event: 'Exam Date', eventTamil: 'தேர்வு தேதி', date: 'June 2026', status: 'upcoming' },
-      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'July 2026', status: 'upcoming' }
-    ],
-    courses: [
-      // ========== FACULTY OF AGRICULTURE (On-Campus) ==========
-      {
-        id: 'au-bsc-agriculture',
-        name: 'B.Sc. (Hons) Agriculture',
-        nameTamil: 'பி.எஸ்சி. (ஹானர்ஸ்) வேளாண்மை',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Botany', 'Zoology', 'Genetics'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Organic', 'Inorganic', 'Soil Chemistry'] },
-            { name: 'Agriculture Aptitude', nameTamil: 'வேளாண் தகுதி', questions: 30, marks: 30, topics: ['Farming Basics', 'Crop Science'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Agricultural Officer, Farm Manager', 'Strong placement in agri-companies'],
-        seatMatrix: { general: 60, obc: 90, bcMbc: 120, sc: 50, st: 10, ews: 20, total: 350 },
-        cutoffs: [
-          { year: '2024', general: 75.0, obc: 70.0, bcMbc: 65.0, sc: 55.0, st: 45.0, ews: 68.0 },
-          { year: '2023', general: 78.0, obc: 73.0, bcMbc: 68.0, sc: 58.0, st: 48.0, ews: 71.0 }
-        ]
-      },
-      {
-        id: 'au-bsc-horticulture',
-        name: 'B.Sc. (Hons) Horticulture',
-        nameTamil: 'பி.எஸ்சி. (ஹானர்ஸ்) தோட்டக்கலை',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Plant Science', 'Botany'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Organic', 'Soil Chemistry'] },
-            { name: 'Horticulture Aptitude', nameTamil: 'தோட்டக்கலை தகுதி', questions: 30, marks: 30, topics: ['Fruit Crops', 'Vegetable Crops', 'Floriculture'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Horticulturist, Landscape Designer', 'Growing demand in urban farming'],
-        seatMatrix: { general: 40, obc: 60, bcMbc: 80, sc: 35, st: 8, ews: 15, total: 238 },
-        cutoffs: [
-          { year: '2024', general: 72.0, obc: 67.0, bcMbc: 62.0, sc: 52.0, st: 42.0, ews: 65.0 },
-          { year: '2023', general: 75.0, obc: 70.0, bcMbc: 65.0, sc: 55.0, st: 45.0, ews: 68.0 }
-        ]
-      },
-      {
-        id: 'au-msc-agronomy',
-        name: 'M.Sc. (Ag.) Agronomy',
-        nameTamil: 'எம்.எஸ்சி. (வேளாண்.) வேளாண் பயிரியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Agronomy', nameTamil: 'வேளாண் பயிரியல்', questions: 50, marks: 50, topics: ['Crop Production', 'Field Crops', 'Cropping Systems'] },
-            { name: 'Soil Science', nameTamil: 'மண் அறிவியல்', questions: 25, marks: 25, topics: ['Soil Fertility', 'Soil Management'] },
-            { name: 'General Agriculture', nameTamil: 'பொது வேளாண்மை', questions: 25, marks: 25, topics: ['Agricultural Statistics', 'Extension'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Research opportunities in ICAR', 'Career: Agricultural Scientist'],
-        seatMatrix: { general: 15, obc: 22, bcMbc: 30, sc: 12, st: 3, ews: 6, total: 88 },
-        cutoffs: [
-          { year: '2024', general: 65.0, obc: 60.0, bcMbc: 55.0, sc: 45.0, st: 35.0, ews: 58.0 },
-          { year: '2023', general: 68.0, obc: 63.0, bcMbc: 58.0, sc: 48.0, st: 38.0, ews: 61.0 }
-        ]
-      },
-      {
-        id: 'au-msc-soil-science',
-        name: 'M.Sc. (Ag.) Soil Science',
-        nameTamil: 'எம்.எஸ்சி. (வேளாண்.) மண் அறிவியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Soil Science', nameTamil: 'மண் அறிவியல்', questions: 50, marks: 50, topics: ['Soil Chemistry', 'Soil Physics', 'Soil Microbiology'] },
-            { name: 'Plant Nutrition', nameTamil: 'தாவர ஊட்டச்சத்து', questions: 25, marks: 25, topics: ['Nutrient Management', 'Fertilizers'] },
-            { name: 'General Agriculture', nameTamil: 'பொது வேளாண்மை', questions: 25, marks: 25, topics: ['Crop Production', 'Statistics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Soil Scientist, Fertility Expert'],
-        seatMatrix: { general: 12, obc: 18, bcMbc: 24, sc: 10, st: 2, ews: 5, total: 71 },
-        cutoffs: [
-          { year: '2024', general: 62.0, obc: 57.0, bcMbc: 52.0, sc: 42.0, st: 32.0, ews: 55.0 },
-          { year: '2023', general: 65.0, obc: 60.0, bcMbc: 55.0, sc: 45.0, st: 35.0, ews: 58.0 }
-        ]
-      },
-      {
-        id: 'au-msc-entomology',
-        name: 'M.Sc. (Ag.) Agricultural Entomology',
-        nameTamil: 'எம்.எஸ்சி. (வேளாண்.) வேளாண் பூச்சியியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Entomology', nameTamil: 'பூச்சியியல்', questions: 50, marks: 50, topics: ['Insect Taxonomy', 'Pest Management', 'Insect Physiology'] },
-            { name: 'Plant Protection', nameTamil: 'தாவர பாதுகாப்பு', questions: 25, marks: 25, topics: ['IPM', 'Biological Control'] },
-            { name: 'General Agriculture', nameTamil: 'பொது வேளாண்மை', questions: 25, marks: 25, topics: ['Crop Science', 'Statistics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Entomologist, Pest Management Specialist'],
-        seatMatrix: { general: 12, obc: 18, bcMbc: 24, sc: 10, st: 2, ews: 5, total: 71 },
-        cutoffs: [
-          { year: '2024', general: 60.0, obc: 55.0, bcMbc: 50.0, sc: 40.0, st: 30.0, ews: 53.0 },
-          { year: '2023', general: 63.0, obc: 58.0, bcMbc: 53.0, sc: 43.0, st: 33.0, ews: 56.0 }
-        ]
-      },
-      {
-        id: 'au-msc-plant-pathology',
-        name: 'M.Sc. (Ag.) Plant Pathology',
-        nameTamil: 'எம்.எஸ்சி. (வேளாண்.) தாவர நோயியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Plant Pathology', nameTamil: 'தாவர நோயியல்', questions: 50, marks: 50, topics: ['Fungal Diseases', 'Bacterial Diseases', 'Viral Diseases'] },
-            { name: 'Plant Protection', nameTamil: 'தாவர பாதுகாப்பு', questions: 25, marks: 25, topics: ['Disease Management', 'Fungicides'] },
-            { name: 'General Agriculture', nameTamil: 'பொது வேளாண்மை', questions: 25, marks: 25, topics: ['Crop Production', 'Statistics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Plant Pathologist, Research Scientist'],
-        seatMatrix: { general: 12, obc: 18, bcMbc: 24, sc: 10, st: 2, ews: 5, total: 71 },
-        cutoffs: [
-          { year: '2024', general: 61.0, obc: 56.0, bcMbc: 51.0, sc: 41.0, st: 31.0, ews: 54.0 },
-          { year: '2023', general: 64.0, obc: 59.0, bcMbc: 54.0, sc: 44.0, st: 34.0, ews: 57.0 }
-        ]
-      },
-      {
-        id: 'au-msc-ag-microbiology',
-        name: 'M.Sc. (Ag.) Microbiology',
-        nameTamil: 'எம்.எஸ்சி. (வேளாண்.) நுண்ணுயிரியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Microbiology', nameTamil: 'நுண்ணுயிரியல்', questions: 50, marks: 50, topics: ['Soil Microbiology', 'Plant-Microbe Interactions'] },
-            { name: 'Biotechnology', nameTamil: 'உயிர் தொழில்நுட்பம்', questions: 25, marks: 25, topics: ['Biofertilizers', 'Biopesticides'] },
-            { name: 'General Agriculture', nameTamil: 'பொது வேளாண்மை', questions: 25, marks: 25, topics: ['Crop Science', 'Statistics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Microbiologist, Biofertilizer Specialist'],
-        seatMatrix: { general: 10, obc: 15, bcMbc: 20, sc: 8, st: 2, ews: 4, total: 59 },
-        cutoffs: [
-          { year: '2024', general: 63.0, obc: 58.0, bcMbc: 53.0, sc: 43.0, st: 33.0, ews: 56.0 },
-          { year: '2023', general: 66.0, obc: 61.0, bcMbc: 56.0, sc: 46.0, st: 36.0, ews: 59.0 }
-        ]
-      },
-      {
-        id: 'au-msc-microbial-biotech',
-        name: 'M.Sc. (Ag.) Microbial Biotechnology',
-        nameTamil: 'எம்.எஸ்சி. (வேளாண்.) நுண்ணுயிர் உயிர்தொழில்நுட்பம்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Microbial Biotechnology', nameTamil: 'நுண்ணுயிர் உயிர்தொழில்நுட்பம்', questions: 50, marks: 50, topics: ['Genetic Engineering', 'Fermentation Technology'] },
-            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 25, marks: 25, topics: ['DNA Technology', 'Gene Cloning'] },
-            { name: 'General Agriculture', nameTamil: 'பொது வேளாண்மை', questions: 25, marks: 25, topics: ['Applications in Agriculture'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Biotechnologist, Research Scientist'],
-        seatMatrix: { general: 10, obc: 15, bcMbc: 20, sc: 8, st: 2, ews: 4, total: 59 },
-        cutoffs: [
-          { year: '2024', general: 64.0, obc: 59.0, bcMbc: 54.0, sc: 44.0, st: 34.0, ews: 57.0 },
-          { year: '2023', general: 67.0, obc: 62.0, bcMbc: 57.0, sc: 47.0, st: 37.0, ews: 60.0 }
-        ]
-      },
-      {
-        id: 'au-msc-genetics-breeding',
-        name: 'M.Sc. (Ag.) Genetics & Plant Breeding',
-        nameTamil: 'எம்.எஸ்சி. (வேளாண்.) மரபியல் & தாவர இனப்பெருக்கம்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Genetics', nameTamil: 'மரபியல்', questions: 40, marks: 40, topics: ['Mendelian Genetics', 'Population Genetics', 'Cytogenetics'] },
-            { name: 'Plant Breeding', nameTamil: 'தாவர இனப்பெருக்கம்', questions: 35, marks: 35, topics: ['Breeding Methods', 'Hybridization', 'Selection'] },
-            { name: 'General Agriculture', nameTamil: 'பொது வேளாண்மை', questions: 25, marks: 25, topics: ['Crop Improvement', 'Statistics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Plant Breeder, Seed Scientist'],
-        seatMatrix: { general: 12, obc: 18, bcMbc: 24, sc: 10, st: 2, ews: 5, total: 71 },
-        cutoffs: [
-          { year: '2024', general: 66.0, obc: 61.0, bcMbc: 56.0, sc: 46.0, st: 36.0, ews: 59.0 },
-          { year: '2023', general: 69.0, obc: 64.0, bcMbc: 59.0, sc: 49.0, st: 39.0, ews: 62.0 }
-        ]
-      },
-      {
-        id: 'au-msc-ag-economics',
-        name: 'M.Sc. (Ag.) Agricultural Economics',
-        nameTamil: 'எம்.எஸ்சி. (வேளாண்.) வேளாண் பொருளாதாரம்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Agricultural Economics', nameTamil: 'வேளாண் பொருளாதாரம்', questions: 50, marks: 50, topics: ['Farm Management', 'Agricultural Marketing', 'Price Analysis'] },
-            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 25, marks: 25, topics: ['Econometrics', 'Research Methods'] },
-            { name: 'General Agriculture', nameTamil: 'பொது வேளாண்மை', questions: 25, marks: 25, topics: ['Agricultural Development', 'Policy'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Agricultural Economist, Policy Analyst'],
-        seatMatrix: { general: 10, obc: 15, bcMbc: 20, sc: 8, st: 2, ews: 4, total: 59 },
-        cutoffs: [
-          { year: '2024', general: 58.0, obc: 53.0, bcMbc: 48.0, sc: 38.0, st: 28.0, ews: 51.0 },
-          { year: '2023', general: 61.0, obc: 56.0, bcMbc: 51.0, sc: 41.0, st: 31.0, ews: 54.0 }
-        ]
-      },
-      {
-        id: 'au-msc-ag-extension',
-        name: 'M.Sc. (Ag.) Agricultural Extension Education',
-        nameTamil: 'எம்.எஸ்சி. (வேளாண்.) வேளாண் விரிவாக்கக் கல்வி',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Extension Education', nameTamil: 'விரிவாக்கக் கல்வி', questions: 50, marks: 50, topics: ['Extension Methods', 'Communication', 'Rural Development'] },
-            { name: 'Agricultural Development', nameTamil: 'வேளாண் வளர்ச்சி', questions: 25, marks: 25, topics: ['Programme Planning', 'Technology Transfer'] },
-            { name: 'General Agriculture', nameTamil: 'பொது வேளாண்மை', questions: 25, marks: 25, topics: ['Crop Production', 'Statistics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Extension Officer, Development Worker'],
-        seatMatrix: { general: 10, obc: 15, bcMbc: 20, sc: 8, st: 2, ews: 4, total: 59 },
-        cutoffs: [
-          { year: '2024', general: 55.0, obc: 50.0, bcMbc: 45.0, sc: 35.0, st: 25.0, ews: 48.0 },
-          { year: '2023', general: 58.0, obc: 53.0, bcMbc: 48.0, sc: 38.0, st: 28.0, ews: 51.0 }
-        ]
-      },
-      // ========== FACULTY OF ENGINEERING & TECHNOLOGY (FEAT) ==========
-      {
-        id: 'au-be-civil',
-        name: 'B.E. Civil Engineering',
-        nameTamil: 'பி.இ. கட்டிடப் பொறியியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Calculus', 'Algebra', 'Coordinate Geometry'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Mechanics', 'Thermodynamics', 'Optics'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Chemical Bonding', 'Materials'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Civil Engineer, Structural Engineer', 'Government job opportunities'],
-        seatMatrix: { general: 40, obc: 60, bcMbc: 80, sc: 35, st: 8, ews: 15, total: 238 },
-        cutoffs: [
-          { year: '2024', general: 78.0, obc: 73.0, bcMbc: 68.0, sc: 58.0, st: 48.0, ews: 71.0 },
-          { year: '2023', general: 81.0, obc: 76.0, bcMbc: 71.0, sc: 61.0, st: 51.0, ews: 74.0 }
-        ]
-      },
-      {
-        id: 'au-be-civil-structural',
-        name: 'B.E. Civil & Structural Engineering',
-        nameTamil: 'பி.இ. கட்டிட & கட்டமைப்பு பொறியியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Calculus', 'Algebra', 'Coordinate Geometry'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Mechanics', 'Thermodynamics'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Chemical Bonding', 'Materials'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Structural Engineer, Design Engineer'],
-        seatMatrix: { general: 30, obc: 45, bcMbc: 60, sc: 26, st: 6, ews: 11, total: 178 },
-        cutoffs: [
-          { year: '2024', general: 76.0, obc: 71.0, bcMbc: 66.0, sc: 56.0, st: 46.0, ews: 69.0 },
-          { year: '2023', general: 79.0, obc: 74.0, bcMbc: 69.0, sc: 59.0, st: 49.0, ews: 72.0 }
-        ]
-      },
-      {
-        id: 'au-be-mechanical',
-        name: 'B.E. Mechanical Engineering',
-        nameTamil: 'பி.இ. இயந்திரவியல் பொறியியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Calculus', 'Algebra', 'Vectors'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Mechanics', 'Thermodynamics', 'Heat'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Materials', 'Polymers'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Mechanical Engineer, Production Manager', 'Core engineering branch'],
-        seatMatrix: { general: 50, obc: 75, bcMbc: 100, sc: 43, st: 10, ews: 19, total: 297 },
-        cutoffs: [
-          { year: '2024', general: 80.0, obc: 75.0, bcMbc: 70.0, sc: 60.0, st: 50.0, ews: 73.0 },
-          { year: '2023', general: 83.0, obc: 78.0, bcMbc: 73.0, sc: 63.0, st: 53.0, ews: 76.0 }
-        ]
-      },
-      {
-        id: 'au-be-mech-manufacturing',
-        name: 'B.E. Mechanical (Manufacturing)',
-        nameTamil: 'பி.இ. இயந்திரவியல் (உற்பத்தி)',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Calculus', 'Algebra'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Mechanics', 'Manufacturing Processes'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Materials Science'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Manufacturing Engineer, Quality Engineer'],
-        seatMatrix: { general: 30, obc: 45, bcMbc: 60, sc: 26, st: 6, ews: 11, total: 178 },
-        cutoffs: [
-          { year: '2024', general: 75.0, obc: 70.0, bcMbc: 65.0, sc: 55.0, st: 45.0, ews: 68.0 },
-          { year: '2023', general: 78.0, obc: 73.0, bcMbc: 68.0, sc: 58.0, st: 48.0, ews: 71.0 }
-        ]
-      },
-      {
-        id: 'au-be-eee',
-        name: 'B.E. Electrical & Electronics Engineering',
-        nameTamil: 'பி.இ. மின் & மின்னணுவியல் பொறியியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Calculus', 'Differential Equations', 'Linear Algebra'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Electromagnetism', 'Electronics', 'Optics'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Electrochemistry', 'Materials'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Electrical Engineer, Power Systems Engineer', 'High demand in power sector'],
-        seatMatrix: { general: 45, obc: 68, bcMbc: 90, sc: 39, st: 9, ews: 17, total: 268 },
-        cutoffs: [
-          { year: '2024', general: 79.0, obc: 74.0, bcMbc: 69.0, sc: 59.0, st: 49.0, ews: 72.0 },
-          { year: '2023', general: 82.0, obc: 77.0, bcMbc: 72.0, sc: 62.0, st: 52.0, ews: 75.0 }
-        ]
-      },
-      {
-        id: 'au-be-ece',
-        name: 'B.E. Electronics & Communication Engineering',
-        nameTamil: 'பி.இ. மின்னணுவியல் & தகவல்தொடர்பு பொறியியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Calculus', 'Signal Processing', 'Probability'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Semiconductors', 'Electronics', 'Communication'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Materials', 'Polymers'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Electronics Engineer, Telecom Engineer', 'IT and VLSI opportunities'],
-        seatMatrix: { general: 50, obc: 75, bcMbc: 100, sc: 43, st: 10, ews: 19, total: 297 },
-        cutoffs: [
-          { year: '2024', general: 82.0, obc: 77.0, bcMbc: 72.0, sc: 62.0, st: 52.0, ews: 75.0 },
-          { year: '2023', general: 85.0, obc: 80.0, bcMbc: 75.0, sc: 65.0, st: 55.0, ews: 78.0 }
-        ]
-      },
-      {
-        id: 'au-be-ei',
-        name: 'B.E. Electronics & Instrumentation',
-        nameTamil: 'பி.இ. மின்னணுவியல் & கருவியியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Calculus', 'Control Systems'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Instrumentation', 'Sensors'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Electrochemistry'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Instrumentation Engineer, Process Control Engineer'],
-        seatMatrix: { general: 30, obc: 45, bcMbc: 60, sc: 26, st: 6, ews: 11, total: 178 },
-        cutoffs: [
-          { year: '2024', general: 74.0, obc: 69.0, bcMbc: 64.0, sc: 54.0, st: 44.0, ews: 67.0 },
-          { year: '2023', general: 77.0, obc: 72.0, bcMbc: 67.0, sc: 57.0, st: 47.0, ews: 70.0 }
-        ]
-      },
-      {
-        id: 'au-be-cse',
-        name: 'B.E. Computer Science & Engineering',
-        nameTamil: 'பி.இ. கணினி அறிவியல் & பொறியியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Discrete Math', 'Algebra', 'Probability'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Electronics', 'Digital Logic'] },
-            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 30, marks: 30, topics: ['Programming Aptitude', 'Problem Solving'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Software Engineer, Data Scientist', 'Highest placement rates'],
-        seatMatrix: { general: 60, obc: 90, bcMbc: 120, sc: 52, st: 12, ews: 23, total: 357 },
-        cutoffs: [
-          { year: '2024', general: 88.0, obc: 83.0, bcMbc: 78.0, sc: 68.0, st: 58.0, ews: 81.0 },
-          { year: '2023', general: 91.0, obc: 86.0, bcMbc: 81.0, sc: 71.0, st: 61.0, ews: 84.0 }
-        ]
-      },
-      {
-        id: 'au-be-it',
-        name: 'B.E. Information Technology',
-        nameTamil: 'பி.இ. தகவல் தொழில்நுட்பம்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Discrete Math', 'Algebra', 'Probability'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Electronics', 'Networks'] },
-            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 30, marks: 30, topics: ['Programming Aptitude'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: IT Engineer, Web Developer', 'Good IT placements'],
-        seatMatrix: { general: 50, obc: 75, bcMbc: 100, sc: 43, st: 10, ews: 19, total: 297 },
-        cutoffs: [
-          { year: '2024', general: 85.0, obc: 80.0, bcMbc: 75.0, sc: 65.0, st: 55.0, ews: 78.0 },
-          { year: '2023', general: 88.0, obc: 83.0, bcMbc: 78.0, sc: 68.0, st: 58.0, ews: 81.0 }
-        ]
-      },
-      {
-        id: 'au-be-chemical',
-        name: 'B.E. Chemical Engineering',
-        nameTamil: 'பி.இ. வேதியியல் பொறியியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 40, marks: 40, topics: ['Organic', 'Inorganic', 'Physical Chemistry'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Calculus', 'Differential Equations'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Thermodynamics', 'Fluid Mechanics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Chemical Engineer, Process Engineer', 'Petrochemical industry opportunities'],
-        seatMatrix: { general: 30, obc: 45, bcMbc: 60, sc: 26, st: 6, ews: 11, total: 178 },
-        cutoffs: [
-          { year: '2024', general: 72.0, obc: 67.0, bcMbc: 62.0, sc: 52.0, st: 42.0, ews: 65.0 },
-          { year: '2023', general: 75.0, obc: 70.0, bcMbc: 65.0, sc: 55.0, st: 45.0, ews: 68.0 }
-        ]
-      },
-      {
-        id: 'au-be-cse-aiml',
-        name: 'B.E. CSE (Artificial Intelligence & Machine Learning)',
-        nameTamil: 'பி.இ. கணினி அறிவியல் (செயற்கை நுண்ணறிவு & இயந்திர கற்றல்)',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Linear Algebra', 'Probability', 'Statistics'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Electronics', 'Digital Logic'] },
-            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 30, marks: 30, topics: ['AI Aptitude', 'Problem Solving'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: AI Engineer, ML Engineer', 'Future-focused curriculum'],
-        seatMatrix: { general: 40, obc: 60, bcMbc: 80, sc: 35, st: 8, ews: 15, total: 238 },
-        cutoffs: [
-          { year: '2024', general: 90.0, obc: 85.0, bcMbc: 80.0, sc: 70.0, st: 60.0, ews: 83.0 },
-          { year: '2023', general: 92.0, obc: 87.0, bcMbc: 82.0, sc: 72.0, st: 62.0, ews: 85.0 }
-        ]
-      },
-      {
-        id: 'au-be-cse-ds',
-        name: 'B.E. CSE (Data Science)',
-        nameTamil: 'பி.இ. கணினி அறிவியல் (தரவு அறிவியல்)',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Statistics', 'Probability', 'Linear Algebra'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Electronics', 'Digital Logic'] },
-            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 30, marks: 30, topics: ['Data Analysis Aptitude', 'Problem Solving'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Data Scientist, Analytics Engineer', 'High industry demand'],
-        seatMatrix: { general: 40, obc: 60, bcMbc: 80, sc: 35, st: 8, ews: 15, total: 238 },
-        cutoffs: [
-          { year: '2024', general: 89.0, obc: 84.0, bcMbc: 79.0, sc: 69.0, st: 59.0, ews: 82.0 },
-          { year: '2023', general: 91.0, obc: 86.0, bcMbc: 81.0, sc: 71.0, st: 61.0, ews: 84.0 }
-        ]
-      },
-      {
-        id: 'au-bpharm',
-        name: 'B.Pharm (Bachelor of Pharmacy)',
-        nameTamil: 'பி.பார்ம். (மருந்தியல் இளங்கலை)',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 40, marks: 40, topics: ['Organic', 'Inorganic', 'Pharmaceutical Chemistry'] },
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 30, marks: 30, topics: ['Human Physiology', 'Biochemistry'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Physical Pharmacy', 'Instrumentation'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Pharmacist, Drug Inspector', 'Pharmaceutical industry opportunities'],
-        seatMatrix: { general: 40, obc: 60, bcMbc: 80, sc: 35, st: 8, ews: 15, total: 238 },
-        cutoffs: [
-          { year: '2024', general: 75.0, obc: 70.0, bcMbc: 65.0, sc: 55.0, st: 45.0, ews: 68.0 },
-          { year: '2023', general: 78.0, obc: 73.0, bcMbc: 68.0, sc: 58.0, st: 48.0, ews: 71.0 }
-        ]
-      },
-      {
-        id: 'au-mpharm',
-        name: 'M.Pharm (Master of Pharmacy)',
-        nameTamil: 'எம்.பார்ம். (மருந்தியல் முதுகலை)',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Pharmaceutical Sciences', nameTamil: 'மருந்தியல் அறிவியல்', questions: 60, marks: 60, topics: ['Pharmaceutics', 'Pharmacology', 'Pharmaceutical Chemistry'] },
-            { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 20, marks: 20, topics: ['Biostatistics', 'Clinical Research'] },
-            { name: 'Drug Development', nameTamil: 'மருந்து மேம்பாடு', questions: 20, marks: 20, topics: ['Drug Discovery', 'Regulatory Affairs'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Senior Pharmacist, Research Scientist', 'R&D opportunities'],
-        seatMatrix: { general: 15, obc: 22, bcMbc: 30, sc: 12, st: 3, ews: 6, total: 88 },
-        cutoffs: [
-          { year: '2024', general: 65.0, obc: 60.0, bcMbc: 55.0, sc: 45.0, st: 35.0, ews: 58.0 },
-          { year: '2023', general: 68.0, obc: 63.0, bcMbc: 58.0, sc: 48.0, st: 38.0, ews: 61.0 }
-        ]
-      },
-      {
-        id: 'au-pharmd',
-        name: 'Pharm.D (Doctor of Pharmacy)',
-        nameTamil: 'பார்ம்.டி. (மருந்தியல் முனைவர்)',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 40, marks: 40, topics: ['Pharmaceutical Chemistry', 'Medicinal Chemistry'] },
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Pharmacology', 'Clinical Pharmacy'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 20, marks: 20, topics: ['Physical Pharmacy'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['6-year program (5+1 internship)', 'Career: Clinical Pharmacist, Hospital Pharmacist', 'Direct patient care role'],
-        seatMatrix: { general: 20, obc: 30, bcMbc: 40, sc: 17, st: 4, ews: 8, total: 119 },
-        cutoffs: [
-          { year: '2024', general: 78.0, obc: 73.0, bcMbc: 68.0, sc: 58.0, st: 48.0, ews: 71.0 },
-          { year: '2023', general: 81.0, obc: 76.0, bcMbc: 71.0, sc: 61.0, st: 51.0, ews: 74.0 }
-        ]
-      },
-      // ========== FACULTY OF MARINE SCIENCES (Parangipettai Campus) ==========
-      {
-        id: 'au-bfsc',
-        name: 'B.F.Sc. (Bachelor of Fisheries Science)',
-        nameTamil: 'பி.எஃப்.எஸ்சி. (மீன்வளவியல் இளங்கலை)',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 50, marks: 50, topics: ['Marine Biology', 'Fish Biology', 'Aquatic Ecology'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 25, marks: 25, topics: ['Aquatic Chemistry', 'Biochemistry'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 25, marks: 25, topics: ['Oceanography Basics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Fisheries Officer, Aquaculture Manager', 'Unique coastal campus'],
-        seatMatrix: { general: 25, obc: 38, bcMbc: 50, sc: 22, st: 5, ews: 9, total: 149 },
-        cutoffs: [
-          { year: '2024', general: 68.0, obc: 63.0, bcMbc: 58.0, sc: 48.0, st: 38.0, ews: 61.0 },
-          { year: '2023', general: 71.0, obc: 66.0, bcMbc: 61.0, sc: 51.0, st: 41.0, ews: 64.0 }
-        ]
-      },
-      {
-        id: 'au-bvoc-aquaculture',
-        name: 'B.Voc. Aquaculture',
-        nameTamil: 'பி.வோக். நீர்வாழ் வளர்ப்பு',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Aquaculture', nameTamil: 'நீர்வாழ் வளர்ப்பு', questions: 50, marks: 50, topics: ['Fish Farming', 'Shrimp Culture', 'Hatchery Management'] },
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 30, marks: 30, topics: ['Aquatic Biology'] },
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Fisheries Economics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['3-year vocational program', 'Career: Aquaculture Technician, Farm Manager', 'Practical skill-based'],
-        seatMatrix: { general: 20, obc: 30, bcMbc: 40, sc: 17, st: 4, ews: 8, total: 119 },
-        cutoffs: [
-          { year: '2024', general: 55.0, obc: 50.0, bcMbc: 45.0, sc: 35.0, st: 25.0, ews: 48.0 },
-          { year: '2023', general: 58.0, obc: 53.0, bcMbc: 48.0, sc: 38.0, st: 28.0, ews: 51.0 }
-        ]
-      },
-      {
-        id: 'au-msc-marine-biology',
-        name: 'M.Sc. Marine Biology & Oceanography',
-        nameTamil: 'எம்.எஸ்சி. கடல் உயிரியல் & கடலியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Marine Biology', nameTamil: 'கடல் உயிரியல்', questions: 50, marks: 50, topics: ['Marine Fauna', 'Marine Flora', 'Plankton'] },
-            { name: 'Oceanography', nameTamil: 'கடலியல்', questions: 30, marks: 30, topics: ['Physical Oceanography', 'Chemical Oceanography'] },
-            { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 20, marks: 20, topics: ['Marine Research', 'Statistics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Marine Biologist, Research Scientist', 'Premier marine sciences center in India'],
-        seatMatrix: { general: 15, obc: 22, bcMbc: 30, sc: 12, st: 3, ews: 6, total: 88 },
-        cutoffs: [
-          { year: '2024', general: 70.0, obc: 65.0, bcMbc: 60.0, sc: 50.0, st: 40.0, ews: 63.0 },
-          { year: '2023', general: 73.0, obc: 68.0, bcMbc: 63.0, sc: 53.0, st: 43.0, ews: 66.0 }
-        ]
-      },
-      {
-        id: 'au-msc-coastal-aquaculture',
-        name: 'M.Sc. Coastal Aquaculture',
-        nameTamil: 'எம்.எஸ்சி. கடலோர நீர்வாழ் வளர்ப்பு',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Aquaculture', nameTamil: 'நீர்வாழ் வளர்ப்பு', questions: 50, marks: 50, topics: ['Shrimp Farming', 'Fish Culture', 'Seaweed Culture'] },
-            { name: 'Marine Biology', nameTamil: 'கடல் உயிரியல்', questions: 30, marks: 30, topics: ['Coastal Ecology', 'Brackish Water'] },
-            { name: 'Management', nameTamil: 'மேலாண்மை', questions: 20, marks: 20, topics: ['Farm Management', 'Economics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Aquaculture Scientist, Farm Consultant'],
-        seatMatrix: { general: 12, obc: 18, bcMbc: 24, sc: 10, st: 2, ews: 5, total: 71 },
-        cutoffs: [
-          { year: '2024', general: 65.0, obc: 60.0, bcMbc: 55.0, sc: 45.0, st: 35.0, ews: 58.0 },
-          { year: '2023', general: 68.0, obc: 63.0, bcMbc: 58.0, sc: 48.0, st: 38.0, ews: 61.0 }
-        ]
-      },
-      {
-        id: 'au-msc-marine-biotech',
-        name: 'M.Sc. Marine Biotechnology',
-        nameTamil: 'எம்.எஸ்சி. கடல் உயிர்தொழில்நுட்பம்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Marine Biotechnology', nameTamil: 'கடல் உயிர்தொழில்நுட்பம்', questions: 50, marks: 50, topics: ['Marine Natural Products', 'Genetic Engineering'] },
-            { name: 'Marine Biology', nameTamil: 'கடல் உயிரியல்', questions: 30, marks: 30, topics: ['Marine Organisms', 'Biodiversity'] },
-            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 20, marks: 20, topics: ['DNA Technology', 'Proteomics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Marine Biotechnologist, Research Scientist'],
-        seatMatrix: { general: 10, obc: 15, bcMbc: 20, sc: 8, st: 2, ews: 4, total: 59 },
-        cutoffs: [
-          { year: '2024', general: 68.0, obc: 63.0, bcMbc: 58.0, sc: 48.0, st: 38.0, ews: 61.0 },
-          { year: '2023', general: 71.0, obc: 66.0, bcMbc: 61.0, sc: 51.0, st: 41.0, ews: 64.0 }
-        ]
-      },
-      {
-        id: 'au-integrated-msc-ocean',
-        name: '5-Year Integrated M.Sc. Ocean Science & Technology',
-        nameTamil: '5 ஆண்டு ஒருங்கிணைந்த எம்.எஸ்சி. கடல் அறிவியல் & தொழில்நுட்பம்',
-        type: 'Integrated',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 35, marks: 35, topics: ['Mechanics', 'Oceanography'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 35, marks: 35, topics: ['Marine Chemistry', 'Environmental Chemistry'] },
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 30, marks: 30, topics: ['Marine Biology', 'Ecology'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['5-year integrated program', 'Career: Ocean Scientist, Research Scientist', 'Combines UG and PG'],
-        seatMatrix: { general: 15, obc: 22, bcMbc: 30, sc: 12, st: 3, ews: 6, total: 88 },
-        cutoffs: [
-          { year: '2024', general: 72.0, obc: 67.0, bcMbc: 62.0, sc: 52.0, st: 42.0, ews: 65.0 },
-          { year: '2023', general: 75.0, obc: 70.0, bcMbc: 65.0, sc: 55.0, st: 45.0, ews: 68.0 }
-        ]
-      },
-      // ========== FACULTY OF SCIENCE ==========
-      {
-        id: 'au-msc-mathematics',
-        name: 'M.Sc. Mathematics',
-        nameTamil: 'எம்.எஸ்சி. கணிதம்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Pure Mathematics', nameTamil: 'தூய கணிதம்', questions: 50, marks: 50, topics: ['Algebra', 'Real Analysis', 'Complex Analysis'] },
-            { name: 'Applied Mathematics', nameTamil: 'பயன்பாட்டு கணிதம்', questions: 30, marks: 30, topics: ['Differential Equations', 'Numerical Analysis'] },
-            { name: 'Discrete Mathematics', nameTamil: 'தனித்தன்மை கணிதம்', questions: 20, marks: 20, topics: ['Graph Theory', 'Combinatorics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Mathematician, Data Analyst, Actuary'],
-        seatMatrix: { general: 25, obc: 38, bcMbc: 50, sc: 22, st: 5, ews: 9, total: 149 },
-        cutoffs: [
-          { year: '2024', general: 65.0, obc: 60.0, bcMbc: 55.0, sc: 45.0, st: 35.0, ews: 58.0 },
-          { year: '2023', general: 68.0, obc: 63.0, bcMbc: 58.0, sc: 48.0, st: 38.0, ews: 61.0 }
-        ]
-      },
-      {
-        id: 'au-msc-statistics',
-        name: 'M.Sc. Statistics',
-        nameTamil: 'எம்.எஸ்சி. புள்ளியியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 60, marks: 60, topics: ['Probability', 'Statistical Inference', 'Regression'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 40, marks: 40, topics: ['Linear Algebra', 'Calculus'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Statistician, Data Scientist'],
-        seatMatrix: { general: 20, obc: 30, bcMbc: 40, sc: 17, st: 4, ews: 8, total: 119 },
-        cutoffs: [
-          { year: '2024', general: 62.0, obc: 57.0, bcMbc: 52.0, sc: 42.0, st: 32.0, ews: 55.0 },
-          { year: '2023', general: 65.0, obc: 60.0, bcMbc: 55.0, sc: 45.0, st: 35.0, ews: 58.0 }
-        ]
-      },
-      {
-        id: 'au-msc-physics',
-        name: 'M.Sc. Physics',
-        nameTamil: 'எம்.எஸ்சி. இயற்பியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Classical Mechanics', nameTamil: 'பாரம்பரிய இயக்கவியல்', questions: 25, marks: 25, topics: ['Lagrangian', 'Hamiltonian'] },
-            { name: 'Quantum Mechanics', nameTamil: 'குவாண்டம் இயக்கவியல்', questions: 25, marks: 25, topics: ['Wave Mechanics', 'Operators'] },
-            { name: 'Electrodynamics', nameTamil: 'மின்னியக்கவியல்', questions: 25, marks: 25, topics: ['Maxwell Equations', 'EM Waves'] },
-            { name: 'Statistical Mechanics', nameTamil: 'புள்ளியியல் இயக்கவியல்', questions: 25, marks: 25, topics: ['Thermodynamics', 'Ensembles'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Physicist, Research Scientist'],
-        seatMatrix: { general: 25, obc: 38, bcMbc: 50, sc: 22, st: 5, ews: 9, total: 149 },
-        cutoffs: [
-          { year: '2024', general: 68.0, obc: 63.0, bcMbc: 58.0, sc: 48.0, st: 38.0, ews: 61.0 },
-          { year: '2023', general: 71.0, obc: 66.0, bcMbc: 61.0, sc: 51.0, st: 41.0, ews: 64.0 }
-        ]
-      },
-      {
-        id: 'au-msc-chemistry',
-        name: 'M.Sc. Chemistry',
-        nameTamil: 'எம்.எஸ்சி. வேதியியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Organic Chemistry', nameTamil: 'கரிம வேதியியல்', questions: 35, marks: 35, topics: ['Reaction Mechanisms', 'Stereochemistry'] },
-            { name: 'Inorganic Chemistry', nameTamil: 'கனிம வேதியியல்', questions: 35, marks: 35, topics: ['Coordination Chemistry', 'Organometallics'] },
-            { name: 'Physical Chemistry', nameTamil: 'இயற்பியல் வேதியியல்', questions: 30, marks: 30, topics: ['Thermodynamics', 'Kinetics', 'Spectroscopy'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Chemist, Research Scientist'],
-        seatMatrix: { general: 30, obc: 45, bcMbc: 60, sc: 26, st: 6, ews: 11, total: 178 },
-        cutoffs: [
-          { year: '2024', general: 66.0, obc: 61.0, bcMbc: 56.0, sc: 46.0, st: 36.0, ews: 59.0 },
-          { year: '2023', general: 69.0, obc: 64.0, bcMbc: 59.0, sc: 49.0, st: 39.0, ews: 62.0 }
-        ]
-      },
-      {
-        id: 'au-msc-botany',
-        name: 'M.Sc. Botany',
-        nameTamil: 'எம்.எஸ்சி. தாவரவியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Plant Sciences', nameTamil: 'தாவர அறிவியல்', questions: 60, marks: 60, topics: ['Plant Physiology', 'Plant Anatomy', 'Plant Taxonomy'] },
-            { name: 'Biotechnology', nameTamil: 'உயிர்தொழில்நுட்பம்', questions: 40, marks: 40, topics: ['Plant Tissue Culture', 'Molecular Biology'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Botanist, Environmental Scientist'],
-        seatMatrix: { general: 20, obc: 30, bcMbc: 40, sc: 17, st: 4, ews: 8, total: 119 },
-        cutoffs: [
-          { year: '2024', general: 60.0, obc: 55.0, bcMbc: 50.0, sc: 40.0, st: 30.0, ews: 53.0 },
-          { year: '2023', general: 63.0, obc: 58.0, bcMbc: 53.0, sc: 43.0, st: 33.0, ews: 56.0 }
-        ]
-      },
-      {
-        id: 'au-msc-zoology',
-        name: 'M.Sc. Zoology',
-        nameTamil: 'எம்.எஸ்சி. விலங்கியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Animal Sciences', nameTamil: 'விலங்கு அறிவியல்', questions: 60, marks: 60, topics: ['Animal Physiology', 'Animal Behavior', 'Ecology'] },
-            { name: 'Cell Biology', nameTamil: 'செல் உயிரியல்', questions: 40, marks: 40, topics: ['Genetics', 'Developmental Biology'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Zoologist, Wildlife Biologist'],
-        seatMatrix: { general: 20, obc: 30, bcMbc: 40, sc: 17, st: 4, ews: 8, total: 119 },
-        cutoffs: [
-          { year: '2024', general: 62.0, obc: 57.0, bcMbc: 52.0, sc: 42.0, st: 32.0, ews: 55.0 },
-          { year: '2023', general: 65.0, obc: 60.0, bcMbc: 55.0, sc: 45.0, st: 35.0, ews: 58.0 }
-        ]
-      },
-      {
-        id: 'au-msc-geology',
-        name: 'M.Sc. Geology',
-        nameTamil: 'எம்.எஸ்சி. புவியியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Geology', nameTamil: 'புவியியல்', questions: 60, marks: 60, topics: ['Mineralogy', 'Petrology', 'Stratigraphy'] },
-            { name: 'Applied Geology', nameTamil: 'பயன்பாட்டு புவியியல்', questions: 40, marks: 40, topics: ['Mining Geology', 'Hydrogeology'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Geologist, Mining Engineer'],
-        seatMatrix: { general: 15, obc: 22, bcMbc: 30, sc: 12, st: 3, ews: 6, total: 88 },
-        cutoffs: [
-          { year: '2024', general: 58.0, obc: 53.0, bcMbc: 48.0, sc: 38.0, st: 28.0, ews: 51.0 },
-          { year: '2023', general: 61.0, obc: 56.0, bcMbc: 51.0, sc: 41.0, st: 31.0, ews: 54.0 }
-        ]
-      },
-      {
-        id: 'au-msc-microbiology',
-        name: 'M.Sc. Microbiology',
-        nameTamil: 'எம்.எஸ்சி. நுண்ணுயிரியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Microbiology', nameTamil: 'நுண்ணுயிரியல்', questions: 60, marks: 60, topics: ['Bacteriology', 'Virology', 'Mycology'] },
-            { name: 'Applied Microbiology', nameTamil: 'பயன்பாட்டு நுண்ணுயிரியல்', questions: 40, marks: 40, topics: ['Medical Microbiology', 'Industrial Microbiology'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Microbiologist, Research Scientist'],
-        seatMatrix: { general: 20, obc: 30, bcMbc: 40, sc: 17, st: 4, ews: 8, total: 119 },
-        cutoffs: [
-          { year: '2024', general: 66.0, obc: 61.0, bcMbc: 56.0, sc: 46.0, st: 36.0, ews: 59.0 },
-          { year: '2023', general: 69.0, obc: 64.0, bcMbc: 59.0, sc: 49.0, st: 39.0, ews: 62.0 }
-        ]
-      },
-      {
-        id: 'au-msc-biotechnology',
-        name: 'M.Sc. Biotechnology',
-        nameTamil: 'எம்.எஸ்சி. உயிர்தொழில்நுட்பம்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Biotechnology', nameTamil: 'உயிர்தொழில்நுட்பம்', questions: 60, marks: 60, topics: ['Genetic Engineering', 'rDNA Technology', 'Immunology'] },
-            { name: 'Molecular Biology', nameTamil: 'மூலக்கூறு உயிரியல்', questions: 40, marks: 40, topics: ['Gene Expression', 'Proteomics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Biotechnologist, Research Scientist', 'High placement in pharma'],
-        seatMatrix: { general: 20, obc: 30, bcMbc: 40, sc: 17, st: 4, ews: 8, total: 119 },
-        cutoffs: [
-          { year: '2024', general: 70.0, obc: 65.0, bcMbc: 60.0, sc: 50.0, st: 40.0, ews: 63.0 },
-          { year: '2023', general: 73.0, obc: 68.0, bcMbc: 63.0, sc: 53.0, st: 43.0, ews: 66.0 }
-        ]
-      },
-      {
-        id: 'au-msc-bioinformatics',
-        name: 'M.Sc. Bioinformatics',
-        nameTamil: 'எம்.எஸ்சி. உயிரித்தகவலியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Bioinformatics', nameTamil: 'உயிரித்தகவலியல்', questions: 50, marks: 50, topics: ['Sequence Analysis', 'Structural Biology', 'Databases'] },
-            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 30, marks: 30, topics: ['Programming', 'Algorithms'] },
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 20, marks: 20, topics: ['Molecular Biology', 'Genomics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Bioinformatician, Computational Biologist'],
-        seatMatrix: { general: 15, obc: 22, bcMbc: 30, sc: 12, st: 3, ews: 6, total: 88 },
-        cutoffs: [
-          { year: '2024', general: 65.0, obc: 60.0, bcMbc: 55.0, sc: 45.0, st: 35.0, ews: 58.0 },
-          { year: '2023', general: 68.0, obc: 63.0, bcMbc: 58.0, sc: 48.0, st: 38.0, ews: 61.0 }
-        ]
-      },
-      {
-        id: 'au-msc-computer-science',
-        name: 'M.Sc. Computer Science',
-        nameTamil: 'எம்.எஸ்சி. கணினி அறிவியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 60, marks: 60, topics: ['Data Structures', 'Algorithms', 'Databases'] },
-            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 40, marks: 40, topics: ['C', 'Java', 'Python'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Software Developer, Systems Analyst'],
-        seatMatrix: { general: 30, obc: 45, bcMbc: 60, sc: 26, st: 6, ews: 11, total: 178 },
-        cutoffs: [
-          { year: '2024', general: 72.0, obc: 67.0, bcMbc: 62.0, sc: 52.0, st: 42.0, ews: 65.0 },
-          { year: '2023', general: 75.0, obc: 70.0, bcMbc: 65.0, sc: 55.0, st: 45.0, ews: 68.0 }
-        ]
-      },
-      {
-        id: 'au-mca',
-        name: 'M.C.A. (Master of Computer Applications)',
-        nameTamil: 'எம்.சி.ஏ. (கணினி பயன்பாடுகள் முதுகலை)',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 50, marks: 50, topics: ['Programming', 'Data Structures', 'DBMS'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Discrete Math', 'Probability'] },
-            { name: 'Aptitude', nameTamil: 'தகுதி', questions: 20, marks: 20, topics: ['Logical Reasoning', 'Quantitative'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Software Engineer, IT Manager'],
-        seatMatrix: { general: 40, obc: 60, bcMbc: 80, sc: 35, st: 8, ews: 15, total: 238 },
-        cutoffs: [
-          { year: '2024', general: 70.0, obc: 65.0, bcMbc: 60.0, sc: 50.0, st: 40.0, ews: 63.0 },
-          { year: '2023', general: 73.0, obc: 68.0, bcMbc: 63.0, sc: 53.0, st: 43.0, ews: 66.0 }
-        ]
-      },
-      {
-        id: 'au-msc-data-science',
-        name: 'M.Sc. Data Science',
-        nameTamil: 'எம்.எஸ்சி. தரவு அறிவியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Data Science', nameTamil: 'தரவு அறிவியல்', questions: 50, marks: 50, topics: ['Machine Learning', 'Data Mining', 'Big Data'] },
-            { name: 'Statistics', nameTamil: 'புள்ளியியல்', questions: 30, marks: 30, topics: ['Statistical Analysis', 'Probability'] },
-            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 20, marks: 20, topics: ['Python', 'R'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Data Scientist, ML Engineer'],
-        seatMatrix: { general: 25, obc: 38, bcMbc: 50, sc: 22, st: 5, ews: 9, total: 149 },
-        cutoffs: [
-          { year: '2024', general: 75.0, obc: 70.0, bcMbc: 65.0, sc: 55.0, st: 45.0, ews: 68.0 },
-          { year: '2023', general: 78.0, obc: 73.0, bcMbc: 68.0, sc: 58.0, st: 48.0, ews: 71.0 }
-        ]
-      },
-      {
-        id: 'au-bsc-sports',
-        name: 'B.Sc. Sports Sciences',
-        nameTamil: 'பி.எஸ்சி. விளையாட்டு அறிவியல்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Sports Science', nameTamil: 'விளையாட்டு அறிவியல்', questions: 50, marks: 50, topics: ['Exercise Physiology', 'Sports Psychology'] },
-            { name: 'Physical Education', nameTamil: 'உடற்கல்வி', questions: 30, marks: 30, topics: ['Sports Training', 'Health Education'] },
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Sports History', 'Current Events'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['3-year program', 'Career: Sports Scientist, Fitness Trainer'],
-        seatMatrix: { general: 25, obc: 38, bcMbc: 50, sc: 22, st: 5, ews: 9, total: 149 },
-        cutoffs: [
-          { year: '2024', general: 55.0, obc: 50.0, bcMbc: 45.0, sc: 35.0, st: 25.0, ews: 48.0 },
-          { year: '2023', general: 58.0, obc: 53.0, bcMbc: 48.0, sc: 38.0, st: 28.0, ews: 51.0 }
-        ]
-      },
-      {
-        id: 'au-bped',
-        name: 'B.P.Ed. (Bachelor of Physical Education)',
-        nameTamil: 'பி.பி.எட். (உடற்கல்வி இளங்கலை)',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Physical Education', nameTamil: 'உடற்கல்வி', questions: 60, marks: 60, topics: ['Sports Training', 'Health Education', 'Physiology'] },
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 40, marks: 40, topics: ['Sports Current Affairs', 'Teaching Methods'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Physical Education Teacher, Sports Coach'],
-        seatMatrix: { general: 30, obc: 45, bcMbc: 60, sc: 26, st: 6, ews: 11, total: 178 },
-        cutoffs: [
-          { year: '2024', general: 52.0, obc: 47.0, bcMbc: 42.0, sc: 32.0, st: 22.0, ews: 45.0 },
-          { year: '2023', general: 55.0, obc: 50.0, bcMbc: 45.0, sc: 35.0, st: 25.0, ews: 48.0 }
-        ]
-      },
-      {
-        id: 'au-mped',
-        name: 'M.P.Ed. (Master of Physical Education)',
-        nameTamil: 'எம்.பி.எட். (உடற்கல்வி முதுகலை)',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Physical Education', nameTamil: 'உடற்கல்வி', questions: 60, marks: 60, topics: ['Sports Science', 'Research Methods', 'Administration'] },
-            { name: 'Specialization', nameTamil: 'சிறப்புப் பிரிவு', questions: 40, marks: 40, topics: ['Coaching', 'Sports Psychology'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: College Lecturer, Sports Director'],
-        seatMatrix: { general: 20, obc: 30, bcMbc: 40, sc: 17, st: 4, ews: 8, total: 119 },
-        cutoffs: [
-          { year: '2024', general: 55.0, obc: 50.0, bcMbc: 45.0, sc: 35.0, st: 25.0, ews: 48.0 },
-          { year: '2023', general: 58.0, obc: 53.0, bcMbc: 48.0, sc: 38.0, st: 28.0, ews: 51.0 }
-        ]
-      },
-      // ========== FACULTY OF ARTS ==========
-      {
-        id: 'au-ma-english',
-        name: 'M.A. English',
-        nameTamil: 'எம்.ஏ. ஆங்கிலம்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'English Literature', nameTamil: 'ஆங்கில இலக்கியம்', questions: 60, marks: 60, topics: ['British Literature', 'American Literature', 'Indian Writing'] },
-            { name: 'Language & Linguistics', nameTamil: 'மொழி & மொழியியல்', questions: 40, marks: 40, topics: ['Phonetics', 'Grammar', 'Semantics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Lecturer, Content Writer, Translator'],
-        seatMatrix: { general: 30, obc: 45, bcMbc: 60, sc: 26, st: 6, ews: 11, total: 178 },
-        cutoffs: [
-          { year: '2024', general: 58.0, obc: 53.0, bcMbc: 48.0, sc: 38.0, st: 28.0, ews: 51.0 },
-          { year: '2023', general: 61.0, obc: 56.0, bcMbc: 51.0, sc: 41.0, st: 31.0, ews: 54.0 }
-        ]
-      },
-      {
-        id: 'au-ma-history',
-        name: 'M.A. History',
-        nameTamil: 'எம்.ஏ. வரலாறு',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Indian History', nameTamil: 'இந்திய வரலாறு', questions: 50, marks: 50, topics: ['Ancient', 'Medieval', 'Modern India'] },
-            { name: 'World History', nameTamil: 'உலக வரலாறு', questions: 30, marks: 30, topics: ['European', 'American', 'Asian History'] },
-            { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 20, marks: 20, topics: ['Historiography'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Historian, Archaeologist, Museum Curator'],
-        seatMatrix: { general: 25, obc: 38, bcMbc: 50, sc: 22, st: 5, ews: 9, total: 149 },
-        cutoffs: [
-          { year: '2024', general: 52.0, obc: 47.0, bcMbc: 42.0, sc: 32.0, st: 22.0, ews: 45.0 },
-          { year: '2023', general: 55.0, obc: 50.0, bcMbc: 45.0, sc: 35.0, st: 25.0, ews: 48.0 }
-        ]
-      },
-      {
-        id: 'au-ma-political-science',
-        name: 'M.A. Political Science',
-        nameTamil: 'எம்.ஏ. அரசியல் அறிவியல்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Political Theory', nameTamil: 'அரசியல் கோட்பாடு', questions: 50, marks: 50, topics: ['Political Philosophy', 'Ideologies'] },
-            { name: 'Indian Politics', nameTamil: 'இந்திய அரசியல்', questions: 30, marks: 30, topics: ['Constitution', 'Government', 'Parties'] },
-            { name: 'International Relations', nameTamil: 'சர்வதேச உறவுகள்', questions: 20, marks: 20, topics: ['World Politics', 'Diplomacy'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Political Analyst, Civil Services, Journalist'],
-        seatMatrix: { general: 25, obc: 38, bcMbc: 50, sc: 22, st: 5, ews: 9, total: 149 },
-        cutoffs: [
-          { year: '2024', general: 54.0, obc: 49.0, bcMbc: 44.0, sc: 34.0, st: 24.0, ews: 47.0 },
-          { year: '2023', general: 57.0, obc: 52.0, bcMbc: 47.0, sc: 37.0, st: 27.0, ews: 50.0 }
-        ]
-      },
-      {
-        id: 'au-ma-economics',
-        name: 'M.A. Economics',
-        nameTamil: 'எம்.ஏ. பொருளாதாரம்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Microeconomics', nameTamil: 'நுண் பொருளாதாரம்', questions: 35, marks: 35, topics: ['Consumer Theory', 'Market Structures'] },
-            { name: 'Macroeconomics', nameTamil: 'பேரியல் பொருளாதாரம்', questions: 35, marks: 35, topics: ['National Income', 'Monetary Policy'] },
-            { name: 'Quantitative Methods', nameTamil: 'அளவியல் முறைகள்', questions: 30, marks: 30, topics: ['Statistics', 'Econometrics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Economist, Financial Analyst, Policy Maker'],
-        seatMatrix: { general: 25, obc: 38, bcMbc: 50, sc: 22, st: 5, ews: 9, total: 149 },
-        cutoffs: [
-          { year: '2024', general: 60.0, obc: 55.0, bcMbc: 50.0, sc: 40.0, st: 30.0, ews: 53.0 },
-          { year: '2023', general: 63.0, obc: 58.0, bcMbc: 53.0, sc: 43.0, st: 33.0, ews: 56.0 }
-        ]
-      },
-      {
-        id: 'au-msw',
-        name: 'M.S.W. (Master of Social Work)',
-        nameTamil: 'எம்.எஸ்.டபிள்யூ. (சமூக சேவை முதுகலை)',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Social Work', nameTamil: 'சமூக சேவை', questions: 60, marks: 60, topics: ['Case Work', 'Group Work', 'Community Organization'] },
-            { name: 'Social Sciences', nameTamil: 'சமூக அறிவியல்', questions: 40, marks: 40, topics: ['Sociology', 'Psychology', 'Economics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Social Worker, NGO Manager, Counselor'],
-        seatMatrix: { general: 25, obc: 38, bcMbc: 50, sc: 22, st: 5, ews: 9, total: 149 },
-        cutoffs: [
-          { year: '2024', general: 55.0, obc: 50.0, bcMbc: 45.0, sc: 35.0, st: 25.0, ews: 48.0 },
-          { year: '2023', general: 58.0, obc: 53.0, bcMbc: 48.0, sc: 38.0, st: 28.0, ews: 51.0 }
-        ]
-      },
-      {
-        id: 'au-mlibisc',
+        id: 'bu-mlisc',
         name: 'M.Lib.I.Sc. (Library & Information Science)',
-        nameTamil: 'எம்.லிப்.ஐ.எஸ்சி. (நூலகவியல் & தகவலியல்)',
+        nameTamil: 'எம்.லிப்.ஐ.எஸ்சி. (நூலகம் & தகவல் அறிவியல்)',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Library Science', nameTamil: 'நூலகவியல்', questions: 60, marks: 60, topics: ['Classification', 'Cataloguing', 'Library Management'] },
-            { name: 'Information Science', nameTamil: 'தகவலியல்', questions: 40, marks: 40, topics: ['Digital Libraries', 'Information Retrieval'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Arts & Social Sciences',
+        duration: '1 Year',
+        eligibility: 'B.Lib.I.Sc.',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Library Science', nameTamil: 'நூலக அறிவியல்', questions: 70, marks: 70, topics: ['Classification', 'Cataloguing', 'Information Retrieval'] }, { name: 'ICT', nameTamil: 'ICT', questions: 30, marks: 30, topics: ['Digital Libraries', 'Library Automation'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['1-year program', 'Career: Librarian, Information Officer'],
-        seatMatrix: { general: 20, obc: 30, bcMbc: 40, sc: 17, st: 4, ews: 8, total: 119 },
-        cutoffs: [
-          { year: '2024', general: 50.0, obc: 45.0, bcMbc: 40.0, sc: 30.0, st: 20.0, ews: 43.0 },
-          { year: '2023', general: 53.0, obc: 48.0, bcMbc: 43.0, sc: 33.0, st: 23.0, ews: 46.0 }
-        ]
+        tips: ['Government librarian posts, university libraries']
       },
+      // --- Faculty of Commerce & Management ---
       {
-        id: 'au-mba',
+        id: 'bu-mba',
         name: 'M.B.A. (Master of Business Administration)',
         nameTamil: 'எம்.பி.ஏ. (வணிக நிர்வாக முதுகலை)',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Quantitative Aptitude', nameTamil: 'அளவியல் திறன்', questions: 30, marks: 30, topics: ['Mathematics', 'Data Interpretation'] },
-            { name: 'Verbal Ability', nameTamil: 'மொழித்திறன்', questions: 30, marks: 30, topics: ['English Grammar', 'Reading Comprehension'] },
-            { name: 'Logical Reasoning', nameTamil: 'தர்க்க அறிவு', questions: 25, marks: 25, topics: ['Analytical Reasoning', 'Puzzles'] },
-            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', questions: 15, marks: 15, topics: ['Current Affairs', 'Business'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'Commerce & Management',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Aptitude', nameTamil: 'திறன்', questions: 40, marks: 40, topics: ['Quantitative Aptitude', 'Logical Reasoning', 'Data Interpretation'] }, { name: 'Business Knowledge', nameTamil: 'வணிக அறிவு', questions: 40, marks: 40, topics: ['Business Concepts', 'Current Affairs', 'Management'] }, { name: 'English', nameTamil: 'ஆங்கிலம்', questions: 20, marks: 20, topics: ['Verbal Ability', 'Reading Comprehension'] }] },
         syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Business Manager, Entrepreneur', 'Multiple specializations available'],
-        seatMatrix: { general: 40, obc: 60, bcMbc: 80, sc: 35, st: 8, ews: 15, total: 238 },
-        cutoffs: [
-          { year: '2024', general: 70.0, obc: 65.0, bcMbc: 60.0, sc: 50.0, st: 40.0, ews: 63.0 },
-          { year: '2023', general: 73.0, obc: 68.0, bcMbc: 63.0, sc: 53.0, st: 43.0, ews: 66.0 }
-        ]
+        tips: ['Good placements in Coimbatore IT and manufacturing']
       },
-      // ========== DIRECTORATE OF DISTANCE EDUCATION (DDE) ==========
       {
-        id: 'au-dde-ba-tamil',
+        id: 'bu-mcom-finance-ca',
+        name: 'M.Com. Finance and Computer Applications',
+        nameTamil: 'எம்.காம். நிதி மற்றும் கணினி பயன்பாடுகள்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Commerce & Management',
+        duration: '2 Years',
+        eligibility: 'B.Com/BBA/BCA',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Commerce', nameTamil: 'வணிகம்', questions: 50, marks: 50, topics: ['Accounting', 'Finance', 'Business Law'] }, { name: 'Computer Applications', nameTamil: 'கணினி பயன்பாடுகள்', questions: 30, marks: 30, topics: ['Tally', 'Excel', 'Databases'] }, { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Quantitative', 'Reasoning'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Blend of finance and technology skills']
+      },
+      {
+        id: 'bu-mcom-finance-accounting',
+        name: 'M.Com. Finance and Accounting',
+        nameTamil: 'எம்.காம். நிதி மற்றும் கணக்கு',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Commerce & Management',
+        duration: '2 Years',
+        eligibility: 'B.Com',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Accounting', nameTamil: 'கணக்கு', questions: 50, marks: 50, topics: ['Financial Accounting', 'Cost Accounting', 'Management Accounting'] }, { name: 'Finance', nameTamil: 'நிதி', questions: 30, marks: 30, topics: ['Financial Management', 'Investment', 'Banking'] }, { name: 'Aptitude', nameTamil: 'திறன்', questions: 20, marks: 20, topics: ['Quantitative'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['CA/CMA foundation, corporate finance careers']
+      },
+      {
+        id: 'bu-mcom-fintech',
+        name: 'M.Com. Financial Technology (FinTech)',
+        nameTamil: 'எம்.காம். நிதி தொழில்நுட்பம் (FinTech)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Commerce & Management',
+        duration: '2 Years',
+        eligibility: 'B.Com/BBA/BCA',
+        specialty: 'Emerging field combining finance and technology',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'FinTech', nameTamil: 'FinTech', questions: 50, marks: 50, topics: ['Digital Payments', 'Blockchain', 'Cryptocurrencies'] }, { name: 'Finance', nameTamil: 'நிதி', questions: 30, marks: 30, topics: ['Banking', 'Investment'] }, { name: 'Technology', nameTamil: 'தொழில்நுட்பம்', questions: 20, marks: 20, topics: ['Programming Basics', 'Data Analytics'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Hot career - digital banking and payment companies']
+      },
+      // --- Education ---
+      {
+        id: 'bu-med',
+        name: 'M.Ed. (Master of Education)',
+        nameTamil: 'எம்.எட். (கல்வி முதுகலை)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Education',
+        duration: '2 Years',
+        eligibility: 'B.Ed.',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Education', nameTamil: 'கல்வி', questions: 70, marks: 70, topics: ['Philosophy of Education', 'Educational Psychology', 'Curriculum Development'] }, { name: 'Research', nameTamil: 'ஆராய்ச்சி', questions: 30, marks: 30, topics: ['Research Methods', 'Statistics'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Teacher educator, B.Ed college lecturer']
+      },
+      {
+        id: 'bu-mped',
+        name: 'M.P.Ed. (Master of Physical Education)',
+        nameTamil: 'எம்.பி.எட். (உடற்கல்வி முதுகலை)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Education',
+        duration: '2 Years',
+        eligibility: 'B.P.Ed.',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: '90 Minutes', durationMinutes: 90, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Physical Education', nameTamil: 'உடற்கல்வி', questions: 70, marks: 70, topics: ['Sports Science', 'Kinesiology', 'Sports Psychology'] }, { name: 'Practical', nameTamil: 'செய்முறை', questions: 30, marks: 30, topics: ['Games', 'Athletics', 'Fitness'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Sports officer, physical education teacher']
+      },
+      // --- PG Diploma Courses (1 Year) ---
+      {
+        id: 'bu-pgd-cyber-forensics',
+        name: 'PG Diploma in Cyber Security & Digital Forensics',
+        nameTamil: 'பி.ஜி.டி. சைபர் பாதுகாப்பு & டிஜிட்டல் தடயவியல்',
+        type: 'PG Diploma',
+        category: 'On-Campus',
+        school: 'Professional Diplomas',
+        duration: '1 Year',
+        eligibility: 'Any Bachelor\'s degree (preferably CS/IT)',
+        specialty: 'High-demand certification program',
+        examPattern: { totalQuestions: 75, totalMarks: 75, duration: '75 Minutes', durationMinutes: 75, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Cyber Security', nameTamil: 'சைபர் பாதுகாப்பு', questions: 50, marks: 50, topics: ['Network Security', 'Ethical Hacking', 'Malware Analysis'] }, { name: 'Digital Forensics', nameTamil: 'டிஜிட்டல் தடயவியல்', questions: 25, marks: 25, topics: ['Evidence Collection', 'Investigation'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Career in cyber crime investigation, IT security']
+      },
+      {
+        id: 'bu-pgd-ohs',
+        name: 'PG Diploma in Occupational Health and Industrial Safety',
+        nameTamil: 'பி.ஜி.டி. தொழிலாளர் சுகாதாரம் & தொழில்துறை பாதுகாப்பு',
+        type: 'PG Diploma',
+        category: 'On-Campus',
+        school: 'Professional Diplomas',
+        duration: '1 Year',
+        eligibility: 'Any Bachelor\'s degree (Science preferred)',
+        specialty: 'Essential for manufacturing industry',
+        examPattern: { totalQuestions: 75, totalMarks: 75, duration: '75 Minutes', durationMinutes: 75, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Safety', nameTamil: 'பாதுகாப்பு', questions: 50, marks: 50, topics: ['Industrial Safety', 'Fire Safety', 'Hazard Management'] }, { name: 'Health', nameTamil: 'சுகாதாரம்', questions: 25, marks: 25, topics: ['Occupational Health', 'Ergonomics'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Safety officer in factories, construction']
+      },
+      {
+        id: 'bu-pgd-geriatric',
+        name: 'PG Diploma in Geriatric Care and Management',
+        nameTamil: 'பி.ஜி.டி. முதியோர் பராமரிப்பு மற்றும் மேலாண்மை',
+        type: 'PG Diploma',
+        category: 'On-Campus',
+        school: 'Professional Diplomas',
+        duration: '1 Year',
+        eligibility: 'Any Bachelor\'s degree',
+        specialty: 'Growing need for elderly care professionals',
+        examPattern: { totalQuestions: 75, totalMarks: 75, duration: '75 Minutes', durationMinutes: 75, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Geriatric Care', nameTamil: 'முதியோர் பராமரிப்பு', questions: 50, marks: 50, topics: ['Aging Process', 'Health Issues', 'Care Management'] }, { name: 'Psychology', nameTamil: 'உளவியல்', questions: 25, marks: 25, topics: ['Geriatric Psychology', 'Counseling'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Old age homes, hospitals, home care services']
+      },
+      {
+        id: 'bu-pgd-regulatory-affairs',
+        name: 'PG Diploma in Regulatory Affairs (Pharma)',
+        nameTamil: 'பி.ஜி.டி. ஒழுங்குமுறை விவகாரங்கள் (மருந்து)',
+        type: 'PG Diploma',
+        category: 'On-Campus',
+        school: 'Professional Diplomas',
+        duration: '1 Year',
+        eligibility: 'B.Pharm/B.Sc. Life Sciences',
+        specialty: 'Essential for pharma industry compliance',
+        examPattern: { totalQuestions: 75, totalMarks: 75, duration: '75 Minutes', durationMinutes: 75, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Regulatory Affairs', nameTamil: 'ஒழுங்குமுறை விவகாரங்கள்', questions: 50, marks: 50, topics: ['Drug Regulations', 'FDA/CDSCO', 'Clinical Trials'] }, { name: 'Documentation', nameTamil: 'ஆவணப்படுத்தல்', questions: 25, marks: 25, topics: ['CTD', 'eCTD', 'Submissions'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Pharma companies need regulatory professionals']
+      },
+      {
+        id: 'bu-pgd-export-import',
+        name: 'PG Diploma in Export and Import Documentation',
+        nameTamil: 'பி.ஜி.டி. ஏற்றுமதி மற்றும் இறக்குமதி ஆவணப்படுத்தல்',
+        type: 'PG Diploma',
+        category: 'On-Campus',
+        school: 'Professional Diplomas',
+        duration: '1 Year',
+        eligibility: 'Any Bachelor\'s degree',
+        specialty: 'Trade and logistics career path',
+        examPattern: { totalQuestions: 75, totalMarks: 75, duration: '75 Minutes', durationMinutes: 75, mode: 'OMR Based (Offline)', negativeMarking: false, sections: [{ name: 'Export-Import', nameTamil: 'ஏற்றுமதி-இறக்குமதி', questions: 50, marks: 50, topics: ['Trade Procedures', 'Customs', 'Documentation'] }, { name: 'Logistics', nameTamil: 'தளவாடம்', questions: 25, marks: 25, topics: ['Shipping', 'Insurance', 'Finance'] }] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Export houses, shipping companies, customs']
+      },
+      
+      // ========== AFFILIATED COLLEGES (UG) ==========
+      // --- Computer Stream ---
+      {
+        id: 'bu-bsc-cs',
+        name: 'B.Sc. Computer Science',
+        nameTamil: 'பி.எஸ்சி. கணினி அறிவியல்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Computer Stream',
+        duration: '3 Years',
+        eligibility: 'HSC with Maths/CS',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Most popular IT course - strong placements']
+      },
+      {
+        id: 'bu-bsc-it',
+        name: 'B.Sc. Information Technology',
+        nameTamil: 'பி.எஸ்சி. தகவல் தொழில்நுட்பம்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Computer Stream',
+        duration: '3 Years',
+        eligibility: 'HSC with Maths/CS',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Industry-oriented curriculum']
+      },
+      {
+        id: 'bu-bsc-ct',
+        name: 'B.Sc. Computer Technology (CT)',
+        nameTamil: 'பி.எஸ்சி. கணினி தொழில்நுட்பம்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Computer Stream',
+        duration: '3 Years',
+        eligibility: 'HSC with Maths',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Hardware + software combined approach']
+      },
+      {
+        id: 'bu-bsc-software-systems',
+        name: 'B.Sc. Software Systems',
+        nameTamil: 'பி.எஸ்சி. மென்பொருள் அமைப்புகள்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Computer Stream',
+        duration: '3 Years',
+        eligibility: 'HSC with Maths',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Focus on software development']
+      },
+      {
+        id: 'bu-bsc-data-science',
+        name: 'B.Sc. Data Science',
+        nameTamil: 'பி.எஸ்சி. தரவு அறிவியல்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Computer Stream',
+        duration: '3 Years',
+        eligibility: 'HSC with Maths',
+        specialty: 'High-demand emerging field',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Analytics and AI career path']
+      },
+      {
+        id: 'bu-bsc-aiml',
+        name: 'B.Sc. Artificial Intelligence and Machine Learning',
+        nameTamil: 'பி.எஸ்சி. செயற்கை நுண்ணறிவு மற்றும் இயந்திர கற்றல்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Computer Stream',
+        duration: '3 Years',
+        eligibility: 'HSC with Maths',
+        specialty: 'Cutting-edge technology program',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Future of technology - excellent prospects']
+      },
+      {
+        id: 'bu-bsc-cyber-forensic',
+        name: 'B.Sc. Digital & Cyber Forensic Science',
+        nameTamil: 'பி.எஸ்சி. டிஜிட்டல் & சைபர் தடய அறிவியல்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Computer Stream',
+        duration: '3 Years',
+        eligibility: 'HSC with Maths/Science',
+        specialty: 'Unique security-focused program',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Cyber crime investigation, law enforcement']
+      },
+      {
+        id: 'bu-bsc-iot',
+        name: 'B.Sc. IoT (Internet of Things)',
+        nameTamil: 'பி.எஸ்சி. இன்டர்நெட் ஆஃப் திங்ஸ்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Computer Stream',
+        duration: '3 Years',
+        eligibility: 'HSC with Maths',
+        specialty: 'Smart devices and automation',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Industry 4.0 ready program']
+      },
+      {
+        id: 'bu-bca',
+        name: 'B.C.A. (Bachelor of Computer Applications)',
+        nameTamil: 'பி.சி.ஏ. (கணினி பயன்பாடுகள் இளங்கலை)',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Computer Stream',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream with Maths)',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Popular alternative to B.Sc. CS']
+      },
+      // --- Fashion & Design ---
+      {
+        id: 'bu-bsc-costume-design',
+        name: 'B.Sc. Costume Design and Fashion',
+        nameTamil: 'பி.எஸ்சி. ஆடை வடிவமைப்பு மற்றும் நாகரீகம்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Fashion & Design',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        specialty: 'Coimbatore textile hub advantage',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Strong placements in textile industry']
+      },
+      {
+        id: 'bu-bsc-apparel-merchandising',
+        name: 'B.Sc. Apparel Manufacturing & Merchandising',
+        nameTamil: 'பி.எஸ்சி. ஆடை உற்பத்தி & வணிகம்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Fashion & Design',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        specialty: 'Export house career path',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Garment industry management']
+      },
+      {
+        id: 'bu-bsc-fashion-apparel-mgmt',
+        name: 'B.Sc. Fashion Apparel Management',
+        nameTamil: 'பி.எஸ்சி. ஆடை நாகரீக மேலாண்மை',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Fashion & Design',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Business side of fashion industry']
+      },
+      {
+        id: 'bu-bsc-interior-design',
+        name: 'B.Sc. Interior Design',
+        nameTamil: 'பி.எஸ்சி. உள்வீட்டு வடிவமைப்பு',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Fashion & Design',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Creative career in home and office design']
+      },
+      // --- Other Unique Sciences ---
+      {
+        id: 'bu-bsc-visual-communication',
+        name: 'B.Sc. Visual Communication',
+        nameTamil: 'பி.எஸ்சி. காட்சி தொடர்பு',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Media & Creative',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        specialty: 'Popular media studies program',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Film, TV, advertising, digital media']
+      },
+      {
+        id: 'bu-bsc-catering',
+        name: 'B.Sc. Catering Science and Hotel Management',
+        nameTamil: 'பி.எஸ்சி. உணவு அறிவியல் மற்றும் ஹோட்டல் மேலாண்மை',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Hospitality',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Hotels, resorts, cruise ships']
+      },
+      {
+        id: 'bu-bsc-forensic-science',
+        name: 'B.Sc. Forensic Science',
+        nameTamil: 'பி.எஸ்சி. தடய அறிவியல்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Science',
+        duration: '3 Years',
+        eligibility: 'HSC with Science',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Crime labs, police departments']
+      },
+      {
+        id: 'bu-bsc-psychology',
+        name: 'B.Sc. Psychology',
+        nameTamil: 'பி.எஸ்சி. உளவியல்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Science',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Counseling, HR, clinical psychology path']
+      },
+      {
+        id: 'bu-bsc-biotechnology',
+        name: 'B.Sc. Biotechnology',
+        nameTamil: 'பி.எஸ்சி. உயிர்தொழில்நுட்பவியல்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Life Sciences',
+        duration: '3 Years',
+        eligibility: 'HSC with Biology',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Pharma and research career path']
+      },
+      {
+        id: 'bu-bsc-microbiology-ug',
+        name: 'B.Sc. Microbiology',
+        nameTamil: 'பி.எஸ்சி. நுண்ணுயிரியல்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Life Sciences',
+        duration: '3 Years',
+        eligibility: 'HSC with Biology',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Labs, food industry, pharma QC']
+      },
+      {
+        id: 'bu-bsc-nutrition',
+        name: 'B.Sc. Nutrition and Dietetics',
+        nameTamil: 'பி.எஸ்சி. ஊட்டச்சத்து மற்றும் உணவியல்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Life Sciences',
+        duration: '3 Years',
+        eligibility: 'HSC with Biology',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Hospitals, wellness centers, sports nutrition']
+      },
+      // --- B.Com Specializations ---
+      {
+        id: 'bu-bcom-general',
+        name: 'B.Com. (General)',
+        nameTamil: 'பி.காம். (பொது)',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Commerce',
+        duration: '3 Years',
+        eligibility: 'HSC Commerce/Arts',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Foundation for CA, CMA, MBA']
+      },
+      {
+        id: 'bu-bcom-ca',
+        name: 'B.Com. Computer Applications (CA)',
+        nameTamil: 'பி.காம். கணினி பயன்பாடுகள்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Commerce',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Most popular B.Com variant']
+      },
+      {
+        id: 'bu-bcom-pa',
+        name: 'B.Com. Professional Accounting (PA)',
+        nameTamil: 'பி.காம். தொழில்முறை கணக்கியல்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Commerce',
+        duration: '3 Years',
+        eligibility: 'HSC Commerce',
+        specialty: 'Aligned with CA/CMA curriculum',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Best for CA/CMA aspirants']
+      },
+      {
+        id: 'bu-bcom-cs',
+        name: 'B.Com. Corporate Secretaryship (CS)',
+        nameTamil: 'பி.காம். நிறுவன செயலர்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Commerce',
+        duration: '3 Years',
+        eligibility: 'HSC Commerce',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Foundation for CS (ICSI) course']
+      },
+      {
+        id: 'bu-bcom-it',
+        name: 'B.Com. Information Technology',
+        nameTamil: 'பி.காம். தகவல் தொழில்நுட்பம்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Commerce',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Commerce + IT skills combination']
+      },
+      {
+        id: 'bu-bcom-banking',
+        name: 'B.Com. Banking and Insurance',
+        nameTamil: 'பி.காம். வங்கி மற்றும் காப்பீடு',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Commerce',
+        duration: '3 Years',
+        eligibility: 'HSC Commerce',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Bank and insurance sector jobs']
+      },
+      {
+        id: 'bu-bcom-ib',
+        name: 'B.Com. International Business (IB)',
+        nameTamil: 'பி.காம். சர்வதேச வணிகம்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Commerce',
+        duration: '3 Years',
+        eligibility: 'HSC Commerce',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Export-import, MNC careers']
+      },
+      {
+        id: 'bu-bcom-financial-analytics',
+        name: 'B.Com. Financial Analytics',
+        nameTamil: 'பி.காம். நிதி பகுப்பாய்வு',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Commerce',
+        duration: '3 Years',
+        eligibility: 'HSC Commerce/Maths',
+        specialty: 'New-age finance + data skills',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['FinTech and analytics career path']
+      },
+      {
+        id: 'bu-bcom-ecommerce',
+        name: 'B.Com. E-Commerce',
+        nameTamil: 'பி.காம். மின்-வணிகம்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Commerce',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Online business and digital marketing']
+      },
+      {
+        id: 'bu-bcom-accounting-finance',
+        name: 'B.Com. Accounting & Finance',
+        nameTamil: 'பி.காம். கணக்கு & நிதி',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Commerce',
+        duration: '3 Years',
+        eligibility: 'HSC Commerce',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Strong accounting foundation']
+      },
+      // --- B.B.A. Specializations ---
+      {
+        id: 'bu-bba-general',
+        name: 'B.B.A. (General)',
+        nameTamil: 'பி.பி.ஏ. (பொது)',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Management',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Foundation for MBA']
+      },
+      {
+        id: 'bu-bba-ca',
+        name: 'B.B.A. Computer Applications',
+        nameTamil: 'பி.பி.ஏ. கணினி பயன்பாடுகள்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Management',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Business + IT combination']
+      },
+      {
+        id: 'bu-bba-logistics',
+        name: 'B.B.A. Logistics and Supply Chain Management',
+        nameTamil: 'பி.பி.ஏ. தளவாடம் மற்றும் விநியோக சங்கிலி மேலாண்மை',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Management',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        specialty: 'Growing industry demand',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['E-commerce and logistics boom']
+      },
+      {
+        id: 'bu-bba-aviation',
+        name: 'B.B.A. Aviation Management',
+        nameTamil: 'பி.பி.ஏ. விமான மேலாண்மை',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Management',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        specialty: 'Airlines and airports career',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Ground staff, airline operations']
+      },
+      {
+        id: 'bu-bba-hospital',
+        name: 'B.B.A. Hospital Management',
+        nameTamil: 'பி.பி.ஏ. மருத்துவமனை மேலாண்மை',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Management',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Healthcare administration careers']
+      },
+      {
+        id: 'bu-bba-retail',
+        name: 'B.B.A. Retail Management',
+        nameTamil: 'பி.பி.ஏ. சில்லறை மேலாண்மை',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Management',
+        duration: '3 Years',
+        eligibility: 'HSC (any stream)',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Merit-based admission', durationMinutes: 0, mode: 'No entrance exam', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Mall management, store operations']
+      },
+      
+      // ========== DISTANCE EDUCATION (SDE) ==========
+      // --- UG Programs ---
+      {
+        id: 'bu-sde-ba-tamil',
         name: 'B.A. Tamil (Distance)',
         nameTamil: 'பி.ஏ. தமிழ் (தொலைநிலை)',
         type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'Online/Offline', negativeMarking: false,
-          sections: [
-            { name: 'Tamil Literature', nameTamil: 'தமிழ் இலக்கியம்', questions: 60, marks: 60, topics: ['Classical Tamil', 'Modern Tamil Literature'] },
-            { name: 'Grammar', nameTamil: 'இலக்கணம்', questions: 40, marks: 40, topics: ['Syntax', 'Morphology'] }
-          ]
-        },
+        category: 'DDE',
+        school: 'Arts - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC Pass',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
         syllabus: [], previousQuestions: [],
-        tips: ['3-year Distance program', 'Career: Teacher, Writer, Translator'],
-        seatMatrix: { general: 200, obc: 300, bcMbc: 400, sc: 172, st: 40, ews: 76, total: 1188 },
-        cutoffs: [
-          { year: '2024', general: 40.0, obc: 37.0, bcMbc: 35.0, sc: 30.0, st: 25.0, ews: 35.0 },
-          { year: '2023', general: 43.0, obc: 40.0, bcMbc: 38.0, sc: 33.0, st: 28.0, ews: 38.0 }
-        ]
+        tips: ['For working professionals and late learners']
       },
       {
-        id: 'au-dde-ba-english',
+        id: 'bu-sde-ba-english',
         name: 'B.A. English (Distance)',
         nameTamil: 'பி.ஏ. ஆங்கிலம் (தொலைநிலை)',
         type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'Online/Offline', negativeMarking: false,
-          sections: [
-            { name: 'English Literature', nameTamil: 'ஆங்கில இலக்கியம்', questions: 60, marks: 60, topics: ['Poetry', 'Prose', 'Drama'] },
-            { name: 'Language Skills', nameTamil: 'மொழித்திறன்', questions: 40, marks: 40, topics: ['Grammar', 'Comprehension'] }
-          ]
-        },
+        category: 'DDE',
+        school: 'Arts - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC Pass',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
         syllabus: [], previousQuestions: [],
-        tips: ['3-year Distance program', 'Career: Content Writer, Teacher'],
-        seatMatrix: { general: 200, obc: 300, bcMbc: 400, sc: 172, st: 40, ews: 76, total: 1188 },
-        cutoffs: [
-          { year: '2024', general: 42.0, obc: 39.0, bcMbc: 37.0, sc: 32.0, st: 27.0, ews: 37.0 },
-          { year: '2023', general: 45.0, obc: 42.0, bcMbc: 40.0, sc: 35.0, st: 30.0, ews: 40.0 }
-        ]
+        tips: ['Popular for degree completion']
       },
       {
-        id: 'au-dde-bcom',
-        name: 'B.Com (Distance)',
+        id: 'bu-sde-bsc-physics',
+        name: 'B.Sc. Physics (Distance)',
+        nameTamil: 'பி.எஸ்சி. இயற்பியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Science - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC with Science',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Theory-based study for working students']
+      },
+      {
+        id: 'bu-sde-bsc-chemistry',
+        name: 'B.Sc. Chemistry (Distance)',
+        nameTamil: 'பி.எஸ்சி. வேதியியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Science - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC with Science',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Flexible learning option']
+      },
+      {
+        id: 'bu-sde-bsc-maths',
+        name: 'B.Sc. Mathematics (Distance)',
+        nameTamil: 'பி.எஸ்சி. கணிதம் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Science - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC with Maths',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Complete degree while working']
+      },
+      {
+        id: 'bu-sde-bsc-cs',
+        name: 'B.Sc. Computer Science (Distance)',
+        nameTamil: 'பி.எஸ்சி. கணினி அறிவியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Computer - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC with Maths',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Popular distance IT degree']
+      },
+      {
+        id: 'bu-sde-bsc-it',
+        name: 'B.Sc. Information Technology (Distance)',
+        nameTamil: 'பி.எஸ்சி. தகவல் தொழில்நுட்பம் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Computer - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC with Maths',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['IT degree for working professionals']
+      },
+      {
+        id: 'bu-sde-bsc-botany',
+        name: 'B.Sc. Botany (Distance)',
+        nameTamil: 'பி.எஸ்சி. தாவரவியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Science - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC with Biology',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Basic science degree completion']
+      },
+      {
+        id: 'bu-sde-bsc-zoology',
+        name: 'B.Sc. Zoology (Distance)',
+        nameTamil: 'பி.எஸ்சி. விலங்கியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Science - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC with Biology',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Life science degree option']
+      },
+      {
+        id: 'bu-sde-bsc-viscom',
+        name: 'B.Sc. Visual Communication (Distance)',
+        nameTamil: 'பி.எஸ்சி. காட்சி தொடர்பு (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Media - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC Pass',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Media studies via distance mode']
+      },
+      {
+        id: 'bu-sde-bsc-costume',
+        name: 'B.Sc. Costume Design (Distance)',
+        nameTamil: 'பி.எஸ்சி. ஆடை வடிவமைப்பு (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Design - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC Pass',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Fashion degree for working learners']
+      },
+      {
+        id: 'bu-sde-bsc-catering',
+        name: 'B.Sc. Catering Science (Distance)',
+        nameTamil: 'பி.எஸ்சி. உணவு அறிவியல் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Hospitality - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC Pass',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Hotel industry degree completion']
+      },
+      {
+        id: 'bu-sde-bcom',
+        name: 'B.Com. (Distance)',
         nameTamil: 'பி.காம். (தொலைநிலை)',
         type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'Online/Offline', negativeMarking: false,
-          sections: [
-            { name: 'Commerce', nameTamil: 'வணிகவியல்', questions: 50, marks: 50, topics: ['Accounting', 'Business Studies'] },
-            { name: 'Economics', nameTamil: 'பொருளாதாரம்', questions: 30, marks: 30, topics: ['Business Economics'] },
-            { name: 'Quantitative', nameTamil: 'அளவியல்', questions: 20, marks: 20, topics: ['Business Mathematics'] }
-          ]
-        },
+        category: 'DDE',
+        school: 'Commerce - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC Pass',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
         syllabus: [], previousQuestions: [],
-        tips: ['3-year Distance program', 'Career: Accountant, Business Analyst'],
-        seatMatrix: { general: 250, obc: 375, bcMbc: 500, sc: 215, st: 50, ews: 95, total: 1485 },
-        cutoffs: [
-          { year: '2024', general: 45.0, obc: 42.0, bcMbc: 40.0, sc: 35.0, st: 30.0, ews: 40.0 },
-          { year: '2023', general: 48.0, obc: 45.0, bcMbc: 43.0, sc: 38.0, st: 33.0, ews: 43.0 }
-        ]
+        tips: ['Most popular distance commerce degree']
       },
       {
-        id: 'au-dde-bba',
+        id: 'bu-sde-bcom-ca',
+        name: 'B.Com. CA (Distance)',
+        nameTamil: 'பி.காம். கணினி பயன்பாடுகள் (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Commerce - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC Pass',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Commerce + computer skills via distance']
+      },
+      {
+        id: 'bu-sde-bba',
         name: 'B.B.A. (Distance)',
         nameTamil: 'பி.பி.ஏ. (தொலைநிலை)',
         type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'Online/Offline', negativeMarking: false,
-          sections: [
-            { name: 'Business Administration', nameTamil: 'வணிக நிர்வாகம்', questions: 50, marks: 50, topics: ['Management Principles', 'Marketing'] },
-            { name: 'Commerce', nameTamil: 'வணிகவியல்', questions: 30, marks: 30, topics: ['Accounting', 'Finance'] },
-            { name: 'General', nameTamil: 'பொது', questions: 20, marks: 20, topics: ['Business Communication'] }
-          ]
-        },
+        category: 'DDE',
+        school: 'Management - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC Pass',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
         syllabus: [], previousQuestions: [],
-        tips: ['3-year Distance program', 'Career: Business Executive, Entrepreneur'],
-        seatMatrix: { general: 200, obc: 300, bcMbc: 400, sc: 172, st: 40, ews: 76, total: 1188 },
-        cutoffs: [
-          { year: '2024', general: 43.0, obc: 40.0, bcMbc: 38.0, sc: 33.0, st: 28.0, ews: 38.0 },
-          { year: '2023', general: 46.0, obc: 43.0, bcMbc: 41.0, sc: 36.0, st: 31.0, ews: 41.0 }
-        ]
+        tips: ['Management foundation via distance']
       },
       {
-        id: 'au-dde-bca',
+        id: 'bu-sde-bca',
         name: 'B.C.A. (Distance)',
         nameTamil: 'பி.சி.ஏ. (தொலைநிலை)',
         type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'Online/Offline', negativeMarking: false,
-          sections: [
-            { name: 'Computer Applications', nameTamil: 'கணினி பயன்பாடுகள்', questions: 50, marks: 50, topics: ['Programming', 'DBMS'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Discrete Math', 'Statistics'] },
-            { name: 'General', nameTamil: 'பொது', questions: 20, marks: 20, topics: ['Computer Fundamentals'] }
-          ]
-        },
+        category: 'DDE',
+        school: 'Computer - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC with Maths',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
         syllabus: [], previousQuestions: [],
-        tips: ['3-year Distance program', 'Career: Computer Programmer, IT Support'],
-        seatMatrix: { general: 200, obc: 300, bcMbc: 400, sc: 172, st: 40, ews: 76, total: 1188 },
-        cutoffs: [
-          { year: '2024', general: 48.0, obc: 45.0, bcMbc: 43.0, sc: 38.0, st: 33.0, ews: 43.0 },
-          { year: '2023', general: 51.0, obc: 48.0, bcMbc: 46.0, sc: 41.0, st: 36.0, ews: 46.0 }
-        ]
+        tips: ['Computer applications degree via distance']
       },
       {
-        id: 'au-dde-mba',
-        name: 'M.B.A. (Distance)',
-        nameTamil: 'எம்.பி.ஏ. (தொலைநிலை)',
+        id: 'bu-sde-bsw',
+        name: 'B.S.W. (Distance)',
+        nameTamil: 'பி.எஸ்.டபிள்யூ. (தொலைநிலை)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Social Work - Distance',
+        duration: '3 Years',
+        eligibility: 'HSC Pass',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Social work foundation via distance']
+      },
+      // --- PG Programs (Distance) ---
+      {
+        id: 'bu-sde-ma-english',
+        name: 'M.A. English (Distance)',
+        nameTamil: 'எம்.ஏ. ஆங்கிலம் (தொலைநிலை)',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'Online/Offline', negativeMarking: false,
-          sections: [
-            { name: 'Management', nameTamil: 'மேலாண்மை', questions: 50, marks: 50, topics: ['Marketing', 'Finance', 'HR', 'Operations'] },
-            { name: 'Aptitude', nameTamil: 'தகுதி', questions: 30, marks: 30, topics: ['Quantitative', 'Logical Reasoning'] },
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Business Awareness'] }
-          ]
-        },
+        category: 'DDE',
+        school: 'Arts - Distance',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
         syllabus: [], previousQuestions: [],
-        tips: ['2-year Distance program', 'Career: Manager, Business Consultant'],
-        seatMatrix: { general: 300, obc: 450, bcMbc: 600, sc: 258, st: 60, ews: 114, total: 1782 },
-        cutoffs: [
-          { year: '2024', general: 50.0, obc: 47.0, bcMbc: 45.0, sc: 40.0, st: 35.0, ews: 45.0 },
-          { year: '2023', general: 53.0, obc: 50.0, bcMbc: 48.0, sc: 43.0, st: 38.0, ews: 48.0 }
-        ]
+        tips: ['Popular PG for teaching aspirants']
       },
       {
-        id: 'au-dde-mca',
-        name: 'M.C.A. (Distance)',
-        nameTamil: 'எம்.சி.ஏ. (தொலைநிலை)',
+        id: 'bu-sde-ma-tamil',
+        name: 'M.A. Tamil (Distance)',
+        nameTamil: 'எம்.ஏ. தமிழ் (தொலைநிலை)',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'Online/Offline', negativeMarking: false,
-          sections: [
-            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 50, marks: 50, topics: ['Programming', 'Data Structures', 'DBMS'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 30, marks: 30, topics: ['Discrete Math', 'Probability'] },
-            { name: 'Aptitude', nameTamil: 'தகுதி', questions: 20, marks: 20, topics: ['Logical Reasoning'] }
-          ]
-        },
+        category: 'DDE',
+        school: 'Arts - Distance',
+        duration: '2 Years',
+        eligibility: 'B.A. Tamil/B.Lit.',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
         syllabus: [], previousQuestions: [],
-        tips: ['2-year Distance program', 'Career: Software Developer, IT Manager'],
-        seatMatrix: { general: 200, obc: 300, bcMbc: 400, sc: 172, st: 40, ews: 76, total: 1188 },
-        cutoffs: [
-          { year: '2024', general: 52.0, obc: 49.0, bcMbc: 47.0, sc: 42.0, st: 37.0, ews: 47.0 },
-          { year: '2023', general: 55.0, obc: 52.0, bcMbc: 50.0, sc: 45.0, st: 40.0, ews: 50.0 }
-        ]
+        tips: ['Tamil literature PG via distance']
       },
       {
-        id: 'au-dde-msw',
+        id: 'bu-sde-ma-history',
+        name: 'M.A. History (Distance)',
+        nameTamil: 'எம்.ஏ. வரலாறு (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Arts - Distance',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Good for UPSC preparation alongside']
+      },
+      {
+        id: 'bu-sde-ma-economics',
+        name: 'M.A. Economics (Distance)',
+        nameTamil: 'எம்.ஏ. பொருளியல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Arts - Distance',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Economics PG for working professionals']
+      },
+      {
+        id: 'bu-sde-ma-journalism',
+        name: 'M.A. Journalism (Distance)',
+        nameTamil: 'எம்.ஏ. பத்திரிகை (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Media - Distance',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Media studies PG via distance']
+      },
+      {
+        id: 'bu-sde-ma-career-guidance',
+        name: 'M.A. Career Guidance (Distance)',
+        nameTamil: 'எம்.ஏ. தொழில் வழிகாட்டுதல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Arts - Distance',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Become career counselor via distance mode']
+      },
+      {
+        id: 'bu-sde-msc-maths',
+        name: 'M.Sc. Mathematics (Distance)',
+        nameTamil: 'எம்.எஸ்சி. கணிதம் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Science - Distance',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Mathematics',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['NET/SET preparation alongside work']
+      },
+      {
+        id: 'bu-sde-msc-physics',
+        name: 'M.Sc. Physics (Distance)',
+        nameTamil: 'எம்.எஸ்சி. இயற்பியல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Science - Distance',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Physics',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Physics PG for working teachers']
+      },
+      {
+        id: 'bu-sde-msc-chemistry',
+        name: 'M.Sc. Chemistry (Distance)',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Science - Distance',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Chemistry',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Chemistry PG via distance']
+      },
+      {
+        id: 'bu-sde-msc-cs',
+        name: 'M.Sc. Computer Science (Distance)',
+        nameTamil: 'எம்.எஸ்சி. கணினி அறிவியல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Computer - Distance',
+        duration: '2 Years',
+        eligibility: 'B.Sc. CS/IT/BCA',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['IT PG while working']
+      },
+      {
+        id: 'bu-sde-msc-it',
+        name: 'M.Sc. Information Technology (Distance)',
+        nameTamil: 'எம்.எஸ்சி. தகவல் தொழில்நுட்பம் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Computer - Distance',
+        duration: '2 Years',
+        eligibility: 'B.Sc. IT/CS/BCA',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['IT degree upgrade via distance']
+      },
+      {
+        id: 'bu-sde-msc-botany',
+        name: 'M.Sc. Botany (Distance)',
+        nameTamil: 'எம்.எஸ்சி. தாவரவியல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Science - Distance',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Botany',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Life science PG via distance']
+      },
+      {
+        id: 'bu-sde-msc-zoology',
+        name: 'M.Sc. Zoology (Distance)',
+        nameTamil: 'எம்.எஸ்சி. விலங்கியல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Science - Distance',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Zoology',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Zoology PG via distance']
+      },
+      {
+        id: 'bu-sde-mcom',
+        name: 'M.Com. (Distance)',
+        nameTamil: 'எம்.காம். (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Commerce - Distance',
+        duration: '2 Years',
+        eligibility: 'B.Com/BBA',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Commerce PG for working professionals']
+      },
+      {
+        id: 'bu-sde-msw',
         name: 'M.S.W. (Distance)',
         nameTamil: 'எம்.எஸ்.டபிள்யூ. (தொலைநிலை)',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'Online/Offline', negativeMarking: false,
-          sections: [
-            { name: 'Social Work', nameTamil: 'சமூக சேவை', questions: 60, marks: 60, topics: ['Case Work', 'Group Work', 'Community Development'] },
-            { name: 'Social Sciences', nameTamil: 'சமூக அறிவியல்', questions: 40, marks: 40, topics: ['Sociology', 'Psychology'] }
-          ]
-        },
+        category: 'DDE',
+        school: 'Social Work - Distance',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
         syllabus: [], previousQuestions: [],
-        tips: ['2-year Distance program', 'Career: Social Worker, NGO Manager'],
-        seatMatrix: { general: 150, obc: 225, bcMbc: 300, sc: 129, st: 30, ews: 57, total: 891 },
-        cutoffs: [
-          { year: '2024', general: 42.0, obc: 39.0, bcMbc: 37.0, sc: 32.0, st: 27.0, ews: 37.0 },
-          { year: '2023', general: 45.0, obc: 42.0, bcMbc: 40.0, sc: 35.0, st: 30.0, ews: 40.0 }
-        ]
+        tips: ['Social work PG via distance']
       },
-      // ========== MEDICAL & PARAMEDICAL ==========
+      // --- Professional (Distance) ---
       {
-        id: 'au-bsc-nursing',
-        name: 'B.Sc. Nursing',
-        nameTamil: 'பி.எஸ்சி. செவிலியர்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Human Anatomy', 'Physiology'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Biochemistry', 'Pharmacology Basics'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Biophysics'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4-year program', 'Career: Staff Nurse, Nursing Officer', 'High demand in healthcare'],
-        seatMatrix: { general: 30, obc: 45, bcMbc: 60, sc: 26, st: 6, ews: 11, total: 178 },
-        cutoffs: [
-          { year: '2024', general: 70.0, obc: 65.0, bcMbc: 60.0, sc: 50.0, st: 40.0, ews: 63.0 },
-          { year: '2023', general: 73.0, obc: 68.0, bcMbc: 63.0, sc: 53.0, st: 43.0, ews: 66.0 }
-        ]
-      },
-      {
-        id: 'au-bpt',
-        name: 'B.P.T. (Physiotherapy)',
-        nameTamil: 'பி.பி.டி. (இயன் முறை மருத்துவம்)',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Anatomy', 'Physiology'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Biomechanics', 'Electrotherapy'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Biochemistry'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4.5-year program (including internship)', 'Career: Physiotherapist, Rehab Specialist'],
-        seatMatrix: { general: 25, obc: 38, bcMbc: 50, sc: 22, st: 5, ews: 9, total: 149 },
-        cutoffs: [
-          { year: '2024', general: 68.0, obc: 63.0, bcMbc: 58.0, sc: 48.0, st: 38.0, ews: 61.0 },
-          { year: '2023', general: 71.0, obc: 66.0, bcMbc: 61.0, sc: 51.0, st: 41.0, ews: 64.0 }
-        ]
-      },
-      {
-        id: 'au-bot',
-        name: 'B.O.T. (Occupational Therapy)',
-        nameTamil: 'பி.ஓ.டி. (தொழில் சிகிச்சை)',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Anatomy', 'Physiology', 'Psychology'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 30, marks: 30, topics: ['Biomechanics'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Biochemistry'] }
-          ]
-        },
-        syllabus: [], previousQuestions: [],
-        tips: ['4.5-year program', 'Career: Occupational Therapist, Rehab Specialist'],
-        seatMatrix: { general: 20, obc: 30, bcMbc: 40, sc: 17, st: 4, ews: 8, total: 119 },
-        cutoffs: [
-          { year: '2024', general: 65.0, obc: 60.0, bcMbc: 55.0, sc: 45.0, st: 35.0, ews: 58.0 },
-          { year: '2023', general: 68.0, obc: 63.0, bcMbc: 58.0, sc: 48.0, st: 38.0, ews: 61.0 }
-        ]
-      },
-      {
-        id: 'au-mpt',
-        name: 'M.P.T. (Master of Physiotherapy)',
-        nameTamil: 'எம்.பி.டி. (இயன்முறை மருத்துவ முதுகலை)',
+        id: 'bu-sde-mba-general',
+        name: 'M.B.A. General (Distance)',
+        nameTamil: 'எம்.பி.ஏ. பொது (தொலைநிலை)',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
-          mode: 'OMR Based (Offline)', negativeMarking: false,
-          sections: [
-            { name: 'Physiotherapy', nameTamil: 'இயன்முறை மருத்துவம்', questions: 60, marks: 60, topics: ['Orthopedics', 'Neurology', 'Cardio-Respiratory'] },
-            { name: 'Research', nameTamil: 'ஆராய்ச்சி', questions: 20, marks: 20, topics: ['Biostatistics', 'Research Methods'] },
-            { name: 'Clinical Skills', nameTamil: 'மருத்துவ திறன்', questions: 20, marks: 20, topics: ['Assessment', 'Treatment Planning'] }
-          ]
-        },
+        category: 'DDE',
+        school: 'Management - Distance',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
         syllabus: [], previousQuestions: [],
-        tips: ['2-year program', 'Career: Senior Physiotherapist, Consultant'],
-        seatMatrix: { general: 12, obc: 18, bcMbc: 24, sc: 10, st: 2, ews: 5, total: 71 },
-        cutoffs: [
-          { year: '2024', general: 60.0, obc: 55.0, bcMbc: 50.0, sc: 40.0, st: 30.0, ews: 53.0 },
-          { year: '2023', general: 63.0, obc: 58.0, bcMbc: 53.0, sc: 43.0, st: 33.0, ews: 56.0 }
-        ]
+        tips: ['MBA for working professionals']
+      },
+      {
+        id: 'bu-sde-mba-hr',
+        name: 'M.B.A. HR (Distance)',
+        nameTamil: 'எம்.பி.ஏ. மனித வளம் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Management - Distance',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['HR specialization via distance']
+      },
+      {
+        id: 'bu-sde-mba-finance',
+        name: 'M.B.A. Finance (Distance)',
+        nameTamil: 'எம்.பி.ஏ. நிதி (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Management - Distance',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Finance MBA via distance']
+      },
+      {
+        id: 'bu-sde-mba-marketing',
+        name: 'M.B.A. Marketing (Distance)',
+        nameTamil: 'எம்.பி.ஏ. சந்தைப்படுத்துதல் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Management - Distance',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Marketing MBA via distance']
+      },
+      {
+        id: 'bu-sde-mba-logistics',
+        name: 'M.B.A. Logistics (Distance)',
+        nameTamil: 'எம்.பி.ஏ. தளவாடம் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Management - Distance',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Supply chain management via distance']
+      },
+      {
+        id: 'bu-sde-mba-hospital',
+        name: 'M.B.A. Hospital Management (Distance)',
+        nameTamil: 'எம்.பி.ஏ. மருத்துவமனை மேலாண்மை (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Management - Distance',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Healthcare management via distance']
+      },
+      {
+        id: 'bu-sde-mca',
+        name: 'M.C.A. (Distance)',
+        nameTamil: 'எம்.சி.ஏ. (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Computer - Distance',
+        duration: '2 Years',
+        eligibility: 'BCA/B.Sc. CS/IT with Maths',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Computer applications master\'s via distance']
       }
     ]
   }
