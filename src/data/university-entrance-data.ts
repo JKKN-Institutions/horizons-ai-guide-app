@@ -11121,7 +11121,8 @@ export const universities: University[] = [
       }
     ]
   },
-  // Tamil University (Thanjavur) - Arts, Music & Heritage
+  // ===== TAMIL UNIVERSITY (THANJAVUR) =====
+  // Focus: Tamil Literature, Arts, Music, Heritage, Archaeology, and Research
   {
     id: 'tamil-university',
     name: 'Tamil University',
@@ -11142,223 +11143,44 @@ export const universities: University[] = [
       { event: 'Counseling', eventTamil: 'கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
     ],
     courses: [
-      // B.P.A. Music (Vocal)
+      // ========================================
+      // A. UNIVERSITY DEPARTMENTS (ON-CAMPUS)
+      // ========================================
+      
+      // ----- INTEGRATED MASTER'S (5 YEARS - AFTER 12TH) -----
       {
-        id: 'tu-bpa-music-vocal',
-        name: 'B.P.A. Music (Vocal)',
-        nameTamil: 'பி.பி.ஏ. இசை (குரல்)',
-        type: 'UG',
-        seatMatrix: { general: 15, obc: 10, bcMbc: 8, sc: 5, st: 2, total: 40 },
-        cutoffs: [
-          { year: '2024', general: 'Audition Pass', obc: 'Audition Pass', bcMbc: 'Audition Pass', sc: 'Audition Pass', st: 'Audition Pass' },
-          { year: '2023', general: 'Audition Pass', obc: 'Audition Pass', bcMbc: 'Audition Pass', sc: 'Audition Pass', st: 'Audition Pass' },
-        ],
+        id: 'tu-integrated-ma-tamil',
+        name: 'M.A. Integrated Tamil (5 Years)',
+        nameTamil: 'எம்.ஏ. ஒருங்கிணைந்த தமிழ் (5 ஆண்டுகள்)',
+        type: 'Integrated',
+        category: 'On-Campus',
+        school: 'Integrated Programs',
+        duration: '5 Years',
+        eligibility: '+2 with Tamil as main subject',
         examPattern: {
-          totalQuestions: 0,
-          totalMarks: 100,
-          duration: 'Practical + Interview',
-          durationMinutes: 60,
-          mode: 'Audition / Practical Test',
-          negativeMarking: false,
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Merit + Entrance)', negativeMarking: false,
           sections: [
-            { name: 'Vocal Performance', nameTamil: 'குரல் நிகழ்ச்சி', questions: 0, marks: 50, topics: ['Ragas', 'Varnam', 'Kriti', 'Bhajan'] },
-            { name: 'Theory Knowledge', nameTamil: 'தத்துவ அறிவு', questions: 0, marks: 30, topics: ['Carnatic Music Theory', 'Swara', 'Tala', 'Ragam'] },
-            { name: 'Interview', nameTamil: 'நேர்காணல்', questions: 0, marks: 20, topics: ['Musical Background', 'Motivation', 'Career Goals'] }
+            { name: 'Tamil Literature', nameTamil: 'தமிழ் இலக்கியம்', questions: 40, marks: 40, topics: ['Sangam Poetry', 'Epics', 'Modern Literature'] },
+            { name: 'Tamil Grammar', nameTamil: 'தமிழ் இலக்கணம்', questions: 30, marks: 30, topics: ['Tholkappiyam', 'Nannool', 'Yapperungalam'] },
+            { name: 'General Tamil', nameTamil: 'பொது தமிழ்', questions: 30, marks: 30, topics: ['Prose', 'Poetry Appreciation', 'Essay Writing'] }
           ]
         },
-        syllabus: [
-          {
-            unitNumber: 1,
-            title: 'Carnatic Music Fundamentals',
-            titleTamil: 'கர்நாடக இசை அடிப்படைகள்',
-            topics: [
-              { name: 'Swara & Tala', subtopics: ['Sapta Swaras', 'Tala Types', 'Laya'], importance: 'High' },
-              { name: 'Raga System', subtopics: ['Melakarta', 'Janya Ragas', 'Raga Lakshanas'], importance: 'High' },
-            ],
-            expectedQuestions: 0,
-            difficulty: 'Medium'
-          },
-          {
-            unitNumber: 2,
-            title: 'Musical Compositions',
-            titleTamil: 'இசை அமைப்புகள்',
-            topics: [
-              { name: 'Varnam', subtopics: ['Tana Varnam', 'Pada Varnam'], importance: 'High' },
-              { name: 'Kriti', subtopics: ['Trinity Compositions', 'Modern Composers'], importance: 'High' },
-              { name: 'Light Music', subtopics: ['Bhajan', 'Tillana', 'Javali'], importance: 'Medium' },
-            ],
-            expectedQuestions: 0,
-            difficulty: 'Medium'
-          },
-          {
-            unitNumber: 3,
-            title: 'History of Music',
-            titleTamil: 'இசையின் வரலாறு',
-            topics: [
-              { name: 'Ancient Tamil Music', subtopics: ['Sangam Literature', 'Pann', 'Yaazh'], importance: 'Medium' },
-              { name: 'Carnatic Trinity', subtopics: ['Tyagaraja', 'Muthuswami Dikshitar', 'Syama Sastri'], importance: 'High' },
-            ],
-            expectedQuestions: 0,
-            difficulty: 'Easy'
-          }
-        ],
-        previousQuestions: [
-          {
-            id: 'tu-music-q1',
-            year: 'Sample',
-            question: 'How many Melakarta ragas are there in Carnatic music?',
-            options: ['36', '72', '108', '16'],
-            correctAnswer: 1,
-            explanation: 'There are 72 Melakarta (parent) ragas in Carnatic music, systematized by Venkatamakhin.',
-            topic: 'Raga System',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'tu-music-q2',
-            year: 'Sample',
-            question: 'Which is NOT part of the Carnatic Music Trinity?',
-            options: ['Tyagaraja', 'Purandara Dasa', 'Muthuswami Dikshitar', 'Syama Sastri'],
-            correctAnswer: 1,
-            explanation: 'Purandara Dasa is called the father of Carnatic music, but the Trinity consists of Tyagaraja, Dikshitar, and Syama Sastri.',
-            topic: 'Music History',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'tu-music-q3',
-            year: 'Sample',
-            question: 'Adi Tala has how many aksharas (beats)?',
-            options: ['4', '6', '8', '10'],
-            correctAnswer: 2,
-            explanation: 'Adi Tala has 8 aksharas in the pattern: 4 (Laghu) + 2 (Drutam) + 2 (Drutam).',
-            topic: 'Tala System',
-            difficulty: 'Medium'
-          }
-        ],
-        tips: [
-          'Audition-based admission - practice your vocal pieces thoroughly',
-          'Prepare at least 3-4 compositions in different ragas',
-          'Knowledge of Carnatic music theory is essential',
-          'Career paths: Professional Singer, Music Teacher, Cultural Officer, AIR Artist',
-          'Join under a Guru for structured training before applying'
-        ]
+        syllabus: [], previousQuestions: [],
+        tips: ['Direct entry after 12th with Tamil as main subject', 'Study Sangam literature extensively', 'Career: Tamil Professor, Researcher, Translator, Content Writer']
       },
-      // B.F.A. Sculpture
-      {
-        id: 'tu-bfa-sculpture',
-        name: 'B.F.A. Sculpture',
-        nameTamil: 'பி.எஃப்.ஏ. சிற்பம்',
-        type: 'UG',
-        seatMatrix: { general: 8, obc: 5, bcMbc: 4, sc: 2, st: 1, total: 20 },
-        cutoffs: [
-          { year: '2024', general: 'Skill Test Pass', obc: 'Skill Test Pass', bcMbc: 'Skill Test Pass', sc: 'Skill Test Pass', st: 'Skill Test Pass' },
-          { year: '2023', general: 'Skill Test Pass', obc: 'Skill Test Pass', bcMbc: 'Skill Test Pass', sc: 'Skill Test Pass', st: 'Skill Test Pass' },
-        ],
-        examPattern: {
-          totalQuestions: 0,
-          totalMarks: 100,
-          duration: 'Skill Test (3 Hours) + Interview',
-          durationMinutes: 210,
-          mode: 'Practical Skill Test',
-          negativeMarking: false,
-          sections: [
-            { name: 'Drawing Test', nameTamil: 'வரைதல் தேர்வு', questions: 0, marks: 40, topics: ['Human Figure Drawing', 'Object Drawing', 'Memory Drawing'] },
-            { name: 'Clay Modelling', nameTamil: 'களிமண் வடிவமைப்பு', questions: 0, marks: 40, topics: ['3D Form Creation', 'Human Anatomy', 'Relief Work'] },
-            { name: 'Interview', nameTamil: 'நேர்காணல்', questions: 0, marks: 20, topics: ['Portfolio Review', 'Motivation', 'Art Appreciation'] }
-          ]
-        },
-        syllabus: [
-          {
-            unitNumber: 1,
-            title: 'Basic Drawing & Anatomy',
-            titleTamil: 'அடிப்படை வரைதல் & உடற்கூறியல்',
-            topics: [
-              { name: 'Human Anatomy', subtopics: ['Skeletal Structure', 'Muscle Groups', 'Proportions'], importance: 'High' },
-              { name: 'Perspective Drawing', subtopics: ['One-Point', 'Two-Point', 'Foreshortening'], importance: 'High' },
-            ],
-            expectedQuestions: 0,
-            difficulty: 'Medium'
-          },
-          {
-            unitNumber: 2,
-            title: 'Sculpture Techniques',
-            titleTamil: 'சிற்ப நுட்பங்கள்',
-            topics: [
-              { name: 'Clay Modelling', subtopics: ['Additive Technique', 'Armature Making', 'Surface Treatment'], importance: 'High' },
-              { name: 'Stone & Metal', subtopics: ['Carving', 'Casting', 'Chasing'], importance: 'Medium' },
-            ],
-            expectedQuestions: 0,
-            difficulty: 'Hard'
-          },
-          {
-            unitNumber: 3,
-            title: 'History of Indian Sculpture',
-            titleTamil: 'இந்திய சிற்பத்தின் வரலாறு',
-            topics: [
-              { name: 'Tamil Nadu Sculpture', subtopics: ['Chola Bronzes', 'Pallava Art', 'Temple Sculptures'], importance: 'High' },
-              { name: 'Indian Traditions', subtopics: ['Gandhara', 'Mathura', 'Gupta Period'], importance: 'Medium' },
-            ],
-            expectedQuestions: 0,
-            difficulty: 'Easy'
-          }
-        ],
-        previousQuestions: [
-          {
-            id: 'tu-sculpture-q1',
-            year: 'Sample',
-            question: 'Which dynasty is famous for bronze sculptures of Nataraja?',
-            options: ['Pallava', 'Chola', 'Pandya', 'Chera'],
-            correctAnswer: 1,
-            explanation: 'The Chola dynasty (9th-13th century) is renowned for exquisite bronze sculptures, especially the iconic Nataraja.',
-            topic: 'Art History',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'tu-sculpture-q2',
-            year: 'Sample',
-            question: 'Lost-wax technique is used in:',
-            options: ['Stone carving', 'Metal casting', 'Clay modelling', 'Wood carving'],
-            correctAnswer: 1,
-            explanation: 'Lost-wax (Cire Perdue) is an ancient metal casting technique used to create detailed bronze sculptures.',
-            topic: 'Techniques',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'tu-sculpture-q3',
-            year: 'Sample',
-            question: 'The Descent of Ganga relief is located at:',
-            options: ['Thanjavur', 'Mahabalipuram', 'Madurai', 'Kanchipuram'],
-            correctAnswer: 1,
-            explanation: 'The famous Descent of Ganga (Arjuna\'s Penance) is a massive rock relief at Mahabalipuram, a Pallava monument.',
-            topic: 'Monuments',
-            difficulty: 'Easy'
-          }
-        ],
-        tips: [
-          'Skill-based admission - practice drawing and clay work regularly',
-          'Visit temples and museums to study traditional sculptures',
-          'Bring a portfolio of your artwork to the interview',
-          'Career paths: Sculptor, Museum Curator, Archaeologist Assistant, Art Restorer',
-          'Knowledge of Tamil Nadu\'s rich sculpture heritage is valuable'
-        ]
-      },
-      // Integrated M.A. History & Archaeology
       {
         id: 'tu-integrated-ma-history-archaeology',
-        name: 'Integrated M.A. History & Archaeology',
-        nameTamil: 'ஒருங்கிணைந்த எம்.ஏ. வரலாறு & தொல்லியல்',
-        type: 'UG',
-        seatMatrix: { general: 10, obc: 6, bcMbc: 5, sc: 3, st: 1, total: 25 },
-        cutoffs: [
-          { year: '2024', general: 75, obc: 70, bcMbc: 65, sc: 55, st: 50 },
-          { year: '2023', general: 72, obc: 68, bcMbc: 62, sc: 52, st: 48 },
-        ],
+        name: 'M.A. Integrated History & Archaeology (5 Years)',
+        nameTamil: 'எம்.ஏ. ஒருங்கிணைந்த வரலாறு & தொல்லியல் (5 ஆண்டுகள்)',
+        type: 'Integrated',
+        category: 'On-Campus',
+        school: 'Integrated Programs',
+        duration: '5 Years',
+        eligibility: '+2 any stream (History background preferred)',
         examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Merit)',
-          negativeMarking: false,
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Merit)', negativeMarking: false,
           sections: [
             { name: 'Indian History', nameTamil: 'இந்திய வரலாறு', questions: 40, marks: 40, topics: ['Ancient', 'Medieval', 'Modern India'] },
             { name: 'Tamil Nadu History', nameTamil: 'தமிழ்நாடு வரலாறு', questions: 30, marks: 30, topics: ['Sangam Age', 'Dynasties', 'Freedom Movement'] },
@@ -11368,298 +11190,214 @@ export const universities: University[] = [
         },
         syllabus: [
           {
-            unitNumber: 1,
-            title: 'Ancient India & Tamil Nadu',
-            titleTamil: 'பண்டைய இந்தியா & தமிழ்நாடு',
+            unitNumber: 1, title: 'Ancient India & Tamil Nadu', titleTamil: 'பண்டைய இந்தியா & தமிழ்நாடு',
             topics: [
-              { name: 'Indus Valley Civilization', subtopics: ['Harappa', 'Mohenjo-daro', 'Town Planning', 'Script'], importance: 'High' },
+              { name: 'Indus Valley Civilization', subtopics: ['Harappa', 'Mohenjo-daro', 'Town Planning'], importance: 'High' },
               { name: 'Sangam Age', subtopics: ['Literature', 'Kingdoms', 'Trade', 'Society'], importance: 'High' },
-              { name: 'Vedic Period', subtopics: ['Rig Veda', 'Society', 'Religion'], importance: 'Medium' },
-            ],
-            expectedQuestions: 25,
-            difficulty: 'Medium'
+            ], expectedQuestions: 25, difficulty: 'Medium'
           },
           {
-            unitNumber: 2,
-            title: 'Medieval Period',
-            titleTamil: 'இடைக்கால காலம்',
-            topics: [
-              { name: 'Pallava Dynasty', subtopics: ['Mahabalipuram', 'Kanchipuram', 'Architecture'], importance: 'High' },
-              { name: 'Chola Empire', subtopics: ['Rajaraja I', 'Naval Power', 'Temple Architecture'], importance: 'High' },
-              { name: 'Delhi Sultanate & Mughals', subtopics: ['Administration', 'Art', 'Architecture'], importance: 'Medium' },
-            ],
-            expectedQuestions: 25,
-            difficulty: 'Medium'
-          },
-          {
-            unitNumber: 3,
-            title: 'Archaeology & Methods',
-            titleTamil: 'தொல்லியல் & முறைகள்',
+            unitNumber: 2, title: 'Archaeology & Methods', titleTamil: 'தொல்லியல் & முறைகள்',
             topics: [
               { name: 'Excavation Techniques', subtopics: ['Stratigraphy', 'Grid System', 'Documentation'], importance: 'High' },
               { name: 'Dating Methods', subtopics: ['Carbon-14', 'Thermoluminescence', 'Dendrochronology'], importance: 'Medium' },
               { name: 'Indian Archaeological Sites', subtopics: ['Adichanallur', 'Keeladi', 'Lothal'], importance: 'High' },
-            ],
-            expectedQuestions: 15,
-            difficulty: 'Hard'
-          },
-          {
-            unitNumber: 4,
-            title: 'Epigraphy & Numismatics',
-            titleTamil: 'கல்வெட்டியல் & நாணயவியல்',
-            topics: [
-              { name: 'Tamil Inscriptions', subtopics: ['Tamil Brahmi', 'Vatteluttu', 'Grantha'], importance: 'High' },
-              { name: 'Coin Studies', subtopics: ['Punch-marked', 'Roman', 'Chola Coins'], importance: 'Medium' },
-            ],
-            expectedQuestions: 10,
-            difficulty: 'Medium'
+            ], expectedQuestions: 15, difficulty: 'Hard'
           }
         ],
         previousQuestions: [
-          {
-            id: 'tu-history-q1',
-            year: 'Sample',
-            question: 'The Keeladi excavation site is located near which city?',
-            options: ['Chennai', 'Madurai', 'Thanjavur', 'Coimbatore'],
-            correctAnswer: 1,
-            explanation: 'Keeladi, a significant Sangam-era archaeological site, is located near Madurai on the banks of Vaigai river.',
-            topic: 'Archaeology',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'tu-history-q2',
-            year: 'Sample',
-            question: 'Which Chola king built the Brihadisvara Temple at Thanjavur?',
-            options: ['Vijayalaya', 'Rajaraja I', 'Rajendra I', 'Kulottunga I'],
-            correctAnswer: 1,
-            explanation: 'Rajaraja I (985-1014 CE) built the magnificent Brihadisvara Temple, a UNESCO World Heritage Site.',
-            topic: 'Medieval History',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'tu-history-q3',
-            year: 'Sample',
-            question: 'Carbon-14 dating is used to determine the age of:',
-            options: ['Rocks', 'Organic remains', 'Pottery', 'Metals'],
-            correctAnswer: 1,
-            explanation: 'Carbon-14 dating measures radioactive decay in organic materials to determine their age (up to ~50,000 years).',
-            topic: 'Dating Methods',
-            difficulty: 'Medium'
-          },
-          {
-            id: 'tu-history-q4',
-            year: 'Sample',
-            question: 'The earliest Tamil script evolved from:',
-            options: ['Devanagari', 'Tamil Brahmi', 'Grantha', 'Vatteluttu'],
-            correctAnswer: 1,
-            explanation: 'Tamil Brahmi (3rd century BCE) is the earliest script used to write Tamil, found in Sangam-era inscriptions.',
-            topic: 'Epigraphy',
-            difficulty: 'Medium'
-          }
+          { id: 'tu-history-q1', year: 'Sample', question: 'The Keeladi excavation site is located near which city?', options: ['Chennai', 'Madurai', 'Thanjavur', 'Coimbatore'], correctAnswer: 1, explanation: 'Keeladi is a Sangam-era archaeological site near Madurai.', topic: 'Archaeology', difficulty: 'Easy' },
+          { id: 'tu-history-q2', year: 'Sample', question: 'Which Chola king built the Brihadisvara Temple at Thanjavur?', options: ['Vijayalaya', 'Rajaraja I', 'Rajendra I', 'Kulottunga I'], correctAnswer: 1, explanation: 'Rajaraja I (985-1014 CE) built the magnificent Brihadisvara Temple.', topic: 'Medieval History', difficulty: 'Easy' }
         ],
-        tips: [
-          'Merit-based admission - focus on 12th marks and knowledge of history',
-          '5-year integrated program with specialization in Archaeology',
-          'Study NCERT History books (Class 6-12) thoroughly',
-          'Career paths: Archaeologist, Epigraphist, ASI Officer, Museum Curator, Tour Guide',
-          'Knowledge of Tamil Nadu\'s heritage sites gives you an edge'
-        ]
-      },
-      // Integrated Master's Programs (5 Years After 12th)
-      {
-        id: 'tu-ma-integrated-tamil',
-        name: 'M.A. Integrated Tamil (5 Years)',
-        nameTamil: 'எம்.ஏ. ஒருங்கிணைந்த தமிழ் (5 ஆண்டுகள்)',
-        type: 'Integrated',
-        seatMatrix: { general: 20, obc: 15, bcMbc: 10, sc: 5, st: 2, total: 52 },
-        cutoffs: [
-          { year: '2024', general: 70, obc: 65, bcMbc: 60, sc: 50, st: 45 },
-          { year: '2023', general: 68, obc: 63, bcMbc: 58, sc: 48, st: 43 },
-        ],
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Merit + Entrance)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Tamil Literature', nameTamil: 'தமிழ் இலக்கியம்', questions: 40, marks: 40, topics: ['Sangam Poetry', 'Epics', 'Modern Literature'] },
-            { name: 'Tamil Grammar', nameTamil: 'தமிழ் இலக்கணம்', questions: 30, marks: 30, topics: ['Tholkappiyam', 'Nannool', 'Yapperungalam'] },
-            { name: 'General Tamil', nameTamil: 'பொது தமிழ்', questions: 30, marks: 30, topics: ['Prose', 'Poetry Appreciation', 'Essay Writing'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: [
-          'Direct entry after 12th with Tamil as main subject',
-          'Study Sangam literature extensively',
-          'Career paths: Tamil Professor, Researcher, Translator, Content Writer'
-        ]
+        tips: ['Direct entry after 12th - History background preferred', 'Career: Archaeologist, ASI Officer, Museum Curator']
       },
       {
-        id: 'tu-ma-integrated-history-archaeology',
-        name: 'M.A. Integrated History & Archaeology (5 Years)',
-        nameTamil: 'எம்.ஏ. ஒருங்கிணைந்த வரலாறு & தொல்லியல் (5 ஆண்டுகள்)',
+        id: 'tu-integrated-msc-environmental-science',
+        name: 'M.Sc. Integrated Environmental Science (5 Years)',
+        nameTamil: 'எம்.எஸ்சி. ஒருங்கிணைந்த சுற்றுச்சூழல் அறிவியல் (5 ஆண்டுகள்)',
         type: 'Integrated',
-        seatMatrix: { general: 15, obc: 12, bcMbc: 8, sc: 4, st: 2, total: 41 },
-        cutoffs: [
-          { year: '2024', general: 72, obc: 67, bcMbc: 62, sc: 52, st: 47 },
-          { year: '2023', general: 70, obc: 65, bcMbc: 60, sc: 50, st: 45 },
-        ],
+        category: 'On-Campus',
+        school: 'Integrated Programs',
+        duration: '5 Years',
+        eligibility: '+2 Science stream',
         examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Merit)',
-          negativeMarking: false,
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Merit)', negativeMarking: false,
           sections: [
-            { name: 'Indian History', nameTamil: 'இந்திய வரலாறு', questions: 40, marks: 40, topics: ['Ancient', 'Medieval', 'Modern India'] },
-            { name: 'Archaeology', nameTamil: 'தொல்லியல்', questions: 30, marks: 30, topics: ['Excavation Methods', 'Dating Techniques'] },
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 30, marks: 30, topics: ['Current Affairs', 'Heritage'] }
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 40, marks: 40, topics: ['Ecology', 'Biodiversity', 'Botany', 'Zoology'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 30, marks: 30, topics: ['Environmental Chemistry', 'Pollution'] },
+            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 30, marks: 30, topics: ['Current Environmental Issues', 'Climate Change'] }
           ]
         },
-        syllabus: [],
-        previousQuestions: [],
-        tips: [
-          'Direct entry after 12th - History background preferred',
-          'Career paths: Archaeologist, ASI Officer, Museum Curator'
-        ]
+        syllabus: [], previousQuestions: [],
+        tips: ['Direct entry after 12th for environmental career', 'Career: Environmental Officer, NGO, TNPCB']
       },
-      // PG - Arts & Culture
+      {
+        id: 'tu-integrated-msc-geology',
+        name: 'M.Sc. Integrated Geology (5 Years)',
+        nameTamil: 'எம்.எஸ்சி. ஒருங்கிணைந்த நிலவியல் (5 ஆண்டுகள்)',
+        type: 'Integrated',
+        category: 'On-Campus',
+        school: 'Integrated Programs',
+        duration: '5 Years',
+        eligibility: '+2 Science stream (Physics, Chemistry, Maths preferred)',
+        examPattern: {
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Merit)', negativeMarking: false,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 35, marks: 35, topics: ['Mechanics', 'Waves', 'Optics'] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 35, marks: 35, topics: ['Inorganic Chemistry', 'Physical Chemistry'] },
+            { name: 'General Science', nameTamil: 'பொது அறிவியல்', questions: 30, marks: 30, topics: ['Earth Science Basics', 'Geography'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['Direct entry for geology career', 'Career: Geologist, Mining Engineer, ONGC, GSI']
+      },
+      
+      // ----- POSTGRADUATE (PG - 2 YEARS) ON-CAMPUS -----
+      // M.A. Programs
       {
         id: 'tu-ma-tamil-literature',
-        name: 'M.A. Tamil Literature',
-        nameTamil: 'எம்.ஏ. தமிழ் இலக்கியம்',
+        name: 'M.A. Tamil',
+        nameTamil: 'எம்.ஏ. தமிழ்',
         type: 'PG',
-        seatMatrix: { general: 25, obc: 20, bcMbc: 15, sc: 8, st: 4, total: 72 },
-        cutoffs: [
-          { year: '2024', general: 65, obc: 60, bcMbc: 55, sc: 45, st: 40 },
-          { year: '2023', general: 63, obc: 58, bcMbc: 53, sc: 43, st: 38 },
-        ],
+        category: 'On-Campus',
+        school: 'Arts',
+        duration: '2 Years',
+        eligibility: 'B.A. Tamil or equivalent',
         examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Offline)', negativeMarking: false,
           sections: [
             { name: 'Classical Tamil', nameTamil: 'செம்மொழி தமிழ்', questions: 35, marks: 35, topics: ['Sangam Poetry', 'Epics', 'Classical Grammar'] },
             { name: 'Modern Tamil', nameTamil: 'நவீன தமிழ்', questions: 35, marks: 35, topics: ['Modern Literature', 'Prose', 'Short Stories'] },
             { name: 'Tamil Grammar', nameTamil: 'தமிழ் இலக்கணம்', questions: 30, marks: 30, topics: ['Tholkappiyam', 'Nannool'] }
           ]
         },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Study Sangam literature', 'Read Tholkappiyam', 'Career: Professor, Researcher']
-      },
-      {
-        id: 'tu-ma-tamilology',
-        name: 'M.A. Tamilology',
-        nameTamil: 'எம்.ஏ. தமிழியல்',
-        type: 'PG',
-        seatMatrix: { general: 15, obc: 12, bcMbc: 8, sc: 4, st: 2, total: 41 },
-        cutoffs: [
-          { year: '2024', general: 60, obc: 55, bcMbc: 50, sc: 40, st: 35 },
-          { year: '2023', general: 58, obc: 53, bcMbc: 48, sc: 38, st: 33 },
-        ],
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Tamil Studies', nameTamil: 'தமிழ் ஆய்வுகள்', questions: 50, marks: 50, topics: ['Tamil Culture', 'History', 'Language Evolution'] },
-            { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 50, marks: 50, topics: ['Methodology', 'Documentation'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Focus on Tamil cultural studies', 'Career: Researcher, Cultural Officer']
+        syllabus: [], previousQuestions: [],
+        tips: ['Study Sangam literature and Tholkappiyam', 'Career: Professor, Researcher, Writer']
       },
       {
         id: 'tu-ma-history',
         name: 'M.A. History',
         nameTamil: 'எம்.ஏ. வரலாறு',
         type: 'PG',
-        seatMatrix: { general: 20, obc: 15, bcMbc: 10, sc: 5, st: 3, total: 53 },
-        cutoffs: [
-          { year: '2024', general: 68, obc: 63, bcMbc: 58, sc: 48, st: 43 },
-          { year: '2023', general: 66, obc: 61, bcMbc: 56, sc: 46, st: 41 },
-        ],
+        category: 'On-Campus',
+        school: 'Arts',
+        duration: '2 Years',
+        eligibility: 'B.A. History or equivalent',
         examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Offline)', negativeMarking: false,
           sections: [
             { name: 'Indian History', nameTamil: 'இந்திய வரலாறு', questions: 40, marks: 40, topics: ['Ancient', 'Medieval', 'Modern'] },
             { name: 'Tamil Nadu History', nameTamil: 'தமிழ்நாடு வரலாறு', questions: 35, marks: 35, topics: ['Dynasties', 'Freedom Movement'] },
             { name: 'World History', nameTamil: 'உலக வரலாறு', questions: 25, marks: 25, topics: ['Renaissance', 'World Wars'] }
           ]
         },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Study NCERT History books', 'Focus on Tamil Nadu history', 'Career: Historian, Teacher']
+        syllabus: [], previousQuestions: [],
+        tips: ['Study NCERT History books', 'Focus on Tamil Nadu history', 'Career: Historian, Teacher, ASI']
       },
       {
-        id: 'tu-ma-epigraphy-archaeology',
-        name: 'M.A. Epigraphy & Archaeology',
-        nameTamil: 'எம்.ஏ. கல்வெட்டியல் & தொல்லியல்',
+        id: 'tu-ma-linguistics',
+        name: 'M.A. Linguistics',
+        nameTamil: 'எம்.ஏ. மொழியியல்',
         type: 'PG',
-        seatMatrix: { general: 12, obc: 10, bcMbc: 6, sc: 4, st: 2, total: 34 },
-        cutoffs: [
-          { year: '2024', general: 65, obc: 60, bcMbc: 55, sc: 45, st: 40 },
-          { year: '2023', general: 63, obc: 58, bcMbc: 53, sc: 43, st: 38 },
-        ],
+        category: 'On-Campus',
+        school: 'Arts',
+        duration: '2 Years',
+        eligibility: 'Any UG degree (preferably in languages)',
         examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Offline)', negativeMarking: false,
           sections: [
-            { name: 'Epigraphy', nameTamil: 'கல்வெட்டியல்', questions: 40, marks: 40, topics: ['Inscriptions', 'Tamil Brahmi', 'Script Evolution'] },
-            { name: 'Archaeology', nameTamil: 'தொல்லியல்', questions: 40, marks: 40, topics: ['Excavation', 'Dating Methods', 'Sites'] },
-            { name: 'General', nameTamil: 'பொது', questions: 20, marks: 20, topics: ['Museums', 'Heritage'] }
+            { name: 'General Linguistics', nameTamil: 'பொது மொழியியல்', questions: 50, marks: 50, topics: ['Phonetics', 'Syntax', 'Semantics'] },
+            { name: 'Tamil Linguistics', nameTamil: 'தமிழ் மொழியியல்', questions: 50, marks: 50, topics: ['Tamil Phonology', 'Morphology'] }
           ]
         },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Learn ancient scripts', 'Visit archaeological sites', 'Career: Epigraphist, ASI Officer']
+        syllabus: [], previousQuestions: [],
+        tips: ['Strong language background needed', 'Career: Linguist, NLP Researcher, Translator']
+      },
+      {
+        id: 'tu-ma-philosophy',
+        name: 'M.A. Philosophy',
+        nameTamil: 'எம்.ஏ. தத்துவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Arts',
+        duration: '2 Years',
+        eligibility: 'Any UG degree',
+        examPattern: {
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Offline)', negativeMarking: false,
+          sections: [
+            { name: 'Indian Philosophy', nameTamil: 'இந்திய தத்துவம்', questions: 50, marks: 50, topics: ['Vedanta', 'Buddhism', 'Jainism', 'Saiva Siddhanta'] },
+            { name: 'Western Philosophy', nameTamil: 'மேற்கத்திய தத்துவம்', questions: 50, marks: 50, topics: ['Greek', 'Modern', 'Contemporary'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['Study Thirukkural philosophy', 'Know Indian schools of thought', 'Career: Professor, Ethics Consultant']
+      },
+      {
+        id: 'tu-ma-folklore',
+        name: 'M.A. Folklore',
+        nameTamil: 'எம்.ஏ. நாட்டுப்புறவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Arts',
+        duration: '2 Years',
+        eligibility: 'Any UG degree',
+        examPattern: {
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Offline)', negativeMarking: false,
+          sections: [
+            { name: 'Folklore Studies', nameTamil: 'நாட்டுப்புற ஆய்வுகள்', questions: 50, marks: 50, topics: ['Folk Arts', 'Oral Traditions', 'Customs'] },
+            { name: 'Tamil Culture', nameTamil: 'தமிழ் பண்பாடு', questions: 50, marks: 50, topics: ['Festivals', 'Folk Songs', 'Rituals'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['Field work experience valued', 'Study Tamil folk traditions', 'Career: Folklorist, Cultural Researcher']
+      },
+      {
+        id: 'tu-ma-yoga',
+        name: 'M.A. Yoga',
+        nameTamil: 'எம்.ஏ. யோகா',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Arts',
+        duration: '2 Years',
+        eligibility: 'Any UG degree with yoga background',
+        examPattern: {
+          totalQuestions: 75, totalMarks: 100, duration: '2 Hours + Practical', durationMinutes: 180,
+          mode: 'Theory + Practical', negativeMarking: false,
+          sections: [
+            { name: 'Yoga Theory', nameTamil: 'யோகா கோட்பாடு', questions: 50, marks: 50, topics: ['Patanjali Yoga Sutra', 'Hatha Yoga'] },
+            { name: 'Practical', nameTamil: 'நடைமுறை', questions: 0, marks: 30, topics: ['Asanas', 'Pranayama'] },
+            { name: 'Anatomy', nameTamil: 'உடற்கூறியல்', questions: 25, marks: 20, topics: ['Human Anatomy', 'Physiology'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['Prior yoga practice required', 'Study Yoga Sutras', 'Career: Yoga Instructor, Therapist']
       },
       {
         id: 'tu-ma-music-carnatic',
         name: 'M.A. Music (Carnatic)',
         nameTamil: 'எம்.ஏ. இசை (கர்நாடக)',
         type: 'PG',
-        seatMatrix: { general: 10, obc: 8, bcMbc: 5, sc: 3, st: 2, total: 28 },
-        cutoffs: [
-          { year: '2024', general: 'Audition Pass', obc: 'Audition Pass', bcMbc: 'Audition Pass', sc: 'Audition Pass', st: 'Audition Pass' },
-          { year: '2023', general: 'Audition Pass', obc: 'Audition Pass', bcMbc: 'Audition Pass', sc: 'Audition Pass', st: 'Audition Pass' },
-        ],
+        category: 'On-Campus',
+        school: 'Performing Arts',
+        duration: '2 Years',
+        eligibility: 'B.P.A./B.A. Music or Diploma in Music',
         examPattern: {
-          totalQuestions: 0,
-          totalMarks: 100,
-          duration: 'Practical + Interview',
-          durationMinutes: 60,
-          mode: 'Audition / Practical Test',
-          negativeMarking: false,
+          totalQuestions: 0, totalMarks: 100, duration: 'Practical + Interview', durationMinutes: 60,
+          mode: 'Audition / Practical Test', negativeMarking: false,
           sections: [
             { name: 'Vocal/Instrumental', nameTamil: 'குரல்/கருவி', questions: 0, marks: 50, topics: ['Ragas', 'Compositions'] },
             { name: 'Theory', nameTamil: 'தத்துவம்', questions: 0, marks: 30, topics: ['Music Theory', 'History'] },
             { name: 'Interview', nameTamil: 'நேர்காணல்', questions: 0, marks: 20, topics: ['Background', 'Research Interest'] }
           ]
         },
-        syllabus: [],
-        previousQuestions: [],
+        syllabus: [], previousQuestions: [],
         tips: ['Strong musical background required', 'Prepare research proposal', 'Career: Music Professor, Artist']
       },
       {
@@ -11667,403 +11405,194 @@ export const universities: University[] = [
         name: 'M.A. Bharatanatyam',
         nameTamil: 'எம்.ஏ. பரதநாட்டியம்',
         type: 'PG',
-        seatMatrix: { general: 8, obc: 6, bcMbc: 4, sc: 2, st: 1, total: 21 },
-        cutoffs: [
-          { year: '2024', general: 'Audition Pass', obc: 'Audition Pass', bcMbc: 'Audition Pass', sc: 'Audition Pass', st: 'Audition Pass' },
-          { year: '2023', general: 'Audition Pass', obc: 'Audition Pass', bcMbc: 'Audition Pass', sc: 'Audition Pass', st: 'Audition Pass' },
-        ],
+        category: 'On-Campus',
+        school: 'Performing Arts',
+        duration: '2 Years',
+        eligibility: 'B.P.A. Bharatanatyam or equivalent training',
         examPattern: {
-          totalQuestions: 0,
-          totalMarks: 100,
-          duration: 'Practical + Interview',
-          durationMinutes: 60,
-          mode: 'Audition / Practical Test',
-          negativeMarking: false,
+          totalQuestions: 0, totalMarks: 100, duration: 'Practical + Interview', durationMinutes: 60,
+          mode: 'Audition / Practical Test', negativeMarking: false,
           sections: [
             { name: 'Dance Performance', nameTamil: 'நடன நிகழ்ச்சி', questions: 0, marks: 50, topics: ['Alarippu', 'Varnam', 'Padam'] },
             { name: 'Theory', nameTamil: 'தத்துவம்', questions: 0, marks: 30, topics: ['Natyashastra', 'Abhinaya'] },
             { name: 'Interview', nameTamil: 'நேர்காணல்', questions: 0, marks: 20, topics: ['Training Background'] }
           ]
         },
-        syllabus: [],
-        previousQuestions: [],
+        syllabus: [], previousQuestions: [],
         tips: ['Minimum Arangetram experience preferred', 'Know Natyashastra basics', 'Career: Dance Teacher, Performer']
       },
-      {
-        id: 'tu-ma-drama-theatre',
-        name: 'M.A. Drama / Theatre Arts',
-        nameTamil: 'எம்.ஏ. நாடகம் / அரங்கக் கலை',
-        type: 'PG',
-        seatMatrix: { general: 8, obc: 6, bcMbc: 4, sc: 2, st: 1, total: 21 },
-        cutoffs: [
-          { year: '2024', general: 'Audition Pass', obc: 'Audition Pass', bcMbc: 'Audition Pass', sc: 'Audition Pass', st: 'Audition Pass' },
-          { year: '2023', general: 'Audition Pass', obc: 'Audition Pass', bcMbc: 'Audition Pass', sc: 'Audition Pass', st: 'Audition Pass' },
-        ],
-        examPattern: {
-          totalQuestions: 0,
-          totalMarks: 100,
-          duration: 'Audition + Interview',
-          durationMinutes: 60,
-          mode: 'Practical Test',
-          negativeMarking: false,
-          sections: [
-            { name: 'Acting Test', nameTamil: 'நடிப்பு தேர்வு', questions: 0, marks: 40, topics: ['Improvisation', 'Monologue'] },
-            { name: 'Script Reading', nameTamil: 'உரை வாசிப்பு', questions: 0, marks: 30, topics: ['Expression', 'Dialogue Delivery'] },
-            { name: 'Interview', nameTamil: 'நேர்காணல்', questions: 0, marks: 30, topics: ['Theatre Experience'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Theatre experience beneficial', 'Study Tamil drama history', 'Career: Director, Actor, Theatre Trainer']
-      },
-      {
-        id: 'tu-ma-linguistics',
-        name: 'M.A. Linguistics',
-        nameTamil: 'எம்.ஏ. மொழியியல்',
-        type: 'PG',
-        seatMatrix: { general: 12, obc: 10, bcMbc: 6, sc: 4, st: 2, total: 34 },
-        cutoffs: [
-          { year: '2024', general: 60, obc: 55, bcMbc: 50, sc: 40, st: 35 },
-          { year: '2023', general: 58, obc: 53, bcMbc: 48, sc: 38, st: 33 },
-        ],
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'General Linguistics', nameTamil: 'பொது மொழியியல்', questions: 50, marks: 50, topics: ['Phonetics', 'Syntax', 'Semantics'] },
-            { name: 'Tamil Linguistics', nameTamil: 'தமிழ் மொழியியல்', questions: 50, marks: 50, topics: ['Tamil Phonology', 'Morphology'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Strong language background needed', 'Career: Linguist, NLP Researcher, Translator']
-      },
-      {
-        id: 'tu-ma-folklore',
-        name: 'M.A. Folklore',
-        nameTamil: 'எம்.ஏ. நாட்டுப்புறவியல்',
-        type: 'PG',
-        seatMatrix: { general: 10, obc: 8, bcMbc: 5, sc: 3, st: 2, total: 28 },
-        cutoffs: [
-          { year: '2024', general: 55, obc: 50, bcMbc: 45, sc: 35, st: 30 },
-          { year: '2023', general: 53, obc: 48, bcMbc: 43, sc: 33, st: 28 },
-        ],
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Folklore Studies', nameTamil: 'நாட்டுப்புற ஆய்வுகள்', questions: 50, marks: 50, topics: ['Folk Arts', 'Oral Traditions', 'Customs'] },
-            { name: 'Tamil Culture', nameTamil: 'தமிழ் பண்பாடு', questions: 50, marks: 50, topics: ['Festivals', 'Folk Songs', 'Rituals'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Field work experience valued', 'Study Tamil folk traditions', 'Career: Folklorist, Cultural Researcher']
-      },
-      {
-        id: 'tu-ma-philosophy',
-        name: 'M.A. Philosophy',
-        nameTamil: 'எம்.ஏ. தத்துவியல்',
-        type: 'PG',
-        seatMatrix: { general: 10, obc: 8, bcMbc: 5, sc: 3, st: 2, total: 28 },
-        cutoffs: [
-          { year: '2024', general: 55, obc: 50, bcMbc: 45, sc: 35, st: 30 },
-          { year: '2023', general: 53, obc: 48, bcMbc: 43, sc: 33, st: 28 },
-        ],
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Indian Philosophy', nameTamil: 'இந்திய தத்துவம்', questions: 50, marks: 50, topics: ['Vedanta', 'Buddhism', 'Jainism', 'Saiva Siddhanta'] },
-            { name: 'Western Philosophy', nameTamil: 'மேற்கத்திய தத்துவம்', questions: 50, marks: 50, topics: ['Greek', 'Modern', 'Contemporary'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Study Thirukkural philosophy', 'Know Indian schools of thought', 'Career: Professor, Ethics Consultant']
-      },
-      {
-        id: 'tu-ma-yoga',
-        name: 'M.A. Yoga',
-        nameTamil: 'எம்.ஏ. யோகா',
-        type: 'PG',
-        seatMatrix: { general: 12, obc: 10, bcMbc: 6, sc: 4, st: 2, total: 34 },
-        cutoffs: [
-          { year: '2024', general: 60, obc: 55, bcMbc: 50, sc: 40, st: 35 },
-          { year: '2023', general: 58, obc: 53, bcMbc: 48, sc: 38, st: 33 },
-        ],
-        examPattern: {
-          totalQuestions: 75,
-          totalMarks: 100,
-          duration: '2 Hours + Practical',
-          durationMinutes: 180,
-          mode: 'Theory + Practical',
-          negativeMarking: false,
-          sections: [
-            { name: 'Yoga Theory', nameTamil: 'யோகா கோட்பாடு', questions: 50, marks: 50, topics: ['Patanjali Yoga Sutra', 'Hatha Yoga'] },
-            { name: 'Practical', nameTamil: 'நடைமுறை', questions: 0, marks: 30, topics: ['Asanas', 'Pranayama'] },
-            { name: 'Anatomy', nameTamil: 'உடற்கூறியல்', questions: 25, marks: 20, topics: ['Human Anatomy', 'Physiology'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Prior yoga practice required', 'Study Yoga Sutras', 'Career: Yoga Instructor, Therapist']
-      },
-      {
-        id: 'tu-ma-temple-admin',
-        name: 'M.A. Temple Administration & Tourism',
-        nameTamil: 'எம்.ஏ. கோயில் நிர்வாகம் & சுற்றுலா',
-        type: 'PG',
-        seatMatrix: { general: 10, obc: 8, bcMbc: 5, sc: 3, st: 2, total: 28 },
-        cutoffs: [
-          { year: '2024', general: 58, obc: 53, bcMbc: 48, sc: 38, st: 33 },
-          { year: '2023', general: 56, obc: 51, bcMbc: 46, sc: 36, st: 31 },
-        ],
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Temple Studies', nameTamil: 'கோயில் ஆய்வுகள்', questions: 40, marks: 40, topics: ['Temple Architecture', 'Agama', 'Rituals'] },
-            { name: 'Tourism Management', nameTamil: 'சுற்றுலா மேலாண்மை', questions: 30, marks: 30, topics: ['Heritage Tourism', 'Marketing'] },
-            { name: 'Administration', nameTamil: 'நிர்வாகம்', questions: 30, marks: 30, topics: ['HR Dept Rules', 'Finance'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Unique course for temple management', 'Career: HR&CE Officer, Temple Manager, Tourism Guide']
-      },
-      {
-        id: 'tu-msw',
-        name: 'M.S.W. (Master of Social Work)',
-        nameTamil: 'எம்.எஸ்.டபிள்யூ. (சமூக பணி முதுநிலை)',
-        type: 'PG',
-        seatMatrix: { general: 15, obc: 12, bcMbc: 8, sc: 4, st: 2, total: 41 },
-        cutoffs: [
-          { year: '2024', general: 62, obc: 57, bcMbc: 52, sc: 42, st: 37 },
-          { year: '2023', general: 60, obc: 55, bcMbc: 50, sc: 40, st: 35 },
-        ],
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Social Work', nameTamil: 'சமூக பணி', questions: 40, marks: 40, topics: ['Case Work', 'Group Work', 'Community Organization'] },
-            { name: 'Social Sciences', nameTamil: 'சமூக அறிவியல்', questions: 35, marks: 35, topics: ['Sociology', 'Psychology'] },
-            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 25, marks: 25, topics: ['Social Issues', 'Welfare Schemes'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Field work oriented', 'Career: Social Worker, NGO Manager, Counselor']
-      },
-      // PG - Science & Tech
-      {
-        id: 'tu-msc-geography',
-        name: 'M.Sc. Geography',
-        nameTamil: 'எம்.எஸ்சி. புவியியல்',
-        type: 'PG',
-        seatMatrix: { general: 15, obc: 12, bcMbc: 8, sc: 4, st: 2, total: 41 },
-        cutoffs: [
-          { year: '2024', general: 60, obc: 55, bcMbc: 50, sc: 40, st: 35 },
-          { year: '2023', general: 58, obc: 53, bcMbc: 48, sc: 38, st: 33 },
-        ],
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Physical Geography', nameTamil: 'இயற்பு புவியியல்', questions: 35, marks: 35, topics: ['Geomorphology', 'Climatology'] },
-            { name: 'Human Geography', nameTamil: 'மனித புவியியல்', questions: 35, marks: 35, topics: ['Population', 'Urbanization'] },
-            { name: 'Cartography', nameTamil: 'வரைபடவியல்', questions: 30, marks: 30, topics: ['Map Reading', 'GIS Basics'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Study NCERT Geography', 'Learn GIS basics', 'Career: Geographer, Town Planner, ISRO']
-      },
-      {
-        id: 'tu-msc-geology',
-        name: 'M.Sc. Geology',
-        nameTamil: 'எம்.எஸ்சி. நிலவியல்',
-        type: 'PG',
-        seatMatrix: { general: 12, obc: 10, bcMbc: 6, sc: 4, st: 2, total: 34 },
-        cutoffs: [
-          { year: '2024', general: 58, obc: 53, bcMbc: 48, sc: 38, st: 33 },
-          { year: '2023', general: 56, obc: 51, bcMbc: 46, sc: 36, st: 31 },
-        ],
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Physical Geology', nameTamil: 'இயற்பு நிலவியல்', questions: 40, marks: 40, topics: ['Mineralogy', 'Petrology'] },
-            { name: 'Structural Geology', nameTamil: 'அமைப்பு நிலவியல்', questions: 30, marks: 30, topics: ['Folds', 'Faults', 'Rock Mechanics'] },
-            { name: 'Applied Geology', nameTamil: 'பயன்பாட்டு நிலவியல்', questions: 30, marks: 30, topics: ['Mining', 'Groundwater'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Field work important', 'Career: Geologist, Mining Engineer, ONGC']
-      },
-      {
-        id: 'tu-msc-environmental-science',
-        name: 'M.Sc. Environmental Science',
-        nameTamil: 'எம்.எஸ்சி. சுற்றுச்சூழல் அறிவியல்',
-        type: 'PG',
-        seatMatrix: { general: 15, obc: 12, bcMbc: 8, sc: 4, st: 2, total: 41 },
-        cutoffs: [
-          { year: '2024', general: 62, obc: 57, bcMbc: 52, sc: 42, st: 37 },
-          { year: '2023', general: 60, obc: 55, bcMbc: 50, sc: 40, st: 35 },
-        ],
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Ecology', nameTamil: 'சூழலியல்', questions: 35, marks: 35, topics: ['Ecosystems', 'Biodiversity'] },
-            { name: 'Pollution', nameTamil: 'மாசுபாடு', questions: 35, marks: 35, topics: ['Air', 'Water', 'Soil Pollution'] },
-            { name: 'Management', nameTamil: 'மேலாண்மை', questions: 30, marks: 30, topics: ['EIA', 'Sustainability'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Inter-disciplinary subject', 'Career: Environmental Officer, NGO, TNPCB']
-      },
-      {
-        id: 'tu-msc-computer-science',
-        name: 'M.Sc. Computer Science',
-        nameTamil: 'எம்.எஸ்சி. கணினி அறிவியல்',
-        type: 'PG',
-        seatMatrix: { general: 20, obc: 16, bcMbc: 10, sc: 6, st: 3, total: 55 },
-        cutoffs: [
-          { year: '2024', general: 70, obc: 65, bcMbc: 60, sc: 50, st: 45 },
-          { year: '2023', general: 68, obc: 63, bcMbc: 58, sc: 48, st: 43 },
-        ],
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 35, marks: 35, topics: ['C', 'C++', 'Java', 'Python'] },
-            { name: 'Data Structures', nameTamil: 'தரவு கட்டமைப்புகள்', questions: 35, marks: 35, topics: ['Arrays', 'Trees', 'Graphs', 'Algorithms'] },
-            { name: 'DBMS & Networks', nameTamil: 'தரவுத்தளம் & வலைப்பின்னல்', questions: 30, marks: 30, topics: ['SQL', 'Networking Basics'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Strong programming skills needed', 'Career: Software Developer, IT Professional']
-      },
+      
+      // M.Sc. Programs (On-Campus)
       {
         id: 'tu-msc-mathematics',
         name: 'M.Sc. Mathematics',
         nameTamil: 'எம்.எஸ்சி. கணிதம்',
         type: 'PG',
-        seatMatrix: { general: 15, obc: 12, bcMbc: 8, sc: 4, st: 2, total: 41 },
-        cutoffs: [
-          { year: '2024', general: 65, obc: 60, bcMbc: 55, sc: 45, st: 40 },
-          { year: '2023', general: 63, obc: 58, bcMbc: 53, sc: 43, st: 38 },
-        ],
+        category: 'On-Campus',
+        school: 'Science',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Mathematics',
         examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Offline)', negativeMarking: false,
           sections: [
             { name: 'Algebra', nameTamil: 'இயற்கணிதம்', questions: 35, marks: 35, topics: ['Groups', 'Rings', 'Linear Algebra'] },
             { name: 'Analysis', nameTamil: 'பகுப்பாய்வு', questions: 35, marks: 35, topics: ['Real Analysis', 'Complex Analysis'] },
             { name: 'Applied Math', nameTamil: 'பயன்பாட்டு கணிதம்', questions: 30, marks: 30, topics: ['Differential Equations', 'Numerical Methods'] }
           ]
         },
-        syllabus: [],
-        previousQuestions: [],
+        syllabus: [], previousQuestions: [],
         tips: ['Strong UG math foundation needed', 'Career: Mathematician, Data Analyst, Professor']
       },
       {
-        id: 'tu-msc-applied-psychology',
-        name: 'M.Sc. Applied Psychology',
-        nameTamil: 'எம்.எஸ்சி. பயன்பாட்டு உளவியல்',
+        id: 'tu-msc-computer-science',
+        name: 'M.Sc. Computer Science',
+        nameTamil: 'எம்.எஸ்சி. கணினி அறிவியல்',
         type: 'PG',
-        seatMatrix: { general: 12, obc: 10, bcMbc: 6, sc: 4, st: 2, total: 34 },
-        cutoffs: [
-          { year: '2024', general: 65, obc: 60, bcMbc: 55, sc: 45, st: 40 },
-          { year: '2023', general: 63, obc: 58, bcMbc: 53, sc: 43, st: 38 },
-        ],
+        category: 'On-Campus',
+        school: 'Science',
+        duration: '2 Years',
+        eligibility: 'B.Sc. CS/IT/BCA or equivalent',
         examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Offline)', negativeMarking: false,
           sections: [
-            { name: 'General Psychology', nameTamil: 'பொது உளவியல்', questions: 40, marks: 40, topics: ['Cognitive', 'Developmental', 'Social Psychology'] },
-            { name: 'Abnormal Psychology', nameTamil: 'அசாதாரண உளவியல்', questions: 30, marks: 30, topics: ['Disorders', 'Therapies'] },
-            { name: 'Applied Areas', nameTamil: 'பயன்பாட்டு துறைகள்', questions: 30, marks: 30, topics: ['Industrial', 'Clinical', 'Counseling'] }
+            { name: 'Programming', nameTamil: 'நிரலாக்கம்', questions: 35, marks: 35, topics: ['C', 'C++', 'Java', 'Python'] },
+            { name: 'Data Structures', nameTamil: 'தரவு கட்டமைப்புகள்', questions: 35, marks: 35, topics: ['Arrays', 'Trees', 'Graphs', 'Algorithms'] },
+            { name: 'DBMS & Networks', nameTamil: 'தரவுத்தளம் & வலைப்பின்னல்', questions: 30, marks: 30, topics: ['SQL', 'Networking Basics'] }
           ]
         },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Good for counseling career', 'Career: Counselor, HR Professional, Clinical Psychologist']
+        syllabus: [], previousQuestions: [],
+        tips: ['Strong programming skills needed', 'Career: Software Developer, IT Professional']
       },
-      // Education & Library Science
+      {
+        id: 'tu-msc-environmental-science',
+        name: 'M.Sc. Environmental Science',
+        nameTamil: 'எம்.எஸ்சி. சுற்றுச்சூழல் அறிவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Science',
+        duration: '2 Years',
+        eligibility: 'B.Sc. in Science stream',
+        examPattern: {
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Offline)', negativeMarking: false,
+          sections: [
+            { name: 'Ecology', nameTamil: 'சூழலியல்', questions: 35, marks: 35, topics: ['Ecosystems', 'Biodiversity'] },
+            { name: 'Pollution', nameTamil: 'மாசுபாடு', questions: 35, marks: 35, topics: ['Air', 'Water', 'Soil Pollution'] },
+            { name: 'Management', nameTamil: 'மேலாண்மை', questions: 30, marks: 30, topics: ['EIA', 'Sustainability'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['Inter-disciplinary subject', 'Career: Environmental Officer, NGO, TNPCB']
+      },
+      {
+        id: 'tu-msc-geography',
+        name: 'M.Sc. Geography',
+        nameTamil: 'எம்.எஸ்சி. புவியியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Science',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Geography or B.A. Geography',
+        examPattern: {
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Offline)', negativeMarking: false,
+          sections: [
+            { name: 'Physical Geography', nameTamil: 'இயற்பு புவியியல்', questions: 35, marks: 35, topics: ['Geomorphology', 'Climatology'] },
+            { name: 'Human Geography', nameTamil: 'மனித புவியியல்', questions: 35, marks: 35, topics: ['Population', 'Urbanization'] },
+            { name: 'Cartography', nameTamil: 'வரைபடவியல்', questions: 30, marks: 30, topics: ['Map Reading', 'GIS Basics'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['Study NCERT Geography', 'Learn GIS basics', 'Career: Geographer, Town Planner, ISRO']
+      },
+      {
+        id: 'tu-msc-applied-geology',
+        name: 'M.Sc. Applied Geology',
+        nameTamil: 'எம்.எஸ்சி. பயன்பாட்டு நிலவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Science',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Geology or equivalent',
+        examPattern: {
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Offline)', negativeMarking: false,
+          sections: [
+            { name: 'Physical Geology', nameTamil: 'இயற்பு நிலவியல்', questions: 40, marks: 40, topics: ['Mineralogy', 'Petrology'] },
+            { name: 'Structural Geology', nameTamil: 'அமைப்பு நிலவியல்', questions: 30, marks: 30, topics: ['Folds', 'Faults', 'Rock Mechanics'] },
+            { name: 'Applied Geology', nameTamil: 'பயன்பாட்டு நிலவியல்', questions: 30, marks: 30, topics: ['Mining', 'Groundwater'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['Field work important', 'Career: Geologist, Mining Engineer, ONGC, GSI']
+      },
+      
+      // M.S.W. and M.Lib.I.Sc.
+      {
+        id: 'tu-msw',
+        name: 'M.S.W. (Master of Social Work)',
+        nameTamil: 'எம்.எஸ்.டபிள்யூ. (சமூக பணி முதுநிலை)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Social Sciences',
+        duration: '2 Years',
+        eligibility: 'Any UG degree',
+        examPattern: {
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Offline)', negativeMarking: false,
+          sections: [
+            { name: 'Social Work', nameTamil: 'சமூக பணி', questions: 40, marks: 40, topics: ['Case Work', 'Group Work', 'Community Organization'] },
+            { name: 'Social Sciences', nameTamil: 'சமூக அறிவியல்', questions: 35, marks: 35, topics: ['Sociology', 'Psychology'] },
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 25, marks: 25, topics: ['Social Issues', 'Welfare Schemes'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['Field work oriented', 'Career: Social Worker, NGO Manager, Counselor']
+      },
+      {
+        id: 'tu-mlisc',
+        name: 'M.Lib.I.Sc. (Library & Information Science)',
+        nameTamil: 'எம்.லிப்.ஐ.எஸ்சி. (நூலகம் & தகவல் அறிவியல்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Library Science',
+        duration: '1 Year',
+        eligibility: 'B.Lib.I.Sc. or equivalent',
+        examPattern: {
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Offline)', negativeMarking: false,
+          sections: [
+            { name: 'Library Science', nameTamil: 'நூலக அறிவியல்', questions: 40, marks: 40, topics: ['Cataloguing', 'Classification', 'Library Management'] },
+            { name: 'Information Science', nameTamil: 'தகவல் அறிவியல்', questions: 35, marks: 35, topics: ['Digital Libraries', 'Information Retrieval', 'ICT'] },
+            { name: 'Research', nameTamil: 'ஆராய்ச்சி', questions: 25, marks: 25, topics: ['Research Methods', 'Bibliometrics'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['B.Lib.I.Sc. required', 'Career: University Librarian, Information Officer, Archivist']
+      },
+      
+      // ----- EDUCATION (ON-CAMPUS) -----
       {
         id: 'tu-bed',
         name: 'B.Ed. (Bachelor of Education)',
         nameTamil: 'பி.எட். (கல்வியியல் இளங்கலை)',
         type: 'UG',
-        seatMatrix: { general: 30, obc: 25, bcMbc: 15, sc: 8, st: 4, total: 82 },
-        cutoffs: [
-          { year: '2024', general: 70, obc: 65, bcMbc: 60, sc: 50, st: 45 },
-          { year: '2023', general: 68, obc: 63, bcMbc: 58, sc: 48, st: 43 },
-        ],
+        category: 'On-Campus',
+        school: 'Education',
+        duration: '2 Years',
+        eligibility: 'Any UG degree with 50% marks',
         examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Offline)', negativeMarking: false,
           sections: [
             { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 25, marks: 25, topics: ['Current Affairs', 'General Science'] },
             { name: 'Teaching Aptitude', nameTamil: 'கற்பித்தல் திறன்', questions: 25, marks: 25, topics: ['Pedagogy', 'Child Psychology'] },
             { name: 'Subject Knowledge', nameTamil: 'பாட அறிவு', questions: 50, marks: 50, topics: ['Based on UG Subject'] }
           ]
         },
-        syllabus: [],
-        previousQuestions: [],
+        syllabus: [], previousQuestions: [],
         tips: ['Required for teaching career', 'Good for TNTET/TRB preparation', 'Career: School Teacher, Education Officer']
       },
       {
@@ -12071,108 +11600,293 @@ export const universities: University[] = [
         name: 'M.Ed. (Master of Education)',
         nameTamil: 'எம்.எட். (கல்வியியல் முதுநிலை)',
         type: 'PG',
-        seatMatrix: { general: 15, obc: 12, bcMbc: 8, sc: 4, st: 2, total: 41 },
-        cutoffs: [
-          { year: '2024', general: 65, obc: 60, bcMbc: 55, sc: 45, st: 40 },
-          { year: '2023', general: 63, obc: 58, bcMbc: 53, sc: 43, st: 38 },
-        ],
+        category: 'On-Campus',
+        school: 'Education',
+        duration: '2 Years',
+        eligibility: 'B.Ed. with 55% marks',
         examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
+          totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120,
+          mode: 'OMR Based (Offline)', negativeMarking: false,
           sections: [
             { name: 'Educational Theory', nameTamil: 'கல்வி கோட்பாடு', questions: 40, marks: 40, topics: ['Philosophy of Education', 'Educational Psychology'] },
             { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 30, marks: 30, topics: ['Statistics', 'Research Methodology'] },
             { name: 'Current Issues', nameTamil: 'நடப்பு சிக்கல்கள்', questions: 30, marks: 30, topics: ['NEP 2020', 'ICT in Education'] }
           ]
         },
-        syllabus: [],
-        previousQuestions: [],
+        syllabus: [], previousQuestions: [],
         tips: ['B.Ed. required for admission', 'Career: Education Professor, School Principal, DIET Faculty']
       },
+      
+      // ========================================
+      // B. DISTANCE EDUCATION (DDE)
+      // ========================================
+      
+      // ----- B.Lit. & B.A. (DDE) -----
       {
-        id: 'tu-mlisc',
-        name: 'M.Lib.I.Sc. (Library & Information Science)',
-        nameTamil: 'எம்.லிப்.ஐ.எஸ்சி. (நூலகம் & தகவல் அறிவியல்)',
-        type: 'PG',
-        seatMatrix: { general: 12, obc: 10, bcMbc: 6, sc: 4, st: 2, total: 34 },
-        cutoffs: [
-          { year: '2024', general: 55, obc: 50, bcMbc: 45, sc: 35, st: 30 },
-          { year: '2023', general: 53, obc: 48, bcMbc: 43, sc: 33, st: 28 },
-        ],
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Library Science', nameTamil: 'நூலக அறிவியல்', questions: 40, marks: 40, topics: ['Cataloguing', 'Classification', 'Library Management'] },
-            { name: 'Information Science', nameTamil: 'தகவல் அறிவியல்', questions: 35, marks: 35, topics: ['Digital Libraries', 'Information Retrieval', 'ICT'] },
-            { name: 'Research', nameTamil: 'ஆராய்ச்சி', questions: 25, marks: 25, topics: ['Research Methods', 'Bibliometrics'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['B.Lib.I.Sc. required', 'Career: University Librarian, Information Officer, Archivist']
+        id: 'tu-dde-blit-tamil',
+        name: 'B.Lit. (Bachelor of Literature in Tamil)',
+        nameTamil: 'பி.லிட். (தமிழ் இலக்கியம் இளங்கலை)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Distance Education - Arts',
+        duration: '3 Years',
+        eligibility: '+2 or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Popular for Tamil teachers and enthusiasts', 'Flexible schedule via distance mode']
       },
       {
-        id: 'tu-ma-manuscriptology',
-        name: 'M.A. Manuscriptology',
-        nameTamil: 'எம்.ஏ. சுவடியியல்',
-        type: 'PG',
-        seatMatrix: { general: 10, obc: 8, bcMbc: 5, sc: 3, st: 2, total: 28 },
-        cutoffs: [
-          { year: '2024', general: 55, obc: 50, bcMbc: 45, sc: 35, st: 30 },
-          { year: '2023', general: 53, obc: 48, bcMbc: 43, sc: 33, st: 28 },
-        ],
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Manuscript Studies', nameTamil: 'சுவடி ஆய்வு', questions: 40, marks: 40, topics: ['Palm Leaf Manuscripts', 'Conservation', 'Cataloguing'] },
-            { name: 'Paleography', nameTamil: 'தொல்லெழுத்தியல்', questions: 35, marks: 35, topics: ['Script Evolution', 'Ancient Scripts'] },
-            { name: 'Epigraphy', nameTamil: 'கல்வெட்டியல்', questions: 25, marks: 25, topics: ['Inscriptions', 'Dating Methods'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Unique course for manuscript preservation', 'Career: Archivist, Museum Curator, Manuscript Conservator']
+        id: 'tu-dde-ba-tamil',
+        name: 'B.A. Tamil',
+        nameTamil: 'இளங்கலை தமிழ்',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Distance Education - Arts',
+        duration: '3 Years',
+        eligibility: '+2 or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Tamil literature studies via distance learning']
       },
       {
-        id: 'tu-ma-translation-studies',
-        name: 'M.A. Translation Studies',
-        nameTamil: 'எம்.ஏ. மொழிபெயர்ப்பியல்',
+        id: 'tu-dde-ba-history',
+        name: 'B.A. History',
+        nameTamil: 'இளங்கலை வரலாறு',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Distance Education - Arts',
+        duration: '3 Years',
+        eligibility: '+2 or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['History studies via distance learning']
+      },
+      {
+        id: 'tu-dde-ba-english',
+        name: 'B.A. English',
+        nameTamil: 'இளங்கலை ஆங்கிலம்',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Distance Education - Arts',
+        duration: '3 Years',
+        eligibility: '+2 or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['English literature via distance learning']
+      },
+      {
+        id: 'tu-dde-ba-music',
+        name: 'B.A. Music',
+        nameTamil: 'இளங்கலை இசை',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Distance Education - Arts',
+        duration: '3 Years',
+        eligibility: '+2 or equivalent with music background',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Music theory and appreciation via distance mode']
+      },
+      {
+        id: 'tu-dde-ba-bharatanatyam',
+        name: 'B.A. Bharatanatyam',
+        nameTamil: 'இளங்கலை பரதநாட்டியம்',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Distance Education - Arts',
+        duration: '3 Years',
+        eligibility: '+2 or equivalent with dance background',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams + Practical', durationMinutes: 0, mode: 'Written + Practical exams', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Theory of Bharatanatyam via distance mode with practical sessions']
+      },
+      
+      // ----- B.Sc. (DDE) -----
+      {
+        id: 'tu-dde-bsc-mathematics',
+        name: 'B.Sc. Mathematics',
+        nameTamil: 'இளங்கலை கணிதம்',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Distance Education - Science',
+        duration: '3 Years',
+        eligibility: '+2 with Mathematics',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Mathematics degree via distance mode']
+      },
+      {
+        id: 'tu-dde-bsc-geography',
+        name: 'B.Sc. Geography',
+        nameTamil: 'இளங்கலை புவியியல்',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Distance Education - Science',
+        duration: '3 Years',
+        eligibility: '+2 or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Geography studies via distance mode']
+      },
+      {
+        id: 'tu-dde-bsc-psychology',
+        name: 'B.Sc. Psychology',
+        nameTamil: 'இளங்கலை உளவியல்',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Distance Education - Science',
+        duration: '3 Years',
+        eligibility: '+2 or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Psychology studies via distance mode']
+      },
+      {
+        id: 'tu-dde-bsc-computer-science',
+        name: 'B.Sc. Computer Science',
+        nameTamil: 'இளங்கலை கணினி அறிவியல்',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Distance Education - Science',
+        duration: '3 Years',
+        eligibility: '+2 with Mathematics',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Computer Science degree via distance mode']
+      },
+      
+      // ----- M.A. (DDE) -----
+      {
+        id: 'tu-dde-ma-tamil',
+        name: 'M.A. Tamil (DDE)',
+        nameTamil: 'முதுநிலை தமிழ் (தொலைநிலை)',
         type: 'PG',
-        seatMatrix: { general: 12, obc: 10, bcMbc: 6, sc: 4, st: 2, total: 34 },
-        cutoffs: [
-          { year: '2024', general: 58, obc: 53, bcMbc: 48, sc: 38, st: 33 },
-          { year: '2023', general: 56, obc: 51, bcMbc: 46, sc: 36, st: 31 },
-        ],
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Translation Theory', nameTamil: 'மொழிபெயர்ப்பு கோட்பாடு', questions: 35, marks: 35, topics: ['Translation Theories', 'Methods'] },
-            { name: 'Practical Translation', nameTamil: 'நடைமுறை மொழிபெயர்ப்பு', questions: 40, marks: 40, topics: ['Tamil-English', 'English-Tamil'] },
-            { name: 'Comparative Literature', nameTamil: 'ஒப்பிலக்கியம்', questions: 25, marks: 25, topics: ['Cross-cultural Studies'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Bilingual proficiency essential', 'Career: Translator, Interpreter, Content Localizer']
+        category: 'DDE',
+        school: 'Distance Education - Arts',
+        duration: '2 Years',
+        eligibility: 'B.A. Tamil or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Tamil PG via distance learning for working professionals']
+      },
+      {
+        id: 'tu-dde-ma-english',
+        name: 'M.A. English (DDE)',
+        nameTamil: 'முதுநிலை ஆங்கிலம் (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Distance Education - Arts',
+        duration: '2 Years',
+        eligibility: 'B.A. English or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['English PG via distance learning']
+      },
+      {
+        id: 'tu-dde-ma-history',
+        name: 'M.A. History (DDE)',
+        nameTamil: 'முதுநிலை வரலாறு (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Distance Education - Arts',
+        duration: '2 Years',
+        eligibility: 'B.A. History or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['History PG via distance learning']
+      },
+      {
+        id: 'tu-dde-ma-music',
+        name: 'M.A. Music (DDE)',
+        nameTamil: 'முதுநிலை இசை (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Distance Education - Performing Arts',
+        duration: '2 Years',
+        eligibility: 'B.A./B.P.A. Music or Diploma in Music',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams + Practical', durationMinutes: 0, mode: 'Theory + Practical exams', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Music PG via distance mode for working musicians and teachers']
+      },
+      {
+        id: 'tu-dde-ma-yoga',
+        name: 'M.A. Yoga (DDE)',
+        nameTamil: 'முதுநிலை யோகா (தொலைநிலை)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Distance Education - Arts',
+        duration: '2 Years',
+        eligibility: 'Any UG degree with yoga background',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams + Practical', durationMinutes: 0, mode: 'Theory + Practical exams', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Yoga PG via distance mode for yoga instructors']
+      },
+      
+      // ----- DIPLOMA COURSES (DDE - SPECIALTY) -----
+      {
+        id: 'tu-dde-diploma-nattuvangam',
+        name: 'Diploma in Nattuvangam',
+        nameTamil: 'நாட்டுவாங்கத்தில் டிப்ளமோ',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education - Specialty Diplomas',
+        duration: '1 Year',
+        eligibility: '+2 or equivalent with dance/music background',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Theory + Practical', durationMinutes: 0, mode: 'Written + Practical exams', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Specialized course for Bharatanatyam accompaniment', 'Career: Nattuvanar, Dance accompanist']
+      },
+      {
+        id: 'tu-dde-diploma-bharatanatyam',
+        name: 'Diploma in Bharatanatyam',
+        nameTamil: 'பரதநாட்டியத்தில் டிப்ளமோ',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education - Specialty Diplomas',
+        duration: '1 Year',
+        eligibility: '+2 or equivalent with dance training',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Theory + Practical', durationMinutes: 0, mode: 'Written + Practical exams', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Foundation course in Bharatanatyam', 'Good for beginners with some training']
+      },
+      {
+        id: 'tu-dde-diploma-music',
+        name: 'Diploma in Music',
+        nameTamil: 'இசையில் டிப்ளமோ',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education - Specialty Diplomas',
+        duration: '1 Year',
+        eligibility: '+2 or equivalent with music background',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Theory + Practical', durationMinutes: 0, mode: 'Written + Practical exams', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Foundation course in Carnatic Music', 'Good for music enthusiasts']
+      },
+      {
+        id: 'tu-dde-diploma-saiva-siddhanta',
+        name: 'Diploma in Saiva Siddhanta',
+        nameTamil: 'சைவ சித்தாந்தத்தில் டிப்ளமோ',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education - Specialty Diplomas',
+        duration: '1 Year',
+        eligibility: '+2 or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Unique course on Tamil Shaiva philosophy', 'Good for spiritual and philosophical studies']
+      },
+      {
+        id: 'tu-dde-diploma-astrology',
+        name: 'Diploma in Astrology',
+        nameTamil: 'ஜோதிடத்தில் டிப்ளமோ',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education - Specialty Diplomas',
+        duration: '1 Year',
+        eligibility: '+2 or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Unique course on Tamil astrology (Jothidam)', 'Popular among traditional practitioners']
       }
     ]
   },
@@ -14794,6 +14508,45 @@ export const universities: University[] = [
         examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
         syllabus: [], previousQuestions: [],
         tips: ['Advanced Islamic studies']
+      },
+      {
+        id: 'tnou-ma-anthropology',
+        name: 'M.A. Anthropology',
+        nameTamil: 'முதுகலை மானிடவியல்',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Arts - PG',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Advanced anthropology studies']
+      },
+      {
+        id: 'tnou-bsc-cs',
+        name: 'B.Sc. Computer Science',
+        nameTamil: 'இளங்கலை கணினி அறிவியல்',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Science',
+        duration: '3 Years',
+        eligibility: '+2 with Maths',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Computer science degree via distance learning']
+      },
+      {
+        id: 'tnou-mba-shipping',
+        name: 'M.B.A. Shipping & Port Management',
+        nameTamil: 'எம்.பி.ஏ. கப்பல் மற்றும் துறைமுக மேலாண்மை',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Management - PG',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Shipping and port management MBA']
       },
       // Science (M.Sc.)
       {
