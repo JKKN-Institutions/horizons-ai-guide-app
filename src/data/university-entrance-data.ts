@@ -13779,37 +13779,38 @@ export const universities: University[] = [
     website: 'www.tndalu.ac.in',
     phone: '044-24641212',
     email: 'registrar@tndalu.ac.in',
-    examName: 'TNDALU Entrance / CLAT',
+    examName: 'Merit-Based (Cut-off)',
     logo: '/universities/tndalu-logo.png',
     logoColor: '#7c2d12',
     fee: { general: 1000, obc: 1000, scst: 500 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'May 2026', status: 'upcoming' },
-      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
-      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'June 2026', status: 'upcoming' },
-      { event: 'Exam Date', eventTamil: 'தேர்வு தேதி', date: 'June 2026', status: 'upcoming' },
-      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'July 2026', status: 'upcoming' }
+      { event: 'SOEL Application Start', eventTamil: 'SOEL விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'SOEL Application End', eventTamil: 'SOEL விண்ணப்பம் முடிவு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Affiliated Colleges Application', eventTamil: 'இணைக்கப்பட்ட கல்லூரிகள் விண்ணப்பம்', date: 'June 2026', status: 'upcoming' },
+      { event: 'Counselling', eventTamil: 'கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
     ],
     courses: [
+      // ===== SCHOOL OF EXCELLENCE IN LAW (SOEL) - ON-CAMPUS =====
       // 5-Year Integrated Honours Courses
       {
         id: 'tndalu-ballb-hons',
-        name: 'B.A. LL.B. (Hons.) - 5 Years',
-        nameTamil: 'பி.ஏ. எல்.எல்.பி. (ஹானர்ஸ்) - 5 ஆண்டுகள்',
+        name: 'B.A. LL.B. (Hons.)',
+        nameTamil: 'பி.ஏ. எல்.எல்.பி. (ஹானர்ஸ்)',
         type: 'UG',
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '5 Years',
+        eligibility: '12th Pass (Any Stream) with 45% (40% for SC/ST)',
         examPattern: {
           totalQuestions: 150,
           totalMarks: 150,
           duration: '2 Hours',
           durationMinutes: 120,
-          mode: 'Computer Based (Online)',
-          negativeMarking: true,
+          mode: 'Merit-Based (12th Marks Cut-off)',
+          negativeMarking: false,
           sections: [
-            { name: 'English Language', nameTamil: 'ஆங்கில மொழி', questions: 25, marks: 25, topics: ['Grammar', 'Vocabulary', 'Comprehension', 'Cloze Test'] },
-            { name: 'Current Affairs & GK', nameTamil: 'நடப்பு நிகழ்வுகள் & பொது அறிவு', questions: 35, marks: 35, topics: ['National', 'International', 'Static GK', 'Legal Awareness'] },
-            { name: 'Legal Aptitude', nameTamil: 'சட்ட திறன்', questions: 35, marks: 35, topics: ['Legal Reasoning', 'Principles of Law', 'Constitution'] },
-            { name: 'Logical Reasoning', nameTamil: 'தருக்க அறிவு', questions: 30, marks: 30, topics: ['Analytical Reasoning', 'Critical Thinking', 'Syllogisms'] },
-            { name: 'Quantitative Techniques', nameTamil: 'அளவீட்டு நுட்பங்கள்', questions: 25, marks: 25, topics: ['Basic Math', 'Data Interpretation', 'Statistics'] }
+            { name: 'Admission Criteria', nameTamil: 'சேர்க்கை அளவுகோல்கள்', questions: 0, marks: 100, topics: ['12th Marks', 'Subject-wise Weightage', 'Reservation Policy'] }
           ]
         },
         syllabus: [],
@@ -13820,178 +13821,414 @@ export const universities: University[] = [
           { id: 'tndalu-ballb-4', year: '2024', question: 'The first woman Chief Justice of a High Court in India was:', options: ['Fatima Beevi', 'Leila Seth', 'Sujata Manohar', 'Anna Chandy'], correctAnswer: 3, explanation: 'Justice Anna Chandy became the first woman Chief Justice of a High Court (Kerala) in 1959.', topic: 'Legal History', difficulty: 'Medium' },
           { id: 'tndalu-ballb-5', year: '2024', question: 'Writ of Habeas Corpus protects:', options: ['Property rights', 'Personal liberty', 'Freedom of speech', 'Right to education'], correctAnswer: 1, explanation: 'Habeas Corpus (meaning "produce the body") protects against illegal detention and unlawful imprisonment.', topic: 'Constitutional Remedies', difficulty: 'Easy' }
         ],
-        tips: ['Read newspapers daily for current affairs', 'Study basic Constitution - Preamble, Fundamental Rights, DPSPs', 'Learn important legal maxims and their meanings', 'Practice reading comprehension and logical reasoning', 'Focus on landmark judgments']
+        tips: ['SOEL cut-offs are very high (85-95%+)', 'Apply separately for SOEL and Affiliated Colleges', 'Read newspapers daily for current affairs', 'Study basic Constitution - Preamble, Fundamental Rights, DPSPs']
+      },
+      {
+        id: 'tndalu-bballb-hons',
+        name: 'B.B.A. LL.B. (Hons.)',
+        nameTamil: 'பி.பி.ஏ. எல்.எல்.பி. (ஹானர்ஸ்)',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '5 Years',
+        eligibility: '12th Pass (Any Stream) with 45% (40% for SC/ST)',
+        syllabus: [],
+        previousQuestions: [
+          { id: 'tndalu-bballb-1', year: '2024', question: 'Corporate Governance primarily deals with:', options: ['Marketing strategies', 'Ethical business conduct and accountability', 'Production management', 'Sales techniques'], correctAnswer: 1, explanation: 'Corporate governance refers to the system of rules, practices, and processes for directing and controlling companies ethically.', topic: 'Corporate Law', difficulty: 'Medium' }
+        ],
+        tips: ['Ideal for those interested in Corporate Law and Business', 'Understand business management concepts', 'Study corporate law and governance']
       },
       {
         id: 'tndalu-bcomllb-hons',
-        name: 'B.Com. LL.B. (Hons.) - 5 Years',
-        nameTamil: 'பி.காம். எல்.எல்.பி. (ஹானர்ஸ்) - 5 ஆண்டுகள்',
+        name: 'B.Com. LL.B. (Hons.)',
+        nameTamil: 'பி.காம். எல்.எல்.பி. (ஹானர்ஸ்)',
         type: 'UG',
-        examPattern: {
-          totalQuestions: 150,
-          totalMarks: 150,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'Computer Based (Online)',
-          negativeMarking: true,
-          sections: [
-            { name: 'English Language', nameTamil: 'ஆங்கில மொழி', questions: 25, marks: 25, topics: ['Grammar', 'Vocabulary', 'Comprehension'] },
-            { name: 'Current Affairs & GK', nameTamil: 'நடப்பு நிகழ்வுகள் & பொது அறிவு', questions: 30, marks: 30, topics: ['Business News', 'Economy', 'Legal Affairs'] },
-            { name: 'Legal Aptitude', nameTamil: 'சட்ட திறன்', questions: 30, marks: 30, topics: ['Commercial Law Basics', 'Contract Law', 'Company Law'] },
-            { name: 'Logical Reasoning', nameTamil: 'தருக்க அறிவு', questions: 30, marks: 30, topics: ['Analytical Reasoning', 'Critical Thinking'] },
-            { name: 'Quantitative Techniques', nameTamil: 'அளவீட்டு நுட்பங்கள்', questions: 35, marks: 35, topics: ['Accounting Basics', 'Data Interpretation', 'Business Math'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '5 Years',
+        eligibility: '12th Pass (Commerce preferred) with 45% (40% for SC/ST)',
         syllabus: [],
         previousQuestions: [
           { id: 'tndalu-bcomllb-1', year: '2024', question: 'The Companies Act, 2013 came into force on:', options: ['1st April 2013', '1st April 2014', '12th September 2013', '1st January 2014'], correctAnswer: 1, explanation: 'The Companies Act, 2013 came into force on 1st April 2014, replacing the Companies Act, 1956.', topic: 'Company Law', difficulty: 'Medium' },
           { id: 'tndalu-bcomllb-2', year: '2024', question: 'GST was implemented in India on:', options: ['1st April 2017', '1st July 2017', '1st January 2017', '1st October 2017'], correctAnswer: 1, explanation: 'GST (Goods and Services Tax) was implemented in India on 1st July 2017 as a unified indirect tax.', topic: 'Taxation Law', difficulty: 'Easy' }
         ],
-        tips: ['Strong understanding of commerce and accounts', 'Study company law and contract act', 'Keep up with business and economic news', 'Practice quantitative aptitude regularly']
-      },
-      {
-        id: 'tndalu-bballb-hons',
-        name: 'B.B.A. LL.B. (Hons.) - 5 Years',
-        nameTamil: 'பி.பி.ஏ. எல்.எல்.பி. (ஹானர்ஸ்) - 5 ஆண்டுகள்',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 150,
-          totalMarks: 150,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'Computer Based (Online)',
-          negativeMarking: true,
-          sections: [
-            { name: 'English Language', nameTamil: 'ஆங்கில மொழி', questions: 25, marks: 25, topics: ['Grammar', 'Vocabulary', 'Comprehension'] },
-            { name: 'Current Affairs & GK', nameTamil: 'நடப்பு நிகழ்வுகள் & பொது அறிவு', questions: 30, marks: 30, topics: ['Business', 'Economy', 'Legal Affairs'] },
-            { name: 'Legal Aptitude', nameTamil: 'சட்ட திறன்', questions: 30, marks: 30, topics: ['Business Law', 'Corporate Law', 'Legal Reasoning'] },
-            { name: 'Logical Reasoning', nameTamil: 'தருக்க அறிவு', questions: 30, marks: 30, topics: ['Analytical Reasoning', 'Critical Thinking', 'Decision Making'] },
-            { name: 'Management Aptitude', nameTamil: 'மேலாண்மை திறன்', questions: 35, marks: 35, topics: ['Business Awareness', 'Management Concepts', 'Case Studies'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [
-          { id: 'tndalu-bballb-1', year: '2024', question: 'Corporate Governance primarily deals with:', options: ['Marketing strategies', 'Ethical business conduct and accountability', 'Production management', 'Sales techniques'], correctAnswer: 1, explanation: 'Corporate governance refers to the system of rules, practices, and processes for directing and controlling companies ethically.', topic: 'Corporate Law', difficulty: 'Medium' }
-        ],
-        tips: ['Understand business management concepts', 'Study corporate law and governance', 'Follow business news and case studies', 'Develop analytical thinking skills']
+        tips: ['Great for Commerce students aspiring for Corporate Law', 'Strong understanding of commerce and accounts', 'Study company law and contract act']
       },
       {
         id: 'tndalu-bcallb-hons',
-        name: 'B.C.A. LL.B. (Hons.) - 5 Years',
-        nameTamil: 'பி.சி.ஏ. எல்.எல்.பி. (ஹானர்ஸ்) - 5 ஆண்டுகள்',
+        name: 'B.C.A. LL.B. (Hons.)',
+        nameTamil: 'பி.சி.ஏ. எல்.எல்.பி. (ஹானர்ஸ்)',
         type: 'UG',
-        examPattern: {
-          totalQuestions: 150,
-          totalMarks: 150,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'Computer Based (Online)',
-          negativeMarking: true,
-          sections: [
-            { name: 'English Language', nameTamil: 'ஆங்கில மொழி', questions: 25, marks: 25, topics: ['Grammar', 'Vocabulary', 'Comprehension'] },
-            { name: 'Current Affairs & GK', nameTamil: 'நடப்பு நிகழ்வுகள் & பொது அறிவு', questions: 25, marks: 25, topics: ['Tech News', 'Legal Affairs', 'Cyber World'] },
-            { name: 'Legal Aptitude', nameTamil: 'சட்ட திறன்', questions: 30, marks: 30, topics: ['Cyber Law', 'IT Act', 'Legal Reasoning'] },
-            { name: 'Logical Reasoning', nameTamil: 'தருக்க அறிவு', questions: 35, marks: 35, topics: ['Analytical Reasoning', 'Critical Thinking', 'Puzzles'] },
-            { name: 'Computer Awareness', nameTamil: 'கணினி விழிப்புணர்வு', questions: 35, marks: 35, topics: ['Computer Basics', 'Internet', 'Cyber Security Basics'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '5 Years',
+        eligibility: '12th Pass (Any Stream, Maths preferred) with 45% (40% for SC/ST)',
         syllabus: [],
         previousQuestions: [
           { id: 'tndalu-bcallb-1', year: '2024', question: 'The Information Technology Act was enacted in India in:', options: ['1998', '2000', '2002', '2008'], correctAnswer: 1, explanation: 'The IT Act 2000 was enacted to provide legal recognition for transactions carried out electronically.', topic: 'Cyber Law', difficulty: 'Easy' },
           { id: 'tndalu-bcallb-2', year: '2024', question: 'Which section of IT Act deals with cyber terrorism?', options: ['Section 43', 'Section 66', 'Section 66F', 'Section 69'], correctAnswer: 2, explanation: 'Section 66F of IT Act, 2000 deals with cyber terrorism and prescribes punishment up to life imprisonment.', topic: 'IT Act', difficulty: 'Medium' }
         ],
-        tips: ['Unique course for Tech + Law aspirants', 'Study IT Act and cyber laws thoroughly', 'Keep up with technology and privacy laws', 'Understand data protection regulations', 'Focus on emerging tech legal issues (AI, blockchain)']
+        tips: ['Specialization in Cyber Law - High demand field', 'Study IT Act and cyber laws thoroughly', 'Understand data protection regulations', 'Focus on emerging tech legal issues (AI, blockchain)']
       },
-      // 3-Year LL.B
+      // 3-Year Honours Course (After Graduation)
       {
         id: 'tndalu-llb-hons',
-        name: 'LL.B. (Hons.) - 3 Years',
-        nameTamil: 'எல்.எல்.பி. (ஹானர்ஸ்) - 3 ஆண்டுகள்',
+        name: 'LL.B. (Hons.)',
+        nameTamil: 'எல்.எல்.பி. (ஹானர்ஸ்)',
         type: 'UG',
-        examPattern: {
-          totalQuestions: 120,
-          totalMarks: 120,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'Computer Based (Online)',
-          negativeMarking: true,
-          sections: [
-            { name: 'English Language', nameTamil: 'ஆங்கில மொழி', questions: 20, marks: 20, topics: ['Grammar', 'Comprehension', 'Legal English'] },
-            { name: 'Current Affairs & GK', nameTamil: 'நடப்பு நிகழ்வுகள் & பொது அறிவு', questions: 30, marks: 30, topics: ['National', 'International', 'Legal News'] },
-            { name: 'Legal Aptitude', nameTamil: 'சட்ட திறன்', questions: 40, marks: 40, topics: ['Constitutional Law', 'Legal Reasoning', 'Jurisprudence'] },
-            { name: 'Logical Reasoning', nameTamil: 'தருக்க அறிவு', questions: 30, marks: 30, topics: ['Analytical Reasoning', 'Critical Analysis'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '3 Years',
+        eligibility: 'Graduate in any discipline with 45% (40% for SC/ST)',
         syllabus: [],
         previousQuestions: [],
         tips: ['For graduates from any discipline', 'Strong focus on legal reasoning', 'Study landmark Supreme Court judgments', 'Develop case analysis skills']
       },
-      // Postgraduate Courses
+      // Postgraduate (LL.M.) – 2 Years
       {
-        id: 'tndalu-llm-ipr',
-        name: 'LL.M. (Intellectual Property Rights)',
-        nameTamil: 'எல்.எல்.எம். (அறிவுசார் சொத்துரிமை)',
+        id: 'tndalu-llm-business',
+        name: 'LL.M. (Business Law)',
+        nameTamil: 'எல்.எல்.எம். (வணிக சட்டம்)',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'General Law', nameTamil: 'பொது சட்டம்', questions: 30, marks: 30, topics: ['Constitutional Law', 'Jurisprudence', 'International Law'] },
-            { name: 'Intellectual Property', nameTamil: 'அறிவுசார் சொத்து', questions: 50, marks: 50, topics: ['Patents', 'Copyrights', 'Trademarks', 'Trade Secrets'] },
-            { name: 'Current Developments', nameTamil: 'நடப்பு வளர்ச்சிகள்', questions: 20, marks: 20, topics: ['IP News', 'Case Laws', 'International Treaties'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '2 Years',
+        eligibility: 'LL.B. with 50% marks',
         syllabus: [],
         previousQuestions: [],
-        tips: ['Study Patent Act, Copyright Act, Trademark Act', 'Follow IPR-related judgments', 'Understand TRIPS Agreement', 'Know about WIPO and international IP conventions']
+        tips: ['Focus on Contract Law, Company Law, Banking Law', 'Study SEBI regulations and corporate governance']
       },
       {
-        id: 'tndalu-llm-cyber',
-        name: 'LL.M. (Cyber Law)',
-        nameTamil: 'எல்.எல்.எம். (இணைய சட்டம்)',
+        id: 'tndalu-llm-constitutional',
+        name: 'LL.M. (Constitutional Law & Human Rights)',
+        nameTamil: 'எல்.எல்.எம். (அரசியலமைப்பு சட்டம் & மனித உரிமைகள்)',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'General Law', nameTamil: 'பொது சட்டம்', questions: 30, marks: 30, topics: ['Constitutional Law', 'Criminal Law', 'Evidence Act'] },
-            { name: 'Cyber & IT Law', nameTamil: 'இணைய & தகவல் தொழில்நுட்ப சட்டம்', questions: 50, marks: 50, topics: ['IT Act', 'Data Protection', 'E-Commerce', 'Cyber Crimes'] },
-            { name: 'Emerging Issues', nameTamil: 'வளர்ந்து வரும் சிக்கல்கள்', questions: 20, marks: 20, topics: ['AI Regulations', 'Blockchain Law', 'Privacy Laws'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '2 Years',
+        eligibility: 'LL.B. with 50% marks',
         syllabus: [],
         previousQuestions: [],
-        tips: ['Deep understanding of IT Act 2000', 'Study Data Protection Bill', 'Follow cyber crime cases', 'Understand global cyber laws (GDPR, CCPA)']
+        tips: ['Master the Indian Constitution', 'Study NHRC and State HRCs', 'Focus on PIL and landmark judgments']
+      },
+      {
+        id: 'tndalu-llm-ipr',
+        name: 'LL.M. (Intellectual Property Law)',
+        nameTamil: 'எல்.எல்.எம். (அறிவுசார் சொத்துரிமை சட்டம்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '2 Years',
+        eligibility: 'LL.B. with 50% marks',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study Patent Act, Copyright Act, Trademark Act', 'Understand TRIPS Agreement', 'Know about WIPO conventions']
+      },
+      {
+        id: 'tndalu-llm-international',
+        name: 'LL.M. (International Law & Organisation)',
+        nameTamil: 'எல்.எல்.எம். (சர்வதேச சட்டம் & அமைப்பு)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '2 Years',
+        eligibility: 'LL.B. with 50% marks',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study UN Charter, ICJ, ICC', 'Focus on International Humanitarian Law', 'Understand WTO and trade agreements']
+      },
+      {
+        id: 'tndalu-llm-environmental',
+        name: 'LL.M. (Environmental Law & Legal Order)',
+        nameTamil: 'எல்.எல்.எம். (சுற்றுச்சூழல் சட்டம்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '2 Years',
+        eligibility: 'LL.B. with 50% marks',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study EPA, Wildlife Protection Act, Forest Act', 'Focus on NGT and environmental PILs']
       },
       {
         id: 'tndalu-llm-criminal',
-        name: 'LL.M. (Criminal Law)',
-        nameTamil: 'எல்.எல்.எம். (குற்றவியல் சட்டம்)',
+        name: 'LL.M. (Criminal Law & Criminal Justice Administration)',
+        nameTamil: 'எல்.எல்.எம். (குற்றவியல் சட்டம் & நீதி நிர்வாகம்)',
         type: 'PG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'General Law', nameTamil: 'பொது சட்டம்', questions: 25, marks: 25, topics: ['Constitutional Law', 'Jurisprudence'] },
-            { name: 'Criminal Law', nameTamil: 'குற்றவியல் சட்டம்', questions: 50, marks: 50, topics: ['IPC', 'CrPC', 'Evidence Act', 'POCSO'] },
-            { name: 'Criminology', nameTamil: 'குற்றவியல் ஆய்வு', questions: 25, marks: 25, topics: ['Theories of Crime', 'Penology', 'Victimology'] }
-          ]
-        },
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '2 Years',
+        eligibility: 'LL.B. with 50% marks',
         syllabus: [],
         previousQuestions: [],
-        tips: ['Master IPC and CrPC thoroughly', 'Study landmark criminal law judgments', 'Understand forensic science basics', 'Follow criminal law amendments']
+        tips: ['Master IPC and CrPC thoroughly', 'Study POCSO, NDPS Act', 'Understand forensic science basics']
+      },
+      {
+        id: 'tndalu-llm-hrde',
+        name: 'LL.M. (Human Rights & Duties Education)',
+        nameTamil: 'எல்.எல்.எம். (மனித உரிமைகள் & கடமைகள் கல்வி)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '2 Years',
+        eligibility: 'LL.B. with 50% marks',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study UDHR, ICCPR, ICESCR', 'Focus on Fundamental Duties under Art. 51A']
+      },
+      {
+        id: 'tndalu-llm-labour',
+        name: 'LL.M. (Labour Law & Administrative Law)',
+        nameTamil: 'எல்.எல்.எம். (தொழிலாளர் சட்டம் & நிர்வாக சட்டம்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '2 Years',
+        eligibility: 'LL.B. with 50% marks',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study Labour Codes (new reforms)', 'Understand Industrial Disputes Act', 'Focus on CAT and Tribunals']
+      },
+      {
+        id: 'tndalu-llm-taxation',
+        name: 'LL.M. (Taxation Law)',
+        nameTamil: 'எல்.எல்.எம். (வரிவிதிப்பு சட்டம்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '2 Years',
+        eligibility: 'LL.B. with 50% marks',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study Income Tax Act, GST Acts', 'Understand CBDT and CBIC circulars', 'Focus on tax planning strategies']
+      },
+      {
+        id: 'tndalu-llm-cyber',
+        name: 'LL.M. (Cyber Space – Law & Justice)',
+        nameTamil: 'எல்.எல்.எம். (இணையவெளி – சட்டம் & நீதி)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '2 Years',
+        eligibility: 'LL.B. with 50% marks',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Deep understanding of IT Act 2000', 'Study Data Protection Bill', 'Understand global cyber laws (GDPR, CCPA)']
+      },
+      {
+        id: 'tndalu-llm-maritime',
+        name: 'LL.M. (Maritime Law)',
+        nameTamil: 'எல்.எல்.எம். (கடல்சார் சட்டம்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '2 Years',
+        eligibility: 'LL.B. with 50% marks',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Study Admiralty Act, Carriage of Goods by Sea Act', 'Understand UNCLOS', 'Focus on shipping and port laws']
+      },
+      // Ph.D.
+      {
+        id: 'tndalu-phd',
+        name: 'Ph.D. in Law (Interdisciplinary)',
+        nameTamil: 'பி.எச்.டி. சட்டம் (இடைத்துறை)',
+        type: 'Research',
+        category: 'On-Campus',
+        school: 'School of Excellence in Law (SOEL)',
+        duration: '3-5 Years',
+        eligibility: 'LL.M. with 55% marks',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Choose a contemporary research topic', 'Strong command over legal research methodology']
+      },
+      
+      // ===== AFFILIATED GOVERNMENT LAW COLLEGES =====
+      {
+        id: 'tndalu-ballb-affiliated',
+        name: 'B.A. LL.B. (Regular)',
+        nameTamil: 'பி.ஏ. எல்.எல்.பி. (வழக்கமான)',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Government Law Colleges (13 Locations)',
+        duration: '5 Years',
+        eligibility: '12th Pass (Any Stream) with 45% (40% for SC/ST). Lower cut-off than SOEL.',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Available in Chennai, Madurai, Trichy, Coimbatore, Tirunelveli, Chengalpattu, Vellore, Villupuram, Dharmapuri, Ramanathapuram, Salem, Namakkal, Theni', 'Not an Honours degree - different from SOEL', 'Easier admission compared to SOEL']
+      },
+      {
+        id: 'tndalu-llb-affiliated',
+        name: 'LL.B. (Regular)',
+        nameTamil: 'எல்.எல்.பி. (வழக்கமான)',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Government Law Colleges (13 Locations)',
+        duration: '3 Years',
+        eligibility: 'Graduate in any discipline with 45% (40% for SC/ST)',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['For graduates of any discipline', 'Available at all 13 Government Law Colleges across TN', 'Apply through separate affiliated college admission process']
+      },
+      
+      // ===== DISTANCE EDUCATION (DDE) =====
+      // PG Diplomas (1 Year)
+      {
+        id: 'tndalu-pgd-business',
+        name: 'PG Diploma in Business Law',
+        nameTamil: 'வணிக சட்டத்தில் முதுநிலை பட்டயம்',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education',
+        duration: '1 Year',
+        eligibility: 'Graduate in any discipline',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Highly popular for corporate employees', 'Good for understanding commercial contracts and company law']
+      },
+      {
+        id: 'tndalu-pgd-environmental',
+        name: 'PG Diploma in Environmental Law',
+        nameTamil: 'சுற்றுச்சூழல் சட்டத்தில் முதுநிலை பட்டயம்',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education',
+        duration: '1 Year',
+        eligibility: 'Graduate in any discipline',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Useful for environmental activists and NGO workers', 'Covers EPA, Wildlife Act, Forest Act']
+      },
+      {
+        id: 'tndalu-pgd-it',
+        name: 'PG Diploma in Information Technology Law',
+        nameTamil: 'தகவல் தொழில்நுட்ப சட்டத்தில் முதுநிலை பட்டயம்',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education',
+        duration: '1 Year',
+        eligibility: 'Graduate in any discipline',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Essential for IT professionals', 'Covers IT Act 2000 and amendments']
+      },
+      {
+        id: 'tndalu-pgd-ipr',
+        name: 'PG Diploma in Intellectual Property Law',
+        nameTamil: 'அறிவுசார் சொத்துரிமை சட்டத்தில் முதுநிலை பட்டயம்',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education',
+        duration: '1 Year',
+        eligibility: 'Graduate in any discipline',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Ideal for inventors, creators, and startup founders', 'Covers Patents, Copyrights, Trademarks']
+      },
+      {
+        id: 'tndalu-pgd-labour',
+        name: 'PG Diploma in Labour Law',
+        nameTamil: 'தொழிலாளர் சட்டத்தில் முதுநிலை பட்டயம்',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education',
+        duration: '1 Year',
+        eligibility: 'Graduate in any discipline',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Essential for HR professionals', 'Covers new Labour Codes and industrial relations']
+      },
+      {
+        id: 'tndalu-pgd-hrde',
+        name: 'PG Diploma in Human Rights & Duties Education',
+        nameTamil: 'மனித உரிமைகள் & கடமைகள் கல்வியில் முதுநிலை பட்டயம்',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education',
+        duration: '1 Year',
+        eligibility: 'Graduate in any discipline',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for social workers and activists', 'Covers UDHR and Indian Constitutional rights']
+      },
+      {
+        id: 'tndalu-pgd-criminal',
+        name: 'PG Diploma in Criminal Law, Criminology & Forensic Science',
+        nameTamil: 'குற்றவியல் சட்டம், குற்றவியல் & தடயவியலில் முதுநிலை பட்டயம்',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education',
+        duration: '1 Year',
+        eligibility: 'Graduate in any discipline',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Useful for police personnel and aspiring criminal lawyers', 'Covers IPC, CrPC, and forensic basics']
+      },
+      {
+        id: 'tndalu-pgd-cyber-forensic',
+        name: 'PG Diploma in Cyber Forensic & Internet Security',
+        nameTamil: 'இணைய தடயவியல் & இணைய பாதுகாப்பில் முதுநிலை பட்டயம்',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education',
+        duration: '1 Year',
+        eligibility: 'Graduate in any discipline',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['High demand in IT security sector', 'Covers cyber crime investigation and digital evidence']
+      },
+      {
+        id: 'tndalu-pgd-consumer',
+        name: 'PG Diploma in Consumer Law & Protection',
+        nameTamil: 'நுகர்வோர் சட்டம் & பாதுகாப்பில் முதுநிலை பட்டயம்',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education',
+        duration: '1 Year',
+        eligibility: 'Graduate in any discipline',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Covers Consumer Protection Act 2019', 'Useful for consumer forum practitioners']
+      },
+      {
+        id: 'tndalu-pgd-medicolegal',
+        name: 'PG Diploma in Medico-Legal Aspects',
+        nameTamil: 'மருத்துவ-சட்ட அம்சங்களில் முதுநிலை பட்டயம்',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education',
+        duration: '1 Year',
+        eligibility: 'Graduate in any discipline',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Ideal for medical and legal professionals', 'Covers medical negligence and healthcare laws']
+      },
+      {
+        id: 'tndalu-pgd-maritime',
+        name: 'PG Diploma in Maritime Law',
+        nameTamil: 'கடல்சார் சட்டத்தில் முதுநிலை பட்டயம்',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Distance Education',
+        duration: '1 Year',
+        eligibility: 'Graduate in any discipline',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Good for shipping industry professionals', 'Covers Admiralty Act and UNCLOS']
+      },
+      // Certificate Course
+      {
+        id: 'tndalu-cert-documentation',
+        name: 'Certificate Course in Documentation',
+        nameTamil: 'ஆவணப்படுத்தலில் சான்றிதழ் படிப்பு',
+        type: 'Certificate',
+        category: 'DDE',
+        school: 'Distance Education',
+        duration: '6 Months',
+        eligibility: '12th Pass or equivalent',
+        syllabus: [],
+        previousQuestions: [],
+        tips: ['Practical course for legal documentation skills', 'Covers drafting of legal documents and agreements']
       }
     ]
   },
