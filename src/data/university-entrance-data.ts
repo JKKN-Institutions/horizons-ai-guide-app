@@ -45,7 +45,7 @@ export interface Course {
   duration?: string;
   specialty?: string;
   examPattern?: ExamPattern;
-  syllabus: SyllabusUnit[];
+  syllabus?: SyllabusUnit[];
   previousQuestions: PreviousQuestion[];
   tips: string[];
   seatMatrix?: SeatMatrix;
@@ -13536,139 +13536,7 @@ export const universities: University[] = [
     ]
   },
   // Tamil University first entry removed - consolidated with detailed entry at line 10173+
-  {
-    id: 'gandhigram-university',
-    name: 'Gandhigram Rural Institute',
-    nameTamil: 'காந்திகிராம கிராமப்புற நிறுவனம்',
-    location: 'Dindigul',
-    website: 'www.ruraluniv.ac.in',
-    phone: '0451-2452371',
-    examName: 'GRI Entrance Exam',
-    logoColor: '#059669',
-    logo: '/universities/gandhigram-rural-logo.jpeg',
-    fee: { general: 500, obc: 500, scst: 250 },
-    importantDates: [
-      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
-      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
-      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'May 2026', status: 'upcoming' },
-      { event: 'Exam Date', eventTamil: 'தேர்வு தேதி', date: 'June 2026', status: 'upcoming' },
-      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'July 2026', status: 'upcoming' }
-    ],
-    courses: [
-      {
-        id: 'gri-mba-rural',
-        name: 'MBA (Rural Management)',
-        nameTamil: 'எம்.பி.ஏ (கிராம மேலாண்மை)',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Quantitative Aptitude', nameTamil: 'எண்ணியல் திறன்', questions: 30, marks: 30, topics: ['Mathematics', 'Data Interpretation', 'Statistics'] },
-            { name: 'Verbal Ability', nameTamil: 'மொழித்திறன்', questions: 25, marks: 25, topics: ['Reading Comprehension', 'Grammar', 'Vocabulary'] },
-            { name: 'Rural Development', nameTamil: 'கிராம வளர்ச்சி', questions: 25, marks: 25, topics: ['Rural Economy', 'Agriculture', 'Panchayat Raj'] },
-            { name: 'General Awareness', nameTamil: 'பொது அறிவு', questions: 20, marks: 20, topics: ['Current Affairs', 'Government Schemes', 'Rural Policies'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Study rural development schemes', 'Know about Panchayat Raj system', 'Read about agricultural policies']
-      },
-      {
-        id: 'gri-msw',
-        name: 'MSW (Master of Social Work)',
-        nameTamil: 'எம்.எஸ்.டபிள்யூ (சமூக பணி முதுநிலை)',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Social Work', nameTamil: 'சமூக பணி', questions: 40, marks: 40, topics: ['Case Work', 'Group Work', 'Community Organization'] },
-            { name: 'Social Sciences', nameTamil: 'சமூக அறிவியல்', questions: 35, marks: 35, topics: ['Sociology', 'Psychology', 'Economics'] },
-            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', questions: 25, marks: 25, topics: ['Social Issues', 'Welfare Schemes', 'NGO Sector'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Study social work methods', 'Know welfare schemes well', 'Understand community development']
-      },
-      {
-        id: 'gri-msc-agriculture',
-        name: 'M.Sc Agriculture Extension',
-        nameTamil: 'எம்.எஸ்சி விவசாய விரிவாக்கம்',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Agriculture Science', nameTamil: 'வேளாண் அறிவியல்', questions: 40, marks: 40, topics: ['Crop Production', 'Soil Science', 'Plant Protection'] },
-            { name: 'Extension Education', nameTamil: 'விரிவாக்க கல்வி', questions: 35, marks: 35, topics: ['Extension Methods', 'Communication', 'Rural Development'] },
-            { name: 'Agricultural Economics', nameTamil: 'வேளாண் பொருளியல்', questions: 25, marks: 25, topics: ['Farm Management', 'Marketing', 'Policies'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Study agricultural practices', 'Know extension methodologies', 'Understand rural farming systems']
-      },
-      {
-        id: 'gri-bed-special',
-        name: 'B.Ed (Special Education)',
-        nameTamil: 'பி.எட் (சிறப்புக் கல்வி)',
-        type: 'UG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', questions: 25, marks: 25, topics: ['Current Affairs', 'History', 'Geography'] },
-            { name: 'Education', nameTamil: 'கல்வியியல்', questions: 35, marks: 35, topics: ['Child Development', 'Teaching Methods', 'Educational Psychology'] },
-            { name: 'Special Education', nameTamil: 'சிறப்புக் கல்வி', questions: 25, marks: 25, topics: ['Disabilities', 'Inclusive Education', 'Rehabilitation'] },
-            { name: 'Language', nameTamil: 'மொழி', questions: 15, marks: 15, topics: ['Tamil/English', 'Communication Skills'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Study child psychology', 'Understand disabilities and interventions', 'Learn about inclusive education']
-      },
-      {
-        id: 'gri-msc-rural-dev',
-        name: 'M.Sc Rural Development',
-        nameTamil: 'எம்.எஸ்சி கிராம வளர்ச்சி',
-        type: 'PG',
-        examPattern: {
-          totalQuestions: 100,
-          totalMarks: 100,
-          duration: '2 Hours',
-          durationMinutes: 120,
-          mode: 'OMR Based (Offline)',
-          negativeMarking: false,
-          sections: [
-            { name: 'Rural Development', nameTamil: 'கிராம வளர்ச்சி', questions: 40, marks: 40, topics: ['Rural Planning', 'Decentralization', 'Sustainable Development'] },
-            { name: 'Social Sciences', nameTamil: 'சமூக அறிவியல்', questions: 35, marks: 35, topics: ['Sociology', 'Political Science', 'Economics'] },
-            { name: 'Research Methods', nameTamil: 'ஆராய்ச்சி முறைகள்', questions: 25, marks: 25, topics: ['Statistics', 'Survey Methods', 'Data Analysis'] }
-          ]
-        },
-        syllabus: [],
-        previousQuestions: [],
-        tips: ['Study rural development theories', 'Know government rural schemes', 'Learn research methodology']
-      }
-    ]
-  },
+  // Gandhigram Rural Institute entry consolidated at line 15251+
   // TNAU - Tamil Nadu Agricultural University
   {
     id: 'tnau',
@@ -15248,42 +15116,70 @@ export const universities: University[] = [
       }
     ]
   },
-  // Gandhigram Rural Institute (GRI) - Rural Development & Vocational
+  // Gandhigram Rural Institute (GRI) - Deemed to be University (Central Govt Funded)
   {
-    id: 'gandhigram-rural-institute',
+    id: 'gandhigram-university',
     name: 'Gandhigram Rural Institute',
     nameTamil: 'காந்திகிராம கிராமிய நிறுவனம்',
     location: 'Dindigul',
     website: 'www.ruraluniv.ac.in',
     phone: '0451-2452371',
     email: 'registrar@ruraluniv.ac.in',
-    examName: 'CUET-UG / Merit',
+    examName: 'CUET-UG / CUET-PG',
     logoColor: '#166534',
     logo: '/universities/gandhigram-rural-logo.jpeg',
     fee: { general: 500, obc: 400, scst: 250 },
     importantDates: [
       { event: 'CUET Notification', eventTamil: 'CUET அறிவிப்பு', date: 'February 2026', status: 'upcoming' },
-      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'February 2026', status: 'upcoming' },
-      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'March 2026', status: 'upcoming' },
+      { event: 'CUET Registration', eventTamil: 'CUET பதிவு', date: 'February 2026', status: 'upcoming' },
       { event: 'CUET Exam', eventTamil: 'CUET தேர்வு', date: 'May 2026', status: 'upcoming' },
-      { event: 'GRI Counseling', eventTamil: 'GRI கலந்தாய்வு', date: 'June 2026', status: 'upcoming' },
+      { event: 'GRI Counseling Opens', eventTamil: 'GRI கலந்தாய்வு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Classes Begin', eventTamil: 'வகுப்புகள் தொடக்கம்', date: 'August 2026', status: 'upcoming' },
     ],
     courses: [
-      // B.Sc. Agriculture (Hons)
+      // ======================== SIGNATURE/UNIQUE COURSES ========================
       {
-        id: 'gri-bsc-agriculture',
-        name: 'B.Sc. Agriculture (Hons)',
-        nameTamil: 'பி.எஸ்சி. வேளாண்மை (ஆனர்ஸ்)',
+        id: 'gri-pgdip-sanitary-inspector',
+        name: 'PG Diploma in Sanitary Inspector\'s Course',
+        nameTamil: 'முதுநிலை பட்டயம் - சுகாதார ஆய்வாளர்',
+        type: 'Diploma',
+        category: 'On-Campus',
+        school: 'Signature Courses',
+        duration: '1 Year',
+        eligibility: 'Any Degree',
+        previousQuestions: [],
+        tips: ['Very high demand for Health Inspector jobs in TN Govt', 'Direct recruitment to PHC and Municipal bodies', 'Practical-focused curriculum']
+      },
+      {
+        id: 'gri-diploma-agriculture',
+        name: 'Diploma in Agriculture',
+        nameTamil: 'வேளாண்மை பட்டயம்',
+        type: 'Diploma',
+        category: 'On-Campus',
+        school: 'Signature Courses',
+        duration: '2 Years',
+        eligibility: '10th Pass',
+        previousQuestions: [],
+        tips: ['Practical farming course', 'Ideal for students from farming backgrounds', 'Leads to Agricultural Supervisor roles']
+      },
+      {
+        id: 'gri-bsc-hons-agriculture',
+        name: 'B.Sc. (Hons) Agriculture',
+        nameTamil: 'பி.எஸ்சி. (ஹானர்ஸ்) வேளாண்மை',
         type: 'UG',
+        category: 'On-Campus',
+        school: 'Signature Courses',
+        duration: '4 Years',
+        eligibility: 'HSC with PCB/PCM (CUET-UG)',
         seatMatrix: { general: 20, obc: 16, bcMbc: 12, sc: 8, st: 4, total: 60 },
         cutoffs: [
           { year: '2024', general: 480, obc: 420, bcMbc: 380, sc: 320, st: 280 },
           { year: '2023', general: 460, obc: 400, bcMbc: 360, sc: 300, st: 260 },
         ],
         examPattern: {
-          totalQuestions: 50,
-          totalMarks: 200,
-          duration: '45 Minutes per section',
+          totalQuestions: 150,
+          totalMarks: 600,
+          duration: '3 Hours 15 Minutes',
           durationMinutes: 195,
           mode: 'Computer Based (CBT)',
           negativeMarking: true,
@@ -15305,42 +15201,10 @@ export const universities: University[] = [
             expectedQuestions: 15,
             difficulty: 'Medium'
           },
-          {
-            unitNumber: 2,
-            title: 'Plant Sciences',
-            titleTamil: 'தாவர அறிவியல்',
-            topics: [
-              { name: 'Plant Physiology', subtopics: ['Photosynthesis', 'Respiration', 'Transpiration'], importance: 'High' },
-              { name: 'Plant Pathology', subtopics: ['Diseases', 'Pests', 'Integrated Pest Management'], importance: 'Medium' },
-            ],
-            expectedQuestions: 15,
-            difficulty: 'Medium'
-          },
-          {
-            unitNumber: 3,
-            title: 'Agricultural Economics',
-            titleTamil: 'வேளாண் பொருளாதாரம்',
-            topics: [
-              { name: 'Farm Management', subtopics: ['Cost Analysis', 'Marketing', 'Price Policy'], importance: 'Medium' },
-              { name: 'Agricultural Extension', subtopics: ['Rural Development', 'Farmer Welfare Schemes'], importance: 'Medium' },
-            ],
-            expectedQuestions: 10,
-            difficulty: 'Easy'
-          }
         ],
         previousQuestions: [
           {
             id: 'gri-agri-q1',
-            year: '2024',
-            question: 'Which is the most important greenhouse gas contributing to global warming?',
-            options: ['Oxygen', 'Nitrogen', 'Carbon Dioxide', 'Argon'],
-            correctAnswer: 2,
-            explanation: 'Carbon dioxide (CO2) is the primary greenhouse gas responsible for global warming and climate change.',
-            topic: 'Environment',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'gri-agri-q2',
             year: '2024',
             question: 'NPK in fertilizers stands for:',
             options: ['Nitrogen, Potassium, Kalium', 'Nitrogen, Phosphorus, Potassium', 'Neon, Phosphorus, Krypton', 'Nitrogen, Platinum, Potassium'],
@@ -15349,242 +15213,690 @@ export const universities: University[] = [
             topic: 'Soil Science',
             difficulty: 'Easy'
           },
-          {
-            id: 'gri-agri-q3',
-            year: '2023',
-            question: 'Which of the following is NOT a Kharif crop?',
-            options: ['Rice', 'Cotton', 'Wheat', 'Maize'],
-            correctAnswer: 2,
-            explanation: 'Wheat is a Rabi (winter) crop sown in October-December. Kharif crops are sown during monsoon (June-July).',
-            topic: 'Agronomy',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'gri-agri-q4',
-            year: '2023',
-            question: 'The process by which plants lose water through stomata is called:',
-            options: ['Respiration', 'Photosynthesis', 'Transpiration', 'Guttation'],
-            correctAnswer: 2,
-            explanation: 'Transpiration is the evaporation of water from plant leaves through stomata, creating a pull for water absorption.',
-            topic: 'Plant Physiology',
-            difficulty: 'Easy'
-          }
         ],
-        tips: [
-          'CUET-UG based admission - focus on Physics, Chemistry, Biology',
-          '4-year professional program with focus on practical farming',
-          'Career paths: Agricultural Officer, Farm Manager, TNAU Scientist, Agri-Business',
-          'Study NCERT Biology and basic agriculture concepts',
-          'GRI specializes in rural development - great for students from farming backgrounds'
-        ]
+        tips: ['CUET-UG required', 'Career paths: Agricultural Officer, Farm Manager, TNAU Scientist']
       },
-      // B.Com (Cooperation)
+      // B.Voc. Programs
       {
-        id: 'gri-bcom-cooperation',
-        name: 'B.Com (Cooperation)',
-        nameTamil: 'பி.காம். (கூட்டுறவு)',
+        id: 'gri-bvoc-farm-equipment',
+        name: 'B.Voc. Farm Equipment Operation & Maintenance',
+        nameTamil: 'பி.வாக். பண்ணை உபகரண இயக்கம் & பராமரிப்பு',
         type: 'UG',
-        seatMatrix: { general: 18, obc: 14, bcMbc: 10, sc: 6, st: 2, total: 50 },
-        cutoffs: [
-          { year: '2024', general: 420, obc: 380, bcMbc: 340, sc: 280, st: 240 },
-          { year: '2023', general: 400, obc: 360, bcMbc: 320, sc: 260, st: 220 },
-        ],
-        examPattern: {
-          totalQuestions: 50,
-          totalMarks: 200,
-          duration: '45 Minutes',
-          durationMinutes: 45,
-          mode: 'Computer Based (CBT)',
-          negativeMarking: true,
-          sections: [
-            { name: 'Accountancy', nameTamil: 'கணக்கியல்', questions: 25, marks: 100, topics: ['Principles', 'Financial Statements', 'Partnership'] },
-            { name: 'Business Studies', nameTamil: 'வணிகவியல்', questions: 15, marks: 60, topics: ['Business Organization', 'Management', 'Marketing'] },
-            { name: 'Economics', nameTamil: 'பொருளாதாரம்', questions: 10, marks: 40, topics: ['Microeconomics', 'Indian Economy'] }
-          ]
-        },
-        syllabus: [
-          {
-            unitNumber: 1,
-            title: 'Cooperative Principles',
-            titleTamil: 'கூட்டுறவு கொள்கைகள்',
-            topics: [
-              { name: 'Cooperative Movement', subtopics: ['History', 'Rochdale Principles', 'Types of Cooperatives'], importance: 'High' },
-              { name: 'Cooperative Laws', subtopics: ['Cooperative Societies Act', 'Registration', 'Management'], importance: 'High' },
-            ],
-            expectedQuestions: 15,
-            difficulty: 'Medium'
-          },
-          {
-            unitNumber: 2,
-            title: 'Banking & Finance',
-            titleTamil: 'வங்கி & நிதி',
-            topics: [
-              { name: 'Cooperative Banking', subtopics: ['District Cooperative Banks', 'PACS', 'NABARD'], importance: 'High' },
-              { name: 'Agricultural Finance', subtopics: ['Crop Loans', 'Kisan Credit Card', 'Subsidies'], importance: 'Medium' },
-            ],
-            expectedQuestions: 15,
-            difficulty: 'Medium'
-          },
-          {
-            unitNumber: 3,
-            title: 'Accountancy',
-            titleTamil: 'கணக்கியல்',
-            topics: [
-              { name: 'Financial Accounting', subtopics: ['Journal', 'Ledger', 'Trial Balance', 'Final Accounts'], importance: 'High' },
-              { name: 'Cooperative Accounts', subtopics: ['Audit', 'Reserves', 'Dividend Distribution'], importance: 'Medium' },
-            ],
-            expectedQuestions: 20,
-            difficulty: 'Medium'
-          }
-        ],
-        previousQuestions: [
-          {
-            id: 'gri-coop-q1',
-            year: 'Sample',
-            question: 'The first successful cooperative was established in:',
-            options: ['France', 'Germany', 'England (Rochdale)', 'India'],
-            correctAnswer: 2,
-            explanation: 'The Rochdale Society of Equitable Pioneers (1844) in England is considered the first successful modern cooperative.',
-            topic: 'Cooperative History',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'gri-coop-q2',
-            year: 'Sample',
-            question: 'NABARD stands for:',
-            options: ['National Bank for Agriculture and Rural Development', 'National Board of Agricultural Research', 'National Bank for Asset Development', 'None of these'],
-            correctAnswer: 0,
-            explanation: 'NABARD is the apex development financial institution for agriculture and rural development in India.',
-            topic: 'Agricultural Finance',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'gri-coop-q3',
-            year: 'Sample',
-            question: 'Which of the following is NOT a principle of cooperation?',
-            options: ['Open membership', 'Democratic control', 'Profit maximization', 'Education and training'],
-            correctAnswer: 2,
-            explanation: 'Cooperatives focus on member welfare, not profit maximization. Surplus is distributed equitably among members.',
-            topic: 'Cooperative Principles',
-            difficulty: 'Easy'
-          }
-        ],
-        tips: [
-          'CUET-UG based admission - focus on Accountancy and Business Studies',
-          'Unique course combining Commerce with Cooperative management',
-          'Career paths: Cooperative Bank Manager, Registrar of Cooperatives, NABARD Officer',
-          'Study cooperative movement history and Indian banking',
-          'Excellent opportunities in rural banking sector'
-        ]
+        category: 'On-Campus',
+        school: 'B.Voc. (Vocational Education)',
+        duration: '3 Years',
+        eligibility: 'HSC Pass (Merit/CUET)',
+        previousQuestions: [],
+        tips: ['70% practical training', 'Industry internships included', 'High employability in agri-machinery sector']
       },
-      // B.Voc. Food Processing
+      {
+        id: 'gri-bvoc-footwear',
+        name: 'B.Voc. Footwear and Accessories Design',
+        nameTamil: 'பி.வாக். காலணி மற்றும் ஆபரணங்கள் வடிவமைப்பு',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'B.Voc. (Vocational Education)',
+        duration: '3 Years',
+        eligibility: 'HSC Pass (Merit/CUET)',
+        previousQuestions: [],
+        tips: ['Unique course in TN', 'Leather industry cluster jobs', 'Design portfolio required']
+      },
       {
         id: 'gri-bvoc-food-processing',
         name: 'B.Voc. Food Processing',
         nameTamil: 'பி.வாக். உணவு பதப்படுத்துதல்',
         type: 'UG',
-        seatMatrix: { general: 14, obc: 11, bcMbc: 8, sc: 5, st: 2, total: 40 },
+        category: 'On-Campus',
+        school: 'B.Voc. (Vocational Education)',
+        duration: '3 Years',
+        eligibility: 'HSC Pass (Merit/CUET)',
+        previousQuestions: [],
+        tips: ['Growing sector in India', 'Career: Food Technologist, Quality Controller']
+      },
+      {
+        id: 'gri-bvoc-food-testing',
+        name: 'B.Voc. Food Testing & Quality Evaluation',
+        nameTamil: 'பி.வாக். உணவு சோதனை & தர மதிப்பீடு',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'B.Voc. (Vocational Education)',
+        duration: '3 Years',
+        eligibility: 'HSC Pass (Merit/CUET)',
+        previousQuestions: [],
+        tips: ['FSSAI labs require this qualification', 'High demand in food industry']
+      },
+      {
+        id: 'gri-bvoc-dairy',
+        name: 'B.Voc. Dairy Production and Technology',
+        nameTamil: 'பி.வாக். பால் உற்பத்தி மற்றும் தொழில்நுட்பம்',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'B.Voc. (Vocational Education)',
+        duration: '3 Years',
+        eligibility: 'HSC Pass (Merit/CUET)',
+        previousQuestions: [],
+        tips: ['Aavin & Amul partnerships', 'Dairy farm management skills']
+      },
+      {
+        id: 'gri-bvoc-renewable-energy',
+        name: 'B.Voc. Renewable Energy',
+        nameTamil: 'பி.வாக். புதுப்பிக்கத்தக்க ஆற்றல்',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'B.Voc. (Vocational Education)',
+        duration: '3 Years',
+        eligibility: 'HSC Pass with PCM (Merit/CUET)',
+        previousQuestions: [],
+        tips: ['Green energy sector boom', 'Solar & wind industry jobs']
+      },
+      {
+        id: 'gri-bvoc-organic-agriculture',
+        name: 'B.Voc. Organic Agriculture',
+        nameTamil: 'பி.வாக். இயற்கை வேளாண்மை',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'B.Voc. (Vocational Education)',
+        duration: '3 Years',
+        eligibility: 'HSC Pass (Merit/CUET)',
+        previousQuestions: [],
+        tips: ['Growing demand for organic produce', 'Certification & farm management']
+      },
+      // ======================== UG PROGRAMMES (CUET-UG) ========================
+      {
+        id: 'gri-bsc-mathematics',
+        name: 'B.Sc. Mathematics',
+        nameTamil: 'பி.எஸ்சி. கணிதம்',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Science',
+        duration: '3 Years',
+        eligibility: 'HSC with Maths (CUET-UG)',
+        previousQuestions: [],
+        tips: ['Strong foundation for higher studies', 'Career: Teacher, Data Analyst, Actuary']
+      },
+      {
+        id: 'gri-bsc-physics',
+        name: 'B.Sc. Physics',
+        nameTamil: 'பி.எஸ்சி. இயற்பியல்',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Science',
+        duration: '3 Years',
+        eligibility: 'HSC with PCM (CUET-UG)',
+        previousQuestions: [],
+        tips: ['Research-oriented curriculum', 'Career: Scientist, Teacher, Tech sector']
+      },
+      {
+        id: 'gri-bsc-chemistry',
+        name: 'B.Sc. Chemistry',
+        nameTamil: 'பி.எஸ்சி. வேதியியல்',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Science',
+        duration: '3 Years',
+        eligibility: 'HSC with PCM/PCB (CUET-UG)',
+        previousQuestions: [],
+        tips: ['Good lab infrastructure', 'Career: Chemist, Pharmaceutical industry']
+      },
+      {
+        id: 'gri-bsc-textiles-fashion',
+        name: 'B.Sc. Textiles and Fashion Design',
+        nameTamil: 'பி.எஸ்சி. ஜவுளி மற்றும் ஃபேஷன் வடிவமைப்பு',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Science',
+        duration: '3 Years',
+        eligibility: 'HSC Pass (CUET-UG)',
+        previousQuestions: [],
+        tips: ['Unique to GRI', 'Tirupur textile industry connections', 'Portfolio-based selection possible']
+      },
+      {
+        id: 'gri-bsc-home-science',
+        name: 'B.Sc. Home Science',
+        nameTamil: 'பி.எஸ்சி. குடும்ப அறிவியல்',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Science',
+        duration: '3 Years',
+        eligibility: 'HSC Pass (CUET-UG)',
+        previousQuestions: [],
+        tips: ['Nutrition & family welfare focus', 'Govt scheme implementation jobs']
+      },
+      {
+        id: 'gri-bsc-geology',
+        name: 'B.Sc. Geology',
+        nameTamil: 'பி.எஸ்சி. புவியியல்',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Science',
+        duration: '3 Years',
+        eligibility: 'HSC with PCM (CUET-UG)',
+        previousQuestions: [],
+        tips: ['Field work intensive', 'Career: GSI, Mining sector, Groundwater dept']
+      },
+      {
+        id: 'gri-bsc-computer-science',
+        name: 'B.Sc. Computer Science',
+        nameTamil: 'பி.எஸ்சி. கணினி அறிவியல்',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Science',
+        duration: '3 Years',
+        eligibility: 'HSC with Maths (CUET-UG)',
+        previousQuestions: [],
+        tips: ['IT sector placements', 'Rural tech focus is unique']
+      },
+      {
+        id: 'gri-bsc-microbiology',
+        name: 'B.Sc. Microbiology',
+        nameTamil: 'பி.எஸ்சி. நுண்ணுயிரியல்',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Science',
+        duration: '3 Years',
+        eligibility: 'HSC with PCB (CUET-UG)',
+        previousQuestions: [],
+        tips: ['Lab-intensive course', 'Career: Lab Technician, Pharma, Research']
+      },
+      // B.Sc. B.Ed. Integrated
+      {
+        id: 'gri-bsc-bed-maths',
+        name: 'B.Sc. B.Ed. Integrated (Mathematics)',
+        nameTamil: 'பி.எஸ்சி. பி.எட். ஒருங்கிணைந்த (கணிதம்)',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Integrated B.Sc. B.Ed.',
+        duration: '4 Years',
+        eligibility: 'HSC with Maths (CUET-UG)',
+        previousQuestions: [],
+        tips: ['Become a teacher directly after 12th', 'TET eligible after graduation']
+      },
+      {
+        id: 'gri-bsc-bed-physics',
+        name: 'B.Sc. B.Ed. Integrated (Physics)',
+        nameTamil: 'பி.எஸ்சி. பி.எட். ஒருங்கிணைந்த (இயற்பியல்)',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Integrated B.Sc. B.Ed.',
+        duration: '4 Years',
+        eligibility: 'HSC with Physics (CUET-UG)',
+        previousQuestions: [],
+        tips: ['Teacher training + Science degree', 'Govt school recruitment eligible']
+      },
+      {
+        id: 'gri-bsc-bed-chemistry',
+        name: 'B.Sc. B.Ed. Integrated (Chemistry)',
+        nameTamil: 'பி.எஸ்சி. பி.எட். ஒருங்கிணைந்த (வேதியியல்)',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Integrated B.Sc. B.Ed.',
+        duration: '4 Years',
+        eligibility: 'HSC with Chemistry (CUET-UG)',
+        previousQuestions: [],
+        tips: ['4-year path to teaching career', 'Rural school focus']
+      },
+      // Arts UG
+      {
+        id: 'gri-ba-economics',
+        name: 'B.A. Economics',
+        nameTamil: 'பி.ஏ. பொருளாதாரம்',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Arts',
+        duration: '3 Years',
+        eligibility: 'HSC Pass (CUET-UG)',
+        previousQuestions: [],
+        tips: ['Rural economics focus', 'Career: Banking, Civil Services, Research']
+      },
+      {
+        id: 'gri-ba-gandhian-social-work',
+        name: 'B.A. Gandhian Social Work',
+        nameTamil: 'பி.ஏ. காந்தியப் சமூகப் பணி',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Arts',
+        duration: '3 Years',
+        eligibility: 'HSC Pass (CUET-UG)',
+        previousQuestions: [],
+        tips: ['Unique to GRI', 'Community development focus', 'NGO sector placements']
+      },
+      // Commerce & Management UG
+      {
+        id: 'gri-bba',
+        name: 'B.B.A. (Bachelor of Business Administration)',
+        nameTamil: 'பி.பி.ஏ. (வணிக நிர்வாகம்)',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Commerce & Management',
+        duration: '3 Years',
+        eligibility: 'HSC Pass (CUET-UG)',
+        previousQuestions: [],
+        tips: ['Rural business management', 'Cooperative sector focus']
+      },
+      {
+        id: 'gri-bcom-cooperation',
+        name: 'B.Com (Cooperation)',
+        nameTamil: 'பி.காம். (கூட்டுறவு)',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Commerce & Management',
+        duration: '3 Years',
+        eligibility: 'HSC Commerce (CUET-UG)',
+        seatMatrix: { general: 18, obc: 14, bcMbc: 10, sc: 6, st: 2, total: 50 },
         cutoffs: [
-          { year: '2024', general: 380, obc: 340, bcMbc: 300, sc: 250, st: 220 },
-          { year: '2023', general: 360, obc: 320, bcMbc: 280, sc: 230, st: 200 },
+          { year: '2024', general: 420, obc: 380, bcMbc: 340, sc: 280, st: 240 },
+          { year: '2023', general: 400, obc: 360, bcMbc: 320, sc: 260, st: 220 },
         ],
-        examPattern: {
-          totalQuestions: 50,
-          totalMarks: 200,
-          duration: '45 Minutes per section',
-          durationMinutes: 135,
-          mode: 'Computer Based (CBT)',
-          negativeMarking: true,
-          sections: [
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 200, topics: ['Mechanics', 'Heat', 'Thermodynamics'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 200, topics: ['Organic', 'Physical Chemistry', 'Biochemistry'] },
-            { name: 'Biology (Optional)', nameTamil: 'உயிரியல்', questions: 50, marks: 200, topics: ['Microbiology', 'Nutrition', 'Food Science'] }
-          ]
-        },
-        syllabus: [
-          {
-            unitNumber: 1,
-            title: 'Food Science Basics',
-            titleTamil: 'உணவு அறிவியல் அடிப்படைகள்',
-            topics: [
-              { name: 'Food Chemistry', subtopics: ['Carbohydrates', 'Proteins', 'Fats', 'Vitamins'], importance: 'High' },
-              { name: 'Food Microbiology', subtopics: ['Bacteria', 'Yeasts', 'Food Spoilage', 'Fermentation'], importance: 'High' },
-            ],
-            expectedQuestions: 15,
-            difficulty: 'Medium'
-          },
-          {
-            unitNumber: 2,
-            title: 'Food Processing Technology',
-            titleTamil: 'உணவு பதப்படுத்தும் தொழில்நுட்பம்',
-            topics: [
-              { name: 'Preservation Methods', subtopics: ['Canning', 'Freezing', 'Drying', 'Irradiation'], importance: 'High' },
-              { name: 'Dairy Technology', subtopics: ['Milk Processing', 'Cheese', 'Yogurt', 'Ice Cream'], importance: 'Medium' },
-            ],
-            expectedQuestions: 20,
-            difficulty: 'Medium'
-          },
-          {
-            unitNumber: 3,
-            title: 'Food Safety & Quality',
-            titleTamil: 'உணவு பாதுகாப்பு & தரம்',
-            topics: [
-              { name: 'FSSAI Standards', subtopics: ['Food Regulations', 'Labeling', 'HACCP'], importance: 'High' },
-              { name: 'Quality Control', subtopics: ['Testing Methods', 'Adulteration', 'ISO Standards'], importance: 'Medium' },
-            ],
-            expectedQuestions: 15,
-            difficulty: 'Easy'
-          }
-        ],
-        previousQuestions: [
-          {
-            id: 'gri-food-q1',
-            year: 'Sample',
-            question: 'FSSAI stands for:',
-            options: ['Food Standards and Safety Authority of India', 'Food Security and Safety Administration of India', 'Federal Standards for Safe Agriculture in India', 'Food and Safety Standards Authority of India'],
-            correctAnswer: 3,
-            explanation: 'FSSAI (Food Safety and Standards Authority of India) regulates food safety in India under the FSSA 2006.',
-            topic: 'Food Safety',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'gri-food-q2',
-            year: 'Sample',
-            question: 'Pasteurization of milk is done at:',
-            options: ['100°C for 10 minutes', '72°C for 15 seconds', '60°C for 30 minutes', '121°C for 15 minutes'],
-            correctAnswer: 1,
-            explanation: 'HTST (High Temperature Short Time) pasteurization heats milk to 72°C for 15 seconds to kill pathogens.',
-            topic: 'Dairy Technology',
-            difficulty: 'Medium'
-          },
-          {
-            id: 'gri-food-q3',
-            year: 'Sample',
-            question: 'Which vitamin is destroyed most easily by heat during cooking?',
-            options: ['Vitamin A', 'Vitamin C', 'Vitamin D', 'Vitamin K'],
-            correctAnswer: 1,
-            explanation: 'Vitamin C (ascorbic acid) is highly heat-sensitive and water-soluble, making it most susceptible to cooking losses.',
-            topic: 'Food Chemistry',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'gri-food-q4',
-            year: 'Sample',
-            question: 'HACCP stands for:',
-            options: ['Hazard Analysis Critical Control Points', 'Health and Cleanliness Control Program', 'Hygiene Assessment and Control Certification Process', 'None of these'],
-            correctAnswer: 0,
-            explanation: 'HACCP is a systematic preventive approach to food safety that identifies and controls biological, chemical, and physical hazards.',
-            topic: 'Quality Control',
-            difficulty: 'Easy'
-          }
-        ],
-        tips: [
-          'CUET-UG or Merit-based admission (Science stream preferred)',
-          'Vocational program with 70% practical training',
-          'Career paths: Food Safety Officer, Quality Controller, Food Technologist',
-          'India\'s food processing sector is growing rapidly - great job prospects',
-          'Internships in food companies are part of curriculum'
-        ]
+        previousQuestions: [],
+        tips: ['Unique cooperative societies focus', 'Career: Cooperative Bank Manager, NABARD Officer']
+      },
+      // B.Tech
+      {
+        id: 'gri-btech-civil',
+        name: 'B.Tech Civil Engineering',
+        nameTamil: 'பி.டெக். சிவில் பொறியியல்',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Engineering',
+        duration: '4 Years',
+        eligibility: 'HSC with PCM (CUET-UG / JEE)',
+        previousQuestions: [],
+        tips: ['Rural infrastructure focus', 'Lateral entry available for Diploma holders']
+      },
+      // ======================== PG PROGRAMMES (CUET-PG) ========================
+      // M.Sc. Life Sciences
+      {
+        id: 'gri-msc-botany',
+        name: 'M.Sc. Botany',
+        nameTamil: 'எம்.எஸ்சி. தாவரவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'M.Sc. Science',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Botany/Life Sciences (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Research focus', 'Career: Botanist, Ecologist, Teacher']
+      },
+      {
+        id: 'gri-msc-zoology',
+        name: 'M.Sc. Zoology',
+        nameTamil: 'எம்.எஸ்சி. விலங்கியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'M.Sc. Science',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Zoology/Life Sciences (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Wildlife conservation focus', 'Career: Zoologist, Wildlife Officer']
+      },
+      {
+        id: 'gri-msc-microbiology',
+        name: 'M.Sc. Microbiology',
+        nameTamil: 'எம்.எஸ்சி. நுண்ணுயிரியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'M.Sc. Science',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Microbiology/Life Sciences (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Lab-intensive', 'Career: Microbiologist, Pharma, Research']
+      },
+      // M.Sc. Physical Sciences
+      {
+        id: 'gri-msc-mathematics',
+        name: 'M.Sc. Mathematics',
+        nameTamil: 'எம்.எஸ்சி. கணிதம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'M.Sc. Science',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Mathematics (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Strong analytical training', 'Career: Teacher, Data Scientist, Actuary']
+      },
+      {
+        id: 'gri-msc-physics',
+        name: 'M.Sc. Physics',
+        nameTamil: 'எம்.எஸ்சி. இயற்பியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'M.Sc. Science',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Physics (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Research-oriented', 'Career: Physicist, Scientist, Teacher']
+      },
+      {
+        id: 'gri-msc-chemistry',
+        name: 'M.Sc. Chemistry',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'M.Sc. Science',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Chemistry (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Lab facilities excellent', 'Career: Chemist, Pharma industry']
+      },
+      // M.Sc. Applied Sciences
+      {
+        id: 'gri-msc-food-science-nutrition',
+        name: 'M.Sc. Food Science and Nutrition',
+        nameTamil: 'எம்.எஸ்சி. உணவு அறிவியல் மற்றும் ஊட்டச்சத்து',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'M.Sc. Applied Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Home Science/Nutrition/Chemistry (CUET-PG)',
+        previousQuestions: [],
+        tips: ['FSSAI career paths', 'Nutrition counselor roles']
+      },
+      {
+        id: 'gri-msc-geology-geomatics',
+        name: 'M.Sc. Applied Geology and Geomatics',
+        nameTamil: 'எம்.எஸ்சி. பயன்பாட்டு புவியியல் மற்றும் ஜியோமேட்டிக்ஸ்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'M.Sc. Applied Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Geology/Geography (CUET-PG)',
+        previousQuestions: [],
+        tips: ['GIS and remote sensing skills', 'Career: GSI, Mining, Groundwater']
+      },
+      {
+        id: 'gri-msc-geoinformatics',
+        name: 'M.Sc. Geoinformatics',
+        nameTamil: 'எம்.எஸ்சி. ஜியோஇன்ஃபர்மேட்டிக்ஸ்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'M.Sc. Applied Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. with Maths/Geography (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Modern GIS technology', 'Spatial data analysis skills']
+      },
+      {
+        id: 'gri-msc-home-science-extension',
+        name: 'M.Sc. Home Science Extension and Communication',
+        nameTamil: 'எம்.எஸ்சி. குடும்ப அறிவியல் விரிவாக்கம் மற்றும் தொடர்பு',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'M.Sc. Applied Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Home Science (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Extension education focus', 'Rural development programs']
+      },
+      // M.A. Arts
+      {
+        id: 'gri-ma-english',
+        name: 'M.A. English',
+        nameTamil: 'எம்.ஏ. ஆங்கிலம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'M.A. Arts',
+        duration: '2 Years',
+        eligibility: 'Any Degree (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Literature and language focus', 'Career: Teacher, Content Writer']
+      },
+      {
+        id: 'gri-ma-tamil',
+        name: 'M.A. Tamil',
+        nameTamil: 'எம்.ஏ. தமிழ்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'M.A. Arts',
+        duration: '2 Years',
+        eligibility: 'Any Degree with Tamil (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Tamil literature specialization', 'Career: Teacher, Translator']
+      },
+      {
+        id: 'gri-ma-hindi',
+        name: 'M.A. Hindi',
+        nameTamil: 'எம்.ஏ. இந்தி',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'M.A. Arts',
+        duration: '2 Years',
+        eligibility: 'Any Degree with Hindi (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Hindi language proficiency', 'Central Govt translation jobs']
+      },
+      {
+        id: 'gri-ma-economics',
+        name: 'M.A. Economics',
+        nameTamil: 'எம்.ஏ. பொருளாதாரம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'M.A. Arts',
+        duration: '2 Years',
+        eligibility: 'Any Degree (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Rural economics specialization', 'Career: Economist, Banking, IES']
+      },
+      // Flagship M.A. Programs
+      {
+        id: 'gri-ma-rural-development',
+        name: 'M.A. Rural Development Studies',
+        nameTamil: 'எம்.ஏ. கிராம வளர்ச்சி ஆய்வுகள்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Flagship Programmes',
+        duration: '2 Years',
+        eligibility: 'Any Degree (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Flagship course of GRI', 'Career: BDO, Rural Development Officer, NGO']
+      },
+      {
+        id: 'gri-ma-gandhian-studies',
+        name: 'M.A. Gandhian Studies and Peace Science',
+        nameTamil: 'எம்.ஏ. காந்திய ஆய்வுகள் மற்றும் சமாதான அறிவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Flagship Programmes',
+        duration: '2 Years',
+        eligibility: 'Any Degree (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Unique to GRI', 'Peace and conflict resolution', 'NGO and social sector']
+      },
+      // Integrated PG (5 Years)
+      {
+        id: 'gri-ma-dev-admin-integrated',
+        name: 'M.A. Development Administration (5-Year Integrated)',
+        nameTamil: 'எம்.ஏ. வளர்ச்சி நிர்வாகம் (5 ஆண்டு ஒருங்கிணைந்த)',
+        type: 'Integrated',
+        category: 'On-Campus',
+        school: 'Integrated PG Programmes',
+        duration: '5 Years',
+        eligibility: 'HSC Pass (CUET-UG)',
+        previousQuestions: [],
+        tips: ['Direct PG after 12th', 'Administrative services focus', 'Civil services prep support']
+      },
+      {
+        id: 'gri-ma-sociology-integrated',
+        name: 'M.A. Sociology (5-Year Integrated)',
+        nameTamil: 'எம்.ஏ. சமூகவியல் (5 ஆண்டு ஒருங்கிணைந்த)',
+        type: 'Integrated',
+        category: 'On-Campus',
+        school: 'Integrated PG Programmes',
+        duration: '5 Years',
+        eligibility: 'HSC Pass (CUET-UG)',
+        previousQuestions: [],
+        tips: ['Master\'s degree directly after school', 'Social research focus']
+      },
+      // Management & Tech PG
+      {
+        id: 'gri-mba-rural-project',
+        name: 'M.B.A. (Rural Project Management)',
+        nameTamil: 'எம்.பி.ஏ. (கிராம திட்ட மேலாண்மை)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Management',
+        duration: '2 Years',
+        eligibility: 'Any Degree (CUET-PG / TANCET)',
+        previousQuestions: [],
+        tips: ['Rural project implementation', 'NGO and govt sector placements']
+      },
+      {
+        id: 'gri-mba-small-business',
+        name: 'M.B.A. (Small Business Management)',
+        nameTamil: 'எம்.பி.ஏ. (சிறு வணிக மேலாண்மை)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Management',
+        duration: '2 Years',
+        eligibility: 'Any Degree (CUET-PG / TANCET)',
+        previousQuestions: [],
+        tips: ['Entrepreneurship focus', 'MSME sector opportunities']
+      },
+      {
+        id: 'gri-mba-cooperative',
+        name: 'M.B.A. (Cooperative Management)',
+        nameTamil: 'எம்.பி.ஏ. (கூட்டுறவு மேலாண்மை)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Management',
+        duration: '2 Years',
+        eligibility: 'Any Degree (CUET-PG / TANCET)',
+        previousQuestions: [],
+        tips: ['Cooperative sector expertise', 'NABARD, cooperative bank careers']
+      },
+      {
+        id: 'gri-mca',
+        name: 'M.C.A. (Master of Computer Applications)',
+        nameTamil: 'எம்.சி.ஏ. (கணினி பயன்பாடுகள் முதுநிலை)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Management',
+        duration: '2 Years',
+        eligibility: 'BCA/B.Sc. CS with Maths (CUET-PG / TANCET)',
+        previousQuestions: [],
+        tips: ['IT industry placements', 'Rural tech applications']
+      },
+      {
+        id: 'gri-mtech-renewable-energy',
+        name: 'M.Tech. Renewable Energy',
+        nameTamil: 'எம்.டெக். புதுப்பிக்கத்தக்க ஆற்றல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Engineering',
+        duration: '2 Years',
+        eligibility: 'B.Tech/B.E. relevant (GATE preferred)',
+        previousQuestions: [],
+        tips: ['Green energy sector', 'Solar and wind technology']
+      },
+      // Social Work
+      {
+        id: 'gri-msw',
+        name: 'M.S.W. (Master of Social Work)',
+        nameTamil: 'எம்.எஸ்.டபிள்யூ. (சமூக பணி முதுநிலை)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Social Work',
+        duration: '2 Years',
+        eligibility: 'Any Degree (CUET-PG)',
+        previousQuestions: [],
+        tips: ['Community development focus', 'NGO and govt welfare programs']
+      },
+      // ======================== DIPLOMAS & CERTIFICATES ========================
+      {
+        id: 'gri-diploma-textile-tech',
+        name: 'Diploma in Textile Technology',
+        nameTamil: 'ஜவுளி தொழில்நுட்பம் பட்டயம்',
+        type: 'Diploma',
+        category: 'On-Campus',
+        school: 'Diplomas',
+        duration: '3 Years',
+        eligibility: '10th Pass',
+        previousQuestions: [],
+        tips: ['Engineering diploma level', 'Textile industry jobs']
+      },
+      {
+        id: 'gri-diploma-yoga',
+        name: 'Diploma in Yoga',
+        nameTamil: 'யோகா பட்டயம்',
+        type: 'Diploma',
+        category: 'On-Campus',
+        school: 'Diplomas',
+        duration: '1 Year',
+        eligibility: 'HSC Pass',
+        previousQuestions: [],
+        tips: ['Yoga instructor certification', 'Wellness industry']
+      },
+      {
+        id: 'gri-diploma-two-wheeler',
+        name: 'Diploma in Two-Wheeler Mechanism & Maintenance',
+        nameTamil: 'இரு சக்கர வாகன இயக்கம் & பராமரிப்பு பட்டயம்',
+        type: 'Diploma',
+        category: 'On-Campus',
+        school: 'Diplomas',
+        duration: '1 Year',
+        eligibility: '10th Pass',
+        previousQuestions: [],
+        tips: ['Skill-based quick employment', 'Service center jobs']
+      },
+      // PG Diplomas
+      {
+        id: 'gri-pgdip-spatial-tech',
+        name: 'PG Diploma in Spatial Technologies (GIS)',
+        nameTamil: 'முதுநிலை பட்டயம் - வெளிவெளி தொழில்நுட்பங்கள்',
+        type: 'Diploma',
+        category: 'On-Campus',
+        school: 'PG Diplomas',
+        duration: '1 Year',
+        eligibility: 'Any Degree',
+        previousQuestions: [],
+        tips: ['GIS & Remote Sensing', 'Urban planning, environmental jobs']
+      },
+      {
+        id: 'gri-pgdip-gerontology',
+        name: 'PG Diploma in Applied Gerontology',
+        nameTamil: 'முதுநிலை பட்டயம் - பயன்பாட்டு முதுமையியல்',
+        type: 'Diploma',
+        category: 'On-Campus',
+        school: 'PG Diplomas',
+        duration: '1 Year',
+        eligibility: 'Any Degree',
+        previousQuestions: [],
+        tips: ['Elderly care specialization', 'Growing demand with aging population']
+      },
+      {
+        id: 'gri-pgdip-epigraphy',
+        name: 'PG Diploma in Epigraphy',
+        nameTamil: 'முதுநிலை பட்டயம் - கல்வெட்டியல்',
+        type: 'Diploma',
+        category: 'On-Campus',
+        school: 'PG Diplomas',
+        duration: '1 Year',
+        eligibility: 'Any Degree',
+        previousQuestions: [],
+        tips: ['Ancient inscriptions study', 'ASI and heritage jobs']
+      },
+      {
+        id: 'gri-pgdip-yoga-education',
+        name: 'PG Diploma in Yoga Education',
+        nameTamil: 'முதுநிலை பட்டயம் - யோகா கல்வி',
+        type: 'Diploma',
+        category: 'On-Campus',
+        school: 'PG Diplomas',
+        duration: '1 Year',
+        eligibility: 'Any Degree',
+        previousQuestions: [],
+        tips: ['Advanced yoga teaching', 'School yoga teacher posts']
+      },
+      {
+        id: 'gri-pgdip-sustainable-dev',
+        name: 'PG Diploma in Sustainable Social Development',
+        nameTamil: 'முதுநிலை பட்டயம் - நிலையான சமூக வளர்ச்சி',
+        type: 'Diploma',
+        category: 'On-Campus',
+        school: 'PG Diplomas',
+        duration: '1 Year',
+        eligibility: 'Any Degree',
+        previousQuestions: [],
+        tips: ['SDG implementation', 'NGO and development sector']
       }
     ]
   },
