@@ -10,18 +10,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 export const UniversityDetail = () => {
   const { universityId } = useParams<{ universityId: string }>();
   const navigate = useNavigate();
-  const [expandedCategory, setExpandedCategory] = useState<'on-campus' | 'dde' | 'affiliated' | null>(null);
+  const [expandedCategory, setExpandedCategory] = useState<'on-campus' | 'dde' | 'affiliated' | 'collaborative' | null>(null);
 
   const university = universities.find(u => u.id === universityId);
 
   // Group courses by category
   const coursesByCategory = useMemo(() => {
-    if (!university) return { onCampus: [], dde: [], affiliated: [] };
+    if (!university) return { onCampus: [], dde: [], affiliated: [], collaborative: [] };
     
     return {
       onCampus: university.courses.filter(c => c.category === 'On-Campus' || !c.category),
       dde: university.courses.filter(c => c.category === 'DDE'),
-      affiliated: university.courses.filter(c => c.category === 'Affiliated')
+      affiliated: university.courses.filter(c => c.category === 'Affiliated'),
+      collaborative: university.courses.filter(c => c.category === 'Collaborative')
     };
   }, [university]);
 
@@ -48,7 +49,7 @@ export const UniversityDetail = () => {
     }
   };
 
-  const toggleCategory = (category: 'on-campus' | 'dde' | 'affiliated') => {
+  const toggleCategory = (category: 'on-campus' | 'dde' | 'affiliated' | 'collaborative') => {
     setExpandedCategory(expandedCategory === category ? null : category);
   };
 
@@ -145,7 +146,7 @@ export const UniversityDetail = () => {
     textColor,
     description
   }: { 
-    category: 'on-campus' | 'dde' | 'affiliated';
+    category: 'on-campus' | 'dde' | 'affiliated' | 'collaborative';
     count: number;
     label: string;
     icon: typeof GraduationCap;
@@ -158,6 +159,7 @@ export const UniversityDetail = () => {
     const isExpanded = expandedCategory === category;
     const courses = category === 'on-campus' ? coursesByCategory.onCampus : 
                     category === 'dde' ? coursesByCategory.dde : 
+                    category === 'collaborative' ? coursesByCategory.collaborative :
                     coursesByCategory.affiliated;
 
     if (count === 0) return null;
@@ -393,6 +395,18 @@ export const UniversityDetail = () => {
               borderColor="border-green-400 dark:border-green-600"
               textColor="text-green-600"
               description="🏫 Affiliated College Courses offered at colleges affiliated to this university across Tamil Nadu."
+            />
+
+            <CategoryCard 
+              category="collaborative"
+              count={coursesByCategory.collaborative.length}
+              label="Collaborative Programmes"
+              icon={Building2}
+              gradientFrom="bg-gradient-to-br from-orange-50"
+              gradientTo="to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20"
+              borderColor="border-orange-400 dark:border-orange-600"
+              textColor="text-orange-600"
+              description="🤝 Collaborative Programs offered through partner institutes with a University degree."
             />
           </div>
         </div>
