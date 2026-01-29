@@ -1,3 +1,16 @@
+export interface CommunityCutoff {
+  community: string;
+  maleCutoff: number;
+  femaleCutoff: number;
+}
+
+export interface UniversityCutoffData {
+  year: string;
+  course: string;
+  data: CommunityCutoff[];
+  notes?: string;
+}
+
 export interface University {
   id: string;
   name: string;
@@ -12,6 +25,7 @@ export interface University {
   courses: Course[];
   importantDates: ImportantDate[];
   fee: FeeStructure;
+  cutoffMarks?: UniversityCutoffData;
 }
 
 export interface SeatMatrix {
@@ -13467,12 +13481,40 @@ export const universities: University[] = [
     logo: '/universities/tnau-logo.png',
     logoColor: '#15803d',
     fee: { general: 500, obc: 500, scst: 250 },
+    // Cut-off Marks (2024-25) for B.Sc. Agriculture - Community-wise
+    cutoffMarks: {
+      year: '2024-25',
+      course: 'B.Sc. (Hons) Agriculture',
+      data: [
+        { community: 'OC', maleCutoff: 196.75, femaleCutoff: 197.00 },
+        { community: 'BC', maleCutoff: 194.50, femaleCutoff: 195.25 },
+        { community: 'BCM', maleCutoff: 192.00, femaleCutoff: 193.50 },
+        { community: 'MBC/DNC', maleCutoff: 189.25, femaleCutoff: 190.75 },
+        { community: 'SC', maleCutoff: 175.50, femaleCutoff: 178.00 },
+        { community: 'SCA', maleCutoff: 170.25, femaleCutoff: 173.50 },
+        { community: 'ST', maleCutoff: 165.00, femaleCutoff: 168.00 }
+      ],
+      notes: 'Cut-off calculated as: Biology + Chemistry + Physics (Total 300). Tamil Medium candidates have separate lower cut-offs.'
+    },
     importantDates: [
-      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
-      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'April 2026', status: 'upcoming' },
-      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'May 2026', status: 'upcoming' },
-      { event: 'Exam Date', eventTamil: 'தேர்வு தேதி', date: 'June 2026', status: 'upcoming' },
-      { event: 'Results', eventTamil: 'முடிவுகள்', date: 'July 2026', status: 'upcoming' }
+      // UG Admissions Timeline (B.Sc./B.Tech)
+      { event: 'UG Notification', eventTamil: 'இளங்கலை அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'UG Application Start', eventTamil: 'இளங்கலை விண்ணப்பம் தொடக்கம்', date: 'April 2026', status: 'upcoming' },
+      { event: 'UG Application End', eventTamil: 'இளங்கலை விண்ணப்பம் முடிவு', date: 'May 2026', status: 'upcoming' },
+      { event: 'UG Rank List', eventTamil: 'இளங்கலை தரவரிசைப் பட்டியல்', date: 'June 2026', status: 'upcoming' },
+      { event: 'UG Counselling', eventTamil: 'இளங்கலை கலந்தாய்வு', date: 'June-July 2026', status: 'upcoming' },
+      // Diploma Admissions Timeline
+      { event: 'Diploma Notification', eventTamil: 'டிப்ளோமா அறிவிப்பு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Diploma Application Start', eventTamil: 'டிப்ளோமா விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
+      { event: 'Diploma Application End', eventTamil: 'டிப்ளோமா விண்ணப்பம் முடிவு', date: 'June 2026', status: 'upcoming' },
+      { event: 'Diploma Rank List', eventTamil: 'டிப்ளோமா தரவரிசைப் பட்டியல்', date: 'July 2026', status: 'upcoming' },
+      { event: 'Diploma Special Reservation Counselling', eventTamil: 'டிப்ளோமா சிறப்பு இட ஒதுக்கீடு கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
+      { event: 'Diploma General Counselling', eventTamil: 'டிப்ளோமா பொது கலந்தாய்வு', date: 'July-August 2026', status: 'upcoming' },
+      // PG Admissions Timeline
+      { event: 'PG Entrance Notification', eventTamil: 'முதுகலை நுழைவுத்தேர்வு அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'PG Entrance Exam', eventTamil: 'முதுகலை நுழைவுத்தேர்வு', date: 'June 2026', status: 'upcoming' },
+      { event: 'PG Results', eventTamil: 'முதுகலை முடிவுகள்', date: 'July 2026', status: 'upcoming' },
+      { event: 'PG Counselling', eventTamil: 'முதுகலை கலந்தாய்வு', date: 'August 2026', status: 'upcoming' }
     ],
     courses: [
       // UG Science Stream
