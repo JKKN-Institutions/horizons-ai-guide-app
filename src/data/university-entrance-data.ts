@@ -135,6 +135,7 @@ export const universities: University[] = [
     examName: 'TANCET',
     logoColor: '#1e3a8a',
     logo: '/universities/anna-university-logo.jpg',
+    type: 'State Government',
     fee: { general: 600, obc: 600, scst: 300 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'January 2026', status: 'upcoming' },
@@ -369,6 +370,7 @@ export const universities: University[] = [
     examName: 'PUPGET',
     logoColor: '#059669',
     logo: '/universities/periyar-university-logo.png',
+    type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
@@ -579,6 +581,7 @@ export const universities: University[] = [
     examName: 'BDU Entrance',
     logoColor: '#7c3aed',
     logo: '/universities/bharathidasan-university-logo.png',
+    type: 'State Government',
     fee: { general: 600, obc: 600, scst: 300 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
@@ -2923,6 +2926,7 @@ export const universities: University[] = [
     examName: 'TNMGRMU Entrance',
     logoColor: '#0891b2',
     logo: '/universities/mgr-medical-university-logo.jpeg',
+    type: 'State Government',
     fee: { general: 1000, obc: 1000, scst: 500 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'March 2026', status: 'upcoming' },
@@ -4597,6 +4601,7 @@ export const universities: University[] = [
     examName: 'MKU PG Entrance',
     logoColor: '#16a34a',
     logo: '/universities/madurai-kamaraj-university-logo.jpeg',
+    type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
@@ -7674,6 +7679,7 @@ export const universities: University[] = [
     examName: 'MTWU Entrance',
     logoColor: '#ec4899',
     logo: '/universities/mother-teresa-university-logo.jpeg',
+    type: 'State Government',
     fee: { general: 400, obc: 400, scst: 200 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
@@ -8662,6 +8668,7 @@ export const universities: University[] = [
     examName: 'AU Entrance',
     logoColor: '#ca8a04',
     logo: '/universities/alagappa-university-logo.png',
+    type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
@@ -10170,6 +10177,7 @@ export const universities: University[] = [
     examName: 'MSU PG Entrance',
     logoColor: '#be185d',
     logo: '/universities/msu-tirunelveli-logo.jpeg',
+    type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
@@ -12012,6 +12020,7 @@ export const universities: University[] = [
     examName: 'TVU PG Entrance',
     logoColor: '#0891b2',
     logo: '/universities/thiruvalluvar-university-logo.jpeg',
+    type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'May 2026', status: 'upcoming' },
@@ -13481,6 +13490,7 @@ export const universities: University[] = [
     examName: 'TNAU Entrance',
     logo: '/universities/tnau-logo.png',
     logoColor: '#15803d',
+    type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     // Cut-off Marks (2024-25) for B.Sc. Agriculture - Community-wise
     cutoffMarks: {
@@ -13825,6 +13835,7 @@ export const universities: University[] = [
     examName: 'Merit-Based (Cut-off)',
     logo: '/universities/tndalu-logo.png',
     logoColor: '#7c2d12',
+    type: 'State Government',
     fee: { general: 1000, obc: 1000, scst: 500 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'May 2026', status: 'upcoming' },
@@ -14962,6 +14973,7 @@ export const universities: University[] = [
     examName: 'TU Entrance / Merit / Aptitude Test',
     logoColor: '#7c2d12',
     logo: '/universities/tamil-university-logo.png',
+    type: 'State Government',
     fee: { general: 300, obc: 200, scst: 100 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
@@ -15730,6 +15742,7 @@ export const universities: University[] = [
     examName: 'CUET-UG / CUET-PG',
     logoColor: '#166534',
     logo: '/universities/gandhigram-rural-logo.jpeg',
+    type: 'Deemed University (Central Govt Funded)',
     fee: { general: 500, obc: 400, scst: 250 },
     importantDates: [
       { event: 'CUET Notification', eventTamil: 'CUET அறிவிப்பு', date: 'February 2026', status: 'upcoming' },
@@ -17765,6 +17778,7 @@ export const universities: University[] = [
     examName: 'BU PG Entrance / BUPGET',
     logoColor: '#047857',
     logo: '/universities/bharathiar-university-logo.png',
+    type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
       { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
