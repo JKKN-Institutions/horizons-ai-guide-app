@@ -613,5 +613,66 @@ export const centralUniversities: University[] = [
       { id: 'dbhps-pgd-translation', name: 'PG Diploma in Translation', nameTamil: 'மொழிபெயர்ப்பு முதுநிலை டிப்ளோமா', type: 'PG Diploma', category: 'On-Campus', school: 'Hindi Studies', duration: '1 Year', eligibility: 'Graduation with Hindi proficiency', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Written Test', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Hindi-English translation skills', 'Government and private sector translation jobs'] },
       { id: 'dbhps-pgd-journalism', name: 'PG Diploma in Journalism (Hindi)', nameTamil: 'பத்திரிகையியல் முதுநிலை டிப்ளோமா (இந்தி)', type: 'PG Diploma', category: 'On-Campus', school: 'Hindi Studies', duration: '1 Year', eligibility: 'Graduation with Hindi proficiency', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Written Test', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Hindi media and journalism', 'Hindi news channels and newspapers'] }
     ]
+  },
+
+  // ============================================
+  // 10. INDIAN MARITIME UNIVERSITY (IMU) CHENNAI
+  // ============================================
+  // India's premier central university for maritime education, training & research
+  // Headquarters at Chennai (Semmencherry, ECR)
+  {
+    id: 'imu-chennai',
+    name: 'Indian Maritime University',
+    nameTamil: 'இந்திய கடல்சார் பல்கலைக்கழகம்',
+    location: 'Chennai (Headquarters)',
+    website: 'https://www.imu.edu.in',
+    phone: '044-24530343',
+    email: 'admissions@imu.edu.in',
+    examName: 'IMU-CET (UG/PG) / GATE / CAT / MAT',
+    logoColor: '#003366',
+    logo: '/universities/imu-chennai-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IMU-CET 2026 Registration', eventTamil: 'IMU-CET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'IMU-CET 2026 Exam', eventTamil: 'IMU-CET 2026 தேர்வு', date: 'May/June 2026', status: 'upcoming' },
+      { event: 'Counselling & Admission', eventTamil: 'கலந்தாய்வு & சேர்க்கை', date: 'July 2026', status: 'upcoming' },
+      { event: 'Session Begins', eventTamil: 'வகுப்புகள் தொடக்கம்', date: 'August 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 100000 },
+    courses: [
+      // ========== UNDERGRADUATE - ENGINEERING (4 Years) ==========
+      // Admission via IMU-CET
+      { id: 'imu-btech-marine', name: 'B.Tech Marine Engineering', nameTamil: 'B.Tech கடல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Marine Engineering', duration: '4 Years', eligibility: 'IMU-CET qualified, 12th PCM (60% aggregate), Age < 25, Physical Fitness', examPattern: { totalQuestions: 200, totalMarks: 200, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: false, sections: [{ name: 'English', nameTamil: 'ஆங்கிலம்', questions: 25, marks: 25, topics: ['Grammar', 'Comprehension', 'Vocabulary'] }, { name: 'General Aptitude', nameTamil: 'பொது திறன்', questions: 50, marks: 50, topics: ['Reasoning', 'Numerical Ability', 'General Knowledge'] }, { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 50, topics: ['Algebra', 'Trigonometry', 'Calculus', 'Coordinate Geometry'] }, { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 50, topics: ['Mechanics', 'Thermodynamics', 'Electromagnetism', 'Optics'] }, { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 25, marks: 25, topics: ['Physical', 'Organic', 'Inorganic Chemistry'] }] }, syllabus: [], previousQuestions: [], tips: ['Career as Marine Engineer (Fourth Engineer) on merchant ships', 'Campuses: Chennai, Kolkata, Mumbai Port', 'Strict 6/6 eyesight required', 'Excellent placement in Maersk, Anglo-Eastern, Fleet Management'] },
+      { id: 'imu-btech-naval', name: 'B.Tech Naval Architecture & Ocean Engineering', nameTamil: 'B.Tech கப்பல் கட்டடக்கலை & கடல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Naval Architecture', duration: '4 Years', eligibility: 'IMU-CET qualified, 12th PCM (60% aggregate), Age < 25', examPattern: { totalQuestions: 200, totalMarks: 200, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Design and construct ships, offshore structures, oil rigs', 'Campus: Visakhapatnam', 'Career in shipyards, offshore companies, Navy'] },
+
+      // ========== UNDERGRADUATE - SCIENCE (3 Years) ==========
+      { id: 'imu-bsc-nautical', name: 'B.Sc. Nautical Science', nameTamil: 'B.Sc. கப்பல் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Nautical Science', duration: '3 Years', eligibility: 'IMU-CET qualified, 12th PCM (60% aggregate), Age < 25, 6/6 Eyesight mandatory', examPattern: { totalQuestions: 200, totalMarks: 200, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Career as Navigating Officer → Captain on merchant ships', 'Campuses: Chennai, Kochi, Navi Mumbai', 'Strict medical fitness (especially eyesight) required', 'Top shipping company placements: Maersk, SCI'] },
+      { id: 'imu-bsc-maritime', name: 'B.Sc. Maritime Science', nameTamil: 'B.Sc. கடல்சார் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Nautical Science', duration: '3 Years', eligibility: 'IMU-CET qualified, 12th PCM (60% aggregate), Age < 25', examPattern: { totalQuestions: 200, totalMarks: 200, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Campus: Mumbai Port', 'Alternative pathway to maritime careers'] },
+      { id: 'imu-bsc-shipbuilding', name: 'B.Sc. Ship Building & Repair', nameTamil: 'B.Sc. கப்பல் கட்டுதல் & பழுதுபார்த்தல்', type: 'UG', category: 'Affiliated', school: 'Naval Architecture', duration: '3 Years', eligibility: 'IMU-CET qualified, 12th PCM', examPattern: { totalQuestions: 200, totalMarks: 200, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Offered at Affiliated Institutes only', 'Career in shipyard operations and maintenance'] },
+
+      // ========== UNDERGRADUATE - MANAGEMENT (3 Years) ==========
+      { id: 'imu-bba-logistics', name: 'B.B.A. (Logistics, Retailing and E-Commerce)', nameTamil: 'B.B.A. (தளவாடம், சில்லறை & மின்வணிகம்)', type: 'UG', category: 'On-Campus', school: 'Management', duration: '3 Years', eligibility: '12th Pass (Any stream) - Based on 12th marks / CUET-UG', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Merit-based', durationMinutes: 0, mode: 'Merit/CUET', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['No IMU-CET required (check notification)', 'Campuses: Chennai, Kochi', 'Career in supply chain, logistics, e-commerce'] },
+
+      // ========== DIPLOMA (1 Year) ==========
+      { id: 'imu-dns', name: 'Diploma in Nautical Science (DNS)', nameTamil: 'கப்பல் அறிவியல் டிப்ளோமா (DNS)', type: 'Diploma', category: 'On-Campus', school: 'Nautical Science', duration: '1 Year + 18 months sea training', eligibility: 'IMU-CET qualified, 12th PCM (60%), Shipping Company Sponsorship required', examPattern: { totalQuestions: 200, totalMarks: 200, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['IMPORTANT: Must have Sponsorship before joining', 'Leads to B.Sc. (Applied Nautical Science) degree', 'Campuses: Chennai, Navi Mumbai', 'Fast-track route to Captain career'] },
+
+      // ========== POSTGRADUATE - M.Tech (2 Years) ==========
+      // Admission via IMU-CET (PG) / GATE
+      { id: 'imu-mtech-naval', name: 'M.Tech Naval Architecture & Ocean Engineering', nameTamil: 'M.Tech கப்பல் கட்டடக்கலை & கடல் பொறியியல்', type: 'PG', category: 'On-Campus', school: 'Naval Architecture', duration: '2 Years', eligibility: 'B.Tech/BE (Naval Arch/Mechanical/Civil) + GATE/IMU-CET(PG)', examPattern: { totalQuestions: 65, totalMarks: 100, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Campus: Visakhapatnam', 'Advanced ship design research'] },
+      { id: 'imu-mtech-dredging', name: 'M.Tech Dredging & Harbour Engineering', nameTamil: 'M.Tech தூர்வாரல் & துறைமுக பொறியியல்', type: 'PG', category: 'On-Campus', school: 'Naval Architecture', duration: '2 Years', eligibility: 'B.Tech/BE (Civil/Mechanical/Naval Arch) + GATE/IMU-CET(PG)', examPattern: { totalQuestions: 65, totalMarks: 100, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Campus: Visakhapatnam', 'Port development and coastal engineering'] },
+      { id: 'imu-mtech-marine-mgmt', name: 'M.Tech Marine Engineering & Management', nameTamil: 'M.Tech கடல் பொறியியல் & மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Marine Engineering', duration: '2 Years', eligibility: 'B.Tech/BE (Marine/Mechanical) + GATE/IMU-CET(PG)', examPattern: { totalQuestions: 65, totalMarks: 100, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Campus: Kolkata', 'Marine systems and fleet management'] },
+
+      // ========== POSTGRADUATE - MBA (2 Years) ==========
+      // Specialized maritime management degrees
+      { id: 'imu-mba-itlm', name: 'MBA International Transportation & Logistics Management', nameTamil: 'MBA சர்வதேச போக்குவரத்து & தளவாட மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT/MAT/IMU-CET(PG) score', examPattern: { totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Campuses: Chennai, Kolkata, Kochi, Visakhapatnam', 'Premier MBA for logistics sector', 'Placements in DHL, Maersk, shipping companies'] },
+      { id: 'imu-mba-psm', name: 'MBA Port & Shipping Management', nameTamil: 'MBA துறைமுக & கப்பல் மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT/MAT/IMU-CET(PG) score', examPattern: { totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Campuses: Chennai, Kochi', 'Port operations and maritime logistics', 'Career in major ports, shipping lines'] },
+
+      // ========== POSTGRADUATE - M.Sc. (2 Years) ==========
+      { id: 'imu-msc-csl', name: 'M.Sc. Commercial Shipping & Logistics', nameTamil: 'M.Sc. வணிகக் கப்பல் & தளவாடவியல்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + IMU-CET(PG) score', examPattern: { totalQuestions: 100, totalMarks: 100, duration: '2 Hours', durationMinutes: 120, mode: 'Online (CBT)', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Campus: Mumbai Port', 'Commercial aspects of shipping industry'] },
+
+      // ========== RESEARCH ==========
+      { id: 'imu-ms-research', name: 'M.S. (by Research)', nameTamil: 'M.S. (ஆய்வு)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '2-3 Years', eligibility: 'B.Tech/M.Tech (Marine/Naval/Related) + Valid Score', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Written Test + Interview', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Research in Marine Engineering, Nautical Science, Naval Architecture, Maritime Management', 'Thesis-based evaluation'] },
+      { id: 'imu-phd', name: 'Ph.D. (Maritime Studies)', nameTamil: 'Ph.D. (கடல்சார் ஆய்வுகள்)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-6 Years', eligibility: 'M.Tech/M.Sc./MBA (Maritime/Related) + Valid Score', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Written Test + Interview', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Doctoral research in maritime disciplines', 'Fellowship provided', 'Areas: Marine Engineering, Nautical Science, Naval Architecture, Maritime Management'] }
+    ]
   }
 ];
