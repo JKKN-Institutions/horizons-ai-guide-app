@@ -19403,16 +19403,24 @@ export const universities: University[] = [
     id: 'tnou',
     name: 'Tamil Nadu Open University',
     nameTamil: 'தமிழ்நாடு திறந்தநிலை பல்கலைக்கழகம்',
-    location: 'Chennai',
+    location: 'Chennai (Saidapet)',
     website: 'tnou.ac.in',
     phone: '044-2530 2766',
-    examName: 'Direct Admission',
-    logoColor: '#1e3a8a',
-    logo: '',
+    examName: 'Direct Admission (ODL)',
+    logoColor: '#1e6b3a',
+    logo: '/universities/tnou-logo.png',
+    type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
-      { event: 'January Session 2026 Admission Open', eventTamil: 'ஜனவரி அமர்வு 2026 சேர்க்கை திறப்பு', date: 'January 2026', status: 'ongoing' },
-      { event: 'Last Date for Application', eventTamil: 'விண்ணப்ப கடைசி நாள்', date: 'March 31, 2026', status: 'upcoming' }
+      // Calendar Year (CY) Session: January to December
+      { event: 'CY 2026 Session - Admission Open', eventTamil: 'நாட்காட்டி ஆண்டு 2026 - சேர்க்கை திறப்பு', date: 'January 2026', status: 'upcoming' },
+      { event: 'CY 2026 Session - Last Date', eventTamil: 'நாட்காட்டி ஆண்டு 2026 - கடைசி நாள்', date: 'March 31, 2026', status: 'upcoming' },
+      // Academic Year (AY) Session: July to June
+      { event: 'AY 2026-27 Session - Admission Open', eventTamil: 'கல்வியாண்டு 2026-27 - சேர்க்கை திறப்பு', date: 'July 2026', status: 'upcoming' },
+      { event: 'AY 2026-27 Session - Last Date', eventTamil: 'கல்வியாண்டு 2026-27 - கடைசி நாள்', date: 'September 30, 2026', status: 'upcoming' },
+      // B.Ed. Special Education
+      { event: 'B.Ed. Spl. Ed. Entrance - Notification', eventTamil: 'சிறப்புக் கல்வி இளங்கலை நுழைவுத்தேர்வு - அறிவிப்பு', date: 'May 2026', status: 'upcoming' },
+      { event: 'B.Ed. Spl. Ed. Entrance - Exam', eventTamil: 'சிறப்புக் கல்வி இளங்கலை நுழைவுத்தேர்வு', date: 'July 2026', status: 'upcoming' }
     ],
     courses: [
       // ========== UG PROGRAMMES (3 YEARS) - DISTANCE ==========
@@ -19745,6 +19753,32 @@ export const universities: University[] = [
         tips: ['Retail industry focused BBA']
       },
       {
+        id: 'tnou-bba-ca',
+        name: 'B.B.A. Computer Applications',
+        nameTamil: 'இளங்கலை வணிக மேலாண்மை கணினி பயன்பாடுகள்',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Management',
+        duration: '3 Years',
+        eligibility: '+2 or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['BBA with computer applications focus']
+      },
+      {
+        id: 'tnou-bcom-bm',
+        name: 'B.Com Bank Management',
+        nameTamil: 'இளங்கலை வணிகவியல் வங்கி மேலாண்மை',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Commerce',
+        duration: '3 Years',
+        eligibility: '+2 or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Banking sector focused commerce degree']
+      },
+      {
         id: 'tnou-bca',
         name: 'B.C.A.',
         nameTamil: 'இளங்கலை கணினி பயன்பாடுகள்',
@@ -19942,6 +19976,19 @@ export const universities: University[] = [
         examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
         syllabus: [], previousQuestions: [],
         tips: ['Advanced Islamic studies']
+      },
+      {
+        id: 'tnou-ma-humanrights',
+        name: 'M.A. Human Rights',
+        nameTamil: 'முதுகலை மனித உரிமைகள்',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Arts - PG',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams at study centers', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Human rights studies for legal and NGO careers']
       },
       {
         id: 'tnou-ma-anthropology',
@@ -20607,6 +20654,46 @@ export const universities: University[] = [
         examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams', negativeMarking: false, sections: [] },
         syllabus: [], previousQuestions: [],
         tips: ['Entrepreneurship development certificate']
+      },
+      {
+        id: 'tnou-cert-adolescence',
+        name: 'Certificate in Adolescence Education',
+        nameTamil: 'இளமைப் பருவக் கல்வி சான்றிதழ்',
+        type: 'Certificate',
+        category: 'DDE',
+        school: 'Certificate',
+        duration: '6 Months',
+        eligibility: '+2 or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Semester exams', durationMinutes: 0, mode: 'Written exams', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Adolescence education for teachers and counselors']
+      },
+      // Additional Vocational Diplomas
+      {
+        id: 'tnou-dip-fourwheeler',
+        name: 'Diploma in Four Wheeler Mechanism',
+        nameTamil: 'நான்கு சக்கர வாகன இயந்திரவியல் சான்றிதழ்',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Vocational - Technical',
+        duration: '1 Year',
+        eligibility: '10th Pass or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Practical + Theory', durationMinutes: 0, mode: 'Study center exams', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Automobile mechanic certification']
+      },
+      {
+        id: 'tnou-dip-catering',
+        name: 'Diploma in Catering Assistant',
+        nameTamil: 'உணவு வழங்கல் உதவியாளர் சான்றிதழ்',
+        type: 'Diploma',
+        category: 'DDE',
+        school: 'Vocational - Service',
+        duration: '1 Year',
+        eligibility: '10th Pass or equivalent',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Practical + Theory', durationMinutes: 0, mode: 'Study center exams', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Catering and hospitality certification']
       }
     ]
   }
