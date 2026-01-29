@@ -1,15 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  Search, Calendar, BarChart3, Bell, Bookmark, Lightbulb, 
-  CalendarCheck, FileText, TrendingUp, Flame, Sparkles, 
-  Gift, MessageSquare, Target, Trophy, GraduationCap, Users, ArrowLeft
-} from 'lucide-react';
+import { Search, GraduationCap, Users, ArrowLeft } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { universities } from '@/data/university-entrance-data';
 import { UniversityCard } from '@/components/UniversityEntrance/UniversityCard';
-import { QuickToolCard } from '@/components/UniversityEntrance/QuickToolCard';
+
 import GlobalLanguageSelector from '@/components/GlobalLanguageSelector';
 
 const TNUniversityBrowse = () => {
@@ -42,119 +38,6 @@ const TNUniversityBrowse = () => {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-        {/* Quick Tools - Row 1 */}
-        <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
-          <QuickToolCard
-            icon={Calendar}
-            title="Exam Calendar"
-            titleTamil="தேர்வு நாட்காட்டி"
-            onClick={() => navigate('/tn-university-entrance/exam-calendar')}
-            color="#6a0dad"
-          />
-          <QuickToolCard
-            icon={BarChart3}
-            title="Compare"
-            titleTamil="ஒப்பீடு"
-            onClick={() => navigate('/tn-university-entrance/compare')}
-            color="#059669"
-          />
-          <QuickToolCard
-            icon={Bell}
-            title="Reminders"
-            titleTamil="நினைவூட்டல்"
-            onClick={() => navigate('/tn-university-entrance/my-reminders')}
-            color="#f59e0b"
-          />
-        </div>
-
-        {/* Quick Tools - Row 2 */}
-        <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
-          <QuickToolCard
-            icon={Bookmark}
-            title="Saved Questions"
-            titleTamil="சேமித்த கேள்விகள்"
-            onClick={() => navigate('/tn-university-entrance/saved-questions')}
-            color="#dc2626"
-          />
-          <QuickToolCard
-            icon={Lightbulb}
-            title="Prep Tips"
-            titleTamil="தயாரிப்பு குறிப்புகள்"
-            onClick={() => navigate('/tn-university-entrance/preparation-tips')}
-            color="#0891b2"
-          />
-          <QuickToolCard
-            icon={CalendarCheck}
-            title="Study Planner"
-            titleTamil="படிப்பு திட்டம்"
-            onClick={() => navigate('/tn-university-entrance/study-planner')}
-            color="#7c3aed"
-          />
-        </div>
-
-        {/* Quick Tools - Row 3 */}
-        <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
-          <QuickToolCard
-            icon={FileText}
-            title="Mock Test"
-            titleTamil="போலித் தேர்வு"
-            onClick={() => navigate('/tn-university-entrance/mock-test')}
-            color="#16a34a"
-          />
-          <QuickToolCard
-            icon={TrendingUp}
-            title="Analytics"
-            titleTamil="பகுப்பாய்வு"
-            onClick={() => navigate('/tn-university-entrance/analytics')}
-            color="#2563eb"
-          />
-          <QuickToolCard
-            icon={Flame}
-            title="Streaks"
-            titleTamil="தொடர்ச்சி"
-            onClick={() => navigate('/tn-university-entrance/streaks')}
-            color="#ea580c"
-          />
-          <QuickToolCard
-            icon={Sparkles}
-            title="AI Questions"
-            titleTamil="AI கேள்விகள்"
-            onClick={() => navigate('/tn-university-entrance/ai-questions')}
-            color="#8b5cf6"
-          />
-        </div>
-
-        {/* Quick Tools - Row 4 */}
-        <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
-          <QuickToolCard
-            icon={Gift}
-            title="Daily Challenge"
-            titleTamil="தினசரி சவால்"
-            onClick={() => navigate('/tn-university-entrance/daily-challenge')}
-            color="#ec4899"
-          />
-          <QuickToolCard
-            icon={MessageSquare}
-            title="Forum"
-            titleTamil="கலந்துரையாடல்"
-            onClick={() => navigate('/tn-university-entrance/forum')}
-            color="#14b8a6"
-          />
-          <QuickToolCard
-            icon={Target}
-            title="Weak Topics"
-            titleTamil="பலவீன தலைப்புகள்"
-            onClick={() => navigate('/tn-university-entrance/weak-topics')}
-            color="#f97316"
-          />
-          <QuickToolCard
-            icon={Trophy}
-            title="Leaderboard"
-            titleTamil="தரவரிசை"
-            onClick={() => navigate('/tn-university-entrance/leaderboard')}
-            color="#eab308"
-          />
-        </div>
 
         {/* Search Bar */}
         <div className="relative">
