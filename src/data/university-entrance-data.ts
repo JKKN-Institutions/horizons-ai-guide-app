@@ -23694,6 +23694,367 @@ export const universities: University[] = [
         tips: ['Pool and beach safety', 'Water rescue certification']
       }
     ]
+  },
+
+  // ============================================================================================
+  // TAMIL NADU DR. J. JAYALALITHAA FISHERIES UNIVERSITY (TNJFU)
+  // India's Premier Fisheries University - Nagapattinam
+  // ============================================================================================
+  {
+    id: 'tnjfu',
+    name: 'Tamil Nadu Dr. J. Jayalalithaa Fisheries University',
+    nameTamil: 'தமிழ்நாடு டாக்டர் ஜெ. ஜெயலலிதா மீன்வளப் பல்கலைக்கழகம்',
+    location: 'Nagapattinam',
+    website: 'https://tnjfu.ac.in',
+    phone: '+91-4365-258222',
+    email: 'registrar@tnjfu.ac.in',
+    examName: 'TNJFU Entrance / Merit Based',
+    logoColor: 'from-teal-600 to-blue-700',
+    logo: '/universities/tnjfu-logo.png',
+    type: 'State Government',
+    fee: { general: 500, obc: 500, scst: 250 },
+    importantDates: [
+      { event: 'UG Application Opens', date: 'May 2026', status: 'upcoming', eventTamil: 'இளங்கலை விண்ணப்பம் தொடக்கம்' },
+      { event: 'UG Counselling (Cut-off Based)', date: 'June 2026', status: 'upcoming', eventTamil: 'இளங்கலை கலந்தாய்வு' },
+      { event: 'PG Entrance Exam', date: 'July 2026', status: 'upcoming', eventTamil: 'முதுகலை நுழைவுத் தேர்வு' },
+      { event: 'PG Counselling', date: 'August 2026', status: 'upcoming', eventTamil: 'முதுகலை கலந்தாய்வு' }
+    ],
+    courses: [
+      // ========== UNDERGRADUATE (ON-CAMPUS) ==========
+      {
+        id: 'tnjfu-bfsc',
+        name: 'B.F.Sc. (Bachelor of Fisheries Science)',
+        nameTamil: 'B.F.Sc. (மீன்வளவியல் இளங்கலை)',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Fisheries Science',
+        duration: '4 Years',
+        eligibility: '12th Pass (Biology, Physics, Chemistry)',
+        examPattern: { totalQuestions: 0, totalMarks: 200, duration: '12th Cut-off Based', durationMinutes: 0, mode: 'Single Window Counselling', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Flagship degree for fisheries career', 'Eligible for Fisheries Inspector posts via TNPSC']
+      },
+      {
+        id: 'tnjfu-btech-fisheries-engg',
+        name: 'B.Tech. (Fisheries Engineering)',
+        nameTamil: 'B.Tech. (மீன்வளப் பொறியியல்)',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Engineering',
+        duration: '4 Years',
+        eligibility: '12th Pass (Maths, Physics, Chemistry)',
+        examPattern: { totalQuestions: 0, totalMarks: 200, duration: '12th Cut-off Based', durationMinutes: 0, mode: 'Single Window Counselling', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Unique course in India', 'Design fishing vessels and hatcheries']
+      },
+      {
+        id: 'tnjfu-btech-biotech',
+        name: 'B.Tech. (Biotechnology)',
+        nameTamil: 'B.Tech. (உயிர்தொழில்நுட்பவியல்)',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Engineering',
+        duration: '4 Years',
+        eligibility: '12th Pass (Biology, Physics, Chemistry)',
+        examPattern: { totalQuestions: 0, totalMarks: 200, duration: '12th Cut-off Based', durationMinutes: 0, mode: 'Single Window Counselling', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Marine biotechnology focus', 'Research in aquatic organisms']
+      },
+      {
+        id: 'tnjfu-btech-food-tech',
+        name: 'B.Tech. (Food Technology)',
+        nameTamil: 'B.Tech. (உணவுத் தொழில்நுட்பவியல்)',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Engineering',
+        duration: '4 Years',
+        eligibility: '12th Pass (Biology/Maths, Physics, Chemistry)',
+        examPattern: { totalQuestions: 0, totalMarks: 200, duration: '12th Cut-off Based', durationMinutes: 0, mode: 'Single Window Counselling', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Seafood processing and safety', 'Export industry career']
+      },
+      {
+        id: 'tnjfu-btech-energy-env',
+        name: 'B.Tech. (Energy and Environmental Engineering)',
+        nameTamil: 'B.Tech. (ஆற்றல் மற்றும் சுற்றுச்சூழல் பொறியியல்)',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Engineering',
+        duration: '4 Years',
+        eligibility: '12th Pass (Maths, Physics, Chemistry)',
+        examPattern: { totalQuestions: 0, totalMarks: 200, duration: '12th Cut-off Based', durationMinutes: 0, mode: 'Single Window Counselling', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Sustainable fisheries focus', 'Environmental management career']
+      },
+      {
+        id: 'tnjfu-btech-nautical',
+        name: 'B.Tech. (Fisheries Nautical Technology)',
+        nameTamil: 'B.Tech. (மீன்வள கடல் பயண தொழில்நுட்பவியல்)',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Engineering',
+        duration: '4 Years',
+        eligibility: '12th Pass (Maths, Physics, Chemistry)',
+        examPattern: { totalQuestions: 0, totalMarks: 200, duration: '12th Cut-off Based', durationMinutes: 0, mode: 'Single Window Counselling', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Deep-sea fishing vessel navigation', 'Skipper/Captain certification pathway']
+      },
+      {
+        id: 'tnjfu-bba-fisheries',
+        name: 'B.B.A. (Fisheries Enterprises Management)',
+        nameTamil: 'B.B.A. (மீன்வள நிறுவன மேலாண்மை)',
+        type: 'UG',
+        category: 'On-Campus',
+        school: 'Management',
+        duration: '3 Years',
+        eligibility: '12th Pass',
+        examPattern: { totalQuestions: 0, totalMarks: 200, duration: '12th Cut-off Based', durationMinutes: 0, mode: 'Merit Based', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Seafood export business focus', 'Fisheries entrepreneurship']
+      },
+
+      // ========== VOCATIONAL PROGRAMMES (B.VOC.) ==========
+      {
+        id: 'tnjfu-bvoc-fish-processing',
+        name: 'B.Voc. Industrial Fish Processing Technology',
+        nameTamil: 'B.Voc. தொழில்துறை மீன் பதப்படுத்துதல் தொழில்நுட்பம்',
+        type: 'Vocational',
+        category: 'On-Campus',
+        school: 'Vocational Studies',
+        duration: '3 Years',
+        eligibility: '12th Pass',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Skill-based Training', durationMinutes: 0, mode: 'Merit Based', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['UGC approved practical skill degree', 'Seafood industry jobs']
+      },
+      {
+        id: 'tnjfu-bvoc-aquaculture',
+        name: 'B.Voc. Industrial Aquaculture',
+        nameTamil: 'B.Voc. தொழில்துறை நீர்வளர்ப்பு',
+        type: 'Vocational',
+        category: 'On-Campus',
+        school: 'Vocational Studies',
+        duration: '3 Years',
+        eligibility: '12th Pass',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Skill-based Training', durationMinutes: 0, mode: 'Merit Based', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Fish farming and hatchery management', 'Self-employment opportunity']
+      },
+      {
+        id: 'tnjfu-bvoc-aquatic-health',
+        name: 'B.Voc. Aquatic Animal Health Management',
+        nameTamil: 'B.Voc. நீர்வாழ் விலங்கு சுகாதார மேலாண்மை',
+        type: 'Vocational',
+        category: 'On-Campus',
+        school: 'Vocational Studies',
+        duration: '3 Years',
+        eligibility: '12th Pass (Biology)',
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Skill-based Training', durationMinutes: 0, mode: 'Merit Based', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Fish disease management', 'Aquaculture health consultant']
+      },
+
+      // ========== POSTGRADUATE (M.F.SC.) ==========
+      {
+        id: 'tnjfu-mfsc-aquaculture',
+        name: 'M.F.Sc. Aquaculture',
+        nameTamil: 'M.F.Sc. நீர்வளர்ப்பு',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Fisheries Science',
+        duration: '2 Years',
+        eligibility: 'B.F.Sc. or equivalent',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: 'TNJFU Entrance Exam', durationMinutes: 120, mode: 'Written', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Advanced fish farming research', 'Senior Fisheries Officer pathway']
+      },
+      {
+        id: 'tnjfu-mfsc-fish-processing',
+        name: 'M.F.Sc. Fish Processing Technology',
+        nameTamil: 'M.F.Sc. மீன் பதப்படுத்துதல் தொழில்நுட்பம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Fisheries Science',
+        duration: '2 Years',
+        eligibility: 'B.F.Sc. or B.Tech Food Tech',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: 'TNJFU Entrance Exam', durationMinutes: 120, mode: 'Written', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Seafood export quality control', 'Food safety specialist']
+      },
+      {
+        id: 'tnjfu-mfsc-resource-mgmt',
+        name: 'M.F.Sc. Fisheries Resource Management',
+        nameTamil: 'M.F.Sc. மீன்வள வளமேலாண்மை',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Fisheries Science',
+        duration: '2 Years',
+        eligibility: 'B.F.Sc. or equivalent',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: 'TNJFU Entrance Exam', durationMinutes: 120, mode: 'Written', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Marine conservation focus', 'Policy and management careers']
+      },
+      {
+        id: 'tnjfu-mfsc-aquatic-env',
+        name: 'M.F.Sc. Aquatic Environment Management',
+        nameTamil: 'M.F.Sc. நீர்வாழ் சூழல் மேலாண்மை',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Fisheries Science',
+        duration: '2 Years',
+        eligibility: 'B.F.Sc. or equivalent',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: 'TNJFU Entrance Exam', durationMinutes: 120, mode: 'Written', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Coastal ecosystem management', 'Environmental impact assessment']
+      },
+      {
+        id: 'tnjfu-mfsc-fish-health',
+        name: 'M.F.Sc. Fish Health Management',
+        nameTamil: 'M.F.Sc. மீன் சுகாதார மேலாண்மை',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Fisheries Science',
+        duration: '2 Years',
+        eligibility: 'B.F.Sc. or equivalent',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: 'TNJFU Entrance Exam', durationMinutes: 120, mode: 'Written', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Fish disease research', 'Aquatic veterinary consultant']
+      },
+      {
+        id: 'tnjfu-mfsc-extension',
+        name: 'M.F.Sc. Fisheries Extension, Economics and Statistics',
+        nameTamil: 'M.F.Sc. மீன்வள விரிவாக்கம், பொருளியல் மற்றும் புள்ளியியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Fisheries Science',
+        duration: '2 Years',
+        eligibility: 'B.F.Sc. or equivalent',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: 'TNJFU Entrance Exam', durationMinutes: 120, mode: 'Written', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Fisheries policy and economics', 'Extension officer career']
+      },
+
+      // ========== POSTGRADUATE (M.TECH.) ==========
+      {
+        id: 'tnjfu-mtech-fisheries-engg',
+        name: 'M.Tech. (Fisheries Engineering)',
+        nameTamil: 'M.Tech. (மீன்வளப் பொறியியல்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Engineering',
+        duration: '2 Years',
+        eligibility: 'B.Tech Fisheries Engg or equivalent',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: 'TNJFU Entrance Exam', durationMinutes: 120, mode: 'Written', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Advanced vessel and hatchery design', 'Marine engineering research']
+      },
+      {
+        id: 'tnjfu-mtech-fish-processing-engg',
+        name: 'M.Tech. (Fish Processing Engineering)',
+        nameTamil: 'M.Tech. (மீன் பதப்படுத்துதல் பொறியியல்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Engineering',
+        duration: '2 Years',
+        eligibility: 'B.Tech Food Tech or equivalent',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: 'TNJFU Entrance Exam', durationMinutes: 120, mode: 'Written', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Seafood processing machinery', 'Industry automation']
+      },
+      {
+        id: 'tnjfu-mtech-aquaculture-engg',
+        name: 'M.Tech. (Aquaculture Engineering)',
+        nameTamil: 'M.Tech. (நீர்வளர்ப்புப் பொறியியல்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Engineering',
+        duration: '2 Years',
+        eligibility: 'B.Tech or B.F.Sc.',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: 'TNJFU Entrance Exam', durationMinutes: 120, mode: 'Written', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Hatchery and pond engineering', 'RAS system design']
+      },
+      {
+        id: 'tnjfu-mtech-food-safety',
+        name: 'M.Tech. (Food Safety and Quality Assurance)',
+        nameTamil: 'M.Tech. (உணவு பாதுகாப்பு மற்றும் தர உறுதி)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Engineering',
+        duration: '2 Years',
+        eligibility: 'B.Tech Food Tech or B.F.Sc.',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: 'TNJFU Entrance Exam', durationMinutes: 120, mode: 'Written', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['HACCP and ISO certification', 'Export quality inspector']
+      },
+      {
+        id: 'tnjfu-mtech-biotech',
+        name: 'M.Tech. (Biotechnology)',
+        nameTamil: 'M.Tech. (உயிர்தொழில்நுட்பவியல்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Engineering',
+        duration: '2 Years',
+        eligibility: 'B.Tech Biotech or B.Sc. Life Sciences',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: 'TNJFU Entrance Exam', durationMinutes: 120, mode: 'Written', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Marine biotechnology research', 'Pharmaceutical applications']
+      },
+      {
+        id: 'tnjfu-mba-fisheries',
+        name: 'M.B.A. (Fisheries Enterprises Management)',
+        nameTamil: 'M.B.A. (மீன்வள நிறுவன மேலாண்மை)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Management',
+        duration: '2 Years',
+        eligibility: 'Graduation in any discipline',
+        examPattern: { totalQuestions: 100, totalMarks: 100, duration: 'TNJFU Entrance / Interview', durationMinutes: 120, mode: 'Written + Interview', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Seafood export business management', 'Fisheries cooperatives leadership']
+      },
+
+      // ========== RESEARCH PROGRAMMES ==========
+      {
+        id: 'tnjfu-phd-fisheries',
+        name: 'Ph.D. Fisheries Science',
+        nameTamil: 'Ph.D. மீன்வளவியல்',
+        type: 'Research',
+        category: 'On-Campus',
+        school: 'Research',
+        duration: '3-5 Years',
+        eligibility: 'M.F.Sc. with 55%',
+        examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Entrance + Interview', durationMinutes: 0, mode: 'Research Aptitude', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Academic research career', 'University teaching pathway']
+      },
+      {
+        id: 'tnjfu-phd-engineering',
+        name: 'Ph.D. Fisheries Engineering',
+        nameTamil: 'Ph.D. மீன்வளப் பொறியியல்',
+        type: 'Research',
+        category: 'On-Campus',
+        school: 'Research',
+        duration: '3-5 Years',
+        eligibility: 'M.Tech with 55%',
+        examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Entrance + Interview', durationMinutes: 0, mode: 'Research Aptitude', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Vessel and processing technology research', 'Industry R&D career']
+      },
+      {
+        id: 'tnjfu-phd-lifesciences',
+        name: 'Ph.D. Life Sciences',
+        nameTamil: 'Ph.D. உயிரியல் அறிவியல்',
+        type: 'Research',
+        category: 'On-Campus',
+        school: 'Research',
+        duration: '3-5 Years',
+        eligibility: 'M.Sc. with 55%',
+        examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Entrance + Interview', durationMinutes: 0, mode: 'Research Aptitude', negativeMarking: false, sections: [] },
+        syllabus: [], previousQuestions: [],
+        tips: ['Marine biology research', 'Biodiversity conservation']
+      }
+    ]
   }
 ];
 
