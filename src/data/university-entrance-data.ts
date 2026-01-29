@@ -16502,92 +16502,1254 @@ export const universities: University[] = [
       }
     ]
   },
-  // University of Madras - The Parent University for North TN
+  // ===== UNIVERSITY OF MADRAS (UNOM) =====
+  // One of the oldest universities in India (Est. 1857)
+  // Four Campuses: Chepauk, Marina, Guindy, Taramani
+  // Admission: UNOM Entrance (PG), TANCET (MBA/MCA), Merit (IDE)
   {
     id: 'university-of-madras',
     name: 'University of Madras',
     nameTamil: 'சென்னைப் பல்கலைக்கழகம்',
-    location: 'Chennai',
+    location: 'Chennai (Chepauk, Marina, Guindy, Taramani)',
     website: 'www.unom.ac.in',
     phone: '044-25399422',
     email: 'registrar@unom.ac.in',
-    examName: 'Merit-Based (12th Marks)',
+    examName: 'UNOM PG Entrance / TANCET / Merit',
     logoColor: '#1e40af',
     logo: '/universities/university-of-madras-logo.png',
+    type: 'State Government',
     fee: { general: 1500, obc: 1500, scst: 500 },
     importantDates: [
-      { event: 'Notification', eventTamil: 'அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
-      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
-      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'June 2026', status: 'upcoming' },
-      { event: 'Merit List', eventTamil: 'தகுதி பட்டியல்', date: 'July 2026', status: 'upcoming' },
-      { event: 'Counseling', eventTamil: 'கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
+      // PG On-Campus Admissions
+      { event: 'PG Notification', eventTamil: 'முதுநிலை அறிவிப்பு', date: 'April 2026', status: 'upcoming' },
+      { event: 'PG Application Start', eventTamil: 'முதுநிலை விண்ணப்பம் தொடக்கம்', date: 'April 2026', status: 'upcoming' },
+      { event: 'PG Application End', eventTamil: 'முதுநிலை விண்ணப்பம் முடிவு', date: 'May 2026', status: 'upcoming' },
+      { event: 'UNOM Entrance Exam', eventTamil: 'UNOM நுழைவுத் தேர்வு', date: 'May-June 2026', status: 'upcoming' },
+      { event: 'PG Merit List', eventTamil: 'முதுநிலை தகுதி பட்டியல்', date: 'June 2026', status: 'upcoming' },
+      { event: 'PG Counseling', eventTamil: 'முதுநிலை கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
+      // IDE Admissions
+      { event: 'IDE Notification', eventTamil: 'தொலைதூர கல்வி அறிவிப்பு', date: 'May 2026', status: 'upcoming' },
+      { event: 'IDE Admission', eventTamil: 'தொலைதூர கல்வி சேர்க்கை', date: 'June-July 2026', status: 'upcoming' },
     ],
     courses: [
+      // ========================================
+      // A. CHEPAUK CAMPUS (Arts, Humanities & Social Sciences)
+      // ========================================
+      
+      // ----- M.A. LANGUAGES -----
       {
-        id: 'uom-ba-english',
-        name: 'B.A. English Literature',
-        nameTamil: 'பி.ஏ. ஆங்கில இலக்கியம்',
-        type: 'UG',
-        seatMatrix: { general: 40, obc: 60, bcMbc: 80, sc: 40, st: 5, ews: 10, total: 235 },
-        cutoffs: [
-          { year: '2024', general: 92, obc: 88, bcMbc: 82, sc: 70, st: 60, ews: 86 },
-          { year: '2023', general: 90, obc: 86, bcMbc: 80, sc: 68, st: 58, ews: 84 },
-        ],
-        examPattern: {
-          totalQuestions: 0, totalMarks: 600, duration: 'N/A', durationMinutes: 0,
-          mode: 'Merit-Based (12th Marks)', negativeMarking: false,
-          sections: [{ name: 'English + Best 4 Subjects', nameTamil: '12ஆம் வகுப்பு மதிப்பெண்கள்', questions: 0, marks: 600, topics: ['12th Board Marks'] }]
-        },
-        syllabus: [{
-          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
-          topics: [{ name: 'HSC Pass', subtopics: ['Any stream', 'English as a subject', 'Min 50% aggregate'], importance: 'High' }]
-        }],
-        previousQuestions: [],
-        tips: ['Flagship Arts program in Chennai', 'Direct admission based on 12th marks', 'Career paths: Teacher, Content Writer, Journalist, Civil Services']
+        id: 'unom-ma-tamil',
+        name: 'M.A. Tamil',
+        nameTamil: 'எம்.ஏ. தமிழ்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Languages',
+        duration: '2 Years',
+        eligibility: 'B.A. Tamil (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through UNOM PG Entrance', 'Career: Tamil Professor, Govt Translator, Content Writer']
       },
       {
-        id: 'uom-bsc-physics',
-        name: 'B.Sc. Physics',
-        nameTamil: 'பி.எஸ்சி. இயற்பியல்',
-        type: 'UG',
-        seatMatrix: { general: 35, obc: 50, bcMbc: 70, sc: 35, st: 5, ews: 10, total: 205 },
-        cutoffs: [
-          { year: '2024', general: 94, obc: 90, bcMbc: 85, sc: 72, st: 62, ews: 88 },
-          { year: '2023', general: 93, obc: 89, bcMbc: 84, sc: 70, st: 60, ews: 86 },
-        ],
-        examPattern: {
-          totalQuestions: 0, totalMarks: 600, duration: 'N/A', durationMinutes: 0,
-          mode: 'Merit-Based (12th Marks)', negativeMarking: false,
-          sections: [{ name: 'Physics + Maths + Chemistry + Best 2', nameTamil: '12ஆம் வகுப்பு மதிப்பெண்கள்', questions: 0, marks: 600, topics: ['PCM Marks'] }]
-        },
-        syllabus: [{
-          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Medium',
-          topics: [{ name: 'HSC Pass with PCM', subtopics: ['Physics as main subject', 'Chemistry, Maths as additional'], importance: 'High' }]
-        }],
-        previousQuestions: [],
-        tips: ['Strong research culture', 'Good placement in IT sector', 'Career paths: Scientist, Teacher, Data Analyst']
+        id: 'unom-ma-english',
+        name: 'M.A. English',
+        nameTamil: 'எம்.ஏ. ஆங்கிலம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Languages',
+        duration: '2 Years',
+        eligibility: 'B.A. English (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through UNOM PG Entrance', 'Career: Professor, Journalist, Content Writer']
       },
       {
-        id: 'uom-bcom-general',
-        name: 'B.Com General',
-        nameTamil: 'பி.காம் பொது',
+        id: 'unom-ma-hindi',
+        name: 'M.A. Hindi',
+        nameTamil: 'எம்.ஏ. இந்தி',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Languages',
+        duration: '2 Years',
+        eligibility: 'B.A. Hindi (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through UNOM PG Entrance', 'Career: Hindi Officer, Translator, Teacher']
+      },
+      {
+        id: 'unom-ma-french',
+        name: 'M.A. French',
+        nameTamil: 'எம்.ஏ. பிரெஞ்சு',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Languages',
+        duration: '2 Years',
+        eligibility: 'B.A. French (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through UNOM PG Entrance', 'Career: French Translator, MNC Jobs, Embassy']
+      },
+      {
+        id: 'unom-ma-sanskrit',
+        name: 'M.A. Sanskrit',
+        nameTamil: 'எம்.ஏ. சமஸ்கிருதம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Languages',
+        duration: '2 Years',
+        eligibility: 'B.A. Sanskrit (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through UNOM PG Entrance', 'Career: Sanskrit Professor, Research, Archaeology']
+      },
+      
+      // ----- M.A. HISTORY & ARCHAEOLOGY -----
+      {
+        id: 'unom-ma-history',
+        name: 'M.A. History',
+        nameTamil: 'எம்.ஏ. வரலாறு',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - History & Archaeology',
+        duration: '2 Years',
+        eligibility: 'B.A. History (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through UNOM PG Entrance', 'Career: Historian, Civil Services, Archaeologist']
+      },
+      {
+        id: 'unom-ma-ancient-history-archaeology',
+        name: 'M.A. Ancient History & Archaeology',
+        nameTamil: 'எம்.ஏ. பண்டைய வரலாறு & தொல்லியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - History & Archaeology',
+        duration: '2 Years',
+        eligibility: 'B.A. History/Archaeology (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through UNOM PG Entrance', 'Career: Archaeologist, ASI Officer, Museum Curator']
+      },
+      
+      // ----- M.A. ECONOMICS -----
+      {
+        id: 'unom-ma-economics',
+        name: 'M.A. Economics',
+        nameTamil: 'எம்.ஏ. பொருளியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Economics',
+        duration: '2 Years',
+        eligibility: 'B.A. Economics (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through UNOM PG Entrance', 'Career: Economist, RBI, IES, Research Analyst']
+      },
+      {
+        id: 'unom-ma-econometrics',
+        name: 'M.A. Econometrics',
+        nameTamil: 'எம்.ஏ. பொருளியல் கணிதம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Economics',
+        duration: '2 Years',
+        eligibility: 'B.A. Economics with Maths (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Quantitative Economics focus', 'Career: Data Analyst, Finance, Research']
+      },
+      
+      // ----- M.A. SOCIAL SCIENCES -----
+      {
+        id: 'unom-ma-sociology',
+        name: 'M.A. Sociology',
+        nameTamil: 'எம்.ஏ. சமூகவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Social Sciences',
+        duration: '2 Years',
+        eligibility: 'B.A. Sociology (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Social Researcher, NGO, Civil Services']
+      },
+      {
+        id: 'unom-ma-anthropology',
+        name: 'M.A. Anthropology',
+        nameTamil: 'எம்.ஏ. மானுடவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Social Sciences',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Anthropologist, Research, Museums, Forensics']
+      },
+      {
+        id: 'unom-ma-political-science',
+        name: 'M.A. Political Science',
+        nameTamil: 'எம்.ஏ. அரசியல் அறிவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Social Sciences',
+        duration: '2 Years',
+        eligibility: 'B.A. Political Science (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Excellent for UPSC/TNPSC preparation', 'Career: Civil Services, Journalist, Political Analyst']
+      },
+      {
+        id: 'unom-ma-public-administration',
+        name: 'M.A. Public Administration',
+        nameTamil: 'எம்.ஏ. பொது நிர்வாகம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Social Sciences',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Perfect for government job aspirants', 'Career: IAS, IPS, State Services']
+      },
+      {
+        id: 'unom-ma-philosophy',
+        name: 'M.A. Philosophy',
+        nameTamil: 'எம்.ஏ. தத்துவம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Philosophy',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Professor, Ethics Consultant, Civil Services']
+      },
+      {
+        id: 'unom-ma-vaishnavism',
+        name: 'M.A. Vaishnavism',
+        nameTamil: 'எம்.ஏ. வைணவம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Philosophy',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Unique course on Vaishnava philosophy', 'Career: Research, Temple Administration, Academics']
+      },
+      {
+        id: 'unom-ma-hrm',
+        name: 'M.A. Human Resource Management',
+        nameTamil: 'எம்.ஏ. மனிதவள மேலாண்மை',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Management',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Alternative to MBA for HR specialization', 'Career: HR Manager, Recruiter, Training Manager']
+      },
+      
+      // ----- PROFESSIONAL (CHEPAUK) -----
+      {
+        id: 'unom-mcom-ibf',
+        name: 'M.Com. (International Business and Finance)',
+        nameTamil: 'எம்.காம். (சர்வதேச வணிகம் மற்றும் நிதி)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Commerce',
+        duration: '2 Years',
+        eligibility: 'B.Com (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Focus on global finance', 'Career: Export Manager, Forex, International Trade']
+      },
+      {
+        id: 'unom-mba-general',
+        name: 'M.B.A. (General)',
+        nameTamil: 'எம்.பி.ஏ. (பொது)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Management',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (TANCET Required)',
+        specialty: 'Admission strictly through TANCET',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through TANCET counselling', 'Career: Manager, Consultant, Entrepreneur']
+      },
+      {
+        id: 'unom-mlibisc',
+        name: 'M.Lib.I.Sc. (Library & Information Science)',
+        nameTamil: 'எம்.லிப்.ஐ.எஸ்சி. (நூலகம் & தகவல் அறிவியல்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Library Science',
+        duration: '2 Years',
+        eligibility: 'B.Lib.I.Sc. or any Bachelor\'s (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Librarian, Information Officer, Knowledge Manager']
+      },
+      {
+        id: 'unom-ma-journalism',
+        name: 'M.A. Journalism & Communication',
+        nameTamil: 'எம்.ஏ. பத்திரிகையியல் & தொடர்பியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Media',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Journalist, PR Executive, Content Creator, Media Manager']
+      },
+
+      // ========================================
+      // B. GUINDY CAMPUS (Science & Technology)
+      // ========================================
+      
+      // ----- M.Sc. PHYSICAL SCIENCES -----
+      {
+        id: 'unom-msc-physics',
+        name: 'M.Sc. Physics',
+        nameTamil: 'எம்.எஸ்சி. இயற்பியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Guindy Campus - Physical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Physics (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through UNOM PG Entrance', 'Career: Physicist, ISRO, DRDO, Research']
+      },
+      {
+        id: 'unom-msc-nuclear-physics',
+        name: 'M.Sc. Nuclear Physics',
+        nameTamil: 'எம்.எஸ்சி. அணு இயற்பியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Guindy Campus - Physical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Physics (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Nuclear Scientist, BARC, IGCAR, Research Labs']
+      },
+      {
+        id: 'unom-msc-theoretical-physics',
+        name: 'M.Sc. Theoretical Physics',
+        nameTamil: 'எம்.எஸ்சி. கோட்பாட்டு இயற்பியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Guindy Campus - Physical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Physics with strong Maths (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['For research-oriented students', 'Career: Theoretical Physicist, Academia, Research']
+      },
+      {
+        id: 'unom-msc-chemistry-physical',
+        name: 'M.Sc. Chemistry (Physical Chemistry)',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல் (பௌதிக வேதியியல்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Guindy Campus - Chemistry',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Chemistry (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Chemist, Pharma, Research Labs']
+      },
+      {
+        id: 'unom-msc-chemistry-organic',
+        name: 'M.Sc. Chemistry (Organic Chemistry)',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல் (கரிம வேதியியல்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Guindy Campus - Chemistry',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Chemistry (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Organic Chemist, Drug Discovery, Pharma']
+      },
+      {
+        id: 'unom-msc-chemistry-inorganic',
+        name: 'M.Sc. Chemistry (Inorganic Chemistry)',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல் (கனிம வேதியியல்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Guindy Campus - Chemistry',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Chemistry (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Materials Science, Metallurgy, Research']
+      },
+      {
+        id: 'unom-msc-chemistry-analytical',
+        name: 'M.Sc. Chemistry (Analytical Chemistry)',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல் (பகுப்பாய்வு வேதியியல்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Guindy Campus - Chemistry',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Chemistry (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Quality Control, Forensics, Analytical Labs']
+      },
+      {
+        id: 'unom-msc-energy-materials',
+        name: 'M.Sc. Energy & Material Science',
+        nameTamil: 'எம்.எஸ்சி. ஆற்றல் & பொருள் அறிவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Guindy Campus - Applied Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Physics/Chemistry (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Emerging field - Solar, Battery tech', 'Career: Energy Researcher, Materials Engineer']
+      },
+      
+      // ----- M.Sc. EARTH SCIENCES -----
+      {
+        id: 'unom-msc-geology',
+        name: 'M.Sc. Geology',
+        nameTamil: 'எம்.எஸ்சி. நிலவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Guindy Campus - Earth Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Geology (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Geologist, GSI, ONGC, Mining']
+      },
+      {
+        id: 'unom-msc-applied-geology',
+        name: 'M.Sc. Applied Geology',
+        nameTamil: 'எம்.எஸ்சி. பயன்பாட்டு நிலவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Guindy Campus - Earth Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Geology (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Industry-focused geology', 'Career: Mining Engineer, Hydrogeologist, Oil & Gas']
+      },
+      {
+        id: 'unom-msc-geography',
+        name: 'M.Sc. Geography',
+        nameTamil: 'எம்.எஸ்சி. புவியியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Guindy Campus - Earth Sciences',
+        duration: '2 Years',
+        eligibility: 'B.A./B.Sc. Geography (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Geographer, Town Planner, GIS Specialist, ISRO']
+      },
+      
+      // ----- M.Sc. COMPUTING -----
+      {
+        id: 'unom-msc-computer-science',
+        name: 'M.Sc. Computer Science',
+        nameTamil: 'எம்.எஸ்சி. கணினி அறிவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Guindy Campus - Computer Science',
+        duration: '2 Years',
+        eligibility: 'B.Sc./BCA Computer Science (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Software Engineer, Data Scientist, IT Manager']
+      },
+      {
+        id: 'unom-mca',
+        name: 'M.C.A. (Master of Computer Applications)',
+        nameTamil: 'எம்.சி.ஏ. (கணினி பயன்பாடுகள் முதுநிலை)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Guindy Campus - Computer Science',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s with Maths (TANCET Required)',
+        specialty: 'Admission strictly through TANCET',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through TANCET counselling', 'Career: Software Developer, IT Industry']
+      },
+
+      // ========================================
+      // C. TARAMANI CAMPUS (Basic Medical Sciences)
+      // ========================================
+      {
+        id: 'unom-msc-medical-biochemistry',
+        name: 'M.Sc. Medical Biochemistry',
+        nameTamil: 'எம்.எஸ்சி. மருத்துவ உயிர்வேதியியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Taramani Campus - Medical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Biochemistry/Life Sciences (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Medical Lab Technician, Clinical Research, Diagnostics']
+      },
+      {
+        id: 'unom-msc-medical-microbiology',
+        name: 'M.Sc. Medical Microbiology',
+        nameTamil: 'எம்.எஸ்சி. மருத்துவ நுண்ணுயிரியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Taramani Campus - Medical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Microbiology/Life Sciences (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Microbiologist, Hospital Labs, Quality Control']
+      },
+      {
+        id: 'unom-msc-anatomy',
+        name: 'M.Sc. Anatomy',
+        nameTamil: 'எம்.எஸ்சி. உடற்கூறியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Taramani Campus - Medical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Life Sciences (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Anatomy Professor, Medical College Faculty']
+      },
+      {
+        id: 'unom-msc-physiology',
+        name: 'M.Sc. Physiology',
+        nameTamil: 'எம்.எஸ்சி. உடலியங்கியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Taramani Campus - Medical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Life Sciences (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Physiology Faculty, Sports Science, Research']
+      },
+      {
+        id: 'unom-msc-pathology',
+        name: 'M.Sc. Pathology',
+        nameTamil: 'எம்.எஸ்சி. நோயியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Taramani Campus - Medical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Life Sciences (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Pathologist, Diagnostic Labs, Hospital']
+      },
+      {
+        id: 'unom-msc-pharmacology-toxicology',
+        name: 'M.Sc. Pharmacology / Toxicology',
+        nameTamil: 'எம்.எஸ்சி. மருந்தியல் / நச்சுயியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Taramani Campus - Medical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Life Sciences/Pharmacy (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Pharmacologist, Drug Safety, Pharma Industry']
+      },
+      {
+        id: 'unom-msc-biomedical-genetics',
+        name: 'M.Sc. Biomedical Genetics',
+        nameTamil: 'எம்.எஸ்சி. உயிர்மருத்துவ மரபியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Taramani Campus - Medical Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Life Sciences/Genetics (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Career: Genetic Counselor, Clinical Genetics, Research']
+      },
+      {
+        id: 'unom-msc-regenerative-medicine',
+        name: 'M.Sc. Regenerative Medicine',
+        nameTamil: 'எம்.எஸ்சி. புத்துயிர் மருத்துவம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Taramani Campus - Medical Sciences',
+        duration: '2 Years',
+        specialty: 'Cutting-edge stem cell research',
+        eligibility: 'B.Sc. Life Sciences (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Emerging field - Stem Cells, Tissue Engineering', 'Career: Stem Cell Researcher, Biotech Industry']
+      },
+      {
+        id: 'unom-msc-nanoscience',
+        name: 'M.Sc. Nano Science & Nanotechnology',
+        nameTamil: 'எம்.எஸ்சி. நானோ அறிவியல் & நானோ தொழில்நுட்பம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Taramani Campus - Applied Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Physics/Chemistry/Life Sciences (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Interdisciplinary - Physics + Chemistry + Biology', 'Career: Nanotechnologist, R&D, Material Science']
+      },
+
+      // ========================================
+      // D. MARINA CAMPUS (Languages & Niche)
+      // ========================================
+      {
+        id: 'unom-ma-indian-music',
+        name: 'M.A. Indian Music',
+        nameTamil: 'எம்.ஏ. இந்திய இசை',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Marina Campus - Performing Arts',
+        duration: '2 Years',
+        eligibility: 'B.A. Music/Any Bachelor\'s + Music background (Audition)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Requires practical audition', 'Career: Musician, Music Teacher, AIR']
+      },
+      {
+        id: 'unom-ma-folk-music',
+        name: 'M.A. Folk Music',
+        nameTamil: 'எம்.ஏ. நாட்டுப்புற இசை',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Marina Campus - Performing Arts',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s + Music background (Audition)',
+        specialty: 'Unique course preserving folk traditions',
+        syllabus: [], previousQuestions: [],
+        tips: ['Rare course - Folk music preservation', 'Career: Folk Artist, Cultural Officer, Research']
+      },
+      {
+        id: 'unom-ma-bharathanatyam',
+        name: 'M.A. Bharathanatyam',
+        nameTamil: 'எம்.ஏ. பரதநாட்டியம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Marina Campus - Performing Arts',
+        duration: '2 Years',
+        eligibility: 'B.A. Dance/Any Bachelor\'s + Dance training (Audition)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Requires practical audition', 'Career: Classical Dancer, Dance Teacher, Choreographer']
+      },
+      {
+        id: 'unom-msc-bioinformatics',
+        name: 'M.Sc. Bio-Informatics',
+        nameTamil: 'எம்.எஸ்சி. உயிர்த்தகவலியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Marina Campus - Applied Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Life Sciences/Computer Science (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Interdisciplinary: Biology + Computing', 'Career: Bioinformatician, Drug Discovery, Genomics']
+      },
+
+      // ========================================
+      // SIGNATURE/UNIQUE COURSES (ON-CAMPUS)
+      // ========================================
+      {
+        id: 'unom-msc-cyber-forensics',
+        name: 'M.Sc. Cyber Forensics & Information Security',
+        nameTamil: 'எம்.எஸ்சி. சைபர் தடயவியல் & தகவல் பாதுகாப்பு',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Guindy Campus - Computer Science',
+        duration: '2 Years',
+        specialty: 'Highly sought after - Limited seats',
+        eligibility: 'B.Sc./BCA Computer Science (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Top course - Cyber Security demand is high', 'Career: Cyber Security Analyst, Forensic Investigator, CERT']
+      },
+      {
+        id: 'unom-msc-hrd-psychology',
+        name: 'M.Sc. HRD Psychology',
+        nameTamil: 'எம்.எஸ்சி. மனிதவள மேம்பாட்டு உளவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Psychology',
+        duration: '2 Years',
+        eligibility: 'B.A./B.Sc. Psychology (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Blend of Psychology + HR', 'Career: HR Manager, OD Consultant, Training Manager']
+      },
+      {
+        id: 'unom-msc-criminology',
+        name: 'M.Sc. Criminology & Criminal Justice Science',
+        nameTamil: 'எம்.எஸ்சி. குற்றவியல் & குற்றநீதி அறிவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Criminology',
+        duration: '2 Years',
+        specialty: 'One of the best Criminology depts in India',
+        eligibility: 'Any Bachelor\'s (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Madras Univ is famous for Criminology', 'Career: Police Officer, Forensics, Prison Administration, Legal Advisor']
+      },
+      {
+        id: 'unom-msc-counselling-psychology',
+        name: 'M.Sc. Counselling Psychology',
+        nameTamil: 'எம்.எஸ்சி. ஆலோசனை உளவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'Chepauk Campus - Psychology',
+        duration: '2 Years',
+        eligibility: 'B.A./B.Sc. Psychology (UNOM Entrance)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Growing demand for mental health', 'Career: Counselor, Therapist, School Psychologist']
+      },
+
+      // ========================================
+      // 2. INSTITUTE OF DISTANCE EDUCATION (IDE)
+      // ========================================
+      // Note: Check UGC-DEB approval for latest year
+      
+      // ----- IDE UG PROGRAMS -----
+      {
+        id: 'unom-ide-ba-tamil',
+        name: 'B.A. Tamil (IDE)',
+        nameTamil: 'பி.ஏ. தமிழ் (தொலைதூர கல்வி)',
         type: 'UG',
-        seatMatrix: { general: 50, obc: 70, bcMbc: 90, sc: 45, st: 5, ews: 15, total: 275 },
-        cutoffs: [
-          { year: '2024', general: 91, obc: 87, bcMbc: 81, sc: 68, st: 58, ews: 85 },
-          { year: '2023', general: 89, obc: 85, bcMbc: 79, sc: 66, st: 56, ews: 83 },
-        ],
-        examPattern: {
-          totalQuestions: 0, totalMarks: 600, duration: 'N/A', durationMinutes: 0,
-          mode: 'Merit-Based (12th Marks)', negativeMarking: false,
-          sections: [{ name: 'Commerce Subjects', nameTamil: 'வணிகவியல் பாடங்கள்', questions: 0, marks: 600, topics: ['Commerce Stream Marks'] }]
-        },
-        syllabus: [{
-          unitNumber: 1, title: 'Eligibility', titleTamil: 'தகுதி', expectedQuestions: 0, difficulty: 'Easy',
-          topics: [{ name: 'Commerce Stream', subtopics: ['Accountancy', 'Commerce', 'Economics'], importance: 'High' }]
-        }],
-        previousQuestions: [],
-        tips: ['Foundation for CA/CMA/CS', 'Best for banking & finance careers', 'Strong alumni network in Chennai']
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Popular for working professionals', 'Direct admission based on 12th marks']
+      },
+      {
+        id: 'unom-ide-ba-english',
+        name: 'B.A. English (IDE)',
+        nameTamil: 'பி.ஏ. ஆங்கிலம் (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Popular for working professionals']
+      },
+      {
+        id: 'unom-ide-ba-history',
+        name: 'B.A. History (IDE)',
+        nameTamil: 'பி.ஏ. வரலாறு (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Good for UPSC/TNPSC aspirants']
+      },
+      {
+        id: 'unom-ide-ba-economics',
+        name: 'B.A. Economics (IDE)',
+        nameTamil: 'பி.ஏ. பொருளியல் (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Foundation for economics career']
+      },
+      {
+        id: 'unom-ide-ba-public-admin',
+        name: 'B.A. Public Administration (IDE)',
+        nameTamil: 'பி.ஏ. பொது நிர்வாகம் (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Perfect for government job aspirants']
+      },
+      {
+        id: 'unom-ide-ba-criminology',
+        name: 'B.A. Criminology & Police Administration (IDE)',
+        nameTamil: 'பி.ஏ. குற்றவியல் & காவல் நிர்வாகம் (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Unique IDE program', 'Good for police/forensic careers']
+      },
+      {
+        id: 'unom-ide-ba-historical-studies',
+        name: 'B.A. Historical Studies (IDE)',
+        nameTamil: 'பி.ஏ. வரலாற்று ஆய்வுகள் (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['For history enthusiasts']
+      },
+      {
+        id: 'unom-ide-bsc-maths',
+        name: 'B.Sc. Mathematics (IDE)',
+        nameTamil: 'பி.எஸ்சி. கணிதம் (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 with Maths (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Good for teaching career']
+      },
+      {
+        id: 'unom-ide-bsc-psychology',
+        name: 'B.Sc. Psychology (IDE)',
+        nameTamil: 'பி.எஸ்சி. உளவியல் (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Entry to psychology field']
+      },
+      {
+        id: 'unom-ide-bsc-geography',
+        name: 'B.Sc. Geography (IDE)',
+        nameTamil: 'பி.எஸ்சி. புவியியல் (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Good for UPSC Geography optional']
+      },
+      {
+        id: 'unom-ide-bsc-medical-sociology',
+        name: 'B.Sc. Medical Sociology (IDE)',
+        nameTamil: 'பி.எஸ்சி. மருத்துவ சமூகவியல் (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Unique course - Healthcare + Sociology']
+      },
+      {
+        id: 'unom-ide-bcom-general',
+        name: 'B.Com General (IDE)',
+        nameTamil: 'பி.காம் பொது (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Most popular IDE program']
+      },
+      {
+        id: 'unom-ide-bcom-cs',
+        name: 'B.Com Corporate Secretaryship (IDE)',
+        nameTamil: 'பி.காம் நிறுவன செயலாளர் (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Pathway to CS professional course']
+      },
+      {
+        id: 'unom-ide-bcom-bank-mgmt',
+        name: 'B.Com Bank Management (IDE)',
+        nameTamil: 'பி.காம் வங்கி மேலாண்மை (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Good for banking career']
+      },
+      {
+        id: 'unom-ide-bcom-ca',
+        name: 'B.Com Computer Applications (IDE)',
+        nameTamil: 'பி.காம் கணினி பயன்பாடுகள் (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Commerce + IT combo']
+      },
+      {
+        id: 'unom-ide-bba',
+        name: 'B.B.A. (IDE)',
+        nameTamil: 'பி.பி.ஏ. (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Entry to management field']
+      },
+      {
+        id: 'unom-ide-bca',
+        name: 'B.C.A. (IDE)',
+        nameTamil: 'பி.சி.ஏ. (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['IT career foundation']
+      },
+      {
+        id: 'unom-ide-bmusic',
+        name: 'B.Music (IDE)',
+        nameTamil: 'பி.மியூசிக் (தொலைதூர கல்வி)',
+        type: 'UG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '3 Years',
+        eligibility: '+2 Pass + Music background (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['For music enthusiasts']
+      },
+      
+      // ----- IDE PG PROGRAMS -----
+      {
+        id: 'unom-ide-ma-tamil',
+        name: 'M.A. Tamil (IDE)',
+        nameTamil: 'எம்.ஏ. தமிழ் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'B.A. Tamil (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Popular for teachers upgrading qualification']
+      },
+      {
+        id: 'unom-ide-ma-english-pg',
+        name: 'M.A. English (IDE)',
+        nameTamil: 'எம்.ஏ. ஆங்கிலம் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'B.A. English (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['For English teachers and writers']
+      },
+      {
+        id: 'unom-ide-ma-history-pg',
+        name: 'M.A. History (IDE)',
+        nameTamil: 'எம்.ஏ. வரலாறு (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'B.A. History (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['For UPSC/TNPSC preparation']
+      },
+      {
+        id: 'unom-ide-ma-economics-pg',
+        name: 'M.A. Economics (IDE)',
+        nameTamil: 'எம்.ஏ. பொருளியல் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'B.A. Economics (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Good for competitive exams']
+      },
+      {
+        id: 'unom-ide-ma-polsci-pg',
+        name: 'M.A. Political Science (IDE)',
+        nameTamil: 'எம்.ஏ. அரசியல் அறிவியல் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'B.A. Political Science (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['For civil services aspirants']
+      },
+      {
+        id: 'unom-ide-ma-pubadmin-pg',
+        name: 'M.A. Public Administration (IDE)',
+        nameTamil: 'எம்.ஏ. பொது நிர்வாகம் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Most popular for govt job aspirants']
+      },
+      {
+        id: 'unom-ide-ma-humanrights',
+        name: 'M.A. Human Rights (IDE)',
+        nameTamil: 'எம்.ஏ. மனித உரிமைகள் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['NGO and advocacy careers']
+      },
+      {
+        id: 'unom-ide-ma-journalism-pg',
+        name: 'M.A. Journalism (IDE)',
+        nameTamil: 'எம்.ஏ. பத்திரிகையியல் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Media and journalism careers']
+      },
+      {
+        id: 'unom-ide-msc-maths-pg',
+        name: 'M.Sc. Mathematics (IDE)',
+        nameTamil: 'எம்.எஸ்சி. கணிதம் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Mathematics (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['For maths teachers']
+      },
+      {
+        id: 'unom-ide-msc-psychology-pg',
+        name: 'M.Sc. Psychology (IDE)',
+        nameTamil: 'எம்.எஸ்சி. உளவியல் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'B.A./B.Sc. Psychology (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Psychology career foundation']
+      },
+      {
+        id: 'unom-ide-msc-counselling-pg',
+        name: 'M.Sc. Counselling Psychology (IDE)',
+        nameTamil: 'எம்.எஸ்சி. ஆலோசனை உளவியல் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'B.A./B.Sc. Psychology (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['For counseling career']
+      },
+      {
+        id: 'unom-ide-msc-cyberforensics-pg',
+        name: 'M.Sc. Cyber Forensics (IDE)',
+        nameTamil: 'எம்.எஸ்சி. சைபர் தடயவியல் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'B.Sc./BCA Computer Science (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['High demand - Cyber Security career']
+      },
+      {
+        id: 'unom-ide-msc-geography-pg',
+        name: 'M.Sc. Geography (IDE)',
+        nameTamil: 'எம்.எஸ்சி. புவியியல் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'B.A./B.Sc. Geography (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['UPSC Geography optional prep']
+      },
+      {
+        id: 'unom-ide-msc-medsociology-pg',
+        name: 'M.Sc. Medical Sociology (IDE)',
+        nameTamil: 'எம்.எஸ்சி. மருத்துவ சமூகவியல் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Healthcare administration']
+      },
+      {
+        id: 'unom-ide-msc-it-pg',
+        name: 'M.Sc. Information Technology (IDE)',
+        nameTamil: 'எம்.எஸ்சி. தகவல் தொழில்நுட்பம் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'B.Sc./BCA (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['IT career upgrade']
+      },
+      {
+        id: 'unom-ide-msc-cs-pg',
+        name: 'M.Sc. Computer Science (IDE)',
+        nameTamil: 'எம்.எஸ்சி. கணினி அறிவியல் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'B.Sc./BCA Computer Science (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Software career upgrade']
+      },
+      {
+        id: 'unom-ide-mba-hr',
+        name: 'M.B.A. (HR) (IDE)',
+        nameTamil: 'எம்.பி.ஏ. (மனிதவளம்) (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['HR specialization via distance mode']
+      },
+      {
+        id: 'unom-ide-mba-finance',
+        name: 'M.B.A. (Finance) (IDE)',
+        nameTamil: 'எம்.பி.ஏ. (நிதி) (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Finance specialization via distance mode']
+      },
+      {
+        id: 'unom-ide-mba-marketing',
+        name: 'M.B.A. (Marketing) (IDE)',
+        nameTamil: 'எம்.பி.ஏ. (சந்தையியல்) (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Marketing specialization via distance mode']
+      },
+      {
+        id: 'unom-ide-mba-systems',
+        name: 'M.B.A. (Systems) (IDE)',
+        nameTamil: 'எம்.பி.ஏ. (அமைப்புகள்) (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['IT + Management combo']
+      },
+      {
+        id: 'unom-ide-mba-logistics',
+        name: 'M.B.A. (Logistics) (IDE)',
+        nameTamil: 'எம்.பி.ஏ. (தளவாடம்) (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Supply Chain Management focus']
+      },
+      {
+        id: 'unom-ide-mba-hospital',
+        name: 'M.B.A. (Hospital Management) (IDE)',
+        nameTamil: 'எம்.பி.ஏ. (மருத்துவமனை மேலாண்மை) (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Healthcare administration career']
+      },
+      {
+        id: 'unom-ide-mca-pg',
+        name: 'M.C.A. (IDE)',
+        nameTamil: 'எம்.சி.ஏ. (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s with Maths (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['IT career via distance mode']
+      },
+      {
+        id: 'unom-ide-mcom-pg',
+        name: 'M.Com. (IDE)',
+        nameTamil: 'எம்.காம். (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'B.Com (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Commerce upgrade']
+      },
+      {
+        id: 'unom-ide-mmusic-pg',
+        name: 'M.Music (IDE)',
+        nameTamil: 'எம்.மியூசிக் (தொலைதூர கல்வி)',
+        type: 'PG',
+        category: 'DDE',
+        school: 'Institute of Distance Education',
+        duration: '2 Years',
+        eligibility: 'B.Music (Merit Based)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Music degree upgrade']
+      },
+
+      // ========================================
+      // 3. AFFILIATED COLLEGES
+      // ========================================
+      // Note: Apply directly to affiliated colleges for regular UG courses
+      {
+        id: 'unom-affiliated-ba',
+        name: 'B.A. (Various) - Affiliated Colleges',
+        nameTamil: 'பி.ஏ. (பல்வேறு) - இணைந்த கல்லூரிகள்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Affiliated Colleges (Loyola, MCC, Presidency, Ethiraj, etc.)',
+        duration: '3 Years',
+        eligibility: '+2 Pass (College-specific cutoff)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply directly to affiliated colleges like Loyola, MCC, Presidency, Ethiraj, DG Vaishnav']
+      },
+      {
+        id: 'unom-affiliated-bsc',
+        name: 'B.Sc. (Various) - Affiliated Colleges',
+        nameTamil: 'பி.எஸ்சி. (பல்வேறு) - இணைந்த கல்லூரிகள்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Affiliated Colleges (Loyola, MCC, Presidency, Ethiraj, etc.)',
+        duration: '3 Years',
+        eligibility: '+2 Science (College-specific cutoff)',
+        syllabus: [], previousQuestions: [],
+        tips: ['For regular B.Sc. courses, apply to affiliated colleges']
+      },
+      {
+        id: 'unom-affiliated-bcom',
+        name: 'B.Com. (Various) - Affiliated Colleges',
+        nameTamil: 'பி.காம். (பல்வேறு) - இணைந்த கல்லூரிகள்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Affiliated Colleges (Loyola, MCC, Presidency, Ethiraj, etc.)',
+        duration: '3 Years',
+        eligibility: '+2 Commerce (College-specific cutoff)',
+        syllabus: [], previousQuestions: [],
+        tips: ['B.Com is offered via affiliated colleges, not main campus']
+      },
+      {
+        id: 'unom-affiliated-bba',
+        name: 'B.B.A. - Affiliated Colleges',
+        nameTamil: 'பி.பி.ஏ. - இணைந்த கல்லூரிகள்',
+        type: 'UG',
+        category: 'Affiliated',
+        school: 'Affiliated Colleges (Loyola, MCC, Presidency, Ethiraj, etc.)',
+        duration: '3 Years',
+        eligibility: '+2 any stream (College-specific cutoff)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply directly to affiliated colleges for BBA']
       }
     ]
   },
