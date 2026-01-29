@@ -8,10 +8,9 @@ import { UniversityCard } from '@/components/UniversityEntrance/UniversityCard';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import GlobalLanguageSelector from '@/components/GlobalLanguageSelector';
 
-type UniversityType = 'all' | 'State Government' | 'Central Government' | 'Deemed University (Central Govt Funded)';
+type UniversityType = 'State Government' | 'Central Government' | 'Deemed University (Central Govt Funded)';
 
 const universityTypeTabs: { value: UniversityType; label: string; labelTamil: string; icon: React.ElementType }[] = [
-  { value: 'all', label: 'All Universities', labelTamil: 'அனைத்து பல்கலைக்கழகங்கள்', icon: GraduationCap },
   { value: 'State Government', label: 'State Universities', labelTamil: 'மாநில பல்கலைக்கழகங்கள்', icon: Landmark },
   { value: 'Central Government', label: 'Central Universities', labelTamil: 'மத்திய பல்கலைக்கழகங்கள்', icon: Building2 },
   { value: 'Deemed University (Central Govt Funded)', label: 'Deemed Universities', labelTamil: 'கருதப்படும் பல்கலைக்கழகங்கள்', icon: Award },
@@ -20,7 +19,7 @@ const universityTypeTabs: { value: UniversityType; label: string; labelTamil: st
 const TNUniversityBrowse = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedType, setSelectedType] = useState<UniversityType>('all');
+  const [selectedType, setSelectedType] = useState<UniversityType>('State Government');
 
   const filteredUniversities = useMemo(() => {
     return universities.filter(uni => {
@@ -30,7 +29,7 @@ const TNUniversityBrowse = () => {
         uni.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
         uni.examName.toLowerCase().includes(searchQuery.toLowerCase());
       
-      const matchesType = selectedType === 'all' || uni.type === selectedType;
+      const matchesType = uni.type === selectedType;
       
       return matchesSearch && matchesType;
     });
@@ -38,7 +37,6 @@ const TNUniversityBrowse = () => {
 
   const typeCounts = useMemo(() => {
     return {
-      all: universities.length,
       'State Government': universities.filter(u => u.type === 'State Government').length,
       'Central Government': universities.filter(u => u.type === 'Central Government').length,
       'Deemed University (Central Govt Funded)': universities.filter(u => u.type === 'Deemed University (Central Govt Funded)').length,
