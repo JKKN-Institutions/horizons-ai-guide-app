@@ -178,11 +178,12 @@ export const centralUniversities: University[] = [
   // ============================================
   // 3. INDIAN INSTITUTE OF MANAGEMENT (IIM) TRICHY
   // ============================================
+  // Premier "Second Generation" IIM, renowned for academic rigour
   {
     id: 'iim-trichy',
     name: 'Indian Institute of Management Tiruchirappalli',
     nameTamil: 'இந்திய மேலாண்மை நிறுவனம் திருச்சிராப்பள்ளி',
-    location: 'Tiruchirappalli',
+    location: 'Tiruchirappalli (Main) / Chennai (Executive)',
     website: 'https://www.iimtrichy.ac.in',
     phone: '0431-2505000',
     email: 'pgpadmissions@iimtrichy.ac.in',
@@ -191,16 +192,261 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-trichy-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2026 Registration', eventTamil: 'CAT 2026 பதிவு', date: 'August 2026', status: 'upcoming' },
-      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
-      { event: 'IIM Trichy Interviews', eventTamil: 'IIM திருச்சி நேர்காணல்கள்', date: 'February-March 2027', status: 'upcoming' }
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'CAT 2025 Results', eventTamil: 'CAT 2025 முடிவுகள்', date: 'January 2026', status: 'upcoming' },
+      { event: 'PGPM/PGPM-HR Interviews', eventTamil: 'PGPM/PGPM-HR நேர்காணல்கள்', date: 'February-March 2026', status: 'upcoming' },
+      { event: 'Academic Session Begins', eventTamil: 'கல்வி அமர்வு தொடக்கம்', date: 'June 2026', status: 'upcoming' }
     ],
     fee: { general: 2200000, obc: 2200000, scst: 1100000 },
     courses: [
-      { id: 'iimt-pgpm', name: 'PGPM (Post Graduate Programme in Management)', nameTamil: 'PGPM (மேலாண்மை முதுகலை திட்டம்)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation (any discipline) + CAT qualified', examPattern: { totalQuestions: 66, totalMarks: 198, duration: '2 Hours', durationMinutes: 120, mode: 'Online (CBT)', negativeMarking: true, sections: [{ name: 'VARC', nameTamil: 'வாசிப்பு புரிதல்', questions: 24, marks: 72, topics: ['Reading Comprehension', 'Verbal Ability'] }, { name: 'DILR', nameTamil: 'தரவு விளக்கம்', questions: 20, marks: 60, topics: ['Data Interpretation', 'Logical Reasoning'] }, { name: 'QA', nameTamil: 'அளவு திறன்', questions: 22, marks: 66, topics: ['Arithmetic', 'Algebra', 'Geometry', 'Number System'] }] }, syllabus: [], previousQuestions: [], tips: ['Flagship 2-year MBA program', 'Strong industry placements', 'Median package: ₹18+ LPA'] },
-      { id: 'iimt-pgpm-hr', name: 'PGPM-HR (Human Resources)', nameTamil: 'PGPM-HR (மனிதவள மேலாண்மை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', examPattern: { totalQuestions: 66, totalMarks: 198, duration: '2 Hours', durationMinutes: 120, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Specialized HR management', 'HR leadership roles'] },
-      { id: 'iimt-pgpbm', name: 'PGPBM (Executive - Chennai Campus)', nameTamil: 'PGPBM (நிர்வாக - சென்னை வளாகம்)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years (Weekend)', eligibility: 'Graduation + 3+ years work experience + GMAT/CAT', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'GMAT/CAT + Interview', durationMinutes: 0, mode: 'Interview', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['For working executives', 'Weekend classes in Chennai', 'Career advancement focused'] },
-      { id: 'iimt-dpm', name: 'DPM (Doctoral Programme in Management)', nameTamil: 'DPM (மேலாண்மை முனைவர் திட்டம்)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'PG degree + CAT/GMAT/UGC NET/FPM shortlist', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Written Test + Interview', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Ph.D. in Management', 'Fellowship provided', 'Academia and research careers'] }
+      // ========== 1. FLAGSHIP RESIDENTIAL PROGRAMMES (Full-Time MBA) ==========
+      // Admission strictly through CAT (Common Admission Test)
+      { 
+        id: 'iimt-pgpm', 
+        name: 'PGPM (Post Graduate Programme in Management)', 
+        nameTamil: 'PGPM (மேலாண்மை முதுகலை திட்டம்)', 
+        type: 'PG', 
+        category: 'On-Campus', 
+        school: 'Management', 
+        duration: '2 Years (Residential)', 
+        eligibility: 'Graduation (any discipline) + CAT qualified', 
+        examPattern: { 
+          totalQuestions: 66, 
+          totalMarks: 198, 
+          duration: '2 Hours', 
+          durationMinutes: 120, 
+          mode: 'Online (CBT)', 
+          negativeMarking: true, 
+          sections: [
+            { name: 'VARC (Verbal Ability & Reading Comprehension)', nameTamil: 'வாசிப்பு புரிதல் & சொல் திறன்', questions: 24, marks: 72, topics: ['Reading Comprehension', 'Para Jumbles', 'Para Summary', 'Sentence Correction'] }, 
+            { name: 'DILR (Data Interpretation & Logical Reasoning)', nameTamil: 'தரவு விளக்கம் & தர்க்க ரீதியான பகுத்தறிவு', questions: 20, marks: 60, topics: ['Tables', 'Charts', 'Graphs', 'Puzzles', 'Arrangements'] }, 
+            { name: 'QA (Quantitative Aptitude)', nameTamil: 'அளவு திறன்', questions: 22, marks: 66, topics: ['Arithmetic', 'Algebra', 'Geometry', 'Number System', 'Modern Maths'] }
+          ] 
+        }, 
+        syllabus: [], 
+        previousQuestions: [], 
+        tips: [
+          '🎓 Flagship 2-Year MBA (Master of Business Administration)',
+          '📊 Specializations: Finance, Marketing, Operations, Strategy, IT & Analytics, OB/HR',
+          '💰 Median package: ₹18+ LPA | Top packages: ₹35+ LPA',
+          '🏢 Top recruiters: McKinsey, BCG, Goldman Sachs, Amazon, Deloitte'
+        ] 
+      },
+      { 
+        id: 'iimt-pgpm-hr', 
+        name: 'PGPM-HR (Human Resources Specialization)', 
+        nameTamil: 'PGPM-HR (மனிதவள மேலாண்மை நிபுணத்துவம்)', 
+        type: 'PG', 
+        category: 'On-Campus', 
+        school: 'Management', 
+        duration: '2 Years (Residential)', 
+        eligibility: 'Graduation + CAT qualified', 
+        examPattern: { 
+          totalQuestions: 66, 
+          totalMarks: 198, 
+          duration: '2 Hours', 
+          durationMinutes: 120, 
+          mode: 'Online (CBT)', 
+          negativeMarking: true, 
+          sections: [] 
+        }, 
+        syllabus: [], 
+        previousQuestions: [], 
+        tips: [
+          '👥 Specialized MBA dedicated entirely to Human Resources',
+          '📋 DIFFERENCE: Unlike general PGPM where HR is an elective, this is a full HR program',
+          '🏢 HR Leadership roles in Fortune 500 companies',
+          '💼 Admission: CAT Score + Personal Interview (PI)'
+        ] 
+      },
+
+      // ========== 2. EXECUTIVE PROGRAMME (Chennai Campus) ==========
+      // Satellite campus at Chennai (Ekkattuthangal) for working professionals
+      { 
+        id: 'iimt-pgpbm', 
+        name: 'PGPBM (Executive MBA - Chennai Campus)', 
+        nameTamil: 'PGPBM (நிர்வாக MBA - சென்னை வளாகம்)', 
+        type: 'PG', 
+        category: 'On-Campus', 
+        school: 'Executive Education', 
+        duration: '2 Years (Weekend Classes)', 
+        eligibility: 'Graduation + 3+ years work experience + IIMT Written Test/CAT/GMAT score', 
+        examPattern: { 
+          totalQuestions: 0, 
+          totalMarks: 100, 
+          duration: 'Written Test (by IIMT) OR CAT/GMAT + Interview', 
+          durationMinutes: 0, 
+          mode: 'Interview', 
+          negativeMarking: false, 
+          sections: [] 
+        }, 
+        syllabus: [], 
+        previousQuestions: [], 
+        tips: [
+          '🏢 CHENNAI CAMPUS: Dedicated satellite campus at Ekkattuthangal',
+          '📅 Format: Weekend classes (Saturdays & Sundays)',
+          '🎓 Degree: Full MBA (Master of Business Administration) from IIM',
+          '💡 WHY POPULAR: Get an IIM Degree without quitting your job!',
+          '👔 Target: Working executives with 3+ years experience'
+        ] 
+      },
+
+      // ========== 3. DOCTORAL PROGRAMMES (Research) ==========
+      { 
+        id: 'iimt-dpm', 
+        name: 'DPM (Doctoral Programme in Management)', 
+        nameTamil: 'DPM (மேலாண்மை முனைவர் திட்டம்)', 
+        type: 'Research', 
+        category: 'On-Campus', 
+        school: 'Research', 
+        duration: '4-5 Years (Full-Time, Residential)', 
+        eligibility: 'PG degree + CAT/GMAT/GRE/GATE/UGC-JRF score', 
+        examPattern: { 
+          totalQuestions: 0, 
+          totalMarks: 100, 
+          duration: 'Written Test + Research Proposal + Interview', 
+          durationMinutes: 0, 
+          mode: 'Offline', 
+          negativeMarking: false, 
+          sections: [] 
+        }, 
+        syllabus: [], 
+        previousQuestions: [], 
+        tips: [
+          '🎓 Full-time Ph.D. in Management (Residential)',
+          '💰 Stipend: ₹30,000 - ₹35,000/month + No tuition fee',
+          '📚 Specializations: Economics, Finance, Marketing, Strategy, Operations, IT, OB & HR',
+          '🎯 Ideal for: Academia, consulting, senior research roles'
+        ] 
+      },
+      { 
+        id: 'iimt-edpm', 
+        name: 'E-DPM (Executive Doctoral Programme)', 
+        nameTamil: 'E-DPM (நிர்வாக முனைவர் திட்டம்)', 
+        type: 'Research', 
+        category: 'On-Campus', 
+        school: 'Research', 
+        duration: '4-6 Years (Part-Time)', 
+        eligibility: 'PG degree + 10+ years senior executive experience', 
+        examPattern: { 
+          totalQuestions: 0, 
+          totalMarks: 100, 
+          duration: 'Application Review + Interview', 
+          durationMinutes: 0, 
+          mode: 'Hybrid', 
+          negativeMarking: false, 
+          sections: [] 
+        }, 
+        syllabus: [], 
+        previousQuestions: [], 
+        tips: [
+          '👔 Part-time Ph.D. for Senior Executives',
+          '🎯 Target: Working professionals with 10+ years experience',
+          '📅 Format: Campus visits once per term; rest is remote research',
+          '💼 Goal: Move into teaching or senior advisory/research roles'
+        ] 
+      },
+
+      // ========== 4. LONG DURATION CERTIFICATE PROGRAMMES (Hybrid/Online) ==========
+      // 6-month to 1-year certification courses for upskilling
+      { 
+        id: 'iimt-cert-shrm', 
+        name: 'PG Certificate in Strategic Human Resource Management', 
+        nameTamil: 'PG சான்றிதழ் மூலோபாய மனிதவள மேலாண்மை', 
+        type: 'Certificate', 
+        category: 'DDE', 
+        school: 'Executive Education', 
+        duration: '1 Year (Hybrid)', 
+        eligibility: 'Graduation + Work Experience', 
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Online Modules + Campus Sessions', durationMinutes: 0, mode: 'Hybrid', negativeMarking: false, sections: [] }, 
+        syllabus: [], 
+        previousQuestions: [], 
+        tips: ['HR strategy and leadership skills', 'Online + Campus hybrid format'] 
+      },
+      { 
+        id: 'iimt-cert-pcsm', 
+        name: 'PG Certificate in Senior Management (PCSM)', 
+        nameTamil: 'PG சான்றிதழ் மூத்த மேலாண்மை', 
+        type: 'Certificate', 
+        category: 'DDE', 
+        school: 'Executive Education', 
+        duration: '1 Year (Hybrid)', 
+        eligibility: 'Graduation + Work Experience', 
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Online Modules + Campus Sessions', durationMinutes: 0, mode: 'Hybrid', negativeMarking: false, sections: [] }, 
+        syllabus: [], 
+        previousQuestions: [], 
+        tips: ['General management for senior roles', 'Strategic leadership focus'] 
+      },
+      { 
+        id: 'iimt-cert-scm', 
+        name: 'PG Certificate in Supply Chain Management', 
+        nameTamil: 'PG சான்றிதழ் விநியோக சங்கிலி மேலாண்மை', 
+        type: 'Certificate', 
+        category: 'DDE', 
+        school: 'Executive Education', 
+        duration: '6-12 Months (Hybrid)', 
+        eligibility: 'Graduation + Work Experience', 
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Online Modules', durationMinutes: 0, mode: 'Hybrid', negativeMarking: false, sections: [] }, 
+        syllabus: [], 
+        previousQuestions: [], 
+        tips: ['Operations and logistics management', 'Industry-relevant curriculum'] 
+      },
+      { 
+        id: 'iimt-cert-mma', 
+        name: 'PG Certificate in Manufacturing Management & Analytics', 
+        nameTamil: 'PG சான்றிதழ் உற்பத்தி மேலாண்மை & பகுப்பாய்வு', 
+        type: 'Certificate', 
+        category: 'DDE', 
+        school: 'Executive Education', 
+        duration: '6-12 Months (Hybrid)', 
+        eligibility: 'Graduation in Engineering/Science + Work Experience', 
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Online Modules', durationMinutes: 0, mode: 'Hybrid', negativeMarking: false, sections: [] }, 
+        syllabus: [], 
+        previousQuestions: [], 
+        tips: ['For manufacturing sector professionals', 'Analytics-driven operations'] 
+      },
+      { 
+        id: 'iimt-cert-bfsi', 
+        name: 'PG Certificate in Banking & Financial Services', 
+        nameTamil: 'PG சான்றிதழ் வங்கி & நிதி சேவைகள்', 
+        type: 'Certificate', 
+        category: 'DDE', 
+        school: 'Executive Education', 
+        duration: '6-12 Months (Hybrid)', 
+        eligibility: 'Graduation + Work Experience in BFSI', 
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Online Modules', durationMinutes: 0, mode: 'Hybrid', negativeMarking: false, sections: [] }, 
+        syllabus: [], 
+        previousQuestions: [], 
+        tips: ['Banking sector upskilling', 'Financial services expertise'] 
+      },
+      { 
+        id: 'iimt-cert-dm', 
+        name: 'Certificate in Digital Marketing & Analytics', 
+        nameTamil: 'சான்றிதழ் டிஜிட்டல் மார்க்கெட்டிங் & பகுப்பாய்வு', 
+        type: 'Certificate', 
+        category: 'DDE', 
+        school: 'Executive Education', 
+        duration: '6 Months (Online)', 
+        eligibility: 'Graduation', 
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Online Modules', durationMinutes: 0, mode: 'Online', negativeMarking: false, sections: [] }, 
+        syllabus: [], 
+        previousQuestions: [], 
+        tips: ['Digital marketing strategy', 'Marketing analytics skills'] 
+      },
+      { 
+        id: 'iimt-cert-ba', 
+        name: 'Certificate in Business Analytics & Applications', 
+        nameTamil: 'சான்றிதழ் வணிக பகுப்பாய்வு & பயன்பாடுகள்', 
+        type: 'Certificate', 
+        category: 'DDE', 
+        school: 'Executive Education', 
+        duration: '6 Months (Online)', 
+        eligibility: 'Graduation', 
+        examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Online Modules', durationMinutes: 0, mode: 'Online', negativeMarking: false, sections: [] }, 
+        syllabus: [], 
+        previousQuestions: [], 
+        tips: ['Data-driven decision making', 'Business intelligence skills'] 
+      }
     ]
   },
 
