@@ -577,29 +577,53 @@ export const centralUniversities: University[] = [
   // ============================================
   // 8. NIFTEM THANJAVUR (formerly IICPT)
   // ============================================
+  // Institute of National Importance (INI) under Ministry of Food Processing Industries
+  // Best institute in Tamil Nadu for Food Processing and Food Engineering
   {
     id: 'niftem-thanjavur',
     name: 'NIFTEM Thanjavur (formerly IICPT)',
-    nameTamil: 'தேசிய உணவு தொழில்நுட்ப நிறுவனம் தஞ்சாவூர்',
+    nameTamil: 'தேசிய உணவு தொழில்நுட்ப நிறுவனம் தஞ்சாவூர் (முன்னர் IICPT)',
     location: 'Thanjavur',
     website: 'https://www.niftem-t.ac.in',
     phone: '04362-228155',
     email: 'admissions@niftem-t.ac.in',
-    examName: 'JEE Main / CUET (UG) / GATE (PG)',
-    logoColor: '#FF6F00',
+    examName: 'JEE Main (UG) / GATE / NIFTEM-T Entrance (PG)',
+    logoColor: '#2E7D32',
     logo: '/universities/niftem-thanjavur-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'Application 2026', eventTamil: 'விண்ணப்பம் 2026', date: 'May 2026', status: 'upcoming' },
-      { event: 'Entrance Exam', eventTamil: 'நுழைவுத் தேர்வு', date: 'June 2026', status: 'upcoming' },
-      { event: 'Counselling', eventTamil: 'கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+      { event: 'JEE Main 2026 Application', eventTamil: 'JEE மெயின் 2026 விண்ணப்பம்', date: 'November 2025', status: 'upcoming' },
+      { event: 'JoSAA/CSAB Counselling', eventTamil: 'JoSAA/CSAB கலந்தாய்வு', date: 'June 2026', status: 'upcoming' },
+      { event: 'M.Tech GATE Admission', eventTamil: 'M.Tech GATE சேர்க்கை', date: 'April-May 2026', status: 'upcoming' },
+      { event: 'Spot Round (if seats available)', eventTamil: 'ஸ்பாட் சுற்று (இடங்கள் இருந்தால்)', date: 'July 2026', status: 'upcoming' }
     ],
-    fee: { general: 100000, obc: 100000, scst: 50000 },
+    fee: { general: 125000, obc: 125000, scst: 62500 },
     courses: [
-      { id: 'niftem-btech-ft', name: 'B.Tech Food Technology', nameTamil: 'B.Tech உணவு தொழில்நுட்பம்', type: 'UG', category: 'On-Campus', school: 'Food Technology', duration: '4 Years', eligibility: 'JEE Main / CUET qualified, 12th PCM/PCB', examPattern: { totalQuestions: 75, totalMarks: 300, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Food processing industry', 'FMCG sector placements', 'Growing sector in India'] },
-      { id: 'niftem-mtech-fpe', name: 'M.Tech Food Process Engineering', nameTamil: 'M.Tech உணவு செயலாக்கப் பொறியியல்', type: 'PG', category: 'On-Campus', school: 'Food Technology', duration: '2 Years', eligibility: 'B.Tech (Food Tech/Chemical/Biotech) + GATE qualified', examPattern: { totalQuestions: 65, totalMarks: 100, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Advanced food processing', 'Research opportunities'] },
-      { id: 'niftem-mtech-fsqa', name: 'M.Tech Food Safety & Quality Assurance', nameTamil: 'M.Tech உணவு பாதுகாப்பு & தர உத்தரவாதம்', type: 'PG', category: 'On-Campus', school: 'Food Technology', duration: '2 Years', eligibility: 'B.Tech/B.Sc. (Food/Life Sciences) + GATE qualified', examPattern: { totalQuestions: 65, totalMarks: 100, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['FSSAI and quality control', 'Food safety regulations'] },
-      { id: 'niftem-phd', name: 'Ph.D. Food Process Engineering', nameTamil: 'Ph.D. உணவு செயலாக்கப் பொறியியல்', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-6 Years', eligibility: 'M.Tech (Food/Related) + GATE/Valid Score', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Written Test + Interview', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Food science research', 'Fellowship provided'] }
+      // ========== UNDERGRADUATE - B.Tech (4 Years) ==========
+      // Admission strictly via JEE Main Ranks (JoSAA/CSAB Counselling)
+      { id: 'niftem-btech-ft', name: 'B.Tech Food Technology', nameTamil: 'B.Tech உணவு தொழில்நுட்பம்', type: 'UG', category: 'On-Campus', school: 'Food Technology', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM/PCB (60% aggregate)', examPattern: { totalQuestions: 75, totalMarks: 300, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: true, sections: [{ name: 'Physics', nameTamil: 'இயற்பியல்', questions: 25, marks: 100, topics: ['Mechanics', 'Thermodynamics', 'Electromagnetism'] }, { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 25, marks: 100, topics: ['Physical', 'Organic', 'Inorganic Chemistry'] }, { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 25, marks: 100, topics: ['Calculus', 'Algebra', 'Statistics'] }] }, syllabus: [], previousQuestions: [], tips: ['~90 Seats available via JoSAA/CSAB', 'Admission similar to NITs and IIITs', 'Spot round if seats remain after JoSAA', 'Excellent placement in Nestle, ITC, Britannia, Amul, Coca-Cola'] },
+
+      // ========== POSTGRADUATE - M.Tech (2 Years) ==========
+      // Priority: GATE Score (XL/XE/AG) | Non-GATE: NIFTEM-T Entrance Exam
+      // Famous for Pilot Plants (mini-factories) on campus for hands-on learning
+      { id: 'niftem-mtech-fpe', name: 'M.Tech Food Process Engineering', nameTamil: 'M.Tech உணவு செயலாக்கப் பொறியியல்', type: 'PG', category: 'On-Campus', school: 'Food Technology', duration: '2 Years', eligibility: 'B.Tech (Food Tech/Chemical/Biotech/Agri Engg) + GATE (XL/XE/AG) or NIFTEM-T Entrance', examPattern: { totalQuestions: 65, totalMarks: 100, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Focus: Designing food processing machinery, factory layout, thermal processing', 'Learn on Pilot Plants (mini-factories) on campus', 'Hands-on manufacturing experience'] },
+      { id: 'niftem-mtech-fpt', name: 'M.Tech Food Process Technology', nameTamil: 'M.Tech உணவு செயலாக்க தொழில்நுட்பம்', type: 'PG', category: 'On-Campus', school: 'Food Technology', duration: '2 Years', eligibility: 'B.Tech (Food Tech/Chemical/Biotech) + GATE (XL/XE/AG) or NIFTEM-T Entrance', examPattern: { totalQuestions: 65, totalMarks: 100, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Focus: Product development, food chemistry, preservation techniques', 'Learn to make jams, juices, dairy products', 'R&D careers in FMCG companies'] },
+      { id: 'niftem-mtech-fsqa', name: 'M.Tech Food Safety & Quality Assurance', nameTamil: 'M.Tech உணவு பாதுகாப்பு & தர உத்தரவாதம்', type: 'PG', category: 'On-Campus', school: 'Food Technology', duration: '2 Years', eligibility: 'B.Tech/B.Sc. (Food/Life Sciences) + GATE (XL/XE) or NIFTEM-T Entrance', examPattern: { totalQuestions: 65, totalMarks: 100, duration: '3 Hours', durationMinutes: 180, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Focus: Food testing, FSSAI regulations, quality control, safety audits', 'NABL-accredited food testing labs on campus', 'Careers as Quality Managers, Food Safety Officers'] },
+
+      // ========== RESEARCH - Ph.D. ==========
+      // Admission via GATE/NET or Institute Entrance Exam + Interview
+      { id: 'niftem-phd-fpe', name: 'Ph.D. Food Process Engineering', nameTamil: 'Ph.D. உணவு செயலாக்கப் பொறியியல்', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-6 Years', eligibility: 'M.Tech (Food/Related) + GATE/NET or Institute Entrance + Interview', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Written Test + Interview', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Research in food processing machinery and technology', 'Fellowship provided'] },
+      { id: 'niftem-phd-fpt', name: 'Ph.D. Food Process Technology', nameTamil: 'Ph.D. உணவு செயலாக்க தொழில்நுட்பம்', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-6 Years', eligibility: 'M.Tech (Food/Related) + GATE/NET or Institute Entrance + Interview', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Written Test + Interview', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Research in product development and preservation', 'Fellowship provided'] },
+      { id: 'niftem-phd-fsqa', name: 'Ph.D. Food Safety & Quality Assurance', nameTamil: 'Ph.D. உணவு பாதுகாப்பு & தர உத்தரவாதம்', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-6 Years', eligibility: 'M.Tech (Food/Related) + GATE/NET or Institute Entrance + Interview', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Written Test + Interview', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Research in food safety regulations and testing', 'Fellowship provided'] },
+
+      // ========== SHORT-TERM SKILL TRAINING (For Entrepreneurs) ==========
+      // Practical training for people wanting to start food businesses
+      { id: 'niftem-cert-bakery', name: 'Certificate in Bakery & Confectionery', nameTamil: 'பேக்கரி & இனிப்பு பயிற்சி சான்றிதழ்', type: 'Certificate', category: 'On-Campus', school: 'Skill Training', duration: '1-5 Days', eligibility: 'Open to all (Entrepreneurs, Home bakers, Startups)', examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Practical Training', durationMinutes: 0, mode: 'Hands-on Workshop', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Hands-on practical training', 'Use institute machinery to manufacture products', 'For aspiring food entrepreneurs'] },
+      { id: 'niftem-cert-dairy', name: 'Certificate in Dairy Processing', nameTamil: 'பால் பதப்படுத்துதல் பயிற்சி சான்றிதழ்', type: 'Certificate', category: 'On-Campus', school: 'Skill Training', duration: '1-5 Days', eligibility: 'Open to all', examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Practical Training', durationMinutes: 0, mode: 'Hands-on Workshop', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Dairy product manufacturing', 'Incubation center support available'] },
+      { id: 'niftem-cert-fvp', name: 'Certificate in Fruit & Vegetable Processing', nameTamil: 'பழம் & காய்கறி பதப்படுத்துதல் சான்றிதழ்', type: 'Certificate', category: 'On-Campus', school: 'Skill Training', duration: '1-5 Days', eligibility: 'Open to all', examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Practical Training', durationMinutes: 0, mode: 'Hands-on Workshop', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Jams, juices, pickles manufacturing', 'Test your product in the market'] },
+      { id: 'niftem-cert-millet', name: 'Certificate in Millet Processing', nameTamil: 'தினை பதப்படுத்துதல் சான்றிதழ்', type: 'Certificate', category: 'On-Campus', school: 'Skill Training', duration: '1-5 Days', eligibility: 'Open to all', examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Practical Training', durationMinutes: 0, mode: 'Hands-on Workshop', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['HIGH DEMAND: Millet-based products trending', 'Value-added millet foods', 'Government schemes for millet startups'] },
+      { id: 'niftem-cert-rte', name: 'Certificate in Ready-to-Eat (RTE) Foods', nameTamil: 'ஆயத்த உணவுகள் (RTE) சான்றிதழ்', type: 'Certificate', category: 'On-Campus', school: 'Skill Training', duration: '1-5 Days', eligibility: 'Open to all', examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Practical Training', durationMinutes: 0, mode: 'Hands-on Workshop', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Packaged food manufacturing', 'Shelf-life extension techniques'] },
+      { id: 'niftem-cert-packaging', name: 'Certificate in Packaging Technology', nameTamil: 'பேக்கேஜிங் தொழில்நுட்ப சான்றிதழ்', type: 'Certificate', category: 'On-Campus', school: 'Skill Training', duration: '1-5 Days', eligibility: 'Open to all', examPattern: { totalQuestions: 0, totalMarks: 0, duration: 'Practical Training', durationMinutes: 0, mode: 'Hands-on Workshop', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Food packaging materials and design', 'Regulatory compliance for packaging'] }
     ]
   },
 
