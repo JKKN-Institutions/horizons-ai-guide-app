@@ -24608,6 +24608,10 @@ export const universities: University[] = [
   }
 ];
 
+// Import and merge Central Universities
+import { centralUniversities } from './central-universities-data';
+universities.push(...centralUniversities);
+
 export const getUniversityById = (id: string): University | undefined => {
   return universities.find(u => u.id === id);
 };
