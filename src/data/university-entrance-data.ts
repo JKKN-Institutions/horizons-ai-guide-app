@@ -22,6 +22,7 @@ export interface University {
   examName: string;
   logoColor: string;
   logo?: string;
+  type?: 'State Government' | 'Central Government' | 'Deemed University (Central Govt Funded)';
   courses: Course[];
   importantDates: ImportantDate[];
   fee: FeeStructure;
@@ -14274,289 +14275,677 @@ export const universities: University[] = [
       }
     ]
   },
-  // Central University of Tamil Nadu (CUTN)
+  // ===== CENTRAL UNIVERSITY OF TAMIL NADU (CUTN) =====
+  // Premier Central Government University in Cauvery Delta Region
+  // IMPORTANT: ALL admissions are STRICTLY through CUET conducted by NTA
   {
     id: 'cutn',
     name: 'Central University of Tamil Nadu',
     nameTamil: 'தமிழ்நாடு மத்திய பல்கலைக்கழகம்',
-    location: 'Thiruvarur',
+    location: 'Thiruvarur (Cauvery Delta)',
     website: 'www.cutn.ac.in',
     phone: '04366-277200',
     email: 'registrar@cutn.ac.in',
-    examName: 'CUET-UG',
+    examName: 'CUET (NTA)',
     logoColor: '#1e40af',
+    logo: '/universities/cutn-logo.png',
+    type: 'Central Government',
     fee: { general: 500, obc: 400, scst: 250 },
     importantDates: [
-      { event: 'CUET Notification', eventTamil: 'CUET அறிவிப்பு', date: 'February 2026', status: 'upcoming' },
-      { event: 'Application Start', eventTamil: 'விண்ணப்பம் தொடக்கம்', date: 'February 2026', status: 'upcoming' },
-      { event: 'Application End', eventTamil: 'விண்ணப்பம் முடிவு', date: 'March 2026', status: 'upcoming' },
-      { event: 'CUET Exam', eventTamil: 'CUET தேர்வு', date: 'May 2026', status: 'upcoming' },
-      { event: 'Results & Counseling', eventTamil: 'முடிவுகள் & கலந்தாய்வு', date: 'June 2026', status: 'upcoming' },
+      // CUET-UG Timeline (After 12th)
+      { event: 'CUET-UG Notification', eventTamil: 'CUET-UG அறிவிப்பு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET-UG Application Start', eventTamil: 'CUET-UG விண்ணப்பம் தொடக்கம்', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET-UG Application End', eventTamil: 'CUET-UG விண்ணப்பம் முடிவு', date: 'March 2026', status: 'upcoming' },
+      { event: 'CUET-UG Exam', eventTamil: 'CUET-UG தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CUET-UG Results', eventTamil: 'CUET-UG முடிவுகள்', date: 'June 2026', status: 'upcoming' },
+      { event: 'CUTN UG Counselling', eventTamil: 'CUTN இளநிலை கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
+      // CUET-PG Timeline (After Degree)
+      { event: 'CUET-PG Notification', eventTamil: 'CUET-PG அறிவிப்பு', date: 'March 2026', status: 'upcoming' },
+      { event: 'CUET-PG Exam', eventTamil: 'CUET-PG தேர்வு', date: 'June 2026', status: 'upcoming' },
+      { event: 'CUTN PG Counselling', eventTamil: 'CUTN முதுநிலை கலந்தாய்வு', date: 'July 2026', status: 'upcoming' },
     ],
     courses: [
-      // Integrated M.Sc. Life Sciences
+      // ========================================
+      // 1. INTEGRATED PROGRAMMES (JOIN AFTER 12TH)
+      // ========================================
+      // These are flagship 5-year programs for direct entry after 12th
+      
+      // ----- INTEGRATED M.Sc. (5 YEARS) -----
       {
-        id: 'cutn-integrated-msc-life-sciences',
-        name: 'Integrated M.Sc. Life Sciences',
-        nameTamil: 'ஒருங்கிணைந்த எம்.எஸ்சி. உயிர் அறிவியல்',
-        type: 'UG',
-        seatMatrix: { general: 10, obc: 8, bcMbc: 0, sc: 5, st: 2, ews: 3, total: 30 },
-        cutoffs: [
-          { year: '2024', general: 550, obc: 480, bcMbc: '-', sc: 380, st: 350, ews: 520 },
-          { year: '2023', general: 530, obc: 460, bcMbc: '-', sc: 360, st: 330, ews: 500 },
-        ],
+        id: 'cutn-integrated-msc-mathematics',
+        name: 'Integrated M.Sc. Mathematics (5 Years)',
+        nameTamil: 'ஒருங்கிணைந்த எம்.எஸ்சி. கணிதம் (5 ஆண்டுகள்)',
+        type: 'Integrated',
+        category: 'On-Campus',
+        school: 'School of Basic & Applied Sciences',
+        duration: '5 Years',
+        eligibility: '+2 with Mathematics (CUET-UG Required)',
         examPattern: {
-          totalQuestions: 50,
-          totalMarks: 200,
-          duration: '45 Minutes (per section)',
-          durationMinutes: 195,
-          mode: 'Computer Based (CBT)',
-          negativeMarking: true,
+          totalQuestions: 50, totalMarks: 200, duration: '45 Minutes per section', durationMinutes: 180,
+          mode: 'CUET-UG Computer Based (CBT)', negativeMarking: true,
           sections: [
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 200, topics: ['Mechanics', 'Optics', 'Modern Physics', 'Thermodynamics'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 200, topics: ['Organic', 'Inorganic', 'Physical Chemistry'] },
-            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 50, marks: 200, topics: ['Botany', 'Zoology', 'Cell Biology', 'Genetics'] },
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 200, topics: ['Calculus', 'Algebra', 'Trigonometry', 'Coordinate Geometry'] },
+            { name: 'General Test', nameTamil: 'பொது தேர்வு', questions: 60, marks: 200, topics: ['Quantitative Reasoning', 'Logical Reasoning', 'General Awareness'] }
           ]
         },
         syllabus: [
           {
-            unitNumber: 1,
-            title: 'Cell Biology & Genetics',
-            titleTamil: 'செல் உயிரியல் & மரபியல்',
+            unitNumber: 1, title: 'Calculus', titleTamil: 'நுண்கணிதம்',
+            topics: [
+              { name: 'Limits & Continuity', subtopics: ['Limits', 'Continuity', 'Differentiability'], importance: 'High' },
+              { name: 'Differentiation', subtopics: ['Derivatives', 'Applications', 'Mean Value Theorems'], importance: 'High' },
+              { name: 'Integration', subtopics: ['Definite Integrals', 'Area Under Curves'], importance: 'High' },
+            ], expectedQuestions: 15, difficulty: 'Medium'
+          },
+          {
+            unitNumber: 2, title: 'Algebra', titleTamil: 'இயற்கணிதம்',
+            topics: [
+              { name: 'Matrices & Determinants', subtopics: ['Properties', 'Inverse', 'Rank'], importance: 'High' },
+              { name: 'Complex Numbers', subtopics: ['Algebra of Complex Numbers', 'Argand Plane'], importance: 'Medium' },
+            ], expectedQuestions: 12, difficulty: 'Medium'
+          }
+        ],
+        previousQuestions: [
+          { id: 'cutn-msc-math-q1', year: '2024', question: 'If f(x) = x³ - 3x² + 2, find f\'(2)', options: ['0', '2', '4', '-2'], correctAnswer: 0, explanation: 'f\'(x) = 3x² - 6x. At x=2: f\'(2) = 3(4) - 6(2) = 12 - 12 = 0', topic: 'Calculus', difficulty: 'Medium' },
+          { id: 'cutn-msc-math-q2', year: '2024', question: 'The determinant of a 2×2 identity matrix is:', options: ['0', '1', '2', '-1'], correctAnswer: 1, explanation: 'The identity matrix has 1s on the diagonal and 0s elsewhere. det(I) = 1×1 - 0×0 = 1', topic: 'Algebra', difficulty: 'Easy' }
+        ],
+        tips: ['Apply through CUET-UG (NTA)', 'Focus on NCERT Maths Class 11 & 12', 'Direct Master\'s degree after 12th', 'Career: Research, Academia, Data Science, Finance']
+      },
+      {
+        id: 'cutn-integrated-msc-physics',
+        name: 'Integrated M.Sc. Physics (5 Years)',
+        nameTamil: 'ஒருங்கிணைந்த எம்.எஸ்சி. இயற்பியல் (5 ஆண்டுகள்)',
+        type: 'Integrated',
+        category: 'On-Campus',
+        school: 'School of Basic & Applied Sciences',
+        duration: '5 Years',
+        eligibility: '+2 with Physics, Chemistry, Mathematics (CUET-UG Required)',
+        examPattern: {
+          totalQuestions: 50, totalMarks: 200, duration: '45 Minutes per section', durationMinutes: 180,
+          mode: 'CUET-UG Computer Based (CBT)', negativeMarking: true,
+          sections: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 200, topics: ['Mechanics', 'Optics', 'Modern Physics', 'Thermodynamics'] },
+            { name: 'General Test', nameTamil: 'பொது தேர்வு', questions: 60, marks: 200, topics: ['Quantitative Reasoning', 'Logical Reasoning'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-UG (NTA)', 'Strong foundation in Physics & Maths needed', 'Career: Physicist, ISRO, DRDO, Research Labs']
+      },
+      {
+        id: 'cutn-integrated-msc-chemistry',
+        name: 'Integrated M.Sc. Chemistry (5 Years)',
+        nameTamil: 'ஒருங்கிணைந்த எம்.எஸ்சி. வேதியியல் (5 ஆண்டுகள்)',
+        type: 'Integrated',
+        category: 'On-Campus',
+        school: 'School of Basic & Applied Sciences',
+        duration: '5 Years',
+        eligibility: '+2 with Physics, Chemistry, Mathematics (CUET-UG Required)',
+        examPattern: {
+          totalQuestions: 50, totalMarks: 200, duration: '45 Minutes per section', durationMinutes: 180,
+          mode: 'CUET-UG Computer Based (CBT)', negativeMarking: true,
+          sections: [
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 200, topics: ['Organic', 'Inorganic', 'Physical Chemistry'] },
+            { name: 'General Test', nameTamil: 'பொது தேர்வு', questions: 60, marks: 200, topics: ['Quantitative Reasoning', 'Logical Reasoning'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-UG (NTA)', 'Focus on NCERT Chemistry', 'Career: Chemist, Pharma Industry, Research']
+      },
+      {
+        id: 'cutn-integrated-msc-biotechnology',
+        name: 'Integrated M.Sc. Biotechnology (5 Years)',
+        nameTamil: 'ஒருங்கிணைந்த எம்.எஸ்சி. உயிர்தொழில்நுட்பவியல் (5 ஆண்டுகள்)',
+        type: 'Integrated',
+        category: 'On-Campus',
+        school: 'School of Life Sciences',
+        duration: '5 Years',
+        eligibility: '+2 with Physics, Chemistry, Biology (CUET-UG Required)',
+        specialty: 'High Demand - Limited Seats',
+        examPattern: {
+          totalQuestions: 50, totalMarks: 200, duration: '45 Minutes per section', durationMinutes: 180,
+          mode: 'CUET-UG Computer Based (CBT)', negativeMarking: true,
+          sections: [
+            { name: 'Biology', nameTamil: 'உயிரியல்', questions: 50, marks: 200, topics: ['Cell Biology', 'Genetics', 'Biochemistry', 'Microbiology'] },
+            { name: 'General Test', nameTamil: 'பொது தேர்வு', questions: 60, marks: 200, topics: ['Quantitative Reasoning', 'Logical Reasoning'] }
+          ]
+        },
+        syllabus: [
+          {
+            unitNumber: 1, title: 'Cell Biology & Genetics', titleTamil: 'செல் உயிரியல் & மரபியல்',
             topics: [
               { name: 'Cell Structure', subtopics: ['Cell Organelles', 'Membrane Transport', 'Cell Cycle'], importance: 'High' },
               { name: 'Genetics', subtopics: ['Mendelian Genetics', 'DNA Replication', 'Gene Expression'], importance: 'High' },
-            ],
-            expectedQuestions: 15,
-            difficulty: 'Medium'
+            ], expectedQuestions: 15, difficulty: 'Medium'
           },
           {
-            unitNumber: 2,
-            title: 'Biochemistry',
-            titleTamil: 'உயிர்வேதியியல்',
+            unitNumber: 2, title: 'Biochemistry', titleTamil: 'உயிர்வேதியியல்',
             topics: [
               { name: 'Biomolecules', subtopics: ['Carbohydrates', 'Proteins', 'Lipids', 'Nucleic Acids'], importance: 'High' },
               { name: 'Enzymes', subtopics: ['Enzyme Kinetics', 'Inhibition', 'Regulation'], importance: 'Medium' },
-            ],
-            expectedQuestions: 10,
-            difficulty: 'Hard'
+            ], expectedQuestions: 10, difficulty: 'Hard'
           }
         ],
         previousQuestions: [
-          {
-            id: 'cutn-life-q1',
-            year: '2024',
-            question: 'Which organelle is responsible for ATP synthesis in eukaryotic cells?',
-            options: ['Ribosome', 'Mitochondria', 'Golgi apparatus', 'Endoplasmic reticulum'],
-            correctAnswer: 1,
-            explanation: 'Mitochondria are the powerhouses of the cell, responsible for producing ATP through oxidative phosphorylation.',
-            topic: 'Cell Biology',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'cutn-life-q2',
-            year: '2024',
-            question: 'The process of DNA to RNA conversion is called:',
-            options: ['Replication', 'Transcription', 'Translation', 'Reverse transcription'],
-            correctAnswer: 1,
-            explanation: 'Transcription is the process where genetic information from DNA is copied into RNA.',
-            topic: 'Genetics',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'cutn-life-q3',
-            year: '2023',
-            question: 'Which of the following is NOT a function of proteins?',
-            options: ['Enzyme catalysis', 'Energy storage (primary)', 'Structural support', 'Signal transduction'],
-            correctAnswer: 1,
-            explanation: 'Carbohydrates and lipids are the primary energy storage molecules, not proteins.',
-            topic: 'Biochemistry',
-            difficulty: 'Medium'
-          }
+          { id: 'cutn-biotech-q1', year: '2024', question: 'Which organelle is responsible for ATP synthesis in eukaryotic cells?', options: ['Ribosome', 'Mitochondria', 'Golgi apparatus', 'Endoplasmic reticulum'], correctAnswer: 1, explanation: 'Mitochondria are the powerhouses of the cell, responsible for producing ATP through oxidative phosphorylation.', topic: 'Cell Biology', difficulty: 'Easy' },
+          { id: 'cutn-biotech-q2', year: '2024', question: 'The process of DNA to RNA conversion is called:', options: ['Replication', 'Transcription', 'Translation', 'Reverse transcription'], correctAnswer: 1, explanation: 'Transcription is the process where genetic information from DNA is copied into RNA.', topic: 'Genetics', difficulty: 'Easy' }
         ],
-        tips: [
-          'Focus on NCERT Biology (Class 11 & 12) for fundamentals',
-          'CUET-UG tests conceptual understanding, not rote learning',
-          'Practice previous year CUET questions extensively',
-          'Central universities offer excellent research opportunities',
-          'Career paths: CSIR Labs, Biotech Industry, Research Scientist'
-        ]
+        tips: ['High demand course - apply early via CUET-UG', 'Focus on NCERT Biology Class 11 & 12', 'Career: Biotech Industry, Pharma, CSIR Labs, Research Scientist']
       },
-      // Integrated B.Sc. B.Ed. (Mathematics)
-      {
-        id: 'cutn-bsc-bed-maths',
-        name: 'Integrated B.Sc. B.Ed. (Mathematics)',
-        nameTamil: 'ஒருங்கிணைந்த பி.எஸ்சி. பி.எட். (கணிதம்)',
-        type: 'UG',
-        seatMatrix: { general: 15, obc: 13, bcMbc: 0, sc: 8, st: 4, ews: 5, total: 50 },
-        cutoffs: [
-          { year: '2024', general: 520, obc: 460, bcMbc: '-', sc: 350, st: 320, ews: 490 },
-          { year: '2023', general: 500, obc: 440, bcMbc: '-', sc: 330, st: 300, ews: 470 },
-        ],
-        examPattern: {
-          totalQuestions: 50,
-          totalMarks: 200,
-          duration: '45 Minutes (per section)',
-          durationMinutes: 135,
-          mode: 'Computer Based (CBT)',
-          negativeMarking: true,
-          sections: [
-            { name: 'Physics', nameTamil: 'இயற்பியல்', questions: 50, marks: 200, topics: ['Mechanics', 'Optics', 'Electricity', 'Modern Physics'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 50, marks: 200, topics: ['Organic', 'Inorganic', 'Physical Chemistry'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 200, topics: ['Calculus', 'Algebra', 'Trigonometry', 'Statistics'] },
-          ]
-        },
-        syllabus: [
-          {
-            unitNumber: 1,
-            title: 'Calculus',
-            titleTamil: 'நுண்கணிதம்',
-            topics: [
-              { name: 'Differentiation', subtopics: ['Limits', 'Derivatives', 'Applications'], importance: 'High' },
-              { name: 'Integration', subtopics: ['Definite Integrals', 'Applications'], importance: 'High' },
-            ],
-            expectedQuestions: 15,
-            difficulty: 'Medium'
-          },
-          {
-            unitNumber: 2,
-            title: 'Algebra',
-            titleTamil: 'இயற்கணிதம்',
-            topics: [
-              { name: 'Matrices', subtopics: ['Operations', 'Determinants', 'Inverse'], importance: 'High' },
-              { name: 'Sets & Relations', subtopics: ['Functions', 'Binary Operations'], importance: 'Medium' },
-            ],
-            expectedQuestions: 12,
-            difficulty: 'Medium'
-          }
-        ],
-        previousQuestions: [
-          {
-            id: 'cutn-bed-q1',
-            year: '2024',
-            question: 'If f(x) = x³ - 3x² + 2, find f\'(2)',
-            options: ['0', '2', '4', '-2'],
-            correctAnswer: 0,
-            explanation: 'f\'(x) = 3x² - 6x. At x=2: f\'(2) = 3(4) - 6(2) = 12 - 12 = 0',
-            topic: 'Calculus',
-            difficulty: 'Medium'
-          },
-          {
-            id: 'cutn-bed-q2',
-            year: '2024',
-            question: 'The determinant of a 2x2 identity matrix is:',
-            options: ['0', '1', '2', '-1'],
-            correctAnswer: 1,
-            explanation: 'The identity matrix has 1s on the diagonal and 0s elsewhere. det(I) = 1×1 - 0×0 = 1',
-            topic: 'Algebra',
-            difficulty: 'Easy'
-          }
-        ],
-        tips: [
-          'This is a 4-year integrated program - B.Sc. + B.Ed. together',
-          'Excellent for those wanting to become Government School Teachers',
-          'Focus on NCERT Mathematics (Class 11 & 12)',
-          'Career paths: TGT/PGT Teacher, Education Policy, Academic Counselor',
-          'Central university degree has national recognition'
-        ]
-      },
-      // Integrated M.A. Economics
+      
+      // ----- INTEGRATED M.A. (5 YEARS) -----
       {
         id: 'cutn-integrated-ma-economics',
-        name: 'Integrated M.A. Economics',
-        nameTamil: 'ஒருங்கிணைந்த எம்.ஏ. பொருளியல்',
-        type: 'UG',
-        seatMatrix: { general: 10, obc: 8, bcMbc: 0, sc: 5, st: 2, ews: 3, total: 30 },
-        cutoffs: [
-          { year: '2024', general: 480, obc: 420, bcMbc: '-', sc: 320, st: 290, ews: 450 },
-          { year: '2023', general: 460, obc: 400, bcMbc: '-', sc: 300, st: 270, ews: 430 },
-        ],
+        name: 'Integrated M.A. Economics (5 Years)',
+        nameTamil: 'ஒருங்கிணைந்த எம்.ஏ. பொருளியல் (5 ஆண்டுகள்)',
+        type: 'Integrated',
+        category: 'On-Campus',
+        school: 'School of Social Sciences & Humanities',
+        duration: '5 Years',
+        eligibility: '+2 any stream (CUET-UG Required)',
         examPattern: {
-          totalQuestions: 50,
-          totalMarks: 200,
-          duration: '45 Minutes (per section)',
-          durationMinutes: 90,
-          mode: 'Computer Based (CBT)',
-          negativeMarking: true,
+          totalQuestions: 50, totalMarks: 200, duration: '45 Minutes per section', durationMinutes: 135,
+          mode: 'CUET-UG Computer Based (CBT)', negativeMarking: true,
           sections: [
             { name: 'Economics / Maths', nameTamil: 'பொருளியல் / கணிதம்', questions: 50, marks: 200, topics: ['Microeconomics', 'Macroeconomics', 'Statistics', 'Indian Economy'] },
-            { name: 'General Test', nameTamil: 'பொது தேர்வு', questions: 60, marks: 200, topics: ['General Awareness', 'Quantitative Reasoning', 'Logical Reasoning'] },
+            { name: 'General Test', nameTamil: 'பொது தேர்வு', questions: 60, marks: 200, topics: ['General Awareness', 'Quantitative Reasoning', 'Logical Reasoning'] }
           ]
         },
         syllabus: [
           {
-            unitNumber: 1,
-            title: 'Microeconomics',
-            titleTamil: 'நுண்பொருளியல்',
+            unitNumber: 1, title: 'Microeconomics', titleTamil: 'நுண்பொருளியல்',
             topics: [
               { name: 'Demand & Supply', subtopics: ['Law of Demand', 'Elasticity', 'Market Equilibrium'], importance: 'High' },
               { name: 'Consumer Theory', subtopics: ['Utility', 'Indifference Curves', 'Budget Constraint'], importance: 'High' },
-            ],
-            expectedQuestions: 12,
-            difficulty: 'Medium'
+            ], expectedQuestions: 12, difficulty: 'Medium'
           },
           {
-            unitNumber: 2,
-            title: 'Macroeconomics',
-            titleTamil: 'பேரியல் பொருளியல்',
+            unitNumber: 2, title: 'Macroeconomics', titleTamil: 'பேரியல் பொருளியல்',
             topics: [
               { name: 'National Income', subtopics: ['GDP', 'GNP', 'NNP', 'Measurement Methods'], importance: 'High' },
               { name: 'Money & Banking', subtopics: ['RBI Functions', 'Monetary Policy', 'Inflation'], importance: 'High' },
-            ],
-            expectedQuestions: 15,
-            difficulty: 'Medium'
-          },
-          {
-            unitNumber: 3,
-            title: 'Indian Economy',
-            titleTamil: 'இந்திய பொருளாதாரம்',
-            topics: [
-              { name: 'Economic Planning', subtopics: ['Five Year Plans', 'NITI Aayog', 'Reforms'], importance: 'Medium' },
-              { name: 'Current Issues', subtopics: ['Budget', 'Fiscal Policy', 'Trade'], importance: 'High' },
-            ],
-            expectedQuestions: 10,
-            difficulty: 'Easy'
+            ], expectedQuestions: 15, difficulty: 'Medium'
           }
         ],
         previousQuestions: [
-          {
-            id: 'cutn-eco-q1',
-            year: '2024',
-            question: 'The Phillips Curve shows the relationship between:',
-            options: ['GDP and Interest Rate', 'Inflation and Unemployment', 'Savings and Investment', 'Exports and Imports'],
-            correctAnswer: 1,
-            explanation: 'The Phillips Curve demonstrates the inverse relationship between inflation and unemployment rates.',
-            topic: 'Macroeconomics',
-            difficulty: 'Medium'
-          },
-          {
-            id: 'cutn-eco-q2',
-            year: '2024',
-            question: 'Which body is responsible for monetary policy in India?',
-            options: ['SEBI', 'Finance Ministry', 'RBI', 'NITI Aayog'],
-            correctAnswer: 2,
-            explanation: 'The Reserve Bank of India (RBI) is responsible for formulating and implementing monetary policy in India.',
-            topic: 'Indian Economy',
-            difficulty: 'Easy'
-          },
-          {
-            id: 'cutn-eco-q3',
-            year: '2023',
-            question: 'Law of Diminishing Marginal Utility was propounded by:',
-            options: ['Adam Smith', 'Alfred Marshall', 'H.H. Gossen', 'J.M. Keynes'],
-            correctAnswer: 2,
-            explanation: 'H.H. Gossen formulated the Law of Diminishing Marginal Utility, also known as Gossen\'s First Law.',
-            topic: 'Microeconomics',
-            difficulty: 'Medium'
-          }
+          { id: 'cutn-eco-q1', year: '2024', question: 'The Phillips Curve shows the relationship between:', options: ['GDP and Interest Rate', 'Inflation and Unemployment', 'Savings and Investment', 'Exports and Imports'], correctAnswer: 1, explanation: 'The Phillips Curve demonstrates the inverse relationship between inflation and unemployment rates.', topic: 'Macroeconomics', difficulty: 'Medium' },
+          { id: 'cutn-eco-q2', year: '2024', question: 'Which body is responsible for monetary policy in India?', options: ['SEBI', 'Finance Ministry', 'RBI', 'NITI Aayog'], correctAnswer: 2, explanation: 'The Reserve Bank of India (RBI) is responsible for formulating and implementing monetary policy in India.', topic: 'Indian Economy', difficulty: 'Easy' }
         ],
-        tips: [
-          '5-year integrated program - no separate PG admission needed',
-          'Open to students from ANY stream (Science/Commerce/Arts)',
-          'Strong foundation in Maths/Economics in 12th is helpful',
-          'Career paths: Economist, RBI Grade B Officer, Data Analyst, IES',
-          'Focus on NCERT Economics and current affairs for CUET'
-        ]
+        tips: ['Open to ALL streams (Science/Commerce/Arts)', 'Apply through CUET-UG', 'Career: Economist, RBI Grade B, Data Analyst, IES']
+      },
+      
+      // ----- INTEGRATED M.P.A. (5 YEARS) -----
+      {
+        id: 'cutn-integrated-mpa-music',
+        name: 'Integrated M.P.A. Music (5 Years)',
+        nameTamil: 'ஒருங்கிணைந்த எம்.பி.ஏ. இசை (5 ஆண்டுகள்)',
+        type: 'Integrated',
+        category: 'On-Campus',
+        school: 'School of Performing Arts',
+        duration: '5 Years',
+        eligibility: '+2 any stream + Music background (CUET-UG + Skill Test)',
+        examPattern: {
+          totalQuestions: 50, totalMarks: 200, duration: '45 Minutes per section', durationMinutes: 90,
+          mode: 'CUET-UG + Practical Audition', negativeMarking: true,
+          sections: [
+            { name: 'General Test', nameTamil: 'பொது தேர்வு', questions: 60, marks: 200, topics: ['Quantitative Reasoning', 'Logical Reasoning', 'General Awareness'] },
+            { name: 'Skill Test', nameTamil: 'திறன் தேர்வு', questions: 1, marks: 100, topics: ['Practical Audition', 'Music Theory', 'Performance'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['Requires CUET-UG + Practical Audition', 'Prior music training is essential', 'Career: Professional Musician, Music Teacher, AIR']
+      },
+      
+      // ----- INTEGRATED B.Sc. B.Ed. (4 YEARS - ITEP SCHEME) -----
+      {
+        id: 'cutn-bsc-bed-maths',
+        name: 'Integrated B.Sc. B.Ed. Mathematics (4 Years)',
+        nameTamil: 'ஒருங்கிணைந்த பி.எஸ்சி. பி.எட். கணிதம் (4 ஆண்டுகள்)',
+        type: 'Integrated',
+        category: 'On-Campus',
+        school: 'School of Education',
+        duration: '4 Years',
+        specialty: 'ITEP Scheme - Teacher Training',
+        eligibility: '+2 with Mathematics (CUET-UG Required)',
+        examPattern: {
+          totalQuestions: 50, totalMarks: 200, duration: '45 Minutes per section', durationMinutes: 135,
+          mode: 'CUET-UG Computer Based (CBT)', negativeMarking: true,
+          sections: [
+            { name: 'Mathematics', nameTamil: 'கணிதம்', questions: 50, marks: 200, topics: ['Calculus', 'Algebra', 'Trigonometry', 'Statistics'] },
+            { name: 'General Test', nameTamil: 'பொது தேர்வு', questions: 60, marks: 200, topics: ['Quantitative Reasoning', 'Logical Reasoning'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['4-year integrated B.Sc. + B.Ed. under ITEP scheme', 'Excellent for becoming a Government School Teacher', 'Career: TGT/PGT Teacher, Education Officer, Academic Counselor']
+      },
+
+      // ========================================
+      // 2. POSTGRADUATE (PG) PROGRAMMES - 2 YEARS
+      // ========================================
+      // For students who have completed Bachelor's degree
+      
+      // ----- M.Sc. SCIENCE PROGRAMMES -----
+      {
+        id: 'cutn-msc-chemistry',
+        name: 'M.Sc. Chemistry',
+        nameTamil: 'எம்.எஸ்சி. வேதியியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Basic & Applied Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Chemistry (CUET-PG Required)',
+        examPattern: {
+          totalQuestions: 75, totalMarks: 300, duration: '2 Hours', durationMinutes: 120,
+          mode: 'CUET-PG Computer Based (CBT)', negativeMarking: true,
+          sections: [
+            { name: 'Domain Knowledge - Chemistry', nameTamil: 'களப்பறிவு - வேதியியல்', questions: 75, marks: 300, topics: ['Organic Chemistry', 'Inorganic Chemistry', 'Physical Chemistry', 'Spectroscopy'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG after B.Sc.', 'Career: Chemist, Pharma Industry, Research Labs']
+      },
+      {
+        id: 'cutn-msc-computer-science',
+        name: 'M.Sc. Computer Science',
+        nameTamil: 'எம்.எஸ்சி. கணினி அறிவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Basic & Applied Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc./BCA/B.Tech (CUET-PG Required)',
+        examPattern: {
+          totalQuestions: 75, totalMarks: 300, duration: '2 Hours', durationMinutes: 120,
+          mode: 'CUET-PG Computer Based (CBT)', negativeMarking: true,
+          sections: [
+            { name: 'Computer Science', nameTamil: 'கணினி அறிவியல்', questions: 75, marks: 300, topics: ['Programming', 'Data Structures', 'DBMS', 'Networks'] }
+          ]
+        },
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Software Engineer, IT Industry, Data Scientist']
+      },
+      {
+        id: 'cutn-msc-geography',
+        name: 'M.Sc. Geography',
+        nameTamil: 'எம்.எஸ்சி. புவியியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Earth Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Geography/Geology (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Geographer, ISRO, Survey of India, Town Planner']
+      },
+      {
+        id: 'cutn-msc-geology',
+        name: 'M.Sc. Geology',
+        nameTamil: 'எம்.எஸ்சி. நிலவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Earth Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Geology (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Geologist, GSI, ONGC, Mining Industry']
+      },
+      {
+        id: 'cutn-msc-applied-psychology',
+        name: 'M.Sc. Applied Psychology',
+        nameTamil: 'எம்.எஸ்சி. பயன்பாட்டு உளவியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Social Sciences & Humanities',
+        duration: '2 Years',
+        eligibility: 'B.A./B.Sc. Psychology (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Clinical Psychologist, HR, Counselor']
+      },
+      {
+        id: 'cutn-msc-microbiology',
+        name: 'M.Sc. Microbiology',
+        nameTamil: 'எம்.எஸ்சி. நுண்ணுயிரியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Life Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Microbiology/Life Sciences (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Microbiologist, Pharma, Quality Control, Research']
+      },
+      {
+        id: 'cutn-msc-horticulture',
+        name: 'M.Sc. Horticulture',
+        nameTamil: 'எம்.எஸ்சி. தோட்டக்கலை',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Life Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Horticulture/Agriculture (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Horticulturist, Agriculture Officer, Agribusiness']
+      },
+      {
+        id: 'cutn-msc-epidemiology-public-health',
+        name: 'M.Sc. Epidemiology and Public Health',
+        nameTamil: 'எம்.எஸ்சி. தொற்றுநோயியல் மற்றும் பொது சுகாதாரம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Life Sciences',
+        duration: '2 Years',
+        specialty: 'Unique to CUTN',
+        eligibility: 'B.Sc. Life Sciences/Nursing/MBBS (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Unique program - only at CUTN', 'Apply through CUET-PG', 'Career: Public Health Officer, WHO, Epidemiologist, CDC']
+      },
+      {
+        id: 'cutn-msc-statistics-applied-maths',
+        name: 'M.Sc. Statistics and Applied Mathematics',
+        nameTamil: 'எம்.எஸ்சி. புள்ளியியல் மற்றும் பயன்பாட்டு கணிதம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Basic & Applied Sciences',
+        duration: '2 Years',
+        eligibility: 'B.Sc. Mathematics/Statistics (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Statistician, Data Analyst, Actuary, Research']
+      },
+      
+      // ----- M.A. ARTS & HUMANITIES -----
+      {
+        id: 'cutn-ma-english',
+        name: 'M.A. English',
+        nameTamil: 'எம்.ஏ. ஆங்கிலம்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Languages',
+        duration: '2 Years',
+        eligibility: 'B.A. English (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Professor, Content Writer, Translator, Media']
+      },
+      {
+        id: 'cutn-ma-hindi',
+        name: 'M.A. Hindi',
+        nameTamil: 'எம்.ஏ. இந்தி',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Languages',
+        duration: '2 Years',
+        eligibility: 'B.A. Hindi (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Hindi Officer, Translator, Professor']
+      },
+      {
+        id: 'cutn-ma-classical-tamil',
+        name: 'M.A. Classical Tamil Studies',
+        nameTamil: 'எம்.ஏ. செம்மொழி தமிழ் ஆய்வுகள்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Languages',
+        duration: '2 Years',
+        eligibility: 'B.A. Tamil (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Tamil Researcher, Professor, Government Translator']
+      },
+      {
+        id: 'cutn-ma-history',
+        name: 'M.A. History',
+        nameTamil: 'எம்.ஏ. வரலாறு',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Social Sciences & Humanities',
+        duration: '2 Years',
+        eligibility: 'B.A. History (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Historian, Archaeologist, Professor, Civil Services']
+      },
+      {
+        id: 'cutn-ma-economics-pg',
+        name: 'M.A. Economics',
+        nameTamil: 'எம்.ஏ. பொருளியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Social Sciences & Humanities',
+        duration: '2 Years',
+        eligibility: 'B.A. Economics (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Economist, RBI, Bank PO, Research Analyst']
+      },
+      {
+        id: 'cutn-ma-mass-communication',
+        name: 'M.A. Mass Communication',
+        nameTamil: 'எம்.ஏ. ஊடக தொடர்பியல்',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Social Sciences & Humanities',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Journalist, PR Executive, Media Manager, Filmmaker']
+      },
+      
+      // ----- MANAGEMENT & COMMERCE -----
+      {
+        id: 'cutn-mba-general',
+        name: 'M.B.A. (General)',
+        nameTamil: 'எம்.பி.ஏ. (பொது)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Management Studies',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Manager, Consultant, Entrepreneur, Corporate Leader']
+      },
+      {
+        id: 'cutn-mba-tourism-hospitality',
+        name: 'M.B.A. Tourism and Hospitality Management',
+        nameTamil: 'எம்.பி.ஏ. சுற்றுலா மற்றும் விருந்தோம்பல் மேலாண்மை',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Management Studies',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Hotel Manager, Tourism Officer, Event Manager']
+      },
+      {
+        id: 'cutn-mcom',
+        name: 'M.Com.',
+        nameTamil: 'எம்.காம்.',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Management Studies',
+        duration: '2 Years',
+        eligibility: 'B.Com (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Accountant, Auditor, Tax Consultant, Finance Manager']
+      },
+      
+      // ----- PROFESSIONAL & TECHNICAL -----
+      {
+        id: 'cutn-msw',
+        name: 'M.S.W. (Master of Social Work)',
+        nameTamil: 'எம்.எஸ்.டபிள்யூ. (சமூக சேவை முதுநிலை)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Social Sciences & Humanities',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: NGO Worker, Welfare Officer, HR, CSR Manager']
+      },
+      {
+        id: 'cutn-mlibisc',
+        name: 'M.Lib.I.Sc. (Library & Information Science)',
+        nameTamil: 'எம்.லிப்.ஐ.எஸ்சி. (நூலகம் & தகவல் அறிவியல்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Social Sciences & Humanities',
+        duration: '2 Years',
+        eligibility: 'B.Lib.I.Sc. or any Bachelor\'s (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Librarian, Information Officer, Knowledge Manager']
+      },
+      {
+        id: 'cutn-llm',
+        name: 'LL.M. (Corporate Law and Industrial Jurisprudence)',
+        nameTamil: 'எல்.எல்.எம். (நிறுவன சட்டம் மற்றும் தொழில்துறை நீதிமுறை)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Law',
+        duration: '2 Years',
+        eligibility: 'LL.B. (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Corporate Lawyer, Legal Advisor, Judiciary']
+      },
+      {
+        id: 'cutn-mtech-materials-science',
+        name: 'M.Tech. (Materials Science and Technology)',
+        nameTamil: 'எம்.டெக். (பொருள் அறிவியல் மற்றும் தொழில்நுட்பம்)',
+        type: 'PG',
+        category: 'On-Campus',
+        school: 'School of Basic & Applied Sciences',
+        duration: '2 Years',
+        eligibility: 'B.E./B.Tech./M.Sc. (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Materials Engineer, R&D, Manufacturing Industry']
+      },
+
+      // ========================================
+      // 3. COLLABORATIVE PROGRAMMES (TEXTILES)
+      // ========================================
+      // In collaboration with SVPISTM, Coimbatore
+      // Note: Study at Coimbatore, Degree from CUTN
+      
+      {
+        id: 'cutn-bsc-textiles-apparel',
+        name: 'B.Sc. Textiles & Apparel Design',
+        nameTamil: 'பி.எஸ்சி. ஜவுளி & ஆடை வடிவமைப்பு',
+        type: 'UG',
+        category: 'Collaborative',
+        school: 'SVPISTM Coimbatore',
+        duration: '3 Years',
+        eligibility: '+2 any stream (CUET-UG Required)',
+        specialty: 'Study at SVPISTM Coimbatore - CUTN Degree',
+        syllabus: [], previousQuestions: [],
+        tips: ['Collaborative with SVPISTM Coimbatore', 'Study at Coimbatore, CUTN degree', 'Career: Fashion Designer, Textile Designer, Apparel Industry']
+      },
+      {
+        id: 'cutn-bsc-technical-textiles',
+        name: 'B.Sc. Technical Textiles',
+        nameTamil: 'பி.எஸ்சி. தொழில்நுட்ப ஜவுளி',
+        type: 'UG',
+        category: 'Collaborative',
+        school: 'SVPISTM Coimbatore',
+        duration: '3 Years',
+        eligibility: '+2 Science stream (CUET-UG Required)',
+        specialty: 'Study at SVPISTM Coimbatore - CUTN Degree',
+        syllabus: [], previousQuestions: [],
+        tips: ['Collaborative with SVPISTM Coimbatore', 'Focus on technical applications of textiles', 'Career: Technical Textile Engineer, R&D, Manufacturing']
+      },
+      {
+        id: 'cutn-bba-textile-analytics',
+        name: 'B.B.A. Textile Business Analytics',
+        nameTamil: 'பி.பி.ஏ. ஜவுளி வணிக பகுப்பாய்வு',
+        type: 'UG',
+        category: 'Collaborative',
+        school: 'SVPISTM Coimbatore',
+        duration: '3 Years',
+        eligibility: '+2 any stream (CUET-UG Required)',
+        specialty: 'Study at SVPISTM Coimbatore - CUTN Degree',
+        syllabus: [], previousQuestions: [],
+        tips: ['Collaborative with SVPISTM Coimbatore', 'Blend of business + textile analytics', 'Career: Textile Business Analyst, Export Manager, Supply Chain']
+      },
+      {
+        id: 'cutn-mba-apparel-mgmt',
+        name: 'M.B.A. Apparel Management',
+        nameTamil: 'எம்.பி.ஏ. ஆடை மேலாண்மை',
+        type: 'PG',
+        category: 'Collaborative',
+        school: 'SVPISTM Coimbatore',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree (CUET-PG Required)',
+        specialty: 'Study at SVPISTM Coimbatore - CUTN Degree',
+        syllabus: [], previousQuestions: [],
+        tips: ['Collaborative with SVPISTM Coimbatore', 'Career: Apparel Business Manager, Brand Manager, Export Manager']
+      },
+      {
+        id: 'cutn-mba-retail-mgmt',
+        name: 'M.B.A. Retail Management',
+        nameTamil: 'எம்.பி.ஏ. சில்லறை மேலாண்மை',
+        type: 'PG',
+        category: 'Collaborative',
+        school: 'SVPISTM Coimbatore',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree (CUET-PG Required)',
+        specialty: 'Study at SVPISTM Coimbatore - CUTN Degree',
+        syllabus: [], previousQuestions: [],
+        tips: ['Collaborative with SVPISTM Coimbatore', 'Career: Retail Manager, Store Manager, E-commerce Manager']
+      },
+      {
+        id: 'cutn-mba-textile-mgmt',
+        name: 'M.B.A. Textile Management',
+        nameTamil: 'எம்.பி.ஏ. ஜவுளி மேலாண்மை',
+        type: 'PG',
+        category: 'Collaborative',
+        school: 'SVPISTM Coimbatore',
+        duration: '2 Years',
+        eligibility: 'Any Bachelor\'s degree (CUET-PG Required)',
+        specialty: 'Study at SVPISTM Coimbatore - CUTN Degree',
+        syllabus: [], previousQuestions: [],
+        tips: ['Collaborative with SVPISTM Coimbatore', 'Career: Textile Industry Manager, Production Manager, Quality Manager']
+      },
+      {
+        id: 'cutn-mba-technical-textile-mgmt',
+        name: 'M.B.A. Technical Textile Management',
+        nameTamil: 'எம்.பி.ஏ. தொழில்நுட்ப ஜவுளி மேலாண்மை',
+        type: 'PG',
+        category: 'Collaborative',
+        school: 'SVPISTM Coimbatore',
+        duration: '2 Years',
+        eligibility: 'B.E./B.Tech./B.Sc. Textiles (CUET-PG Required)',
+        specialty: 'Study at SVPISTM Coimbatore - CUTN Degree',
+        syllabus: [], previousQuestions: [],
+        tips: ['Collaborative with SVPISTM Coimbatore', 'Career: Technical Textile Manager, R&D Manager, Innovation Head']
+      },
+
+      // ========================================
+      // 4. PG DIPLOMA COURSES
+      // ========================================
+      {
+        id: 'cutn-pgd-data-science',
+        name: 'PG Diploma in Data Science',
+        nameTamil: 'தரவு அறிவியலில் முதுநிலை பட்டயம்',
+        type: 'PG Diploma',
+        category: 'On-Campus',
+        school: 'School of Basic & Applied Sciences',
+        duration: '1 Year',
+        eligibility: 'Any Bachelor\'s degree (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Data Scientist, ML Engineer, Business Analyst']
+      },
+      {
+        id: 'cutn-pgd-chemical-lab-technician',
+        name: 'PG Diploma in Chemical Laboratory Technician',
+        nameTamil: 'வேதியியல் ஆய்வகத் தொழில்நுட்ப நிபுணர் முதுநிலை பட்டயம்',
+        type: 'PG Diploma',
+        category: 'On-Campus',
+        school: 'School of Basic & Applied Sciences',
+        duration: '1 Year',
+        eligibility: 'B.Sc. Chemistry (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Lab Technician, Quality Control, Pharma Industry']
+      },
+      {
+        id: 'cutn-pgd-fitness-management',
+        name: 'PG Diploma in Fitness Management',
+        nameTamil: 'உடற்பயிற்சி மேலாண்மையில் முதுநிலை பட்டயம்',
+        type: 'PG Diploma',
+        category: 'On-Campus',
+        school: 'School of Physical Education',
+        duration: '1 Year',
+        eligibility: 'Any Bachelor\'s degree (CUET-PG Required)',
+        syllabus: [], previousQuestions: [],
+        tips: ['Apply through CUET-PG', 'Career: Fitness Trainer, Gym Manager, Sports Coach']
       }
     ]
   },
