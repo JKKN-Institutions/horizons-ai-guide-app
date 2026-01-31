@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, GraduationCap, Users, ArrowLeft, Building2, Landmark, Award, MapPin, X, Layers, FileText } from 'lucide-react';
+import { Search, GraduationCap, Users, ArrowLeft, Building2, Landmark, Award, MapPin, X, Layers, FileText, IndianRupee } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -104,6 +104,64 @@ const institutionTypes = [
   },
 ];
 
+// Fee range categories for Central Government institutions
+const feeRanges = [
+  {
+    id: 'almost-free',
+    label: 'Almost Free',
+    labelTamil: 'கிட்டத்தட்ட இலவசம்',
+    range: '₹0 - ₹10,000/year',
+    min: 0,
+    max: 10000,
+    patterns: ['AIIMS', 'JIPMER', 'JNU', 'Jawaharlal Nehru University'],
+  },
+  {
+    id: 'very-low',
+    label: 'Very Low Fee',
+    labelTamil: 'மிகக் குறைந்த கட்டணம்',
+    range: '₹10,000 - ₹50,000/year',
+    min: 10000,
+    max: 50000,
+    patterns: ['Central University', 'Pondicherry University', 'Visva-Bharati', 'Tezpur University', 'Assam University', 'NEHU', 'Manipur University', 'Mizoram University', 'Nagaland University', 'Tripura University', 'Sikkim University', 'Rajiv Gandhi University'],
+  },
+  {
+    id: 'low',
+    label: 'Low Fee',
+    labelTamil: 'குறைந்த கட்டணம்',
+    range: '₹50,000 - ₹1,00,000/year',
+    min: 50000,
+    max: 100000,
+    patterns: ['University of Delhi', 'BHU', 'Banaras Hindu University', 'AMU', 'Aligarh Muslim University', 'Jamia Millia'],
+  },
+  {
+    id: 'moderate',
+    label: 'Moderate Fee',
+    labelTamil: 'மிதமான கட்டணம்',
+    range: '₹1,00,000 - ₹2,00,000/year',
+    min: 100000,
+    max: 200000,
+    patterns: ['NIT ', 'National Institute of Technology', 'MNNIT', 'MNIT', 'VNIT', 'SVNIT', 'IIIT', 'Indian Institute of Information Technology'],
+  },
+  {
+    id: 'standard',
+    label: 'Standard Fee',
+    labelTamil: 'நிலையான கட்டணம்',
+    range: '₹2,00,000 - ₹3,00,000/year',
+    min: 200000,
+    max: 300000,
+    patterns: ['IIT ', 'Indian Institute of Technology', 'IISER', 'Indian Institute of Science Education'],
+  },
+  {
+    id: 'higher',
+    label: 'Higher Fee',
+    labelTamil: 'அதிக கட்டணம்',
+    range: '₹3,00,000+/year',
+    min: 300000,
+    max: Infinity,
+    patterns: ['IIM ', 'Indian Institute of Management'],
+  },
+];
+
 // Entrance exam types for Central Government institutions
 const entranceExams = [
   {
@@ -196,6 +254,12 @@ const matchesEntranceExam = (examName: string, uniName: string, patterns: string
   );
 };
 
+// Helper to check if university matches fee range
+const matchesFeeRange = (uniName: string, patterns: string[]): boolean => {
+  const nameLower = uniName.toLowerCase();
+  return patterns.some(pattern => nameLower.includes(pattern.toLowerCase()));
+};
+
 // Helper to extract state from location string
 const extractState = (location: string): string => {
   const parts = location.split(',').map(p => p.trim());
@@ -215,6 +279,7 @@ const TNUniversityBrowse = () => {
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [selectedInstitutionType, setSelectedInstitutionType] = useState<string | null>(null);
   const [selectedEntranceExam, setSelectedEntranceExam] = useState<string | null>(null);
+  const [selectedFeeRange, setSelectedFeeRange] = useState<string | null>(null);
 
   const filteredUniversities = useMemo(() => {
     return universities.filter(uni => {
@@ -257,9 +322,18 @@ const TNUniversityBrowse = () => {
         }
       }
       
-      return matchesSearch && matchesType && matchesLocation && matchesInstType && matchesExam;
+      // Fee range filter only applies to Central Government
+      let matchesFee = true;
+      if (selectedType === 'Central Government' && selectedFeeRange) {
+        const feeRange = feeRanges.find(f => f.id === selectedFeeRange);
+        if (feeRange) {
+          matchesFee = matchesFeeRange(uni.name, feeRange.patterns);
+        }
+      }
+      
+      return matchesSearch && matchesType && matchesLocation && matchesInstType && matchesExam && matchesFee;
     });
-  }, [searchQuery, selectedType, selectedLocation, selectedInstitutionType, selectedEntranceExam]);
+  }, [searchQuery, selectedType, selectedLocation, selectedInstitutionType, selectedEntranceExam, selectedFeeRange]);
 
   const typeCounts = useMemo(() => {
     return {
@@ -301,6 +375,20 @@ const TNUniversityBrowse = () => {
     return counts;
   }, []);
 
+  // Count institutions per fee range for Central Government
+  const feeRangeCounts = useMemo(() => {
+    const centralUnis = universities.filter(u => u.type === 'Central Government');
+    const counts: Record<string, number> = {};
+    
+    feeRanges.forEach(feeRange => {
+      counts[feeRange.id] = centralUnis.filter(uni => 
+        matchesFeeRange(uni.name, feeRange.patterns)
+      ).length;
+    });
+    
+    return counts;
+  }, []);
+
   // Count institutions per entrance exam for Central Government
   const entranceExamCounts = useMemo(() => {
     const centralUnis = universities.filter(u => u.type === 'Central Government');
@@ -322,15 +410,17 @@ const TNUniversityBrowse = () => {
       setSelectedLocation(null);
       setSelectedInstitutionType(null);
       setSelectedEntranceExam(null);
+      setSelectedFeeRange(null);
     }
   };
 
-  const hasActiveFilters = selectedLocation || selectedInstitutionType || selectedEntranceExam;
+  const hasActiveFilters = selectedLocation || selectedInstitutionType || selectedEntranceExam || selectedFeeRange;
 
   const clearAllFilters = () => {
     setSelectedLocation(null);
     setSelectedInstitutionType(null);
     setSelectedEntranceExam(null);
+    setSelectedFeeRange(null);
   };
 
   return (
@@ -467,6 +557,32 @@ const TNUniversityBrowse = () => {
                   >
                     <span className="mr-1">{region.label}</span>
                     <span className="text-[10px] opacity-70">({regionCounts[region.id] || 0})</span>
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            {/* Fee Range Filter */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                <IndianRupee className="h-4 w-4" />
+                <span>Filter by Fee</span>
+                <span className="font-tamil text-xs">/ கட்டணம் வாரியாக வடிகட்டு</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {feeRanges.map((feeRange) => (
+                  <Badge
+                    key={feeRange.id}
+                    variant={selectedFeeRange === feeRange.id ? "default" : "outline"}
+                    className={`cursor-pointer transition-all py-1.5 px-3 ${
+                      selectedFeeRange === feeRange.id
+                        ? 'bg-primary text-primary-foreground'
+                        : 'hover:bg-muted'
+                    }`}
+                    onClick={() => setSelectedFeeRange(selectedFeeRange === feeRange.id ? null : feeRange.id)}
+                  >
+                    <span className="mr-1">{feeRange.label}</span>
+                    <span className="text-[10px] opacity-70">({feeRangeCounts[feeRange.id] || 0})</span>
                   </Badge>
                 ))}
               </div>
