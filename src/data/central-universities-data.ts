@@ -463,7 +463,7 @@ export const centralUniversities: University[] = [
     email: 'admission@imu.edu.in',
     examName: 'IMU-CET (UG) / GATE/CAT (PG)',
     logoColor: '#003366',
-    logo: '/universities/imu-logo.png',
+    logo: '/universities/imu-chennai-logo.png',
     type: 'Central Government',
     importantDates: [
       { event: 'IMU-CET 2026 Application', eventTamil: 'IMU-CET 2026 விண்ணப்பம்', date: 'March 2026', status: 'upcoming' },
