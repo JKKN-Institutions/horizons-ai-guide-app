@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, GraduationCap, Users, ArrowLeft, Building2, Landmark, Award, MapPin, X } from 'lucide-react';
+import { Search, GraduationCap, Users, ArrowLeft, Building2, Landmark, Award, MapPin, X, Layers } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -51,6 +51,65 @@ const locationRegions = [
   },
 ];
 
+// Institution types for Central Government institutions
+const institutionTypes = [
+  {
+    id: 'central-universities',
+    label: 'Central Universities',
+    labelTamil: 'மத்திய பல்கலைக்கழகங்கள்',
+    entrance: 'CUET',
+    patterns: ['Central University', 'University of Delhi', 'University of Hyderabad', 'JNU', 'Jawaharlal Nehru University', 'BHU', 'Banaras Hindu University', 'AMU', 'Aligarh Muslim University', 'Jamia Millia', 'Visva-Bharati', 'Pondicherry University', 'Tezpur University', 'Assam University', 'NEHU', 'Manipur University', 'Mizoram University', 'Nagaland University', 'Tripura University', 'Sikkim University', 'Rajiv Gandhi University'],
+  },
+  {
+    id: 'iits',
+    label: 'IITs',
+    labelTamil: 'இந்திய தொழில்நுட்பக் கழகங்கள்',
+    entrance: 'JEE Advanced',
+    patterns: ['IIT ', 'Indian Institute of Technology'],
+  },
+  {
+    id: 'nits',
+    label: 'NITs',
+    labelTamil: 'தேசிய தொழில்நுட்ப நிறுவனங்கள்',
+    entrance: 'JEE Main',
+    patterns: ['NIT ', 'National Institute of Technology', 'MNNIT', 'MNIT', 'VNIT', 'SVNIT'],
+  },
+  {
+    id: 'aiims',
+    label: 'AIIMS',
+    labelTamil: 'அகில இந்திய மருத்துவ அறிவியல் நிறுவனங்கள்',
+    entrance: 'NEET UG',
+    patterns: ['AIIMS', 'JIPMER'],
+  },
+  {
+    id: 'iims',
+    label: 'IIMs',
+    labelTamil: 'இந்திய மேலாண்மை நிறுவனங்கள்',
+    entrance: 'CAT',
+    patterns: ['IIM ', 'Indian Institute of Management'],
+  },
+  {
+    id: 'iisers',
+    label: 'IISERs',
+    labelTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனங்கள்',
+    entrance: 'IAT / JEE Advanced',
+    patterns: ['IISER', 'Indian Institute of Science Education'],
+  },
+  {
+    id: 'iiits',
+    label: 'IIITs',
+    labelTamil: 'இந்திய தகவல் தொழில்நுட்ப நிறுவனங்கள்',
+    entrance: 'JEE Main',
+    patterns: ['IIIT', 'Indian Institute of Information Technology'],
+  },
+];
+
+// Helper to check if university matches institution type
+const matchesInstitutionType = (uniName: string, patterns: string[]): boolean => {
+  const nameLower = uniName.toLowerCase();
+  return patterns.some(pattern => nameLower.includes(pattern.toLowerCase()));
+};
+
 // Helper to extract state from location string
 const extractState = (location: string): string => {
   const parts = location.split(',').map(p => p.trim());
@@ -68,6 +127,7 @@ const TNUniversityBrowse = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState<UniversityType>('State Government');
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+  const [selectedInstitutionType, setSelectedInstitutionType] = useState<string | null>(null);
 
   const filteredUniversities = useMemo(() => {
     return universities.filter(uni => {
@@ -92,9 +152,18 @@ const TNUniversityBrowse = () => {
         }
       }
       
-      return matchesSearch && matchesType && matchesLocation;
+      // Institution type filter only applies to Central Government
+      let matchesInstType = true;
+      if (selectedType === 'Central Government' && selectedInstitutionType) {
+        const instType = institutionTypes.find(t => t.id === selectedInstitutionType);
+        if (instType) {
+          matchesInstType = matchesInstitutionType(uni.name, instType.patterns);
+        }
+      }
+      
+      return matchesSearch && matchesType && matchesLocation && matchesInstType;
     });
-  }, [searchQuery, selectedType, selectedLocation]);
+  }, [searchQuery, selectedType, selectedLocation, selectedInstitutionType]);
 
   const typeCounts = useMemo(() => {
     return {
@@ -122,12 +191,34 @@ const TNUniversityBrowse = () => {
     return counts;
   }, []);
 
-  // Reset location filter when switching away from Central Government
+  // Count institutions per type for Central Government
+  const institutionTypeCounts = useMemo(() => {
+    const centralUnis = universities.filter(u => u.type === 'Central Government');
+    const counts: Record<string, number> = {};
+    
+    institutionTypes.forEach(instType => {
+      counts[instType.id] = centralUnis.filter(uni => 
+        matchesInstitutionType(uni.name, instType.patterns)
+      ).length;
+    });
+    
+    return counts;
+  }, []);
+
+  // Reset filters when switching away from Central Government
   const handleTypeChange = (type: UniversityType) => {
     setSelectedType(type);
     if (type !== 'Central Government') {
       setSelectedLocation(null);
+      setSelectedInstitutionType(null);
     }
+  };
+
+  const hasActiveFilters = selectedLocation || selectedInstitutionType;
+
+  const clearAllFilters = () => {
+    setSelectedLocation(null);
+    setSelectedInstitutionType(null);
   };
 
   return (
@@ -172,43 +263,74 @@ const TNUniversityBrowse = () => {
           </TabsList>
         </Tabs>
 
-        {/* Location Filter - Only for Central Government */}
+        {/* Filters - Only for Central Government */}
         {selectedType === 'Central Government' && (
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
+          <div className="space-y-4 p-4 bg-muted/30 rounded-lg border">
+            {/* Clear All Filters */}
+            {hasActiveFilters && (
+              <div className="flex justify-end">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={clearAllFilters}
+                  className="text-xs h-7 text-destructive hover:text-destructive"
+                >
+                  <X className="h-3 w-3 mr-1" />
+                  Clear All Filters
+                </Button>
+              </div>
+            )}
+
+            {/* Institution Type Filter */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                <Layers className="h-4 w-4" />
+                <span>Filter by Type</span>
+                <span className="font-tamil text-xs">/ நிறுவன வகை வாரியாக வடிகட்டு</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {institutionTypes.map((instType) => (
+                  <Badge
+                    key={instType.id}
+                    variant={selectedInstitutionType === instType.id ? "default" : "outline"}
+                    className={`cursor-pointer transition-all py-1.5 px-3 ${
+                      selectedInstitutionType === instType.id
+                        ? 'bg-primary text-primary-foreground'
+                        : 'hover:bg-muted'
+                    }`}
+                    onClick={() => setSelectedInstitutionType(selectedInstitutionType === instType.id ? null : instType.id)}
+                  >
+                    <span className="mr-1">{instType.label}</span>
+                    <span className="text-[10px] opacity-70">({institutionTypeCounts[instType.id] || 0})</span>
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            {/* Location Filter */}
+            <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
                 <MapPin className="h-4 w-4" />
                 <span>Filter by Location</span>
                 <span className="font-tamil text-xs">/ இடம் வாரியாக வடிகட்டு</span>
               </div>
-              {selectedLocation && (
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={() => setSelectedLocation(null)}
-                  className="text-xs h-7"
-                >
-                  <X className="h-3 w-3 mr-1" />
-                  Clear
-                </Button>
-              )}
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {locationRegions.map((region) => (
-                <Badge
-                  key={region.id}
-                  variant={selectedLocation === region.id ? "default" : "outline"}
-                  className={`cursor-pointer transition-all py-1.5 px-3 ${
-                    selectedLocation === region.id
-                      ? 'bg-primary text-primary-foreground'
-                      : 'hover:bg-muted'
-                  }`}
-                  onClick={() => setSelectedLocation(selectedLocation === region.id ? null : region.id)}
-                >
-                  <span className="mr-1">{region.label}</span>
-                  <span className="text-[10px] opacity-70">({regionCounts[region.id] || 0})</span>
-                </Badge>
-              ))}
+              <div className="flex flex-wrap gap-2">
+                {locationRegions.map((region) => (
+                  <Badge
+                    key={region.id}
+                    variant={selectedLocation === region.id ? "default" : "outline"}
+                    className={`cursor-pointer transition-all py-1.5 px-3 ${
+                      selectedLocation === region.id
+                        ? 'bg-primary text-primary-foreground'
+                        : 'hover:bg-muted'
+                    }`}
+                    onClick={() => setSelectedLocation(selectedLocation === region.id ? null : region.id)}
+                  >
+                    <span className="mr-1">{region.label}</span>
+                    <span className="text-[10px] opacity-70">({regionCounts[region.id] || 0})</span>
+                  </Badge>
+                ))}
+              </div>
             </div>
           </div>
         )}
