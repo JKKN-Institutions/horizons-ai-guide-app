@@ -3519,5 +3519,499 @@ export const centralUniversities: University[] = [
       { id: 'jipmer-dm', name: 'DM/MCh Super Speciality', nameTamil: 'DM/MCh சூப்பர் ஸ்பெஷாலிட்டி', type: 'Super-Specialty', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MD/MS + INI-SS', tips: ['Advanced medical training'] },
       { id: 'jipmer-phd', name: 'Ph.D. Medical Sciences', nameTamil: 'Ph.D. மருத்துவ அறிவியல்', type: 'Research', category: 'On-Campus', school: 'Research', duration: '3-5 Years', eligibility: 'MD/MS or M.Sc.', tips: ['World-class research'] }
     ]
+  },
+
+  // ============================================
+  // INDIAN INSTITUTES OF MANAGEMENT (IIMs)
+  // ============================================
+
+  // IIM AHMEDABAD
+  {
+    id: 'iim-ahmedabad',
+    name: 'Indian Institute of Management Ahmedabad',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் அகமதாபாத்',
+    location: 'Ahmedabad, Gujarat',
+    website: 'https://www.iima.ac.in',
+    phone: '079-66324600',
+    email: 'admissions@iima.ac.in',
+    examName: 'CAT (MBA) / GMAT (Executive Programs)',
+    logoColor: '#1E3A8A',
+    logo: '/universities/iim-ahmedabad-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Registration', eventTamil: 'CAT 2025 பதிவு', date: 'August 2025', status: 'upcoming' },
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'IIM Interviews', eventTamil: 'IIM நேர்முகத்தேர்வு', date: 'February-March 2026', status: 'upcoming' }
+    ],
+    fee: { general: 2500000, obc: 2500000, scst: 1250000 },
+    courses: [
+      { id: 'iima-pgp', name: 'PGP (Post Graduate Programme in Management)', nameTamil: 'PGP மேலாண்மை முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['10+ courses', 'Ranked #1 B-School in India', 'Highest placement packages', 'Top recruiters: McKinsey, BCG, Goldman Sachs'] },
+      { id: 'iima-pgpx', name: 'PGPX (One Year MBA)', nameTamil: 'PGPX (ஒரு வருட MBA)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'Graduation + GMAT + 5+ years work exp', tips: ['For senior professionals', 'Global MBA network'] },
+      { id: 'iima-fabm', name: 'PGP-FABM (Food & Agribusiness Management)', nameTamil: 'PGP-FABM (உணவு & விவசாய வணிக மேலாண்மை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['Specialized in agribusiness', 'Industry partnerships'] },
+      { id: 'iima-phd', name: 'Ph.D. (Fellow Programme in Management)', nameTamil: 'Ph.D. (FPM)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation + CAT/GMAT', tips: ['Doctoral research in management', 'Fellowship provided'] }
+    ]
+  },
+
+  // IIM BANGALORE
+  {
+    id: 'iim-bangalore',
+    name: 'Indian Institute of Management Bangalore',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் பெங்களூர்',
+    location: 'Bangalore, Karnataka',
+    website: 'https://www.iimb.ac.in',
+    phone: '080-26993000',
+    email: 'admission@iimb.ac.in',
+    examName: 'CAT (MBA) / GMAT (Executive Programs)',
+    logoColor: '#003366',
+    logo: '/universities/iim-bangalore-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'IIMB Selection Process', eventTamil: 'IIMB தேர்வு செயல்முறை', date: 'February-March 2026', status: 'upcoming' }
+    ],
+    fee: { general: 2500000, obc: 2500000, scst: 1250000 },
+    courses: [
+      { id: 'iimb-pgp', name: 'PGP (Post Graduate Programme in Management)', nameTamil: 'PGP மேலாண்மை முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['10+ courses', 'Strong analytics focus', 'Tech startup ecosystem in Bangalore'] },
+      { id: 'iimb-pgpba', name: 'PGP in Business Analytics', nameTamil: 'PGP வணிக பகுப்பாய்வு', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['Data science + management', 'Industry-focused curriculum'] },
+      { id: 'iimb-epgp', name: 'EPGP (Executive PGP)', nameTamil: 'EPGP (நிர்வாக PGP)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'Graduation + GMAT + 5+ years exp', tips: ['For working professionals'] },
+      { id: 'iimb-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D. (முனைவர் பட்டம்)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation + CAT/GMAT', tips: ['Research excellence'] }
+    ]
+  },
+
+  // IIM CALCUTTA
+  {
+    id: 'iim-calcutta',
+    name: 'Indian Institute of Management Calcutta',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் கொல்கத்தா',
+    location: 'Kolkata, West Bengal',
+    website: 'https://www.iimcal.ac.in',
+    phone: '033-24678300',
+    email: 'pgpadmission@iimcal.ac.in',
+    examName: 'CAT (MBA) / GMAT (Executive Programs)',
+    logoColor: '#8B0000',
+    logo: '/universities/iim-calcutta-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'IIMC Selection Process', eventTamil: 'IIMC தேர்வு செயல்முறை', date: 'February-March 2026', status: 'upcoming' }
+    ],
+    fee: { general: 2500000, obc: 2500000, scst: 1250000 },
+    courses: [
+      { id: 'iimc-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['10+ courses', 'First IIM established (1961)', 'Strong finance placements'] },
+      { id: 'iimc-pgdm', name: 'PGDM (Executive)', nameTamil: 'PGDM (நிர்வாக)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'Graduation + GMAT + work exp', tips: ['For working executives'] },
+      { id: 'iimc-mba', name: 'MBA (Evening Programme)', nameTamil: 'MBA (மாலை நேர பட்டம்)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '3 Years', eligibility: 'Graduation + work exp', tips: ['For Kolkata-based professionals'] },
+      { id: 'iimc-phd', name: 'Ph.D. (Fellow Programme)', nameTamil: 'Ph.D. (FPM)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation + CAT/GMAT', tips: ['Doctoral research'] }
+    ]
+  },
+
+  // IIM LUCKNOW
+  {
+    id: 'iim-lucknow',
+    name: 'Indian Institute of Management Lucknow',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் லக்னோ',
+    location: 'Lucknow, Uttar Pradesh',
+    website: 'https://www.iiml.ac.in',
+    phone: '0522-2734101',
+    email: 'pgpadmissions@iiml.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#003366',
+    logo: '/universities/iim-lucknow-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'IIML Selection Process', eventTamil: 'IIML தேர்வு செயல்முறை', date: 'February-March 2026', status: 'upcoming' }
+    ],
+    fee: { general: 2200000, obc: 2200000, scst: 1100000 },
+    courses: [
+      { id: 'iiml-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['8+ courses', 'Consistent top 5 B-School', 'Strong alumni network'] },
+      { id: 'iiml-pgp-abm', name: 'PGP-ABM (Agri-Business Management)', nameTamil: 'PGP-ABM (விவசாய வணிக மேலாண்மை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['Agribusiness specialization'] },
+      { id: 'iiml-pgp-sm', name: 'PGP-SM (Sustainable Management)', nameTamil: 'PGP-SM (நிலையான மேலாண்மை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['Focus on sustainability'] },
+      { id: 'iiml-phd', name: 'Ph.D. (Fellow Programme)', nameTamil: 'Ph.D. (FPM)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation + CAT/GMAT', tips: ['Doctoral research'] }
+    ]
+  },
+
+  // IIM KOZHIKODE
+  {
+    id: 'iim-kozhikode',
+    name: 'Indian Institute of Management Kozhikode',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் கோழிக்கோடு',
+    location: 'Kozhikode, Kerala',
+    website: 'https://www.iimk.ac.in',
+    phone: '0495-2809100',
+    email: 'admissions@iimk.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#006633',
+    logo: '/universities/iim-kozhikode-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'IIMK Selection Process', eventTamil: 'IIMK தேர்வு செயல்முறை', date: 'February-March 2026', status: 'upcoming' }
+    ],
+    fee: { general: 2200000, obc: 2200000, scst: 1100000 },
+    courses: [
+      { id: 'iimk-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['8+ courses', 'God\'s Own Campus - scenic location', 'Strong in consulting placements'] },
+      { id: 'iimk-pgp-bl', name: 'PGP-BL (Business Leadership)', nameTamil: 'PGP-BL (வணிக தலைமை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT + work exp', tips: ['Leadership focus program'] },
+      { id: 'iimk-pgp-f', name: 'PGP-F (Finance)', nameTamil: 'PGP-F (நிதி)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'CA/CFA/Graduation + work exp', tips: ['Specialized finance program'] },
+      { id: 'iimk-phd', name: 'Ph.D. (Fellow Programme)', nameTamil: 'Ph.D. (FPM)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation + CAT/GMAT', tips: ['Doctoral research'] }
+    ]
+  },
+
+  // IIM INDORE
+  {
+    id: 'iim-indore',
+    name: 'Indian Institute of Management Indore',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் இந்தோர்',
+    location: 'Indore, Madhya Pradesh',
+    website: 'https://www.iimidr.ac.in',
+    phone: '0731-2439500',
+    email: 'pgpadmissions@iimidr.ac.in',
+    examName: 'CAT (MBA) / IPMAT (IPM)',
+    logoColor: '#8B4513',
+    logo: '/universities/iim-indore-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IPMAT 2026 Registration', eventTamil: 'IPMAT 2026 பதிவு', date: 'March 2026', status: 'upcoming' },
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+    ],
+    fee: { general: 2100000, obc: 2100000, scst: 1050000 },
+    courses: [
+      { id: 'iimi-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['8+ courses', 'Known for IPM program', 'Dual campus (Indore + Mumbai)'] },
+      { id: 'iimi-ipm', name: 'IPM (Integrated Programme in Management)', nameTamil: 'IPM (ஒருங்கிணைந்த மேலாண்மை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Management', duration: '5 Years', eligibility: '12th Pass + IPMAT qualified', tips: ['After 12th entry to IIM', 'BA + MBA integrated'] },
+      { id: 'iimi-epgp', name: 'EPGP (Executive PGP)', nameTamil: 'EPGP (நிர்வாக PGP)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'Graduation + work exp', tips: ['For working professionals'] },
+      { id: 'iimi-phd', name: 'Ph.D. (Fellow Programme)', nameTamil: 'Ph.D. (FPM)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation + CAT/GMAT', tips: ['Doctoral research'] }
+    ]
+  },
+
+  // IIM SHILLONG
+  {
+    id: 'iim-shillong',
+    name: 'Indian Institute of Management Shillong',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் ஷில்லாங்',
+    location: 'Shillong, Meghalaya',
+    website: 'https://www.iimshillong.ac.in',
+    phone: '0364-2308000',
+    email: 'admissions@iimshillong.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#2E8B57',
+    logo: '/universities/iim-shillong-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+    ],
+    fee: { general: 1800000, obc: 1800000, scst: 900000 },
+    courses: [
+      { id: 'iims-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Scotland of the East', 'Sustainability focus'] },
+      { id: 'iims-pgpex', name: 'PGPEX (Executive)', nameTamil: 'PGPEX (நிர்வாக)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'Graduation + work exp', tips: ['For working professionals'] },
+      { id: 'iims-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
+
+  // IIM RANCHI
+  {
+    id: 'iim-ranchi',
+    name: 'Indian Institute of Management Ranchi',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் ராஞ்சி',
+    location: 'Ranchi, Jharkhand',
+    website: 'https://www.iimranchi.ac.in',
+    phone: '0651-2280111',
+    email: 'admissions@iimranchi.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#4B0082',
+    logo: '/universities/iim-ranchi-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+    ],
+    fee: { general: 1800000, obc: 1800000, scst: 900000 },
+    courses: [
+      { id: 'iimr-pgdhrm', name: 'PGDHRM (HR Management)', nameTamil: 'PGDHRM (மனிதவள மேலாண்மை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Specialized HR program', 'Strong HR placements'] },
+      { id: 'iimr-pgdm', name: 'PGDM (General Management)', nameTamil: 'PGDM (பொது மேலாண்மை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['General management program'] },
+      { id: 'iimr-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
+
+  // IIM RAIPUR
+  {
+    id: 'iim-raipur',
+    name: 'Indian Institute of Management Raipur',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் ராய்பூர்',
+    location: 'Raipur, Chhattisgarh',
+    website: 'https://www.iimraipur.ac.in',
+    phone: '0771-2474700',
+    email: 'admissions@iimraipur.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#FF6600',
+    logo: '/universities/iim-raipur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+    ],
+    fee: { general: 1600000, obc: 1600000, scst: 800000 },
+    courses: [
+      { id: 'iimrai-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Growing reputation', 'Good placement record'] },
+      { id: 'iimrai-pgpwe', name: 'PGPWE (Working Executives)', nameTamil: 'PGPWE (பணிபுரியும் நிர்வாகிகள்)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + work exp', tips: ['Weekend program'] },
+      { id: 'iimrai-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
+
+  // IIM ROHTAK
+  {
+    id: 'iim-rohtak',
+    name: 'Indian Institute of Management Rohtak',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் ரோஹ்தக்',
+    location: 'Rohtak, Haryana',
+    website: 'https://www.iimrohtak.ac.in',
+    phone: '01onal-274780',
+    email: 'admissions@iimrohtak.ac.in',
+    examName: 'CAT (MBA) / IPMAT (IPM)',
+    logoColor: '#800000',
+    logo: '/universities/iim-rohtak-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'IPMAT 2026', eventTamil: 'IPMAT 2026', date: 'May 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1700000, obc: 1700000, scst: 850000 },
+    courses: [
+      { id: 'iimro-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Near Delhi NCR', 'IPM program available'] },
+      { id: 'iimro-ipm', name: 'IPM (Integrated Programme)', nameTamil: 'IPM (ஒருங்கிணைந்த பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Management', duration: '5 Years', eligibility: '12th Pass + IPMAT', tips: ['After 12th entry'] },
+      { id: 'iimro-epgp', name: 'EPGP (Executive PGP)', nameTamil: 'EPGP', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'Graduation + work exp', tips: ['Executive program'] },
+      { id: 'iimro-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
+
+  // IIM KASHIPUR
+  {
+    id: 'iim-kashipur',
+    name: 'Indian Institute of Management Kashipur',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் காசிபூர்',
+    location: 'Kashipur, Uttarakhand',
+    website: 'https://www.iimkashipur.ac.in',
+    phone: '05947-262111',
+    email: 'admissions@iimkashipur.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#006400',
+    logo: '/universities/iim-kashipur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+    ],
+    fee: { general: 1700000, obc: 1700000, scst: 850000 },
+    courses: [
+      { id: 'iimk-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Near Jim Corbett Park', 'Scenic Himalayan foothills'] },
+      { id: 'iimk-mba-a', name: 'MBA (Analytics)', nameTamil: 'MBA (பகுப்பாய்வு)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['Analytics specialization'] },
+      { id: 'iimk-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
+
+  // IIM UDAIPUR
+  {
+    id: 'iim-udaipur',
+    name: 'Indian Institute of Management Udaipur',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் உதய்பூர்',
+    location: 'Udaipur, Rajasthan',
+    website: 'https://www.iimu.ac.in',
+    phone: '0294-2477100',
+    email: 'admissions@iimu.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#4169E1',
+    logo: '/universities/iim-udaipur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+    ],
+    fee: { general: 1900000, obc: 1900000, scst: 950000 },
+    courses: [
+      { id: 'iimu-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'City of Lakes', 'Global accreditations'] },
+      { id: 'iimu-pgpx', name: 'PGPX (One Year MBA)', nameTamil: 'PGPX', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'Graduation + work exp', tips: ['Executive MBA'] },
+      { id: 'iimu-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
+
+  // IIM NAGPUR
+  {
+    id: 'iim-nagpur',
+    name: 'Indian Institute of Management Nagpur',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் நாக்பூர்',
+    location: 'Nagpur, Maharashtra',
+    website: 'https://www.iimnagpur.ac.in',
+    phone: '0712-2806444',
+    email: 'admissions@iimnagpur.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#FF4500',
+    logo: '/universities/iim-nagpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+    ],
+    fee: { general: 1600000, obc: 1600000, scst: 800000 },
+    courses: [
+      { id: 'iimn-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Orange City', 'Mentored by IIM Ahmedabad'] },
+      { id: 'iimn-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
+
+  // IIM VISAKHAPATNAM
+  {
+    id: 'iim-visakhapatnam',
+    name: 'Indian Institute of Management Visakhapatnam',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் விசாகப்பட்டினம்',
+    location: 'Visakhapatnam, Andhra Pradesh',
+    website: 'https://www.iimv.ac.in',
+    phone: '0891-2868100',
+    email: 'admissions@iimv.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#0066CC',
+    logo: '/universities/iim-visakhapatnam-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+    ],
+    fee: { general: 1600000, obc: 1600000, scst: 800000 },
+    courses: [
+      { id: 'iimv-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Port city', 'Mentored by IIM Bangalore'] },
+      { id: 'iimv-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
+
+  // IIM BODH GAYA
+  {
+    id: 'iim-bodhgaya',
+    name: 'Indian Institute of Management Bodh Gaya',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் போத் கயா',
+    location: 'Bodh Gaya, Bihar',
+    website: 'https://www.iimbg.ac.in',
+    phone: '0631-2200567',
+    email: 'admissions@iimbg.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#DAA520',
+    logo: '/universities/iim-bodhgaya-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+    ],
+    fee: { general: 1500000, obc: 1500000, scst: 750000 },
+    courses: [
+      { id: 'iimbg-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Buddhist heritage site', 'Mentored by IIM Calcutta'] },
+      { id: 'iimbg-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
+
+  // IIM AMRITSAR
+  {
+    id: 'iim-amritsar',
+    name: 'Indian Institute of Management Amritsar',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் அமிர்தசரஸ்',
+    location: 'Amritsar, Punjab',
+    website: 'https://www.iimamritsar.ac.in',
+    phone: '0183-2546100',
+    email: 'admissions@iimamritsar.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#FF6347',
+    logo: '/universities/iim-amritsar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+    ],
+    fee: { general: 1500000, obc: 1500000, scst: 750000 },
+    courses: [
+      { id: 'iima-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Near Golden Temple', 'Mentored by IIM Kozhikode'] },
+      { id: 'iima-mba-ba', name: 'MBA (Business Analytics)', nameTamil: 'MBA (வணிக பகுப்பாய்வு)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['Analytics focus'] },
+      { id: 'iima-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
+
+  // IIM SAMBALPUR
+  {
+    id: 'iim-sambalpur',
+    name: 'Indian Institute of Management Sambalpur',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் சம்பல்பூர்',
+    location: 'Sambalpur, Odisha',
+    website: 'https://www.iimsambalpur.ac.in',
+    phone: '0663-2430567',
+    email: 'admissions@iimsambalpur.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#228B22',
+    logo: '/universities/iim-sambalpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+    ],
+    fee: { general: 1500000, obc: 1500000, scst: 750000 },
+    courses: [
+      { id: 'iimsam-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Scenic Sambalpur', 'Mentored by IIM Indore'] },
+      { id: 'iimsam-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
+
+  // IIM SIRMAUR
+  {
+    id: 'iim-sirmaur',
+    name: 'Indian Institute of Management Sirmaur',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் சிர்மௌர்',
+    location: 'Sirmaur, Himachal Pradesh',
+    website: 'https://www.iimsirmaur.ac.in',
+    phone: '01702-241500',
+    email: 'admissions@iimsirmaur.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#4682B4',
+    logo: '/universities/iim-sirmaur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+    ],
+    fee: { general: 1400000, obc: 1400000, scst: 700000 },
+    courses: [
+      { id: 'iimsir-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Himalayan campus', 'Focus on tourism & hospitality'] },
+      { id: 'iimsir-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
+
+  // IIM JAMMU
+  {
+    id: 'iim-jammu',
+    name: 'Indian Institute of Management Jammu',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் ஜம்மு',
+    location: 'Jammu, J&K',
+    website: 'https://www.iimj.ac.in',
+    phone: '0191-2585100',
+    email: 'admissions@iimj.ac.in',
+    examName: 'CAT (MBA) / IPMAT (IPM)',
+    logoColor: '#8B0000',
+    logo: '/universities/iim-jammu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'IPMAT 2026', eventTamil: 'IPMAT 2026', date: 'May 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1500000, obc: 1500000, scst: 750000 },
+    courses: [
+      { id: 'iimj-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Gateway to Kashmir', 'IPM program available'] },
+      { id: 'iimj-ipm', name: 'IPM (Integrated Programme)', nameTamil: 'IPM', type: 'Integrated', category: 'On-Campus', school: 'Management', duration: '5 Years', eligibility: '12th Pass + IPMAT', tips: ['After 12th entry'] },
+      { id: 'iimj-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
+
+  // IIM MUMBAI
+  {
+    id: 'iim-mumbai',
+    name: 'Indian Institute of Management Mumbai',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் மும்பை',
+    location: 'Mumbai, Maharashtra',
+    website: 'https://www.iimmumbai.ac.in',
+    phone: '022-26543000',
+    email: 'admissions@iimmumbai.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#000080',
+    logo: '/universities/iim-mumbai-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+    ],
+    fee: { general: 1800000, obc: 1800000, scst: 900000 },
+    courses: [
+      { id: 'iimm-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Newest IIM', 'Financial capital of India', 'Strong industry connections'] },
+      { id: 'iimm-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
   }
 ];
