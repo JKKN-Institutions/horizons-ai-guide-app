@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, GraduationCap, Users, ArrowLeft, Building2, Landmark, Award, MapPin, X, Layers } from 'lucide-react';
+import { Search, GraduationCap, Users, ArrowLeft, Building2, Landmark, Award, MapPin, X, Layers, FileText } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -104,10 +104,96 @@ const institutionTypes = [
   },
 ];
 
+// Entrance exam types for Central Government institutions
+const entranceExams = [
+  {
+    id: 'cuet',
+    label: 'CUET',
+    labelTamil: 'மத்திய பல்கலை நுழைவுத் தேர்வு',
+    fullName: 'Central University Entrance Test',
+    examMonth: 'May-June',
+    tamilAvailable: true,
+    patterns: ['CUET', 'Central University'],
+  },
+  {
+    id: 'jee-main',
+    label: 'JEE Main',
+    labelTamil: 'ஜேஇஇ மெயின்',
+    fullName: 'Joint Entrance Examination Main',
+    examMonth: 'January & April',
+    tamilAvailable: false,
+    patterns: ['JEE Main', 'NIT ', 'IIIT', 'GFTI'],
+  },
+  {
+    id: 'jee-advanced',
+    label: 'JEE Advanced',
+    labelTamil: 'ஜேஇஇ அட்வான்ஸ்டு',
+    fullName: 'Joint Entrance Examination Advanced',
+    examMonth: 'May-June',
+    tamilAvailable: false,
+    patterns: ['JEE Advanced', 'IIT '],
+  },
+  {
+    id: 'neet-ug',
+    label: 'NEET UG',
+    labelTamil: 'நீட் யூஜி',
+    fullName: 'National Eligibility cum Entrance Test',
+    examMonth: 'May',
+    tamilAvailable: true,
+    patterns: ['NEET', 'AIIMS', 'JIPMER', 'Medical'],
+  },
+  {
+    id: 'cat',
+    label: 'CAT',
+    labelTamil: 'கேட்',
+    fullName: 'Common Admission Test',
+    examMonth: 'November',
+    tamilAvailable: false,
+    patterns: ['CAT', 'IIM '],
+  },
+  {
+    id: 'iat',
+    label: 'IAT',
+    labelTamil: 'ஐஏடி',
+    fullName: 'IISER Aptitude Test',
+    examMonth: 'June',
+    tamilAvailable: false,
+    patterns: ['IAT', 'IISER'],
+  },
+  {
+    id: 'gate',
+    label: 'GATE',
+    labelTamil: 'கேட்',
+    fullName: 'Graduate Aptitude Test in Engineering',
+    examMonth: 'February',
+    tamilAvailable: false,
+    patterns: ['GATE', 'M.Tech', 'MTech'],
+  },
+  {
+    id: 'direct',
+    label: 'Direct Admission',
+    labelTamil: 'நேரடி சேர்க்கை',
+    fullName: 'Based on 12th Marks / Interview',
+    examMonth: 'Varies',
+    tamilAvailable: true,
+    patterns: ['Direct', 'Merit', '12th Marks', 'Interview'],
+  },
+];
+
 // Helper to check if university matches institution type
 const matchesInstitutionType = (uniName: string, patterns: string[]): boolean => {
   const nameLower = uniName.toLowerCase();
   return patterns.some(pattern => nameLower.includes(pattern.toLowerCase()));
+};
+
+// Helper to check if university matches entrance exam
+const matchesEntranceExam = (examName: string, uniName: string, patterns: string[]): boolean => {
+  const examLower = examName.toLowerCase();
+  const nameLower = uniName.toLowerCase();
+  return patterns.some(pattern => 
+    examLower.includes(pattern.toLowerCase()) || 
+    nameLower.includes(pattern.toLowerCase())
+  );
 };
 
 // Helper to extract state from location string
@@ -128,6 +214,7 @@ const TNUniversityBrowse = () => {
   const [selectedType, setSelectedType] = useState<UniversityType>('State Government');
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [selectedInstitutionType, setSelectedInstitutionType] = useState<string | null>(null);
+  const [selectedEntranceExam, setSelectedEntranceExam] = useState<string | null>(null);
 
   const filteredUniversities = useMemo(() => {
     return universities.filter(uni => {
@@ -161,9 +248,18 @@ const TNUniversityBrowse = () => {
         }
       }
       
-      return matchesSearch && matchesType && matchesLocation && matchesInstType;
+      // Entrance exam filter only applies to Central Government
+      let matchesExam = true;
+      if (selectedType === 'Central Government' && selectedEntranceExam) {
+        const exam = entranceExams.find(e => e.id === selectedEntranceExam);
+        if (exam) {
+          matchesExam = matchesEntranceExam(uni.examName, uni.name, exam.patterns);
+        }
+      }
+      
+      return matchesSearch && matchesType && matchesLocation && matchesInstType && matchesExam;
     });
-  }, [searchQuery, selectedType, selectedLocation, selectedInstitutionType]);
+  }, [searchQuery, selectedType, selectedLocation, selectedInstitutionType, selectedEntranceExam]);
 
   const typeCounts = useMemo(() => {
     return {
@@ -205,20 +301,36 @@ const TNUniversityBrowse = () => {
     return counts;
   }, []);
 
+  // Count institutions per entrance exam for Central Government
+  const entranceExamCounts = useMemo(() => {
+    const centralUnis = universities.filter(u => u.type === 'Central Government');
+    const counts: Record<string, number> = {};
+    
+    entranceExams.forEach(exam => {
+      counts[exam.id] = centralUnis.filter(uni => 
+        matchesEntranceExam(uni.examName, uni.name, exam.patterns)
+      ).length;
+    });
+    
+    return counts;
+  }, []);
+
   // Reset filters when switching away from Central Government
   const handleTypeChange = (type: UniversityType) => {
     setSelectedType(type);
     if (type !== 'Central Government') {
       setSelectedLocation(null);
       setSelectedInstitutionType(null);
+      setSelectedEntranceExam(null);
     }
   };
 
-  const hasActiveFilters = selectedLocation || selectedInstitutionType;
+  const hasActiveFilters = selectedLocation || selectedInstitutionType || selectedEntranceExam;
 
   const clearAllFilters = () => {
     setSelectedLocation(null);
     setSelectedInstitutionType(null);
+    setSelectedEntranceExam(null);
   };
 
   return (
@@ -302,6 +414,33 @@ const TNUniversityBrowse = () => {
                   >
                     <span className="mr-1">{instType.label}</span>
                     <span className="text-[10px] opacity-70">({institutionTypeCounts[instType.id] || 0})</span>
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            {/* Entrance Exam Filter */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                <FileText className="h-4 w-4" />
+                <span>Filter by Entrance Exam</span>
+                <span className="font-tamil text-xs">/ நுழைவுத் தேர்வு வாரியாக வடிகட்டு</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {entranceExams.map((exam) => (
+                  <Badge
+                    key={exam.id}
+                    variant={selectedEntranceExam === exam.id ? "default" : "outline"}
+                    className={`cursor-pointer transition-all py-1.5 px-3 ${
+                      selectedEntranceExam === exam.id
+                        ? 'bg-primary text-primary-foreground'
+                        : 'hover:bg-muted'
+                    }`}
+                    onClick={() => setSelectedEntranceExam(selectedEntranceExam === exam.id ? null : exam.id)}
+                  >
+                    <span className="mr-1">{exam.label}</span>
+                    {exam.tamilAvailable && <span className="text-[10px] mr-1">✅</span>}
+                    <span className="text-[10px] opacity-70">({entranceExamCounts[exam.id] || 0})</span>
                   </Badge>
                 ))}
               </div>
