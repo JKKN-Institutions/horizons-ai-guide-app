@@ -1,14 +1,61 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, GraduationCap, Users, ArrowLeft, Building2, Landmark, Award } from 'lucide-react';
+import { Search, GraduationCap, Users, ArrowLeft, Building2, Landmark, Award, MapPin, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { universities } from '@/data/university-entrance-data';
 import { UniversityCard } from '@/components/UniversityEntrance/UniversityCard';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import GlobalLanguageSelector from '@/components/GlobalLanguageSelector';
 
 type UniversityType = 'State Government' | 'Central Government' | 'Deemed University (Central Govt Funded)';
+
+// Location regions for Central Government institutions
+const locationRegions = [
+  {
+    id: 'tamil-nadu-puducherry',
+    label: 'Tamil Nadu & Puducherry',
+    labelTamil: 'தமிழ்நாடு & புதுச்சேரி',
+    states: ['Tamil Nadu', 'Puducherry'],
+  },
+  {
+    id: 'neighbouring',
+    label: 'Neighbouring States',
+    labelTamil: 'அண்டை மாநிலங்கள்',
+    states: ['Kerala', 'Karnataka', 'Andhra Pradesh', 'Telangana'],
+  },
+  {
+    id: 'north',
+    label: 'North India',
+    labelTamil: 'வட இந்தியா',
+    states: ['Delhi', 'Uttar Pradesh', 'Rajasthan', 'Haryana', 'Punjab', 'Himachal Pradesh', 'Uttarakhand', 'Jammu & Kashmir', 'J&K'],
+  },
+  {
+    id: 'west',
+    label: 'West India',
+    labelTamil: 'மேற்கு இந்தியா',
+    states: ['Maharashtra', 'Gujarat', 'Goa', 'Madhya Pradesh'],
+  },
+  {
+    id: 'east',
+    label: 'East India',
+    labelTamil: 'கிழக்கு இந்தியா',
+    states: ['West Bengal', 'Bihar', 'Jharkhand', 'Odisha', 'Chhattisgarh'],
+  },
+  {
+    id: 'northeast',
+    label: 'North-East India',
+    labelTamil: 'வடகிழக்கு இந்தியா',
+    states: ['Assam', 'Meghalaya', 'Manipur', 'Mizoram', 'Nagaland', 'Tripura', 'Sikkim', 'Arunachal Pradesh'],
+  },
+];
+
+// Helper to extract state from location string
+const extractState = (location: string): string => {
+  const parts = location.split(',').map(p => p.trim());
+  return parts[parts.length - 1] || parts[0];
+};
 
 const universityTypeTabs: { value: UniversityType; label: string; labelTamil: string; icon: React.ElementType }[] = [
   { value: 'State Government', label: 'State Universities', labelTamil: 'மாநில பல்கலைக்கழகங்கள்', icon: Landmark },
@@ -20,6 +67,7 @@ const TNUniversityBrowse = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState<UniversityType>('State Government');
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
 
   const filteredUniversities = useMemo(() => {
     return universities.filter(uni => {
@@ -31,9 +79,22 @@ const TNUniversityBrowse = () => {
       
       const matchesType = uni.type === selectedType;
       
-      return matchesSearch && matchesType;
+      // Location filter only applies to Central Government
+      let matchesLocation = true;
+      if (selectedType === 'Central Government' && selectedLocation) {
+        const region = locationRegions.find(r => r.id === selectedLocation);
+        if (region) {
+          const uniState = extractState(uni.location);
+          matchesLocation = region.states.some(state => 
+            uniState.toLowerCase().includes(state.toLowerCase()) ||
+            state.toLowerCase().includes(uniState.toLowerCase())
+          );
+        }
+      }
+      
+      return matchesSearch && matchesType && matchesLocation;
     });
-  }, [searchQuery, selectedType]);
+  }, [searchQuery, selectedType, selectedLocation]);
 
   const typeCounts = useMemo(() => {
     return {
@@ -42,6 +103,32 @@ const TNUniversityBrowse = () => {
       'Deemed University (Central Govt Funded)': universities.filter(u => u.type === 'Deemed University (Central Govt Funded)').length,
     };
   }, []);
+
+  // Count institutions per region for Central Government
+  const regionCounts = useMemo(() => {
+    const centralUnis = universities.filter(u => u.type === 'Central Government');
+    const counts: Record<string, number> = {};
+    
+    locationRegions.forEach(region => {
+      counts[region.id] = centralUnis.filter(uni => {
+        const uniState = extractState(uni.location);
+        return region.states.some(state => 
+          uniState.toLowerCase().includes(state.toLowerCase()) ||
+          state.toLowerCase().includes(uniState.toLowerCase())
+        );
+      }).length;
+    });
+    
+    return counts;
+  }, []);
+
+  // Reset location filter when switching away from Central Government
+  const handleTypeChange = (type: UniversityType) => {
+    setSelectedType(type);
+    if (type !== 'Central Government') {
+      setSelectedLocation(null);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -64,7 +151,7 @@ const TNUniversityBrowse = () => {
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
 
         {/* University Type Tabs */}
-        <Tabs value={selectedType} onValueChange={(v) => setSelectedType(v as UniversityType)} className="w-full">
+        <Tabs value={selectedType} onValueChange={(v) => handleTypeChange(v as UniversityType)} className="w-full">
           <TabsList className="w-full flex flex-wrap h-auto gap-2 bg-muted/50 p-2 rounded-lg">
             {universityTypeTabs.map((tab) => {
               const Icon = tab.icon;
@@ -84,6 +171,47 @@ const TNUniversityBrowse = () => {
             })}
           </TabsList>
         </Tabs>
+
+        {/* Location Filter - Only for Central Government */}
+        {selectedType === 'Central Government' && (
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                <MapPin className="h-4 w-4" />
+                <span>Filter by Location</span>
+                <span className="font-tamil text-xs">/ இடம் வாரியாக வடிகட்டு</span>
+              </div>
+              {selectedLocation && (
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={() => setSelectedLocation(null)}
+                  className="text-xs h-7"
+                >
+                  <X className="h-3 w-3 mr-1" />
+                  Clear
+                </Button>
+              )}
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {locationRegions.map((region) => (
+                <Badge
+                  key={region.id}
+                  variant={selectedLocation === region.id ? "default" : "outline"}
+                  className={`cursor-pointer transition-all py-1.5 px-3 ${
+                    selectedLocation === region.id
+                      ? 'bg-primary text-primary-foreground'
+                      : 'hover:bg-muted'
+                  }`}
+                  onClick={() => setSelectedLocation(selectedLocation === region.id ? null : region.id)}
+                >
+                  <span className="mr-1">{region.label}</span>
+                  <span className="text-[10px] opacity-70">({regionCounts[region.id] || 0})</span>
+                </Badge>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Search Bar */}
         <div className="relative">
