@@ -17,7 +17,7 @@ export const centralUniversities: University[] = [
     email: 'info@iitm.ac.in',
     examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
     logoColor: '#0066CC',
-    logo: '/universities/iitm-logo.png',
+    logo: '/universities/iit-madras-logo.png',
     type: 'Central Government',
     importantDates: [
       { event: 'JEE Main 2026 (Session 1)', eventTamil: 'JEE மெயின் 2026 (அமர்வு 1)', date: 'January 2026', status: 'upcoming' },
