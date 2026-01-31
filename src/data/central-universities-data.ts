@@ -4013,5 +4013,261 @@ export const centralUniversities: University[] = [
       { id: 'iimm-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Newest IIM', 'Financial capital of India', 'Strong industry connections'] },
       { id: 'iimm-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
     ]
+  },
+
+  // ============================================
+  // INDIAN INSTITUTES OF SCIENCE EDUCATION AND RESEARCH (IISERs)
+  // ============================================
+
+  // IISER PUNE
+  {
+    id: 'iiser-pune',
+    name: 'Indian Institute of Science Education and Research (IISER) Pune',
+    nameTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனம் புனே',
+    location: 'Pune, Maharashtra',
+    website: 'https://www.iiserpune.ac.in',
+    phone: '020-25908000',
+    email: 'admissions@iiserpune.ac.in',
+    examName: 'IAT / JEE Advanced / KVPY',
+    logoColor: '#0066CC',
+    logo: '/universities/iiser-pune-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' },
+      { event: 'JEE Advanced Channel', eventTamil: 'JEE அட்வான்ஸ்டு வழி', date: 'May 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iiserp-bsms', name: 'BS-MS (Dual Degree in Science)', nameTamil: 'BS-MS (அறிவியல் இரட்டை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Sciences', duration: '5 Years', eligibility: '12th PCM/PCB + IAT/JEE Advanced/KVPY', tips: ['10+ courses', 'Premier science research institute', 'Path to Ph.D. and academia', 'Strong research culture'] },
+      { id: 'iiserp-phd', name: 'Ph.D. (Integrated Ph.D.)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '5-6 Years', eligibility: 'B.Sc./M.Sc. + JEST/CSIR-NET', tips: ['Doctoral research in sciences'] }
+    ]
+  },
+
+  // IISER KOLKATA
+  {
+    id: 'iiser-kolkata',
+    name: 'Indian Institute of Science Education and Research (IISER) Kolkata',
+    nameTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனம் கொல்கத்தா',
+    location: 'Kolkata, West Bengal',
+    website: 'https://www.iiserkol.ac.in',
+    phone: '033-25873000',
+    email: 'admissions@iiserkol.ac.in',
+    examName: 'IAT / JEE Advanced / KVPY',
+    logoColor: '#8B0000',
+    logo: '/universities/iiser-kolkata-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iiserk-bsms', name: 'BS-MS (Dual Degree in Science)', nameTamil: 'BS-MS (அறிவியல் இரட்டை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Sciences', duration: '5 Years', eligibility: '12th PCM/PCB + IAT/JEE Advanced/KVPY', tips: ['10+ courses', 'Strong research in biology & chemistry', 'Collaborative research with global institutes'] },
+      { id: 'iiserk-phd', name: 'Ph.D.', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '5-6 Years', eligibility: 'B.Sc./M.Sc. + JEST/CSIR-NET', tips: ['Research excellence'] }
+    ]
+  },
+
+  // IISER MOHALI
+  {
+    id: 'iiser-mohali',
+    name: 'Indian Institute of Science Education and Research (IISER) Mohali',
+    nameTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனம் மொஹாலி',
+    location: 'Mohali, Punjab',
+    website: 'https://www.iisermohali.ac.in',
+    phone: '0172-2293100',
+    email: 'admissions@iisermohali.ac.in',
+    examName: 'IAT / JEE Advanced / KVPY',
+    logoColor: '#006633',
+    logo: '/universities/iiser-mohali-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iiserm-bsms', name: 'BS-MS (Dual Degree in Science)', nameTamil: 'BS-MS (அறிவியல் இரட்டை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Sciences', duration: '5 Years', eligibility: '12th PCM/PCB + IAT/JEE Advanced/KVPY', tips: ['10+ courses', 'Strong in chemical sciences', 'Near Chandigarh'] },
+      { id: 'iiserm-phd', name: 'Ph.D.', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '5-6 Years', eligibility: 'B.Sc./M.Sc. + JEST/CSIR-NET', tips: ['Research program'] }
+    ]
+  },
+
+  // IISER BHOPAL
+  {
+    id: 'iiser-bhopal',
+    name: 'Indian Institute of Science Education and Research (IISER) Bhopal',
+    nameTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனம் போபால்',
+    location: 'Bhopal, Madhya Pradesh',
+    website: 'https://www.iiserb.ac.in',
+    phone: '0755-6692000',
+    email: 'admissions@iiserb.ac.in',
+    examName: 'IAT / JEE Advanced / KVPY',
+    logoColor: '#4B0082',
+    logo: '/universities/iiser-bhopal-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iiserb-bsms', name: 'BS-MS (Dual Degree in Science)', nameTamil: 'BS-MS (அறிவியல் இரட்டை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Sciences', duration: '5 Years', eligibility: '12th PCM/PCB + IAT/JEE Advanced/KVPY', tips: ['10+ courses', 'Beautiful campus', 'Strong physics & EE research'] },
+      { id: 'iiserb-phd', name: 'Ph.D.', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '5-6 Years', eligibility: 'B.Sc./M.Sc. + JEST/CSIR-NET', tips: ['Research program'] }
+    ]
+  },
+
+  // IISER THIRUVANANTHAPURAM
+  {
+    id: 'iiser-tvm',
+    name: 'Indian Institute of Science Education and Research (IISER) Thiruvananthapuram',
+    nameTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனம் திருவனந்தபுரம்',
+    location: 'Thiruvananthapuram, Kerala',
+    website: 'https://www.iisertvm.ac.in',
+    phone: '0471-2778000',
+    email: 'admissions@iisertvm.ac.in',
+    examName: 'IAT / JEE Advanced / KVPY',
+    logoColor: '#006400',
+    logo: '/universities/iiser-tvm-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iisert-bsms', name: 'BS-MS (Dual Degree in Science)', nameTamil: 'BS-MS (அறிவியல் இரட்டை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Sciences', duration: '5 Years', eligibility: '12th PCM/PCB + IAT/JEE Advanced/KVPY', tips: ['10+ courses', 'Scenic Kerala location', 'Near Tamil Nadu border'] },
+      { id: 'iisert-phd', name: 'Ph.D.', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '5-6 Years', eligibility: 'B.Sc./M.Sc. + JEST/CSIR-NET', tips: ['Research program'] }
+    ]
+  },
+
+  // IISER TIRUPATI
+  {
+    id: 'iiser-tirupati',
+    name: 'Indian Institute of Science Education and Research (IISER) Tirupati',
+    nameTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனம் திருப்பதி',
+    location: 'Tirupati, Andhra Pradesh',
+    website: 'https://www.iisertirupati.ac.in',
+    phone: '0877-2500900',
+    email: 'admissions@iisertirupati.ac.in',
+    examName: 'IAT / JEE Advanced / KVPY',
+    logoColor: '#FF6600',
+    logo: '/universities/iiser-tirupati-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iisertp-bsms', name: 'BS-MS (Dual Degree in Science)', nameTamil: 'BS-MS (அறிவியல் இரட்டை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Sciences', duration: '5 Years', eligibility: '12th PCM/PCB + IAT/JEE Advanced/KVPY', tips: ['10+ courses', 'Near Chennai/TN border', 'Growing research hub'] },
+      { id: 'iisertp-phd', name: 'Ph.D.', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '5-6 Years', eligibility: 'B.Sc./M.Sc. + JEST/CSIR-NET', tips: ['Research program'] }
+    ]
+  },
+
+  // IISER BERHAMPUR
+  {
+    id: 'iiser-berhampur',
+    name: 'Indian Institute of Science Education and Research (IISER) Berhampur',
+    nameTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனம் பெரம்பூர்',
+    location: 'Berhampur, Odisha',
+    website: 'https://www.iiserbpr.ac.in',
+    phone: '0680-2227500',
+    email: 'admissions@iiserbpr.ac.in',
+    examName: 'IAT / JEE Advanced / KVPY',
+    logoColor: '#4169E1',
+    logo: '/universities/iiser-berhampur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iiserbr-bsms', name: 'BS-MS (Dual Degree in Science)', nameTamil: 'BS-MS (அறிவியல் இரட்டை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Sciences', duration: '5 Years', eligibility: '12th PCM/PCB + IAT/JEE Advanced/KVPY', tips: ['10+ courses', 'Newest IISER', 'Developing campus'] },
+      { id: 'iiserbr-phd', name: 'Ph.D.', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '5-6 Years', eligibility: 'B.Sc./M.Sc. + JEST/CSIR-NET', tips: ['Research program'] }
+    ]
+  },
+
+  // ============================================
+  // OTHER CENTRAL INSTITUTIONS
+  // ============================================
+
+  // IIITDM KANCHEEPURAM
+  {
+    id: 'iiitdm-kancheepuram',
+    name: 'Indian Institute of Information Technology, Design and Manufacturing Kancheepuram',
+    nameTamil: 'இந்திய தகவல் தொழில்நுட்ப நிறுவனம் காஞ்சிபுரம்',
+    location: 'Chennai, Tamil Nadu',
+    website: 'https://www.iiitdm.ac.in',
+    phone: '044-27476300',
+    email: 'admissions@iiitdm.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#1E3A8A',
+    logo: '/universities/iiitdm-kancheepuram-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iiitdm-btech-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'Design + Engineering focus', 'Strong industry connections'] },
+      { id: 'iiitdm-btech-ece', name: 'B.Tech Electronics & Communication', nameTamil: 'B.Tech மின்னணு & தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['VLSI & embedded systems'] },
+      { id: 'iiitdm-btech-mech', name: 'B.Tech Mechanical Engineering (Smart Manufacturing)', nameTamil: 'B.Tech இயந்திரப் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['Smart manufacturing focus'] },
+      { id: 'iiitdm-bdes', name: 'B.Des (Bachelor of Design)', nameTamil: 'B.Des (வடிவமைப்பு இளங்கலை)', type: 'UG', category: 'On-Campus', school: 'Design', duration: '4 Years', eligibility: 'JEE Main qualified + Design Aptitude', tips: ['Product & interaction design'] },
+      { id: 'iiitdm-mtech', name: 'M.Tech (Various Specializations)', nameTamil: 'M.Tech', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'B.Tech/BE + GATE qualified', tips: ['Research-focused PG'] },
+      { id: 'iiitdm-mdes', name: 'M.Des (Master of Design)', nameTamil: 'M.Des', type: 'PG', category: 'On-Campus', school: 'Design', duration: '2 Years', eligibility: 'B.Des/B.Tech + GATE/CEED', tips: ['Advanced design studies'] },
+      { id: 'iiitdm-phd', name: 'Ph.D.', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-6 Years', eligibility: 'M.Tech/M.Des + GATE', tips: ['Doctoral research'] }
+    ]
+  },
+
+  // CENTRAL INSTITUTE OF CLASSICAL TAMIL
+  {
+    id: 'cict-chennai',
+    name: 'Central Institute of Classical Tamil',
+    nameTamil: 'செம்மொழித் தமிழாய்வு மத்திய நிறுவனம்',
+    location: 'Chennai, Tamil Nadu',
+    website: 'https://www.cict.in',
+    phone: '044-24412315',
+    email: 'cict@cict.in',
+    examName: 'Direct Application',
+    logoColor: '#8B4513',
+    logo: '/universities/cict-chennai-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'Ph.D. Admission 2026', eventTamil: 'Ph.D. சேர்க்கை 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'Certificate Courses', eventTamil: 'சான்றிதழ் படிப்புகள்', date: 'Year-round', status: 'ongoing' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 5000 },
+    courses: [
+      { id: 'cict-phd-tamil', name: 'Ph.D. in Classical Tamil', nameTamil: 'Ph.D. செந்தமிழ்', type: 'Research', category: 'On-Campus', school: 'Tamil Studies', duration: '3-5 Years', eligibility: 'M.A. Tamil/Literature', tips: ['7+ courses', 'Premier Tamil research institute', 'Sangam literature expertise'] },
+      { id: 'cict-cert-sangam', name: 'Certificate in Sangam Literature', nameTamil: 'சங்க இலக்கிய சான்றிதழ்', type: 'Certificate', category: 'On-Campus', school: 'Tamil Studies', duration: '6 Months', eligibility: 'Graduate in any discipline', tips: ['Classical Tamil heritage'] },
+      { id: 'cict-cert-epigraphy', name: 'Certificate in Tamil Epigraphy', nameTamil: 'தமிழ் கல்வெட்டியல் சான்றிதழ்', type: 'Certificate', category: 'On-Campus', school: 'Tamil Studies', duration: '6 Months', eligibility: 'Graduate', tips: ['Stone inscriptions study'] },
+      { id: 'cict-diploma-classical', name: 'Diploma in Classical Tamil', nameTamil: 'செந்தமிழ் டிப்ளமா', type: 'Diploma', category: 'On-Campus', school: 'Tamil Studies', duration: '1 Year', eligibility: 'Graduate', tips: ['In-depth classical study'] },
+      { id: 'cict-pdp', name: 'Post-Doctoral Programme', nameTamil: 'முனைவர் பட்ட பின் படிப்பு', type: 'Research', category: 'On-Campus', school: 'Research', duration: '2 Years', eligibility: 'Ph.D. in Tamil', tips: ['Advanced research fellowship'] }
+    ]
+  },
+
+  // NITTTR CHENNAI
+  {
+    id: 'nitttr-chennai',
+    name: 'National Institute of Technical Teachers Training and Research (NITTTR) Chennai',
+    nameTamil: 'தேசிய தொழில்நுட்ப ஆசிரியர் பயிற்சி மற்றும் ஆராய்ச்சி நிறுவனம்',
+    location: 'Chennai, Tamil Nadu',
+    website: 'https://www.nitttrc.ac.in',
+    phone: '044-22542994',
+    email: 'nitttrcinfo@gmail.com',
+    examName: 'GATE (M.Tech) / Direct Application',
+    logoColor: '#006400',
+    logo: '/universities/nitttr-chennai-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'M.Tech Admission 2026', eventTamil: 'M.Tech சேர்க்கை 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'Short Term Courses', eventTamil: 'குறுகிய கால பயிற்சி', date: 'Year-round', status: 'ongoing' },
+      { event: 'Faculty Development Programmes', eventTamil: 'ஆசிரியர் மேம்பாட்டு பயிற்சி', date: 'Year-round', status: 'ongoing' }
+    ],
+    fee: { general: 50000, obc: 50000, scst: 25000 },
+    courses: [
+      { id: 'nitttr-mtech-edu', name: 'M.Tech (Educational Technology)', nameTamil: 'M.Tech (கல்வி தொழில்நுட்பம்)', type: 'PG', category: 'On-Campus', school: 'Education', duration: '2 Years', eligibility: 'B.Tech/BE + GATE qualified', tips: ['10+ courses', 'Technical teacher training', 'Focus on pedagogy + technology'] },
+      { id: 'nitttr-mtech-cad', name: 'M.Tech (CAD/CAM)', nameTamil: 'M.Tech (CAD/CAM)', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'B.Tech/BE + GATE qualified', tips: ['Design & manufacturing'] },
+      { id: 'nitttr-mtech-comm', name: 'M.Tech (Communication Engineering)', nameTamil: 'M.Tech (தொடர்பு பொறியியல்)', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'B.Tech/BE + GATE qualified', tips: ['Communication systems'] },
+      { id: 'nitttr-pgdm', name: 'PGDM (Technical Education Management)', nameTamil: 'PGDM (தொழில்நுட்ப கல்வி மேலாண்மை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'B.Tech/BE with teaching exp', tips: ['For engineering faculty'] },
+      { id: 'nitttr-phd', name: 'Ph.D. (Various Disciplines)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '3-5 Years', eligibility: 'M.Tech/M.E.', tips: ['Research in technical education'] },
+      { id: 'nitttr-fdp', name: 'Faculty Development Programmes', nameTamil: 'ஆசிரியர் மேம்பாட்டு நிகழ்ச்சிகள்', type: 'Certificate', category: 'On-Campus', school: 'Professional Development', duration: '1-4 Weeks', eligibility: 'Engineering faculty members', tips: ['AICTE-sponsored training'] }
+    ]
   }
 ];
