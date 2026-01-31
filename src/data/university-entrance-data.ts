@@ -61,7 +61,7 @@ export interface Course {
   specialty?: string;
   examPattern?: ExamPattern;
   syllabus?: SyllabusUnit[];
-  previousQuestions: PreviousQuestion[];
+  previousQuestions?: PreviousQuestion[];
   tips: string[];
   seatMatrix?: SeatMatrix;
   cutoffs?: YearCutoff[];

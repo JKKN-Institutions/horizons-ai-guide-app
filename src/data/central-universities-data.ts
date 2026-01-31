@@ -782,5 +782,771 @@ export const centralUniversities: University[] = [
       { id: 'iiitt-phd-economics', name: 'Ph.D. Economics', nameTamil: 'Ph.D. பொருளாதாரம்', type: 'Research', category: 'On-Campus', school: 'Science & Humanities', duration: '4-6 Years', eligibility: 'M.A./M.Sc. Economics + NET/JRF or Institute Entrance + Interview', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Written Test + Interview', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Research area: Health Economics', 'Fellowship provided'] },
       { id: 'iiitt-phd-english', name: 'Ph.D. English', nameTamil: 'Ph.D. ஆங்கிலம்', type: 'Research', category: 'On-Campus', school: 'Science & Humanities', duration: '4-6 Years', eligibility: 'M.A. English + NET/JRF or Institute Entrance + Interview', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Written Test + Interview', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Research area: Applied Linguistics', 'Fellowship provided'] }
     ]
+  },
+
+  // ============================================
+  // 9. DELHI UNIVERSITY
+  // ============================================
+  {
+    id: 'delhi-university',
+    name: 'University of Delhi',
+    nameTamil: 'டெல்லி பல்கலைக்கழகம்',
+    location: 'Delhi',
+    website: 'https://www.du.ac.in',
+    phone: '011-27667011',
+    email: 'registrar@du.ac.in',
+    examName: 'CUET',
+    logoColor: '#800020',
+    logo: '/universities/delhi-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'DU Admission 2026', eventTamil: 'DU சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 20000, obc: 20000, scst: 5000 },
+    courses: [
+      { id: 'du-ba-hons', name: 'B.A. (Hons) - Various Subjects', nameTamil: 'B.A. (ஹானர்ஸ்) - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Arts', duration: '3 Years', eligibility: 'CUET qualified, 12th Pass', tips: ['500+ courses available', "India's most prestigious Arts & Humanities programs"] },
+      { id: 'du-bsc-hons', name: 'B.Sc. (Hons) - Various Subjects', nameTamil: 'B.Sc. (ஹானர்ஸ்) - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Science', duration: '3 Years', eligibility: 'CUET qualified, 12th PCM/PCB', tips: ['Strong research facilities', 'Multiple colleges to choose from'] },
+      { id: 'du-bcom-hons', name: 'B.Com. (Hons)', nameTamil: 'B.Com. (ஹானர்ஸ்)', type: 'UG', category: 'On-Campus', school: 'Commerce', duration: '3 Years', eligibility: 'CUET qualified, 12th Commerce', tips: ['Top choice for Commerce students', 'SRCC, Hindu College, St. Stephens'] }
+    ]
+  },
+
+  // ============================================
+  // 10. JAWAHARLAL NEHRU UNIVERSITY (JNU)
+  // ============================================
+  {
+    id: 'jnu',
+    name: 'Jawaharlal Nehru University',
+    nameTamil: 'ஜவஹர்லால் நேரு பல்கலைக்கழகம்',
+    location: 'Delhi',
+    website: 'https://www.jnu.ac.in',
+    phone: '011-26704000',
+    email: 'registrar@jnu.ac.in',
+    examName: 'CUET',
+    logoColor: '#006400',
+    logo: '/universities/jnu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'JNU Admission 2026', eventTamil: 'JNU சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 15000, obc: 15000, scst: 5000 },
+    courses: [
+      { id: 'jnu-ba-hons', name: 'B.A. (Hons) - Various Subjects', nameTamil: 'B.A. (ஹானர்ஸ்) - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Social Sciences', duration: '3 Years', eligibility: 'CUET qualified, 12th Pass', tips: ['150+ courses', 'Best for Social Sciences & Languages'] },
+      { id: 'jnu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['Top research university in India', 'Strong international collaborations'] }
+    ]
+  },
+
+  // ============================================
+  // 11. JAMIA MILLIA ISLAMIA
+  // ============================================
+  {
+    id: 'jamia',
+    name: 'Jamia Millia Islamia',
+    nameTamil: 'ஜாமியா மிலியா இஸ்லாமியா',
+    location: 'Delhi',
+    website: 'https://www.jmi.ac.in',
+    phone: '011-26981717',
+    email: 'registrar@jmi.ac.in',
+    examName: 'CUET',
+    logoColor: '#228B22',
+    logo: '/universities/jamia-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Jamia Admission 2026', eventTamil: 'ஜாமியா சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 15000, obc: 15000, scst: 5000 },
+    courses: [
+      { id: 'jamia-ba', name: 'B.A. - Various Subjects', nameTamil: 'B.A. - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Arts', duration: '3 Years', eligibility: 'CUET qualified, 12th Pass', tips: ['200+ courses', 'Strong in Mass Communication & Architecture'] },
+      { id: 'jamia-btech', name: 'B.Tech - Engineering', nameTamil: 'B.Tech - பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'CUET/JEE Main qualified, 12th PCM', tips: ['Faculty of Engineering & Technology'] }
+    ]
+  },
+
+  // ============================================
+  // 12. BANARAS HINDU UNIVERSITY (BHU)
+  // ============================================
+  {
+    id: 'bhu',
+    name: 'Banaras Hindu University',
+    nameTamil: 'பனாரஸ் இந்து பல்கலைக்கழகம்',
+    location: 'Varanasi, Uttar Pradesh',
+    website: 'https://www.bhu.ac.in',
+    phone: '0542-2307050',
+    email: 'registrar@bhu.ac.in',
+    examName: 'CUET',
+    logoColor: '#8B0000',
+    logo: '/universities/bhu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'BHU Admission 2026', eventTamil: 'BHU சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'bhu-ba', name: 'B.A. - Various Subjects', nameTamil: 'B.A. - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Arts', duration: '3 Years', eligibility: 'CUET qualified, 12th Pass', tips: ['400+ courses', "Asia's largest residential university"] },
+      { id: 'bhu-bsc', name: 'B.Sc. - Various Subjects', nameTamil: 'B.Sc. - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Science', duration: '3 Years', eligibility: 'CUET qualified, 12th PCM/PCB', tips: ['Strong in Agriculture, Ayurveda, Law'] },
+      { id: 'bhu-iit', name: 'B.Tech - IIT (BHU)', nameTamil: 'B.Tech - IIT (BHU)', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified', tips: ['IIT BHU - Premier Engineering Institute'] }
+    ]
+  },
+
+  // ============================================
+  // 13. ALIGARH MUSLIM UNIVERSITY
+  // ============================================
+  {
+    id: 'amu',
+    name: 'Aligarh Muslim University',
+    nameTamil: 'அலிகார் முஸ்லிம் பல்கலைக்கழகம்',
+    location: 'Aligarh, Uttar Pradesh',
+    website: 'https://www.amu.ac.in',
+    phone: '0571-2700920',
+    email: 'registrar@amu.ac.in',
+    examName: 'AMU Entrance',
+    logoColor: '#006633',
+    logo: '/universities/amu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'AMU Entrance 2026 Registration', eventTamil: 'AMU நுழைவுத் தேர்வு 2026 பதிவு', date: 'January 2026', status: 'upcoming' },
+      { event: 'AMU Entrance 2026 Exam', eventTamil: 'AMU நுழைவுத் தேர்வு 2026', date: 'April-May 2026', status: 'upcoming' },
+      { event: 'AMU Admission 2026', eventTamil: 'AMU சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 15000, obc: 15000, scst: 5000 },
+    courses: [
+      { id: 'amu-ba', name: 'B.A. - Various Subjects', nameTamil: 'B.A. - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Arts', duration: '3 Years', eligibility: 'AMU Entrance qualified, 12th Pass', tips: ['300+ courses', 'Strong in Law, Medicine, Engineering'] },
+      { id: 'amu-btech', name: 'B.Tech - Engineering', nameTamil: 'B.Tech - பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'AMU Entrance/JEE Main qualified', tips: ['Z.H. College of Engineering'] },
+      { id: 'amu-mbbs', name: 'MBBS', nameTamil: 'MBBS', type: 'UG', category: 'On-Campus', school: 'Medicine', duration: '5.5 Years', eligibility: 'NEET qualified', tips: ['J.N. Medical College - Premier Medical School'] }
+    ]
+  },
+
+  // ============================================
+  // 14. UNIVERSITY OF HYDERABAD
+  // ============================================
+  {
+    id: 'uoh',
+    name: 'University of Hyderabad',
+    nameTamil: 'ஹைதராபாத் பல்கலைக்கழகம்',
+    location: 'Hyderabad, Telangana',
+    website: 'https://www.uohyd.ac.in',
+    phone: '040-23132100',
+    email: 'registrar@uohyd.ac.in',
+    examName: 'CUET',
+    logoColor: '#4B0082',
+    logo: '/universities/uoh-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'UoH Admission 2026', eventTamil: 'UoH சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'uoh-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['150+ courses', 'Research-intensive university'] },
+      { id: 'uoh-msc', name: 'M.Sc. - Various Subjects', nameTamil: 'M.Sc. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'CUET-PG qualified, B.Sc.', tips: ['Strong in Life Sciences & Physics'] }
+    ]
+  },
+
+  // ============================================
+  // 15. PONDICHERRY UNIVERSITY
+  // ============================================
+  {
+    id: 'pondicherry-university',
+    name: 'Pondicherry University',
+    nameTamil: 'புதுச்சேரி பல்கலைக்கழகம்',
+    location: 'Puducherry',
+    website: 'https://www.pondiuni.edu.in',
+    phone: '0413-2654301',
+    email: 'registrar@pondiuni.edu.in',
+    examName: 'CUET',
+    logoColor: '#FF6600',
+    logo: '/universities/pondicherry-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Pondicherry University Admission 2026', eventTamil: 'புதுச்சேரி பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 15000, obc: 15000, scst: 5000 },
+    courses: [
+      { id: 'pu-ba', name: 'B.A. - Various Subjects', nameTamil: 'B.A. - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Arts', duration: '3 Years', eligibility: 'CUET qualified, 12th Pass', tips: ['100+ courses', 'Close to Tamil Nadu - easy access'] },
+      { id: 'pu-mba', name: 'MBA', nameTamil: 'MBA', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CUET-PG/CAT qualified, Graduation', tips: ['Well-recognized MBA program'] }
+    ]
+  },
+
+  // ============================================
+  // 16. CENTRAL UNIVERSITY OF KERALA
+  // ============================================
+  {
+    id: 'cukerala',
+    name: 'Central University of Kerala',
+    nameTamil: 'கேரள மத்திய பல்கலைக்கழகம்',
+    location: 'Kasaragod, Kerala',
+    website: 'https://www.cukerala.ac.in',
+    phone: '04994-256100',
+    email: 'registrar@cukerala.ac.in',
+    examName: 'CUET',
+    logoColor: '#2E8B57',
+    logo: '/universities/cukerala-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Kerala Admission 2026', eventTamil: 'CU கேரளா சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cuk-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'Growing central university'] }
+    ]
+  },
+
+  // ============================================
+  // 17. CENTRAL UNIVERSITY OF KARNATAKA
+  // ============================================
+  {
+    id: 'cukarnataka',
+    name: 'Central University of Karnataka',
+    nameTamil: 'கர்நாடக மத்திய பல்கலைக்கழகம்',
+    location: 'Kalaburagi, Karnataka',
+    website: 'https://www.cuk.ac.in',
+    phone: '08472-246000',
+    email: 'registrar@cuk.ac.in',
+    examName: 'CUET',
+    logoColor: '#DC143C',
+    logo: '/universities/cukarnataka-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Karnataka Admission 2026', eventTamil: 'CU கர்நாடகா சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cukar-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'New campus with modern facilities'] }
+    ]
+  },
+
+  // ============================================
+  // 18. CENTRAL UNIVERSITY OF ANDHRA PRADESH
+  // ============================================
+  {
+    id: 'cuap',
+    name: 'Central University of Andhra Pradesh',
+    nameTamil: 'ஆந்திர பிரதேச மத்திய பல்கலைக்கழகம்',
+    location: 'Anantapur, Andhra Pradesh',
+    website: 'https://www.cuap.ac.in',
+    phone: '08554-255700',
+    email: 'registrar@cuap.ac.in',
+    examName: 'CUET',
+    logoColor: '#FFD700',
+    logo: '/universities/cuap-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CUAP Admission 2026', eventTamil: 'CUAP சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cuap-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Developing central university'] }
+    ]
+  },
+
+  // ============================================
+  // 19. CENTRAL UNIVERSITY OF PUNJAB
+  // ============================================
+  {
+    id: 'cupunjab',
+    name: 'Central University of Punjab',
+    nameTamil: 'பஞ்சாப் மத்திய பல்கலைக்கழகம்',
+    location: 'Bathinda, Punjab',
+    website: 'https://www.cup.edu.in',
+    phone: '0164-2864106',
+    email: 'registrar@cup.edu.in',
+    examName: 'CUET',
+    logoColor: '#FF4500',
+    logo: '/universities/cupunjab-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Punjab Admission 2026', eventTamil: 'CU பஞ்சாப் சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cup-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'Strong in Pharmaceutical Sciences'] }
+    ]
+  },
+
+  // ============================================
+  // 20. CENTRAL UNIVERSITY OF RAJASTHAN
+  // ============================================
+  {
+    id: 'curajasthan',
+    name: 'Central University of Rajasthan',
+    nameTamil: 'ராஜஸ்தான் மத்திய பல்கலைக்கழகம்',
+    location: 'Ajmer, Rajasthan',
+    website: 'https://www.curaj.ac.in',
+    phone: '01463-238652',
+    email: 'registrar@curaj.ac.in',
+    examName: 'CUET',
+    logoColor: '#DAA520',
+    logo: '/universities/curajasthan-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Rajasthan Admission 2026', eventTamil: 'CU ராஜஸ்தான் சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cur-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'Strong in Culture & Heritage Studies'] }
+    ]
+  },
+
+  // ============================================
+  // 21. CENTRAL UNIVERSITY OF GUJARAT
+  // ============================================
+  {
+    id: 'cugujarat',
+    name: 'Central University of Gujarat',
+    nameTamil: 'குஜராத் மத்திய பல்கலைக்கழகம்',
+    location: 'Gandhinagar, Gujarat',
+    website: 'https://www.cug.ac.in',
+    phone: '079-23977407',
+    email: 'registrar@cug.ac.in',
+    examName: 'CUET',
+    logoColor: '#8B4513',
+    logo: '/universities/cugujarat-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Gujarat Admission 2026', eventTamil: 'CU குஜராத் சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cug-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Strong in International Studies'] }
+    ]
+  },
+
+  // ============================================
+  // 22. CENTRAL UNIVERSITY OF HARYANA
+  // ============================================
+  {
+    id: 'cuharyana',
+    name: 'Central University of Haryana',
+    nameTamil: 'ஹரியானா மத்திய பல்கலைக்கழகம்',
+    location: 'Mahendragarh, Haryana',
+    website: 'https://www.cuh.ac.in',
+    phone: '01285-249000',
+    email: 'registrar@cuh.ac.in',
+    examName: 'CUET',
+    logoColor: '#4682B4',
+    logo: '/universities/cuharyana-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Haryana Admission 2026', eventTamil: 'CU ஹரியானா சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cuh-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Near NCR region'] }
+    ]
+  },
+
+  // ============================================
+  // 23. CENTRAL UNIVERSITY OF HIMACHAL PRADESH
+  // ============================================
+  {
+    id: 'cuhimachal',
+    name: 'Central University of Himachal Pradesh',
+    nameTamil: 'இமாச்சல பிரதேச மத்திய பல்கலைக்கழகம்',
+    location: 'Dharamshala, Himachal Pradesh',
+    website: 'https://www.cuhimachal.ac.in',
+    phone: '01892-229330',
+    email: 'registrar@cuhimachal.ac.in',
+    examName: 'CUET',
+    logoColor: '#20B2AA',
+    logo: '/universities/cuhimachal-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU HP Admission 2026', eventTamil: 'CU HP சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cuhp-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Beautiful hill campus'] }
+    ]
+  },
+
+  // ============================================
+  // 24. CENTRAL UNIVERSITY OF JHARKHAND
+  // ============================================
+  {
+    id: 'cujharkhand',
+    name: 'Central University of Jharkhand',
+    nameTamil: 'ஜார்கண்ட் மத்திய பல்கலைக்கழகம்',
+    location: 'Ranchi, Jharkhand',
+    website: 'https://www.cuj.ac.in',
+    phone: '0651-2230123',
+    email: 'registrar@cuj.ac.in',
+    examName: 'CUET',
+    logoColor: '#228B22',
+    logo: '/universities/cujharkhand-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Jharkhand Admission 2026', eventTamil: 'CU ஜார்கண்ட் சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cuj-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Strong in Energy & Environmental Sciences'] }
+    ]
+  },
+
+  // ============================================
+  // 25. CENTRAL UNIVERSITY OF BIHAR
+  // ============================================
+  {
+    id: 'cubihar',
+    name: 'Central University of Bihar',
+    nameTamil: 'பீகார் மத்திய பல்கலைக்கழகம்',
+    location: 'Gaya, Bihar',
+    website: 'https://www.cub.ac.in',
+    phone: '0631-2229450',
+    email: 'registrar@cub.ac.in',
+    examName: 'CUET',
+    logoColor: '#DC143C',
+    logo: '/universities/cubihar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Bihar Admission 2026', eventTamil: 'CU பீகார் சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cub-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Near Bodh Gaya - Buddhist Studies strong'] }
+    ]
+  },
+
+  // ============================================
+  // 26. CENTRAL UNIVERSITY OF ODISHA
+  // ============================================
+  {
+    id: 'cuodisha',
+    name: 'Central University of Odisha',
+    nameTamil: 'ஒடிசா மத்திய பல்கலைக்கழகம்',
+    location: 'Koraput, Odisha',
+    website: 'https://www.cuo.ac.in',
+    phone: '06852-288212',
+    email: 'registrar@cuo.ac.in',
+    examName: 'CUET',
+    logoColor: '#FF6347',
+    logo: '/universities/cuodisha-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Odisha Admission 2026', eventTamil: 'CU ஒடிசா சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cuo-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['30+ courses', 'Focus on tribal studies'] }
+    ]
+  },
+
+  // ============================================
+  // 27. CENTRAL UNIVERSITY OF KASHMIR
+  // ============================================
+  {
+    id: 'cukashmir',
+    name: 'Central University of Kashmir',
+    nameTamil: 'காஷ்மீர் மத்திய பல்கலைக்கழகம்',
+    location: 'Ganderbal, J&K',
+    website: 'https://www.cukashmir.ac.in',
+    phone: '0194-2462343',
+    email: 'registrar@cukashmir.ac.in',
+    examName: 'CUET',
+    logoColor: '#4169E1',
+    logo: '/universities/cukashmir-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Kashmir Admission 2026', eventTamil: 'CU காஷ்மீர் சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cuk-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Beautiful Kashmir campus'] }
+    ]
+  },
+
+  // ============================================
+  // 28. VISVA-BHARATI UNIVERSITY
+  // ============================================
+  {
+    id: 'visva-bharati',
+    name: 'Visva-Bharati University',
+    nameTamil: 'விஸ்வ பாரதி பல்கலைக்கழகம்',
+    location: 'Santiniketan, West Bengal',
+    website: 'https://www.visvabharati.ac.in',
+    phone: '03463-262751',
+    email: 'registrar@visvabharati.ac.in',
+    examName: 'CUET',
+    logoColor: '#8B0000',
+    logo: '/universities/visva-bharati-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Visva-Bharati Admission 2026', eventTamil: 'விஸ்வ பாரதி சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'vb-ba', name: 'B.A. - Various Subjects', nameTamil: 'B.A. - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Arts', duration: '3 Years', eligibility: 'CUET qualified, 12th Pass', tips: ['100+ courses', 'Founded by Rabindranath Tagore', 'Unique open-air education'] },
+      { id: 'vb-bfa', name: 'BFA (Fine Arts)', nameTamil: 'BFA (நுண்கலை)', type: 'UG', category: 'On-Campus', school: 'Fine Arts', duration: '4 Years', eligibility: 'CUET qualified, 12th Pass', tips: ['Famous Kala Bhavana - Art school'] }
+    ]
+  },
+
+  // ============================================
+  // 29. TEZPUR UNIVERSITY
+  // ============================================
+  {
+    id: 'tezpur',
+    name: 'Tezpur University',
+    nameTamil: 'தேஸ்பூர் பல்கலைக்கழகம்',
+    location: 'Tezpur, Assam',
+    website: 'https://www.tezu.ernet.in',
+    phone: '03712-267004',
+    email: 'registrar@tezu.ernet.in',
+    examName: 'CUET',
+    logoColor: '#006400',
+    logo: '/universities/tezpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Tezpur University Admission 2026', eventTamil: 'தேஸ்பூர் பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 15000, obc: 15000, scst: 5000 },
+    courses: [
+      { id: 'tu-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'CUET/JEE Main qualified, 12th PCM', tips: ['60+ courses', 'Strong in Science & Technology'] },
+      { id: 'tu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['Strong in Mass Communication'] }
+    ]
+  },
+
+  // ============================================
+  // 30. ASSAM UNIVERSITY
+  // ============================================
+  {
+    id: 'assam-university',
+    name: 'Assam University',
+    nameTamil: 'அசாம் பல்கலைக்கழகம்',
+    location: 'Silchar, Assam',
+    website: 'https://www.aus.ac.in',
+    phone: '03842-270806',
+    email: 'registrar@aus.ac.in',
+    examName: 'CUET',
+    logoColor: '#2E8B57',
+    logo: '/universities/assam-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Assam University Admission 2026', eventTamil: 'அசாம் பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'aus-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'Strong in Life Sciences'] }
+    ]
+  },
+
+  // ============================================
+  // 31. NORTH EASTERN HILL UNIVERSITY (NEHU)
+  // ============================================
+  {
+    id: 'nehu',
+    name: 'North Eastern Hill University',
+    nameTamil: 'வடகிழக்கு மலை பல்கலைக்கழகம்',
+    location: 'Shillong, Meghalaya',
+    website: 'https://www.nehu.ac.in',
+    phone: '0364-2722001',
+    email: 'registrar@nehu.ac.in',
+    examName: 'CUET',
+    logoColor: '#228B22',
+    logo: '/universities/nehu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEHU Admission 2026', eventTamil: 'NEHU சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'nehu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['60+ courses', 'Beautiful Shillong campus', 'Strong in NE Studies'] }
+    ]
+  },
+
+  // ============================================
+  // 32. MANIPUR UNIVERSITY
+  // ============================================
+  {
+    id: 'manipur-university',
+    name: 'Manipur University',
+    nameTamil: 'மணிப்பூர் பல்கலைக்கழகம்',
+    location: 'Imphal, Manipur',
+    website: 'https://www.manipuruniv.ac.in',
+    phone: '0385-2435145',
+    email: 'registrar@manipuruniv.ac.in',
+    examName: 'CUET',
+    logoColor: '#DC143C',
+    logo: '/universities/manipur-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Manipur University Admission 2026', eventTamil: 'மணிப்பூர் பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'mu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Strong in Dance & Performing Arts'] }
+    ]
+  },
+
+  // ============================================
+  // 33. MIZORAM UNIVERSITY
+  // ============================================
+  {
+    id: 'mizoram-university',
+    name: 'Mizoram University',
+    nameTamil: 'மிசோரம் பல்கலைக்கழகம்',
+    location: 'Aizawl, Mizoram',
+    website: 'https://www.mzu.edu.in',
+    phone: '0389-2330654',
+    email: 'registrar@mzu.edu.in',
+    examName: 'CUET',
+    logoColor: '#4B0082',
+    logo: '/universities/mizoram-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Mizoram University Admission 2026', eventTamil: 'மிசோரம் பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'mzu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Strong in Forestry & Environment'] }
+    ]
+  },
+
+  // ============================================
+  // 34. NAGALAND UNIVERSITY
+  // ============================================
+  {
+    id: 'nagaland-university',
+    name: 'Nagaland University',
+    nameTamil: 'நாகாலாந்து பல்கலைக்கழகம்',
+    location: 'Lumami, Nagaland',
+    website: 'https://www.nagalanduniversity.ac.in',
+    phone: '0370-2292109',
+    email: 'registrar@nagalanduniversity.ac.in',
+    examName: 'CUET',
+    logoColor: '#006633',
+    logo: '/universities/nagaland-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Nagaland University Admission 2026', eventTamil: 'நாகாலாந்து பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'nu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Multi-campus university'] }
+    ]
+  },
+
+  // ============================================
+  // 35. TRIPURA UNIVERSITY
+  // ============================================
+  {
+    id: 'tripura-university',
+    name: 'Tripura University',
+    nameTamil: 'திரிபுரா பல்கலைக்கழகம்',
+    location: 'Agartala, Tripura',
+    website: 'https://www.tripurauniv.ac.in',
+    phone: '0381-2374801',
+    email: 'registrar@tripurauniv.ac.in',
+    examName: 'CUET',
+    logoColor: '#FF6347',
+    logo: '/universities/tripura-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Tripura University Admission 2026', eventTamil: 'திரிபுரா பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'tu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'Strong in Rural Development'] }
+    ]
+  },
+
+  // ============================================
+  // 36. SIKKIM UNIVERSITY
+  // ============================================
+  {
+    id: 'sikkim-university',
+    name: 'Sikkim University',
+    nameTamil: 'சிக்கிம் பல்கலைக்கழகம்',
+    location: 'Gangtok, Sikkim',
+    website: 'https://www.cus.ac.in',
+    phone: '03592-251067',
+    email: 'registrar@cus.ac.in',
+    examName: 'CUET',
+    logoColor: '#4682B4',
+    logo: '/universities/sikkim-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Sikkim University Admission 2026', eventTamil: 'சிக்கிம் பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'su-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Beautiful Himalayan campus'] }
+    ]
+  },
+
+  // ============================================
+  // 37. RAJIV GANDHI UNIVERSITY
+  // ============================================
+  {
+    id: 'rgu',
+    name: 'Rajiv Gandhi University',
+    nameTamil: 'ராஜீவ் காந்தி பல்கலைக்கழகம்',
+    location: 'Itanagar, Arunachal Pradesh',
+    website: 'https://www.rgu.ac.in',
+    phone: '0360-2277252',
+    email: 'registrar@rgu.ac.in',
+    examName: 'CUET',
+    logoColor: '#228B22',
+    logo: '/universities/rgu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'RGU Admission 2026', eventTamil: 'RGU சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'rgu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'Only Central University in Arunachal Pradesh'] }
+    ]
   }
 ];
