@@ -1548,5 +1548,599 @@ export const centralUniversities: University[] = [
     courses: [
       { id: 'rgu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'Only Central University in Arunachal Pradesh'] }
     ]
+  },
+
+  // ============================================
+  // IIT BOMBAY
+  // ============================================
+  {
+    id: 'iit-bombay',
+    name: 'Indian Institute of Technology Bombay',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் மும்பை',
+    location: 'Mumbai, Maharashtra',
+    website: 'https://www.iitb.ac.in',
+    phone: '022-25722545',
+    email: 'registrar@iitb.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
+    logoColor: '#003366',
+    logo: '/universities/iit-bombay-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitb-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['50+ courses', 'Top 3 IIT in India', 'Highest placement packages'] },
+      { id: 'iitb-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong research ecosystem'] }
+    ]
+  },
+
+  // ============================================
+  // IIT DELHI
+  // ============================================
+  {
+    id: 'iit-delhi',
+    name: 'Indian Institute of Technology Delhi',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் டெல்லி',
+    location: 'Delhi',
+    website: 'https://www.iitd.ac.in',
+    phone: '011-26591000',
+    email: 'registrar@iitd.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
+    logoColor: '#00205B',
+    logo: '/universities/iit-delhi-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitd-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['50+ courses', 'Strong startup ecosystem', 'Top recruiters: Google, Microsoft'] },
+      { id: 'iitd-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Excellent research facilities'] }
+    ]
+  },
+
+  // ============================================
+  // IIT KANPUR
+  // ============================================
+  {
+    id: 'iit-kanpur',
+    name: 'Indian Institute of Technology Kanpur',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் கான்பூர்',
+    location: 'Kanpur, Uttar Pradesh',
+    website: 'https://www.iitk.ac.in',
+    phone: '0512-2590111',
+    email: 'registrar@iitk.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
+    logoColor: '#C41E3A',
+    logo: '/universities/iit-kanpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitk-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['50+ courses', 'Pioneer in Computer Science', 'Strong in Aerospace'] },
+      { id: 'iitk-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['World-class research labs'] }
+    ]
+  },
+
+  // ============================================
+  // IIT KHARAGPUR
+  // ============================================
+  {
+    id: 'iit-kharagpur',
+    name: 'Indian Institute of Technology Kharagpur',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் கரக்பூர்',
+    location: 'Kharagpur, West Bengal',
+    website: 'https://www.iitkgp.ac.in',
+    phone: '03222-255221',
+    email: 'registrar@iitkgp.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
+    logoColor: '#800000',
+    logo: '/universities/iit-kharagpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitkgp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['60+ courses', "India's first IIT (1951)", 'Largest IIT campus'] },
+      { id: 'iitkgp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong in Architecture, Law, Medical'] }
+    ]
+  },
+
+  // ============================================
+  // IIT ROORKEE
+  // ============================================
+  {
+    id: 'iit-roorkee',
+    name: 'Indian Institute of Technology Roorkee',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் ரூர்கி',
+    location: 'Roorkee, Uttarakhand',
+    website: 'https://www.iitr.ac.in',
+    phone: '01332-285311',
+    email: 'registrar@iitr.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
+    logoColor: '#0033A0',
+    logo: '/universities/iit-roorkee-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['50+ courses', "Asia's oldest technical institution (1847)", 'Strong in Civil Engineering'] },
+      { id: 'iitr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Heritage campus with modern facilities'] }
+    ]
+  },
+
+  // ============================================
+  // IIT GUWAHATI
+  // ============================================
+  {
+    id: 'iit-guwahati',
+    name: 'Indian Institute of Technology Guwahati',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் குவாஹாட்டி',
+    location: 'Guwahati, Assam',
+    website: 'https://www.iitg.ac.in',
+    phone: '0361-2582000',
+    email: 'registrar@iitg.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
+    logoColor: '#006633',
+    logo: '/universities/iit-guwahati-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitg-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['45+ courses', 'Beautiful Brahmaputra campus', 'Strong in Design'] },
+      { id: 'iitg-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['NE India hub for technology'] }
+    ]
+  },
+
+  // ============================================
+  // IIT HYDERABAD
+  // ============================================
+  {
+    id: 'iit-hyderabad',
+    name: 'Indian Institute of Technology Hyderabad',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் ஹைதராபாத்',
+    location: 'Hyderabad, Telangana',
+    website: 'https://www.iith.ac.in',
+    phone: '040-23016000',
+    email: 'registrar@iith.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#8B0000',
+    logo: '/universities/iit-hyderabad-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iith-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['40+ courses', 'New generation IIT', 'Strong in AI/ML'] },
+      { id: 'iith-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Research collaboration with Japan'] }
+    ]
+  },
+
+  // ============================================
+  // IIT TIRUPATI
+  // ============================================
+  {
+    id: 'iit-tirupati',
+    name: 'Indian Institute of Technology Tirupati',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் திருப்பதி',
+    location: 'Tirupati, Andhra Pradesh',
+    website: 'https://www.iittp.ac.in',
+    phone: '0877-2500400',
+    email: 'registrar@iittp.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#4B0082',
+    logo: '/universities/iit-tirupati-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iittp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Madras', 'Near Tamil Nadu border'] },
+      { id: 'iittp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing rapidly'] }
+    ]
+  },
+
+  // ============================================
+  // IIT PALAKKAD
+  // ============================================
+  {
+    id: 'iit-palakkad',
+    name: 'Indian Institute of Technology Palakkad',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் பாலக்காடு',
+    location: 'Palakkad, Kerala',
+    website: 'https://www.iitpkd.ac.in',
+    phone: '04923-226000',
+    email: 'registrar@iitpkd.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#228B22',
+    logo: '/universities/iit-palakkad-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitpkd-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Madras', 'Near Tamil Nadu - Coimbatore'] },
+      { id: 'iitpkd-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['New campus with modern facilities'] }
+    ]
+  },
+
+  // ============================================
+  // IIT DHARWAD
+  // ============================================
+  {
+    id: 'iit-dharwad',
+    name: 'Indian Institute of Technology Dharwad',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் தார்வாட்',
+    location: 'Dharwad, Karnataka',
+    website: 'https://www.iitdh.ac.in',
+    phone: '0836-2212001',
+    email: 'registrar@iitdh.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#DC143C',
+    logo: '/universities/iit-dharwad-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitdh-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Bombay', 'Karnataka hub'] },
+      { id: 'iitdh-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing institution'] }
+    ]
+  },
+
+  // ============================================
+  // IIT INDORE
+  // ============================================
+  {
+    id: 'iit-indore',
+    name: 'Indian Institute of Technology Indore',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் இந்தோர்',
+    location: 'Indore, Madhya Pradesh',
+    website: 'https://www.iiti.ac.in',
+    phone: '0731-6603100',
+    email: 'registrar@iiti.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#0066CC',
+    logo: '/universities/iit-indore-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iiti-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['25+ courses', 'Central India hub', 'Strong research output'] },
+      { id: 'iiti-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Modern campus'] }
+    ]
+  },
+
+  // ============================================
+  // IIT BHU VARANASI
+  // ============================================
+  {
+    id: 'iit-bhu',
+    name: 'Indian Institute of Technology (BHU) Varanasi',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் வாரணாசி',
+    location: 'Varanasi, Uttar Pradesh',
+    website: 'https://www.iitbhu.ac.in',
+    phone: '0542-2368106',
+    email: 'registrar@iitbhu.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#8B0000',
+    logo: '/universities/iit-bhu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitbhu-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['40+ courses', 'Historic institution (1919)', 'Part of BHU campus'] },
+      { id: 'iitbhu-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong in Mining, Ceramic Engineering'] }
+    ]
+  },
+
+  // ============================================
+  // IIT PATNA
+  // ============================================
+  {
+    id: 'iit-patna',
+    name: 'Indian Institute of Technology Patna',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் பாட்னா',
+    location: 'Patna, Bihar',
+    website: 'https://www.iitp.ac.in',
+    phone: '0612-3028000',
+    email: 'registrar@iitp.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#006400',
+    logo: '/universities/iit-patna-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'New generation IIT', 'Growing placements'] },
+      { id: 'iitp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Bihar hub for technology'] }
+    ]
+  },
+
+  // ============================================
+  // IIT GANDHINAGAR
+  // ============================================
+  {
+    id: 'iit-gandhinagar',
+    name: 'Indian Institute of Technology Gandhinagar',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் காந்திநகர்',
+    location: 'Gandhinagar, Gujarat',
+    website: 'https://www.iitgn.ac.in',
+    phone: '079-23952000',
+    email: 'registrar@iitgn.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#FF6600',
+    logo: '/universities/iit-gandhinagar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitgn-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['25+ courses', 'Liberal education approach', 'Strong in Cognitive Science'] },
+      { id: 'iitgn-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Beautiful campus architecture'] }
+    ]
+  },
+
+  // ============================================
+  // IIT JODHPUR
+  // ============================================
+  {
+    id: 'iit-jodhpur',
+    name: 'Indian Institute of Technology Jodhpur',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் ஜோத்பூர்',
+    location: 'Jodhpur, Rajasthan',
+    website: 'https://www.iitj.ac.in',
+    phone: '0291-2801000',
+    email: 'registrar@iitj.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#DAA520',
+    logo: '/universities/iit-jodhpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitj-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'Desert campus', 'Strong in AI'] },
+      { id: 'iitj-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Rajasthan hub'] }
+    ]
+  },
+
+  // ============================================
+  // IIT ROPAR
+  // ============================================
+  {
+    id: 'iit-ropar',
+    name: 'Indian Institute of Technology Ropar',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் ரோப்பர்',
+    location: 'Rupnagar, Punjab',
+    website: 'https://www.iitrpr.ac.in',
+    phone: '01881-231000',
+    email: 'registrar@iitrpr.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#4682B4',
+    logo: '/universities/iit-ropar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitrpr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'Punjab hub', 'New campus'] },
+      { id: 'iitrpr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing rapidly'] }
+    ]
+  },
+
+  // ============================================
+  // IIT BHUBANESWAR
+  // ============================================
+  {
+    id: 'iit-bhubaneswar',
+    name: 'Indian Institute of Technology Bhubaneswar',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் புவனேஸ்வர்',
+    location: 'Bhubaneswar, Odisha',
+    website: 'https://www.iitbbs.ac.in',
+    phone: '0674-2306000',
+    email: 'registrar@iitbbs.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#2E8B57',
+    logo: '/universities/iit-bhubaneswar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitbbs-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'Odisha hub', 'Strong in Earth Sciences'] },
+      { id: 'iitbbs-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['New campus facilities'] }
+    ]
+  },
+
+  // ============================================
+  // IIT MANDI
+  // ============================================
+  {
+    id: 'iit-mandi',
+    name: 'Indian Institute of Technology Mandi',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் மண்டி',
+    location: 'Mandi, Himachal Pradesh',
+    website: 'https://www.iitmandi.ac.in',
+    phone: '01905-267001',
+    email: 'registrar@iitmandi.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#20B2AA',
+    logo: '/universities/iit-mandi-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitmandi-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'Beautiful Himalayan campus', 'Strong in Data Science'] },
+      { id: 'iitmandi-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Scenic location'] }
+    ]
+  },
+
+  // ============================================
+  // IIT JAMMU
+  // ============================================
+  {
+    id: 'iit-jammu',
+    name: 'Indian Institute of Technology Jammu',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் ஜம்மு',
+    location: 'Jammu, J&K',
+    website: 'https://www.iitjammu.ac.in',
+    phone: '0191-2570001',
+    email: 'registrar@iitjammu.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#4169E1',
+    logo: '/universities/iit-jammu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitjammu-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'New IIT', 'J&K technology hub'] },
+      { id: 'iitjammu-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing institution'] }
+    ]
+  },
+
+  // ============================================
+  // IIT BHILAI
+  // ============================================
+  {
+    id: 'iit-bhilai',
+    name: 'Indian Institute of Technology Bhilai',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் பிலாய்',
+    location: 'Bhilai, Chhattisgarh',
+    website: 'https://www.iitbhilai.ac.in',
+    phone: '0788-2291000',
+    email: 'registrar@iitbhilai.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#FF6347',
+    logo: '/universities/iit-bhilai-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitbhilai-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Hyderabad', 'Chhattisgarh hub'] },
+      { id: 'iitbhilai-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing rapidly'] }
+    ]
+  },
+
+  // ============================================
+  // IIT GOA
+  // ============================================
+  {
+    id: 'iit-goa',
+    name: 'Indian Institute of Technology Goa',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் கோவா',
+    location: 'Goa',
+    website: 'https://www.iitgoa.ac.in',
+    phone: '0832-2490000',
+    email: 'registrar@iitgoa.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#228B22',
+    logo: '/universities/iit-goa-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitgoa-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Bombay', 'Beautiful coastal campus'] },
+      { id: 'iitgoa-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Scenic Goa location'] }
+    ]
+  },
+
+  // ============================================
+  // IIT DHANBAD (ISM)
+  // ============================================
+  {
+    id: 'iit-dhanbad',
+    name: 'Indian Institute of Technology (ISM) Dhanbad',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் தன்பாத்',
+    location: 'Dhanbad, Jharkhand',
+    website: 'https://www.iitism.ac.in',
+    phone: '0326-2235200',
+    email: 'registrar@iitism.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#006633',
+    logo: '/universities/iit-dhanbad-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitism-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['35+ courses', 'Historic ISM (1926)', 'Best for Mining Engineering'] },
+      { id: 'iitism-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong in Petroleum, Mining, Geology'] }
+    ]
   }
 ];
