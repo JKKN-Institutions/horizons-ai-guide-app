@@ -2898,5 +2898,626 @@ export const centralUniversities: University[] = [
       { id: 'mnit-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Pink City location', 'Top 10 NIT in rankings'] },
       { id: 'mnit-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong architecture program'] }
     ]
+  },
+
+  // ============================================
+  // AIIMS DELHI
+  // ============================================
+  {
+    id: 'aiims-delhi',
+    name: 'All India Institute of Medical Sciences, New Delhi',
+    nameTamil: 'எய்ம்ஸ் டெல்லி',
+    location: 'Delhi',
+    website: 'https://www.aiims.edu',
+    phone: '011-26588500',
+    email: 'director@aiims.ac.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#1E3A8A',
+    logo: '/universities/aiims-delhi-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsd-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['20+ courses', 'Premier medical institute of India', 'Highest ranked medical college'] },
+      { id: 'aiimsd-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Top nursing program'] },
+      { id: 'aiimsd-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Super specialty training', 'Research opportunities'] },
+      { id: 'aiimsd-phd', name: 'Ph.D. Medical Sciences', nameTamil: 'Ph.D. மருத்துவ அறிவியல்', type: 'Research', category: 'On-Campus', school: 'Research', duration: '3-5 Years', eligibility: 'MD/MS or M.Sc.', tips: ['World-class research facilities'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS MADURAI
+  // ============================================
+  {
+    id: 'aiims-madurai',
+    name: 'All India Institute of Medical Sciences, Madurai',
+    nameTamil: 'எய்ம்ஸ் மதுரை',
+    location: 'Madurai, Tamil Nadu',
+    website: 'https://aiimsmadurai.edu.in',
+    phone: '0452-2530001',
+    email: 'director@aiimsmadurai.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG',
+    logoColor: '#800000',
+    logo: '/universities/aiims-madurai-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsm-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['7+ courses', 'AIIMS in Tamil Nadu', 'Modern infrastructure'] },
+      { id: 'aiimsm-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing education'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS BHOPAL
+  // ============================================
+  {
+    id: 'aiims-bhopal',
+    name: 'All India Institute of Medical Sciences, Bhopal',
+    nameTamil: 'எய்ம்ஸ் போபால்',
+    location: 'Bhopal, Madhya Pradesh',
+    website: 'https://www.aiimsbhopal.edu.in',
+    phone: '0755-2672355',
+    email: 'director@aiimsbhopal.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#006400',
+    logo: '/universities/aiims-bhopal-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsb-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['15+ courses', 'First new AIIMS (2012)', 'Well-established'] },
+      { id: 'aiimsb-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing program'] },
+      { id: 'aiimsb-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Good PG programs'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS JODHPUR
+  // ============================================
+  {
+    id: 'aiims-jodhpur',
+    name: 'All India Institute of Medical Sciences, Jodhpur',
+    nameTamil: 'எய்ம்ஸ் ஜோத்பூர்',
+    location: 'Jodhpur, Rajasthan',
+    website: 'https://www.aiimsjodhpur.edu.in',
+    phone: '0291-2740741',
+    email: 'director@aiimsjodhpur.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#B8860B',
+    logo: '/universities/aiims-jodhpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsj-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['15+ courses', 'Blue City location', 'Modern facilities'] },
+      { id: 'aiimsj-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing education'] },
+      { id: 'aiimsj-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Strong PG programs'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS PATNA
+  // ============================================
+  {
+    id: 'aiims-patna',
+    name: 'All India Institute of Medical Sciences, Patna',
+    nameTamil: 'எய்ம்ஸ் பாட்னா',
+    location: 'Patna, Bihar',
+    website: 'https://www.aiimspatna.edu.in',
+    phone: '0612-2451070',
+    email: 'director@aiimspatna.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#8B0000',
+    logo: '/universities/aiims-patna-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsp-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['15+ courses', 'Bihar state capital', 'Growing institute'] },
+      { id: 'aiimsp-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing program'] },
+      { id: 'aiimsp-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Good specialty programs'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS RAIPUR
+  // ============================================
+  {
+    id: 'aiims-raipur',
+    name: 'All India Institute of Medical Sciences, Raipur',
+    nameTamil: 'எய்ம்ஸ் ராய்பூர்',
+    location: 'Raipur, Chhattisgarh',
+    website: 'https://www.aiimsraipur.edu.in',
+    phone: '0771-2577200',
+    email: 'director@aiimsraipur.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#2E8B57',
+    logo: '/universities/aiims-raipur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsr-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['15+ courses', 'Central India location', 'Modern campus'] },
+      { id: 'aiimsr-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing education'] },
+      { id: 'aiimsr-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Strong PG programs'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS RISHIKESH
+  // ============================================
+  {
+    id: 'aiims-rishikesh',
+    name: 'All India Institute of Medical Sciences, Rishikesh',
+    nameTamil: 'எய்ம்ஸ் ரிஷிகேஷ்',
+    location: 'Rishikesh, Uttarakhand',
+    website: 'https://www.aiimsrishikesh.edu.in',
+    phone: '0135-2460929',
+    email: 'director@aiimsrishikesh.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#4682B4',
+    logo: '/universities/aiims-rishikesh-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsrk-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['15+ courses', 'Yoga capital of world', 'Himalayan location'] },
+      { id: 'aiimsrk-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Scenic location'] },
+      { id: 'aiimsrk-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Good PG programs'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS BHUBANESWAR
+  // ============================================
+  {
+    id: 'aiims-bhubaneswar',
+    name: 'All India Institute of Medical Sciences, Bhubaneswar',
+    nameTamil: 'எய்ம்ஸ் புவனேஸ்வர்',
+    location: 'Bhubaneswar, Odisha',
+    website: 'https://www.aiimsbhubaneswar.nic.in',
+    phone: '0674-2476789',
+    email: 'director@aiimsbhubaneswar.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#DC143C',
+    logo: '/universities/aiims-bhubaneswar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsbb-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['15+ courses', 'Temple city', 'Strong hospital'] },
+      { id: 'aiimsbb-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing program'] },
+      { id: 'aiimsbb-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Growing PG programs'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS MANGALAGIRI
+  // ============================================
+  {
+    id: 'aiims-mangalagiri',
+    name: 'All India Institute of Medical Sciences, Mangalagiri',
+    nameTamil: 'எய்ம்ஸ் மங்களகிரி',
+    location: 'Mangalagiri, Andhra Pradesh',
+    website: 'https://www.aiimsmangalagiri.edu.in',
+    phone: '0863-2287800',
+    email: 'director@aiimsmangalagiri.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG',
+    logoColor: '#228B22',
+    logo: '/universities/aiims-mangalagiri-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsmg-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['10+ courses', 'Near Amaravati', 'Modern infrastructure'] },
+      { id: 'aiimsmg-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing education'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS NAGPUR
+  // ============================================
+  {
+    id: 'aiims-nagpur',
+    name: 'All India Institute of Medical Sciences, Nagpur',
+    nameTamil: 'எய்ம்ஸ் நாக்பூர்',
+    location: 'Nagpur, Maharashtra',
+    website: 'https://www.aiimsnagpur.edu.in',
+    phone: '0712-2296600',
+    email: 'director@aiimsnagpur.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG',
+    logoColor: '#FF6347',
+    logo: '/universities/aiims-nagpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsng-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['10+ courses', 'Orange city', 'Central India hub'] },
+      { id: 'aiimsng-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing program'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS GORAKHPUR
+  // ============================================
+  {
+    id: 'aiims-gorakhpur',
+    name: 'All India Institute of Medical Sciences, Gorakhpur',
+    nameTamil: 'எய்ம்ஸ் கோரக்பூர்',
+    location: 'Gorakhpur, Uttar Pradesh',
+    website: 'https://www.aiimsgorakhpur.edu.in',
+    phone: '0551-2500200',
+    email: 'director@aiimsgorakhpur.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#8B4513',
+    logo: '/universities/aiims-gorakhpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsgk-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['8+ courses', 'Eastern UP location', 'New AIIMS'] },
+      { id: 'aiimsgk-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Growing program'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS BATHINDA
+  // ============================================
+  {
+    id: 'aiims-bathinda',
+    name: 'All India Institute of Medical Sciences, Bathinda',
+    nameTamil: 'எய்ம்ஸ் பதிண்டா',
+    location: 'Bathinda, Punjab',
+    website: 'https://www.aiimsbathinda.edu.in',
+    phone: '0164-2880001',
+    email: 'director@aiimsbathinda.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#DC143C',
+    logo: '/universities/aiims-bathinda-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsbth-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['8+ courses', 'Punjab location', 'New AIIMS'] },
+      { id: 'aiimsbth-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Growing program'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS RAEBARELI
+  // ============================================
+  {
+    id: 'aiims-raebareli',
+    name: 'All India Institute of Medical Sciences, Raebareli',
+    nameTamil: 'எய்ம்ஸ் ராய்பரேலி',
+    location: 'Raebareli, Uttar Pradesh',
+    website: 'https://www.aiimsraebareli.edu.in',
+    phone: '0535-2700001',
+    email: 'director@aiimsraebareli.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#4682B4',
+    logo: '/universities/aiims-raebareli-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsrb-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['8+ courses', 'UP location', 'New AIIMS'] },
+      { id: 'aiimsrb-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Growing program'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS KALYANI
+  // ============================================
+  {
+    id: 'aiims-kalyani',
+    name: 'All India Institute of Medical Sciences, Kalyani',
+    nameTamil: 'எய்ம்ஸ் கல்யாணி',
+    location: 'Kalyani, West Bengal',
+    website: 'https://www.aiimskalyani.edu.in',
+    phone: '033-2582-2100',
+    email: 'director@aiimskalyani.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#006400',
+    logo: '/universities/aiims-kalyani-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimskal-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['8+ courses', 'Near Kolkata', 'New AIIMS'] },
+      { id: 'aiimskal-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Growing program'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS DEOGHAR
+  // ============================================
+  {
+    id: 'aiims-deoghar',
+    name: 'All India Institute of Medical Sciences, Deoghar',
+    nameTamil: 'எய்ம்ஸ் தேவ்கர்',
+    location: 'Deoghar, Jharkhand',
+    website: 'https://www.aiimsdeoghar.edu.in',
+    phone: '06432-250001',
+    email: 'director@aiimsdeoghar.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#8B0000',
+    logo: '/universities/aiims-deoghar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsdg-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Temple town', 'New AIIMS'] },
+      { id: 'aiimsdg-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS BILASPUR
+  // ============================================
+  {
+    id: 'aiims-bilaspur',
+    name: 'All India Institute of Medical Sciences, Bilaspur',
+    nameTamil: 'எய்ம்ஸ் பிலாஸ்பூர்',
+    location: 'Bilaspur, Himachal Pradesh',
+    website: 'https://www.aiimsbilaspur.edu.in',
+    phone: '01978-250001',
+    email: 'director@aiimsbilaspur.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#4169E1',
+    logo: '/universities/aiims-bilaspur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsbp-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Hill state', 'Scenic location'] },
+      { id: 'aiimsbp-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS GUWAHATI
+  // ============================================
+  {
+    id: 'aiims-guwahati',
+    name: 'All India Institute of Medical Sciences, Guwahati',
+    nameTamil: 'எய்ம்ஸ் குவாஹாட்டி',
+    location: 'Guwahati, Assam',
+    website: 'https://www.aiimsguwahati.ac.in',
+    phone: '0361-2680001',
+    email: 'director@aiimsguwahati.ac.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#228B22',
+    logo: '/universities/aiims-guwahati-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsgw-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Northeast hub', 'New AIIMS'] },
+      { id: 'aiimsgw-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS RAJKOT
+  // ============================================
+  {
+    id: 'aiims-rajkot',
+    name: 'All India Institute of Medical Sciences, Rajkot',
+    nameTamil: 'எய்ம்ஸ் ராஜ்கோட்',
+    location: 'Rajkot, Gujarat',
+    website: 'https://www.aiimsrajkot.edu.in',
+    phone: '0281-2580001',
+    email: 'director@aiimsrajkot.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#FF8C00',
+    logo: '/universities/aiims-rajkot-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsrj-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Saurashtra region', 'New AIIMS'] },
+      { id: 'aiimsrj-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS BIBINAGAR
+  // ============================================
+  {
+    id: 'aiims-bibinagar',
+    name: 'All India Institute of Medical Sciences, Bibinagar',
+    nameTamil: 'எய்ம்ஸ் பிபிநகர்',
+    location: 'Bibinagar, Telangana',
+    website: 'https://www.aiimsbibinagar.edu.in',
+    phone: '08685-250001',
+    email: 'director@aiimsbibinagar.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#DC143C',
+    logo: '/universities/aiims-bibinagar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsbbn-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Near Hyderabad', 'New AIIMS'] },
+      { id: 'aiimsbbn-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS JAMMU
+  // ============================================
+  {
+    id: 'aiims-jammu',
+    name: 'All India Institute of Medical Sciences, Jammu',
+    nameTamil: 'எய்ம்ஸ் ஜம்மு',
+    location: 'Jammu, J&K',
+    website: 'https://www.aiimsjammu.edu.in',
+    phone: '0191-2580001',
+    email: 'director@aiimsjammu.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#006633',
+    logo: '/universities/aiims-jammu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsjm-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Gateway to Kashmir', 'New AIIMS'] },
+      { id: 'aiimsjm-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS DARBHANGA
+  // ============================================
+  {
+    id: 'aiims-darbhanga',
+    name: 'All India Institute of Medical Sciences, Darbhanga',
+    nameTamil: 'எய்ம்ஸ் தர்பங்கா',
+    location: 'Darbhanga, Bihar',
+    website: 'https://www.aiimsdarbhanga.edu.in',
+    phone: '06272-250001',
+    email: 'director@aiimsdarbhanga.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#B22222',
+    logo: '/universities/aiims-darbhanga-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsdb-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Mithila region', 'New AIIMS'] },
+      { id: 'aiimsdb-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
+
+  // ============================================
+  // AIIMS REWARI
+  // ============================================
+  {
+    id: 'aiims-rewari',
+    name: 'All India Institute of Medical Sciences, Rewari',
+    nameTamil: 'எய்ம்ஸ் ரேவாரி',
+    location: 'Rewari, Haryana',
+    website: 'https://www.aiimsrewari.edu.in',
+    phone: '01274-250001',
+    email: 'director@aiimsrewari.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#2F4F4F',
+    logo: '/universities/aiims-rewari-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsrw-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Near Delhi NCR', 'New AIIMS'] },
+      { id: 'aiimsrw-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
+
+  // ============================================
+  // JIPMER PUDUCHERRY
+  // ============================================
+  {
+    id: 'jipmer-puducherry',
+    name: 'Jawaharlal Institute of Postgraduate Medical Education and Research (JIPMER)',
+    nameTamil: 'ஜிப்மர் புதுச்சேரி',
+    location: 'Puducherry',
+    website: 'https://www.jipmer.edu.in',
+    phone: '0413-2272380',
+    email: 'director@jipmer.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#1E3A8A',
+    logo: '/universities/jipmer-puducherry-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'JIPMER Counselling', eventTamil: 'ஜிப்மர் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'jipmer-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['22+ courses', 'Institute of National Importance', 'Among top 5 medical colleges', 'Near to Tamil Nadu'] },
+      { id: 'jipmer-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Premier nursing program'] },
+      { id: 'jipmer-bsc-mlt', name: 'B.Sc. Medical Lab Technology', nameTamil: 'B.Sc. மருத்துவ ஆய்வக தொழில்நுட்பம்', type: 'UG', category: 'On-Campus', school: 'Allied Health', duration: '3 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality paramedical education'] },
+      { id: 'jipmer-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Super specialty training', 'Excellent research'] },
+      { id: 'jipmer-dm', name: 'DM/MCh Super Speciality', nameTamil: 'DM/MCh சூப்பர் ஸ்பெஷாலிட்டி', type: 'Super-Specialty', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MD/MS + INI-SS', tips: ['Advanced medical training'] },
+      { id: 'jipmer-phd', name: 'Ph.D. Medical Sciences', nameTamil: 'Ph.D. மருத்துவ அறிவியல்', type: 'Research', category: 'On-Campus', school: 'Research', duration: '3-5 Years', eligibility: 'MD/MS or M.Sc.', tips: ['World-class research'] }
+    ]
   }
 ];
