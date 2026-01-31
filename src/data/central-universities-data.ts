@@ -782,43 +782,5 @@ export const centralUniversities: University[] = [
       { id: 'iiitt-phd-economics', name: 'Ph.D. Economics', nameTamil: 'Ph.D. பொருளாதாரம்', type: 'Research', category: 'On-Campus', school: 'Science & Humanities', duration: '4-6 Years', eligibility: 'M.A./M.Sc. Economics + NET/JRF or Institute Entrance + Interview', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Written Test + Interview', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Research area: Health Economics', 'Fellowship provided'] },
       { id: 'iiitt-phd-english', name: 'Ph.D. English', nameTamil: 'Ph.D. ஆங்கிலம்', type: 'Research', category: 'On-Campus', school: 'Science & Humanities', duration: '4-6 Years', eligibility: 'M.A. English + NET/JRF or Institute Entrance + Interview', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Written Test + Interview', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Research area: Applied Linguistics', 'Fellowship provided'] }
     ]
-  },
-
-  // ============================================
-  // 10. AIIMS MADURAI
-  // ============================================
-  // All India Institute of Medical Sciences, Madurai
-  // Central Government Institution under Ministry of Health and Family Welfare
-  {
-    id: 'aiims-madurai',
-    name: 'AIIMS Madurai',
-    nameTamil: 'அகில இந்திய மருத்துவ அறிவியல் நிறுவனம் மதுரை',
-    location: 'Madurai',
-    website: 'https://www.aiimsmadurai.edu.in',
-    phone: '0452-2530100',
-    email: 'director@aiimsmadurai.edu.in',
-    examName: 'NEET UG (MBBS) / NEET PG (MD/MS) / INI-CET',
-    logoColor: '#1565C0',
-    logo: '/universities/aiims-madurai-logo.png',
-    type: 'Central Government',
-    importantDates: [
-      { event: 'NEET UG 2026 Registration', eventTamil: 'NEET UG 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
-      { event: 'NEET UG 2026 Exam', eventTamil: 'NEET UG 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
-      { event: 'NEET PG 2026 Exam', eventTamil: 'NEET PG 2026 தேர்வு', date: 'March 2026', status: 'upcoming' },
-      { event: 'INI-CET 2026 (Super Specialty)', eventTamil: 'INI-CET 2026 (சூப்பர் ஸ்பெஷாலிட்டி)', date: 'January/July 2026', status: 'upcoming' }
-    ],
-    fee: { general: 15000, obc: 15000, scst: 0 },
-    courses: [
-      // ========== UNDERGRADUATE ==========
-      { id: 'aiims-mbbs', name: 'MBBS', nameTamil: 'MBBS மருத்துவ இளநிலை', type: 'UG', category: 'On-Campus', school: 'Medical', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB (50%)', examPattern: { totalQuestions: 200, totalMarks: 720, duration: '3 Hours 20 Minutes', durationMinutes: 200, mode: 'Offline (OMR)', negativeMarking: true, sections: [{ name: 'Physics', nameTamil: 'இயற்பியல்', questions: 45, marks: 180, topics: ['Mechanics', 'Optics', 'Electricity'] }, { name: 'Chemistry', nameTamil: 'வேதியியல்', questions: 45, marks: 180, topics: ['Organic', 'Inorganic', 'Physical'] }, { name: 'Biology', nameTamil: 'உயிரியல்', questions: 90, marks: 360, topics: ['Zoology', 'Botany'] }] }, syllabus: [], previousQuestions: [], tips: ['~100 seats available', 'Premier medical institution', 'Excellent clinical exposure'] },
-      { id: 'aiims-bsc-nursing', name: 'B.Sc Nursing', nameTamil: 'B.Sc செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', examPattern: { totalQuestions: 200, totalMarks: 720, duration: '3 Hours 20 Minutes', durationMinutes: 200, mode: 'Offline (OMR)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['~60 seats', 'Strong clinical training', 'AIIMS nursing degree prestigious'] },
-      { id: 'aiims-bsc-nursing-pb', name: 'B.Sc Nursing (Post Basic)', nameTamil: 'B.Sc செவிலியர் (போஸ்ட் பேசிக்)', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '2 Years', eligibility: 'GNM qualified + Experience', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Entrance Exam', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['~30 seats', 'For working GNM nurses', 'Upgrade to B.Sc degree'] },
-      // ========== POSTGRADUATE ==========
-      { id: 'aiims-msc-nursing', name: 'M.Sc Nursing', nameTamil: 'M.Sc செவிலியர்', type: 'PG', category: 'On-Campus', school: 'Nursing', duration: '2 Years', eligibility: 'B.Sc Nursing + Experience', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'INI-CET Nursing', durationMinutes: 0, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['~20 seats', 'Specializations in various nursing fields'] },
-      { id: 'aiims-md-ms', name: 'MD/MS (Various Specialties)', nameTamil: 'MD/MS (பல்வேறு சிறப்புத்துறைகள்)', type: 'PG', category: 'On-Campus', school: 'Medical', duration: '3 Years', eligibility: 'MBBS + NEET PG qualified', examPattern: { totalQuestions: 200, totalMarks: 800, duration: '3 Hours 30 Minutes', durationMinutes: 210, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Multiple seats across specialties', 'General Medicine, Surgery, Pediatrics, etc.', 'INI choice filling for AIIMS'] },
-      { id: 'aiims-dm-mch', name: 'DM/MCh Super Specialty', nameTamil: 'DM/MCh சூப்பர் ஸ்பெஷாலிட்டி', type: 'Super-Specialty', category: 'On-Campus', school: 'Medical', duration: '3 Years', eligibility: 'MD/MS + INI-CET qualified', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'INI-CET SS', durationMinutes: 0, mode: 'Online (CBT)', negativeMarking: true, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Limited seats', 'Cardiology, Neurology, etc.', 'Highest medical qualification'] },
-      // ========== RESEARCH ==========
-      { id: 'aiims-phd-medical', name: 'Ph.D. Medical Sciences', nameTamil: 'Ph.D. மருத்துவ அறிவியல்', type: 'Research', category: 'On-Campus', school: 'Research', duration: '3-5 Years', eligibility: 'MD/MS/M.Sc. + Institute Entrance', examPattern: { totalQuestions: 0, totalMarks: 100, duration: 'Written Test + Interview', durationMinutes: 0, mode: 'Offline', negativeMarking: false, sections: [] }, syllabus: [], previousQuestions: [], tips: ['Research in various medical fields', 'Fellowship provided'] }
-    ]
   }
 ];
