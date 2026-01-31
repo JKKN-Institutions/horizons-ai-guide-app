@@ -2142,5 +2142,761 @@ export const centralUniversities: University[] = [
       { id: 'iitism-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['35+ courses', 'Historic ISM (1926)', 'Best for Mining Engineering'] },
       { id: 'iitism-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong in Petroleum, Mining, Geology'] }
     ]
+  },
+
+  // ============================================
+  // NIT SURATHKAL (NITK)
+  // ============================================
+  {
+    id: 'nit-surathkal',
+    name: 'National Institute of Technology Karnataka, Surathkal',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் சூரத்கல்',
+    location: 'Mangalore, Karnataka',
+    website: 'https://www.nitk.ac.in',
+    phone: '0824-2474000',
+    email: 'registrar@nitk.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#003366',
+    logo: '/universities/nit-surathkal-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitk-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Among top 5 NITs', 'Beautiful beach campus'] },
+      { id: 'nitk-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Excellent research facilities'] }
+    ]
+  },
+
+  // ============================================
+  // NIT WARANGAL
+  // ============================================
+  {
+    id: 'nit-warangal',
+    name: 'National Institute of Technology Warangal',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் வாரங்கல்',
+    location: 'Warangal, Telangana',
+    website: 'https://www.nitw.ac.in',
+    phone: '0870-2462000',
+    email: 'registrar@nitw.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#8B0000',
+    logo: '/universities/nit-warangal-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitw-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Oldest NIT (1959)', 'Top 3 NIT in rankings'] },
+      { id: 'nitw-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong industry connections'] }
+    ]
+  },
+
+  // ============================================
+  // NIT CALICUT
+  // ============================================
+  {
+    id: 'nit-calicut',
+    name: 'National Institute of Technology Calicut',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் கோழிக்கோடு',
+    location: 'Kozhikode, Kerala',
+    website: 'https://www.nitc.ac.in',
+    phone: '0495-2286100',
+    email: 'registrar@nitc.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#006400',
+    logo: '/universities/nit-calicut-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitc-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Green campus in Kerala', 'Strong CSE department'] },
+      { id: 'nitc-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Research-oriented'] }
+    ]
+  },
+
+  // ============================================
+  // NIT ROURKELA
+  // ============================================
+  {
+    id: 'nit-rourkela',
+    name: 'National Institute of Technology Rourkela',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் ரூர்கேலா',
+    location: 'Rourkela, Odisha',
+    website: 'https://www.nitrkl.ac.in',
+    phone: '0661-2462000',
+    email: 'registrar@nitrkl.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#4B0082',
+    logo: '/universities/nit-rourkela-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Strong in Metallurgy, Mining', 'Located in steel city'] },
+      { id: 'nitr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Industry tie-ups with steel plants'] }
+    ]
+  },
+
+  // ============================================
+  // NIT DURGAPUR
+  // ============================================
+  {
+    id: 'nit-durgapur',
+    name: 'National Institute of Technology Durgapur',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் துர்காபூர்',
+    location: 'Durgapur, West Bengal',
+    website: 'https://www.nitdgp.ac.in',
+    phone: '0343-2546339',
+    email: 'registrar@nitdgp.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#1E90FF',
+    logo: '/universities/nit-durgapur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitdgp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Strong ECE and CSE', 'Industrial area location'] },
+      { id: 'nitdgp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Good placement record'] }
+    ]
+  },
+
+  // ============================================
+  // MNNIT ALLAHABAD
+  // ============================================
+  {
+    id: 'mnnit-allahabad',
+    name: 'Motilal Nehru National Institute of Technology Allahabad',
+    nameTamil: 'மோதிலால் நேரு தேசிய தொழில்நுட்ப நிறுவனம்',
+    location: 'Prayagraj, Uttar Pradesh',
+    website: 'https://www.mnnit.ac.in',
+    phone: '0532-2545404',
+    email: 'registrar@mnnit.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#800020',
+    logo: '/universities/mnnit-allahabad-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'mnnit-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Heritage institute (1961)', 'Strong alumni network'] },
+      { id: 'mnnit-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Excellent placements'] }
+    ]
+  },
+
+  // ============================================
+  // NIT KURUKSHETRA
+  // ============================================
+  {
+    id: 'nit-kurukshetra',
+    name: 'National Institute of Technology Kurukshetra',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் குருக்ஷேத்ரா',
+    location: 'Kurukshetra, Haryana',
+    website: 'https://www.nitkkr.ac.in',
+    phone: '01744-238091',
+    email: 'registrar@nitkkr.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#FF8C00',
+    logo: '/universities/nit-kurukshetra-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitkkr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Near Delhi NCR', 'Good industry exposure'] },
+      { id: 'nitkkr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Historical Kurukshetra location'] }
+    ]
+  },
+
+  // ============================================
+  // NIT JAMSHEDPUR
+  // ============================================
+  {
+    id: 'nit-jamshedpur',
+    name: 'National Institute of Technology Jamshedpur',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் ஜாம்ஷெட்பூர்',
+    location: 'Jamshedpur, Jharkhand',
+    website: 'https://www.nitjsr.ac.in',
+    phone: '0657-2374100',
+    email: 'registrar@nitjsr.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#2F4F4F',
+    logo: '/universities/nit-jamshedpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitjsr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Steel city location', 'TATA industry connections'] },
+      { id: 'nitjsr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Core placements in steel sector'] }
+    ]
+  },
+
+  // ============================================
+  // NIT SILCHAR
+  // ============================================
+  {
+    id: 'nit-silchar',
+    name: 'National Institute of Technology Silchar',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் சில்சார்',
+    location: 'Silchar, Assam',
+    website: 'https://www.nits.ac.in',
+    phone: '03842-242273',
+    email: 'registrar@nits.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#228B22',
+    logo: '/universities/nit-silchar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nits-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Northeast India', 'Lower cutoffs, good opportunities'] },
+      { id: 'nits-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Peaceful campus'] }
+    ]
+  },
+
+  // ============================================
+  // NIT HAMIRPUR
+  // ============================================
+  {
+    id: 'nit-hamirpur',
+    name: 'National Institute of Technology Hamirpur',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் ஹமிர்பூர்',
+    location: 'Hamirpur, Himachal Pradesh',
+    website: 'https://www.nith.ac.in',
+    phone: '01972-254001',
+    email: 'registrar@nith.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#4169E1',
+    logo: '/universities/nit-hamirpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nith-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Hill station campus', 'Scenic Himalayan location'] },
+      { id: 'nith-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Cool climate year-round'] }
+    ]
+  },
+
+  // ============================================
+  // NIT SRINAGAR
+  // ============================================
+  {
+    id: 'nit-srinagar',
+    name: 'National Institute of Technology Srinagar',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் ஸ்ரீநகர்',
+    location: 'Srinagar, J&K',
+    website: 'https://www.nitsri.ac.in',
+    phone: '0194-2422032',
+    email: 'registrar@nitsri.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#006633',
+    logo: '/universities/nit-srinagar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitsri-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Beautiful Kashmir valley', 'Lower cutoffs'] },
+      { id: 'nitsri-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Unique experience in Kashmir'] }
+    ]
+  },
+
+  // ============================================
+  // NIT JALANDHAR
+  // ============================================
+  {
+    id: 'nit-jalandhar',
+    name: 'Dr. B.R. Ambedkar National Institute of Technology Jalandhar',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் ஜலந்தர்',
+    location: 'Jalandhar, Punjab',
+    website: 'https://www.nitj.ac.in',
+    phone: '0181-2690301',
+    email: 'registrar@nitj.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#DC143C',
+    logo: '/universities/nit-jalandhar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitj-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Punjab location', 'Good industrial exposure'] },
+      { id: 'nitj-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong placement support'] }
+    ]
+  },
+
+  // ============================================
+  // NIT PATNA
+  // ============================================
+  {
+    id: 'nit-patna',
+    name: 'National Institute of Technology Patna',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் பாட்னா',
+    location: 'Patna, Bihar',
+    website: 'https://www.nitp.ac.in',
+    phone: '0612-2371929',
+    email: 'registrar@nitp.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#B22222',
+    logo: '/universities/nit-patna-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Historic NIT', 'Growing rapidly'] },
+      { id: 'nitp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['State capital location'] }
+    ]
+  },
+
+  // ============================================
+  // NIT RAIPUR
+  // ============================================
+  {
+    id: 'nit-raipur',
+    name: 'National Institute of Technology Raipur',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் ராய்பூர்',
+    location: 'Raipur, Chhattisgarh',
+    website: 'https://www.nitrr.ac.in',
+    phone: '0771-2254200',
+    email: 'registrar@nitrr.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#2E8B57',
+    logo: '/universities/nit-raipur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitrr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Central India location', 'Good infrastructure'] },
+      { id: 'nitrr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Mining industry connections'] }
+    ]
+  },
+
+  // ============================================
+  // NIT AGARTALA
+  // ============================================
+  {
+    id: 'nit-agartala',
+    name: 'National Institute of Technology Agartala',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் அகர்தலா',
+    location: 'Agartala, Tripura',
+    website: 'https://www.nita.ac.in',
+    phone: '0381-2346630',
+    email: 'registrar@nita.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#556B2F',
+    logo: '/universities/nit-agartala-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nita-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'Northeast India', 'Lower cutoffs, affordable'] },
+      { id: 'nita-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Peaceful campus'] }
+    ]
+  },
+
+  // ============================================
+  // VNIT NAGPUR
+  // ============================================
+  {
+    id: 'vnit-nagpur',
+    name: 'Visvesvaraya National Institute of Technology Nagpur',
+    nameTamil: 'விஸ்வேஸ்வரய்யா தேசிய தொழில்நுட்ப நிறுவனம்',
+    location: 'Nagpur, Maharashtra',
+    website: 'https://www.vnit.ac.in',
+    phone: '0712-2801258',
+    email: 'registrar@vnit.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#FF6347',
+    logo: '/universities/vnit-nagpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'vnit-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Central India hub', 'Strong placements'] },
+      { id: 'vnit-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Named after Sir M. Visvesvaraya'] }
+    ]
+  },
+
+  // ============================================
+  // NIT GOA
+  // ============================================
+  {
+    id: 'nit-goa',
+    name: 'National Institute of Technology Goa',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் கோவா',
+    location: 'Goa',
+    website: 'https://www.nitgoa.ac.in',
+    phone: '0832-2404200',
+    email: 'registrar@nitgoa.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#20B2AA',
+    logo: '/universities/nit-goa-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitgoa-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'Beautiful Goa location', 'Growing institute'] },
+      { id: 'nitgoa-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Beach state campus'] }
+    ]
+  },
+
+  // ============================================
+  // NIT DELHI
+  // ============================================
+  {
+    id: 'nit-delhi',
+    name: 'National Institute of Technology Delhi',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் டெல்லி',
+    location: 'Delhi',
+    website: 'https://www.nitdelhi.ac.in',
+    phone: '011-33861100',
+    email: 'registrar@nitdelhi.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#4682B4',
+    logo: '/universities/nit-delhi-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitd-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'National capital location', 'Industry hub access'] },
+      { id: 'nitd-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Delhi NCR advantages'] }
+    ]
+  },
+
+  // ============================================
+  // NIT UTTARAKHAND
+  // ============================================
+  {
+    id: 'nit-uttarakhand',
+    name: 'National Institute of Technology Uttarakhand',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் உத்தரகண்ட்',
+    location: 'Srinagar, Uttarakhand',
+    website: 'https://www.nituk.ac.in',
+    phone: '01346-252170',
+    email: 'registrar@nituk.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#3CB371',
+    logo: '/universities/nit-uttarakhand-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nituk-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'Himalayan foothills', 'Scenic location'] },
+      { id: 'nituk-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Cool climate'] }
+    ]
+  },
+
+  // ============================================
+  // NIT MEGHALAYA
+  // ============================================
+  {
+    id: 'nit-meghalaya',
+    name: 'National Institute of Technology Meghalaya',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் மேகாலயா',
+    location: 'Shillong, Meghalaya',
+    website: 'https://www.nitm.ac.in',
+    phone: '0364-2501294',
+    email: 'registrar@nitm.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#6B8E23',
+    logo: '/universities/nit-meghalaya-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitm-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Scotland of the East', 'Lower cutoffs'] },
+      { id: 'nitm-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Beautiful hill station'] }
+    ]
+  },
+
+  // ============================================
+  // NIT MANIPUR
+  // ============================================
+  {
+    id: 'nit-manipur',
+    name: 'National Institute of Technology Manipur',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் மணிப்பூர்',
+    location: 'Imphal, Manipur',
+    website: 'https://www.nitmanipur.ac.in',
+    phone: '0385-2445812',
+    email: 'registrar@nitmanipur.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#8B4513',
+    logo: '/universities/nit-manipur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitmnp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Northeast gem', 'Growing infrastructure'] },
+      { id: 'nitmnp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Lower cutoffs'] }
+    ]
+  },
+
+  // ============================================
+  // NIT MIZORAM
+  // ============================================
+  {
+    id: 'nit-mizoram',
+    name: 'National Institute of Technology Mizoram',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் மிசோரம்',
+    location: 'Aizawl, Mizoram',
+    website: 'https://www.nitmz.ac.in',
+    phone: '0389-2391236',
+    email: 'registrar@nitmz.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#228B22',
+    logo: '/universities/nit-mizoram-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitmz-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Peaceful hill state', 'Lowest cutoffs among NITs'] },
+      { id: 'nitmz-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Developing institute'] }
+    ]
+  },
+
+  // ============================================
+  // NIT NAGALAND
+  // ============================================
+  {
+    id: 'nit-nagaland',
+    name: 'National Institute of Technology Nagaland',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் நாகாலாந்து',
+    location: 'Dimapur, Nagaland',
+    website: 'https://www.nitnagaland.ac.in',
+    phone: '03862-240156',
+    email: 'registrar@nitnagaland.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#2F4F4F',
+    logo: '/universities/nit-nagaland-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitngl-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Northeast location', 'Lower cutoffs'] },
+      { id: 'nitngl-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing institute'] }
+    ]
+  },
+
+  // ============================================
+  // NIT ARUNACHAL PRADESH
+  // ============================================
+  {
+    id: 'nit-arunachal',
+    name: 'National Institute of Technology Arunachal Pradesh',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் அருணாச்சல பிரதேசம்',
+    location: 'Yupia, Arunachal Pradesh',
+    website: 'https://www.nitap.ac.in',
+    phone: '0360-2284801',
+    email: 'registrar@nitap.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#006633',
+    logo: '/universities/nit-arunachal-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitap-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Land of Dawn-Lit Mountains', 'Lower cutoffs'] },
+      { id: 'nitap-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Scenic location'] }
+    ]
+  },
+
+  // ============================================
+  // NIT SIKKIM
+  // ============================================
+  {
+    id: 'nit-sikkim',
+    name: 'National Institute of Technology Sikkim',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் சிக்கிம்',
+    location: 'Ravangla, Sikkim',
+    website: 'https://www.nitsikkim.ac.in',
+    phone: '03595-260042',
+    email: 'registrar@nitsikkim.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#4682B4',
+    logo: '/universities/nit-sikkim-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitskm-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Himalayan beauty', 'Lower cutoffs'] },
+      { id: 'nitskm-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['View of Kanchenjunga'] }
+    ]
+  },
+
+  // ============================================
+  // NIT ANDHRA PRADESH
+  // ============================================
+  {
+    id: 'nit-andhra',
+    name: 'National Institute of Technology Andhra Pradesh',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் ஆந்திர பிரதேசம்',
+    location: 'Tadepalligudem, Andhra Pradesh',
+    website: 'https://www.nitandhra.ac.in',
+    phone: '08818-284700',
+    email: 'registrar@nitandhra.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#DC143C',
+    logo: '/universities/nit-andhra-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitap2-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'South India location', 'Growing rapidly'] },
+      { id: 'nitap2-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['New campus development'] }
+    ]
+  },
+
+  // ============================================
+  // NIT PUDUCHERRY
+  // ============================================
+  {
+    id: 'nit-puducherry',
+    name: 'National Institute of Technology Puducherry',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் புதுச்சேரி',
+    location: 'Karaikal, Puducherry',
+    website: 'https://www.nitpy.ac.in',
+    phone: '04368-231126',
+    email: 'registrar@nitpy.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#0000CD',
+    logo: '/universities/nit-puducherry-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitpy-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['11+ courses', 'French territory influence', 'Near TN students'] },
+      { id: 'nitpy-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Coastal location'] }
+    ]
+  },
+
+  // ============================================
+  // MNIT JAIPUR
+  // ============================================
+  {
+    id: 'mnit-jaipur',
+    name: 'Malaviya National Institute of Technology Jaipur',
+    nameTamil: 'மாளவியா தேசிய தொழில்நுட்ப நிறுவனம்',
+    location: 'Jaipur, Rajasthan',
+    website: 'https://www.mnit.ac.in',
+    phone: '0141-2713137',
+    email: 'registrar@mnit.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#C71585',
+    logo: '/universities/mnit-jaipur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'mnit-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Pink City location', 'Top 10 NIT in rankings'] },
+      { id: 'mnit-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong architecture program'] }
+    ]
   }
 ];
