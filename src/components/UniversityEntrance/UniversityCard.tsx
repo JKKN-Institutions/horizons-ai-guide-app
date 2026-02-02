@@ -76,10 +76,12 @@ export const UniversityCard = ({ university, onClick }: UniversityCardProps) => 
     <Card
       onClick={onClick}
       className={cn(
-        "cursor-pointer bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700",
-        "shadow-sm hover:shadow-lg transition-all duration-300",
-        "hover:-translate-y-1 hover:border-emerald-300 dark:hover:border-emerald-600",
-        "group overflow-hidden"
+        "cursor-pointer rounded-xl border overflow-hidden group",
+        "bg-gradient-to-br from-slate-50 via-white to-emerald-50/30",
+        "dark:from-slate-800 dark:via-slate-800 dark:to-emerald-900/20",
+        "border-slate-200/80 dark:border-slate-700",
+        "shadow-md hover:shadow-xl transition-all duration-300",
+        "hover:-translate-y-1.5 hover:border-emerald-400/60 dark:hover:border-emerald-500/50"
       )}
     >
       <CardContent className="p-5">
