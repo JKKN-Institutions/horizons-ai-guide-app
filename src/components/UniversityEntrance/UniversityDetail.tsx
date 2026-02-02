@@ -129,7 +129,7 @@ export const UniversityDetail = () => {
           </p>
         )}
         <p className="text-xs text-primary mt-2">
-          {course.previousQuestions.length} PYQs →
+          {course.previousQuestions?.length ?? 0} PYQs →
         </p>
       </button>
     );
