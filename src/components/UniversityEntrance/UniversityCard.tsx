@@ -96,7 +96,7 @@ export const UniversityCard = ({ university, onClick }: UniversityCardProps) => 
               </div>
             ) : (
               <div 
-                className="w-[60px] h-[60px] rounded-xl flex items-center justify-center font-bold text-lg shadow-sm group-hover:shadow-md transition-shadow bg-gradient-to-br from-emerald-600 to-emerald-700 text-white"
+                className="w-[60px] h-[60px] rounded-xl flex items-center justify-center font-bold text-lg shadow-sm group-hover:shadow-md transition-shadow bg-emerald-100 text-emerald-800 border border-emerald-200"
               >
                 {getInitials(university.name)}
               </div>
