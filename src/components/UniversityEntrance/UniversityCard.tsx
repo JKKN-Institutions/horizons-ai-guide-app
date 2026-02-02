@@ -77,11 +77,12 @@ export const UniversityCard = ({ university, onClick }: UniversityCardProps) => 
       onClick={onClick}
       className={cn(
         "cursor-pointer rounded-xl border overflow-hidden group",
-        "bg-gradient-to-br from-slate-50 via-white to-emerald-50/30",
-        "dark:from-slate-800 dark:via-slate-800 dark:to-emerald-900/20",
-        "border-slate-200/80 dark:border-slate-700",
-        "shadow-md hover:shadow-xl transition-all duration-300",
-        "hover:-translate-y-1.5 hover:border-emerald-400/60 dark:hover:border-emerald-500/50"
+        "bg-[#f8faf8] dark:bg-slate-800/90",
+        "border-emerald-200/60 dark:border-emerald-800/40",
+        "shadow-[0_2px_12px_rgba(16,185,129,0.08)]",
+        "hover:shadow-[0_8px_24px_rgba(16,185,129,0.15)]",
+        "transition-all duration-300",
+        "hover:-translate-y-1.5 hover:border-emerald-400/80"
       )}
     >
       <CardContent className="p-5">
