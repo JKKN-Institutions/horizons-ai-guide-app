@@ -24624,7 +24624,15 @@ export const universities: University[] = [
 
 // Import and merge Central Universities
 import { centralUniversities } from './central-universities-data';
-universities.push(...centralUniversities);
+// IMPORTANT: Avoid duplicates (especially during hot-reload) by merging idempotently.
+// We only merge Central universities that don't already exist in the base dataset.
+const __existingUniversityIds = new Set(universities.map(u => u.id));
+for (const uni of centralUniversities) {
+  if (!__existingUniversityIds.has(uni.id)) {
+    universities.push(uni);
+    __existingUniversityIds.add(uni.id);
+  }
+}
 
 export const getUniversityById = (id: string): University | undefined => {
   return universities.find(u => u.id === id);
