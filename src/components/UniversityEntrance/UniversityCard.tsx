@@ -96,8 +96,7 @@ export const UniversityCard = ({ university, onClick }: UniversityCardProps) => 
               </div>
             ) : (
               <div 
-                className="w-[60px] h-[60px] rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm group-hover:shadow-md transition-shadow"
-                style={{ backgroundColor: university.logoColor }}
+                className="w-[60px] h-[60px] rounded-xl flex items-center justify-center font-bold text-lg shadow-sm group-hover:shadow-md transition-shadow bg-gradient-to-br from-emerald-600 to-emerald-700 text-white"
               >
                 {getInitials(university.name)}
               </div>
