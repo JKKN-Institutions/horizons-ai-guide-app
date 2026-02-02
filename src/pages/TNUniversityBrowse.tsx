@@ -281,8 +281,17 @@ const TNUniversityBrowse = () => {
   const [selectedEntranceExam, setSelectedEntranceExam] = useState<string | null>(null);
   const [selectedFeeRange, setSelectedFeeRange] = useState<string | null>(null);
 
+  // De-dupe universities by id to prevent any repeated cards (e.g. if datasets are merged twice).
+  const uniqueUniversities = useMemo(() => {
+    const map = new Map<string, (typeof universities)[number]>();
+    for (const uni of universities) {
+      if (!map.has(uni.id)) map.set(uni.id, uni);
+    }
+    return Array.from(map.values());
+  }, [universities]);
+
   const filteredUniversities = useMemo(() => {
-    return universities.filter(uni => {
+    return uniqueUniversities.filter(uni => {
       const matchesSearch = 
         uni.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         uni.nameTamil.includes(searchQuery) ||
@@ -333,19 +342,19 @@ const TNUniversityBrowse = () => {
       
       return matchesSearch && matchesType && matchesLocation && matchesInstType && matchesExam && matchesFee;
     });
-  }, [searchQuery, selectedType, selectedLocation, selectedInstitutionType, selectedEntranceExam, selectedFeeRange]);
+  }, [uniqueUniversities, searchQuery, selectedType, selectedLocation, selectedInstitutionType, selectedEntranceExam, selectedFeeRange]);
 
   const typeCounts = useMemo(() => {
     return {
-      'State Government': universities.filter(u => u.type === 'State Government').length,
-      'Central Government': universities.filter(u => u.type === 'Central Government').length,
-      'Deemed University (Central Govt Funded)': universities.filter(u => u.type === 'Deemed University (Central Govt Funded)').length,
+      'State Government': uniqueUniversities.filter(u => u.type === 'State Government').length,
+      'Central Government': uniqueUniversities.filter(u => u.type === 'Central Government').length,
+      'Deemed University (Central Govt Funded)': uniqueUniversities.filter(u => u.type === 'Deemed University (Central Govt Funded)').length,
     };
-  }, []);
+  }, [uniqueUniversities]);
 
   // Count institutions per region for Central Government
   const regionCounts = useMemo(() => {
-    const centralUnis = universities.filter(u => u.type === 'Central Government');
+    const centralUnis = uniqueUniversities.filter(u => u.type === 'Central Government');
     const counts: Record<string, number> = {};
     
     locationRegions.forEach(region => {
@@ -359,11 +368,11 @@ const TNUniversityBrowse = () => {
     });
     
     return counts;
-  }, []);
+  }, [uniqueUniversities]);
 
   // Count institutions per type for Central Government
   const institutionTypeCounts = useMemo(() => {
-    const centralUnis = universities.filter(u => u.type === 'Central Government');
+    const centralUnis = uniqueUniversities.filter(u => u.type === 'Central Government');
     const counts: Record<string, number> = {};
     
     institutionTypes.forEach(instType => {
@@ -373,11 +382,11 @@ const TNUniversityBrowse = () => {
     });
     
     return counts;
-  }, []);
+  }, [uniqueUniversities]);
 
   // Count institutions per fee range for Central Government
   const feeRangeCounts = useMemo(() => {
-    const centralUnis = universities.filter(u => u.type === 'Central Government');
+    const centralUnis = uniqueUniversities.filter(u => u.type === 'Central Government');
     const counts: Record<string, number> = {};
     
     feeRanges.forEach(feeRange => {
@@ -387,11 +396,11 @@ const TNUniversityBrowse = () => {
     });
     
     return counts;
-  }, []);
+  }, [uniqueUniversities]);
 
   // Count institutions per entrance exam for Central Government
   const entranceExamCounts = useMemo(() => {
-    const centralUnis = universities.filter(u => u.type === 'Central Government');
+    const centralUnis = uniqueUniversities.filter(u => u.type === 'Central Government');
     const counts: Record<string, number> = {};
     
     entranceExams.forEach(exam => {
@@ -401,7 +410,7 @@ const TNUniversityBrowse = () => {
     });
     
     return counts;
-  }, []);
+  }, [uniqueUniversities]);
 
   // Reset filters when switching away from Central Government
   const handleTypeChange = (type: UniversityType) => {
