@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { universities } from '@/data/university-entrance-data';
 import { motion, AnimatePresence } from 'framer-motion';
+import { AdmissionRoadmap } from './AdmissionRoadmap';
 
 export const UniversityDetail = () => {
   const { universityId } = useParams<{ universityId: string }>();
@@ -334,51 +335,8 @@ export const UniversityDetail = () => {
           </Card>
         )}
 
-        {/* Applicable Entrance Exams - Prominently displayed */}
-        <Card className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-emerald-300 dark:border-emerald-700 rounded-2xl">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-lg flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
-              <BookOpen className="h-5 w-5" />
-              Applicable Entrance Exams / நுழைவுத் தேர்வுகள்
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <div className="flex flex-wrap gap-2">
-              {/* Primary exam for this university */}
-              <Badge className="px-4 py-2 text-sm font-semibold bg-emerald-600 hover:bg-emerald-700 text-white border-0">
-                ✅ {university.examName}
-              </Badge>
-              
-              {/* Show additional exams based on university type */}
-              {university.type === 'Central Government' && (
-                <>
-                  {university.examName !== 'CUET-UG' && university.courses.some(c => c.type === 'UG') && (
-                    <Badge variant="outline" className="px-4 py-2 text-sm font-medium border-emerald-400 text-emerald-700 dark:text-emerald-400">
-                      CUET-UG (for UG courses)
-                    </Badge>
-                  )}
-                  {university.examName !== 'CUET-PG' && university.courses.some(c => c.type === 'PG') && (
-                    <Badge variant="outline" className="px-4 py-2 text-sm font-medium border-emerald-400 text-emerald-700 dark:text-emerald-400">
-                      CUET-PG (for PG courses)
-                    </Badge>
-                  )}
-                </>
-              )}
-              
-              {/* Merit-based admission indicator */}
-              {(university.examName === 'Merit-Based' || university.examName.includes('12th Marks')) && (
-                <Badge variant="outline" className="px-4 py-2 text-sm font-medium border-blue-400 text-blue-700 dark:text-blue-400">
-                  📋 Based on 12th Marks
-                </Badge>
-              )}
-            </div>
-            
-            {/* Exam details note */}
-            <p className="text-xs text-muted-foreground mt-3">
-              💡 நுழைவுத் தேர்வு தேவைகள் பாடநெறியைப் பொறுத்து மாறுபடும். விவரங்களுக்கு கீழே உள்ள பாடநெறிகளைப் பார்க்கவும்.
-            </p>
-          </CardContent>
-        </Card>
+        {/* Step-by-Step Admission Roadmap */}
+        <AdmissionRoadmap university={university} />
 
         {/* Fee Structure */}
         <Card className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl">
