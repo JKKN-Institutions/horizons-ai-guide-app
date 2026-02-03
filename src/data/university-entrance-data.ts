@@ -14293,7 +14293,7 @@ export const universities: University[] = [
     id: 'cutn',
     name: 'Central University of Tamil Nadu',
     nameTamil: 'தமிழ்நாடு மத்திய பல்கலைக்கழகம்',
-    location: 'Thiruvarur (Cauvery Delta)',
+    location: 'Thiruvarur, Tamil Nadu',
     website: 'www.cutn.ac.in',
     phone: '04366-277200',
     email: 'registrar@cutn.ac.in',
