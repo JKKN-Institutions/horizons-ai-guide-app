@@ -314,9 +314,24 @@ const TNUniversityBrowse = () => {
     return counts;
   }, [uniqueUniversities]);
 
-  // Count institutions per type for Central Government
+  // Count institutions per type for Central Government (filtered by selected location)
   const institutionTypeCounts = useMemo(() => {
-    const centralUnis = uniqueUniversities.filter(u => u.type === 'Central Government');
+    let centralUnis = uniqueUniversities.filter(u => u.type === 'Central Government');
+    
+    // If a location is selected, filter to only that location
+    if (selectedLocation) {
+      const region = locationRegions.find(r => r.id === selectedLocation);
+      if (region) {
+        centralUnis = centralUnis.filter(uni => {
+          const uniState = extractState(uni.location);
+          return region.states.some(state => 
+            uniState.toLowerCase().includes(state.toLowerCase()) ||
+            state.toLowerCase().includes(uniState.toLowerCase())
+          );
+        });
+      }
+    }
+    
     const counts: Record<string, number> = {};
     
     institutionTypes.forEach(instType => {
@@ -326,11 +341,26 @@ const TNUniversityBrowse = () => {
     });
     
     return counts;
-  }, [uniqueUniversities]);
+  }, [uniqueUniversities, selectedLocation]);
 
-  // Count institutions per fee range for Central Government
+  // Count institutions per fee range for Central Government (filtered by selected location)
   const feeRangeCounts = useMemo(() => {
-    const centralUnis = uniqueUniversities.filter(u => u.type === 'Central Government');
+    let centralUnis = uniqueUniversities.filter(u => u.type === 'Central Government');
+    
+    // If a location is selected, filter to only that location
+    if (selectedLocation) {
+      const region = locationRegions.find(r => r.id === selectedLocation);
+      if (region) {
+        centralUnis = centralUnis.filter(uni => {
+          const uniState = extractState(uni.location);
+          return region.states.some(state => 
+            uniState.toLowerCase().includes(state.toLowerCase()) ||
+            state.toLowerCase().includes(uniState.toLowerCase())
+          );
+        });
+      }
+    }
+    
     const counts: Record<string, number> = {};
     
     feeRanges.forEach(feeRange => {
@@ -340,7 +370,7 @@ const TNUniversityBrowse = () => {
     });
     
     return counts;
-  }, [uniqueUniversities]);
+  }, [uniqueUniversities, selectedLocation]);
 
   // Get institutions within the selected location for sub-filtering
   const institutionsInSelectedLocation = useMemo(() => {
@@ -488,7 +518,9 @@ const TNUniversityBrowse = () => {
                 <span className="font-tamil text-xs text-muted-foreground">/ நிறுவன வகை வாரியாக வடிகட்டு</span>
               </div>
               <div className="flex flex-wrap gap-2">
-                {institutionTypes.map((instType) => (
+                {institutionTypes
+                  .filter(instType => !selectedLocation || (institutionTypeCounts[instType.id] || 0) > 0)
+                  .map((instType) => (
                   <Badge
                     key={instType.id}
                     variant={selectedInstitutionType === instType.id ? "default" : "outline"}
@@ -571,7 +603,9 @@ const TNUniversityBrowse = () => {
                 <span className="font-tamil text-xs text-muted-foreground">/ கட்டணம் வாரியாக வடிகட்டு</span>
               </div>
               <div className="flex flex-wrap gap-2">
-                {feeRanges.map((feeRange) => (
+                {feeRanges
+                  .filter(feeRange => !selectedLocation || (feeRangeCounts[feeRange.id] || 0) > 0)
+                  .map((feeRange) => (
                   <Badge
                     key={feeRange.id}
                     variant={selectedFeeRange === feeRange.id ? "default" : "outline"}
