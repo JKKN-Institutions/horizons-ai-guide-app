@@ -225,7 +225,7 @@ const TNUniversityBrowse = () => {
   const [selectedType, setSelectedType] = useState<UniversityType>('State Government');
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [selectedInstitutionType, setSelectedInstitutionType] = useState<string | null>(null);
-  
+  const [selectedLocationInstitution, setSelectedLocationInstitution] = useState<string | null>(null);
   const [selectedFeeRange, setSelectedFeeRange] = useState<string | null>(null);
 
   // De-dupe universities by id to prevent any repeated cards (e.g. if datasets are merged twice).
@@ -260,6 +260,12 @@ const TNUniversityBrowse = () => {
         }
       }
       
+      // Specific institution filter within location
+      let matchesLocationInstitution = true;
+      if (selectedType === 'Central Government' && selectedLocationInstitution) {
+        matchesLocationInstitution = uni.id === selectedLocationInstitution;
+      }
+      
       // Institution type filter only applies to Central Government
       let matchesInstType = true;
       if (selectedType === 'Central Government' && selectedInstitutionType) {
@@ -268,7 +274,6 @@ const TNUniversityBrowse = () => {
           matchesInstType = matchesInstitutionType(uni.name, instType.patterns);
         }
       }
-      
       
       // Fee range filter only applies to Central Government
       let matchesFee = true;
@@ -279,9 +284,9 @@ const TNUniversityBrowse = () => {
         }
       }
       
-      return matchesSearch && matchesType && matchesLocation && matchesInstType && matchesFee;
+      return matchesSearch && matchesType && matchesLocation && matchesLocationInstitution && matchesInstType && matchesFee;
     });
-  }, [uniqueUniversities, searchQuery, selectedType, selectedLocation, selectedInstitutionType, selectedFeeRange]);
+  }, [uniqueUniversities, searchQuery, selectedType, selectedLocation, selectedLocationInstitution, selectedInstitutionType, selectedFeeRange]);
 
   const typeCounts = useMemo(() => {
     return {
@@ -337,6 +342,55 @@ const TNUniversityBrowse = () => {
     return counts;
   }, [uniqueUniversities]);
 
+  // Get institutions within the selected location for sub-filtering
+  const institutionsInSelectedLocation = useMemo(() => {
+    if (!selectedLocation) return [];
+    
+    const centralUnis = uniqueUniversities.filter(u => u.type === 'Central Government');
+    const region = locationRegions.find(r => r.id === selectedLocation);
+    if (!region) return [];
+    
+    const unisInRegion = centralUnis.filter(uni => {
+      const uniState = extractState(uni.location);
+      return region.states.some(state => 
+        uniState.toLowerCase().includes(state.toLowerCase()) ||
+        state.toLowerCase().includes(uniState.toLowerCase())
+      );
+    });
+    
+    // Group by institution type and return unique institution names
+    const institutions: { id: string; name: string; shortName: string; count: number }[] = [];
+    
+    unisInRegion.forEach(uni => {
+      // Determine short name based on patterns
+      let shortName = uni.name;
+      if (uni.name.includes('IIT ') || uni.name.includes('Indian Institute of Technology')) {
+        shortName = uni.name.replace('Indian Institute of Technology', 'IIT').trim();
+      } else if (uni.name.includes('NIT ') || uni.name.includes('National Institute of Technology')) {
+        shortName = uni.name.replace('National Institute of Technology', 'NIT').trim();
+      } else if (uni.name.includes('IIM ') || uni.name.includes('Indian Institute of Management')) {
+        shortName = uni.name.replace('Indian Institute of Management', 'IIM').trim();
+      } else if (uni.name.includes('IIIT') || uni.name.includes('Indian Institute of Information Technology')) {
+        shortName = uni.name.replace('Indian Institute of Information Technology', 'IIIT').trim();
+      } else if (uni.name.includes('IISER') || uni.name.includes('Indian Institute of Science Education')) {
+        shortName = uni.name.replace('Indian Institute of Science Education and Research', 'IISER').trim();
+      } else if (uni.name.includes('AIIMS') || uni.name.includes('All India Institute of Medical')) {
+        shortName = uni.name.replace('All India Institute of Medical Sciences', 'AIIMS').trim();
+      }
+      
+      // Use university ID as unique identifier
+      if (!institutions.find(i => i.id === uni.id)) {
+        institutions.push({
+          id: uni.id,
+          name: uni.name,
+          shortName: shortName.length > 40 ? shortName.substring(0, 37) + '...' : shortName,
+          count: 1
+        });
+      }
+    });
+    
+    return institutions.sort((a, b) => a.shortName.localeCompare(b.shortName));
+  }, [selectedLocation, uniqueUniversities]);
 
   // Reset filters when switching away from Central Government
   const handleTypeChange = (type: UniversityType) => {
@@ -344,15 +398,23 @@ const TNUniversityBrowse = () => {
     if (type !== 'Central Government') {
       setSelectedLocation(null);
       setSelectedInstitutionType(null);
+      setSelectedLocationInstitution(null);
       setSelectedFeeRange(null);
     }
   };
 
-  const hasActiveFilters = selectedLocation || selectedInstitutionType || selectedFeeRange;
+  // Reset location institution when location changes
+  const handleLocationChange = (locationId: string | null) => {
+    setSelectedLocation(locationId);
+    setSelectedLocationInstitution(null);
+  };
+
+  const hasActiveFilters = selectedLocation || selectedInstitutionType || selectedFeeRange || selectedLocationInstitution;
 
   const clearAllFilters = () => {
     setSelectedLocation(null);
     setSelectedInstitutionType(null);
+    setSelectedLocationInstitution(null);
     setSelectedFeeRange(null);
   };
 
@@ -463,13 +525,40 @@ const TNUniversityBrowse = () => {
                         ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-0 shadow-md shadow-blue-500/25'
                         : 'bg-white/70 dark:bg-white/10 hover:bg-blue-50 dark:hover:bg-blue-900/30 border-blue-200/50 dark:border-blue-800/30 hover:border-blue-300 dark:hover:border-blue-700'
                     }`}
-                    onClick={() => setSelectedLocation(selectedLocation === region.id ? null : region.id)}
+                    onClick={() => handleLocationChange(selectedLocation === region.id ? null : region.id)}
                   >
                     <span className="mr-1.5">{region.label}</span>
                     <span className={`text-[10px] font-semibold ${selectedLocation === region.id ? 'text-white/80' : 'text-blue-600 dark:text-blue-400'}`}>({regionCounts[region.id] || 0})</span>
                   </Badge>
                 ))}
               </div>
+              
+              {/* Sub-filter: Institutions in selected location */}
+              {selectedLocation && institutionsInSelectedLocation.length > 0 && (
+                <div className="mt-3 p-3 bg-blue-50/50 dark:bg-blue-950/20 rounded-xl border border-blue-200/30 dark:border-blue-800/30">
+                  <p className="text-xs font-medium text-blue-700 dark:text-blue-300 mb-2.5 flex items-center gap-1.5">
+                    <Building2 className="h-3.5 w-3.5" />
+                    Institutions in {locationRegions.find(r => r.id === selectedLocation)?.label}:
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {institutionsInSelectedLocation.map((inst) => (
+                      <Badge
+                        key={inst.id}
+                        variant={selectedLocationInstitution === inst.id ? "default" : "outline"}
+                        className={`cursor-pointer transition-all duration-200 py-1.5 px-2.5 text-xs font-medium ${
+                          selectedLocationInstitution === inst.id
+                            ? 'bg-blue-600 text-white border-0 shadow-sm'
+                            : 'bg-white dark:bg-white/10 hover:bg-blue-100 dark:hover:bg-blue-900/40 border-blue-200 dark:border-blue-700 text-blue-700 dark:text-blue-300'
+                        }`}
+                        onClick={() => setSelectedLocationInstitution(selectedLocationInstitution === inst.id ? null : inst.id)}
+                        title={inst.name}
+                      >
+                        {inst.shortName}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Fee Range Filter */}
