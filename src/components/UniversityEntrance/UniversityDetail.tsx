@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { universities } from '@/data/university-entrance-data';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AdmissionRoadmap } from './AdmissionRoadmap';
+import { CourseAdmissionGuide } from './CourseAdmissionGuide';
 
 export const UniversityDetail = () => {
   const { universityId } = useParams<{ universityId: string }>();
@@ -337,6 +338,9 @@ export const UniversityDetail = () => {
 
         {/* Step-by-Step Admission Roadmap */}
         <AdmissionRoadmap university={university} />
+
+        {/* Course-Wise Admission Guide */}
+        <CourseAdmissionGuide university={university} />
 
         {/* Fee Structure */}
         <Card className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl">
