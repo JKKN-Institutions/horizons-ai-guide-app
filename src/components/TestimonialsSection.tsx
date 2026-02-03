@@ -4,7 +4,7 @@ const testimonials = [
   {
     name: "R. Priya",
     role: "Class 12, JKKN Rangammal Girls Higher Secondary School, Kumarapalayam",
-    quote: "The JKKN100 workshop opened my eyes to so many career possibilities I never knew existed. The AI-powered assessments helped me discover my true strengths.",
+    quote: "This app helped me understand my strengths and explore suitable career options.",
     avatar: "RP",
     color: "from-pink-500 to-rose-500",
     rating: 5
