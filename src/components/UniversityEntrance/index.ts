@@ -6,6 +6,7 @@ export { SyllabusAccordion } from './SyllabusAccordion';
 export { PYQSection } from './PYQSection';
 export { UniversityDetail } from './UniversityDetail';
 export { CourseDetail } from './CourseDetail';
+export { AdmissionRoadmap } from './AdmissionRoadmap';
 export { UniversityCompare } from './UniversityCompare';
 export { default as ExamCalendar } from './ExamCalendar';
 export { default as MyReminders } from './MyReminders';
