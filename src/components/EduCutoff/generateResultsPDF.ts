@@ -241,9 +241,9 @@ export const generateResultsPDF = (
   
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(9);
-  doc.text('JKKN AI Horizons - Career Guidance Platform', pageWidth / 2, footerY + 3, { align: 'center' });
+  doc.text('VAZHIKATTI - Career Guidance Platform', pageWidth / 2, footerY + 3, { align: 'center' });
   doc.setFontSize(8);
-  doc.text('www.jkknaihorizons.com', pageWidth / 2, footerY + 9, { align: 'center' });
+  doc.text('www.vazhikatti.com', pageWidth / 2, footerY + 9, { align: 'center' });
 
   // Save PDF
   const filename = `EduCutoff_Report_${groupNames[group].replace(/[^a-zA-Z0-9]/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`;

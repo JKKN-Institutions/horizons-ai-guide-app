@@ -53,7 +53,7 @@ export const generateBookmarkedPDF = (data: BookmarkedPDFData): void => {
     doc.setFontSize(8);
     doc.setTextColor(128, 128, 128);
     doc.text(
-      `Page ${currentPage} | JKKN AI Horizons - Bookmarked Questions | www.jkkn-aihorizons.com`,
+      `Page ${currentPage} | VAZHIKATTI - Bookmarked Questions | www.vazhikatti.com`,
       pageWidth / 2,
       pageHeight - 8,
       { align: 'center' }
@@ -88,7 +88,7 @@ export const generateBookmarkedPDF = (data: BookmarkedPDFData): void => {
   doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
   doc.setFontSize(16);
   doc.setFont('helvetica', 'bold');
-  doc.text('JKKN AI HORIZONS', pageWidth / 2, 28, { align: 'center' });
+  doc.text('VAZHIKATTI', pageWidth / 2, 28, { align: 'center' });
   
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(12);
@@ -381,7 +381,7 @@ export const generateBookmarkedPDF = (data: BookmarkedPDFData): void => {
     doc.setFontSize(8);
     doc.setTextColor(128, 128, 128);
     doc.text(
-      `Page ${i} of ${totalPages} | JKKN AI Horizons - Bookmarked Questions | www.jkkn-aihorizons.com`,
+      `Page ${i} of ${totalPages} | VAZHIKATTI - Bookmarked Questions | www.vazhikatti.com`,
       pageWidth / 2,
       pageHeight - 8,
       { align: 'center' }

@@ -20,7 +20,7 @@ const testimonials = [
   {
     name: "K. Karthick",
     role: "Class 12, Pallipalayam Boys Higher Secondary School",
-    quote: "The power of AI combined with expert guidance made me realize the importance of choosing the right career path early. JKKN AI Horizons is a game-changer.",
+    quote: "The power of AI combined with expert guidance made me realize the importance of choosing the right career path early. VAZHIKATTI is a game-changer.",
     avatar: "KK",
     color: "from-blue-500 to-cyan-500",
     rating: 5
