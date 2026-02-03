@@ -61,7 +61,7 @@ export const generatePYQPDF = (data: ExamPDFData): void => {
     doc.setFontSize(8);
     doc.setTextColor(128, 128, 128);
     doc.text(
-      `Page ${currentPage} | JKKN AI Horizons - Career Dictionary | www.jkkn-aihorizons.com`,
+      `Page ${currentPage} | VAZHIKATTI - Career Dictionary | www.vazhikatti.com`,
       pageWidth / 2,
       pageHeight - 8,
       { align: 'center' }
@@ -100,7 +100,7 @@ export const generatePYQPDF = (data: ExamPDFData): void => {
   doc.setTextColor(categoryColor[0], categoryColor[1], categoryColor[2]);
   doc.setFontSize(16);
   doc.setFont('helvetica', 'bold');
-  doc.text('JKKN AI HORIZONS', pageWidth / 2, 28, { align: 'center' });
+  doc.text('VAZHIKATTI', pageWidth / 2, 28, { align: 'center' });
   
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(12);
@@ -613,7 +613,7 @@ export const generatePYQPDF = (data: ExamPDFData): void => {
     doc.setFontSize(8);
     doc.setTextColor(128, 128, 128);
     doc.text(
-      `Page ${i} of ${totalPages} | JKKN AI Horizons - Career Dictionary | www.jkkn-aihorizons.com`,
+      `Page ${i} of ${totalPages} | VAZHIKATTI - Career Dictionary | www.vazhikatti.com`,
       pageWidth / 2,
       pageHeight - 8,
       { align: 'center' }

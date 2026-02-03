@@ -427,7 +427,7 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
   if (isMinimized) {
     return (
       <div className="fixed bottom-24 right-6 z-50 bg-card border border-border rounded-lg shadow-lg p-3 flex items-center gap-3 animate-scale-in">
-        <span className="font-medium text-sm">JKKN AI Assistant</span>
+        <span className="font-medium text-sm">VAZHIKATTI AI Assistant</span>
         <Button size="icon" variant="ghost" onClick={() => setIsMinimized(false)}>
           <Maximize2 className="w-4 h-4" />
         </Button>
@@ -443,7 +443,7 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-border bg-primary/5">
         <div>
-          <h3 className="font-semibold text-foreground">JKKN AI Assistant</h3>
+          <h3 className="font-semibold text-foreground">VAZHIKATTI AI Assistant</h3>
           <p className="text-xs text-muted-foreground">Ask me anything! 🎤 Voice enabled</p>
         </div>
         <div className="flex items-center gap-1">
@@ -480,7 +480,7 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
           </div>
         ) : messages.length === 0 ? (
           <div className="text-center text-muted-foreground py-8">
-            <p className="text-sm">👋 Welcome! I'm your JKKN AI Assistant.</p>
+            <p className="text-sm">👋 Welcome! I'm your VAZHIKATTI AI Assistant.</p>
             <p className="text-xs mt-2">
               Ask me about careers, education, or say "generate an image"!
             </p>

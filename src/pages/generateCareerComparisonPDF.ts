@@ -45,7 +45,7 @@ export const generateCareerComparisonPDF = (
   doc.text('AI Career Predictor Analysis', pageWidth / 2, 28, { align: 'center' });
 
   doc.setFontSize(10);
-  doc.text('JKKN AI Horizons', pageWidth / 2, 36, { align: 'center' });
+  doc.text('VAZHIKATTI', pageWidth / 2, 36, { align: 'center' });
 
   doc.setFontSize(9);
   doc.text(
@@ -337,7 +337,7 @@ export const generateCareerComparisonPDF = (
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
     doc.text(
-      'JKKN AI Horizons | AI Career Predictor | Career Comparison Report',
+      'VAZHIKATTI | AI Career Predictor | Career Comparison Report',
       pageWidth / 2,
       footerY + 3,
       { align: 'center' }

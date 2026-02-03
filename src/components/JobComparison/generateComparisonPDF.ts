@@ -52,7 +52,7 @@ export const generateComparisonPDF = (jobs: Job[], bestMatchIndex: number) => {
   
   doc.setFontSize(12);
   doc.setFont('helvetica', 'normal');
-  doc.text('JKKN AI Horizons Career Hub', pageWidth / 2, 30, { align: 'center' });
+  doc.text('VAZHIKATTI Career Hub', pageWidth / 2, 30, { align: 'center' });
   
   doc.setFontSize(10);
   doc.text(`Generated on: ${new Date().toLocaleDateString('en-IN', { 
@@ -265,8 +265,8 @@ export const generateComparisonPDF = (jobs: Job[], bestMatchIndex: number) => {
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(8);
   doc.setFont('helvetica', 'normal');
-  doc.text('JKKN AI Horizons | Career Hub | Industry Trends & Job Comparison', pageWidth / 2, footerY + 2, { align: 'center' });
-  doc.text('www.jkkn.ac.in | Powered by AI Horizons', pageWidth / 2, footerY + 7, { align: 'center' });
+  doc.text('VAZHIKATTI | Career Hub | Industry Trends & Job Comparison', pageWidth / 2, footerY + 2, { align: 'center' });
+  doc.text('www.vazhikatti.com', pageWidth / 2, footerY + 7, { align: 'center' });
 
   // Save the PDF
   const fileName = `Job_Comparison_${new Date().toISOString().split('T')[0]}.pdf`;

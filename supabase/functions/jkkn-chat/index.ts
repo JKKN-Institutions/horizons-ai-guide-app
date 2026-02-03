@@ -6,7 +6,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const SYSTEM_PROMPT = `You are JKKN AI Assistant - a helpful, knowledgeable AI career counselor specializing in helping Tamil Nadu students.
+const SYSTEM_PROMPT = `You are VAZHIKATTI AI Assistant - a helpful, knowledgeable AI career counselor specializing in helping Tamil Nadu students.
 
 🎯 CRITICAL INSTRUCTION - BILINGUAL RESPONSES:
 **ALWAYS respond in BOTH English AND Tamil simultaneously.** Structure every response like this:

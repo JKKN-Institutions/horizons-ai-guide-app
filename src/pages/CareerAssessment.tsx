@@ -572,7 +572,7 @@ const CareerAssessment = () => {
   const handleShare = () => {
     const text = `🎯 My Career Assessment Results:\n\n${results.map((r, i) => 
       `#${i+1} ${careerClusters[r.career].icon} ${careerClusters[r.career].name.en}: ${r.percentage}%`
-    ).join('\n')}\n\nTake yours at JKKN AI HORIZONS!`;
+    ).join('\n')}\n\nTake yours at VAZHIKATTI!`;
     
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
   };

@@ -52,7 +52,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero Section
     'hero.badge': 'CAREER PATH - 2026-2032',
-    'hero.title': 'AI Horizons:',
+    'hero.title': 'VAZHIKATTI:',
     'hero.subtitle': 'Discover, Design, Do - வழிகாட்டி',
     'hero.tamilSubtitle': 'கண்டறி, வடிவமை, செய்',
     'hero.description': 'Empowering Learners & 12th Students with AI-powered career guidance, skill development and placement opportunities.',
@@ -70,7 +70,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Services Section
     'services.badge': 'Complete Support System',
     'services.title': 'Your Complete Career Journey',
-    'services.description': 'From self-discovery to job offers, AI Horizons supports every stage of your journey.',
+    'services.description': 'From self-discovery to job offers, VAZHIKATTI supports every stage of your journey.',
     'services.careerAssessment': 'Career Assessment',
     'services.careerAssessmentDesc': 'AI-powered psychometric tests to discover your personality, strengths, and best-fit careers.',
     'services.careerPathFinder': 'Career Path Finder',
@@ -95,7 +95,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // CTA Section
     'cta.title': 'Ready to Shape Your Future?',
-    'cta.description': 'Join thousands of learners who have discovered their career path with AI Horizons.',
+    'cta.description': 'Join thousands of learners who have discovered their career path with VAZHIKATTI.',
     'cta.startJourney': 'Start Your Journey',
     'cta.exploreJobs': 'Explore Jobs',
     

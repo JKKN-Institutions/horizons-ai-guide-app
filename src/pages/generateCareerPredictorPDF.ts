@@ -169,7 +169,7 @@ export const generateCareerPredictorPDF = (
   yPos = pageHeight - 15;
   doc.setTextColor(150, 150, 150);
   doc.setFontSize(8);
-  doc.text('JKKN AI Horizons - Your Career Partner', pageWidth / 2, yPos, { align: 'center' });
+  doc.text('VAZHIKATTI - Your Career Partner', pageWidth / 2, yPos, { align: 'center' });
 
   // Save
   doc.save('career-predictor-results.pdf');

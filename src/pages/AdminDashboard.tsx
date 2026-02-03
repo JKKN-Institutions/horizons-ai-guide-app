@@ -199,7 +199,7 @@ const AdminDashboard = () => {
             <Shield className="w-8 h-8 text-white" />
             <div>
               <h1 className="text-xl font-serif font-bold text-white">Admin Dashboard</h1>
-              <p className="text-sm text-white/80">JKKN AI Horizons</p>
+              <p className="text-sm text-white/80">VAZHIKATTI</p>
             </div>
           </div>
           <div className="flex items-center gap-4">

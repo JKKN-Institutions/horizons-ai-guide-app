@@ -46,7 +46,7 @@ export const generateCareerAssessmentPDF = (
   
   doc.setFontSize(12);
   doc.setFont('helvetica', 'normal');
-  doc.text('JKKN AI HORIZONS', pageWidth / 2, 30, { align: 'center' });
+  doc.text('VAZHIKATTI', pageWidth / 2, 30, { align: 'center' });
   
   doc.setFontSize(10);
   doc.text(`Generated on: ${new Date().toLocaleDateString('en-IN', { 
@@ -196,7 +196,7 @@ export const generateCareerAssessmentPDF = (
     doc.setFontSize(8);
     doc.setTextColor(156, 163, 175);
     doc.text(
-      `Page ${i} of ${pageCount} | JKKN AI HORIZONS Career Assessment`,
+      `Page ${i} of ${pageCount} | VAZHIKATTI Career Assessment`,
       pageWidth / 2,
       doc.internal.pageSize.getHeight() - 10,
       { align: 'center' }
