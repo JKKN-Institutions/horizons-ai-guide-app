@@ -510,11 +510,11 @@ const TNUniversityBrowse = () => {
 
             {/* Institution Type Filter */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm font-semibold text-foreground/80">
-                <div className="p-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/40">
-                  <Layers className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <div className="flex items-center gap-2.5 text-sm font-semibold text-foreground">
+                <div className="p-2 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/30">
+                  <Layers className="h-4 w-4 text-white" />
                 </div>
-                <span>Filter by Type</span>
+                <span className="text-foreground">Filter by Type</span>
                 <span className="font-tamil text-xs text-muted-foreground">/ நிறுவன வகை வாரியாக வடிகட்டு</span>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -540,11 +540,11 @@ const TNUniversityBrowse = () => {
 
             {/* Location Filter */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm font-semibold text-foreground/80">
-                <div className="p-1.5 rounded-lg bg-blue-100 dark:bg-blue-900/40">
-                  <MapPin className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+              <div className="flex items-center gap-2.5 text-sm font-semibold text-foreground">
+                <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-500/30">
+                  <MapPin className="h-4 w-4 text-white" />
                 </div>
-                <span>Filter by Location</span>
+                <span className="text-foreground">Filter by Location</span>
                 <span className="font-tamil text-xs text-muted-foreground">/ இடம் வாரியாக வடிகட்டு</span>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -595,11 +595,11 @@ const TNUniversityBrowse = () => {
 
             {/* Fee Range Filter */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm font-semibold text-foreground/80">
-                <div className="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-900/40">
-                  <IndianRupee className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+              <div className="flex items-center gap-2.5 text-sm font-semibold text-foreground">
+                <div className="p-2 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 shadow-lg shadow-amber-500/30">
+                  <IndianRupee className="h-4 w-4 text-white" />
                 </div>
-                <span>Filter by Fee</span>
+                <span className="text-foreground">Filter by Fee</span>
                 <span className="font-tamil text-xs text-muted-foreground">/ கட்டணம் வாரியாக வடிகட்டு</span>
               </div>
               <div className="flex flex-wrap gap-2">
