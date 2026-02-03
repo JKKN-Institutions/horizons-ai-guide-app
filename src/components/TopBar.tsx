@@ -1,4 +1,4 @@
-import { Bell, MessageSquareText, Moon, Sun, Monitor, Check } from "lucide-react";
+import { Bell, MessageSquareText, Moon, Sun, Monitor, Check, Sparkles, GraduationCap, Target, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -13,12 +13,36 @@ import { useChatModal } from "@/hooks/useChatModal";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useTheme } from "next-themes";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+const inspirationalMessages = [
+  { text: "உனது கனவை நோக்கி பயணி", icon: Target, translation: "Journey towards your dream" },
+  { text: "கல்வியே உன் சக்தி", icon: GraduationCap, translation: "Education is your power" },
+  { text: "வெற்றி உனக்கானது", icon: TrendingUp, translation: "Success awaits you" },
+  { text: "முயற்சி திருவினையாக்கும்", icon: Sparkles, translation: "Effort leads to success" },
+];
 
 const TopBar = () => {
   const { user } = useAuth();
   const { openChat } = useChatModal();
   const { t } = useLanguage();
   const { theme, setTheme } = useTheme();
+  const [messageIndex, setMessageIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsVisible(false);
+      setTimeout(() => {
+        setMessageIndex((prev) => (prev + 1) % inspirationalMessages.length);
+        setIsVisible(true);
+      }, 300);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const currentMessage = inspirationalMessages[messageIndex];
+  const IconComponent = currentMessage.icon;
 
   return (
     <div className="bg-primary text-primary-foreground py-2 px-4 md:px-8">
@@ -32,6 +56,17 @@ const TopBar = () => {
           <span className="text-xs opacity-80 hidden md:inline border-l border-primary-foreground/30 pl-3">
             {t('topbar.careerPath')}
           </span>
+        </div>
+        
+        {/* Inspirational Message - Center */}
+        <div 
+          className={`hidden sm:flex items-center gap-2 text-xs transition-all duration-300 ${
+            isVisible ? 'opacity-80 translate-y-0' : 'opacity-0 -translate-y-1'
+          }`}
+        >
+          <IconComponent className="w-3.5 h-3.5 text-accent" />
+          <span className="font-medium">{currentMessage.text}</span>
+          <span className="text-primary-foreground/50 text-[10px]">• {currentMessage.translation}</span>
         </div>
 
         <div className="flex items-center gap-2 md:gap-4">
