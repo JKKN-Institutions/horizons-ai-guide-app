@@ -1,4 +1,5 @@
 export { UniversityEntranceExams } from './UniversityEntranceExams';
+export { CourseAdmissionGuide } from './CourseAdmissionGuide';
 export { UniversityCard } from './UniversityCard';
 export { QuickToolCard } from './QuickToolCard';
 export { ExamPatternCard } from './ExamPatternCard';
