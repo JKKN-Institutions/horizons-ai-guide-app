@@ -14,40 +14,22 @@ type UniversityType = 'State Government' | 'Central Government' | 'Deemed Univer
 // Location regions for Central Government institutions
 const locationRegions = [
   {
-    id: 'tamil-nadu-puducherry',
-    label: 'Tamil Nadu & Puducherry',
-    labelTamil: 'தமிழ்நாடு & புதுச்சேரி',
-    states: ['Tamil Nadu', 'Puducherry'],
+    id: 'tamil-nadu',
+    label: 'Tamil Nadu',
+    labelTamil: 'தமிழ்நாடு',
+    states: ['Tamil Nadu'],
   },
   {
-    id: 'neighbouring',
-    label: 'Neighbouring States',
-    labelTamil: 'அண்டை மாநிலங்கள்',
-    states: ['Kerala', 'Karnataka', 'Andhra Pradesh', 'Telangana'],
+    id: 'puducherry',
+    label: 'Puducherry',
+    labelTamil: 'புதுச்சேரி',
+    states: ['Puducherry'],
   },
   {
-    id: 'north',
-    label: 'North India',
-    labelTamil: 'வட இந்தியா',
-    states: ['Delhi', 'Uttar Pradesh', 'Rajasthan', 'Haryana', 'Punjab', 'Himachal Pradesh', 'Uttarakhand', 'Jammu & Kashmir', 'J&K'],
-  },
-  {
-    id: 'west',
-    label: 'West India',
-    labelTamil: 'மேற்கு இந்தியா',
-    states: ['Maharashtra', 'Gujarat', 'Goa', 'Madhya Pradesh'],
-  },
-  {
-    id: 'east',
-    label: 'East India',
-    labelTamil: 'கிழக்கு இந்தியா',
-    states: ['West Bengal', 'Bihar', 'Jharkhand', 'Odisha', 'Chhattisgarh'],
-  },
-  {
-    id: 'northeast',
-    label: 'North-East India',
-    labelTamil: 'வடகிழக்கு இந்தியா',
-    states: ['Assam', 'Meghalaya', 'Manipur', 'Mizoram', 'Nagaland', 'Tripura', 'Sikkim', 'Arunachal Pradesh'],
+    id: 'other-states',
+    label: 'Other States',
+    labelTamil: 'பிற மாநிலங்கள்',
+    states: ['Kerala', 'Karnataka', 'Andhra Pradesh', 'Telangana', 'Delhi', 'Uttar Pradesh', 'Rajasthan', 'Haryana', 'Punjab', 'Himachal Pradesh', 'Uttarakhand', 'Jammu & Kashmir', 'J&K', 'Maharashtra', 'Gujarat', 'Goa', 'Madhya Pradesh', 'West Bengal', 'Bihar', 'Jharkhand', 'Odisha', 'Chhattisgarh', 'Assam', 'Meghalaya', 'Manipur', 'Mizoram', 'Nagaland', 'Tripura', 'Sikkim', 'Arunachal Pradesh'],
   },
 ];
 
