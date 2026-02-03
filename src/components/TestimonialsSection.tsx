@@ -12,7 +12,7 @@ const testimonials = [
   {
     name: "R. Josmitha",
     role: "Class 12, Sankagiri Girls Higher Secondary School",
-    quote: "I learned how AI is transforming various fields from healthcare to finance. This platform made me confident about pursuing a career in technology.",
+    quote: "I was confused about my future before using this app. Now I feel more confident in my choices.",
     avatar: "RJ",
     color: "from-violet-500 to-purple-500",
     rating: 5
