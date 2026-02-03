@@ -4,7 +4,7 @@ import NewsTicker from "@/components/NewsTicker";
 import HeroSection from "@/components/HeroSection";
 import StatsBar from "@/components/StatsBar";
 import ServicesSection from "@/components/ServicesSection";
-import SalaryGrowthTimeline from "@/components/SalaryGrowthTimeline";
+
 import SalaryCalculator from "@/components/SalaryCalculator";
 
 import TwelfthLearnersSection from "@/components/TwelfthLearnersSection";
@@ -43,7 +43,7 @@ const Index = () => {
           </div>
         </section>
         
-        <SalaryGrowthTimeline />
+        
         <SalaryCalculator />
         <TwelfthLearnersSection />
         <TestimonialsSection />
