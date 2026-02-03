@@ -357,16 +357,16 @@ const TNUniversityBrowse = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50/50 via-background to-teal-50/30 dark:from-emerald-950/20 dark:via-background dark:to-teal-950/10">
+      {/* Header with glass effect */}
+      <header className="sticky top-0 z-50 bg-white/70 dark:bg-background/70 backdrop-blur-xl border-b border-white/20 dark:border-white/10 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" onClick={() => navigate('/tn-university-entrance')}>
+            <Button variant="ghost" size="icon" onClick={() => navigate('/tn-university-entrance')} className="hover:bg-emerald-100/50 dark:hover:bg-emerald-900/30">
               <ArrowLeft className="h-5 w-5" />
             </Button>
             <div>
-              <h1 className="font-bold text-lg">Browse Universities</h1>
+              <h1 className="font-bold text-lg bg-gradient-to-r from-emerald-700 to-teal-600 dark:from-emerald-400 dark:to-teal-300 bg-clip-text text-transparent">Browse Universities</h1>
               <p className="text-xs text-muted-foreground font-tamil">பல்கலைக்கழகங்களை ஆராய</p>
             </div>
           </div>
@@ -376,9 +376,9 @@ const TNUniversityBrowse = () => {
 
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
 
-        {/* University Type Tabs */}
+        {/* University Type Tabs with glass effect */}
         <Tabs value={selectedType} onValueChange={(v) => handleTypeChange(v as UniversityType)} className="w-full">
-          <TabsList className="w-full flex flex-wrap h-auto gap-2 bg-muted/50 p-2 rounded-lg">
+          <TabsList className="w-full flex flex-wrap h-auto gap-2 bg-white/60 dark:bg-white/5 backdrop-blur-lg p-2.5 rounded-xl border border-white/30 dark:border-white/10 shadow-lg shadow-emerald-500/5">
             {universityTypeTabs.map((tab) => {
               const Icon = tab.icon;
               const count = typeCounts[tab.value];
@@ -386,21 +386,21 @@ const TNUniversityBrowse = () => {
                 <TabsTrigger
                   key={tab.value}
                   value={tab.value}
-                  className="flex-1 min-w-[140px] flex items-center gap-2 py-2.5 px-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md"
+                  className="flex-1 min-w-[140px] flex items-center gap-2 py-3 px-4 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-600 data-[state=active]:to-teal-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-emerald-500/25 rounded-lg transition-all duration-300 hover:bg-white/50 dark:hover:bg-white/10"
                 >
                   <Icon className="h-4 w-4" />
-                  <span className="hidden sm:inline">{tab.label}</span>
-                  <span className="sm:hidden text-xs">{tab.label.split(' ')[0]}</span>
-                  <span className="ml-auto bg-background/20 text-xs px-1.5 py-0.5 rounded-full">{count}</span>
+                  <span className="hidden sm:inline font-medium">{tab.label}</span>
+                  <span className="sm:hidden text-xs font-medium">{tab.label.split(' ')[0]}</span>
+                  <span className="ml-auto bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-xs font-semibold px-2 py-0.5 rounded-full">{count}</span>
                 </TabsTrigger>
               );
             })}
           </TabsList>
         </Tabs>
 
-        {/* Filters - Only for Central Government */}
+        {/* Filters - Only for Central Government with glass effect */}
         {selectedType === 'Central Government' && (
-          <div className="space-y-4 p-4 bg-muted/30 rounded-lg border">
+          <div className="space-y-5 p-5 bg-white/50 dark:bg-white/5 backdrop-blur-lg rounded-2xl border border-white/40 dark:border-white/10 shadow-xl shadow-emerald-500/5">
             {/* Clear All Filters */}
             {hasActiveFilters && (
               <div className="flex justify-end">
@@ -408,88 +408,93 @@ const TNUniversityBrowse = () => {
                   variant="ghost" 
                   size="sm" 
                   onClick={clearAllFilters}
-                  className="text-xs h-7 text-destructive hover:text-destructive"
+                  className="text-xs h-8 text-rose-600 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/30 gap-1.5"
                 >
-                  <X className="h-3 w-3 mr-1" />
+                  <X className="h-3.5 w-3.5" />
                   Clear All Filters
                 </Button>
               </div>
             )}
 
             {/* Institution Type Filter */}
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                <Layers className="h-4 w-4" />
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 text-sm font-semibold text-foreground/80">
+                <div className="p-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/40">
+                  <Layers className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                </div>
                 <span>Filter by Type</span>
-                <span className="font-tamil text-xs">/ நிறுவன வகை வாரியாக வடிகட்டு</span>
+                <span className="font-tamil text-xs text-muted-foreground">/ நிறுவன வகை வாரியாக வடிகட்டு</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {institutionTypes.map((instType) => (
                   <Badge
                     key={instType.id}
                     variant={selectedInstitutionType === instType.id ? "default" : "outline"}
-                    className={`cursor-pointer transition-all py-1.5 px-3 ${
+                    className={`cursor-pointer transition-all duration-200 py-2 px-3.5 font-medium ${
                       selectedInstitutionType === instType.id
-                        ? 'bg-primary text-primary-foreground'
-                        : 'hover:bg-muted'
+                        ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white border-0 shadow-md shadow-emerald-500/25'
+                        : 'bg-white/70 dark:bg-white/10 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 border-emerald-200/50 dark:border-emerald-800/30 hover:border-emerald-300 dark:hover:border-emerald-700'
                     }`}
                     onClick={() => setSelectedInstitutionType(selectedInstitutionType === instType.id ? null : instType.id)}
                   >
-                    <span className="mr-1">{instType.label}</span>
-                    <span className="text-[10px] opacity-70">({institutionTypeCounts[instType.id] || 0})</span>
+                    <span className="mr-1.5">{instType.label}</span>
+                    <span className={`text-[10px] font-semibold ${selectedInstitutionType === instType.id ? 'text-white/80' : 'text-emerald-600 dark:text-emerald-400'}`}>({institutionTypeCounts[instType.id] || 0})</span>
                   </Badge>
                 ))}
               </div>
             </div>
 
-
             {/* Location Filter */}
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                <MapPin className="h-4 w-4" />
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 text-sm font-semibold text-foreground/80">
+                <div className="p-1.5 rounded-lg bg-blue-100 dark:bg-blue-900/40">
+                  <MapPin className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                </div>
                 <span>Filter by Location</span>
-                <span className="font-tamil text-xs">/ இடம் வாரியாக வடிகட்டு</span>
+                <span className="font-tamil text-xs text-muted-foreground">/ இடம் வாரியாக வடிகட்டு</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {locationRegions.map((region) => (
                   <Badge
                     key={region.id}
                     variant={selectedLocation === region.id ? "default" : "outline"}
-                    className={`cursor-pointer transition-all py-1.5 px-3 ${
+                    className={`cursor-pointer transition-all duration-200 py-2 px-3.5 font-medium ${
                       selectedLocation === region.id
-                        ? 'bg-primary text-primary-foreground'
-                        : 'hover:bg-muted'
+                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-0 shadow-md shadow-blue-500/25'
+                        : 'bg-white/70 dark:bg-white/10 hover:bg-blue-50 dark:hover:bg-blue-900/30 border-blue-200/50 dark:border-blue-800/30 hover:border-blue-300 dark:hover:border-blue-700'
                     }`}
                     onClick={() => setSelectedLocation(selectedLocation === region.id ? null : region.id)}
                   >
-                    <span className="mr-1">{region.label}</span>
-                    <span className="text-[10px] opacity-70">({regionCounts[region.id] || 0})</span>
+                    <span className="mr-1.5">{region.label}</span>
+                    <span className={`text-[10px] font-semibold ${selectedLocation === region.id ? 'text-white/80' : 'text-blue-600 dark:text-blue-400'}`}>({regionCounts[region.id] || 0})</span>
                   </Badge>
                 ))}
               </div>
             </div>
 
             {/* Fee Range Filter */}
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                <IndianRupee className="h-4 w-4" />
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 text-sm font-semibold text-foreground/80">
+                <div className="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-900/40">
+                  <IndianRupee className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                </div>
                 <span>Filter by Fee</span>
-                <span className="font-tamil text-xs">/ கட்டணம் வாரியாக வடிகட்டு</span>
+                <span className="font-tamil text-xs text-muted-foreground">/ கட்டணம் வாரியாக வடிகட்டு</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {feeRanges.map((feeRange) => (
                   <Badge
                     key={feeRange.id}
                     variant={selectedFeeRange === feeRange.id ? "default" : "outline"}
-                    className={`cursor-pointer transition-all py-1.5 px-3 ${
+                    className={`cursor-pointer transition-all duration-200 py-2 px-3.5 font-medium ${
                       selectedFeeRange === feeRange.id
-                        ? 'bg-primary text-primary-foreground'
-                        : 'hover:bg-muted'
+                        ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0 shadow-md shadow-amber-500/25'
+                        : 'bg-white/70 dark:bg-white/10 hover:bg-amber-50 dark:hover:bg-amber-900/30 border-amber-200/50 dark:border-amber-800/30 hover:border-amber-300 dark:hover:border-amber-700'
                     }`}
                     onClick={() => setSelectedFeeRange(selectedFeeRange === feeRange.id ? null : feeRange.id)}
                   >
-                    <span className="mr-1">{feeRange.label}</span>
-                    <span className="text-[10px] opacity-70">({feeRangeCounts[feeRange.id] || 0})</span>
+                    <span className="mr-1.5">{feeRange.label}</span>
+                    <span className={`text-[10px] font-semibold ${selectedFeeRange === feeRange.id ? 'text-white/80' : 'text-amber-600 dark:text-amber-400'}`}>({feeRangeCounts[feeRange.id] || 0})</span>
                   </Badge>
                 ))}
               </div>
@@ -497,31 +502,33 @@ const TNUniversityBrowse = () => {
           </div>
         )}
 
-        {/* Search Bar */}
+        {/* Search Bar with glass effect */}
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-emerald-600/60 dark:text-emerald-400/60" />
           <Input
             placeholder="Search universities... (பல்கலைக்கழகங்களைத் தேடுங்கள்)"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10"
+            className="pl-11 py-5 bg-white/60 dark:bg-white/5 backdrop-blur-md border-white/40 dark:border-white/10 rounded-xl focus:border-emerald-400 focus:ring-emerald-400/20 shadow-sm"
           />
         </div>
 
-        {/* Stats Bar */}
-        <div className="flex items-center justify-between px-2 text-sm text-muted-foreground">
-          <span className="flex items-center gap-2">
-            <Users className="h-4 w-4" />
-            {filteredUniversities.length} Universities
+        {/* Stats Bar with glass effect */}
+        <div className="flex items-center justify-between px-4 py-3 bg-white/40 dark:bg-white/5 backdrop-blur-md rounded-xl border border-white/30 dark:border-white/10">
+          <span className="flex items-center gap-2 text-sm font-medium text-foreground/80">
+            <div className="p-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/40">
+              <Users className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+            </div>
+            <span className="text-emerald-700 dark:text-emerald-300 font-semibold">{filteredUniversities.length}</span> Universities
           </span>
-          <span>
-            {filteredUniversities.reduce((acc, uni) => acc + uni.courses.length, 0)} Courses
+          <span className="flex items-center gap-2 text-sm font-medium text-foreground/80">
+            <span className="text-teal-700 dark:text-teal-300 font-semibold">{filteredUniversities.reduce((acc, uni) => acc + uni.courses.length, 0)}</span> Courses
           </span>
         </div>
 
         {/* Universities Grid */}
         {filteredUniversities.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {filteredUniversities.map((university) => (
               <UniversityCard 
                 key={university.id} 
@@ -531,10 +538,12 @@ const TNUniversityBrowse = () => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 text-muted-foreground">
-            <GraduationCap className="h-12 w-12 mx-auto mb-4 opacity-50" />
-            <p className="text-lg font-medium">No universities found</p>
-            <p className="text-sm">Try a different search term or category</p>
+          <div className="text-center py-16 bg-white/40 dark:bg-white/5 backdrop-blur-md rounded-2xl border border-white/30 dark:border-white/10">
+            <div className="p-4 rounded-full bg-emerald-100 dark:bg-emerald-900/40 w-fit mx-auto mb-4">
+              <GraduationCap className="h-10 w-10 text-emerald-600 dark:text-emerald-400" />
+            </div>
+            <p className="text-lg font-semibold text-foreground/80">No universities found</p>
+            <p className="text-sm text-muted-foreground mt-1">Try a different search term or category</p>
           </div>
         )}
       </div>
