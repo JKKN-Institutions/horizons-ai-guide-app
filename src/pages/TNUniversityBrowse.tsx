@@ -531,8 +531,14 @@ const TNUniversityBrowse = () => {
                     }`}
                     onClick={() => setSelectedInstitutionType(selectedInstitutionType === instType.id ? null : instType.id)}
                   >
-                    <span className="mr-1.5">{instType.label}</span>
-                    <span className={`text-[10px] font-semibold ${selectedInstitutionType === instType.id ? 'text-white/80' : 'text-emerald-600 dark:text-emerald-400'}`}>({institutionTypeCounts[instType.id] || 0})</span>
+                    <span className="mr-1.5 text-foreground">{instType.label}</span>
+                    <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+                      selectedInstitutionType === instType.id 
+                        ? 'bg-white/25 text-white' 
+                        : 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300'
+                    }`}>
+                      {institutionTypeCounts[instType.id] || 0}
+                    </span>
                   </Badge>
                 ))}
               </div>
@@ -559,8 +565,14 @@ const TNUniversityBrowse = () => {
                     }`}
                     onClick={() => handleLocationChange(selectedLocation === region.id ? null : region.id)}
                   >
-                    <span className="mr-1.5">{region.label}</span>
-                    <span className={`text-[10px] font-semibold ${selectedLocation === region.id ? 'text-white/80' : 'text-blue-600 dark:text-blue-400'}`}>({regionCounts[region.id] || 0})</span>
+                    <span className="mr-1.5 text-foreground">{region.label}</span>
+                    <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+                      selectedLocation === region.id 
+                        ? 'bg-white/25 text-white' 
+                        : 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
+                    }`}>
+                      {regionCounts[region.id] || 0}
+                    </span>
                   </Badge>
                 ))}
               </div>
@@ -616,8 +628,14 @@ const TNUniversityBrowse = () => {
                     }`}
                     onClick={() => setSelectedFeeRange(selectedFeeRange === feeRange.id ? null : feeRange.id)}
                   >
-                    <span className="mr-1.5">{feeRange.label}</span>
-                    <span className={`text-[10px] font-semibold ${selectedFeeRange === feeRange.id ? 'text-white/80' : 'text-amber-600 dark:text-amber-400'}`}>({feeRangeCounts[feeRange.id] || 0})</span>
+                    <span className="mr-1.5 text-foreground">{feeRange.label}</span>
+                    <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+                      selectedFeeRange === feeRange.id 
+                        ? 'bg-white/25 text-white' 
+                        : 'bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300'
+                    }`}>
+                      {feeRangeCounts[feeRange.id] || 0}
+                    </span>
                   </Badge>
                 ))}
               </div>
