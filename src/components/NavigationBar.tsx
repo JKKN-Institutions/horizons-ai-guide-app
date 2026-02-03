@@ -6,11 +6,11 @@ import { cn } from "@/lib/utils";
 import { useLanguage } from "@/hooks/useLanguage";
 
 const mobileMotivations = [
-  { text: "உனது கனவை நோக்கி பயணி", icon: Target },
-  { text: "கல்வியே உன் சக்தி", icon: GraduationCap },
-  { text: "வெற்றி உனக்கானது", icon: TrendingUp },
-  { text: "முயற்சி திருவினையாக்கும்", icon: Sparkles },
-  { text: "நம்பிக்கையே வெற்றியின் முதல் படி", icon: Star },
+  { text: "Journey towards your dream", icon: Target },
+  { text: "Education is your power", icon: GraduationCap },
+  { text: "Success awaits you", icon: TrendingUp },
+  { text: "Effort leads to success", icon: Sparkles },
+  { text: "Believe in yourself", icon: Star },
 ];
 
 const NavigationBar = () => {
@@ -55,20 +55,20 @@ const NavigationBar = () => {
     <nav className="bg-background border-b border-border sticky top-0 z-50">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0 flex items-center gap-3">
+          <div className="flex-shrink-0">
             <Link to="/" className="font-serif text-lg md:text-xl font-semibold text-foreground leading-tight hover:text-primary transition-colors">
               வழிகாட்டி
             </Link>
+          </div>
             
-            {/* Mobile Motivational Line */}
-            <div 
-              className={`lg:hidden flex items-center gap-1.5 text-xs text-muted-foreground transition-all duration-300 ${
-                isMotiveVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'
-              }`}
-            >
-              <MotiveIcon className="w-3 h-3 text-primary" />
-              <span className="font-tamil truncate max-w-[140px] sm:max-w-[200px]">{currentMotive.text}</span>
-            </div>
+          {/* Mobile Motivational Line - Centered */}
+          <div 
+            className={`lg:hidden flex-1 flex items-center justify-center gap-2 transition-all duration-300 ${
+              isMotiveVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}
+          >
+            <MotiveIcon className="w-4 h-4 text-primary" />
+            <span className="font-bold text-sm text-foreground">{currentMotive.text}</span>
           </div>
 
           {/* Desktop Navigation */}
