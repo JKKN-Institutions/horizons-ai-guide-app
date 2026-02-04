@@ -15,7 +15,7 @@ const normalizeCollegeName = (name: string): string => {
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, '') // Remove special characters
     .replace(/\s+/g, ' ')        // Normalize spaces
-    .replace(/\b(college|institute|institution|of|and|the|for)\b/g, '') // Remove common words
+    .replace(/\b(college|institute|institution|of|and|the|for|government|govt|hospital)\b/g, '') // Remove common words
     .replace(/\s+/g, '')         // Remove all spaces for comparison
     .trim();
 };
@@ -23,18 +23,20 @@ const normalizeCollegeName = (name: string): string => {
 // Helper function to remove duplicate colleges
 const removeDuplicates = (colleges: College[]): College[] => {
   const seen = new Map<string, College>();
+  const seenByCategoryLocation = new Map<string, College>();
   
   for (const college of colleges) {
     const normalizedName = normalizeCollegeName(college.name);
     
-    // Check if we've seen a similar college
+    // Create a category+location key for detecting same institutions with different names
+    const categoryLocationKey = `${college.category}_${(college.address || '').toLowerCase().replace(/[^a-z]/g, '')}`;
+    
+    // Check if we've seen a similar college by name
     let isDuplicate = false;
     for (const [existingName, existingCollege] of seen) {
-      // Check for exact match or high similarity
       if (normalizedName === existingName || 
           normalizedName.includes(existingName) || 
           existingName.includes(normalizedName)) {
-        // Keep the one with more info (prefer isJKKN, then by data completeness)
         if (college.isJKKN && !existingCollege.isJKKN) {
           seen.set(existingName, college);
         }
@@ -43,8 +45,16 @@ const removeDuplicates = (colleges: College[]): College[] => {
       }
     }
     
+    // Also check by category + location (catches "Govt Medical College" vs "Namakkal Medical College")
+    if (!isDuplicate && college.category === 'medical' && seenByCategoryLocation.has(categoryLocationKey)) {
+      isDuplicate = true;
+    }
+    
     if (!isDuplicate) {
       seen.set(normalizedName, college);
+      if (college.category === 'medical') {
+        seenByCategoryLocation.set(categoryLocationKey, college);
+      }
     }
   }
   
