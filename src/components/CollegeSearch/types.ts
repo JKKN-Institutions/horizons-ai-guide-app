@@ -455,6 +455,16 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     feeRange: '₹45,000 - ₹90,000 per year',
     accreditation: 'AICTE Approved',
   },
+  {
+    id: 'ssm_engineering',
+    name: 'SSM College of Engineering & Technology',
+    type: 'private',
+    category: 'engineering',
+    courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech, Civil), M.E/M.Tech',
+    address: 'Komarapalayam',
+    feeRange: '₹50,000 - ₹1,00,000 per year',
+    accreditation: 'AICTE Approved',
+  },
 
   // ============================================
   // 4. PRIVATE - Medical & Health Sciences
