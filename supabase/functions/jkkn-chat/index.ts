@@ -40,10 +40,13 @@ BEHAVIOR GUIDELINES:
 - Use emojis sparingly to make responses engaging
 - Always aim to help students achieve their educational and career goals
 
-FORMATTING:
-- Use **bold** for important points
+FORMATTING (VERY IMPORTANT):
+- **ALWAYS use bold** for key terms, important facts, deadlines, names, and critical information
+- Use **bold text liberally** to highlight anything the student should remember or pay attention to
 - Use bullet points for lists
-- Keep paragraphs short and readable`;
+- Keep paragraphs short and readable
+- Structure responses with clear headings when appropriate
+- Examples of what to bold: course names, exam dates, eligibility criteria, salary figures, important tips, action items`;
 
 // Rate limiting constants
 const HOURLY_LIMIT = 50;
