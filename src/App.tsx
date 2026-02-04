@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { AdminAuthProvider } from "@/hooks/useAdminAuth";
 import { LanguageProvider } from "@/hooks/useLanguage";
+import ProtectedRoute from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import StudentDashboard from "./pages/StudentDashboard";
@@ -93,7 +94,14 @@ function App() {
                 {/* Student Routes */}
                 <Route path="/student-dashboard" element={<StudentDashboard />} />
                 <Route path="/career-assessment" element={<AICareerPredictor />} />
-                <Route path="/career-assessment/chat" element={<CareerChat />} />
+                 <Route
+                   path="/career-assessment/chat"
+                   element={
+                     <ProtectedRoute>
+                       <CareerChat />
+                     </ProtectedRoute>
+                   }
+                 />
                 <Route path="/career-assessment/colleges" element={<CareerAssessmentColleges />} />
                 <Route path="/career-assessment/take/:type" element={<TakeAssessment />} />
                 <Route path="/career-assessment/results/:attemptId" element={<AssessmentResults />} />
