@@ -212,7 +212,7 @@ export const ScholarshipFinder = () => {
             உதவித்தொகை கண்டுபிடிப்பான்
           </p>
           <p className="text-[#4B5563] max-w-2xl mx-auto mb-4">
-            Discover scholarships you're eligible for - Government schemes, corporate programs, and exclusive JKKN scholarships
+            Discover scholarships you're eligible for - Government schemes, corporate programs, NGO initiatives, and sports scholarships
           </p>
 
           {/* Action Buttons */}

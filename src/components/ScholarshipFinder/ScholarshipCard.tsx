@@ -16,14 +16,6 @@ interface ScholarshipCardProps {
 }
 
 const typeConfig = {
-  jkkn: {
-    icon: Star,
-    label: 'JKKN Exclusive',
-    color: 'text-[#2E7D32]',
-    bgColor: 'bg-[#E8F5E9]',
-    borderColor: 'border-l-[#2E7D32]',
-    badgeClass: 'bg-[#E8F5E9] text-[#2E7D32] border-[#A5D6A7]'
-  },
   government: {
     icon: Landmark,
     label: 'Government',
@@ -47,6 +39,14 @@ const typeConfig = {
     bgColor: 'bg-[#FFF8E1]',
     borderColor: 'border-l-[#F59E0B]',
     badgeClass: 'bg-[#FFF8E1] text-[#F59E0B] border-[#FFE082]'
+  },
+  sports: {
+    icon: Star,
+    label: 'Sports',
+    color: 'text-[#E53935]',
+    bgColor: 'bg-[#FFEBEE]',
+    borderColor: 'border-l-[#E53935]',
+    badgeClass: 'bg-[#FFEBEE] text-[#E53935] border-[#FFCDD2]'
   }
 };
 
