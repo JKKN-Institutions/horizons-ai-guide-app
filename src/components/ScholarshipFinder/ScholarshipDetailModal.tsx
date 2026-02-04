@@ -2,7 +2,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Scholarship } from './types';
-import { Star, Building2, Landmark, Heart, CheckCircle2, FileText, Calendar, Link as LinkIcon, Phone, BookOpen, ExternalLink, Bookmark } from 'lucide-react';
+import { Star, Building2, Landmark, Heart, Trophy, CheckCircle2, FileText, Calendar, Link as LinkIcon, Phone, BookOpen, ExternalLink, Bookmark } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
@@ -14,10 +14,10 @@ interface ScholarshipDetailModalProps {
 }
 
 const typeConfig = {
-  jkkn: { icon: Star, label: 'JKKN Exclusive', color: 'text-jkkn-green', bgColor: 'bg-jkkn-green/10' },
   government: { icon: Landmark, label: 'Government', color: 'text-primary', bgColor: 'bg-primary/10' },
   corporate: { icon: Building2, label: 'Corporate', color: 'text-accent', bgColor: 'bg-accent/10' },
-  ngo: { icon: Heart, label: 'NGO/Trust', color: 'text-jkkn-orange', bgColor: 'bg-jkkn-orange/10' }
+  ngo: { icon: Heart, label: 'NGO/Trust', color: 'text-orange-500', bgColor: 'bg-orange-500/10' },
+  sports: { icon: Trophy, label: 'Sports', color: 'text-red-500', bgColor: 'bg-red-500/10' }
 };
 
 const deadlineConfig = {
