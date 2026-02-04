@@ -478,6 +478,19 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
               <span className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce [animation-delay:0.2s]" />
             </div>
           </div>
+        ) : !user ? (
+          <div className="text-center text-muted-foreground py-8">
+            <p className="text-sm">🔐 Please sign in to use AI Chat</p>
+            <p className="text-xs mt-2">
+              Create a free account to chat with VAZHIKATTI AI Assistant
+            </p>
+            <a 
+              href="/auth" 
+              className="mt-4 inline-block text-xs bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              Sign In / Sign Up
+            </a>
+          </div>
         ) : messages.length === 0 ? (
           <div className="text-center text-muted-foreground py-8">
             <p className="text-sm">👋 Welcome! I'm your VAZHIKATTI AI Assistant.</p>
