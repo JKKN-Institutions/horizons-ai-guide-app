@@ -1389,7 +1389,11 @@ Be empathetic and respect Indian family values while helping the student communi
                               : 'bg-white border border-gray-100 text-gray-800 shadow-gray-100/50'
                           }`}
                         >
-                          <p className="whitespace-pre-wrap leading-relaxed">{message.content}</p>
+                          <p className={`whitespace-pre-wrap leading-relaxed ${
+                            message.role === 'assistant' 
+                              ? 'font-display text-[15px] tracking-wide' 
+                              : ''
+                          }`}>{message.content}</p>
                           <p className={`text-xs mt-2 ${message.role === 'user' ? 'text-emerald-100' : 'text-gray-400'}`}>
                             {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                           </p>
