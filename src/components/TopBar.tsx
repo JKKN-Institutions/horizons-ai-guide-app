@@ -51,6 +51,7 @@ const TopBar = () => {
           <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center font-serif font-bold text-accent-foreground text-sm">
             வ
           </div>
+          <span className="font-semibold text-sm">வழிகாட்டி</span>
           <span className="text-xs opacity-80 hidden md:inline border-l border-primary-foreground/30 pl-3">
             {t('topbar.careerPath')}
           </span>
