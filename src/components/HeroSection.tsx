@@ -70,52 +70,29 @@ const HeroSection = () => {
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="text-white space-y-5">
-            <span className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/20 to-orange-500/20 backdrop-blur-sm text-amber-300 px-4 py-2 rounded-full text-sm font-semibold border border-amber-400/30 animate-fade-up">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-              {t('hero.badge')}
-            </span>
+          <div className="text-white space-y-6">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wide animate-fade-up uppercase">
+              VAZHIKATTI:
+            </h1>
 
-            <div className="space-y-3">
-              <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold italic animate-fade-up tracking-tight" style={{ animationDelay: '0.1s' }}>
-                {t('hero.title')}
-              </h1>
-
-              <p className="italic text-lg md:text-xl lg:text-2xl text-emerald-100/90 animate-fade-up" style={{ animationDelay: '0.15s' }}>
-                <span className="inline-block border-b-2 border-double border-amber-400/60 pb-1">
-                  Discover, Design, Do
-                </span>
-                <span className="mx-2">-</span>
-                <span className="font-tamil">வழிகாட்டி</span>
-              </p>
-
-              <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold italic animate-fade-up" style={{ animationDelay: '0.2s' }}>
-                <span className="bg-gradient-to-r from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">
-                  {t('hero.subtitle')}
-                </span>
-              </h2>
-
-              <p className="font-tamil text-lg md:text-xl lg:text-2xl text-emerald-100/90 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-                {t('hero.tamilSubtitle')}
-              </p>
-            </div>
-
-            <p className="text-base md:text-lg text-emerald-50/80 max-w-2xl leading-relaxed animate-fade-up" style={{ animationDelay: '0.4s' }}>
-              {t('hero.description')}
+            <p className="italic text-xl md:text-2xl lg:text-3xl text-emerald-100/90 animate-fade-up" style={{ animationDelay: '0.15s' }}>
+              <span className="inline-block border-b-2 border-double border-amber-400/60 pb-1">
+                Discover, Design, Do
+              </span>
+              <span className="mx-3">-</span>
+              <span className="font-tamil">வழிகாட்டி</span>
             </p>
 
-            <div className="flex flex-wrap justify-center gap-3 animate-fade-up" style={{ animationDelay: '0.5s' }}>
+            <div className="pt-4 animate-fade-up" style={{ animationDelay: '0.3s' }}>
               <Button 
-                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold px-5 py-3 text-sm rounded-xl shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40 transition-all duration-300 hover:scale-105"
+                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold px-6 py-3 text-base rounded-xl shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40 transition-all duration-300 hover:scale-105"
                 onClick={() => navigate("/register/12th-learner?redirect=/career-assessment/12th-learners")}
               >
-                <GraduationCap className="w-4 h-4 mr-2" />
+                <GraduationCap className="w-5 h-5 mr-2" />
                 {t('hero.register12th')}
               </Button>
             </div>
-
           </div>
-
         </div>
       </div>
 
