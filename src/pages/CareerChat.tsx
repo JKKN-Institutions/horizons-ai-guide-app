@@ -461,8 +461,19 @@ const CareerChat = () => {
     await streamChat([...messages, userMessage]);
   };
 
-  const handleQuickAction = (action: string) => {
-    setInput(action);
+  const handleQuickAction = async (action: string) => {
+    if (isLoading) return;
+    
+    const userMessage: Message = {
+      role: 'user',
+      content: action,
+      timestamp: new Date()
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setInput('');
+    await saveMessage(userMessage);
+    await streamChat([...messages, userMessage]);
   };
 
   const clearChat = async () => {
