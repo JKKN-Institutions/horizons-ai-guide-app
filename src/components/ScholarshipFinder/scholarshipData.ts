@@ -801,6 +801,171 @@ export const scholarships: Scholarship[] = [
     documents: ['Income Certificate', 'School Admission', 'Academic Records', 'Aadhaar Card'],
     howToApply: ['Apply through Nanhi Kali partner', 'Verification', 'Selection', 'Support begins'],
     benefits: [{ label: 'Amount', value: 'Up to ₹30,000' }, { label: 'Materials', value: 'Books + Uniform' }]
+  },
+
+  // ========================================
+  // 5. SPORTS SCHOLARSHIPS
+  // ========================================
+
+  {
+    id: 'sai-sports-scholarship',
+    name: 'SAI Sports Scholarship',
+    provider: 'Sports Authority of India (SAI)',
+    type: 'sports',
+    amount: '₹10,000 - ₹50,000/year',
+    eligibility: ['National/State Level Athletes', 'Age 14-25', 'Training at SAI Centers'],
+    deadline: 'Throughout Year',
+    deadlineStatus: 'open',
+    educationLevel: ['12th-studying', '12th-passed', 'ug', 'pg'],
+    category: ['general', 'sc', 'st', 'obc', 'bc-mbc', 'ews', 'minority'],
+    gender: 'all',
+    state: 'Tamil Nadu',
+    description: 'Financial support for talented sportspersons training at SAI centers. Covers training, equipment, and competition expenses.',
+    applicationUrl: 'https://sportsauthorityofindia.nic.in',
+    helpline: '011-26165655',
+    documents: ['Sports Achievement Certificates', 'State/National Participation Proof', 'Age Proof', 'Aadhaar Card', 'Bank Details'],
+    howToApply: ['Apply through SAI center', 'Submit sports achievements', 'Selection trials', 'Scholarship granted'],
+    benefits: [{ label: 'Annual Amount', value: '₹10,000-₹50,000' }, { label: 'Training', value: 'SAI Centers' }, { label: 'Equipment', value: 'Support Included' }]
+  },
+  {
+    id: 'khelo-india-scholarship',
+    name: 'Khelo India Scholarship',
+    provider: 'Ministry of Youth Affairs & Sports',
+    type: 'sports',
+    amount: '₹6.28 Lakh/year (For 8 years)',
+    eligibility: ['Selected Khelo India Athletes', 'Age Below 21', 'Medal Winners'],
+    deadline: 'Post Khelo India Games',
+    deadlineStatus: 'open',
+    educationLevel: ['12th-studying', '12th-passed', 'ug'],
+    category: ['general', 'sc', 'st', 'obc', 'bc-mbc', 'ews', 'minority'],
+    gender: 'all',
+    state: 'Tamil Nadu',
+    description: 'Comprehensive scholarship for top performers at Khelo India Games. Includes training, coaching, diet, and education support for 8 years.',
+    applicationUrl: 'https://kheloindia.gov.in',
+    helpline: '011-24360808',
+    documents: ['Khelo India Medal Certificate', 'Age Proof', 'Education Certificate', 'Aadhaar Card', 'Bank Details'],
+    howToApply: ['Perform at Khelo India Games', 'Selection by Sports Ministry', 'Documentation', '8-year support begins'],
+    benefits: [{ label: 'Annual Support', value: '₹6.28 Lakh' }, { label: 'Duration', value: '8 Years' }, { label: 'Includes', value: 'Training + Education' }]
+  },
+  {
+    id: 'tn-sports-quota-scholarship',
+    name: 'TN Sports Quota Scholarship',
+    provider: 'Tamil Nadu Sports Development Authority',
+    type: 'sports',
+    amount: 'Full Tuition Fee Waiver + ₹5,000/month',
+    eligibility: ['State/National Level Players', 'TN Domicile', 'UG/PG Admission'],
+    deadline: 'Based on Admission',
+    deadlineStatus: 'open',
+    educationLevel: ['ug', 'pg'],
+    category: ['general', 'sc', 'st', 'obc', 'bc-mbc', 'ews', 'minority'],
+    gender: 'all',
+    state: 'Tamil Nadu',
+    description: 'Special scholarship for TN athletes admitted under sports quota in colleges. Includes fee waiver and monthly stipend.',
+    applicationUrl: 'https://sdat.tn.gov.in',
+    helpline: '044-25672222',
+    documents: ['Sports Achievement Certificates', 'State Selection Proof', 'College Sports Quota Admission', 'Aadhaar Card', 'Bank Details'],
+    howToApply: ['Get sports quota admission', 'Apply through college', 'Submit sports certificates', 'Scholarship approved'],
+    benefits: [{ label: 'Tuition Fee', value: 'Full Waiver' }, { label: 'Monthly Stipend', value: '₹5,000' }, { label: 'For', value: 'Sports Quota Students' }]
+  },
+  {
+    id: 'olympic-gold-quest',
+    name: 'Olympic Gold Quest (OGQ) Scholarship',
+    provider: 'OGQ Foundation',
+    type: 'sports',
+    amount: 'Up to ₹25 Lakh/year',
+    eligibility: ['Elite Athletes', 'Olympic/International Potential', 'Selection by OGQ'],
+    deadline: 'By Invitation',
+    deadlineStatus: 'open',
+    educationLevel: ['12th-studying', '12th-passed', 'ug', 'pg'],
+    category: ['general', 'sc', 'st', 'obc', 'bc-mbc', 'ews', 'minority'],
+    gender: 'all',
+    state: 'Tamil Nadu',
+    description: 'Premium support for elite athletes with Olympic potential. Covers world-class training, international exposure, coaching, and equipment.',
+    applicationUrl: 'https://www.olympicgoldquest.in',
+    helpline: '022-26605856',
+    documents: ['Sports Achievement Record', 'International Rankings', 'Recommendation Letters', 'Aadhaar Card'],
+    howToApply: ['Nomination by sports federation', 'OGQ selection committee', 'Athlete assessment', 'Long-term support program'],
+    benefits: [{ label: 'Annual Support', value: 'Up to ₹25 Lakh' }, { label: 'International', value: 'Training & Exposure' }, { label: 'Equipment', value: 'World-class' }]
+  },
+  {
+    id: 'tata-trusts-sports',
+    name: 'Tata Trusts Sports Scholarship',
+    provider: 'Tata Trusts',
+    type: 'sports',
+    amount: 'Up to ₹5 Lakh/year',
+    eligibility: ['Promising Athletes', 'Age 12-25', 'Merit-cum-Means'],
+    deadline: 'Rolling Applications',
+    deadlineStatus: 'open',
+    educationLevel: ['12th-studying', '12th-passed', 'ug'],
+    category: ['general', 'sc', 'st', 'obc', 'bc-mbc', 'ews', 'minority'],
+    gender: 'all',
+    state: 'Tamil Nadu',
+    description: 'Support for promising athletes from economically weaker sections. Covers training, equipment, competition, and education expenses.',
+    applicationUrl: 'https://www.tatatrusts.org',
+    helpline: '022-66657070',
+    documents: ['Sports Achievements', 'Income Certificate', 'School/College Proof', 'Aadhaar Card', 'Bank Details'],
+    howToApply: ['Apply through partner organizations', 'Submit achievements', 'Selection process', 'Scholarship awarded'],
+    benefits: [{ label: 'Annual Amount', value: 'Up to ₹5 Lakh' }, { label: 'Training', value: 'Full Support' }, { label: 'Equipment', value: 'Covered' }]
+  },
+  {
+    id: 'jsw-sports-excellence',
+    name: 'JSW Sports Excellence Program',
+    provider: 'JSW Foundation',
+    type: 'sports',
+    amount: 'Up to ₹10 Lakh/year',
+    eligibility: ['National Level Athletes', 'Multiple Sports Disciplines', 'Age 15-25'],
+    deadline: 'Rolling',
+    deadlineStatus: 'open',
+    educationLevel: ['12th-studying', '12th-passed', 'ug', 'pg'],
+    category: ['general', 'sc', 'st', 'obc', 'bc-mbc', 'ews', 'minority'],
+    gender: 'all',
+    state: 'Tamil Nadu',
+    description: 'Comprehensive support program for national-level athletes in various sports including athletics, wrestling, boxing, and more.',
+    applicationUrl: 'https://www.jsw.in/foundation',
+    helpline: '022-43467000',
+    documents: ['National Level Certificates', 'Sports Federation Recommendation', 'Education Proof', 'Aadhaar Card', 'Bank Details'],
+    howToApply: ['Apply through JSW Sports', 'Trials and assessment', 'Selection', 'Training program begins'],
+    benefits: [{ label: 'Annual Support', value: 'Up to ₹10 Lakh' }, { label: 'Training', value: 'World-class' }, { label: 'Exposure', value: 'International' }]
+  },
+  {
+    id: 'university-sports-scholarship',
+    name: 'University Sports Scholarship (AIU)',
+    provider: 'Association of Indian Universities',
+    type: 'sports',
+    amount: '₹15,000 - ₹50,000/year',
+    eligibility: ['University Level Players', 'Inter-University Participants', 'UG/PG Students'],
+    deadline: 'Based on University Calendar',
+    deadlineStatus: 'open',
+    educationLevel: ['ug', 'pg'],
+    category: ['general', 'sc', 'st', 'obc', 'bc-mbc', 'ews', 'minority'],
+    gender: 'all',
+    state: 'Tamil Nadu',
+    description: 'Scholarship for students participating in inter-university sports competitions. Supports education while pursuing sports excellence.',
+    applicationUrl: 'https://www.aiu.ac.in',
+    helpline: '011-23232429',
+    documents: ['Inter-University Participation Proof', 'University ID', 'Sports Achievements', 'Aadhaar Card', 'Bank Details'],
+    howToApply: ['Participate in university sports', 'Apply through university', 'Submit achievements', 'Scholarship released'],
+    benefits: [{ label: 'Amount', value: '₹15,000-₹50,000' }, { label: 'For', value: 'University Athletes' }, { label: 'Coverage', value: 'Fees + Allowance' }]
+  },
+  {
+    id: 'tn-cm-sports-award',
+    name: 'TN CM Sports Award & Scholarship',
+    provider: 'Tamil Nadu Government',
+    type: 'sports',
+    amount: '₹3 Lakh - ₹5 Crore (Based on Medal)',
+    eligibility: ['TN Athletes', 'National/International Medal Winners', 'Olympic/Asian/Commonwealth Games'],
+    deadline: 'Post Competition',
+    deadlineStatus: 'open',
+    educationLevel: ['12th-studying', '12th-passed', 'ug', 'pg', 'professional'],
+    category: ['general', 'sc', 'st', 'obc', 'bc-mbc', 'ews', 'minority'],
+    gender: 'all',
+    state: 'Tamil Nadu',
+    description: 'Cash awards and scholarships for TN athletes winning medals at major international and national competitions.',
+    applicationUrl: 'https://sdat.tn.gov.in',
+    helpline: '044-25672222',
+    documents: ['Medal Certificate', 'Sports Federation Proof', 'TN Domicile', 'Aadhaar Card', 'Bank Details'],
+    howToApply: ['Win medal at recognized competition', 'Apply through SDAT', 'Verification', 'Award disbursement'],
+    benefits: [{ label: 'Olympic Gold', value: '₹5 Crore' }, { label: 'Asian Games Gold', value: '₹2 Crore' }, { label: 'National Games', value: '₹3-10 Lakh' }]
   }
 ];
 
@@ -808,9 +973,7 @@ export const getScholarshipsByType = (type: string) => {
   return scholarships.filter(s => s.type === type);
 };
 
-export const getJKKNScholarships = () => {
-  return scholarships.filter(s => s.type === 'jkkn');
-};
+// Removed getJKKNScholarships - no longer used
 
 export const getGovernmentScholarships = () => {
   return scholarships.filter(s => s.type === 'government');
@@ -822,4 +985,8 @@ export const getCorporateScholarships = () => {
 
 export const getNGOScholarships = () => {
   return scholarships.filter(s => s.type === 'ngo');
+};
+
+export const getSportsScholarships = () => {
+  return scholarships.filter(s => s.type === 'sports');
 };

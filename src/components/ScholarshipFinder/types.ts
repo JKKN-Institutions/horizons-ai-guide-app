@@ -2,7 +2,7 @@ export interface Scholarship {
   id: string;
   name: string;
   provider: string;
-  type: 'jkkn' | 'government' | 'corporate' | 'ngo';
+  type: 'government' | 'corporate' | 'ngo' | 'sports';
   amount: string;
   eligibility: string[];
   deadline: string;
@@ -36,9 +36,8 @@ export interface ScholarshipFilters {
 export const scholarshipTypes = [
   { id: 'government', label: 'Government' },
   { id: 'corporate', label: 'Corporate/Private' },
-  { id: 'jkkn', label: 'JKKN Exclusive' },
   { id: 'ngo', label: 'NGO/Trust' },
-  { id: 'international', label: 'International' },
+  { id: 'sports', label: 'Sports' },
 ];
 
 export const educationLevels = [
