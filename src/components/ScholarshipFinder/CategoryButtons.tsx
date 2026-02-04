@@ -1,13 +1,14 @@
-import { Landmark, Building2, Handshake } from 'lucide-react';
+import { Landmark, Building2, Handshake, Trophy } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface CategoryButtonsProps {
-  activeCategory: 'government' | 'corporate' | 'ngo';
-  onCategoryChange: (category: 'government' | 'corporate' | 'ngo') => void;
+  activeCategory: 'government' | 'corporate' | 'ngo' | 'sports';
+  onCategoryChange: (category: 'government' | 'corporate' | 'ngo' | 'sports') => void;
   counts: {
     government: number;
     corporate: number;
     ngo: number;
+    sports: number;
   };
 }
 
@@ -38,12 +39,21 @@ const categories = [
     inactiveColor: 'bg-white text-[#F59E0B] border-[#FFE082] hover:border-[#F59E0B] hover:bg-[#FFF8E1]',
     iconColor: 'text-[#F59E0B]',
     activeIconColor: 'text-white'
+  },
+  {
+    id: 'sports' as const,
+    label: 'Sports Scholarship',
+    icon: Trophy,
+    activeColor: 'bg-gradient-to-r from-[#E53935] to-[#C62828] text-white border-[#E53935] shadow-lg shadow-[#E53935]/30',
+    inactiveColor: 'bg-white text-[#E53935] border-[#FFCDD2] hover:border-[#E53935] hover:bg-[#FFEBEE]',
+    iconColor: 'text-[#E53935]',
+    activeIconColor: 'text-white'
   }
 ];
 
 export const CategoryButtons = ({ activeCategory, onCategoryChange, counts }: CategoryButtonsProps) => {
   return (
-    <div className="grid grid-cols-3 gap-3">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
       {categories.map((category) => {
         const isActive = activeCategory === category.id;
         const Icon = category.icon;

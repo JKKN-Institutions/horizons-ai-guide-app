@@ -108,9 +108,9 @@ export const ScholarshipComparison = ({
                         </Button>
                       </div>
                       <Badge variant="outline" className="text-xs">
-                        {scholarship.type === 'jkkn' ? 'JKKN' : 
-                         scholarship.type === 'government' ? 'Government' :
-                         scholarship.type === 'corporate' ? 'Corporate' : 'NGO'}
+                        {scholarship.type === 'government' ? 'Government' :
+                         scholarship.type === 'corporate' ? 'Corporate' :
+                         scholarship.type === 'sports' ? 'Sports' : 'NGO'}
                       </Badge>
                     </div>
                   </TableHead>

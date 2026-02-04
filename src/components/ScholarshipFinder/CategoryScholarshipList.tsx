@@ -7,22 +7,13 @@ import { cn } from '@/lib/utils';
 
 interface CategoryScholarshipListProps {
   scholarships: Scholarship[];
-  category: 'jkkn' | 'government' | 'corporate' | 'ngo';
+  category: 'government' | 'corporate' | 'ngo' | 'sports';
   onViewDetails: (scholarship: Scholarship) => void;
   selectedForCompare?: Set<string>;
   onCompareToggle?: (scholarshipId: string) => void;
 }
 
 const categoryConfig = {
-  jkkn: {
-    title: 'JKKN Exclusive Scholarships',
-    subtitle: 'Exclusive scholarships for JKKN college students',
-    icon: Star,
-    iconColor: 'text-emerald-600',
-    bgColor: 'bg-emerald-50',
-    borderColor: 'border-l-emerald-500',
-    badgeBg: 'bg-emerald-100 text-emerald-700'
-  },
   government: {
     title: 'Government Scholarships',
     subtitle: 'Tamil Nadu & Central Government schemes',
@@ -49,6 +40,15 @@ const categoryConfig = {
     bgColor: 'bg-orange-50',
     borderColor: 'border-l-orange-500',
     badgeBg: 'bg-orange-100 text-orange-700'
+  },
+  sports: {
+    title: 'Sports Scholarships',
+    subtitle: 'For talented athletes and sportspersons',
+    icon: Star,
+    iconColor: 'text-red-600',
+    bgColor: 'bg-red-50',
+    borderColor: 'border-l-red-500',
+    badgeBg: 'bg-red-100 text-red-700'
   }
 };
 
@@ -126,16 +126,14 @@ export const CategoryScholarshipList = ({
                       />
                     )}
                     <div className="flex-1">
-                      <Badge className={cn('mb-2 text-xs', config.badgeBg)}>
-                        {category === 'jkkn' && '⭐ JKKN Exclusive'}
+                    <Badge className={cn('mb-2 text-xs', config.badgeBg)}>
                         {category === 'government' && '🏛️ Government'}
                         {category === 'corporate' && '🏢 Corporate'}
                         {category === 'ngo' && '🤝 NGO/Trust'}
+                        {category === 'sports' && '🏆 Sports'}
                       </Badge>
                       <h4 className="font-semibold text-foreground leading-tight">{scholarship.name}</h4>
-                      {category !== 'jkkn' && (
-                        <p className="text-sm text-muted-foreground mt-1">{scholarship.provider}</p>
-                      )}
+                      <p className="text-sm text-muted-foreground mt-1">{scholarship.provider}</p>
                     </div>
                   </div>
                 </div>
@@ -159,8 +157,8 @@ export const CategoryScholarshipList = ({
                   </div>
                 </div>
 
-                {/* Benefits (for JKKN) */}
-                {category === 'jkkn' && scholarship.benefits && (
+                {/* Benefits (for Sports) */}
+                {category === 'sports' && scholarship.benefits && (
                   <div className="space-y-2">
                     <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Benefits:</p>
                     <ul className="text-sm text-muted-foreground space-y-1">
@@ -193,8 +191,8 @@ export const CategoryScholarshipList = ({
                   </span>
                 </div>
 
-                {/* Apply URL for Government/Corporate/NGO */}
-                {category !== 'jkkn' && scholarship.applicationUrl && (
+                {/* Apply URL */}
+                {scholarship.applicationUrl && (
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <ExternalLink className="h-4 w-4" />
                     <span className="truncate">{scholarship.applicationUrl.replace('https://', '')}</span>

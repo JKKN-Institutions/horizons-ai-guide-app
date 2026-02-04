@@ -12,7 +12,7 @@ import { CategoryScholarshipList } from './CategoryScholarshipList';
 import { EligibilityChecker } from './EligibilityChecker';
 import { ApplicationTracker, TrackerContext } from './ApplicationTracker';
 import { ScholarshipComparison } from './ScholarshipComparison';
-import { scholarships, getGovernmentScholarships, getCorporateScholarships, getNGOScholarships } from './scholarshipData';
+import { scholarships, getGovernmentScholarships, getCorporateScholarships, getNGOScholarships, getSportsScholarships } from './scholarshipData';
 import { Scholarship, ScholarshipFilters as FiltersType } from './types';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -29,7 +29,7 @@ const defaultFilters: FiltersType = {
   searchQuery: ''
 };
 
-type CategoryType = 'government' | 'corporate' | 'ngo';
+type CategoryType = 'government' | 'corporate' | 'ngo' | 'sports';
 
 export const ScholarshipFinder = () => {
   const [filters, setFilters] = useState<FiltersType>(defaultFilters);
@@ -129,14 +129,16 @@ export const ScholarshipFinder = () => {
   const categoryCounts = useMemo(() => ({
     government: getGovernmentScholarships().length,
     corporate: getCorporateScholarships().length,
-    ngo: getNGOScholarships().length
+    ngo: getNGOScholarships().length,
+    sports: getSportsScholarships().length
   }), []);
 
   const stats = useMemo(() => ({
     total: scholarships.length,
     government: getGovernmentScholarships().length,
     corporate: getCorporateScholarships().length,
-    ngo: getNGOScholarships().length
+    ngo: getNGOScholarships().length,
+    sports: getSportsScholarships().length
   }), []);
 
   const filteredScholarships = useMemo(() => {

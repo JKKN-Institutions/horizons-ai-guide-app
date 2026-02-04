@@ -59,12 +59,12 @@ export const generateScholarshipPDF = (scholarships: Scholarship[]) => {
   doc.setFont('helvetica', 'normal');
   doc.text(`Total Scholarships: ${scholarships.length}`, margin + 5, yPos + 20);
   
-  const jkknCount = scholarships.filter(s => s.type === 'jkkn').length;
   const govtCount = scholarships.filter(s => s.type === 'government').length;
   const corpCount = scholarships.filter(s => s.type === 'corporate').length;
   const ngoCount = scholarships.filter(s => s.type === 'ngo').length;
+  const sportsCount = scholarships.filter(s => s.type === 'sports').length;
   
-  doc.text(`JKKN: ${jkknCount} | Govt: ${govtCount} | Corporate: ${corpCount} | NGO: ${ngoCount}`, pageWidth / 2, yPos + 20, { align: 'center' });
+  doc.text(`Govt: ${govtCount} | Corporate: ${corpCount} | NGO: ${ngoCount} | Sports: ${sportsCount}`, pageWidth / 2, yPos + 20, { align: 'center' });
 
   yPos += 40;
   doc.setTextColor(0, 0, 0);
@@ -75,10 +75,10 @@ export const generateScholarshipPDF = (scholarships: Scholarship[]) => {
 
     // Scholarship header
     const typeColors: Record<string, [number, number, number]> = {
-      jkkn: [10, 46, 31],
       government: [37, 99, 235],
       corporate: [124, 58, 237],
-      ngo: [236, 72, 153]
+      ngo: [236, 72, 153],
+      sports: [229, 57, 53]
     };
     
     const color = typeColors[scholarship.type] || [100, 100, 100];
@@ -90,9 +90,9 @@ export const generateScholarshipPDF = (scholarships: Scholarship[]) => {
     doc.setFont('helvetica', 'bold');
     doc.text(`${index + 1}. ${scholarship.name}`, margin + 3, yPos + 8);
     
-    const typeLabel = scholarship.type === 'jkkn' ? 'JKKN Exclusive' : 
-                      scholarship.type === 'government' ? 'Government' :
-                      scholarship.type === 'corporate' ? 'Corporate' : 'NGO/Trust';
+    const typeLabel = scholarship.type === 'government' ? 'Government' :
+                      scholarship.type === 'corporate' ? 'Corporate' :
+                      scholarship.type === 'sports' ? 'Sports' : 'NGO/Trust';
     doc.setFontSize(9);
     doc.text(typeLabel, pageWidth - margin - 3, yPos + 8, { align: 'right' });
 
