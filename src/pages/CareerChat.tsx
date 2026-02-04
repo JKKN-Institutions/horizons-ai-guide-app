@@ -62,6 +62,7 @@ import {
   Users
 } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
+import { AIMessageRenderer } from '@/components/AIMessageRenderer';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -1383,17 +1384,17 @@ Be empathetic and respect Indian family values while helping the student communi
                           </div>
                         )}
                         <div
-                          className={`max-w-[75%] rounded-2xl px-5 py-4 shadow-lg ${
+                          className={`max-w-[80%] rounded-2xl shadow-lg ${
                             message.role === 'user'
-                              ? 'bg-gradient-to-br from-emerald-600 to-green-700 text-white shadow-emerald-200/50'
-                              : 'bg-white border border-gray-100 text-gray-800 shadow-gray-100/50'
+                              ? 'bg-gradient-to-br from-emerald-600 to-green-700 text-white shadow-emerald-200/50 px-5 py-4'
+                              : 'bg-white border border-gray-100 text-gray-800 shadow-gray-100/50 px-5 py-4'
                           }`}
                         >
-                          <p className={`whitespace-pre-wrap ${
-                            message.role === 'assistant' 
-                              ? 'font-sans text-[15px] leading-[1.8] tracking-[0.02em] [word-spacing:0.08em]' 
-                              : 'leading-relaxed'
-                          }`}>{message.content}</p>
+                          {message.role === 'assistant' ? (
+                            <AIMessageRenderer content={message.content} />
+                          ) : (
+                            <p className="whitespace-pre-wrap leading-relaxed">{message.content}</p>
+                          )}
                           <p className={`text-xs mt-3 ${message.role === 'user' ? 'text-emerald-100' : 'text-gray-400'}`}>
                             {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                           </p>
