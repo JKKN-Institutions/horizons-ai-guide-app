@@ -81,6 +81,14 @@ const HeroSection = () => {
                 {t('hero.title')}
               </h1>
 
+              <p className="italic text-lg md:text-xl lg:text-2xl text-emerald-100/90 animate-fade-up" style={{ animationDelay: '0.15s' }}>
+                <span className="inline-block border-b-2 border-double border-amber-400/60 pb-1">
+                  Discover, Design, Do
+                </span>
+                <span className="mx-2">-</span>
+                <span className="font-tamil">வழிகாட்டி</span>
+              </p>
+
               <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold italic animate-fade-up" style={{ animationDelay: '0.2s' }}>
                 <span className="bg-gradient-to-r from-amber-300 via-yellow-300 to-orange-300 bg-clip-text text-transparent">
                   {t('hero.subtitle')}
