@@ -88,7 +88,7 @@ const HeroSection = () => {
               </h2>
 
               <p className="font-tamil text-lg md:text-xl lg:text-2xl text-emerald-100/90 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-                {t('hero.tamilSubtitle')}
+                <span className="underline decoration-amber-400/60 decoration-2 underline-offset-4">{t('hero.tamilSubtitle')}</span>
               </p>
             </div>
 
