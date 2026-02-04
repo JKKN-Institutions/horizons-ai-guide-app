@@ -48,10 +48,8 @@ const TopBar = () => {
     <div className="bg-primary text-primary-foreground py-2 px-4 md:px-8">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center font-serif font-bold text-accent-foreground text-sm">
-              வ
-            </div>
+          <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center font-serif font-bold text-accent-foreground text-sm">
+            வ
           </div>
           <span className="text-xs opacity-80 hidden md:inline border-l border-primary-foreground/30 pl-3">
             {t('topbar.careerPath')}
