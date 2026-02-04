@@ -1,11 +1,10 @@
-import { Star, Landmark, Building2, Handshake } from 'lucide-react';
+import { Landmark, Building2, Handshake } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface CategoryButtonsProps {
-  activeCategory: 'jkkn' | 'government' | 'corporate' | 'ngo';
-  onCategoryChange: (category: 'jkkn' | 'government' | 'corporate' | 'ngo') => void;
+  activeCategory: 'government' | 'corporate' | 'ngo';
+  onCategoryChange: (category: 'government' | 'corporate' | 'ngo') => void;
   counts: {
-    jkkn: number;
     government: number;
     corporate: number;
     ngo: number;
@@ -13,15 +12,6 @@ interface CategoryButtonsProps {
 }
 
 const categories = [
-  {
-    id: 'jkkn' as const,
-    label: 'JKKN Exclusive',
-    icon: Star,
-    activeColor: 'bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white border-[#2E7D32] shadow-lg shadow-[#2E7D32]/30',
-    inactiveColor: 'bg-white text-[#2E7D32] border-[#A5D6A7] hover:border-[#2E7D32] hover:bg-[#E8F5E9]',
-    iconColor: 'text-[#2E7D32]',
-    activeIconColor: 'text-white'
-  },
   {
     id: 'government' as const,
     label: 'Government Scholarship',
@@ -53,7 +43,7 @@ const categories = [
 
 export const CategoryButtons = ({ activeCategory, onCategoryChange, counts }: CategoryButtonsProps) => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <div className="grid grid-cols-3 gap-3">
       {categories.map((category) => {
         const isActive = activeCategory === category.id;
         const Icon = category.icon;

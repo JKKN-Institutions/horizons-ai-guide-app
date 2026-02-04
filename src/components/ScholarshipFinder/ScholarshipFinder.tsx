@@ -12,7 +12,7 @@ import { CategoryScholarshipList } from './CategoryScholarshipList';
 import { EligibilityChecker } from './EligibilityChecker';
 import { ApplicationTracker, TrackerContext } from './ApplicationTracker';
 import { ScholarshipComparison } from './ScholarshipComparison';
-import { scholarships, getJKKNScholarships, getGovernmentScholarships, getCorporateScholarships, getNGOScholarships } from './scholarshipData';
+import { scholarships, getGovernmentScholarships, getCorporateScholarships, getNGOScholarships } from './scholarshipData';
 import { Scholarship, ScholarshipFilters as FiltersType } from './types';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -29,14 +29,14 @@ const defaultFilters: FiltersType = {
   searchQuery: ''
 };
 
-type CategoryType = 'jkkn' | 'government' | 'corporate' | 'ngo';
+type CategoryType = 'government' | 'corporate' | 'ngo';
 
 export const ScholarshipFinder = () => {
   const [filters, setFilters] = useState<FiltersType>(defaultFilters);
   const [sortBy, setSortBy] = useState('relevance');
   const [selectedScholarship, setSelectedScholarship] = useState<Scholarship | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState<CategoryType>('jkkn');
+  const [activeCategory, setActiveCategory] = useState<CategoryType>('government');
   const [isEligibilityOpen, setIsEligibilityOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('browse');
   const [user, setUser] = useState<any>(null);
@@ -127,7 +127,6 @@ export const ScholarshipFinder = () => {
   );
 
   const categoryCounts = useMemo(() => ({
-    jkkn: getJKKNScholarships().length,
     government: getGovernmentScholarships().length,
     corporate: getCorporateScholarships().length,
     ngo: getNGOScholarships().length
@@ -137,7 +136,7 @@ export const ScholarshipFinder = () => {
     total: scholarships.length,
     government: getGovernmentScholarships().length,
     corporate: getCorporateScholarships().length,
-    jkkn: getJKKNScholarships().length
+    ngo: getNGOScholarships().length
   }), []);
 
   const filteredScholarships = useMemo(() => {
@@ -261,7 +260,7 @@ export const ScholarshipFinder = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-6">
+          <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto mt-6">
             <div className="fresh-stat-card">
               <div className="text-2xl font-bold text-[#F59E0B]">{stats.total}+</div>
               <div className="text-sm text-[#6B7280]">Total Scholarships</div>
@@ -273,10 +272,6 @@ export const ScholarshipFinder = () => {
             <div className="fresh-stat-card">
               <div className="text-2xl font-bold text-[#7B1FA2]">{stats.corporate}+</div>
               <div className="text-sm text-[#6B7280]">Corporate Programs</div>
-            </div>
-            <div className="fresh-stat-card">
-              <div className="text-2xl font-bold text-[#2E7D32]">{stats.jkkn}+</div>
-              <div className="text-sm text-[#6B7280]">JKKN Exclusive</div>
             </div>
           </div>
         </div>
