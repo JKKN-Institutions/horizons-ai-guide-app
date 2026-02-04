@@ -84,11 +84,6 @@ export const DistrictSelector = ({ selectedDistrict, onDistrictSelect }: Distric
                   >
                     <MapPin className="mr-2 h-4 w-4 text-muted-foreground" />
                     {district}
-                    {district === 'Namakkal' && (
-                      <span className="ml-2 text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full">
-                        ⭐ JKKN Hub
-                      </span>
-                    )}
                   </CommandItem>
                 ))}
               </CommandGroup>
