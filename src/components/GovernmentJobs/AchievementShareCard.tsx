@@ -82,8 +82,8 @@ export const AchievementShareCard = ({
   const tierConfig = TIER_CONFIG[achievement.tier];
 
   const shareText = language === 'ta'
-    ? `🏆 நான் "${achievement.nameTa}" சாதனையை திறந்தேன்! ${stats.totalHours.toFixed(0)} மணி நேர படிப்பு, ${stats.longestStreak} நாள் தொடர். #JKKNCareer #StudyGoals`
-    : `🏆 I unlocked the "${achievement.name}" achievement! ${stats.totalHours.toFixed(0)}h of study, ${stats.longestStreak}-day streak. #JKKNCareer #StudyGoals`;
+    ? `🏆 நான் "${achievement.nameTa}" சாதனையை திறந்தேன்! ${stats.totalHours.toFixed(0)} மணி நேர படிப்பு, ${stats.longestStreak} நாள் தொடர். #Vazhikatti #StudyGoals`
+    : `🏆 I unlocked the "${achievement.name}" achievement! ${stats.totalHours.toFixed(0)}h of study, ${stats.longestStreak}-day streak. #Vazhikatti #StudyGoals`;
 
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
@@ -171,8 +171,8 @@ export const AchievementShareCard = ({
             <div className="relative z-10 flex flex-col items-center text-center">
               {/* Logo/Brand */}
               <div className="flex items-center gap-1 mb-4">
-                <span className="text-xs font-semibold text-gray-600">JKKN</span>
-                <span className="text-xs text-gray-400">AI Career Hub</span>
+                <span className="text-xs font-semibold text-primary">வழிகாட்டி</span>
+                <span className="text-xs text-gray-400">Career Hub</span>
               </div>
 
               {/* Achievement Icon */}
