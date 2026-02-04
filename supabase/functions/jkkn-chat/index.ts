@@ -48,7 +48,7 @@ FORMATTING:
 // Rate limiting constants
 const HOURLY_LIMIT = 50;
 const MAX_MESSAGES = 50;
-const MAX_MESSAGE_LENGTH = 15000; // Increased for bilingual responses
+const MAX_MESSAGE_LENGTH = 1000000; // Increased for user satisfaction
 
 // Check if the message is asking for image generation
 function isImageGenerationRequest(text: string): boolean {
