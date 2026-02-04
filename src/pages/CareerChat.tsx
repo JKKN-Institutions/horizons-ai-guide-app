@@ -434,13 +434,23 @@ const CareerChat = () => {
       await saveMessage(assistantMessage);
       speakText(assistantContent);
     } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'Failed to get response. Please try again.';
       toast({
         title: 'Error',
-        description: 'Failed to get response. Please try again.',
+        description: message,
         variant: 'destructive'
       });
-      // Remove placeholder
-      setMessages((prev) => prev.slice(0, -1));
+      // Remove placeholder assistant message (only if it exists)
+      setMessages((prev) => {
+        const last = prev[prev.length - 1];
+        if (last?.role === 'assistant' && last.content === '') {
+          return prev.slice(0, -1);
+        }
+        return prev;
+      });
     } finally {
       setIsLoading(false);
     }
