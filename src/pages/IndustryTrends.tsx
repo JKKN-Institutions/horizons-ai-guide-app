@@ -1,12 +1,12 @@
  import { useState } from 'react';
  import { useNavigate } from 'react-router-dom';
- import { ArrowLeft, Download, TrendingUp, Target, GraduationCap, Globe, Lightbulb, CheckCircle2, AlertTriangle, MapPin, Award } from 'lucide-react';
+import { ArrowLeft, Download, TrendingUp, Target, Globe, Lightbulb, CheckCircle2, AlertTriangle, MapPin, Award, Sparkles, Building2, Briefcase } from 'lucide-react';
  import { Button } from '@/components/ui/button';
  import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
  import { Badge } from '@/components/ui/badge';
  import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
- import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
  import { useToast } from '@/hooks/use-toast';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
  
  // Job Market Outlook Data
  const jobMarketOutlook = [
@@ -180,14 +180,49 @@
  
  const renderDemandBars = (demand: number) => {
    return (
-     <div className="flex gap-0.5">
+    <div className="flex gap-1">
        {[1, 2, 3, 4, 5].map((i) => (
-         <span key={i} className={i <= demand ? 'text-orange-500' : 'text-muted-foreground/30'}>🔥</span>
+        <div 
+          key={i} 
+          className={`w-2 h-5 rounded-sm transition-colors ${
+            i <= demand 
+              ? 'bg-gradient-to-t from-amber-500 to-amber-400' 
+              : 'bg-muted/40'
+          }`}
+        />
        ))}
      </div>
    );
  };
  
+// Professional Table Component
+const ProfessionalTable = ({ 
+  headers, 
+  children, 
+  headerBg = 'bg-primary/5'
+}: { 
+  headers: string[];
+  children: React.ReactNode;
+  headerBg?: string;
+}) => (
+  <div className="border rounded-xl overflow-hidden shadow-sm">
+    <Table>
+      <TableHeader>
+        <TableRow className={headerBg}>
+          {headers.map((header, idx) => (
+            <TableHead key={idx} className="font-semibold text-foreground py-4">
+              {header}
+            </TableHead>
+          ))}
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {children}
+      </TableBody>
+    </Table>
+  </div>
+);
+
  const IndustryTrends = () => {
    const navigate = useNavigate();
    const { toast } = useToast();
@@ -201,485 +236,539 @@
    };
  
    return (
-     <div className="min-h-screen bg-background">
-       {/* Hero Header */}
-       <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-8 px-4">
-         <div className="container mx-auto">
-           <div className="flex items-center justify-between mb-6">
-             <Button variant="ghost" onClick={() => navigate(-1)} className="text-primary-foreground hover:bg-primary-foreground/10">
+    <div className="min-h-screen bg-gradient-to-b from-muted/30 via-background to-muted/20">
+      {/* Professional Hero Header */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.1),transparent_50%)]" />
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+        
+        <div className="relative container mx-auto px-4 py-10">
+          <div className="flex items-center justify-between mb-8">
+            <Button 
+              variant="ghost" 
+              onClick={() => navigate(-1)} 
+              className="text-white/90 hover:text-white hover:bg-white/10 backdrop-blur-sm"
+            >
                <ArrowLeft className="mr-2 h-4 w-4" />
                Back
              </Button>
-             <Button onClick={handleDownloadPDF} className="bg-amber-500 hover:bg-amber-600 text-white">
+            <Button 
+              onClick={handleDownloadPDF} 
+              className="bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm"
+            >
                <Download className="mr-2 h-4 w-4" />
-               Download PDF
+              Download Report
              </Button>
            </div>
            
-           <div className="text-center space-y-3">
-             <h1 className="text-3xl md:text-4xl font-bold">
-               📊 Industry Trends & Insights | Class of 2026
+          <div className="text-center space-y-4 max-w-3xl mx-auto pb-8">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
+              <Sparkles className="h-4 w-4 text-amber-300" />
+              <span className="text-sm font-medium text-white/90">Career Intelligence Report</span>
+            </div>
+            
+            <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
+              Industry Trends & Insights
              </h1>
-             <p className="text-lg text-amber-300 font-medium">
+            <p className="text-lg text-amber-200/90 font-tamil">
                வகுப்பு 2026 - தொழில் போக்குகள் & நுண்ணறிவுகள்
              </p>
-             <p className="text-xl text-primary-foreground/90 font-semibold mt-4">
-               Your Career Compass for the Next Decade
-             </p>
-             <p className="text-amber-300/80">
-               அடுத்த தசாப்தத்திற்கான உங்கள் வாழ்க்கை திசைகாட்டி
-             </p>
+            
+            <div className="inline-flex items-center gap-2 mt-6">
+              <Badge className="bg-amber-500/20 text-amber-200 border-amber-400/30 text-sm py-1.5 px-4">
+                Class of 2026
+              </Badge>
+              <Badge className="bg-white/10 text-white/80 border-white/20 text-sm py-1.5 px-4">
+                Your Career Compass
+              </Badge>
+            </div>
            </div>
          </div>
        </div>
  
-       <div className="container mx-auto px-4 py-8 space-y-12">
+      <div className="container mx-auto px-4 py-12 space-y-16">
          {/* Why This Matters Section */}
-         <Card className="border-l-4 border-l-amber-500 bg-amber-50/50 dark:bg-amber-950/20">
-           <CardHeader>
-             <CardTitle className="flex items-center gap-2 text-amber-700 dark:text-amber-400">
-               <Target className="h-6 w-6" />
-               🎯 WHY THIS MATTERS FOR YOU
-             </CardTitle>
-           </CardHeader>
-           <CardContent>
-             <p className="text-lg">
-               You're passing out in <strong>2026</strong> and will enter the workforce around <strong>2029-2030</strong>. 
-               The career decisions you make <strong>NOW</strong> will shape your next 10-15 years. 
-               Here's what the job market will look like when you graduate.
-             </p>
-             <p className="text-amber-600 dark:text-amber-400 mt-2 font-medium">
-               நீங்கள் 2026-ல் படிப்பை முடித்து 2029-30 வாக்கில் வேலை சந்தையில் நுழைவீர்கள். இப்போது எடுக்கும் முடிவுகள் அடுத்த 10-15 ஆண்டுகளை வடிவமைக்கும்.
-             </p>
+        <Card className="border-0 shadow-lg bg-gradient-to-br from-amber-50 to-orange-50/50 dark:from-amber-950/30 dark:to-orange-950/20">
+          <CardContent className="p-8">
+            <div className="flex items-start gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center shrink-0 shadow-lg shadow-amber-500/25">
+                <Target className="h-7 w-7 text-white" />
+              </div>
+              <div className="space-y-3">
+                <h3 className="text-xl font-bold text-foreground">Why This Matters For You</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  You're passing out in <span className="font-semibold text-foreground">2026</span> and will enter the workforce around <span className="font-semibold text-foreground">2029-2030</span>. 
+                  The career decisions you make <span className="font-semibold text-primary">NOW</span> will shape your next 10-15 years.
+                </p>
+                <p className="text-amber-700 dark:text-amber-400 font-tamil text-sm">
+                  இப்போது எடுக்கும் முடிவுகள் அடுத்த 10-15 ஆண்டுகளை வடிவமைக்கும்.
+                </p>
+              </div>
+            </div>
            </CardContent>
          </Card>
  
          {/* Job Market Outlook 2026-2030 */}
          <section>
-           <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2">
-             <TrendingUp className="h-8 w-8 text-primary" />
-             🔮 JOB MARKET OUTLOOK 2026-2030
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
+              <TrendingUp className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium text-primary">Market Intelligence</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+              Job Market Outlook 2026-2030
+            </h2>
+          </div>
+          
+          <Card className="border-0 shadow-lg overflow-hidden">
+            <ProfessionalTable 
+              headers={['Factor', 'Current (2025)', 'When You Graduate (2029-30)']}
+              headerBg="bg-gradient-to-r from-primary/10 to-primary/5"
+            >
+              {jobMarketOutlook.map((row, idx) => (
+                <TableRow key={idx} className="hover:bg-muted/30 transition-colors">
+                  <TableCell className="font-medium py-4">{row.factor}</TableCell>
+                  <TableCell className="text-muted-foreground">{row.current}</TableCell>
+                  <TableCell>
+                    <Badge className="bg-primary/10 text-primary border-primary/20 font-medium">
+                      {row.future}
+                    </Badge>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </ProfessionalTable>
+          </Card>
+        </section>
+
+        {/* Stream-wise Career Guidance */}
+        <section>
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-secondary/10 rounded-full px-4 py-2 mb-4">
+              <Briefcase className="h-4 w-4 text-secondary" />
+              <span className="text-sm font-medium text-secondary">Career Pathways</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+              Career Paths by 12th Stream
+            </h2>
+            <p className="text-amber-600 dark:text-amber-400 mt-2 font-tamil">
+              12-ஆம் வகுப்பு பிரிவின் அடிப்படையில் வாழ்க்கை பாதைகள்
+            </p>
+          </div>
+
+          <Tabs value={activeStream} onValueChange={setActiveStream} className="w-full">
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-8 h-auto p-1.5 bg-muted/50 rounded-xl">
+              <TabsTrigger value="maths" className="py-3 text-xs md:text-sm rounded-lg data-[state=active]:bg-blue-600 data-[state=active]:text-white">
+                Science (Maths)
+              </TabsTrigger>
+              <TabsTrigger value="bio" className="py-3 text-xs md:text-sm rounded-lg data-[state=active]:bg-emerald-600 data-[state=active]:text-white">
+                Science (Biology)
+              </TabsTrigger>
+              <TabsTrigger value="commerce" className="py-3 text-xs md:text-sm rounded-lg data-[state=active]:bg-purple-600 data-[state=active]:text-white">
+                Commerce
+              </TabsTrigger>
+              <TabsTrigger value="arts" className="py-3 text-xs md:text-sm rounded-lg data-[state=active]:bg-orange-600 data-[state=active]:text-white">
+                Arts/Humanities
+              </TabsTrigger>
+            </TabsList>
+
+            {/* Science with Maths */}
+            <TabsContent value="maths">
+              <Card className="border-0 shadow-lg overflow-hidden">
+                <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white pb-6">
+                  <CardTitle className="text-xl">With Maths (Groups 101-106) → Engineering/Tech Path</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 space-y-8">
+                  <div>
+                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
+                      <Sparkles className="h-5 w-5 text-amber-500" />
+                      Top 5 Future-Proof Careers
+                    </h4>
+                    <ProfessionalTable 
+                      headers={['Career', 'Why Choose This', 'Salary by 2030', 'Demand']}
+                      headerBg="bg-blue-50 dark:bg-blue-950/30"
+                    >
+                      {scienceMathsCareers.map((c, idx) => (
+                        <TableRow key={idx} className="hover:bg-blue-50/50 dark:hover:bg-blue-950/20">
+                          <TableCell className="font-semibold">{c.career}</TableCell>
+                          <TableCell className="text-muted-foreground">{c.why}</TableCell>
+                          <TableCell>
+                            <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+                              {c.salary}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>{renderDemandBars(c.demand)}</TableCell>
+                        </TableRow>
+                      ))}
+                    </ProfessionalTable>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/30 dark:to-orange-950/20 p-6 rounded-2xl border border-red-100 dark:border-red-900/50">
+                    <h4 className="font-bold text-red-700 dark:text-red-400 flex items-center gap-2 mb-4">
+                      <AlertTriangle className="h-5 w-5" />
+                      Declining Fields (Avoid/Be Cautious)
+                    </h4>
+                    <ul className="space-y-3">
+                      {scienceMathsDeclining.map((item, idx) => (
+                        <li key={idx} className="flex items-center gap-3 text-red-800 dark:text-red-300 bg-white/50 dark:bg-red-950/30 p-3 rounded-lg">
+                          <div className="w-6 h-6 rounded-full bg-red-100 dark:bg-red-900/50 flex items-center justify-center shrink-0">
+                            <span className="text-sm">✕</span>
+                          </div>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+                      Smart Combinations
+                    </h4>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {scienceMathsCombinations.map((c, idx) => (
+                        <div key={idx} className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/20 p-5 rounded-xl border border-blue-100 dark:border-blue-900/50">
+                          <p className="font-semibold text-blue-700 dark:text-blue-400 mb-1">{c.interest}</p>
+                          <p className="text-sm text-muted-foreground mb-3">Path: {c.path}</p>
+                          <Badge variant="secondary" className="bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
+                            {c.specialization}
+                          </Badge>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Science with Biology */}
+            <TabsContent value="bio">
+              <Card className="border-0 shadow-lg overflow-hidden">
+                <CardHeader className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white pb-6">
+                  <CardTitle className="text-xl">With Biology (Groups 201-208) → Medical/Life Sciences Path</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 space-y-8">
+                  <div>
+                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
+                      <Sparkles className="h-5 w-5 text-amber-500" />
+                      Top 5 Future-Proof Careers
+                    </h4>
+                    <ProfessionalTable 
+                      headers={['Career', 'Why Choose This', 'Salary by 2030', 'Demand']}
+                      headerBg="bg-emerald-50 dark:bg-emerald-950/30"
+                    >
+                      {scienceBioCareers.map((c, idx) => (
+                        <TableRow key={idx} className="hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20">
+                          <TableCell className="font-semibold">{c.career}</TableCell>
+                          <TableCell className="text-muted-foreground">{c.why}</TableCell>
+                          <TableCell>
+                            <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+                              {c.salary}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>{renderDemandBars(c.demand)}</TableCell>
+                        </TableRow>
+                      ))}
+                    </ProfessionalTable>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/20 p-6 rounded-2xl border border-emerald-100 dark:border-emerald-900/50">
+                    <h4 className="font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-2 mb-4">
+                      <Globe className="h-5 w-5" />
+                      Global Opportunities
+                    </h4>
+                    <div className="overflow-x-auto">
+                      <Table>
+                        <TableHeader>
+                          <TableRow className="bg-white/50 dark:bg-emerald-950/30">
+                            <TableHead className="font-semibold">Country</TableHead>
+                            <TableHead className="font-semibold">In-Demand Roles</TableHead>
+                            <TableHead className="font-semibold">Salary Range</TableHead>
+                            <TableHead className="font-semibold">Pathway</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {globalHealthcareOpportunities.map((o, idx) => (
+                            <TableRow key={idx}>
+                              <TableCell className="font-medium">{o.country}</TableCell>
+                              <TableCell>{o.roles}</TableCell>
+                              <TableCell>
+                                <Badge variant="secondary" className="bg-emerald-100 text-emerald-700">
+                                  {o.salary}
+                                </Badge>
+                              </TableCell>
+                              <TableCell className="text-muted-foreground">{o.pathway}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+                      Smart Combinations
+                    </h4>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {scienceBioCombinations.map((c, idx) => (
+                        <div key={idx} className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/20 p-5 rounded-xl border border-emerald-100 dark:border-emerald-900/50">
+                          <p className="font-semibold text-emerald-700 dark:text-emerald-400 mb-1">{c.interest}</p>
+                          <p className="text-sm text-muted-foreground mb-3">Path: {c.path}</p>
+                          <Badge variant="secondary" className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">
+                            {c.specialization}
+                          </Badge>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Commerce */}
+            <TabsContent value="commerce">
+              <Card className="border-0 shadow-lg overflow-hidden">
+                <CardHeader className="bg-gradient-to-r from-purple-600 to-violet-600 text-white pb-6">
+                  <CardTitle className="text-xl">Commerce (300 Series)</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 space-y-8">
+                  <div>
+                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
+                      <Sparkles className="h-5 w-5 text-amber-500" />
+                      Top 5 Future-Proof Careers
+                    </h4>
+                    <ProfessionalTable 
+                      headers={['Career', 'Why Choose This', 'Salary by 2030', 'Demand']}
+                      headerBg="bg-purple-50 dark:bg-purple-950/30"
+                    >
+                      {commerceCareers.map((c, idx) => (
+                        <TableRow key={idx} className="hover:bg-purple-50/50 dark:hover:bg-purple-950/20">
+                          <TableCell className="font-semibold">{c.career}</TableCell>
+                          <TableCell className="text-muted-foreground">{c.why}</TableCell>
+                          <TableCell>
+                            <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+                              {c.salary}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>{renderDemandBars(c.demand)}</TableCell>
+                        </TableRow>
+                      ))}
+                    </ProfessionalTable>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/20 p-6 rounded-2xl border border-purple-100 dark:border-purple-900/50">
+                    <h4 className="font-bold text-purple-700 dark:text-purple-400 flex items-center gap-2 mb-4">
+                      <Lightbulb className="h-5 w-5" />
+                      Commerce + Technology = Goldmine
+                    </h4>
+                    <div className="overflow-x-auto">
+                      <Table>
+                        <TableHeader>
+                          <TableRow className="bg-white/50 dark:bg-purple-950/30">
+                            <TableHead className="font-semibold">Traditional Role</TableHead>
+                            <TableHead className="font-semibold text-center">→</TableHead>
+                            <TableHead className="font-semibold">Future-Ready Version</TableHead>
+                            <TableHead className="font-semibold">Skills to Add</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {commerceTechUpgrade.map((t, idx) => (
+                            <TableRow key={idx}>
+                              <TableCell className="text-muted-foreground">{t.traditional}</TableCell>
+                              <TableCell className="text-center text-primary font-bold">→</TableCell>
+                              <TableCell className="font-semibold text-purple-600 dark:text-purple-400">{t.futureReady}</TableCell>
+                              <TableCell>
+                                <Badge variant="secondary" className="bg-purple-100 text-purple-700">
+                                  {t.skills}
+                                </Badge>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+                      Smart Combinations
+                    </h4>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {commerceCombinations.map((c, idx) => (
+                        <div key={idx} className="bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/20 p-5 rounded-xl border border-purple-100 dark:border-purple-900/50">
+                          <p className="font-semibold text-purple-700 dark:text-purple-400 mb-1">{c.interest}</p>
+                          <p className="text-sm text-muted-foreground mb-3">Path: {c.path}</p>
+                          <Badge variant="secondary" className="bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300">
+                            {c.specialization}
+                          </Badge>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Arts/Humanities */}
+            <TabsContent value="arts">
+              <Card className="border-0 shadow-lg overflow-hidden">
+                <CardHeader className="bg-gradient-to-r from-orange-500 to-amber-500 text-white pb-6">
+                  <CardTitle className="text-xl">Arts/Humanities (400 Series)</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 space-y-8">
+                  <div>
+                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
+                      <Sparkles className="h-5 w-5 text-amber-500" />
+                      Top 5 Future-Proof Careers
+                    </h4>
+                    <ProfessionalTable 
+                      headers={['Career', 'Why Choose This', 'Salary by 2030', 'Demand']}
+                      headerBg="bg-orange-50 dark:bg-orange-950/30"
+                    >
+                      {artsCareers.map((c, idx) => (
+                        <TableRow key={idx} className="hover:bg-orange-50/50 dark:hover:bg-orange-950/20">
+                          <TableCell className="font-semibold">{c.career}</TableCell>
+                          <TableCell className="text-muted-foreground">{c.why}</TableCell>
+                          <TableCell>
+                            <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+                              {c.salary}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>{renderDemandBars(c.demand)}</TableCell>
+                        </TableRow>
+                      ))}
+                    </ProfessionalTable>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/30 dark:to-amber-950/20 p-6 rounded-2xl border border-orange-100 dark:border-orange-900/50">
+                    <h4 className="font-bold text-orange-700 dark:text-orange-400 flex items-center gap-2 mb-4">
+                      <Target className="h-5 w-5" />
+                      Arts + Digital Skills = Powerful
+                    </h4>
+                    <div className="overflow-x-auto">
+                      <Table>
+                        <TableHeader>
+                          <TableRow className="bg-white/50 dark:bg-orange-950/30">
+                            <TableHead className="font-semibold">Arts Background</TableHead>
+                            <TableHead className="font-semibold">Add This Skill</TableHead>
+                            <TableHead className="font-semibold">New Career Option</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {artsDigitalSkills.map((s, idx) => (
+                            <TableRow key={idx}>
+                              <TableCell>{s.background}</TableCell>
+                              <TableCell>
+                                <Badge variant="secondary" className="bg-orange-100 text-orange-700">
+                                  {s.addSkill}
+                                </Badge>
+                              </TableCell>
+                              <TableCell className="font-semibold text-orange-600 dark:text-orange-400">{s.newCareer}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+                      Smart Combinations
+                    </h4>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {artsCombinations.map((c, idx) => (
+                        <div key={idx} className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/30 dark:to-amber-950/20 p-5 rounded-xl border border-orange-100 dark:border-orange-900/50">
+                          <p className="font-semibold text-orange-700 dark:text-orange-400 mb-1">{c.interest}</p>
+                          <p className="text-sm text-muted-foreground mb-3">Path: {c.path}</p>
+                          <Badge variant="secondary" className="bg-orange-100 text-orange-700 dark:bg-orange-900/50 dark:text-orange-300">
+                            {c.specialization}
+                          </Badge>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </section>
+
+        {/* Skills Section */}
+        <section>
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-amber-500/10 rounded-full px-4 py-2 mb-4">
+              <Award className="h-4 w-4 text-amber-600" />
+              <span className="text-sm font-medium text-amber-700 dark:text-amber-400">Essential Skills</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+              Skills Every 2026 Graduate Must Have
            </h2>
-           <Card>
-             <CardContent className="p-0 overflow-x-auto">
-               <table className="w-full">
-                 <thead className="bg-primary/10">
-                   <tr>
-                     <th className="text-left p-4 font-semibold">Factor</th>
-                     <th className="text-left p-4 font-semibold">Current (2025)</th>
-                     <th className="text-left p-4 font-semibold">When You Graduate (2029-30)</th>
-                   </tr>
-                 </thead>
-                 <tbody>
-                   {jobMarketOutlook.map((row, idx) => (
-                     <tr key={idx} className="border-b last:border-b-0 hover:bg-muted/50 transition-colors">
-                       <td className="p-4 font-medium">{row.factor}</td>
-                       <td className="p-4 text-muted-foreground">{row.current}</td>
-                       <td className="p-4 text-primary font-semibold">{row.future}</td>
-                     </tr>
-                   ))}
-                 </tbody>
-               </table>
-             </CardContent>
-           </Card>
-         </section>
- 
-         {/* Stream-wise Career Guidance */}
-         <section>
-           <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
-             🔬 CAREER PATHS BY 12TH STREAM
-           </h2>
-           <p className="text-center text-amber-600 dark:text-amber-400 mb-6 font-medium">
-             12-ஆம் வகுப்பு பிரிவின் அடிப்படையில் வாழ்க்கை பாதைகள்
+          <p className="text-amber-600 dark:text-amber-400 mt-2 font-tamil">
+            2026 பட்டதாரி ஒவ்வொருவரும் கற்றுக்கொள்ள வேண்டிய திறன்கள்
            </p>
- 
-           <Tabs value={activeStream} onValueChange={setActiveStream} className="w-full">
-             <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-6">
-               <TabsTrigger value="maths" className="text-xs md:text-sm">🔢 Science (Maths)</TabsTrigger>
-               <TabsTrigger value="bio" className="text-xs md:text-sm">🧬 Science (Biology)</TabsTrigger>
-               <TabsTrigger value="commerce" className="text-xs md:text-sm">💼 Commerce</TabsTrigger>
-               <TabsTrigger value="arts" className="text-xs md:text-sm">📚 Arts/Humanities</TabsTrigger>
-             </TabsList>
- 
-             {/* Science with Maths */}
-             <TabsContent value="maths">
-               <div className="space-y-6">
-                 <Card className="border-l-4 border-l-blue-500">
-                   <CardHeader>
-                     <CardTitle className="text-blue-600">With Maths (Groups 101-106) → Engineering/Tech Path</CardTitle>
-                   </CardHeader>
-                   <CardContent className="space-y-6">
-                     <div>
-                       <h4 className="font-bold text-lg mb-4">🌟 TOP 5 FUTURE-PROOF CAREERS</h4>
-                       <div className="overflow-x-auto">
-                         <table className="w-full text-sm">
-                           <thead className="bg-blue-50 dark:bg-blue-950/30">
-                             <tr>
-                               <th className="text-left p-3">Career</th>
-                               <th className="text-left p-3">Why Choose This</th>
-                               <th className="text-left p-3">Salary by 2030</th>
-                               <th className="text-left p-3">Demand Level</th>
-                             </tr>
-                           </thead>
-                           <tbody>
-                             {scienceMathsCareers.map((c, idx) => (
-                               <tr key={idx} className="border-b">
-                                 <td className="p-3 font-medium">{c.career}</td>
-                                 <td className="p-3 text-muted-foreground">{c.why}</td>
-                                 <td className="p-3 text-primary font-semibold">{c.salary}</td>
-                                 <td className="p-3">{renderDemandBars(c.demand)}</td>
-                               </tr>
-                             ))}
-                           </tbody>
-                         </table>
-                       </div>
-                     </div>
- 
-                     <div className="bg-red-50 dark:bg-red-950/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
-                       <h4 className="font-bold text-red-600 dark:text-red-400 flex items-center gap-2 mb-3">
-                         <AlertTriangle className="h-5 w-5" />
-                         ⚠️ DECLINING FIELDS (Avoid/Be Cautious)
-                       </h4>
-                       <ul className="space-y-2">
-                         {scienceMathsDeclining.map((item, idx) => (
-                           <li key={idx} className="flex items-center gap-2 text-red-700 dark:text-red-300">
-                             <span>❌</span> {item}
-                           </li>
-                         ))}
-                       </ul>
-                     </div>
- 
-                     <div>
-                       <h4 className="font-bold text-lg mb-4">✅ SMART COMBINATIONS</h4>
-                       <div className="grid md:grid-cols-2 gap-4">
-                         {scienceMathsCombinations.map((c, idx) => (
-                           <Card key={idx} className="bg-blue-50/50 dark:bg-blue-950/20">
-                             <CardContent className="p-4">
-                               <p className="font-semibold text-blue-700 dark:text-blue-400">{c.interest}</p>
-                               <p className="text-sm text-muted-foreground">Path: {c.path}</p>
-                               <Badge variant="outline" className="mt-2">{c.specialization}</Badge>
-                             </CardContent>
-                           </Card>
-                         ))}
-                       </div>
-                     </div>
-                   </CardContent>
-                 </Card>
-               </div>
-             </TabsContent>
- 
-             {/* Science with Biology */}
-             <TabsContent value="bio">
-               <div className="space-y-6">
-                 <Card className="border-l-4 border-l-green-500">
-                   <CardHeader>
-                     <CardTitle className="text-green-600">With Biology (Groups 201-208) → Medical/Life Sciences Path</CardTitle>
-                   </CardHeader>
-                   <CardContent className="space-y-6">
-                     <div>
-                       <h4 className="font-bold text-lg mb-4">🌟 TOP 5 FUTURE-PROOF CAREERS</h4>
-                       <div className="overflow-x-auto">
-                         <table className="w-full text-sm">
-                           <thead className="bg-green-50 dark:bg-green-950/30">
-                             <tr>
-                               <th className="text-left p-3">Career</th>
-                               <th className="text-left p-3">Why Choose This</th>
-                               <th className="text-left p-3">Salary by 2030</th>
-                               <th className="text-left p-3">Demand Level</th>
-                             </tr>
-                           </thead>
-                           <tbody>
-                             {scienceBioCareers.map((c, idx) => (
-                               <tr key={idx} className="border-b">
-                                 <td className="p-3 font-medium">{c.career}</td>
-                                 <td className="p-3 text-muted-foreground">{c.why}</td>
-                                 <td className="p-3 text-primary font-semibold">{c.salary}</td>
-                                 <td className="p-3">{renderDemandBars(c.demand)}</td>
-                               </tr>
-                             ))}
-                           </tbody>
-                         </table>
-                       </div>
-                     </div>
- 
-                     <div className="bg-green-50 dark:bg-green-950/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
-                       <h4 className="font-bold text-green-700 dark:text-green-400 flex items-center gap-2 mb-3">
-                         <Globe className="h-5 w-5" />
-                         🌍 GLOBAL OPPORTUNITIES
-                       </h4>
-                       <div className="overflow-x-auto">
-                         <table className="w-full text-sm">
-                           <thead>
-                             <tr className="border-b">
-                               <th className="text-left p-2">Country</th>
-                               <th className="text-left p-2">In-Demand Roles</th>
-                               <th className="text-left p-2">Salary Range</th>
-                               <th className="text-left p-2">Pathway</th>
-                             </tr>
-                           </thead>
-                           <tbody>
-                             {globalHealthcareOpportunities.map((o, idx) => (
-                               <tr key={idx} className="border-b">
-                                 <td className="p-2 font-medium">{o.country}</td>
-                                 <td className="p-2">{o.roles}</td>
-                                 <td className="p-2 text-green-600">{o.salary}</td>
-                                 <td className="p-2 text-muted-foreground">{o.pathway}</td>
-                               </tr>
-                             ))}
-                           </tbody>
-                         </table>
-                       </div>
-                     </div>
- 
-                     <div>
-                       <h4 className="font-bold text-lg mb-4">✅ SMART COMBINATIONS</h4>
-                       <div className="grid md:grid-cols-2 gap-4">
-                         {scienceBioCombinations.map((c, idx) => (
-                           <Card key={idx} className="bg-green-50/50 dark:bg-green-950/20">
-                             <CardContent className="p-4">
-                               <p className="font-semibold text-green-700 dark:text-green-400">{c.interest}</p>
-                               <p className="text-sm text-muted-foreground">Path: {c.path}</p>
-                               <Badge variant="outline" className="mt-2">{c.specialization}</Badge>
-                             </CardContent>
-                           </Card>
-                         ))}
-                       </div>
-                     </div>
-                   </CardContent>
-                 </Card>
-               </div>
-             </TabsContent>
- 
-             {/* Commerce */}
-             <TabsContent value="commerce">
-               <div className="space-y-6">
-                 <Card className="border-l-4 border-l-purple-500">
-                   <CardHeader>
-                     <CardTitle className="text-purple-600">💼 IF YOU'RE CHOOSING COMMERCE (300 Series)</CardTitle>
-                   </CardHeader>
-                   <CardContent className="space-y-6">
-                     <div>
-                       <h4 className="font-bold text-lg mb-4">🌟 TOP 5 FUTURE-PROOF CAREERS</h4>
-                       <div className="overflow-x-auto">
-                         <table className="w-full text-sm">
-                           <thead className="bg-purple-50 dark:bg-purple-950/30">
-                             <tr>
-                               <th className="text-left p-3">Career</th>
-                               <th className="text-left p-3">Why Choose This</th>
-                               <th className="text-left p-3">Salary by 2030</th>
-                               <th className="text-left p-3">Demand Level</th>
-                             </tr>
-                           </thead>
-                           <tbody>
-                             {commerceCareers.map((c, idx) => (
-                               <tr key={idx} className="border-b">
-                                 <td className="p-3 font-medium">{c.career}</td>
-                                 <td className="p-3 text-muted-foreground">{c.why}</td>
-                                 <td className="p-3 text-primary font-semibold">{c.salary}</td>
-                                 <td className="p-3">{renderDemandBars(c.demand)}</td>
-                               </tr>
-                             ))}
-                           </tbody>
-                         </table>
-                       </div>
-                     </div>
- 
-                     <div className="bg-purple-50 dark:bg-purple-950/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
-                       <h4 className="font-bold text-purple-700 dark:text-purple-400 mb-3">
-                         💡 COMMERCE + TECHNOLOGY = GOLDMINE
-                       </h4>
-                       <div className="overflow-x-auto">
-                         <table className="w-full text-sm">
-                           <thead>
-                             <tr className="border-b">
-                               <th className="text-left p-2">Traditional Role</th>
-                               <th className="text-left p-2">→</th>
-                               <th className="text-left p-2">Future-Ready Version</th>
-                               <th className="text-left p-2">Skills to Add</th>
-                             </tr>
-                           </thead>
-                           <tbody>
-                             {commerceTechUpgrade.map((t, idx) => (
-                               <tr key={idx} className="border-b">
-                                 <td className="p-2 text-muted-foreground">{t.traditional}</td>
-                                 <td className="p-2">→</td>
-                                 <td className="p-2 font-medium text-purple-600">{t.futureReady}</td>
-                                 <td className="p-2"><Badge variant="secondary">{t.skills}</Badge></td>
-                               </tr>
-                             ))}
-                           </tbody>
-                         </table>
-                       </div>
-                     </div>
- 
-                     <div>
-                       <h4 className="font-bold text-lg mb-4">✅ SMART COMBINATIONS</h4>
-                       <div className="grid md:grid-cols-2 gap-4">
-                         {commerceCombinations.map((c, idx) => (
-                           <Card key={idx} className="bg-purple-50/50 dark:bg-purple-950/20">
-                             <CardContent className="p-4">
-                               <p className="font-semibold text-purple-700 dark:text-purple-400">{c.interest}</p>
-                               <p className="text-sm text-muted-foreground">Path: {c.path}</p>
-                               <Badge variant="outline" className="mt-2">{c.specialization}</Badge>
-                             </CardContent>
-                           </Card>
-                         ))}
-                       </div>
-                     </div>
-                   </CardContent>
-                 </Card>
-               </div>
-             </TabsContent>
- 
-             {/* Arts/Humanities */}
-             <TabsContent value="arts">
-               <div className="space-y-6">
-                 <Card className="border-l-4 border-l-orange-500">
-                   <CardHeader>
-                     <CardTitle className="text-orange-600">📚 IF YOU'RE CHOOSING ARTS/HUMANITIES (400 Series)</CardTitle>
-                   </CardHeader>
-                   <CardContent className="space-y-6">
-                     <div>
-                       <h4 className="font-bold text-lg mb-4">🌟 TOP 5 FUTURE-PROOF CAREERS</h4>
-                       <div className="overflow-x-auto">
-                         <table className="w-full text-sm">
-                           <thead className="bg-orange-50 dark:bg-orange-950/30">
-                             <tr>
-                               <th className="text-left p-3">Career</th>
-                               <th className="text-left p-3">Why Choose This</th>
-                               <th className="text-left p-3">Salary by 2030</th>
-                               <th className="text-left p-3">Demand Level</th>
-                             </tr>
-                           </thead>
-                           <tbody>
-                             {artsCareers.map((c, idx) => (
-                               <tr key={idx} className="border-b">
-                                 <td className="p-3 font-medium">{c.career}</td>
-                                 <td className="p-3 text-muted-foreground">{c.why}</td>
-                                 <td className="p-3 text-primary font-semibold">{c.salary}</td>
-                                 <td className="p-3">{renderDemandBars(c.demand)}</td>
-                               </tr>
-                             ))}
-                           </tbody>
-                         </table>
-                       </div>
-                     </div>
- 
-                     <div className="bg-orange-50 dark:bg-orange-950/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
-                       <h4 className="font-bold text-orange-700 dark:text-orange-400 mb-3">
-                         🎯 ARTS + DIGITAL SKILLS = POWERFUL
-                       </h4>
-                       <div className="overflow-x-auto">
-                         <table className="w-full text-sm">
-                           <thead>
-                             <tr className="border-b">
-                               <th className="text-left p-2">Arts Background</th>
-                               <th className="text-left p-2">Add This Skill</th>
-                               <th className="text-left p-2">New Career Option</th>
-                             </tr>
-                           </thead>
-                           <tbody>
-                             {artsDigitalSkills.map((s, idx) => (
-                               <tr key={idx} className="border-b">
-                                 <td className="p-2">{s.background}</td>
-                                 <td className="p-2"><Badge variant="secondary">{s.addSkill}</Badge></td>
-                                 <td className="p-2 font-medium text-orange-600">{s.newCareer}</td>
-                               </tr>
-                             ))}
-                           </tbody>
-                         </table>
-                       </div>
-                     </div>
- 
-                     <div>
-                       <h4 className="font-bold text-lg mb-4">✅ SMART COMBINATIONS</h4>
-                       <div className="grid md:grid-cols-2 gap-4">
-                         {artsCombinations.map((c, idx) => (
-                           <Card key={idx} className="bg-orange-50/50 dark:bg-orange-950/20">
-                             <CardContent className="p-4">
-                               <p className="font-semibold text-orange-700 dark:text-orange-400">{c.interest}</p>
-                               <p className="text-sm text-muted-foreground">Path: {c.path}</p>
-                               <Badge variant="outline" className="mt-2">{c.specialization}</Badge>
-                             </CardContent>
-                           </Card>
-                         ))}
-                       </div>
-                     </div>
-                   </CardContent>
-                 </Card>
-               </div>
-             </TabsContent>
-           </Tabs>
-         </section>
- 
-         {/* Skills Section */}
-         <section>
-           <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2">
-             <Award className="h-8 w-8 text-primary" />
-             🏆 SKILLS EVERY 2026 GRADUATE MUST HAVE
-           </h2>
-           <p className="text-center text-amber-600 dark:text-amber-400 mb-6 font-medium">
-             2026 பட்டதாரி ஒவ்வொருவரும் கற்றுக்கொள்ள வேண்டிய திறன்கள்
-           </p>
+          </div>
  
            <div className="grid md:grid-cols-2 gap-6">
-             <Card>
-               <CardHeader>
-                 <CardTitle className="text-red-600">Non-Negotiable Skills (Learn Before College)</CardTitle>
+            <Card className="border-0 shadow-lg overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-red-500 to-rose-500 text-white">
+                <CardTitle className="text-lg">Non-Negotiable Skills (Learn Before College)</CardTitle>
                </CardHeader>
-               <CardContent>
-                 <div className="overflow-x-auto">
-                   <table className="w-full text-sm">
-                     <thead className="bg-red-50 dark:bg-red-950/30">
-                       <tr>
-                         <th className="text-left p-2">Skill</th>
-                         <th className="text-left p-2">Why Essential</th>
-                         <th className="text-left p-2">How to Learn</th>
-                         <th className="text-left p-2">Time</th>
-                       </tr>
-                     </thead>
-                     <tbody>
-                       {nonNegotiableSkills.map((s, idx) => (
-                         <tr key={idx} className="border-b">
-                           <td className="p-2 font-medium">{s.skill}</td>
-                           <td className="p-2 text-muted-foreground">{s.why}</td>
-                           <td className="p-2">{s.how}</td>
-                           <td className="p-2"><Badge variant="outline">{s.time}</Badge></td>
-                         </tr>
-                       ))}
-                     </tbody>
-                   </table>
-                 </div>
+              <CardContent className="p-4">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="bg-red-50/50 dark:bg-red-950/20">
+                      <TableHead className="font-semibold">Skill</TableHead>
+                      <TableHead className="font-semibold">Why Essential</TableHead>
+                      <TableHead className="font-semibold">How to Learn</TableHead>
+                      <TableHead className="font-semibold">Time</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {nonNegotiableSkills.map((s, idx) => (
+                      <TableRow key={idx}>
+                        <TableCell className="font-medium">{s.skill}</TableCell>
+                        <TableCell className="text-muted-foreground text-sm">{s.why}</TableCell>
+                        <TableCell className="text-sm">{s.how}</TableCell>
+                        <TableCell>
+                          <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200">
+                            {s.time}
+                          </Badge>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
                </CardContent>
              </Card>
  
-             <Card>
-               <CardHeader>
-                 <CardTitle className="text-green-600">High-Value Skills (Learn During College)</CardTitle>
+            <Card className="border-0 shadow-lg overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white">
+                <CardTitle className="text-lg">High-Value Skills (Learn During College)</CardTitle>
                </CardHeader>
-               <CardContent>
-                 <div className="overflow-x-auto">
-                   <table className="w-full text-sm">
-                     <thead className="bg-green-50 dark:bg-green-950/30">
-                       <tr>
-                         <th className="text-left p-2">Skill</th>
-                         <th className="text-left p-2">Relevant For</th>
-                         <th className="text-left p-2">Free Resources</th>
-                         <th className="text-left p-2">Paid Certifications</th>
-                       </tr>
-                     </thead>
-                     <tbody>
-                       {highValueSkills.map((s, idx) => (
-                         <tr key={idx} className="border-b">
-                           <td className="p-2 font-medium">{s.skill}</td>
-                           <td className="p-2">{s.relevantFor}</td>
-                           <td className="p-2 text-muted-foreground">{s.free}</td>
-                           <td className="p-2">{s.paid}</td>
-                         </tr>
-                       ))}
-                     </tbody>
-                   </table>
-                 </div>
+              <CardContent className="p-4">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="bg-emerald-50/50 dark:bg-emerald-950/20">
+                      <TableHead className="font-semibold">Skill</TableHead>
+                      <TableHead className="font-semibold">Relevant For</TableHead>
+                      <TableHead className="font-semibold">Free Resources</TableHead>
+                      <TableHead className="font-semibold">Paid</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {highValueSkills.map((s, idx) => (
+                      <TableRow key={idx}>
+                        <TableCell className="font-medium">{s.skill}</TableCell>
+                        <TableCell className="text-sm">{s.relevantFor}</TableCell>
+                        <TableCell className="text-muted-foreground text-sm">{s.free}</TableCell>
+                        <TableCell className="text-sm">{s.paid}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
                </CardContent>
              </Card>
            </div>
@@ -687,56 +776,73 @@
  
          {/* Tamil Nadu Opportunities */}
          <section>
-           <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2">
-             <MapPin className="h-8 w-8 text-primary" />
-             📍 TAMIL NADU OPPORTUNITIES FOR CLASS OF 2026
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
+              <MapPin className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium text-primary">Local Opportunities</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+              Tamil Nadu Opportunities for Class of 2026
            </h2>
-           <p className="text-center text-amber-600 dark:text-amber-400 mb-6 font-medium">
-             2026 வகுப்புக்கான தமிழ்நாடு வாய்ப்புகள்
+          <p className="text-amber-600 dark:text-amber-400 mt-2 font-tamil">
+            2026 வகுப்புக்கான தமிழ்நாடு வாய்ப்புகள்
            </p>
+          </div>
  
            <div className="grid md:grid-cols-2 gap-6">
-             <Card>
-               <CardHeader>
-                 <CardTitle>Top Industries Hiring in TN (2026-2030)</CardTitle>
+            <Card className="border-0 shadow-lg overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-primary to-secondary text-white">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Building2 className="h-5 w-5" />
+                  Top Industries Hiring in TN (2026-2030)
+                </CardTitle>
                </CardHeader>
-               <CardContent>
-                 <div className="overflow-x-auto">
-                   <table className="w-full text-sm">
-                     <thead className="bg-primary/10">
-                       <tr>
-                         <th className="text-left p-2">Industry</th>
-                         <th className="text-left p-2">Locations</th>
-                         <th className="text-left p-2">Starting Salary</th>
-                         <th className="text-left p-2">Best Groups</th>
-                       </tr>
-                     </thead>
-                     <tbody>
-                       {tnIndustries.map((ind, idx) => (
-                         <tr key={idx} className="border-b">
-                           <td className="p-2 font-medium">{ind.industry}</td>
-                           <td className="p-2 text-muted-foreground">{ind.locations}</td>
-                           <td className="p-2 text-primary">{ind.salary}</td>
-                           <td className="p-2"><Badge variant="outline">{ind.bestGroups}</Badge></td>
-                         </tr>
-                       ))}
-                     </tbody>
-                   </table>
-                 </div>
+              <CardContent className="p-4">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="bg-primary/5">
+                      <TableHead className="font-semibold">Industry</TableHead>
+                      <TableHead className="font-semibold">Locations</TableHead>
+                      <TableHead className="font-semibold">Starting Salary</TableHead>
+                      <TableHead className="font-semibold">Best Groups</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {tnIndustries.map((ind, idx) => (
+                      <TableRow key={idx} className="hover:bg-muted/30">
+                        <TableCell className="font-semibold">{ind.industry}</TableCell>
+                        <TableCell className="text-muted-foreground text-sm">{ind.locations}</TableCell>
+                        <TableCell>
+                          <Badge className="bg-primary/10 text-primary border-primary/20">
+                            {ind.salary}
+                          </Badge>
+                        </TableCell>
+                        <TableCell>
+                          <Badge variant="outline" className="bg-secondary/10 text-secondary border-secondary/20">
+                            {ind.bestGroups}
+                          </Badge>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
                </CardContent>
              </Card>
  
-             <Card>
-               <CardHeader>
-                 <CardTitle>Tamil Nadu Government Schemes for Students</CardTitle>
+            <Card className="border-0 shadow-lg overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Award className="h-5 w-5" />
+                  Tamil Nadu Government Schemes for Students
+                </CardTitle>
                </CardHeader>
                <CardContent>
-                 <div className="space-y-4">
+                <div className="space-y-4 p-2">
                    {tnSchemes.map((scheme, idx) => (
-                     <div key={idx} className="p-3 bg-muted/50 rounded-lg">
-                       <p className="font-semibold text-primary">{scheme.scheme}</p>
-                       <p className="text-sm">{scheme.benefit}</p>
-                       <p className="text-xs text-muted-foreground">Eligibility: {scheme.eligibility}</p>
+                    <div key={idx} className="p-4 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/20 rounded-xl border border-amber-100 dark:border-amber-900/50">
+                      <p className="font-bold text-foreground">{scheme.scheme}</p>
+                      <p className="text-primary font-medium mt-1">{scheme.benefit}</p>
+                      <p className="text-xs text-muted-foreground mt-2">Eligibility: {scheme.eligibility}</p>
                      </div>
                    ))}
                  </div>
@@ -747,65 +853,73 @@
  
          {/* Quick Career Matcher */}
          <section>
-           <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
-             ⚡ QUICK CAREER MATCHER
-           </h2>
-           <Card>
-             <CardContent className="p-0 overflow-x-auto">
-               <table className="w-full">
-                 <thead className="bg-primary/10">
-                   <tr>
-                     <th className="text-left p-4 font-semibold">If You Are...</th>
-                     <th className="text-left p-4 font-semibold">Best Groups</th>
-                     <th className="text-left p-4 font-semibold">Top 3 Careers to Explore</th>
-                   </tr>
-                 </thead>
-                 <tbody>
-                   {quickCareerMatcher.map((row, idx) => (
-                     <tr key={idx} className="border-b last:border-b-0 hover:bg-muted/50 transition-colors">
-                       <td className="p-4 font-medium">{row.ifYouAre}</td>
-                       <td className="p-4"><Badge>{row.bestGroups}</Badge></td>
-                       <td className="p-4 text-primary">{row.careers}</td>
-                     </tr>
-                   ))}
-                 </tbody>
-               </table>
-             </CardContent>
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-purple-500/10 rounded-full px-4 py-2 mb-4">
+              <Sparkles className="h-4 w-4 text-purple-600" />
+              <span className="text-sm font-medium text-purple-700 dark:text-purple-400">Quick Match</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+              Quick Career Matcher
+            </h2>
+          </div>
+          
+          <Card className="border-0 shadow-lg overflow-hidden">
+            <ProfessionalTable 
+              headers={['If You Are...', 'Best Groups', 'Top 3 Careers to Explore']}
+              headerBg="bg-gradient-to-r from-purple-100 to-violet-100 dark:from-purple-950/50 dark:to-violet-950/50"
+            >
+              {quickCareerMatcher.map((row, idx) => (
+                <TableRow key={idx} className="hover:bg-purple-50/50 dark:hover:bg-purple-950/20">
+                  <TableCell className="font-semibold">{row.ifYouAre}</TableCell>
+                  <TableCell>
+                    <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300">
+                      {row.bestGroups}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-primary font-medium">{row.careers}</TableCell>
+                </TableRow>
+              ))}
+            </ProfessionalTable>
            </Card>
          </section>
  
          {/* Decision Framework */}
          <section>
-           <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2">
-             <Lightbulb className="h-8 w-8 text-amber-500" />
-             🤔 HOW TO CHOOSE YOUR CAREER (Decision Framework)
-           </h2>
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-amber-500/10 rounded-full px-4 py-2 mb-4">
+              <Lightbulb className="h-4 w-4 text-amber-600" />
+              <span className="text-sm font-medium text-amber-700 dark:text-amber-400">Decision Framework</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+              How to Choose Your Career
+            </h2>
+          </div>
  
            <div className="grid md:grid-cols-2 gap-6">
-             <Card>
-               <CardHeader>
-                 <CardTitle>Step 1: Know Yourself</CardTitle>
+            <Card className="border-0 shadow-lg">
+              <CardHeader className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/20 border-b">
+                <CardTitle className="text-blue-700 dark:text-blue-400">Step 1: Know Yourself</CardTitle>
                </CardHeader>
                <CardContent>
-                 <div className="space-y-3">
+                <div className="space-y-3 p-2">
                    {decisionQuestions.map((q, idx) => (
-                     <div key={idx} className="p-3 bg-muted/50 rounded-lg">
+                    <div key={idx} className="p-4 bg-muted/30 rounded-xl border">
                        <p className="font-medium text-sm">{q.question}</p>
-                       <p className="text-primary text-sm">If Yes → {q.ifYes}</p>
+                      <p className="text-primary text-sm mt-1">If Yes → {q.ifYes}</p>
                      </div>
                    ))}
                  </div>
                </CardContent>
              </Card>
  
-             <Card>
-               <CardHeader>
-                 <CardTitle>Step 2: Reality Check</CardTitle>
+            <Card className="border-0 shadow-lg">
+              <CardHeader className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/20 border-b">
+                <CardTitle className="text-amber-700 dark:text-amber-400">Step 2: Reality Check</CardTitle>
                </CardHeader>
                <CardContent>
-                 <div className="space-y-3">
+                <div className="space-y-3 p-2">
                    {realityCheckQuestions.map((q, idx) => (
-                     <div key={idx} className="p-3 bg-amber-50 dark:bg-amber-950/20 rounded-lg">
+                    <div key={idx} className="p-4 bg-amber-50/50 dark:bg-amber-950/20 rounded-xl border border-amber-100 dark:border-amber-900/50">
                        <p className="font-semibold text-amber-700 dark:text-amber-400">{q.factor}</p>
                        <p className="text-sm text-muted-foreground">{q.question}</p>
                      </div>
@@ -815,17 +929,29 @@
              </Card>
            </div>
  
-           <Card className="mt-6">
-             <CardHeader>
-               <CardTitle>Step 3: Future-Proof Your Choice</CardTitle>
+          <Card className="mt-6 border-0 shadow-lg">
+            <CardHeader className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/20 border-b">
+              <CardTitle className="text-emerald-700 dark:text-emerald-400">Step 3: Future-Proof Your Choice</CardTitle>
              </CardHeader>
-             <CardContent>
+            <CardContent className="p-6">
                <p className="mb-4">Whatever you choose, add:</p>
                <div className="flex flex-wrap gap-3">
-                 <Badge variant="default" className="text-sm py-2 px-4">✅ Digital skills</Badge>
-                 <Badge variant="default" className="text-sm py-2 px-4">✅ Communication skills</Badge>
-                 <Badge variant="default" className="text-sm py-2 px-4">✅ One technical certification</Badge>
-                 <Badge variant="default" className="text-sm py-2 px-4">✅ Internship experience</Badge>
+                <Badge className="text-sm py-2.5 px-5 bg-emerald-100 text-emerald-700 border-emerald-200">
+                  <CheckCircle2 className="w-4 h-4 mr-2" />
+                  Digital skills
+                </Badge>
+                <Badge className="text-sm py-2.5 px-5 bg-blue-100 text-blue-700 border-blue-200">
+                  <CheckCircle2 className="w-4 h-4 mr-2" />
+                  Communication skills
+                </Badge>
+                <Badge className="text-sm py-2.5 px-5 bg-purple-100 text-purple-700 border-purple-200">
+                  <CheckCircle2 className="w-4 h-4 mr-2" />
+                  One technical certification
+                </Badge>
+                <Badge className="text-sm py-2.5 px-5 bg-amber-100 text-amber-700 border-amber-200">
+                  <CheckCircle2 className="w-4 h-4 mr-2" />
+                  Internship experience
+                </Badge>
                </div>
              </CardContent>
            </Card>
@@ -833,22 +959,24 @@
  
          {/* Key Takeaways */}
          <section>
-           <Card className="bg-gradient-to-r from-primary/10 to-amber-500/10 border-2 border-primary/30">
-             <CardHeader>
-               <CardTitle className="text-center text-2xl flex items-center justify-center gap-2">
-                 <CheckCircle2 className="h-8 w-8 text-primary" />
-                 📌 KEY TAKEAWAYS FOR 2026 BATCH
-               </CardTitle>
-             </CardHeader>
-             <CardContent>
-               <div className="grid md:grid-cols-2 gap-4">
-                 {keyTakeaways.map((takeaway, idx) => (
-                   <div key={idx} className="flex items-start gap-3 p-4 bg-background rounded-lg">
-                     <span className="text-2xl">{idx + 1}️⃣</span>
-                     <p className="font-medium">{takeaway}</p>
-                   </div>
-                 ))}
-               </div>
+          <Card className="border-0 shadow-xl bg-gradient-to-br from-primary/5 via-background to-amber-500/5 overflow-hidden">
+            <div className="bg-gradient-to-r from-primary to-secondary p-6 text-white text-center">
+              <h2 className="text-2xl font-bold flex items-center justify-center gap-2">
+                <CheckCircle2 className="h-7 w-7" />
+                Key Takeaways for 2026 Batch
+              </h2>
+            </div>
+            <CardContent className="p-8">
+              <div className="grid md:grid-cols-2 gap-4">
+                {keyTakeaways.map((takeaway, idx) => (
+                  <div key={idx} className="flex items-start gap-4 p-5 bg-white dark:bg-card rounded-xl border shadow-sm hover:shadow-md transition-shadow">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <span className="text-primary font-bold">{idx + 1}</span>
+                    </div>
+                    <p className="font-medium text-foreground">{takeaway}</p>
+                  </div>
+                ))}
+              </div>
              </CardContent>
            </Card>
          </section>
