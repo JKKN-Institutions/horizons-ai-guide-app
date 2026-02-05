@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, forwardRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Brain, Sparkles, ArrowLeft, Lightbulb, Target, TrendingUp, BookOpen, Briefcase, Stethoscope, Calculator, Palette, ChevronRight, ChevronLeft, Loader2, GitCompare, X, Check, DollarSign, BarChart3, Clock, Users, GraduationCap, Award, RotateCcw, Volume2, VolumeX, Download, FileText, MapPin, Quote, Map, List } from "lucide-react";
@@ -378,7 +378,7 @@ const TestimonialCarousel = () => {
   );
 };
 
-const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(_props, ref) {
+const AICareerPredictor = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(0); // Start at intro step (0)
   const [selectedStream, setSelectedStream] = useState("");
@@ -596,24 +596,32 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
       }
 
       if (data?.predictions && data.predictions.length > 0) {
-        setPredictions(data.predictions);
-        
+        const predictionsData = data.predictions;
+        console.log("Setting predictions:", predictionsData.length, "items");
+
         // Get skill recommendations for top career
-        const topCareer = data.predictions[0]?.career;
+        const topCareer = predictionsData[0]?.career;
+        let skillsData: SkillRecommendation[] = [];
+        
         if (topCareer && !abortControllerRef.current?.signal.aborted) {
           try {
-            const skillData = await supabase.functions.invoke("career-predictor", {
+            const skillResponse = await supabase.functions.invoke("career-predictor", {
               body: { type: "skills", career: topCareer },
             });
-            if (skillData.data?.skills) {
-              setSkills(skillData.data.skills);
+            if (skillResponse.data?.skills) {
+              skillsData = skillResponse.data.skills;
+              console.log("Skills loaded:", skillsData.length, "items");
             }
           } catch (skillError) {
             console.error("Failed to fetch skills:", skillError);
           }
         }
         
+        // Batch all state updates together to prevent race conditions
+        setPredictions(predictionsData);
+        setSkills(skillsData);
         setShowResults(true);
+        console.log("Results set to true");
       } else {
         console.warn("No predictions in response, using fallback");
         throw new Error("No predictions received");
@@ -2445,6 +2453,6 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
       </div>
     </div>
   );
-});
+};
 
 export default AICareerPredictor;
