@@ -1345,12 +1345,6 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
             </div>
           )}
 
-          <div className="text-center">
-            <Button size="lg" onClick={() => navigate("/career-assessment")}>
-              Take Full Career Assessment
-              <ChevronRight className="h-4 w-4 ml-2" />
-            </Button>
-          </div>
         </div>
       </div>
     );
