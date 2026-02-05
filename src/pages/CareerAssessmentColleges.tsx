@@ -94,20 +94,6 @@ const boosterCards: BoosterCard[] = [
     badge1Icon: Sparkles,
     badge2Icon: Lightbulb,
   },
-  {
-    id: 'skill_analyzer',
-    title: 'Skill Gap Analyzer',
-    description: 'Identify missing skills for your dream career and get learning recommendations',
-    badge1: 'Action Plans',
-    badge2: 'Resources',
-    icon: Target,
-    cardGradient: 'bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50 border-2 border-blue-200/60 hover:border-blue-300 hover:shadow-[0_8px_30px_rgba(59,130,246,0.2)]',
-    iconGradient: 'bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-200',
-    buttonGradient: 'bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 hover:from-blue-600 hover:via-indigo-600 hover:to-blue-600 text-white shadow-blue-200 hover:shadow-blue-300',
-    buttonText: 'Analyze Skills',
-    badge1Icon: Zap,
-    badge2Icon: BookOpen,
-  },
 ];
 
 const CareerAssessmentColleges = () => {
