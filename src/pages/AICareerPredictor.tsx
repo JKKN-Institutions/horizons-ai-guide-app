@@ -233,6 +233,7 @@ const locationPreferences = [
 ];
 
 const nearbyStates = [
+  { id: "tamilnadu_state", label: "Tamil Nadu", description: "Home state", color: "from-emerald-600 to-green-700", bgColor: "bg-emerald-50", borderColor: "border-emerald-400", emoji: "🌴" },
   { id: "karnataka", label: "Karnataka", description: "Bangalore, Mysore", color: "from-red-500 to-rose-600", bgColor: "bg-red-50", borderColor: "border-red-400", emoji: "🏙️" },
   { id: "kerala", label: "Kerala", description: "Kochi, Trivandrum", color: "from-emerald-500 to-green-600", bgColor: "bg-emerald-50", borderColor: "border-emerald-400", emoji: "🌴" },
   { id: "andhra", label: "Andhra Pradesh", description: "Vizag, Tirupati", color: "from-blue-500 to-sky-600", bgColor: "bg-blue-50", borderColor: "border-blue-400", emoji: "⛰️" },
