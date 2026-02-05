@@ -1,11 +1,11 @@
 import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
-import { GroupSelector } from './GroupSelector';
+import { GroupSelector, groupCategories } from './GroupSelector';
 import { MarksEntryForm } from './MarksEntryForm';
 import { CategorySelector } from './CategorySelector';
 import { CutoffResults } from './CutoffResults';
 import { EligibleCourses } from './EligibleCourses';
-import { StudentGroup, Category, CutoffResult } from './types';
+import { StudentGroup, Category, CutoffResult, getGroupCategory, isEligibleForTNEA } from './types';
 import { Calculator, GraduationCap, Building2, MapPin, CheckCircle } from 'lucide-react';
 
 export const EduCutoff = () => {
@@ -39,7 +39,8 @@ export const EduCutoff = () => {
         overallPercentage = Math.round((validMarks.reduce((a, b) => a + b, 0) / validMarks.length) * 10) / 10;
       }
 
-      if (selectedGroup === 'pcm' || selectedGroup === 'pcmb') {
+      // Calculate TNEA cutoff for science maths groups (100 series)
+      if (isEligibleForTNEA(selectedGroup)) {
         const maths = marks.Mathematics ?? 0;
         const physics = marks.Physics ?? 0;
         const chemistry = marks.Chemistry ?? 0;
@@ -71,26 +72,21 @@ export const EduCutoff = () => {
   const canCalculate = () => {
     if (!selectedGroup) return false;
     
-    const requiredSubjects = {
-      pcm: ['Mathematics', 'Physics', 'Chemistry'],
-      pcb: ['Physics', 'Chemistry', 'Biology'],
-      pcmb: ['Mathematics', 'Physics', 'Chemistry', 'Biology'],
-      commerce: ['Accountancy', 'Business Studies', 'Economics'],
-      arts: [],
-      vocational: [],
-    };
-
-    if (selectedGroup === 'arts') {
-      const artsMarks = Object.entries(marks).filter(([k, v]) => v !== null);
-      return artsMarks.length >= 3;
+    // Get subjects for the selected group
+    let requiredSubjects: string[] = [];
+    for (const cat of groupCategories) {
+      const group = cat.groups.find(g => g.id === selectedGroup);
+      if (group) {
+        requiredSubjects = group.subjects;
+        break;
+      }
     }
 
-    if (selectedGroup === 'vocational') {
-      return marks.theory !== null || marks.practical !== null || marks.overall !== null;
-    }
-
-    const required = requiredSubjects[selectedGroup];
-    return required.every(subject => marks[subject] !== null && marks[subject] !== undefined);
+    // Check if at least 3 core subjects are filled
+    const filledSubjects = requiredSubjects.filter(
+      subject => marks[subject] !== null && marks[subject] !== undefined
+    );
+    return filledSubjects.length >= 3;
   };
 
   return (
