@@ -77,7 +77,7 @@
  export const MarksEntryForm = ({ group, onMarksChange }: MarksEntryFormProps) => {
    const [marks, setMarks] = useState<Record<string, number | null>>({});
    const [neetScore, setNeetScore] = useState<number | null>(null);
-   const [languageMarks, setLanguageMarks] = useState<Record<string, number | null>>({});
+
  
    const subjects = getSubjectsForGroup(group);
    const category = getGroupCategory(group);
@@ -85,28 +85,21 @@
    useEffect(() => {
      setMarks({});
      setNeetScore(null);
-     setLanguageMarks({});
    }, [group]);
  
    useEffect(() => {
      const allMarks: Record<string, number | null> = {
        ...marks,
-       ...languageMarks,
      };
      if (neetScore !== null) {
        allMarks.neet = neetScore;
      }
      onMarksChange(allMarks);
-   }, [marks, neetScore, languageMarks, onMarksChange]);
+  }, [marks, neetScore, onMarksChange]);
  
    const handleMarkChange = (subject: string, value: string) => {
      const numValue = value === '' ? null : Math.min(100, Math.max(0, parseInt(value) || 0));
      setMarks(prev => ({ ...prev, [subject]: numValue }));
-   };
- 
-   const handleLanguageChange = (subject: string, value: string) => {
-     const numValue = value === '' ? null : Math.min(100, Math.max(0, parseInt(value) || 0));
-     setLanguageMarks(prev => ({ ...prev, [subject]: numValue }));
    };
  
    const isValidMark = (value: number | null) => value !== null && value >= 0 && value <= 100;
@@ -189,27 +182,6 @@
                  )}
                </div>
              ))}
-           </div>
-         </div>
- 
-         {/* Part I & II - Language Subjects */}
-         <div>
-           <Label className="text-sm font-medium text-gray-500 mb-3 block">
-             PART I & II - LANGUAGE SUBJECTS (Optional for Cutoff)
-           </Label>
-           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-             {renderInput(
-               'Part I - Tamil/Hindi',
-               '📙',
-               languageMarks.tamil ?? null,
-               (v) => handleLanguageChange('tamil', v)
-             )}
-             {renderInput(
-               'Part II - English',
-               '📓',
-               languageMarks.english ?? null,
-               (v) => handleLanguageChange('english', v)
-             )}
            </div>
          </div>
  
