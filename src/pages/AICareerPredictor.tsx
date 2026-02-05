@@ -17,6 +17,12 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, ResponsiveContainer } from "recharts";
 import TamilNaduMap from "@/components/TamilNaduMap";
+import GroupSelector from "@/components/AICareerPredictor/GroupSelector";
+import SkillAssessment from "@/components/AICareerPredictor/SkillAssessment";
+import PriorityRanker from "@/components/AICareerPredictor/PriorityRanker";
+import CareerRoadmap from "@/components/AICareerPredictor/CareerRoadmap";
+import ActionItems from "@/components/AICareerPredictor/ActionItems";
+import { groupToStream, skillCategories } from "@/data/tnGroupTaxonomy";
 
 // Animation variants
 const stepVariants = {
@@ -37,6 +43,9 @@ const itemVariants = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 }
 };
+
+// Total steps increased to include new skill assessment step
+const TOTAL_STEPS = 9;
 
 // Web Audio API celebration sound generator
 const createCelebrationSound = (audioContext: AudioContext) => {
@@ -380,6 +389,16 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
   const [selectedDuration, setSelectedDuration] = useState("");
   const [selectedGoal, setSelectedGoal] = useState("");
   const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
+  const [selectedGroup, setSelectedGroup] = useState("");
+  const [skillRatings, setSkillRatings] = useState<Record<string, number>>(() => {
+    // Initialize with default values of 3 for all skills
+    const defaults: Record<string, number> = {};
+    skillCategories.forEach(skill => {
+      defaults[skill.id] = 3;
+    });
+    return defaults;
+  });
+  const [rankedPriorities, setRankedPriorities] = useState<string[]>([]);
   const [locationViewMode, setLocationViewMode] = useState<'map' | 'list'>(() => {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('careerPredictor_locationViewMode');
@@ -453,6 +472,19 @@ const AICareerPredictor = forwardRef<HTMLDivElement>(function AICareerPredictor(
     setSelectedPreferences(prev => 
       prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id]
     );
+  };
+
+  const handleUpdateSkill = (skillId: string, value: number) => {
+    setSkillRatings(prev => ({ ...prev, [skillId]: value }));
+  };
+
+  const handleGroupSelect = (groupId: string) => {
+    setSelectedGroup(groupId);
+    // Auto-set stream based on group
+    const stream = groupToStream[groupId];
+    if (stream) {
+      setSelectedStream(stream);
+    }
   };
 
   const toggleLocation = (id: string) => {
