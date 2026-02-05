@@ -501,6 +501,134 @@ export type Database = {
         }
         Relationships: []
       }
+      engineering_colleges: {
+        Row: {
+          annual_fees_max: number | null
+          annual_fees_min: number | null
+          avg_package_lpa: number | null
+          branches_offered: Json | null
+          city: string | null
+          college_code: string | null
+          college_name: string
+          college_name_tamil: string | null
+          college_type: string
+          created_at: string
+          district: string
+          established_year: number | null
+          highest_package_lpa: number | null
+          hostel_available: boolean | null
+          id: string
+          is_active: boolean | null
+          naac_grade: string | null
+          nirf_rank: number | null
+          placement_percentage: number | null
+          total_seats: number | null
+          university: string | null
+          updated_at: string
+          website_url: string | null
+        }
+        Insert: {
+          annual_fees_max?: number | null
+          annual_fees_min?: number | null
+          avg_package_lpa?: number | null
+          branches_offered?: Json | null
+          city?: string | null
+          college_code?: string | null
+          college_name: string
+          college_name_tamil?: string | null
+          college_type: string
+          created_at?: string
+          district: string
+          established_year?: number | null
+          highest_package_lpa?: number | null
+          hostel_available?: boolean | null
+          id?: string
+          is_active?: boolean | null
+          naac_grade?: string | null
+          nirf_rank?: number | null
+          placement_percentage?: number | null
+          total_seats?: number | null
+          university?: string | null
+          updated_at?: string
+          website_url?: string | null
+        }
+        Update: {
+          annual_fees_max?: number | null
+          annual_fees_min?: number | null
+          avg_package_lpa?: number | null
+          branches_offered?: Json | null
+          city?: string | null
+          college_code?: string | null
+          college_name?: string
+          college_name_tamil?: string | null
+          college_type?: string
+          created_at?: string
+          district?: string
+          established_year?: number | null
+          highest_package_lpa?: number | null
+          hostel_available?: boolean | null
+          id?: string
+          is_active?: boolean | null
+          naac_grade?: string | null
+          nirf_rank?: number | null
+          placement_percentage?: number | null
+          total_seats?: number | null
+          university?: string | null
+          updated_at?: string
+          website_url?: string | null
+        }
+        Relationships: []
+      }
+      engineering_cutoffs: {
+        Row: {
+          branch_code: string
+          branch_name: string
+          category: string
+          closing_cutoff: number
+          college_id: string | null
+          counseling_round: number | null
+          created_at: string
+          id: string
+          opening_cutoff: number | null
+          seats_available: number | null
+          year: number
+        }
+        Insert: {
+          branch_code: string
+          branch_name: string
+          category: string
+          closing_cutoff: number
+          college_id?: string | null
+          counseling_round?: number | null
+          created_at?: string
+          id?: string
+          opening_cutoff?: number | null
+          seats_available?: number | null
+          year: number
+        }
+        Update: {
+          branch_code?: string
+          branch_name?: string
+          category?: string
+          closing_cutoff?: number
+          college_id?: string | null
+          counseling_round?: number | null
+          created_at?: string
+          id?: string
+          opening_cutoff?: number | null
+          seats_available?: number | null
+          year?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "engineering_cutoffs_college_id_fkey"
+            columns: ["college_id"]
+            isOneToOne: false
+            referencedRelation: "engineering_colleges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       govt_forum_comments: {
         Row: {
           author_name: string
@@ -1170,6 +1298,122 @@ export type Database = {
         }
         Relationships: []
       }
+      medical_colleges: {
+        Row: {
+          annual_fees_govt: number | null
+          annual_fees_mgmt: number | null
+          annual_fees_nri: number | null
+          bds_seats: number | null
+          city: string | null
+          college_name: string
+          college_name_tamil: string | null
+          college_type: string
+          courses_offered: Json | null
+          created_at: string
+          district: string
+          established_year: number | null
+          hospital_beds: number | null
+          hostel_available: boolean | null
+          id: string
+          is_active: boolean | null
+          mbbs_seats: number | null
+          updated_at: string
+          website_url: string | null
+        }
+        Insert: {
+          annual_fees_govt?: number | null
+          annual_fees_mgmt?: number | null
+          annual_fees_nri?: number | null
+          bds_seats?: number | null
+          city?: string | null
+          college_name: string
+          college_name_tamil?: string | null
+          college_type: string
+          courses_offered?: Json | null
+          created_at?: string
+          district: string
+          established_year?: number | null
+          hospital_beds?: number | null
+          hostel_available?: boolean | null
+          id?: string
+          is_active?: boolean | null
+          mbbs_seats?: number | null
+          updated_at?: string
+          website_url?: string | null
+        }
+        Update: {
+          annual_fees_govt?: number | null
+          annual_fees_mgmt?: number | null
+          annual_fees_nri?: number | null
+          bds_seats?: number | null
+          city?: string | null
+          college_name?: string
+          college_name_tamil?: string | null
+          college_type?: string
+          courses_offered?: Json | null
+          created_at?: string
+          district?: string
+          established_year?: number | null
+          hospital_beds?: number | null
+          hostel_available?: boolean | null
+          id?: string
+          is_active?: boolean | null
+          mbbs_seats?: number | null
+          updated_at?: string
+          website_url?: string | null
+        }
+        Relationships: []
+      }
+      medical_cutoffs: {
+        Row: {
+          category: string
+          closing_neet_score: number
+          closing_rank: number | null
+          college_id: string | null
+          counseling_round: number | null
+          course: string
+          created_at: string
+          id: string
+          quota_type: string
+          seats_filled: number | null
+          year: number
+        }
+        Insert: {
+          category: string
+          closing_neet_score: number
+          closing_rank?: number | null
+          college_id?: string | null
+          counseling_round?: number | null
+          course: string
+          created_at?: string
+          id?: string
+          quota_type: string
+          seats_filled?: number | null
+          year: number
+        }
+        Update: {
+          category?: string
+          closing_neet_score?: number
+          closing_rank?: number | null
+          college_id?: string | null
+          counseling_round?: number | null
+          course?: string
+          created_at?: string
+          id?: string
+          quota_type?: string
+          seats_filled?: number | null
+          year?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "medical_cutoffs_college_id_fkey"
+            columns: ["college_id"]
+            isOneToOne: false
+            referencedRelation: "medical_colleges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       mentors: {
         Row: {
           college: string | null
@@ -1513,6 +1757,33 @@ export type Database = {
           id?: string
           steps_count?: number | null
           title?: string
+        }
+        Relationships: []
+      }
+      saved_colleges: {
+        Row: {
+          college_id: string
+          college_type: string
+          id: string
+          notes: string | null
+          saved_at: string
+          user_id: string
+        }
+        Insert: {
+          college_id: string
+          college_type: string
+          id?: string
+          notes?: string | null
+          saved_at?: string
+          user_id: string
+        }
+        Update: {
+          college_id?: string
+          college_type?: string
+          id?: string
+          notes?: string | null
+          saved_at?: string
+          user_id?: string
         }
         Relationships: []
       }

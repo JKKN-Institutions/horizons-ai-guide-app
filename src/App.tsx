@@ -57,6 +57,9 @@ import AlumniVerification from "./pages/AlumniVerification";
 // TN University Entrance Pages
 import { UniversityEntranceExams, UniversityDetail, CourseDetail, ExamCalendar, MyReminders, UniversityCompare, SavedQuestions as TNSavedQuestions, PreparationTips as TNPreparationTips, TNStudyPlanner, TNMockTest, ChapterWeightage, PerformanceAnalytics, StudyStreaks, AIQuestionGenerator, DailyChallenge, TNForum, WeakTopicIdentifier, TNLeaderboard } from "./components/UniversityEntrance";
 import TNUniversityBrowse from "./pages/TNUniversityBrowse";
+ 
+ // EduCutoff Page
+ import EduCutoff from "./pages/EduCutoff";
 
 const queryClient = new QueryClient();
 
@@ -113,6 +116,9 @@ function App() {
                 <Route path="/career-assessment/boosting" element={<CareerAssessment />} />
                 <Route path="/career-assessment/ai-predictor" element={<AICareerPredictor />} />
                 <Route path="/career-assessment/saved-courses" element={<SavedCourses />} />
+                 
+                 {/* EduCutoff - Admission Predictor */}
+                 <Route path="/edu-cutoff" element={<EduCutoff />} />
                 
                 {/* Government Exams Routes */}
                 <Route path="/government-exams" element={<GovernmentExams />} />
