@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import { TopicWiseView } from './TopicWiseView';
 
 // ---------- DATA ----------
 
@@ -270,6 +271,7 @@ export const PreviousYearQuestions = () => {
   const [bookmarked, setBookmarked] = useState<number[]>([]);
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [topicView, setTopicView] = useState<{ examId: string; examName: string; subject: string } | null>(null);
 
   const toggleCategory = (catId: string) => {
     setExpandedCategories(prev =>
@@ -626,6 +628,20 @@ export const PreviousYearQuestions = () => {
             )}
           </motion.div>
 
+          {/* Topic-wise View (ExamSIDE style chapter breakdown) */}
+          {topicView ? (
+            <TopicWiseView
+              examId={topicView.examId}
+              examName={topicView.examName}
+              subject={topicView.subject}
+              onBack={() => setTopicView(null)}
+              onViewQuestions={(topic) => {
+                setSearchQuery(topic);
+                setTopicView(null);
+              }}
+            />
+          ) : (
+          <>
           {/* Subject-wise Exam Directory (ExamSIDE style) */}
           {selectedCategory && !selectedSubcategory && examSubjectDirectory[selectedCategory] && (
             <motion.div
@@ -657,8 +673,7 @@ export const PreviousYearQuestions = () => {
                           <button
                             key={subject}
                             onClick={() => {
-                              handleSubcategoryClick(selectedCategory, entry.subcategory);
-                              setSearchQuery(subject);
+                              setTopicView({ examId: entry.subcategory, examName: entry.exam, subject });
                             }}
                             className="text-left text-sm text-blue-600 hover:text-blue-800 hover:underline transition-colors py-0.5"
                           >
@@ -836,6 +851,8 @@ export const PreviousYearQuestions = () => {
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </motion.div>
+          )}
+          </>
           )}
         </div>
       </div>
