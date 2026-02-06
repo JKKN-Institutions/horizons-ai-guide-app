@@ -324,9 +324,66 @@ const jeeAdvancedTopics: SubjectTopics = {
   ],
 };
 
+const mhtCetTopics: SubjectTopics = {
+  Mathematics: [
+    {
+      section: 'Algebra',
+      topics: [
+        { name: 'Sets and Relations', total: 0, avg: 0, weightage: 0, trend: -100 },
+        { name: 'Logarithms', total: 5, avg: 0.33, weightage: 0.67, trend: 76.32 },
+        { name: 'Quadratic Equations', total: 2, avg: 0.13, weightage: 0.27, trend: -46 },
+        { name: 'Sequences and Series', total: 1, avg: 0.07, weightage: 0.13, trend: 0 },
+        { name: 'Binomial Theorem', total: 1, avg: 0.07, weightage: 0.13, trend: 0 },
+        { name: 'Permutations and Combinations', total: 15, avg: 1, weightage: 2, trend: 22.7 },
+        { name: 'Probability', total: 57, avg: 3.8, weightage: 7.6, trend: 4.83 },
+        { name: 'Vector Algebra', total: 69, avg: 4.6, weightage: 9.2, trend: -15.44 },
+        { name: 'Three Dimensional Geometry', total: 78, avg: 5.2, weightage: 10.4, trend: 15.56 },
+        { name: 'Matrices and Determinants', total: 16, avg: 1.07, weightage: 2.13, trend: -5.33 },
+        { name: 'Statistics', total: 3, avg: 0.2, weightage: 0.4, trend: -83.19 },
+        { name: 'Mathematical Reasoning', total: 30, avg: 2, weightage: 4, trend: -5.88 },
+        { name: 'Linear Programming', total: 15, avg: 1, weightage: 2, trend: 0 },
+        { name: 'Complex Numbers', total: 16, avg: 1.07, weightage: 2.13, trend: 21.71 },
+      ],
+    },
+    {
+      section: 'Trigonometry',
+      topics: [
+        { name: 'Trigonometric Ratios & Identities', total: 18, avg: 1.2, weightage: 2.4, trend: 37.14 },
+        { name: 'Trigonometric Equations', total: 12, avg: 0.8, weightage: 1.6, trend: -48.88 },
+        { name: 'Inverse Trigonometric Functions', total: 33, avg: 2.2, weightage: 4.4, trend: -25.17 },
+        { name: 'Properties of Triangles', total: 39, avg: 2.6, weightage: 5.2, trend: 131.11 },
+      ],
+    },
+    {
+      section: 'Calculus',
+      topics: [
+        { name: 'Limits, Continuity and Differentiability', total: 32, avg: 2.13, weightage: 4.27, trend: -7.78 },
+        { name: 'Functions', total: 9, avg: 0.6, weightage: 1.2, trend: -20 },
+        { name: 'Definite Integration', total: 30, avg: 2, weightage: 4, trend: 60 },
+        { name: 'Indefinite Integration', total: 45, avg: 3, weightage: 6, trend: -23.86 },
+        { name: 'Application of Derivatives', total: 52, avg: 3.47, weightage: 6.93, trend: -13.38 },
+        { name: 'Area Under The Curves', total: 14, avg: 0.93, weightage: 1.87, trend: -6.5 },
+        { name: 'Differential Equations', total: 59, avg: 3.93, weightage: 7.87, trend: 31.17 },
+        { name: 'Differentiation', total: 36, avg: 2.4, weightage: 4.8, trend: -16.52 },
+      ],
+    },
+    {
+      section: 'Coordinate Geometry',
+      topics: [
+        { name: 'Parabola', total: 6, avg: 0.4, weightage: 0.8, trend: 515.38 },
+        { name: 'Ellipse', total: 8, avg: 0.53, weightage: 1.07, trend: 0 },
+        { name: 'Circle', total: 15, avg: 1, weightage: 2, trend: 0 },
+        { name: 'Straight Lines and Pair of Straight Lines', total: 29, avg: 1.93, weightage: 3.87, trend: -6.3 },
+        { name: 'Hyperbola', total: 5, avg: 0.33, weightage: 0.67, trend: 0 },
+      ],
+    },
+  ],
+};
+
 const examTopicData: ExamTopicMap = {
   'jee-main': jeeMainTopics,
   'jee-advanced': jeeAdvancedTopics,
+  'mht-cet': mhtCetTopics,
 };
 
 // ---------- COMPONENT ----------
