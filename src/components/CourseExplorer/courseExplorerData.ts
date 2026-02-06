@@ -283,25 +283,73 @@ const ugCommerceCourses: CourseCategory = {
   ],
 };
 
-// Arts courses
-const artsProfessionalCourses: CourseCategory = {
-  name: "Professional Paths",
+// Law courses
+const lawCourses: CourseCategory = {
+  name: "Law",
   icon: "⚖️",
   courses: [
-    { id: "ba-llb", name: "BA LLB - Law", shortName: "BA LLB", duration: "5 years", entrance: "CLAT / AILET", entranceRequired: true, fee: "₹1-15 Lakhs", salaryRange: "₹5-50 LPA", demandLevel: 5, description: "Integrated law degree. High-demand profession with diverse career paths.", careers: ["Lawyer", "Judge", "Legal Advisor", "Corporate Counsel"], topColleges: ["NLU Delhi", "NLSIU Bangalore", "NALSAR", "TNDALU"], skills: ["Legal Research", "Argumentation", "Contract Law"] },
-    { id: "upsc-prep", name: "UPSC Civil Services", shortName: "UPSC/IAS", duration: "1-3 years prep", entrance: "UPSC CSE", entranceRequired: true, fee: "₹50K-3 Lakhs (coaching)", salaryRange: "₹8-20 LPA + Perks", demandLevel: 5, hot: true, description: "India's most prestigious exam. Become IAS, IPS, IFS officer.", careers: ["IAS Officer", "IPS Officer", "IFS Officer", "IRS Officer"], topColleges: ["Self-study / Coaching"], skills: ["Current Affairs", "Essay Writing", "General Studies", "Optional Subject"] },
+    { id: "ba-llb", name: "BA LLB - Integrated Law", shortName: "BA LLB", duration: "5 years", entrance: "CLAT / AILET / State", entranceRequired: true, fee: "₹2-15 Lakhs", salaryRange: "₹5-75 LPA", demandLevel: 5, hot: true, description: "Become a lawyer. High earning potential in corporate law.", careers: ["Advocate", "Corporate Lawyer", "Judge", "Legal Advisor", "Public Prosecutor"], topColleges: ["NLSIU Bangalore", "NALSAR", "NLU Delhi", "TNNLU Trichy"], skills: ["Legal Research", "Argumentation", "Contract Law", "Constitutional Law"] },
+    { id: "bcom-llb", name: "B.Com LLB - Commerce + Law", shortName: "B.Com LLB", duration: "5 years", entrance: "CLAT", entranceRequired: true, fee: "₹2-15 Lakhs", salaryRange: "₹5-50 LPA", demandLevel: 4, description: "Law with commerce background. Ideal for tax and corporate law.", careers: ["Tax Lawyer", "Corporate Lawyer", "Company Law", "Business Consultant"], topColleges: ["NLUs", "Symbiosis Law"], skills: ["Tax Law", "Corporate Law", "Commercial Law", "Accounting + Legal"] },
+    { id: "llb", name: "LLB - After Graduation", shortName: "LLB", duration: "3 years", entrance: "State CET", entranceRequired: true, fee: "₹1-8 Lakhs", salaryRange: "₹4-40 LPA", demandLevel: 4, description: "Law degree after completing any graduation.", careers: ["Advocate", "Legal Consultant", "Corporate Legal"], topColleges: ["Govt Law College Chennai", "State Law Universities"], skills: ["Legal Research", "Court Practice", "Documentation"] },
   ],
 };
 
-const artsUGCourses: CourseCategory = {
-  name: "Undergraduate Degrees",
-  icon: "🎓",
+// Government Jobs Path
+const govtJobsCourses: CourseCategory = {
+  name: "Government Jobs Path",
+  icon: "🏛️",
   courses: [
-    { id: "ba-english", name: "B.A English Literature", shortName: "B.A English", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹15K-3 Lakhs", salaryRange: "₹3-12 LPA", demandLevel: 3, description: "Study literature, develop communication and critical thinking skills.", careers: ["Content Writer", "Editor", "Teacher", "Journalist"], topColleges: ["Loyola", "Stella Maris", "MCC", "Presidency"], skills: ["Writing", "Critical Analysis", "Communication"] },
-    { id: "ba-history", name: "B.A History", shortName: "B.A History", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹15K-2 Lakhs", salaryRange: "₹3-10 LPA", demandLevel: 3, description: "Study Indian and world history. Excellent for UPSC preparation.", careers: ["UPSC", "Historian", "Professor", "Museum Curator"], topColleges: ["St. Stephen's", "Hindu College", "Presidency"], skills: ["Research", "Analysis", "Writing"] },
-    { id: "ba-polsci", name: "B.A Political Science", shortName: "B.A Pol Sci", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹15K-3 Lakhs", salaryRange: "₹3-12 LPA", demandLevel: 3, description: "Study governance, politics, and international relations.", careers: ["UPSC", "Policy Analyst", "Political Journalist", "Diplomat"], topColleges: ["St. Stephen's", "LSR", "JNU", "Presidency"], skills: ["Political Analysis", "Public Speaking", "Research"] },
-    { id: "bjmc", name: "BJMC - Journalism & Mass Comm", shortName: "BJMC", duration: "3 years", entrance: "Merit / Entrance", entranceRequired: false, fee: "₹1-8 Lakhs", salaryRange: "₹3-15 LPA", demandLevel: 4, description: "Become a journalist, anchor, or media professional.", careers: ["TV Journalist", "Reporter", "PR Manager", "Content Creator"], topColleges: ["IIMC", "AJK MCRC", "Asian College"], skills: ["Reporting", "Video Production", "Social Media"] },
-    { id: "bsw", name: "BSW - Social Work", shortName: "BSW", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹15K-2 Lakhs", salaryRange: "₹3-8 LPA", demandLevel: 3, description: "Work for social change, NGOs, and community development.", careers: ["Social Worker", "NGO Manager", "Community Developer", "Counselor"], topColleges: ["TISS", "Loyola", "MCC"], skills: ["Empathy", "Community Engagement", "Counseling"] },
+    { id: "upsc", name: "UPSC Civil Services (IAS/IPS)", shortName: "UPSC CSE", duration: "Graduation + 1-2 years prep", entrance: "UPSC CSE", entranceRequired: true, fee: "₹50K-2 Lakhs (coaching)", salaryRange: "₹10-25 LPA + perks", demandLevel: 5, description: "Become IAS/IPS/IFS officer. Most prestigious govt career in India.", careers: ["IAS Officer", "IPS Officer", "IFS", "IRS", "District Collector"], topColleges: ["Any Degree + Coaching (Shankar IAS, Vision IAS)"], skills: ["General Studies", "Current Affairs", "Essay", "Interview"] },
+    { id: "tnpsc", name: "TNPSC Group 1/2/4", shortName: "TNPSC", duration: "Graduation + 6-12 months prep", entrance: "TNPSC Exam", entranceRequired: true, fee: "₹10K-50K (coaching)", salaryRange: "₹4-15 LPA", demandLevel: 5, description: "Tamil Nadu state government jobs. Good job security.", careers: ["Deputy Collector", "DSP", "Tahsildar", "BDO", "Junior Assistant"], topColleges: ["Any Degree + TNPSC Coaching"], skills: ["Tamil Nadu GK", "Current Affairs", "Aptitude", "General Studies"] },
+    { id: "banking", name: "Banking - PO/Clerk", shortName: "Bank Jobs", duration: "Graduation + 6 months prep", entrance: "IBPS/SBI PO/Clerk", entranceRequired: true, fee: "₹10K-30K (coaching)", salaryRange: "₹4-12 LPA", demandLevel: 5, description: "Work in public sector banks. Good salary and job security.", careers: ["Bank PO", "Bank Clerk", "Bank Manager", "RBI Officer"], topColleges: ["Any Degree + Banking Coaching"], skills: ["Quantitative Aptitude", "Reasoning", "English", "Banking Awareness"] },
+    { id: "ssc", name: "SSC CGL/CHSL", shortName: "SSC", duration: "Graduation + 6 months prep", entrance: "SSC Exam", entranceRequired: true, fee: "₹10K-30K (coaching)", salaryRange: "₹4-10 LPA", demandLevel: 4, description: "Central government jobs across various ministries.", careers: ["Inspector", "Auditor", "Assistant", "Tax Assistant"], topColleges: ["Any Degree + SSC Coaching"], skills: ["Quantitative Aptitude", "Reasoning", "English", "General Studies"] },
+  ],
+};
+
+// Media & Communication
+const mediaCourses: CourseCategory = {
+  name: "Media & Communication",
+  icon: "📰",
+  courses: [
+    { id: "bjmc", name: "BJMC - Journalism & Mass Communication", shortName: "BJMC", duration: "3 years", entrance: "Merit / Entrance", entranceRequired: false, fee: "₹1-8 Lakhs", salaryRange: "₹4-25 LPA", demandLevel: 4, description: "Become a journalist, news anchor, or media professional.", careers: ["Journalist", "News Anchor", "Editor", "PR Manager", "Content Creator"], topColleges: ["IIMC", "AJK MCRC Jamia", "Symbiosis", "ACJ Chennai"], skills: ["Writing", "Reporting", "Video Production", "Communication"] },
+    { id: "bmm", name: "BMM - Bachelor of Mass Media", shortName: "BMM", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹1-5 Lakhs", salaryRange: "₹4-20 LPA", demandLevel: 4, description: "Study advertising, PR, film, and digital media.", careers: ["Advertising", "PR Executive", "Film Production", "Digital Media"], topColleges: ["St. Xavier's Mumbai", "MOP Vaishnav"], skills: ["Creative Writing", "Advertising", "Media Planning", "PR"] },
+    { id: "bsc-visual-comm", name: "B.Sc Visual Communication", shortName: "B.Sc Vis Comm", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹1-5 Lakhs", salaryRange: "₹4-18 LPA", demandLevel: 4, description: "Learn filmmaking, photography, and visual storytelling.", careers: ["Filmmaker", "Photographer", "Video Editor", "Documentary Maker"], topColleges: ["Loyola", "MOP Vaishnav", "Presidency"], skills: ["Video Production", "Photography", "Editing", "Storytelling"] },
+  ],
+};
+
+// Teaching & Education
+const teachingCourses: CourseCategory = {
+  name: "Teaching & Education",
+  icon: "👨‍🏫",
+  courses: [
+    { id: "bed", name: "B.Ed - Bachelor of Education", shortName: "B.Ed", duration: "2 years (after graduation)", entrance: "State Entrance", entranceRequired: true, fee: "₹20K-2 Lakhs", salaryRange: "₹3-10 LPA", demandLevel: 4, description: "Become a school teacher. Required for govt teaching jobs.", careers: ["School Teacher", "TGT/PGT", "Education Officer"], topColleges: ["Govt B.Ed Colleges", "Central Universities"], skills: ["Pedagogy", "Subject Knowledge", "Communication", "Classroom Management"] },
+    { id: "integrated-bed", name: "Integrated B.A/B.Com + B.Ed", shortName: "B.A B.Ed / B.Com B.Ed", duration: "4 years", entrance: "State Entrance", entranceRequired: true, fee: "₹50K-3 Lakhs", salaryRange: "₹3-8 LPA", demandLevel: 4, description: "Combined degree for faster entry into teaching.", careers: ["School Teacher", "Primary Teacher"], topColleges: ["RIEs", "Integrated Colleges"], skills: ["Teaching", "Subject Knowledge", "Child Psychology"] },
+    { id: "ma-net", name: "M.A + NET (College Lecturer)", shortName: "MA + NET", duration: "2 + 1 years", entrance: "University + UGC NET", entranceRequired: true, fee: "₹50K-3 Lakhs", salaryRange: "₹8-18 LPA", demandLevel: 3, description: "Become a college professor with UGC NET qualification.", careers: ["Assistant Professor", "Lecturer", "Researcher"], topColleges: ["JNU", "DU", "Central Universities"], skills: ["Research", "Subject Expertise", "Teaching", "Publishing"] },
+  ],
+};
+
+// Social Work & NGO
+const socialWorkCourses: CourseCategory = {
+  name: "Social Work & NGO",
+  icon: "🤝",
+  courses: [
+    { id: "bsw", name: "BSW - Bachelor of Social Work", shortName: "BSW", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹30K-2 Lakhs", salaryRange: "₹3-12 LPA", demandLevel: 3, description: "Work for social causes, NGOs, and community development.", careers: ["Social Worker", "NGO Manager", "Community Developer", "CSR"], topColleges: ["TISS", "Delhi School of Social Work", "Loyola"], skills: ["Community Work", "Counseling", "Project Management", "Empathy"] },
+    { id: "ba-criminology", name: "B.A Criminology", shortName: "B.A Criminology", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹30K-2 Lakhs", salaryRange: "₹4-12 LPA", demandLevel: 3, description: "Study crime, criminal behavior, and justice system.", careers: ["Police", "Forensic Analyst", "Detective", "Prison Administration"], topColleges: ["University of Madras", "Gujarat Forensic Sciences"], skills: ["Criminal Law", "Investigation", "Psychology", "Forensics"] },
+  ],
+};
+
+// Arts UG courses (expanded)
+const artsUGCourses: CourseCategory = {
+  name: "Humanities Degrees",
+  icon: "📚",
+  courses: [
+    { id: "ba-history", name: "B.A History", shortName: "B.A History", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹10K-2 Lakhs", salaryRange: "₹3-15 LPA", demandLevel: 3, description: "Study Indian and world history. Excellent for UPSC.", careers: ["Historian", "Archaeologist", "UPSC", "Professor", "Museum Curator"], topColleges: ["St. Stephen's", "Hindu College", "Presidency", "Loyola"], skills: ["Historical Analysis", "Research", "Writing", "Critical Thinking"] },
+    { id: "ba-polsci", name: "B.A Political Science", shortName: "B.A Pol Sci", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹10K-2 Lakhs", salaryRange: "₹3-15 LPA", demandLevel: 3, description: "Study governance, politics, and international relations.", careers: ["UPSC", "Political Analyst", "Journalist", "Diplomat", "NGO"], topColleges: ["St. Stephen's", "Hindu College", "JNU", "Loyola"], skills: ["Political Analysis", "Research", "Public Policy", "International Relations"] },
+    { id: "ba-economics-arts", name: "B.A Economics", shortName: "B.A Economics", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹15K-5 Lakhs", salaryRange: "₹4-20 LPA", demandLevel: 4, description: "Study economic theory, policy, and analysis. High demand.", careers: ["Economist", "Policy Analyst", "RBI", "UPSC", "Banking", "Research"], topColleges: ["St. Stephen's", "Hindu College", "Presidency Kolkata", "DSE"], skills: ["Economic Analysis", "Statistics", "Policy Analysis", "Research"] },
+    { id: "ba-geography", name: "B.A Geography", shortName: "B.A Geography", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹10K-2 Lakhs", salaryRange: "₹3-12 LPA", demandLevel: 3, description: "Study physical and human geography. Good UPSC optional.", careers: ["Geographer", "Urban Planner", "GIS Analyst", "UPSC"], topColleges: ["Delhi University", "JNU", "BHU", "Presidency"], skills: ["Cartography", "GIS", "Environmental Analysis", "Research"] },
+    { id: "ba-sociology", name: "B.A Sociology", shortName: "B.A Sociology", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹10K-2 Lakhs", salaryRange: "₹3-12 LPA", demandLevel: 3, description: "Study society, social structures, and human behavior.", careers: ["Social Worker", "HR", "NGO", "Research", "UPSC"], topColleges: ["JNU", "Delhi School of Economics", "TISS"], skills: ["Social Research", "Analysis", "Communication", "Empathy"] },
+    { id: "ba-psychology", name: "B.A Psychology", shortName: "B.A Psychology", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹20K-4 Lakhs", salaryRange: "₹3-15 LPA", demandLevel: 4, description: "Study human mind and behavior. Growing demand field.", careers: ["Counselor", "HR", "Clinical Psychologist", "UX Researcher", "Therapist"], topColleges: ["Christ", "Fergusson", "Loyola", "Lady Shri Ram"], skills: ["Counseling", "Research Methods", "Communication", "Empathy"] },
+    { id: "ba-english-arts", name: "B.A English Literature", shortName: "B.A English", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹15K-3 Lakhs", salaryRange: "₹3-12 LPA", demandLevel: 3, description: "Study literature, develop communication and critical thinking skills.", careers: ["Content Writer", "Editor", "Teacher", "Journalist"], topColleges: ["Loyola", "Stella Maris", "MCC", "Presidency"], skills: ["Writing", "Critical Analysis", "Communication"] },
   ],
 };
 
@@ -338,17 +386,17 @@ export const getCoursesForGroup = (groupCode: string): CourseCategory[] => {
 
   // Commerce (300 series)
   if (code >= 301 && code <= 308) {
-    return [professionalCourses, ugCommerceCourses];
+    return [professionalCourses, ugCommerceCourses, lawCourses, govtJobsCourses, teachingCourses];
   }
 
   // Arts (400 series)
   if (code >= 401 && code <= 406) {
-    return [artsProfessionalCourses, artsUGCourses];
+    return [artsUGCourses, lawCourses, govtJobsCourses, mediaCourses, teachingCourses, socialWorkCourses];
   }
 
   // Vocational
   if (groupCode === "VOC") {
-    return [vocationalCourses, pureScienceCourses];
+    return [vocationalCourses, pureScienceCourses, govtJobsCourses];
   }
 
   return [];

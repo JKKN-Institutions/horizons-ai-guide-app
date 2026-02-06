@@ -3,11 +3,14 @@ import { BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import StreamSection from "./StreamSection";
 import CourseResults from "./CourseResults";
+import CourseDetailModal from "./CourseDetailModal";
 import { streamsData, boards, getCoursesForGroup } from "./courseExplorerData";
+import type { CourseInfo } from "./courseExplorerData";
 
 const CourseExplorer = () => {
   const [selectedBoard, setSelectedBoard] = useState("tn");
   const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
+  const [selectedCourse, setSelectedCourse] = useState<CourseInfo | null>(null);
 
   const courseCategories = selectedGroup ? getCoursesForGroup(selectedGroup) : [];
 
@@ -80,8 +83,19 @@ const CourseExplorer = () => {
 
       {/* Course Results */}
       {selectedGroup && (
-        <CourseResults categories={courseCategories} groupCode={selectedGroup} />
+        <CourseResults
+          categories={courseCategories}
+          groupCode={selectedGroup}
+          onViewDetails={setSelectedCourse}
+        />
       )}
+
+      {/* Course Detail Modal */}
+      <CourseDetailModal
+        course={selectedCourse}
+        isOpen={!!selectedCourse}
+        onClose={() => setSelectedCourse(null)}
+      />
     </div>
   );
 };

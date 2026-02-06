@@ -6,6 +6,7 @@ import type { CourseInfo } from "./courseExplorerData";
 
 interface CourseCardProps {
   course: CourseInfo;
+  onViewDetails?: (course: CourseInfo) => void;
 }
 
 const DemandBar = ({ level }: { level: number }) => (
@@ -27,7 +28,7 @@ const DemandBar = ({ level }: { level: number }) => (
   </div>
 );
 
-const CourseCard = ({ course }: CourseCardProps) => {
+const CourseCard = ({ course, onViewDetails }: CourseCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -35,7 +36,7 @@ const CourseCard = ({ course }: CourseCardProps) => {
       <div className="p-4">
         <div className="flex items-start justify-between mb-2">
           <div className="flex-1">
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center gap-2 mb-1 flex-wrap">
               <h4 className="font-semibold text-sm text-gray-900">{course.shortName}</h4>
               {course.hot && (
                 <Badge className="bg-red-500 text-white text-[10px] px-1.5 py-0">🔥 Hot</Badge>
@@ -74,13 +75,23 @@ const CourseCard = ({ course }: CourseCardProps) => {
 
         <div className="flex items-center justify-between">
           <DemandBar level={course.demandLevel} />
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="text-xs text-purple-600 font-medium flex items-center gap-1 hover:underline"
-          >
-            {isExpanded ? "Less" : "More"}
-            <ChevronDown className={cn("w-3 h-3 transition-transform", isExpanded && "rotate-180")} />
-          </button>
+          <div className="flex items-center gap-2">
+            {onViewDetails && (
+              <button
+                onClick={() => onViewDetails(course)}
+                className="text-xs text-white bg-purple-600 px-3 py-1 rounded-lg hover:bg-purple-700 transition-colors"
+              >
+                Details
+              </button>
+            )}
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="text-xs text-purple-600 font-medium flex items-center gap-1 hover:underline"
+            >
+              {isExpanded ? "Less" : "More"}
+              <ChevronDown className={cn("w-3 h-3 transition-transform", isExpanded && "rotate-180")} />
+            </button>
+          </div>
         </div>
       </div>
 
