@@ -578,22 +578,7 @@ const CareerAssessmentColleges = () => {
 
         {activeTab === 'counselling' && <CounsellingSimulator />}
 
-        {activeTab === 'pyq' && (
-          <div className="text-center py-12">
-            <BookOpen className="w-16 h-16 mx-auto mb-4 text-rose-500" />
-            <h3 className="text-2xl font-bold mb-2">Previous Year Questions Practice</h3>
-            <p className="text-gray-600 mb-6 max-w-md mx-auto">
-              Practice with 5000+ questions from 50+ competitive exams with bilingual support
-            </p>
-            <Button 
-              className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white px-8 py-6 text-lg rounded-xl"
-              onClick={() => navigate('/career-assessment/pyq-practice')}
-            >
-              <Target className="w-5 h-5 mr-2" />
-              Start PYQ Practice
-            </Button>
-          </div>
-        )}
+        {activeTab === 'pyq' && <PreviousYearQuestions />}
 
         {activeTab === 'govtjobs' && <GovernmentJobs />}
 
