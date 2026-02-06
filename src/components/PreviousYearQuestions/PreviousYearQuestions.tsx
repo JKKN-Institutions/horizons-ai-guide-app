@@ -46,6 +46,75 @@ interface CategoryNode {
   children: { id: string; label: string }[];
 }
 
+interface ExamSubjectMap {
+  exam: string;
+  subcategory: string;
+  subjects: string[];
+}
+
+const examSubjectDirectory: Record<string, ExamSubjectMap[]> = {
+  engineering: [
+    { exam: 'JEE Main', subcategory: 'jee-main', subjects: ['Physics', 'Chemistry', 'Mathematics'] },
+    { exam: 'JEE Advanced', subcategory: 'jee-advanced', subjects: ['Physics', 'Chemistry', 'Mathematics'] },
+    { exam: 'BITSAT', subcategory: 'bitsat', subjects: ['Physics', 'Chemistry', 'Mathematics', 'English Proficiency', 'Logical Reasoning'] },
+    { exam: 'VITEEE', subcategory: 'viteee', subjects: ['Physics', 'Chemistry', 'Mathematics', 'Aptitude', 'English'] },
+    { exam: 'SRMJEEE', subcategory: 'srmjeee', subjects: ['Physics', 'Chemistry', 'Mathematics'] },
+    { exam: 'TNEA / Anna Univ', subcategory: 'tnea', subjects: ['Physics', 'Chemistry', 'Mathematics'] },
+    { exam: 'MHT CET', subcategory: 'mht-cet', subjects: ['Mathematics', 'Physics', 'Chemistry'] },
+    { exam: 'COMEDK', subcategory: 'comedk', subjects: ['Physics', 'Chemistry', 'Mathematics'] },
+    { exam: 'WB JEE', subcategory: 'wb-jee', subjects: ['Physics', 'Chemistry', 'Mathematics'] },
+    { exam: 'KCET', subcategory: 'kcet', subjects: ['Physics', 'Chemistry', 'Mathematics'] },
+    { exam: 'AP EAPCET', subcategory: 'ap-eapcet', subjects: ['Physics', 'Chemistry', 'Mathematics'] },
+    { exam: 'TS EAMCET', subcategory: 'ts-eamcet', subjects: ['Physics', 'Chemistry', 'Mathematics'] },
+    { exam: 'IAT (IISER)', subcategory: 'iat-iiser', subjects: ['Chemistry', 'Physics', 'Mathematics', 'Biology'] },
+  ],
+  medical: [
+    { exam: 'NEET UG', subcategory: 'neet-ug', subjects: ['Physics', 'Chemistry', 'Biology'] },
+    { exam: 'NEET PG', subcategory: 'neet-pg', subjects: ['Pre-Clinical', 'Para-Clinical', 'Clinical'] },
+    { exam: 'AIIMS (old)', subcategory: 'aiims', subjects: ['Physics', 'Chemistry', 'Biology', 'GK'] },
+    { exam: 'Nursing', subcategory: 'nursing', subjects: ['Physics', 'Chemistry', 'Biology', 'English'] },
+    { exam: 'Pharmacy', subcategory: 'pharmacy', subjects: ['Physics', 'Chemistry', 'Biology/Maths'] },
+  ],
+  management: [
+    { exam: 'CAT', subcategory: 'cat', subjects: ['VARC', 'DILR', 'Quantitative Aptitude'] },
+    { exam: 'XAT', subcategory: 'xat', subjects: ['Verbal', 'Quantitative', 'Decision Making'] },
+    { exam: 'MAT', subcategory: 'mat', subjects: ['Language', 'Maths', 'Data Analysis', 'Reasoning', 'GK'] },
+    { exam: 'TANCET MBA', subcategory: 'tancet-mba', subjects: ['Verbal', 'Quantitative', 'Analytical'] },
+    { exam: 'SNAP', subcategory: 'snap', subjects: ['English', 'Quantitative', 'Analytical', 'GK'] },
+  ],
+  law: [
+    { exam: 'CLAT', subcategory: 'clat', subjects: ['English', 'Legal Reasoning', 'GK', 'Quantitative', 'Logical'] },
+    { exam: 'AILET', subcategory: 'ailet', subjects: ['English', 'Legal Aptitude', 'GK', 'Reasoning'] },
+    { exam: 'TNNLU', subcategory: 'tnnlu', subjects: ['English', 'Legal Reasoning', 'GK'] },
+  ],
+  civil: [
+    { exam: 'UPSC Prelims', subcategory: 'upsc-prelims', subjects: ['General Studies', 'CSAT'] },
+    { exam: 'UPSC Mains', subcategory: 'upsc-mains', subjects: ['GS I', 'GS II', 'GS III', 'GS IV', 'Essay', 'Optional'] },
+    { exam: 'TNPSC Group 1', subcategory: 'tnpsc-group1', subjects: ['GS', 'Aptitude', 'Tamil'] },
+    { exam: 'TNPSC Group 2/2A', subcategory: 'tnpsc-group2', subjects: ['GS', 'Tamil', 'Aptitude'] },
+    { exam: 'TNPSC Group 4', subcategory: 'tnpsc-group4', subjects: ['GS', 'Tamil', 'Aptitude'] },
+  ],
+  banking: [
+    { exam: 'SBI PO', subcategory: 'sbi-po', subjects: ['Reasoning', 'Quantitative', 'English', 'Banking'] },
+    { exam: 'IBPS PO', subcategory: 'ibps-po', subjects: ['Reasoning', 'Quantitative', 'English'] },
+    { exam: 'IBPS Clerk', subcategory: 'ibps-clerk', subjects: ['Reasoning', 'Quantitative', 'English'] },
+    { exam: 'SSC CGL', subcategory: 'ssc-cgl', subjects: ['Reasoning', 'Quantitative', 'English', 'GK'] },
+    { exam: 'SSC CHSL', subcategory: 'ssc-chsl', subjects: ['Reasoning', 'Quantitative', 'English', 'GK'] },
+    { exam: 'RRB NTPC', subcategory: 'rrb-ntpc', subjects: ['Maths', 'Reasoning', 'GK'] },
+  ],
+  defence: [
+    { exam: 'NDA', subcategory: 'nda', subjects: ['Maths', 'GAT'] },
+    { exam: 'CDS', subcategory: 'cds', subjects: ['English', 'GK', 'Maths'] },
+    { exam: 'AFCAT', subcategory: 'afcat', subjects: ['Verbal', 'Numerical', 'Reasoning', 'Military Aptitude'] },
+  ],
+  university: [
+    { exam: 'TANCET MCA', subcategory: 'tancet-mca', subjects: ['Maths', 'Analytical', 'Computer'] },
+    { exam: 'TANCET M.E', subcategory: 'tancet-me', subjects: ['Engineering Maths', 'Core Subject'] },
+    { exam: 'TNAU', subcategory: 'tnau', subjects: ['Physics', 'Chemistry', 'Biology/Maths'] },
+    { exam: 'CUET', subcategory: 'cuet', subjects: ['GS', 'Domain', 'Language'] },
+  ],
+};
+
 const sidebarCategories: CategoryNode[] = [
   {
     id: 'engineering', label: 'Engineering', icon: '⚙️', color: 'from-blue-500 to-cyan-500',
@@ -56,6 +125,13 @@ const sidebarCategories: CategoryNode[] = [
       { id: 'bitsat', label: 'BITSAT' },
       { id: 'viteee', label: 'VITEEE' },
       { id: 'srmjeee', label: 'SRMJEEE' },
+      { id: 'mht-cet', label: 'MHT CET' },
+      { id: 'comedk', label: 'COMEDK' },
+      { id: 'wb-jee', label: 'WB JEE' },
+      { id: 'kcet', label: 'KCET' },
+      { id: 'ap-eapcet', label: 'AP EAPCET' },
+      { id: 'ts-eamcet', label: 'TS EAMCET' },
+      { id: 'iat-iiser', label: 'IAT (IISER)' },
     ],
   },
   {
@@ -549,6 +625,53 @@ export const PreviousYearQuestions = () => {
               </Button>
             )}
           </motion.div>
+
+          {/* Subject-wise Exam Directory (ExamSIDE style) */}
+          {selectedCategory && !selectedSubcategory && examSubjectDirectory[selectedCategory] && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-6"
+            >
+              <div className="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+                {/* Directory header */}
+                <div className={cn("px-5 py-3 bg-gradient-to-r text-white", getCategoryGradient(selectedCategory))}>
+                  <h4 className="font-bold text-sm uppercase tracking-wider flex items-center gap-2">
+                    <BookOpen className="w-4 h-4" />
+                    Subject-wise Question Bank
+                  </h4>
+                  <p className="text-white/80 text-xs mt-0.5">Click on a subject to browse topic-wise previous year questions</p>
+                </div>
+                {/* Exam grid */}
+                <div className="p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                  {examSubjectDirectory[selectedCategory].map((entry) => (
+                    <div key={entry.subcategory} className="space-y-1.5">
+                      <h5
+                        className="font-bold text-gray-800 text-sm cursor-pointer hover:text-rose-600 transition-colors"
+                        onClick={() => handleSubcategoryClick(selectedCategory, entry.subcategory)}
+                      >
+                        {entry.exam}
+                      </h5>
+                      <div className="flex flex-col gap-0.5">
+                        {entry.subjects.map((subject) => (
+                          <button
+                            key={subject}
+                            onClick={() => {
+                              handleSubcategoryClick(selectedCategory, entry.subcategory);
+                              setSearchQuery(subject);
+                            }}
+                            className="text-left text-sm text-blue-600 hover:text-blue-800 hover:underline transition-colors py-0.5"
+                          >
+                            {subject}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
 
           {/* Papers Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
