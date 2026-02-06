@@ -7,12 +7,25 @@ import CourseDetailModal from "./CourseDetailModal";
 import { streamsData, boards, getCoursesForGroup } from "./courseExplorerData";
 import type { CourseInfo } from "./courseExplorerData";
 
+const streamKeys = Object.keys(streamsData);
+
 const CourseExplorer = () => {
   const [selectedBoard, setSelectedBoard] = useState("tn");
+  const [selectedStream, setSelectedStream] = useState<string | null>(null);
   const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
   const [selectedCourse, setSelectedCourse] = useState<CourseInfo | null>(null);
 
   const courseCategories = selectedGroup ? getCoursesForGroup(selectedGroup) : [];
+
+  const handleStreamSelect = (key: string) => {
+    if (selectedStream === key) {
+      setSelectedStream(null);
+      setSelectedGroup(null);
+    } else {
+      setSelectedStream(key);
+      setSelectedGroup(null);
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -57,28 +70,51 @@ const CourseExplorer = () => {
         </div>
       </div>
 
-      {/* Group Selector */}
+      {/* Stream Selector */}
       <div>
         <p className="text-sm font-medium text-gray-700 mb-3">
-          Select Your 12th Group
-          {selectedGroup && (
+          Select Your Stream
+          {selectedStream && (
             <button
-              onClick={() => setSelectedGroup(null)}
+              onClick={() => { setSelectedStream(null); setSelectedGroup(null); }}
               className="ml-2 text-xs text-purple-600 hover:underline"
             >
-              Clear selection
+              Show all
             </button>
           )}
         </p>
 
-        {Object.entries(streamsData).map(([key, stream]) => (
+        {/* Stream Pills (when no stream selected) */}
+        {!selectedStream && (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+            {streamKeys.map((key) => {
+              const stream = streamsData[key];
+              return (
+                <button
+                  key={key}
+                  onClick={() => handleStreamSelect(key)}
+                  className={cn(
+                    "p-4 rounded-xl border-2 text-left transition-all hover:shadow-md",
+                    stream.bgClass,
+                    stream.borderClass
+                  )}
+                >
+                  <h4 className="font-semibold text-gray-800 text-sm">{stream.title}</h4>
+                  <p className="text-xs text-gray-500 mt-1">{stream.subtitle} • {stream.groups.length} group{stream.groups.length > 1 ? "s" : ""}</p>
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Groups for selected stream */}
+        {selectedStream && streamsData[selectedStream] && (
           <StreamSection
-            key={key}
-            stream={stream}
+            stream={streamsData[selectedStream]}
             selectedGroup={selectedGroup}
             onGroupSelect={setSelectedGroup}
           />
-        ))}
+        )}
       </div>
 
       {/* Course Results */}
