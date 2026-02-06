@@ -11,8 +11,9 @@ serve(async (req) => {
   }
 
   try {
-    const { interests, workPreference, workStyle, type, career } = await req.json();
-    
+    const body = await req.json();
+    const { type } = body;
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
@@ -24,11 +25,11 @@ serve(async (req) => {
     let toolChoice = {};
 
     if (type === "skills") {
-      // Skill gap analysis
-      systemPrompt = `You are a career skill advisor for Indian students. Analyze skill requirements for the given career and provide actionable recommendations with current skill levels and learning resources.`;
-      
-      userPrompt = `For a career as a ${career || "Software Developer"}, provide skill gap analysis with 4 key skills needed.`;
-      
+      const { career } = body;
+      systemPrompt = `You are a career skill advisor for Tamil Nadu 12th-standard students (Class of 2026). Analyze skill requirements for the given career and provide actionable recommendations with current skill levels and learning resources relevant to Indian students.`;
+
+      userPrompt = `For a career as a ${career || "Software Developer"}, provide skill gap analysis with 4-5 key skills needed. Include free/affordable Indian learning resources.`;
+
       tools = [{
         type: "function",
         function: {
@@ -42,13 +43,13 @@ serve(async (req) => {
                 items: {
                   type: "object",
                   properties: {
-                    skill: { type: "string", description: "Name of the skill" },
-                    importance: { type: "number", description: "Importance score 0-100" },
-                    currentLevel: { type: "number", description: "Estimated current level for a beginner 0-100" },
-                    resources: { 
-                      type: "array", 
+                    skill: { type: "string" },
+                    importance: { type: "number", description: "Importance score 1-10" },
+                    currentLevel: { type: "number", description: "Estimated current level for a 12th student 1-10" },
+                    resources: {
+                      type: "array",
                       items: { type: "string" },
-                      description: "2 learning resources for this skill"
+                      description: "2-3 learning resources"
                     }
                   },
                   required: ["skill", "importance", "currentLevel", "resources"]
@@ -61,21 +62,50 @@ serve(async (req) => {
       }];
       toolChoice = { type: "function", function: { name: "provide_skill_analysis" } };
     } else {
-      // Career prediction
-      systemPrompt = `You are an expert career counselor for Indian students. Based on the user's interests, work preferences, and style, predict the top 3 career matches with realistic match scores, descriptions, salary ranges (in Indian Rupees LPA), and growth rates for the Indian job market.`;
-      
-      userPrompt = `User Profile:
-- Interests: ${interests || "General interest in technology and problem-solving"}
-- Work Preference: ${workPreference || "Not specified"} (tech/healthcare/design/business)
-- Work Style: ${workStyle || "Not specified"} (team/solo/hybrid/lead)
+      // Full career prediction using all 7-step assessment data
+      const {
+        interests, workPreference, workStyle,
+        budget, location, duration, percentage, examReadiness,
+        skillRatings, strongestSubject, weakestSubject, entranceScore
+      } = body;
 
-Provide 3 career predictions with match scores between 70-95%.`;
+      systemPrompt = `You are an expert career counselor specializing in Tamil Nadu 12th-standard students (Class of 2026). Your job is to recommend SPECIFIC, REALISTIC career paths that a 12th student in Tamil Nadu can actually pursue.
+
+IMPORTANT RULES:
+- Recommend careers that are DIRECTLY accessible after 12th standard through proper UG courses (B.E/B.Tech, MBBS, B.Sc, BBA, B.Com, BA, BCA, etc.)
+- Career titles should be the END GOAL profession, not vague roles
+- Examples of GOOD career titles: "Software Engineer", "Doctor (MBBS)", "Chartered Accountant", "Civil Engineer", "Data Scientist", "Mechanical Engineer", "Pharmacist", "Lawyer", "IAS Officer", "Architect"
+- Examples of BAD career titles: "EdTech Product Manager", "Curriculum Developer for E-learning", "International Education Consultant" — these are too niche and not relevant for a 12th student
+- Match scores should reflect how well the student's profile fits, ranging 70-95%
+- Salary ranges must be realistic for India (in LPA format)
+- Growth rates should reflect current Indian job market trends
+- Consider the student's group subjects, budget, location preference, and exam readiness when recommending`;
+
+      userPrompt = `STUDENT ASSESSMENT DATA:
+
+📚 12th Group & Subjects: ${interests || "Not specified"}
+🎯 Top Interests: ${workPreference || "Not specified"}
+📊 Career Priorities (ranked): ${workStyle || "Not specified"}
+
+💰 Family Budget: ${budget || "Not specified"}
+📍 Preferred Location: ${location || "Not specified"}
+⏰ Course Duration Preference: ${duration || "Not specified"}
+🎯 Exam Readiness: ${examReadiness || "Not specified"}
+
+📈 Expected Percentage: ${percentage || "Not specified"}
+📗 Strongest Subject: ${strongestSubject || "Not specified"}
+📕 Weakest Subject: ${weakestSubject || "Not specified"}
+${entranceScore ? `🏆 Entrance Exam Score: ${entranceScore}` : ""}
+
+Self-rated Skills: ${skillRatings ? JSON.stringify(skillRatings) : "Not provided"}
+
+Based on ALL of the above data, provide the TOP 5 most suitable career paths for this student. Each career must be a realistic, well-known profession achievable through standard Indian education pathways.`;
 
       tools = [{
         type: "function",
         function: {
           name: "provide_career_predictions",
-          description: "Provide career predictions based on user profile",
+          description: "Provide career predictions based on student assessment",
           parameters: {
             type: "object",
             properties: {
@@ -84,12 +114,12 @@ Provide 3 career predictions with match scores between 70-95%.`;
                 items: {
                   type: "object",
                   properties: {
-                    career: { type: "string", description: "Career title" },
+                    career: { type: "string", description: "Specific career title (e.g. Software Engineer, Doctor, CA)" },
                     matchScore: { type: "number", description: "Match percentage 70-95" },
-                    icon: { type: "string", description: "Single emoji representing the career" },
+                    icon: { type: "string", description: "Single emoji for the career" },
                     color: { type: "string", description: "Tailwind gradient like 'from-blue-500 to-indigo-600'" },
-                    description: { type: "string", description: "One sentence description of the career" },
-                    avgSalary: { type: "string", description: "Salary range in format like '₹8-25 LPA'" },
+                    description: { type: "string", description: "One sentence about why this suits the student" },
+                    avgSalary: { type: "string", description: "Salary range like '₹8-25 LPA'" },
                     growthRate: { type: "string", description: "Growth rate like '+35%'" }
                   },
                   required: ["career", "matchScore", "icon", "color", "description", "avgSalary", "growthRate"]
@@ -139,8 +169,7 @@ Provide 3 career predictions with match scores between 70-95%.`;
     }
 
     const data = await response.json();
-    
-    // Extract tool call result
+
     const toolCall = data.choices?.[0]?.message?.tool_calls?.[0];
     if (toolCall?.function?.arguments) {
       const result = JSON.parse(toolCall.function.arguments);
@@ -150,7 +179,6 @@ Provide 3 career predictions with match scores between 70-95%.`;
       );
     }
 
-    // Fallback to message content if no tool call
     const content = data.choices?.[0]?.message?.content;
     if (content) {
       try {
