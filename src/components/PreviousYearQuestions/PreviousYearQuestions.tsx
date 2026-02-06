@@ -1,18 +1,21 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { 
   BookOpen, Search, Download, Filter, FileText, 
   GraduationCap, Calendar, Star, ChevronRight, ChevronDown,
   Clock, Bookmark, BookmarkCheck, Sparkles, SortAsc, 
-  Eye, ExternalLink, TrendingUp, Award, Users
+  Eye, TrendingUp, X, ArrowRight, Flame, Target,
+  Languages, BarChart3
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue 
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // ---------- DATA ----------
 
@@ -31,20 +34,21 @@ interface QuestionPaper {
   questions: number;
   duration: string;
   language: string[];
+  solved?: boolean;
+  trending?: boolean;
 }
 
 interface CategoryNode {
   id: string;
   label: string;
   icon: string;
+  color: string;
   children: { id: string; label: string }[];
 }
 
 const sidebarCategories: CategoryNode[] = [
   {
-    id: 'engineering',
-    label: 'Engineering',
-    icon: '⚙️',
+    id: 'engineering', label: 'Engineering', icon: '⚙️', color: 'from-blue-500 to-cyan-500',
     children: [
       { id: 'jee-main', label: 'JEE Main' },
       { id: 'jee-advanced', label: 'JEE Advanced' },
@@ -55,9 +59,7 @@ const sidebarCategories: CategoryNode[] = [
     ],
   },
   {
-    id: 'medical',
-    label: 'Medical / Health',
-    icon: '🏥',
+    id: 'medical', label: 'Medical / Health', icon: '🏥', color: 'from-emerald-500 to-teal-500',
     children: [
       { id: 'neet-ug', label: 'NEET UG' },
       { id: 'neet-pg', label: 'NEET PG' },
@@ -67,9 +69,7 @@ const sidebarCategories: CategoryNode[] = [
     ],
   },
   {
-    id: 'management',
-    label: 'Management',
-    icon: '📊',
+    id: 'management', label: 'Management', icon: '📊', color: 'from-purple-500 to-pink-500',
     children: [
       { id: 'cat', label: 'CAT' },
       { id: 'xat', label: 'XAT' },
@@ -79,9 +79,7 @@ const sidebarCategories: CategoryNode[] = [
     ],
   },
   {
-    id: 'law',
-    label: 'Law',
-    icon: '⚖️',
+    id: 'law', label: 'Law', icon: '⚖️', color: 'from-amber-500 to-orange-500',
     children: [
       { id: 'clat', label: 'CLAT' },
       { id: 'ailet', label: 'AILET' },
@@ -89,9 +87,7 @@ const sidebarCategories: CategoryNode[] = [
     ],
   },
   {
-    id: 'civil',
-    label: 'Civil Services',
-    icon: '🏛️',
+    id: 'civil', label: 'Civil Services', icon: '🏛️', color: 'from-rose-500 to-pink-500',
     children: [
       { id: 'upsc-prelims', label: 'UPSC Prelims' },
       { id: 'upsc-mains', label: 'UPSC Mains' },
@@ -101,9 +97,7 @@ const sidebarCategories: CategoryNode[] = [
     ],
   },
   {
-    id: 'banking',
-    label: 'Banking & SSC',
-    icon: '🏦',
+    id: 'banking', label: 'Banking & SSC', icon: '🏦', color: 'from-indigo-500 to-blue-500',
     children: [
       { id: 'sbi-po', label: 'SBI PO' },
       { id: 'ibps-po', label: 'IBPS PO' },
@@ -114,9 +108,7 @@ const sidebarCategories: CategoryNode[] = [
     ],
   },
   {
-    id: 'defence',
-    label: 'Defence',
-    icon: '🎖️',
+    id: 'defence', label: 'Defence', icon: '🎖️', color: 'from-green-600 to-emerald-600',
     children: [
       { id: 'nda', label: 'NDA' },
       { id: 'cds', label: 'CDS' },
@@ -124,9 +116,7 @@ const sidebarCategories: CategoryNode[] = [
     ],
   },
   {
-    id: 'university',
-    label: 'TN University',
-    icon: '🎓',
+    id: 'university', label: 'TN University', icon: '🎓', color: 'from-violet-500 to-purple-500',
     children: [
       { id: 'tancet-mca', label: 'TANCET MCA' },
       { id: 'tancet-me', label: 'TANCET M.E/M.Tech' },
@@ -137,19 +127,19 @@ const sidebarCategories: CategoryNode[] = [
 ];
 
 const questionPapers: QuestionPaper[] = [
-  { id: 1, exam: 'JEE Main', year: 2025, session: 'January Session 1 - Shift 1', subjects: ['Physics', 'Chemistry', 'Mathematics'], downloads: 24580, rating: 4.9, category: 'engineering', subcategory: 'jee-main', isNew: true, difficulty: 'Moderate', questions: 90, duration: '3 hrs', language: ['English', 'Hindi', 'Tamil'] },
+  { id: 1, exam: 'JEE Main', year: 2025, session: 'January Session 1 - Shift 1', subjects: ['Physics', 'Chemistry', 'Mathematics'], downloads: 24580, rating: 4.9, category: 'engineering', subcategory: 'jee-main', isNew: true, difficulty: 'Moderate', questions: 90, duration: '3 hrs', language: ['English', 'Hindi', 'Tamil'], trending: true },
   { id: 2, exam: 'JEE Main', year: 2025, session: 'January Session 1 - Shift 2', subjects: ['Physics', 'Chemistry', 'Mathematics'], downloads: 21300, rating: 4.8, category: 'engineering', subcategory: 'jee-main', isNew: true, difficulty: 'Hard', questions: 90, duration: '3 hrs', language: ['English', 'Hindi'] },
   { id: 3, exam: 'JEE Main', year: 2024, session: 'January Session 1', subjects: ['Physics', 'Chemistry', 'Mathematics'], downloads: 35420, rating: 4.8, category: 'engineering', subcategory: 'jee-main', isNew: false, difficulty: 'Moderate', questions: 90, duration: '3 hrs', language: ['English', 'Hindi', 'Tamil'] },
   { id: 4, exam: 'JEE Main', year: 2024, session: 'April Session 2', subjects: ['Physics', 'Chemistry', 'Mathematics'], downloads: 28100, rating: 4.7, category: 'engineering', subcategory: 'jee-main', isNew: false, difficulty: 'Hard', questions: 90, duration: '3 hrs', language: ['English', 'Hindi'] },
   { id: 5, exam: 'JEE Main', year: 2023, session: 'January Session', subjects: ['Physics', 'Chemistry', 'Mathematics'], downloads: 42000, rating: 4.7, category: 'engineering', subcategory: 'jee-main', isNew: false, difficulty: 'Moderate', questions: 90, duration: '3 hrs', language: ['English', 'Hindi'] },
-  { id: 6, exam: 'JEE Advanced', year: 2024, session: 'Paper 1 & 2', subjects: ['Physics', 'Chemistry', 'Mathematics'], downloads: 18900, rating: 4.9, category: 'engineering', subcategory: 'jee-advanced', isNew: false, difficulty: 'Very Hard', questions: 54, duration: '3+3 hrs', language: ['English', 'Hindi'] },
+  { id: 6, exam: 'JEE Advanced', year: 2024, session: 'Paper 1 & 2', subjects: ['Physics', 'Chemistry', 'Mathematics'], downloads: 18900, rating: 4.9, category: 'engineering', subcategory: 'jee-advanced', isNew: false, difficulty: 'Very Hard', questions: 54, duration: '3+3 hrs', language: ['English', 'Hindi'], trending: true },
   { id: 7, exam: 'JEE Advanced', year: 2023, session: 'Paper 1 & 2', subjects: ['Physics', 'Chemistry', 'Mathematics'], downloads: 22100, rating: 4.8, category: 'engineering', subcategory: 'jee-advanced', isNew: false, difficulty: 'Very Hard', questions: 54, duration: '3+3 hrs', language: ['English', 'Hindi'] },
-  { id: 8, exam: 'NEET UG', year: 2025, session: 'May Session', subjects: ['Physics', 'Chemistry', 'Biology'], downloads: 38500, rating: 4.9, category: 'medical', subcategory: 'neet-ug', isNew: true, difficulty: 'Hard', questions: 200, duration: '3 hrs 20 min', language: ['English', 'Hindi', 'Tamil'] },
+  { id: 8, exam: 'NEET UG', year: 2025, session: 'May Session', subjects: ['Physics', 'Chemistry', 'Biology'], downloads: 38500, rating: 4.9, category: 'medical', subcategory: 'neet-ug', isNew: true, difficulty: 'Hard', questions: 200, duration: '3 hrs 20 min', language: ['English', 'Hindi', 'Tamil'], trending: true },
   { id: 9, exam: 'NEET UG', year: 2024, session: 'May Session', subjects: ['Physics', 'Chemistry', 'Biology'], downloads: 52350, rating: 4.9, category: 'medical', subcategory: 'neet-ug', isNew: false, difficulty: 'Hard', questions: 200, duration: '3 hrs 20 min', language: ['English', 'Hindi', 'Tamil'] },
   { id: 10, exam: 'NEET UG', year: 2023, session: 'May Session', subjects: ['Physics', 'Chemistry', 'Biology'], downloads: 61000, rating: 4.8, category: 'medical', subcategory: 'neet-ug', isNew: false, difficulty: 'Moderate', questions: 200, duration: '3 hrs 20 min', language: ['English', 'Hindi', 'Tamil'] },
   { id: 11, exam: 'CAT', year: 2024, session: 'Slot 1, 2, 3', subjects: ['VARC', 'DILR', 'QA'], downloads: 14450, rating: 4.7, category: 'management', subcategory: 'cat', isNew: false, difficulty: 'Hard', questions: 66, duration: '2 hrs', language: ['English'] },
   { id: 12, exam: 'CAT', year: 2023, session: 'Slot 1, 2, 3', subjects: ['VARC', 'DILR', 'QA'], downloads: 18200, rating: 4.6, category: 'management', subcategory: 'cat', isNew: false, difficulty: 'Hard', questions: 66, duration: '2 hrs', language: ['English'] },
-  { id: 13, exam: 'UPSC CSE Prelims', year: 2024, session: 'Paper I (GS) & Paper II (CSAT)', subjects: ['GS', 'CSAT'], downloads: 45900, rating: 4.9, category: 'civil', subcategory: 'upsc-prelims', isNew: false, difficulty: 'Very Hard', questions: 200, duration: '2+2 hrs', language: ['English', 'Hindi'] },
+  { id: 13, exam: 'UPSC CSE Prelims', year: 2024, session: 'Paper I (GS) & Paper II (CSAT)', subjects: ['GS', 'CSAT'], downloads: 45900, rating: 4.9, category: 'civil', subcategory: 'upsc-prelims', isNew: false, difficulty: 'Very Hard', questions: 200, duration: '2+2 hrs', language: ['English', 'Hindi'], trending: true },
   { id: 14, exam: 'UPSC CSE Prelims', year: 2023, session: 'Paper I & II', subjects: ['GS', 'CSAT'], downloads: 52800, rating: 4.9, category: 'civil', subcategory: 'upsc-prelims', isNew: false, difficulty: 'Very Hard', questions: 200, duration: '2+2 hrs', language: ['English', 'Hindi'] },
   { id: 15, exam: 'TNPSC Group 1', year: 2024, session: 'Prelims', subjects: ['GS', 'Aptitude', 'Tamil'], downloads: 32100, rating: 4.8, category: 'civil', subcategory: 'tnpsc-group1', isNew: false, difficulty: 'Hard', questions: 200, duration: '3 hrs', language: ['English', 'Tamil'] },
   { id: 16, exam: 'TNPSC Group 2/2A', year: 2024, session: 'Full Paper', subjects: ['GS', 'Tamil', 'Aptitude'], downloads: 28400, rating: 4.7, category: 'civil', subcategory: 'tnpsc-group2', isNew: false, difficulty: 'Moderate', questions: 200, duration: '3 hrs', language: ['English', 'Tamil'] },
@@ -165,32 +155,32 @@ const questionPapers: QuestionPaper[] = [
   { id: 26, exam: 'TNAU Entrance', year: 2024, session: 'Agriculture Stream', subjects: ['Physics', 'Chemistry', 'Biology/Maths'], downloads: 9800, rating: 4.3, category: 'university', subcategory: 'tnau', isNew: false, difficulty: 'Moderate', questions: 200, duration: '3 hrs', language: ['English', 'Tamil'] },
   { id: 27, exam: 'RRB NTPC', year: 2024, session: 'CBT 1', subjects: ['Maths', 'Reasoning', 'GK'], downloads: 27600, rating: 4.5, category: 'banking', subcategory: 'rrb-ntpc', isNew: false, difficulty: 'Easy', questions: 100, duration: '90 min', language: ['English', 'Hindi', 'Tamil'] },
   { id: 28, exam: 'IBPS PO', year: 2024, session: 'Prelims', subjects: ['Reasoning', 'Quantitative', 'English'], downloads: 19400, rating: 4.6, category: 'banking', subcategory: 'ibps-po', isNew: false, difficulty: 'Moderate', questions: 100, duration: '1 hr', language: ['English', 'Hindi'] },
+  { id: 29, exam: 'VITEEE', year: 2024, session: 'Online Test', subjects: ['Physics', 'Chemistry', 'Maths', 'Aptitude'], downloads: 15200, rating: 4.5, category: 'engineering', subcategory: 'viteee', isNew: false, difficulty: 'Moderate', questions: 125, duration: '2.5 hrs', language: ['English'] },
+  { id: 30, exam: 'SRMJEEE', year: 2024, session: 'Phase 1', subjects: ['Physics', 'Chemistry', 'Maths'], downloads: 12800, rating: 4.4, category: 'engineering', subcategory: 'srmjeee', isNew: false, difficulty: 'Moderate', questions: 125, duration: '2.5 hrs', language: ['English'] },
+  { id: 31, exam: 'CDS', year: 2024, session: 'Paper I & II', subjects: ['English', 'GK', 'Maths'], downloads: 14300, rating: 4.5, category: 'defence', subcategory: 'cds', isNew: false, difficulty: 'Moderate', questions: 300, duration: '2+2+2 hrs', language: ['English'] },
+  { id: 32, exam: 'SSC CHSL', year: 2024, session: 'Tier 1', subjects: ['Reasoning', 'Quantitative', 'English', 'GK'], downloads: 25100, rating: 4.4, category: 'banking', subcategory: 'ssc-chsl', isNew: false, difficulty: 'Easy', questions: 100, duration: '1 hr', language: ['English', 'Hindi'] },
 ];
 
 // ---------- HELPERS ----------
 
-const getDifficultyColor = (d: string) => {
+const getDifficultyConfig = (d: string) => {
   switch (d) {
-    case 'Easy': return 'bg-emerald-100 text-emerald-700 border-emerald-200';
-    case 'Moderate': return 'bg-amber-100 text-amber-700 border-amber-200';
-    case 'Hard': return 'bg-orange-100 text-orange-700 border-orange-200';
-    case 'Very Hard': return 'bg-red-100 text-red-700 border-red-200';
-    default: return 'bg-gray-100 text-gray-700';
+    case 'Easy': return { bg: 'bg-emerald-500/10', text: 'text-emerald-600', border: 'border-emerald-500/20', dot: 'bg-emerald-500' };
+    case 'Moderate': return { bg: 'bg-amber-500/10', text: 'text-amber-600', border: 'border-amber-500/20', dot: 'bg-amber-500' };
+    case 'Hard': return { bg: 'bg-orange-500/10', text: 'text-orange-600', border: 'border-orange-500/20', dot: 'bg-orange-500' };
+    case 'Very Hard': return { bg: 'bg-red-500/10', text: 'text-red-600', border: 'border-red-500/20', dot: 'bg-red-500' };
+    default: return { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200', dot: 'bg-gray-400' };
   }
 };
 
 const getCategoryGradient = (cat: string) => {
-  switch (cat) {
-    case 'engineering': return 'from-blue-500 to-cyan-500';
-    case 'medical': return 'from-emerald-500 to-teal-500';
-    case 'management': return 'from-purple-500 to-pink-500';
-    case 'law': return 'from-amber-500 to-orange-500';
-    case 'civil': return 'from-rose-500 to-pink-500';
-    case 'banking': return 'from-indigo-500 to-blue-500';
-    case 'defence': return 'from-green-600 to-emerald-600';
-    case 'university': return 'from-violet-500 to-purple-500';
-    default: return 'from-gray-500 to-gray-600';
-  }
+  const found = sidebarCategories.find(c => c.id === cat);
+  return found?.color || 'from-gray-500 to-gray-600';
+};
+
+const formatDownloads = (n: number) => {
+  if (n >= 1000) return `${(n / 1000).toFixed(1)}K`;
+  return n.toString();
 };
 
 // ---------- COMPONENT ----------
@@ -203,6 +193,7 @@ export const PreviousYearQuestions = () => {
   const [sortBy, setSortBy] = useState('latest');
   const [bookmarked, setBookmarked] = useState<number[]>([]);
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   const toggleCategory = (catId: string) => {
     setExpandedCategories(prev =>
@@ -234,51 +225,54 @@ export const PreviousYearQuestions = () => {
     setBookmarked(prev => prev.includes(id) ? prev.filter(b => b !== id) : [...prev, id]);
   };
 
-  // Filter
-  const filtered = questionPapers.filter(p => {
-    const matchesCat = !selectedCategory || p.category === selectedCategory;
-    const matchesSub = !selectedSubcategory || p.subcategory === selectedSubcategory;
-    const matchesSearch = !searchQuery || 
-      p.exam.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.subjects.some(s => s.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCat && matchesSub && matchesSearch;
-  });
+  // Filter & Sort
+  const sorted = useMemo(() => {
+    const filtered = questionPapers.filter(p => {
+      const matchesCat = !selectedCategory || p.category === selectedCategory;
+      const matchesSub = !selectedSubcategory || p.subcategory === selectedSubcategory;
+      const matchesSearch = !searchQuery || 
+        p.exam.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.subjects.some(s => s.toLowerCase().includes(searchQuery.toLowerCase()));
+      return matchesCat && matchesSub && matchesSearch;
+    });
 
-  // Sort
-  const sorted = [...filtered].sort((a, b) => {
-    switch (sortBy) {
-      case 'latest': return b.year - a.year || b.id - a.id;
-      case 'popular': return b.downloads - a.downloads;
-      case 'rating': return b.rating - a.rating;
-      default: return 0;
-    }
-  });
+    return [...filtered].sort((a, b) => {
+      switch (sortBy) {
+        case 'latest': return b.year - a.year || b.id - a.id;
+        case 'popular': return b.downloads - a.downloads;
+        case 'rating': return b.rating - a.rating;
+        default: return 0;
+      }
+    });
+  }, [selectedCategory, selectedSubcategory, searchQuery, sortBy]);
 
-  const activeLabelParts: string[] = [];
+  const breadcrumbParts: string[] = [];
   if (selectedCategory) {
     const cat = sidebarCategories.find(c => c.id === selectedCategory);
-    if (cat) activeLabelParts.push(cat.label);
+    if (cat) breadcrumbParts.push(cat.label);
   }
   if (selectedSubcategory) {
     const sub = sidebarCategories.flatMap(c => c.children).find(s => s.id === selectedSubcategory);
-    if (sub) activeLabelParts.push(sub.label);
+    if (sub) breadcrumbParts.push(sub.label);
   }
-  const breadcrumb = activeLabelParts.length ? activeLabelParts.join(' › ') : 'All Exams';
+  const breadcrumb = breadcrumbParts.length ? breadcrumbParts.join(' › ') : 'All Exams';
 
-  // Sidebar content (shared between desktop & mobile)
-  const SidebarContent = () => (
+  // Sidebar content
+  const SidebarNav = () => (
     <div className="space-y-1">
-      {/* All exams link */}
       <button
         onClick={() => { setSelectedCategory(null); setSelectedSubcategory(null); setShowMobileSidebar(false); }}
         className={cn(
-          "w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+          "w-full text-left px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
           !selectedCategory && !selectedSubcategory
-            ? "bg-rose-50 text-rose-700 border border-rose-200"
-            : "text-gray-700 hover:bg-gray-100"
+            ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md shadow-rose-500/25"
+            : "text-gray-700 hover:bg-gray-50"
         )}
       >
-        📚 All Exams
+        <span className="flex items-center gap-2">
+          <BookOpen className="w-4 h-4" />
+          All Exams
+        </span>
       </button>
 
       {sidebarCategories.map(cat => {
@@ -292,52 +286,73 @@ export const PreviousYearQuestions = () => {
             <button
               onClick={() => { toggleCategory(cat.id); handleCategoryClick(cat.id); }}
               className={cn(
-                "w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
+                "w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
                 isActive
-                  ? "bg-rose-50 text-rose-700 border border-rose-200"
+                  ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md shadow-rose-500/25"
                   : hasActiveSub
-                    ? "bg-gray-50 text-gray-800"
+                    ? "bg-rose-50 text-rose-700"
                     : "text-gray-700 hover:bg-gray-50"
               )}
             >
               <span className="flex items-center gap-2">
-                <span>{cat.icon}</span>
+                <span className="text-base">{cat.icon}</span>
                 <span>{cat.label}</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-5 bg-gray-100 text-gray-500">
+                <span className={cn(
+                  "text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center",
+                  isActive ? "bg-white/25 text-white" : "bg-gray-100 text-gray-500"
+                )}>
                   {paperCount}
-                </Badge>
-                <ChevronDown className={cn("w-4 h-4 text-gray-400 transition-transform", isExpanded && "rotate-180")} />
+                </span>
+                <ChevronDown className={cn(
+                  "w-3.5 h-3.5 transition-transform duration-200",
+                  isExpanded && "rotate-180",
+                  isActive ? "text-white/70" : "text-gray-400"
+                )} />
               </span>
             </button>
 
-            {isExpanded && (
-              <div className="ml-4 mt-1 space-y-0.5 border-l-2 border-gray-100 pl-3">
-                {cat.children.map(sub => {
-                  const subCount = questionPapers.filter(p => p.subcategory === sub.id).length;
-                  return (
-                    <button
-                      key={sub.id}
-                      onClick={() => handleSubcategoryClick(cat.id, sub.id)}
-                      className={cn(
-                        "w-full text-left px-3 py-2 rounded-md text-sm transition-colors",
-                        selectedSubcategory === sub.id
-                          ? "bg-rose-50 text-rose-700 font-medium"
-                          : "text-gray-600 hover:bg-gray-50 hover:text-gray-800"
-                      )}
-                    >
-                      <span className="flex items-center justify-between">
-                        <span>{sub.label}</span>
-                        {subCount > 0 && (
-                          <span className="text-[10px] text-gray-400">{subCount}</span>
-                        )}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
+            <AnimatePresence>
+              {isExpanded && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="overflow-hidden"
+                >
+                  <div className="ml-4 mt-1 space-y-0.5 border-l-2 border-rose-100 pl-3">
+                    {cat.children.map(sub => {
+                      const subCount = questionPapers.filter(p => p.subcategory === sub.id).length;
+                      const isSubActive = selectedSubcategory === sub.id;
+                      return (
+                        <button
+                          key={sub.id}
+                          onClick={() => handleSubcategoryClick(cat.id, sub.id)}
+                          className={cn(
+                            "w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-150",
+                            isSubActive
+                              ? "bg-rose-50 text-rose-700 font-semibold border border-rose-200"
+                              : "text-gray-600 hover:bg-gray-50 hover:text-gray-800"
+                          )}
+                        >
+                          <span className="flex items-center justify-between">
+                            <span className="flex items-center gap-2">
+                              {isSubActive && <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />}
+                              {sub.label}
+                            </span>
+                            {subCount > 0 && (
+                              <span className={cn("text-[10px]", isSubActive ? "text-rose-500 font-bold" : "text-gray-400")}>{subCount}</span>
+                            )}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         );
       })}
@@ -345,123 +360,181 @@ export const PreviousYearQuestions = () => {
   );
 
   return (
-    <div className="space-y-6 content-fade-in">
-      {/* Hero Header */}
-      <div className="bg-gradient-to-br from-rose-500 via-pink-600 to-purple-600 rounded-3xl p-6 md:p-8 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-rose-300/20 rounded-full blur-2xl translate-y-1/2 -translate-x-1/4" />
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }} />
+    <div className="space-y-6">
+      {/* Hero Header with glassmorphism */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="relative rounded-3xl overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-rose-600 via-pink-600 to-purple-700" />
+        <div className="absolute inset-0 opacity-30" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }} />
+        <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+        <div className="absolute bottom-0 left-0 w-60 h-60 bg-pink-300/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4" />
 
-        <div className="relative z-10">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl">
-              <BookOpen className="w-6 h-6" />
+        <div className="relative z-10 p-6 md:p-8">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2.5 bg-white/15 backdrop-blur-sm rounded-xl border border-white/20">
+                  <BookOpen className="w-6 h-6 text-white" />
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 rounded-full bg-gradient-to-r from-amber-400 to-orange-400 text-amber-900 text-xs font-bold flex items-center gap-1">
+                    <Sparkles className="w-3 h-3" /> 2025 Updated
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-white/15 backdrop-blur text-white text-xs font-medium flex items-center gap-1 border border-white/20">
+                    <Flame className="w-3 h-3" /> Trending
+                  </span>
+                </div>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-1.5">Previous Year Questions</h2>
+              <p className="text-rose-100 text-base md:text-lg">
+                Access 10,000+ question papers from 50+ entrance exams
+              </p>
+              <p className="text-pink-200/80 font-tamil text-sm mt-1">
+                முந்தைய ஆண்டு கேள்விகள் - சிறந்த நுழைவுத் தேர்வுகளிலிருந்து
+              </p>
             </div>
-            <Badge className="bg-gradient-to-r from-amber-400 to-orange-400 text-amber-900 border-none font-semibold">
-              <Sparkles className="w-3 h-3 mr-1" /> 2025 Updated
-            </Badge>
+            
+            {/* Quick stats in header */}
+            <div className="flex gap-3">
+              {[
+                { value: '10K+', label: 'Papers', icon: FileText },
+                { value: '50+', label: 'Exams', icon: Target },
+                { value: '5K+', label: 'Daily', icon: TrendingUp },
+              ].map((s, i) => (
+                <div key={i} className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl px-4 py-3 text-center min-w-[80px]">
+                  <s.icon className="w-4 h-4 text-white/70 mx-auto mb-1" />
+                  <div className="text-lg font-bold text-white">{s.value}</div>
+                  <div className="text-[10px] text-white/60 uppercase tracking-wider">{s.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Previous Year Questions</h2>
-          <p className="text-rose-100 text-lg mb-1">
-            Access 10,000+ question papers from 50+ entrance exams
-          </p>
-          <p className="text-pink-200 font-tamil text-sm">
-            முந்தைய ஆண்டு கேள்விகள் - சிறந்த நுழைவுத் தேர்வுகளிலிருந்து
-          </p>
         </div>
-      </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        {[
-          { label: 'Question Papers', value: '10K+', icon: FileText, color: 'text-rose-600', bg: 'bg-rose-50' },
-          { label: 'Exams Covered', value: '50+', icon: GraduationCap, color: 'text-purple-600', bg: 'bg-purple-50' },
-          { label: 'Years Archive', value: '15+', icon: Calendar, color: 'text-blue-600', bg: 'bg-blue-50' },
-          { label: 'Daily Downloads', value: '5K+', icon: Download, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-        ].map((stat, i) => (
-          <Card key={i} className="border shadow-sm hover:shadow-md transition-shadow">
-            <CardContent className="p-4 flex items-center gap-3">
-              <div className={cn("p-2.5 rounded-xl", stat.bg)}>
-                <stat.icon className={cn("w-5 h-5", stat.color)} />
-              </div>
-              <div>
-                <div className="text-xl font-bold text-gray-800">{stat.value}</div>
-                <div className="text-xs text-gray-500">{stat.label}</div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      </motion.div>
 
       {/* Search + Sort Bar */}
-      <div className="flex flex-col md:flex-row gap-3">
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="flex flex-col md:flex-row gap-3"
+      >
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <Input
-            placeholder="Search exams, subjects..."
+            placeholder="Search exams, subjects, topics..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 rounded-xl border-gray-200"
+            className="pl-10 h-11 rounded-xl border-gray-200 bg-white shadow-sm focus:shadow-md transition-shadow"
           />
+          {searchQuery && (
+            <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2">
+              <X className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+            </button>
+          )}
         </div>
         <div className="flex gap-2">
-          {/* Mobile filter toggle */}
           <Button 
             variant="outline" 
-            className="md:hidden rounded-xl"
-            onClick={() => setShowMobileSidebar(!showMobileSidebar)}
+            className="md:hidden rounded-xl h-11 border-gray-200"
+            onClick={() => setShowMobileSidebar(true)}
           >
-            <Filter className="w-4 h-4 mr-1" />
+            <Filter className="w-4 h-4 mr-1.5" />
             Filters
+            {(selectedCategory || selectedSubcategory) && (
+              <span className="ml-1.5 w-5 h-5 rounded-full bg-rose-500 text-white text-[10px] flex items-center justify-center font-bold">
+                {(selectedCategory ? 1 : 0) + (selectedSubcategory ? 1 : 0)}
+              </span>
+            )}
           </Button>
           <Select value={sortBy} onValueChange={setSortBy}>
-            <SelectTrigger className="w-[160px] rounded-xl border-gray-200 bg-white">
+            <SelectTrigger className="w-[170px] rounded-xl border-gray-200 bg-white h-11 shadow-sm">
               <SortAsc className="w-4 h-4 mr-2 text-gray-400" />
               <SelectValue placeholder="Sort By" />
             </SelectTrigger>
-            <SelectContent className="bg-white border shadow-lg z-50">
-              <SelectItem value="latest">Latest</SelectItem>
-              <SelectItem value="popular">Most Downloaded</SelectItem>
-              <SelectItem value="rating">Top Rated</SelectItem>
+            <SelectContent className="bg-white border shadow-lg z-50 rounded-xl">
+              <SelectItem value="latest">📅 Latest First</SelectItem>
+              <SelectItem value="popular">🔥 Most Downloaded</SelectItem>
+              <SelectItem value="rating">⭐ Top Rated</SelectItem>
             </SelectContent>
           </Select>
         </div>
-      </div>
+      </motion.div>
 
       {/* Mobile Sidebar Overlay */}
-      {showMobileSidebar && (
-        <div className="md:hidden">
-          <div className="fixed inset-0 bg-black/40 z-40" onClick={() => setShowMobileSidebar(false)} />
-          <div className="fixed inset-y-0 left-0 w-72 bg-white z-50 shadow-xl overflow-y-auto p-4">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-bold text-gray-800">Filters</h3>
-              <button onClick={() => setShowMobileSidebar(false)} className="p-1 rounded-md hover:bg-gray-100">
-                ✕
-              </button>
-            </div>
-            <SidebarContent />
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {showMobileSidebar && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+              onClick={() => setShowMobileSidebar(false)}
+            />
+            <motion.div
+              initial={{ x: -300 }}
+              animate={{ x: 0 }}
+              exit={{ x: -300 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="fixed inset-y-0 left-0 w-80 bg-white z-50 shadow-2xl md:hidden"
+            >
+              <div className="p-4 border-b border-gray-100 flex items-center justify-between">
+                <h3 className="font-bold text-gray-800 flex items-center gap-2">
+                  <Filter className="w-4 h-4 text-rose-500" />
+                  Filter by Category
+                </h3>
+                <button onClick={() => setShowMobileSidebar(false)} className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                  <X className="w-5 h-5 text-gray-500" />
+                </button>
+              </div>
+              <ScrollArea className="h-[calc(100%-60px)] p-4">
+                <SidebarNav />
+              </ScrollArea>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Main Layout: Sidebar + Grid */}
       <div className="flex gap-6">
         {/* Desktop Sidebar */}
         <aside className="hidden md:block w-64 shrink-0">
-          <div className="sticky top-4 bg-white border border-gray-200 rounded-2xl p-4 shadow-sm max-h-[calc(100vh-6rem)] overflow-y-auto">
-            <h3 className="font-bold text-gray-800 mb-3 text-sm uppercase tracking-wider">Category</h3>
-            <SidebarContent />
+          <div className="sticky top-4 bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+            <div className="p-4 bg-gradient-to-r from-gray-50 to-white border-b border-gray-100">
+              <h3 className="font-bold text-gray-800 text-sm uppercase tracking-wider flex items-center gap-2">
+                <BarChart3 className="w-4 h-4 text-rose-500" />
+                Categories
+              </h3>
+            </div>
+            <ScrollArea className="max-h-[calc(100vh-10rem)] p-3">
+              <SidebarNav />
+            </ScrollArea>
           </div>
         </aside>
 
         {/* Content */}
         <div className="flex-1 min-w-0">
           {/* Breadcrumb + Count */}
-          <div className="flex items-center justify-between mb-4">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex items-center justify-between mb-5"
+          >
             <div>
-              <h3 className="font-bold text-gray-800 text-lg">{breadcrumb}</h3>
+              <div className="flex items-center gap-2 mb-0.5">
+                <h3 className="font-bold text-gray-800 text-lg">{breadcrumb}</h3>
+                {selectedCategory && (
+                  <span className={cn("inline-block w-2 h-2 rounded-full bg-gradient-to-r", getCategoryGradient(selectedCategory))} />
+                )}
+              </div>
               <p className="text-sm text-gray-500">
-                Showing "{sorted.length}" items
+                {sorted.length} {sorted.length === 1 ? 'paper' : 'papers'} available
               </p>
             </div>
             {(selectedCategory || selectedSubcategory) && (
@@ -469,125 +542,177 @@ export const PreviousYearQuestions = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => { setSelectedCategory(null); setSelectedSubcategory(null); }}
-                className="text-rose-600 hover:text-rose-700 hover:bg-rose-50"
+                className="text-rose-600 hover:text-rose-700 hover:bg-rose-50 rounded-xl"
               >
-                Clear filter
+                <X className="w-3.5 h-3.5 mr-1" />
+                Clear
               </Button>
             )}
-          </div>
+          </motion.div>
 
           {/* Papers Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-            {sorted.map((paper) => (
-              <Card 
-                key={paper.id}
-                className="bg-white border shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.01] overflow-hidden group"
-              >
-                {/* Top color bar */}
-                <div className={cn("h-1.5 bg-gradient-to-r", getCategoryGradient(paper.category))} />
-                <CardContent className="p-5">
-                  {/* Title row */}
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <h4 className="font-bold text-gray-800">{paper.exam}</h4>
-                        {paper.isNew && (
-                          <Badge className="bg-gradient-to-r from-rose-500 to-pink-500 text-white text-[10px] border-none px-1.5 py-0">
-                            NEW
-                          </Badge>
+            <AnimatePresence mode="popLayout">
+              {sorted.map((paper, index) => (
+                <motion.div
+                  key={paper.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.2, delay: Math.min(index * 0.03, 0.3) }}
+                >
+                  <Card className="group bg-white border border-gray-100 hover:border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden rounded-2xl">
+                    {/* Top gradient bar */}
+                    <div className={cn("h-1 bg-gradient-to-r", getCategoryGradient(paper.category))} />
+                    
+                    <CardContent className="p-5">
+                      {/* Title row */}
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1 flex-wrap">
+                            <h4 className="font-bold text-gray-800 truncate">{paper.exam}</h4>
+                            {paper.isNew && (
+                              <span className="px-2 py-0.5 rounded-md bg-gradient-to-r from-rose-500 to-pink-500 text-white text-[10px] font-bold uppercase tracking-wider animate-pulse">
+                                New
+                              </span>
+                            )}
+                            {paper.trending && (
+                              <span className="px-2 py-0.5 rounded-md bg-gradient-to-r from-orange-400 to-amber-400 text-amber-900 text-[10px] font-bold flex items-center gap-0.5">
+                                <Flame className="w-2.5 h-2.5" /> Hot
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-500 truncate">{paper.year} • {paper.session}</p>
+                        </div>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); toggleBookmark(paper.id); }}
+                          className="p-2 hover:bg-gray-50 rounded-xl transition-all duration-200 -mr-1 -mt-1"
+                        >
+                          {bookmarked.includes(paper.id) ? (
+                            <BookmarkCheck className="w-5 h-5 text-rose-500 fill-rose-500" />
+                          ) : (
+                            <Bookmark className="w-5 h-5 text-gray-300 group-hover:text-gray-400 transition-colors" />
+                          )}
+                        </button>
+                      </div>
+
+                      {/* Subject chips */}
+                      <div className="flex flex-wrap gap-1.5 mb-3">
+                        {paper.subjects.slice(0, 3).map((s, i) => (
+                          <span key={i} className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-gray-50 text-gray-600 border border-gray-100">
+                            {s}
+                          </span>
+                        ))}
+                        {paper.subjects.length > 3 && (
+                          <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-gray-50 text-gray-500">
+                            +{paper.subjects.length - 3}
+                          </span>
                         )}
                       </div>
-                      <p className="text-sm text-gray-500">{paper.year} • {paper.session}</p>
-                    </div>
-                    <button
-                      onClick={() => toggleBookmark(paper.id)}
-                      className="p-1.5 hover:bg-gray-100 rounded-full transition-colors"
-                    >
-                      {bookmarked.includes(paper.id) ? (
-                        <BookmarkCheck className="w-5 h-5 text-rose-500 fill-rose-500" />
-                      ) : (
-                        <Bookmark className="w-5 h-5 text-gray-400" />
-                      )}
-                    </button>
-                  </div>
 
-                  {/* Subject tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    {paper.subjects.map((s, i) => (
-                      <Badge key={i} variant="outline" className="text-[11px] font-medium bg-gray-50">
-                        {s}
-                      </Badge>
-                    ))}
-                  </div>
+                      {/* Meta row */}
+                      <div className="flex items-center gap-4 mb-3 text-xs text-gray-500">
+                        <span className="flex items-center gap-1">
+                          <FileText className="w-3.5 h-3.5 text-gray-400" />
+                          {paper.questions} Qs
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3.5 h-3.5 text-gray-400" />
+                          {paper.duration}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                          {paper.rating}
+                        </span>
+                      </div>
 
-                  {/* Meta row */}
-                  <div className="grid grid-cols-3 gap-2 mb-3 text-xs text-gray-500">
-                    <span className="flex items-center gap-1">
-                      <FileText className="w-3 h-3" />
-                      {paper.questions} Qs
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      {paper.duration}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                      {paper.rating}
-                    </span>
-                  </div>
+                      {/* Difficulty + Downloads row */}
+                      <div className="flex items-center justify-between mb-3">
+                        {(() => {
+                          const dc = getDifficultyConfig(paper.difficulty);
+                          return (
+                            <span className={cn("text-[11px] font-semibold px-2.5 py-1 rounded-lg border flex items-center gap-1.5", dc.bg, dc.text, dc.border)}>
+                              <span className={cn("w-1.5 h-1.5 rounded-full", dc.dot)} />
+                              {paper.difficulty}
+                            </span>
+                          );
+                        })()}
+                        <span className="text-xs text-gray-400 flex items-center gap-1">
+                          <Download className="w-3 h-3" />
+                          {formatDownloads(paper.downloads)}
+                        </span>
+                      </div>
 
-                  {/* Difficulty + Downloads */}
-                  <div className="flex items-center justify-between mb-4">
-                    <Badge className={cn("text-[11px] border", getDifficultyColor(paper.difficulty))}>
-                      {paper.difficulty}
-                    </Badge>
-                    <span className="text-xs text-gray-400 flex items-center gap-1">
-                      <Download className="w-3 h-3" />
-                      {paper.downloads.toLocaleString()}
-                    </span>
-                  </div>
+                      {/* Language pills */}
+                      <div className="flex flex-wrap gap-1 mb-4">
+                        {paper.language.map((l, i) => (
+                          <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 font-medium border border-blue-100">
+                            {l}
+                          </span>
+                        ))}
+                      </div>
 
-                  {/* Language tags */}
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {paper.language.map((l, i) => (
-                      <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 font-medium">
-                        {l}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action buttons */}
-                  <div className="flex gap-2 pt-2 border-t border-gray-100">
-                    <Button size="sm" className="flex-1 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white rounded-lg">
-                      <Download className="w-4 h-4 mr-1" />
-                      Download
-                    </Button>
-                    <Button size="sm" variant="outline" className="rounded-lg border-gray-200">
-                      <Eye className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                      {/* Action buttons */}
+                      <div className="flex gap-2 pt-3 border-t border-gray-50">
+                        <Button 
+                          size="sm" 
+                          className="flex-1 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white rounded-xl h-9 shadow-sm shadow-rose-500/20 hover:shadow-md hover:shadow-rose-500/30 transition-all"
+                        >
+                          <Download className="w-3.5 h-3.5 mr-1.5" />
+                          Download PDF
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="outline" 
+                          className="rounded-xl h-9 border-gray-200 hover:bg-gray-50 px-3"
+                        >
+                          <Eye className="w-3.5 h-3.5" />
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
 
           {/* Empty state */}
           {sorted.length === 0 && (
-            <div className="text-center py-16">
-              <FileText className="w-12 h-12 mx-auto mb-3 text-gray-300" />
-              <p className="text-gray-500 font-medium">No papers found</p>
-              <p className="text-sm text-gray-400 mt-1">Try adjusting your filters or search</p>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-20"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-gray-100 flex items-center justify-center mx-auto mb-4">
+                <FileText className="w-8 h-8 text-gray-300" />
+              </div>
+              <p className="text-gray-600 font-semibold text-lg">No papers found</p>
+              <p className="text-sm text-gray-400 mt-1 max-w-xs mx-auto">Try adjusting your filters or search query</p>
+              <Button
+                variant="outline"
+                size="sm"
+                className="mt-4 rounded-xl"
+                onClick={() => { setSearchQuery(''); setSelectedCategory(null); setSelectedSubcategory(null); }}
+              >
+                Reset all filters
+              </Button>
+            </motion.div>
           )}
 
-          {/* Load more hint */}
+          {/* Load more */}
           {sorted.length > 0 && (
-            <div className="flex justify-center mt-6">
-              <Button variant="outline" size="lg" className="rounded-xl">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="flex justify-center mt-8"
+            >
+              <Button variant="outline" size="lg" className="rounded-xl border-gray-200 hover:bg-gray-50 shadow-sm px-8">
                 View More Papers
-                <ChevronRight className="w-4 h-4 ml-1" />
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-            </div>
+            </motion.div>
           )}
         </div>
       </div>
