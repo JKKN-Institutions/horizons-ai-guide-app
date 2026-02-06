@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, MessageCircle, Mic, Sparkles, Radio, Target, Brain, Lightbulb, Zap, Compass } from 'lucide-react';
+import { BarChart3, Clock, HelpCircle, CheckCircle2, ArrowLeft, Trophy, BookOpen, MessageCircle, Mic, Sparkles, Radio, Target, Brain, Lightbulb, Zap } from 'lucide-react';
 import { IndustryTrendsModal } from '@/components/IndustryTrendsModal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -17,6 +17,7 @@ import { PreviousYearQuestions } from '@/components/PreviousYearQuestions';
 import { GovernmentJobs } from '@/components/GovernmentJobs';
 import { UniversityEntranceExams } from '@/components/UniversityEntrance';
 import { PillNavigation } from '@/components/PillNavigation';
+import { CourseExplorer } from '@/components/CourseExplorer';
 
 
 type AssessmentType = 'career_chat' | 'industry_trends' | 'emotional_intelligence' | 'skill_gap';
@@ -598,15 +599,7 @@ const CareerAssessmentColleges = () => {
 
         {activeTab === 'tnuniversity' && <UniversityEntranceExams />}
 
-        {activeTab === 'courseexplorer' && (
-          <div className="text-center py-12">
-            <Compass className="w-16 h-16 mx-auto mb-4 text-cyan-600" />
-            <h3 className="text-2xl font-bold mb-2">Course Explorer</h3>
-            <p className="text-gray-600 mb-6 max-w-md mx-auto">
-              Explore courses across universities, colleges, and streams to find the perfect fit for your career goals.
-            </p>
-          </div>
-        )}
+        {activeTab === 'courseexplorer' && <CourseExplorer />}
       </div>
     </div>
   );
