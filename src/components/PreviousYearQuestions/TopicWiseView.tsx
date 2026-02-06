@@ -181,8 +181,152 @@ const jeeMainTopics: SubjectTopics = {
   ],
 };
 
+const jeeAdvancedTopics: SubjectTopics = {
+  Physics: [
+    {
+      section: 'Mechanics',
+      topics: [
+        { name: 'Units & Measurements', total: 3, avg: 1.5, weightage: 9.38, trend: 59.52 },
+        { name: 'Motion', total: 0, avg: 0, weightage: 0, trend: -100 },
+        { name: 'Laws of Motion', total: 1, avg: 0.5, weightage: 3.13, trend: 0 },
+        { name: 'Work Power & Energy', total: 0, avg: 0, weightage: 0, trend: 0 },
+        { name: 'Impulse & Momentum', total: 1, avg: 0.5, weightage: 3.13, trend: 6.46 },
+        { name: 'Rotational Motion', total: 1, avg: 0.5, weightage: 3.13, trend: -46.77 },
+        { name: 'Properties of Matter', total: 0, avg: 0, weightage: 0, trend: -100 },
+        { name: 'Heat and Thermodynamics', total: 4, avg: 2, weightage: 12.5, trend: 41.72 },
+        { name: 'Simple Harmonic Motion', total: 2, avg: 1, weightage: 6.25, trend: 6.29 },
+        { name: 'Waves', total: 1, avg: 0.5, weightage: 3.13, trend: -46.77 },
+        { name: 'Gravitation', total: 2, avg: 1, weightage: 6.25, trend: 112.59 },
+      ],
+    },
+    {
+      section: 'Electricity',
+      topics: [
+        { name: 'Electrostatics', total: 4, avg: 2, weightage: 12.5, trend: 6.29 },
+        { name: 'Current Electricity', total: 0, avg: 0, weightage: 0, trend: 0 },
+        { name: 'Capacitor', total: 0, avg: 0, weightage: 0, trend: -100 },
+        { name: 'Magnetism', total: 1, avg: 0.5, weightage: 3.13, trend: -64.51 },
+        { name: 'Electromagnetic Induction', total: 2, avg: 1, weightage: 6.25, trend: 112.59 },
+        { name: 'Alternating Current', total: 1, avg: 0.5, weightage: 3.13, trend: 6.46 },
+        { name: 'Electromagnetic Waves', total: 1, avg: 0.5, weightage: 3.13, trend: 0 },
+      ],
+    },
+    {
+      section: 'Optics',
+      topics: [
+        { name: 'Geometrical Optics', total: 2, avg: 1, weightage: 6.25, trend: -29.14 },
+        { name: 'Wave Optics', total: 3, avg: 1.5, weightage: 9.38, trend: 6.35 },
+      ],
+    },
+    {
+      section: 'Modern Physics',
+      topics: [
+        { name: 'Atoms and Nuclei', total: 1, avg: 0.5, weightage: 3.13, trend: 6.46 },
+        { name: 'Dual Nature of Radiation', total: 2, avg: 1, weightage: 6.25, trend: 112.59 },
+      ],
+    },
+  ],
+  Chemistry: [
+    {
+      section: 'Physical Chemistry',
+      topics: [
+        { name: 'Some Basic Concepts of Chemistry', total: 0, avg: 0, weightage: 0, trend: 0 },
+        { name: 'Structure of Atom', total: 0, avg: 0, weightage: 0, trend: -100 },
+        { name: 'Redox Reactions', total: 1, avg: 0.5, weightage: 3.13, trend: 0 },
+        { name: 'Gaseous State', total: 1, avg: 0.5, weightage: 3.13, trend: 6.46 },
+        { name: 'Chemical Equilibrium', total: 0, avg: 0, weightage: 0, trend: 0 },
+        { name: 'Ionic Equilibrium', total: 2, avg: 1, weightage: 6.25, trend: 0 },
+        { name: 'Solutions', total: 1, avg: 0.5, weightage: 3.13, trend: 6.46 },
+        { name: 'Thermodynamics', total: 1, avg: 0.5, weightage: 3.13, trend: 6.46 },
+        { name: 'Chemical Kinetics and Nuclear Chemistry', total: 1, avg: 0.5, weightage: 3.13, trend: -46.77 },
+        { name: 'Electrochemistry', total: 2, avg: 1, weightage: 6.25, trend: 6.29 },
+        { name: 'Solid State', total: 1, avg: 0.5, weightage: 3.13, trend: 6.46 },
+        { name: 'Surface Chemistry', total: 1, avg: 0.5, weightage: 3.13, trend: 6.46 },
+      ],
+    },
+    {
+      section: 'Inorganic Chemistry',
+      topics: [
+        { name: 'Periodic Table & Periodicity', total: 0, avg: 0, weightage: 0, trend: 0 },
+        { name: 'Chemical Bonding & Molecular Structure', total: 2, avg: 1, weightage: 6.25, trend: 6.29 },
+        { name: 'Isolation of Elements', total: 0, avg: 0, weightage: 0, trend: 0 },
+        { name: 'Hydrogen', total: 0, avg: 0, weightage: 0, trend: 0 },
+        { name: 's-Block Elements', total: 0, avg: 0, weightage: 0, trend: 0 },
+        { name: 'p-Block Elements', total: 3, avg: 1.5, weightage: 9.38, trend: 6.35 },
+        { name: 'd and f Block Elements', total: 1, avg: 0.5, weightage: 3.13, trend: 0 },
+        { name: 'Coordination Compounds', total: 2, avg: 1, weightage: 6.25, trend: -6.85 },
+        { name: 'Salt Analysis', total: 2, avg: 1, weightage: 6.25, trend: 6.29 },
+      ],
+    },
+    {
+      section: 'Organic Chemistry',
+      topics: [
+        { name: 'Basics of Organic Chemistry', total: 0, avg: 0, weightage: 0, trend: 0 },
+        { name: 'Hydrocarbons', total: 1, avg: 0.5, weightage: 3.13, trend: 6.46 },
+        { name: 'Haloalkanes and Haloarenes', total: 1, avg: 0.5, weightage: 3.13, trend: 0 },
+        { name: 'Alcohols, Phenols and Ethers', total: 3, avg: 1.5, weightage: 9.38, trend: 219.05 },
+        { name: 'Aldehydes, Ketones and Carboxylic Acids', total: 1, avg: 0.5, weightage: 3.13, trend: -82.27 },
+        { name: 'Compounds Containing Nitrogen', total: 2, avg: 1, weightage: 6.25, trend: 6.29 },
+        { name: 'Polymers', total: 1, avg: 0.5, weightage: 3.13, trend: 0 },
+        { name: 'Biomolecules', total: 1, avg: 0.5, weightage: 3.13, trend: 6.46 },
+        { name: 'Chemistry in Everyday Life', total: 0, avg: 0, weightage: 0, trend: -100 },
+        { name: 'Practical Organic Chemistry', total: 1, avg: 0.5, weightage: 3.13, trend: 0 },
+      ],
+    },
+  ],
+  Mathematics: [
+    {
+      section: 'Algebra',
+      topics: [
+        { name: 'Quadratic Equation and Inequalities', total: 1, avg: 0.5, weightage: 3.13, trend: 6.46 },
+        { name: 'Sequences and Series', total: 0, avg: 0, weightage: 0, trend: 0 },
+        { name: 'Mathematical Induction and Binomial Theorem', total: 1, avg: 0.5, weightage: 3.13, trend: 0 },
+        { name: 'Matrices and Determinants', total: 2, avg: 1, weightage: 6.25, trend: -29.14 },
+        { name: 'Permutations and Combinations', total: 2, avg: 1, weightage: 6.25, trend: -29.14 },
+        { name: 'Probability', total: 2, avg: 1, weightage: 6.25, trend: -29.14 },
+        { name: 'Vector Algebra', total: 3, avg: 1.5, weightage: 9.38, trend: 59.52 },
+        { name: '3D Geometry', total: 1, avg: 0.5, weightage: 3.13, trend: -64.51 },
+        { name: 'Statistics', total: 1, avg: 0.5, weightage: 3.13, trend: 0 },
+        { name: 'Complex Numbers', total: 2, avg: 1, weightage: 6.25, trend: 6.29 },
+      ],
+    },
+    {
+      section: 'Trigonometry',
+      topics: [
+        { name: 'Trigonometric Functions & Equations', total: 1, avg: 0.5, weightage: 3.13, trend: 6.46 },
+        { name: 'Inverse Trigonometric Functions', total: 1, avg: 0.5, weightage: 3.13, trend: 6.46 },
+        { name: 'Properties of Triangle', total: 0, avg: 0, weightage: 0, trend: 0 },
+      ],
+    },
+    {
+      section: 'Coordinate Geometry',
+      topics: [
+        { name: 'Straight Lines and Pair of Straight Lines', total: 1, avg: 0.5, weightage: 3.13, trend: 0 },
+        { name: 'Circle', total: 0, avg: 0, weightage: 0, trend: -100 },
+        { name: 'Parabola', total: 1, avg: 0.5, weightage: 3.13, trend: -46.77 },
+        { name: 'Ellipse', total: 1, avg: 0.5, weightage: 3.13, trend: 6.46 },
+        { name: 'Hyperbola', total: 0, avg: 0, weightage: 0, trend: 0 },
+      ],
+    },
+    {
+      section: 'Calculus',
+      topics: [
+        { name: 'Functions', total: 3, avg: 1.5, weightage: 9.38, trend: 59.52 },
+        { name: 'Limits, Continuity and Differentiability', total: 4, avg: 2, weightage: 12.5, trend: 6.29 },
+        { name: 'Differentiation', total: 0, avg: 0, weightage: 0, trend: 0 },
+        { name: 'Application of Derivatives', total: 1, avg: 0.5, weightage: 3.13, trend: 0 },
+        { name: 'Indefinite Integrals', total: 0, avg: 0, weightage: 0, trend: 0 },
+        { name: 'Definite Integration', total: 1, avg: 0.5, weightage: 3.13, trend: -46.77 },
+        { name: 'Application of Integration', total: 1, avg: 0.5, weightage: 3.13, trend: -46.77 },
+        { name: 'Differential Equations', total: 2, avg: 1, weightage: 6.25, trend: 112.59 },
+      ],
+    },
+  ],
+};
+
 const examTopicData: ExamTopicMap = {
   'jee-main': jeeMainTopics,
+  'jee-advanced': jeeAdvancedTopics,
 };
 
 // ---------- COMPONENT ----------
