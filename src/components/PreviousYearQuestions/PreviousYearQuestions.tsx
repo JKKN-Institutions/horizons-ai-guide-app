@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { SubjectWeightageView } from './SubjectWeightageView';
 import { 
   BookOpen, Search, Download, Filter, FileText, 
   GraduationCap, Calendar, Star, ChevronRight, ChevronDown,
@@ -71,7 +72,7 @@ const examSubjectDirectory: Record<string, ExamSubjectMap[]> = {
   ],
   medical: [
     { exam: 'NEET UG', subcategory: 'neet-ug', subjects: ['Physics', 'Chemistry', 'Biology'] },
-    { exam: 'NEET PG', subcategory: 'neet-pg', subjects: ['Pre-Clinical', 'Para-Clinical', 'Clinical'] },
+    { exam: 'NEET PG', subcategory: 'neet-pg', subjects: ['Anatomy', 'Physiology', 'Biochemistry', 'Pharmacology', 'Pathology', 'Microbiology', 'Medicine', 'Surgery', 'Social & Preventive Medicine', 'Forensic Medicine', 'Obstetrics & Gynaecology', 'Dermatology & Venereology', 'Pediatrics', 'Orthopedics', 'Ophthalmology', 'ENT', 'Anaesthesia', 'Radiology', 'Psychiatry'] },
     { exam: 'AIIMS (old)', subcategory: 'aiims', subjects: ['Physics', 'Chemistry', 'Biology', 'GK'] },
     { exam: 'Nursing', subcategory: 'nursing', subjects: ['Physics', 'Chemistry', 'Biology', 'English'] },
     { exam: 'Pharmacy', subcategory: 'pharmacy', subjects: ['Physics', 'Chemistry', 'Biology/Maths'] },
@@ -272,6 +273,7 @@ export const PreviousYearQuestions = () => {
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [topicView, setTopicView] = useState<{ examId: string; examName: string; subject: string } | null>(null);
+  const [subjectWeightageView, setSubjectWeightageView] = useState<{ examId: string; examName: string } | null>(null);
 
   const toggleCategory = (catId: string) => {
     setExpandedCategories(prev =>
@@ -628,8 +630,18 @@ export const PreviousYearQuestions = () => {
             )}
           </motion.div>
 
-          {/* Topic-wise View (ExamSIDE style chapter breakdown) */}
-          {topicView ? (
+          {/* Subject Weightage View (NEET PG style) */}
+          {subjectWeightageView ? (
+            <SubjectWeightageView
+              examId={subjectWeightageView.examId}
+              examName={subjectWeightageView.examName}
+              onBack={() => setSubjectWeightageView(null)}
+              onSelectSubject={(subject) => {
+                setTopicView({ examId: subjectWeightageView.examId, examName: subjectWeightageView.examName, subject });
+                setSubjectWeightageView(null);
+              }}
+            />
+          ) : topicView ? (
             <TopicWiseView
               examId={topicView.examId}
               examName={topicView.examName}
@@ -669,17 +681,26 @@ export const PreviousYearQuestions = () => {
                         {entry.exam}
                       </h5>
                       <div className="flex flex-col gap-0.5">
-                        {entry.subjects.map((subject) => (
+                        {entry.subcategory === 'neet-pg' ? (
                           <button
-                            key={subject}
-                            onClick={() => {
-                              setTopicView({ examId: entry.subcategory, examName: entry.exam, subject });
-                            }}
-                            className="text-left text-sm text-blue-600 hover:text-blue-800 hover:underline transition-colors py-0.5"
+                            onClick={() => setSubjectWeightageView({ examId: entry.subcategory, examName: entry.exam })}
+                            className="text-left text-sm text-emerald-600 hover:text-emerald-800 hover:underline transition-colors py-0.5 font-medium"
                           >
-                            {subject}
+                            📊 Subject-Wise Weightage
                           </button>
-                        ))}
+                        ) : (
+                          entry.subjects.map((subject) => (
+                            <button
+                              key={subject}
+                              onClick={() => {
+                                setTopicView({ examId: entry.subcategory, examName: entry.exam, subject });
+                              }}
+                              className="text-left text-sm text-blue-600 hover:text-blue-800 hover:underline transition-colors py-0.5"
+                            >
+                              {subject}
+                            </button>
+                          ))
+                        )}
                       </div>
                     </div>
                   ))}
