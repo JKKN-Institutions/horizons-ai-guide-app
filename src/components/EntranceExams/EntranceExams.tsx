@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Search, GraduationCap, FileText, Building2, Bookmark, CalendarDays, Scale, MapPin } from 'lucide-react';
 import { ExamCard } from './ExamCard';
 import { ExamCompare } from './ExamCompare';
+import { CategoryOverview } from './CategoryOverview';
 import { PreparationTipsSection } from './PreparationTipsSection';
 import { ExamCalendar } from './ExamCalendar';
 import { ExamRecommendationQuiz } from './ExamRecommendationQuiz';
@@ -259,6 +260,9 @@ export const EntranceExams = () => {
           })}
         </div>
       </div>
+
+      {/* Category Overview - Courses, Eligibility & Details */}
+      <CategoryOverview category={activeCategory} />
 
       {/* Search Bar */}
       <div className="max-w-md mx-auto">
