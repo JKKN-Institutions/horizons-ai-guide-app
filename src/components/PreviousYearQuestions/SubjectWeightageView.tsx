@@ -113,24 +113,71 @@ export const SubjectWeightageView = ({ examId, examName, onBack, onSelectSubject
             </p>
 
             {/* Prep Tips */}
-            <div className="bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-100 rounded-xl p-4 mt-4">
-              <h5 className="font-bold text-gray-800 text-sm mb-3 flex items-center gap-2">
-                <Lightbulb className="w-4 h-4 text-amber-500" />
-                How to Use the Weightage in Your Preparation
-              </h5>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {[
-                  { icon: Clock, text: 'Allocate Time Proportionally' },
-                  { icon: Target, text: 'Focus on Integration' },
-                  { icon: BookOpen, text: 'Rely on PYQs as a Guide' },
-                  { icon: Info, text: 'Revise Short Subjects Before the Exam' },
-                ].map((tip, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm text-gray-700">
-                    <tip.icon className="w-3.5 h-3.5 text-blue-500 shrink-0" />
-                    <span>{tip.text}</span>
-                  </div>
-                ))}
+            <div className="space-y-5 mt-4 pt-4 border-t border-gray-100">
+              <div>
+                <h5 className="font-bold text-gray-800 text-lg mb-2 flex items-center gap-2">
+                  <Lightbulb className="w-4 h-4 text-amber-500" />
+                  How to Use the Weightage in Your Preparation
+                </h5>
+                <p className="text-gray-600 text-sm">Understanding the numbers is only half the battle. The real trick is knowing how to plan around them.</p>
               </div>
+
+              <div>
+                <h6 className="font-bold text-gray-800 mb-1.5 flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-blue-500" />
+                  Allocate Time Proportionally
+                </h6>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  As all the subjects don't hold equal importance in the exam, you must also not treat all the subjects equally. It's advised that you spend maximum time on subjects including <span className="font-semibold">Medicine, Surgery, OBSGYN, Pathology, Pharmacology, and PSM</span>. These subjects are known to cover half the paper.
+                </p>
+                <p className="text-gray-600 text-sm leading-relaxed mt-2">
+                  And short subjects like ENT, Ophthalmology, and Forensic Medicine might seem small and insignificant, but they can help you score extra crucial marks if you revise them strategically in the final weeks.
+                </p>
+              </div>
+
+              <div>
+                <h6 className="font-bold text-gray-800 mb-1.5 flex items-center gap-2">
+                  <Target className="w-4 h-4 text-blue-500" />
+                  Focus on Integration
+                </h6>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Recent NEET PG papers are highly integrated. For example, a clinical case of pneumonia may require knowledge of Medicine, Microbiology, and Pharmacology in a single question. So, study in a way that connects subjects rather than treating them in isolation.
+                </p>
+              </div>
+
+              <div>
+                <h6 className="font-bold text-gray-800 mb-1.5 flex items-center gap-2">
+                  <BookOpen className="w-4 h-4 text-blue-500" />
+                  Rely on PYQs as a Guide
+                </h6>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Previous year questions aren't just practice — they are a roadmap. Many concepts repeat year after year. Antimicrobial drugs in Pharmacology, reproductive physiology in OBG, or cardiac conditions in Medicine are recurring themes that should always be high on your list.
+                </p>
+              </div>
+
+              <div>
+                <h6 className="font-bold text-gray-800 mb-1.5 flex items-center gap-2">
+                  <Info className="w-4 h-4 text-blue-500" />
+                  Revise Short Subjects Before the Exam
+                </h6>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Unlike common thinking, short subjects can act as rank differentiators. Just a quick 10–15-day revision cycle for subjects including Ophthalmology, ENT, Forensic Medicine, and Dermatology can do wonders for your score.
+                </p>
+              </div>
+            </div>
+
+            {/* Wrapping Up */}
+            <div className="mt-4 pt-4 border-t border-gray-100">
+              <h5 className="font-bold text-gray-800 text-lg mb-2">Wrapping Up</h5>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                If you wish to succeed in NEET PG 2026, give up on the perception of reading everything under the sun. You should focus on revising what matters the most and in the most effective manner.
+              </p>
+              <p className="text-gray-600 text-sm leading-relaxed mt-2">
+                Once you understand the subject-wise weightage, you can easily plan your study hours in a way that maximises marks and minimizes wasted effort.
+              </p>
+              <p className="text-gray-700 text-sm leading-relaxed mt-2 font-medium">
+                You must focus on high-weightage subjects, revise short subjects, and use previous years' questions to stay exam-oriented.
+              </p>
             </div>
           </CardContent>
         </Card>
