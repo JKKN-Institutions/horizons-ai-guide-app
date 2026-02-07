@@ -681,15 +681,15 @@ export const PreviousYearQuestions = () => {
                         {entry.exam}
                       </h5>
                       <div className="flex flex-col gap-0.5">
-                        {entry.subcategory === 'neet-pg' ? (
+                        {entry.subcategory === 'neet-pg' && (
                           <button
                             onClick={() => setSubjectWeightageView({ examId: entry.subcategory, examName: entry.exam })}
                             className="text-left text-sm text-emerald-600 hover:text-emerald-800 hover:underline transition-colors py-0.5 font-medium"
                           >
                             📊 Subject-Wise Weightage
                           </button>
-                        ) : (
-                          entry.subjects.map((subject) => (
+                        )}
+                        {entry.subjects.map((subject) => (
                             <button
                               key={subject}
                               onClick={() => {
@@ -699,8 +699,8 @@ export const PreviousYearQuestions = () => {
                             >
                               {subject}
                             </button>
-                          ))
-                        )}
+                          ))}
+
                       </div>
                     </div>
                   ))}
