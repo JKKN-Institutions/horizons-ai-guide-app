@@ -1,4 +1,4 @@
-import { ArrowLeft, BookOpen, TrendingUp, BarChart3, Stethoscope, Brain, FlaskConical, Pill, Microscope, Heart, Shield, Scale, Syringe, Bone, Eye, Ear, Baby, Radiation, Scissors, Activity } from 'lucide-react';
+import { ArrowLeft, BookOpen, TrendingUp, BarChart3, Stethoscope, Brain, FlaskConical, Pill, Microscope, Heart, Shield, Scale, Syringe, Bone, Eye, Ear, Baby, Radiation, Scissors, Activity, Info, Lightbulb, Target, Clock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -18,36 +18,43 @@ interface SubjectCard {
   color: string;
   bgColor: string;
   description: string;
-  totalQuestions: number;
-  weightage: number;
+  questionRange: string;
+  importance: 'Very High' | 'High' | 'Moderate' | 'Low';
   category: 'Pre-Clinical' | 'Para-Clinical' | 'Clinical';
 }
 
+const importanceConfig = {
+  'Very High': { bg: 'bg-rose-600', text: 'text-white', border: 'border-rose-700' },
+  'High': { bg: 'bg-amber-500', text: 'text-white', border: 'border-amber-600' },
+  'Moderate': { bg: 'bg-blue-500', text: 'text-white', border: 'border-blue-600' },
+  'Low': { bg: 'bg-emerald-600', text: 'text-white', border: 'border-emerald-700' },
+};
+
 const neetPgSubjects: SubjectCard[] = [
   // Pre-Clinical
-  { name: 'Anatomy', icon: Bone, color: 'text-amber-600', bgColor: 'bg-amber-50', description: 'Master Anatomy with highly-effective, structured topic-wise analysis and weightage trends.', totalQuestions: 82, weightage: 8.5, category: 'Pre-Clinical' },
-  { name: 'Physiology', icon: Activity, color: 'text-blue-600', bgColor: 'bg-blue-50', description: 'Comprehensive Physiology coverage — CVS, Renal, Endocrine and CNS systems.', totalQuestions: 70, weightage: 7.2, category: 'Pre-Clinical' },
-  { name: 'Biochemistry', icon: FlaskConical, color: 'text-rose-600', bgColor: 'bg-rose-50', description: 'Ace Biochemistry with molecular biology, metabolism and clinical correlations.', totalQuestions: 52, weightage: 5.4, category: 'Pre-Clinical' },
+  { name: 'Anatomy', icon: Bone, color: 'text-amber-600', bgColor: 'bg-amber-50', description: 'Moderately important; often tested through applied and image-based questions.', questionRange: '15–17', importance: 'Moderate', category: 'Pre-Clinical' },
+  { name: 'Physiology', icon: Activity, color: 'text-blue-600', bgColor: 'bg-blue-50', description: 'Moderately important; cardiac and respiratory physiology remain favorites.', questionRange: '15–17', importance: 'Moderate', category: 'Pre-Clinical' },
+  { name: 'Biochemistry', icon: FlaskConical, color: 'text-rose-600', bgColor: 'bg-rose-50', description: 'Moderate; metabolic pathways, enzymes, and molecular biology are high-yield.', questionRange: '12–15', importance: 'Moderate', category: 'Pre-Clinical' },
 
   // Para-Clinical
-  { name: 'Pharmacology', icon: Pill, color: 'text-green-600', bgColor: 'bg-green-50', description: 'Complete Pharmacology — ANS, CNS, Chemotherapy and Autacoids.', totalQuestions: 69, weightage: 7.1, category: 'Para-Clinical' },
-  { name: 'Pathology', icon: Microscope, color: 'text-purple-600', bgColor: 'bg-purple-50', description: 'Ace Pathology with general pathology, hematology and neoplasia focus areas.', totalQuestions: 55, weightage: 5.7, category: 'Para-Clinical' },
-  { name: 'Microbiology', icon: Microscope, color: 'text-teal-600', bgColor: 'bg-teal-50', description: 'In-depth Microbiology — bacteriology, virology, parasitology and immunology.', totalQuestions: 53, weightage: 5.5, category: 'Para-Clinical' },
-  { name: 'Forensic Medicine', icon: Scale, color: 'text-indigo-600', bgColor: 'bg-indigo-50', description: 'FMT made simpler — identification, toxicology and medical jurisprudence.', totalQuestions: 43, weightage: 4.4, category: 'Para-Clinical' },
-  { name: 'Social & Preventive Medicine', icon: Shield, color: 'text-cyan-600', bgColor: 'bg-cyan-50', description: 'Score high with biostatistics, epidemiology and national health programs.', totalQuestions: 63, weightage: 6.5, category: 'Para-Clinical' },
+  { name: 'Pathology', icon: Microscope, color: 'text-purple-600', bgColor: 'bg-purple-50', description: 'High importance; both conceptual and image-based questions are frequent.', questionRange: '25', importance: 'High', category: 'Para-Clinical' },
+  { name: 'Pharmacology', icon: Pill, color: 'text-green-600', bgColor: 'bg-green-50', description: 'High importance; antimicrobials, mechanisms of action, and side effects dominate.', questionRange: '20', importance: 'High', category: 'Para-Clinical' },
+  { name: 'Microbiology', icon: Microscope, color: 'text-teal-600', bgColor: 'bg-teal-50', description: 'High importance; bacteriology, virology, and immunology are repeatedly tested.', questionRange: '20', importance: 'High', category: 'Para-Clinical' },
+  { name: 'Forensic Medicine', icon: Scale, color: 'text-indigo-600', bgColor: 'bg-indigo-50', description: 'Lower weightage but easy scoring if revised well.', questionRange: '10', importance: 'Low', category: 'Para-Clinical' },
+  { name: 'Social & Preventive Medicine', icon: Shield, color: 'text-cyan-600', bgColor: 'bg-cyan-50', description: 'High importance; epidemiology, biostatistics, and national programs are must-do.', questionRange: '25', importance: 'High', category: 'Para-Clinical' },
 
   // Clinical
-  { name: 'Medicine', icon: Stethoscope, color: 'text-red-600', bgColor: 'bg-red-50', description: 'Get mentored on cardiology, endocrinology, neurology and infectious diseases.', totalQuestions: 84, weightage: 8.7, category: 'Clinical' },
-  { name: 'Surgery', icon: Scissors, color: 'text-orange-600', bgColor: 'bg-orange-50', description: 'Complete Surgery syllabus — GI, urology, endocrine and trauma.', totalQuestions: 52, weightage: 5.4, category: 'Clinical' },
-  { name: 'Obstetrics & Gynaecology', icon: Baby, color: 'text-pink-600', bgColor: 'bg-pink-50', description: 'Learn AtoZ of OBG — normal labour, high-risk pregnancy and gynaecological oncology.', totalQuestions: 52, weightage: 5.4, category: 'Clinical' },
-  { name: 'Pediatrics', icon: Baby, color: 'text-sky-600', bgColor: 'bg-sky-50', description: 'Become a pediatrics expert with neonatology, immunization and growth topics.', totalQuestions: 52, weightage: 5.4, category: 'Clinical' },
-  { name: 'Orthopedics', icon: Bone, color: 'text-yellow-700', bgColor: 'bg-yellow-50', description: 'Boost preparation with fractures, bone tumors and spine disorders.', totalQuestions: 41, weightage: 4.2, category: 'Clinical' },
-  { name: 'Dermatology & Venereology', icon: Heart, color: 'text-fuchsia-600', bgColor: 'bg-fuchsia-50', description: 'Master Dermatology with papulosquamous, vesiculobullous and STD coverage.', totalQuestions: 40, weightage: 4.1, category: 'Clinical' },
-  { name: 'Ophthalmology', icon: Eye, color: 'text-violet-600', bgColor: 'bg-violet-50', description: 'Best-in-class comprehensive study material for lens, glaucoma and retina.', totalQuestions: 45, weightage: 4.6, category: 'Clinical' },
-  { name: 'ENT', icon: Ear, color: 'text-emerald-600', bgColor: 'bg-emerald-50', description: 'Make ENT easier with otology, rhinology and laryngology topics.', totalQuestions: 34, weightage: 3.5, category: 'Clinical' },
-  { name: 'Anaesthesia', icon: Syringe, color: 'text-slate-600', bgColor: 'bg-slate-50', description: 'Learn general & regional anaesthesia, pain management and critical care.', totalQuestions: 30, weightage: 3.1, category: 'Clinical' },
-  { name: 'Radiology', icon: Radiation, color: 'text-lime-700', bgColor: 'bg-lime-50', description: 'Enrich preparation with X-ray, CT, MRI and nuclear medicine topics.', totalQuestions: 31, weightage: 3.2, category: 'Clinical' },
-  { name: 'Psychiatry', icon: Brain, color: 'text-rose-500', bgColor: 'bg-rose-50', description: 'Learn mood disorders, psychotic disorders and psychopharmacology.', totalQuestions: 38, weightage: 3.9, category: 'Clinical' },
+  { name: 'Medicine', icon: Stethoscope, color: 'text-red-600', bgColor: 'bg-red-50', description: 'Very high importance; cardiology, neurology, infectious diseases, and systemic medicine are all heavily tested. Includes Dermatology & Psychiatry.', questionRange: '45–50', importance: 'Very High', category: 'Clinical' },
+  { name: 'Surgery', icon: Scissors, color: 'text-orange-600', bgColor: 'bg-orange-50', description: 'Very high importance; trauma, GI surgery, orthopedics basics, and perioperative care feature regularly. Includes Orthopedics & Anesthesia.', questionRange: '45', importance: 'Very High', category: 'Clinical' },
+  { name: 'Obstetrics & Gynaecology', icon: Baby, color: 'text-pink-600', bgColor: 'bg-pink-50', description: 'High importance; labor, obstetric emergencies, and gynecological malignancies are frequently asked.', questionRange: '30–35', importance: 'High', category: 'Clinical' },
+  { name: 'Pediatrics', icon: Baby, color: 'text-sky-600', bgColor: 'bg-sky-50', description: 'Moderate; vaccines, growth & development, and neonatology are crucial.', questionRange: '15', importance: 'Moderate', category: 'Clinical' },
+  { name: 'Ophthalmology', icon: Eye, color: 'text-violet-600', bgColor: 'bg-violet-50', description: 'Low weightage but image-based questions are common.', questionRange: '10', importance: 'Low', category: 'Clinical' },
+  { name: 'ENT', icon: Ear, color: 'text-emerald-600', bgColor: 'bg-emerald-50', description: 'Low weightage; quick revision can fetch easy marks.', questionRange: '10', importance: 'Low', category: 'Clinical' },
+  { name: 'Orthopedics', icon: Bone, color: 'text-yellow-700', bgColor: 'bg-yellow-50', description: 'Low weightage; fractures and bone tumors are exam favorites.', questionRange: '10', importance: 'Low', category: 'Clinical' },
+  { name: 'Dermatology & Venereology', icon: Heart, color: 'text-fuchsia-600', bgColor: 'bg-fuchsia-50', description: 'Moderate; image-based questions on common skin disorders.', questionRange: '8–10', importance: 'Moderate', category: 'Clinical' },
+  { name: 'Radiology', icon: Radiation, color: 'text-lime-700', bgColor: 'bg-lime-50', description: 'Moderate; X-rays, CT, and MRI image identification is frequent.', questionRange: '12–15', importance: 'Moderate', category: 'Clinical' },
+  { name: 'Psychiatry', icon: Brain, color: 'text-rose-500', bgColor: 'bg-rose-50', description: 'Moderate; diagnostic criteria and common therapies are tested.', questionRange: '8–10', importance: 'Moderate', category: 'Clinical' },
+  { name: 'Anaesthesia', icon: Syringe, color: 'text-slate-600', bgColor: 'bg-slate-50', description: 'Moderate; basics of anesthesia, CPR, and perioperative care are key.', questionRange: '8–10', importance: 'Moderate', category: 'Clinical' },
 ];
 
 const categories = ['Pre-Clinical', 'Para-Clinical', 'Clinical'] as const;
@@ -58,8 +65,6 @@ const categoryColors: Record<string, string> = {
 };
 
 export const SubjectWeightageView = ({ examId, examName, onBack, onSelectSubject }: SubjectWeightageViewProps) => {
-  const totalQuestions = neetPgSubjects.reduce((s, sub) => s + sub.totalQuestions, 0);
-
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -81,11 +86,11 @@ export const SubjectWeightageView = ({ examId, examName, onBack, onSelectSubject
                 <div className="text-[10px] text-white/70 uppercase tracking-wider">Subjects</div>
               </div>
               <div className="bg-white/15 backdrop-blur rounded-xl px-4 py-2 text-center border border-white/20">
-                <div className="text-xl font-bold">{totalQuestions}</div>
+                <div className="text-xl font-bold">~200</div>
                 <div className="text-[10px] text-white/70 uppercase tracking-wider">Questions</div>
               </div>
               <div className="bg-white/15 backdrop-blur rounded-xl px-4 py-2 text-center border border-white/20">
-                <div className="text-xl font-bold">200</div>
+                <div className="text-xl font-bold">800</div>
                 <div className="text-[10px] text-white/70 uppercase tracking-wider">Total Marks</div>
               </div>
             </div>
@@ -93,22 +98,61 @@ export const SubjectWeightageView = ({ examId, examName, onBack, onSelectSubject
         </div>
       </motion.div>
 
-      {/* Navigate Quickly */}
+      {/* Intro Content */}
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}>
         <Card className="border-gray-100 rounded-2xl shadow-sm">
-          <CardContent className="p-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-blue-600 mb-3">Navigate Quickly</h4>
-            <div className="flex flex-wrap gap-2">
-              {categories.map(cat => (
-                <a key={cat} href={`#${cat.toLowerCase().replace(/\s+/g, '-')}`}>
-                  <Badge variant="outline" className="cursor-pointer hover:bg-gray-50 rounded-lg px-3 py-1.5 text-sm font-medium text-gray-700 border-gray-200">
-                    {cat}
-                  </Badge>
-                </a>
-              ))}
+          <CardContent className="p-5 md:p-6 space-y-4">
+            <p className="text-gray-700 leading-relaxed">
+              If you are preparing for <span className="font-semibold text-gray-900">NEET PG 2026</span>, you must be aware of the fact that it is never about how many hours you put in. It is more about how effectively you leverage whatever time you get. What makes a topper stand out is how much effort and dedication they invest in <span className="font-semibold text-emerald-600">high-yield subjects</span>.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              With typically <span className="font-semibold text-gray-900">200 questions spread across 19 subjects</span>, every aspirant has one question in mind: <span className="italic text-gray-600">Where should I spend most of my time?</span>
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              Not every subject should be given equal importance. While subjects like <span className="font-semibold text-rose-600">Medicine</span> and <span className="font-semibold text-orange-600">Surgery</span> can decide half your score, others like Ophthalmology and ENT might have fewer questions. However, the latter subjects can still make a big difference when it comes to rank.
+            </p>
+
+            {/* Prep Tips */}
+            <div className="bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-100 rounded-xl p-4 mt-4">
+              <h5 className="font-bold text-gray-800 text-sm mb-3 flex items-center gap-2">
+                <Lightbulb className="w-4 h-4 text-amber-500" />
+                How to Use the Weightage in Your Preparation
+              </h5>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {[
+                  { icon: Clock, text: 'Allocate Time Proportionally' },
+                  { icon: Target, text: 'Focus on Integration' },
+                  { icon: BookOpen, text: 'Rely on PYQs as a Guide' },
+                  { icon: Info, text: 'Revise Short Subjects Before the Exam' },
+                ].map((tip, i) => (
+                  <div key={i} className="flex items-center gap-2 text-sm text-gray-700">
+                    <tip.icon className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                    <span>{tip.text}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </CardContent>
         </Card>
+      </motion.div>
+
+      {/* Navigate Quickly */}
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}>
+        <div className="flex flex-wrap gap-2 items-center">
+          <span className="text-xs font-bold uppercase tracking-wider text-blue-600">Navigate:</span>
+          {categories.map(cat => (
+            <a key={cat} href={`#${cat.toLowerCase().replace(/\s+/g, '-')}`}>
+              <Badge variant="outline" className="cursor-pointer hover:bg-gray-50 rounded-lg px-3 py-1.5 text-sm font-medium text-gray-700 border-gray-200">
+                {cat}
+              </Badge>
+            </a>
+          ))}
+          <a href="#exam-pattern">
+            <Badge variant="outline" className="cursor-pointer hover:bg-gray-50 rounded-lg px-3 py-1.5 text-sm font-medium text-gray-700 border-gray-200">
+              Exam Pattern
+            </Badge>
+          </a>
+        </div>
       </motion.div>
 
       {/* Subject Cards by Category */}
@@ -120,7 +164,7 @@ export const SubjectWeightageView = ({ examId, examName, onBack, onSelectSubject
             id={category.toLowerCase().replace(/\s+/g, '-')}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: catIdx * 0.1 }}
+            transition={{ delay: catIdx * 0.1 + 0.1 }}
           >
             <div className="flex items-center gap-3 mb-4">
               <div className={cn("w-1 h-6 rounded-full bg-gradient-to-b", categoryColors[category])} />
@@ -131,12 +175,13 @@ export const SubjectWeightageView = ({ examId, examName, onBack, onSelectSubject
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {subjects.map((subject, sIdx) => {
                 const Icon = subject.icon;
+                const imp = importanceConfig[subject.importance];
                 return (
                   <motion.div
                     key={subject.name}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: catIdx * 0.1 + sIdx * 0.04 }}
+                    transition={{ delay: catIdx * 0.1 + sIdx * 0.04 + 0.1 }}
                   >
                     <Card
                       className="group border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300 cursor-pointer rounded-2xl overflow-hidden"
@@ -148,23 +193,24 @@ export const SubjectWeightageView = ({ examId, examName, onBack, onSelectSubject
                             <Icon className={cn("w-6 h-6", subject.color)} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 mb-1">
+                            <div className="flex items-center gap-2 mb-1 flex-wrap">
                               <h5 className="font-bold text-gray-800 uppercase text-sm tracking-wide">{subject.name}</h5>
+                              <span className={cn("text-[10px] font-bold px-2 py-0.5 rounded-md border", imp.bg, imp.text, imp.border)}>
+                                {subject.importance}
+                              </span>
                             </div>
                             <p className="text-sm text-gray-500 leading-relaxed line-clamp-2">{subject.description}</p>
                             <div className="flex items-center gap-3 mt-3">
                               <span className="text-xs font-semibold text-gray-600 flex items-center gap-1">
-                                <BarChart3 className="w-3 h-3 text-gray-400" />
-                                {subject.weightage}% weightage
+                                <BookOpen className="w-3 h-3 text-gray-400" />
+                                {subject.questionRange} Questions
                               </span>
                               <span className="text-xs text-gray-400">•</span>
-                              <span className="text-xs font-semibold text-gray-600 flex items-center gap-1">
-                                <BookOpen className="w-3 h-3 text-gray-400" />
-                                {subject.totalQuestions} Qs
+                              <span className="text-xs text-blue-600 font-medium group-hover:underline">
+                                View Topics →
                               </span>
                             </div>
                           </div>
-                          <TrendingUp className="w-4 h-4 text-gray-300 group-hover:text-emerald-500 transition-colors shrink-0 mt-1" />
                         </div>
                       </CardContent>
                     </Card>
@@ -177,7 +223,7 @@ export const SubjectWeightageView = ({ examId, examName, onBack, onSelectSubject
       })}
 
       {/* Exam Pattern Info */}
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+      <motion.div id="exam-pattern" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
         <Card className="border-gray-100 rounded-2xl shadow-sm bg-gradient-to-br from-gray-50 to-white">
           <CardContent className="p-5">
             <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
@@ -197,6 +243,9 @@ export const SubjectWeightageView = ({ examId, examName, onBack, onSelectSubject
                 </div>
               ))}
             </div>
+            <p className="text-sm text-gray-500 mt-3">
+              In total, the paper will have <span className="font-semibold text-gray-700">~200 questions</span>, with clinical and image-based cases forming a significant portion.
+            </p>
           </CardContent>
         </Card>
       </motion.div>
