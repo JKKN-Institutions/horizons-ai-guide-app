@@ -1383,94 +1383,6 @@ const aiimsTopics: SubjectTopics = {
   ],
 };
 
-const class12Topics: SubjectTopics = {
-  Physics: [
-    {
-      section: 'Electromagnetism',
-      topics: [
-        { name: 'Electrostatics', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Current Electricity', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Capacitor', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Magnetic Effect of Current', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Magnetic Properties of Matter', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Electromagnetic Induction', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Alternating Current', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Electromagnetic Waves', total: 0, avg: 0, weightage: 0, trend: 0 },
-      ],
-    },
-    {
-      section: 'Optics',
-      topics: [
-        { name: 'Geometrical Optics', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Wave Optics', total: 0, avg: 0, weightage: 0, trend: 0 },
-      ],
-    },
-    {
-      section: 'Modern Physics',
-      topics: [
-        { name: 'Atoms and Nuclei', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Dual Nature of Radiation', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Semiconductor', total: 0, avg: 0, weightage: 0, trend: 0 },
-      ],
-    },
-  ],
-  Chemistry: [
-    {
-      section: 'Physical Chemistry',
-      topics: [
-        { name: 'Solutions', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Electrochemistry', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Chemical Kinetics', total: 0, avg: 0, weightage: 0, trend: 0 },
-      ],
-    },
-    {
-      section: 'Inorganic Chemistry',
-      topics: [
-        { name: 'Coordination Compounds', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'd and f Block Elements', total: 0, avg: 0, weightage: 0, trend: 0 },
-      ],
-    },
-    {
-      section: 'Organic Chemistry',
-      topics: [
-        { name: 'Amines', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Haloalkanes and Haloarenes', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Aldehydes, Ketones and Carboxylic Acids', total: 0, avg: 0, weightage: 0, trend: 0 },
-      ],
-    },
-  ],
-  Mathematics: [
-    {
-      section: 'Calculus',
-      topics: [
-        { name: 'Definite Integration', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Differential Equations', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Continuity and Differentiability', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Indefinite Integration', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Application of Integration', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Application of Derivatives', total: 0, avg: 0, weightage: 0, trend: 0 },
-      ],
-    },
-    {
-      section: 'Relations and Functions',
-      topics: [
-        { name: 'Inverse Trigonometric Function', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Relations and Functions', total: 0, avg: 0, weightage: 0, trend: 0 },
-      ],
-    },
-    {
-      section: 'Algebra',
-      topics: [
-        { name: 'Three Dimensional Geometry', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Probability', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Matrices', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Determinants', total: 0, avg: 0, weightage: 0, trend: 0 },
-        { name: 'Vector Algebra', total: 0, avg: 0, weightage: 0, trend: 0 },
-      ],
-    },
-  ],
-};
-
 export const examTopicData: ExamTopicMap = {
   'jee-main': jeeMainTopics,
   'jee-advanced': jeeAdvancedTopics,
@@ -1481,5 +1393,4 @@ export const examTopicData: ExamTopicMap = {
   'viteee': viteeeTopics,
   'neet': neetTopics,
   'aiims': aiimsTopics,
-  'class-12': class12Topics,
 };
