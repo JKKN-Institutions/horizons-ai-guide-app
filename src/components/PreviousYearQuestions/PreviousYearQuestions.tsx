@@ -709,6 +709,19 @@ export const PreviousYearQuestions = () => {
             </motion.div>
           )}
 
+          {/* NEET PG Weightage shortcut when subcategory is selected */}
+          {selectedSubcategory === 'neet-pg' && (
+            <div className="mb-4">
+              <button
+                onClick={() => setSubjectWeightageView({ examId: 'neet-pg', examName: 'NEET PG' })}
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-medium text-sm rounded-xl border border-emerald-200 transition-colors"
+              >
+                📊 Subject-Wise Weightage Dashboard
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          )}
+
           {/* Papers Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
             <AnimatePresence mode="popLayout">
