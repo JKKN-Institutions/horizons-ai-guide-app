@@ -1471,6 +1471,272 @@ const class12Topics: SubjectTopics = {
   ],
 };
 
+const neetPgTopics: SubjectTopics = {
+  Anatomy: [
+    {
+      section: 'General Anatomy',
+      topics: [
+        { name: 'Upper Limb', total: 12, avg: 4, weightage: 3.5, trend: 8.33 },
+        { name: 'Lower Limb', total: 10, avg: 3.3, weightage: 2.9, trend: -5.0 },
+        { name: 'Thorax', total: 8, avg: 2.7, weightage: 2.3, trend: 12.5 },
+        { name: 'Abdomen', total: 9, avg: 3, weightage: 2.6, trend: 0 },
+        { name: 'Head & Neck', total: 14, avg: 4.7, weightage: 4.1, trend: 16.67 },
+        { name: 'Neuroanatomy', total: 11, avg: 3.7, weightage: 3.2, trend: -9.09 },
+        { name: 'Embryology', total: 7, avg: 2.3, weightage: 2, trend: 14.29 },
+        { name: 'Histology', total: 6, avg: 2, weightage: 1.7, trend: -16.67 },
+        { name: 'Genetics', total: 5, avg: 1.7, weightage: 1.5, trend: 0 },
+      ],
+    },
+  ],
+  Physiology: [
+    {
+      section: 'General Physiology',
+      topics: [
+        { name: 'General Physiology & Blood', total: 10, avg: 3.3, weightage: 2.9, trend: 10.0 },
+        { name: 'Nerve & Muscle Physiology', total: 6, avg: 2, weightage: 1.7, trend: -16.67 },
+        { name: 'CVS Physiology', total: 9, avg: 3, weightage: 2.6, trend: 11.11 },
+        { name: 'Respiratory Physiology', total: 7, avg: 2.3, weightage: 2, trend: 0 },
+        { name: 'Renal Physiology', total: 8, avg: 2.7, weightage: 2.3, trend: -12.5 },
+        { name: 'GIT Physiology', total: 6, avg: 2, weightage: 1.7, trend: 16.67 },
+        { name: 'Endocrine Physiology', total: 9, avg: 3, weightage: 2.6, trend: 22.22 },
+        { name: 'CNS Physiology', total: 10, avg: 3.3, weightage: 2.9, trend: -10.0 },
+        { name: 'Special Senses', total: 5, avg: 1.7, weightage: 1.5, trend: 0 },
+      ],
+    },
+  ],
+  Biochemistry: [
+    {
+      section: 'Biochemistry',
+      topics: [
+        { name: 'Enzymes', total: 8, avg: 2.7, weightage: 2.3, trend: 12.5 },
+        { name: 'Carbohydrate Metabolism', total: 7, avg: 2.3, weightage: 2, trend: -14.29 },
+        { name: 'Lipid Metabolism', total: 6, avg: 2, weightage: 1.7, trend: 16.67 },
+        { name: 'Protein & Amino Acid Metabolism', total: 9, avg: 3, weightage: 2.6, trend: 11.11 },
+        { name: 'Molecular Biology & Genetics', total: 10, avg: 3.3, weightage: 2.9, trend: 20.0 },
+        { name: 'Vitamins & Minerals', total: 7, avg: 2.3, weightage: 2, trend: -14.29 },
+        { name: 'Clinical Biochemistry', total: 5, avg: 1.7, weightage: 1.5, trend: 0 },
+      ],
+    },
+  ],
+  Pharmacology: [
+    {
+      section: 'Pharmacology',
+      topics: [
+        { name: 'General Pharmacology', total: 8, avg: 2.7, weightage: 2.3, trend: -12.5 },
+        { name: 'ANS Pharmacology', total: 10, avg: 3.3, weightage: 2.9, trend: 10.0 },
+        { name: 'CVS Pharmacology', total: 9, avg: 3, weightage: 2.6, trend: 22.22 },
+        { name: 'CNS Pharmacology', total: 11, avg: 3.7, weightage: 3.2, trend: 9.09 },
+        { name: 'Chemotherapy & Antibiotics', total: 14, avg: 4.7, weightage: 4.1, trend: 14.29 },
+        { name: 'Endocrine Pharmacology', total: 7, avg: 2.3, weightage: 2, trend: -14.29 },
+        { name: 'Autacoids & NSAIDs', total: 6, avg: 2, weightage: 1.7, trend: 16.67 },
+        { name: 'Immunopharmacology', total: 4, avg: 1.3, weightage: 1.2, trend: 0 },
+      ],
+    },
+  ],
+  Pathology: [
+    {
+      section: 'Pathology',
+      topics: [
+        { name: 'General Pathology', total: 12, avg: 4, weightage: 3.5, trend: 8.33 },
+        { name: 'Hematology', total: 14, avg: 4.7, weightage: 4.1, trend: 14.29 },
+        { name: 'Immunopathology', total: 6, avg: 2, weightage: 1.7, trend: -16.67 },
+        { name: 'Neoplasia', total: 10, avg: 3.3, weightage: 2.9, trend: 10.0 },
+        { name: 'Systemic Pathology', total: 8, avg: 2.7, weightage: 2.3, trend: -12.5 },
+        { name: 'Clinical Pathology', total: 5, avg: 1.7, weightage: 1.5, trend: 0 },
+      ],
+    },
+  ],
+  Microbiology: [
+    {
+      section: 'Microbiology',
+      topics: [
+        { name: 'General Microbiology', total: 7, avg: 2.3, weightage: 2, trend: 14.29 },
+        { name: 'Bacteriology', total: 14, avg: 4.7, weightage: 4.1, trend: 7.14 },
+        { name: 'Virology', total: 10, avg: 3.3, weightage: 2.9, trend: -10.0 },
+        { name: 'Parasitology', total: 8, avg: 2.7, weightage: 2.3, trend: 12.5 },
+        { name: 'Mycology', total: 5, avg: 1.7, weightage: 1.5, trend: -20.0 },
+        { name: 'Immunology', total: 9, avg: 3, weightage: 2.6, trend: 11.11 },
+      ],
+    },
+  ],
+  Medicine: [
+    {
+      section: 'Medicine',
+      topics: [
+        { name: 'Cardiology', total: 12, avg: 4, weightage: 3.5, trend: 16.67 },
+        { name: 'Pulmonology', total: 8, avg: 2.7, weightage: 2.3, trend: -12.5 },
+        { name: 'Gastroenterology', total: 9, avg: 3, weightage: 2.6, trend: 11.11 },
+        { name: 'Nephrology', total: 10, avg: 3.3, weightage: 2.9, trend: 10.0 },
+        { name: 'Endocrinology', total: 11, avg: 3.7, weightage: 3.2, trend: 18.18 },
+        { name: 'Hematology & Oncology', total: 7, avg: 2.3, weightage: 2, trend: -14.29 },
+        { name: 'Neurology', total: 8, avg: 2.7, weightage: 2.3, trend: 12.5 },
+        { name: 'Rheumatology', total: 5, avg: 1.7, weightage: 1.5, trend: 0 },
+        { name: 'Infectious Diseases', total: 10, avg: 3.3, weightage: 2.9, trend: -10.0 },
+        { name: 'Poisoning & Toxicology', total: 4, avg: 1.3, weightage: 1.2, trend: 25.0 },
+      ],
+    },
+  ],
+  'Social & Preventive Medicine': [
+    {
+      section: 'SPM / Community Medicine',
+      topics: [
+        { name: 'Biostatistics & Epidemiology', total: 12, avg: 4, weightage: 3.5, trend: 16.67 },
+        { name: 'Communicable Diseases', total: 10, avg: 3.3, weightage: 2.9, trend: -10.0 },
+        { name: 'Non-Communicable Diseases', total: 7, avg: 2.3, weightage: 2, trend: 14.29 },
+        { name: 'Nutrition & Health', total: 8, avg: 2.7, weightage: 2.3, trend: 12.5 },
+        { name: 'National Health Programs', total: 11, avg: 3.7, weightage: 3.2, trend: 9.09 },
+        { name: 'Environment & Sanitation', total: 5, avg: 1.7, weightage: 1.5, trend: -20.0 },
+        { name: 'Demography & Family Planning', total: 6, avg: 2, weightage: 1.7, trend: 0 },
+        { name: 'Health Management & Administration', total: 4, avg: 1.3, weightage: 1.2, trend: 25.0 },
+      ],
+    },
+  ],
+  'Forensic Medicine': [
+    {
+      section: 'Forensic Medicine & Toxicology',
+      topics: [
+        { name: 'Identification & Autopsy', total: 8, avg: 2.7, weightage: 2.3, trend: 12.5 },
+        { name: 'Mechanical Injuries & Wounds', total: 7, avg: 2.3, weightage: 2, trend: -14.29 },
+        { name: 'Asphyxia', total: 5, avg: 1.7, weightage: 1.5, trend: 20.0 },
+        { name: 'Toxicology', total: 10, avg: 3.3, weightage: 2.9, trend: 10.0 },
+        { name: 'Medical Jurisprudence', total: 9, avg: 3, weightage: 2.6, trend: -11.11 },
+        { name: 'Sexual Offences', total: 4, avg: 1.3, weightage: 1.2, trend: 0 },
+      ],
+    },
+  ],
+  Surgery: [
+    {
+      section: 'Surgery',
+      topics: [
+        { name: 'General Surgery', total: 10, avg: 3.3, weightage: 2.9, trend: 10.0 },
+        { name: 'GI Surgery', total: 12, avg: 4, weightage: 3.5, trend: 16.67 },
+        { name: 'Urology', total: 8, avg: 2.7, weightage: 2.3, trend: -12.5 },
+        { name: 'Endocrine Surgery', total: 6, avg: 2, weightage: 1.7, trend: 16.67 },
+        { name: 'Cardiothoracic Surgery', total: 5, avg: 1.7, weightage: 1.5, trend: -20.0 },
+        { name: 'Trauma & Surgical Emergencies', total: 7, avg: 2.3, weightage: 2, trend: 14.29 },
+        { name: 'Plastic & Reconstructive Surgery', total: 4, avg: 1.3, weightage: 1.2, trend: 0 },
+      ],
+    },
+  ],
+  'Obstetrics & Gynaecology': [
+    {
+      section: 'OBG',
+      topics: [
+        { name: 'Normal & Abnormal Labour', total: 10, avg: 3.3, weightage: 2.9, trend: 10.0 },
+        { name: 'High Risk Pregnancy', total: 9, avg: 3, weightage: 2.6, trend: 22.22 },
+        { name: 'Contraception & Family Planning', total: 6, avg: 2, weightage: 1.7, trend: -16.67 },
+        { name: 'Gynaecological Oncology', total: 7, avg: 2.3, weightage: 2, trend: 14.29 },
+        { name: 'Infertility', total: 5, avg: 1.7, weightage: 1.5, trend: 0 },
+        { name: 'Menstrual Disorders', total: 8, avg: 2.7, weightage: 2.3, trend: -12.5 },
+        { name: 'Antenatal Care', total: 7, avg: 2.3, weightage: 2, trend: 14.29 },
+      ],
+    },
+  ],
+  'Dermatology & Venereology': [
+    {
+      section: 'Dermatology',
+      topics: [
+        { name: 'Papulosquamous Disorders', total: 7, avg: 2.3, weightage: 2, trend: 14.29 },
+        { name: 'Vesiculobullous Disorders', total: 5, avg: 1.7, weightage: 1.5, trend: -20.0 },
+        { name: 'Infections & Infestations', total: 10, avg: 3.3, weightage: 2.9, trend: 10.0 },
+        { name: 'STDs & Venereology', total: 8, avg: 2.7, weightage: 2.3, trend: 12.5 },
+        { name: 'Pigmentary Disorders', total: 4, avg: 1.3, weightage: 1.2, trend: 0 },
+        { name: 'Pharmacotherapy in Dermatology', total: 6, avg: 2, weightage: 1.7, trend: 16.67 },
+      ],
+    },
+  ],
+  Pediatrics: [
+    {
+      section: 'Pediatrics',
+      topics: [
+        { name: 'Neonatology', total: 10, avg: 3.3, weightage: 2.9, trend: 10.0 },
+        { name: 'Growth & Development', total: 7, avg: 2.3, weightage: 2, trend: 14.29 },
+        { name: 'Pediatric Infections', total: 9, avg: 3, weightage: 2.6, trend: -11.11 },
+        { name: 'Immunization', total: 8, avg: 2.7, weightage: 2.3, trend: 12.5 },
+        { name: 'Pediatric Emergencies', total: 5, avg: 1.7, weightage: 1.5, trend: 0 },
+        { name: 'Genetic & Metabolic Disorders', total: 6, avg: 2, weightage: 1.7, trend: -16.67 },
+        { name: 'Nutrition in Pediatrics', total: 7, avg: 2.3, weightage: 2, trend: 14.29 },
+      ],
+    },
+  ],
+  Orthopedics: [
+    {
+      section: 'Orthopedics',
+      topics: [
+        { name: 'Fractures & Dislocations', total: 12, avg: 4, weightage: 3.5, trend: 8.33 },
+        { name: 'Bone Tumors', total: 6, avg: 2, weightage: 1.7, trend: 16.67 },
+        { name: 'Joint Disorders', total: 8, avg: 2.7, weightage: 2.3, trend: -12.5 },
+        { name: 'Spine Disorders', total: 5, avg: 1.7, weightage: 1.5, trend: 20.0 },
+        { name: 'Pediatric Orthopedics', total: 7, avg: 2.3, weightage: 2, trend: -14.29 },
+        { name: 'Rehabilitation', total: 3, avg: 1, weightage: 0.9, trend: 0 },
+      ],
+    },
+  ],
+  Ophthalmology: [
+    {
+      section: 'Ophthalmology',
+      topics: [
+        { name: 'Lens & Cataract', total: 8, avg: 2.7, weightage: 2.3, trend: 12.5 },
+        { name: 'Glaucoma', total: 7, avg: 2.3, weightage: 2, trend: -14.29 },
+        { name: 'Retina & Vitreous', total: 9, avg: 3, weightage: 2.6, trend: 11.11 },
+        { name: 'Cornea & Sclera', total: 6, avg: 2, weightage: 1.7, trend: 16.67 },
+        { name: 'Orbit & Oculoplasty', total: 4, avg: 1.3, weightage: 1.2, trend: 0 },
+        { name: 'Neuro-Ophthalmology', total: 5, avg: 1.7, weightage: 1.5, trend: -20.0 },
+        { name: 'Optics & Refraction', total: 6, avg: 2, weightage: 1.7, trend: 16.67 },
+      ],
+    },
+  ],
+  ENT: [
+    {
+      section: 'ENT',
+      topics: [
+        { name: 'Ear - Otology', total: 10, avg: 3.3, weightage: 2.9, trend: 10.0 },
+        { name: 'Nose & Paranasal Sinuses', total: 7, avg: 2.3, weightage: 2, trend: -14.29 },
+        { name: 'Throat & Larynx', total: 8, avg: 2.7, weightage: 2.3, trend: 12.5 },
+        { name: 'Head & Neck Tumors', total: 5, avg: 1.7, weightage: 1.5, trend: 20.0 },
+        { name: 'Audiology', total: 4, avg: 1.3, weightage: 1.2, trend: 0 },
+      ],
+    },
+  ],
+  Anaesthesia: [
+    {
+      section: 'Anaesthesia',
+      topics: [
+        { name: 'General Anaesthesia', total: 7, avg: 2.3, weightage: 2, trend: 14.29 },
+        { name: 'Regional Anaesthesia', total: 6, avg: 2, weightage: 1.7, trend: -16.67 },
+        { name: 'Pre-Anaesthetic Assessment', total: 4, avg: 1.3, weightage: 1.2, trend: 0 },
+        { name: 'Pain Management', total: 5, avg: 1.7, weightage: 1.5, trend: 20.0 },
+        { name: 'Critical Care & Resuscitation', total: 8, avg: 2.7, weightage: 2.3, trend: 12.5 },
+      ],
+    },
+  ],
+  Radiology: [
+    {
+      section: 'Radiology',
+      topics: [
+        { name: 'X-ray & Plain Radiography', total: 8, avg: 2.7, weightage: 2.3, trend: -12.5 },
+        { name: 'CT & MRI', total: 10, avg: 3.3, weightage: 2.9, trend: 20.0 },
+        { name: 'Ultrasonography', total: 6, avg: 2, weightage: 1.7, trend: 16.67 },
+        { name: 'Nuclear Medicine', total: 4, avg: 1.3, weightage: 1.2, trend: 0 },
+        { name: 'Interventional Radiology', total: 3, avg: 1, weightage: 0.9, trend: -33.33 },
+      ],
+    },
+  ],
+  Psychiatry: [
+    {
+      section: 'Psychiatry',
+      topics: [
+        { name: 'Mood Disorders', total: 7, avg: 2.3, weightage: 2, trend: 14.29 },
+        { name: 'Psychotic Disorders', total: 6, avg: 2, weightage: 1.7, trend: -16.67 },
+        { name: 'Anxiety & Stress Disorders', total: 5, avg: 1.7, weightage: 1.5, trend: 20.0 },
+        { name: 'Substance Abuse', total: 8, avg: 2.7, weightage: 2.3, trend: 12.5 },
+        { name: 'Psychopharmacology', total: 9, avg: 3, weightage: 2.6, trend: 11.11 },
+        { name: 'Child Psychiatry', total: 3, avg: 1, weightage: 0.9, trend: 0 },
+      ],
+    },
+  ],
+};
+
 export const examTopicData: ExamTopicMap = {
   'jee-main': jeeMainTopics,
   'jee-advanced': jeeAdvancedTopics,
@@ -1482,4 +1748,5 @@ export const examTopicData: ExamTopicMap = {
   'neet': neetTopics,
   'aiims': aiimsTopics,
   'class-12': class12Topics,
+  'neet-pg': neetPgTopics,
 };
