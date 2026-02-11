@@ -8,16 +8,7 @@ import { Progress } from '@/components/ui/progress';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { CollegeSearch } from '@/components/CollegeSearch';
-import { ScholarshipFinder } from '@/components/ScholarshipFinder';
-import { EduCutoff } from '@/components/EduCutoff';
-import { EntranceExams } from '@/components/EntranceExams';
-import { CounsellingSimulator } from '@/components/CounsellingSimulator';
-import { PreviousYearQuestions } from '@/components/PreviousYearQuestions';
-import { GovernmentJobs } from '@/components/GovernmentJobs';
-import { UniversityEntranceExams } from '@/components/UniversityEntrance';
-import { PillNavigation } from '@/components/PillNavigation';
-import { CourseExplorer } from '@/components/CourseExplorer';
+import { CollegesPageLayout } from '@/components/CollegesPageLayout';
 
 
 type AssessmentType = 'career_chat' | 'industry_trends' | 'emotional_intelligence' | 'skill_gap';
@@ -107,8 +98,6 @@ const CareerAssessmentColleges = () => {
   const [overallScore, setOverallScore] = useState(0);
   const [activeTab, setActiveTab] = useState('assessments');
   const [showIndustryTrendsModal, setShowIndustryTrendsModal] = useState(false);
-
-  // Dynamic button colors based on active tab
   const getButtonColor = () => {
     switch (activeTab) {
       case 'assessments':
@@ -268,325 +257,262 @@ const CareerAssessmentColleges = () => {
   const isInProgress = (id: AssessmentType) => !!inProgressAssessments[id];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50/50 to-amber-50/30 page-transition">
+    <CollegesPageLayout activeTab="assessments">
       {/* Industry Trends Modal */}
       <IndustryTrendsModal 
         open={showIndustryTrendsModal} 
         onOpenChange={setShowIndustryTrendsModal} 
       />
-      {/* Enhanced Header */}
-      <header className="relative overflow-hidden bg-gradient-to-br from-emerald-700 via-green-700 to-emerald-800">
-        {/* Decorative elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-amber-400/20 to-orange-500/10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/2" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-emerald-400/20 to-teal-500/10 rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/2" />
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23ffffff%22 fill-opacity=%220.04%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" />
-        </div>
-        
-        <div className="container mx-auto px-4 py-8 md:py-12 relative z-10">
-          <Button 
-            variant="ghost" 
-            className="text-white/80 hover:text-white hover:bg-white/15 mb-6 rounded-xl transition-all duration-300 group"
-            onClick={() => navigate('/')}
-          >
-            <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-            Back
-          </Button>
+
+      <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex-1">
+          <div className="fresh-section-header mb-6">
+            <div className="icon-box text-white"><Target /></div>
+            <h2>Choose Your Assessment</h2>
+          </div>
           
-          <div className="max-w-3xl">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight mb-3">
-              Career Assessment Center for Learners
-            </h1>
-            <p className="text-lg md:text-xl text-amber-300 font-tamil mb-4">
-              கல்லூரி கற்றவர்களுக்கான வாழ்க்கை மதிப்பீட்டு மையம்
-            </p>
-            <p className="text-emerald-100/90 text-base md:text-lg max-w-2xl leading-relaxed">
-              Discover your strengths, interests and find the perfect college for your future
-            </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            {assessmentCards.map((assessment, index) => {
+              const Icon = assessment.icon;
+              const completed = isCompleted(assessment.id);
+              const inProgress = isInProgress(assessment.id);
+
+              const cardGradient = assessment.isChat 
+                ? 'bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 border-2 border-orange-200/60 hover:border-orange-300 hover:shadow-[0_8px_30px_rgba(251,146,60,0.2)]'
+                : 'bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 border-2 border-emerald-200/60 hover:border-emerald-300 hover:shadow-[0_8px_30px_rgba(16,185,129,0.2)]';
+
+              const iconGradient = assessment.isChat
+                ? 'bg-gradient-to-br from-orange-400 to-amber-500 shadow-lg shadow-orange-200'
+                : 'bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-200';
+
+              return (
+                <Card 
+                  key={assessment.id} 
+                  className={`${cardGradient} rounded-2xl transition-all duration-300 relative overflow-hidden group hover:scale-[1.02] hover:-translate-y-1`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity ${assessment.isChat ? 'bg-orange-300' : 'bg-emerald-300'}`} />
+                  
+                  {completed && (
+                    <div className="absolute top-4 right-4 z-10">
+                      <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">
+                        <CheckCircle2 className="h-3.5 w-3.5" />
+                        Completed
+                      </span>
+                    </div>
+                  )}
+                  {inProgress && !completed && (
+                    <div className="absolute top-4 right-4 z-10">
+                      <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-orange-400 to-amber-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">
+                        <Clock className="h-3.5 w-3.5" />
+                        In Progress
+                      </span>
+                    </div>
+                  )}
+                  
+                  <CardHeader className="pb-4 relative z-10">
+                    <div className="flex items-start gap-4">
+                      <div className={`p-3.5 rounded-xl ${iconGradient} transform group-hover:scale-110 transition-transform duration-300`}>
+                        <Icon className="h-6 w-6 text-white" />
+                      </div>
+                      <div className="flex-1 pt-1">
+                        <CardTitle className="text-xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors">{assessment.title}</CardTitle>
+                        <CardDescription className="mt-2 text-gray-600 leading-relaxed">
+                          {assessment.description}
+                        </CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  
+                  <CardContent className="relative z-10">
+                    <div className="flex items-center gap-4 text-sm mb-5">
+                      {assessment.isChat ? (
+                        <>
+                          <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-orange-700 font-medium shadow-sm">
+                            <MessageCircle className="h-4 w-4" />
+                            Unlimited
+                          </span>
+                          <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-orange-700 font-medium shadow-sm">
+                            <Mic className="h-4 w-4" />
+                            Voice Support
+                          </span>
+                        </>
+                      ) : assessment.isExternal ? (
+                        <>
+                          <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-emerald-700 font-medium shadow-sm">
+                            <Radio className="h-4 w-4" />
+                            {assessment.duration}
+                          </span>
+                          <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-emerald-700 font-medium shadow-sm">
+                            <Sparkles className="h-4 w-4" />
+                            {assessment.questions} Insights
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-gray-600 font-medium shadow-sm">
+                            <Clock className="h-4 w-4" />
+                            {assessment.duration}
+                          </span>
+                          <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-gray-600 font-medium shadow-sm">
+                            <HelpCircle className="h-4 w-4" />
+                            {assessment.questions} questions
+                          </span>
+                        </>
+                      )}
+                    </div>
+
+                    {inProgress && !completed && !assessment.isExternal && (
+                      <div className="mb-5 bg-white/60 backdrop-blur-sm rounded-xl p-3">
+                        <div className="flex justify-between text-sm mb-2">
+                          <span className="text-gray-600">Progress</span>
+                          <span className="font-bold text-gray-800">{inProgressAssessments[assessment.id].progress}%</span>
+                        </div>
+                        <Progress value={inProgressAssessments[assessment.id].progress} className="h-2.5" />
+                      </div>
+                    )}
+                    
+                    <Button 
+                      className={`w-full py-6 text-base font-semibold rounded-xl shadow-lg transition-all duration-300 ${
+                        assessment.isChat 
+                          ? 'bg-gradient-to-r from-orange-500 via-amber-500 to-orange-500 hover:from-orange-600 hover:via-amber-600 hover:to-orange-600 text-white shadow-orange-200 hover:shadow-orange-300'
+                          : 'bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 hover:from-emerald-700 hover:via-green-700 hover:to-emerald-700 text-white shadow-emerald-200 hover:shadow-emerald-300'
+                      } group-hover:shadow-xl`}
+                      onClick={() => handleStartAssessment(assessment)}
+                    >
+                      {assessment.isChat ? 'Start Chat' : assessment.isExternal ? 'View Insights →' : completed ? 'Retake Assessment' : inProgress ? 'Continue Assessment' : 'Start Assessment'}
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+
+          {/* Career Booster Section */}
+          <div className="fresh-section-header mb-6 mt-10">
+            <div className="icon-box bg-gradient-to-br from-purple-500 to-violet-600 text-white"><Brain /></div>
+            <h2>Career Boosting</h2>
+            <p className="text-sm text-gray-500 ml-auto">Personalized tips, skill recommendations & action plans</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {boosterCards.map((booster, index) => {
+              const Icon = booster.icon;
+              const Badge1Icon = booster.badge1Icon;
+              const Badge2Icon = booster.badge2Icon;
+
+              return (
+                <Card 
+                  key={booster.id} 
+                  className={`${booster.cardGradient} rounded-2xl transition-all duration-300 relative overflow-hidden group hover:scale-[1.02] hover:-translate-y-1`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity ${booster.id === 'ai_predictor' ? 'bg-purple-300' : 'bg-blue-300'}`} />
+                  
+                  <CardHeader className="pb-4 relative z-10">
+                    <div className="flex items-start gap-4">
+                      <div className={`p-3.5 rounded-xl ${booster.iconGradient} transform group-hover:scale-110 transition-transform duration-300`}>
+                        <Icon className="h-6 w-6 text-white" />
+                      </div>
+                      <div className="flex-1 pt-1">
+                        <CardTitle className="text-xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors">{booster.title}</CardTitle>
+                        <CardDescription className="mt-2 text-gray-600 leading-relaxed">
+                          {booster.description}
+                        </CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  
+                  <CardContent className="relative z-10">
+                    <div className="flex items-center gap-4 text-sm mb-5">
+                      <span className={`flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full font-medium shadow-sm ${booster.id === 'ai_predictor' ? 'text-purple-700' : 'text-blue-700'}`}>
+                        <Badge1Icon className="h-4 w-4" />
+                        {booster.badge1}
+                      </span>
+                      <span className={`flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full font-medium shadow-sm ${booster.id === 'ai_predictor' ? 'text-purple-700' : 'text-blue-700'}`}>
+                        <Badge2Icon className="h-4 w-4" />
+                        {booster.badge2}
+                      </span>
+                    </div>
+                    
+                    <Button 
+                      className={`w-full py-6 text-base font-semibold rounded-xl shadow-lg transition-all duration-300 ${booster.buttonGradient} group-hover:shadow-xl`}
+                      onClick={() => navigate(booster.id === 'ai_predictor' ? '/career-assessment/ai-predictor' : '/career-assessment/ai-predictor')}
+                    >
+                      {booster.buttonText}
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
-        
-        {/* Bottom curve */}
-        <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-br from-emerald-50 via-green-50/50 to-amber-50/30 rounded-t-[2rem]" />
-      </header>
 
-      <div className="container mx-auto px-4 py-8 relative z-10">
-        <PillNavigation activeTab={activeTab} onTabChange={setActiveTab} />
-
-        {activeTab === 'assessments' && (
-          <>
-          <div className="flex flex-col lg:flex-row gap-8">
-          <div className="flex-1">
-              <div className="fresh-section-header mb-6">
-                <div className="icon-box text-white"><Target /></div>
-                <h2>Choose Your Assessment</h2>
-              </div>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                {assessmentCards.map((assessment, index) => {
-                  const Icon = assessment.icon;
-                  const completed = isCompleted(assessment.id);
-                  const inProgress = isInProgress(assessment.id);
-
-                  const cardGradient = assessment.isChat 
-                    ? 'bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 border-2 border-orange-200/60 hover:border-orange-300 hover:shadow-[0_8px_30px_rgba(251,146,60,0.2)]'
-                    : 'bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 border-2 border-emerald-200/60 hover:border-emerald-300 hover:shadow-[0_8px_30px_rgba(16,185,129,0.2)]';
-
-                  const iconGradient = assessment.isChat
-                    ? 'bg-gradient-to-br from-orange-400 to-amber-500 shadow-lg shadow-orange-200'
-                    : 'bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-200';
-
-                  return (
-                    <Card 
-                      key={assessment.id} 
-                      className={`${cardGradient} rounded-2xl transition-all duration-300 relative overflow-hidden group hover:scale-[1.02] hover:-translate-y-1`}
-                      style={{ animationDelay: `${index * 0.1}s` }}
-                    >
-                      {/* Decorative gradient orb */}
-                      <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity ${assessment.isChat ? 'bg-orange-300' : 'bg-emerald-300'}`} />
-                      
-                      {completed && (
-                        <div className="absolute top-4 right-4 z-10">
-                          <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">
-                            <CheckCircle2 className="h-3.5 w-3.5" />
-                            Completed
-                          </span>
-                        </div>
-                      )}
-                      {inProgress && !completed && (
-                        <div className="absolute top-4 right-4 z-10">
-                          <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-orange-400 to-amber-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">
-                            <Clock className="h-3.5 w-3.5" />
-                            In Progress
-                          </span>
-                        </div>
-                      )}
-                      
-                      <CardHeader className="pb-4 relative z-10">
-                        <div className="flex items-start gap-4">
-                          <div className={`p-3.5 rounded-xl ${iconGradient} transform group-hover:scale-110 transition-transform duration-300`}>
-                            <Icon className="h-6 w-6 text-white" />
-                          </div>
-                          <div className="flex-1 pt-1">
-                            <CardTitle className="text-xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors">{assessment.title}</CardTitle>
-                            <CardDescription className="mt-2 text-gray-600 leading-relaxed">
-                              {assessment.description}
-                            </CardDescription>
-                          </div>
-                        </div>
-                      </CardHeader>
-                      
-                      <CardContent className="relative z-10">
-                        <div className="flex items-center gap-4 text-sm mb-5">
-                          {assessment.isChat ? (
-                            <>
-                              <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-orange-700 font-medium shadow-sm">
-                                <MessageCircle className="h-4 w-4" />
-                                Unlimited
-                              </span>
-                              <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-orange-700 font-medium shadow-sm">
-                                <Mic className="h-4 w-4" />
-                                Voice Support
-                              </span>
-                            </>
-                          ) : assessment.isExternal ? (
-                            <>
-                              <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-emerald-700 font-medium shadow-sm">
-                                <Radio className="h-4 w-4" />
-                                {assessment.duration}
-                              </span>
-                              <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-emerald-700 font-medium shadow-sm">
-                                <Sparkles className="h-4 w-4" />
-                                {assessment.questions} Insights
-                              </span>
-                            </>
-                          ) : (
-                            <>
-                              <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-gray-600 font-medium shadow-sm">
-                                <Clock className="h-4 w-4" />
-                                {assessment.duration}
-                              </span>
-                              <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full text-gray-600 font-medium shadow-sm">
-                                <HelpCircle className="h-4 w-4" />
-                                {assessment.questions} questions
-                              </span>
-                            </>
-                          )}
-                        </div>
-
-                        {inProgress && !completed && !assessment.isExternal && (
-                          <div className="mb-5 bg-white/60 backdrop-blur-sm rounded-xl p-3">
-                            <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-600">Progress</span>
-                              <span className="font-bold text-gray-800">{inProgressAssessments[assessment.id].progress}%</span>
-                            </div>
-                            <Progress value={inProgressAssessments[assessment.id].progress} className="h-2.5" />
-                          </div>
-                        )}
-                        
-                        <Button 
-                          className={`w-full py-6 text-base font-semibold rounded-xl shadow-lg transition-all duration-300 ${
-                            assessment.isChat 
-                              ? 'bg-gradient-to-r from-orange-500 via-amber-500 to-orange-500 hover:from-orange-600 hover:via-amber-600 hover:to-orange-600 text-white shadow-orange-200 hover:shadow-orange-300'
-                              : 'bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 hover:from-emerald-700 hover:via-green-700 hover:to-emerald-700 text-white shadow-emerald-200 hover:shadow-emerald-300'
-                          } group-hover:shadow-xl`}
-                          onClick={() => handleStartAssessment(assessment)}
-                        >
-                          {assessment.isChat ? 'Start Chat' : assessment.isExternal ? 'View Insights →' : completed ? 'Retake Assessment' : inProgress ? 'Continue Assessment' : 'Start Assessment'}
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
-              </div>
-
-              {/* Career Booster Section */}
-              <div className="fresh-section-header mb-6 mt-10">
-                <div className="icon-box bg-gradient-to-br from-purple-500 to-violet-600 text-white"><Brain /></div>
-                <h2>Career Boosting</h2>
-                <p className="text-sm text-gray-500 ml-auto">Personalized tips, skill recommendations & action plans</p>
-              </div>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                {boosterCards.map((booster, index) => {
-                  const Icon = booster.icon;
-                  const Badge1Icon = booster.badge1Icon;
-                  const Badge2Icon = booster.badge2Icon;
-
-                  return (
-                    <Card 
-                      key={booster.id} 
-                      className={`${booster.cardGradient} rounded-2xl transition-all duration-300 relative overflow-hidden group hover:scale-[1.02] hover:-translate-y-1`}
-                      style={{ animationDelay: `${index * 0.1}s` }}
-                    >
-                      {/* Decorative gradient orb */}
-                      <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity ${booster.id === 'ai_predictor' ? 'bg-purple-300' : 'bg-blue-300'}`} />
-                      
-                      <CardHeader className="pb-4 relative z-10">
-                        <div className="flex items-start gap-4">
-                          <div className={`p-3.5 rounded-xl ${booster.iconGradient} transform group-hover:scale-110 transition-transform duration-300`}>
-                            <Icon className="h-6 w-6 text-white" />
-                          </div>
-                          <div className="flex-1 pt-1">
-                            <CardTitle className="text-xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors">{booster.title}</CardTitle>
-                            <CardDescription className="mt-2 text-gray-600 leading-relaxed">
-                              {booster.description}
-                            </CardDescription>
-                          </div>
-                        </div>
-                      </CardHeader>
-                      
-                      <CardContent className="relative z-10">
-                        <div className="flex items-center gap-4 text-sm mb-5">
-                          <span className={`flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full font-medium shadow-sm ${booster.id === 'ai_predictor' ? 'text-purple-700' : 'text-blue-700'}`}>
-                            <Badge1Icon className="h-4 w-4" />
-                            {booster.badge1}
-                          </span>
-                          <span className={`flex items-center gap-1.5 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-full font-medium shadow-sm ${booster.id === 'ai_predictor' ? 'text-purple-700' : 'text-blue-700'}`}>
-                            <Badge2Icon className="h-4 w-4" />
-                            {booster.badge2}
-                          </span>
-                        </div>
-                        
-                        <Button 
-                          className={`w-full py-6 text-base font-semibold rounded-xl shadow-lg transition-all duration-300 ${booster.buttonGradient} group-hover:shadow-xl`}
-                          onClick={() => navigate(booster.id === 'ai_predictor' ? '/career-assessment/ai-predictor' : '/career-assessment/ai-predictor')}
-                        >
-                          {booster.buttonText}
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Sidebar */}
-            <div className="lg:w-80">
-              <Card className="fresh-card fresh-card-gold sticky top-4">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 fresh-card-title text-lg">
-                    <Trophy className="h-5 w-5 text-fresh-gold-dark" />
-                    Your Progress
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4 text-center">
-                    <div className="fresh-stat-card p-3">
-                      <div className="text-2xl font-bold text-[#2E7D32]">{completedAssessments.length}</div>
-                      <div className="text-xs fresh-muted">Completed</div>
-                    </div>
-                    <div className="fresh-stat-card p-3">
-                      <div className="text-2xl font-bold text-[#F59E0B]">
-                        {assessmentCards.length - completedAssessments.length}
-                      </div>
-                      <div className="text-xs fresh-muted">Pending</div>
-                    </div>
+        {/* Sidebar */}
+        <div className="lg:w-80">
+          <Card className="fresh-card fresh-card-gold sticky top-4">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 fresh-card-title text-lg">
+                <Trophy className="h-5 w-5 text-fresh-gold-dark" />
+                Your Progress
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-2 gap-4 text-center">
+                <div className="fresh-stat-card p-3">
+                  <div className="text-2xl font-bold text-[#2E7D32]">{completedAssessments.length}</div>
+                  <div className="text-xs fresh-muted">Completed</div>
+                </div>
+                <div className="fresh-stat-card p-3">
+                  <div className="text-2xl font-bold text-[#F59E0B]">
+                    {assessmentCards.length - completedAssessments.length}
                   </div>
+                  <div className="text-xs fresh-muted">Pending</div>
+                </div>
+              </div>
 
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="fresh-muted">Career Readiness</span>
-                      <span className="font-semibold text-[#1B5E20]">{overallScore}%</span>
-                    </div>
-                    <div className="fresh-progress">
-                      <div className="fresh-progress-bar" style={{ width: `${overallScore}%` }} />
-                    </div>
-                  </div>
+              <div>
+                <div className="flex justify-between text-sm mb-2">
+                  <span className="fresh-muted">Career Readiness</span>
+                  <span className="font-semibold text-[#1B5E20]">{overallScore}%</span>
+                </div>
+                <div className="fresh-progress">
+                  <div className="fresh-progress-bar" style={{ width: `${overallScore}%` }} />
+                </div>
+              </div>
 
-                  {completedAssessments.length > 0 && (
-                    <Button 
-                      className="w-full btn-premium-secondary"
-                      onClick={() => navigate('/career-assessment/results')}
-                    >
-                      <BookOpen className="mr-2 h-4 w-4" />
-                      View All Results
-                    </Button>
-                  )}
+              {completedAssessments.length > 0 && (
+                <Button 
+                  className="w-full btn-premium-secondary"
+                  onClick={() => navigate('/career-assessment/results')}
+                >
+                  <BookOpen className="mr-2 h-4 w-4" />
+                  View All Results
+                </Button>
+              )}
 
-                  {completedAssessments.length > 0 && (
-                    <Button 
-                      className="w-full btn-premium-primary"
-                      onClick={() => navigate('/career-assessment/story')}
-                    >
-                      Read Your Career Story
-                    </Button>
-                  )}
+              {completedAssessments.length > 0 && (
+                <Button 
+                  className="w-full btn-premium-primary"
+                  onClick={() => navigate('/career-assessment/story')}
+                >
+                  Read Your Career Story
+                </Button>
+              )}
 
-                  {completedAssessments.length < assessmentCards.length && (
-                    <div className="fresh-stat-card p-3">
-                      <p className="text-sm font-medium mb-1 text-[#1B5E20]">Recommended Next:</p>
-                      <p className="text-sm fresh-muted">
-                        {assessmentCards.find(a => !completedAssessments.includes(a.id))?.title}
-                      </p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-          </>
-        )}
-
-        {activeTab === 'colleges' && <CollegeSearch />}
-
-        {activeTab === 'scholarships' && <ScholarshipFinder />}
-
-        {activeTab === 'educutoff' && <EduCutoff />}
-
-        {activeTab === 'entranceexams' && <EntranceExams />}
-
-        {activeTab === 'counselling' && <CounsellingSimulator />}
-
-        {activeTab === 'pyq' && <PreviousYearQuestions />}
-
-        {activeTab === 'govtjobs' && <GovernmentJobs />}
-
-        {activeTab === 'tnuniversity' && <UniversityEntranceExams />}
-
-        {activeTab === 'courseexplorer' && <CourseExplorer />}
+              {completedAssessments.length < assessmentCards.length && (
+                <div className="fresh-stat-card p-3">
+                  <p className="text-sm font-medium mb-1 text-[#1B5E20]">Recommended Next:</p>
+                  <p className="text-sm fresh-muted">
+                    {assessmentCards.find(a => !completedAssessments.includes(a.id))?.title}
+                  </p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
       </div>
-    </div>
+    </CollegesPageLayout>
   );
 };
 
