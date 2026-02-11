@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { GraduationCap, Building2, Bookmark, Calculator, FileText, Users, BookOpen, LucideIcon, Landmark, School, Compass } from 'lucide-react';
 
@@ -9,13 +10,14 @@ interface NavItem {
   icon: LucideIcon;
   activeColor: string;
   activeBg: string;
+  route: string;
   isNew?: boolean;
   isFeatured?: boolean;
 }
 
 interface PillNavigationProps {
   activeTab: string;
-  onTabChange: (tab: string) => void;
+  onTabChange?: (tab: string) => void;
 }
 
 const navItems: NavItem[] = [
@@ -26,6 +28,7 @@ const navItems: NavItem[] = [
     icon: GraduationCap,
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#2E7D32] to-[#1B5E20]',
+    route: '/career-assessment/colleges',
   },
   {
     id: 'colleges',
@@ -34,6 +37,7 @@ const navItems: NavItem[] = [
     icon: Building2,
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#1976D2] to-[#1565C0]',
+    route: '/career-assessment/colleges/find-colleges',
   },
   {
     id: 'scholarships',
@@ -42,6 +46,7 @@ const navItems: NavItem[] = [
     icon: Bookmark,
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#F59E0B] to-[#D97706]',
+    route: '/career-assessment/colleges/scholarships',
   },
   {
     id: 'educutoff',
@@ -50,6 +55,7 @@ const navItems: NavItem[] = [
     icon: Calculator,
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#7B1FA2] to-[#6A1B9A]',
+    route: '/career-assessment/colleges/educutoff',
   },
   {
     id: 'entranceexams',
@@ -58,6 +64,7 @@ const navItems: NavItem[] = [
     icon: FileText,
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#E65100] to-[#BF360C]',
+    route: '/career-assessment/colleges/entrance-exams',
   },
   {
     id: 'counselling',
@@ -66,6 +73,7 @@ const navItems: NavItem[] = [
     icon: Users,
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#00897B] to-[#00695C]',
+    route: '/career-assessment/colleges/counselling',
     isFeatured: true,
   },
   {
@@ -75,6 +83,7 @@ const navItems: NavItem[] = [
     icon: BookOpen,
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#C62828] to-[#B71C1C]',
+    route: '/career-assessment/colleges/pyq',
     isNew: true,
   },
   {
@@ -84,6 +93,7 @@ const navItems: NavItem[] = [
     icon: Landmark,
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#5D4037] to-[#4E342E]',
+    route: '/career-assessment/colleges/govt-jobs',
     isNew: true,
   },
   {
@@ -93,6 +103,7 @@ const navItems: NavItem[] = [
     icon: School,
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#6a0dad] to-[#9333ea]',
+    route: '/career-assessment/colleges/tn-university',
     isNew: true,
   },
   {
@@ -102,65 +113,25 @@ const navItems: NavItem[] = [
     icon: Compass,
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#0891B2] to-[#0E7490]',
+    route: '/career-assessment/colleges/course-explorer',
     isNew: true,
   },
 ];
 
 export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) => {
-  const navRef = useRef<HTMLDivElement>(null);
-  const buttonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
-  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+  const navigate = useNavigate();
   const [clickedTab, setClickedTab] = useState<string | null>(null);
 
-  const handleTabClick = (tabId: string) => {
-    setClickedTab(tabId);
-    onTabChange(tabId);
-    // Reset animation after bounce completes
+  const handleTabClick = (item: NavItem) => {
+    setClickedTab(item.id);
+    navigate(item.route);
+    onTabChange?.(item.id);
     setTimeout(() => setClickedTab(null), 300);
   };
-
-  useEffect(() => {
-    const activeButton = buttonRefs.current.get(activeTab);
-    const nav = navRef.current;
-    
-    if (activeButton && nav) {
-      const navRect = nav.getBoundingClientRect();
-      const buttonRect = activeButton.getBoundingClientRect();
-      
-      setIndicatorStyle({
-        left: buttonRect.left - navRect.left,
-        width: buttonRect.width,
-      });
-    }
-  }, [activeTab]);
-
-  // Update indicator on resize
-  useEffect(() => {
-    const handleResize = () => {
-      const activeButton = buttonRefs.current.get(activeTab);
-      const nav = navRef.current;
-      
-      if (activeButton && nav) {
-        const navRect = nav.getBoundingClientRect();
-        const buttonRect = activeButton.getBoundingClientRect();
-        
-        setIndicatorStyle({
-          left: buttonRect.left - navRect.left,
-          width: buttonRect.width,
-        });
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [activeTab]);
-
-  const activeItem = navItems.find(item => item.id === activeTab);
 
   return (
     <div className="flex justify-center mb-8 overflow-x-auto pb-2">
       <nav 
-        ref={navRef}
         className="relative inline-flex flex-wrap justify-center items-center gap-2 p-2 bg-white/95 backdrop-blur-md rounded-2xl shadow-lg border border-slate-200"
       >
         {/* Main tools row */}
@@ -172,10 +143,7 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
             return (
               <button
                 key={item.id}
-                ref={(el) => {
-                  if (el) buttonRefs.current.set(item.id, el);
-                }}
-                onClick={() => handleTabClick(item.id)}
+                onClick={() => handleTabClick(item)}
                 className={cn(
                   'relative flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm',
                   'transition-all duration-200 ease-out',
@@ -215,10 +183,7 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
             return (
               <button
                 key={item.id}
-                ref={(el) => {
-                  if (el) buttonRefs.current.set(item.id, el);
-                }}
-                onClick={() => handleTabClick(item.id)}
+                onClick={() => handleTabClick(item)}
                 className={cn(
                   'relative flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm',
                   'transition-all duration-200 ease-out',
@@ -257,3 +222,5 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
     </div>
   );
 };
+
+export { navItems };
