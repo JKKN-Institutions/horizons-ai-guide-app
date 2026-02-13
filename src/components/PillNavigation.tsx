@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { GraduationCap, Building2, Bookmark, Calculator, FileText, Users, BookOpen, LucideIcon, Landmark, School, Compass } from 'lucide-react';
+import { GraduationCap, Building2, Bookmark, Calculator, FileText, Users, BookOpen, LucideIcon, Landmark, School, Compass, Rocket } from 'lucide-react';
 
 interface NavItem {
   id: string;
@@ -114,6 +114,16 @@ const navItems: NavItem[] = [
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#0891B2] to-[#0E7490]',
     route: '/career-assessment/colleges/course-explorer',
+    isNew: true,
+  },
+  {
+    id: 'startup',
+    label: 'Startup Guide',
+    shortLabel: 'Startup',
+    icon: Rocket,
+    activeColor: 'text-white',
+    activeBg: 'bg-gradient-to-r from-[#E91E63] to-[#C2185B]',
+    route: '/career-assessment/colleges/startup',
     isNew: true,
   },
 ];
