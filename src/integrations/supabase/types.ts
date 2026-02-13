@@ -1883,6 +1883,132 @@ export type Database = {
         }
         Relationships: []
       }
+      startup_progress: {
+        Row: {
+          created_at: string
+          current_stage: number
+          current_streak: number
+          id: string
+          last_activity_date: string | null
+          lessons_completed: number[] | null
+          longest_streak: number
+          updated_at: string
+          user_id: string
+          xp: number
+        }
+        Insert: {
+          created_at?: string
+          current_stage?: number
+          current_streak?: number
+          id?: string
+          last_activity_date?: string | null
+          lessons_completed?: number[] | null
+          longest_streak?: number
+          updated_at?: string
+          user_id: string
+          xp?: number
+        }
+        Update: {
+          created_at?: string
+          current_stage?: number
+          current_streak?: number
+          id?: string
+          last_activity_date?: string | null
+          lessons_completed?: number[] | null
+          longest_streak?: number
+          updated_at?: string
+          user_id?: string
+          xp?: number
+        }
+        Relationships: []
+      }
+      startup_quiz_scores: {
+        Row: {
+          created_at: string
+          id: string
+          quiz_date: string
+          quiz_type: string
+          score: number
+          total_questions: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          quiz_date?: string
+          quiz_type: string
+          score: number
+          total_questions: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          quiz_date?: string
+          quiz_type?: string
+          score?: number
+          total_questions?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      startup_readiness_scores: {
+        Row: {
+          dimension: string
+          id: string
+          score: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          dimension: string
+          id?: string
+          score?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          dimension?: string
+          id?: string
+          score?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      startup_simulator_decisions: {
+        Row: {
+          cash_impact: number | null
+          choice_id: number
+          created_at: string
+          id: string
+          morale_impact: number | null
+          outcome: string | null
+          scenario_id: number
+          user_id: string
+        }
+        Insert: {
+          cash_impact?: number | null
+          choice_id: number
+          created_at?: string
+          id?: string
+          morale_impact?: number | null
+          outcome?: string | null
+          scenario_id: number
+          user_id: string
+        }
+        Update: {
+          cash_impact?: number | null
+          choice_id?: number
+          created_at?: string
+          id?: string
+          morale_impact?: number | null
+          outcome?: string | null
+          scenario_id?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
       student_assessment_attempts: {
         Row: {
           answers_json: Json | null
