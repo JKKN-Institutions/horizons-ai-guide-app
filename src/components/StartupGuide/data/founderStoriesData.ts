@@ -69,6 +69,15 @@ export const founderStories: FounderStory[] = [
     frameworks: ['Skill-First Business', 'Offline-to-Online', 'Cautionary Scaling'],
     avatar: '📚',
   },
+  {
+    id: 7, name: 'P.C. Duraisamy & Shanthi Duraisamy', company: 'Sakthi Masala', industry: 'FMCG / Spices',
+    startAge: 30, startYear: 1975, location: 'Erode, Tamil Nadu',
+    initialInvestment: '₹Small (turmeric trading profits)', currentValuation: '₹2,000+ Crore',
+    keyLesson: 'You don\'t need a tech background — start with what your region is famous for. Look at your own kitchen for startup ideas.',
+    story: 'Mr. P.C. Duraisamy started as a small turmeric trader in Erode. He and his wife Shanthi noticed that as more women started working, they didn\'t have time to grind traditional spices at home every day. Their solution: sell high-quality, pre-ground masalas that tasted like "home-cooked" food. They built trust through relentless focus on purity, competing against national brands. Sakthi Masala is also famous for hiring a large number of differently-abled individuals — proving a business can be successful and kind at the same time. From a small shop in Erode to a massive factory, their story is the most relatable for Tamil Nadu students.',
+    frameworks: ['Regional Advantage', 'Solve a Home Problem', 'Trust-Based Branding', 'Social Impact'],
+    avatar: '🌶️',
+  },
 ];
 
 export interface MentorProfile {
