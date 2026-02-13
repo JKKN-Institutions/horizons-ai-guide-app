@@ -82,7 +82,7 @@ export interface MentorProfile {
 }
 
 export const mentorProfiles: MentorProfile[] = [
-  { id: 1, name: 'Industry Mentor', role: 'Startup Founder & JKKN Alumni', expertise: ['Business Model Design', 'Fundraising', 'Team Building'], bio: 'Built and scaled 2 startups in Tamil Nadu. Mentors early-stage founders on validation and growth.', availability: 'Monthly live Q&A sessions', avatar: '👨‍💼' },
+  { id: 1, name: 'Industry Mentor', role: 'Startup Founder & TN Entrepreneur', expertise: ['Business Model Design', 'Fundraising', 'Team Building'], bio: 'Built and scaled 2 startups in Tamil Nadu. Mentors early-stage founders on validation and growth.', availability: 'Monthly live Q&A sessions', avatar: '👨‍💼' },
   { id: 2, name: 'Finance Mentor', role: 'CA & Startup CFO', expertise: ['Financial Planning', 'Tax & Compliance', 'Investor Relations'], bio: 'Chartered Accountant helping startups with financial literacy, GST, and fundraising strategy.', availability: 'Bi-weekly office hours', avatar: '📊' },
   { id: 3, name: 'Tech Mentor', role: 'CTO & Product Builder', expertise: ['MVP Development', 'No-Code Tools', 'Product-Market Fit'], bio: 'Built MVPs for 15+ startups. Specializes in helping non-tech founders build their first product.', availability: 'Weekly tech office hours', avatar: '💻' },
   { id: 4, name: 'Marketing Mentor', role: 'Growth Hacker', expertise: ['Social Media', 'Content Marketing', 'Community Building'], bio: 'Grew 3 D2C brands from 0 to 1 lakh followers. Expert in low-cost marketing for student startups.', availability: 'Monthly masterclass', avatar: '📱' },
