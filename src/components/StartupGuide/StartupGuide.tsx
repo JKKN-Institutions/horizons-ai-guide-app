@@ -112,7 +112,7 @@ export const StartupGuide = () => {
         <TabsContent value="simulate" className="mt-4">
           <StartupSimulator
             completedScenarios={progress.completedScenarios}
-            onCompleteScenario={(scenarioId) => progress.completeScenario(scenarioId)}
+            onCompleteScenario={progress.completeScenario}
           />
         </TabsContent>
 

@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 
 interface StartupSimulatorProps {
   completedScenarios: number[];
-  onCompleteScenario: (scenarioId: number, choiceId: number, cashImpact: number, moraleImpact: number) => void;
+  onCompleteScenario: (scenarioId: number) => void;
 }
 
 export const StartupSimulator = ({ completedScenarios, onCompleteScenario }: StartupSimulatorProps) => {
@@ -25,7 +25,7 @@ export const StartupSimulator = ({ completedScenarios, onCompleteScenario }: Sta
     setSelectedChoice(choice);
     setCash(c => c + choice.cashImpact);
     setMorale(m => Math.max(0, Math.min(100, m + choice.moraleImpact)));
-    onCompleteScenario(scenario!.id, choice.id, choice.cashImpact, choice.moraleImpact);
+    onCompleteScenario(scenario!.id);
     toast.success(`+20 XP! Scenario completed.`);
   };
 
