@@ -8,6 +8,7 @@ import { PreviousYearQuestions } from '@/components/PreviousYearQuestions';
 import { GovernmentJobs } from '@/components/GovernmentJobs';
 import { UniversityEntranceExams } from '@/components/UniversityEntrance';
 import { CourseExplorer } from '@/components/CourseExplorer';
+import { StartupGuide } from '@/components/StartupGuide';
 
 export const FindCollegesPage = () => (
   <CollegesPageLayout activeTab="colleges">
@@ -60,5 +61,11 @@ export const TNUniversityPage = () => (
 export const CourseExplorerPage = () => (
   <CollegesPageLayout activeTab="courseexplorer">
     <CourseExplorer />
+  </CollegesPageLayout>
+);
+
+export const StartupGuidePage = () => (
+  <CollegesPageLayout activeTab="startup">
+    <StartupGuide />
   </CollegesPageLayout>
 );
