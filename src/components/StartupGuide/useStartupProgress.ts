@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from '@/hooks/useAuth';
+import { User } from '@supabase/supabase-js';
 
 const STORAGE_KEY = 'startup_progress';
 
@@ -45,47 +45,61 @@ const getLocalState = (): StartupProgressState => {
 };
 
 export const useStartupProgress = () => {
-  const { user } = useAuth();
+  const [user, setUser] = useState<User | null>(null);
   const [state, setState] = useState<StartupProgressState>(getLocalState);
   const [synced, setSynced] = useState(false);
+
+  // Safely get auth user without requiring AuthProvider
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
 
   // Load from Supabase if authenticated
   useEffect(() => {
     if (!user || synced) return;
     
     const loadFromDB = async () => {
-      const { data } = await supabase
-        .from('startup_progress')
-        .select('*')
-        .eq('user_id', user.id)
-        .maybeSingle();
+      try {
+        const { data } = await supabase
+          .from('startup_progress')
+          .select('*')
+          .eq('user_id', user.id)
+          .maybeSingle();
 
-      if (data) {
-        const dbState: StartupProgressState = {
-          xp: data.xp,
-          streak: data.current_streak,
-          longestStreak: data.longest_streak,
-          lastActivityDate: data.last_activity_date,
-          currentStage: data.current_stage,
-          completedLessons: data.lessons_completed || [],
-          completedScenarios: [],
-          quizScores: [],
-          problemsSubmitted: [],
-        };
-        // Merge: take whichever has more progress
-        const local = getLocalState();
-        const merged: StartupProgressState = {
-          xp: Math.max(dbState.xp, local.xp),
-          streak: Math.max(dbState.streak, local.streak),
-          longestStreak: Math.max(dbState.longestStreak, local.longestStreak),
-          lastActivityDate: dbState.lastActivityDate || local.lastActivityDate,
-          currentStage: Math.max(dbState.currentStage, local.currentStage),
-          completedLessons: [...new Set([...dbState.completedLessons, ...local.completedLessons])],
-          completedScenarios: [...new Set([...dbState.completedScenarios, ...local.completedScenarios])],
-          quizScores: local.quizScores.length > dbState.quizScores.length ? local.quizScores : dbState.quizScores,
-          problemsSubmitted: [...new Set([...dbState.problemsSubmitted, ...local.problemsSubmitted])],
-        };
-        setState(merged);
+        if (data) {
+          const dbState: StartupProgressState = {
+            xp: data.xp,
+            streak: data.current_streak,
+            longestStreak: data.longest_streak,
+            lastActivityDate: data.last_activity_date,
+            currentStage: data.current_stage,
+            completedLessons: data.lessons_completed || [],
+            completedScenarios: [],
+            quizScores: [],
+            problemsSubmitted: [],
+          };
+          const local = getLocalState();
+          const merged: StartupProgressState = {
+            xp: Math.max(dbState.xp, local.xp),
+            streak: Math.max(dbState.streak, local.streak),
+            longestStreak: Math.max(dbState.longestStreak, local.longestStreak),
+            lastActivityDate: dbState.lastActivityDate || local.lastActivityDate,
+            currentStage: Math.max(dbState.currentStage, local.currentStage),
+            completedLessons: [...new Set([...dbState.completedLessons, ...local.completedLessons])],
+            completedScenarios: [...new Set([...dbState.completedScenarios, ...local.completedScenarios])],
+            quizScores: local.quizScores.length > dbState.quizScores.length ? local.quizScores : dbState.quizScores,
+            problemsSubmitted: [...new Set([...dbState.problemsSubmitted, ...local.problemsSubmitted])],
+          };
+          setState(merged);
+        }
+      } catch (error) {
+        console.error('Error loading startup progress:', error);
       }
       setSynced(true);
     };
@@ -103,44 +117,46 @@ export const useStartupProgress = () => {
     if (!user || !synced) return;
 
     const timer = setTimeout(async () => {
-      await supabase
-        .from('startup_progress')
-        .upsert({
-          user_id: user.id,
-          xp: state.xp,
-          current_streak: state.streak,
-          longest_streak: state.longestStreak,
-          last_activity_date: state.lastActivityDate,
-          current_stage: state.currentStage,
-          lessons_completed: state.completedLessons,
-          updated_at: new Date().toISOString(),
-        }, { onConflict: 'user_id' });
-
-      // Save quiz scores
-      if (state.quizScores.length > 0) {
-        const latest = state.quizScores[state.quizScores.length - 1];
+      try {
         await supabase
-          .from('startup_quiz_scores')
+          .from('startup_progress')
           .upsert({
             user_id: user.id,
-            quiz_type: 'money_minute',
-            score: latest.score,
-            total_questions: latest.total,
-            quiz_date: latest.date,
-          }, { onConflict: 'user_id,quiz_date' });
-      }
-
-      // Save readiness scores
-      const scores = getReadinessScores(state);
-      for (const [dimension, score] of Object.entries(scores)) {
-        await supabase
-          .from('startup_readiness_scores')
-          .upsert({
-            user_id: user.id,
-            dimension,
-            score,
+            xp: state.xp,
+            current_streak: state.streak,
+            longest_streak: state.longestStreak,
+            last_activity_date: state.lastActivityDate,
+            current_stage: state.currentStage,
+            lessons_completed: state.completedLessons,
             updated_at: new Date().toISOString(),
-          }, { onConflict: 'user_id,dimension' });
+          }, { onConflict: 'user_id' });
+
+        if (state.quizScores.length > 0) {
+          const latest = state.quizScores[state.quizScores.length - 1];
+          await supabase
+            .from('startup_quiz_scores')
+            .upsert({
+              user_id: user.id,
+              quiz_type: 'money_minute',
+              score: latest.score,
+              total_questions: latest.total,
+              quiz_date: latest.date,
+            }, { onConflict: 'user_id,quiz_date' });
+        }
+
+        const scores = getReadinessScores(state);
+        for (const [dimension, score] of Object.entries(scores)) {
+          await supabase
+            .from('startup_readiness_scores')
+            .upsert({
+              user_id: user.id,
+              dimension,
+              score,
+              updated_at: new Date().toISOString(),
+            }, { onConflict: 'user_id,dimension' });
+        }
+      } catch (error) {
+        console.error('Error syncing startup progress:', error);
       }
     }, 1000);
 
