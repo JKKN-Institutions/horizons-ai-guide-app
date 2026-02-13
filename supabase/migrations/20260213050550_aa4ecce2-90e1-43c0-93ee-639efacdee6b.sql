@@ -1,0 +1,1 @@
+ALTER TABLE public.startup_quiz_scores ADD CONSTRAINT startup_quiz_scores_user_id_quiz_date_key UNIQUE (user_id, quiz_date);
