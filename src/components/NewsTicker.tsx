@@ -12,7 +12,7 @@ const NewsTicker = () => {
   return (
     <div className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-emerald-700 text-white py-2.5 overflow-hidden shadow-sm">
       <div className="flex items-center">
-        <span className="bg-gradient-to-r from-red-600 to-red-500 text-white px-4 py-1 text-sm font-bold flex-shrink-0 ml-4 mr-4 rounded shadow-md">
+        <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-1 text-sm font-bold flex-shrink-0 ml-4 mr-4 rounded shadow-md">
           Latest:
         </span>
         <div className="overflow-hidden flex-1">
