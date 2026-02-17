@@ -9,7 +9,7 @@ import {
   ExternalLink, ChevronDown, ChevronUp, Search, BarChart3, Mic,
   Gamepad2, Map, Trophy, Activity, CheckCircle2, Lock,
   Star, Flame, ArrowRight, Sparkles, GraduationCap, Building2, Zap,
-  Brain, Compass, BadgeCheck, Layers, Route
+  Brain, Compass, BadgeCheck, Layers, Route, Globe
 } from 'lucide-react';
 import { DailyLesson } from './DailyLesson';
 import { AIProblemFinder } from './AIProblemFinder';
@@ -153,58 +153,133 @@ export const StartupGuide = () => {
           <FounderStories />
         </TabsContent>
 
-        <TabsContent value="readiness" className="space-y-4 mt-4">
-          <Card className="border-border/50 overflow-hidden">
-            <div className="bg-gradient-to-r from-gray-900 to-slate-900 p-4 text-center">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-orange-500/20 to-amber-500/10 border-2 border-orange-400/30 shadow-lg shadow-orange-500/10 mb-2">
-                <span className="text-2xl font-bold text-orange-400">{progress.overallScore}</span>
-              </div>
-              <p className="text-sm font-medium text-white">Overall Readiness Score</p>
-              <p className="text-xs text-gray-400 mt-1">
-                {progress.overallScore === 0 ? 'Complete activities to build your score' :
-                  progress.overallScore < 30 ? 'You\'re just getting started — keep going!' :
-                    progress.overallScore < 60 ? 'Making great progress! 💪' :
-                      'You\'re becoming launch-ready! 🚀'}
-              </p>
+        <TabsContent value="readiness" className="space-y-6 mt-4">
+          {/* Section Header */}
+          <div className="bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 rounded-xl p-5 border border-white/[0.06] text-center">
+            <div className="inline-flex items-center gap-2 bg-rose-500/10 border border-rose-400/20 text-rose-400 px-4 py-1.5 rounded-full text-[11px] font-semibold mb-3">
+              <Route className="w-3.5 h-3.5" />
+              Real Founder Stories
             </div>
-            <CardContent className="p-4 space-y-3">
-              {Object.entries(progress.readinessScores).map(([name, score]) => (
-                <div key={name} className="space-y-1">
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs text-foreground">{name}</span>
-                    <span className="text-xs font-medium text-muted-foreground">{score}/100</span>
-                  </div>
-                  <Progress value={score} className="h-2" />
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+            <h3 className="text-lg font-bold text-white mb-1">They Started Young. So Can You.</h3>
+            <p className="text-xs text-gray-400 max-w-md mx-auto">
+              These founders launched their startups as students — from Science, Arts, and Commerce streams. Your background doesn't limit you.
+            </p>
+          </div>
 
+          {/* ===== TABLE 1: Indian Student Founders ===== */}
           <div>
-            <h3 className="text-sm font-bold text-foreground mb-3 flex items-center gap-2">
-              <Route className="w-4 h-4 text-orange-500" />
-              Your Founder Journey
-            </h3>
-            <div className="space-y-2">
-              {journeyStages.map((stage) => {
-                const isActive = stage.id === progress.currentStage;
-                const isLocked = stage.id > progress.currentStage;
-                const isDone = stage.id < progress.currentStage;
-                const isOpen = expandedStage === stage.id;
-                return (
-                  <button key={stage.id} className={`w-full text-left p-3 rounded-xl border transition-all flex items-center gap-3 ${isActive ? 'border-orange-400/50 bg-gradient-to-r from-orange-50/60 to-amber-50/40 shadow-sm shadow-orange-500/10' : isLocked ? 'border-border/30 opacity-50' : 'border-orange-400/20 bg-orange-50/20'}`} onClick={() => setExpandedStage(isOpen ? null : stage.id)}>
-                    <div className={`flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center text-xs font-bold ${isDone ? 'bg-gradient-to-br from-emerald-500 to-green-500 text-white' : isActive ? 'bg-gradient-to-br from-orange-500 to-amber-500 text-white' : 'bg-muted text-muted-foreground'}`}>
-                      {isDone ? <CheckCircle2 className="w-4 h-4" /> : isLocked ? <Lock className="w-3.5 h-3.5" /> : stage.id}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-semibold text-foreground truncate">{stage.title}</p>
-                      <p className="text-[10px] text-muted-foreground">Weeks {stage.weeks}</p>
-                    </div>
-                    {isActive && <Badge className="text-[10px] bg-gradient-to-r from-orange-500 to-amber-500 text-white border-0 shadow-sm">Current</Badge>}
-                  </button>
-                );
-              })}
+            <div className="flex items-center gap-2 mb-3">
+              <div className="p-1.5 rounded-lg bg-gradient-to-br from-orange-500 to-amber-500">
+                <Star className="w-4 h-4 text-white" />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-foreground">Indian Student Founders</h4>
+                <p className="text-[10px] text-muted-foreground">Startups born in India by young innovators</p>
+              </div>
             </div>
+
+            <div className="space-y-2">
+              {[
+                { year: '2011', name: 'Shravan & Sanjay Kumaran', startup: 'GoDimensions', product: 'Mobile Apps', stream: 'Science', color: 'from-blue-500 to-indigo-500', emoji: '📱' },
+                { year: '2015', name: 'Rohan Ganapathy', startup: 'Bellatrix Aerospace', product: 'Space Tech', stream: 'Science', color: 'from-violet-500 to-purple-500', emoji: '🚀' },
+                { year: '2017', name: 'Satish Kannan', startup: 'DocsApp', product: 'Health-Tech App', stream: 'Science', color: 'from-emerald-500 to-green-500', emoji: '🏥' },
+                { year: '2019', name: 'Vinusha M K', startup: 'Four Seasons Pastry', product: 'Baking Kits', stream: 'Arts/Culinary', color: 'from-rose-500 to-pink-500', emoji: '🧁' },
+                { year: '2019', name: 'A. Gopalkrishnan', startup: 'Paper Reclaiming Machine', product: 'Hardware', stream: 'Science', color: 'from-amber-500 to-yellow-500', emoji: '♻️' },
+                { year: '2021', name: 'P. Sowmiya & Team', startup: 'Pectogel', product: 'Organic Food Wrap', stream: 'Science', color: 'from-teal-500 to-cyan-500', emoji: '🌿' },
+                { year: '2023', name: 'Baanhem Team', startup: 'Baanhem Ventures', product: 'Incubation', stream: 'Commerce', color: 'from-orange-500 to-red-500', emoji: '💼' },
+              ].map((founder, i) => (
+                <Card key={i} className="group border-border/40 hover:border-orange-300/40 hover:shadow-md transition-all duration-300 overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="flex items-stretch">
+                      {/* Year Badge */}
+                      <div className={`flex-shrink-0 w-16 md:w-20 bg-gradient-to-br ${founder.color} flex flex-col items-center justify-center text-white p-2`}>
+                        <span className="text-lg">{founder.emoji}</span>
+                        <span className="text-[11px] font-bold mt-0.5">{founder.year}</span>
+                      </div>
+                      {/* Details */}
+                      <div className="flex-1 p-3 min-w-0">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="min-w-0">
+                            <p className="text-sm font-bold text-foreground truncate">{founder.name}</p>
+                            <p className="text-xs text-muted-foreground mt-0.5">
+                              <span className="font-semibold text-foreground/80">{founder.startup}</span> — {founder.product}
+                            </p>
+                          </div>
+                          <Badge className={`text-[9px] flex-shrink-0 border ${
+                            founder.stream === 'Science' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+                            founder.stream === 'Commerce' ? 'bg-amber-50 text-amber-700 border-amber-200' :
+                            'bg-rose-50 text-rose-700 border-rose-200'
+                          }`}>
+                            {founder.stream}
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* ===== TABLE 2: Global Young Founders ===== */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="p-1.5 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500">
+                <Globe className="w-4 h-4 text-white" />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-foreground">Global Young Founders</h4>
+                <p className="text-[10px] text-muted-foreground">World-changing startups by young entrepreneurs</p>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              {[
+                { year: '2004', name: 'Mark Zuckerberg', startup: 'Facebook', product: 'Social Media', stream: 'Science', color: 'from-blue-600 to-blue-500', emoji: '👤' },
+                { year: '2007', name: 'Sachin & Binny Bansal', startup: 'Flipkart', product: 'E-commerce', stream: 'Science', color: 'from-yellow-500 to-amber-500', emoji: '🛒' },
+                { year: '2009', name: 'Farrhad Acidwalla', startup: 'Rockstah Media', product: 'Digital Agency', stream: 'Arts', color: 'from-pink-500 to-rose-500', emoji: '🎨' },
+                { year: '2013', name: 'Ritesh Agarwal', startup: 'OYO Rooms', product: 'Hotel Network', stream: 'Commerce', color: 'from-red-500 to-rose-600', emoji: '🏨' },
+                { year: '2018', name: 'Tilak Mehta', startup: 'Papers N Parcels', product: 'Logistics', stream: 'Commerce', color: 'from-indigo-500 to-violet-500', emoji: '📦' },
+                { year: '2018', name: 'Arjun Deshpande', startup: 'Generic Aadhaar', product: 'Affordable Pharma', stream: 'Science', color: 'from-emerald-500 to-teal-500', emoji: '💊' },
+                { year: '2021', name: 'Aadit & Kaivalya', startup: 'Zepto', product: '10-min Grocery', stream: 'Science', color: 'from-purple-500 to-violet-500', emoji: '⚡' },
+              ].map((founder, i) => (
+                <Card key={i} className="group border-border/40 hover:border-blue-300/40 hover:shadow-md transition-all duration-300 overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="flex items-stretch">
+                      {/* Year Badge */}
+                      <div className={`flex-shrink-0 w-16 md:w-20 bg-gradient-to-br ${founder.color} flex flex-col items-center justify-center text-white p-2`}>
+                        <span className="text-lg">{founder.emoji}</span>
+                        <span className="text-[11px] font-bold mt-0.5">{founder.year}</span>
+                      </div>
+                      {/* Details */}
+                      <div className="flex-1 p-3 min-w-0">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="min-w-0">
+                            <p className="text-sm font-bold text-foreground truncate">{founder.name}</p>
+                            <p className="text-xs text-muted-foreground mt-0.5">
+                              <span className="font-semibold text-foreground/80">{founder.startup}</span> — {founder.product}
+                            </p>
+                          </div>
+                          <Badge className={`text-[9px] flex-shrink-0 border ${
+                            founder.stream === 'Science' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+                            founder.stream === 'Commerce' ? 'bg-amber-50 text-amber-700 border-amber-200' :
+                            'bg-rose-50 text-rose-700 border-rose-200'
+                          }`}>
+                            {founder.stream}
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Inspiration Footer */}
+          <div className="bg-gradient-to-r from-gray-900 via-slate-900 to-gray-900 rounded-xl p-4 border border-white/[0.06] text-center">
+            <p className="text-sm font-bold text-white mb-1">🔥 Your stream doesn't define your startup.</p>
+            <p className="text-xs text-gray-400">Science, Arts, or Commerce — every founder started by solving a real problem. What's yours?</p>
           </div>
         </TabsContent>
       </Tabs>
