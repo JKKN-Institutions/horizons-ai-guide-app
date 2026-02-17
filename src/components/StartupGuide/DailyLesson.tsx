@@ -47,8 +47,8 @@ export const DailyLesson = ({ completedLessons, onCompleteLesson, currentStage }
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2 mb-1">
               <Badge variant="secondary" className="text-[10px]">Stage {lesson.stage}</Badge>
-              <Badge className="text-[10px] bg-emerald-100 text-emerald-700 border border-emerald-200/50">{lesson.category}</Badge>
-              {isCompleted && <Badge className="text-[10px] bg-emerald-500/10 text-emerald-600"><CheckCircle2 className="w-3 h-3 mr-1" />Done</Badge>}
+              <Badge className="text-[10px] bg-orange-100 text-orange-700 border border-orange-200/50">{lesson.category}</Badge>
+              {isCompleted && <Badge className="text-[10px] bg-orange-500/10 text-orange-600"><CheckCircle2 className="w-3 h-3 mr-1" />Done</Badge>}
             </div>
             <CardTitle className="text-base">Lesson {lesson.id}: {lesson.title}</CardTitle>
           </CardHeader>
@@ -85,8 +85,8 @@ export const DailyLesson = ({ completedLessons, onCompleteLesson, currentStage }
               </Button>
             )}
             {showReflection && (
-              <div className="bg-emerald-50/80 rounded-lg p-3 border border-emerald-200/40">
-                <p className="text-xs font-semibold text-emerald-700 flex items-center gap-1.5 mb-1">
+              <div className="bg-orange-50/80 rounded-lg p-3 border border-orange-200/40">
+                <p className="text-xs font-semibold text-orange-700 flex items-center gap-1.5 mb-1">
                   <Lightbulb className="w-3.5 h-3.5" /> Reflection
                 </p>
                 <p className="text-sm text-foreground italic">{lesson.reflection}</p>
@@ -94,7 +94,7 @@ export const DailyLesson = ({ completedLessons, onCompleteLesson, currentStage }
             )}
 
             {!isCompleted && (
-              <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-md shadow-emerald-500/20" onClick={handleComplete} disabled={journalEntry.trim().length < 10}>
+              <Button className="w-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white shadow-md shadow-orange-500/20" onClick={handleComplete} disabled={journalEntry.trim().length < 10}>
                 <CheckCircle2 className="w-4 h-4 mr-2" />
                 Complete Lesson (+25 XP)
               </Button>
@@ -128,7 +128,7 @@ export const DailyLesson = ({ completedLessons, onCompleteLesson, currentStage }
               <CardContent className="p-3">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    {isLocked ? <Lock className="w-4 h-4 text-muted-foreground" /> : <BookOpen className="w-4 h-4 text-emerald-600" />}
+                    {isLocked ? <Lock className="w-4 h-4 text-muted-foreground" /> : <BookOpen className="w-4 h-4 text-orange-600" />}
                     <span className="text-xs font-semibold text-foreground">Stage {stage}</span>
                   </div>
                   <span className="text-[10px] text-muted-foreground">{stageCompleted}/{stageLessons.length}</span>
@@ -141,7 +141,7 @@ export const DailyLesson = ({ completedLessons, onCompleteLesson, currentStage }
                         <button
                           key={lesson.id}
                           onClick={() => setSelectedLesson(lesson.id)}
-                          className={`text-left p-2 rounded-md text-xs flex items-center gap-2 transition-colors ${done ? 'bg-emerald-500/5 text-emerald-700 dark:text-emerald-400' : 'bg-muted/30 hover:bg-muted/60 text-foreground'}`}
+                          className={`text-left p-2 rounded-md text-xs flex items-center gap-2 transition-colors ${done ? 'bg-orange-500/5 text-orange-700 dark:text-orange-400' : 'bg-muted/30 hover:bg-muted/60 text-foreground'}`}
                         >
                           {done ? <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" /> : <ChevronRight className="w-3.5 h-3.5 flex-shrink-0 text-muted-foreground" />}
                           <span className="truncate">{lesson.title}</span>

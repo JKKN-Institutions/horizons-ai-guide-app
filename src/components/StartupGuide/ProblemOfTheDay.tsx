@@ -29,9 +29,9 @@ export const ProblemOfTheDay = ({ onSubmit }: ProblemOfTheDayProps) => {
 
   return (
     <Card className="border-border/50 overflow-hidden">
-      <CardHeader className="pb-2 bg-gradient-to-r from-emerald-50/80 to-teal-50/60 border-b border-emerald-100/40">
+      <CardHeader className="pb-2 bg-gradient-to-r from-orange-50/80 to-amber-50/60 border-b border-orange-100/40">
         <CardTitle className="text-sm flex items-center gap-2">
-          <Search className="w-4 h-4 text-emerald-600" /> Problem of the Day
+          <Search className="w-4 h-4 text-orange-600" /> Problem of the Day
         </CardTitle>
       </CardHeader>
       <CardContent className="p-4 space-y-3">
@@ -63,14 +63,14 @@ export const ProblemOfTheDay = ({ onSubmit }: ProblemOfTheDayProps) => {
               onChange={(e) => setSolution(e.target.value)}
               className="min-h-[80px] text-sm"
             />
-            <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-md shadow-emerald-500/20" size="sm" onClick={handleSubmit} disabled={solution.trim().length < 20}>
+            <Button className="w-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white shadow-md shadow-orange-500/20" size="sm" onClick={handleSubmit} disabled={solution.trim().length < 20}>
               <Send className="w-3 h-3 mr-1.5" /> Submit Solution (+15 XP)
             </Button>
           </>
         ) : (
-          <div className="bg-emerald-500/5 rounded-lg p-3 border border-emerald-500/10 text-center">
-            <CheckCircle2 className="w-6 h-6 text-emerald-500 mx-auto mb-1" />
-            <p className="text-sm font-medium text-emerald-700 dark:text-emerald-400">Solution submitted!</p>
+          <div className="bg-orange-500/5 rounded-lg p-3 border border-orange-500/10 text-center">
+            <CheckCircle2 className="w-6 h-6 text-orange-500 mx-auto mb-1" />
+            <p className="text-sm font-medium text-orange-700 dark:text-orange-400">Solution submitted!</p>
             <p className="text-xs text-muted-foreground mt-1">Come back tomorrow for a new problem.</p>
           </div>
         )}

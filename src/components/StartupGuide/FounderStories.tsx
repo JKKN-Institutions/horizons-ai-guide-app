@@ -19,7 +19,7 @@ export const FounderStories = () => {
           {founderStories.map((story) => {
             const isOpen = expandedStory === story.id;
             return (
-              <Card key={story.id} className="border-emerald-100/60 overflow-hidden hover:shadow-sm transition-all">
+              <Card key={story.id} className="border-orange-100/60 overflow-hidden hover:shadow-sm transition-all">
                 <button
                   className="w-full text-left p-3 flex items-center gap-3"
                   onClick={() => setExpandedStory(isOpen ? null : story.id)}
@@ -69,11 +69,11 @@ export const FounderStories = () => {
       {/* Mentors */}
       <div>
         <h3 className="text-sm font-bold text-foreground flex items-center gap-2 mb-3">
-          <Users className="w-4 h-4 text-teal-600" /> Mentor Network
+          <Users className="w-4 h-4 text-amber-600" /> Mentor Network
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {mentorProfiles.map((mentor) => (
-            <Card key={mentor.id} className="border-teal-100/60 hover:border-teal-200/60 hover:shadow-sm transition-all">
+            <Card key={mentor.id} className="border-amber-100/60 hover:border-amber-200/60 hover:shadow-sm transition-all">
               <CardContent className="p-3 space-y-2">
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">{mentor.avatar}</span>
@@ -88,7 +88,7 @@ export const FounderStories = () => {
                     <Badge key={e} variant="secondary" className="text-[10px]">{e}</Badge>
                   ))}
                 </div>
-                <div className="flex items-center gap-1.5 text-[10px] text-emerald-600 font-medium">
+                <div className="flex items-center gap-1.5 text-[10px] text-orange-600 font-medium">
                   <Calendar className="w-3 h-3" /> {mentor.availability}
                 </div>
               </CardContent>
