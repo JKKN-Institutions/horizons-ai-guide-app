@@ -17,6 +17,7 @@ import { MoneyMinuteQuiz } from './MoneyMinuteQuiz';
 import { ProblemOfTheDay } from './ProblemOfTheDay';
 import { StartupSimulator } from './StartupSimulator';
 import { FounderStories } from './FounderStories';
+import { FounderJourney } from './FounderJourney';
 import { useStartupProgress } from './useStartupProgress';
 
 const journeyStages = [
@@ -153,134 +154,8 @@ export const StartupGuide = () => {
           <FounderStories />
         </TabsContent>
 
-        <TabsContent value="readiness" className="space-y-6 mt-4">
-          {/* Section Header */}
-          <div className="bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 rounded-xl p-5 border border-white/[0.06] text-center">
-            <div className="inline-flex items-center gap-2 bg-rose-500/10 border border-rose-400/20 text-rose-400 px-4 py-1.5 rounded-full text-[11px] font-semibold mb-3">
-              <Route className="w-3.5 h-3.5" />
-              Real Founder Stories
-            </div>
-            <h3 className="text-lg font-bold text-white mb-1">They Started Young. So Can You.</h3>
-            <p className="text-xs text-gray-400 max-w-md mx-auto">
-              These founders launched their startups as students — from Science, Arts, and Commerce streams. Your background doesn't limit you.
-            </p>
-          </div>
-
-          {/* ===== TABLE 1: Indian Student Founders ===== */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="p-1.5 rounded-lg bg-gradient-to-br from-orange-500 to-amber-500">
-                <Star className="w-4 h-4 text-white" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-foreground">Indian Student Founders</h4>
-                <p className="text-[10px] text-muted-foreground">Startups born in India by young innovators</p>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              {[
-                { year: '2011', name: 'Shravan & Sanjay Kumaran', startup: 'GoDimensions', product: 'Mobile Apps', stream: 'Science', color: 'from-blue-500 to-indigo-500', emoji: '📱' },
-                { year: '2015', name: 'Rohan Ganapathy', startup: 'Bellatrix Aerospace', product: 'Space Tech', stream: 'Science', color: 'from-violet-500 to-purple-500', emoji: '🚀' },
-                { year: '2017', name: 'Satish Kannan', startup: 'DocsApp', product: 'Health-Tech App', stream: 'Science', color: 'from-emerald-500 to-green-500', emoji: '🏥' },
-                { year: '2019', name: 'Vinusha M K', startup: 'Four Seasons Pastry', product: 'Baking Kits', stream: 'Arts/Culinary', color: 'from-rose-500 to-pink-500', emoji: '🧁' },
-                { year: '2019', name: 'A. Gopalkrishnan', startup: 'Paper Reclaiming Machine', product: 'Hardware', stream: 'Science', color: 'from-amber-500 to-yellow-500', emoji: '♻️' },
-                { year: '2021', name: 'P. Sowmiya & Team', startup: 'Pectogel', product: 'Organic Food Wrap', stream: 'Science', color: 'from-teal-500 to-cyan-500', emoji: '🌿' },
-                { year: '2023', name: 'Baanhem Team', startup: 'Baanhem Ventures', product: 'Incubation', stream: 'Commerce', color: 'from-orange-500 to-red-500', emoji: '💼' },
-              ].map((founder, i) => (
-                <Card key={i} className="group border-border/40 hover:border-orange-300/40 hover:shadow-md transition-all duration-300 overflow-hidden">
-                  <CardContent className="p-0">
-                    <div className="flex items-stretch">
-                      {/* Year Badge */}
-                      <div className={`flex-shrink-0 w-16 md:w-20 bg-gradient-to-br ${founder.color} flex flex-col items-center justify-center text-white p-2`}>
-                        <span className="text-lg">{founder.emoji}</span>
-                        <span className="text-[11px] font-bold mt-0.5">{founder.year}</span>
-                      </div>
-                      {/* Details */}
-                      <div className="flex-1 p-3 min-w-0">
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="min-w-0">
-                            <p className="text-sm font-bold text-foreground truncate">{founder.name}</p>
-                            <p className="text-xs text-muted-foreground mt-0.5">
-                              <span className="font-semibold text-foreground/80">{founder.startup}</span> — {founder.product}
-                            </p>
-                          </div>
-                          <Badge className={`text-[9px] flex-shrink-0 border ${
-                            founder.stream === 'Science' ? 'bg-blue-50 text-blue-700 border-blue-200' :
-                            founder.stream === 'Commerce' ? 'bg-amber-50 text-amber-700 border-amber-200' :
-                            'bg-rose-50 text-rose-700 border-rose-200'
-                          }`}>
-                            {founder.stream}
-                          </Badge>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* ===== TABLE 2: Global Young Founders ===== */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="p-1.5 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500">
-                <Globe className="w-4 h-4 text-white" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-foreground">Global Young Founders</h4>
-                <p className="text-[10px] text-muted-foreground">World-changing startups by young entrepreneurs</p>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              {[
-                { year: '2004', name: 'Mark Zuckerberg', startup: 'Facebook', product: 'Social Media', stream: 'Science', color: 'from-blue-600 to-blue-500', emoji: '👤' },
-                { year: '2007', name: 'Sachin & Binny Bansal', startup: 'Flipkart', product: 'E-commerce', stream: 'Science', color: 'from-yellow-500 to-amber-500', emoji: '🛒' },
-                { year: '2009', name: 'Farrhad Acidwalla', startup: 'Rockstah Media', product: 'Digital Agency', stream: 'Arts', color: 'from-pink-500 to-rose-500', emoji: '🎨' },
-                { year: '2013', name: 'Ritesh Agarwal', startup: 'OYO Rooms', product: 'Hotel Network', stream: 'Commerce', color: 'from-red-500 to-rose-600', emoji: '🏨' },
-                { year: '2018', name: 'Tilak Mehta', startup: 'Papers N Parcels', product: 'Logistics', stream: 'Commerce', color: 'from-indigo-500 to-violet-500', emoji: '📦' },
-                { year: '2018', name: 'Arjun Deshpande', startup: 'Generic Aadhaar', product: 'Affordable Pharma', stream: 'Science', color: 'from-emerald-500 to-teal-500', emoji: '💊' },
-                { year: '2021', name: 'Aadit & Kaivalya', startup: 'Zepto', product: '10-min Grocery', stream: 'Science', color: 'from-purple-500 to-violet-500', emoji: '⚡' },
-              ].map((founder, i) => (
-                <Card key={i} className="group border-border/40 hover:border-blue-300/40 hover:shadow-md transition-all duration-300 overflow-hidden">
-                  <CardContent className="p-0">
-                    <div className="flex items-stretch">
-                      {/* Year Badge */}
-                      <div className={`flex-shrink-0 w-16 md:w-20 bg-gradient-to-br ${founder.color} flex flex-col items-center justify-center text-white p-2`}>
-                        <span className="text-lg">{founder.emoji}</span>
-                        <span className="text-[11px] font-bold mt-0.5">{founder.year}</span>
-                      </div>
-                      {/* Details */}
-                      <div className="flex-1 p-3 min-w-0">
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="min-w-0">
-                            <p className="text-sm font-bold text-foreground truncate">{founder.name}</p>
-                            <p className="text-xs text-muted-foreground mt-0.5">
-                              <span className="font-semibold text-foreground/80">{founder.startup}</span> — {founder.product}
-                            </p>
-                          </div>
-                          <Badge className={`text-[9px] flex-shrink-0 border ${
-                            founder.stream === 'Science' ? 'bg-blue-50 text-blue-700 border-blue-200' :
-                            founder.stream === 'Commerce' ? 'bg-amber-50 text-amber-700 border-amber-200' :
-                            'bg-rose-50 text-rose-700 border-rose-200'
-                          }`}>
-                            {founder.stream}
-                          </Badge>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Inspiration Footer */}
-          <div className="bg-gradient-to-r from-gray-900 via-slate-900 to-gray-900 rounded-xl p-4 border border-white/[0.06] text-center">
-            <p className="text-sm font-bold text-white mb-1">🔥 Your stream doesn't define your startup.</p>
-            <p className="text-xs text-gray-400">Science, Arts, or Commerce — every founder started by solving a real problem. What's yours?</p>
-          </div>
+        <TabsContent value="readiness" className="mt-4">
+          <FounderJourney />
         </TabsContent>
       </Tabs>
 
