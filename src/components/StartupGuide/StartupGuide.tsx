@@ -12,6 +12,7 @@ import {
   Brain, Compass, BadgeCheck, Layers, Route
 } from 'lucide-react';
 import { DailyLesson } from './DailyLesson';
+import { AIProblemFinder } from './AIProblemFinder';
 import { MoneyMinuteQuiz } from './MoneyMinuteQuiz';
 import { ProblemOfTheDay } from './ProblemOfTheDay';
 import { StartupSimulator } from './StartupSimulator';
@@ -133,7 +134,7 @@ export const StartupGuide = () => {
         </div>
 
         <TabsContent value="learn" className="mt-4">
-          <DailyLesson completedLessons={progress.completedLessons} onCompleteLesson={progress.completeLesson} currentStage={progress.currentStage} />
+          <AIProblemFinder />
         </TabsContent>
 
         <TabsContent value="discover" className="mt-4">
