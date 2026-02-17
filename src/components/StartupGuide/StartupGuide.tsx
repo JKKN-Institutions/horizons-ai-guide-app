@@ -36,57 +36,57 @@ export const StartupGuide = () => {
     <div className="space-y-4">
       {/* Hero + Stats Bar */}
       <div className="text-center space-y-2">
-        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-rose-600 text-white px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg">
+        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-5 py-2 rounded-full text-xs font-semibold shadow-lg shadow-emerald-500/20 border border-emerald-400/20">
           <Rocket className="w-3.5 h-3.5" />
           Complete Entrepreneurship Guidance System
         </div>
-        <h2 className="text-xl md:text-2xl font-bold text-foreground">
+        <h2 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-600 bg-clip-text text-transparent">
           From Curious Learner to Successful Founder
         </h2>
       </div>
 
       {/* XP / Streak Bar */}
       <div className="grid grid-cols-4 gap-2">
-        <Card className="text-center p-2 border-border/50">
-          <div className="flex items-center justify-center gap-1 text-primary">
+        <Card className="text-center p-2 border-emerald-200/50 bg-gradient-to-br from-emerald-50/50 to-white shadow-sm">
+          <div className="flex items-center justify-center gap-1 text-emerald-600">
             <Zap className="w-3.5 h-3.5" />
             <span className="text-sm font-bold">{progress.xp}</span>
           </div>
-          <p className="text-[10px] text-muted-foreground">XP</p>
+          <p className="text-[10px] text-emerald-700/60 font-medium">XP</p>
         </Card>
-        <Card className="text-center p-2 border-border/50">
-          <div className="flex items-center justify-center gap-1 text-amber-500">
+        <Card className="text-center p-2 border-amber-200/50 bg-gradient-to-br from-amber-50/50 to-white shadow-sm">
+          <div className="flex items-center justify-center gap-1 text-amber-600">
             <Flame className="w-3.5 h-3.5" />
             <span className="text-sm font-bold">{progress.streak}</span>
           </div>
-          <p className="text-[10px] text-muted-foreground">Streak</p>
+          <p className="text-[10px] text-amber-700/60 font-medium">Streak</p>
         </Card>
-        <Card className="text-center p-2 border-border/50">
-          <div className="flex items-center justify-center gap-1 text-emerald-500">
+        <Card className="text-center p-2 border-teal-200/50 bg-gradient-to-br from-teal-50/50 to-white shadow-sm">
+          <div className="flex items-center justify-center gap-1 text-teal-600">
             <BookOpen className="w-3.5 h-3.5" />
             <span className="text-sm font-bold">{progress.completedLessons.length}</span>
           </div>
-          <p className="text-[10px] text-muted-foreground">Lessons</p>
+          <p className="text-[10px] text-teal-700/60 font-medium">Lessons</p>
         </Card>
-        <Card className="text-center p-2 border-border/50">
-          <div className="flex items-center justify-center gap-1 text-indigo-500">
+        <Card className="text-center p-2 border-indigo-200/50 bg-gradient-to-br from-indigo-50/50 to-white shadow-sm">
+          <div className="flex items-center justify-center gap-1 text-indigo-600">
             <Activity className="w-3.5 h-3.5" />
             <span className="text-sm font-bold">{progress.overallScore}</span>
           </div>
-          <p className="text-[10px] text-muted-foreground">Readiness</p>
+          <p className="text-[10px] text-indigo-700/60 font-medium">Readiness</p>
         </Card>
       </div>
 
       {/* Main Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="w-full flex overflow-x-auto gap-0.5 bg-muted/50 p-1 h-auto flex-wrap">
-          <TabsTrigger value="learn" className="text-[11px] flex-1 min-w-[60px] px-2">📚 Learn</TabsTrigger>
-          <TabsTrigger value="discover" className="text-[11px] flex-1 min-w-[60px] px-2">🔍 Discover</TabsTrigger>
-          <TabsTrigger value="quiz" className="text-[11px] flex-1 min-w-[60px] px-2">💰 Quiz</TabsTrigger>
-          <TabsTrigger value="simulate" className="text-[11px] flex-1 min-w-[60px] px-2">🎮 Simulate</TabsTrigger>
-          <TabsTrigger value="mentors" className="text-[11px] flex-1 min-w-[60px] px-2">👥 Mentors</TabsTrigger>
-          <TabsTrigger value="readiness" className="text-[11px] flex-1 min-w-[60px] px-2">📊 Score</TabsTrigger>
-          <TabsTrigger value="launch" className="text-[11px] flex-1 min-w-[60px] px-2">🚀 Launch</TabsTrigger>
+        <TabsList className="w-full flex overflow-x-auto gap-0.5 bg-emerald-50/80 p-1 h-auto flex-wrap border border-emerald-100/60 rounded-xl">
+          <TabsTrigger value="learn" className="text-[11px] flex-1 min-w-[60px] px-2 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg transition-all">📚 Learn</TabsTrigger>
+          <TabsTrigger value="discover" className="text-[11px] flex-1 min-w-[60px] px-2 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg transition-all">🔍 Discover</TabsTrigger>
+          <TabsTrigger value="quiz" className="text-[11px] flex-1 min-w-[60px] px-2 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg transition-all">💰 Quiz</TabsTrigger>
+          <TabsTrigger value="simulate" className="text-[11px] flex-1 min-w-[60px] px-2 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg transition-all">🎮 Simulate</TabsTrigger>
+          <TabsTrigger value="mentors" className="text-[11px] flex-1 min-w-[60px] px-2 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg transition-all">👥 Mentors</TabsTrigger>
+          <TabsTrigger value="readiness" className="text-[11px] flex-1 min-w-[60px] px-2 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg transition-all">📊 Score</TabsTrigger>
+          <TabsTrigger value="launch" className="text-[11px] flex-1 min-w-[60px] px-2 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg transition-all">🚀 Launch</TabsTrigger>
         </TabsList>
 
         {/* LEARN TAB */}
@@ -126,8 +126,8 @@ export const StartupGuide = () => {
           <Card className="border-border/50">
             <CardContent className="p-4 space-y-4">
               <div className="text-center">
-                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border-2 border-primary/30 mb-2">
-                  <span className="text-2xl font-bold text-primary">{progress.overallScore}</span>
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-emerald-100 to-teal-50 border-2 border-emerald-400/40 shadow-lg shadow-emerald-500/10 mb-2">
+                  <span className="text-2xl font-bold bg-gradient-to-br from-emerald-700 to-teal-600 bg-clip-text text-transparent">{progress.overallScore}</span>
                 </div>
                 <p className="text-sm font-medium text-foreground">Overall Readiness Score</p>
                 <p className="text-xs text-muted-foreground">
@@ -154,7 +154,7 @@ export const StartupGuide = () => {
 
           {/* Journey Stages */}
           <div>
-            <h3 className="text-sm font-bold text-foreground mb-2">Your Journey Progress</h3>
+            <h3 className="text-sm font-bold bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent mb-2">Your Journey Progress</h3>
             <div className="space-y-2">
               {journeyStages.map((stage) => {
                 const isActive = stage.id === progress.currentStage;
@@ -165,17 +165,17 @@ export const StartupGuide = () => {
                 return (
                   <button
                     key={stage.id}
-                    className={`w-full text-left p-3 rounded-lg border transition-all flex items-center gap-3 ${isActive ? 'border-primary bg-primary/5' : isLocked ? 'border-border/30 opacity-50' : 'border-emerald-500/30 bg-emerald-500/5'}`}
+                    className={`w-full text-left p-3 rounded-lg border transition-all flex items-center gap-3 ${isActive ? 'border-emerald-400/50 bg-emerald-50/50 shadow-sm shadow-emerald-500/10' : isLocked ? 'border-border/30 opacity-50' : 'border-emerald-500/30 bg-emerald-500/5'}`}
                     onClick={() => setExpandedStage(isOpen ? null : stage.id)}
                   >
-                    <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold ${isDone ? 'bg-emerald-500/10 text-emerald-600' : isActive ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'}`}>
+                    <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold ${isDone ? 'bg-emerald-500/10 text-emerald-600' : isActive ? 'bg-emerald-100 text-emerald-700' : 'bg-muted text-muted-foreground'}`}>
                       {isDone ? <CheckCircle2 className="w-4 h-4" /> : isLocked ? <Lock className="w-3.5 h-3.5" /> : stage.id}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-medium text-foreground truncate">{stage.title}</p>
                       <p className="text-[10px] text-muted-foreground">Weeks {stage.weeks}</p>
                     </div>
-                    {isActive && <Badge className="text-[10px] bg-primary/10 text-primary">Current</Badge>}
+                    {isActive && <Badge className="text-[10px] bg-emerald-100 text-emerald-700 border border-emerald-200/60">Current</Badge>}
                   </button>
                 );
               })}
@@ -185,9 +185,9 @@ export const StartupGuide = () => {
 
         {/* LAUNCH TAB */}
         <TabsContent value="launch" className="space-y-3 mt-4">
-          <div className="text-center mb-2">
-            <h3 className="text-sm font-bold text-foreground">Real-World Launchkit</h3>
-            <p className="text-[10px] text-muted-foreground">Step-by-step guidance to start a business in India</p>
+          <div className="text-center mb-2 bg-gradient-to-r from-emerald-50/80 to-teal-50/80 rounded-xl p-4 border border-emerald-100/50">
+            <h3 className="text-sm font-bold bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent">Real-World Launchkit</h3>
+            <p className="text-[10px] text-emerald-600/70">Step-by-step guidance to start a business in India</p>
           </div>
 
           {[
@@ -200,9 +200,9 @@ export const StartupGuide = () => {
             { title: 'College E-Cells', desc: 'Best startup incubators: IIT-M, IIM-A, NSRCEL, EDII.', icon: <Building2 className="w-4 h-4" /> },
             { title: 'Startup Competitions', desc: 'Smart India Hackathon, TiE, NASSCOM & more.', icon: <Trophy className="w-4 h-4" /> },
           ].map((guide, i) => (
-            <Card key={i} className="border-border/50">
+            <Card key={i} className="border-emerald-100/60 hover:border-emerald-300/60 hover:shadow-md hover:shadow-emerald-500/5 transition-all duration-200">
               <CardContent className="p-3 flex items-start gap-3">
-                <div className="p-2 rounded-lg bg-gradient-to-br from-red-500 to-orange-600 text-white flex-shrink-0">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-emerald-600 to-teal-600 text-white flex-shrink-0 shadow-md shadow-emerald-500/20">
                   {guide.icon}
                 </div>
                 <div className="flex-1 min-w-0">

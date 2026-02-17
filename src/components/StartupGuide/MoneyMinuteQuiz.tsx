@@ -56,7 +56,7 @@ export const MoneyMinuteQuiz = ({ onComplete }: MoneyMinuteQuizProps) => {
         <CardContent className="p-6 text-center space-y-3">
           <Trophy className="w-10 h-10 text-amber-500 mx-auto" />
           <h3 className="text-lg font-bold text-foreground">Money Minute Complete!</h3>
-          <div className="text-3xl font-bold text-primary">{score}/{questions.length}</div>
+          <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">{score}/{questions.length}</div>
           <p className="text-sm text-muted-foreground">
             {score === questions.length ? '🔥 Perfect! You\'re a financial wizard!' :
               score >= 2 ? '👏 Great job! Keep building your financial IQ.' :
@@ -75,13 +75,13 @@ export const MoneyMinuteQuiz = ({ onComplete }: MoneyMinuteQuizProps) => {
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle className="text-sm flex items-center gap-2">
-            <DollarSign className="w-4 h-4 text-emerald-500" /> Money Minute Quiz
+            <DollarSign className="w-4 h-4 text-emerald-600" /> Money Minute Quiz
           </CardTitle>
           <Badge variant="secondary" className="text-[10px]">{currentQ + 1}/{questions.length}</Badge>
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
-        <Badge className="text-[10px] bg-primary/10 text-primary">{q.category}</Badge>
+        <Badge className="text-[10px] bg-emerald-100 text-emerald-700 border border-emerald-200/50">{q.category}</Badge>
         <p className="text-sm font-medium text-foreground">{q.question}</p>
 
         <div className="space-y-2">
@@ -95,7 +95,7 @@ export const MoneyMinuteQuiz = ({ onComplete }: MoneyMinuteQuizProps) => {
               else if (isSelected) className += 'border-destructive bg-destructive/10 text-destructive';
               else className += 'border-border/50 text-muted-foreground opacity-50';
             } else {
-              className += 'border-border hover:border-primary/50 hover:bg-primary/5 text-foreground cursor-pointer';
+              className += 'border-border hover:border-emerald-400/50 hover:bg-emerald-50/50 text-foreground cursor-pointer';
             }
 
             return (
@@ -117,7 +117,7 @@ export const MoneyMinuteQuiz = ({ onComplete }: MoneyMinuteQuizProps) => {
         )}
 
         {answered && (
-          <Button className="w-full" size="sm" onClick={handleNext}>
+          <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-md shadow-emerald-500/20" size="sm" onClick={handleNext}>
             {currentQ < questions.length - 1 ? (
               <>Next Question <ArrowRight className="w-3 h-3 ml-1.5" /></>
             ) : (

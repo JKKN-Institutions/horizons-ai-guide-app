@@ -29,9 +29,9 @@ export const ProblemOfTheDay = ({ onSubmit }: ProblemOfTheDayProps) => {
 
   return (
     <Card className="border-border/50 overflow-hidden">
-      <CardHeader className="pb-2 bg-gradient-to-r from-blue-500/5 to-indigo-500/5">
+      <CardHeader className="pb-2 bg-gradient-to-r from-emerald-50/80 to-teal-50/60 border-b border-emerald-100/40">
         <CardTitle className="text-sm flex items-center gap-2">
-          <Search className="w-4 h-4 text-blue-500" /> Problem of the Day
+          <Search className="w-4 h-4 text-emerald-600" /> Problem of the Day
         </CardTitle>
       </CardHeader>
       <CardContent className="p-4 space-y-3">
@@ -50,7 +50,7 @@ export const ProblemOfTheDay = ({ onSubmit }: ProblemOfTheDayProps) => {
         )}
 
         {showHint && (
-          <div className="bg-amber-500/5 rounded-lg p-2 border border-amber-500/10">
+          <div className="bg-gradient-to-r from-amber-50/80 to-orange-50/50 rounded-lg p-2 border border-amber-200/40">
             <p className="text-xs text-amber-700 dark:text-amber-400">💡 {problem.hint}</p>
           </div>
         )}
@@ -63,7 +63,7 @@ export const ProblemOfTheDay = ({ onSubmit }: ProblemOfTheDayProps) => {
               onChange={(e) => setSolution(e.target.value)}
               className="min-h-[80px] text-sm"
             />
-            <Button className="w-full" size="sm" onClick={handleSubmit} disabled={solution.trim().length < 20}>
+            <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-md shadow-emerald-500/20" size="sm" onClick={handleSubmit} disabled={solution.trim().length < 20}>
               <Send className="w-3 h-3 mr-1.5" /> Submit Solution (+15 XP)
             </Button>
           </>

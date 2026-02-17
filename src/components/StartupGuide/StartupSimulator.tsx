@@ -77,7 +77,7 @@ export const StartupSimulator = ({ completedScenarios, onCompleteScenario }: Sta
                   else if (isSelected) className += 'border-destructive bg-destructive/5';
                   else className += 'border-border/30 opacity-40';
                 } else {
-                  className += 'border-border hover:border-primary/50 hover:bg-primary/5 cursor-pointer';
+                  className += 'border-border hover:border-emerald-400/50 hover:bg-emerald-50/30 cursor-pointer';
                 }
 
                 return (
@@ -103,8 +103,8 @@ export const StartupSimulator = ({ completedScenarios, onCompleteScenario }: Sta
             </div>
 
             {selectedChoice && (
-              <div className="bg-primary/5 rounded-lg p-3 border border-primary/10">
-                <p className="text-xs font-semibold text-primary mb-1">📖 Debrief</p>
+              <div className="bg-emerald-50/80 rounded-lg p-3 border border-emerald-200/40">
+                <p className="text-xs font-semibold text-emerald-700 mb-1">📖 Debrief</p>
                 <p className="text-xs text-foreground leading-relaxed">{scenario.debrief}</p>
               </div>
             )}
@@ -120,7 +120,7 @@ export const StartupSimulator = ({ completedScenarios, onCompleteScenario }: Sta
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
-            <Gamepad2 className="w-4 h-4 text-rose-500" /> Startup Simulator
+            <Gamepad2 className="w-4 h-4 text-emerald-600" /> Startup Simulator
           </h3>
           <p className="text-xs text-muted-foreground">{completedScenarios.length}/{simulatorScenarios.length} scenarios completed</p>
         </div>
@@ -133,7 +133,7 @@ export const StartupSimulator = ({ completedScenarios, onCompleteScenario }: Sta
             <button
               key={s.id}
               onClick={() => { setActiveScenario(s.id); setSelectedChoice(null); }}
-              className={`w-full text-left p-3 rounded-lg border transition-all flex items-center gap-3 ${done ? 'border-emerald-500/30 bg-emerald-500/5' : 'border-border hover:border-primary/50 hover:bg-primary/5'}`}
+              className={`w-full text-left p-3 rounded-lg border transition-all flex items-center gap-3 ${done ? 'border-emerald-300/40 bg-emerald-50/50' : 'border-border hover:border-emerald-400/50 hover:bg-emerald-50/30 hover:shadow-sm'}`}
             >
               <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold ${done ? 'bg-emerald-500/10 text-emerald-600' : 'bg-muted text-muted-foreground'}`}>
                 {done ? <CheckCircle2 className="w-4 h-4" /> : `M${s.month}`}
