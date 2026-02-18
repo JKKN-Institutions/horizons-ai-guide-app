@@ -8,19 +8,17 @@ import {
 
 // Helper to render text with **bold** markers
 const renderBoldText = (text: string) => {
-  // Auto-bold text before the first colon (e.g., "The Spark (2011): description...")
-  const colonIndex = text.indexOf(':');
-  if (colonIndex > 0 && colonIndex < 60) {
-    const label = text.slice(0, colonIndex + 1);
-    const rest = text.slice(colonIndex + 1);
-    return (
-      <>
-        <strong className="font-bold text-foreground">{label}</strong>
-        {rest}
-      </>
-    );
-  }
-  return <>{text}</>;
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return <strong key={i} className="font-bold text-gray-900">{part.slice(2, -2)}</strong>;
+        }
+        return <span key={i}>{part}</span>;
+      })}
+    </>
+  );
 };
 
 interface FounderDetail {
@@ -568,7 +566,7 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
             </h4>
             <div className="space-y-2 pl-5">
               {founder.idea.points.map((point, i) => (
-                <p key={i} className="text-[13px] text-foreground/70 leading-relaxed">
+                <p key={i} className="text-[13px] text-gray-800 leading-relaxed">
                   {renderBoldText(point)}
                 </p>
               ))}
@@ -585,7 +583,7 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
               {founder.struggles.points.map((point, i) => (
                 <div key={i} className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-orange-400 flex-shrink-0 mt-1.5" />
-                  <p className="text-[13px] text-foreground/70 leading-relaxed">{renderBoldText(point)}</p>
+                  <p className="text-[13px] text-gray-800 leading-relaxed">{renderBoldText(point)}</p>
                 </div>
               ))}
             </div>
@@ -601,7 +599,7 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
               {founder.success.points.map((point, i) => (
                 <div key={i} className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0 mt-1.5" />
-                  <p className="text-[13px] text-foreground/70 leading-relaxed">{renderBoldText(point)}</p>
+                  <p className="text-[13px] text-gray-800 leading-relaxed">{renderBoldText(point)}</p>
                 </div>
               ))}
             </div>
