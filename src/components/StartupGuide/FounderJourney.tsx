@@ -8,13 +8,19 @@ import {
 
 // Helper to render text with **bold** markers
 const renderBoldText = (text: string) => {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
-  return parts.map((part, i) => {
-    if (part.startsWith('**') && part.endsWith('**')) {
-      return <strong key={i} className="font-bold text-foreground">{part.slice(2, -2)}</strong>;
-    }
-    return <span key={i}>{part}</span>;
-  });
+  // Auto-bold text before the first colon (e.g., "The Spark (2011): description...")
+  const colonIndex = text.indexOf(':');
+  if (colonIndex > 0 && colonIndex < 60) {
+    const label = text.slice(0, colonIndex + 1);
+    const rest = text.slice(colonIndex + 1);
+    return (
+      <>
+        <strong className="font-bold text-foreground">{label}</strong>
+        {rest}
+      </>
+    );
+  }
+  return <>{text}</>;
 };
 
 interface FounderDetail {
@@ -556,8 +562,8 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
 
           {/* 1. The Idea */}
           <div className="space-y-2">
-            <h4 className="text-sm font-bold text-foreground flex items-center gap-1.5">
-              <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
+            <h4 className="text-sm font-extrabold text-foreground flex items-center gap-1.5">
+              <Lightbulb className="w-4 h-4 text-amber-500" />
               {founder.idea.title}
             </h4>
             <div className="space-y-2 pl-5">
@@ -571,8 +577,8 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
 
           {/* 2. The Struggles */}
           <div className="space-y-2">
-            <h4 className="text-sm font-bold text-foreground flex items-center gap-1.5">
-              <AlertTriangle className="w-3.5 h-3.5 text-orange-500" />
+            <h4 className="text-sm font-extrabold text-foreground flex items-center gap-1.5">
+              <AlertTriangle className="w-4 h-4 text-orange-500" />
               {founder.struggles.title}
             </h4>
             <div className="space-y-2 pl-5">
@@ -587,8 +593,8 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
 
           {/* 3. The Success */}
           <div className="space-y-2">
-            <h4 className="text-sm font-bold text-foreground flex items-center gap-1.5">
-              <Trophy className="w-3.5 h-3.5 text-emerald-500" />
+            <h4 className="text-sm font-extrabold text-foreground flex items-center gap-1.5">
+              <Trophy className="w-4 h-4 text-emerald-500" />
               {founder.success.title}
             </h4>
             <div className="space-y-2 pl-5">
@@ -603,17 +609,17 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
 
           {/* 4. Summary Table */}
           <div className="space-y-2">
-            <h4 className="text-sm font-bold text-foreground flex items-center gap-1.5">
-              <Table className="w-3.5 h-3.5 text-blue-500" />
+            <h4 className="text-sm font-extrabold text-foreground flex items-center gap-1.5">
+              <Table className="w-4 h-4 text-blue-500" />
               📋 Summary
             </h4>
             <div className="rounded-lg border border-border/50 overflow-hidden">
               {founder.summary.map((row, i) => (
-                <div key={i} className={`flex text-xs ${i % 2 === 0 ? 'bg-muted/30' : 'bg-transparent'} ${i < founder.summary.length - 1 ? 'border-b border-border/30' : ''}`}>
-                  <div className="w-28 md:w-36 flex-shrink-0 p-2.5 font-bold text-foreground/90 border-r border-border/30">
+                <div key={i} className={`flex text-[13px] ${i % 2 === 0 ? 'bg-muted/30' : 'bg-transparent'} ${i < founder.summary.length - 1 ? 'border-b border-border/30' : ''}`}>
+                  <div className="w-28 md:w-36 flex-shrink-0 p-2.5 font-extrabold text-foreground border-r border-border/30">
                     {row.label}
                   </div>
-                  <div className="flex-1 p-2.5 text-foreground/70">
+                  <div className="flex-1 p-2.5 text-foreground/80 font-medium">
                     {row.value}
                   </div>
                 </div>
