@@ -6,6 +6,17 @@ import {
   Trophy, Route, Table
 } from 'lucide-react';
 
+// Helper to render text with **bold** markers
+const renderBoldText = (text: string) => {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={i} className="font-bold text-foreground">{part.slice(2, -2)}</strong>;
+    }
+    return <span key={i}>{part}</span>;
+  });
+};
+
 interface FounderDetail {
   year: string;
   name: string;
@@ -26,25 +37,25 @@ const indianFounders: FounderDetail[] = [
     idea: {
       title: '💡 The Idea: How It All Started',
       points: [
-        'The journey began at home in Chennai when Shravan was just 7 years old. Their father, Kumaran Surendran (a tech director), noticed Shravan watching him work. He bought them a PC, and instead of just playing games, the brothers started "playing with programming."',
-        'The "Spark" (2011): They wanted a way to showcase the products they were building. Sanjay (then 10) came up with the name "Go" and Shravan (then 12) added "Dimensions" to make it sound "cool."',
-        'The First Product: Their first official game, Catch Me Cop, was born from a simple desire to build a fun maze-style game where a convict outsmarts the police.',
+        '**The journey began at home in Chennai** when Shravan was just 7 years old. Their father, Kumaran Surendran (a tech director), noticed Shravan watching him work. He bought them a PC, and instead of just playing games, the brothers started "playing with programming."',
+        '**The Spark (2011):** They wanted a way to showcase the products they were building. Sanjay (then 10) came up with the name "Go" and Shravan (then 12) added "Dimensions" to make it sound "cool."',
+        '**The First Product:** Their first official game, Catch Me Cop, was born from a simple desire to build a fun maze-style game where a convict outsmarts the police.',
       ],
     },
     struggles: {
       title: '⚡ The Struggles: Real Hurdles They Faced',
       points: [
-        'The "Dad-Funded" Hurdle: They started with zero external investment. They had to "pitch" their ideas to their father to get funds for devices (Macs, iPhones, Android sets). They were $600 in profit early on but still hadn\'t broken even because the hardware costs were so high.',
-        'Time Management: They were full-time students. Their rule was strict: School from 8:20 am to 3:00 pm, play for an hour, and then code only from 6:00 pm to 7:30 pm.',
-        'Knowledge Gap: In 2011, mobile internet wasn\'t like it is now. They couldn\'t just watch a YouTube tutorial for everything; they had to buy physical books and study programming languages like Java, QBasic, and Objective C from scratch.',
+        '**The "Dad-Funded" Hurdle:** They started with zero external investment. They had to "pitch" their ideas to their father to get funds for devices (Macs, iPhones, Android sets). They were $600 in profit early on but still hadn\'t broken even because the hardware costs were so high.',
+        '**Time Management:** They were full-time students. Their rule was strict: School from 8:20 am to 3:00 pm, play for an hour, and then code only from 6:00 pm to 7:30 pm.',
+        '**Knowledge Gap:** In 2011, mobile internet wasn\'t like it is now. They couldn\'t just watch a YouTube tutorial for everything; they had to buy physical books and study programming languages like Java, QBasic, and Objective C from scratch.',
       ],
     },
     success: {
       title: '🏆 The Success: Real Data & Achievements',
       points: [
-        'Global Reach: Their apps (like Alphabet Board and Emergency Booth) received over 70,000 downloads across 53 countries.',
-        'The Forbes Milestone: They were featured in the Forbes 30 Under 30 list — one of the few teenagers to ever achieve this.',
-        'Social Impact: They didn\'t just make games. Their app Emergency Booth allowed users to dial emergency numbers in 14 countries with one click, specifically helping senior citizens.',
+        '**Global Reach:** Their apps (like Alphabet Board and Emergency Booth) received over 70,000 downloads across 53 countries.',
+        '**The Forbes Milestone:** They were featured in the Forbes 30 Under 30 list — one of the few teenagers to ever achieve this.',
+        '**Social Impact:** They didn\'t just make games. Their app Emergency Booth allowed users to dial emergency numbers in 14 countries with one click, specifically helping senior citizens.',
       ],
     },
     summary: [
@@ -60,25 +71,25 @@ const indianFounders: FounderDetail[] = [
     idea: {
       title: '💡 The Idea: How It All Started',
       points: [
-        'Rohan Ganapathy was fascinated by space from childhood in Coimbatore. While studying Aerospace Engineering at IIT Madras, he realized India\'s space industry lacked private players in propulsion technology.',
-        'The "Spark" (2015): During his M.Tech research, Rohan identified that electric propulsion for small satellites was an untapped opportunity in India. He co-founded Bellatrix Aerospace with Yashas Karanam.',
-        'The First Product: They developed India\'s first private sector electric propulsion system — a hall-effect thruster for satellites, drastically reducing launch costs.',
+        '**Rohan Ganapathy** was fascinated by space from childhood in Coimbatore. While studying Aerospace Engineering at IIT Madras, he realized India\'s space industry lacked private players in propulsion technology.',
+        '**The Spark (2015):** During his M.Tech research, Rohan identified that electric propulsion for small satellites was an untapped opportunity in India. He co-founded Bellatrix Aerospace with Yashas Karanam.',
+        '**The First Product:** They developed India\'s first private sector electric propulsion system — a hall-effect thruster for satellites, drastically reducing launch costs.',
       ],
     },
     struggles: {
       title: '⚡ The Struggles: Real Hurdles They Faced',
       points: [
-        'Space is expensive: Building rocket propulsion systems requires specialized labs, vacuum chambers, and test facilities. As students, getting access was extremely difficult.',
-        'Regulatory maze: India\'s space sector was entirely government-controlled (ISRO). There was no clear path for private companies until recent policy changes.',
-        'Credibility gap: Convincing investors and partners that a 22-year-old could build satellite propulsion was an uphill battle — they faced hundreds of rejections.',
+        '**Space is expensive:** Building rocket propulsion systems requires specialized labs, vacuum chambers, and test facilities. As students, getting access was extremely difficult.',
+        '**Regulatory maze:** India\'s space sector was entirely government-controlled (ISRO). There was no clear path for private companies until recent policy changes.',
+        '**Credibility gap:** Convincing investors and partners that a 22-year-old could build satellite propulsion was an uphill battle — they faced hundreds of rejections.',
       ],
     },
     success: {
       title: '🏆 The Success: Real Data & Achievements',
       points: [
-        'Raised over ₹74 crores from marquee investors including IDFC, StartupXseed, and Inflexor Ventures.',
-        'Signed contracts with ISRO and multiple international satellite manufacturers for their propulsion systems.',
-        'Named in Forbes 30 Under 30 Asia list and recognized as one of India\'s most promising deep-tech startups.',
+        '**Raised over ₹74 crores** from marquee investors including IDFC, StartupXseed, and Inflexor Ventures.',
+        '**Signed contracts with ISRO** and multiple international satellite manufacturers for their propulsion systems.',
+        '**Named in Forbes 30 Under 30 Asia** list and recognized as one of India\'s most promising deep-tech startups.',
       ],
     },
     summary: [
@@ -94,25 +105,25 @@ const indianFounders: FounderDetail[] = [
     idea: {
       title: '💡 The Idea: How It All Started',
       points: [
-        'Satish Kannan observed that millions of Indians in Tier-2 and Tier-3 cities had zero access to specialist doctors. Travelling hours for a 5-minute consultation was the norm.',
-        'The "Spark": While working in the healthcare sector, he realized that 70% of doctor consultations could happen over phone/video — no physical examination needed.',
-        'The First Product: DocsApp launched as an app connecting patients directly with specialist doctors via chat, call, and video — at just ₹199 per consultation.',
+        '**Satish Kannan** observed that millions of Indians in Tier-2 and Tier-3 cities had zero access to specialist doctors. Travelling hours for a 5-minute consultation was the norm.',
+        '**The Spark:** While working in the healthcare sector, he realized that 70% of doctor consultations could happen over phone/video — no physical examination needed.',
+        '**The First Product:** DocsApp launched as an app connecting patients directly with specialist doctors via chat, call, and video — at just ₹199 per consultation.',
       ],
     },
     struggles: {
       title: '⚡ The Struggles: Real Hurdles They Faced',
       points: [
-        'Doctor onboarding: Convincing established doctors to consult online was extremely hard in 2017 — telemedicine was not mainstream yet.',
-        'Trust deficit: Patients in India were skeptical about online medical advice. Building trust without a physical clinic was a massive challenge.',
-        'Regulatory uncertainty: Telemedicine had no clear legal framework in India until 2020, creating risk for the business model.',
+        '**Doctor onboarding:** Convincing established doctors to consult online was extremely hard in 2017 — telemedicine was not mainstream yet.',
+        '**Trust deficit:** Patients in India were skeptical about online medical advice. Building trust without a physical clinic was a massive challenge.',
+        '**Regulatory uncertainty:** Telemedicine had no clear legal framework in India until 2020, creating risk for the business model.',
       ],
     },
     success: {
       title: '🏆 The Success: Real Data & Achievements',
       points: [
-        'Served over 4 million patients across 800+ cities in India through the platform.',
-        'Successfully acquired by MediBuddy in 2020, creating one of India\'s largest digital healthcare platforms.',
-        'Played a critical role during COVID-19 by enabling thousands of remote consultations when hospitals were overwhelmed.',
+        '**Served over 4 million patients** across 800+ cities in India through the platform.',
+        '**Successfully acquired by MediBuddy** in 2020, creating one of India\'s largest digital healthcare platforms.',
+        '**Played a critical role during COVID-19** by enabling thousands of remote consultations when hospitals were overwhelmed.',
       ],
     },
     summary: [
@@ -128,25 +139,25 @@ const indianFounders: FounderDetail[] = [
     idea: {
       title: '💡 The Idea: How It All Started',
       points: [
-        'Vinusha M K from Karnataka started baking as a hobby during school. She noticed that people wanted to bake at home but didn\'t have easy access to pre-measured, ready-to-use baking kits.',
-        'The "Spark" (2019): Instead of just selling cakes, she flipped the model — she would sell DIY baking kits that let anyone bake professional-quality pastries at home.',
-        'The First Product: Her first baking kit included pre-measured ingredients, step-by-step recipe cards, and all the dry mixes needed — just add eggs, butter, and bake.',
+        '**Vinusha M K** from Karnataka started baking as a hobby during school. She noticed that people wanted to bake at home but didn\'t have easy access to pre-measured, ready-to-use baking kits.',
+        '**The Spark (2019):** Instead of just selling cakes, she flipped the model — she would sell DIY baking kits that let anyone bake professional-quality pastries at home.',
+        '**The First Product:** Her first baking kit included pre-measured ingredients, step-by-step recipe cards, and all the dry mixes needed — just add eggs, butter, and bake.',
       ],
     },
     struggles: {
       title: '⚡ The Struggles: Real Hurdles They Faced',
       points: [
-        'From Arts stream: Unlike tech founders, Vinusha didn\'t have a coding or engineering background. She had to learn everything about e-commerce, packaging, and logistics from scratch.',
-        'Shelf life challenges: Baking mixes have a limited shelf life. Figuring out preservative-free packaging that kept ingredients fresh was a constant R&D challenge.',
-        'Scaling from kitchen to factory: Moving from a home kitchen to commercial production required food safety certifications (FSSAI), standardized recipes, and quality control systems.',
+        '**From Arts stream:** Unlike tech founders, Vinusha didn\'t have a coding or engineering background. She had to learn everything about e-commerce, packaging, and logistics from scratch.',
+        '**Shelf life challenges:** Baking mixes have a limited shelf life. Figuring out preservative-free packaging that kept ingredients fresh was a constant R&D challenge.',
+        '**Scaling from kitchen to factory:** Moving from a home kitchen to commercial production required food safety certifications (FSSAI), standardized recipes, and quality control systems.',
       ],
     },
     success: {
       title: '🏆 The Success: Real Data & Achievements',
       points: [
-        'Built a loyal customer base through Instagram and word-of-mouth, reaching thousands of home bakers across Karnataka.',
-        'Proved that the Arts/Culinary stream can produce viable startups — her story inspired many non-tech students.',
-        'Successfully developed a scalable product line with multiple flavors and seasonal special edition kits.',
+        '**Built a loyal customer base** through Instagram and word-of-mouth, reaching thousands of home bakers across Karnataka.',
+        '**Proved that the Arts/Culinary stream** can produce viable startups — her story inspired many non-tech students.',
+        '**Successfully developed a scalable** product line with multiple flavors and seasonal special edition kits.',
       ],
     },
     summary: [
@@ -162,25 +173,25 @@ const indianFounders: FounderDetail[] = [
     idea: {
       title: '💡 The Idea: How It All Started',
       points: [
-        'A. Gopalkrishnan, a student from Tamil Nadu, was disturbed by the massive amount of paper waste generated by schools and colleges every year.',
-        'The "Spark" (2019): He conceptualized a small, affordable machine that could reclaim waste paper and convert it into usable writing paper — right at the source (schools, offices).',
-        'The First Product: A compact paper recycling machine that takes waste paper, pulps it, and produces fresh sheets — all in a machine small enough to fit in a classroom.',
+        '**A. Gopalkrishnan**, a student from Tamil Nadu, was disturbed by the massive amount of paper waste generated by schools and colleges every year.',
+        '**The Spark (2019):** He conceptualized a small, affordable machine that could reclaim waste paper and convert it into usable writing paper — right at the source (schools, offices).',
+        '**The First Product:** A compact paper recycling machine that takes waste paper, pulps it, and produces fresh sheets — all in a machine small enough to fit in a classroom.',
       ],
     },
     struggles: {
       title: '⚡ The Struggles: Real Hurdles They Faced',
       points: [
-        'Hardware is hard: Unlike software, building physical machines requires materials, fabrication, and extensive testing. Prototyping costs were significant.',
-        'Finding manufacturers: Getting small-batch manufacturing support for a student\'s project in India was extremely difficult — most factories require large minimum orders.',
-        'Market education: Schools and offices didn\'t understand why they needed an in-house paper recycling machine. Changing mindsets was as hard as building the product.',
+        '**Hardware is hard:** Unlike software, building physical machines requires materials, fabrication, and extensive testing. Prototyping costs were significant.',
+        '**Finding manufacturers:** Getting small-batch manufacturing support for a student\'s project in India was extremely difficult — most factories require large minimum orders.',
+        '**Market education:** Schools and offices didn\'t understand why they needed an in-house paper recycling machine. Changing mindsets was as hard as building the product.',
       ],
     },
     success: {
       title: '🏆 The Success: Real Data & Achievements',
       points: [
-        'Successfully built a working prototype that demonstrated paper-to-paper recycling at low cost.',
-        'Won multiple innovation competitions and received recognition from science and technology forums.',
-        'Inspired a wave of sustainability-focused hardware projects among students in Tamil Nadu.',
+        '**Successfully built a working prototype** that demonstrated paper-to-paper recycling at low cost.',
+        '**Won multiple innovation competitions** and received recognition from science and technology forums.',
+        '**Inspired a wave of sustainability**-focused hardware projects among students in Tamil Nadu.',
       ],
     },
     summary: [
@@ -196,25 +207,25 @@ const indianFounders: FounderDetail[] = [
     idea: {
       title: '💡 The Idea: How It All Started',
       points: [
-        'P. Sowmiya and her team from Tamil Nadu were concerned about plastic food wraps contaminating food and harming the environment.',
-        'The "Spark" (2021): They developed Pectogel, an organic, biodegradable food wrap made from natural pectin extracted from fruit peels — turning food waste into food preservation.',
-        'The First Product: A transparent, flexible food wrap that keeps food fresh naturally without any plastic, chemicals, or synthetic preservatives.',
+        '**P. Sowmiya and her team** from Tamil Nadu were concerned about plastic food wraps contaminating food and harming the environment.',
+        '**The Spark (2021):** They developed Pectogel, an organic, biodegradable food wrap made from natural pectin extracted from fruit peels — turning food waste into food preservation.',
+        '**The First Product:** A transparent, flexible food wrap that keeps food fresh naturally without any plastic, chemicals, or synthetic preservatives.',
       ],
     },
     struggles: {
       title: '⚡ The Struggles: Real Hurdles They Faced',
       points: [
-        'Lab to market gap: Developing a lab prototype is one thing; making it commercially viable with consistent quality at scale was a huge challenge.',
-        'Competing with plastic: Plastic wraps are incredibly cheap. Making an organic alternative price-competitive enough for everyday use required constant cost optimization.',
-        'Consumer habits: Convincing people to switch from convenient plastic wrap to an organic alternative required extensive education and marketing.',
+        '**Lab to market gap:** Developing a lab prototype is one thing; making it commercially viable with consistent quality at scale was a huge challenge.',
+        '**Competing with plastic:** Plastic wraps are incredibly cheap. Making an organic alternative price-competitive enough for everyday use required constant cost optimization.',
+        '**Consumer habits:** Convincing people to switch from convenient plastic wrap to an organic alternative required extensive education and marketing.',
       ],
     },
     success: {
       title: '🏆 The Success: Real Data & Achievements',
       points: [
-        'Won prestigious innovation awards at national-level science and startup competitions.',
-        'Successfully created a product that addresses two problems simultaneously: food waste (pectin from fruit peels) and plastic waste (replacing plastic wraps).',
-        'Gained recognition in the green-tech and sustainability startup ecosystem, attracting interest from eco-conscious brands and retailers.',
+        '**Won prestigious innovation awards** at national-level science and startup competitions.',
+        '**Successfully created a product** that addresses two problems simultaneously: food waste (pectin from fruit peels) and plastic waste (replacing plastic wraps).',
+        '**Gained recognition in the green-tech** and sustainability startup ecosystem, attracting interest from eco-conscious brands and retailers.',
       ],
     },
     summary: [
@@ -230,25 +241,25 @@ const indianFounders: FounderDetail[] = [
     idea: {
       title: '💡 The Idea: How It All Started',
       points: [
-        'The Baanhem team — a group of Commerce students — realized that while there were many incubators for tech startups, Commerce and business students had almost no support ecosystem.',
-        'The "Spark" (2023): They decided to build an incubation platform specifically designed for student entrepreneurs from non-technical backgrounds — Commerce, Arts, Management.',
-        'The First Product: A structured incubation program offering mentorship, business plan workshops, pitch practice, and connections to micro-funding sources.',
+        '**The Baanhem team** — a group of Commerce students — realized that while there were many incubators for tech startups, Commerce and business students had almost no support ecosystem.',
+        '**The Spark (2023):** They decided to build an incubation platform specifically designed for student entrepreneurs from non-technical backgrounds — Commerce, Arts, Management.',
+        '**The First Product:** A structured incubation program offering mentorship, business plan workshops, pitch practice, and connections to micro-funding sources.',
       ],
     },
     struggles: {
       title: '⚡ The Struggles: Real Hurdles They Faced',
       points: [
-        'No tech advantage: As Commerce students, they faced the stereotype that "real startups" are tech companies. They had to constantly prove that business model innovation is just as valuable.',
-        'Building credibility: Starting an incubator as students meant they had to convince mentors, industry leaders, and investors to volunteer their time and trust student organizers.',
-        'Sustainability: Running a free or low-cost incubation program without a clear revenue model was a constant financial balancing act.',
+        '**No tech advantage:** As Commerce students, they faced the stereotype that "real startups" are tech companies. They had to constantly prove that business model innovation is just as valuable.',
+        '**Building credibility:** Starting an incubator as students meant they had to convince mentors, industry leaders, and investors to volunteer their time and trust student organizers.',
+        '**Sustainability:** Running a free or low-cost incubation program without a clear revenue model was a constant financial balancing act.',
       ],
     },
     success: {
       title: '🏆 The Success: Real Data & Achievements',
       points: [
-        'Successfully incubated multiple student-led startups across different colleges and streams.',
-        'Proved that Commerce students can build platforms, not just use them — shifting the narrative around non-tech founders.',
-        'Built a growing community of young entrepreneurs who now mentor the next batch, creating a self-sustaining cycle.',
+        '**Successfully incubated multiple** student-led startups across different colleges and streams.',
+        '**Proved that Commerce students** can build platforms, not just use them — shifting the narrative around non-tech founders.',
+        '**Built a growing community** of young entrepreneurs who now mentor the next batch, creating a self-sustaining cycle.',
       ],
     },
     summary: [
@@ -267,25 +278,25 @@ const globalFounders: FounderDetail[] = [
     idea: {
       title: '💡 The Idea: How It All Started',
       points: [
-        'Mark Zuckerberg was a psychology and computer science student at Harvard. He was fascinated by how people connect and share identity online.',
-        'The "Spark" (2004): After building Facemash (a "hot or not" site using student photos), he realized students wanted a real online directory. Facebook launched from his dorm room in February 2004.',
-        'The First Product: "TheFacebook" was a Harvard-only social directory where students could create profiles, connect with classmates, and share basic info.',
+        '**Mark Zuckerberg** was a psychology and computer science student at Harvard. He was fascinated by how people connect and share identity online.',
+        '**The Spark (2004):** After building Facemash (a "hot or not" site using student photos), he realized students wanted a real online directory. Facebook launched from his dorm room in February 2004.',
+        '**The First Product:** "TheFacebook" was a Harvard-only social directory where students could create profiles, connect with classmates, and share basic info.',
       ],
     },
     struggles: {
       title: '⚡ The Struggles: Real Hurdles They Faced',
       points: [
-        'Legal battles: The Winklevoss twins sued Zuckerberg claiming he stole their idea. The lawsuit dragged on for years and resulted in a $65 million settlement.',
-        'Dropping out of Harvard: Choosing to leave one of the world\'s most prestigious universities to pursue a startup was a massive risk with no guaranteed outcome.',
-        'Monetization: For years, Facebook had millions of users but no clear revenue model. Investors pressured them constantly to figure out how to make money.',
+        '**Legal battles:** The Winklevoss twins sued Zuckerberg claiming he stole their idea. The lawsuit dragged on for years and resulted in a $65 million settlement.',
+        '**Dropping out of Harvard:** Choosing to leave one of the world\'s most prestigious universities to pursue a startup was a massive risk with no guaranteed outcome.',
+        '**Monetization:** For years, Facebook had millions of users but no clear revenue model. Investors pressured them constantly to figure out how to make money.',
       ],
     },
     success: {
       title: '🏆 The Success: Real Data & Achievements',
       points: [
-        'Facebook (now Meta) grew to 3+ billion monthly active users — the largest social network in human history.',
-        'IPO in 2012 valued the company at $104 billion — the largest tech IPO at that time.',
-        'Acquired Instagram ($1B), WhatsApp ($19B), and Oculus ($2B), building a technology empire spanning social media, messaging, and VR.',
+        '**Facebook (now Meta) grew to 3**+ billion monthly active users — the largest social network in human history.',
+        '**IPO in 2012** valued the company at $104 billion — the largest tech IPO at that time.',
+        '**Acquired Instagram** ($1B), WhatsApp ($19B), and Oculus ($2B), building a technology empire spanning social media, messaging, and VR.',
       ],
     },
     summary: [
@@ -301,25 +312,25 @@ const globalFounders: FounderDetail[] = [
     idea: {
       title: '💡 The Idea: How It All Started',
       points: [
-        'Sachin and Binny Bansal (not related) were IIT Delhi graduates working at Amazon in Bangalore. They saw firsthand how e-commerce was transforming retail globally.',
-        'The "Spark" (2007): India had almost no online shopping. They quit Amazon and started Flipkart from a 2-bedroom apartment in Bangalore with just ₹4 lakhs.',
-        'The First Product: An online bookstore (inspired by Amazon\'s origin). Their first order was the book "Leaving Microsoft to Change the World" — they personally delivered it.',
+        '**Sachin and Binny Bansal** (not related) were IIT Delhi graduates working at Amazon in Bangalore. They saw firsthand how e-commerce was transforming retail globally.',
+        '**The Spark (2007):** India had almost no online shopping. They quit Amazon and started Flipkart from a 2-bedroom apartment in Bangalore with just ₹4 lakhs.',
+        '**The First Product:** An online bookstore (inspired by Amazon\'s origin). Their first order was the book "Leaving Microsoft to Change the World" — they personally delivered it.',
       ],
     },
     struggles: {
       title: '⚡ The Struggles: Real Hurdles They Faced',
       points: [
-        'No logistics infrastructure: India had no reliable delivery network for e-commerce. They had to build their own logistics arm (Ekart) from scratch.',
-        'Cash-on-delivery problem: Indians didn\'t trust online payments. Flipkart pioneered COD, which was operationally expensive and risky.',
-        'Intense competition: When Amazon entered India in 2013 with unlimited capital, Flipkart had to fight a war of attrition against a global giant.',
+        '**No logistics infrastructure:** India had no reliable delivery network for e-commerce. They had to build their own logistics arm (Ekart) from scratch.',
+        '**Cash-on-delivery problem:** Indians didn\'t trust online payments. Flipkart pioneered COD, which was operationally expensive and risky.',
+        '**Intense competition:** When Amazon entered India in 2013 with unlimited capital, Flipkart had to fight a war of attrition against a global giant.',
       ],
     },
     success: {
       title: '🏆 The Success: Real Data & Achievements',
       points: [
-        'Walmart acquired Flipkart in 2018 for $16 billion — the world\'s largest e-commerce acquisition at that time.',
-        'Built India\'s e-commerce ecosystem: popularized online shopping, created Ekart logistics, launched Flipkart Pay Later, and the Big Billion Day sale.',
-        'Proved that Indian founders could build global-scale companies — paving the way for the entire Indian startup ecosystem.',
+        '**Walmart acquired Flipkart in 2018 for $16 billion** — the world\'s largest e-commerce acquisition at that time.',
+        '**Built India**\'s e-commerce ecosystem: popularized online shopping, created Ekart logistics, launched Flipkart Pay Later, and the Big Billion Day sale.',
+        '**Proved that Indian founders** could build global-scale companies — paving the way for the entire Indian startup ecosystem.',
       ],
     },
     summary: [
@@ -335,25 +346,25 @@ const globalFounders: FounderDetail[] = [
     idea: {
       title: '💡 The Idea: How It All Started',
       points: [
-        'Farrhad Acidwalla from Mumbai started his entrepreneurial journey at age 13 by buying a Facebook community page about aviation for $10.',
-        'The "Spark" (2009): He grew that page to 3 lakh+ followers and realized he could monetize digital communities. At 16, he founded Rockstah Media, a digital marketing and branding agency.',
-        'The First Product: Digital branding and social media marketing services for businesses — at a time when most Indian companies didn\'t even have a social media strategy.',
+        '**Farrhad Acidwalla** from Mumbai started his entrepreneurial journey at age 13 by buying a Facebook community page about aviation for $10.',
+        '**The Spark (2009):** He grew that page to 3 lakh+ followers and realized he could monetize digital communities. At 16, he founded Rockstah Media, a digital marketing and branding agency.',
+        '**The First Product:** Digital branding and social media marketing services for businesses — at a time when most Indian companies didn\'t even have a social media strategy.',
       ],
     },
     struggles: {
       title: '⚡ The Struggles: Real Hurdles They Faced',
       points: [
-        'Age barrier: No one wanted to hire a teenager for their marketing. He had to prove his expertise through results, not credentials.',
-        'Arts stream stigma: Coming from a non-technical background, he faced constant skepticism about whether he could build a "real" company.',
-        'Self-taught everything: Digital marketing had no formal curriculum in India. He learned SEO, social media, and branding entirely through experimentation.',
+        '**Age barrier:** No one wanted to hire a teenager for their marketing. He had to prove his expertise through results, not credentials.',
+        '**Arts stream stigma:** Coming from a non-technical background, he faced constant skepticism about whether he could build a "real" company.',
+        '**Self-taught everything:** Digital marketing had no formal curriculum in India. He learned SEO, social media, and branding entirely through experimentation.',
       ],
     },
     success: {
       title: '🏆 The Success: Real Data & Achievements',
       points: [
-        'Named in Forbes 30 Under 30 at just 17 years old — one of the youngest entrepreneurs on the list globally.',
-        'Rockstah Media grew into a full-service digital agency serving clients across multiple countries.',
-        'Became a globally recognized young entrepreneur, speaking at international conferences and inspiring thousands of young people from non-tech backgrounds.',
+        '**Named in Forbes 30 Under 30 at just 17** years old — one of the youngest entrepreneurs on the list globally.',
+        '**Rockstah Media grew** into a full-service digital agency serving clients across multiple countries.',
+        '**Became a globally recognized** young entrepreneur, speaking at international conferences and inspiring thousands of young people from non-tech backgrounds.',
       ],
     },
     summary: [
@@ -369,25 +380,25 @@ const globalFounders: FounderDetail[] = [
     idea: {
       title: '💡 The Idea: How It All Started',
       points: [
-        'Ritesh Agarwal from Odisha started travelling across India at 17, staying in budget hotels. He was frustrated by the inconsistent quality — dirty rooms, no WiFi, broken ACs.',
-        'The "Spark" (2013): He realized budget hotels had no brand standardization. At 19, he founded OYO Rooms to bring consistency to India\'s fragmented budget hotel market.',
-        'The First Product: A platform that partnered with existing budget hotels, standardized their rooms (clean sheets, WiFi, AC, branded toiletries), and listed them under the OYO brand.',
+        '**Ritesh Agarwal** from Odisha started travelling across India at 17, staying in budget hotels. He was frustrated by the inconsistent quality — dirty rooms, no WiFi, broken ACs.',
+        '**The Spark (2013):** He realized budget hotels had no brand standardization. At 19, he founded OYO Rooms to bring consistency to India\'s fragmented budget hotel market.',
+        '**The First Product:** A platform that partnered with existing budget hotels, standardized their rooms (clean sheets, WiFi, AC, branded toiletries), and listed them under the OYO brand.',
       ],
     },
     struggles: {
       title: '⚡ The Struggles: Real Hurdles They Faced',
       points: [
-        'Dropped out of college: Ritesh dropped out of Indian School of Hospitality to pursue OYO. His family and society pressured him to get a "proper degree."',
-        'Hotel owner resistance: Convincing traditional hotel owners to give up control of their rooms and follow OYO\'s standards was an enormous ground-level challenge.',
-        'Hyper-growth pains: Scaling too fast led to quality control issues, customer complaints, and franchise disputes. OYO had to learn to balance growth with quality.',
+        '**Dropped out of college:** Ritesh dropped out of Indian School of Hospitality to pursue OYO. His family and society pressured him to get a "proper degree."',
+        '**Hotel owner resistance:** Convincing traditional hotel owners to give up control of their rooms and follow OYO\'s standards was an enormous ground-level challenge.',
+        '**Hyper-growth pains:** Scaling too fast led to quality control issues, customer complaints, and franchise disputes. OYO had to learn to balance growth with quality.',
       ],
     },
     success: {
       title: '🏆 The Success: Real Data & Achievements',
       points: [
-        'Grew to 43,000+ hotels across 800+ cities in 80+ countries — making it one of the world\'s largest hotel chains by room count.',
-        'Received backing from SoftBank, Sequoia, and Airbnb. Valuation peaked at $9.6 billion.',
-        'Became the youngest Indian to receive the Thiel Fellowship ($100,000 grant from Peter Thiel to skip college and build a company).',
+        '**Grew to 43,000+ hotels** across 800+ cities in 80+ countries — making it one of the world\'s largest hotel chains by room count.',
+        '**Received backing from SoftBank**, Sequoia, and Airbnb. Valuation peaked at $9.6 billion.',
+        '**Became the youngest Indian** to receive the Thiel Fellowship ($100,000 grant from Peter Thiel to skip college and build a company).',
       ],
     },
     summary: [
@@ -403,25 +414,25 @@ const globalFounders: FounderDetail[] = [
     idea: {
       title: '💡 The Idea: How It All Started',
       points: [
-        'Tilak Mehta from Mumbai was just 13 when he needed to urgently send documents to a relative across the city. No courier service offered same-day intra-city delivery.',
-        'The "Spark" (2018): He connected the dots — Mumbai\'s legendary dabbawalas deliver 2 lakh lunchboxes daily with 99.99% accuracy. Why not use the same network for parcel delivery?',
-        'The First Product: Papers N Parcels — a logistics platform that partnered with Mumbai\'s dabbawala network to offer same-day, affordable intra-city parcel delivery.',
+        '**Tilak Mehta** from Mumbai was just 13 when he needed to urgently send documents to a relative across the city. No courier service offered same-day intra-city delivery.',
+        '**The Spark (2018):** He connected the dots — Mumbai\'s legendary dabbawalas deliver 2 lakh lunchboxes daily with 99.99% accuracy. Why not use the same network for parcel delivery?',
+        '**The First Product:** Papers N Parcels — a logistics platform that partnered with Mumbai\'s dabbawala network to offer same-day, affordable intra-city parcel delivery.',
       ],
     },
     struggles: {
       title: '⚡ The Struggles: Real Hurdles They Faced',
       points: [
-        'Being 13 years old: Opening a business bank account, signing contracts, and being taken seriously by adults was a daily struggle. His father had to co-sign many documents.',
-        'Dabbawala integration: The dabbawala network is traditional and works on trust, not technology. Bridging the gap between their analog system and a digital platform required careful negotiation.',
-        'Scaling beyond Mumbai: The dabbawala model is unique to Mumbai. Expanding to other cities required completely different logistics partners and strategies.',
+        '**Being 13 years old:** Opening a business bank account, signing contracts, and being taken seriously by adults was a daily struggle. His father had to co-sign many documents.',
+        '**Dabbawala integration:** The dabbawala network is traditional and works on trust, not technology. Bridging the gap between their analog system and a digital platform required careful negotiation.',
+        '**Scaling beyond Mumbai:** The dabbawala model is unique to Mumbai. Expanding to other cities required completely different logistics partners and strategies.',
       ],
     },
     success: {
       title: '🏆 The Success: Real Data & Achievements',
       points: [
-        'Successfully launched intra-city delivery across Mumbai, leveraging the world-famous dabbawala network.',
-        'Featured in major Indian and international media, becoming one of India\'s youngest recognized entrepreneurs.',
-        'Proved that Commerce students can innovate in logistics — you don\'t need to code to disrupt an industry.',
+        '**Successfully launched intra-city delivery** across Mumbai, leveraging the world-famous dabbawala network.',
+        '**Featured in major Indian** and international media, becoming one of India\'s youngest recognized entrepreneurs.',
+        '**Proved that Commerce students** can innovate in logistics — you don\'t need to code to disrupt an industry.',
       ],
     },
     summary: [
@@ -437,25 +448,25 @@ const globalFounders: FounderDetail[] = [
     idea: {
       title: '💡 The Idea: How It All Started',
       points: [
-        'Arjun Deshpande from Pune noticed that millions of Indians overpay for branded medicines when chemically identical generic alternatives exist at 50–90% lower cost.',
-        'The "Spark" (2018): While studying, he realized there was no easy way for common people to discover and buy genuine generic medicines. The pharmacy ecosystem was designed to push expensive brands.',
-        'The First Product: Generic Aadhaar — a platform/network of stores that exclusively sell affordable, quality-certified generic medicines, making healthcare accessible to all.',
+        '**Arjun Deshpande** from Pune noticed that millions of Indians overpay for branded medicines when chemically identical generic alternatives exist at 50–90% lower cost.',
+        '**The Spark (2018):** While studying, he realized there was no easy way for common people to discover and buy genuine generic medicines. The pharmacy ecosystem was designed to push expensive brands.',
+        '**The First Product:** Generic Aadhaar — a platform/network of stores that exclusively sell affordable, quality-certified generic medicines, making healthcare accessible to all.',
       ],
     },
     struggles: {
       title: '⚡ The Struggles: Real Hurdles They Faced',
       points: [
-        'Pharma industry resistance: Big pharmaceutical companies and traditional pharmacies saw generic-only stores as a threat to their margins and actively discouraged the model.',
-        'Quality perception: Indians associate "cheap medicine" with "low quality." Educating customers that generic medicines have the same active ingredients and FDA approval was an uphill task.',
-        'Regulatory complexity: The Indian pharma market has complex distribution rules. Navigating drug licensing, storage requirements, and state-level regulations was challenging.',
+        '**Pharma industry resistance:** Big pharmaceutical companies and traditional pharmacies saw generic-only stores as a threat to their margins and actively discouraged the model.',
+        '**Quality perception:** Indians associate "cheap medicine" with "low quality." Educating customers that generic medicines have the same active ingredients and FDA approval was an uphill task.',
+        '**Regulatory complexity:** The Indian pharma market has complex distribution rules. Navigating drug licensing, storage requirements, and state-level regulations was challenging.',
       ],
     },
     success: {
       title: '🏆 The Success: Real Data & Achievements',
       points: [
-        'Expanded to 1,500+ Generic Aadhaar stores across India, making affordable medicines accessible in smaller cities and towns.',
-        'Saved millions of rupees for low-income families by providing medicines at 50–90% lower than branded alternatives.',
-        'Recognized by major media outlets and government bodies for democratizing access to affordable healthcare.',
+        '**Expanded to 1,500+ Generic Aadhaar** stores across India, making affordable medicines accessible in smaller cities and towns.',
+        '**Saved millions of rupees** for low-income families by providing medicines at 50–90% lower than branded alternatives.',
+        '**Recognized by major media outlets** and government bodies for democratizing access to affordable healthcare.',
       ],
     },
     summary: [
@@ -471,25 +482,25 @@ const globalFounders: FounderDetail[] = [
     idea: {
       title: '💡 The Idea: How It All Started',
       points: [
-        'Aadit Palicha and Kaivalya Vohra were childhood friends from Mumbai who went to Stanford University. During COVID-19 lockdowns, they launched KiranaKart to help people order groceries.',
-        'The "Spark" (2021): They dropped out of Stanford at 19 to pivot KiranaKart into Zepto — promising grocery delivery in just 10 minutes using dark stores (micro-warehouses).',
-        'The First Product: A grocery delivery app with strategically placed dark stores within 2–3 km of customers, enabling deliveries faster than anyone thought possible.',
+        '**Aadit Palicha and Kaivalya Vohra** were childhood friends from Mumbai who went to Stanford University. During COVID-19 lockdowns, they launched KiranaKart to help people order groceries.',
+        '**The Spark (2021):** They dropped out of Stanford at 19 to pivot KiranaKart into Zepto — promising grocery delivery in just 10 minutes using dark stores (micro-warehouses).',
+        '**The First Product:** A grocery delivery app with strategically placed dark stores within 2–3 km of customers, enabling deliveries faster than anyone thought possible.',
       ],
     },
     struggles: {
       title: '⚡ The Struggles: Real Hurdles They Faced',
       points: [
-        'Dropping out of Stanford: Leaving a top-3 global university at 19 to start a grocery delivery company was considered reckless by many.',
-        'Cash burn: Quick commerce requires massive upfront investment in dark stores, inventory, and delivery fleet. Zepto was burning crores per month while trying to prove the model.',
-        'Skepticism: Many industry experts called 10-minute delivery "unsustainable" and predicted it would fail once investor funding dried up.',
+        '**Dropping out of Stanford:** Leaving a top-3 global university at 19 to start a grocery delivery company was considered reckless by many.',
+        '**Cash burn:** Quick commerce requires massive upfront investment in dark stores, inventory, and delivery fleet. Zepto was burning crores per month while trying to prove the model.',
+        '**Skepticism:** Many industry experts called 10-minute delivery "unsustainable" and predicted it would fail once investor funding dried up.',
       ],
     },
     success: {
       title: '🏆 The Success: Real Data & Achievements',
       points: [
-        'Raised over $1.3 billion in funding, reaching a valuation of $5 billion+ by 2024.',
-        'Expanded to 10+ major Indian cities with hundreds of dark stores, delivering millions of orders monthly.',
-        'Became the youngest founders to build a billion-dollar company in India, proving that quick commerce is a viable business model.',
+        '**Raised over $1.3 billion** in funding, reaching a valuation of $5 billion+ by 2024.',
+        '**Expanded to 10+ major Indian** cities with hundreds of dark stores, delivering millions of orders monthly.',
+        '**Became the youngest founders** to build a billion-dollar company in India, proving that quick commerce is a viable business model.',
       ],
     },
     summary: [
@@ -545,14 +556,14 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
 
           {/* 1. The Idea */}
           <div className="space-y-2">
-            <h4 className="text-xs font-bold text-foreground flex items-center gap-1.5">
+            <h4 className="text-sm font-bold text-foreground flex items-center gap-1.5">
               <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
               {founder.idea.title}
             </h4>
             <div className="space-y-2 pl-5">
               {founder.idea.points.map((point, i) => (
-                <p key={i} className="text-xs text-muted-foreground leading-relaxed">
-                  {point}
+                <p key={i} className="text-[13px] text-foreground/70 leading-relaxed">
+                  {renderBoldText(point)}
                 </p>
               ))}
             </div>
@@ -560,7 +571,7 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
 
           {/* 2. The Struggles */}
           <div className="space-y-2">
-            <h4 className="text-xs font-bold text-foreground flex items-center gap-1.5">
+            <h4 className="text-sm font-bold text-foreground flex items-center gap-1.5">
               <AlertTriangle className="w-3.5 h-3.5 text-orange-500" />
               {founder.struggles.title}
             </h4>
@@ -568,7 +579,7 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
               {founder.struggles.points.map((point, i) => (
                 <div key={i} className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-orange-400 flex-shrink-0 mt-1.5" />
-                  <p className="text-xs text-muted-foreground leading-relaxed">{point}</p>
+                  <p className="text-[13px] text-foreground/70 leading-relaxed">{renderBoldText(point)}</p>
                 </div>
               ))}
             </div>
@@ -576,7 +587,7 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
 
           {/* 3. The Success */}
           <div className="space-y-2">
-            <h4 className="text-xs font-bold text-foreground flex items-center gap-1.5">
+            <h4 className="text-sm font-bold text-foreground flex items-center gap-1.5">
               <Trophy className="w-3.5 h-3.5 text-emerald-500" />
               {founder.success.title}
             </h4>
@@ -584,7 +595,7 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
               {founder.success.points.map((point, i) => (
                 <div key={i} className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0 mt-1.5" />
-                  <p className="text-xs text-muted-foreground leading-relaxed">{point}</p>
+                  <p className="text-[13px] text-foreground/70 leading-relaxed">{renderBoldText(point)}</p>
                 </div>
               ))}
             </div>
@@ -592,17 +603,17 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
 
           {/* 4. Summary Table */}
           <div className="space-y-2">
-            <h4 className="text-xs font-bold text-foreground flex items-center gap-1.5">
+            <h4 className="text-sm font-bold text-foreground flex items-center gap-1.5">
               <Table className="w-3.5 h-3.5 text-blue-500" />
               📋 Summary
             </h4>
             <div className="rounded-lg border border-border/50 overflow-hidden">
               {founder.summary.map((row, i) => (
                 <div key={i} className={`flex text-xs ${i % 2 === 0 ? 'bg-muted/30' : 'bg-transparent'} ${i < founder.summary.length - 1 ? 'border-b border-border/30' : ''}`}>
-                  <div className="w-28 md:w-36 flex-shrink-0 p-2 font-semibold text-foreground/80 border-r border-border/30">
+                  <div className="w-28 md:w-36 flex-shrink-0 p-2.5 font-bold text-foreground/90 border-r border-border/30">
                     {row.label}
                   </div>
-                  <div className="flex-1 p-2 text-muted-foreground">
+                  <div className="flex-1 p-2.5 text-foreground/70">
                     {row.value}
                   </div>
                 </div>
