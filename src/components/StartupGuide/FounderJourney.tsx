@@ -528,9 +528,9 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
         </div>
         <div className="flex-1 p-3 min-w-0 flex items-center">
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-bold text-foreground truncate">{founder.name}</p>
-            <p className="text-xs text-muted-foreground mt-0.5">
-              <span className="font-semibold text-foreground/80">{founder.startup}</span> — {founder.product}
+            <p className="text-sm font-bold text-black truncate">{founder.name}</p>
+            <p className="text-xs text-gray-800 mt-0.5">
+              <span className="font-semibold text-gray-900">{founder.startup}</span> — {founder.product}
             </p>
           </div>
           <div className="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -541,7 +541,7 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
             }`}>
               {founder.stream}
             </Badge>
-            {isExpanded ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+            {isExpanded ? <ChevronUp className="w-4 h-4 text-gray-800" /> : <ChevronDown className="w-4 h-4 text-gray-800" />}
           </div>
         </div>
       </button>
@@ -617,7 +617,7 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
                   <div className="w-28 md:w-36 flex-shrink-0 p-2.5 font-extrabold text-foreground border-r border-border/30">
                     {row.label}
                   </div>
-                  <div className="flex-1 p-2.5 text-foreground/80 font-medium">
+                  <div className="flex-1 p-2.5 text-gray-900 font-medium">
                     {row.value}
                   </div>
                 </div>
@@ -655,8 +655,8 @@ export const FounderJourney = () => {
             <Star className="w-4 h-4 text-white" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-foreground">Indian Student Founders</h4>
-            <p className="text-[10px] text-muted-foreground">Startups born in India by young innovators</p>
+            <h4 className="text-sm font-bold text-black">Indian Student Founders</h4>
+            <p className="text-[10px] text-gray-800">Startups born in India by young innovators</p>
           </div>
         </div>
         <div className="space-y-2">
@@ -678,8 +678,8 @@ export const FounderJourney = () => {
             <Globe className="w-4 h-4 text-white" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-foreground">Global Young Founders</h4>
-            <p className="text-[10px] text-muted-foreground">World-changing startups by young entrepreneurs</p>
+            <h4 className="text-sm font-bold text-black">Global Young Founders</h4>
+            <p className="text-[10px] text-gray-800">World-changing startups by young entrepreneurs</p>
           </div>
         </div>
         <div className="space-y-2">
