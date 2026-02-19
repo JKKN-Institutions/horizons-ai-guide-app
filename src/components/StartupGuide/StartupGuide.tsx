@@ -122,8 +122,8 @@ export const StartupGuide = () => {
             </TabsTrigger>
             <TabsTrigger value="mentors" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1.5">
               <Layers className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">All App Features</span>
-              <span className="sm:hidden">Features</span>
+              <span className="hidden sm:inline">Build My Startup</span>
+              <span className="sm:hidden">Build</span>
             </TabsTrigger>
             <TabsTrigger value="readiness" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1.5">
               <Route className="w-3.5 h-3.5" />
