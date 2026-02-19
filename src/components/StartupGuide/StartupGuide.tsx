@@ -107,8 +107,8 @@ export const StartupGuide = () => {
             </TabsTrigger>
             <TabsTrigger value="discover" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1.5">
               <BadgeCheck className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Validate Solution</span>
-              <span className="sm:hidden">Validate</span>
+              <span className="hidden sm:inline">AI Mentor</span>
+              <span className="sm:hidden">AI Mentor</span>
             </TabsTrigger>
             <TabsTrigger value="quiz" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1.5">
               <DollarSign className="w-3.5 h-3.5" />
