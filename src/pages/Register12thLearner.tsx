@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowLeft, ArrowRight, GraduationCap, CheckCircle, Loader2, User, BookOpen, Heart, ClipboardCheck, Sparkles, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, GraduationCap, CheckCircle, Loader2, User, BookOpen, Heart, ClipboardCheck, Sparkles, Star, School, Layers, CalendarDays } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { register12thSchema } from "@/lib/validation/registration-schemas";
@@ -39,15 +39,15 @@ const Register12thLearner = () => {
     { name: t('reg12.review'), icon: ClipboardCheck }
   ];
 
-  // Auto-advance: when Board, Stream, and Expected Year are all filled on Education step
+  // Auto-advance: when School, Board, Stream, and Expected Year are all filled on Education step
   useEffect(() => {
-    if (currentStep === 1 && formData.board && formData.stream && formData.expectedYear) {
+    if (currentStep === 1 && formData.school && formData.board && formData.stream && formData.expectedYear) {
       const timer = setTimeout(() => {
         setCurrentStep(2);
       }, 500);
       return () => clearTimeout(timer);
     }
-  }, [formData.board, formData.stream, formData.expectedYear, currentStep]);
+  }, [formData.school, formData.board, formData.stream, formData.expectedYear, currentStep]);
 
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -385,7 +385,9 @@ const Register12thLearner = () => {
                     </div>
                     <div className="grid md:grid-cols-2 gap-5">
                       <div className="space-y-2">
-                        <Label className="text-sm font-semibold text-foreground">{t('reg12.board')}</Label>
+                        <Label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                          <School className="w-4 h-4 text-primary" />
+                          {t('reg12.board')}</Label>
                         <Select value={formData.board} onValueChange={v => handleChange("board", v)}>
                           <SelectTrigger className="h-12 border-2 border-border hover:border-primary/50 focus:border-primary transition-all">
                             <SelectValue placeholder={t('reg12.selectBoard')} />
@@ -399,7 +401,9 @@ const Register12thLearner = () => {
                         </Select>
                       </div>
                       <div className="space-y-2">
-                        <Label className="text-sm font-semibold text-foreground">{t('reg12.stream')}</Label>
+                        <Label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                          <Layers className="w-4 h-4 text-primary" />
+                          {t('reg12.stream')}</Label>
                         <Select value={formData.stream} onValueChange={v => handleChange("stream", v)}>
                           <SelectTrigger className="h-12 border-2 border-border hover:border-primary/50 focus:border-primary transition-all">
                             <SelectValue placeholder={t('reg12.selectStream')} />
@@ -413,7 +417,9 @@ const Register12thLearner = () => {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-sm font-semibold text-foreground">{t('reg12.expectedYear')}</Label>
+                      <Label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                        <CalendarDays className="w-4 h-4 text-primary" />
+                        {t('reg12.expectedYear')}</Label>
                       <Select value={formData.expectedYear} onValueChange={v => handleChange("expectedYear", v)}>
                         <SelectTrigger className="h-12 border-2 border-border hover:border-primary/50 focus:border-primary transition-all">
                           <SelectValue placeholder={t('reg12.selectYear')} />
