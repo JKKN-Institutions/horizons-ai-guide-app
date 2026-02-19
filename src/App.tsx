@@ -33,6 +33,7 @@ import SavedJobs from "./pages/SavedJobs";
 import JobPortal from "./pages/JobPortal";
 import PYQPractice from "./pages/PYQPractice";
 import NotFound from "./pages/NotFound";
+import SurveyPublic from "./pages/SurveyPublic";
 
 // JKKN Career Hub Pages
 import JKKNCareerHub from "./pages/JKKNCareerHub";
@@ -175,6 +176,7 @@ function App() {
                 <Route path="/jkkn/learner/:id" element={<JKKNLearnerProfile />} />
                 
                 {/* Catch-all */}
+                <Route path="/survey/:surveyId" element={<SurveyPublic />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
