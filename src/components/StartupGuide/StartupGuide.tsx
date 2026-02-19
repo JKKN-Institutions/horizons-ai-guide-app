@@ -128,8 +128,8 @@ export const StartupGuide = () => {
             </TabsTrigger>
             <TabsTrigger value="readiness" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-gray-400 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-rose-500 data-[state=active]:to-pink-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-rose-500/25 hover:text-white/80 font-medium gap-1.5">
               <Route className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Founder Journey</span>
-              <span className="sm:hidden">Journey</span>
+              <span className="hidden sm:inline">TN Inspiration Founder Journey</span>
+              <span className="sm:hidden">TN Founders</span>
             </TabsTrigger>
           </TabsList>
         </div>
