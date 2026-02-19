@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,6 +38,16 @@ const Register12thLearner = () => {
     { name: t('reg12.interests'), icon: Heart },
     { name: t('reg12.review'), icon: ClipboardCheck }
   ];
+
+  // Auto-advance: when Board, Stream, and Expected Year are all filled on Education step
+  useEffect(() => {
+    if (currentStep === 1 && formData.board && formData.stream && formData.expectedYear) {
+      const timer = setTimeout(() => {
+        setCurrentStep(2);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [formData.board, formData.stream, formData.expectedYear, currentStep]);
 
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
