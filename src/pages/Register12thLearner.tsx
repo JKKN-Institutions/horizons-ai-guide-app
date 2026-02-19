@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,6 +38,42 @@ const Register12thLearner = () => {
     { name: t('reg12.interests'), icon: Heart },
     { name: t('reg12.review'), icon: ClipboardCheck }
   ];
+
+  // Check if user already registered — skip form and go to home
+  useEffect(() => {
+    const checkExistingRegistration = async () => {
+      try {
+        // Check localStorage first (fast)
+        const alreadyRegistered = localStorage.getItem('vazhikatti_12th_registered');
+        if (alreadyRegistered) {
+          toast.success('You are already registered! Welcome back 🎉');
+          navigate('/', { replace: true });
+          return;
+        }
+
+        // Check Supabase database
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+          const { data } = await supabase
+            .from('registrations_12th_learners')
+            .select('id, full_name')
+            .eq('user_id', user.id)
+            .limit(1);
+
+          if (data && data.length > 0) {
+            localStorage.setItem('vazhikatti_12th_registered', 'true');
+            localStorage.setItem('vazhikatti_12th_name', data[0].full_name || '');
+            toast.success(`Welcome back, ${data[0].full_name}! You are already registered 🎉`);
+            navigate('/', { replace: true });
+          }
+        }
+      } catch (error) {
+        console.error('Error checking registration:', error);
+      }
+    };
+
+    checkExistingRegistration();
+  }, [navigate]);
 
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -115,6 +151,21 @@ const Register12thLearner = () => {
     try {
       const validatedData = register12thSchema.parse(formData);
       const { data: { user } } = await supabase.auth.getUser();
+
+      // Check if already registered by phone
+      const { data: existingByPhone } = await supabase
+        .from('registrations_12th_learners')
+        .select('id')
+        .eq('phone', validatedData.phone)
+        .limit(1);
+
+      if (existingByPhone && existingByPhone.length > 0) {
+        localStorage.setItem('vazhikatti_12th_registered', 'true');
+        localStorage.setItem('vazhikatti_12th_name', validatedData.fullName);
+        toast.success('You are already registered with this phone number! Welcome back 🎉');
+        navigate('/', { replace: true });
+        return;
+      }
       
       const { error } = await supabase
         .from("registrations_12th_learners")
@@ -134,6 +185,31 @@ const Register12thLearner = () => {
         });
 
       if (error) throw error;
+
+      // Save registration status locally
+      localStorage.setItem('vazhikatti_12th_registered', 'true');
+      localStorage.setItem('vazhikatti_12th_name', validatedData.fullName);
+
+      // Send confirmation email (non-blocking)
+      if (validatedData.email) {
+        supabase.functions.invoke('send-registration-email', {
+          body: {
+            fullName: validatedData.fullName,
+            email: validatedData.email,
+            phone: validatedData.phone,
+            school: validatedData.school || '',
+            board: validatedData.board || '',
+            stream: validatedData.stream || '',
+            expectedYear: validatedData.expectedYear || '',
+          },
+        }).then(({ error: emailError }) => {
+          if (emailError) {
+            console.error('Email send error:', emailError);
+          } else {
+            console.log('Confirmation email sent successfully');
+          }
+        });
+      }
       
       toast.success(t('reg12.registrationSuccess'));
       navigate('/career-assessment/colleges', { replace: true });
