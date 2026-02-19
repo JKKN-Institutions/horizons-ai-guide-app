@@ -190,14 +190,15 @@ const Register12thLearner = () => {
       localStorage.setItem('vazhikatti_12th_registered', 'true');
       localStorage.setItem('vazhikatti_12th_name', validatedData.fullName);
 
-      // Send confirmation email (non-blocking)
-      if (validatedData.email) {
+      // Send confirmation email to login email (non-blocking)
+      const loginEmail = user?.email;
+      if (loginEmail) {
         fetch('/api/send-registration-email', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             fullName: validatedData.fullName,
-            email: validatedData.email,
+            email: loginEmail,
             phone: validatedData.phone,
             school: validatedData.school || '',
             board: validatedData.board || '',
@@ -206,7 +207,7 @@ const Register12thLearner = () => {
           }),
         }).then(res => res.json()).then(data => {
           if (data.success) {
-            console.log('Confirmation email sent successfully');
+            console.log('Confirmation email sent to:', loginEmail);
           } else {
             console.error('Email send error:', data);
           }
