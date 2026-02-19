@@ -192,8 +192,10 @@ const Register12thLearner = () => {
 
       // Send confirmation email (non-blocking)
       if (validatedData.email) {
-        supabase.functions.invoke('send-registration-email', {
-          body: {
+        fetch('/api/send-registration-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
             fullName: validatedData.fullName,
             email: validatedData.email,
             phone: validatedData.phone,
@@ -201,13 +203,15 @@ const Register12thLearner = () => {
             board: validatedData.board || '',
             stream: validatedData.stream || '',
             expectedYear: validatedData.expectedYear || '',
-          },
-        }).then(({ error: emailError }) => {
-          if (emailError) {
-            console.error('Email send error:', emailError);
-          } else {
+          }),
+        }).then(res => res.json()).then(data => {
+          if (data.success) {
             console.log('Confirmation email sent successfully');
+          } else {
+            console.error('Email send error:', data);
           }
+        }).catch(err => {
+          console.error('Email send error:', err);
         });
       }
       
