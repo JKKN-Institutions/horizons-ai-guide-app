@@ -9,7 +9,6 @@ import ServicesSection from "@/components/ServicesSection";
 
 import TwelfthLearnersSection from "@/components/TwelfthLearnersSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import PartnersSection from "@/components/PartnersSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import AISmartStudyPlanner from "@/components/AISmartStudyPlanner";
@@ -47,7 +46,6 @@ const Index = () => {
         
         <TwelfthLearnersSection />
         <TestimonialsSection />
-        <PartnersSection />
         <CTASection />
         <Footer />
         <FloatingChatButton />
