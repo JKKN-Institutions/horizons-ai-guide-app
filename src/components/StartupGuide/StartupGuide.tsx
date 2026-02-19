@@ -102,8 +102,8 @@ export const StartupGuide = () => {
           <TabsList className="w-full flex overflow-x-auto gap-1 bg-transparent p-0 h-auto">
             <TabsTrigger value="learn" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1.5">
               <Brain className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">AI Problem Finder</span>
-              <span className="sm:hidden">Learn</span>
+              <span className="hidden sm:inline">Dashboard</span>
+              <span className="sm:hidden">Dashboard</span>
             </TabsTrigger>
             <TabsTrigger value="discover" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1.5">
               <BadgeCheck className="w-3.5 h-3.5" />
