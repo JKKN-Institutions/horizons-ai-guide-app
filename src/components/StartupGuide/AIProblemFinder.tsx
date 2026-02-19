@@ -337,13 +337,13 @@ export const AIProblemFinder = () => {
     return (
       <div className="space-y-4">
         {/* Header */}
-        <div className="bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 rounded-xl p-5 border border-white/[0.06] text-center">
-          <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-400/20 text-orange-400 px-4 py-1.5 rounded-full text-[11px] font-semibold mb-3">
+        <div className="bg-gradient-to-br from-[#14532d] via-[#166534] to-[#1a4731] rounded-xl p-5 border border-emerald-700/30 text-center">
+          <div className="inline-flex items-center gap-2 bg-amber-400/15 border border-amber-400/25 text-amber-300 px-4 py-1.5 rounded-full text-[11px] font-semibold mb-3">
             <Brain className="w-3.5 h-3.5" />
             AI-Powered Problem Analysis
           </div>
           <h3 className="text-lg font-bold text-white mb-1">Describe Your Problem</h3>
-          <p className="text-xs text-gray-400 max-w-md mx-auto">
+          <p className="text-xs text-white/50 max-w-md mx-auto">
             Tell us the problem you want to solve. Our AI will check if similar solutions exist, identify gaps, and give you a complete roadmap + patent guidance.
           </p>
         </div>
@@ -459,7 +459,7 @@ export const AIProblemFinder = () => {
   return (
     <div className="space-y-4">
       {/* Results Header */}
-      <div className="bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 rounded-xl p-5 border border-white/[0.06]">
+      <div className="bg-gradient-to-br from-[#14532d] via-[#166534] to-[#1a4731] rounded-xl p-5 border border-emerald-700/30">
         <div className="flex items-center justify-between mb-3">
           <Badge className="text-[10px] bg-orange-500/20 text-orange-400 border-orange-400/30">
             <Sparkles className="w-3 h-3 mr-1" /> AI Analysis Complete

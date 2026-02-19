@@ -637,13 +637,13 @@ export const FounderJourney = () => {
   return (
     <div className="space-y-6">
       {/* Section Header */}
-      <div className="bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 rounded-xl p-5 border border-white/[0.06] text-center">
-        <div className="inline-flex items-center gap-2 bg-rose-500/10 border border-rose-400/20 text-rose-400 px-4 py-1.5 rounded-full text-[11px] font-semibold mb-3">
+      <div className="bg-gradient-to-br from-[#14532d] via-[#166534] to-[#1a4731] rounded-xl p-5 border border-emerald-700/30 text-center shadow-lg">
+        <div className="inline-flex items-center gap-2 bg-amber-400/15 border border-amber-400/25 text-amber-300 px-4 py-1.5 rounded-full text-[11px] font-semibold mb-3">
           <Route className="w-3.5 h-3.5" />
           Real Founder Stories
         </div>
         <h3 className="text-lg font-bold text-white mb-1">They Started Young. So Can You.</h3>
-        <p className="text-xs text-gray-400 max-w-md mx-auto">
+        <p className="text-xs text-white/50 max-w-md mx-auto">
           Tap on any founder to read their full story — the idea, the struggles, and the success. From Science, Arts, and Commerce streams.
         </p>
       </div>
@@ -695,9 +695,9 @@ export const FounderJourney = () => {
       </div>
 
       {/* Footer */}
-      <div className="bg-gradient-to-r from-gray-900 via-slate-900 to-gray-900 rounded-xl p-4 border border-white/[0.06] text-center">
+      <div className="bg-gradient-to-r from-[#14532d] via-[#166534] to-[#14532d] rounded-xl p-4 border border-emerald-700/30 text-center shadow-lg">
         <p className="text-sm font-bold text-white mb-1">🔥 Your stream doesn't define your startup.</p>
-        <p className="text-xs text-gray-400">Science, Arts, or Commerce — every founder started by solving a real problem. What's yours?</p>
+        <p className="text-xs text-white/50">Science, Arts, or Commerce — every founder started by solving a real problem. What's yours?</p>
       </div>
     </div>
   );
