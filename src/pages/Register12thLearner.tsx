@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -39,16 +39,6 @@ const Register12thLearner = () => {
     { name: t('reg12.review'), icon: ClipboardCheck }
   ];
 
-  // Auto-advance: when School, Board, Stream, and Expected Year are all filled on Education step
-  useEffect(() => {
-    if (currentStep === 1 && formData.school && formData.board && formData.stream && formData.expectedYear) {
-      const timer = setTimeout(() => {
-        setCurrentStep(2);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [formData.school, formData.board, formData.stream, formData.expectedYear, currentStep]);
-
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (errors[field]) {
@@ -57,26 +47,36 @@ const Register12thLearner = () => {
   };
 
   const validateStep = (step: number): boolean => {
-    const stepFields: Record<number, string[]> = {
-      0: ["fullName", "phone", "email", "dateOfBirth"],
-      1: ["school"],
-      2: [],
-      3: [],
-    };
-
-    const fieldsToValidate = stepFields[step] || [];
     const newErrors: Record<string, string> = {};
 
-    for (const field of fieldsToValidate) {
-      try {
-        const schema = register12thSchema.shape[field as keyof typeof register12thSchema.shape];
-        if (schema) {
-          schema.parse(formData[field as keyof typeof formData]);
+    if (step === 0) {
+      const step0Fields = ["fullName", "phone", "email", "dateOfBirth"];
+      for (const field of step0Fields) {
+        try {
+          const schema = register12thSchema.shape[field as keyof typeof register12thSchema.shape];
+          if (schema) {
+            schema.parse(formData[field as keyof typeof formData]);
+          }
+        } catch (error) {
+          if (error instanceof z.ZodError) {
+            newErrors[field] = error.errors[0]?.message || "Invalid value";
+          }
         }
-      } catch (error) {
-        if (error instanceof z.ZodError) {
-          newErrors[field] = error.errors[0]?.message || "Invalid value";
-        }
+      }
+    }
+
+    if (step === 1) {
+      if (!formData.school || formData.school.trim().length === 0) {
+        newErrors.school = "School name is required";
+      }
+      if (!formData.board) {
+        newErrors.board = "Please select your board";
+      }
+      if (!formData.stream) {
+        newErrors.stream = "Please select your stream";
+      }
+      if (!formData.expectedYear) {
+        newErrors.expectedYear = "Please select expected year";
       }
     }
 
@@ -387,44 +387,46 @@ const Register12thLearner = () => {
                       <div className="space-y-2">
                         <Label className="text-sm font-semibold text-foreground flex items-center gap-2">
                           <School className="w-4 h-4 text-primary" />
-                          {t('reg12.board')}</Label>
+                          {t('reg12.board')} <span className="text-destructive">*</span></Label>
                         <Select value={formData.board} onValueChange={v => handleChange("board", v)}>
-                          <SelectTrigger className="h-12 border-2 border-border hover:border-primary/50 focus:border-primary transition-all">
+                          <SelectTrigger className={`h-12 border-2 transition-all ${errors.board ? "border-destructive" : "border-border hover:border-primary/50 focus:border-primary"}`}>
                             <SelectValue placeholder={t('reg12.selectBoard')} />
                           </SelectTrigger>
-                          <SelectContent className="bg-white border-2 shadow-xl">
+                          <SelectContent position="popper" className="bg-white border-2 shadow-xl z-50">
                             <SelectItem value="cbse">CBSE</SelectItem>
                             <SelectItem value="state">State Board</SelectItem>
                             <SelectItem value="icse">ICSE</SelectItem>
                             <SelectItem value="other">Other</SelectItem>
                           </SelectContent>
                         </Select>
+                        {errors.board && <p className="text-sm text-destructive animate-fade-in">{errors.board}</p>}
                       </div>
                       <div className="space-y-2">
                         <Label className="text-sm font-semibold text-foreground flex items-center gap-2">
                           <Layers className="w-4 h-4 text-primary" />
-                          {t('reg12.stream')}</Label>
+                          {t('reg12.stream')} <span className="text-destructive">*</span></Label>
                         <Select value={formData.stream} onValueChange={v => handleChange("stream", v)}>
-                          <SelectTrigger className="h-12 border-2 border-border hover:border-primary/50 focus:border-primary transition-all">
+                          <SelectTrigger className={`h-12 border-2 transition-all ${errors.stream ? "border-destructive" : "border-border hover:border-primary/50 focus:border-primary"}`}>
                             <SelectValue placeholder={t('reg12.selectStream')} />
                           </SelectTrigger>
-                          <SelectContent className="bg-white border-2 shadow-xl">
+                          <SelectContent position="popper" className="bg-white border-2 shadow-xl z-50">
                             <SelectItem value="science">{t('reg12.science')}</SelectItem>
                             <SelectItem value="commerce">{t('reg12.commerce')}</SelectItem>
                             <SelectItem value="arts">{t('reg12.artsHumanities')}</SelectItem>
                           </SelectContent>
                         </Select>
+                        {errors.stream && <p className="text-sm text-destructive animate-fade-in">{errors.stream}</p>}
                       </div>
                     </div>
                     <div className="space-y-2">
                       <Label className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <CalendarDays className="w-4 h-4 text-primary" />
-                        {t('reg12.expectedYear')}</Label>
+                        {t('reg12.expectedYear')} <span className="text-destructive">*</span></Label>
                       <Select value={formData.expectedYear} onValueChange={v => handleChange("expectedYear", v)}>
-                        <SelectTrigger className="h-12 border-2 border-border hover:border-primary/50 focus:border-primary transition-all">
+                        <SelectTrigger className={`h-12 border-2 transition-all ${errors.expectedYear ? "border-destructive" : "border-border hover:border-primary/50 focus:border-primary"}`}>
                           <SelectValue placeholder={t('reg12.selectYear')} />
                         </SelectTrigger>
-                        <SelectContent className="bg-white border-2 shadow-xl">
+                        <SelectContent position="popper" className="bg-white border-2 shadow-xl z-50 max-h-60 overflow-y-auto">
                           <SelectItem value="2026">2026</SelectItem>
                           <SelectItem value="2027">2027</SelectItem>
                           <SelectItem value="2028">2028</SelectItem>
@@ -438,6 +440,7 @@ const Register12thLearner = () => {
                           <SelectItem value="2036">2036</SelectItem>
                         </SelectContent>
                       </Select>
+                      {errors.expectedYear && <p className="text-sm text-destructive animate-fade-in">{errors.expectedYear}</p>}
                     </div>
                   </div>
                 )}
@@ -473,7 +476,7 @@ const Register12thLearner = () => {
                         <SelectTrigger className="h-12 border-2 border-border hover:border-primary/50 focus:border-primary transition-all">
                           <SelectValue placeholder={t('reg12.selectLocation')} />
                         </SelectTrigger>
-                        <SelectContent className="bg-white border-2 shadow-xl">
+                        <SelectContent position="popper" className="bg-white border-2 shadow-xl z-50">
                           <SelectItem value="tamil-nadu">{t('reg12.tamilNadu')}</SelectItem>
                           <SelectItem value="karnataka">{t('reg12.karnataka')}</SelectItem>
                           <SelectItem value="kerala">{t('reg12.kerala')}</SelectItem>
