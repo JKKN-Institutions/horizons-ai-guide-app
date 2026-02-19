@@ -1,5 +1,4 @@
 import TopBar from "@/components/TopBar";
-import NavigationBar from "@/components/NavigationBar";
 import NewsTicker from "@/components/NewsTicker";
 import HeroSection from "@/components/HeroSection";
 import StatsBar from "@/components/StatsBar";
@@ -24,7 +23,6 @@ const Index = () => {
     <ChatModalProvider>
       <div className="min-h-screen bg-background page-transition">
         <TopBar />
-        <NavigationBar />
         <NewsTicker />
         <HeroSection />
         <StatsBar />
