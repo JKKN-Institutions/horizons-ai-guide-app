@@ -59,269 +59,213 @@ export interface ChatMessage {
   timestamp: string;
 }
 
-export const useStartupGuideData = () => {
-  const [userId, setUserId] = useState<string | null>(null);
-  const [userName, setUserName] = useState<string>('');
-  const [loading, setLoading] = useState(true);
-  const [profile, setProfile] = useState<UserProfile | null>(null);
-  const [tasks, setTasks] = useState<WeeklyTask[]>([]);
-  const [reflections, setReflections] = useState<Record<number, string>>({});
-  const [problem, setProblem] = useState<DetectedProblem | null>(null);
-  const [survey, setSurvey] = useState<Survey | null>(null);
-  const [roadmap, setRoadmap] = useState<ProductRoadmap | null>(null);
-  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
-  const [score, setScore] = useState<StartupScore>({ total: 0, onboarding: 0, tasks: 0, problem: 0, survey: 0, mvp: 0 });
+// ===== ALL DATA STORED IN LOCALSTORAGE — NO DATABASE NEEDED =====
+const KEY = 'vazhikatti_startup_v2';
 
-  // Get current user
+interface AllData {
+  profile: UserProfile | null;
+  tasks: WeeklyTask[];
+  reflections: Record<string, string>;
+  problem: DetectedProblem | null;
+  survey: Survey | null;
+  roadmap: ProductRoadmap | null;
+  chatHistory: ChatMessage[];
+  score: StartupScore;
+}
+
+const emptyData: AllData = {
+  profile: null,
+  tasks: [],
+  reflections: {},
+  problem: null,
+  survey: null,
+  roadmap: null,
+  chatHistory: [],
+  score: { total: 0, onboarding: 0, tasks: 0, problem: 0, survey: 0, mvp: 0 },
+};
+
+function load(): AllData {
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return { ...emptyData, ...parsed };
+    }
+  } catch (e) {
+    console.warn('Failed to load startup data:', e);
+  }
+  return { ...emptyData };
+}
+
+function save(data: AllData) {
+  try {
+    localStorage.setItem(KEY, JSON.stringify(data));
+  } catch (e) {
+    console.warn('Failed to save startup data:', e);
+  }
+}
+
+function calcScore(d: AllData): StartupScore {
+  const onboarding = d.profile ? 10 : 0;
+  const tasks = Math.min(35, d.tasks.filter(t => t.isCompleted).length * 5);
+  const problem = d.problem ? 15 : 0;
+  const surveyBase = d.survey ? 10 : 0;
+  const surveyResponses = Math.min(20, Math.floor((d.survey?.responseCount || 0) / 5) * 5);
+  const survey = surveyBase + surveyResponses;
+  const mvp = d.roadmap ? 10 : 0;
+  const total = onboarding + tasks + problem + survey + mvp;
+  return { total, onboarding, tasks, problem, survey, mvp };
+}
+
+export const useStartupGuideData = () => {
+  const [data, setData] = useState<AllData>(load);
+  const [userId, setUserId] = useState<string | null>(null);
+  const [userName, setUserName] = useState('Student');
+  const [loading] = useState(false);
+
+  // Get user name from Supabase auth (this always works, no new tables needed)
   useEffect(() => {
-    const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+    supabase.auth.getUser().then(({ data: { user } }) => {
       if (user) {
         setUserId(user.id);
-        setUserName(user.user_metadata?.full_name || user.email?.split('@')[0] || 'Student');
+        setUserName(
+          user.user_metadata?.full_name ||
+          user.user_metadata?.name ||
+          user.email?.split('@')[0] ||
+          'Student'
+        );
       }
-      setLoading(false);
-    };
-    getUser();
+    }).catch(() => {});
   }, []);
 
-  // Load all data when user is available
+  // Auto-save to localStorage on every change
   useEffect(() => {
-    if (!userId) return;
-    loadAllData();
-  }, [userId]);
+    save(data);
+  }, [data]);
 
-  const loadAllData = async () => {
-    if (!userId) return;
-    setLoading(true);
-    try {
-      // Load profile
-      const { data: profileData } = await supabase
-        .from('startup_user_profiles')
-        .select('*')
-        .eq('user_id', userId)
-        .maybeSingle();
-      if (profileData) {
-        setProfile({ field: profileData.field, subDomain: profileData.sub_domain, location: profileData.location, experience: profileData.experience });
-      }
+  // --- Mutation helpers ---
 
-      // Load tasks
-      const { data: tasksData } = await supabase
-        .from('startup_weekly_tasks')
-        .select('*')
-        .eq('user_id', userId)
-        .order('day');
-      if (tasksData && tasksData.length > 0) {
-        setTasks(tasksData.map(t => ({ day: t.day, taskTitle: t.task_title, taskDescription: t.task_description, goal: t.goal, isCompleted: t.is_completed })));
-      }
-
-      // Load reflections
-      const { data: reflData } = await supabase
-        .from('startup_daily_reflections')
-        .select('*')
-        .eq('user_id', userId);
-      if (reflData) {
-        const reflMap: Record<number, string> = {};
-        reflData.forEach(r => { reflMap[r.day] = r.reflection_text; });
-        setReflections(reflMap);
-      }
-
-      // Load problem
-      const { data: problemData } = await supabase
-        .from('startup_detected_problems')
-        .select('*')
-        .eq('user_id', userId)
-        .maybeSingle();
-      if (problemData) {
-        setProblem({
-          problemStatement: problemData.problem_statement,
-          painScore: problemData.pain_score,
-          targetCustomer: problemData.target_customer,
-          marketSize: problemData.market_size,
-          uniqueness: problemData.uniqueness,
-          existingGaps: problemData.existing_gaps,
-          validated: problemData.validated,
-        });
-      }
-
-      // Load survey
-      const { data: surveyData } = await supabase
-        .from('startup_surveys')
-        .select('*')
-        .eq('user_id', userId)
-        .maybeSingle();
-      if (surveyData) {
-        setSurvey({
-          id: surveyData.id,
-          questions: surveyData.questions,
-          shareLink: surveyData.share_link,
-          problemStatement: surveyData.problem_statement,
-          targetCustomer: surveyData.target_customer,
-          responseCount: surveyData.response_count,
-        });
-      }
-
-      // Load roadmap
-      const { data: roadmapData } = await supabase
-        .from('startup_product_roadmaps')
-        .select('*')
-        .eq('user_id', userId)
-        .maybeSingle();
-      if (roadmapData) {
-        setRoadmap({
-          mvpTitle: roadmapData.mvp_title,
-          mvpDescription: roadmapData.mvp_description,
-          buildTool: roadmapData.build_tool,
-          businessModel: roadmapData.business_model,
-          weeklySteps: roadmapData.week_steps as any,
-          recommendedTools: roadmapData.recommended_tools as any,
-        });
-      }
-
-      // Load chat history
-      const { data: chatData } = await supabase
-        .from('startup_chat_history')
-        .select('*')
-        .eq('user_id', userId)
-        .order('created_at');
-      if (chatData) {
-        setChatHistory(chatData.map(c => ({ role: c.role as 'user' | 'assistant', content: c.content, timestamp: c.created_at })));
-      }
-
-      // Load score
-      const { data: scoreData } = await supabase
-        .from('startup_scores')
-        .select('*')
-        .eq('user_id', userId)
-        .maybeSingle();
-      if (scoreData) {
-        setScore({
-          total: scoreData.score,
-          onboarding: scoreData.onboarding_points,
-          tasks: scoreData.task_points,
-          problem: scoreData.problem_points,
-          survey: scoreData.survey_points,
-          mvp: scoreData.mvp_points,
-        });
-      }
-    } catch (err) {
-      console.error('Error loading startup data:', err);
-    }
-    setLoading(false);
-  };
-
-  // Save profile after onboarding
   const saveProfile = useCallback(async (p: UserProfile) => {
-    if (!userId) return;
-    await supabase.from('startup_user_profiles').upsert({ user_id: userId, field: p.field, sub_domain: p.subDomain, location: p.location, experience: p.experience }, { onConflict: 'user_id' });
-    setProfile(p);
-    await updateScore({ onboarding: 10 });
-  }, [userId]);
+    setData(prev => {
+      const next = { ...prev, profile: p };
+      next.score = calcScore(next);
+      return next;
+    });
+  }, []);
 
-  // Save tasks
   const saveTasks = useCallback(async (newTasks: WeeklyTask[]) => {
-    if (!userId) return;
-    for (const t of newTasks) {
-      await supabase.from('startup_weekly_tasks').upsert({ user_id: userId, day: t.day, task_title: t.taskTitle, task_description: t.taskDescription, goal: t.goal, is_completed: t.isCompleted }, { onConflict: 'user_id,day' });
-    }
-    setTasks(newTasks);
-  }, [userId]);
+    setData(prev => {
+      const next = { ...prev, tasks: newTasks };
+      next.score = calcScore(next);
+      return next;
+    });
+  }, []);
 
-  // Complete a task
   const completeTask = useCallback(async (day: number) => {
-    if (!userId) return;
-    await supabase.from('startup_weekly_tasks').update({ is_completed: true }).eq('user_id', userId).eq('day', day);
-    setTasks(prev => prev.map(t => t.day === day ? { ...t, isCompleted: true } : t));
-    const completedCount = tasks.filter(t => t.isCompleted).length + 1;
-    await updateScore({ tasks: completedCount * 5 });
-  }, [userId, tasks]);
+    setData(prev => {
+      const next = {
+        ...prev,
+        tasks: prev.tasks.map(t => t.day === day ? { ...t, isCompleted: true } : t),
+      };
+      next.score = calcScore(next);
+      return next;
+    });
+  }, []);
 
-  // Save reflection
   const saveReflection = useCallback(async (day: number, text: string) => {
-    if (!userId) return;
-    await supabase.from('startup_daily_reflections').upsert({ user_id: userId, day, reflection_text: text }, { onConflict: 'user_id,day' });
-    setReflections(prev => ({ ...prev, [day]: text }));
-    await completeTask(day);
-  }, [userId, completeTask]);
+    setData(prev => {
+      const next = {
+        ...prev,
+        reflections: { ...prev.reflections, [String(day)]: text },
+        tasks: prev.tasks.map(t => t.day === day ? { ...t, isCompleted: true } : t),
+      };
+      next.score = calcScore(next);
+      return next;
+    });
+  }, []);
 
-  // Save problem
   const saveProblem = useCallback(async (p: DetectedProblem) => {
-    if (!userId) return;
-    await supabase.from('startup_detected_problems').upsert({
-      user_id: userId, problem_statement: p.problemStatement, pain_score: p.painScore, target_customer: p.targetCustomer,
-      market_size: p.marketSize, uniqueness: p.uniqueness, existing_gaps: p.existingGaps, validated: p.validated,
-    }, { onConflict: 'user_id' });
-    setProblem(p);
-    await updateScore({ problem: 15 });
-  }, [userId]);
+    setData(prev => {
+      const next = { ...prev, problem: p };
+      next.score = calcScore(next);
+      return next;
+    });
+  }, []);
 
-  // Save survey
   const saveSurvey = useCallback(async (questions: any[], problemStatement: string, targetCustomer: string) => {
-    if (!userId) return;
-    const shareLink = `${window.location.origin}/survey/${userId}`;
-    const { data } = await supabase.from('startup_surveys').upsert({
-      user_id: userId, questions, share_link: shareLink, problem_statement: problemStatement, target_customer: targetCustomer || '',
-    }, { onConflict: 'user_id' }).select().single();
-    if (data) {
-      setSurvey({ id: data.id, questions, shareLink, problemStatement, targetCustomer: targetCustomer || '', responseCount: 0 });
-      await updateScore({ survey: 10 });
-    }
-  }, [userId]);
-
-  // Save roadmap
-  const saveRoadmap = useCallback(async (r: ProductRoadmap) => {
-    if (!userId) return;
-    await supabase.from('startup_product_roadmaps').upsert({
-      user_id: userId, mvp_title: r.mvpTitle, mvp_description: r.mvpDescription, build_tool: r.buildTool,
-      business_model: r.businessModel, week_steps: r.weeklySteps as any, recommended_tools: r.recommendedTools as any,
-    }, { onConflict: 'user_id' });
-    setRoadmap(r);
-    await updateScore({ mvp: 10 });
-  }, [userId]);
-
-  // Save chat message
-  const saveChatMessage = useCallback(async (role: 'user' | 'assistant', content: string) => {
-    if (!userId) return;
-    await supabase.from('startup_chat_history').insert({ user_id: userId, role, content });
-    setChatHistory(prev => [...prev, { role, content, timestamp: new Date().toISOString() }]);
-  }, [userId]);
-
-  // Update score
-  const updateScore = useCallback(async (updates: Partial<StartupScore>) => {
-    if (!userId) return;
-    setScore(prev => {
-      const next = { ...prev, ...updates };
-      next.total = (next.onboarding || 0) + (next.tasks || 0) + (next.problem || 0) + (next.survey || 0) + (next.mvp || 0);
-      supabase.from('startup_scores').upsert({
-        user_id: userId, score: next.total, onboarding_points: next.onboarding, task_points: next.tasks,
-        problem_points: next.problem, survey_points: next.survey, mvp_points: next.mvp,
-      }, { onConflict: 'user_id' });
+    const shareLink = `${window.location.origin}/survey/${userId || 'demo'}`;
+    const surveyObj: Survey = {
+      id: crypto.randomUUID(),
+      questions,
+      shareLink,
+      problemStatement,
+      targetCustomer,
+      responseCount: 0,
+    };
+    setData(prev => {
+      const next = { ...prev, survey: surveyObj };
+      next.score = calcScore(next);
       return next;
     });
   }, [userId]);
 
-  // Refresh survey response count
-  const refreshSurveyCount = useCallback(async () => {
-    if (!userId || !survey) return;
-    const { data } = await supabase.from('startup_surveys').select('response_count').eq('user_id', userId).maybeSingle();
-    if (data) {
-      setSurvey(prev => prev ? { ...prev, responseCount: data.response_count } : prev);
-      const responsePoints = Math.min(20, Math.floor(data.response_count / 5) * 5);
-      await updateScore({ survey: 10 + responsePoints });
-    }
-  }, [userId, survey, updateScore]);
+  const saveRoadmap = useCallback(async (r: ProductRoadmap) => {
+    setData(prev => {
+      const next = { ...prev, roadmap: r };
+      next.score = calcScore(next);
+      return next;
+    });
+  }, []);
 
-  // Computed states
-  const onboardingComplete = !!profile;
-  const currentDay = tasks.filter(t => t.isCompleted).length + 1;
-  const allReflectionsDone = Object.keys(reflections).length >= 7;
+  const saveChatMessage = useCallback(async (role: 'user' | 'assistant', content: string) => {
+    setData(prev => ({
+      ...prev,
+      chatHistory: [...prev.chatHistory, { role, content, timestamp: new Date().toISOString() }],
+    }));
+  }, []);
+
+  const refreshSurveyCount = useCallback(async () => {
+    // In localStorage mode, count stays manual. Users can increment for testing.
+  }, []);
+
+  const loadAllData = useCallback(async () => {
+    setData(load());
+  }, []);
+
+  // --- Computed ---
+  const reflectionCount = Object.keys(data.reflections).length;
+  const onboardingComplete = !!data.profile;
+  const currentDay = Math.min(data.tasks.filter(t => t.isCompleted).length + 1, 8);
+  const allReflectionsDone = reflectionCount >= 7;
   const surveyUnlocked = allReflectionsDone;
-  const buildUnlocked = (survey?.responseCount || 0) >= 20;
+  const buildUnlocked = (data.survey?.responseCount || 0) >= 20;
 
   return {
-    userId, userName, loading, profile, tasks, reflections, problem, survey, roadmap, chatHistory, score,
-    onboardingComplete, currentDay, allReflectionsDone, surveyUnlocked, buildUnlocked,
-    saveProfile, saveTasks, completeTask, saveReflection, saveProblem, saveSurvey, saveRoadmap,
-    saveChatMessage, refreshSurveyCount, loadAllData,
+    userId,
+    userName,
+    loading,
+    profile: data.profile,
+    tasks: data.tasks,
+    reflections: data.reflections,
+    problem: data.problem,
+    survey: data.survey,
+    roadmap: data.roadmap,
+    chatHistory: data.chatHistory,
+    score: data.score,
+    onboardingComplete,
+    currentDay,
+    allReflectionsDone,
+    surveyUnlocked,
+    buildUnlocked,
+    saveProfile,
+    saveTasks,
+    completeTask,
+    saveReflection,
+    saveProblem,
+    saveSurvey,
+    saveRoadmap,
+    saveChatMessage,
+    refreshSurveyCount,
+    loadAllData,
   };
 };

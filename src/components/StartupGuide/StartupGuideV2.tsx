@@ -23,10 +23,14 @@ export const StartupGuide = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action, data: payload }),
       });
-      return await res.json();
+      const result = await res.json();
+      if (result.error && result.error.includes('CLAUDE_API_KEY')) {
+        toast.error('🔑 Add CLAUDE_API_KEY in Vercel Environment Variables to activate AI features.');
+      }
+      return result;
     } catch (err) {
       console.error('AI API error:', err);
-      toast.error('AI service is temporarily unavailable. Please try again.');
+      toast.error('AI service not reachable. Check your deployment.');
       return null;
     }
   }, []);

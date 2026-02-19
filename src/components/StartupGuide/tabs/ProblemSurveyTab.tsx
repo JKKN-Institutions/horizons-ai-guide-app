@@ -10,7 +10,7 @@ interface ProblemSurveyTabProps {
   unlocked: boolean;
   problem: DetectedProblem | null;
   survey: Survey | null;
-  reflections: Record<number, string>;
+  reflections: Record<string, string>;
   field: string;
   subDomain: string;
   location: string;

@@ -8,7 +8,7 @@ import type { WeeklyTask } from '../useStartupGuideData';
 interface MyTasksTabProps {
   tasks: WeeklyTask[];
   currentDay: number;
-  reflections: Record<number, string>;
+  reflections: Record<string, string>;
   onSubmitReflection: (day: number, text: string) => void;
   onGenerateTasks: () => Promise<void>;
   loading: boolean;

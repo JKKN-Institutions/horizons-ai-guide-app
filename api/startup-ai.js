@@ -7,7 +7,10 @@ export default async function handler(req, res) {
 
   const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY;
   if (!CLAUDE_API_KEY) {
-    return res.status(500).json({ error: 'Claude API key not configured' });
+    return res.status(200).json({ 
+      reply: '⚠️ AI Mentor is not connected yet. To activate:\n\n1. Go to console.anthropic.com and get an API key\n2. Go to Vercel → Settings → Environment Variables\n3. Add CLAUDE_API_KEY = your key\n4. Redeploy\n\nThe UI is fully working — just needs the AI backend!',
+      error: 'CLAUDE_API_KEY not configured'
+    });
   }
 
   try {
