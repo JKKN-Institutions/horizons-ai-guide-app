@@ -39,10 +39,7 @@ const Register12thLearner = () => {
     { name: t('reg12.review'), icon: ClipboardCheck }
   ];
 
-  const [alreadyRegistered, setAlreadyRegistered] = useState(false);
-  const [registeredName, setRegisteredName] = useState('');
-
-  // Check if user already registered — show friendly screen
+  // Check if user already registered — redirect to Career Assessment Center
   useEffect(() => {
     const checkExistingRegistration = async () => {
       try {
@@ -55,8 +52,9 @@ const Register12thLearner = () => {
             .limit(1);
 
           if (data && data.length > 0) {
-            setAlreadyRegistered(true);
-            setRegisteredName(data[0].full_name || '');
+            toast.success(`Welcome back, ${data[0].full_name || ''}! 🎉`);
+            navigate('/career-assessment/colleges', { replace: true });
+            return;
           }
         }
       } catch (error) {
@@ -65,7 +63,7 @@ const Register12thLearner = () => {
     };
 
     checkExistingRegistration();
-  }, []);
+  }, [navigate]);
 
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -152,9 +150,8 @@ const Register12thLearner = () => {
         .limit(1);
 
       if (existingByPhone && existingByPhone.length > 0) {
-        toast.success('You are already registered with this phone number! Welcome back 🎉');
-        setAlreadyRegistered(true);
-        setRegisteredName(validatedData.fullName);
+        toast.success('You are already registered! Welcome back 🎉');
+        navigate('/career-assessment/colleges', { replace: true });
         return;
       }
       
@@ -247,52 +244,6 @@ const Register12thLearner = () => {
     { label: t('reg12.careerInterests'), value: formData.careerInterests },
     { label: t('reg12.location'), value: formData.preferredLocation },
   ];
-
-  if (alreadyRegistered) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-amber-50/30 flex items-center justify-center px-4">
-        <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-sm max-w-md w-full overflow-hidden">
-          <div className="bg-gradient-to-r from-primary to-primary/90 text-white p-8 text-center">
-            <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4">
-              <CheckCircle className="w-10 h-10" />
-            </div>
-            <h1 className="text-2xl font-bold">Already Registered! ✅</h1>
-            <p className="text-white/80 mt-2 text-sm">Welcome back{registeredName ? `, ${registeredName}` : ''}!</p>
-          </div>
-          <CardContent className="p-8 text-center space-y-4">
-            <p className="text-muted-foreground">
-              You have already completed your registration. You can explore the app and access all features.
-            </p>
-            <div className="space-y-3 pt-2">
-              <Button
-                onClick={() => navigate('/')}
-                className="w-full h-12 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg"
-              >
-                <GraduationCap className="w-4 h-4 mr-2" />
-                Go to Home
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => navigate('/career-assessment/colleges')}
-                className="w-full h-12 border-2 hover:bg-primary/5"
-              >
-                <Star className="w-4 h-4 mr-2" />
-                Take Career Assessment
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => navigate('/student-dashboard')}
-                className="w-full h-12 border-2 hover:bg-primary/5"
-              >
-                <BookOpen className="w-4 h-4 mr-2" />
-                Go to Dashboard
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-amber-50/30 relative overflow-hidden">
