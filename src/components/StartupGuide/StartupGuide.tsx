@@ -130,6 +130,11 @@ export const StartupGuide = () => {
               <span className="hidden sm:inline">TN Inspiration Founder Journey</span>
               <span className="sm:hidden">TN Founders</span>
             </TabsTrigger>
+            <TabsTrigger value="profile" className="text-[11px] md:text-xs flex-1 min-w-[80px] px-2.5 py-2.5 text-white/50 rounded-lg transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-400 data-[state=active]:to-yellow-400 data-[state=active]:text-green-900 data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-400/25 hover:text-white/80 font-medium gap-1.5">
+              <Users className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Profile</span>
+              <span className="sm:hidden">Profile</span>
+            </TabsTrigger>
           </TabsList>
         </div>
 
@@ -155,6 +160,129 @@ export const StartupGuide = () => {
 
         <TabsContent value="readiness" className="mt-4">
           <FounderJourney />
+        </TabsContent>
+
+        <TabsContent value="profile" className="mt-4">
+          <div className="space-y-4">
+            <div className="bg-gradient-to-br from-[#14532d] via-[#166534] to-[#1a4731] rounded-xl p-5 border border-emerald-700/30 text-center shadow-lg">
+              <div className="inline-flex items-center gap-2 bg-amber-400/15 border border-amber-400/25 text-amber-300 px-4 py-1.5 rounded-full text-[11px] font-semibold mb-3">
+                <Users className="w-3.5 h-3.5" />
+                Startup Profile
+              </div>
+              <h3 className="text-lg font-bold text-white mb-1">My Founder Profile</h3>
+              <p className="text-xs text-white/50 max-w-md mx-auto">
+                Track your startup journey progress, achievements, and milestones.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Progress Card */}
+              <Card className="border-border/40 overflow-hidden">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2.5 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 text-white shadow-md">
+                      <Trophy className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-foreground">My Progress</p>
+                      <p className="text-xs text-muted-foreground">Your startup readiness score</p>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-xs text-muted-foreground">
+                      <span>Overall Readiness</span>
+                      <span className="font-bold text-foreground">{progress.overallScore}%</span>
+                    </div>
+                    <Progress value={progress.overallScore} className="h-2" />
+                    <div className="grid grid-cols-2 gap-3 mt-3">
+                      <div className="bg-amber-50 rounded-lg p-3 text-center">
+                        <p className="text-lg font-bold text-amber-700">{progress.xp}</p>
+                        <p className="text-[10px] text-amber-600 font-medium">XP Earned</p>
+                      </div>
+                      <div className="bg-orange-50 rounded-lg p-3 text-center">
+                        <p className="text-lg font-bold text-orange-700">{progress.streak}</p>
+                        <p className="text-[10px] text-orange-600 font-medium">Day Streak</p>
+                      </div>
+                      <div className="bg-emerald-50 rounded-lg p-3 text-center">
+                        <p className="text-lg font-bold text-emerald-700">{progress.completedLessons.length}</p>
+                        <p className="text-[10px] text-emerald-600 font-medium">Lessons Done</p>
+                      </div>
+                      <div className="bg-blue-50 rounded-lg p-3 text-center">
+                        <p className="text-lg font-bold text-blue-700">{progress.completedScenarios.length}</p>
+                        <p className="text-[10px] text-blue-600 font-medium">Scenarios</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Achievements Card */}
+              <Card className="border-border/40 overflow-hidden">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2.5 rounded-xl bg-gradient-to-br from-amber-400 to-yellow-500 text-white shadow-md">
+                      <Award className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-foreground">Achievements</p>
+                      <p className="text-xs text-muted-foreground">Badges & milestones unlocked</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2.5">
+                    {[
+                      { title: 'First Problem Identified', desc: 'Found your first problem to solve', icon: '🎯', done: progress.xp > 0 },
+                      { title: 'Quiz Champion', desc: 'Completed a funding quiz', icon: '🧠', done: progress.completedLessons.length > 0 },
+                      { title: 'Week Warrior', desc: '7-day learning streak', icon: '🔥', done: progress.streak >= 7 },
+                      { title: 'Scenario Master', desc: 'Completed 3 startup scenarios', icon: '🚀', done: progress.completedScenarios.length >= 3 },
+                      { title: 'Startup Ready', desc: 'Reached 80% readiness score', icon: '⭐', done: progress.overallScore >= 80 },
+                    ].map((badge, i) => (
+                      <div key={i} className={`flex items-center gap-3 p-2.5 rounded-lg border ${badge.done ? 'bg-emerald-50 border-emerald-200' : 'bg-gray-50 border-gray-200 opacity-50'}`}>
+                        <span className="text-xl">{badge.icon}</span>
+                        <div className="flex-1">
+                          <p className={`text-xs font-semibold ${badge.done ? 'text-emerald-800' : 'text-gray-500'}`}>{badge.title}</p>
+                          <p className="text-[10px] text-muted-foreground">{badge.desc}</p>
+                        </div>
+                        {badge.done ? (
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                        ) : (
+                          <Lock className="w-4 h-4 text-gray-400" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Journey Stages */}
+            <Card className="border-border/40 overflow-hidden">
+              <CardContent className="p-5">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2.5 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 text-white shadow-md">
+                    <Map className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-foreground">My Startup Journey</p>
+                    <p className="text-xs text-muted-foreground">40-week roadmap to launching your startup</p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  {journeyStages.map((stage) => (
+                    <div key={stage.id} className="flex items-center gap-3 p-3 rounded-lg border border-border/40 hover:border-emerald-300/50 transition-all">
+                      <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${stage.color} flex items-center justify-center text-white text-xs font-bold shadow-md flex-shrink-0`}>
+                        {stage.id}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold text-foreground">{stage.title}</p>
+                        <p className="text-[10px] text-muted-foreground">Weeks {stage.weeks}</p>
+                      </div>
+                      <span className="text-[10px] text-muted-foreground font-medium px-2 py-1 bg-gray-100 rounded-full">Upcoming</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </TabsContent>
       </Tabs>
 
