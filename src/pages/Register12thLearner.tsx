@@ -80,6 +80,18 @@ const Register12thLearner = () => {
       }
     }
 
+    if (step === 2) {
+      if (!formData.preferredCourses || formData.preferredCourses.trim().length === 0) {
+        newErrors.preferredCourses = "Please enter your preferred courses";
+      }
+      if (!formData.careerInterests || formData.careerInterests.trim().length === 0) {
+        newErrors.careerInterests = "Please enter your career interests";
+      }
+      if (!formData.preferredLocation) {
+        newErrors.preferredLocation = "Please select your preferred location";
+      }
+    }
+
     setErrors(prev => ({ ...prev, ...newErrors }));
     return Object.keys(newErrors).length === 0;
   };
@@ -450,30 +462,38 @@ const Register12thLearner = () => {
                     <div className="space-y-2">
                       <Label htmlFor="courses" className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <Heart className="w-4 h-4 text-primary" />
-                        {t('reg12.preferredCourses')}
+                        {t('reg12.preferredCourses')} <span className="text-destructive">*</span>
                       </Label>
                       <Input 
                         id="courses" 
                         placeholder={t('reg12.preferredCoursesPlaceholder')} 
                         value={formData.preferredCourses} 
                         onChange={e => handleChange("preferredCourses", e.target.value)} 
-                        className="h-12 border-2 transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10 border-border hover:border-primary/50" 
+                        className={`h-12 border-2 transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10 ${errors.preferredCourses ? "border-destructive" : "border-border hover:border-primary/50"}`} 
                       />
+                      {errors.preferredCourses && <p className="text-sm text-destructive animate-fade-in">{errors.preferredCourses}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="interests" className="text-sm font-semibold text-foreground">{t('reg12.careerInterests')}</Label>
+                      <Label htmlFor="interests" className="text-sm font-semibold text-foreground flex items-center gap-2">
+                        <Star className="w-4 h-4 text-primary" />
+                        {t('reg12.careerInterests')} <span className="text-destructive">*</span>
+                      </Label>
                       <Input 
                         id="interests" 
                         placeholder={t('reg12.careerInterestsPlaceholder')} 
                         value={formData.careerInterests} 
                         onChange={e => handleChange("careerInterests", e.target.value)} 
-                        className="h-12 border-2 transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10 border-border hover:border-primary/50" 
+                        className={`h-12 border-2 transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10 ${errors.careerInterests ? "border-destructive" : "border-border hover:border-primary/50"}`} 
                       />
+                      {errors.careerInterests && <p className="text-sm text-destructive animate-fade-in">{errors.careerInterests}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-sm font-semibold text-foreground">{t('reg12.preferredLocation')}</Label>
+                      <Label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                        <GraduationCap className="w-4 h-4 text-primary" />
+                        {t('reg12.preferredLocation')} <span className="text-destructive">*</span>
+                      </Label>
                       <Select value={formData.preferredLocation} onValueChange={v => handleChange("preferredLocation", v)}>
-                        <SelectTrigger className="h-12 border-2 border-border hover:border-primary/50 focus:border-primary transition-all">
+                        <SelectTrigger className={`h-12 border-2 transition-all ${errors.preferredLocation ? "border-destructive" : "border-border hover:border-primary/50 focus:border-primary"}`}>
                           <SelectValue placeholder={t('reg12.selectLocation')} />
                         </SelectTrigger>
                         <SelectContent position="popper" className="bg-white border-2 shadow-xl z-50">
@@ -483,6 +503,7 @@ const Register12thLearner = () => {
                           <SelectItem value="anywhere">{t('reg12.anywhereIndia')}</SelectItem>
                         </SelectContent>
                       </Select>
+                      {errors.preferredLocation && <p className="text-sm text-destructive animate-fade-in">{errors.preferredLocation}</p>}
                     </div>
                   </div>
                 )}
