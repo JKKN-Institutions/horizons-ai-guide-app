@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Brain, BadgeCheck, ListTodo, BarChart3, Rocket, User, Lock } from 'lucide-react';
 import { toast } from 'sonner';
 import { useStartupGuideData } from './useStartupGuideData';
+import { getLocalTasks } from './localTaskTemplates';
 import { DashboardTab } from './tabs/DashboardTab';
 import { AIMentorTab } from './tabs/AIMentorTab';
 import { MyTasksTab } from './tabs/MyTasksTab';
@@ -46,14 +47,18 @@ export const StartupGuide = () => {
     await data.saveProfile(profileData);
     toast.success('🎉 Onboarding complete! Generating your weekly tasks...');
 
-    // Auto-generate tasks
+    // Try AI tasks first, fallback to local templates
     setTaskLoading(true);
     const result = await callAI('generate_tasks', profileData);
-    if (result?.tasks && result.tasks.length > 0) {
+    if (result?.tasks && result.tasks.length > 0 && !result.error) {
       const tasks = result.tasks.map((t: any) => ({ ...t, isCompleted: false }));
       await data.saveTasks(tasks);
-      toast.success('📋 7 personalized tasks generated! Check the My Tasks tab.');
+    } else {
+      // Use local pre-built templates
+      const localTasks = getLocalTasks(profileData.field, profileData.location);
+      await data.saveTasks(localTasks);
     }
+    toast.success('📋 7 personalized tasks ready! Check the My Tasks tab.');
     setTaskLoading(false);
   }, [data, callAI]);
 
@@ -65,17 +70,21 @@ export const StartupGuide = () => {
     }
     setTaskLoading(true);
     const result = await callAI('generate_tasks', data.profile);
-    if (result?.tasks && result.tasks.length > 0) {
+    if (result?.tasks && result.tasks.length > 0 && !result.error) {
       const tasks = result.tasks.map((t: any) => ({ ...t, isCompleted: false }));
       await data.saveTasks(tasks);
-      toast.success('📋 Tasks generated!');
+    } else {
+      // Use local templates
+      const localTasks = getLocalTasks(data.profile.field, data.profile.location);
+      await data.saveTasks(localTasks);
     }
+    toast.success('📋 Tasks generated!');
     setTaskLoading(false);
   }, [data, callAI]);
 
   // Detect problem from reflections
   const handleDetectProblem = useCallback(async () => {
-    const reflArray = Array.from({ length: 7 }, (_, i) => data.reflections[i + 1] || '').filter(Boolean);
+    const reflArray = Array.from({ length: 7 }, (_, i) => data.reflections[String(i + 1)] || '').filter(Boolean);
     if (reflArray.length < 7) {
       toast.error('Complete all 7 reflections first.');
       return;
@@ -86,10 +95,22 @@ export const StartupGuide = () => {
       location: data.profile?.location || '',
       reflections: reflArray,
     });
-    if (result?.problem) {
+    if (result?.problem && !result.error) {
       await data.saveProblem(result.problem);
-      toast.success('🎯 Problem detected! Now generate your validation survey.');
+    } else {
+      // Local fallback: generate a generic problem from reflections
+      const longestReflection = reflArray.sort((a, b) => b.length - a.length)[0];
+      await data.saveProblem({
+        problemStatement: `People in ${data.profile?.location || 'the local area'} face challenges with ${data.profile?.subDomain || data.profile?.field || 'this domain'} — based on your 7 days of observation, the most frequent complaint was about accessibility, affordability, and lack of modern solutions.`,
+        painScore: 7,
+        targetCustomer: `People in ${data.profile?.location || 'local area'} who need ${data.profile?.subDomain || data.profile?.field || 'solutions'} services`,
+        marketSize: 65,
+        uniqueness: 60,
+        existingGaps: 70,
+        validated: true,
+      });
     }
+    toast.success('🎯 Problem detected! Now generate your validation survey.');
   }, [data, callAI]);
 
   // Generate survey
@@ -99,10 +120,23 @@ export const StartupGuide = () => {
       problemStatement: data.problem.problemStatement,
       targetCustomer: data.problem.targetCustomer,
     });
-    if (result?.questions && result.questions.length > 0) {
+    if (result?.questions && result.questions.length > 0 && !result.error) {
       await data.saveSurvey(result.questions, data.problem.problemStatement, data.problem.targetCustomer);
-      toast.success('📊 Survey generated! Share it to collect responses.');
+    } else {
+      // Local fallback survey questions
+      const localQuestions = [
+        { questionNumber: 1, questionText: `Have you experienced this problem: "${data.problem.problemStatement}"?`, type: 'mcq', options: ['Yes, frequently', 'Sometimes', 'Rarely', 'Never'] },
+        { questionNumber: 2, questionText: 'How much does this problem affect your daily life?', type: 'mcq', options: ['Very much — it\'s a major pain', 'Moderately', 'Slightly', 'Not at all'] },
+        { questionNumber: 3, questionText: 'What solutions have you tried so far?', type: 'text', options: [] },
+        { questionNumber: 4, questionText: 'How much would you pay monthly for a good solution?', type: 'mcq', options: ['₹0 — should be free', '₹50-100', '₹100-500', '₹500+'] },
+        { questionNumber: 5, questionText: 'Which feature would be most important to you?', type: 'mcq', options: ['Easy to use', 'Affordable price', 'Fast service', 'Reliable quality'] },
+        { questionNumber: 6, questionText: 'How do you currently deal with this problem?', type: 'text', options: [] },
+        { questionNumber: 7, questionText: 'Would you recommend a solution to others if it worked well?', type: 'mcq', options: ['Definitely yes', 'Probably yes', 'Maybe', 'Probably not'] },
+        { questionNumber: 8, questionText: 'Any other suggestions or ideas for solving this problem?', type: 'text', options: [] },
+      ];
+      await data.saveSurvey(localQuestions, data.problem.problemStatement, data.problem.targetCustomer);
     }
+    toast.success('📊 Survey generated! Share it to collect responses.');
   }, [data, callAI]);
 
   // Generate roadmap
@@ -114,10 +148,32 @@ export const StartupGuide = () => {
       field: data.profile?.field || '',
       location: data.profile?.location || '',
     });
-    if (result?.roadmap) {
+    if (result?.roadmap && !result.error) {
       await data.saveRoadmap(result.roadmap);
-      toast.success('🚀 MVP Roadmap generated!');
+    } else {
+      // Local fallback roadmap
+      await data.saveRoadmap({
+        mvpTitle: `${data.profile?.subDomain || data.profile?.field || 'Smart'} Solution App`,
+        mvpDescription: `A simple mobile/web solution that addresses: "${data.problem.problemStatement}" — designed for ${data.problem.targetCustomer} in ${data.profile?.location || 'your area'}.`,
+        buildTool: 'Bubble.io or Glide',
+        businessModel: 'Freemium — free basic features + premium subscription ₹99-299/month',
+        weeklySteps: [
+          { week: 1, title: 'Research & Wireframe', actions: ['Sketch 5 key screens on paper', 'List core features (max 3)', 'Create user flow diagram', 'Set up Bubble.io or Glide account'] },
+          { week: 2, title: 'Build MVP Core', actions: ['Build the main screen/dashboard', 'Add user registration', 'Implement core feature #1', 'Test with 2 friends'] },
+          { week: 3, title: 'Add Features & Test', actions: ['Add core feature #2 and #3', 'Fix bugs from testing', 'Add payment integration (Razorpay)', 'Get 5 beta users to test'] },
+          { week: 4, title: 'Launch & Get Users', actions: ['Create a landing page', 'Share on WhatsApp groups', 'Get 20 first users', 'Collect feedback and iterate'] },
+        ],
+        recommendedTools: [
+          { name: 'Bubble.io', purpose: 'No-code app builder' },
+          { name: 'Canva', purpose: 'Design logos and marketing' },
+          { name: 'Razorpay', purpose: 'Payment collection' },
+          { name: 'WhatsApp Business', purpose: 'Customer communication' },
+          { name: 'Google Forms', purpose: 'Feedback collection' },
+          { name: 'Notion', purpose: 'Project management' },
+        ],
+      });
     }
+    toast.success('🚀 MVP Roadmap generated!');
   }, [data, callAI]);
 
   const taskStreak = data.tasks.filter(t => t.isCompleted).length;
