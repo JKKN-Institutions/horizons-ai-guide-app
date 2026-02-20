@@ -29,10 +29,10 @@ const testimonials = [
     date: "28/11/2025"
   },
   {
-    name: "Mahalakshmi.V",
+    name: "M.G. Bharanee Dharan",
     role: "Class 12, Government Higher Secondary School (Boys), Chithode",
     quote: "Thanks to the career discovery sessions, I now have a clear roadmap for my future. The AI assistant helped me understand which courses align with my interests.",
-    avatar: "MV",
+    avatar: "MB",
     color: "from-emerald-500 to-teal-500",
     rating: 5,
     date: "05/12/2025"
