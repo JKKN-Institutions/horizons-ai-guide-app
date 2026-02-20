@@ -141,7 +141,7 @@ const Auth = () => {
 
   return (
     <div className="fresh-page-wrapper page-transition flex items-center justify-center p-4">
-      <Card className="fresh-card w-full max-w-md border-l-fresh-green-medium relative z-10">
+      <Card className="fresh-card w-full max-w-md border-l-fresh-green-medium relative z-10 notranslate">
         <CardHeader className="space-y-1 text-center">
           <CardTitle className="text-2xl font-serif text-fresh-green-dark">
             {isLogin ? 'Welcome Back' : 'Create Account'}

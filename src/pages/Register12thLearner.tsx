@@ -384,7 +384,7 @@ const Register12thLearner = () => {
                 </div>
               </CardHeader>
 
-              <CardContent className="p-8 space-y-6">
+              <CardContent className="p-8 space-y-6 notranslate">
                 {currentStep === 0 && (
                   <div className="space-y-5 animate-fade-in">
                     <div className="grid md:grid-cols-2 gap-5">

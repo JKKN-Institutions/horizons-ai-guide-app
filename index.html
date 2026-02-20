@@ -26,6 +26,30 @@
     <script type="module" src="/src/main.tsx"></script>
 
     <script>
+      // Fix: Google Translate modifies DOM text nodes, breaking React reconciliation.
+      // This patches Node methods to handle GT's <font> wrappers gracefully.
+      if (typeof Node === 'function' && Node.prototype) {
+        const origRemoveChild = Node.prototype.removeChild;
+        Node.prototype.removeChild = function(child) {
+          if (child.parentNode !== this) {
+            if (console) console.warn('GT removeChild fix applied');
+            return child;
+          }
+          return origRemoveChild.apply(this, arguments);
+        };
+
+        const origInsertBefore = Node.prototype.insertBefore;
+        Node.prototype.insertBefore = function(newNode, refNode) {
+          if (refNode && refNode.parentNode !== this) {
+            if (console) console.warn('GT insertBefore fix applied');
+            return newNode;
+          }
+          return origInsertBefore.apply(this, arguments);
+        };
+      }
+    </script>
+
+    <script>
       // Auto-apply saved language BEFORE Google Translate loads
       (function() {
         try {

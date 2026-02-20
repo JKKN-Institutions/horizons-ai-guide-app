@@ -178,7 +178,7 @@ const RegisterEmployer = () => {
             </div>
           </div>
 
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-6 notranslate">
             {currentStep === 0 && (
               <div className="space-y-4">
                 <div className="space-y-2">

@@ -198,7 +198,7 @@ const RegisterLearner = () => {
             </div>
           </div>
 
-          <CardContent className="pt-4">
+          <CardContent className="pt-4 notranslate">
             {/* Step 1: Personal Info */}
             {currentStep === 1 && (
               <div className="space-y-4">
