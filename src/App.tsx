@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { AdminAuthProvider } from "@/hooks/useAdminAuth";
-import { LanguageProvider, useLanguage } from "@/hooks/useLanguage";
+import { LanguageProvider } from "@/hooks/useLanguage";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
@@ -67,11 +67,6 @@ import TNUniversityBrowse from "./pages/TNUniversityBrowse";
 
 const queryClient = new QueryClient();
 
-function LanguageKeyedRoutes({ children }: { children: React.ReactNode }) {
-  const { language } = useLanguage();
-  return <div key={language}>{children}</div>;
-}
-
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -82,7 +77,6 @@ function App() {
               <Toaster />
               <Sonner />
               <BrowserRouter>
-              <LanguageKeyedRoutes>
               <Routes>
                 {/* Main Routes */}
                 <Route path="/" element={<Index />} />
@@ -185,7 +179,6 @@ function App() {
                 <Route path="/survey/:surveyId" element={<SurveyPublic />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
-              </LanguageKeyedRoutes>
             </BrowserRouter>
           </TooltipProvider>
         </AdminAuthProvider>
