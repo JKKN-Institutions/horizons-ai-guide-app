@@ -8,6 +8,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { generateCareerAssessmentPDF } from './generateCareerAssessmentPDF';
 
+import { useLanguage } from '@/hooks/useLanguage';
+
 interface CareerTip {
   emoji: string;
   title: string;
@@ -435,7 +437,14 @@ const careerClusters: Record<string, CareerCluster> = {
 const CareerAssessment = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [language, setLanguage] = useState<Language>('en');
+  const { language: globalLang } = useLanguage();
+  // Map global language to local en/ta (assessment only supports these two)
+  const [language, setLanguage] = useState<Language>(globalLang === 'ta' ? 'ta' : 'en');
+  
+  // Sync with global language changes
+  useEffect(() => {
+    setLanguage(globalLang === 'ta' ? 'ta' : 'en');
+  }, [globalLang]);
   const [currentScreen, setCurrentScreen] = useState<Screen>('intro');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [responses, setResponses] = useState<Response[]>([]);

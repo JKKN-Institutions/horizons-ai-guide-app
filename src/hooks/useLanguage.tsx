@@ -98,6 +98,12 @@ const translations: Record<Language, Record<string, string>> = {
     'cta.description': 'Join thousands of learners who have discovered their career path with VAZHIKATTI.',
     'cta.startJourney': 'Start Your Journey',
     'cta.exploreJobs': 'Explore Jobs',
+    'cta.registerLearner': 'Register as Learner',
+    'cta.registerEmployer': 'Register as Employer',
+    'cta.trustedBy': 'Trusted by leading institutions and companies',
+    'cta.partners': '50+ Partner Companies',
+    'cta.alumni': '10,000+ Alumni Network',
+    'cta.placement': '95% Placement Rate',
     
     // Common
     'common.loading': 'Loading...',
@@ -595,9 +601,15 @@ const translations: Record<Language, Record<string, string>> = {
     
     // CTA Section
     'cta.title': 'உங்கள் எதிர்காலத்தை வடிவமைக்க தயாரா?',
-    'cta.description': 'AI ஹொரைசன்ஸுடன் தங்கள் தொழில் பாதையை கண்டறிந்த ஆயிரக்கணக்கான கற்பவர்களுடன் சேருங்கள்.',
+    'cta.description': 'வழிகாட்டியுடன் தங்கள் தொழில் பாதையை கண்டறிந்த ஆயிரக்கணக்கான கற்பவர்களுடன் சேருங்கள்.',
     'cta.startJourney': 'உங்கள் பயணத்தை தொடங்குங்கள்',
     'cta.exploreJobs': 'வேலைகளை ஆராயுங்கள்',
+    'cta.registerLearner': 'கற்பவராக பதிவு செய்க',
+    'cta.registerEmployer': 'முதலாளியாக பதிவு செய்க',
+    'cta.trustedBy': 'முன்னணி நிறுவனங்கள் மற்றும் நிறுவனங்களால் நம்பகமானது',
+    'cta.partners': '50+ கூட்டாளி நிறுவனங்கள்',
+    'cta.alumni': '10,000+ முன்னாள் மாணவர் நெட்வொர்க்',
+    'cta.placement': '95% வேலைவாய்ப்பு விகிதம்',
     
     // Common
     'common.loading': 'ஏற்றுகிறது...',
@@ -1128,6 +1140,17 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.rights': 'सर्वाधिकार सुरक्षित',
     'footer.privacy': 'गोपनीयता नीति',
     'footer.terms': 'सेवा की शर्तें',
+    
+    // CTA
+    'cta.title': 'अपना भविष्य बनाने के लिए तैयार?',
+    'cta.description': 'हजारों छात्रों से जुड़ें जिन्होंने वझिकाट्टी के साथ अपना करियर पथ खोजा है।',
+    'cta.startJourney': 'अपनी यात्रा शुरू करें',
+    'cta.registerLearner': 'छात्र के रूप में पंजीकरण करें',
+    'cta.registerEmployer': 'नियोक्ता के रूप में पंजीकरण करें',
+    'cta.trustedBy': 'अग्रणी संस्थानों और कंपनियों द्वारा विश्वसनीय',
+    'cta.partners': '50+ साझेदार कंपनियां',
+    'cta.alumni': '10,000+ पूर्व छात्र नेटवर्क',
+    'cta.placement': '95% प्लेसमेंट दर',
     
     // Language Selector
     'lang.select': 'भाषा चुनें',
