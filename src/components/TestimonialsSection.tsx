@@ -2,12 +2,13 @@ import { Quote, Star, Sparkles } from "lucide-react";
 
 const testimonials = [
   {
-    name: "R. Priya",
-    role: "Class 12, JKKN Rangammal Girls Higher Secondary School, Kumarapalayam",
+    name: "T.Gokilavani",
+    role: "Class 12, Government Higher Secondary School, Veppadai",
     quote: "This app helped me understand my strengths and explore suitable career options.",
-    avatar: "RP",
+    avatar: "TG",
     color: "from-pink-500 to-rose-500",
-    rating: 5
+    rating: 5,
+    date: "28/01/2026"
   },
   {
     name: "Chandru.S",
