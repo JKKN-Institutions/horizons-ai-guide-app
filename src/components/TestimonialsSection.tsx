@@ -10,12 +10,13 @@ const testimonials = [
     rating: 5
   },
   {
-    name: "R. Josmitha",
-    role: "Class 12, Sankagiri Girls Higher Secondary School",
+    name: "Chandru.S",
+    role: "Class 12, Government Boys Higher Secondary School, Kumarapalayam",
     quote: "I was confused about my future before using this app. Now I feel more confident in my choices.",
-    avatar: "RJ",
+    avatar: "CS",
     color: "from-violet-500 to-purple-500",
-    rating: 5
+    rating: 5,
+    date: "06/01/2026"
   },
   {
     name: "K. Karthick",
@@ -96,6 +97,9 @@ const TestimonialsSection = () => {
                 <div className="flex-1">
                   <p className="font-bold text-gray-800">{testimonial.name}</p>
                   <p className="text-xs text-gray-500 leading-relaxed">{testimonial.role}</p>
+                  {testimonial.date && (
+                    <p className="text-xs text-gray-400 mt-0.5">{testimonial.date}</p>
+                  )}
                 </div>
               </div>
 
