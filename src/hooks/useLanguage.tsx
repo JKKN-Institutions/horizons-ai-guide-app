@@ -1280,26 +1280,8 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     document.documentElement.lang = language;
   }, [language]);
 
-  // On initial mount, trigger Google Translate if non-English language was saved
-  useEffect(() => {
-    if (language !== 'en' && typeof window !== 'undefined') {
-      const tryTranslate = () => {
-        if ((window as any).triggerGoogleTranslate) {
-          (window as any).triggerGoogleTranslate(language);
-        } else {
-          setTimeout(tryTranslate, 1000);
-        }
-      };
-      setTimeout(tryTranslate, 1500);
-    }
-  }, []);
-
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    // Trigger Google Translate for full-page translation
-    if (typeof window !== 'undefined' && (window as any).triggerGoogleTranslate) {
-      (window as any).triggerGoogleTranslate(lang);
-    }
   };
 
   const t = (key: string): string => {
