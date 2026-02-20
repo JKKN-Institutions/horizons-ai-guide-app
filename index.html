@@ -21,6 +21,60 @@
   </head>
 
   <body>
+    <!-- Google Translate (hidden widget, controlled by our language selector) -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'ta,hi,te,kn,ml,bn,mr,gu,pa',
+          autoDisplay: false,
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+      }
+
+      // Function called by React to trigger translation
+      window.triggerGoogleTranslate = function(langCode) {
+        if (langCode === 'en') {
+          // Reset to English - remove translation
+          var frame = document.querySelector('.goog-te-banner-frame');
+          if (frame) {
+            var btn = frame.contentDocument.querySelector('.goog-close-link');
+            if (btn) btn.click();
+          }
+          // Also try cookie reset
+          document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+          document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + location.hostname;
+          location.reload();
+          return;
+        }
+        // Set translation cookie and trigger
+        document.cookie = 'googtrans=/en/' + langCode + '; path=/;';
+        document.cookie = 'googtrans=/en/' + langCode + '; path=/; domain=.' + location.hostname;
+        // Try to use the combo box
+        var sel = document.querySelector('.goog-te-combo');
+        if (sel) {
+          sel.value = langCode;
+          sel.dispatchEvent(new Event('change'));
+        } else {
+          // If widget not ready, reload
+          location.reload();
+        }
+      };
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <style>
+      /* Hide Google Translate bar and artifacts */
+      .goog-te-banner-frame, .goog-te-balloon-frame { display: none !important; }
+      body { top: 0 !important; }
+      .goog-tooltip, .goog-tooltip:hover { display: none !important; }
+      .goog-text-highlight { background: none !important; box-shadow: none !important; }
+      #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+      .goog-te-gadget { display: none !important; }
+      .skiptranslate { display: none !important; }
+      body { top: 0px !important; }
+    </style>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
