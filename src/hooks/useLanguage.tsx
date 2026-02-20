@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 
 // Support 10 Indian regional languages
 export type Language = 'en' | 'ta' | 'hi' | 'te' | 'kn' | 'ml' | 'bn' | 'mr' | 'gu' | 'pa';
@@ -1284,10 +1284,10 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     setLanguageState(lang);
   };
 
-  const t = (key: string): string => {
+  const t = useCallback((key: string): string => {
     // Try current language first, then fall back to Tamil (for Tamil-specific content), then English
     return translations[language]?.[key] || translations['ta']?.[key] || translations['en']?.[key] || key;
-  };
+  }, [language]);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
