@@ -1,5 +1,5 @@
 import { Star, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const testimonials = [
   {
@@ -47,25 +47,26 @@ const testimonials = [
 const TestimonialsSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const totalSlides = testimonials.length;
+  const indexRef = useRef(activeIndex);
+  indexRef.current = activeIndex;
 
-  const goTo = useCallback((index: number) => {
+  const goTo = (index: number) => {
     setActiveIndex(((index % totalSlides) + totalSlides) % totalSlides);
-  }, [totalSlides]);
+  };
 
-  const prev = () => goTo(activeIndex - 1);
-  const next = useCallback(() => goTo(activeIndex + 1), [activeIndex, goTo]);
+  const prev = () => goTo(indexRef.current - 1);
+  const next = () => goTo(indexRef.current + 1);
 
   // Auto-scroll every 4 seconds
   useEffect(() => {
     if (isPaused) return;
-    timerRef.current = setInterval(() => {
-      next();
+    const id = setInterval(() => {
+      setActiveIndex(prev => (prev + 1) % totalSlides);
     }, 4000);
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, [isPaused, next]);
+    return () => clearInterval(id);
+  }, [isPaused, totalSlides]);
 
   // Get 3 visible cards (circular)
   const getVisible = () => {
