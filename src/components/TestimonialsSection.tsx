@@ -34,7 +34,8 @@ const testimonials = [
     quote: "Thanks to the career discovery sessions, I now have a clear roadmap for my future. The AI assistant helped me understand which courses align with my interests.",
     avatar: "MB",
     color: "from-emerald-500 to-teal-500",
-    rating: 5
+    rating: 5,
+    date: "05/12/2025"
   },
 ];
 
