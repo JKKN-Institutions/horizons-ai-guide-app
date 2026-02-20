@@ -1,5 +1,5 @@
 import { Star, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 const testimonials = [
   {
@@ -46,13 +46,37 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Show 3 cards at a time on desktop, 1 on mobile
-  const visibleCount = typeof window !== "undefined" && window.innerWidth >= 768 ? 3 : 1;
-  const maxIndex = Math.max(0, testimonials.length - visibleCount);
+  const totalSlides = testimonials.length;
 
-  const prev = () => setActiveIndex(i => Math.max(0, i - 1));
-  const next = () => setActiveIndex(i => Math.min(maxIndex, i + 1));
+  const goTo = useCallback((index: number) => {
+    setActiveIndex(((index % totalSlides) + totalSlides) % totalSlides);
+  }, [totalSlides]);
+
+  const prev = () => goTo(activeIndex - 1);
+  const next = useCallback(() => goTo(activeIndex + 1), [activeIndex, goTo]);
+
+  // Auto-scroll every 4 seconds
+  useEffect(() => {
+    if (isPaused) return;
+    timerRef.current = setInterval(() => {
+      next();
+    }, 4000);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [isPaused, next]);
+
+  // Get 3 visible cards (circular)
+  const getVisible = () => {
+    const items = [];
+    for (let i = 0; i < 3; i++) {
+      items.push(testimonials[(activeIndex + i) % totalSlides]);
+    }
+    return items;
+  };
+
+  const visible = getVisible();
 
   return (
     <section className="py-14 md:py-20 bg-gradient-to-b from-gray-50 to-white">
@@ -71,75 +95,72 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        {/* Cards slider */}
-        <div className="relative max-w-5xl mx-auto">
-          {/* Navigation arrows */}
-          {activeIndex > 0 && (
-            <button
-              onClick={prev}
-              className="absolute -left-4 md:-left-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors"
-              aria-label="Previous"
-            >
-              <ChevronLeft className="w-4 h-4 text-gray-600" />
-            </button>
-          )}
-          {activeIndex < maxIndex && (
-            <button
-              onClick={next}
-              className="absolute -right-4 md:-right-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors"
-              aria-label="Next"
-            >
-              <ChevronRight className="w-4 h-4 text-gray-600" />
-            </button>
-          )}
+        {/* Cards */}
+        <div
+          className="relative max-w-5xl mx-auto"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Left arrow */}
+          <button
+            onClick={prev}
+            className="absolute -left-4 md:-left-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors"
+            aria-label="Previous"
+          >
+            <ChevronLeft className="w-4 h-4 text-gray-600" />
+          </button>
 
-          {/* Cards container */}
-          <div className="overflow-hidden">
-            <div
-              className="flex transition-transform duration-400 ease-out gap-4 md:gap-5"
-              style={{ transform: `translateX(-${activeIndex * (100 / visibleCount + 1.5)}%)` }}
-            >
-              {testimonials.map((t, index) => (
-                <div
-                  key={index}
-                  className="flex-shrink-0 w-full md:w-[calc(33.333%-14px)]"
-                >
-                  <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
-                    {/* Stars */}
-                    <div className="flex gap-0.5 mb-3">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                      ))}
+          {/* Right arrow */}
+          <button
+            onClick={next}
+            className="absolute -right-4 md:-right-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors"
+            aria-label="Next"
+          >
+            <ChevronRight className="w-4 h-4 text-gray-600" />
+          </button>
+
+          {/* Cards grid - 1 on mobile, 3 on desktop */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+            {visible.map((t, index) => (
+              <div
+                key={`${activeIndex}-${index}`}
+                className="animate-fade-in"
+              >
+                <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
+                  {/* Stars */}
+                  <div className="flex gap-0.5 mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+
+                  {/* Quote */}
+                  <p className="text-gray-600 text-sm leading-relaxed flex-1 mb-4">
+                    "{t.quote}"
+                  </p>
+
+                  {/* Author */}
+                  <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                    <div className={`w-9 h-9 rounded-full ${t.color} flex items-center justify-center flex-shrink-0`}>
+                      <span className="text-white font-semibold text-xs">{t.avatar}</span>
                     </div>
-
-                    {/* Quote */}
-                    <p className="text-gray-600 text-sm leading-relaxed flex-1 mb-4">
-                      "{t.quote}"
-                    </p>
-
-                    {/* Author */}
-                    <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
-                      <div className={`w-9 h-9 rounded-full ${t.color} flex items-center justify-center flex-shrink-0`}>
-                        <span className="text-white font-semibold text-xs">{t.avatar}</span>
-                      </div>
-                      <div className="min-w-0">
-                        <p className="font-semibold text-gray-800 text-sm truncate">{t.name}</p>
-                        <p className="text-xs text-gray-400 leading-snug truncate">{t.role}</p>
-                        <p className="text-[11px] text-gray-300">{t.date}</p>
-                      </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-semibold text-gray-800 text-sm">{t.name}</p>
+                      <p className="text-xs text-gray-400 leading-snug">{t.role}</p>
+                      <p className="text-[11px] text-gray-300 mt-0.5">{t.date}</p>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
           {/* Dot indicators */}
           <div className="flex justify-center gap-1.5 mt-6">
-            {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+            {testimonials.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setActiveIndex(i)}
+                onClick={() => goTo(i)}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
                   i === activeIndex ? "w-6 bg-emerald-600" : "w-1.5 bg-gray-300 hover:bg-gray-400"
                 }`}
@@ -149,7 +170,7 @@ const TestimonialsSection = () => {
           </div>
         </div>
 
-        {/* Compact stats */}
+        {/* Stats */}
         <div className="flex justify-center gap-8 md:gap-14 mt-10 pt-8 border-t border-gray-100">
           {[
             { value: "500+", label: "Students Guided" },
@@ -163,6 +184,16 @@ const TestimonialsSection = () => {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateX(20px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.4s ease-out;
+        }
+      `}</style>
     </section>
   );
 };
