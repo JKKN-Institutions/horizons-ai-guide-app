@@ -138,9 +138,9 @@ const TestimonialsSection = () => {
                       <span className="text-white font-bold text-xs">{t.avatar}</span>
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="font-bold text-gray-900 text-[14px]">{t.name}</p>
-                      <p className="text-[12px] text-gray-500 leading-tight mt-0.5">{t.role}</p>
-                      <p className="text-[11px] text-gray-400 mt-0.5">{t.date}</p>
+                      <p className="font-bold text-gray-900 text-sm">{t.name}</p>
+                      <p className="text-xs text-gray-700 leading-snug font-medium mt-0.5">{t.role}</p>
+                      <p className="text-xs text-gray-600 mt-0.5">{t.date}</p>
                     </div>
                   </div>
                 </div>
