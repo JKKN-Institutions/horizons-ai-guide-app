@@ -25,7 +25,8 @@ const testimonials = [
     quote: "The power of AI combined with expert guidance made me realize the importance of choosing the right career path early. VAZHIKATTI is a game-changer.",
     avatar: "KK",
     color: "from-blue-500 to-cyan-500",
-    rating: 5
+    rating: 5,
+    date: "28/11/2025"
   },
   {
     name: "M.G. Bharanee Dharan",
