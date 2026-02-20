@@ -1285,8 +1285,8 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const t = useCallback((key: string): string => {
-    // Try current language first, then fall back to Tamil (for Tamil-specific content), then English
-    return translations[language]?.[key] || translations['ta']?.[key] || translations['en']?.[key] || key;
+    // Try current language first, then fall back to English
+    return translations[language]?.[key] || translations['en']?.[key] || key;
   }, [language]);
 
   return (
