@@ -37,6 +37,15 @@ const testimonials = [
     rating: 5,
     date: "05/12/2025"
   },
+  {
+    name: "Mahalakshmi.V",
+    role: "Class 12, Government Higher Secondary School, Anupparpalayam, Tirupur",
+    quote: "VAZHIKATTI opened my eyes to career options I never knew existed. The AI assessment matched me with courses that truly fit my skills, and now I have a clear plan for my future after 12th.",
+    avatar: "MV",
+    color: "from-orange-500 to-amber-500",
+    rating: 5,
+    date: "08/01/2026"
+  },
 ];
 
 const TestimonialsSection = () => {
