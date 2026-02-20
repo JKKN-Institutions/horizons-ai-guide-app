@@ -136,7 +136,7 @@ const TestimonialsSection = () => {
                   </div>
 
                   {/* Quote */}
-                  <p className="text-gray-600 text-sm leading-relaxed flex-1 mb-4">
+                  <p className="text-gray-900 text-sm leading-relaxed flex-1 mb-4">
                     "{t.quote}"
                   </p>
 
@@ -146,9 +146,9 @@ const TestimonialsSection = () => {
                       <span className="text-white font-semibold text-xs">{t.avatar}</span>
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="font-semibold text-gray-800 text-sm">{t.name}</p>
-                      <p className="text-xs text-gray-400 leading-snug">{t.role}</p>
-                      <p className="text-[11px] text-gray-300 mt-0.5">{t.date}</p>
+                      <p className="font-semibold text-black text-sm">{t.name}</p>
+                      <p className="text-xs text-gray-700 leading-snug">{t.role}</p>
+                      <p className="text-[11px] text-gray-500 mt-0.5">{t.date}</p>
                     </div>
                   </div>
                 </div>
