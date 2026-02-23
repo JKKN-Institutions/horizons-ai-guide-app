@@ -133,8 +133,8 @@ const AssessmentResults = () => {
       await navigator.share({
         title: assessmentType ? `My ${assessmentNames[assessmentType]} Results` : 'My Assessment Results',
         text: assessmentType
-          ? `I just completed the ${assessmentNames[assessmentType]} and discovered I'm "${results?.archetype}"! Check out Vazhikaatti for career guidance.`
-          : 'I just completed an assessment on Vazhikaatti!',
+          ? `I just completed the ${assessmentNames[assessmentType]} and discovered I'm "${results?.archetype}"! Check out VAZHIKAATTI for career guidance.`
+          : 'I just completed an assessment on VAZHIKAATTI!',
         url: window.location.href,
       });
     } else {

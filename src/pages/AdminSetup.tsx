@@ -133,7 +133,7 @@ const AdminSetup = () => {
           </div>
           <CardTitle className="text-2xl font-serif">Initial Admin Setup</CardTitle>
           <CardDescription>
-            Create the first admin account for Vazhikaatti
+            Create the first admin account for VAZHIKAATTI
           </CardDescription>
         </CardHeader>
 
