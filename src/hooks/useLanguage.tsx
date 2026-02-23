@@ -52,7 +52,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero Section
     'hero.badge': 'CAREER PATH - 2026-2032',
-    'hero.title': 'VAZHIKATTI:',
+    'hero.title': 'Vazhikaatti:',
     'hero.subtitle': 'Discover, Design, Do - வழிகாட்டி',
     'hero.tamilSubtitle': 'கண்டறி, வடிவமை, செய்',
     'hero.description': 'Empowering Learners & 12th Students with AI-powered career guidance, skill development and placement opportunities.',
@@ -70,7 +70,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Services Section
     'services.badge': 'Complete Support System',
     'services.title': 'Your Complete Career Journey',
-    'services.description': 'From self-discovery to job offers, VAZHIKATTI supports every stage of your journey.',
+    'services.description': 'From self-discovery to job offers, Vazhikaatti supports every stage of your journey.',
     'services.careerAssessment': 'Career Assessment',
     'services.careerAssessmentDesc': 'AI-powered psychometric tests to discover your personality, strengths, and best-fit careers.',
     'services.careerPathFinder': 'Career Path Finder',
@@ -95,7 +95,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // CTA Section
     'cta.title': 'Ready to Shape Your Future?',
-    'cta.description': 'Join thousands of learners who have discovered their career path with VAZHIKATTI.',
+    'cta.description': 'Join thousands of learners who have discovered their career path with Vazhikaatti.',
     'cta.startJourney': 'Start Your Journey',
     'cta.exploreJobs': 'Explore Jobs',
     'cta.registerLearner': 'Register as Learner',
@@ -558,7 +558,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero Section
     'hero.badge': 'தொழில் பாதை - 2026-2032',
-    'hero.title': 'AI ஹொரைசன்ஸ்:',
+    'hero.title': 'Vazhikaatti:',
     'hero.subtitle': 'கண்டறி, வடிவமை, செய் - வழிகாட்டி',
     'hero.tamilSubtitle': 'Discover, Design, Do',
     'hero.description': 'கற்பவர்கள் மற்றும் 12ஆம் வகுப்பு மாணவர்களுக்கு AI-இயங்கும் தொழில் வழிகாட்டுதல், திறன் மேம்பாடு மற்றும் வேலைவாய்ப்புகளை வழங்குகிறது.',
@@ -1060,7 +1060,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.tagline': 'खोजें, डिज़ाइन करें, करें',
     
     // Homepage
-    'hero.title': 'AI होराइज़न्स:',
+    'hero.title': 'Vazhikaatti:',
     'hero.subtitle': 'खोजें, डिज़ाइन करें, करें',
     'hero.description': 'तमिलनाडु छात्रों के लिए AI-संचालित करियर मार्गदर्शन',
     
@@ -1166,7 +1166,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.careerAssessment': 'కెరీర్ అసెస్‌మెంట్',
     'nav.governmentJobs': 'ప్రభుత్వ ఉద్యోగాలు',
     'nav.entranceExams': 'ప్రవేశ పరీక్షలు',
-    'hero.title': 'AI హోరైజన్స్:',
+    'hero.title': 'Vazhikaatti:',
     'common.loading': 'లోడ్ అవుతోంది...',
     'common.back': 'వెనుకకు',
     'common.next': 'తదుపరి',
@@ -1184,7 +1184,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.careerAssessment': 'ಕೆರಿಯರ್ ಮೌಲ್ಯಮಾಪನ',
     'nav.governmentJobs': 'ಸರ್ಕಾರಿ ಉದ್ಯೋಗಗಳು',
     'nav.entranceExams': 'ಪ್ರವೇಶ ಪರೀಕ್ಷೆಗಳು',
-    'hero.title': 'AI ಹೊರೈಜನ್ಸ್:',
+    'hero.title': 'Vazhikaatti:',
     'common.loading': 'ಲೋಡ್ ಆಗುತ್ತಿದೆ...',
     'common.back': 'ಹಿಂದೆ',
     'common.next': 'ಮುಂದೆ',
@@ -1202,7 +1202,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.careerAssessment': 'കരിയർ അസെസ്മെന്റ്',
     'nav.governmentJobs': 'സർക്കാർ ജോലികൾ',
     'nav.entranceExams': 'പ്രവേശന പരീക്ഷകൾ',
-    'hero.title': 'AI ഹൊറൈസൺസ്:',
+    'hero.title': 'Vazhikaatti:',
     'common.loading': 'ലോഡ് ചെയ്യുന്നു...',
     'common.back': 'പിന്നോട്ട്',
     'common.next': 'അടുത്തത്',
@@ -1220,7 +1220,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.careerAssessment': 'ক্যারিয়ার মূল্যায়ন',
     'nav.governmentJobs': 'সরকারি চাকরি',
     'nav.entranceExams': 'প্রবেশিকা পরীক্ষা',
-    'hero.title': 'AI হোরাইজন্স:',
+    'hero.title': 'Vazhikaatti:',
     'common.loading': 'লোড হচ্ছে...',
     'common.back': 'পিছনে',
     'common.next': 'পরবর্তী',
@@ -1238,7 +1238,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.careerAssessment': 'करिअर मूल्यांकन',
     'nav.governmentJobs': 'सरकारी नोकऱ्या',
     'nav.entranceExams': 'प्रवेश परीक्षा',
-    'hero.title': 'AI होरायझन्स:',
+    'hero.title': 'Vazhikaatti:',
     'common.loading': 'लोड होत आहे...',
     'common.back': 'मागे',
     'common.next': 'पुढे',
@@ -1256,7 +1256,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.careerAssessment': 'કારકિર્દી મૂલ્યાંકન',
     'nav.governmentJobs': 'સરકારી નોકરીઓ',
     'nav.entranceExams': 'પ્રવેશ પરીક્ષાઓ',
-    'hero.title': 'AI હોરાઇઝન્સ:',
+    'hero.title': 'Vazhikaatti:',
     'common.loading': 'લોડ થઈ રહ્યું છે...',
     'common.back': 'પાછળ',
     'common.next': 'આગળ',
@@ -1274,7 +1274,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.careerAssessment': 'ਕੈਰੀਅਰ ਮੁਲਾਂਕਣ',
     'nav.governmentJobs': 'ਸਰਕਾਰੀ ਨੌਕਰੀਆਂ',
     'nav.entranceExams': 'ਦਾਖਲਾ ਪ੍ਰੀਖਿਆਵਾਂ',
-    'hero.title': 'AI ਹੋਰਾਈਜ਼ਨਸ:',
+    'hero.title': 'Vazhikaatti:',
     'common.loading': 'ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ...',
     'common.back': 'ਪਿੱਛੇ',
     'common.next': 'ਅੱਗੇ',

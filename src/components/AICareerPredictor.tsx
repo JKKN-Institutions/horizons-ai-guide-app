@@ -376,7 +376,7 @@ const AICareerPredictor: React.FC = () => {
   const handleShareWhatsApp = () => {
     const topCourses = filteredRecommendations.slice(0, 3).map(c => `• ${c.name} (${c.matchScore}% match)`).join('\n');
     const message = encodeURIComponent(
-      `🎓 My AI Career Predictor Results:\n\n${topCourses}\n\nDiscover your career path at VAZHIKATTI!`
+      `🎓 My AI Career Predictor Results:\n\n${topCourses}\n\nDiscover your career path at Vazhikaatti!`
     );
     window.open(`https://wa.me/?text=${message}`, '_blank');
   };

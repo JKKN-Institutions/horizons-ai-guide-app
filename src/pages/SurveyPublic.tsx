@@ -95,7 +95,7 @@ const SurveyPublic = () => {
             </p>
             <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-4 border border-emerald-200">
               <p className="text-sm font-semibold text-emerald-800">Want to build your own startup idea?</p>
-              <p className="text-xs text-emerald-600 mt-1">Join VAZHIKATTI and get AI-powered guidance!</p>
+              <p className="text-xs text-emerald-600 mt-1">Join Vazhikaatti and get AI-powered guidance!</p>
               <Button className="mt-3 bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-xl" onClick={() => window.location.href = '/'}>
                 🚀 Start My Journey
               </Button>
@@ -129,7 +129,7 @@ const SurveyPublic = () => {
         <div className="bg-gradient-to-br from-[#14532d] via-[#166534] to-[#1a4731] rounded-2xl p-6 text-center shadow-lg">
           <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 px-3 py-1 rounded-full text-[10px] font-semibold mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-            VAZHIKATTI — Startup Validation Survey
+            Vazhikaatti — Startup Validation Survey
           </div>
           <h1 className="text-lg font-bold text-white mb-2">Help Validate This Startup Idea!</h1>
           <div className="bg-white/10 rounded-xl p-3 mt-3">
@@ -178,7 +178,7 @@ const SurveyPublic = () => {
         </Button>
 
         <p className="text-[10px] text-center text-muted-foreground">
-          Powered by <strong>VAZHIKATTI</strong> — AI Career Guide by JKKN Institutions
+          Powered by <strong>Vazhikaatti</strong> — AI Career Guide by JKKN Institutions
         </p>
       </div>
     </div>

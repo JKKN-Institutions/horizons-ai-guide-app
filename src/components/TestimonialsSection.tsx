@@ -21,7 +21,7 @@ const testimonials = [
   {
     name: "K. Karthick",
     role: "Class 12, Pallipalayam Boys Higher Secondary School",
-    quote: "The power of AI combined with expert guidance made me realize the importance of choosing the right career path early. VAZHIKATTI is a game-changer.",
+    quote: "The power of AI combined with expert guidance made me realize the importance of choosing the right career path early. Vazhikaatti is a game-changer.",
     avatar: "KK",
     gradient: "from-blue-400 to-indigo-500",
     date: "28/11/2025"
@@ -37,7 +37,7 @@ const testimonials = [
   {
     name: "Mahalakshmi.V",
     role: "Class 12, Government Higher Secondary School, Anupparpalayam, Tirupur",
-    quote: "VAZHIKATTI opened my eyes to career options I never knew existed. The AI assessment matched me with courses that truly fit my skills, and now I have a clear plan for my future after 12th.",
+    quote: "Vazhikaatti opened my eyes to career options I never knew existed. The AI assessment matched me with courses that truly fit my skills, and now I have a clear plan for my future after 12th.",
     avatar: "MV",
     gradient: "from-amber-400 to-orange-500",
     date: "08/01/2026"

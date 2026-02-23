@@ -246,7 +246,7 @@
    
    doc.setTextColor(255, 255, 255);
    doc.setFontSize(9);
-   doc.text('VAZHIKATTI - Career Guidance Platform', pageWidth / 2, footerY + 3, { align: 'center' });
+   doc.text('Vazhikaatti - Career Guidance Platform', pageWidth / 2, footerY + 3, { align: 'center' });
    doc.setFontSize(8);
    doc.text('www.vazhikatti.com', pageWidth / 2, footerY + 9, { align: 'center' });
  

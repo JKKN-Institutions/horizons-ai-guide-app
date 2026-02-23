@@ -225,7 +225,7 @@ export const generateScholarshipPDF = (scholarships: Scholarship[]) => {
     doc.setFontSize(8);
     doc.setTextColor(128, 128, 128);
     doc.text(
-      `Page ${i} of ${totalPages} | VAZHIKATTI | www.vazhikatti.com`,
+      `Page ${i} of ${totalPages} | Vazhikaatti | www.vazhikatti.com`,
       pageWidth / 2,
       pageHeight - 8,
       { align: 'center' }
