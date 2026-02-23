@@ -56,18 +56,6 @@ const CTASection = () => {
               <span className="relative">{t('cta.registerLearner')}</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
             </Button>
-            
-            <Button 
-              size="lg"
-              variant="outline"
-              onClick={() => navigate("/register/employer")}
-              className="group relative border-2 border-white/30 bg-white/5 text-white hover:bg-white/15 hover:border-white/60 px-8 py-6 text-lg font-semibold backdrop-blur-sm transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden"
-            >
-              <span className="absolute inset-0 rounded-md bg-white/0 group-hover:bg-white/5 transition-colors duration-300" />
-              <span className="absolute -inset-1 rounded-lg bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
-              <span className="relative z-10">{t('cta.registerEmployer')}</span>
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300 relative z-10" />
-            </Button>
           </div>
 
           <div className="mt-12 pt-8 border-t border-white/10">
