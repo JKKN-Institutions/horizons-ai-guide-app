@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { SubjectWeightageView } from './SubjectWeightageView';
+import { QuestionViewer } from './QuestionViewer';
 import { 
   BookOpen, Search, Download, Filter, FileText, 
   GraduationCap, Calendar, Star, ChevronRight, ChevronDown,
@@ -274,6 +275,7 @@ export const PreviousYearQuestions = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [topicView, setTopicView] = useState<{ examId: string; examName: string; subject: string } | null>(null);
   const [subjectWeightageView, setSubjectWeightageView] = useState<{ examId: string; examName: string } | null>(null);
+  const [questionView, setQuestionView] = useState<{ examId: string; examName: string; subject: string; topic: string } | null>(null);
 
   const toggleCategory = (catId: string) => {
     setExpandedCategories(prev =>
@@ -630,8 +632,16 @@ export const PreviousYearQuestions = () => {
             )}
           </motion.div>
 
-          {/* Subject Weightage View (NEET PG style) */}
-          {subjectWeightageView ? (
+          {/* Question Viewer */}
+          {questionView ? (
+            <QuestionViewer
+              examId={questionView.examId}
+              examName={questionView.examName}
+              subject={questionView.subject}
+              topicName={questionView.topic}
+              onBack={() => setQuestionView(null)}
+            />
+          ) : subjectWeightageView ? (
             <SubjectWeightageView
               examId={subjectWeightageView.examId}
               examName={subjectWeightageView.examName}
@@ -648,8 +658,12 @@ export const PreviousYearQuestions = () => {
               subject={topicView.subject}
               onBack={() => setTopicView(null)}
               onViewQuestions={(topic) => {
-                setSearchQuery(topic);
-                setTopicView(null);
+                setQuestionView({
+                  examId: topicView.examId,
+                  examName: topicView.examName,
+                  subject: topicView.subject,
+                  topic: topic,
+                });
               }}
             />
           ) : (
