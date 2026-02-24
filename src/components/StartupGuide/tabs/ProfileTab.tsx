@@ -1,9 +1,9 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Flame, Target, BarChart3, LogOut, MapPin, Briefcase, GraduationCap, CheckCircle2, Lock } from 'lucide-react';
+import { Flame, Target, BarChart3, LogOut, MapPin, Briefcase, GraduationCap, CheckCircle2, Circle, Clock } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useNavigate } from 'react-router-dom';
-import type { UserProfile, StartupScore } from '../useStartupGuideData';
+import type { UserProfile, StartupScore, WeeklyTask, DetectedProblem, Survey, ProductRoadmap } from '../useStartupGuideData';
 
 interface ProfileTabProps {
   userName: string;
@@ -14,26 +14,94 @@ interface ProfileTabProps {
   onboardingComplete: boolean;
   allReflectionsDone: boolean;
   onReset: () => void;
+  tasks: WeeklyTask[];
+  reflections: Record<string, string>;
+  problem: DetectedProblem | null;
+  survey: Survey | null;
+  roadmap: ProductRoadmap | null;
 }
 
-const allBadges = [
-  { key: 'explorer', label: 'Explorer', icon: '🔍', desc: 'Completed onboarding', check: (p: ProfileTabProps) => p.onboardingComplete },
-  { key: 'taskmaster', label: 'Task Master', icon: '📋', desc: 'Completed all 7 tasks', check: (p: ProfileTabProps) => p.taskStreak >= 7 },
-  { key: 'problemfinder', label: 'Problem Finder', icon: '🎯', desc: 'AI detected your problem', check: (p: ProfileTabProps) => p.allReflectionsDone },
-  { key: 'validator', label: 'Validator', icon: '📊', desc: '20+ survey responses', check: (p: ProfileTabProps) => p.surveyResponseCount >= 20 },
-  { key: 'builder', label: 'Builder', icon: '🔨', desc: 'MVP plan generated', check: () => false },
-  { key: 'founder', label: 'Founder', icon: '🚀', desc: 'Launched your startup', check: () => false },
-];
-
 export const ProfileTab = (props: ProfileTabProps) => {
-  const { userName, profile, score, taskStreak, surveyResponseCount } = props;
+  const { userName, profile, score, taskStreak, surveyResponseCount, tasks, reflections, problem, survey, roadmap } = props;
   const navigate = useNavigate();
   const initials = userName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+  const completedTasks = tasks.filter(t => t.isCompleted).length;
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
     navigate('/');
   };
+
+  // Journey steps with status
+  const journeySteps = [
+    {
+      step: 1,
+      title: 'Onboarding',
+      icon: '🎯',
+      done: props.onboardingComplete,
+      details: profile ? [
+        `Field: ${profile.field}`,
+        `Sub-domain: ${profile.subDomain}`,
+        `Location: ${profile.location}`,
+        `Experience: ${profile.experience}`,
+      ] : [],
+    },
+    {
+      step: 2,
+      title: 'Daily Observation Tasks',
+      icon: '📋',
+      done: completedTasks >= 7,
+      details: tasks.length > 0
+        ? tasks.map(t => `Day ${t.day}: ${t.taskTitle} ${t.isCompleted ? '✅' : '⬜'}`)
+        : ['No tasks assigned yet'],
+    },
+    {
+      step: 3,
+      title: 'Daily Reflections',
+      icon: '✍️',
+      done: props.allReflectionsDone,
+      details: Object.keys(reflections).length > 0
+        ? Object.entries(reflections).map(([day, text]) => `Day ${day}: "${text.length > 60 ? text.slice(0, 60) + '...' : text}"`)
+        : ['No reflections submitted yet'],
+    },
+    {
+      step: 4,
+      title: 'Problem Detection',
+      icon: '🔍',
+      done: !!problem,
+      details: problem ? [
+        `"${problem.problemStatement.length > 80 ? problem.problemStatement.slice(0, 80) + '...' : problem.problemStatement}"`,
+        `Pain Level: ${problem.painScore}/10 | Market: ${problem.marketSize}%`,
+        `Target: ${problem.targetCustomer}`,
+      ] : ['Complete 7 reflections to detect your problem'],
+    },
+    {
+      step: 5,
+      title: 'Survey Validation',
+      icon: '📊',
+      done: surveyResponseCount >= 1,
+      details: survey ? [
+        `${survey.questions?.length || 8} questions generated`,
+        `${surveyResponseCount} response(s) collected`,
+        surveyResponseCount >= 1 ? '✅ Validation complete!' : '⏳ Waiting for responses...',
+      ] : ['Generate a survey after problem detection'],
+    },
+    {
+      step: 6,
+      title: 'MVP Blueprint',
+      icon: '🚀',
+      done: !!roadmap,
+      details: roadmap ? [
+        `Plan: ${roadmap.mvpTitle}`,
+        `Model: ${roadmap.businessModel.length > 50 ? roadmap.businessModel.slice(0, 50) + '...' : roadmap.businessModel}`,
+        `${roadmap.weeklySteps?.length || 4} weeks action plan`,
+      ] : ['Unlock by getting 1 survey response'],
+    },
+  ];
+
+  const currentStepIndex = journeySteps.findIndex(s => !s.done);
+  const doneCount = journeySteps.filter(s => s.done).length;
+  const progressPercent = Math.round((doneCount / journeySteps.length) * 100);
 
   return (
     <div className="space-y-4">
@@ -75,57 +143,103 @@ export const ProfileTab = (props: ProfileTabProps) => {
           <div className="text-center">
             <div className="flex items-center justify-center gap-1 text-blue-300">
               <BarChart3 className="w-4 h-4" />
-              <span className="text-lg font-bold text-white">{surveyResponseCount}</span>
+              <span className="text-lg font-bold text-white">{progressPercent}%</span>
             </div>
-            <p className="text-[9px] text-white/40 font-medium uppercase">Surveys</p>
+            <p className="text-[9px] text-white/40 font-medium uppercase">Progress</p>
           </div>
         </div>
       </div>
 
-      {/* Badge Grid */}
+      {/* Overall Progress Bar */}
       <Card className="border-border/40">
         <CardContent className="p-4">
-          <p className="text-xs font-bold text-foreground mb-3">🏆 Achievement Badges</p>
-          <div className="grid grid-cols-3 gap-3">
-            {allBadges.map((badge) => {
-              const earned = badge.check(props);
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-xs font-bold text-foreground">🎯 Startup Journey Progress</p>
+            <p className="text-xs font-bold text-emerald-600">{doneCount}/{journeySteps.length} Steps</p>
+          </div>
+          <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-gradient-to-r from-emerald-500 to-green-500 rounded-full transition-all duration-500" 
+              style={{ width: `${progressPercent}%` }} 
+            />
+          </div>
+          <p className="text-[10px] text-muted-foreground mt-1.5 text-center">
+            {progressPercent === 100 
+              ? '🎉 Congratulations! Your startup journey is complete!' 
+              : currentStepIndex >= 0 ? `Next: Step ${journeySteps[currentStepIndex].step} — ${journeySteps[currentStepIndex].title}` : 'All done!'}
+          </p>
+        </CardContent>
+      </Card>
+
+      {/* Journey Timeline */}
+      <Card className="border-border/40">
+        <CardContent className="p-4">
+          <p className="text-xs font-bold text-foreground mb-4">📍 Your Complete Journey</p>
+          
+          <div className="space-y-0">
+            {journeySteps.map((step, index) => {
+              const isActive = index === currentStepIndex;
+              const isDone = step.done;
+              const isFuture = !isDone && index > (currentStepIndex >= 0 ? currentStepIndex : journeySteps.length);
+              
               return (
-                <div key={badge.key} className={`text-center p-3 rounded-xl border-2 transition-all ${earned ? 'bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-300 shadow-sm' : 'bg-gray-50 border-gray-200 opacity-40'}`}>
-                  <span className={`text-3xl ${earned ? 'drop-shadow-md' : 'grayscale'}`}>{badge.icon}</span>
-                  <p className={`text-[10px] font-bold mt-1 ${earned ? 'text-amber-700' : 'text-gray-400'}`}>{badge.label}</p>
-                  <p className="text-[9px] text-muted-foreground">{badge.desc}</p>
-                  {earned && <CheckCircle2 className="w-3 h-3 text-emerald-500 mx-auto mt-1" />}
+                <div key={step.step} className="relative">
+                  {/* Connecting Line */}
+                  {index < journeySteps.length - 1 && (
+                    <div className={`absolute left-[15px] top-[32px] w-0.5 h-[calc(100%-16px)] ${isDone ? 'bg-emerald-400' : 'bg-gray-200'}`} />
+                  )}
+                  
+                  <div className={`flex gap-3 pb-4 ${isFuture ? 'opacity-40' : ''}`}>
+                    {/* Step Indicator */}
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 z-10 ${
+                      isDone 
+                        ? 'bg-emerald-100 border-2 border-emerald-400' 
+                        : isActive 
+                          ? 'bg-amber-100 border-2 border-amber-400 animate-pulse' 
+                          : 'bg-gray-100 border-2 border-gray-200'
+                    }`}>
+                      {isDone ? (
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                      ) : isActive ? (
+                        <Clock className="w-4 h-4 text-amber-600" />
+                      ) : (
+                        <Circle className="w-4 h-4 text-gray-300" />
+                      )}
+                    </div>
+                    
+                    {/* Step Content */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-base">{step.icon}</span>
+                        <p className={`text-sm font-bold ${isDone ? 'text-emerald-700' : isActive ? 'text-amber-700' : 'text-gray-400'}`}>
+                          Step {step.step}: {step.title}
+                        </p>
+                        {isDone && (
+                          <span className="text-[9px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-full font-semibold">Done ✓</span>
+                        )}
+                        {isActive && (
+                          <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full font-semibold">In Progress</span>
+                        )}
+                      </div>
+                      
+                      {/* Details (show for completed and active steps) */}
+                      {(isDone || isActive) && step.details.length > 0 && (
+                        <div className={`mt-1.5 rounded-lg p-2.5 ${isDone ? 'bg-emerald-50 border border-emerald-200' : 'bg-amber-50 border border-amber-200'}`}>
+                          {step.details.map((detail, i) => (
+                            <p key={i} className="text-[11px] text-foreground/70 leading-relaxed">
+                              {detail}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               );
             })}
           </div>
         </CardContent>
       </Card>
-
-      {/* Profile Details */}
-      {profile && (
-        <Card className="border-border/40">
-          <CardContent className="p-4">
-            <p className="text-xs font-bold text-foreground mb-3">📄 Profile Details</p>
-            <div className="space-y-2.5">
-              {[
-                { icon: <Target className="w-4 h-4 text-emerald-600" />, label: 'Field', value: profile.field },
-                { icon: <Briefcase className="w-4 h-4 text-blue-600" />, label: 'Sub-domain', value: profile.subDomain },
-                { icon: <MapPin className="w-4 h-4 text-red-500" />, label: 'Location', value: profile.location },
-                { icon: <GraduationCap className="w-4 h-4 text-purple-600" />, label: 'Experience', value: profile.experience },
-              ].map((item) => (
-                <div key={item.label} className="flex items-center gap-3 bg-gray-50 rounded-lg p-2.5">
-                  {item.icon}
-                  <div>
-                    <p className="text-[10px] text-muted-foreground">{item.label}</p>
-                    <p className="text-sm font-semibold text-foreground">{item.value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
 
       {/* Score Breakdown */}
       <Card className="border-border/40">

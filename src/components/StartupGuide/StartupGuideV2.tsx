@@ -401,6 +401,11 @@ export const StartupGuide = () => {
             onboardingComplete={data.onboardingComplete}
             allReflectionsDone={data.allReflectionsDone}
             onReset={data.resetAll}
+            tasks={data.tasks}
+            reflections={data.reflections}
+            problem={data.problem}
+            survey={data.survey}
+            roadmap={data.roadmap}
           />
         </TabsContent>
       </Tabs>
