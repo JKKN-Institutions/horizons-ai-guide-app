@@ -204,25 +204,45 @@ export const StartupGuide = () => {
     if (result?.roadmap && !result.error) {
       await data.saveRoadmap(result.roadmap);
     } else {
-      // Local fallback roadmap
+      // Local fallback roadmap — everything done inside VAZHIKAATTI
       await data.saveRoadmap({
-        mvpTitle: `${data.profile?.subDomain || data.profile?.field || 'Smart'} Solution App`,
-        mvpDescription: `A simple mobile/web solution that addresses: "${data.problem.problemStatement}" — designed for ${data.problem.targetCustomer} in ${data.profile?.location || 'your area'}.`,
-        buildTool: 'Bubble.io or Glide',
+        mvpTitle: `${data.profile?.subDomain || data.profile?.field || 'Smart'} Solution Plan`,
+        mvpDescription: `Your validated startup plan for: "${data.problem.problemStatement}" — designed for ${data.problem.targetCustomer} in ${data.profile?.location || 'your area'}. Follow the steps below to bring your idea to life!`,
+        buildTool: 'VAZHIKAATTI Startup Guide (this app!)',
         businessModel: 'Freemium — free basic features + premium subscription ₹99-299/month',
         weeklySteps: [
-          { week: 1, title: 'Research & Wireframe', actions: ['Sketch 5 key screens on paper', 'List core features (max 3)', 'Create user flow diagram', 'Set up Bubble.io or Glide account'] },
-          { week: 2, title: 'Build MVP Core', actions: ['Build the main screen/dashboard', 'Add user registration', 'Implement core feature #1', 'Test with 2 friends'] },
-          { week: 3, title: 'Add Features & Test', actions: ['Add core feature #2 and #3', 'Fix bugs from testing', 'Add payment integration (Razorpay)', 'Get 5 beta users to test'] },
-          { week: 4, title: 'Launch & Get Users', actions: ['Create a landing page', 'Share on WhatsApp groups', 'Get 20 first users', 'Collect feedback and iterate'] },
+          { week: 1, title: 'Define Your Solution', actions: [
+            'Write a one-line description of your solution',
+            'List the top 3 features your product must have',
+            'Draw 5 rough screens on paper (hand sketch is fine!)',
+            'Identify your first 10 target customers by name',
+          ]},
+          { week: 2, title: 'Build a Prototype', actions: [
+            'Create a presentation (PPT/Google Slides) showing your app screens',
+            'Write a simple script explaining your product in 2 minutes',
+            'Show your prototype to 5 people and note their feedback',
+            'Refine your design based on feedback',
+          ]},
+          { week: 3, title: 'Validate & Plan Revenue', actions: [
+            'Ask 10 people: "Would you pay ₹99/month for this?"',
+            'Calculate your costs (development, marketing, operations)',
+            'Identify 3 ways to earn revenue (subscription, ads, commission)',
+            'Write a one-page business plan',
+          ]},
+          { week: 4, title: 'Pitch & Launch Plan', actions: [
+            'Prepare a 5-slide pitch deck (Problem → Solution → Market → Revenue → Team)',
+            'Practice your pitch with friends and mentors',
+            'Apply to JKKN incubator or Startup India programs',
+            'Set a launch date and create a WhatsApp group for early users',
+          ]},
         ],
         recommendedTools: [
-          { name: 'Bubble.io', purpose: 'No-code app builder' },
-          { name: 'Canva', purpose: 'Design logos and marketing' },
-          { name: 'Razorpay', purpose: 'Payment collection' },
-          { name: 'WhatsApp Business', purpose: 'Customer communication' },
-          { name: 'Google Forms', purpose: 'Feedback collection' },
-          { name: 'Notion', purpose: 'Project management' },
+          { name: 'VAZHIKAATTI AI Mentor', purpose: 'Ask questions & get startup guidance' },
+          { name: 'Paper & Pen', purpose: 'Sketch your app screens & ideas' },
+          { name: 'Google Slides / PPT', purpose: 'Create your prototype & pitch deck' },
+          { name: 'WhatsApp Groups', purpose: 'Reach your first customers' },
+          { name: 'JKKN Incubator', purpose: 'Get mentorship & funding support' },
+          { name: 'Startup India Portal', purpose: 'Register & apply for government support' },
         ],
       });
     }

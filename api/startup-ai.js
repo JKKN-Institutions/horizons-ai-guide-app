@@ -175,11 +175,13 @@ Field: ${data.field}
 Location: ${data.location}
 Survey Summary: ${data.surveySummary || 'Survey validation complete with positive responses.'}
 
+IMPORTANT: Do NOT recommend any paid tools or external apps like Bubble.io, Glide, Razorpay etc. Everything should be doable by a student using free resources: paper sketches, Google Slides/PPT for prototypes, WhatsApp for reaching customers, and mentorship from their college incubator. The buildTool should be "VAZHIKAATTI Startup Guide". Focus on practical, zero-cost steps a student in India can do.
+
 Return ONLY this JSON:
 {
   "mvpTitle":"...",
   "mvpDescription":"...",
-  "buildTool":"...",
+  "buildTool":"VAZHIKAATTI Startup Guide",
   "businessModel":"...",
   "weeklySteps":[{"week":1,"title":"...","actions":["...","..."]}],
   "recommendedTools":[{"name":"...","purpose":"..."}]

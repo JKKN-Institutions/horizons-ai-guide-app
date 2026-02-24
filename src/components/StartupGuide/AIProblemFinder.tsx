@@ -132,7 +132,7 @@ function analyzeProblems(problem: string, targetAudience: string, location: stri
       tasks: [
         'Design solution using Business Model Canvas',
         'Create wireframes (Figma / pen-and-paper)',
-        'Build no-code MVP using Bubble.io / Glide / Adalo',
+        'Build a prototype using paper sketches and Google Slides',
         'Or build a landing page with a waitlist (Carrd + Mailchimp)',
         'Test with 20 early adopters, collect feedback',
       ],

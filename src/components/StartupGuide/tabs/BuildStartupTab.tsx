@@ -99,13 +99,13 @@ export const BuildStartupTab = ({ unlocked, roadmap, surveyResponseCount, onGene
         <p className="text-sm text-white/60 mt-2">{roadmap.mvpDescription}</p>
       </div>
 
-      {/* Build Tool & Business Model */}
+      {/* Guide & Business Model */}
       <div className="grid grid-cols-2 gap-3">
         <Card className="border-border/40">
           <CardContent className="p-3.5">
             <div className="flex items-center gap-2 mb-1">
               <Wrench className="w-4 h-4 text-emerald-600" />
-              <p className="text-[10px] text-muted-foreground font-medium">BUILD WITH</p>
+              <p className="text-[10px] text-muted-foreground font-medium">GUIDED BY</p>
             </div>
             <p className="text-sm font-bold text-foreground">{roadmap.buildTool}</p>
           </CardContent>
@@ -121,11 +121,11 @@ export const BuildStartupTab = ({ unlocked, roadmap, surveyResponseCount, onGene
         </Card>
       </div>
 
-      {/* Recommended Tools */}
+      {/* Free Resources */}
       {roadmap.recommendedTools && roadmap.recommendedTools.length > 0 && (
         <Card className="border-border/40">
           <CardContent className="p-4">
-            <p className="text-xs font-bold text-foreground mb-3">🛠 Recommended Tools</p>
+            <p className="text-xs font-bold text-foreground mb-3">📚 Free Resources (No Paid Tools Needed!)</p>
             <div className="grid grid-cols-2 gap-2">
               {roadmap.recommendedTools.map((tool, i) => (
                 <div key={i} className="bg-gray-50 rounded-lg p-2.5">
