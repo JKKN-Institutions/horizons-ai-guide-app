@@ -256,21 +256,35 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
   }, [isListening]);
 
   const streamChat = useCallback(async (userMessages: Message[]) => {
-    // Try to get session, but allow anonymous access
-    const { data: { session } } = await supabase.auth.getSession();
+    // Get current session
+    let { data: { session } } = await supabase.auth.getSession();
     
-    const headers: Record<string, string> = {
-      "Content-Type": "application/json",
-      "apikey": import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
-    };
-    
-    if (session?.access_token) {
-      headers["Authorization"] = `Bearer ${session.access_token}`;
+    // If no session, auto-create anonymous session so edge function auth works
+    if (!session?.access_token) {
+      const { data: anonData, error: anonError } = await supabase.auth.signInAnonymously();
+      if (!anonError && anonData.session) {
+        session = anonData.session;
+      } else {
+        // Fallback: create a guest account
+        const guestEmail = `guest_${Date.now()}@vazhikaatti.app`;
+        const guestPass = `G_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+        const { data: guestData, error: guestError } = await supabase.auth.signUp({
+          email: guestEmail,
+          password: guestPass,
+        });
+        if (guestError || !guestData.session) {
+          throw new Error("Unable to connect to AI Chat. Please try again later.");
+        }
+        session = guestData.session;
+      }
     }
     
     const resp = await fetch(CHAT_URL, {
       method: "POST",
-      headers,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session!.access_token}`,
+      },
       body: JSON.stringify({ messages: userMessages.map(m => ({ role: m.role, content: m.content })) }),
     });
 
