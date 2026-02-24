@@ -195,14 +195,11 @@ export const useStartupGuideData = () => {
   const saveSurvey = useCallback(async (questions: any[], problemStatement: string, targetCustomer: string) => {
     const surveyId = crypto.randomUUID();
     
-    // Encode survey data into the URL so it works on ANY device (no database needed)
-    const surveyPayload = {
-      q: questions,
-      p: problemStatement,
-      t: targetCustomer,
-    };
-    const encoded = btoa(encodeURIComponent(JSON.stringify(surveyPayload)));
-    const shareLink = `${window.location.origin}/survey/${surveyId}?d=${encoded}`;
+    // Encode just the problem statement + target customer (keeps URL short & safe)
+    const miniData = JSON.stringify({ p: problemStatement, t: targetCustomer });
+    const encoded = btoa(unescape(encodeURIComponent(miniData)))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    const shareLink = `${window.location.origin}/survey/${encoded}`;
     
     const surveyObj: Survey = {
       id: surveyId,
@@ -213,7 +210,7 @@ export const useStartupGuideData = () => {
       responseCount: 0,
     };
     
-    // Save to localStorage
+    // Save full survey to localStorage (for same-device access)
     setData(prev => {
       const next = { ...prev, survey: surveyObj };
       next.score = calcScore(next);

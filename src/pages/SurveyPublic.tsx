@@ -1,15 +1,26 @@
 import { useState, useEffect } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { CheckCircle2, Loader2 } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
+
+// Generate standard validation questions from a problem statement
+function generateQuestions(problem: string, target: string) {
+  return [
+    { questionNumber: 1, questionText: `Have you experienced this problem: "${problem}"?`, type: 'mcq', options: ['Yes, frequently', 'Sometimes', 'Rarely', 'Never'] },
+    { questionNumber: 2, questionText: 'How much does this problem affect your daily life?', type: 'mcq', options: ["Very much — it's a major pain", 'Moderately', 'Slightly', 'Not at all'] },
+    { questionNumber: 3, questionText: 'What solutions have you tried so far?', type: 'text', options: [] },
+    { questionNumber: 4, questionText: 'How much would you pay monthly for a good solution?', type: 'mcq', options: ['₹0 — should be free', '₹50-100', '₹100-500', '₹500+'] },
+    { questionNumber: 5, questionText: 'Which feature would be most important to you?', type: 'mcq', options: ['Easy to use', 'Affordable price', 'Fast service', 'Reliable quality'] },
+    { questionNumber: 6, questionText: 'How do you currently deal with this problem?', type: 'text', options: [] },
+    { questionNumber: 7, questionText: 'Would you recommend a solution to others if it worked well?', type: 'mcq', options: ['Definitely yes', 'Probably yes', 'Maybe', 'Probably not'] },
+    { questionNumber: 8, questionText: 'Any other suggestions or ideas for solving this problem?', type: 'text', options: [] },
+  ];
+}
 
 const SurveyPublic = () => {
   const { surveyId } = useParams<{ surveyId: string }>();
-  const [searchParams] = useSearchParams();
   const [survey, setSurvey] = useState<any>(null);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [loading, setLoading] = useState(true);
@@ -22,68 +33,48 @@ const SurveyPublic = () => {
   }, [surveyId]);
 
   const loadSurvey = async () => {
+    if (!surveyId) { setError('No survey ID provided.'); setLoading(false); return; }
+    
+    // Try to decode problem statement from the URL path (URL-safe base64 encoded)
     try {
-      // Priority 1: Decode survey data from URL parameter (works on ANY device)
-      const encodedData = searchParams.get('d');
-      if (encodedData) {
-        try {
-          const decoded = JSON.parse(decodeURIComponent(atob(encodedData)));
+      // Restore standard base64 from URL-safe format
+      let b64 = surveyId.replace(/-/g, '+').replace(/_/g, '/');
+      while (b64.length % 4) b64 += '=';
+      const decoded = JSON.parse(decodeURIComponent(escape(atob(b64))));
+      if (decoded.p) {
+        const questions = generateQuestions(decoded.p, decoded.t || '');
+        setSurvey({
+          id: surveyId,
+          questions,
+          problem_statement: decoded.p,
+          target_customer: decoded.t || '',
+        });
+        setLoading(false);
+        return;
+      }
+    } catch (e) {
+      // Not base64 encoded — might be a UUID, try other methods
+    }
+    
+    // Try localStorage (same device)
+    try {
+      const localData = localStorage.getItem('vazhikatti_startup_v2');
+      if (localData) {
+        const parsed = JSON.parse(localData);
+        if (parsed.survey && (parsed.survey.id === surveyId || surveyId === 'demo')) {
           setSurvey({
-            id: surveyId,
-            questions: decoded.q,
-            problem_statement: decoded.p,
-            target_customer: decoded.t,
-            response_count: 0,
+            id: parsed.survey.id,
+            questions: parsed.survey.questions,
+            problem_statement: parsed.survey.problemStatement,
+            target_customer: parsed.survey.targetCustomer,
           });
           setLoading(false);
           return;
-        } catch (e) {
-          console.error('Failed to decode survey from URL:', e);
         }
       }
-      
-      // Priority 2: Try Supabase
-      try {
-        const { data: d1 } = await supabase
-          .from('startup_surveys')
-          .select('*')
-          .eq('id', surveyId)
-          .maybeSingle();
-        if (d1) { setSurvey(d1); setLoading(false); return; }
-        
-        const { data: d2 } = await supabase
-          .from('startup_surveys')
-          .select('*')
-          .eq('user_id', surveyId)
-          .maybeSingle();
-        if (d2) { setSurvey(d2); setLoading(false); return; }
-      } catch (e) {
-        console.log('Supabase lookup failed, trying localStorage...');
-      }
-      
-      // Priority 3: localStorage fallback (same device only)
-      try {
-        const localData = localStorage.getItem('vazhikatti_startup_v2');
-        if (localData) {
-          const parsed = JSON.parse(localData);
-          if (parsed.survey && (parsed.survey.id === surveyId || surveyId === 'demo')) {
-            setSurvey({
-              id: parsed.survey.id,
-              questions: parsed.survey.questions,
-              problem_statement: parsed.survey.problemStatement,
-              target_customer: parsed.survey.targetCustomer,
-              response_count: parsed.survey.responseCount || 0,
-            });
-            setLoading(false);
-            return;
-          }
-        }
-      } catch (e) {}
-      
-      setError('Survey not found.');
-    } catch (e) {
-      setError('Could not load survey.');
-    }
+    } catch (e) {}
+    
+    setError('Survey not found.');
     setLoading(false);
   };
 
@@ -102,21 +93,13 @@ const SurveyPublic = () => {
 
     setSubmitting(true);
     try {
-      await supabase.from('startup_survey_responses').insert({
-        survey_id: survey.id,
-        respondent_answers: answers,
-      });
+      // Save response to localStorage
+      const existing = JSON.parse(localStorage.getItem('vazhikatti_survey_responses') || '[]');
+      existing.push({ survey_id: survey.id, answers, submitted_at: new Date().toISOString() });
+      localStorage.setItem('vazhikatti_survey_responses', JSON.stringify(existing));
       setSubmitted(true);
     } catch (e) {
-      // If Supabase fails, save to localStorage as fallback
-      try {
-        const existing = JSON.parse(localStorage.getItem('vazhikatti_survey_responses') || '[]');
-        existing.push({ survey_id: survey.id, answers, submitted_at: new Date().toISOString() });
-        localStorage.setItem('vazhikatti_survey_responses', JSON.stringify(existing));
-        setSubmitted(true);
-      } catch (e2) {
-        setError('Failed to submit. Please try again.');
-      }
+      setError('Failed to submit. Please try again.');
     }
     setSubmitting(false);
   };
