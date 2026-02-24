@@ -427,59 +427,6 @@ export const UniversityEntranceExams = () => {
         </div>
       </section>
 
-      {/* Success Stories Carousel */}
-      <section className="max-w-7xl mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h3 className="text-xl font-bold flex items-center gap-2">
-              <Star className="h-5 w-5 text-primary" />
-              Success Stories
-            </h3>
-            <p className="text-sm text-muted-foreground font-tamil">வெற்றிக் கதைகள்</p>
-          </div>
-        </div>
-
-        <Card className="bg-gradient-to-br from-primary/5 to-secondary/5 border-none">
-          <CardContent className="p-6">
-            <div className="flex flex-col md:flex-row items-center gap-6">
-              <img 
-                src={successStories[currentStory].image}
-                alt={successStories[currentStory].name}
-                className="w-20 h-20 rounded-full border-4 border-primary/20"
-              />
-              <div className="flex-1 text-center md:text-left">
-                <Quote className="h-8 w-8 text-primary/30 mb-2 mx-auto md:mx-0" />
-                <p className="text-muted-foreground mb-2 italic">
-                  "{successStories[currentStory].quote}"
-                </p>
-                <p className="text-xs text-muted-foreground font-tamil mb-3">
-                  "{successStories[currentStory].quoteTamil}"
-                </p>
-                <div>
-                  <p className="font-semibold">{successStories[currentStory].name}</p>
-                  <p className="text-sm text-muted-foreground">
-                    {successStories[currentStory].course} • {successStories[currentStory].college}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Carousel dots */}
-            <div className="flex justify-center gap-2 mt-6">
-              {successStories.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentStory(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === currentStory ? 'bg-primary w-6' : 'bg-muted-foreground/30'
-                  }`}
-                />
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </section>
-
       {/* Quick Links */}
       <section className="max-w-7xl mx-auto px-4 py-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
