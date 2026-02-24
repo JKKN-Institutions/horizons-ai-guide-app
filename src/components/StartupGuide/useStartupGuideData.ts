@@ -237,6 +237,15 @@ export const useStartupGuideData = () => {
     // In localStorage mode, count stays manual. Users can increment for testing.
   }, []);
 
+  const resetAll = useCallback(async () => {
+    // Clear all startup data from localStorage
+    localStorage.removeItem(KEY);
+    localStorage.removeItem('vazhikatti_survey_responses');
+    // Reset state to defaults
+    setData({ ...emptyData });
+    save({ ...emptyData });
+  }, []);
+
   const loadAllData = useCallback(async () => {
     setData(load());
   }, []);
@@ -275,6 +284,7 @@ export const useStartupGuideData = () => {
     saveRoadmap,
     saveChatMessage,
     refreshSurveyCount,
+    resetAll,
     loadAllData,
   };
 };

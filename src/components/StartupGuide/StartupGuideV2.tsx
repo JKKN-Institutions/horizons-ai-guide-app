@@ -285,6 +285,7 @@ export const StartupGuide = () => {
             onDetectProblem={handleDetectProblem}
             onGenerateSurvey={handleGenerateSurvey}
             onRefreshCount={data.refreshSurveyCount}
+            onReset={data.resetAll}
           />
         </TabsContent>
 
@@ -306,6 +307,7 @@ export const StartupGuide = () => {
             surveyResponseCount={surveyResponseCount}
             onboardingComplete={data.onboardingComplete}
             allReflectionsDone={data.allReflectionsDone}
+            onReset={data.resetAll}
           />
         </TabsContent>
       </Tabs>

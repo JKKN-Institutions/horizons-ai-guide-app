@@ -17,9 +17,10 @@ interface ProblemSurveyTabProps {
   onDetectProblem: () => Promise<void>;
   onGenerateSurvey: () => Promise<void>;
   onRefreshCount: () => void;
+  onReset: () => void;
 }
 
-export const ProblemSurveyTab = ({ unlocked, problem, survey, reflections, field, subDomain, location, onDetectProblem, onGenerateSurvey, onRefreshCount }: ProblemSurveyTabProps) => {
+export const ProblemSurveyTab = ({ unlocked, problem, survey, reflections, field, subDomain, location, onDetectProblem, onGenerateSurvey, onRefreshCount, onReset }: ProblemSurveyTabProps) => {
   const [detecting, setDetecting] = useState(false);
   const [generating, setGenerating] = useState(false);
 
@@ -162,7 +163,12 @@ export const ProblemSurveyTab = ({ unlocked, problem, survey, reflections, field
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-3">
                     <h4 className="text-sm font-bold text-foreground">📊 Your Survey is Live!</h4>
-                    <Button onClick={onRefreshCount} variant="ghost" size="sm" className="text-xs">
+                    <Button onClick={() => {
+                      if (window.confirm('⚠️ This will reset your Startup Guide and start fresh. All your data (profile, tasks, reflections, survey) will be cleared.\n\nAre you sure?')) {
+                        onReset();
+                        toast.success('✅ Startup Guide reset! Starting fresh...');
+                      }
+                    }} variant="ghost" size="sm" className="text-xs">
                       🔄 Refresh
                     </Button>
                   </div>

@@ -13,6 +13,7 @@ interface ProfileTabProps {
   surveyResponseCount: number;
   onboardingComplete: boolean;
   allReflectionsDone: boolean;
+  onReset: () => void;
 }
 
 const allBadges = [
@@ -155,6 +156,15 @@ export const ProfileTab = (props: ProfileTabProps) => {
           </div>
         </CardContent>
       </Card>
+
+      {/* Start Fresh */}
+      <Button onClick={() => {
+        if (window.confirm('⚠️ This will reset your entire Startup Guide and start from the beginning.\n\nAll your data (profile, tasks, reflections, problem, survey) will be cleared.\n\nAre you sure?')) {
+          props.onReset();
+        }
+      }} variant="outline" className="w-full text-amber-600 border-amber-200 hover:bg-amber-50">
+        🔄 Start Fresh (Reset All Data)
+      </Button>
 
       {/* Sign Out */}
       <Button onClick={handleSignOut} variant="outline" className="w-full text-red-600 border-red-200 hover:bg-red-50">
