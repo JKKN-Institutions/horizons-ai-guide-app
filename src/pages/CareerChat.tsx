@@ -361,10 +361,13 @@ const CareerChat = () => {
       
       // If no session, auto-create anonymous session
       if (!session?.access_token) {
+        console.log('[Chat] No session, trying anonymous sign-in...');
         const { data: anonData, error: anonError } = await supabase.auth.signInAnonymously();
         if (!anonError && anonData.session) {
           session = anonData.session;
+          console.log('[Chat] Anonymous sign-in success');
         } else {
+          console.log('[Chat] Anonymous sign-in failed:', anonError?.message, '- trying guest signup...');
           // Fallback: create guest account
           const guestEmail = `guest_${Date.now()}@vazhikaatti.app`;
           const guestPass = `G_${Date.now()}_${Math.random().toString(36).slice(2)}`;
@@ -372,19 +375,32 @@ const CareerChat = () => {
             email: guestEmail,
             password: guestPass,
           });
-          if (guestError || !guestData.session) {
-            throw new Error('Unable to connect to AI Chat. Please try again later.');
+          if (!guestError && guestData.session) {
+            session = guestData.session;
+            console.log('[Chat] Guest signup success');
+          } else {
+            console.error('[Chat] Guest signup failed:', guestError?.message);
+            // Last resort: try with just the anon key
+            console.log('[Chat] Attempting with anon key only...');
           }
-          session = guestData.session;
         }
+      }
+      
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+      };
+      
+      if (session?.access_token) {
+        headers['Authorization'] = `Bearer ${session.access_token}`;
+      } else {
+        // Use anon key as bearer token as last resort
+        headers['Authorization'] = `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`;
+        headers['apikey'] = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
       }
       
       const response = await fetch(CHAT_URL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${session!.access_token}`
-        },
+        headers,
         body: JSON.stringify({
           messages: userMessages.map((m) => ({ role: m.role, content: m.content }))
         })
