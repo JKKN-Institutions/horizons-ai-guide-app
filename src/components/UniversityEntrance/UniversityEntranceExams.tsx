@@ -175,81 +175,81 @@ export const UniversityEntranceExams = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-12 px-4 overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-secondary/10 rounded-full blur-2xl" />
+      <section className="relative bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-600 py-10 md:py-14 px-4 overflow-hidden">
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <Badge variant="secondary" className="mb-4">
-            <Sparkles className="h-3 w-3 mr-1" />
-            {universities.length}+ Universities • {totalCourses}+ Courses
-          </Badge>
-          
-          <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary via-primary/80 to-secondary bg-clip-text text-transparent">
-            Your Complete Guide to TN Government College Admissions
-          </h2>
-          <p className="text-lg text-muted-foreground font-tamil mb-2">
-            தமிழ்நாடு அரசு கல்லூரி சேர்க்கைக்கான முழுமையான வழிகாட்டி
-          </p>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Find your dream government college, check eligibility, view cutoffs, and track admission deadlines — all in one place.
-          </p>
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-4">
+                <Sparkles className="h-3.5 w-3.5 text-amber-300" />
+                <span className="text-white/90 text-sm font-medium">{universities.length}+ Universities • {totalCourses}+ Courses</span>
+              </div>
+              
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight">
+                Your Complete Guide to<br className="hidden md:block" /> TN Government College Admissions
+              </h2>
+              <p className="text-emerald-100/80 text-sm md:text-base max-w-xl leading-relaxed">
+                Find your dream government college, check eligibility, view cutoffs, and track admission deadlines — all in one place.
+              </p>
+            </div>
+
+            {/* Stats cards on hero */}
+            <div className="grid grid-cols-2 gap-3 md:w-64 shrink-0">
+              <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-3 text-center">
+                <p className="text-2xl font-bold text-white">{universities.length}+</p>
+                <p className="text-[11px] text-emerald-200 uppercase tracking-wider">Universities</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-3 text-center">
+                <p className="text-2xl font-bold text-white">{totalCourses}+</p>
+                <p className="text-[11px] text-emerald-200 uppercase tracking-wider">Courses</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-3 text-center">
+                <p className="text-2xl font-bold text-white">500+</p>
+                <p className="text-[11px] text-emerald-200 uppercase tracking-wider">Colleges</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-3 text-center">
+                <p className="text-2xl font-bold text-amber-300">Free</p>
+                <p className="text-[11px] text-emerald-200 uppercase tracking-wider">100% Free</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Quick Action Cards */}
-      <section className="max-w-7xl mx-auto px-4 -mt-6 relative z-20">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+      <section className="max-w-6xl mx-auto px-4 -mt-7 relative z-20">
+        <div className="grid grid-cols-2 gap-4">
           {/* Explore Colleges */}
-          <Card 
-            className="group cursor-pointer hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50 bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/20"
+          <button
             onClick={() => navigate('/tn-university-entrance/browse')}
+            className="group bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-xl hover:border-emerald-200 transition-all duration-300 p-5 flex items-center gap-4 text-left"
           >
-            <CardContent className="p-4 md:p-6 text-center">
-              <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-3 rounded-2xl bg-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Building2 className="h-7 w-7 md:h-8 md:w-8 text-blue-600 dark:text-blue-400" />
-              </div>
-              <h3 className="font-semibold text-sm md:text-base mb-1">Explore Colleges</h3>
-              <p className="text-xs text-muted-foreground font-tamil">கல்லூரிகளை ஆராய</p>
-            </CardContent>
-          </Card>
+            <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+              <Building2 className="h-6 w-6 text-emerald-600" />
+            </div>
+            <div>
+              <h3 className="font-bold text-sm md:text-base text-gray-800">Explore Colleges</h3>
+              <p className="text-xs text-gray-500">Browse all TN universities & courses</p>
+            </div>
+            <ChevronRight className="h-5 w-5 text-gray-300 ml-auto group-hover:text-emerald-500 transition-colors shrink-0" />
+          </button>
 
           {/* Admission Calendar */}
-          <Card 
-            className="group cursor-pointer hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50 bg-gradient-to-br from-orange-50 to-orange-100/50 dark:from-orange-950/30 dark:to-orange-900/20"
+          <button
             onClick={() => navigate('/tn-university-entrance/exam-calendar')}
+            className="group bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-xl hover:border-amber-200 transition-all duration-300 p-5 flex items-center gap-4 text-left"
           >
-            <CardContent className="p-4 md:p-6 text-center">
-              <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-3 rounded-2xl bg-orange-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Calendar className="h-7 w-7 md:h-8 md:w-8 text-orange-600 dark:text-orange-400" />
-              </div>
-              <h3 className="font-semibold text-sm md:text-base mb-1">Admission Calendar</h3>
-              <p className="text-xs text-muted-foreground font-tamil">சேர்க்கை நாட்காட்டி</p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-muted/30 rounded-2xl p-4 md:p-6">
-          <div className="text-center">
-            <p className="text-2xl md:text-3xl font-bold text-foreground">{universities.length}+</p>
-            <p className="text-sm text-muted-foreground">Universities</p>
-          </div>
-          <div className="text-center">
-            <p className="text-2xl md:text-3xl font-bold text-foreground">{totalCourses}+</p>
-            <p className="text-sm text-muted-foreground">Courses</p>
-          </div>
-          <div className="text-center">
-            <p className="text-2xl md:text-3xl font-bold text-foreground">500+</p>
-            <p className="text-sm text-muted-foreground">Colleges</p>
-          </div>
-          <div className="text-center">
-            <p className="text-2xl md:text-3xl font-bold text-foreground">Free</p>
-            <p className="text-sm text-muted-foreground">100% Free</p>
-          </div>
+            <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+              <Calendar className="h-6 w-6 text-amber-600" />
+            </div>
+            <div>
+              <h3 className="font-bold text-sm md:text-base text-gray-800">Admission Calendar</h3>
+              <p className="text-xs text-gray-500">Important dates & deadlines</p>
+            </div>
+            <ChevronRight className="h-5 w-5 text-gray-300 ml-auto group-hover:text-amber-500 transition-colors shrink-0" />
+          </button>
         </div>
       </section>
 
