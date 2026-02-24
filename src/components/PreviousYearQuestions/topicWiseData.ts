@@ -1097,7 +1097,7 @@ const neetTopics: SubjectTopics = {
     {
       section: 'Unit 1–10: Class 11 Physics',
       topics: [
-        { name: 'Physics and Measurement', total: 3, avg: 1.5, weightage: 6.67, trend: 11.17 },
+        { name: 'Physics and Measurement', total: 15, avg: 1.5, weightage: 6.67, trend: 11.17 },
         { name: 'Kinematics', total: 4, avg: 2, weightage: 8.89, trend: 22.5 },
         { name: 'Laws of Motion', total: 3, avg: 1.5, weightage: 6.67, trend: -26 },
         { name: 'Work, Energy and Power', total: 2, avg: 1, weightage: 4.44, trend: 48 },
