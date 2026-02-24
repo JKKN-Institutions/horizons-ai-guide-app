@@ -356,18 +356,34 @@ const CareerChat = () => {
     setIsLoading(true);
 
     try {
-      // Get the current session for authentication
-      const { data: { session } } = await supabase.auth.getSession();
+      // Get current session
+      let { data: { session } } = await supabase.auth.getSession();
       
+      // If no session, auto-create anonymous session
       if (!session?.access_token) {
-        throw new Error('Please sign in to use the chat');
+        const { data: anonData, error: anonError } = await supabase.auth.signInAnonymously();
+        if (!anonError && anonData.session) {
+          session = anonData.session;
+        } else {
+          // Fallback: create guest account
+          const guestEmail = `guest_${Date.now()}@vazhikaatti.app`;
+          const guestPass = `G_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+          const { data: guestData, error: guestError } = await supabase.auth.signUp({
+            email: guestEmail,
+            password: guestPass,
+          });
+          if (guestError || !guestData.session) {
+            throw new Error('Unable to connect to AI Chat. Please try again later.');
+          }
+          session = guestData.session;
+        }
       }
       
       const response = await fetch(CHAT_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${session.access_token}`
+          Authorization: `Bearer ${session!.access_token}`
         },
         body: JSON.stringify({
           messages: userMessages.map((m) => ({ role: m.role, content: m.content }))
@@ -376,9 +392,7 @@ const CareerChat = () => {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        if (response.status === 401) {
-          throw new Error('Please sign in to use the chat');
-        } else if (response.status === 429) {
+        if (response.status === 429) {
           throw new Error(errorData.error || 'Rate limit exceeded. Please try again later.');
         }
         throw new Error(errorData.error || 'Chat failed');
