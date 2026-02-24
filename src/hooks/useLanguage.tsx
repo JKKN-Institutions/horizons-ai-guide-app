@@ -87,7 +87,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Footer
     'footer.title': 'Discover, Design, Do - வழிகாட்டி',
     'footer.tagline': 'AI-Powered Career Guidance Platform',
-    'footer.copyright': '© 2025 வழிகாட்டி. All Rights Reserved.',
+    'footer.copyright': '© 2026 வழிகாட்டி. All Rights Reserved.',
     'footer.about': 'About Us',
     'footer.events': 'Events',
     'footer.contact': 'Contact',
@@ -593,7 +593,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Footer
     'footer.title': 'கண்டறி, வடிவமை, செய் - வழிகாட்டி',
     'footer.tagline': 'AI-இயங்கும் தொழில் வழிகாட்டுதல் தளம்',
-    'footer.copyright': '© 2025 வழிகாட்டி. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.',
+    'footer.copyright': '© 2026 வழிகாட்டி. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.',
     'footer.about': 'எங்களை பற்றி',
     'footer.events': 'நிகழ்வுகள்',
     'footer.contact': 'தொடர்பு',

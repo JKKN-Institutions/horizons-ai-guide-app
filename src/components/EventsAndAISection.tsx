@@ -3,18 +3,18 @@ import { Calendar, MapPin, Sparkles } from "lucide-react";
 
 const events = [
   {
-    title: "JKKN Mega Job Fair 2025",
-    date: "15 Feb 2025",
+    title: "JKKN Mega Job Fair 2026",
+    date: "15 Feb 2026",
     location: "JKKN Campus, Komarapalayam",
   },
   {
     title: "Career Guidance Workshop for 12th Learners",
-    date: "20 Feb 2025",
+    date: "20 Feb 2026",
     location: "Rangammal Girls Higher Secondary School",
   },
   {
     title: "Healthcare Career Summit",
-    date: "5 Mar 2025",
+    date: "5 Mar 2026",
     location: "JKKN College of Nursing",
   },
 ];

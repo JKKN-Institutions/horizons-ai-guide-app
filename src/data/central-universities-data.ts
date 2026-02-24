@@ -91,7 +91,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/nit-trichy-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'JEE Main 2026 Application', eventTamil: 'JEE மெயின் 2026 விண்ணப்பம்', date: 'November 2025', status: 'upcoming' },
+      { event: 'JEE Main 2026 Application', eventTamil: 'JEE மெயின் 2026 விண்ணப்பம்', date: 'November 2026', status: 'upcoming' },
       { event: 'JEE Main 2026 Exam', eventTamil: 'JEE மெயின் 2026 தேர்வு', date: 'January/April 2026', status: 'upcoming' },
       { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' },
       { event: 'GATE 2026 Exam', eventTamil: 'GATE 2026 தேர்வு', date: 'February 2026', status: 'upcoming' }
@@ -192,8 +192,8 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-trichy-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
-      { event: 'CAT 2025 Results', eventTamil: 'CAT 2025 முடிவுகள்', date: 'January 2026', status: 'upcoming' },
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
+      { event: 'CAT 2026 Results', eventTamil: 'CAT 2026 முடிவுகள்', date: 'January 2026', status: 'upcoming' },
       { event: 'PGPM/PGPM-HR Interviews', eventTamil: 'PGPM/PGPM-HR நேர்காணல்கள்', date: 'February-March 2026', status: 'upcoming' },
       { event: 'Academic Session Begins', eventTamil: 'கல்வி அமர்வு தொடக்கம்', date: 'June 2026', status: 'upcoming' }
     ],
@@ -501,7 +501,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iiitdm-kancheepuram-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'JEE Main 2026 Application', eventTamil: 'JEE மெயின் 2026 விண்ணப்பம்', date: 'November 2025', status: 'upcoming' },
+      { event: 'JEE Main 2026 Application', eventTamil: 'JEE மெயின் 2026 விண்ணப்பம்', date: 'November 2026', status: 'upcoming' },
       { event: 'JEE Main 2026 Exam', eventTamil: 'JEE மெயின் 2026 தேர்வு', date: 'January/April 2026', status: 'upcoming' },
       { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
     ],
@@ -544,7 +544,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iiit-trichy-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'JEE Main 2026 Application', eventTamil: 'JEE மெயின் 2026 விண்ணப்பம்', date: 'November 2025', status: 'upcoming' },
+      { event: 'JEE Main 2026 Application', eventTamil: 'JEE மெயின் 2026 விண்ணப்பம்', date: 'November 2026', status: 'upcoming' },
       { event: 'JEE Main 2026 Exam', eventTamil: 'JEE மெயின் 2026 தேர்வு', date: 'January/April 2026', status: 'upcoming' },
       { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
     ],
@@ -578,7 +578,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/niftem-thanjavur-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'JEE Main 2026 Application', eventTamil: 'JEE மெயின் 2026 விண்ணப்பம்', date: 'November 2025', status: 'upcoming' },
+      { event: 'JEE Main 2026 Application', eventTamil: 'JEE மெயின் 2026 விண்ணப்பம்', date: 'November 2026', status: 'upcoming' },
       { event: 'JoSAA/CSAB Counselling', eventTamil: 'JoSAA/CSAB கலந்தாய்வு', date: 'June 2026', status: 'upcoming' },
       { event: 'M.Tech GATE Admission', eventTamil: 'M.Tech GATE சேர்க்கை', date: 'April-May 2026', status: 'upcoming' },
       { event: 'Spot Round (if seats available)', eventTamil: 'ஸ்பாட் சுற்று (இடங்கள் இருந்தால்)', date: 'July 2026', status: 'upcoming' }
@@ -3429,8 +3429,8 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-ahmedabad-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Registration', eventTamil: 'CAT 2025 பதிவு', date: 'August 2025', status: 'upcoming' },
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'CAT 2026 Registration', eventTamil: 'CAT 2026 பதிவு', date: 'August 2026', status: 'upcoming' },
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
       { event: 'IIM Interviews', eventTamil: 'IIM நேர்முகத்தேர்வு', date: 'February-March 2026', status: 'upcoming' }
     ],
     fee: { general: 2500000, obc: 2500000, scst: 1250000 },
@@ -3456,7 +3456,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-bangalore-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
       { event: 'IIMB Selection Process', eventTamil: 'IIMB தேர்வு செயல்முறை', date: 'February-March 2026', status: 'upcoming' }
     ],
     fee: { general: 2500000, obc: 2500000, scst: 1250000 },
@@ -3482,7 +3482,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-calcutta-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
       { event: 'IIMC Selection Process', eventTamil: 'IIMC தேர்வு செயல்முறை', date: 'February-March 2026', status: 'upcoming' }
     ],
     fee: { general: 2500000, obc: 2500000, scst: 1250000 },
@@ -3508,7 +3508,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-lucknow-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
       { event: 'IIML Selection Process', eventTamil: 'IIML தேர்வு செயல்முறை', date: 'February-March 2026', status: 'upcoming' }
     ],
     fee: { general: 2200000, obc: 2200000, scst: 1100000 },
@@ -3534,7 +3534,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-kozhikode-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
       { event: 'IIMK Selection Process', eventTamil: 'IIMK தேர்வு செயல்முறை', date: 'February-March 2026', status: 'upcoming' }
     ],
     fee: { general: 2200000, obc: 2200000, scst: 1100000 },
@@ -3561,7 +3561,7 @@ export const centralUniversities: University[] = [
     type: 'Central Government',
     importantDates: [
       { event: 'IPMAT 2026 Registration', eventTamil: 'IPMAT 2026 பதிவு', date: 'March 2026', status: 'upcoming' },
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
     ],
     fee: { general: 2100000, obc: 2100000, scst: 1050000 },
     courses: [
@@ -3586,7 +3586,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-shillong-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
     ],
     fee: { general: 1800000, obc: 1800000, scst: 900000 },
     courses: [
@@ -3610,7 +3610,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-ranchi-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
     ],
     fee: { general: 1800000, obc: 1800000, scst: 900000 },
     courses: [
@@ -3634,7 +3634,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-raipur-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
     ],
     fee: { general: 1600000, obc: 1600000, scst: 800000 },
     courses: [
@@ -3658,7 +3658,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-rohtak-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
       { event: 'IPMAT 2026', eventTamil: 'IPMAT 2026', date: 'May 2026', status: 'upcoming' }
     ],
     fee: { general: 1700000, obc: 1700000, scst: 850000 },
@@ -3684,7 +3684,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-kashipur-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
     ],
     fee: { general: 1700000, obc: 1700000, scst: 850000 },
     courses: [
@@ -3708,7 +3708,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-udaipur-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
     ],
     fee: { general: 1900000, obc: 1900000, scst: 950000 },
     courses: [
@@ -3732,7 +3732,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-nagpur-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
     ],
     fee: { general: 1600000, obc: 1600000, scst: 800000 },
     courses: [
@@ -3755,7 +3755,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-visakhapatnam-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
     ],
     fee: { general: 1600000, obc: 1600000, scst: 800000 },
     courses: [
@@ -3778,7 +3778,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-bodhgaya-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
     ],
     fee: { general: 1500000, obc: 1500000, scst: 750000 },
     courses: [
@@ -3801,7 +3801,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-amritsar-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
     ],
     fee: { general: 1500000, obc: 1500000, scst: 750000 },
     courses: [
@@ -3825,7 +3825,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-sambalpur-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
     ],
     fee: { general: 1500000, obc: 1500000, scst: 750000 },
     courses: [
@@ -3848,7 +3848,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-sirmaur-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
     ],
     fee: { general: 1400000, obc: 1400000, scst: 700000 },
     courses: [
@@ -3871,7 +3871,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-jammu-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' },
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
       { event: 'IPMAT 2026', eventTamil: 'IPMAT 2026', date: 'May 2026', status: 'upcoming' }
     ],
     fee: { general: 1500000, obc: 1500000, scst: 750000 },
@@ -3896,7 +3896,7 @@ export const centralUniversities: University[] = [
     logo: '/universities/iim-mumbai-logo.png',
     type: 'Central Government',
     importantDates: [
-      { event: 'CAT 2025 Exam', eventTamil: 'CAT 2025 தேர்வு', date: 'November 2025', status: 'upcoming' }
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
     ],
     fee: { general: 1800000, obc: 1800000, scst: 900000 },
     courses: [

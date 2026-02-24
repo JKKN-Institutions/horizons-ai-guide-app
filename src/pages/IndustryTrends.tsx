@@ -295,7 +295,7 @@
            </div>
            
            <AttractiveTable 
-             headers={['Factor', 'Current (2025)', 'When You Graduate (2029-30)']}
+             headers={['Factor', 'Current (2026)', 'When You Graduate (2029-30)']}
              headerColor="from-blue-500 to-indigo-500"
            >
              {jobMarketOutlook.map((row, idx) => (

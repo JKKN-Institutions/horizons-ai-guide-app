@@ -42,7 +42,7 @@ const videoTutorials: Record<CounsellingType, VideoTutorial[]> = {
   tnea: [
     {
       id: '1',
-      title: 'TNEA 2025 Complete Counselling Guide',
+      title: 'TNEA 2026 Complete Counselling Guide',
       duration: '15:30',
       thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
       youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
@@ -84,7 +84,7 @@ const videoTutorials: Record<CounsellingType, VideoTutorial[]> = {
   neet: [
     {
       id: '1',
-      title: 'NEET UG 2025 Counselling Process Explained',
+      title: 'NEET UG 2026 Counselling Process Explained',
       duration: '18:00',
       thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
       youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
@@ -126,7 +126,7 @@ const videoTutorials: Record<CounsellingType, VideoTutorial[]> = {
   josaa: [
     {
       id: '1',
-      title: 'JoSAA 2025 Complete Counselling Process',
+      title: 'JoSAA 2026 Complete Counselling Process',
       duration: '20:00',
       thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
       youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',

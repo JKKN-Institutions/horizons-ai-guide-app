@@ -68,7 +68,7 @@ const getRandomGradient = (category: string) => {
 };
 
 const sampleArticles: Article[] = [
-  { id: '1', title: 'Top 10 Interview Tips for Freshers in 2025', content: null, excerpt: 'Master these essential tips to crack your first job interview with confidence', author: 'Career Expert', category: 'Interview', thumbnail_url: null, read_time_minutes: 5, views_count: 12500, published_at: new Date().toISOString() },
+  { id: '1', title: 'Top 10 Interview Tips for Freshers in 2026', content: null, excerpt: 'Master these essential tips to crack your first job interview with confidence', author: 'Career Expert', category: 'Interview', thumbnail_url: null, read_time_minutes: 5, views_count: 12500, published_at: new Date().toISOString() },
   { id: '2', title: 'How to Build a Strong Resume with No Experience', content: null, excerpt: 'Create an impressive resume even as a fresher using these proven strategies', author: 'HR Professional', category: 'Resume', thumbnail_url: null, read_time_minutes: 7, views_count: 8900, published_at: new Date().toISOString() },
   { id: '3', title: 'DSA Preparation Strategy for Tech Interviews', content: null, excerpt: 'Step-by-step guide to master Data Structures & Algorithms in 3 months', author: 'Tech Lead', category: 'Tech', thumbnail_url: null, read_time_minutes: 10, views_count: 15000, published_at: new Date().toISOString() },
   { id: '4', title: '5 Soft Skills Every Fresher Must Develop', content: null, excerpt: 'Beyond technical skills - what employers really look for in candidates', author: 'Industry Mentor', category: 'Soft Skills', thumbnail_url: null, read_time_minutes: 6, views_count: 7200, published_at: new Date().toISOString() },

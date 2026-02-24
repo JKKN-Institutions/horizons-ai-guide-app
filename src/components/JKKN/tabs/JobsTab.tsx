@@ -79,7 +79,7 @@ const sampleJobs: Job[] = [
     stipend_max: null,
     skills_required: ['Java', 'Python', 'SQL', 'Problem Solving'],
     eligibility: 'B.E/B.Tech with 60% and above',
-    application_deadline: '2025-01-15',
+    application_deadline: '2026-01-15',
     apply_link: '#',
     is_featured: true,
     created_at: new Date().toISOString(),

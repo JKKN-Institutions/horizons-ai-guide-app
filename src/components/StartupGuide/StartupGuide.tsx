@@ -44,7 +44,7 @@ export const StartupGuide = () => {
         <div className="relative z-10 space-y-5">
           <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase">
             <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-            Complete Startup App Blueprint · India 2025
+            Complete Startup App Blueprint · India 2026
           </div>
 
           <div className="space-y-1">

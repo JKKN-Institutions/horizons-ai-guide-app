@@ -54,7 +54,7 @@ const parseExamDate = (dateStr: string): Date | null => {
 };
 
 export const ExamCalendar = ({ isOpen, onClose }: ExamCalendarProps) => {
-  const [currentMonth, setCurrentMonth] = useState(new Date(2025, 0, 1)); // January 2025
+  const [currentMonth, setCurrentMonth] = useState(new Date(2026, 0, 1)); // January 2026
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 
   const allExamDates = useMemo(() => {
@@ -132,7 +132,7 @@ export const ExamCalendar = ({ isOpen, onClose }: ExamCalendarProps) => {
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-[#1B5E20]">
             <CalendarIcon className="h-5 w-5" />
-            Entrance Exams Calendar 2025
+            Entrance Exams Calendar 2026
           </DialogTitle>
         </DialogHeader>
 

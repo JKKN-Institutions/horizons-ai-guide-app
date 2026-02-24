@@ -96,7 +96,7 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
               )}
             </Button>
             <Badge variant="outline" className="text-xs bg-[#FFF8E1] text-[#B8860B] border-[#F59E0B]">
-              2025
+              2026
             </Badge>
           </div>
         </div>
@@ -144,10 +144,10 @@ export const ExamCard = ({ exam, isBookmarked = false, onToggleBookmark }: ExamC
           <p className="text-xs text-[#374151]">{exam.tnEligibility}</p>
         </div>
 
-        {/* Important Dates 2025 */}
+        {/* Important Dates 2026 */}
         <div className="bg-[#E8F5E9] rounded-lg p-3">
           <p className="text-xs font-semibold text-[#1B5E20] mb-2 flex items-center gap-1">
-            <Calendar className="h-3 w-3" /> Important Dates 2025
+            <Calendar className="h-3 w-3" /> Important Dates 2026
           </p>
           <div className="grid grid-cols-1 gap-1 text-xs">
             <div className="flex justify-between">

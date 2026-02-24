@@ -26,12 +26,12 @@ const typeConfig: Record<string, { gradient: string; color: string; bgColor: str
 };
 
 const sampleScholarships: Scholarship[] = [
-  { id: '1', title: 'Merit Scholarship for Engineering Students', provider: 'AICTE', description: 'Financial assistance for meritorious engineering students with 75% and above', amount: '₹50,000/year', type: 'Merit', eligibility: 'B.E/B.Tech students with 75%+ marks', deadline: '2025-02-15', apply_link: '#' },
-  { id: '2', title: 'Central Sector Scholarship', provider: 'Ministry of Education', description: 'Scholarship for students belonging to economically weaker sections', amount: '₹20,000/year', type: 'Need-based', eligibility: 'Family income below 8 LPA, 80%+ in 12th', deadline: '2025-01-31', apply_link: '#' },
-  { id: '3', title: 'Google India Scholarship', provider: 'Google', description: 'For students pursuing computer science and related fields', amount: '₹75,000', type: 'Tech', eligibility: 'CS/IT students with strong academic record', deadline: '2025-03-01', apply_link: '#' },
-  { id: '4', title: 'Tata Scholarship for B.Tech Students', provider: 'Tata Trusts', description: 'Support for first-generation college students in engineering', amount: '₹60,000/year', type: 'Need-based', eligibility: 'First-generation engineering students', deadline: '2025-02-28', apply_link: '#' },
-  { id: '5', title: 'AWS AI/ML Scholarship', provider: 'Amazon Web Services', description: 'For students interested in artificial intelligence and machine learning', amount: '₹1,00,000', type: 'Tech', eligibility: 'Students pursuing AI/ML related courses', deadline: '2025-01-20', apply_link: '#' },
-  { id: '6', title: 'Post Matric Scholarship for SC/ST', provider: 'State Government', description: 'Educational support for SC/ST students', amount: 'Full tuition fees', type: 'Government', eligibility: 'SC/ST students in recognized institutions', deadline: '2025-03-15', apply_link: '#' },
+  { id: '1', title: 'Merit Scholarship for Engineering Students', provider: 'AICTE', description: 'Financial assistance for meritorious engineering students with 75% and above', amount: '₹50,000/year', type: 'Merit', eligibility: 'B.E/B.Tech students with 75%+ marks', deadline: '2026-02-15', apply_link: '#' },
+  { id: '2', title: 'Central Sector Scholarship', provider: 'Ministry of Education', description: 'Scholarship for students belonging to economically weaker sections', amount: '₹20,000/year', type: 'Need-based', eligibility: 'Family income below 8 LPA, 80%+ in 12th', deadline: '2026-01-31', apply_link: '#' },
+  { id: '3', title: 'Google India Scholarship', provider: 'Google', description: 'For students pursuing computer science and related fields', amount: '₹75,000', type: 'Tech', eligibility: 'CS/IT students with strong academic record', deadline: '2026-03-01', apply_link: '#' },
+  { id: '4', title: 'Tata Scholarship for B.Tech Students', provider: 'Tata Trusts', description: 'Support for first-generation college students in engineering', amount: '₹60,000/year', type: 'Need-based', eligibility: 'First-generation engineering students', deadline: '2026-02-28', apply_link: '#' },
+  { id: '5', title: 'AWS AI/ML Scholarship', provider: 'Amazon Web Services', description: 'For students interested in artificial intelligence and machine learning', amount: '₹1,00,000', type: 'Tech', eligibility: 'Students pursuing AI/ML related courses', deadline: '2026-01-20', apply_link: '#' },
+  { id: '6', title: 'Post Matric Scholarship for SC/ST', provider: 'State Government', description: 'Educational support for SC/ST students', amount: 'Full tuition fees', type: 'Government', eligibility: 'SC/ST students in recognized institutions', deadline: '2026-03-15', apply_link: '#' },
 ];
 
 const typeFilters = [

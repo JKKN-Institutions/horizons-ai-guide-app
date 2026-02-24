@@ -580,7 +580,7 @@ export const generateStudyPlannerPDF = (exam: EntranceExam) => {
   doc.setTextColor(27, 94, 32);
   doc.setFontSize(16);
   doc.setFont('helvetica', 'bold');
-  doc.text('IMPORTANT DATES 2025', 15, yPos);
+  doc.text('IMPORTANT DATES 2026', 15, yPos);
   yPos += 10;
 
   doc.setFillColor(232, 245, 233);
@@ -759,5 +759,5 @@ export const generateStudyPlannerPDF = (exam: EntranceExam) => {
   }
 
   // Save the PDF
-  doc.save(`${exam.id}-study-planner-2025.pdf`);
+  doc.save(`${exam.id}-study-planner-2026.pdf`);
 };

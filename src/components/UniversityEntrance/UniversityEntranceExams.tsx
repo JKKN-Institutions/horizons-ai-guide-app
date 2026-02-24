@@ -56,9 +56,9 @@ const successStories = [
 const recentUpdates = [
   {
     id: 1,
-    title: "TNEA 2025 Counselling Schedule Released",
-    titleTamil: "TNEA 2025 கலந்தாய்வு அட்டவணை வெளியானது",
-    date: "2025-01-18",
+    title: "TNEA 2026 Counselling Schedule Released",
+    titleTamil: "TNEA 2026 கலந்தாய்வு அட்டவணை வெளியானது",
+    date: "2026-01-18",
     type: "important",
     link: "/tn-university-entrance/exam-calendar"
   },
@@ -66,7 +66,7 @@ const recentUpdates = [
     id: 2,
     title: "Anna University Cutoffs Updated for 2024",
     titleTamil: "அண்ணா பல்கலைக்கழக கட்ஆஃப் 2024 புதுப்பிக்கப்பட்டது",
-    date: "2025-01-15",
+    date: "2026-01-15",
     type: "update",
     link: "/tn-university-entrance/anna-university"
   },
@@ -74,7 +74,7 @@ const recentUpdates = [
     id: 3,
     title: "New Courses Added: AI & Data Science",
     titleTamil: "புதிய படிப்புகள்: AI & தரவு அறிவியல்",
-    date: "2025-01-12",
+    date: "2026-01-12",
     type: "new",
     link: "/tn-university-entrance"
   },
@@ -82,7 +82,7 @@ const recentUpdates = [
     id: 4,
     title: "Scholarship Applications Open for SC/ST Students",
     titleTamil: "SC/ST மாணவர்களுக்கான உதவித்தொகை விண்ணப்பங்கள் திறக்கப்பட்டன",
-    date: "2025-01-10",
+    date: "2026-01-10",
     type: "important",
     link: "/scholarships"
   }
@@ -275,7 +275,7 @@ export const UniversityEntranceExams = () => {
             <CardContent className="p-4">
               <h4 className="font-semibold mb-3 flex items-center gap-2">
                 <BarChart3 className="h-4 w-4 text-primary" />
-                Admission Statistics 2025
+                Admission Statistics 2026
               </h4>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
@@ -477,7 +477,7 @@ export const UniversityEntranceExams = () => {
           </div>
 
           <div className="border-t mt-6 pt-6 text-center text-sm text-muted-foreground">
-            <p>© 2025 TN Admissions Guide. Made with ❤️ for Tamil Nadu students.</p>
+            <p>© 2026 TN Admissions Guide. Made with ❤️ for Tamil Nadu students.</p>
           </div>
         </div>
       </footer>

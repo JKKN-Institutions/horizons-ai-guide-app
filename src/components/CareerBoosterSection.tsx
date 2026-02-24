@@ -411,7 +411,7 @@ const CareerBoosterSection = () => {
                     <Flame className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg text-gray-800">Trending Careers 2025</h3>
+                    <h3 className="font-bold text-lg text-gray-800">Trending Careers 2026</h3>
                     <p className="text-sm text-gray-500">Fastest growing fields</p>
                   </div>
                 </div>
@@ -451,7 +451,7 @@ const CareerBoosterSection = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-gray-800">Market Stats</h3>
-                    <p className="text-sm text-gray-500">India Job Market 2025</p>
+                    <p className="text-sm text-gray-500">India Job Market 2026</p>
                   </div>
                 </div>
                 

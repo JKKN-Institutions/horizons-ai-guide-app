@@ -24,7 +24,7 @@ const testimonials = [
     quote: "The power of AI combined with expert guidance made me realize the importance of choosing the right career path early. VAZHIKAATTI is a game-changer.",
     avatar: "KK",
     gradient: "from-blue-400 to-indigo-500",
-    date: "28/11/2025"
+    date: "28/11/2026"
   },
   {
     name: "M.G. Bharanee Dharan",
@@ -32,7 +32,7 @@ const testimonials = [
     quote: "Thanks to the career discovery sessions, I now have a clear roadmap for my future. The AI assistant helped me understand which courses align with my interests.",
     avatar: "MB",
     gradient: "from-emerald-400 to-green-500",
-    date: "05/12/2025"
+    date: "05/12/2026"
   },
   {
     name: "Mahalakshmi.V",

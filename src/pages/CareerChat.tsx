@@ -193,7 +193,7 @@ function getLocalCareerReply(msg: string): string {
   }
   
   if (lower.includes('skill') || lower.includes('course') || lower.includes('learn')) {
-    return `📚 **In-Demand Skills (2025-26):**\n\n1. Programming (Python, Java)\n2. Data Science & AI\n3. Digital Marketing\n4. Cloud Computing\n5. UI/UX Design\n\n**Free Platforms:**\n• NPTEL, Coursera, Khan Academy, freeCodeCamp\n\n**Tip:** Pick ONE skill, spend 1 hour daily for 3 months!`;
+    return `📚 **In-Demand Skills (2026-26):**\n\n1. Programming (Python, Java)\n2. Data Science & AI\n3. Digital Marketing\n4. Cloud Computing\n5. UI/UX Design\n\n**Free Platforms:**\n• NPTEL, Coursera, Khan Academy, freeCodeCamp\n\n**Tip:** Pick ONE skill, spend 1 hour daily for 3 months!`;
   }
   
   return `Thank you for your question! 🤔\n\nI can help you with:\n\n🎯 **Career guidance** — "What are the options after 12th Science?"\n📚 **Exam preparation** — "How to prepare for NEET/JEE/TNEA?"\n💼 **Job search** — "How to find jobs as a fresher?"\n💰 **Scholarships** — "What scholarships are available?"\n🏛️ **Government exams** — "How to prepare for TNPSC?"\n📖 **Skill development** — "What skills should I learn?"\n\nTry asking one of these questions! 😊`;

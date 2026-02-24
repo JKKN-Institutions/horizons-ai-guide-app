@@ -32,9 +32,9 @@ const statusConfig = {
 
 export const ApplicationTracker = () => {
   const [applications, setApplications] = useState<Application[]>([
-    { id: '1', university: 'MIT', country: '🇺🇸', program: 'MS Computer Science', deadline: '2025-12-15', status: 'submitted' },
-    { id: '2', university: 'Stanford', country: '🇺🇸', program: 'MS Data Science', deadline: '2025-12-01', status: 'in_progress' },
-    { id: '3', university: 'University of Toronto', country: '🇨🇦', program: 'MS Engineering', deadline: '2025-01-15', status: 'not_started' },
+    { id: '1', university: 'MIT', country: '🇺🇸', program: 'MS Computer Science', deadline: '2026-12-15', status: 'submitted' },
+    { id: '2', university: 'Stanford', country: '🇺🇸', program: 'MS Data Science', deadline: '2026-12-01', status: 'in_progress' },
+    { id: '3', university: 'University of Toronto', country: '🇨🇦', program: 'MS Engineering', deadline: '2026-01-15', status: 'not_started' },
   ]);
 
   const [showAddForm, setShowAddForm] = useState(false);

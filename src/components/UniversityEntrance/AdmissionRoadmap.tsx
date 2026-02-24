@@ -304,7 +304,7 @@ export const AdmissionRoadmap = ({ university }: AdmissionRoadmapProps) => {
     if (university.examName === 'JEE Advanced' || university.examName === 'JEE Main') {
       return {
         importantDates: [
-          { event: 'JEE Main Application', date: 'November 2025', status: 'tentative' },
+          { event: 'JEE Main Application', date: 'November 2026', status: 'tentative' },
           { event: 'JEE Main Exam', date: 'January & April 2026', status: 'tentative' },
           { event: 'JEE Advanced Exam', date: 'May-June 2026', status: 'tentative' },
           { event: 'JoSAA Counselling', date: 'June-July 2026', status: 'tentative' },
@@ -402,7 +402,7 @@ export const AdmissionRoadmap = ({ university }: AdmissionRoadmapProps) => {
     if (university.examName === 'NEET-UG' || university.examName === 'NEET-PG') {
       return {
         importantDates: [
-          { event: 'Application Opens', date: 'December 2025', status: 'tentative' },
+          { event: 'Application Opens', date: 'December 2026', status: 'tentative' },
           { event: 'Application Closes', date: 'March 2026', status: 'tentative' },
           { event: 'NEET Exam', date: 'May 2026', status: 'tentative' },
           { event: 'Counselling', date: 'July-August 2026', status: 'tentative' },

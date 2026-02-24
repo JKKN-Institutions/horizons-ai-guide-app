@@ -28,7 +28,7 @@
        titleTamil: "NEET/JEE 2026 க்கு பதிவு செய்யவும்",
        description: "Complete your entrance exam registration before deadline",
        priority: "high",
-       deadline: "Nov 2025",
+       deadline: "Nov 2026",
        link: stream.includes("bio") ? "https://neet.nta.nic.in" : "https://jeemain.nta.nic.in"
      },
      {

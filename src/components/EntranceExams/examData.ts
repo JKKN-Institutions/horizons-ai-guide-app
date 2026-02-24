@@ -79,9 +79,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'Must be Tamil Nadu domicile or have studied in TN for 7+ years',
     importantDates: {
-      registration: 'May 2025',
+      registration: 'May 2026',
       examDate: 'N/A (Merit based)',
-      resultDate: 'July 2025',
+      resultDate: 'July 2026',
     },
     applicationFee: {
       general: '₹500',
@@ -122,8 +122,8 @@ export const entranceExams: EntranceExam[] = [
     tnEligibility: 'TN students can apply for NITs (15% All India + 85% State quota at NIT Trichy)',
     importantDates: {
       registration: 'November 2024',
-      examDate: 'January & April 2025',
-      resultDate: 'February & May 2025',
+      examDate: 'January & April 2026',
+      resultDate: 'February & May 2026',
     },
     applicationFee: {
       general: '₹1,000',
@@ -143,7 +143,7 @@ export const entranceExams: EntranceExam[] = [
     name: 'JEE Advanced',
     tamilName: 'ஜேஇஇ அட்வான்ஸ்ட்',
     fullForm: 'Joint Entrance Examination Advanced',
-    conductingBody: 'IIT Madras (2025)',
+    conductingBody: 'IIT Madras (2026)',
     examMode: 'Computer Based Test (CBT)',
     duration: '3 hours each (Paper 1 & 2)',
     syllabus: [
@@ -159,9 +159,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'TN students eligible for IIT Madras (Chennai) - Premier institute in TN',
     importantDates: {
-      registration: 'April 2025',
-      examDate: 'May 2025',
-      resultDate: 'June 2025',
+      registration: 'April 2026',
+      examDate: 'May 2026',
+      resultDate: 'June 2026',
     },
     applicationFee: {
       general: '₹2,800',
@@ -197,8 +197,8 @@ export const entranceExams: EntranceExam[] = [
     tnEligibility: 'VIT Vellore is located in TN - Home state advantage for TN students',
     importantDates: {
       registration: 'November 2024',
-      examDate: 'April-May 2025',
-      resultDate: 'May 2025',
+      examDate: 'April-May 2026',
+      resultDate: 'May 2026',
     },
     applicationFee: {
       general: '₹1,350',
@@ -234,8 +234,8 @@ export const entranceExams: EntranceExam[] = [
     tnEligibility: 'SRM Kattankulathur is TN based - Priority for TN students in counselling',
     importantDates: {
       registration: 'October 2024',
-      examDate: 'April-May 2025',
-      resultDate: 'May 2025',
+      examDate: 'April-May 2026',
+      resultDate: 'May 2026',
     },
     applicationFee: {
       general: '₹1,200',
@@ -270,9 +270,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'TN students eligible - BITS centers available in Chennai for exam',
     importantDates: {
-      registration: 'January 2025',
-      examDate: 'May-June 2025',
-      resultDate: 'July 2025',
+      registration: 'January 2026',
+      examDate: 'May-June 2026',
+      resultDate: 'July 2026',
     },
     applicationFee: {
       general: '₹4,500',
@@ -312,9 +312,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: '85% State Quota for TN + 7.5% for TN Govt School Students | Tamil medium exam available',
     importantDates: {
-      registration: 'Feb 2025',
-      examDate: 'May 4, 2025',
-      resultDate: 'June 2025',
+      registration: 'Feb 2026',
+      examDate: 'May 4, 2026',
+      resultDate: 'June 2026',
     },
     applicationFee: {
       general: '₹1,700',
@@ -353,9 +353,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: '85% seats reserved for TN students! Govt college fee only ~₹14,000/year!',
     importantDates: {
-      registration: 'June 2025',
+      registration: 'June 2026',
       examDate: 'N/A (Counselling)',
-      resultDate: 'July-Aug 2025',
+      resultDate: 'July-Aug 2026',
     },
     applicationFee: {
       general: '₹500',
@@ -390,9 +390,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'TN state quota available - Govt Dental Colleges in Chennai & Madurai',
     importantDates: {
-      registration: 'June 2025',
-      examDate: 'Via NEET (May 2025)',
-      resultDate: 'July 2025',
+      registration: 'June 2026',
+      examDate: 'Via NEET (May 2026)',
+      resultDate: 'July 2026',
     },
     applicationFee: {
       general: '₹500',
@@ -429,9 +429,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'BSMS (Siddha) is Tamil Nadu specialty! Govt Siddha Colleges available',
     importantDates: {
-      registration: 'June 2025',
-      examDate: 'Via NEET (May 2025)',
-      resultDate: 'Aug 2025',
+      registration: 'June 2026',
+      examDate: 'Via NEET (May 2026)',
+      resultDate: 'Aug 2026',
     },
     applicationFee: {
       general: '₹500',
@@ -467,9 +467,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'Govt nursing colleges through TN counselling - Many private options available',
     importantDates: {
-      registration: 'June 2025',
+      registration: 'June 2026',
       examDate: 'N/A (Merit)',
-      resultDate: 'July 2025',
+      resultDate: 'July 2026',
     },
     applicationFee: {
       general: '₹500',
@@ -506,9 +506,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'State quota for TN students in govt pharmacy colleges',
     importantDates: {
-      registration: 'June 2025',
+      registration: 'June 2026',
       examDate: 'N/A (Merit)',
-      resultDate: 'July 2025',
+      resultDate: 'July 2026',
     },
     applicationFee: {
       general: '₹500',
@@ -547,9 +547,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'Growing demand! Excellent job opportunities in hospitals across TN',
     importantDates: {
-      registration: 'June 2025',
+      registration: 'June 2026',
       examDate: 'N/A (Merit)',
-      resultDate: 'July 2025',
+      resultDate: 'July 2026',
     },
     applicationFee: {
       general: '₹500',
@@ -586,9 +586,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'Near Tamil Nadu - Very popular among TN students! Puducherry quota available',
     importantDates: {
-      registration: 'June 2025',
-      examDate: 'Via NEET (May 2025)',
-      resultDate: 'July 2025',
+      registration: 'June 2026',
+      examDate: 'Via NEET (May 2026)',
+      resultDate: 'July 2026',
     },
     applicationFee: {
       general: '₹500',
@@ -628,8 +628,8 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'For TNNLU Trichy (Tamil Nadu National Law University) - Premier law school in TN!',
     importantDates: {
-      registration: 'Aug-Nov 2025',
-      examDate: 'Dec 2025',
+      registration: 'Aug-Nov 2026',
+      examDate: 'Dec 2026',
       resultDate: 'Jan 2026',
     },
     applicationFee: {
@@ -665,9 +665,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'Direct admission to govt law colleges based on 12th marks - No exam needed!',
     importantDates: {
-      registration: 'June 2025',
+      registration: 'June 2026',
       examDate: 'N/A (Merit)',
-      resultDate: 'July 2025',
+      resultDate: 'July 2026',
     },
     applicationFee: {
       general: '₹500',
@@ -702,9 +702,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'All TN universities accept 12th marks - Easy admission for TN students!',
     importantDates: {
-      registration: 'May-June 2025',
+      registration: 'May-June 2026',
       examDate: 'N/A (Merit)',
-      resultDate: 'June-July 2025',
+      resultDate: 'June-July 2026',
     },
     applicationFee: {
       general: '₹500',
@@ -781,9 +781,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: '100% State Quota - Only TN students eligible! Low fees govt education',
     importantDates: {
-      registration: 'May 2025',
+      registration: 'May 2026',
       examDate: 'N/A (Merit)',
-      resultDate: 'July 2025 (Counselling)',
+      resultDate: 'July 2026 (Counselling)',
     },
     applicationFee: {
       general: '₹500',
@@ -821,9 +821,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'Only TN students - Madras Veterinary College is one of the oldest in Asia!',
     importantDates: {
-      registration: 'June 2025',
+      registration: 'June 2026',
       examDate: 'Via NEET',
-      resultDate: 'Aug 2025',
+      resultDate: 'Aug 2026',
     },
     applicationFee: {
       general: '₹500',
@@ -859,9 +859,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'For Central Agricultural Universities - ICAR quota in TNAU also available',
     importantDates: {
-      registration: 'March 2025',
-      examDate: 'June 2025',
-      resultDate: 'July 2025',
+      registration: 'March 2026',
+      examDate: 'June 2026',
+      resultDate: 'July 2026',
     },
     applicationFee: {
       general: '₹1,000',
@@ -900,8 +900,8 @@ export const entranceExams: EntranceExam[] = [
     tnEligibility: 'NIFT Chennai Campus in TN! Premier fashion design institute',
     importantDates: {
       registration: 'Oct-Dec 2024',
-      examDate: 'Feb 2025',
-      resultDate: 'April 2025',
+      examDate: 'Feb 2026',
+      resultDate: 'April 2026',
     },
     applicationFee: {
       general: '₹2,500',
@@ -938,8 +938,8 @@ export const entranceExams: EntranceExam[] = [
     tnEligibility: 'Premier design institute - Product, Graphic, Textile design courses',
     importantDates: {
       registration: 'Oct 2024',
-      examDate: 'Jan 2025',
-      resultDate: 'March 2025',
+      examDate: 'Jan 2026',
+      resultDate: 'March 2026',
     },
     applicationFee: {
       general: '₹3,000',
@@ -975,8 +975,8 @@ export const entranceExams: EntranceExam[] = [
     tnEligibility: 'For B.Arch at NIT Trichy & Anna University School of Architecture',
     importantDates: {
       registration: 'Nov 2024',
-      examDate: 'April 2025',
-      resultDate: 'May 2025',
+      examDate: 'April 2026',
+      resultDate: 'May 2026',
     },
     applicationFee: {
       general: '₹1,000',
@@ -1014,9 +1014,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'OTA Chennai for CDS training! Many TN officers in Armed Forces',
     importantDates: {
-      registration: 'Dec 2024 / May 2025',
-      examDate: 'April & Sept 2025',
-      resultDate: 'May & Oct 2025',
+      registration: 'Dec 2024 / May 2026',
+      examDate: 'April & Sept 2026',
+      resultDate: 'May & Oct 2026',
     },
     applicationFee: {
       general: '₹100',
@@ -1051,7 +1051,7 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'Free B.Tech at Naval Academy! Chennai has naval base INS Adyar',
     importantDates: {
-      registration: 'Dec-Jan 2025',
+      registration: 'Dec-Jan 2026',
       examDate: 'Via JEE Main',
       resultDate: 'Shortlist in March',
     },
@@ -1126,9 +1126,9 @@ export const entranceExams: EntranceExam[] = [
     ],
     tnEligibility: 'IHM Chennai is located in TN! State quota available for TN students',
     importantDates: {
-      registration: 'Jan-March 2025',
-      examDate: 'May 2025',
-      resultDate: 'June 2025',
+      registration: 'Jan-March 2026',
+      examDate: 'May 2026',
+      resultDate: 'June 2026',
     },
     applicationFee: {
       general: '₹1,000',

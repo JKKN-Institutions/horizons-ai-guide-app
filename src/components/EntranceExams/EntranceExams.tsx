@@ -26,7 +26,7 @@ export const EntranceExams = () => {
   const stats = useMemo(() => ({
     total: entranceExams.length,
     colleges: '500+',
-    updated: '2025',
+    updated: '2026',
     streams: 'PCM, PCB, Arts',
   }), []);
 

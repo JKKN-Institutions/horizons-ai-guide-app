@@ -20733,7 +20733,7 @@ export const universities: University[] = [
       { event: 'PG Application Start', eventTamil: 'முதுகலை விண்ணப்பம் தொடக்கம்', date: 'May 2026', status: 'upcoming' },
       { event: 'TNEA Counselling (B.E.)', eventTamil: 'TNEA கலந்தாய்வு', date: 'July-August 2026', status: 'upcoming' },
       { event: 'TNAU Counselling (B.Sc. Ag)', eventTamil: 'TNAU கலந்தாய்வு', date: 'August 2026', status: 'upcoming' },
-      { event: 'DDE Admission (Jan Batch)', eventTamil: 'DDE சேர்க்கை', date: 'October-December 2025', status: 'upcoming' },
+      { event: 'DDE Admission (Jan Batch)', eventTamil: 'DDE சேர்க்கை', date: 'October-December 2026', status: 'upcoming' },
       { event: 'Classes Begin (Regular)', eventTamil: 'வகுப்புகள் தொடக்கம்', date: 'August 2026', status: 'upcoming' }
     ],
     courses: [
@@ -22657,11 +22657,11 @@ export const universities: University[] = [
     logo: '/universities/tanuvas-logo.png',
     type: 'State Government',
     importantDates: [
-      { event: 'B.V.Sc. Application Opens', date: 'May 2025', eventTamil: 'பி.வி.எஸ்சி. விண்ணப்பம் தொடங்கும்', status: 'upcoming' },
-      { event: 'B.V.Sc. State Quota Counselling', date: 'July 2025', eventTamil: 'மாநில ஒதுக்கீடு கலந்தாய்வு', status: 'upcoming' },
-      { event: 'B.Tech Counselling (Single Window)', date: 'July-August 2025', eventTamil: 'பி.டெக். ஒற்றை சாளர கலந்தாய்வு', status: 'upcoming' },
-      { event: 'PG Entrance Exam (TANUVAS)', date: 'June 2025', eventTamil: 'முதுநிலை நுழைவுத் தேர்வு', status: 'upcoming' },
-      { event: 'PG Counselling', date: 'August 2025', eventTamil: 'முதுநிலை கலந்தாய்வு', status: 'upcoming' }
+      { event: 'B.V.Sc. Application Opens', date: 'May 2026', eventTamil: 'பி.வி.எஸ்சி. விண்ணப்பம் தொடங்கும்', status: 'upcoming' },
+      { event: 'B.V.Sc. State Quota Counselling', date: 'July 2026', eventTamil: 'மாநில ஒதுக்கீடு கலந்தாய்வு', status: 'upcoming' },
+      { event: 'B.Tech Counselling (Single Window)', date: 'July-August 2026', eventTamil: 'பி.டெக். ஒற்றை சாளர கலந்தாய்வு', status: 'upcoming' },
+      { event: 'PG Entrance Exam (TANUVAS)', date: 'June 2026', eventTamil: 'முதுநிலை நுழைவுத் தேர்வு', status: 'upcoming' },
+      { event: 'PG Counselling', date: 'August 2026', eventTamil: 'முதுநிலை கலந்தாய்வு', status: 'upcoming' }
     ],
     fee: { general: 15000, obc: 15000, scst: 7500 },
     courses: [
