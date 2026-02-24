@@ -40,11 +40,11 @@ export const BuildStartupTab = ({ unlocked, roadmap, surveyResponseCount, onGene
           </div>
           <h3 className="text-lg font-bold text-gray-500">Locked 🔒</h3>
           <p className="text-sm text-gray-400 mt-2 max-w-sm mx-auto">
-            Collect 20+ survey responses to unlock your MVP roadmap and startup builder.
+            Collect at least 1 survey response to unlock your MVP roadmap and startup builder.
           </p>
           <div className="mt-4 max-w-xs mx-auto">
-            <Progress value={Math.min(100, (surveyResponseCount / 20) * 100)} className="h-2" />
-            <p className="text-xs text-gray-400 mt-1">{surveyResponseCount}/20 responses</p>
+            <Progress value={Math.min(100, (surveyResponseCount / 1) * 100)} className="h-2" />
+            <p className="text-xs text-gray-400 mt-1">{surveyResponseCount}/1 responses</p>
           </div>
         </div>
 

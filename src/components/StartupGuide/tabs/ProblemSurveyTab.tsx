@@ -177,8 +177,8 @@ export const ProblemSurveyTab = ({ unlocked, problem, survey, reflections, field
                   <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-4 text-center mb-4 border border-emerald-200">
                     <p className="text-3xl font-bold text-emerald-700">{survey.responseCount}</p>
                     <p className="text-xs text-emerald-600 font-medium">Responses Collected</p>
-                    <Progress value={Math.min(100, (survey.responseCount / 20) * 100)} className="h-2 mt-2" />
-                    <p className="text-[10px] text-emerald-500 mt-1">{survey.responseCount >= 20 ? '✅ Goal reached! Build tab unlocked!' : `${20 - survey.responseCount} more needed to unlock Build tab`}</p>
+                    <Progress value={Math.min(100, (survey.responseCount / 1) * 100)} className="h-2 mt-2" />
+                    <p className="text-[10px] text-emerald-500 mt-1">{survey.responseCount >= 1 ? '✅ Goal reached! Build tab unlocked!' : `${1 - survey.responseCount} more needed to unlock Build tab`}</p>
                   </div>
 
                   {/* Share Link */}

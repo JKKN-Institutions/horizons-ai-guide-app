@@ -110,7 +110,7 @@ function calcScore(d: AllData): StartupScore {
   const tasks = Math.min(35, d.tasks.filter(t => t.isCompleted).length * 5);
   const problem = d.problem ? 15 : 0;
   const surveyBase = d.survey ? 10 : 0;
-  const surveyResponses = Math.min(20, Math.floor((d.survey?.responseCount || 0) / 5) * 5);
+  const surveyResponses = Math.min(1, d.survey?.responseCount || 0);
   const survey = surveyBase + surveyResponses;
   const mvp = d.roadmap ? 10 : 0;
   const total = onboarding + tasks + problem + survey + mvp;
@@ -256,7 +256,7 @@ export const useStartupGuideData = () => {
   const currentDay = Math.min(data.tasks.filter(t => t.isCompleted).length + 1, 8);
   const allReflectionsDone = reflectionCount >= 7;
   const surveyUnlocked = allReflectionsDone;
-  const buildUnlocked = (data.survey?.responseCount || 0) >= 20;
+  const buildUnlocked = (data.survey?.responseCount || 0) >= 1;
 
   return {
     userId,
