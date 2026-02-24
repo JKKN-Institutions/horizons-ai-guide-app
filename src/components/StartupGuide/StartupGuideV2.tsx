@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Brain, BadgeCheck, ListTodo, BarChart3, Rocket, User, Lock } from 'lucide-react';
 import { toast } from 'sonner';
@@ -14,7 +14,60 @@ import { ProfileTab } from './tabs/ProfileTab';
 export const StartupGuide = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [taskLoading, setTaskLoading] = useState(false);
+  const [notification, setNotification] = useState<string | null>(null);
   const data = useStartupGuideData();
+
+  // Listen for survey response notifications (cross-tab)
+  useEffect(() => {
+    const handleSurveyResponse = () => {
+      data.refreshSurveyCount();
+      setNotification('🎉 Someone completed your survey!');
+      toast.success('🎉 New survey response received! Build tab is now unlocked!', { duration: 5000 });
+      // Auto-switch to Build tab after a short delay
+      setTimeout(() => setActiveTab('build'), 2000);
+    };
+
+    // Listen via BroadcastChannel (instant, same browser)
+    let bc: BroadcastChannel | null = null;
+    try {
+      bc = new BroadcastChannel('vazhikatti_survey');
+      bc.onmessage = (event) => {
+        if (event.data?.type === 'response_submitted') {
+          handleSurveyResponse();
+        }
+      };
+    } catch (e) {}
+
+    // Listen via localStorage storage event (backup, cross-tab)
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'vazhikatti_survey_notification') {
+        handleSurveyResponse();
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+
+    return () => {
+      bc?.close();
+      window.removeEventListener('storage', handleStorage);
+    };
+  }, [data.refreshSurveyCount]);
+
+  // Check for notifications on load (in case response came while page was closed)
+  useEffect(() => {
+    try {
+      const notif = localStorage.getItem('vazhikatti_survey_notification');
+      if (notif) {
+        const parsed = JSON.parse(notif);
+        // Only show if notification is less than 5 minutes old
+        if (Date.now() - parsed.timestamp < 5 * 60 * 1000) {
+          data.refreshSurveyCount();
+          setNotification('🎉 Someone completed your survey while you were away!');
+          toast.success('🎉 New survey response received!', { duration: 5000 });
+        }
+        localStorage.removeItem('vazhikatti_survey_notification');
+      }
+    } catch (e) {}
+  }, []);
 
   // Call Claude API
   const callAI = useCallback(async (action: string, payload: any) => {
@@ -197,6 +250,25 @@ export const StartupGuide = () => {
           <p className="text-xs text-white/50 mt-2 max-w-md mx-auto">From idea to validated MVP — powered by AI mentoring</p>
         </div>
       </div>
+
+      {/* Survey Response Notification Banner */}
+      {notification && (
+        <div className="bg-gradient-to-r from-amber-400 to-yellow-400 rounded-xl p-3 mb-4 flex items-center justify-between shadow-lg animate-pulse">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">🔔</span>
+            <div>
+              <p className="text-sm font-bold text-amber-900">{notification}</p>
+              <p className="text-xs text-amber-800">Build Startup tab is now unlocked! 🚀</p>
+            </div>
+          </div>
+          <button 
+            onClick={() => { setNotification(null); setActiveTab('build'); }}
+            className="bg-amber-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-amber-800"
+          >
+            Go to Build →
+          </button>
+        </div>
+      )}
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">

@@ -107,6 +107,19 @@ const SurveyPublic = () => {
         }
       } catch (e2) {}
       
+      // Trigger notification for the startup guide (cross-tab communication)
+      try {
+        localStorage.setItem('vazhikatti_survey_notification', JSON.stringify({
+          type: 'response_submitted',
+          count: existing.length,
+          timestamp: Date.now(),
+        }));
+        // BroadcastChannel for instant cross-tab notification
+        const bc = new BroadcastChannel('vazhikatti_survey');
+        bc.postMessage({ type: 'response_submitted', count: existing.length });
+        bc.close();
+      } catch (e3) {}
+      
       setSubmitted(true);
     } catch (e) {
       setError('Failed to submit. Please try again.');
