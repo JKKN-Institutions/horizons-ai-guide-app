@@ -632,7 +632,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
   },
   {
     id: 'jkkn_pharmacy',
-    name: 'JKKN College of Pharmacy, Komarapalayam',
+    name: 'JKK Nattraja College of Pharmacy, Komarapalayam',
     type: 'private',
     category: 'pharmacy',
     courses: 'B.Pharm, D.Pharm, M.Pharm, Pharm.D',
@@ -684,7 +684,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
   },
   {
     id: 'vivekanandha_pharmacy',
-    name: 'Vivekanandha College of Pharmacy, Tiruchengode',
+    name: 'Swamy Vivekanandha College of Pharmacy, Tiruchengode',
     type: 'private',
     category: 'pharmacy',
     courses: 'B.Pharm, D.Pharm, M.Pharm',
@@ -718,6 +718,73 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     courses: 'BPT (Physiotherapy)',
     address: 'Pallakkapalayam',
     feeRange: '₹80,000 - ₹1,50,000 per year',
+  },
+
+  // ============================================
+  // 4A. PRIVATE - Allied Health Sciences Colleges
+  // ============================================
+  {
+    id: 'jkkn_allied_health',
+    name: 'JKKN College of Allied Health Sciences, Komarapalayam',
+    type: 'private',
+    category: 'allied_health',
+    courses: 'B.Sc Allied Health Sciences, B.Sc MLT, B.Sc Radiology, B.Sc Cardiac Technology, B.Sc Optometry',
+    address: 'Komarapalayam',
+    feeRange: '₹50,000 - ₹1,20,000 per year',
+    accreditation: 'TN Dr. M.G.R. Medical University Affiliated',
+    isJKKN: true,
+  },
+  {
+    id: 'vivekanandha_allied_health',
+    name: 'Vivekanandha College of Allied Health Sciences, Tiruchengode',
+    type: 'private',
+    category: 'allied_health',
+    courses: 'B.Sc Allied Health Sciences, B.Sc MLT, B.Sc Radiology, B.Sc Cardiac Technology',
+    address: 'Tiruchengode',
+    feeRange: '₹50,000 - ₹1,20,000 per year',
+    accreditation: 'TN Dr. M.G.R. Medical University Affiliated',
+  },
+  {
+    id: 'excel_health_sciences',
+    name: 'Excel Institute of Health Sciences, Komarapalayam',
+    type: 'private',
+    category: 'allied_health',
+    courses: 'B.Sc Allied Health Sciences, B.Sc MLT, BPT, Paramedical Courses',
+    address: 'Komarapalayam',
+    feeRange: '₹50,000 - ₹1,20,000 per year',
+  },
+  {
+    id: 'dhanvantri_allied_health',
+    name: 'Dhanvantri College of Allied Health Sciences, Tiruchengode',
+    type: 'private',
+    category: 'allied_health',
+    courses: 'B.Sc Allied Health Sciences, B.Sc MLT, Paramedical Courses',
+    address: 'Tiruchengode',
+    feeRange: '₹50,000 - ₹1,00,000 per year',
+  },
+
+  // ============================================
+  // 4C. PRIVATE - Pharmacy Colleges (Complete List)
+  // ============================================
+  {
+    id: 'excel_pharmacy',
+    name: 'Excel College of Pharmacy, Komarapalayam',
+    type: 'private',
+    category: 'pharmacy',
+    courses: 'B.Pharm, D.Pharm',
+    address: 'Komarapalayam',
+    feeRange: '₹50,000 - ₹1,20,000 per year',
+    accreditation: 'PCI Approved',
+  },
+  {
+    id: 'sengunthar_pharmacy',
+    name: 'Sengunthar College of Pharmacy, Tiruchengode',
+    type: 'private',
+    category: 'pharmacy',
+    courses: 'B.Pharm, D.Pharm',
+    address: 'Tiruchengode',
+    feeRange: '₹50,000 - ₹1,20,000 per year',
+    accreditation: 'PCI Approved',
   },
 
   // ============================================
