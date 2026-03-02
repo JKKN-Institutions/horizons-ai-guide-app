@@ -286,7 +286,7 @@ const CareerChat = () => {
   const [chatSessions, setChatSessions] = useState<{date: string; preview: string; messages: Message[]}[]>([]);
   const [isLoadingSessions, setIsLoadingSessions] = useState(false);
 
-  // Load chat sessions grouped by date
+  // Load chat sessions grouped by conversation (time gaps)
   const loadChatSessions = async () => {
     if (!user) return;
     setIsLoadingSessions(true);
@@ -298,28 +298,61 @@ const CareerChat = () => {
         .order('created_at', { ascending: true });
 
       if (data && data.length > 0) {
-        // Group messages by date
-        const grouped: Record<string, Message[]> = {};
+        // Group messages into sessions by time gap (>10 min = new session)
+        const sessions: { date: string; preview: string; messages: Message[] }[] = [];
+        let currentSession: Message[] = [];
+        let lastTime: Date | null = null;
+
         data.forEach((m) => {
-          const date = new Date(m.created_at).toLocaleDateString('en-IN', { 
-            day: 'numeric', month: 'short', year: 'numeric' 
-          });
-          if (!grouped[date]) grouped[date] = [];
-          grouped[date].push({
+          const msgTime = new Date(m.created_at);
+          const msg: Message = {
             role: m.role as 'user' | 'assistant',
             content: m.content,
-            timestamp: new Date(m.created_at)
-          });
+            timestamp: msgTime
+          };
+
+          // If gap > 10 minutes, start new session
+          if (lastTime && (msgTime.getTime() - lastTime.getTime()) > 10 * 60 * 1000) {
+            if (currentSession.length > 0) {
+              const firstUserMsg = currentSession.find(m => m.role === 'user');
+              const preview = firstUserMsg?.content?.slice(0, 50) || 'Chat session';
+              const sessionDate = currentSession[0].timestamp.toLocaleDateString('en-IN', {
+                day: 'numeric', month: 'short', year: 'numeric'
+              });
+              const sessionTime = currentSession[0].timestamp.toLocaleTimeString('en-IN', {
+                hour: '2-digit', minute: '2-digit'
+              });
+              sessions.push({
+                date: `${sessionDate}, ${sessionTime}`,
+                preview: preview + (firstUserMsg && firstUserMsg.content.length > 50 ? '...' : ''),
+                messages: [...currentSession]
+              });
+            }
+            currentSession = [];
+          }
+
+          currentSession.push(msg);
+          lastTime = msgTime;
         });
 
-        // Convert to sessions with preview (first user message)
-        const sessions = Object.entries(grouped).map(([date, msgs]) => {
-          const firstUserMsg = msgs.find(m => m.role === 'user');
+        // Push last session
+        if (currentSession.length > 0) {
+          const firstUserMsg = currentSession.find(m => m.role === 'user');
           const preview = firstUserMsg?.content?.slice(0, 50) || 'Chat session';
-          return { date, preview: preview + (firstUserMsg && firstUserMsg.content.length > 50 ? '...' : ''), messages: msgs };
-        }).reverse(); // newest first
+          const sessionDate = currentSession[0].timestamp.toLocaleDateString('en-IN', {
+            day: 'numeric', month: 'short', year: 'numeric'
+          });
+          const sessionTime = currentSession[0].timestamp.toLocaleTimeString('en-IN', {
+            hour: '2-digit', minute: '2-digit'
+          });
+          sessions.push({
+            date: `${sessionDate}, ${sessionTime}`,
+            preview: preview + (firstUserMsg && firstUserMsg.content.length > 50 ? '...' : ''),
+            messages: [...currentSession]
+          });
+        }
 
-        setChatSessions(sessions);
+        setChatSessions(sessions.reverse()); // newest first
       } else {
         setChatSessions([]);
       }
@@ -618,11 +651,8 @@ const CareerChat = () => {
   };
 
   const clearChat = async () => {
-    if (!user) return;
-
-    await supabase.from('chat_messages').delete().eq('user_id', user.id);
     setMessages([]);
-    toast({ title: 'Chat cleared', description: 'Your conversation history has been deleted.' });
+    toast({ title: 'New chat started', description: 'Your previous chats are saved in Chat History.' });
   };
 
   const toggleSkill = (skill: string) => {
@@ -1319,15 +1349,16 @@ Be empathetic and respect Indian family values while helping the student communi
                 {isTtsEnabled ? <Volume2 className="h-5 w-5" /> : <VolumeX className="h-5 w-5" />}
               </Button>
               
-              {/* Clear Chat */}
+              {/* New Chat */}
               <Button
                 variant="ghost"
-                size="icon"
+                size="sm"
                 onClick={clearChat}
-                className="text-white/80 hover:text-white hover:bg-white/15 rounded-xl transition-all duration-300"
-                title="Clear chat"
+                className="text-white/80 hover:text-white hover:bg-white/15 rounded-xl transition-all duration-300 gap-1.5 px-2 sm:px-3"
+                title="New Chat"
               >
-                <Trash2 className="h-5 w-5" />
+                <MessageSquare className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="text-xs font-medium hidden sm:inline">New Chat</span>
               </Button>
 
               {/* Your Chats History */}
