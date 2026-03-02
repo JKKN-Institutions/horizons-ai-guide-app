@@ -308,10 +308,13 @@ const Register12thLearner = () => {
                 <Button 
                   variant="outline"
                   className="w-full py-5"
-                  onClick={() => navigate('/student-dashboard')}
+                  onClick={async () => {
+                    await supabase.auth.signOut();
+                    navigate('/');
+                  }}
                 >
-                  <GraduationCap className="h-5 w-5 mr-2" />
-                  Go to Dashboard
+                  <ArrowLeft className="h-5 w-5 mr-2" />
+                  Sign Out
                 </Button>
                 <Button 
                   variant="ghost"
