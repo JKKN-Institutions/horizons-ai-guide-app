@@ -1358,7 +1358,7 @@ Be empathetic and respect Indian family values while helping the student communi
                 title="New Chat"
               >
                 <MessageSquare className="h-4 w-4 sm:h-5 sm:w-5" />
-                <span className="text-xs font-medium hidden sm:inline">New Chat</span>
+                <span className="text-xs font-medium">New Chat</span>
               </Button>
 
               {/* Your Chats History */}
