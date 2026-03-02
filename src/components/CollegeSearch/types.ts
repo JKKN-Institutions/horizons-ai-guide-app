@@ -230,6 +230,7 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     courses: 'B.A, B.Sc, B.Com, BCA, M.A, M.Sc',
     address: 'Namakkal',
     feeRange: '₹20,000 - ₹50,000 per year',
+    accreditation: 'NAAC A+ Accredited',
   },
   {
     id: 'vivekanandha_arts_science',
@@ -250,8 +251,17 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     feeRange: '₹20,000 - ₹50,000 per year',
   },
   {
+    id: 'vivekanandha_arts_science_women',
+    name: 'Vivekanandha College of Arts and Sciences for Women, Tiruchengode',
+    type: 'autonomous',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA, BBA, M.A, M.Sc, M.Com',
+    address: 'Tiruchengode',
+    feeRange: '₹20,000 - ₹60,000 per year',
+  },
+  {
     id: 'sengunthar_arts_science',
-    name: 'Sengunthar Arts and Science College',
+    name: 'Sengunthar Arts and Science College, Tiruchengode',
     type: 'autonomous',
     category: 'arts_science',
     courses: 'B.A, B.Sc, B.Com, BCA, M.A, M.Sc',
