@@ -10,10 +10,19 @@ interface CollegeCardProps {
   college: College;
 }
 
+// Helper to get the college URL
+const getCollegeUrl = (college: College, suffix: string = '') => {
+  if (college.website) {
+    return college.website.startsWith('http') ? college.website : `https://${college.website}`;
+  }
+  return `https://www.google.com/search?q=${encodeURIComponent(college.name + ' official website' + suffix)}`;
+};
+
 export const CollegeCard = ({ college }: CollegeCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const typeInfo = COLLEGE_TYPE_INFO[college.type];
   const categoryInfo = COLLEGE_CATEGORIES.find(c => c.id === college.category);
+  const collegeUrl = getCollegeUrl(college);
 
   return (
     <Card className={`border-l-4 transition-all hover:shadow-md ${
@@ -39,17 +48,14 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
                 </Badge>
               )}
             </div>
-            <h3 
-              className="font-semibold text-lg leading-tight cursor-pointer hover:text-emerald-700 hover:underline transition-colors"
-              onClick={() => {
-                const url = college.website 
-                  ? (college.website.startsWith('http') ? college.website : `https://${college.website}`)
-                  : `https://www.google.com/search?q=${encodeURIComponent(college.name + ' official website')}`;
-                window.open(url, '_blank', 'noopener,noreferrer');
-              }}
+            <a 
+              href={collegeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-lg leading-tight cursor-pointer hover:text-emerald-700 hover:underline transition-colors block"
             >
               {college.name}
-            </h3>
+            </a>
           </div>
         </div>
       </CardHeader>
@@ -98,7 +104,7 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
             )}
             {college.website && (
               <a 
-                href={college.website.startsWith('http') ? college.website : `https://${college.website}`}
+                href={collegeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 text-[#0A2E1F] hover:underline"
@@ -108,6 +114,28 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
                 <ExternalLink className="h-3 w-3" />
               </a>
             )}
+          </div>
+
+          {/* Apply Now & Enquiry - ALWAYS VISIBLE, using <a> tags for reliable redirect */}
+          <div className="flex gap-2 mt-2">
+            <a
+              href={collegeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1 px-4 py-2 rounded-md text-sm font-medium bg-[#FF6B35] hover:bg-[#e55a2a] text-white transition-colors no-underline"
+            >
+              <ExternalLink className="h-3 w-3" />
+              Apply Now
+            </a>
+            <a
+              href={getCollegeUrl(college, ' contact enquiry')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1 px-4 py-2 rounded-md text-sm font-medium border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 transition-colors no-underline"
+            >
+              <Globe className="h-3 w-3" />
+              Enquiry
+            </a>
           </div>
 
           {/* Expandable Details */}
@@ -153,35 +181,6 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
                   </div>
                 </div>
               )}
-
-              <div className="flex gap-2 mt-3">
-                <Button 
-                  size="sm" 
-                  className="bg-[#FF6B35] hover:bg-[#FF6B35]/90 text-white"
-                  onClick={() => {
-                    const url = college.website 
-                      ? (college.website.startsWith('http') ? college.website : `https://${college.website}`)
-                      : `https://www.google.com/search?q=${encodeURIComponent(college.name + ' official website admission')}`;
-                    window.open(url, '_blank', 'noopener,noreferrer');
-                  }}
-                >
-                  <ExternalLink className="h-3 w-3 mr-1" />
-                  Apply Now
-                </Button>
-                <Button 
-                  size="sm" 
-                  variant="outline"
-                  onClick={() => {
-                    const url = college.website 
-                      ? (college.website.startsWith('http') ? college.website : `https://${college.website}`)
-                      : `https://www.google.com/search?q=${encodeURIComponent(college.name + ' contact enquiry')}`;
-                    window.open(url, '_blank', 'noopener,noreferrer');
-                  }}
-                >
-                  <Globe className="h-3 w-3 mr-1" />
-                  Enquiry
-                </Button>
-              </div>
             </CollapsibleContent>
           </Collapsible>
         </div>
