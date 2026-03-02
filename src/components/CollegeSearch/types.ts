@@ -376,16 +376,6 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
   // 4. PRIVATE (SELF-FINANCING) COLLEGES - Arts & Science
   // ============================================
   {
-    id: 'jkkn_sf_arts_science',
-    name: 'JKKN College of Arts & Science (Self-finance stream)',
-    type: 'private',
-    category: 'arts_science',
-    courses: 'B.Sc, B.Com, BCA, BBA, M.Sc, M.Com',
-    address: 'Komarapalayam',
-    feeRange: '₹25,000 - ₹75,000 per year',
-    isJKKN: true,
-  },
-  {
     id: 'pgp_arts_science',
     name: 'PGP College of Arts & Science, Namakkal',
     type: 'private',
