@@ -188,10 +188,10 @@ export const UniversityEntranceExams = () => {
               </div>
               
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight">
-                Your Complete Guide to<br className="hidden md:block" /> TN Government College Admissions
+                Your Complete Guide to<br className="hidden md:block" /> TN Government Universities Admissions
               </h2>
               <p className="text-emerald-100/80 text-sm md:text-base max-w-xl leading-relaxed">
-                Find your dream government college, check eligibility, view cutoffs, and track admission deadlines — all in one place.
+                Find your dream government university, check eligibility, view cutoffs, and track admission deadlines — all in one place.
               </p>
             </div>
 
