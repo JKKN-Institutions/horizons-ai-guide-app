@@ -342,26 +342,6 @@ export const UniversityDetail = () => {
         {/* Course-Wise Admission Guide */}
         <CourseAdmissionGuide university={university} />
 
-        {/* Fee Structure */}
-        <Card className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <IndianRupee className="h-5 w-5 text-amber-600" />
-              <h3 className="font-semibold text-foreground">Application Fee</h3>
-            </div>
-            <div className="flex flex-wrap gap-4">
-              <div className="text-center">
-                <p className="text-2xl font-bold text-amber-600">₹{university.fee.general}</p>
-                <p className="text-xs text-muted-foreground">General / OBC</p>
-              </div>
-              <div className="text-center">
-                <p className="text-2xl font-bold text-green-600">₹{university.fee.scst}</p>
-                <p className="text-xs text-muted-foreground">SC / ST</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
         {/* Courses - Tap to Expand */}
         <div>
           <h2 className="text-xl font-bold text-foreground mb-4">
