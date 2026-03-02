@@ -56,6 +56,7 @@ import {
   Languages,
   StopCircle,
   HelpCircle,
+  History,
   Calendar,
   IndianRupee,
   Heart,
@@ -279,6 +280,61 @@ const CareerChat = () => {
   const [desiredCareer, setDesiredCareer] = useState('');
   const [parentConcern, setParentConcern] = useState('');
   const [currentSituation, setCurrentSituation] = useState('');
+
+  // Chat History state
+  const [chatHistoryOpen, setChatHistoryOpen] = useState(false);
+  const [chatSessions, setChatSessions] = useState<{date: string; preview: string; messages: Message[]}[]>([]);
+  const [isLoadingSessions, setIsLoadingSessions] = useState(false);
+
+  // Load chat sessions grouped by date
+  const loadChatSessions = async () => {
+    if (!user) return;
+    setIsLoadingSessions(true);
+    try {
+      const { data } = await supabase
+        .from('chat_messages')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: true });
+
+      if (data && data.length > 0) {
+        // Group messages by date
+        const grouped: Record<string, Message[]> = {};
+        data.forEach((m) => {
+          const date = new Date(m.created_at).toLocaleDateString('en-IN', { 
+            day: 'numeric', month: 'short', year: 'numeric' 
+          });
+          if (!grouped[date]) grouped[date] = [];
+          grouped[date].push({
+            role: m.role as 'user' | 'assistant',
+            content: m.content,
+            timestamp: new Date(m.created_at)
+          });
+        });
+
+        // Convert to sessions with preview (first user message)
+        const sessions = Object.entries(grouped).map(([date, msgs]) => {
+          const firstUserMsg = msgs.find(m => m.role === 'user');
+          const preview = firstUserMsg?.content?.slice(0, 50) || 'Chat session';
+          return { date, preview: preview + (firstUserMsg && firstUserMsg.content.length > 50 ? '...' : ''), messages: msgs };
+        }).reverse(); // newest first
+
+        setChatSessions(sessions);
+      } else {
+        setChatSessions([]);
+      }
+    } catch (error) {
+      console.error('Error loading chat sessions:', error);
+    } finally {
+      setIsLoadingSessions(false);
+    }
+  };
+
+  // Load a specific chat session
+  const loadSession = (sessionMessages: Message[]) => {
+    setMessages(sessionMessages);
+    setChatHistoryOpen(false);
+  };
 
   // Scroll to bottom on new messages
   useEffect(() => {
@@ -1273,6 +1329,64 @@ Be empathetic and respect Indian family values while helping the student communi
               >
                 <Trash2 className="h-5 w-5" />
               </Button>
+
+              {/* Your Chats History */}
+              <Sheet open={chatHistoryOpen} onOpenChange={(open) => { setChatHistoryOpen(open); if (open) loadChatSessions(); }}>
+                <SheetTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-white/80 hover:text-white hover:bg-white/15 rounded-xl transition-all duration-300"
+                    title="Your Chats"
+                  >
+                    <History className="h-5 w-5" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[320px] sm:w-[380px] p-0">
+                  <SheetHeader className="px-5 pt-5 pb-3 border-b bg-gradient-to-r from-emerald-50 to-green-50">
+                    <SheetTitle className="flex items-center gap-2 text-emerald-800">
+                      <History className="h-5 w-5" />
+                      Your Chats
+                    </SheetTitle>
+                    <SheetDescription className="text-emerald-600/80">
+                      View your previous conversations
+                    </SheetDescription>
+                  </SheetHeader>
+                  <ScrollArea className="h-[calc(100vh-120px)]">
+                    <div className="p-3">
+                      {isLoadingSessions ? (
+                        <div className="flex items-center justify-center py-12">
+                          <Loader2 className="h-6 w-6 animate-spin text-emerald-600" />
+                        </div>
+                      ) : chatSessions.length === 0 ? (
+                        <div className="text-center py-12 text-gray-500">
+                          <MessageSquare className="h-10 w-10 mx-auto mb-3 text-gray-300" />
+                          <p className="font-medium">No chats yet</p>
+                          <p className="text-sm mt-1">Start a conversation to see it here</p>
+                        </div>
+                      ) : (
+                        <div className="space-y-1.5">
+                          {chatSessions.map((session, idx) => (
+                            <button
+                              key={idx}
+                              onClick={() => loadSession(session.messages)}
+                              className="w-full text-left px-4 py-3 rounded-xl hover:bg-emerald-50 transition-all duration-200 border border-transparent hover:border-emerald-200 group"
+                            >
+                              <p className="text-sm font-medium text-gray-800 truncate group-hover:text-emerald-700">
+                                {session.preview}
+                              </p>
+                              <p className="text-xs text-gray-400 mt-1 flex items-center gap-1">
+                                <Calendar className="h-3 w-3" />
+                                {session.date}
+                              </p>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </ScrollArea>
+                </SheetContent>
+              </Sheet>
             </div>
           </div>
         </div>
