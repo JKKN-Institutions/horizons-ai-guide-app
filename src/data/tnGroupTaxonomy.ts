@@ -67,7 +67,7 @@
      textColor: "text-amber-700",
      groups: [
        { id: "301", code: 301, subjects: ["Statistics", "Economics", "Commerce", "Accountancy"], careerPaths: ["B.Com", "CA", "Statistics"], icon: "📈" },
-       { id: "302", code: 302, subjects: ["Computer Science", "Economics", "Commerce", "Accountancy"], careerPaths: ["CA", "FinTech", "Business Analytics"], popularTag: "Future-Ready", icon: "💹" },
+       { id: "302", code: 302, subjects: ["Computer Application", "Economics", "Commerce", "Accountancy"], careerPaths: ["CA", "FinTech", "Business Analytics"], popularTag: "Future-Ready", icon: "💹" },
        { id: "303", code: 303, subjects: ["English for Communication", "Economics", "Commerce", "Accountancy"], careerPaths: ["Business Communication", "Marketing"], icon: "📢" },
        { id: "304", code: 304, subjects: ["History", "Economics", "Commerce", "Accountancy"], careerPaths: ["CA", "Law", "Civil Services", "Banking"], popularTag: "UPSC Ready", icon: "⚖️" },
        { id: "305", code: 305, subjects: ["Economics", "Political Science", "Commerce", "Accountancy"], careerPaths: ["Public Policy", "Civil Services"], icon: "🏛️" },
