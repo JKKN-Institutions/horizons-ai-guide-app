@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
-import { Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Eye, EyeOff, Loader2, CheckCircle2, Mail, User, ArrowRight } from 'lucide-react';
 
 const loginSchema = z.object({
   email: z.string().trim().email({ message: "Please enter a valid email address" }),
@@ -31,6 +31,7 @@ const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const { signIn, signUp, user, loading } = useAuth();
   const navigate = useNavigate();
@@ -126,6 +127,9 @@ const Auth = () => {
             description: "Welcome! Your account has been created successfully.",
           });
           
+          // Show registration success screen
+          setRegistrationSuccess(true);
+          
           // Send welcome email (non-blocking)
           try {
             fetch('/api/send-welcome-email', {
@@ -152,6 +156,86 @@ const Auth = () => {
 
   return (
     <div className="fresh-page-wrapper page-transition flex items-center justify-center p-4">
+      {/* Registration Success Screen */}
+      {registrationSuccess ? (
+        <Card className="fresh-card w-full max-w-md relative z-10 overflow-hidden">
+          {/* Green Header */}
+          <div className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-yellow-600 p-6 text-center text-white">
+            <div className="flex justify-center mb-3">
+              <div className="bg-white/20 rounded-full p-3">
+                <CheckCircle2 className="h-10 w-10" />
+              </div>
+            </div>
+            <h2 className="text-2xl font-bold">Registration Successful! 🎉</h2>
+            <p className="text-sm mt-1 opacity-90">Welcome to VAZHIKATTI</p>
+          </div>
+
+          <CardContent className="p-6 space-y-5">
+            {/* Thank You Message */}
+            <div className="text-center">
+              <p className="text-gray-600 text-sm">
+                Thank you for signing up, <strong className="text-emerald-700">{displayName || 'Learner'}</strong>! 
+                Your career journey starts now.
+              </p>
+            </div>
+
+            {/* Registration Details */}
+            <div className="bg-gradient-to-br from-green-50 to-yellow-50 rounded-xl p-5 border border-green-200">
+              <h3 className="text-sm font-semibold text-emerald-800 mb-3 flex items-center gap-2">
+                📋 Your Registration Details
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 bg-white rounded-lg p-3 shadow-sm">
+                  <div className="bg-emerald-100 rounded-full p-2">
+                    <User className="h-4 w-4 text-emerald-700" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500">Name</p>
+                    <p className="text-sm font-medium text-gray-800">{displayName || 'Not provided'}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 bg-white rounded-lg p-3 shadow-sm">
+                  <div className="bg-emerald-100 rounded-full p-2">
+                    <Mail className="h-4 w-4 text-emerald-700" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500">Email</p>
+                    <p className="text-sm font-medium text-gray-800">{email}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Email Notification */}
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 flex items-start gap-2">
+              <span className="text-lg">📧</span>
+              <p className="text-xs text-amber-800">
+                A welcome email has been sent to <strong>{email}</strong>. Please check your inbox (and spam folder).
+              </p>
+            </div>
+
+            {/* What's Next */}
+            <div className="space-y-2">
+              <h4 className="text-sm font-semibold text-gray-700">🚀 What you can do next:</h4>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-gray-50 rounded-lg p-2.5 text-center text-xs text-gray-600">🤖 AI Career Chat</div>
+                <div className="bg-gray-50 rounded-lg p-2.5 text-center text-xs text-gray-600">📊 Career Assessment</div>
+                <div className="bg-gray-50 rounded-lg p-2.5 text-center text-xs text-gray-600">🏛️ Find Colleges</div>
+                <div className="bg-gray-50 rounded-lg p-2.5 text-center text-xs text-gray-600">💼 Job Portal</div>
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <Button 
+              className="w-full bg-gradient-to-r from-[#FF6B35] to-[#e55a2a] hover:from-[#e55a2a] hover:to-[#d44a1a] text-white font-semibold py-5 text-base"
+              onClick={() => navigate('/student-dashboard')}
+            >
+              Start Exploring VAZHIKATTI
+              <ArrowRight className="h-5 w-5 ml-2" />
+            </Button>
+          </CardContent>
+        </Card>
+      ) : (
       <Card className="fresh-card w-full max-w-md border-l-fresh-green-medium relative z-10 notranslate">
         <CardHeader className="space-y-1 text-center">
           <CardTitle className="text-2xl font-serif text-fresh-green-dark">
@@ -275,6 +359,7 @@ const Auth = () => {
           </CardFooter>
         </form>
       </Card>
+      )}
     </div>
   );
 };
