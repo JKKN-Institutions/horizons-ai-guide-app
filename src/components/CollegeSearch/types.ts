@@ -1396,25 +1396,6 @@ export const ERODE_FEATURED_COLLEGES: College[] = [
     address: 'Othakuthirai, Gobichettipalayam, Erode',
     feeRange: '₹18,000 - ₹45,000 per year',
   },
-  {
-    id: 'sri_amman_arts_science',
-    name: 'Sri Amman Arts and Science College, Chittode',
-    type: 'private',
-    category: 'arts_science',
-    courses: 'B.A (English), B.Sc (CS, Maths, Physics), B.Com (CA, PA, General), BBA, M.Com, M.Sc Computer Science',
-    address: 'Chittode (Vaikkalmedu), Erode',
-    feeRange: '₹18,000 - ₹50,000 per year',
-    accreditation: 'Bharathiar University Affiliated',
-  },
-  {
-    id: 'shree_venkateshwara_arts_science',
-    name: 'Shree Venkateshwara Arts and Science College, Gobichettipalayam',
-    type: 'private',
-    category: 'arts_science',
-    courses: 'B.A, B.Sc, B.Com, BCA, BBA',
-    address: 'Othakuthirai, Gobichettipalayam, Erode',
-    feeRange: '₹18,000 - ₹45,000 per year',
-  },
 
   // ============================================
   // 8. ADDITIONAL MEDICAL, DENTAL & HEALTH COLLEGES
