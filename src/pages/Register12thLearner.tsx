@@ -18,6 +18,7 @@ const Register12thLearner = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [existingRegistration, setExistingRegistration] = useState<any>(null);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -47,13 +48,12 @@ const Register12thLearner = () => {
         if (user) {
           const { data } = await supabase
             .from('registrations_12th_learners')
-            .select('id, full_name')
+            .select('*')
             .eq('user_id', user.id)
             .limit(1);
 
           if (data && data.length > 0) {
-            toast.success(`Welcome back, ${data[0].full_name || ''}! 🎉`);
-            navigate('/career-assessment/colleges', { replace: true });
+            setExistingRegistration(data[0]);
             return;
           }
         }
@@ -244,6 +244,90 @@ const Register12thLearner = () => {
     { label: t('reg12.careerInterests'), value: formData.careerInterests },
     { label: t('reg12.location'), value: formData.preferredLocation },
   ];
+
+  // If user already registered, show their details
+  if (existingRegistration) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-amber-50/30 flex items-center justify-center p-4">
+        <div className="w-full max-w-lg">
+          <Card className="overflow-hidden shadow-xl border-0">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-yellow-600 p-6 text-center text-white">
+              <div className="flex justify-center mb-3">
+                <div className="bg-white/20 rounded-full p-3">
+                  <CheckCircle className="h-10 w-10" />
+                </div>
+              </div>
+              <h2 className="text-2xl font-bold">You're Already Registered! 🎉</h2>
+              <p className="text-sm mt-1 opacity-90">Welcome back, {existingRegistration.full_name}</p>
+            </div>
+
+            <CardContent className="p-6 space-y-5">
+              {/* Registration Details */}
+              <div className="bg-gradient-to-br from-green-50 to-yellow-50 rounded-xl p-5 border border-green-200">
+                <h3 className="text-sm font-semibold text-emerald-800 mb-3">📋 Your Registration Details</h3>
+                <div className="space-y-2.5">
+                  {[
+                    { icon: "👤", label: "Name", value: existingRegistration.full_name },
+                    { icon: "📧", label: "Email", value: existingRegistration.email },
+                    { icon: "📞", label: "Phone", value: existingRegistration.phone },
+                    { icon: "🎂", label: "Date of Birth", value: existingRegistration.date_of_birth },
+                    { icon: "🏫", label: "School", value: existingRegistration.school_name },
+                    { icon: "📚", label: "Board", value: existingRegistration.board?.toUpperCase() },
+                    { icon: "🎯", label: "Stream", value: existingRegistration.stream ? existingRegistration.stream.charAt(0).toUpperCase() + existingRegistration.stream.slice(1) : null },
+                    { icon: "📖", label: "Preferred Course", value: existingRegistration.preferred_course },
+                    { icon: "🏛️", label: "Preferred Institution", value: existingRegistration.preferred_institution },
+                    { icon: "💡", label: "Career Interests", value: Array.isArray(existingRegistration.career_interests) ? existingRegistration.career_interests.join(', ') : existingRegistration.career_interests },
+                  ].filter(item => item.value).map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-3 bg-white rounded-lg p-3 shadow-sm">
+                      <span className="text-lg">{item.icon}</span>
+                      <div className="min-w-0">
+                        <p className="text-xs text-gray-500">{item.label}</p>
+                        <p className="text-sm font-medium text-gray-800 truncate">{item.value}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Registered Date */}
+              <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3 flex items-center gap-2 text-sm text-emerald-800">
+                <span>📅</span>
+                <span>Registered on: <strong>{new Date(existingRegistration.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</strong></span>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="space-y-3">
+                <Button 
+                  className="w-full bg-gradient-to-r from-[#FF6B35] to-[#e55a2a] hover:from-[#e55a2a] hover:to-[#d44a1a] text-white font-semibold py-5 text-base"
+                  onClick={() => navigate('/career-assessment/colleges')}
+                >
+                  <Sparkles className="h-5 w-5 mr-2" />
+                  Go to Career Assessments
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="w-full py-5"
+                  onClick={() => navigate('/student-dashboard')}
+                >
+                  <GraduationCap className="h-5 w-5 mr-2" />
+                  Go to Dashboard
+                </Button>
+                <Button 
+                  variant="ghost"
+                  className="w-full text-gray-500"
+                  onClick={() => navigate('/')}
+                >
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Back to Home
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-amber-50/30 relative overflow-hidden">
