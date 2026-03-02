@@ -19,21 +19,15 @@ export default async function handler(req, res) {
 
     const lastUserMsg = messages[messages.length - 1]?.content?.toLowerCase() || '';
 
-    // Detect image generation requests
-    const imageKeywords = [
-      'generate image', 'create image', 'make image', 'draw', 'generate a picture',
-      'create a picture', 'make a picture', 'generate an image', 'create an image',
-      'make an image', 'image of', 'picture of', 'photo of', 'illustration of',
-      'generate poster', 'create poster', 'make poster', 'design a',
-      'show me a picture', 'show me an image', 'visualize', 'imagine',
-      'generate art', 'create art', 'draw me', 'paint me', 'sketch',
-      'generate a logo', 'create a logo', 'make a logo',
-      'generate a banner', 'create a banner', 'make a banner',
-      'generate a diagram', 'create a diagram',
-      'generate infographic', 'create infographic'
+    // Detect image generation requests using flexible regex patterns
+    const imagePatterns = [
+      /\b(create|generate|make|draw|paint|sketch|design)\b.*\b(image|images|picture|pictures|photo|poster|logo|banner|art|diagram|infographic|illustration)s?\b/,
+      /\b(image|images|picture|pictures|photo|poster|logo|banner|illustration)s?\b.*\b(of|for|about|showing)\b/,
+      /\b(draw|paint|sketch|visualize|imagine)\b.*\b(me|a|an|the)\b/,
+      /\bshow\s+me\s+(a\s+)?(image|picture|photo)/,
     ];
 
-    const isImageRequest = imageKeywords.some(kw => lastUserMsg.includes(kw));
+    const isImageRequest = imagePatterns.some(pattern => pattern.test(lastUserMsg));
 
     if (isImageRequest) {
       const userMessage = messages[messages.length - 1]?.content || '';
