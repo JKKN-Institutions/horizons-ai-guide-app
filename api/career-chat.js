@@ -17,6 +17,67 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'messages array required' });
     }
 
+    const lastUserMsg = messages[messages.length - 1]?.content?.toLowerCase() || '';
+
+    // Detect image generation requests
+    const imageKeywords = [
+      'generate image', 'create image', 'make image', 'draw', 'generate a picture',
+      'create a picture', 'make a picture', 'generate an image', 'create an image',
+      'make an image', 'image of', 'picture of', 'photo of', 'illustration of',
+      'generate poster', 'create poster', 'make poster', 'design a',
+      'show me a picture', 'show me an image', 'visualize', 'imagine',
+      'generate art', 'create art', 'draw me', 'paint me', 'sketch',
+      'generate a logo', 'create a logo', 'make a logo',
+      'generate a banner', 'create a banner', 'make a banner',
+      'generate a diagram', 'create a diagram',
+      'generate infographic', 'create infographic'
+    ];
+
+    const isImageRequest = imageKeywords.some(kw => lastUserMsg.includes(kw));
+
+    if (isImageRequest) {
+      const userMessage = messages[messages.length - 1]?.content || '';
+      
+      // Use Claude to create a better image prompt
+      let imagePrompt = userMessage;
+      try {
+        const promptResponse = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': CLAUDE_API_KEY,
+            'anthropic-version': '2023-06-01',
+          },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 200,
+            messages: [{
+              role: 'user',
+              content: `Extract a clear, detailed image generation prompt from this user request. Return ONLY the image description, nothing else. Make it detailed and visual.\n\nUser request: "${userMessage}"`
+            }],
+          }),
+        });
+
+        if (promptResponse.ok) {
+          const promptData = await promptResponse.json();
+          imagePrompt = promptData.content?.[0]?.text || userMessage;
+        }
+      } catch (e) {
+        // Use original message as prompt
+      }
+
+      // Generate image using Pollinations.ai (free, no API key needed)
+      const encodedPrompt = encodeURIComponent(imagePrompt);
+      const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&nologo=true&seed=${Date.now()}`;
+
+      return res.status(200).json({
+        type: 'image',
+        imageUrl: imageUrl,
+        content: `🎨 **Image Generated!**\n\nHere's the image based on your request.\n\n💡 **Tip:** You can ask me to generate more images or modify this one!`
+      });
+    }
+
+    // Regular chat - use Claude API with streaming
     const systemPrompt = `You are VAZHIKAATTI AI Career Counselor — an expert career guidance assistant built by JKKN Educational Institutions, Tamil Nadu, India.
 
 YOUR CAPABILITIES:
@@ -42,7 +103,7 @@ YOUR PERSONALITY:
 
 FORMATTING:
 - Use **bold** for important terms
-- Use bullet points (•) for lists
+- Use bullet points for lists
 - Structure with clear headings using **Header:**
 - Keep responses focused and practical
 - For long topics, break into clear sections
@@ -58,13 +119,11 @@ IMPORTANT RULES:
 JKKN CONTEXT:
 JKKN Educational Institutions (J.K.K. Nattraja Educational Institutions) is located in Komarapalayam, Namakkal District, Tamil Nadu. It offers Engineering, Pharmacy, Arts & Science, Dental, Nursing, and Polytechnic programs.`;
 
-    // Build messages for Claude API
     const apiMessages = messages.map(m => ({
       role: m.role === 'user' ? 'user' : 'assistant',
       content: m.content
     }));
 
-    // Call Claude API with streaming
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -87,7 +146,6 @@ JKKN Educational Institutions (J.K.K. Nattraja Educational Institutions) is loca
       return res.status(500).json({ error: 'AI service temporarily unavailable' });
     }
 
-    // Stream the response
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
@@ -119,9 +177,7 @@ JKKN Educational Institutions (J.K.K. Nattraja Educational Institutions) is loca
             if (parsed.type === 'message_stop') {
               res.write('data: [DONE]\n\n');
             }
-          } catch (e) {
-            // Skip unparseable chunks
-          }
+          } catch (e) {}
         }
       }
     }

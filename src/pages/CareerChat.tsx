@@ -69,6 +69,7 @@ interface Message {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
+  imageUrl?: string;
 }
 
 // Career options for skill gap analyzer
@@ -567,10 +568,22 @@ const CareerChat = () => {
               speakText(assistantContent);
             }
           } else {
-            // Non-streaming JSON response
+            // Non-streaming JSON response (including image generation)
             const data = await response.json();
             if (data.error) {
               console.error('[Chat] API error:', data.error);
+            } else if (data.type === 'image' && data.imageUrl) {
+              // Image generation response
+              apiSuccess = true;
+              const imageMsg: Message = {
+                role: 'assistant',
+                content: data.content || '🎨 Image generated!',
+                imageUrl: data.imageUrl,
+                timestamp: new Date()
+              };
+              setMessages((prev) => [...prev, imageMsg]);
+              await saveMessage(imageMsg);
+              speakText('Image generated successfully!');
             } else {
               apiSuccess = true;
               const reply = data.reply || data.content || '';
@@ -1642,7 +1655,30 @@ Be empathetic and respect Indian family values while helping the student communi
                           }`}
                         >
                           {message.role === 'assistant' ? (
-                            <AIMessageRenderer content={message.content} />
+                            <>
+                              <AIMessageRenderer content={message.content} />
+                              {message.imageUrl && (
+                                <div className="mt-3">
+                                  <img 
+                                    src={message.imageUrl} 
+                                    alt="AI Generated Image" 
+                                    className="w-full max-w-md rounded-xl shadow-lg border border-gray-200"
+                                    loading="lazy"
+                                    onError={(e) => {
+                                      (e.target as HTMLImageElement).style.display = 'none';
+                                    }}
+                                  />
+                                  <a 
+                                    href={message.imageUrl} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 mt-2 text-xs text-emerald-600 hover:text-emerald-700 font-medium"
+                                  >
+                                    🔗 Open full size
+                                  </a>
+                                </div>
+                              )}
+                            </>
                           ) : (
                             <p className="whitespace-pre-wrap leading-relaxed">{message.content}</p>
                           )}
