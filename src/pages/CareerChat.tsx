@@ -146,7 +146,7 @@ const CAREER_CATEGORIES_12TH = [
   'Agriculture & Food Tech'
 ];
 
-const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/jkkn-chat`;
+const CHAT_URL = '/api/career-chat';
 
 // Local AI career responses when API is unavailable
 function getLocalCareerReply(msg: string): string {
@@ -407,29 +407,27 @@ const CareerChat = () => {
     setIsLoading(true);
 
     try {
-      // First, try to get a session and call the API
       let apiSuccess = false;
       
       try {
-        let { data: { session } } = await supabase.auth.getSession();
-        
-        if (session?.access_token) {
-          const response = await fetch(CHAT_URL, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${session.access_token}`
-            },
-            body: JSON.stringify({
-              messages: userMessages.map((m) => ({ role: m.role, content: m.content }))
-            })
-          });
+        const response = await fetch(CHAT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: userMessages.map((m) => ({ role: m.role, content: m.content }))
+          })
+        });
 
-          if (response.ok && response.body) {
+        if (response.ok && response.body) {
+          // Check if it's a streaming response
+          const contentType = response.headers.get('content-type') || '';
+          
+          if (contentType.includes('text/event-stream')) {
             apiSuccess = true;
             const reader = response.body.getReader();
             const decoder = new TextDecoder();
             let assistantContent = '';
+            let buffer = '';
 
             setMessages((prev) => [
               ...prev,
@@ -440,14 +438,16 @@ const CareerChat = () => {
               const { done, value } = await reader.read();
               if (done) break;
 
-              const chunk = decoder.decode(value, { stream: true });
-              const lines = chunk.split('\n');
+              buffer += decoder.decode(value, { stream: true });
+              const lines = buffer.split('\n');
+              buffer = lines.pop() || '';
 
               for (const line of lines) {
                 if (line.startsWith('data: ') && line.trim() !== 'data: [DONE]') {
                   try {
                     const data = JSON.parse(line.slice(6));
-                    const content = data.choices?.[0]?.delta?.content || '';
+                    // Support both formats: {text: "..."} and {choices: [{delta: {content: "..."}}]}
+                    const content = data.text || data.choices?.[0]?.delta?.content || '';
                     if (content) {
                       assistantContent += content;
                       setMessages((prev) => {
@@ -467,13 +467,46 @@ const CareerChat = () => {
               }
             }
 
-            const assistantMessage: Message = {
-              role: 'assistant',
-              content: assistantContent,
-              timestamp: new Date()
-            };
-            await saveMessage(assistantMessage);
-            speakText(assistantContent);
+            if (assistantContent) {
+              const assistantMessage: Message = {
+                role: 'assistant',
+                content: assistantContent,
+                timestamp: new Date()
+              };
+              await saveMessage(assistantMessage);
+              speakText(assistantContent);
+            }
+          } else {
+            // Non-streaming JSON response
+            const data = await response.json();
+            if (data.error) {
+              console.error('[Chat] API error:', data.error);
+            } else {
+              apiSuccess = true;
+              const reply = data.reply || data.content || '';
+              if (reply) {
+                setMessages((prev) => [
+                  ...prev,
+                  { role: 'assistant', content: '', timestamp: new Date() }
+                ]);
+                // Type out word by word
+                let displayed = '';
+                const words = reply.split(' ');
+                for (let i = 0; i < words.length; i++) {
+                  displayed += (i > 0 ? ' ' : '') + words[i];
+                  setMessages((prev) => {
+                    const updated = [...prev];
+                    updated[updated.length - 1] = {
+                      role: 'assistant', content: displayed, timestamp: new Date()
+                    };
+                    return updated;
+                  });
+                  await new Promise(r => setTimeout(r, 15));
+                }
+                await saveMessage({ role: 'assistant', content: reply, timestamp: new Date() });
+                speakText(reply);
+              }
+            }
           }
         }
       } catch (apiError) {
@@ -485,13 +518,11 @@ const CareerChat = () => {
         const userMsg = userMessages[userMessages.length - 1]?.content || '';
         const localReply = getLocalCareerReply(userMsg);
         
-        // Simulate typing effect
         setMessages((prev) => [
           ...prev,
           { role: 'assistant', content: '', timestamp: new Date() }
         ]);
         
-        // Type out response character by character for natural feel
         let displayed = '';
         const words = localReply.split(' ');
         for (let i = 0; i < words.length; i++) {
@@ -499,9 +530,7 @@ const CareerChat = () => {
           setMessages((prev) => {
             const updated = [...prev];
             updated[updated.length - 1] = {
-              role: 'assistant',
-              content: displayed,
-              timestamp: new Date()
+              role: 'assistant', content: displayed, timestamp: new Date()
             };
             return updated;
           });
@@ -510,7 +539,6 @@ const CareerChat = () => {
       }
     } catch (error) {
       console.error('Chat error:', error);
-      // Fallback to local response
       const userMsg = userMessages[userMessages.length - 1]?.content || '';
       const localReply = getLocalCareerReply(userMsg);
       setMessages((prev) => {

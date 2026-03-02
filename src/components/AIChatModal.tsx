@@ -19,7 +19,7 @@ interface AIChatModalProps {
   onClose: () => void;
 }
 
-const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/jkkn-chat`;
+const CHAT_URL = '/api/career-chat';
 
 // Local responses when API is unavailable
 function getLocalChatReply(msg: string): string {
@@ -280,79 +280,71 @@ const AIChatModal = ({ isOpen, onClose }: AIChatModalProps) => {
   }, [isListening]);
 
   const streamChat = useCallback(async (userMessages: Message[]) => {
-    // Try API first, fall back to local responses
     let apiSuccess = false;
     
     try {
-      let { data: { session } } = await supabase.auth.getSession();
-      
-      if (session?.access_token) {
-        const resp = await fetch(CHAT_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${session.access_token}`,
-          },
-          body: JSON.stringify({ messages: userMessages.map(m => ({ role: m.role, content: m.content })) }),
-        });
+      const resp = await fetch(CHAT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: userMessages.map(m => ({ role: m.role, content: m.content })) }),
+      });
 
-        if (resp.ok) {
-          const contentType = resp.headers.get("content-type") || "";
-          
-          if (contentType.includes("application/json")) {
-            const data = await resp.json();
-            if (data.type === "image" && data.imageUrl) {
-              const assistantMsg: Message = { 
-                role: "assistant", 
-                content: data.content || "Here's the image you requested!",
-                imageUrl: data.imageUrl 
-              };
-              setMessages(prev => [...prev, assistantMsg]);
-              await saveMessage(assistantMsg);
-              speakText(assistantMsg.content);
-              apiSuccess = true;
+      if (resp.ok) {
+        const contentType = resp.headers.get("content-type") || "";
+        
+        if (contentType.includes("text/event-stream") && resp.body) {
+          apiSuccess = true;
+          const reader = resp.body.getReader();
+          const decoder = new TextDecoder();
+          let assistantContent = "";
+          let buffer = "";
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split("\n");
+            buffer = lines.pop() || "";
+
+            for (const line of lines) {
+              if (line.startsWith("data: ") && line.trim() !== "data: [DONE]") {
+                try {
+                  const parsed = JSON.parse(line.slice(6).trim());
+                  const content = parsed.text || parsed.choices?.[0]?.delta?.content || '';
+                  if (content) {
+                    assistantContent += content;
+                    setMessages((prev) => {
+                      const last = prev[prev.length - 1];
+                      if (last?.role === "assistant" && !last.imageUrl) {
+                        return prev.map((m, i) =>
+                          i === prev.length - 1 ? { ...m, content: assistantContent } : m
+                        );
+                      }
+                      return [...prev, { role: "assistant", content: assistantContent }];
+                    });
+                  }
+                } catch { /* skip */ }
+              }
             }
           }
           
-          if (!apiSuccess && resp.body) {
-            const reader = resp.body.getReader();
-            const decoder = new TextDecoder();
-            let assistantContent = "";
-
-            while (true) {
-              const { done, value } = await reader.read();
-              if (done) break;
-              
-              const chunk = decoder.decode(value, { stream: true });
-              const lines = chunk.split("\n");
-
-              for (const line of lines) {
-                if (line.startsWith("data: ") && line.trim() !== "data: [DONE]") {
-                  try {
-                    const parsed = JSON.parse(line.slice(6).trim());
-                    const content = parsed.choices?.[0]?.delta?.content;
-                    if (content) {
-                      assistantContent += content;
-                      setMessages((prev) => {
-                        const last = prev[prev.length - 1];
-                        if (last?.role === "assistant" && !last.imageUrl) {
-                          return prev.map((m, i) =>
-                            i === prev.length - 1 ? { ...m, content: assistantContent } : m
-                          );
-                        }
-                        return [...prev, { role: "assistant", content: assistantContent }];
-                      });
-                    }
-                  } catch { /* skip */ }
-                }
-              }
-            }
-            
-            if (assistantContent) {
-              await saveMessage({ role: "assistant", content: assistantContent });
-              speakText(assistantContent);
-              apiSuccess = true;
-            }
+          if (assistantContent) {
+            await saveMessage({ role: "assistant", content: assistantContent });
+            speakText(assistantContent);
+          }
+        } else if (contentType.includes("application/json")) {
+          const data = await resp.json();
+          if (data.type === "image" && data.imageUrl) {
+            const assistantMsg: Message = { 
+              role: "assistant", 
+              content: data.content || "Here's the image you requested!",
+              imageUrl: data.imageUrl 
+            };
+            setMessages(prev => [...prev, assistantMsg]);
+            await saveMessage(assistantMsg);
+            speakText(assistantMsg.content);
+            apiSuccess = true;
           }
         }
       }
