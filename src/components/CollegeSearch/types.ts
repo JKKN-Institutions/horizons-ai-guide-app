@@ -9503,7 +9503,7 @@ export const CUDDALORE_FEATURED_COLLEGES: College[] = [
   },
   {
     id: 'au_hotel_management',
-    name: 'Annamalai University - Department of Hotel Management & Catering Science, Chidambaram',
+    name: 'Annamal Institute of Hotel Management, Chidambaram',
     type: 'government',
     category: 'hotel_management',
     courses: 'B.Sc Hotel Management, M.Sc HM',
@@ -10565,6 +10565,16 @@ export const DINDIGUL_FEATURED_COLLEGES: College[] = [
   {
     id: 'chattanatha_pharmacy',
     name: 'S. Chattanatha Karayalar College of Pharmacy, Dindigul',
+    type: 'private',
+    category: 'pharmacy',
+    courses: 'B.Pharm, D.Pharm',
+    address: 'Dindigul',
+    feeRange: '₹35,000 - ₹90,000 per year',
+    accreditation: 'PCI Approved',
+  },
+  {
+    id: 'pannai_pharmacy',
+    name: 'Pannai College of Pharmacy, Dindigul',
     type: 'private',
     category: 'pharmacy',
     courses: 'B.Pharm, D.Pharm',
