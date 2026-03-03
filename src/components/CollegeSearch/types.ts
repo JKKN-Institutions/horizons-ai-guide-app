@@ -3939,6 +3939,440 @@ export const TIRUPUR_FEATURED_COLLEGES: College[] = [
     feeRange: '₹15,000 - ₹40,000 per year',
     accreditation: 'AICTE Approved',
   },
+
+  // ============================================
+  // ADDITIONAL - Arts & Science
+  // ============================================
+  {
+    id: 'govt_arts_science_tirupur',
+    name: 'Government Arts & Science College, Tirupur',
+    type: 'government',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Tirupur',
+    feeRange: '₹1,000 - ₹5,000 per year',
+  },
+  {
+    id: 'sri_ramakrishna_arts_women',
+    name: 'Sri Ramakrishna College of Arts & Science for Women, Tirupur',
+    type: 'government-aided',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA, BBA, M.A, M.Sc, M.Com',
+    address: 'Tirupur',
+    feeRange: '₹5,000 - ₹30,000 per year',
+  },
+  {
+    id: 'cherrans_arts_science',
+    name: "Cherraan's College of Arts and Science, Tirupur",
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA, BBA',
+    address: 'Tirupur',
+    feeRange: '₹15,000 - ₹40,000 per year',
+  },
+  {
+    id: 'cheran_college_women',
+    name: 'Cheran College for Women, Tirupur',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Tirupur',
+    feeRange: '₹15,000 - ₹40,000 per year',
+  },
+  {
+    id: 'sasuri_arts_science',
+    name: 'Sasuri College of Arts and Science, Tirupur',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Tirupur',
+    feeRange: '₹15,000 - ₹40,000 per year',
+  },
+  {
+    id: 'ag_education_institutes',
+    name: 'AG Education Institutes, Tirupur',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Avinashipalayam, Tirupur',
+    feeRange: '₹15,000 - ₹40,000 per year',
+  },
+  {
+    id: 'nyruthi_arts_science',
+    name: 'Nyruthi Arts and Science College, Avanashi',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Sathy Main Road, Avanashi, Tirupur',
+    feeRange: '₹15,000 - ₹40,000 per year',
+  },
+  {
+    id: 'theeran_chinnamalai_women',
+    name: 'Theeran Chinnamalai Arts and Science College for Women, Tirupur',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Tirupur',
+    feeRange: '₹15,000 - ₹40,000 per year',
+  },
+  {
+    id: 'maharaja_prithivi',
+    name: 'Maharaja Prithivi College, Avanashi',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA, BBA',
+    address: 'Avinashi Thekkalur, Avanashi, Tirupur',
+    feeRange: '₹15,000 - ₹40,000 per year',
+  },
+  {
+    id: 'terfs_academy',
+    name: 'Terfs Academy College of Arts & Science, Tirupur',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Dharapuram Road, Kumarnagar, Tirupur',
+    feeRange: '₹15,000 - ₹40,000 per year',
+  },
+
+  // ============================================
+  // ADDITIONAL - Medical & Dental
+  // ============================================
+  {
+    id: 'tirupur_medical_private',
+    name: 'Tirupur Medical College & Hospital, Tirupur',
+    type: 'private',
+    category: 'medical',
+    courses: 'MBBS, MD, MS',
+    address: 'Tirupur',
+    feeRange: '₹8,00,000 - ₹20,00,000 per year',
+    accreditation: 'NMC Approved',
+  },
+  {
+    id: 'tirupur_dental',
+    name: 'Tirupur Dental College & Hospital, Tirupur',
+    type: 'private',
+    category: 'dental',
+    courses: 'BDS, MDS',
+    address: 'Tirupur',
+    feeRange: '₹3,00,000 - ₹8,00,000 per year',
+    accreditation: 'DCI Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Engineering
+  // ============================================
+  {
+    id: 'kangeyam_institute_tech',
+    name: 'Kangeyam Institute of Technology, Kangeyam',
+    type: 'private',
+    category: 'engineering',
+    courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech)',
+    address: 'Kangeyam, Tirupur',
+    feeRange: '₹40,000 - ₹90,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'sri_ramanathan_engg',
+    name: 'Sri Ramanathan College of Engineering, Tirupur',
+    type: 'private',
+    category: 'engineering',
+    courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech)',
+    address: 'Tirupur',
+    feeRange: '₹40,000 - ₹90,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'ebet_group',
+    name: 'EBET Group of Institutions, Kangayam',
+    type: 'private',
+    category: 'engineering',
+    courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech, Civil)',
+    address: 'Kangayam, Tirupur',
+    feeRange: '₹45,000 - ₹1,00,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'professional_college_engg',
+    name: 'Professional College of Engineering and Technology, Tirupur',
+    type: 'private',
+    category: 'engineering',
+    courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech)',
+    address: 'Tirupur',
+    feeRange: '₹40,000 - ₹90,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'builders_engineering',
+    name: 'Builders Engineering College, Tirupur',
+    type: 'private',
+    category: 'engineering',
+    courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech, Civil)',
+    address: 'Tirupur',
+    feeRange: '₹45,000 - ₹1,00,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Nursing
+  // ============================================
+  {
+    id: 'sri_ramakrishna_nursing',
+    name: 'Sri Ramakrishna College of Nursing, Tirupur',
+    type: 'private',
+    category: 'nursing',
+    courses: 'B.Sc Nursing, GNM',
+    address: 'Tirupur',
+    feeRange: '₹40,000 - ₹1,00,000 per year',
+    accreditation: 'INC Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Law
+  // ============================================
+  {
+    id: 'govt_law_tirupur',
+    name: 'Government Law College, Tirupur',
+    type: 'government',
+    category: 'law',
+    courses: 'B.A. LL.B (5 Year), LL.B (3 Year)',
+    address: 'Tirupur',
+    feeRange: '₹2,000 - ₹10,000 per year',
+    accreditation: 'Bar Council of India Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Agriculture / Veterinary
+  // ============================================
+  {
+    id: 'tanuvas_tirupur',
+    name: 'TANUVAS Veterinary University Training & Research Centre, Tirupur',
+    type: 'government',
+    category: 'agricultural',
+    courses: 'Veterinary Training & Research Programs',
+    address: 'Tirupur',
+    feeRange: '₹5,000 - ₹15,000 per year',
+    accreditation: 'TANUVAS Affiliated',
+  },
+
+  // ============================================
+  // ADDITIONAL - Pharmacy
+  // ============================================
+  {
+    id: 'tirupur_kalaimagal_pharmacy',
+    name: 'Tirupur Kalaimagal College of Pharmacy, Tirupur',
+    type: 'private',
+    category: 'pharmacy',
+    courses: 'B.Pharm, D.Pharm',
+    address: 'Dharapuram Road, Chandrapuram, Tirupur',
+    feeRange: '₹40,000 - ₹1,00,000 per year',
+    accreditation: 'PCI Approved',
+  },
+  {
+    id: 'sri_ramakrishna_pharmacy',
+    name: 'Sri Ramakrishna College of Pharmacy, Tirupur',
+    type: 'private',
+    category: 'pharmacy',
+    courses: 'B.Pharm, D.Pharm',
+    address: 'Tirupur',
+    feeRange: '₹40,000 - ₹1,00,000 per year',
+    accreditation: 'PCI Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Allied Health Sciences
+  // ============================================
+  {
+    id: 'revathi_allied_health',
+    name: 'Revathi College of Allied Health Sciences & Physiotherapy, Avanashi',
+    type: 'private',
+    category: 'allied_health',
+    courses: 'BPT, B.Sc Allied Health, B.Sc MLT, B.Sc Radiology',
+    address: 'Sembianallur, Avanashi, Tirupur',
+    feeRange: '₹40,000 - ₹1,20,000 per year',
+  },
+  {
+    id: 'sri_ramakrishna_allied',
+    name: 'Sri Ramakrishna Allied Health Sciences, Tirupur',
+    type: 'private',
+    category: 'allied_health',
+    courses: 'B.Sc Allied Health, B.Sc MLT, B.Sc Radiology',
+    address: 'Tirupur',
+    feeRange: '₹40,000 - ₹1,20,000 per year',
+  },
+
+  // ============================================
+  // ADDITIONAL - Education (B.Ed / Teacher Training)
+  // ============================================
+  {
+    id: 'govt_bed_tirupur',
+    name: 'Government B.Ed College, Tirupur',
+    type: 'government',
+    category: 'education',
+    courses: 'B.Ed',
+    address: 'Tirupur',
+    feeRange: '₹2,000 - ₹10,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'sri_ramakrishna_education',
+    name: 'Sri Ramakrishna College of Education, Tirupur',
+    type: 'government-aided',
+    category: 'education',
+    courses: 'B.Ed, M.Ed',
+    address: 'Tirupur',
+    feeRange: '₹10,000 - ₹30,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'dkt_education',
+    name: 'D.K.T College of Education, Tirupur',
+    type: 'private',
+    category: 'education',
+    courses: 'B.Ed',
+    address: 'Peruntholur, Rayapuram, Tirupur',
+    feeRange: '₹25,000 - ₹50,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'gp_secondary_teacher',
+    name: 'G.P. Secondary Teacher Education Training College, Tirupur',
+    type: 'private',
+    category: 'education',
+    courses: 'B.Ed, D.T.Ed',
+    address: 'Sivrajpet, Tirupur',
+    feeRange: '₹20,000 - ₹45,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'gp_teacher_training',
+    name: 'G.P. Teacher Training Institute, Tirupur',
+    type: 'private',
+    category: 'education',
+    courses: 'D.T.Ed (Diploma in Teacher Education)',
+    address: 'Vaniyambadi Road, Tirupur',
+    feeRange: '₹20,000 - ₹40,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'tk_raja_education',
+    name: 'T.K. Raja College of Education, Tirupur',
+    type: 'private',
+    category: 'education',
+    courses: 'B.Ed',
+    address: 'Adiyur Village, Tirupur',
+    feeRange: '₹25,000 - ₹50,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'tes_teacher_training',
+    name: 'T.E.S. Teacher Training Institute, Tirupur',
+    type: 'private',
+    category: 'education',
+    courses: 'D.T.Ed',
+    address: 'Tirupur',
+    feeRange: '₹20,000 - ₹40,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'dr_nallini_education',
+    name: 'Dr. Nallini College of Teacher Education, Dharapuram',
+    type: 'private',
+    category: 'education',
+    courses: 'B.Ed',
+    address: 'Dharapuram, Tirupur',
+    feeRange: '₹25,000 - ₹50,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+
+  // ============================================
+  // ADDITIONAL - Hotel Management
+  // ============================================
+  {
+    id: 'pioneer_hotel_management',
+    name: 'Pioneer International School of Hotel Management, Tirupur',
+    type: 'private',
+    category: 'hotel_management',
+    courses: 'B.Sc Hotel Management, Diploma in HM',
+    address: 'Tirupur',
+    feeRange: '₹30,000 - ₹60,000 per year',
+  },
+
+  // ============================================
+  // ADDITIONAL - Management
+  // ============================================
+  {
+    id: 'sai_management_tirupur',
+    name: 'Sai Institute of Management Studies, Tirupur',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'BBA, MBA',
+    address: 'Avinashi Main Road, Tirupur North',
+    feeRange: '₹30,000 - ₹80,000 per year',
+  },
+
+  // ============================================
+  // ADDITIONAL - Polytechnic
+  // ============================================
+  {
+    id: 'govt_polytechnic_tirupur',
+    name: 'Government Polytechnic College, Tirupur',
+    type: 'government',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, EEE, Computer',
+    address: 'Tirupur',
+    feeRange: '₹2,000 - ₹5,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'nyruthi_polytechnic',
+    name: 'Nyruthi Polytechnic College, Avanashi',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, Computer',
+    address: 'Sathy Main Road, Avanashi, Tirupur',
+    feeRange: '₹12,000 - ₹25,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'erode_chemical_polytechnic',
+    name: 'Erode Institute of Chemical Technology Polytechnic, Avinashi',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Chemical, Mechanical, Computer',
+    address: 'Nadupatti, Avinashi, Tirupur',
+    feeRange: '₹12,000 - ₹25,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'nms_vimala_polytechnic',
+    name: 'Nadar Mahajana Sangam Vimala Chelladurai Polytechnic, Dharapuram',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, Computer',
+    address: 'Mallampalayam, Dharapuram, Tirupur',
+    feeRange: '₹10,000 - ₹25,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'sakthi_fashion_polytechnic',
+    name: 'Sakthi Institute of Fashion Technology Polytechnic, Tirupur',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Fashion Technology, Garment Technology',
+    address: 'Tirupur',
+    feeRange: '₹15,000 - ₹30,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'sri_ramakrishna_polytechnic',
+    name: 'Sri Ramakrishna Polytechnic College, Tirupur',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, EEE, Computer',
+    address: 'Tirupur',
+    feeRange: '₹15,000 - ₹30,000 per year',
+    accreditation: 'AICTE Approved',
+  },
 ];
 
 // ================================================================
