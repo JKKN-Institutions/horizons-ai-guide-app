@@ -9638,3 +9638,399 @@ export const CUDDALORE_FEATURED_COLLEGES: College[] = [
     accreditation: 'COA Approved',
   },
 ];
+
+// ================================================================
+// Dharmapuri District Colleges - Complete 2026 Directory (37 institutions)
+// ================================================================
+export const DHARMAPURI_FEATURED_COLLEGES: College[] = [
+  // ============================================
+  // 1. ARTS AND SCIENCE
+  // ============================================
+  {
+    id: 'govt_arts_dharmapuri',
+    name: 'Government Arts College, Dharmapuri',
+    type: 'government',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA, M.A, M.Sc, M.Com',
+    address: 'Dharmapuri',
+    feeRange: '₹1,000 - ₹5,000 per year',
+    accreditation: 'NAAC B++, Periyar University Affiliated',
+  },
+  {
+    id: 'govt_arts_women_karimangalam',
+    name: 'Government Arts & Science College for Women, Karimangalam',
+    type: 'government',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com',
+    address: 'Karimangalam, Dharmapuri',
+    feeRange: '₹1,000 - ₹5,000 per year',
+  },
+  {
+    id: 'mgr_govt_palacode',
+    name: 'Bharat Ratna Puratchi Thalaivar Dr. M.G.R. Govt Arts & Science College, Palacode',
+    type: 'government',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com',
+    address: 'Palacode, Dharmapuri',
+    feeRange: '₹1,000 - ₹5,000 per year',
+  },
+  {
+    id: 'govt_arts_pennagaram',
+    name: 'Government Arts & Science College, Pennagaram',
+    type: 'government',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com',
+    address: 'Pennagaram, Dharmapuri',
+    feeRange: '₹1,000 - ₹5,000 per year',
+  },
+  {
+    id: 'govt_arts_harur',
+    name: 'Government Arts & Science College, Harur',
+    type: 'government',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com',
+    address: 'Harur, Dharmapuri',
+    feeRange: '₹1,000 - ₹5,000 per year',
+  },
+  {
+    id: 'govt_arts_pappireddipatti',
+    name: 'Government Arts & Science College, Pappireddipatti',
+    type: 'government',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com',
+    address: 'Pappireddipatti, Dharmapuri',
+    feeRange: '₹1,000 - ₹5,000 per year',
+  },
+  {
+    id: 'govt_arts_eriyur',
+    name: 'Government Arts & Science College, Eriyur',
+    type: 'government',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com',
+    address: 'Eriyur, Dharmapuri',
+    feeRange: '₹1,000 - ₹5,000 per year',
+  },
+  {
+    id: 'periyar_univ_arts_dharmapuri',
+    name: 'Periyar University College of Arts & Science, Dharmapuri',
+    type: 'government',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA, M.A, M.Sc',
+    address: 'Dharmapuri',
+    feeRange: '₹3,000 - ₹10,000 per year',
+    accreditation: 'Periyar University Constituent',
+  },
+  {
+    id: 'sri_vijay_arts',
+    name: 'Sri Vijay Vidyalaya College of Arts & Science, Nallampalli',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA, BBA',
+    address: 'Nallampalli, Dharmapuri',
+    feeRange: '₹15,000 - ₹40,000 per year',
+  },
+  {
+    id: 'pee_gee_arts',
+    name: 'Pee Gee College of Arts & Science, Palacode',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Periyanahalli, Palacode, Dharmapuri',
+    feeRange: '₹15,000 - ₹35,000 per year',
+  },
+  {
+    id: 'erk_arts',
+    name: 'ERK Arts & Science College, Dharmapuri',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Dharmapuri',
+    feeRange: '₹15,000 - ₹35,000 per year',
+  },
+  {
+    id: 'jayam_arts',
+    name: 'Jayam Arts & Science College, Dharmapuri',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Dharmapuri',
+    feeRange: '₹15,000 - ₹35,000 per year',
+  },
+  {
+    id: 'sakthikailash_women_dharmapuri',
+    name: "Sakthikailash Women's College, Dharmapuri",
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Dharmapuri',
+    feeRange: '₹15,000 - ₹35,000 per year',
+  },
+  {
+    id: 'pmp_arts',
+    name: 'PMP Arts & Science College, Dharmapuri',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Dharmapuri',
+    feeRange: '₹12,000 - ₹30,000 per year',
+  },
+  {
+    id: 'muthu_mase_arts',
+    name: 'Muthu Mase Arts & Science College, Dharmapuri',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com',
+    address: 'Dharmapuri',
+    feeRange: '₹12,000 - ₹30,000 per year',
+  },
+  {
+    id: 'jai_sri_venkatesh',
+    name: 'Jai Sri Venkatesh College of Arts & Science, Dharmapuri',
+    type: 'private',
+    category: 'arts_science',
+    courses: 'B.A, B.Sc, B.Com, BCA',
+    address: 'Dharmapuri',
+    feeRange: '₹12,000 - ₹30,000 per year',
+  },
+
+  // ============================================
+  // 2. MEDICAL
+  // ============================================
+  {
+    id: 'govt_medical_dharmapuri',
+    name: 'Government Medical College & Hospital, Dharmapuri',
+    type: 'government',
+    category: 'medical',
+    courses: 'MBBS, MD, MS',
+    address: 'Salem Main Road, Dharmapuri',
+    feeRange: '₹15,000 - ₹25,000 per year',
+    accreditation: 'NMC Approved',
+  },
+
+  // ============================================
+  // 3. ENGINEERING
+  // ============================================
+  {
+    id: 'gce_dharmapuri',
+    name: 'Government College of Engineering, Dharmapuri',
+    type: 'government',
+    category: 'engineering',
+    courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech, Civil)',
+    address: 'Chettikarai, Dharmapuri',
+    feeRange: '₹10,000 - ₹30,000 per year',
+    accreditation: 'Anna University Affiliated',
+  },
+  {
+    id: 'jayam_engg',
+    name: 'Jayam College of Engineering & Technology (JCET), Dharmapuri',
+    type: 'private',
+    category: 'engineering',
+    courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech)',
+    address: 'Nallanur, Dharmapuri',
+    feeRange: '₹40,000 - ₹90,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'shreenivasa_engg',
+    name: 'Shreenivasa Engineering College, Dharmapuri',
+    type: 'private',
+    category: 'engineering',
+    courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech)',
+    address: 'Dharmapuri',
+    feeRange: '₹40,000 - ₹90,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+
+  // ============================================
+  // 4. NURSING
+  // ============================================
+  {
+    id: 'govt_nursing_dharmapuri',
+    name: 'College of Nursing, Govt. Medical College, Dharmapuri',
+    type: 'government',
+    category: 'nursing',
+    courses: 'B.Sc Nursing, M.Sc Nursing',
+    address: 'Dharmapuri',
+    feeRange: '₹5,000 - ₹15,000 per year',
+    accreditation: 'INC Approved',
+  },
+  {
+    id: 'sri_vijay_nursing',
+    name: 'Sri Vijay Vidyalaya College of Nursing, Dharmapuri',
+    type: 'private',
+    category: 'nursing',
+    courses: 'B.Sc Nursing, GNM',
+    address: 'D.N.C. Compound, Gandhi Nagar, Dharmapuri',
+    feeRange: '₹40,000 - ₹1,00,000 per year',
+    accreditation: 'INC Approved',
+  },
+  {
+    id: 'annai_nursing_dharmapuri',
+    name: 'Annai College of Nursing, Dharmapuri',
+    type: 'private',
+    category: 'nursing',
+    courses: 'B.Sc Nursing, GNM',
+    address: 'Dharmapuri',
+    feeRange: '₹35,000 - ₹90,000 per year',
+    accreditation: 'INC Approved',
+  },
+
+  // ============================================
+  // 5. LAW
+  // ============================================
+  {
+    id: 'govt_law_dharmapuri',
+    name: 'Government Law College, Dharmapuri',
+    type: 'government',
+    category: 'law',
+    courses: 'B.A. LL.B (5 Year), LL.B (3 Year)',
+    address: 'NH-44, Baisuhalli, Kariamangalam Taluk, Dharmapuri',
+    feeRange: '₹5,000 - ₹15,000 per year',
+    accreditation: 'BCI Approved',
+  },
+
+  // ============================================
+  // 6. PHARMACY
+  // ============================================
+  {
+    id: 'padmavathi_pharmacy',
+    name: 'Padmavathi College of Pharmacy, Dharmapuri',
+    type: 'private',
+    category: 'pharmacy',
+    courses: 'B.Pharm, D.Pharm',
+    address: 'Dharmapuri',
+    feeRange: '₹35,000 - ₹80,000 per year',
+    accreditation: 'PCI Approved',
+  },
+
+  // ============================================
+  // 7. ALLIED HEALTH SCIENCES
+  // ============================================
+  {
+    id: 'sri_vijay_allied',
+    name: 'Sri Vijay Vidyalaya College of Allied Health Sciences, Dharmapuri',
+    type: 'private',
+    category: 'allied_health',
+    courses: 'B.Sc Allied Health, B.Sc MLT, BPT',
+    address: 'Dharmapuri',
+    feeRange: '₹40,000 - ₹1,00,000 per year',
+  },
+
+  // ============================================
+  // 8. EDUCATION
+  // ============================================
+  {
+    id: 'sri_vijay_education',
+    name: 'Sri Vijay Vidyalaya College of Education, Dharmapuri',
+    type: 'private',
+    category: 'education',
+    courses: 'B.Ed, M.Ed',
+    address: 'Nallampalli, Dharmapuri',
+    feeRange: '₹25,000 - ₹50,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'jayam_education',
+    name: 'Jayam College of Education, Dharmapuri',
+    type: 'private',
+    category: 'education',
+    courses: 'B.Ed',
+    address: 'Dharmapuri',
+    feeRange: '₹25,000 - ₹50,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'erk_education',
+    name: 'ERK College of Education, Dharmapuri',
+    type: 'private',
+    category: 'education',
+    courses: 'B.Ed',
+    address: 'Dharmapuri',
+    feeRange: '₹25,000 - ₹50,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+  {
+    id: 'sakthikailash_education',
+    name: 'Sakthikailash College of Education, Dharmapuri',
+    type: 'private',
+    category: 'education',
+    courses: 'B.Ed',
+    address: 'Dharmapuri',
+    feeRange: '₹25,000 - ₹50,000 per year',
+    accreditation: 'NCTE Approved',
+  },
+
+  // ============================================
+  // 9. POLYTECHNIC
+  // ============================================
+  {
+    id: 'lakshmi_narayana_polytechnic',
+    name: 'Lakshmi Narayana Polytechnic College, Nallampalli',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, EEE, Computer',
+    address: 'Savulur, Nallampalli, Dharmapuri',
+    feeRange: '₹10,000 - ₹25,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'jayam_polytechnic',
+    name: 'Jayam Polytechnic College, Dharmapuri',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, Computer',
+    address: 'Dharmapuri',
+    feeRange: '₹10,000 - ₹25,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'sri_ramachandra_polytechnic_dharmapuri',
+    name: 'Sri Ramachandra Polytechnic College, Dharmapuri',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, Computer',
+    address: 'Dharmapuri',
+    feeRange: '₹10,000 - ₹25,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'girivaasan_polytechnic',
+    name: 'Girivaasan Polytechnic College, Dharmapuri',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, Computer',
+    address: 'Dharmapuri',
+    feeRange: '₹10,000 - ₹25,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'shreenivasa_polytechnic',
+    name: 'Shreenivasa Polytechnic College, Dharmapuri',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, Computer',
+    address: 'Dharmapuri',
+    feeRange: '₹10,000 - ₹25,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'sri_moogambigai_polytechnic',
+    name: 'Sri Moogambigai Polytechnic College, Dharmapuri',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, Computer',
+    address: 'Dharmapuri',
+    feeRange: '₹10,000 - ₹25,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+  {
+    id: 'sri_venkateswara_polytechnic_dharmapuri',
+    name: 'Sri Venkateswara Polytechnic College, Dharmapuri',
+    type: 'private',
+    category: 'polytechnic',
+    courses: 'Diploma in Mechanical, Civil, ECE, Computer',
+    address: 'Dharmapuri',
+    feeRange: '₹10,000 - ₹25,000 per year',
+    accreditation: 'AICTE Approved',
+  },
+];
