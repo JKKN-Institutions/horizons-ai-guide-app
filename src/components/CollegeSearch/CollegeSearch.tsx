@@ -7,7 +7,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { DistrictSelector } from './DistrictSelector';
 import { CollegeFilters } from './CollegeFilters';
 import { CollegeList } from './CollegeList';
-import { College, CollegeCategory, COLLEGE_TYPE_INFO, NAMAKKAL_FEATURED_COLLEGES, ERODE_FEATURED_COLLEGES, SALEM_FEATURED_COLLEGES, COIMBATORE_FEATURED_COLLEGES, TIRUPUR_FEATURED_COLLEGES, KARUR_FEATURED_COLLEGES, ARIYALUR_FEATURED_COLLEGES, CHENGALPATTU_FEATURED_COLLEGES, CHENNAI_FEATURED_COLLEGES, CUDDALORE_FEATURED_COLLEGES, DHARMAPURI_FEATURED_COLLEGES, DINDIGUL_FEATURED_COLLEGES } from './types';
+import { College, CollegeCategory, COLLEGE_TYPE_INFO, NAMAKKAL_FEATURED_COLLEGES, ERODE_FEATURED_COLLEGES, SALEM_FEATURED_COLLEGES, COIMBATORE_FEATURED_COLLEGES, TIRUPUR_FEATURED_COLLEGES, KARUR_FEATURED_COLLEGES, ARIYALUR_FEATURED_COLLEGES, CHENGALPATTU_FEATURED_COLLEGES, CHENNAI_FEATURED_COLLEGES, CUDDALORE_FEATURED_COLLEGES, DHARMAPURI_FEATURED_COLLEGES, DINDIGUL_FEATURED_COLLEGES, KALLAKURICHI_FEATURED_COLLEGES, KANCHIPURAM_FEATURED_COLLEGES } from './types';
 
 // Helper function to normalize college name for comparison
 const normalizeCollegeName = (name: string): string => {
@@ -100,6 +100,8 @@ export const CollegeSearch = () => {
         'Cuddalore': CUDDALORE_FEATURED_COLLEGES,
         'Dharmapuri': DHARMAPURI_FEATURED_COLLEGES,
         'Dindigul': DINDIGUL_FEATURED_COLLEGES,
+        'Kallakurichi': KALLAKURICHI_FEATURED_COLLEGES,
+        'Kanchipuram': KANCHIPURAM_FEATURED_COLLEGES,
       };
 
       if (localData[district]) {
@@ -123,7 +125,7 @@ export const CollegeSearch = () => {
           setColleges([]);
           toast({
             title: 'Coming Soon',
-            description: `College data for ${district} district is being updated. Try Chennai, Chengalpattu, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Erode, Karur, Namakkal, Salem, Tirupur, or Ariyalur.`,
+            description: `College data for ${district} district is being updated. Try Ariyalur, Chennai, Chengalpattu, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Erode, Kallakurichi, Kanchipuram, Karur, Namakkal, Salem, or Tirupur.`,
           });
         }
       }
