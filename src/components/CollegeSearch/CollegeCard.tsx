@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { College, COLLEGE_TYPE_INFO, COLLEGE_CATEGORIES } from './types';
+import { College, COLLEGE_TYPE_INFO, COLLEGE_CATEGORIES, isAutonomousCollege } from './types';
 
 interface CollegeCardProps {
   college: College;
@@ -23,12 +23,15 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
   const typeInfo = COLLEGE_TYPE_INFO[college.type];
   const categoryInfo = COLLEGE_CATEGORIES.find(c => c.id === college.category);
   const collegeUrl = getCollegeUrl(college);
+  const isAutonom = isAutonomousCollege(college);
 
   return (
     <Card className={`border-l-4 transition-all hover:shadow-md ${
       college.isJKKN 
         ? 'border-l-[#FFB800] bg-gradient-to-r from-yellow-50/50 to-transparent' 
-        : 'border-l-[#0A2E1F]'
+        : isAutonom
+          ? 'border-l-[#7B1FA2] bg-gradient-to-r from-purple-50/40 to-transparent'
+          : 'border-l-[#0A2E1F]'
     }`}>
       <CardHeader className="pb-2">
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
@@ -37,6 +40,11 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
               {college.isJKKN && (
                 <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black font-semibold">
                   ⭐ JKKN Group
+                </Badge>
+              )}
+              {isAutonom && !college.isJKKN && (
+                <Badge className="bg-gradient-to-r from-[#9C27B0] to-[#7B1FA2] text-white font-semibold text-xs">
+                  🏅 Autonomous
                 </Badge>
               )}
               <Badge variant="outline" className="text-xs">

@@ -31,7 +31,18 @@ export type CollegeCategory =
   | 'management'
   | 'fine_arts'
   | 'physical_education'
-  | 'polytechnic';
+  | 'polytechnic'
+  | 'architecture';
+
+// Helper: Detect autonomous status from name, type, or accreditation
+export const isAutonomousCollege = (college: College): boolean => {
+  if (college.type === 'autonomous') return true;
+  if (college.name?.toLowerCase().includes('autonomous')) return true;
+  if (college.name?.toLowerCase().includes('deemed')) return true;
+  if (college.accreditation?.toLowerCase().includes('autonomous')) return true;
+  if (college.accreditation?.toLowerCase().includes('deemed')) return true;
+  return false;
+};
 
 export interface CategoryInfo {
   id: CollegeCategory;
@@ -56,6 +67,7 @@ export const COLLEGE_CATEGORIES: CategoryInfo[] = [
   { id: 'fine_arts', name: 'Fine Arts Colleges', icon: '🎨', order: 13 },
   { id: 'physical_education', name: 'Physical Education Colleges', icon: '🏋️', order: 14 },
   { id: 'polytechnic', name: 'Polytechnic Colleges', icon: '🔬', order: 15 },
+  { id: 'architecture', name: 'Architecture Colleges', icon: '🏗️', order: 16 },
 ];
 
 export const TAMIL_NADU_DISTRICTS = [

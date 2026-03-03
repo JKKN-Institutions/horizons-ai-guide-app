@@ -7,7 +7,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { DistrictSelector } from './DistrictSelector';
 import { CollegeFilters } from './CollegeFilters';
 import { CollegeList } from './CollegeList';
-import { College, CollegeCategory, COLLEGE_TYPE_INFO, NAMAKKAL_FEATURED_COLLEGES, ERODE_FEATURED_COLLEGES, SALEM_FEATURED_COLLEGES, COIMBATORE_FEATURED_COLLEGES, TIRUPUR_FEATURED_COLLEGES, KARUR_FEATURED_COLLEGES, ARIYALUR_FEATURED_COLLEGES, CHENGALPATTU_FEATURED_COLLEGES, CHENNAI_FEATURED_COLLEGES, CUDDALORE_FEATURED_COLLEGES, DHARMAPURI_FEATURED_COLLEGES, DINDIGUL_FEATURED_COLLEGES, KALLAKURICHI_FEATURED_COLLEGES, KANCHIPURAM_FEATURED_COLLEGES, KANYAKUMARI_FEATURED_COLLEGES, KRISHNAGIRI_FEATURED_COLLEGES, MADURAI_FEATURED_COLLEGES, MAYILADUTHURAI_FEATURED_COLLEGES, NAGAPATTINAM_FEATURED_COLLEGES, NILGIRIS_FEATURED_COLLEGES, PERAMBALUR_FEATURED_COLLEGES, PUDUKKOTTAI_FEATURED_COLLEGES, RAMANATHAPURAM_FEATURED_COLLEGES, RANIPET_FEATURED_COLLEGES, SIVAGANGA_FEATURED_COLLEGES, TENKASI_FEATURED_COLLEGES, THANJAVUR_FEATURED_COLLEGES, THENI_FEATURED_COLLEGES, THOOTHUKUDI_FEATURED_COLLEGES, TIRUCHIRAPPALLI_FEATURED_COLLEGES, TIRUNELVELI_FEATURED_COLLEGES, TIRUPATHUR_FEATURED_COLLEGES, TIRUVALLUR_FEATURED_COLLEGES, TIRUVANNAMALAI_FEATURED_COLLEGES, TIRUVARUR_FEATURED_COLLEGES, VELLORE_FEATURED_COLLEGES, VILUPPURAM_FEATURED_COLLEGES, VIRUDHUNAGAR_FEATURED_COLLEGES } from './types';
+import { College, CollegeCategory, COLLEGE_TYPE_INFO, isAutonomousCollege, NAMAKKAL_FEATURED_COLLEGES, ERODE_FEATURED_COLLEGES, SALEM_FEATURED_COLLEGES, COIMBATORE_FEATURED_COLLEGES, TIRUPUR_FEATURED_COLLEGES, KARUR_FEATURED_COLLEGES, ARIYALUR_FEATURED_COLLEGES, CHENGALPATTU_FEATURED_COLLEGES, CHENNAI_FEATURED_COLLEGES, CUDDALORE_FEATURED_COLLEGES, DHARMAPURI_FEATURED_COLLEGES, DINDIGUL_FEATURED_COLLEGES, KALLAKURICHI_FEATURED_COLLEGES, KANCHIPURAM_FEATURED_COLLEGES, KANYAKUMARI_FEATURED_COLLEGES, KRISHNAGIRI_FEATURED_COLLEGES, MADURAI_FEATURED_COLLEGES, MAYILADUTHURAI_FEATURED_COLLEGES, NAGAPATTINAM_FEATURED_COLLEGES, NILGIRIS_FEATURED_COLLEGES, PERAMBALUR_FEATURED_COLLEGES, PUDUKKOTTAI_FEATURED_COLLEGES, RAMANATHAPURAM_FEATURED_COLLEGES, RANIPET_FEATURED_COLLEGES, SIVAGANGA_FEATURED_COLLEGES, TENKASI_FEATURED_COLLEGES, THANJAVUR_FEATURED_COLLEGES, THENI_FEATURED_COLLEGES, THOOTHUKUDI_FEATURED_COLLEGES, TIRUCHIRAPPALLI_FEATURED_COLLEGES, TIRUNELVELI_FEATURED_COLLEGES, TIRUPATHUR_FEATURED_COLLEGES, TIRUVALLUR_FEATURED_COLLEGES, TIRUVANNAMALAI_FEATURED_COLLEGES, TIRUVARUR_FEATURED_COLLEGES, VELLORE_FEATURED_COLLEGES, VILUPPURAM_FEATURED_COLLEGES, VIRUDHUNAGAR_FEATURED_COLLEGES } from './types';
 
 // Helper function to normalize college name for comparison
 const normalizeCollegeName = (name: string): string => {
@@ -73,13 +73,16 @@ export const CollegeSearch = () => {
   const [selectedCategories, setSelectedCategories] = useState<CollegeCategory[]>([]);
   const [selectedNaacGrade, setSelectedNaacGrade] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState('name');
+  const [autonomousFilter, setAutonomousFilter] = useState(false);
 
   // Fetch colleges when district changes
   useEffect(() => {
     if (selectedDistrict) {
       fetchColleges(selectedDistrict);
+      setAutonomousFilter(false);
     } else {
       setColleges([]);
+      setAutonomousFilter(false);
     }
   }, [selectedDistrict]);
 
@@ -176,6 +179,11 @@ export const CollegeSearch = () => {
 
   const totalColleges = colleges.length;
 
+  // Count autonomous colleges (checks name, accreditation, and type)
+  const autonomousCount = useMemo(() => {
+    return colleges.filter(isAutonomousCollege).length;
+  }, [colleges]);
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -225,6 +233,38 @@ export const CollegeSearch = () => {
                 </div>
               </div>
             </div>
+            {/* Autonomous Colleges - Prominent Toggle Button */}
+            {autonomousCount > 0 && (
+              <div className="mt-4 pt-3 border-t border-[#C8E6C9]">
+                <button
+                  onClick={() => setAutonomousFilter(!autonomousFilter)}
+                  className={`w-full sm:w-auto flex items-center justify-center gap-3 px-5 py-3 rounded-xl font-semibold text-base transition-all duration-200 shadow-md hover:shadow-lg ${
+                    autonomousFilter
+                      ? 'bg-gradient-to-r from-[#7B1FA2] to-[#6A1B9A] text-white ring-2 ring-[#CE93D8] ring-offset-2'
+                      : 'bg-gradient-to-r from-[#F3E5F5] to-[#E1BEE7] text-[#6A1B9A] hover:from-[#E1BEE7] hover:to-[#CE93D8] border border-[#CE93D8]'
+                  }`}
+                >
+                  <span className="text-2xl">🏅</span>
+                  <span>
+                    {autonomousFilter ? '✓ Showing' : 'View'} Autonomous Colleges
+                  </span>
+                  <span className={`px-2.5 py-0.5 rounded-full text-sm font-bold ${
+                    autonomousFilter
+                      ? 'bg-white/20 text-white'
+                      : 'bg-[#7B1FA2] text-white'
+                  }`}>
+                    {autonomousCount}
+                  </span>
+                </button>
+                {autonomousFilter && (
+                  <p className="text-sm text-[#7B1FA2] mt-2 flex items-center gap-1.5">
+                    <span>🟣</span>
+                    Showing {autonomousCount} Autonomous / Deemed institutions in {selectedDistrict}.
+                    <button onClick={() => setAutonomousFilter(false)} className="underline font-medium ml-1 hover:text-[#4A148C]">Show all</button>
+                  </p>
+                )}
+              </div>
+            )}
             {totalColleges < 30 && (
               <p className="text-sm text-[#F59E0B] mt-3 flex items-center gap-2">
                 <span>⚠️</span>
@@ -277,6 +317,7 @@ export const CollegeSearch = () => {
         selectedCategories={selectedCategories}
         selectedNaacGrade={selectedNaacGrade}
         sortBy={sortBy}
+        autonomousFilter={autonomousFilter}
       />
     </div>
   );

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { College, COLLEGE_CATEGORIES, CollegeCategory } from './types';
+import { College, COLLEGE_CATEGORIES, CollegeCategory, isAutonomousCollege } from './types';
 import { CollegeCard } from './CollegeCard';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -12,6 +12,7 @@ interface CollegeListProps {
   selectedCategories: CollegeCategory[];
   selectedNaacGrade: string | null;
   sortBy: string;
+  autonomousFilter?: boolean;
 }
 
 export const CollegeList = ({
@@ -23,6 +24,7 @@ export const CollegeList = ({
   selectedCategories,
   selectedNaacGrade,
   sortBy,
+  autonomousFilter = false,
 }: CollegeListProps) => {
   // Filter and sort colleges
   const filteredColleges = useMemo(() => {
@@ -35,6 +37,11 @@ export const CollegeList = ({
         c.name.toLowerCase().includes(query) ||
         c.courses.toLowerCase().includes(query)
       );
+    }
+
+    // Apply autonomous filter (checks name, accreditation, and type)
+    if (autonomousFilter) {
+      result = result.filter(isAutonomousCollege);
     }
 
     // Apply type filter
@@ -78,7 +85,7 @@ export const CollegeList = ({
     });
 
     return result;
-  }, [colleges, searchQuery, selectedTypes, selectedCategories, selectedNaacGrade, sortBy, selectedDistrict]);
+  }, [colleges, searchQuery, selectedTypes, selectedCategories, selectedNaacGrade, sortBy, selectedDistrict, autonomousFilter]);
 
   // Group colleges by category
   const collegesByCategory = useMemo(() => {
@@ -133,6 +140,22 @@ export const CollegeList = ({
 
   return (
     <div className="space-y-8">
+      {/* Autonomous filter active banner */}
+      {autonomousFilter && filteredColleges.length > 0 && (
+        <div className="bg-gradient-to-r from-[#F3E5F5] via-[#E1BEE7] to-[#F3E5F5] rounded-xl p-4 border border-[#CE93D8]">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">🏅</span>
+            <div>
+              <h3 className="font-bold text-[#4A148C] text-lg">
+                Autonomous Colleges in {selectedDistrict}
+              </h3>
+              <p className="text-sm text-[#7B1FA2]">
+                {filteredColleges.length} Autonomous / Deemed institutions — these colleges have freedom to design curriculum, conduct examinations & award degrees independently
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
       {COLLEGE_CATEGORIES.map((category) => {
         const categoryColleges = collegesByCategory[category.id];
         if (categoryColleges.length === 0) return null;
