@@ -85,7 +85,7 @@ export const generateScholarshipPDF = (scholarships: Scholarship[]) => {
   tc(C.white); doc.setFontSize(13); doc.setFont('helvetica', 'bold');
   doc.text('Tamil Nadu & India — 2025–26', W / 2, 82, { align: 'center' });
   tc(C.ltGreen); doc.setFontSize(9); doc.setFont('helvetica', 'normal');
-  doc.text('Government, Corporate, NGO & Sports Scholarships for Students', W / 2, 90, { align: 'center' });
+  doc.text('Powered by VAZHIKATTI — AI Career Guidance Platform', W / 2, 90, { align: 'center' });
 
   // ─── Summary Box ───────────────────────────────────────
   y = 115;
@@ -335,10 +335,10 @@ export const generateScholarshipPDF = (scholarships: Scholarship[]) => {
     fc(C.dkGreen); doc.rect(0, H - 9, W, 9, 'F');
     fc(C.gold); doc.rect(0, H - 9, W, 0.7, 'F');
     tc(C.white); doc.setFontSize(7); doc.setFont('helvetica', 'normal');
-    doc.text('Scholarship Brochure  |  For Students of Tamil Nadu & India', M, H - 3.5);
+    doc.text('Powered by VAZHIKATTI  |  AI Career Guidance Platform', M, H - 3.5);
     doc.text(`Page ${i} of ${total}`, W - M, H - 3.5, { align: 'right' });
   }
 
   // ─── Save ──────────────────────────────────────────────
-  doc.save(`Scholarship_Brochure_${new Date().toISOString().split('T')[0]}.pdf`);
+  doc.save(`VAZHIKATTI_Scholarship_Brochure_${new Date().toISOString().split('T')[0]}.pdf`);
 };
