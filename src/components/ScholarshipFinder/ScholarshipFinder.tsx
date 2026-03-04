@@ -3,6 +3,7 @@ import { Search, X, ChevronDown, ChevronUp, Star, Download, ClipboardList, Spark
 import { scholarships as allScholarships } from './scholarshipData';
 import { Scholarship, educationLevels, categories as categoryOptions, incomeRanges } from './types';
 import { EligibilityChecker } from './EligibilityChecker';
+import { ApplicationTracker } from './ApplicationTracker';
 import { generateScholarshipPDF } from './generateScholarshipPDF';
 import { ScholarshipDetailModal } from './ScholarshipDetailModal';
 
@@ -403,6 +404,7 @@ export const ScholarshipFinder = () => {
   const [savedIds, setSavedIds] = useState<Set<string>>(new Set());
   const [showAIWizard, setShowAIWizard] = useState(false);
   const [showEligibility, setShowEligibility] = useState(false);
+  const [showApplications, setShowApplications] = useState(false);
   const [selectedScholarship, setSelectedScholarship] = useState<Scholarship | null>(null);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
@@ -420,6 +422,20 @@ export const ScholarshipFinder = () => {
     if (selectedTypes.length) result = result.filter(s => selectedTypes.includes(s.type));
     if (selectedEduLevels.length) result = result.filter(s => s.educationLevel.some(e => selectedEduLevels.includes(e)));
     if (selectedCats.length) result = result.filter(s => s.category.some(c => selectedCats.includes(c)));
+    if (selectedIncome) {
+      result = result.filter(s => {
+        if (!s.incomeLimit) return true; // No income restriction = all qualify
+        const limit = parseFloat(s.incomeLimit);
+        switch (selectedIncome) {
+          case 'below-1': return limit >= 1;
+          case '1-2.5': return limit >= 2.5;
+          case '2.5-5': return limit >= 5;
+          case '5-8': return limit >= 8;
+          case 'above-8': return true;
+          default: return true;
+        }
+      });
+    }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       result = result.filter(s =>
@@ -525,6 +541,7 @@ export const ScholarshipFinder = () => {
         @keyframes sfFadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes sfBounce { 0% { transform: scale(0.3); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
         @keyframes sfSlideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+        @keyframes sfSlideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
         .sf-stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
         .sf-cat-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
       `}</style>
@@ -580,11 +597,11 @@ export const ScholarshipFinder = () => {
                 <Sparkles size={16} /> Check My Eligibility (AI-Powered)
               </button>
               <button
-                onClick={() => setShowEligibility(true)}
+                onClick={() => setShowApplications(true)}
                 className="px-5 py-3 rounded-full font-semibold text-sm border-2 bg-white/80 backdrop-blur-sm hover:bg-white transition-all flex items-center gap-2"
                 style={{ borderColor: '#2E7D32', color: '#1B5E20' }}
               >
-                <ClipboardList size={16} /> Deep Eligibility Analysis
+                <ClipboardList size={16} /> My Applications ({savedIds.size})
               </button>
               <button
                 onClick={() => generateScholarshipPDF(filtered)}
@@ -740,6 +757,15 @@ export const ScholarshipFinder = () => {
                   <FilterIcon size={14} /> Refine Results
                 </h3>
                 {filterContent}
+                <div className="mt-4 pt-3" style={{ borderTop: '1px solid #EEE8D5' }}>
+                  <button
+                    onClick={() => setShowEligibility(true)}
+                    className="w-full py-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all hover:opacity-90"
+                    style={{ background: 'linear-gradient(135deg, #2E7D32, #1B5E20)', color: 'white' }}
+                  >
+                    <Sparkles size={13} /> Deep Eligibility Analysis
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -838,6 +864,134 @@ export const ScholarshipFinder = () => {
         onOpenChange={setShowEligibility}
         scholarships={allScholarships}
       />
+
+      {/* Application Tracker Full-Screen Panel */}
+      {showApplications && (
+        <div className="fixed inset-0 z-[60]" style={{ fontFamily: 'Outfit, sans-serif' }}>
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setShowApplications(false)} />
+          <div
+            className="absolute right-0 top-0 bottom-0 w-full max-w-2xl bg-white shadow-2xl overflow-y-auto"
+            style={{ animation: 'sfSlideInRight 0.3s ease-out', backgroundColor: '#FFFDF7' }}
+          >
+            <div
+              className="sticky top-0 z-10 px-6 py-4 flex items-center justify-between"
+              style={{ background: 'linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%)', borderBottom: '1px solid #C8E6C9' }}
+            >
+              <div>
+                <h2 className="text-xl font-bold" style={{ fontFamily: 'Playfair Display, serif', color: '#1B5E20' }}>
+                  📋 My Applications
+                </h2>
+                <p className="text-xs mt-0.5" style={{ color: '#2E7D32' }}>
+                  {savedIds.size} scholarship{savedIds.size !== 1 ? 's' : ''} saved
+                </p>
+              </div>
+              <button
+                onClick={() => setShowApplications(false)}
+                className="p-2 rounded-full hover:bg-white/50 transition-all"
+              >
+                <X size={20} color="#1B5E20" />
+              </button>
+            </div>
+            <div className="p-6">
+              {savedIds.size > 0 ? (
+                <div className="space-y-4">
+                  {allScholarships.filter(s => savedIds.has(s.id)).map(s => {
+                    const catConfig = CATEGORY_CONFIG[s.type] || CATEGORY_CONFIG.government;
+                    const tag = getScholarshipTag(s);
+                    return (
+                      <div
+                        key={s.id}
+                        className="bg-white rounded-xl p-4 transition-all hover:shadow-md"
+                        style={{ border: '1px solid #EEE8D5' }}
+                      >
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 flex-wrap mb-1">
+                              {tag && (
+                                <span className="text-xs font-semibold px-2 py-0.5 rounded-full"
+                                  style={{ backgroundColor: TAG_STYLES[tag.key]?.bg || '#F5F0E8', color: TAG_STYLES[tag.key]?.text || '#8B7355' }}>
+                                  {tag.label}
+                                </span>
+                              )}
+                              <span className="text-xs px-2 py-0.5 rounded-full font-medium"
+                                style={{ backgroundColor: catConfig.bg, color: catConfig.color }}>
+                                {catConfig.icon} {catConfig.label}
+                              </span>
+                            </div>
+                            <h4 className="font-bold text-sm" style={{ color: '#2C2C2C', fontFamily: 'Playfair Display, serif' }}>
+                              {s.name}
+                            </h4>
+                            <p className="text-xs mt-0.5" style={{ color: '#8B7355' }}>{s.provider}</p>
+                          </div>
+                          <button
+                            onClick={() => toggleSaved(s.id)}
+                            className="p-1.5 rounded-full hover:bg-red-50 transition-all"
+                            title="Remove"
+                          >
+                            <X size={14} color="#E74C3C" />
+                          </button>
+                        </div>
+                        <div className="flex items-center justify-between mt-3 pt-2" style={{ borderTop: '1px solid #F5F0E8' }}>
+                          <span className="font-bold text-sm" style={{ color: '#27AE60' }}>{s.amount}</span>
+                          <span className="text-xs flex items-center gap-1" style={{ color: '#2C2C2C' }}>
+                            <Calendar size={11} /> {s.deadline}
+                          </span>
+                        </div>
+                        <div className="flex gap-2 mt-3">
+                          <a
+                            href={s.applicationUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 py-2 rounded-lg text-xs font-semibold text-center text-white transition-all hover:opacity-90"
+                            style={{ background: 'linear-gradient(135deg, #DAA520, #B8860B)' }}
+                          >
+                            Apply Now <ExternalLink size={11} className="inline ml-1" />
+                          </a>
+                          <button
+                            onClick={() => { setSelectedScholarship(s); setShowApplications(false); }}
+                            className="flex-1 py-2 rounded-lg text-xs font-semibold text-center transition-all"
+                            style={{ border: '1px solid #EEE8D5', color: '#1B5E20' }}
+                          >
+                            View Details
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  {/* Download saved PDF */}
+                  <button
+                    onClick={() => {
+                      const savedScholarships = allScholarships.filter(s => savedIds.has(s.id));
+                      generateScholarshipPDF(savedScholarships);
+                    }}
+                    className="w-full py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all hover:opacity-90"
+                    style={{ background: 'linear-gradient(135deg, #DAA520, #B8860B)', color: 'white' }}
+                  >
+                    <Download size={16} /> Download All Saved as PDF
+                  </button>
+                </div>
+              ) : (
+                <div className="text-center py-16">
+                  <div className="text-5xl mb-4">⭐</div>
+                  <h3 className="text-lg font-bold mb-2" style={{ color: '#1B5E20', fontFamily: 'Playfair Display, serif' }}>
+                    No Scholarships Saved Yet
+                  </h3>
+                  <p className="text-sm mb-4" style={{ color: '#8B7355' }}>
+                    Click the ⭐ star icon on any scholarship card to save it here for easy tracking
+                  </p>
+                  <button
+                    onClick={() => setShowApplications(false)}
+                    className="px-6 py-2 rounded-full text-sm font-semibold transition-all hover:opacity-90"
+                    style={{ background: 'linear-gradient(135deg, #DAA520, #B8860B)', color: 'white' }}
+                  >
+                    Browse Scholarships
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       <ScholarshipDetailModal
         scholarship={selectedScholarship}
