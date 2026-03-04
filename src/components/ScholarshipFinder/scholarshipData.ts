@@ -1298,7 +1298,7 @@ export const getScholarshipsByType = (type: string) => {
   return scholarships.filter(s => s.type === type);
 };
 
-// Removed getJKKNScholarships - no longer used
+
 
 export const getGovernmentScholarships = () => {
   return scholarships.filter(s => s.type === 'government');
