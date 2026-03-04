@@ -57,6 +57,28 @@ const getScholarshipTag = (s: Scholarship): { label: string; key: string } | nul
 };
 
 /* ═══════════════════════════════════════════════════════════════
+   AMOUNT PARSER (handles ₹1,25,000 and ₹30 Lakh formats)
+   ═══════════════════════════════════════════════════════════════ */
+const parseScholarshipAmount = (amount: string): number => {
+  let max = 0;
+  // Handle "₹X Lakh" / "₹X.XX Lakh" patterns
+  const lakhPattern = /₹?\s*([\d.]+)\s*(?:Lakh|lakhs?)/gi;
+  let lm;
+  while ((lm = lakhPattern.exec(amount)) !== null) {
+    const val = (parseFloat(lm[1]) || 0) * 100000;
+    if (val > max) max = val;
+  }
+  // Handle "₹1,25,000" style numbers
+  const numPattern = /₹\s*([\d,]+)/g;
+  let nm;
+  while ((nm = numPattern.exec(amount)) !== null) {
+    const n = parseInt(nm[1].replace(/,/g, ''), 10) || 0;
+    if (n > max && n < 100000000) max = n;
+  }
+  return max;
+};
+
+/* ═══════════════════════════════════════════════════════════════
    FILTER SECTION (Accordion)
    ═══════════════════════════════════════════════════════════════ */
 const FilterSection = ({ title, icon, children, defaultOpen = true }: {
@@ -413,9 +435,9 @@ export const ScholarshipFinder = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 10;
 
-  // Reset to page 1 when filters change
+  // Reset to page 1 when filtered results change
   const filteredLen = filtered.length;
-  useEffect(() => { setCurrentPage(1); }, [filteredLen, selectedCategory, selectedTypes.length, selectedEduLevels.length, selectedCats.length, selectedIncome, searchQuery, sortBy]);
+  useEffect(() => { setCurrentPage(1); }, [filteredLen]);
 
   // Pagination
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
@@ -463,26 +485,6 @@ export const ScholarshipFinder = () => {
     }
     return result;
   }, [searchQuery, selectedCategory, selectedTypes, selectedEduLevels, selectedCats, selectedIncome, sortBy]);
-
-  // ─── Amount parser (handles ₹1,25,000 and ₹30 Lakh formats) ─
-  const parseScholarshipAmount = (amount: string): number => {
-    let max = 0;
-    // Handle "₹X Lakh" / "₹X.XX Lakh" patterns
-    const lakhPattern = /₹?\s*([\d.]+)\s*(?:Lakh|lakhs?)/gi;
-    let lm;
-    while ((lm = lakhPattern.exec(amount)) !== null) {
-      const val = (parseFloat(lm[1]) || 0) * 100000;
-      if (val > max) max = val;
-    }
-    // Handle "₹1,25,000" style numbers
-    const numPattern = /₹\s*([\d,]+)/g;
-    let nm;
-    while ((nm = numPattern.exec(amount)) !== null) {
-      const n = parseInt(nm[1].replace(/,/g, ''), 10) || 0;
-      if (n > max && n < 100000000) max = n;
-    }
-    return max;
-  };
 
   // ─── Highest value ──────────────────────────────────────
   const highestVal = useMemo(() => {
@@ -810,7 +812,7 @@ export const ScholarshipFinder = () => {
               {/* Results count + page info */}
               <div className="flex items-center justify-between mb-4">
                 <p className="text-sm" style={{ color: '#8B7355' }}>
-                  Showing <strong style={{ color: '#1B5E20' }}>{(currentPage - 1) * ITEMS_PER_PAGE + 1}–{Math.min(currentPage * ITEMS_PER_PAGE, filtered.length)}</strong> of <strong style={{ color: '#1B5E20' }}>{filtered.length}</strong> scholarship{filtered.length !== 1 ? 's' : ''}
+                  Showing <strong style={{ color: '#1B5E20' }}>{filtered.length > 0 ? `${(currentPage - 1) * ITEMS_PER_PAGE + 1}–${Math.min(currentPage * ITEMS_PER_PAGE, filtered.length)}` : '0'}</strong> of <strong style={{ color: '#1B5E20' }}>{filtered.length}</strong> scholarship{filtered.length !== 1 ? 's' : ''}
                   {selectedCategory && (
                     <span> in <strong style={{ color: CATEGORY_CONFIG[selectedCategory]?.color }}>
                       {CATEGORY_CONFIG[selectedCategory]?.label}
