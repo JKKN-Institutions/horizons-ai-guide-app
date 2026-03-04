@@ -410,6 +410,16 @@ export const ScholarshipFinder = () => {
   const [showApplications, setShowApplications] = useState(false);
   const [selectedScholarship, setSelectedScholarship] = useState<Scholarship | null>(null);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
+
+  // Reset to page 1 when filters change
+  const filteredLen = filtered.length;
+  useEffect(() => { setCurrentPage(1); }, [filteredLen, selectedCategory, selectedTypes.length, selectedEduLevels.length, selectedCats.length, selectedIncome, searchQuery, sortBy]);
+
+  // Pagination
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+  const paginatedScholarships = filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   // ─── Type counts ────────────────────────────────────────
   const typeCounts = useMemo(() => {
@@ -567,6 +577,10 @@ export const ScholarshipFinder = () => {
         @keyframes sfSlideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
         .sf-stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
         .sf-cat-btn:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        .sf-cards-scroll::-webkit-scrollbar { width: 6px; }
+        .sf-cards-scroll::-webkit-scrollbar-track { background: #F5F0E8; border-radius: 3px; }
+        .sf-cards-scroll::-webkit-scrollbar-thumb { background: #C8E6C9; border-radius: 3px; }
+        .sf-cards-scroll::-webkit-scrollbar-thumb:hover { background: #A5D6A7; }
       `}</style>
 
       {/* ─── Content ────────────────────────────────────────── */}
@@ -772,8 +786,8 @@ export const ScholarshipFinder = () => {
             {/* LEFT: Filter Sidebar (Desktop) */}
             <div className="hidden md:block w-64 flex-shrink-0">
               <div
-                className="bg-white rounded-xl p-4 sticky top-4"
-                style={{ border: '1px solid #EEE8D5' }}
+                className="bg-white rounded-xl p-4 sticky top-4 sf-cards-scroll overflow-y-auto"
+                style={{ border: '1px solid #EEE8D5', maxHeight: '75vh' }}
               >
                 <h3 className="font-bold text-sm mb-3 flex items-center gap-2" style={{ color: '#1B5E20', fontFamily: 'Playfair Display, serif' }}>
                   <FilterIcon size={14} /> Refine Results
@@ -793,10 +807,10 @@ export const ScholarshipFinder = () => {
 
             {/* RIGHT: Scholarship Cards */}
             <div className="flex-1 min-w-0">
-              {/* Results count */}
+              {/* Results count + page info */}
               <div className="flex items-center justify-between mb-4">
                 <p className="text-sm" style={{ color: '#8B7355' }}>
-                  Showing <strong style={{ color: '#1B5E20' }}>{filtered.length}</strong> scholarship{filtered.length !== 1 ? 's' : ''}
+                  Showing <strong style={{ color: '#1B5E20' }}>{(currentPage - 1) * ITEMS_PER_PAGE + 1}–{Math.min(currentPage * ITEMS_PER_PAGE, filtered.length)}</strong> of <strong style={{ color: '#1B5E20' }}>{filtered.length}</strong> scholarship{filtered.length !== 1 ? 's' : ''}
                   {selectedCategory && (
                     <span> in <strong style={{ color: CATEGORY_CONFIG[selectedCategory]?.color }}>
                       {CATEGORY_CONFIG[selectedCategory]?.label}
@@ -808,18 +822,85 @@ export const ScholarshipFinder = () => {
                 </p>
               </div>
 
-              {/* Cards Grid */}
+              {/* Scrollable Cards Area */}
               {filtered.length > 0 ? (
-                <div className="grid md:grid-cols-2 gap-4">
-                  {filtered.map(s => (
-                    <ScholarshipCardNew
-                      key={s.id}
-                      scholarship={s}
-                      onView={() => setSelectedScholarship(s)}
-                      isSaved={savedIds.has(s.id)}
-                      onToggleSave={() => toggleSaved(s.id)}
-                    />
-                  ))}
+                <div>
+                  <div
+                    id="sf-cards-scroll"
+                    className="sf-cards-scroll overflow-y-auto pr-1"
+                    style={{ maxHeight: '65vh', scrollBehavior: 'smooth' }}
+                  >
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {paginatedScholarships.map(s => (
+                        <ScholarshipCardNew
+                          key={s.id}
+                          scholarship={s}
+                          onView={() => setSelectedScholarship(s)}
+                          isSaved={savedIds.has(s.id)}
+                          onToggleSave={() => toggleSaved(s.id)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Pagination Controls */}
+                  {totalPages > 1 && (
+                    <div className="mt-4 flex items-center justify-center gap-2 flex-wrap">
+                      <button
+                        onClick={() => { setCurrentPage(p => Math.max(1, p - 1)); document.getElementById('sf-cards-scroll')?.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                        disabled={currentPage === 1}
+                        className="px-3 py-2 rounded-lg text-sm font-semibold transition-all"
+                        style={{
+                          border: '1px solid #EEE8D5',
+                          color: currentPage === 1 ? '#D1C7B7' : '#1B5E20',
+                          backgroundColor: 'white',
+                          cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
+                        }}
+                      >
+                        ← Prev
+                      </button>
+
+                      {Array.from({ length: totalPages }, (_, i) => i + 1)
+                        .filter(p => p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1)
+                        .reduce((acc: (number | string)[], p, idx, arr) => {
+                          if (idx > 0 && typeof arr[idx - 1] === 'number' && (p as number) - (arr[idx - 1] as number) > 1) acc.push('...');
+                          acc.push(p);
+                          return acc;
+                        }, [])
+                        .map((p, idx) =>
+                          p === '...' ? (
+                            <span key={`dot-${idx}`} className="px-1 text-sm" style={{ color: '#8B7355' }}>…</span>
+                          ) : (
+                            <button
+                              key={p}
+                              onClick={() => { setCurrentPage(p as number); document.getElementById('sf-cards-scroll')?.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                              className="w-9 h-9 rounded-lg text-sm font-bold transition-all"
+                              style={{
+                                backgroundColor: currentPage === p ? '#1B5E20' : 'white',
+                                color: currentPage === p ? 'white' : '#1B5E20',
+                                border: currentPage === p ? '1px solid #1B5E20' : '1px solid #EEE8D5',
+                              }}
+                            >
+                              {p}
+                            </button>
+                          )
+                        )}
+
+                      <button
+                        onClick={() => { setCurrentPage(p => Math.min(totalPages, p + 1)); document.getElementById('sf-cards-scroll')?.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                        disabled={currentPage === totalPages}
+                        className="px-3 py-2 rounded-lg text-sm font-semibold transition-all"
+                        style={{
+                          border: '1px solid #EEE8D5',
+                          color: currentPage === totalPages ? '#D1C7B7' : '#1B5E20',
+                          backgroundColor: 'white',
+                          cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
+                        }}
+                      >
+                        Next →
+                      </button>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className="text-center py-16 bg-white rounded-xl" style={{ border: '1px solid #EEE8D5' }}>
