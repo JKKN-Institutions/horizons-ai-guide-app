@@ -566,7 +566,7 @@ export const ScholarshipFinder = () => {
         @keyframes sfSlideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
         @keyframes sfSlideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
         .sf-stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-        .sf-cat-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        .sf-cat-btn:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
       `}</style>
 
       {/* ─── Content ────────────────────────────────────────── */}
@@ -664,33 +664,54 @@ export const ScholarshipFinder = () => {
                 <button
                   key={key}
                   onClick={() => setSelectedCategory(isActive ? null : key)}
-                  className="sf-cat-btn bg-white rounded-xl p-4 text-left transition-all duration-300"
+                  className="sf-cat-btn rounded-xl text-left transition-all duration-300 overflow-hidden relative"
                   style={{
-                    border: `2px solid ${isActive ? cfg.color : '#EEE8D5'}`,
-                    boxShadow: isActive ? `0 4px 15px ${cfg.color}20` : '0 1px 3px rgba(0,0,0,0.05)',
+                    border: `2px solid ${isActive ? cfg.color : cfg.color + '40'}`,
+                    boxShadow: isActive
+                      ? `0 6px 20px ${cfg.color}30, 0 0 0 1px ${cfg.color}20`
+                      : `0 2px 8px rgba(0,0,0,0.06)`,
+                    background: isActive
+                      ? `linear-gradient(135deg, ${cfg.bg}, white)`
+                      : 'white',
                   }}
                 >
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="w-10 h-10 rounded-lg flex items-center justify-center text-lg"
-                      style={{ backgroundColor: cfg.bg }}
-                    >
-                      {cfg.icon}
+                  {/* Colored top accent bar */}
+                  <div
+                    className="h-1 w-full"
+                    style={{ background: `linear-gradient(90deg, ${cfg.color}, ${cfg.color}80)` }}
+                  />
+                  <div className="p-4">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center text-xl shadow-sm"
+                        style={{
+                          background: `linear-gradient(135deg, ${cfg.bg}, ${cfg.color}15)`,
+                          border: `1.5px solid ${cfg.color}30`,
+                        }}
+                      >
+                        {cfg.icon}
+                      </div>
+                      <div>
+                        <p className="font-bold text-sm" style={{ color: isActive ? cfg.color : '#1B5E20' }}>
+                          {cfg.label}
+                        </p>
+                        <p className="text-xs" style={{ color: '#8B7355' }}>{cfg.desc}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-semibold text-sm" style={{ color: '#2C2C2C' }}>
-                        {cfg.label}
-                      </p>
-                      <p className="text-xs" style={{ color: '#8B7355' }}>{cfg.desc}</p>
+                    <div className="mt-2.5 flex items-center justify-between">
+                      <span
+                        className="text-xs font-bold px-2.5 py-1 rounded-full"
+                        style={{
+                          backgroundColor: isActive ? cfg.color : cfg.bg,
+                          color: isActive ? 'white' : cfg.color,
+                        }}
+                      >
+                        {typeCounts[key] || 0} Scholarships
+                      </span>
+                      {isActive && (
+                        <span className="text-xs font-semibold" style={{ color: cfg.color }}>✓ Active</span>
+                      )}
                     </div>
-                  </div>
-                  <div className="mt-2 text-right">
-                    <span
-                      className="text-xs font-bold px-2 py-0.5 rounded-full"
-                      style={{ backgroundColor: cfg.bg, color: cfg.color }}
-                    >
-                      {typeCounts[key] || 0}
-                    </span>
                   </div>
                 </button>
               );
