@@ -161,8 +161,8 @@ const ScholarshipCardNew = ({ scholarship, onView, isSaved, onToggleSave }: {
 
   return (
     <div
-      className="bg-white rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group cursor-pointer"
-      style={{ border: '1px solid #EEE8D5', fontFamily: 'Outfit, sans-serif' }}
+      className="rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group cursor-pointer"
+      style={{ border: '1px solid #C8E6C9', fontFamily: 'Outfit, sans-serif', background: 'linear-gradient(145deg, #FAFFF8, #F1F8E9)' }}
       onClick={onView}
     >
       <div className="flex">
@@ -569,7 +569,7 @@ export const ScholarshipFinder = () => {
   );
 
   return (
-    <div className="relative rounded-2xl" style={{ fontFamily: 'Outfit, sans-serif', background: 'linear-gradient(180deg, #E8F5E9 0%, #F1F8E9 40%, #E8F5E9 100%)', minHeight: '80vh', padding: '1.5rem 0' }}>
+    <div className="relative rounded-2xl" style={{ fontFamily: 'Outfit, sans-serif', background: 'linear-gradient(180deg, #C8E6C9 0%, #E8F5E9 30%, #C8E6C9 100%)', minHeight: '80vh', padding: '1.5rem 0' }}>
       {/* ─── GLOBAL STYLES ──────────────────────────────────── */}
       <style>{`
         @keyframes sfFadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -648,8 +648,8 @@ export const ScholarshipFinder = () => {
             ].map((stat, i) => (
               <div
                 key={i}
-                className="sf-stat-card bg-white rounded-xl p-4 text-center shadow-md transition-all duration-300 cursor-default"
-                style={{ border: '1px solid #EEE8D5' }}
+                className="sf-stat-card rounded-xl p-4 text-center shadow-md transition-all duration-300 cursor-default"
+                style={{ border: '1px solid #C8E6C9', background: 'linear-gradient(145deg, #F1F8E9, #E8F5E9)' }}
               >
                 <span className="text-2xl block mb-1">{stat.icon}</span>
                 <p
@@ -688,7 +688,7 @@ export const ScholarshipFinder = () => {
                       : `0 4px 15px rgba(0,0,0,0.08)`,
                     background: isActive
                       ? `linear-gradient(145deg, ${cfg.bg}, white 60%)`
-                      : 'white',
+                      : 'linear-gradient(145deg, #F1F8E9, #E8F5E9)',
                   }}
                 >
                   {/* Thick colored top accent bar */}
@@ -754,8 +754,8 @@ export const ScholarshipFinder = () => {
             {/* Mobile filter button */}
             <button
               onClick={() => setMobileFiltersOpen(true)}
-              className="md:hidden flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm bg-white transition-all"
-              style={{ border: '1px solid #EEE8D5', color: '#1B5E20' }}
+              className="md:hidden flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all"
+              style={{ border: '1px solid #C8E6C9', color: '#1B5E20', background: 'linear-gradient(145deg, #F1F8E9, #E8F5E9)' }}
             >
               <FilterIcon size={16} /> Filters {hasFilters && <span className="w-2 h-2 rounded-full bg-yellow-500" />}
             </button>
@@ -767,14 +767,15 @@ export const ScholarshipFinder = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search scholarships by name or provider..."
-                className="w-full pl-10 pr-4 py-3 rounded-xl text-sm bg-white transition-all outline-none"
+                className="w-full pl-10 pr-4 py-3 rounded-xl text-sm transition-all outline-none"
                 style={{
-                  border: '1px solid #EEE8D5',
+                  border: '1px solid #C8E6C9',
                   fontFamily: 'Outfit, sans-serif',
                   color: '#2C2C2C',
+                  background: '#F1F8E9',
                 }}
                 onFocus={(e) => e.target.style.borderColor = '#DAA520'}
-                onBlur={(e) => e.target.style.borderColor = '#EEE8D5'}
+                onBlur={(e) => e.target.style.borderColor = '#C8E6C9'}
               />
               {searchQuery && (
                 <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-gray-100">
@@ -785,8 +786,8 @@ export const ScholarshipFinder = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-3 rounded-xl text-sm bg-white cursor-pointer outline-none"
-              style={{ border: '1px solid #EEE8D5', fontFamily: 'Outfit, sans-serif', color: '#2C2C2C', minWidth: 160 }}
+              className="px-4 py-3 rounded-xl text-sm cursor-pointer outline-none"
+              style={{ border: '1px solid #C8E6C9', fontFamily: 'Outfit, sans-serif', color: '#2C2C2C', minWidth: 160, background: '#F1F8E9' }}
             >
               <option value="relevance">Sort: Relevance</option>
               <option value="highest">Sort: Highest Value</option>
@@ -801,14 +802,14 @@ export const ScholarshipFinder = () => {
             {/* LEFT: Filter Sidebar (Desktop) */}
             <div className="hidden md:block w-64 flex-shrink-0">
               <div
-                className="bg-white rounded-xl p-4 sticky top-4 sf-cards-scroll overflow-y-auto"
-                style={{ border: '1px solid #EEE8D5', maxHeight: '75vh' }}
+                className="rounded-xl p-4 sticky top-4 sf-cards-scroll overflow-y-auto"
+                style={{ border: '1px solid #C8E6C9', maxHeight: '75vh', background: 'linear-gradient(180deg, #F1F8E9, #E8F5E9)' }}
               >
                 <h3 className="font-bold text-sm mb-3 flex items-center gap-2" style={{ color: '#1B5E20', fontFamily: 'Playfair Display, serif' }}>
                   <FilterIcon size={14} /> Refine Results
                 </h3>
                 {filterContent}
-                <div className="mt-4 pt-3" style={{ borderTop: '1px solid #EEE8D5' }}>
+                <div className="mt-4 pt-3" style={{ borderTop: '1px solid #C8E6C9' }}>
                   <button
                     onClick={() => setShowEligibility(true)}
                     className="w-full py-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all hover:opacity-90"
@@ -866,9 +867,9 @@ export const ScholarshipFinder = () => {
                         disabled={currentPage === 1}
                         className="px-3 py-2 rounded-lg text-sm font-semibold transition-all"
                         style={{
-                          border: '1px solid #EEE8D5',
+                          border: '1px solid #C8E6C9',
                           color: currentPage === 1 ? '#D1C7B7' : '#1B5E20',
-                          backgroundColor: 'white',
+                          backgroundColor: '#F1F8E9',
                           cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
                         }}
                       >
@@ -891,9 +892,9 @@ export const ScholarshipFinder = () => {
                               onClick={() => { setCurrentPage(p as number); document.getElementById('sf-cards-scroll')?.scrollTo({ top: 0, behavior: 'smooth' }); }}
                               className="w-9 h-9 rounded-lg text-sm font-bold transition-all"
                               style={{
-                                backgroundColor: currentPage === p ? '#1B5E20' : 'white',
+                                backgroundColor: currentPage === p ? '#1B5E20' : '#F1F8E9',
                                 color: currentPage === p ? 'white' : '#1B5E20',
-                                border: currentPage === p ? '1px solid #1B5E20' : '1px solid #EEE8D5',
+                                border: currentPage === p ? '1px solid #1B5E20' : '1px solid #C8E6C9',
                               }}
                             >
                               {p}
@@ -906,9 +907,9 @@ export const ScholarshipFinder = () => {
                         disabled={currentPage === totalPages}
                         className="px-3 py-2 rounded-lg text-sm font-semibold transition-all"
                         style={{
-                          border: '1px solid #EEE8D5',
+                          border: '1px solid #C8E6C9',
                           color: currentPage === totalPages ? '#D1C7B7' : '#1B5E20',
-                          backgroundColor: 'white',
+                          backgroundColor: '#F1F8E9',
                           cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
                         }}
                       >
@@ -918,7 +919,7 @@ export const ScholarshipFinder = () => {
                   )}
                 </div>
               ) : (
-                <div className="text-center py-16 bg-white rounded-xl" style={{ border: '1px solid #EEE8D5' }}>
+                <div className="text-center py-16 rounded-xl" style={{ border: '1px solid #C8E6C9', background: 'linear-gradient(145deg, #F1F8E9, #E8F5E9)' }}>
                   <div className="text-5xl mb-4">🔍</div>
                   <h3 className="text-lg font-bold mb-2" style={{ color: '#1B5E20', fontFamily: 'Playfair Display, serif' }}>
                     No scholarships found
@@ -939,8 +940,8 @@ export const ScholarshipFinder = () => {
               {/* Saved scholarships count */}
               {savedIds.size > 0 && (
                 <div
-                  className="mt-6 bg-white rounded-xl p-4 flex items-center justify-between"
-                  style={{ border: '1px solid #EEE8D5' }}
+                  className="mt-6 rounded-xl p-4 flex items-center justify-between"
+                  style={{ border: '1px solid #C8E6C9', background: 'linear-gradient(145deg, #F1F8E9, #E8F5E9)' }}
                 >
                   <div className="flex items-center gap-3">
                     <Star size={20} fill="#DAA520" color="#DAA520" />
