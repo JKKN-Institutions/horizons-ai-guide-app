@@ -44,8 +44,11 @@ const getScholarshipTag = (s: Scholarship): { label: string; key: string } | nul
   if (s.id === 'jkkn-sports') return { label: '⭐ Institutional', key: 'institutional' };
   if (name.includes('girl') || name.includes('women') || name.includes('single girl') || s.gender === 'female' || name.includes('pragati') || name.includes('kanya') || name.includes('moovalur') || name.includes('glow') || name.includes('kotak kanya') || name.includes('pudhumai'))
     return { label: '👩 Women', key: 'women' };
-  const amtStr = s.amount.replace(/[^0-9.]/g, '');
-  const amt = parseFloat(amtStr);
+  // Parse amount for high-value detection
+  let amt = 0;
+  const lakhMatch = s.amount.match(/₹?\s*([\d.]+)\s*(?:Lakh|lakhs?)/i);
+  if (lakhMatch) { amt = (parseFloat(lakhMatch[1]) || 0) * 100000; }
+  else { const numMatch = s.amount.match(/₹\s*([\d,]+)/); if (numMatch) amt = parseInt(numMatch[1].replace(/,/g, ''), 10) || 0; }
   if (amt >= 50000 || name.includes('full tuition') || name.includes('full fee') || s.amount.toLowerCase().includes('full'))
     return { label: '💎 High Value', key: 'high-value' };
   if (s.deadlineStatus === 'always-open' || name.includes('post matric') || name.includes('e-grantz') || name.includes('free education'))
@@ -444,18 +447,38 @@ export const ScholarshipFinder = () => {
     }
     if (sortBy === 'highest') {
       result.sort((a, b) => {
-        const getAmt = (s: Scholarship) => parseFloat(s.amount.replace(/[^0-9.]/g, '')) || 0;
+        const getAmt = (s: Scholarship) => parseScholarshipAmount(s.amount);
         return getAmt(b) - getAmt(a);
       });
     }
     return result;
   }, [searchQuery, selectedCategory, selectedTypes, selectedEduLevels, selectedCats, selectedIncome, sortBy]);
 
+  // ─── Amount parser (handles ₹1,25,000 and ₹30 Lakh formats) ─
+  const parseScholarshipAmount = (amount: string): number => {
+    let max = 0;
+    // Handle "₹X Lakh" / "₹X.XX Lakh" patterns
+    const lakhPattern = /₹?\s*([\d.]+)\s*(?:Lakh|lakhs?)/gi;
+    let lm;
+    while ((lm = lakhPattern.exec(amount)) !== null) {
+      const val = (parseFloat(lm[1]) || 0) * 100000;
+      if (val > max) max = val;
+    }
+    // Handle "₹1,25,000" style numbers
+    const numPattern = /₹\s*([\d,]+)/g;
+    let nm;
+    while ((nm = numPattern.exec(amount)) !== null) {
+      const n = parseInt(nm[1].replace(/,/g, ''), 10) || 0;
+      if (n > max && n < 100000000) max = n;
+    }
+    return max;
+  };
+
   // ─── Highest value ──────────────────────────────────────
   const highestVal = useMemo(() => {
     let max = 0;
     allScholarships.forEach(s => {
-      const n = parseFloat(s.amount.replace(/[^0-9.]/g, '')) || 0;
+      const n = parseScholarshipAmount(s.amount);
       if (n > max) max = n;
     });
     return max >= 100000 ? `₹${(max / 100000).toFixed(1)}L` : `₹${max.toLocaleString()}`;
@@ -549,54 +572,51 @@ export const ScholarshipFinder = () => {
       {/* ─── Content ────────────────────────────────────────── */}
       <div className="relative z-10">
 
-        {/* ═══ COMPACT ACTION BAR (no duplicate hero) ═══ */}
-        <div
-          className="rounded-2xl overflow-hidden mb-6"
-          style={{ background: 'linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 50%, #A5D6A7 100%)', border: '1px solid #C8E6C9' }}
-        >
-          {/* Decorative elements */}
-          <div className="absolute inset-0 pointer-events-none select-none" style={{ opacity: 0.03 }}>
-            <div className="absolute top-2 left-4 text-4xl">🎓</div>
-            <div className="absolute top-2 right-4 text-3xl">📖</div>
-          </div>
-          <div className="relative px-5 py-5">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="text-3xl">🎓</div>
-                <div>
-                  <h2
-                    className="text-xl md:text-2xl font-bold"
-                    style={{ fontFamily: 'Playfair Display, serif', color: '#1B5E20' }}
-                  >
-                    Scholarship <span style={{ color: '#DAA520' }}>Finder</span>
-                  </h2>
-                  <p className="text-xs" style={{ color: '#558B2F', fontFamily: 'Playfair Display, serif', fontStyle: 'italic' }}>
-                    உதவித்தொகை கண்டுபிடிப்பான் — {allScholarships.length} scholarships across 4 categories
-                  </p>
+        {/* ═══ COMPACT ACTION BAR ═══ */}
+        <div className="max-w-5xl mx-auto px-4 mb-6">
+          <div
+            className="rounded-2xl overflow-hidden shadow-md"
+            style={{ background: 'linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #388E3C 100%)', border: '1px solid #1B5E20' }}
+          >
+            <div className="relative px-5 py-5">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="text-3xl">🎓</div>
+                  <div>
+                    <h2
+                      className="text-xl md:text-2xl font-bold"
+                      style={{ fontFamily: 'Playfair Display, serif', color: 'white' }}
+                    >
+                      Scholarship <span style={{ color: '#FFD54F' }}>Finder</span>
+                    </h2>
+                    <p className="text-xs" style={{ color: '#A5D6A7', fontFamily: 'Playfair Display, serif', fontStyle: 'italic' }}>
+                      உதவித்தொகை கண்டுபிடிப்பான் — {allScholarships.length} scholarships across 4 categories
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-wrap items-center gap-2">
-                <button
-                  onClick={() => setShowAIWizard(true)}
-                  className="px-4 py-2.5 rounded-full font-semibold text-xs shadow-md hover:shadow-lg transition-all hover:scale-105 flex items-center gap-1.5"
-                  style={{ background: 'linear-gradient(135deg, #DAA520, #B8860B)', color: 'white' }}
-                >
-                  <Sparkles size={14} /> Check Eligibility (AI)
-                </button>
-                <button
-                  onClick={() => setShowApplications(true)}
-                  className="px-4 py-2.5 rounded-full font-semibold text-xs border-2 bg-white/80 hover:bg-white transition-all flex items-center gap-1.5"
-                  style={{ borderColor: '#2E7D32', color: '#1B5E20' }}
-                >
-                  <ClipboardList size={14} /> My Applications ({savedIds.size})
-                </button>
-                <button
-                  onClick={() => generateScholarshipPDF(filtered)}
-                  className="px-4 py-2.5 rounded-full font-semibold text-xs border-2 bg-white/80 hover:bg-white transition-all flex items-center gap-1.5"
-                  style={{ borderColor: '#DAA520', color: '#B8860B' }}
-                >
-                  <Download size={14} /> PDF ({filtered.length})
-                </button>
+                <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    onClick={() => setShowAIWizard(true)}
+                    className="px-4 py-2.5 rounded-full font-semibold text-xs shadow-md hover:shadow-lg transition-all hover:scale-105 flex items-center gap-1.5"
+                    style={{ background: 'linear-gradient(135deg, #DAA520, #B8860B)', color: 'white' }}
+                  >
+                    <Sparkles size={14} /> Check Eligibility (AI)
+                  </button>
+                  <button
+                    onClick={() => setShowApplications(true)}
+                    className="px-4 py-2.5 rounded-full font-semibold text-xs border-2 bg-white/10 hover:bg-white/20 transition-all flex items-center gap-1.5"
+                    style={{ borderColor: '#A5D6A7', color: 'white' }}
+                  >
+                    <ClipboardList size={14} /> My Applications ({savedIds.size})
+                  </button>
+                  <button
+                    onClick={() => generateScholarshipPDF(filtered)}
+                    className="px-4 py-2.5 rounded-full font-semibold text-xs border-2 bg-white/10 hover:bg-white/20 transition-all flex items-center gap-1.5"
+                    style={{ borderColor: '#FFD54F', color: '#FFD54F' }}
+                  >
+                    <Download size={14} /> PDF ({filtered.length})
+                  </button>
+                </div>
               </div>
             </div>
           </div>
