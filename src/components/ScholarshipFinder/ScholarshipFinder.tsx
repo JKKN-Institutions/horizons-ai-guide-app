@@ -535,7 +535,7 @@ export const ScholarshipFinder = () => {
   );
 
   return (
-    <div className="relative min-h-screen" style={{ fontFamily: 'Outfit, sans-serif' }}>
+    <div className="relative" style={{ fontFamily: 'Outfit, sans-serif' }}>
       {/* ─── GLOBAL STYLES ──────────────────────────────────── */}
       <style>{`
         @keyframes sfFadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -546,83 +546,64 @@ export const ScholarshipFinder = () => {
         .sf-cat-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
       `}</style>
 
-      {/* ─── Background Watermark ───────────────────────────── */}
-      <div
-        className="fixed inset-0 pointer-events-none z-0"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&q=80')`,
-          backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed',
-          opacity: 0.04, filter: 'grayscale(80%) sepia(20%)',
-        }}
-      />
-      <div className="fixed inset-0 pointer-events-none z-0" style={{ backgroundColor: 'rgba(255, 253, 247, 0.92)' }} />
-
       {/* ─── Content ────────────────────────────────────────── */}
       <div className="relative z-10">
 
-        {/* ═══ HERO SECTION ═══ */}
-        <div className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 50%, #A5D6A7 100%)' }}>
+        {/* ═══ COMPACT ACTION BAR (no duplicate hero) ═══ */}
+        <div
+          className="rounded-2xl overflow-hidden mb-6"
+          style={{ background: 'linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 50%, #A5D6A7 100%)', border: '1px solid #C8E6C9' }}
+        >
           {/* Decorative elements */}
-          <div className="absolute inset-0 pointer-events-none select-none" style={{ opacity: 0.04 }}>
-            <div className="absolute top-8 left-8 text-8xl">🎓</div>
-            <div className="absolute top-16 right-16 text-6xl">📖</div>
-            <div className="absolute bottom-20 left-1/4 text-7xl">🏆</div>
-            <div className="absolute bottom-8 right-8 text-5xl">🌿</div>
+          <div className="absolute inset-0 pointer-events-none select-none" style={{ opacity: 0.03 }}>
+            <div className="absolute top-2 left-4 text-4xl">🎓</div>
+            <div className="absolute top-2 right-4 text-3xl">📖</div>
           </div>
-          <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.4) 0%, transparent 70%)' }} />
-
-          <div className="relative max-w-5xl mx-auto px-4 pt-10 pb-24 text-center">
-            <div className="text-5xl mb-3">🎓</div>
-            <h1
-              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2"
-              style={{ fontFamily: 'Playfair Display, serif', color: '#1B5E20' }}
-            >
-              Scholarship{' '}
-              <span style={{ color: '#DAA520', textShadow: '0 1px 3px rgba(218,165,32,0.2)' }}>Finder</span>
-            </h1>
-            <p className="text-base mb-1" style={{ color: '#558B2F', fontFamily: 'Playfair Display, serif', fontStyle: 'italic' }}>
-              உதவித்தொகை கண்டுபிடிப்பான்
-            </p>
-            <p className="text-sm md:text-base max-w-xl mx-auto mb-7" style={{ color: '#2E7D32' }}>
-              Discover scholarships you're eligible for — Government schemes, corporate programs, NGO initiatives & sports scholarships
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <button
-                onClick={() => setShowAIWizard(true)}
-                className="px-6 py-3 rounded-full font-semibold text-sm shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2"
-                style={{ background: 'linear-gradient(135deg, #DAA520, #B8860B)', color: 'white' }}
-              >
-                <Sparkles size={16} /> Check My Eligibility (AI-Powered)
-              </button>
-              <button
-                onClick={() => setShowApplications(true)}
-                className="px-5 py-3 rounded-full font-semibold text-sm border-2 bg-white/80 backdrop-blur-sm hover:bg-white transition-all flex items-center gap-2"
-                style={{ borderColor: '#2E7D32', color: '#1B5E20' }}
-              >
-                <ClipboardList size={16} /> My Applications ({savedIds.size})
-              </button>
-              <button
-                onClick={() => generateScholarshipPDF(filtered)}
-                className="px-5 py-3 rounded-full font-semibold text-sm border-2 bg-white/80 backdrop-blur-sm hover:bg-white transition-all flex items-center gap-2"
-                style={{ borderColor: '#DAA520', color: '#B8860B' }}
-              >
-                <Download size={16} /> Download PDF ({filtered.length})
-              </button>
+          <div className="relative px-5 py-5">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="text-3xl">🎓</div>
+                <div>
+                  <h2
+                    className="text-xl md:text-2xl font-bold"
+                    style={{ fontFamily: 'Playfair Display, serif', color: '#1B5E20' }}
+                  >
+                    Scholarship <span style={{ color: '#DAA520' }}>Finder</span>
+                  </h2>
+                  <p className="text-xs" style={{ color: '#558B2F', fontFamily: 'Playfair Display, serif', fontStyle: 'italic' }}>
+                    உதவித்தொகை கண்டுபிடிப்பான் — {allScholarships.length} scholarships across 4 categories
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={() => setShowAIWizard(true)}
+                  className="px-4 py-2.5 rounded-full font-semibold text-xs shadow-md hover:shadow-lg transition-all hover:scale-105 flex items-center gap-1.5"
+                  style={{ background: 'linear-gradient(135deg, #DAA520, #B8860B)', color: 'white' }}
+                >
+                  <Sparkles size={14} /> Check Eligibility (AI)
+                </button>
+                <button
+                  onClick={() => setShowApplications(true)}
+                  className="px-4 py-2.5 rounded-full font-semibold text-xs border-2 bg-white/80 hover:bg-white transition-all flex items-center gap-1.5"
+                  style={{ borderColor: '#2E7D32', color: '#1B5E20' }}
+                >
+                  <ClipboardList size={14} /> My Applications ({savedIds.size})
+                </button>
+                <button
+                  onClick={() => generateScholarshipPDF(filtered)}
+                  className="px-4 py-2.5 rounded-full font-semibold text-xs border-2 bg-white/80 hover:bg-white transition-all flex items-center gap-1.5"
+                  style={{ borderColor: '#DAA520', color: '#B8860B' }}
+                >
+                  <Download size={14} /> PDF ({filtered.length})
+                </button>
+              </div>
             </div>
-          </div>
-
-          {/* Curved bottom */}
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 40 }}>
-              <path d="M0 60L0 30C240 0 480 0 720 15C960 30 1200 45 1440 30L1440 60Z" fill="#FFFDF7" />
-            </svg>
           </div>
         </div>
 
         {/* ═══ STATS ROW ═══ */}
-        <div className="max-w-5xl mx-auto px-4 -mt-8 mb-8 relative z-20">
+        <div className="max-w-5xl mx-auto px-4 mb-6 relative z-20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { icon: '📋', value: `${allScholarships.length}+`, label: 'Total Scholarships' },
