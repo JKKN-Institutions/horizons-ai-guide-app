@@ -86,7 +86,7 @@ const FilterSection = ({ title, icon, children, defaultOpen = true }: {
 }) => {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div style={{ borderBottom: '1px solid #EEE8D5' }}>
+    <div style={{ borderBottom: '1px solid #C8E6C9' }}>
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-3 px-1 text-left"
@@ -289,7 +289,8 @@ const AIEligibilityWizard = ({ open, onClose, scholarships }: {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
       <div
-        className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden"
+        className="relative w-full max-w-md rounded-3xl shadow-2xl overflow-hidden"
+        style={{ background: 'linear-gradient(180deg, #F1F8E9, #E8F5E9)' }}
         style={{ animation: 'sfFadeInUp 0.3s ease-out' }}
       >
         <button onClick={onClose} className="absolute top-4 right-4 z-10 p-1.5 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
@@ -332,8 +333,8 @@ const AIEligibilityWizard = ({ open, onClose, scholarships }: {
                     }}
                     className="w-full p-3.5 rounded-xl text-left text-sm font-medium transition-all border-2"
                     style={{
-                      borderColor: isSelected ? '#DAA520' : '#EEE8D5',
-                      backgroundColor: isSelected ? '#FFF8E1' : 'white',
+                      borderColor: isSelected ? '#DAA520' : '#C8E6C9',
+                      backgroundColor: isSelected ? '#FFF8E1' : '#F1F8E9',
                       color: '#2C2C2C',
                     }}
                   >
@@ -394,10 +395,11 @@ const MobileFilterDrawer = ({ open, onClose, children }: {
     <div className="fixed inset-0 z-50 md:hidden" style={{ fontFamily: 'Outfit, sans-serif' }}>
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
       <div
-        className="absolute left-0 top-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl overflow-y-auto"
+        className="absolute left-0 top-0 bottom-0 w-80 max-w-[85vw] shadow-2xl overflow-y-auto"
+        style={{ background: 'linear-gradient(180deg, #F1F8E9, #E8F5E9)' }}
         style={{ animation: 'sfSlideIn 0.3s ease-out' }}
       >
-        <div className="flex items-center justify-between p-4" style={{ borderBottom: '1px solid #EEE8D5' }}>
+        <div className="flex items-center justify-between p-4" style={{ borderBottom: '1px solid #C8E6C9' }}>
           <h3 className="font-bold text-lg" style={{ color: '#1B5E20', fontFamily: 'Playfair Display, serif' }}>
             Filters
           </h3>
@@ -619,14 +621,14 @@ export const ScholarshipFinder = () => {
                   </button>
                   <button
                     onClick={() => setShowApplications(true)}
-                    className="px-4 py-2.5 rounded-full font-semibold text-xs border-2 bg-white/10 hover:bg-white/20 transition-all flex items-center gap-1.5"
+                    className="px-4 py-2.5 rounded-full font-semibold text-xs border-2 bg-green-100/20 hover:bg-green-100/30 transition-all flex items-center gap-1.5"
                     style={{ borderColor: '#A5D6A7', color: 'white' }}
                   >
                     <ClipboardList size={14} /> My Applications ({savedIds.size})
                   </button>
                   <button
                     onClick={() => generateScholarshipPDF(filtered)}
-                    className="px-4 py-2.5 rounded-full font-semibold text-xs border-2 bg-white/10 hover:bg-white/20 transition-all flex items-center gap-1.5"
+                    className="px-4 py-2.5 rounded-full font-semibold text-xs border-2 bg-green-100/20 hover:bg-green-100/30 transition-all flex items-center gap-1.5"
                     style={{ borderColor: '#FFD54F', color: '#FFD54F' }}
                   >
                     <Download size={14} /> PDF ({filtered.length})
@@ -687,7 +689,7 @@ export const ScholarshipFinder = () => {
                       ? `0 8px 30px ${cfg.color}35, 0 0 0 2px ${cfg.color}15`
                       : `0 4px 15px rgba(0,0,0,0.08)`,
                     background: isActive
-                      ? `linear-gradient(145deg, ${cfg.bg}, white 60%)`
+                      ? `linear-gradient(145deg, ${cfg.bg}, #F1F8E9 60%)`
                       : 'linear-gradient(145deg, #F1F8E9, #E8F5E9)',
                   }}
                 >
@@ -989,8 +991,8 @@ export const ScholarshipFinder = () => {
         <div className="fixed inset-0 z-[60]" style={{ fontFamily: 'Outfit, sans-serif' }}>
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setShowApplications(false)} />
           <div
-            className="absolute right-0 top-0 bottom-0 w-full max-w-2xl bg-white shadow-2xl overflow-y-auto"
-            style={{ animation: 'sfSlideInRight 0.3s ease-out', backgroundColor: '#FFFDF7' }}
+            className="absolute right-0 top-0 bottom-0 w-full max-w-2xl shadow-2xl overflow-y-auto"
+            style={{ animation: 'sfSlideInRight 0.3s ease-out', background: 'linear-gradient(180deg, #E8F5E9, #F1F8E9, #E8F5E9)' }}
           >
             <div
               className="sticky top-0 z-10 px-6 py-4 flex items-center justify-between"
@@ -1006,7 +1008,7 @@ export const ScholarshipFinder = () => {
               </div>
               <button
                 onClick={() => setShowApplications(false)}
-                className="p-2 rounded-full hover:bg-white/50 transition-all"
+                className="p-2 rounded-full hover:bg-green-100/50 transition-all"
               >
                 <X size={20} color="#1B5E20" />
               </button>
@@ -1020,8 +1022,8 @@ export const ScholarshipFinder = () => {
                     return (
                       <div
                         key={s.id}
-                        className="bg-white rounded-xl p-4 transition-all hover:shadow-md"
-                        style={{ border: '1px solid #EEE8D5' }}
+                        className="rounded-xl p-4 transition-all hover:shadow-md"
+                        style={{ border: '1px solid #C8E6C9', background: 'linear-gradient(145deg, #FAFFF8, #F1F8E9)' }}
                       >
                         <div className="flex items-start justify-between mb-2">
                           <div className="flex-1">
@@ -1069,7 +1071,7 @@ export const ScholarshipFinder = () => {
                           <button
                             onClick={() => { setSelectedScholarship(s); setShowApplications(false); }}
                             className="flex-1 py-2 rounded-lg text-xs font-semibold text-center transition-all"
-                            style={{ border: '1px solid #EEE8D5', color: '#1B5E20' }}
+                            style={{ border: '1px solid #C8E6C9', color: '#1B5E20' }}
                           >
                             View Details
                           </button>
