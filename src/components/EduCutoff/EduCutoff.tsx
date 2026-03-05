@@ -5,6 +5,7 @@ import { MarksEntryForm } from './MarksEntryForm';
 import { CategorySelector } from './CategorySelector';
 import { CutoffResults } from './CutoffResults';
 import { EligibleCourses } from './EligibleCourses';
+import { CollegePredictor } from './CollegePredictor';
 import { StudentGroup, Category, CutoffResult, getGroupCategory, isEligibleForTNEA } from './types';
 import { Calculator, GraduationCap, Building2, MapPin, CheckCircle } from 'lucide-react';
 
@@ -98,7 +99,7 @@ export const EduCutoff = () => {
             <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center">
               <Calculator className="h-6 w-6 text-white" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-white">EduCutoff - Universal Eligibility Calculator</h2>
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-white">EduCutoff & College Predictor</h2>
           </div>
           <p className="text-fresh-gold-medium text-lg mb-1 font-tamil">கல்வி கட்ஆஃப் - அனைத்து மாணவர்களுக்கும்</p>
           <p className="text-white/90 text-sm mb-6">
@@ -257,6 +258,13 @@ export const EduCutoff = () => {
             percentage={result.overallPercentage}
             neetScore={result.neetScore}
           />
+          {/* College Predictor — shows predicted colleges based on cutoff */}
+          {isEligibleForTNEA(selectedGroup) && result.tneaCutoff && (
+            <CollegePredictor
+              cutoffScore={result.tneaCutoff}
+              categoryCode={selectedCategory || 'OC'}
+            />
+          )}
         </>
       )}
     </div>

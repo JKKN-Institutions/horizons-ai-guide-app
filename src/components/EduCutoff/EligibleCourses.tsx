@@ -336,10 +336,10 @@
  
            <div className="mt-4 flex gap-3">
              <Button
-               onClick={() => navigate('/counselling-simulator')}
+               onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
                className="flex-1 bg-fresh-green-medium hover:bg-fresh-green-dark"
              >
-               Try Counselling Simulator
+               See College Predictions Below
              </Button>
              <Button
                variant="outline"

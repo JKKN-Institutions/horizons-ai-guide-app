@@ -46,7 +46,7 @@ import JKKNLearnerProfile from "./pages/JKKNLearnerProfile";
 import CareerAssessment from "./pages/CareerAssessment";
 import AICareerPredictor from "./pages/AICareerPredictor";
 import SavedCourses from "./pages/SavedCourses";
-import { FindCollegesPage, ScholarshipsPage, EduCutoffPage, EntranceExamsPage, CounsellingPage, PYQPage, GovtJobsPage, TNUniversityPage, CourseExplorerPage, StartupGuidePage } from "./pages/CollegesTabPages";
+import { FindCollegesPage, ScholarshipsPage, EduCutoffPage, EntranceExamsPage, PYQPage, GovtJobsPage, TNUniversityPage, CourseExplorerPage, StartupGuidePage } from "./pages/CollegesTabPages";
 
 
 
@@ -114,7 +114,6 @@ function App() {
                 <Route path="/career-assessment/colleges/scholarships" element={<ScholarshipsPage />} />
                 <Route path="/career-assessment/colleges/educutoff" element={<EduCutoffPage />} />
                 <Route path="/career-assessment/colleges/entrance-exams" element={<EntranceExamsPage />} />
-                <Route path="/career-assessment/colleges/counselling" element={<CounsellingPage />} />
                 <Route path="/career-assessment/colleges/pyq" element={<PYQPage />} />
                 <Route path="/career-assessment/colleges/govt-jobs" element={<GovtJobsPage />} />
                 <Route path="/career-assessment/colleges/tn-university" element={<TNUniversityPage />} />

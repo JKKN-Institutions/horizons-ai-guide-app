@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { GraduationCap, Building2, Bookmark, Calculator, FileText, Users, BookOpen, LucideIcon, Landmark, School, Compass, Rocket } from 'lucide-react';
+import { GraduationCap, Building2, Bookmark, Calculator, FileText, BookOpen, LucideIcon, Landmark, School, Compass, Rocket } from 'lucide-react';
 
 interface NavItem {
   id: string;
@@ -50,8 +50,8 @@ const navItems: NavItem[] = [
   },
   {
     id: 'educutoff',
-    label: 'EduCutoff Calculator',
-    shortLabel: 'EduCutoff',
+    label: 'Cutoff & College Predictor',
+    shortLabel: 'Cutoff',
     icon: Calculator,
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#7B1FA2] to-[#6A1B9A]',
@@ -65,16 +65,6 @@ const navItems: NavItem[] = [
     activeColor: 'text-white',
     activeBg: 'bg-gradient-to-r from-[#E65100] to-[#BF360C]',
     route: '/career-assessment/colleges/entrance-exams',
-  },
-  {
-    id: 'counselling',
-    label: 'Counseling Simulator',
-    shortLabel: 'Counseling',
-    icon: Users,
-    activeColor: 'text-white',
-    activeBg: 'bg-gradient-to-r from-[#00897B] to-[#00695C]',
-    route: '/career-assessment/colleges/counselling',
-    isFeatured: true,
   },
   {
     id: 'pyq',
@@ -207,7 +197,7 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
                 <Icon 
                   className={cn(
                     'w-4 h-4 transition-colors duration-300',
-                    isActive ? 'text-white' : item.id === 'counselling' ? 'text-teal-600' : 'text-rose-600'
+                    isActive ? 'text-white' : 'text-rose-600'
                   )} 
                 />
                 <span className="hidden md:inline whitespace-nowrap">{item.label}</span>

@@ -9,7 +9,9 @@
  import { EngineeringResult } from './EngineeringCalculator';
  
  interface CollegePredictorProps {
-   engineeringResult: EngineeringResult | null;
+   engineeringResult?: EngineeringResult | null;
+   cutoffScore?: number;
+   categoryCode?: string;
  }
  
  interface PredictedCollege {

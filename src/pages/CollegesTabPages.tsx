@@ -3,7 +3,6 @@ import { CollegeSearch } from '@/components/CollegeSearch';
 import { ScholarshipFinder } from '@/components/ScholarshipFinder';
 import { EduCutoff } from '@/components/EduCutoff';
 import { EntranceExams } from '@/components/EntranceExams';
-import { CounsellingSimulator } from '@/components/CounsellingSimulator';
 import { PreviousYearQuestions } from '@/components/PreviousYearQuestions';
 import { GovernmentJobs } from '@/components/GovernmentJobs';
 import { UniversityEntranceExams } from '@/components/UniversityEntrance';
@@ -31,12 +30,6 @@ export const EduCutoffPage = () => (
 export const EntranceExamsPage = () => (
   <CollegesPageLayout activeTab="entranceexams">
     <EntranceExams />
-  </CollegesPageLayout>
-);
-
-export const CounsellingPage = () => (
-  <CollegesPageLayout activeTab="counselling">
-    <CounsellingSimulator />
   </CollegesPageLayout>
 );
 
