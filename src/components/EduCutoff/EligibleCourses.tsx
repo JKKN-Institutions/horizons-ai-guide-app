@@ -4,7 +4,6 @@
  import { cn } from '@/lib/utils';
  import { StudentGroup, EligibleCourse, getGroupCategory, isEligibleForTNEA, isEligibleForMedical } from './types';
  import { CheckCircle2, AlertTriangle, XCircle, Star, MapPin, GraduationCap } from 'lucide-react';
- import { useNavigate } from 'react-router-dom';
  
  interface CollegeInfo {
    name: string;
@@ -144,7 +143,6 @@
  
  export const EligibleCourses = ({ group, cutoffScore, percentage, neetScore }: EligibleCoursesProps) => {
    const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
-   const navigate = useNavigate();
    const category = getGroupCategory(group);
  
    const courses = getCoursesByGroup(group, cutoffScore, percentage, neetScore);
@@ -336,7 +334,7 @@
  
            <div className="mt-4 flex gap-3">
              <Button
-               onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
+               onClick={() => { const el = document.getElementById('colleges-content-scroll'); if (el) el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' }); else window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); }}
                className="flex-1 bg-fresh-green-medium hover:bg-fresh-green-dark"
              >
                See College Predictions Below

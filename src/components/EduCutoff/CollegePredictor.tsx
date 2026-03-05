@@ -404,7 +404,7 @@
    'Ariyalur', 'Ramanathapuram', 'Dindigul', 'Kanchipuram'
  ];
  
- export const CollegePredictor = ({ engineeringResult }: CollegePredictorProps) => {
+export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode }: CollegePredictorProps) => {
    const [searchQuery, setSearchQuery] = useState('');
    const [selectedDistrict, setSelectedDistrict] = useState<string>('all');
    const [savedColleges, setSavedColleges] = useState<string[]>([]);
@@ -417,8 +417,8 @@
    };
  
    const predictedColleges = governmentColleges.map(college => {
-     const userCutoff = engineeringResult?.cutoff || 0;
-     const userCategory = engineeringResult?.category || 'OC';
+    const userCutoff = engineeringResult?.cutoff || cutoffScore || 0;
+    const userCategory = engineeringResult?.category || categoryCode || 'OC';
      const collegeCutoff = college.lastYearCutoff[userCategory] || college.lastYearCutoff['OC'];
  
      const branches = college.branches.map(branch => ({
@@ -457,7 +457,7 @@
      );
    };
  
-   if (!engineeringResult) {
+  if (!engineeringResult && !cutoffScore) {
      return (
        <Card className="border-dashed">
          <CardContent className="py-12 text-center">
@@ -490,11 +490,11 @@
            </div>
            <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-3">
              <div className="bg-white/10 rounded-lg px-3 py-2 text-center">
-               <div className="text-xl font-bold">{engineeringResult.cutoff}</div>
+               <div className="text-xl font-bold">{userCutoff}</div>
                <div className="text-xs text-white/70">Your Cutoff</div>
              </div>
              <div className="bg-white/10 rounded-lg px-3 py-2 text-center">
-               <div className="text-lg font-semibold">{engineeringResult.category}</div>
+               <div className="text-lg font-semibold">{userCategory}</div>
                <div className="text-xs text-white/70">Category</div>
              </div>
              <div className="bg-white/10 rounded-lg px-3 py-2 text-center">
@@ -604,7 +604,7 @@
                  {/* Cutoff Comparison */}
                  <div className="mt-3 flex flex-wrap items-center gap-4 text-sm">
                    <span>Your Cutoff: <strong className="text-primary">{college.userCutoff}</strong></span>
-                   <span>Last Year ({engineeringResult.category}): <strong>{college.collegeCutoff}</strong></span>
+                   <span>Last Year ({userCategory}): <strong>{college.collegeCutoff}</strong></span>
                    <span className={cn(
                      'font-semibold',
                      college.userCutoff >= college.collegeCutoff ? 'text-green-600' : 'text-red-600'
