@@ -313,13 +313,11 @@ const AICareerPredictor = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-4 py-8">
-        {/* Back button */}
-        {step > 0 && (
-          <Button variant="ghost" onClick={handleBack} className="mb-4">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back
-          </Button>
-        )}
+        {/* Back button — always visible */}
+        <Button variant="ghost" onClick={step > 0 ? handleBack : () => navigate(-1)} className="mb-4 group hover:bg-primary/10">
+          <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+          Back
+        </Button>
 
         {/* Intro / Landing */}
         {step === 0 && (
