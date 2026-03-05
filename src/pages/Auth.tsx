@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
-import { Eye, EyeOff, Loader2, CheckCircle2, Mail, User, ArrowRight } from 'lucide-react';
+import { Eye, EyeOff, Loader2, CheckCircle2, Mail, User, ArrowRight, Phone, Search } from 'lucide-react';
 
 const loginSchema = z.object({
   email: z.string().trim().email({ message: "Please enter a valid email address" }),
@@ -25,9 +25,15 @@ const signupSchema = loginSchema.extend({
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [loginMethod, setLoginMethod] = useState<'email' | 'phone'>('email');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [phone, setPhone] = useState('');
+  const [foundEmail, setFoundEmail] = useState('');
+  const [foundName, setFoundName] = useState('');
+  const [phoneLookupDone, setPhoneLookupDone] = useState(false);
+  const [isLookingUp, setIsLookingUp] = useState(false);
   const [displayName, setDisplayName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -46,7 +52,7 @@ const Auth = () => {
     console.log('Auth: auth state, user:', user?.id, 'loading:', loading);
 
     if (user && !loading) {
-      const redirectUrl = redirectParam || '/student-dashboard';
+      const redirectUrl = redirectParam || '/career-assessment/colleges';
       console.log('Auth: redirect param =', redirectParam);
       console.log('Auth: After login, redirecting to:', redirectUrl);
       navigate(redirectUrl, { replace: true });
@@ -76,16 +82,73 @@ const Auth = () => {
     }
   };
 
+  const handlePhoneLookup = async () => {
+    if (!phone || phone.trim().length < 10) {
+      setErrors({ phone: 'Please enter a valid 10-digit phone number' });
+      return;
+    }
+    setIsLookingUp(true);
+    setErrors({});
+    try {
+      // Look up from registrations_12th_learners
+      const { data, error } = await supabase
+        .from('registrations_12th_learners')
+        .select('email, full_name, user_id')
+        .eq('phone', phone.trim())
+        .limit(1);
+
+      if (error) throw error;
+
+      if (data && data.length > 0 && data[0].email) {
+        setFoundEmail(data[0].email);
+        setFoundName(data[0].full_name || '');
+        setPhoneLookupDone(true);
+        toast({
+          title: "Account Found! ✅",
+          description: `Welcome back, ${data[0].full_name || 'Learner'}! Enter your password to sign in.`,
+        });
+      } else {
+        // Also try looking up from auth users via user_id
+        setErrors({ phone: 'No account found with this phone number. Please sign up first.' });
+        toast({
+          title: "Not Found",
+          description: "No registration found with this phone number. Please create an account first.",
+          variant: "destructive",
+        });
+      }
+    } catch (err) {
+      console.error('Phone lookup error:', err);
+      setErrors({ phone: 'Error looking up phone number. Please try with email.' });
+    } finally {
+      setIsLookingUp(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!validateForm()) return;
+    // For phone login with found email
+    const loginEmail = (isLogin && loginMethod === 'phone' && phoneLookupDone) ? foundEmail : email;
+
+    if (isLogin && loginMethod === 'phone') {
+      if (!phoneLookupDone) {
+        handlePhoneLookup();
+        return;
+      }
+      // Validate password only
+      if (password.length < 6) {
+        setErrors({ password: 'Password must be at least 6 characters' });
+        return;
+      }
+    } else if (!validateForm()) {
+      return;
+    }
     
     setIsLoading(true);
     
     try {
       if (isLogin) {
-        const { error } = await signIn(email, password);
+        const { error } = await signIn(loginEmail, password);
         if (error) {
           if (error.message.includes('Invalid login credentials')) {
             toast({
@@ -170,6 +233,11 @@ const Auth = () => {
     setErrors({});
     setPassword('');
     setConfirmPassword('');
+    setPhone('');
+    setFoundEmail('');
+    setFoundName('');
+    setPhoneLookupDone(false);
+    setLoginMethod('email');
   };
 
   return (
@@ -185,7 +253,7 @@ const Auth = () => {
               </div>
             </div>
             <h2 className="text-2xl font-bold">Registration Successful! 🎉</h2>
-            <p className="text-sm mt-1 opacity-90">Welcome to VAZHIKATTI</p>
+            <p className="text-sm mt-1 opacity-90">Welcome to AI Vazhikatti</p>
           </div>
 
           <CardContent className="p-6 space-y-5">
@@ -246,9 +314,12 @@ const Auth = () => {
             {/* CTA Button */}
             <Button 
               className="w-full bg-gradient-to-r from-[#FF6B35] to-[#e55a2a] hover:from-[#e55a2a] hover:to-[#d44a1a] text-white font-semibold py-5 text-base"
-              onClick={() => navigate('/student-dashboard')}
+              onClick={() => {
+                const redirectUrl = redirectParam || '/career-assessment/colleges';
+                navigate(redirectUrl);
+              }}
             >
-              Start Exploring VAZHIKATTI
+              Start Exploring AI Vazhikatti
               <ArrowRight className="h-5 w-5 ml-2" />
             </Button>
           </CardContent>
@@ -261,12 +332,123 @@ const Auth = () => {
           </CardTitle>
           <CardDescription className="fresh-body">
             {isLogin
-              ? 'Enter your credentials to access your account'
+              ? 'Sign in with your email or registered phone number'
               : 'Fill in your details to get started'}
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
+            {/* Email/Phone Toggle for Login */}
+            {isLogin && (
+              <div className="flex rounded-lg overflow-hidden border-2 border-emerald-200 mb-2">
+                <button
+                  type="button"
+                  onClick={() => { setLoginMethod('email'); setErrors({}); setPhoneLookupDone(false); setPassword(''); }}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-semibold transition-all ${
+                    loginMethod === 'email'
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-white text-gray-600 hover:bg-emerald-50'
+                  }`}
+                >
+                  <Mail size={16} /> Sign in with Email
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setLoginMethod('phone'); setErrors({}); setPhoneLookupDone(false); setPassword(''); }}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-semibold transition-all ${
+                    loginMethod === 'phone'
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-white text-gray-600 hover:bg-emerald-50'
+                  }`}
+                >
+                  <Phone size={16} /> Sign in with Phone
+                </button>
+              </div>
+            )}
+
+            {/* PHONE SIGN-IN FLOW */}
+            {isLogin && loginMethod === 'phone' && (
+              <>
+                {!phoneLookupDone ? (
+                  <div className="space-y-3">
+                    <div className="space-y-2">
+                      <Label htmlFor="phone" className="fresh-label">Registered Phone Number</Label>
+                      <div className="flex gap-2">
+                        <Input
+                          id="phone"
+                          type="tel"
+                          placeholder="9876543210"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                          className={`fresh-input flex-1 ${errors.phone ? 'border-destructive' : ''}`}
+                          disabled={isLookingUp}
+                          onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handlePhoneLookup())}
+                        />
+                        <Button
+                          type="button"
+                          onClick={handlePhoneLookup}
+                          disabled={isLookingUp || phone.length < 10}
+                          className="bg-emerald-600 hover:bg-emerald-700 text-white px-4"
+                        >
+                          {isLookingUp ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
+                        </Button>
+                      </div>
+                      {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
+                      <p className="text-xs text-gray-400">Enter the phone number you used during registration</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {/* Account found - show details */}
+                    <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
+                      <div className="flex items-center gap-2 mb-1">
+                        <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                        <span className="text-sm font-semibold text-emerald-700">Account Found!</span>
+                      </div>
+                      <p className="text-sm text-gray-600">
+                        <strong>{foundName}</strong> — {foundEmail.replace(/(.{2})(.*)(@.*)/, '$1***$3')}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => { setPhoneLookupDone(false); setFoundEmail(''); setFoundName(''); setPassword(''); }}
+                        className="text-xs text-emerald-600 hover:underline mt-1"
+                      >
+                        ← Use different phone number
+                      </button>
+                    </div>
+
+                    {/* Password field */}
+                    <div className="space-y-2">
+                      <Label htmlFor="phonePassword" className="fresh-label">Password</Label>
+                      <div className="relative">
+                        <Input
+                          id="phonePassword"
+                          type={showPassword ? 'text' : 'password'}
+                          placeholder="Enter your password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          className={`fresh-input pr-10 ${errors.password ? 'border-destructive' : ''}`}
+                          disabled={isLoading}
+                          autoFocus
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-fresh-gold-dark hover:text-fresh-gold-rich transition-colors"
+                        >
+                          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+                      </div>
+                      {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+
+            {/* EMAIL SIGN-IN FLOW (existing) */}
+            {(isLogin && loginMethod === 'email' || !isLogin) && (
+              <>
             {!isLogin && (
               <div className="space-y-2">
                 <Label htmlFor="displayName" className="fresh-label">Display Name</Label>
@@ -343,9 +525,13 @@ const Auth = () => {
                 )}
               </div>
             )}
+              </>
+            )}
           </CardContent>
           
           <CardFooter className="flex flex-col space-y-4">
+            {/* Hide submit button when in phone mode and not looked up (search button handles it) */}
+            {!(isLogin && loginMethod === 'phone' && !phoneLookupDone) && (
             <Button 
               type="submit" 
               className="w-full btn-fresh-primary"
@@ -360,6 +546,7 @@ const Auth = () => {
                 isLogin ? 'Sign In' : 'Create Account'
               )}
             </Button>
+            )}
             
             <div className="text-center text-sm">
               <span className="fresh-muted">

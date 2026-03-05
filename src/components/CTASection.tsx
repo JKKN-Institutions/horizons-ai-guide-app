@@ -48,7 +48,7 @@ const CTASection = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Button 
               size="lg"
-              onClick={() => navigate("/register/12th-learner")}
+              onClick={() => navigate("/auth?redirect=/career-assessment/colleges")}
               className="group relative bg-white text-primary hover:bg-white px-8 py-6 text-lg font-semibold shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_20px_50px_rgba(255,255,255,0.3)] active:scale-95 overflow-hidden"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />

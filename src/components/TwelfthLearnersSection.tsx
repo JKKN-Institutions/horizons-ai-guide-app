@@ -55,7 +55,7 @@ const TwelfthLearnersSection = () => {
 
             <Button 
               className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold px-8 py-6 text-lg rounded-xl shadow-lg shadow-amber-500/30 hover:shadow-xl transition-all duration-300 hover:scale-105"
-              onClick={() => navigate("/register/12th-learner?redirect=/career-assessment/12th-learners")}
+              onClick={() => navigate("/auth?redirect=/career-assessment/colleges")}
             >
               Start Your Career Journey
             </Button>
