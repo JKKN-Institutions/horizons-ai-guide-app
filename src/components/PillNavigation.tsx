@@ -140,7 +140,7 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
   };
 
   return (
-    <div className="flex justify-center mb-8 overflow-x-auto pb-2">
+    <div className="flex justify-center overflow-x-auto pb-1">
       <nav 
         className="relative inline-flex flex-wrap justify-center items-center gap-2 p-2 bg-white/95 backdrop-blur-md rounded-2xl shadow-lg border border-slate-200"
       >
