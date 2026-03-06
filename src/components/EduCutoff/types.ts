@@ -34,6 +34,7 @@ export interface MarksEntry {
 
 export interface CutoffResult {
   tneaCutoff?: number;
+  tneaCutoff100?: number;
   overallPercentage: number;
   percentile: number;
   neetScore?: number;

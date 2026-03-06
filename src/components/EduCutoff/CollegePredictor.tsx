@@ -20,7 +20,7 @@
    nameTamil?: string;
    location: string;
    district: string;
-   type: 'Government';
+   type: 'Government' | 'Aided' | 'Private';
    lastYearCutoff: Record<string, number>;
    branches: Branch[];
    annualFee: string;
@@ -397,11 +397,221 @@
      seats: 180,
    },
  ];
- 
+
+// Top Private/Aided Engineering Colleges in Tamil Nadu - Through TNEA Counseling
+const topPrivateColleges: PredictedCollege[] = [
+  {
+    id: 'p1',
+    name: 'PSG College of Technology',
+    nameTamil: 'PSG தொழில்நுட்ப கல்லூரி',
+    location: 'Coimbatore',
+    district: 'Coimbatore',
+    type: 'Aided',
+    lastYearCutoff: { OC: 197, BC: 195, MBC: 193, SC: 185, ST: 175 },
+    branches: [
+      { code: 'CSE', name: 'Computer Science', lastCutoff: 199, seats: 60, chance: 'Low' },
+      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 197, seats: 90, chance: 'Low' },
+      { code: 'EEE', name: 'Electrical & Electronics', lastCutoff: 195, seats: 60, chance: 'Medium' },
+      { code: 'MECH', name: 'Mechanical', lastCutoff: 193, seats: 120, chance: 'Medium' },
+    ],
+    annualFee: '₹75,000',
+    placement: '₹12 LPA',
+    naacGrade: 'A++',
+    nirfRank: 45,
+    seats: 330,
+  },
+  {
+    id: 'p2',
+    name: 'SSN College of Engineering',
+    nameTamil: 'SSN பொறியியல் கல்லூரி',
+    location: 'Chennai',
+    district: 'Chennai',
+    type: 'Private',
+    lastYearCutoff: { OC: 196, BC: 194, MBC: 192, SC: 184, ST: 174 },
+    branches: [
+      { code: 'CSE', name: 'Computer Science', lastCutoff: 199, seats: 120, chance: 'Low' },
+      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 196, seats: 120, chance: 'Low' },
+      { code: 'EEE', name: 'Electrical & Electronics', lastCutoff: 193, seats: 60, chance: 'Medium' },
+      { code: 'MECH', name: 'Mechanical', lastCutoff: 191, seats: 60, chance: 'Medium' },
+    ],
+    annualFee: '₹2,00,000',
+    placement: '₹10 LPA',
+    naacGrade: 'A+',
+    nirfRank: 32,
+    seats: 360,
+  },
+  {
+    id: 'p3',
+    name: 'Thiagarajar College of Engineering',
+    nameTamil: 'திருவாளர் தியாகராஜர் பொறியியல் கல்லூரி',
+    location: 'Madurai',
+    district: 'Madurai',
+    type: 'Aided',
+    lastYearCutoff: { OC: 194, BC: 191, MBC: 188, SC: 180, ST: 170 },
+    branches: [
+      { code: 'CSE', name: 'Computer Science', lastCutoff: 197, seats: 60, chance: 'Low' },
+      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 194, seats: 90, chance: 'Medium' },
+      { code: 'EEE', name: 'Electrical & Electronics', lastCutoff: 191, seats: 60, chance: 'Medium' },
+      { code: 'MECH', name: 'Mechanical', lastCutoff: 188, seats: 90, chance: 'High' },
+    ],
+    annualFee: '₹60,000',
+    placement: '₹8 LPA',
+    naacGrade: 'A',
+    nirfRank: 60,
+    seats: 300,
+  },
+  {
+    id: 'p4',
+    name: 'Kumaraguru College of Technology',
+    nameTamil: 'குமரகுரு தொழில்நுட்ப கல்லூரி',
+    location: 'Coimbatore',
+    district: 'Coimbatore',
+    type: 'Private',
+    lastYearCutoff: { OC: 190, BC: 187, MBC: 184, SC: 176, ST: 166 },
+    branches: [
+      { code: 'CSE', name: 'Computer Science', lastCutoff: 193, seats: 120, chance: 'Medium' },
+      { code: 'AI', name: 'AI & Data Science', lastCutoff: 191, seats: 60, chance: 'Medium' },
+      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 188, seats: 90, chance: 'High' },
+      { code: 'MECH', name: 'Mechanical', lastCutoff: 184, seats: 90, chance: 'High' },
+    ],
+    annualFee: '₹1,50,000',
+    placement: '₹7 LPA',
+    naacGrade: 'A+',
+    seats: 360,
+  },
+  {
+    id: 'p5',
+    name: 'Velammal Engineering College',
+    nameTamil: 'வேளம்மாள் பொறியியல் கல்லூரி',
+    location: 'Chennai',
+    district: 'Chennai',
+    type: 'Private',
+    lastYearCutoff: { OC: 191, BC: 188, MBC: 185, SC: 177, ST: 167 },
+    branches: [
+      { code: 'CSE', name: 'Computer Science', lastCutoff: 195, seats: 180, chance: 'Medium' },
+      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 191, seats: 120, chance: 'Medium' },
+      { code: 'MECH', name: 'Mechanical', lastCutoff: 186, seats: 120, chance: 'High' },
+    ],
+    annualFee: '₹1,50,000',
+    placement: '₹6 LPA',
+    naacGrade: 'A+',
+    seats: 420,
+  },
+  {
+    id: 'p6',
+    name: 'Kongu Engineering College',
+    nameTamil: 'கொங்கு பொறியியல் கல்லூரி',
+    location: 'Erode',
+    district: 'Erode',
+    type: 'Private',
+    lastYearCutoff: { OC: 185, BC: 182, MBC: 179, SC: 171, ST: 161 },
+    branches: [
+      { code: 'CSE', name: 'Computer Science', lastCutoff: 189, seats: 120, chance: 'High' },
+      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 185, seats: 90, chance: 'High' },
+      { code: 'MECH', name: 'Mechanical', lastCutoff: 180, seats: 120, chance: 'High' },
+    ],
+    annualFee: '₹1,20,000',
+    placement: '₹5.5 LPA',
+    naacGrade: 'A+',
+    seats: 330,
+  },
+  {
+    id: 'p7',
+    name: 'KPR Institute of Engineering & Technology',
+    nameTamil: 'KPR பொறியியல் நிறுவனம்',
+    location: 'Coimbatore',
+    district: 'Coimbatore',
+    type: 'Private',
+    lastYearCutoff: { OC: 180, BC: 177, MBC: 174, SC: 166, ST: 156 },
+    branches: [
+      { code: 'CSE', name: 'Computer Science', lastCutoff: 184, seats: 120, chance: 'High' },
+      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 180, seats: 60, chance: 'High' },
+      { code: 'MECH', name: 'Mechanical', lastCutoff: 175, seats: 60, chance: 'High' },
+    ],
+    annualFee: '₹1,00,000',
+    placement: '₹5 LPA',
+    naacGrade: 'A',
+    seats: 240,
+  },
+  {
+    id: 'p8',
+    name: 'Sri Krishna College of Engineering & Technology',
+    nameTamil: 'ஸ்ரீ கிருஷ்ணா பொறியியல் கல்லூரி',
+    location: 'Coimbatore',
+    district: 'Coimbatore',
+    type: 'Private',
+    lastYearCutoff: { OC: 178, BC: 175, MBC: 172, SC: 164, ST: 154 },
+    branches: [
+      { code: 'CSE', name: 'Computer Science', lastCutoff: 182, seats: 120, chance: 'High' },
+      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 178, seats: 60, chance: 'High' },
+      { code: 'MECH', name: 'Mechanical', lastCutoff: 173, seats: 60, chance: 'High' },
+    ],
+    annualFee: '₹1,00,000',
+    placement: '₹5 LPA',
+    seats: 240,
+  },
+  {
+    id: 'p9',
+    name: 'Bannari Amman Institute of Technology',
+    nameTamil: 'பன்னாரி அம்மன் தொழில்நுட்ப நிறுவனம்',
+    location: 'Sathyamangalam',
+    district: 'Erode',
+    type: 'Private',
+    lastYearCutoff: { OC: 170, BC: 167, MBC: 164, SC: 156, ST: 146 },
+    branches: [
+      { code: 'CSE', name: 'Computer Science', lastCutoff: 175, seats: 120, chance: 'High' },
+      { code: 'AI', name: 'AI & Data Science', lastCutoff: 172, seats: 60, chance: 'High' },
+      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 168, seats: 60, chance: 'High' },
+      { code: 'MECH', name: 'Mechanical', lastCutoff: 163, seats: 90, chance: 'High' },
+    ],
+    annualFee: '₹1,20,000',
+    placement: '₹5 LPA',
+    naacGrade: 'A',
+    seats: 330,
+  },
+  {
+    id: 'p10',
+    name: 'SNS College of Technology',
+    nameTamil: 'SNS தொழில்நுட்ப கல்லூரி',
+    location: 'Coimbatore',
+    district: 'Coimbatore',
+    type: 'Private',
+    lastYearCutoff: { OC: 160, BC: 157, MBC: 154, SC: 146, ST: 136 },
+    branches: [
+      { code: 'CSE', name: 'Computer Science', lastCutoff: 165, seats: 120, chance: 'High' },
+      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 160, seats: 60, chance: 'High' },
+      { code: 'MECH', name: 'Mechanical', lastCutoff: 155, seats: 60, chance: 'High' },
+    ],
+    annualFee: '₹1,00,000',
+    placement: '₹4 LPA',
+    seats: 240,
+  },
+  {
+    id: 'p11',
+    name: 'Karpagam College of Engineering',
+    nameTamil: 'கற்பகம் பொறியியல் கல்லூரி',
+    location: 'Coimbatore',
+    district: 'Coimbatore',
+    type: 'Private',
+    lastYearCutoff: { OC: 155, BC: 152, MBC: 149, SC: 141, ST: 131 },
+    branches: [
+      { code: 'CSE', name: 'Computer Science', lastCutoff: 160, seats: 120, chance: 'High' },
+      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 155, seats: 60, chance: 'High' },
+      { code: 'MECH', name: 'Mechanical', lastCutoff: 150, seats: 60, chance: 'High' },
+    ],
+    annualFee: '₹95,000',
+    placement: '₹3.5 LPA',
+    seats: 240,
+  },
+];
+
+// Combine all colleges
+const allColleges: PredictedCollege[] = [...governmentColleges, ...topPrivateColleges];
+
  const districts = [
    'Chennai', 'Coimbatore', 'Salem', 'Tirunelveli', 'Tiruchirappalli', 'Thanjavur', 
    'Erode', 'Dharmapuri', 'Krishnagiri', 'Theni', 'Kanyakumari', 'Villupuram', 
-   'Ariyalur', 'Ramanathapuram', 'Dindigul', 'Kanchipuram'
+   'Ariyalur', 'Ramanathapuram', 'Dindigul', 'Kanchipuram', 'Madurai'
  ];
  
 export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode }: CollegePredictorProps) => {
@@ -416,9 +626,10 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
      return 'Low';
    };
  
-   const predictedColleges = governmentColleges.map(college => {
-    const userCutoff = engineeringResult?.cutoff || cutoffScore || 0;
-    const userCategory = engineeringResult?.category || categoryCode || 'OC';
+   const userCutoff = engineeringResult?.cutoff || cutoffScore || 0;
+   const userCategory = engineeringResult?.category || categoryCode || 'OC';
+
+   const predictedColleges = allColleges.map(college => {
      const collegeCutoff = college.lastYearCutoff[userCategory] || college.lastYearCutoff['OC'];
  
      const branches = college.branches.map(branch => ({
@@ -483,9 +694,9 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
              <div>
                <h3 className="text-lg font-semibold flex items-center gap-2">
                  <Shield className="h-4 w-4" />
-                 Government Colleges Only - Free Education through TNEA Counseling
+                 College Predictor — Government + Top Private Colleges via TNEA
                </h3>
-               <p className="text-sm text-white/80 font-tamil">அரசு கல்லூரிகள் மட்டும் - TNEA கலந்தாய்வு மூலம் இலவச கல்வி</p>
+               <p className="text-sm text-white/80 font-tamil">அரசு + முன்னணி தனியார் கல்லூரிகள் - TNEA கலந்தாய்வு மூலம்</p>
              </div>
            </div>
            <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -498,8 +709,8 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
                <div className="text-xs text-white/70">Category</div>
              </div>
              <div className="bg-white/10 rounded-lg px-3 py-2 text-center">
-               <div className="text-lg font-bold">₹7,500/yr</div>
-               <div className="text-xs text-white/70">Govt. Fees</div>
+               <div className="text-lg font-bold">{allColleges.filter(c => c.type === 'Government').length}</div>
+               <div className="text-xs text-white/70">Govt Colleges</div>
              </div>
              <div className="bg-white/10 rounded-lg px-3 py-2 text-center">
                <div className="text-lg font-bold">{sortedColleges.filter(c => c.overallChance !== 'Low').length}</div>
@@ -515,7 +726,7 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
            <div className="relative">
              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
              <Input
-               placeholder="Search govt. colleges..."
+               placeholder="Search colleges..."
                value={searchQuery}
                onChange={(e) => setSearchQuery(e.target.value)}
                className="pl-10"
@@ -536,7 +747,7 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
          </Select>
          <Badge variant="outline" className="h-10 px-4 flex items-center gap-2 bg-green-50 text-green-700 border-green-300">
            <Shield className="h-4 w-4" />
-           {sortedColleges.length} Govt. Colleges
+           {sortedColleges.length} Colleges
          </Badge>
        </div>
  
@@ -570,9 +781,9 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
                        <span className="flex items-center gap-1">
                          <MapPin className="h-3 w-3" /> {college.location}
                        </span>
-                       <Badge className="text-xs bg-green-600 text-white">🏛️ {college.type}</Badge>
+                       <Badge className={`text-xs text-white ${college.type === 'Government' ? 'bg-green-600' : college.type === 'Aided' ? 'bg-blue-600' : 'bg-purple-600'}`}>🏛️ {college.type}</Badge>
                        <span className="text-xs text-green-700 font-medium">
-                         {college.seats} Govt. Quota Seats
+                         {college.seats} {college.type === 'Government' ? 'Govt. Quota' : 'TNEA'} Seats
                        </span>
                        {college.nirfRank && (
                          <span className="flex items-center gap-1">
@@ -640,7 +851,7 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
                  <div className="mt-4 flex flex-wrap gap-4 text-sm">
                    <div className="flex items-center gap-1 text-green-700 font-medium">
                      <IndianRupee className="h-4 w-4" />
-                     <span>Fees: {college.annualFee}/year (Govt.)</span>
+                     <span>Fees: {college.annualFee}/year</span>
                    </div>
                    <div className="flex items-center gap-1 text-muted-foreground">
                      <Briefcase className="h-4 w-4" />
@@ -666,11 +877,11 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
        {/* Disclaimer */}
        <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200">
          <p className="text-xs text-green-800 dark:text-green-300 text-center">
-           🏛️ <strong>Only Government Colleges:</strong> These are all government colleges where you can study for FREE or with minimal fees (₹7,500/year) through TNEA counseling. 
-           Cutoffs are based on previous year data and may vary.
+           🏛️ <strong>Government + Top Colleges:</strong> Includes government (₹7,500/yr), aided, and top private colleges through TNEA counseling. 
+           Cutoffs are based on previous year data and may vary. Government colleges offer free/subsidized education.
          </p>
          <p className="text-xs text-green-700/80 dark:text-green-400/80 text-center mt-1 font-tamil">
-           இவை அனைத்தும் அரசு கல்லூரிகள். TNEA கலந்தாய்வு மூலம் இலவசமாக அல்லது குறைந்த கட்டணத்தில் படிக்கலாம்.
+           அரசு + முன்னணி கல்லூரிகள் அடங்கும். TNEA கலந்தாய்வு மூலம் சேரலாம். கடந்த ஆண்டு கட்ஆஃப் அடிப்படையில்.
          </p>
        </div>
      </div>
