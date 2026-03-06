@@ -10,34 +10,34 @@ interface GroupSelectorProps {
 
 // Descriptive course names based on distinguishing subject
 const groupCourseName: Record<string, string> = {
-  '101': 'Statistics Group',
-  '102': 'Computer Science Group',
-  '103': 'Biology + Maths Group',
-  '104': 'Bio-Chemistry Group',
-  '105': 'English Comm. Group',
-  '106': 'Home Science Group',
-  '201': 'Bio-Computer Science',
-  '202': 'Bio-Microbiology',
-  '203': 'Bio-Biochemistry',
-  '204': 'Bio-Nursing',
-  '205': 'Bio-Nutrition',
-  '206': 'Bio-English Comm.',
-  '207': 'Bio-Home Science',
+  '101': 'Statistics',
+  '102': 'Computer Science',
+  '103': 'Biology + Maths',
+  '104': 'Bio-Chemistry',
+  '105': 'English for Communication',
+  '106': 'Home Science',
+  '201': 'Biology + CS',
+  '202': 'Micro-Biology',
+  '203': 'Bio-Chemistry',
+  '204': 'Nursing',
+  '205': 'Nutrition & Dietetics',
+  '206': 'English for Communication',
+  '207': 'Home Science',
   '208': 'Botany & Zoology',
-  '301': 'Commerce-Statistics',
-  '302': 'Commerce-Computer Sci.',
-  '303': 'Commerce-English Comm.',
-  '304': 'Commerce-History',
-  '305': 'Commerce-Political Sci.',
-  '306': 'Commerce-Ethics',
-  '307': 'Commerce-Language',
-  '308': 'Commerce-Business Maths',
-  '401': 'Arts-Statistics',
-  '402': 'Arts-Computer Science',
-  '403': 'Arts-English Comm.',
-  '404': 'Arts-Political Science',
-  '405': 'Arts-Ethics',
-  '406': 'Arts-Language',
+  '301': 'Statistics',
+  '302': 'Computer Science',
+  '303': 'English for Communication',
+  '304': 'History',
+  '305': 'Political Science',
+  '306': 'Ethics & Indian Culture',
+  '307': 'Advanced Language',
+  '308': 'Business Maths',
+  '401': 'Statistics',
+  '402': 'Computer Science',
+  '403': 'English for Communication',
+  '404': 'Political Science',
+  '405': 'Ethics & Indian Culture',
+  '406': 'Advanced Language',
 };
 
 // Official TN State Board 12th Group Data
@@ -217,23 +217,14 @@ export const GroupSelector = ({ selectedGroup, onSelectGroup }: GroupSelectorPro
                               {group.icon} {groupCourseName[group.id] || group.name}
                             </span>
                           </div>
-                          {/* All Subjects - wrapping tags, no truncation */}
+                          {/* All Subjects - readable comma-separated text */}
                           <div className="min-w-0">
-                            <div className="flex flex-wrap gap-1">
-                              {group.subjects.map((subject, idx) => (
-                                <span
-                                  key={idx}
-                                  className={cn(
-                                    'inline-block text-[10px] md:text-xs px-1.5 py-0.5 rounded-md border whitespace-nowrap',
-                                    isSelected
-                                      ? 'bg-white border-current text-current font-medium'
-                                      : 'bg-gray-50 border-gray-200 text-gray-600'
-                                  )}
-                                >
-                                  {subject}
-                                </span>
-                              ))}
-                            </div>
+                            <p className={cn(
+                              'text-[11px] md:text-sm leading-relaxed break-words',
+                              isSelected ? 'text-gray-800 font-medium' : 'text-gray-600'
+                            )}>
+                              {group.subjects.join(', ')}
+                            </p>
                           </div>
                         </button>
                       );
@@ -261,14 +252,10 @@ export const GroupSelector = ({ selectedGroup, onSelectGroup }: GroupSelectorPro
               <h4 className="font-bold text-lg">
                 {selectedInfo.group.code} — {groupCourseName[selectedInfo.group.id] || selectedInfo.group.name}
               </h4>
-              {/* All subjects displayed as tags */}
-              <div className="flex flex-wrap gap-1.5 mt-2">
-                {selectedInfo.group.subjects.map((subject, idx) => (
-                  <span key={idx} className="inline-flex items-center gap-1 text-xs px-2 py-1 bg-white/80 rounded-lg border font-medium">
-                    📖 {subject}
-                  </span>
-                ))}
-              </div>
+              {/* All subjects displayed clearly */}
+              <p className="text-sm mt-1">
+                <strong>Subjects:</strong> {selectedInfo.group.subjects.join(', ')}
+              </p>
               <p className="text-sm text-gray-600 mt-2">
                 <strong>+ Common:</strong> Tamil/Hindi (Part I) + English (Part II) — Compulsory
               </p>
