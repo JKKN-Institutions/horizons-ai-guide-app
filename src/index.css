@@ -1720,3 +1720,39 @@ video, iframe { max-width: 100%; }
   outline: 2px solid hsl(var(--primary));
   outline-offset: 2px;
 }
+
+/* ═══ MOBILE-FRIENDLY IMPROVEMENTS ═══ */
+@media (max-width: 768px) {
+  /* Bigger touch targets on mobile */
+  button, a, input, select, textarea {
+    min-height: 40px;
+  }
+  
+  /* Prevent text from being too small */
+  body {
+    font-size: 15px;
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  /* Better card padding on mobile */
+  .fresh-card {
+    padding: 1rem !important;
+  }
+  
+  /* Ensure modals are full-width on mobile */
+  [role="dialog"] > div {
+    max-width: 95vw !important;
+    margin: 0.5rem !important;
+  }
+}
+
+/* Smooth scrolling everywhere */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent horizontal overflow on mobile */
+body {
+  overflow-x: hidden;
+}

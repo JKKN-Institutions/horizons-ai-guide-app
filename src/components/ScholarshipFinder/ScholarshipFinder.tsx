@@ -571,7 +571,7 @@ export const ScholarshipFinder = () => {
   );
 
   return (
-    <div className="relative rounded-2xl" style={{ fontFamily: 'Outfit, sans-serif', background: 'linear-gradient(180deg, #C8E6C9 0%, #E8F5E9 30%, #C8E6C9 100%)', minHeight: '80vh', padding: '1.5rem 0' }}>
+    <div className="relative rounded-2xl" style={{ fontFamily: 'Outfit, sans-serif', background: 'linear-gradient(180deg, #C8E6C9 0%, #E8F5E9 30%, #C8E6C9 100%)', minHeight: '60vh', padding: '1rem 0' }}>
       {/* ─── GLOBAL STYLES ──────────────────────────────────── */}
       <style>{`
         @keyframes sfFadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -590,7 +590,7 @@ export const ScholarshipFinder = () => {
       <div className="relative z-10">
 
         {/* ═══ COMPACT ACTION BAR ═══ */}
-        <div className="max-w-5xl mx-auto px-4 mb-6">
+        <div className="max-w-5xl mx-auto px-3 md:px-4 mb-6">
           <div
             className="rounded-2xl overflow-hidden shadow-md"
             style={{ background: 'linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #388E3C 100%)', border: '1px solid #1B5E20' }}
@@ -640,7 +640,7 @@ export const ScholarshipFinder = () => {
         </div>
 
         {/* ═══ STATS ROW ═══ */}
-        <div className="max-w-5xl mx-auto px-4 mb-6 relative z-20">
+        <div className="max-w-5xl mx-auto px-3 md:px-4 mb-6 relative z-20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { icon: '📋', value: `${allScholarships.length}+`, label: 'Total Scholarships' },
@@ -673,7 +673,7 @@ export const ScholarshipFinder = () => {
         </div>
 
         {/* ═══ CATEGORY NAVIGATION (BIG TABS) ═══ */}
-        <div className="max-w-5xl mx-auto px-4 mb-8">
+        <div className="max-w-5xl mx-auto px-3 md:px-4 mb-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {Object.entries(CATEGORY_CONFIG).map(([key, cfg]) => {
               const isActive = selectedCategory === key;
@@ -751,7 +751,7 @@ export const ScholarshipFinder = () => {
         </div>
 
         {/* ═══ SEARCH + SORT BAR ═══ */}
-        <div className="max-w-5xl mx-auto px-4 mb-6">
+        <div className="max-w-5xl mx-auto px-3 md:px-4 mb-6">
           <div className="flex flex-col sm:flex-row gap-3">
             {/* Mobile filter button */}
             <button
@@ -798,14 +798,14 @@ export const ScholarshipFinder = () => {
         </div>
 
         {/* ═══ MAIN CONTENT (Filters + Cards) ═══ */}
-        <div className="max-w-5xl mx-auto px-4 pb-16">
+        <div className="max-w-5xl mx-auto px-3 md:px-4 pb-16">
           <div className="flex gap-6">
 
             {/* LEFT: Filter Sidebar (Desktop) */}
             <div className="hidden md:block w-64 flex-shrink-0">
               <div
-                className="rounded-xl p-4 sticky top-4 sf-cards-scroll overflow-y-auto"
-                style={{ border: '1px solid #C8E6C9', maxHeight: '75vh', background: 'linear-gradient(180deg, #F1F8E9, #E8F5E9)' }}
+                className="rounded-xl p-4 md:sticky md:top-20 sf-cards-scroll md:overflow-y-auto"
+                style={{ border: '1px solid #C8E6C9', background: 'linear-gradient(180deg, #F1F8E9, #E8F5E9)' }}
               >
                 <h3 className="font-bold text-sm mb-3 flex items-center gap-2" style={{ color: '#1B5E20', fontFamily: 'Playfair Display, serif' }}>
                   <FilterIcon size={14} /> Refine Results
@@ -845,8 +845,8 @@ export const ScholarshipFinder = () => {
                 <div>
                   <div
                     id="sf-cards-scroll"
-                    className="sf-cards-scroll overflow-y-auto pr-1"
-                    style={{ maxHeight: '65vh', scrollBehavior: 'smooth' }}
+                    className="sf-cards-scroll pr-1"
+                    style={{ scrollBehavior: 'smooth' }}
                   >
                     <div className="grid md:grid-cols-2 gap-4">
                       {paginatedScholarships.map(s => (

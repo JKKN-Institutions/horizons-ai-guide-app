@@ -130,95 +130,48 @@ export const PillNavigation = ({ activeTab, onTabChange }: PillNavigationProps) 
   };
 
   return (
-    <div className="flex justify-center overflow-x-auto pb-1">
-      <nav 
-        className="relative inline-flex flex-wrap justify-center items-center gap-2 p-2 bg-white/95 backdrop-blur-md rounded-2xl shadow-lg border border-slate-200"
-      >
-        {/* Main tools row */}
-        <div className="flex items-center gap-1 flex-wrap justify-center">
-          {navItems.slice(0, 5).map((item) => {
-            const Icon = item.icon;
-            const isActive = activeTab === item.id;
-            
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleTabClick(item)}
+    <div className="overflow-x-auto scrollbar-none -mx-1">
+      <nav className="flex items-center gap-1.5 px-1 min-w-max md:flex-wrap md:justify-center md:min-w-0">
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          const isActive = activeTab === item.id;
+          
+          return (
+            <button
+              key={item.id}
+              onClick={() => handleTabClick(item)}
+              className={cn(
+                'relative flex items-center gap-1.5 px-3 py-2 md:px-4 md:py-2.5 rounded-xl font-semibold text-xs md:text-sm',
+                'transition-all duration-200 ease-out whitespace-nowrap flex-shrink-0',
+                'active:scale-95',
+                clickedTab === item.id && 'animate-bounce-pop',
+                isActive
+                  ? `${item.activeBg} ${item.activeColor} shadow-md`
+                  : 'text-[#1F2937] hover:bg-slate-100 border border-slate-200 bg-white'
+              )}
+            >
+              <Icon 
                 className={cn(
-                  'relative flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm',
-                  'transition-all duration-200 ease-out',
-                  'hover:scale-105 active:scale-95',
-                  clickedTab === item.id && 'animate-bounce-pop',
-                  isActive
-                    ? `${item.activeBg} ${item.activeColor} shadow-md`
-                    : 'text-[#1F2937] hover:bg-slate-100 border border-slate-200'
-                )}
-              >
-                <Icon 
-                  className={cn(
-                    'w-4 h-4 transition-colors duration-300',
-                    isActive ? 'text-white' : 'text-[#2E7D32]'
-                  )} 
-                />
-                <span className="hidden md:inline whitespace-nowrap">{item.label}</span>
-                <span className="md:hidden whitespace-nowrap">{item.shortLabel}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Divider with label */}
-        <div className="flex items-center gap-2 px-2">
-          <div className="h-px w-6 bg-slate-300" />
-          <span className="text-xs text-slate-400 font-medium uppercase tracking-wider">More Tools</span>
-          <div className="h-px w-6 bg-slate-300" />
-        </div>
-
-        {/* More tools row */}
-        <div className="flex items-center gap-1 flex-wrap justify-center">
-          {navItems.slice(5).map((item) => {
-            const Icon = item.icon;
-            const isActive = activeTab === item.id;
-            
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleTabClick(item)}
-                className={cn(
-                  'relative flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm',
-                  'transition-all duration-200 ease-out',
-                  'hover:scale-105 active:scale-95',
-                  clickedTab === item.id && 'animate-bounce-pop',
-                  isActive
-                    ? `${item.activeBg} ${item.activeColor} shadow-md`
-                    : 'text-[#1F2937] hover:bg-slate-100 border border-slate-200'
-                )}
-              >
-                <Icon 
-                  className={cn(
-                    'w-4 h-4 transition-colors duration-300',
-                    isActive ? 'text-white' : 'text-rose-600'
-                  )} 
-                />
-                <span className="hidden md:inline whitespace-nowrap">{item.label}</span>
-                <span className="md:hidden whitespace-nowrap">{item.shortLabel}</span>
-                
-                {/* Featured/New badges */}
-                {item.isFeatured && (
-                  <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full flex items-center justify-center shadow-md">
-                    <span className="text-[8px] text-white">★</span>
-                  </span>
-                )}
-                {item.isNew && (
-                  <span className="absolute -top-2 -right-2 bg-gradient-to-r from-rose-500 to-pink-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow-md">
-                    NEW
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </div>
+                  'w-4 h-4 flex-shrink-0',
+                  isActive ? 'text-white' : 'text-[#2E7D32]'
+                )} 
+              />
+              <span className="hidden md:inline">{item.label}</span>
+              <span className="md:hidden">{item.shortLabel}</span>
+              
+              {item.isNew && (
+                <span className="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-rose-500 to-pink-500 text-white text-[8px] font-bold px-1 py-0 rounded-full shadow-sm leading-tight">
+                  N
+                </span>
+              )}
+            </button>
+          );
+        })}
       </nav>
+      <style>{`
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
     </div>
   );
 };
