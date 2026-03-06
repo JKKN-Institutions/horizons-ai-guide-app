@@ -16,7 +16,9 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
   const typeInfo = COLLEGE_TYPE_INFO[college.type];
   const collegeUrl = (college.website && (college.website.startsWith('http://') || college.website.startsWith('https://')))
     ? college.website
-    : `https://www.google.com/search?q=${encodeURIComponent(college.name + ' official website')}`;
+    : college.website
+      ? `https://${college.website}`
+      : `https://www.google.com/search?btnI=1&q=${encodeURIComponent(college.name + ' official website')}`;
   const isAutonom = isAutonomousCollege(college);
 
   return (
@@ -120,12 +122,14 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
 
           {/* Apply, Contact & Facilities */}
           <div className="flex flex-wrap gap-2 mt-1">
-            <a
-              href={collegeUrl}
-              className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium bg-[#FF6B35] hover:bg-[#e55a2a] text-white no-underline"
-            >
-              <ExternalLink className="h-3 w-3" /> Apply
-            </a>
+            {hasRealWebsite && (
+              <a
+                href={college.website!}
+                className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium bg-[#FF6B35] hover:bg-[#e55a2a] text-white no-underline"
+              >
+                <ExternalLink className="h-3 w-3" /> Apply
+              </a>
+            )}
             <a
               href={`https://www.google.com/search?q=${encodeURIComponent(college.name + ' admission contact phone')}`}
               target="_blank"
