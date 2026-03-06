@@ -56,7 +56,7 @@ export const CategorySelector = ({
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-6">
+      <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 md:gap-3 mb-6">
         {categories.map((category) => {
           const isSelected = selectedCategory === category.id;
           return (
@@ -64,15 +64,15 @@ export const CategorySelector = ({
               key={category.id}
               onClick={() => onSelectCategory(category.id)}
               className={cn(
-                'p-3 rounded-lg border-2 text-center transition-all duration-200',
+                'p-2 md:p-3 rounded-lg border-2 text-center transition-all duration-200',
                 'hover:scale-105 hover:shadow-md',
                 isSelected
                   ? 'border-violet-500 bg-violet-50 text-violet-700'
                   : 'border-gray-200 hover:border-gray-300 bg-white text-gray-700'
               )}
             >
-              <div className="font-bold text-lg">{category.name}</div>
-              <div className="text-[10px] text-gray-500">{category.fullName}</div>
+              <div className="font-bold text-base md:text-lg">{category.name}</div>
+              <div className="text-[8px] md:text-[10px] text-gray-500">{category.fullName}</div>
             </button>
           );
         })}
@@ -82,7 +82,7 @@ export const CategorySelector = ({
         <Label className="text-sm font-medium text-gray-700 mb-3 block">
           ADDITIONAL OPTIONS:
         </Label>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 gap-2 md:gap-3">
           {additionalOptionsList.map((option) => (
             <div key={option.id} className="flex items-center space-x-2">
               <Checkbox

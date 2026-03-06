@@ -252,7 +252,7 @@
 
   /* ===== FRESH WHITE CARDS WITH GREEN/GOLD BORDERS ===== */
   .fresh-card {
-    @apply rounded-2xl p-6 transition-all duration-300;
+    @apply rounded-xl md:rounded-2xl p-3 md:p-6 transition-all duration-300;
     background: #FFFFFF;
     border-left: 5px solid #2E7D32;
     box-shadow: 
@@ -1697,85 +1697,22 @@ body {
   .text-3xl { font-size: 1.25rem !important; line-height: 1.75rem !important; }
 }
 
-/* Tablet fixes */
-@media (max-width: 768px) {
-  /* Make fixed-width selects responsive */
-  [class*="w-[180px]"], [class*="w-[170px]"], [class*="w-[160px]"], [class*="w-[150px]"], [class*="w-[140px]"] {
-    width: 100% !important;
-  }
-}
-
-/* Improve touch scrolling */
-.overflow-y-auto, .overflow-auto, .overflow-y-scroll {
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Fix images from overflowing */
-img { max-width: 100%; height: auto; }
-
-/* Fix videos from overflowing */
-video, iframe { max-width: 100%; }
-
-/* Better focus styles for accessibility */
-:focus-visible {
-  outline: 2px solid hsl(var(--primary));
-  outline-offset: 2px;
-}
-
 /* ═══ MOBILE-FRIENDLY IMPROVEMENTS ═══ */
 @media (max-width: 768px) {
-  /* Bigger touch targets on mobile */
-  button, a, input, select, textarea {
-    min-height: 40px;
-  }
-  
-  /* Prevent text from being too small — but DON'T force bigger in tight containers */
   body {
     font-size: 15px;
     -webkit-text-size-adjust: 100%;
   }
 
-  /* ─── READABLE FONT SIZES ON MOBILE ─── */
-  /* Only override paragraph/body text, NOT labels in tight cards */
-  p.text-xs, span.text-xs, li.text-xs, td.text-xs {
-    font-size: 12.5px !important;
-  }
-
-  /* text-sm line height fix only */
-  .text-sm {
-    line-height: 1.5 !important;
-  }
-
-  /* ─── FIX SCHOLARSHIP FINDER MOBILE ─── */
-  .sf-cat-btn .w-16.h-16 { width: 2.5rem !important; height: 2.5rem !important; }
-  .sf-cat-btn .text-3xl { font-size: 1.25rem !important; }
-
-  /* ─── FIX GROUP SELECTOR CARDS MOBILE ─── */
-  .grid-cols-2.sm\:grid-cols-3 button {
-    min-height: 48px;
-  }
-
-  /* ─── FIX RESULT CARDS MOBILE ─── */
-  .text-4xl.font-bold {
-    font-size: 1.75rem !important;
-    letter-spacing: -0.02em;
-  }
-
-  /* Better card padding — LESS on mobile to prevent text squish */
-  .fresh-card {
-    padding: 0.625rem !important;
-  }
-  
-  /* Ensure modals are full-width on mobile */
+  /* Modals full-width on mobile */
   [role="dialog"] > div {
     max-width: 95vw !important;
     margin: 0.5rem !important;
   }
 
-  /* ─── FIX PILL NAVIGATION READABILITY ─── */
-  /* Ensure nav items have enough padding */
-  nav button {
-    min-height: 36px;
+  /* Fixed-width selects → responsive */
+  [class*="w-[180px]"], [class*="w-[170px]"], [class*="w-[160px]"], [class*="w-[150px]"], [class*="w-[140px]"] {
+    width: 100% !important;
   }
 }
 

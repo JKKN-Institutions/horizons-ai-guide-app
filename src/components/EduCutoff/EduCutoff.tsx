@@ -106,26 +106,26 @@ export const EduCutoff = () => {
             Calculate your cutoff & discover courses you're eligible for
           </p>
 
-          <div className="grid grid-cols-4 gap-2 md:gap-4 mt-4 md:mt-6">
-            <div className="fresh-card p-2 md:p-4 text-center">
-              <GraduationCap className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
-              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark whitespace-nowrap">1000+</div>
-              <div className="text-[9px] md:text-xs fresh-muted whitespace-nowrap">Colleges</div>
+          <div className="grid grid-cols-4 gap-1.5 md:gap-4 mt-4 md:mt-6">
+            <div className="bg-white rounded-lg p-1.5 md:p-4 text-center shadow-sm border border-green-100">
+              <GraduationCap className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-0.5 md:mb-2 text-fresh-gold-dark" />
+              <div className="text-sm md:text-2xl font-bold text-fresh-green-dark">1000+</div>
+              <div className="text-[8px] md:text-xs text-gray-500">Colleges</div>
             </div>
-            <div className="fresh-card p-2 md:p-4 text-center">
-              <Building2 className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
-              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark whitespace-nowrap">200+</div>
-              <div className="text-[9px] md:text-xs fresh-muted whitespace-nowrap">Courses</div>
+            <div className="bg-white rounded-lg p-1.5 md:p-4 text-center shadow-sm border border-green-100">
+              <Building2 className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-0.5 md:mb-2 text-fresh-gold-dark" />
+              <div className="text-sm md:text-2xl font-bold text-fresh-green-dark">200+</div>
+              <div className="text-[8px] md:text-xs text-gray-500">Courses</div>
             </div>
-            <div className="fresh-card p-2 md:p-4 text-center">
-              <MapPin className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
-              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark whitespace-nowrap">38</div>
-              <div className="text-[9px] md:text-xs fresh-muted whitespace-nowrap">Districts</div>
+            <div className="bg-white rounded-lg p-1.5 md:p-4 text-center shadow-sm border border-green-100">
+              <MapPin className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-0.5 md:mb-2 text-fresh-gold-dark" />
+              <div className="text-sm md:text-2xl font-bold text-fresh-green-dark">38</div>
+              <div className="text-[8px] md:text-xs text-gray-500">Districts</div>
             </div>
-            <div className="fresh-card p-2 md:p-4 text-center">
-              <CheckCircle className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
-              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark whitespace-nowrap">All</div>
-              <div className="text-[9px] md:text-xs fresh-muted whitespace-nowrap">Groups</div>
+            <div className="bg-white rounded-lg p-1.5 md:p-4 text-center shadow-sm border border-green-100">
+              <CheckCircle className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-0.5 md:mb-2 text-fresh-gold-dark" />
+              <div className="text-sm md:text-2xl font-bold text-fresh-green-dark">All</div>
+              <div className="text-[8px] md:text-xs text-gray-500">Groups</div>
             </div>
           </div>
         </div>

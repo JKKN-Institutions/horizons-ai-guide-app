@@ -389,10 +389,10 @@ const CareerAssessmentColleges = () => {
           </div>
 
           {/* Career Booster Section */}
-          <div className="fresh-section-header mb-6 mt-10">
+          <div className="fresh-section-header mb-4 md:mb-6 mt-6 md:mt-10">
             <div className="icon-box bg-gradient-to-br from-purple-500 to-violet-600 text-white"><Brain /></div>
             <h2>Career Boosting</h2>
-            <p className="text-sm text-gray-500 ml-auto">Personalized tips, skill recommendations & action plans</p>
+            <p className="hidden md:block text-sm text-gray-500 ml-auto">Personalized tips & action plans</p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-6">

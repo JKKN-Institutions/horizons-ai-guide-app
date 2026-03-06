@@ -661,18 +661,18 @@
            </div>
 
            {/* Key Stats */}
-           <div className="grid grid-cols-3 gap-3 md:gap-4 mb-6">
-             <Card className="border-0 shadow-md bg-gradient-to-br from-red-50 to-orange-50 text-center p-3 md:p-5">
-               <p className="text-2xl md:text-4xl font-bold text-red-600">38%</p>
-               <p className="text-xs md:text-sm text-gray-600 mt-1">Indian job seekers feel unprepared</p>
+           <div className="grid grid-cols-3 gap-2 md:gap-4 mb-6">
+             <Card className="border-0 shadow-sm bg-gradient-to-br from-red-50 to-orange-50 text-center p-2 md:p-5">
+               <p className="text-xl md:text-4xl font-bold text-red-600">38%</p>
+               <p className="text-[9px] md:text-sm text-gray-600 mt-0.5 leading-tight">Job seekers unprepared</p>
              </Card>
-             <Card className="border-0 shadow-md bg-gradient-to-br from-blue-50 to-indigo-50 text-center p-3 md:p-5">
-               <p className="text-2xl md:text-4xl font-bold text-blue-600">74%</p>
-               <p className="text-xs md:text-sm text-gray-600 mt-1">Recruiters struggle to find talent</p>
+             <Card className="border-0 shadow-sm bg-gradient-to-br from-blue-50 to-indigo-50 text-center p-2 md:p-5">
+               <p className="text-xl md:text-4xl font-bold text-blue-600">74%</p>
+               <p className="text-[9px] md:text-sm text-gray-600 mt-0.5 leading-tight">Recruiters can't find talent</p>
              </Card>
-             <Card className="border-0 shadow-md bg-gradient-to-br from-green-50 to-emerald-50 text-center p-3 md:p-5">
-               <p className="text-2xl md:text-4xl font-bold text-green-600">46%</p>
-               <p className="text-xs md:text-sm text-gray-600 mt-1">Recruiters use skills data to hire</p>
+             <Card className="border-0 shadow-sm bg-gradient-to-br from-green-50 to-emerald-50 text-center p-2 md:p-5">
+               <p className="text-xl md:text-4xl font-bold text-green-600">46%</p>
+               <p className="text-[9px] md:text-sm text-gray-600 mt-0.5 leading-tight">Hire by skills data</p>
              </Card>
            </div>
 
@@ -712,23 +712,23 @@
                  Top 10 Engineering Skills in India 2026
                </CardTitle>
              </CardHeader>
-             <CardContent className="p-3 md:p-4">
-               <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+             <CardContent className="p-2 md:p-4">
+               <div className="grid grid-cols-2 md:grid-cols-5 gap-1.5 md:gap-2">
                  {[
-                   { rank: 1, skill: 'Querying (SQL)' },
+                   { rank: 1, skill: 'SQL Querying' },
                    { rank: 2, skill: 'Cybersecurity' },
-                   { rank: 3, skill: 'Process Optimization' },
+                   { rank: 3, skill: 'Optimization' },
                    { rank: 4, skill: 'Collaboration' },
                    { rank: 5, skill: 'Programming' },
-                   { rank: 6, skill: 'AI Development' },
-                   { rank: 7, skill: 'Prompt Engineering' },
-                   { rank: 8, skill: 'API Expertise' },
-                   { rank: 9, skill: 'LLM Operations' },
-                   { rank: 10, skill: 'Data Storytelling' },
+                   { rank: 6, skill: 'AI Dev' },
+                   { rank: 7, skill: 'Prompt Eng.' },
+                   { rank: 8, skill: 'API Skills' },
+                   { rank: 9, skill: 'LLM Ops' },
+                   { rank: 10, skill: 'Data Stories' },
                  ].map((item) => (
-                   <div key={item.rank} className="flex items-center gap-2 p-2 rounded-lg bg-gradient-to-r from-gray-50 to-indigo-50 border border-indigo-100">
-                     <span className="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">{item.rank}</span>
-                     <p className="text-xs md:text-sm font-medium text-gray-800 leading-tight">{item.skill}</p>
+                   <div key={item.rank} className="flex items-center gap-1.5 p-1.5 md:p-2 rounded-lg bg-indigo-50 border border-indigo-100">
+                     <span className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-indigo-600 text-white text-[10px] md:text-xs font-bold flex items-center justify-center flex-shrink-0">{item.rank}</span>
+                     <p className="text-[10px] md:text-sm font-medium text-gray-800 leading-tight">{item.skill}</p>
                    </div>
                  ))}
                </div>

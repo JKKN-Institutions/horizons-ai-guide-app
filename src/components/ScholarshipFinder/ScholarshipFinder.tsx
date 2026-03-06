@@ -650,12 +650,12 @@ export const ScholarshipFinder = () => {
             ].map((stat, i) => (
               <div
                 key={i}
-                className="sf-stat-card rounded-xl p-2.5 md:p-4 text-center shadow-md transition-all duration-300 cursor-default"
+                className="rounded-lg p-1.5 md:p-4 text-center shadow-sm"
                 style={{ border: '1px solid #C8E6C9', background: 'linear-gradient(145deg, #F1F8E9, #E8F5E9)' }}
               >
-                <span className="text-lg md:text-2xl block mb-0.5 md:mb-1">{stat.icon}</span>
+                <span className="text-base md:text-2xl block mb-0.5">{stat.icon}</span>
                 <p
-                  className="text-base md:text-2xl font-bold whitespace-nowrap"
+                  className="text-xs md:text-2xl font-bold"
                   style={{
                     background: 'linear-gradient(135deg, #DAA520, #B8860B)',
                     WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
@@ -664,7 +664,7 @@ export const ScholarshipFinder = () => {
                 >
                   {stat.value}
                 </p>
-                <p className="text-[9px] md:text-xs uppercase tracking-wider font-medium mt-0.5 whitespace-nowrap" style={{ color: '#8B7355' }}>
+                <p className="text-[7px] md:text-xs uppercase tracking-wide font-medium mt-0.5" style={{ color: '#8B7355' }}>
                   {stat.label}
                 </p>
               </div>
@@ -693,16 +693,16 @@ export const ScholarshipFinder = () => {
                       : 'linear-gradient(145deg, #F1F8E9, #E8F5E9)',
                   }}
                 >
-                  {/* Thick colored top accent bar */}
+                  {/* Colored top accent bar */}
                   <div
-                    className="h-1.5 w-full"
+                    className="h-1 md:h-1.5 w-full"
                     style={{ background: `linear-gradient(90deg, ${cfg.color}, ${cfg.color}90, ${cfg.color}60)` }}
                   />
-                  <div className="px-3 py-3 md:px-5 md:py-6">
+                  <div className="px-2 py-2 md:px-5 md:py-6">
                     {/* Icon */}
-                    <div className="flex justify-center mb-2 md:mb-3">
+                    <div className="flex justify-center mb-1 md:mb-3">
                       <div
-                        className="w-10 h-10 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-3xl shadow-md transition-transform duration-300 group-hover:scale-110"
+                        className="w-8 h-8 md:w-16 md:h-16 rounded-lg md:rounded-2xl flex items-center justify-center text-lg md:text-3xl shadow-sm md:shadow-md"
                         style={{
                           background: `linear-gradient(145deg, ${cfg.bg}, ${cfg.color}20)`,
                           border: `2px solid ${cfg.color}35`,
@@ -711,33 +711,33 @@ export const ScholarshipFinder = () => {
                         {cfg.icon}
                       </div>
                     </div>
-                    {/* Category name - big and bold */}
+                    {/* Category name */}
                     <p
-                      className="text-center font-bold text-sm md:text-lg mb-0.5 whitespace-nowrap"
+                      className="text-center font-bold text-[11px] md:text-lg leading-tight mb-0.5 md:mb-1"
                       style={{ color: isActive ? cfg.color : '#1B5E20', fontFamily: 'Playfair Display, serif' }}
                     >
                       {cfg.label}
                     </p>
-                    {/* Description */}
-                    <p className="text-center text-[10px] md:text-xs mb-2 md:mb-3 whitespace-nowrap" style={{ color: '#8B7355' }}>
+                    {/* Description - hidden on mobile */}
+                    <p className="hidden md:block text-center text-xs mb-3" style={{ color: '#8B7355' }}>
                       {cfg.desc}
                     </p>
                     {/* Count badge */}
                     <div className="flex justify-center">
                       <span
-                        className="text-xs md:text-sm font-bold px-3 md:px-4 py-1 md:py-1.5 rounded-full transition-all duration-300 whitespace-nowrap"
+                        className="text-[10px] md:text-sm font-bold px-2 md:px-4 py-0.5 md:py-1.5 rounded-full"
                         style={{
                           backgroundColor: isActive ? cfg.color : cfg.bg,
                           color: isActive ? 'white' : cfg.color,
                           border: `1.5px solid ${isActive ? cfg.color : cfg.color + '40'}`,
                         }}
                       >
-                        {count} Scholarships
+                        {count}
                       </span>
                     </div>
-                    {/* Active indicator */}
+                    {/* Active indicator - hidden on mobile */}
                     {isActive && (
-                      <div className="flex justify-center mt-2">
+                      <div className="hidden md:flex justify-center mt-2">
                         <span className="text-xs font-bold flex items-center gap-1" style={{ color: cfg.color }}>
                           <Check size={12} /> Active Filter
                         </span>

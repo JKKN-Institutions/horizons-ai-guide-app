@@ -146,43 +146,28 @@ export const CutoffResults = ({ result, group, marks, category }: CutoffResultsP
       )}
 
       {/* ─── SCORE CARDS ─── */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-3 gap-2 md:gap-4 mb-6">
         {showTNEA && result.tneaCutoff && (
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4 text-center border-2 border-blue-200">
-            <div className="text-sm text-blue-600 font-medium mb-1">🎓 TNEA CUTOFF</div>
-            <div className="text-xs text-blue-500 mb-2">(Engineering Admission)</div>
-            <div className="text-4xl font-bold text-blue-700">{animatedCutoff}</div>
-            <div className="text-sm text-blue-500">out of 200</div>
-            <Progress 
-              value={(animatedCutoff / 200) * 100} 
-              className="h-2 mt-3 bg-blue-200"
-            />
-            <div className="text-xs text-blue-600 mt-1">{((animatedCutoff / 200) * 100).toFixed(1)}%</div>
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg md:rounded-xl p-2 md:p-4 text-center border border-blue-200">
+            <div className="text-[10px] md:text-sm text-blue-600 font-medium">TNEA</div>
+            <div className="text-xl md:text-4xl font-bold text-blue-700">{animatedCutoff}</div>
+            <div className="text-[9px] md:text-sm text-blue-500">/200</div>
+            <Progress value={(animatedCutoff / 200) * 100} className="h-1.5 mt-1.5 bg-blue-200" />
           </div>
         )}
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-4 text-center border-2 border-green-200">
-          <div className="text-sm text-green-600 font-medium mb-1">📊 OVERALL %</div>
-          <div className="text-xs text-green-500 mb-2">
-            {(groupCategory === 'commerce' || groupCategory === 'arts')
-              ? '(This IS Your Admission Score!)'
-              : '(12th Marks)'}
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg md:rounded-xl p-2 md:p-4 text-center border border-green-200">
+          <div className="text-[10px] md:text-sm text-green-600 font-medium">
+            {(groupCategory === 'commerce' || groupCategory === 'arts') ? 'Score' : 'Overall'}
           </div>
-          <div className="text-4xl font-bold text-green-700">{animatedPercentage}%</div>
-          <Progress 
-            value={animatedPercentage} 
-            className="h-2 mt-3 bg-green-200"
-          />
+          <div className="text-xl md:text-4xl font-bold text-green-700">{animatedPercentage}%</div>
+          <Progress value={animatedPercentage} className="h-1.5 mt-1.5 bg-green-200" />
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-4 text-center border-2 border-purple-200">
-          <div className="text-sm text-purple-600 font-medium mb-1">📈 PERCENTILE</div>
-          <div className="text-xs text-purple-500 mb-2">(Estimated Rank)</div>
-          <div className="text-4xl font-bold text-purple-700">{animatedPercentile}th</div>
-          <Progress 
-            value={animatedPercentile} 
-            className="h-2 mt-3 bg-purple-200"
-          />
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg md:rounded-xl p-2 md:p-4 text-center border border-purple-200">
+          <div className="text-[10px] md:text-sm text-purple-600 font-medium">Rank</div>
+          <div className="text-xl md:text-4xl font-bold text-purple-700">{animatedPercentile}th</div>
+          <Progress value={animatedPercentile} className="h-1.5 mt-1.5 bg-purple-200" />
         </div>
       </div>
 
