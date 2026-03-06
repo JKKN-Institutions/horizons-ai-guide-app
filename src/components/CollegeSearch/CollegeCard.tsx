@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { College, COLLEGE_TYPE_INFO, COLLEGE_CATEGORIES, isAutonomousCollege } from './types';
+import { getCollegeFacilities } from './facilityData';
 
 interface CollegeCardProps {
   college: College;
@@ -124,6 +125,26 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
             )}
           </div>
 
+
+          {/* Quick Facility Preview — visible without expanding */}
+          <div className="flex flex-wrap gap-1 mt-1">
+            {getCollegeFacilities(college)
+              .filter(f => f.available)
+              .slice(0, 6)
+              .map((f) => (
+                <span
+                  key={f.id}
+                  className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[9px] md:text-[10px] font-medium border ${f.bg} ${f.color}`}
+                  title={f.label}
+                >
+                  {f.icon}
+                  <span className="hidden md:inline">{f.label}</span>
+                </span>
+              ))}
+            <span className="text-[9px] md:text-[10px] text-gray-400 self-center">
+              +more
+            </span>
+          </div>
           {/* Apply Now & Enquiry - ALWAYS VISIBLE, using <a> tags for reliable redirect */}
           <div className="flex gap-2 mt-2">
             <a
@@ -158,12 +179,12 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
                 ) : (
                   <>
                     <ChevronDown className="h-4 w-4 mr-2" />
-                    View More Details
+                    View Facilities & Details
                   </>
                 )}
               </Button>
             </CollapsibleTrigger>
-            <CollapsibleContent className="mt-3 pt-3 border-t space-y-3">
+            <CollapsibleContent className="mt-3 pt-3 border-t space-y-4">
               {college.address && (
                 <div className="flex items-start gap-2 text-sm">
                   <MapPin className="h-4 w-4 mt-0.5 text-muted-foreground shrink-0" />
@@ -177,15 +198,44 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
                 </div>
               )}
 
-              {college.facilities && college.facilities.length > 0 && (
-                <div>
-                  <span className="text-sm font-medium">🏫 Facilities:</span>
-                  <div className="flex flex-wrap gap-1 mt-1">
-                    {college.facilities.map((facility, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs">
-                        {facility}
-                      </Badge>
+              {/* ═══ FACILITIES GRID ═══ */}
+              <div>
+                <p className="text-sm font-semibold text-gray-800 mb-2">🏫 Campus Facilities</p>
+                <div className="grid grid-cols-3 md:grid-cols-4 gap-1.5">
+                  {getCollegeFacilities(college)
+                    .filter(f => f.available)
+                    .map((facility) => (
+                      <div
+                        key={facility.id}
+                        className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg border text-left ${facility.bg}`}
+                      >
+                        <span className="text-sm flex-shrink-0">{facility.icon}</span>
+                        <span className={`text-[10px] md:text-xs font-medium leading-tight ${facility.color}`}>
+                          {facility.label}
+                        </span>
+                      </div>
                     ))}
+                </div>
+                <p className="text-[9px] md:text-[10px] text-gray-400 mt-2 italic">
+                  * Facilities shown are based on college type. Please verify with the college directly.
+                </p>
+              </div>
+
+              {/* Not Available */}
+              {getCollegeFacilities(college).some(f => !f.available) && (
+                <div>
+                  <p className="text-xs font-medium text-gray-500 mb-1">Not typically available:</p>
+                  <div className="flex flex-wrap gap-1">
+                    {getCollegeFacilities(college)
+                      .filter(f => !f.available)
+                      .map((facility) => (
+                        <span
+                          key={facility.id}
+                          className="text-[10px] px-2 py-0.5 rounded bg-gray-100 text-gray-400 line-through"
+                        >
+                          {facility.icon} {facility.label}
+                        </span>
+                      ))}
                   </div>
                 </div>
               )}
