@@ -118,26 +118,32 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
             )}
           </div>
 
-          {/* Apply Now, Enquiry & Facilities */}
+          {/* Apply, Contact & Facilities */}
           <div className="flex flex-wrap gap-2 mt-1">
-            <button
-              onClick={() => window.open(collegeUrl, "_blank")}
-              className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium bg-[#FF6B35] hover:bg-[#e55a2a] text-white"
+            <a
+              href={collegeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium bg-[#FF6B35] hover:bg-[#e55a2a] text-white no-underline"
             >
               <ExternalLink className="h-3 w-3" /> Apply
-            </button>
-            <button
-              onClick={() => window.open("https://www.google.com/search?q=" + encodeURIComponent(college.name + " admission contact phone"), "_blank")}
-              className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium border border-gray-300 bg-white hover:bg-gray-50 text-gray-700"
+            </a>
+            <a
+              href={`https://www.google.com/search?q=${encodeURIComponent(college.name + ' admission contact phone')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 no-underline"
             >
               <Phone className="h-3 w-3" /> Contact
-            </button>
-            <button
-              onClick={() => window.open("https://www.google.com/search?q=" + encodeURIComponent(college.name + " hostel bus facilities placements"), "_blank")}
-              className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium bg-emerald-600 hover:bg-emerald-700 text-white"
+            </a>
+            <a
+              href={`https://www.google.com/search?q=${encodeURIComponent(college.name + ' hostel bus facilities placements')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium bg-emerald-600 hover:bg-emerald-700 text-white no-underline"
             >
               <Globe className="h-3 w-3" /> Facilities
-            </button>
+            </a>
           </div>
 
           {/* Expandable Details */}
