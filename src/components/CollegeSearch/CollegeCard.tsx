@@ -122,8 +122,6 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
           <div className="flex flex-wrap gap-2 mt-1">
             <a
               href={collegeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-1 px-3 md:px-4 py-1.5 md:py-2 rounded-md text-xs md:text-sm font-medium bg-[#FF6B35] hover:bg-[#e55a2a] text-white no-underline"
             >
               <ExternalLink className="h-3 w-3" /> Apply
