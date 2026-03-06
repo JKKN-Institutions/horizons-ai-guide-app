@@ -109,22 +109,22 @@ export const EduCutoff = () => {
           <div className="grid grid-cols-4 gap-2 md:gap-4 mt-4 md:mt-6">
             <div className="fresh-card p-2 md:p-4 text-center">
               <GraduationCap className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
-              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark">1000+</div>
+              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark whitespace-nowrap">1000+</div>
               <div className="text-[9px] md:text-xs fresh-muted">Colleges</div>
             </div>
             <div className="fresh-card p-2 md:p-4 text-center">
               <Building2 className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
-              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark">200+</div>
+              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark whitespace-nowrap">200+</div>
               <div className="text-[9px] md:text-xs fresh-muted">Courses</div>
             </div>
             <div className="fresh-card p-2 md:p-4 text-center">
               <MapPin className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
-              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark">38</div>
+              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark whitespace-nowrap">38</div>
               <div className="text-[9px] md:text-xs fresh-muted">Districts</div>
             </div>
             <div className="fresh-card p-2 md:p-4 text-center">
               <CheckCircle className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
-              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark">All</div>
+              <div className="text-lg md:text-2xl font-bold text-fresh-green-dark whitespace-nowrap">All</div>
               <div className="text-[9px] md:text-xs fresh-muted">Groups</div>
             </div>
           </div>
