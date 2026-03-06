@@ -202,6 +202,7 @@
        { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 191, seats: 90, chance: 'High' },
        { code: 'MECH', name: 'Mechanical', lastCutoff: 187, seats: 120, chance: 'High' },
        { code: 'EEE', name: 'Electrical & Electronics', lastCutoff: 185, seats: 90, chance: 'High' },
+       { code: 'BIOTECH', name: 'BioTechnology', lastCutoff: 162, seats: 30, chance: 'High' },
      ],
      annualFee: '₹7,500',
      placement: '₹6 LPA',
@@ -413,6 +414,7 @@ const topPrivateColleges: PredictedCollege[] = [
       { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 197, seats: 90, chance: 'Low' },
       { code: 'EEE', name: 'Electrical & Electronics', lastCutoff: 195, seats: 60, chance: 'Medium' },
       { code: 'MECH', name: 'Mechanical', lastCutoff: 193, seats: 120, chance: 'Medium' },
+      { code: 'BIOTECH', name: 'BioTechnology', lastCutoff: 170, seats: 30, chance: 'High' },
     ],
     annualFee: '₹75,000',
     placement: '₹12 LPA',
@@ -453,6 +455,7 @@ const topPrivateColleges: PredictedCollege[] = [
       { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 194, seats: 90, chance: 'Medium' },
       { code: 'EEE', name: 'Electrical & Electronics', lastCutoff: 191, seats: 60, chance: 'Medium' },
       { code: 'MECH', name: 'Mechanical', lastCutoff: 188, seats: 90, chance: 'High' },
+      { code: 'BIOTECH', name: 'BioTechnology', lastCutoff: 165, seats: 30, chance: 'High' },
     ],
     annualFee: '₹60,000',
     placement: '₹8 LPA',
@@ -473,6 +476,7 @@ const topPrivateColleges: PredictedCollege[] = [
       { code: 'AI', name: 'AI & Data Science', lastCutoff: 191, seats: 60, chance: 'Medium' },
       { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 188, seats: 90, chance: 'High' },
       { code: 'MECH', name: 'Mechanical', lastCutoff: 184, seats: 90, chance: 'High' },
+      { code: 'BIOTECH', name: 'BioTechnology', lastCutoff: 160, seats: 30, chance: 'High' },
     ],
     annualFee: '₹1,50,000',
     placement: '₹7 LPA',
@@ -491,6 +495,8 @@ const topPrivateColleges: PredictedCollege[] = [
       { code: 'CSE', name: 'Computer Science', lastCutoff: 195, seats: 180, chance: 'Medium' },
       { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 191, seats: 120, chance: 'Medium' },
       { code: 'MECH', name: 'Mechanical', lastCutoff: 186, seats: 120, chance: 'High' },
+      { code: 'BIOTECH', name: 'BioTechnology', lastCutoff: 158, seats: 60, chance: 'High' },
+      { code: 'BME', name: 'Biomedical Engineering', lastCutoff: 155, seats: 30, chance: 'High' },
     ],
     annualFee: '₹1,50,000',
     placement: '₹6 LPA',
@@ -563,6 +569,7 @@ const topPrivateColleges: PredictedCollege[] = [
       { code: 'AI', name: 'AI & Data Science', lastCutoff: 172, seats: 60, chance: 'High' },
       { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 168, seats: 60, chance: 'High' },
       { code: 'MECH', name: 'Mechanical', lastCutoff: 163, seats: 90, chance: 'High' },
+      { code: 'BME', name: 'Biomedical Engineering', lastCutoff: 150, seats: 30, chance: 'High' },
     ],
     annualFee: '₹1,20,000',
     placement: '₹5 LPA',
@@ -714,7 +721,7 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
              </div>
              <div className="bg-white/10 rounded-lg px-3 py-2 text-center">
                <div className="text-lg font-bold">{sortedColleges.filter(c => c.overallChance !== 'Low').length}</div>
-               <div className="text-xs text-white/70">Good Chances</div>
+               <div className="text-xs text-white/70">Safe + Dream</div>
              </div>
            </div>
          </CardContent>
@@ -757,14 +764,14 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
            <Card key={college.id} className={cn(
              'overflow-hidden transition-all hover:shadow-lg',
              college.overallChance === 'High' ? 'border-green-500/50 bg-green-50/30' :
-             college.overallChance === 'Medium' ? 'border-yellow-500/50 bg-yellow-50/30' : 'border-muted'
+             college.overallChance === 'Medium' ? 'border-blue-500/50 bg-blue-50/30' : 'border-muted'
            )}>
              <CardContent className="p-0">
                {/* College Header */}
                <div className={cn(
                  'p-4 border-b',
                  college.overallChance === 'High' ? 'bg-green-100 dark:bg-green-950/30' :
-                 college.overallChance === 'Medium' ? 'bg-yellow-100 dark:bg-yellow-950/30' : 'bg-muted/50'
+                 college.overallChance === 'Medium' ? 'bg-blue-50 dark:bg-blue-950/30' : 'bg-muted/50'
                )}>
                  <div className="flex items-start justify-between gap-4">
                    <div className="flex-1">
@@ -804,10 +811,10 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
                      <div className={cn(
                        'px-3 py-1 rounded-full text-sm font-semibold',
                        college.overallChance === 'High' ? 'bg-green-100 text-green-700' :
-                       college.overallChance === 'Medium' ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
+                       college.overallChance === 'Medium' ? 'bg-blue-100 text-blue-700' : 'bg-red-100 text-red-700'
                      )}>
-                       {college.overallChance === 'High' ? '✅ High Chance' :
-                        college.overallChance === 'Medium' ? '🟡 Medium' : '🔴 Low'}
+                       {college.overallChance === 'High' ? '✅ Safe College' :
+                        college.overallChance === 'Medium' ? '🎯 Dream College' : '🔴 Reach College'}
                      </div>
                    </div>
                  </div>

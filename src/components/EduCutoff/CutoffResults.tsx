@@ -14,11 +14,11 @@ interface CutoffResultsProps {
 
 // Cutoff range categories for engineering
 const cutoffRanges = [
-  { label: '🔵 TOP COLLEGES', range: '195 – 200', color: 'bg-blue-50 border-blue-300 text-blue-800', colleges: 'Anna University (CEG), PSG Tech, SSN, MIT Campus' },
-  { label: '🟢 VERY GOOD', range: '185 – 195', color: 'bg-green-50 border-green-300 text-green-800', colleges: 'Thiagarajar, CIT Coimbatore, Kumaraguru, Velammal' },
-  { label: '🟡 GOOD', range: '170 – 185', color: 'bg-yellow-50 border-yellow-300 text-yellow-800', colleges: 'Kongu Engineering, KPR Institute, Sri Krishna College' },
-  { label: '🟠 AVERAGE', range: '150 – 170', color: 'bg-orange-50 border-orange-300 text-orange-800', colleges: 'Bannari Amman, SNS College, Karpagam' },
-  { label: '🔴 PRIVATE SEATS', range: '120 – 150', color: 'bg-red-50 border-red-300 text-red-800', colleges: 'Many private colleges — seats available in most branches' },
+  { label: '🔵 TOP COLLEGES', range: '195 – 200', color: 'bg-blue-50 border-blue-300 text-blue-800', colleges: 'Anna University (CEG), PSG Tech, SSN, MIT Campus — CSE/ECE only at this range' },
+  { label: '🟢 VERY GOOD', range: '185 – 195', color: 'bg-green-50 border-green-300 text-green-800', colleges: 'Thiagarajar, CIT Coimbatore, Kumaraguru, Velammal — CSE/ECE/EEE' },
+  { label: '🟡 GOOD', range: '170 – 185', color: 'bg-yellow-50 border-yellow-300 text-yellow-800', colleges: 'Kongu, KPR, Sri Krishna — All core branches available' },
+  { label: '🟠 AVERAGE', range: '150 – 170', color: 'bg-orange-50 border-orange-300 text-orange-800', colleges: 'Bannari Amman, SNS, Karpagam + BioTech at top colleges (PSG, CIT, Thiagarajar ~150-175)' },
+  { label: '🔴 PRIVATE SEATS', range: '120 – 150', color: 'bg-red-50 border-red-300 text-red-800', colleges: 'Many private colleges — seats available in most branches including Biomedical' },
 ];
 
 export const CutoffResults = ({ result, group, marks, category }: CutoffResultsProps) => {
@@ -67,7 +67,7 @@ export const CutoffResults = ({ result, group, marks, category }: CutoffResultsP
       const maths = marks.Mathematics ?? 0;
       const physics = marks.Physics ?? 0;
       const chemistry = marks.Chemistry ?? 0;
-      return `TNEA Cutoff Formula:\nCutoff = Maths/2 + Physics/4 + Chemistry/4\n= ${maths}/2 + ${physics}/4 + ${chemistry}/4\n= ${(maths/2).toFixed(1)} + ${(physics/4).toFixed(1)} + ${(chemistry/4).toFixed(1)}\n= ${result.tneaCutoff100} / 100\n\nScaled to 200: ${result.tneaCutoff100} × 2 = ${result.tneaCutoff} / 200\n\n⚠️ Only Maths + Physics + Chemistry marks are used.\nBiology marks are NOT counted for Engineering cutoff.`;
+      return `TNEA Normalised Marks Formula:\n\nStep 1: Take your PCM marks (out of 100 each)\n  Maths    = ${maths}  → ${maths} ÷ 2 = ${(maths/2).toFixed(1)}\n  Physics  = ${physics}  → ${physics} ÷ 4 = ${(physics/4).toFixed(1)}\n  Chemistry = ${chemistry}  → ${chemistry} ÷ 4 = ${(chemistry/4).toFixed(1)}\n\nStep 2: Add the components\n  ${(maths/2).toFixed(1)} + ${(physics/4).toFixed(1)} + ${(chemistry/4).toFixed(1)} = ${result.tneaCutoff100} / 100\n\nStep 3: Scale to 200\n  ${result.tneaCutoff100} × 2 = ${result.tneaCutoff} / 200\n\n⚠️ Only Maths + Physics + Chemistry marks used.\n   Biology marks are NOT counted for Engineering.`;
     }
     
     switch (groupCategory) {
@@ -298,6 +298,74 @@ export const CutoffResults = ({ result, group, marks, category }: CutoffResultsP
             <div className="mt-3 p-2.5 bg-amber-50 rounded-lg border border-amber-200">
               <p className="text-xs text-amber-800">
                 <strong>💡 Note:</strong> Usually 4 rounds of counselling happen. If you don't get a seat in Round 1, you can try in subsequent rounds. Cutoffs may reduce in later rounds.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ─── COLLEGE SELECTION STRATEGY ─── */}
+      {showTNEA && result.tneaCutoff && (
+        <div className="mt-5 rounded-xl border-2 border-violet-200 overflow-hidden">
+          <div className="bg-gradient-to-r from-violet-600 to-purple-700 px-4 py-2.5">
+            <h4 className="text-white font-bold text-sm flex items-center gap-2">
+              🎯 Smart College Selection Strategy
+            </h4>
+            <p className="text-violet-100 text-xs font-tamil">கல்லூரி தேர்வு உத்தி — Dream, Safe, Backup</p>
+          </div>
+          <div className="p-4 bg-white space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {/* Dream */}
+              <div className="rounded-xl border-2 border-blue-300 bg-blue-50/50 p-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-lg">🎯</span>
+                  <span className="font-bold text-blue-800 text-sm">DREAM COLLEGES</span>
+                </div>
+                <p className="text-xs text-blue-700 mb-2">Score close to or slightly below cutoff. Worth trying — aim high!</p>
+                <div className="bg-white rounded-lg p-2 border border-blue-200">
+                  <p className="text-[10px] text-gray-600">
+                    Your cutoff: <strong>{result.tneaCutoff}</strong> → Target colleges with cutoff <strong>{Math.min(200, result.tneaCutoff + 5)} – {Math.min(200, result.tneaCutoff + 10)}</strong>
+                  </p>
+                </div>
+              </div>
+              {/* Safe */}
+              <div className="rounded-xl border-2 border-green-300 bg-green-50/50 p-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-lg">✅</span>
+                  <span className="font-bold text-green-800 text-sm">SAFE COLLEGES</span>
+                </div>
+                <p className="text-xs text-green-700 mb-2">Score higher than cutoff. Very good chance of getting in.</p>
+                <div className="bg-white rounded-lg p-2 border border-green-200">
+                  <p className="text-[10px] text-gray-600">
+                    Your cutoff: <strong>{result.tneaCutoff}</strong> → Target colleges with cutoff <strong>{Math.max(0, result.tneaCutoff - 10)} – {result.tneaCutoff}</strong>
+                  </p>
+                </div>
+              </div>
+              {/* Backup */}
+              <div className="rounded-xl border-2 border-orange-300 bg-orange-50/50 p-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-lg">🛡️</span>
+                  <span className="font-bold text-orange-800 text-sm">BACKUP COLLEGES</span>
+                </div>
+                <p className="text-xs text-orange-700 mb-2">Score much higher. Guaranteed — use as safety net.</p>
+                <div className="bg-white rounded-lg p-2 border border-orange-200">
+                  <p className="text-[10px] text-gray-600">
+                    Your cutoff: <strong>{result.tneaCutoff}</strong> → Target colleges with cutoff <strong>&lt; {Math.max(0, result.tneaCutoff - 15)}</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-3 bg-violet-50 rounded-lg border border-violet-200">
+              <p className="text-xs text-violet-800">
+                <strong>💡 Pro Tip:</strong> During TNEA choice filling, list <strong>3–4 Dream</strong> colleges first, then <strong>5–6 Safe</strong> colleges, and keep <strong>3–4 Backup</strong> options at the bottom. This maximizes your chance of getting the best possible college.
+              </p>
+            </div>
+
+            {/* Bio branch info */}
+            <div className="p-3 bg-teal-50 rounded-lg border border-teal-200">
+              <p className="text-xs text-teal-800">
+                <strong>🧬 Bio-Related Branches (BioTech / Biomedical):</strong> These branches have much lower cutoffs (~150–175) compared to CSE/ECE (190+). If you're a Bio+Maths student, these are excellent options at top colleges like PSG Tech, Thiagarajar, CIT, Kumaraguru, and Velammal — you can enter a top-tier college through a Bio branch!
               </p>
             </div>
           </div>
