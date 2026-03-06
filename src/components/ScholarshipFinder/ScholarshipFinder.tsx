@@ -643,10 +643,10 @@ export const ScholarshipFinder = () => {
         <div className="max-w-5xl mx-auto px-3 md:px-4 mb-6 relative z-20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { icon: '📋', value: `${allScholarships.length}+`, label: 'Total Scholarships' },
-              { icon: '💰', value: highestVal, label: 'Highest Value' },
-              { icon: '🏛️', value: `${typeCounts.government || 0}+`, label: 'Govt. Schemes' },
-              { icon: '✨', value: '24/7', label: 'AI Eligibility Check' },
+              { icon: '📋', value: `${allScholarships.length}+`, label: 'Total' },
+              { icon: '💰', value: highestVal, label: 'Highest' },
+              { icon: '🏛️', value: `${typeCounts.government || 0}+`, label: 'Govt.' },
+              { icon: '✨', value: '24/7', label: 'AI Check' },
             ].map((stat, i) => (
               <div
                 key={i}
@@ -655,7 +655,7 @@ export const ScholarshipFinder = () => {
               >
                 <span className="text-lg md:text-2xl block mb-0.5 md:mb-1">{stat.icon}</span>
                 <p
-                  className="text-base md:text-2xl font-bold"
+                  className="text-base md:text-2xl font-bold whitespace-nowrap"
                   style={{
                     background: 'linear-gradient(135deg, #DAA520, #B8860B)',
                     WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
@@ -664,7 +664,7 @@ export const ScholarshipFinder = () => {
                 >
                   {stat.value}
                 </p>
-                <p className="text-[11px] md:text-xs uppercase tracking-wider font-medium mt-0.5" style={{ color: '#8B7355' }}>
+                <p className="text-[9px] md:text-xs uppercase tracking-wider font-medium mt-0.5 whitespace-nowrap" style={{ color: '#8B7355' }}>
                   {stat.label}
                 </p>
               </div>
@@ -713,19 +713,19 @@ export const ScholarshipFinder = () => {
                     </div>
                     {/* Category name - big and bold */}
                     <p
-                      className="text-center font-bold text-sm md:text-lg mb-0.5"
+                      className="text-center font-bold text-sm md:text-lg mb-0.5 whitespace-nowrap"
                       style={{ color: isActive ? cfg.color : '#1B5E20', fontFamily: 'Playfair Display, serif' }}
                     >
                       {cfg.label}
                     </p>
                     {/* Description */}
-                    <p className="text-center text-[11px] md:text-xs mb-2 md:mb-3" style={{ color: '#8B7355' }}>
+                    <p className="text-center text-[10px] md:text-xs mb-2 md:mb-3 whitespace-nowrap" style={{ color: '#8B7355' }}>
                       {cfg.desc}
                     </p>
                     {/* Count badge */}
                     <div className="flex justify-center">
                       <span
-                        className="text-xs md:text-sm font-bold px-3 md:px-4 py-1 md:py-1.5 rounded-full transition-all duration-300"
+                        className="text-xs md:text-sm font-bold px-3 md:px-4 py-1 md:py-1.5 rounded-full transition-all duration-300 whitespace-nowrap"
                         style={{
                           backgroundColor: isActive ? cfg.color : cfg.bg,
                           color: isActive ? 'white' : cfg.color,

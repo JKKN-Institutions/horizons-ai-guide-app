@@ -99,7 +99,7 @@ export const EduCutoff = () => {
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center">
               <Calculator className="h-5 w-5 md:h-6 md:w-6 text-white" />
             </div>
-            <h2 className="text-lg md:text-2xl lg:text-3xl font-serif font-bold text-white">Cutoff & College Predictor</h2>
+            <h2 className="text-lg md:text-2xl lg:text-3xl font-serif font-bold text-white whitespace-nowrap">Cutoff & College Predictor</h2>
           </div>
           <p className="text-fresh-gold-medium text-sm md:text-lg mb-1 font-tamil">கல்வி கட்ஆஃப் - அனைத்து மாணவர்களுக்கும்</p>
           <p className="text-white/90 text-xs md:text-sm mb-4 md:mb-6">
@@ -110,22 +110,22 @@ export const EduCutoff = () => {
             <div className="fresh-card p-2 md:p-4 text-center">
               <GraduationCap className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
               <div className="text-lg md:text-2xl font-bold text-fresh-green-dark whitespace-nowrap">1000+</div>
-              <div className="text-[9px] md:text-xs fresh-muted">Colleges</div>
+              <div className="text-[9px] md:text-xs fresh-muted whitespace-nowrap">Colleges</div>
             </div>
             <div className="fresh-card p-2 md:p-4 text-center">
               <Building2 className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
               <div className="text-lg md:text-2xl font-bold text-fresh-green-dark whitespace-nowrap">200+</div>
-              <div className="text-[9px] md:text-xs fresh-muted">Courses</div>
+              <div className="text-[9px] md:text-xs fresh-muted whitespace-nowrap">Courses</div>
             </div>
             <div className="fresh-card p-2 md:p-4 text-center">
               <MapPin className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
               <div className="text-lg md:text-2xl font-bold text-fresh-green-dark whitespace-nowrap">38</div>
-              <div className="text-[9px] md:text-xs fresh-muted">Districts</div>
+              <div className="text-[9px] md:text-xs fresh-muted whitespace-nowrap">Districts</div>
             </div>
             <div className="fresh-card p-2 md:p-4 text-center">
               <CheckCircle className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-1 md:mb-2 text-fresh-gold-dark" />
               <div className="text-lg md:text-2xl font-bold text-fresh-green-dark whitespace-nowrap">All</div>
-              <div className="text-[9px] md:text-xs fresh-muted">Groups</div>
+              <div className="text-[9px] md:text-xs fresh-muted whitespace-nowrap">Groups</div>
             </div>
           </div>
         </div>
