@@ -1015,30 +1015,10 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
     feeRange: '₹10,00,000 - ₹25,00,000 per year',
     accreditation: 'NMC Approved, Autonomous',
   },
-  {
-    id: 'vm_dental_namakkal',
-    name: "Vinayaka Mission's Sankarachariyar Dental College, Namakkal",
-    type: 'autonomous',
-    category: 'dental',
-    courses: 'BDS, MDS',
-    address: 'Namakkal',
-    feeRange: '₹3,00,000 - ₹10,00,000 per year',
-    accreditation: 'DCI Approved, Autonomous',
-  },
 
   // ============================================
   // ADDITIONAL - Nursing
   // ============================================
-  {
-    id: 'vm_nursing_namakkal',
-    name: "Vinayaka Mission's College of Nursing, Namakkal",
-    type: 'autonomous',
-    category: 'nursing',
-    courses: 'B.Sc Nursing, M.Sc Nursing, GNM',
-    address: 'Namakkal',
-    feeRange: '₹50,000 - ₹1,50,000 per year',
-    accreditation: 'INC Approved, Autonomous',
-  },
   {
     id: 'mahendra_nursing_namakkal',
     name: 'Mahendra College of Nursing, Namakkal',
@@ -1054,16 +1034,6 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
   // ADDITIONAL - Pharmacy
   // ============================================
   {
-    id: 'vm_pharmacy_namakkal',
-    name: "Vinayaka Mission's College of Pharmacy, Namakkal",
-    type: 'autonomous',
-    category: 'pharmacy',
-    courses: 'B.Pharm, D.Pharm, M.Pharm, Pharm.D',
-    address: 'Namakkal',
-    feeRange: '₹50,000 - ₹1,50,000 per year',
-    accreditation: 'PCI Approved, Autonomous',
-  },
-  {
     id: 'mahendra_pharmacy_namakkal',
     name: 'Mahendra College of Pharmacy, Namakkal',
     type: 'private',
@@ -1077,16 +1047,6 @@ export const NAMAKKAL_FEATURED_COLLEGES: College[] = [
   // ============================================
   // ADDITIONAL - Allied Health
   // ============================================
-  {
-    id: 'vm_allied_health_namakkal',
-    name: "Vinayaka Mission's Allied Health Sciences, Namakkal",
-    type: 'autonomous',
-    category: 'allied_health',
-    courses: 'BPT, BOT, B.Sc MLT, B.Sc Radiology, B.Sc Optometry',
-    address: 'Namakkal',
-    feeRange: '₹50,000 - ₹1,50,000 per year',
-    accreditation: 'Autonomous',
-  },
 
   // ============================================
   // ADDITIONAL - Education (B.Ed)
@@ -2303,16 +2263,6 @@ export const SALEM_FEATURED_COLLEGES: College[] = [
     accreditation: 'AICTE Approved',
   },
   {
-    id: 'vmkvec_salem',
-    name: "Vinayaka Mission's Kirupananda Variyar Engineering College, Salem",
-    type: 'private',
-    category: 'engineering',
-    courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech, Civil), M.E/M.Tech',
-    address: 'Salem',
-    feeRange: '₹60,000 - ₹1,20,000 per year',
-    accreditation: 'AICTE Approved',
-  },
-  {
     id: 'bharathiyar_women_engg',
     name: 'Bharathiyar Institute of Engineering for Women, Salem',
     type: 'private',
@@ -2395,16 +2345,6 @@ export const SALEM_FEATURED_COLLEGES: College[] = [
     feeRange: '₹5,000 - ₹15,000 per year',
     accreditation: 'Central Government Institute',
   },
-  {
-    id: 'vmrf_deemed',
-    name: "Vinayaka Mission's Research Foundation (Deemed University), Salem",
-    type: 'private',
-    category: 'medical',
-    courses: 'MBBS, BDS, B.Sc Agriculture, B.Pharm, Nursing',
-    address: 'Salem',
-    feeRange: '₹2,00,000 - ₹15,00,000 per year',
-    accreditation: 'UGC Approved Deemed University',
-  },
 
   // ============================================
   // 5. MEDICAL & DENTAL (PRIVATE)
@@ -2418,26 +2358,6 @@ export const SALEM_FEATURED_COLLEGES: College[] = [
     address: 'Salem',
     feeRange: '₹10,00,000 - ₹20,00,000 per year',
     accreditation: 'NMC Approved',
-  },
-  {
-    id: 'vmkv_medical',
-    name: "Vinayaka Mission's Kirupananda Variyar Medical College, Salem",
-    type: 'private',
-    category: 'medical',
-    courses: 'MBBS, MD, MS',
-    address: 'Salem',
-    feeRange: '₹10,00,000 - ₹20,00,000 per year',
-    accreditation: 'NMC Approved',
-  },
-  {
-    id: 'vms_dental',
-    name: "Vinayaka Mission's Sankarachariyar Dental College, Salem",
-    type: 'private',
-    category: 'dental',
-    courses: 'BDS, MDS',
-    address: 'Ariyanoor, Salem',
-    feeRange: '₹3,00,000 - ₹8,00,000 per year',
-    accreditation: 'DCI Approved',
   },
 
   // ============================================
@@ -2650,16 +2570,6 @@ export const SALEM_FEATURED_COLLEGES: College[] = [
   // 8. PHARMACY COLLEGES
   // ============================================
   {
-    id: 'vm_pharmacy_salem',
-    name: "Vinayaka Mission's College of Pharmacy, Salem",
-    type: 'private',
-    category: 'pharmacy',
-    courses: 'B.Pharm, D.Pharm, M.Pharm, Pharm.D',
-    address: 'Kondappa Naickenpatti, Salem',
-    feeRange: '₹50,000 - ₹1,50,000 per year',
-    accreditation: 'PCI Approved',
-  },
-  {
     id: 'sri_gokulam_pharmacy',
     name: 'Sri Gokulam College of Pharmacy, Salem',
     type: 'private',
@@ -2701,15 +2611,6 @@ export const SALEM_FEATURED_COLLEGES: College[] = [
     courses: 'BPT (Bachelor of Physiotherapy), MPT',
     address: 'Meyyanur, Salem',
     feeRange: '₹50,000 - ₹1,50,000 per year',
-  },
-  {
-    id: 'vm_physiotherapy',
-    name: "Vinayaka Mission's College of Physiotherapy, Salem",
-    type: 'private',
-    category: 'allied_health',
-    courses: 'BPT (Bachelor of Physiotherapy), MPT',
-    address: 'Seeragapadi, Salem',
-    feeRange: '₹60,000 - ₹1,50,000 per year',
   },
   {
     id: 'kavery_physiotherapy',
@@ -3635,16 +3536,6 @@ export const COIMBATORE_FEATURED_COLLEGES: College[] = [
   // ============================================
   // ADDITIONAL COLLEGES FROM 2026 DIRECTORY
   // ============================================
-  {
-    id: 'psgr_krishnammal',
-    name: 'PSGR Krishnammal College for Women, Coimbatore',
-    type: 'government-aided',
-    category: 'arts_science',
-    courses: 'B.A, B.Sc, B.Com, BCA, BBA, M.A, M.Sc, M.Com, MBA',
-    address: 'Peelamedu, Coimbatore',
-    feeRange: '₹10,000 - ₹40,000 per year',
-    accreditation: 'NAAC A++, Autonomous',
-  },
   {
     id: 'srmv_arts_science',
     name: 'SRMV College of Arts & Science, Coimbatore',
@@ -6791,26 +6682,6 @@ export const CHENGALPATTU_FEATURED_COLLEGES: College[] = [
     feeRange: '₹70,000 - ₹1,30,000 per year',
     accreditation: 'AICTE Approved',
   },
-  {
-    id: 'st_josephs_engg',
-    name: "St. Joseph's College of Engineering (Autonomous), OMR",
-    type: 'private',
-    category: 'engineering',
-    courses: 'B.E/B.Tech (CSE, IT, ECE, EEE, Mech, Civil, AI&DS), M.E/M.Tech',
-    address: 'Jeppiaar Nagar, OMR, Chengalpattu',
-    feeRange: '₹80,000 - ₹1,50,000 per year',
-    accreditation: 'Autonomous, NBA Accredited',
-  },
-  {
-    id: 'st_josephs_institute_tech',
-    name: "St. Joseph's Institute of Technology (Autonomous), OMR",
-    type: 'private',
-    category: 'engineering',
-    courses: 'B.E/B.Tech (CSE, IT, ECE, EEE, Mech, Civil)',
-    address: 'OMR, Chengalpattu',
-    feeRange: '₹70,000 - ₹1,40,000 per year',
-    accreditation: 'Autonomous, AICTE Approved',
-  },
 
   // ============================================
   // 5. NURSING
@@ -7012,16 +6883,6 @@ export const CHENGALPATTU_FEATURED_COLLEGES: College[] = [
   // ============================================
   // 10. EDUCATION
   // ============================================
-  {
-    id: 'vidhya_sagar_education',
-    name: "Vidhya Sagar Women's College of Education, Chengalpattu",
-    type: 'private',
-    category: 'education',
-    courses: 'B.Ed',
-    address: 'Chengalpattu',
-    feeRange: '₹25,000 - ₹50,000 per year',
-    accreditation: 'NCTE Approved',
-  },
   {
     id: 'st_marys_education_chengalpattu',
     name: "St. Mary's College of Education, Chengalpattu",
@@ -8136,15 +7997,6 @@ export const CHENNAI_FEATURED_COLLEGES: College[] = [
   {
     id: 'aalim_engg',
     name: 'Aalim Muhammed Salegh College of Engineering, Chennai',
-    type: 'private',
-    category: 'engineering',
-    courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech, Civil)',
-    address: 'Avadi, Chennai',
-    feeRange: '₹50,000 - ₹1,00,000 per year',
-  },
-  {
-    id: 'st_peters_engg',
-    name: 'St. Peter\'s College of Engineering & Technology, Chennai',
     type: 'private',
     category: 'engineering',
     courses: 'B.E/B.Tech (CSE, ECE, EEE, Mech, Civil)',
@@ -10203,15 +10055,6 @@ export const DINDIGUL_FEATURED_COLLEGES: College[] = [
     accreditation: 'State University',
   },
   {
-    id: 'mtwu_education_constituent',
-    name: 'Women\'s University College of Education (MTWU Constituent), Kodaikanal',
-    type: 'government',
-    category: 'arts_science',
-    courses: 'B.A, B.Sc, B.Ed (Integrated)',
-    address: 'Kodaikanal, Dindigul',
-    feeRange: '₹5,000 - ₹15,000 per year',
-  },
-  {
     id: 'mku_evening_dindigul',
     name: 'Madurai Kamaraj University Evening College, Dindigul',
     type: 'government',
@@ -10664,16 +10507,6 @@ export const DINDIGUL_FEATURED_COLLEGES: College[] = [
     accreditation: 'NAAC A++',
   },
   {
-    id: 'mtwu_education',
-    name: 'Women\'s University College of Education (MTWU Constituent), Kodaikanal',
-    type: 'government',
-    category: 'education',
-    courses: 'B.Ed, M.Ed',
-    address: 'Kodaikanal, Dindigul',
-    feeRange: '₹5,000 - ₹15,000 per year',
-    accreditation: 'NCTE Approved',
-  },
-  {
     id: 'mvm_chellamuthu_education',
     name: 'MVM Chellamuthu Alagu Rathinam College of Education, Dindigul',
     type: 'private',
@@ -10883,15 +10716,6 @@ export const KALLAKURICHI_FEATURED_COLLEGES: College[] = [
     courses: 'B.A, B.Sc, B.Com, BCA',
     address: 'Indili, Kallakurichi',
     feeRange: '₹15,000 - ₹35,000 per year',
-  },
-  {
-    id: 'bharathi_women_kallakurichi',
-    name: 'Bharathi Women\'s Arts & Science College (est. 1997), Kallakurichi',
-    type: 'private',
-    category: 'arts_science',
-    courses: 'B.A, B.Sc, B.Com, BCA',
-    address: 'Vanavil Nagar, Thatchur, Kallakurichi',
-    feeRange: '₹12,000 - ₹30,000 per year',
   },
   {
     id: 'sri_lakshmi_arts_kallakurichi',
@@ -11735,15 +11559,6 @@ export const KANYAKUMARI_FEATURED_COLLEGES: College[] = [
     feeRange: '₹5,000 - ₹18,000 per year',
   },
   {
-    id: 'womens_christian_nagercoil',
-    name: 'Women\'s Christian College, Nagercoil',
-    type: 'government-aided',
-    category: 'arts_science',
-    courses: 'B.A, B.Sc, B.Com, BCA',
-    address: 'Nagercoil, Kanyakumari',
-    feeRange: '₹5,000 - ₹20,000 per year',
-  },
-  {
     id: 'cape_arts',
     name: 'Cape Institute of Technology (Arts & Science wing), Levengipuram',
     type: 'private',
@@ -12383,15 +12198,6 @@ export const KRISHNAGIRI_FEATURED_COLLEGES: College[] = [
     courses: 'B.A, B.Sc, B.Com',
     address: 'Denkanikottai, Krishnagiri',
     feeRange: '₹1,000 - ₹5,000 per year',
-  },
-  {
-    id: 'st_josephs_women_krishnagiri',
-    name: 'St. Joseph\'s College of Arts & Science for Women, Krishnagiri',
-    type: 'private',
-    category: 'arts_science',
-    courses: 'B.A, B.Sc, B.Com, BCA',
-    address: 'Krishnagiri',
-    feeRange: '₹15,000 - ₹35,000 per year',
   },
   {
     id: 'gonzaga_women',
@@ -13713,15 +13519,6 @@ export const NILGIRIS_FEATURED_COLLEGES: College[] = [
     address: 'Ooty, Nilgiris',
     feeRange: '₹30,000 - ₹70,000 per year',
     accreditation: 'INC Approved',
-  },
-  {
-    id: 'st_josephs_industrial',
-    name: 'St. Joseph\'s Industrial School, Ooty',
-    type: 'government-aided',
-    category: 'education',
-    courses: 'D.T.Ed, Industrial Training',
-    address: 'Finger Post, Ooty, Nilgiris',
-    feeRange: '₹5,000 - ₹15,000 per year',
   },
   {
     id: 'govt_polytechnic_ooty',
@@ -15815,16 +15612,6 @@ export const THOOTHUKUDI_FEATURED_COLLEGES: College[] = [
     accreditation: 'NAAC A+, Autonomous',
   },
   {
-    id: 'st_marys_autonomous_tut',
-    name: 'St. Mary\'s College (Autonomous), Thoothukudi',
-    type: 'government-aided',
-    category: 'arts_science',
-    courses: 'B.A, B.Sc, B.Com, BCA, M.A, M.Sc',
-    address: 'Thoothukudi',
-    feeRange: '₹5,000 - ₹25,000 per year',
-    accreditation: 'Autonomous',
-  },
-  {
     id: 'sri_paramakalyani',
     name: 'Sri Paramakalyani College (Autonomous), Alwarkurichi',
     type: 'government-aided',
@@ -16014,16 +15801,6 @@ export const TIRUCHIRAPPALLI_FEATURED_COLLEGES: College[] = [
     courses: 'B.A, B.Sc, B.Com, BCA, M.A, M.Sc',
     address: 'Tiruchirappalli',
     feeRange: '₹1,000 - ₹5,000 per year',
-  },
-  {
-    id: 'st_josephs_trichy',
-    name: 'St. Joseph\'s College (Autonomous, est. 1844, NAAC A++), Trichy',
-    type: 'government-aided',
-    category: 'arts_science',
-    courses: 'B.A, B.Sc, B.Com, BCA, BBA, M.A, M.Sc, M.Com, M.Phil, Ph.D',
-    address: 'Tiruchirappalli',
-    feeRange: '₹10,000 - ₹40,000 per year',
-    accreditation: 'NAAC A++, Autonomous',
   },
   {
     id: 'jamal_mohamed',
@@ -16610,16 +16387,6 @@ export const TIRUNELVELI_FEATURED_COLLEGES: College[] = [
     feeRange: '₹1,000 - ₹5,000 per year',
   },
   {
-    id: 'st_xaviers_palayamkottai',
-    name: 'St. Xavier\'s College (Autonomous, est. 1923, NAAC A++), Palayamkottai',
-    type: 'government-aided',
-    category: 'arts_science',
-    courses: 'B.A, B.Sc, B.Com, BCA, BBA, M.A, M.Sc, M.Com, M.Phil, Ph.D',
-    address: 'Palayamkottai, Tirunelveli',
-    feeRange: '₹10,000 - ₹45,000 per year',
-    accreditation: 'NAAC A++, Autonomous',
-  },
-  {
     id: 'sadakathullah_appa',
     name: 'Sadakathullah Appa College (Autonomous, est. 1968), Tirunelveli',
     type: 'government-aided',
@@ -16675,16 +16442,6 @@ export const TIRUNELVELI_FEATURED_COLLEGES: College[] = [
     address: 'Palayamkottai, Tirunelveli',
     feeRange: '₹10,000 - ₹30,000 per year',
     accreditation: 'Anna University',
-  },
-  {
-    id: 'st_xaviers_engg',
-    name: 'St. Xavier\'s Catholic College of Engineering (Autonomous), Tirunelveli',
-    type: 'private',
-    category: 'engineering',
-    courses: 'B.E/B.Tech (CSE, IT, ECE, EEE, Mech, Civil)',
-    address: 'Nagercoil Road, Tirunelveli',
-    feeRange: '₹50,000 - ₹1,10,000 per year',
-    accreditation: 'Autonomous',
   },
   {
     id: 'francis_xavier_engg',
@@ -16903,16 +16660,6 @@ export const TIRUVALLUR_FEATURED_COLLEGES: College[] = [
     accreditation: 'Deemed University, NMC Approved',
   },
   {
-    id: 'srm_medical',
-    name: 'SRM Medical College Hospital & Research Centre, Kattankulathur',
-    type: 'private',
-    category: 'medical',
-    courses: 'MBBS, MD, MS, DM, MCh',
-    address: 'Kattankulathur, Tiruvallur',
-    feeRange: '₹10,00,000 - ₹25,00,000 per year',
-    accreditation: 'Deemed University, NMC Approved',
-  },
-  {
     id: 'acs_medical',
     name: 'ACS Medical College & Hospital, Velappanchavadi',
     type: 'private',
@@ -17043,16 +16790,6 @@ export const TIRUVALLUR_FEATURED_COLLEGES: College[] = [
     accreditation: 'AICTE Approved',
   },
   {
-    id: 'srm_nursing',
-    name: 'SRM College of Nursing, Kattankulathur',
-    type: 'private',
-    category: 'nursing',
-    courses: 'B.Sc Nursing, M.Sc Nursing, GNM',
-    address: 'Kattankulathur, Tiruvallur',
-    feeRange: '₹50,000 - ₹1,50,000 per year',
-    accreditation: 'INC Approved',
-  },
-  {
     id: 'saveetha_nursing',
     name: 'Saveetha College of Nursing, Thandalam',
     type: 'private',
@@ -17061,16 +16798,6 @@ export const TIRUVALLUR_FEATURED_COLLEGES: College[] = [
     address: 'Thandalam, Tiruvallur',
     feeRange: '₹50,000 - ₹1,50,000 per year',
     accreditation: 'INC Approved',
-  },
-  {
-    id: 'srm_law',
-    name: 'SRM School of Law, Kattankulathur',
-    type: 'private',
-    category: 'law',
-    courses: 'B.A. LL.B, B.Com. LL.B, LL.B, LL.M',
-    address: 'Kattankulathur, Tiruvallur',
-    feeRange: '₹1,00,000 - ₹2,50,000 per year',
-    accreditation: 'Deemed University',
   },
   {
     id: 'saveetha_law',
@@ -17083,26 +16810,6 @@ export const TIRUVALLUR_FEATURED_COLLEGES: College[] = [
     accreditation: 'Deemed University',
   },
   {
-    id: 'srm_pharmacy',
-    name: 'SRM College of Pharmacy, Kattankulathur',
-    type: 'private',
-    category: 'pharmacy',
-    courses: 'B.Pharm, M.Pharm, Pharm.D, Ph.D',
-    address: 'Kattankulathur, Tiruvallur',
-    feeRange: '₹60,000 - ₹1,50,000 per year',
-    accreditation: 'Deemed University, PCI Approved',
-  },
-  {
-    id: 'srm_allied_health',
-    name: 'SRM College of Allied Health Sciences, Kattankulathur',
-    type: 'private',
-    category: 'allied_health',
-    courses: 'BPT, B.Sc MLT, B.Sc Radiology, B.Sc Cardiac Technology',
-    address: 'Kattankulathur, Tiruvallur',
-    feeRange: '₹50,000 - ₹1,50,000 per year',
-    accreditation: 'Deemed University',
-  },
-  {
     id: 'srm_education',
     name: 'SRM School of Teacher Education, Kattankulathur',
     type: 'private',
@@ -17110,26 +16817,6 @@ export const TIRUVALLUR_FEATURED_COLLEGES: College[] = [
     courses: 'B.Ed, M.Ed',
     address: 'Kattankulathur, Tiruvallur',
     feeRange: '₹40,000 - ₹1,00,000 per year',
-    accreditation: 'Deemed University',
-  },
-  {
-    id: 'srm_hotel',
-    name: 'SRM Institute of Hotel Management, Kattankulathur',
-    type: 'private',
-    category: 'hotel_management',
-    courses: 'B.Sc Hotel Management',
-    address: 'Kattankulathur, Tiruvallur',
-    feeRange: '₹50,000 - ₹1,20,000 per year',
-    accreditation: 'Deemed University',
-  },
-  {
-    id: 'srm_management',
-    name: 'SRM School of Management, Kattankulathur',
-    type: 'private',
-    category: 'arts_science',
-    courses: 'MBA, Ph.D (Management)',
-    address: 'Kattankulathur, Tiruvallur',
-    feeRange: '₹1,00,000 - ₹3,00,000 per year',
     accreditation: 'Deemed University',
   },
   {
