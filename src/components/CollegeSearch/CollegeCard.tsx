@@ -113,7 +113,7 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
                 <Phone className="h-3 w-3" /> {college.contact}
               </a>
             )}
-            {college.website && (
+            {collegeUrl && (
               <a href={collegeUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[#0A2E1F] hover:underline">
                 <Globe className="h-3 w-3" /> Website <ExternalLink className="h-3 w-3" />
               </a>
