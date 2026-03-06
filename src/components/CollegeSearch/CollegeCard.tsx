@@ -18,7 +18,7 @@ export const CollegeCard = ({ college }: CollegeCardProps) => {
     ? college.website
     : college.website
       ? `https://${college.website}`
-      : `https://www.google.com/search?btnI=1&q=${encodeURIComponent(college.name + ' official website')}`;
+      : `https://duckduckgo.com/?q=!ducky+${encodeURIComponent(college.name + ' official website')}`;
   const isAutonom = isAutonomousCollege(college);
 
   return (
