@@ -41,16 +41,18 @@ export const EduCutoff = () => {
       }
 
       // Calculate TNEA cutoff for science maths groups (100 series)
-      // Official Formula: Maths/2 + Physics/4 + Chemistry/4 = out of 100
-      // Scaled to 200: multiply by 2
+      // Official DOTE Formula: Maths + Physics/2 + Chemistry/2 = out of 200
+      // (Maths gets 100, Physics gets 50, Chemistry gets 50)
       let tneaCutoff100: number | undefined;
       if (isEligibleForTNEA(selectedGroup)) {
         const maths = marks.Mathematics ?? 0;
         const physics = marks.Physics ?? 0;
         const chemistry = marks.Chemistry ?? 0;
-        tneaCutoff100 = (maths / 2) + (physics / 4) + (chemistry / 4);
-        tneaCutoff100 = Math.round(tneaCutoff100 * 10) / 10;
-        tneaCutoff = Math.round(tneaCutoff100 * 2 * 10) / 10;
+        // Official formula: directly out of 200
+        tneaCutoff = maths + (physics / 2) + (chemistry / 2);
+        tneaCutoff = Math.round(tneaCutoff * 10) / 10;
+        // Also store /100 for display
+        tneaCutoff100 = Math.round(tneaCutoff / 2 * 10) / 10;
       }
 
       if (overallPercentage >= 95) percentile = 99;
@@ -153,8 +155,8 @@ export const EduCutoff = () => {
                   <span className="text-blue-600 font-bold mt-0.5">1.</span>
                   <div>
                     <p className="font-semibold text-sm text-gray-800">Engineering (B.E / B.Tech) - TNEA</p>
-                    <p className="text-xs text-gray-500">Cutoff = Maths/2 + Physics/4 + Chemistry/4 (Out of 100 → Scaled to 200)</p>
-                    <p className="text-xs text-gray-500">Groups: 100 Series (101-106) only</p>
+                    <p className="text-xs text-gray-500">Cutoff = Maths + Physics/2 + Chemistry/2 (Out of 200)</p>
+                    <p className="text-xs text-gray-500">Maths = 100, Physics = 50, Chemistry = 50 → Total 200</p>
                     <p className="text-xs text-red-500 font-medium mt-0.5">⚠️ Only PCM marks used. Biology NOT counted for Engineering cutoff.</p>
                   </div>
                 </div>

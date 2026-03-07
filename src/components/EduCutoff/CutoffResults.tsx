@@ -23,7 +23,6 @@ const cutoffRanges = [
 
 export const CutoffResults = ({ result, group, marks, category }: CutoffResultsProps) => {
   const [animatedCutoff, setAnimatedCutoff] = useState(0);
-  const [animatedCutoff100, setAnimatedCutoff100] = useState(0);
   const [animatedPercentage, setAnimatedPercentage] = useState(0);
   const [animatedPercentile, setAnimatedPercentile] = useState(0);
 
@@ -44,16 +43,12 @@ export const CutoffResults = ({ result, group, marks, category }: CutoffResultsP
       if (result.tneaCutoff) {
         setAnimatedCutoff(Math.round(result.tneaCutoff * easeOut * 10) / 10);
       }
-      if (result.tneaCutoff100) {
-        setAnimatedCutoff100(Math.round(result.tneaCutoff100 * easeOut * 10) / 10);
-      }
       setAnimatedPercentage(Math.round(result.overallPercentage * easeOut * 10) / 10);
       setAnimatedPercentile(Math.round(result.percentile * easeOut));
 
       if (step >= steps) {
         clearInterval(timer);
         if (result.tneaCutoff) setAnimatedCutoff(result.tneaCutoff);
-        if (result.tneaCutoff100) setAnimatedCutoff100(result.tneaCutoff100);
         setAnimatedPercentage(result.overallPercentage);
         setAnimatedPercentile(result.percentile);
       }
@@ -63,11 +58,11 @@ export const CutoffResults = ({ result, group, marks, category }: CutoffResultsP
   }, [result]);
 
   const getFormulaText = () => {
-    if (showTNEA && result.tneaCutoff100 && result.tneaCutoff) {
+    if (showTNEA && result.tneaCutoff) {
       const maths = marks.Mathematics ?? 0;
       const physics = marks.Physics ?? 0;
       const chemistry = marks.Chemistry ?? 0;
-      return `TNEA Normalised Marks Formula:\n\nStep 1: Take your PCM marks (out of 100 each)\n  Maths    = ${maths}  → ${maths} ÷ 2 = ${(maths/2).toFixed(1)}\n  Physics  = ${physics}  → ${physics} ÷ 4 = ${(physics/4).toFixed(1)}\n  Chemistry = ${chemistry}  → ${chemistry} ÷ 4 = ${(chemistry/4).toFixed(1)}\n\nStep 2: Add the components\n  ${(maths/2).toFixed(1)} + ${(physics/4).toFixed(1)} + ${(chemistry/4).toFixed(1)} = ${result.tneaCutoff100} / 100\n\nStep 3: Scale to 200\n  ${result.tneaCutoff100} × 2 = ${result.tneaCutoff} / 200\n\n⚠️ Only Maths + Physics + Chemistry marks used.\n   Biology marks are NOT counted for Engineering.`;
+      return `Official TNEA Normalised Marks (DOTE Formula):\n\nCutoff = Maths + (Physics ÷ 2) + (Chemistry ÷ 2)\n       = ${maths} + (${physics} ÷ 2) + (${chemistry} ÷ 2)\n       = ${maths} + ${(physics/2).toFixed(1)} + ${(chemistry/2).toFixed(1)}\n       = ${result.tneaCutoff} / 200\n\nWeightage: Maths = 100, Physics = 50, Chemistry = 50\n\n⚠️ Only Maths + Physics + Chemistry marks used.\n   Biology marks are NOT counted for Engineering.`;
     }
     
     switch (groupCategory) {
@@ -191,18 +186,10 @@ export const CutoffResults = ({ result, group, marks, category }: CutoffResultsP
       )}
 
       {/* ─── SCORE CARDS ─── */}
-      <div className={`grid ${showTNEA && result.tneaCutoff ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-3'} gap-2 md:gap-4 mb-6`}>
-        {showTNEA && result.tneaCutoff100 && (
-          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg md:rounded-xl p-2 md:p-4 text-center border border-indigo-200">
-            <div className="text-[10px] md:text-sm text-indigo-600 font-medium">Cutoff</div>
-            <div className="text-xl md:text-3xl font-bold text-indigo-700">{animatedCutoff100}</div>
-            <div className="text-[9px] md:text-sm text-indigo-500">/100</div>
-            <Progress value={animatedCutoff100} className="h-1.5 mt-1.5 bg-indigo-200" />
-          </div>
-        )}
+      <div className={`grid ${showTNEA && result.tneaCutoff ? 'grid-cols-3' : 'grid-cols-2 md:grid-cols-3'} gap-2 md:gap-4 mb-6`}>
         {showTNEA && result.tneaCutoff && (
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg md:rounded-xl p-2 md:p-4 text-center border border-blue-200">
-            <div className="text-[10px] md:text-sm text-blue-600 font-medium">TNEA Scale</div>
+            <div className="text-[10px] md:text-sm text-blue-600 font-medium">TNEA Cutoff</div>
             <div className="text-xl md:text-3xl font-bold text-blue-700">{animatedCutoff}</div>
             <div className="text-[9px] md:text-sm text-blue-500">/200</div>
             <Progress value={(animatedCutoff / 200) * 100} className="h-1.5 mt-1.5 bg-blue-200" />

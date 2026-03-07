@@ -38,7 +38,8 @@
    chance: 'High' | 'Medium' | 'Low';
  }
  
- // Government Engineering Colleges in Tamil Nadu - Through TNEA Counseling (Free/Subsidized Education)
+ // Government Engineering Colleges in Tamil Nadu - VERIFIED DOTE 2024 Cutoff Data
+ // Source: TNEA 2024 Mark Cutoff PDF (static.tneaonline.org)
  const governmentColleges: PredictedCollege[] = [
    {
      id: '1',
@@ -47,13 +48,21 @@
      location: 'Chennai',
      district: 'Chennai',
      type: 'Government',
-     lastYearCutoff: { OC: 198.5, BC: 196, MBC: 194, SC: 185, ST: 175 },
+     lastYearCutoff: { OC: 199, BC: 199, MBC: 199, SC: 185, ST: 175 },
      branches: [
        { code: 'CSE', name: 'Computer Science', lastCutoff: 199, seats: 63, chance: 'Low' },
-       { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 197, seats: 126, chance: 'Low' },
-       { code: 'EEE', name: 'Electrical & Electronics', lastCutoff: 195, seats: 94, chance: 'Medium' },
-       { code: 'MECH', name: 'Mechanical', lastCutoff: 193, seats: 157, chance: 'Medium' },
-       { code: 'CIVIL', name: 'Civil Engineering', lastCutoff: 190, seats: 94, chance: 'High' },
+       { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 198, seats: 126, chance: 'Low' },
+       { code: 'IT', name: 'Information Technology (SS)', lastCutoff: 197, seats: 60, chance: 'Low' },
+       { code: 'EEE', name: 'Electrical & Electronics', lastCutoff: 189.5, seats: 94, chance: 'Medium' },
+       { code: 'MECH', name: 'Mechanical', lastCutoff: 188.5, seats: 157, chance: 'Medium' },
+       { code: 'MFG', name: 'Manufacturing', lastCutoff: 186.5, seats: 60, chance: 'Medium' },
+       { code: 'IE', name: 'Industrial Engineering', lastCutoff: 185, seats: 60, chance: 'High' },
+       { code: 'CIVIL', name: 'Civil Engineering', lastCutoff: 184, seats: 94, chance: 'High' },
+       { code: 'VLSI', name: 'VLSI Design (SS)', lastCutoff: 174, seats: 30, chance: 'High' },
+       { code: 'MAT', name: 'Material Science (SS)', lastCutoff: 164, seats: 30, chance: 'High' },
+       { code: 'MINING', name: 'Mining Engineering', lastCutoff: 159, seats: 30, chance: 'High' },
+       { code: 'PRINT', name: 'Printing & Packaging', lastCutoff: 150, seats: 30, chance: 'High' },
+       { code: 'BME', name: 'Biomedical Engg (SS)', lastCutoff: 139.3, seats: 30, chance: 'High' },
      ],
      annualFee: '₹7,500',
      placement: '₹12 LPA',
@@ -68,12 +77,20 @@
      location: 'Chennai',
      district: 'Chennai',
      type: 'Government',
-     lastYearCutoff: { OC: 197, BC: 194, MBC: 192, SC: 183, ST: 173 },
+     lastYearCutoff: { OC: 199, BC: 194.5, MBC: 193, SC: 183, ST: 173 },
      branches: [
-       { code: 'CSE', name: 'Computer Science', lastCutoff: 198, seats: 60, chance: 'Low' },
-       { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 196, seats: 120, chance: 'Low' },
-       { code: 'AERO', name: 'Aerospace Engineering', lastCutoff: 195, seats: 60, chance: 'Medium' },
-       { code: 'AUTO', name: 'Automobile Engineering', lastCutoff: 192, seats: 60, chance: 'Medium' },
+       { code: 'ROBO', name: 'Robotics & Automation (SS)', lastCutoff: 199, seats: 30, chance: 'Low' },
+       { code: 'CSE', name: 'Computer Science', lastCutoff: 197, seats: 60, chance: 'Low' },
+       { code: 'ECE-SS', name: 'Electronics & Comm (SS)', lastCutoff: 195, seats: 60, chance: 'Low' },
+       { code: 'CSE-SS', name: 'Computer Science (SS)', lastCutoff: 194.5, seats: 60, chance: 'Medium' },
+       { code: 'IT', name: 'Information Technology (SS)', lastCutoff: 189.5, seats: 60, chance: 'Medium' },
+       { code: 'AI', name: 'AI & Data Science (SS)', lastCutoff: 182, seats: 30, chance: 'Medium' },
+       { code: 'PROD', name: 'Production Engineering', lastCutoff: 180, seats: 60, chance: 'High' },
+       { code: 'ECE', name: 'Electronics & Comm', lastCutoff: 175, seats: 120, chance: 'High' },
+       { code: 'AERO', name: 'Aeronautical Engineering', lastCutoff: 168.5, seats: 60, chance: 'High' },
+       { code: 'EI', name: 'Electronics & Instrumentation', lastCutoff: 165, seats: 60, chance: 'High' },
+       { code: 'RUBBER', name: 'Rubber & Plastic Tech', lastCutoff: 162, seats: 30, chance: 'High' },
+       { code: 'AUTO', name: 'Automobile Engineering', lastCutoff: 156.5, seats: 60, chance: 'High' },
      ],
      annualFee: '₹7,500',
      placement: '₹10 LPA',
@@ -88,11 +105,15 @@
      location: 'Chennai',
      district: 'Chennai',
      type: 'Government',
-     lastYearCutoff: { OC: 195, BC: 192, MBC: 189, SC: 180, ST: 170 },
+     lastYearCutoff: { OC: 175, BC: 172, MBC: 170, SC: 160, ST: 150 },
      branches: [
-       { code: 'CHEM', name: 'Chemical Engineering', lastCutoff: 194, seats: 60, chance: 'Medium' },
-       { code: 'IT', name: 'Information Technology', lastCutoff: 193, seats: 60, chance: 'Medium' },
-       { code: 'LEATHER', name: 'Leather Technology', lastCutoff: 180, seats: 45, chance: 'High' },
+       { code: 'CHEM', name: 'Chemical Engineering', lastCutoff: 175, seats: 60, chance: 'High' },
+       { code: 'PETRO', name: 'Petroleum Engineering (SS)', lastCutoff: 172, seats: 30, chance: 'High' },
+       { code: 'TEXT', name: 'Textile Technology', lastCutoff: 168, seats: 45, chance: 'High' },
+       { code: 'CERAM', name: 'Ceramic Technology (SS)', lastCutoff: 151.5, seats: 30, chance: 'High' },
+       { code: 'LEATH', name: 'Leather Technology', lastCutoff: 135.5, seats: 45, chance: 'High' },
+       { code: 'FOOD', name: 'Food Technology (SS)', lastCutoff: 131.5, seats: 30, chance: 'High' },
+       { code: 'CHEM-SS', name: 'Chemical Engg (SS)', lastCutoff: 131, seats: 30, chance: 'High' },
      ],
      annualFee: '₹7,500',
      placement: '₹8 LPA',
@@ -429,12 +450,14 @@ const topPrivateColleges: PredictedCollege[] = [
     location: 'Chennai',
     district: 'Chennai',
     type: 'Private',
-    lastYearCutoff: { OC: 196, BC: 194, MBC: 192, SC: 184, ST: 174 },
+    lastYearCutoff: { OC: 197.5, BC: 194, MBC: 190, SC: 180, ST: 170 },
     branches: [
-      { code: 'CSE', name: 'Computer Science', lastCutoff: 199, seats: 120, chance: 'Low' },
-      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 196, seats: 120, chance: 'Low' },
-      { code: 'EEE', name: 'Electrical & Electronics', lastCutoff: 193, seats: 60, chance: 'Medium' },
-      { code: 'MECH', name: 'Mechanical', lastCutoff: 191, seats: 60, chance: 'Medium' },
+      { code: 'IT', name: 'Information Technology', lastCutoff: 197.5, seats: 60, chance: 'Low' },
+      { code: 'CSE', name: 'Computer Science', lastCutoff: 191.5, seats: 120, chance: 'Medium' },
+      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 190.5, seats: 120, chance: 'Medium' },
+      { code: 'EEE', name: 'Electrical & Electronics', lastCutoff: 187.5, seats: 60, chance: 'Medium' },
+      { code: 'MECH', name: 'Mechanical', lastCutoff: 178, seats: 60, chance: 'High' },
+      { code: 'CHEM', name: 'Chemical Engineering', lastCutoff: 152, seats: 30, chance: 'High' },
     ],
     annualFee: '₹2,00,000',
     placement: '₹10 LPA',
@@ -883,12 +906,15 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
  
        {/* Disclaimer */}
        <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200">
-         <p className="text-xs text-green-800 dark:text-green-300 text-center">
-           🏛️ <strong>Government + Top Colleges:</strong> Includes government (₹7,500/yr), aided, and top private colleges through TNEA counseling. 
-           Cutoffs are based on previous year data and may vary. Government colleges offer free/subsidized education.
+         <p className="text-xs text-green-800 dark:text-green-300 text-center font-semibold mb-1">
+           📊 Data Source: TNEA 2024 Mark Cutoff (DOTE Official PDF)
          </p>
-         <p className="text-xs text-green-700/80 dark:text-green-400/80 text-center mt-1 font-tamil">
-           அரசு + முன்னணி கல்லூரிகள் அடங்கும். TNEA கலந்தாய்வு மூலம் சேரலாம். கடந்த ஆண்டு கட்ஆஃப் அடிப்படையில்.
+         <p className="text-xs text-green-700 dark:text-green-400 text-center">
+           Cutoffs shown are from the official Directorate of Technical Education (DOTE) 2024 counselling data.
+           Actual cutoffs vary by year, round, and category. Use this as a reference, not a guarantee.
+         </p>
+         <p className="text-xs text-green-600/80 dark:text-green-400/80 text-center mt-1 font-tamil">
+           இது DOTE 2024 அதிகாரப்பூர்வ தரவு அடிப்படையில். ஒவ்வொரு ஆண்டும் கட்ஆஃப் மாறலாம்.
          </p>
        </div>
      </div>
