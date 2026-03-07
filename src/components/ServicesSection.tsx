@@ -13,6 +13,7 @@ const ServicesSection = () => {
       bgGradient: "from-amber-50 to-orange-50",
       borderColor: "border-amber-200 hover:border-amber-400",
       shadowColor: "shadow-amber-100",
+      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=200&fit=crop&auto=format",
     },
     {
       title: t('services.jobPortal'),
@@ -22,6 +23,7 @@ const ServicesSection = () => {
       bgGradient: "from-blue-50 to-indigo-50",
       borderColor: "border-blue-200 hover:border-blue-400",
       shadowColor: "shadow-blue-100",
+      image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&h=200&fit=crop&auto=format",
     },
     {
       title: t('services.skillDevelopment'),
@@ -31,6 +33,7 @@ const ServicesSection = () => {
       bgGradient: "from-purple-50 to-violet-50",
       borderColor: "border-purple-200 hover:border-purple-400",
       shadowColor: "shadow-purple-100",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=200&fit=crop&auto=format",
     },
     {
       title: t('services.expertCounseling'),
@@ -40,6 +43,7 @@ const ServicesSection = () => {
       bgGradient: "from-rose-50 to-pink-50",
       borderColor: "border-rose-200 hover:border-rose-400",
       shadowColor: "shadow-rose-100",
+      image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=200&fit=crop&auto=format",
     },
     {
       title: t('services.aiAssistant'),
@@ -49,6 +53,7 @@ const ServicesSection = () => {
       bgGradient: "from-teal-50 to-cyan-50",
       borderColor: "border-teal-200 hover:border-teal-400",
       shadowColor: "shadow-teal-100",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop&auto=format",
     },
   ];
 
@@ -78,8 +83,15 @@ const ServicesSection = () => {
               {/* Decorative gradient orb */}
               <div className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${service.gradient} rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500`} />
               
-              <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                <service.icon className="w-8 h-8 text-white" />
+              {/* Service Image */}
+              {service.image && (
+                <div className="relative w-full h-32 rounded-xl overflow-hidden mb-4 -mt-1">
+                  <img src={service.image} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${service.bgGradient} opacity-30`} />
+                </div>
+              )}
+              <div className={`relative w-14 h-14 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 -mt-10 ml-2 border-4 border-white`}>
+                <service.icon className="w-7 h-7 text-white" />
               </div>
               
               <h3 className="relative font-serif text-xl font-bold text-gray-800 mb-3 group-hover:text-gray-900 transition-colors">

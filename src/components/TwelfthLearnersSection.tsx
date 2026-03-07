@@ -23,9 +23,9 @@ const TwelfthLearnersSection = () => {
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
-          {/* Content */}
-          <div className="animate-fade-up">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
+          {/* Left: Content */}
+          <div className="animate-fade-up text-center md:text-left">
             <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-amber-300 px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-amber-400/30">
               <GraduationCap className="w-4 h-4" />
               For 12th Learners
@@ -38,7 +38,7 @@ const TwelfthLearnersSection = () => {
               VAZHIKAATTI is designed especially for 12th Learners who want clarity about their career path. Our AI-powered platform helps you discover your strengths and find the perfect course.
             </p>
 
-            <ul className="space-y-4 mb-10 text-left max-w-xl mx-auto">
+            <ul className="space-y-4 mb-10 text-left max-w-xl">
               {benefits.map((benefit, index) => (
                 <li 
                   key={index} 
@@ -59,6 +59,23 @@ const TwelfthLearnersSection = () => {
             >
               Start Your Career Journey
             </Button>
+          </div>
+
+          {/* Right: Student Image */}
+          <div className="hidden md:block animate-fade-up" style={{ animationDelay: '0.3s' }}>
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 to-emerald-400/20 rounded-3xl blur-2xl" />
+              <img 
+                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=500&fit=crop&auto=format" 
+                alt="Students celebrating graduation"
+                className="relative rounded-3xl shadow-2xl border-4 border-white/10 w-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute -bottom-4 -right-4 bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20">
+                <div className="text-amber-300 font-bold text-2xl">5000+</div>
+                <div className="text-white/70 text-xs">Learners Guided</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
