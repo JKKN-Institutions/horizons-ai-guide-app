@@ -46,7 +46,7 @@ export const CategorySelector = ({
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border p-6">
+    <div className="bg-white rounded-xl shadow-sm border p-4 md:p-6">
       <div className="mb-4">
         <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
           👥 Step 3: Select Your Category

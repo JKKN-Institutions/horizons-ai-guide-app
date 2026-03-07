@@ -717,42 +717,42 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
        {/* Government Colleges Info Banner */}
        <Card className="bg-gradient-to-r from-green-600 to-emerald-600 text-white border-0">
          <CardContent className="py-4">
-           <div className="flex items-center gap-3">
-             <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-               <Landmark className="h-6 w-6" />
+           <div className="flex items-center gap-2 md:gap-3">
+             <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+               <Landmark className="h-5 w-5 md:h-6 md:w-6" />
              </div>
-             <div>
-               <h3 className="text-lg font-semibold flex items-center gap-2">
-                 <Shield className="h-4 w-4" />
-                 College Predictor — Government + Top Private Colleges via TNEA
+             <div className="min-w-0">
+               <h3 className="text-sm md:text-lg font-semibold flex items-center gap-1 md:gap-2 flex-wrap">
+                 <Shield className="h-3.5 w-3.5 md:h-4 md:w-4 flex-shrink-0" />
+                 <span>College Predictor — Govt + Top Colleges</span>
                </h3>
-               <p className="text-sm text-white/80 font-tamil">அரசு + முன்னணி தனியார் கல்லூரிகள் - TNEA கலந்தாய்வு மூலம்</p>
+               <p className="text-xs md:text-sm text-white/80 font-tamil">அரசு + முன்னணி கல்லூரிகள் - TNEA கலந்தாய்வு</p>
              </div>
            </div>
-           <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-3">
-             <div className="bg-white/10 rounded-lg px-3 py-2 text-center">
-               <div className="text-xl font-bold">{userCutoff}</div>
-               <div className="text-xs text-white/70">Your Cutoff</div>
+           <div className="mt-3 grid grid-cols-4 gap-1.5 md:gap-3">
+             <div className="bg-white/10 rounded-lg px-2 py-1.5 md:px-3 md:py-2 text-center">
+               <div className="text-base md:text-xl font-bold">{userCutoff}</div>
+               <div className="text-[9px] md:text-xs text-white/70">Your Cutoff</div>
              </div>
-             <div className="bg-white/10 rounded-lg px-3 py-2 text-center">
-               <div className="text-lg font-semibold">{userCategory}</div>
-               <div className="text-xs text-white/70">Category</div>
+             <div className="bg-white/10 rounded-lg px-2 py-1.5 md:px-3 md:py-2 text-center">
+               <div className="text-sm md:text-lg font-semibold">{userCategory}</div>
+               <div className="text-[9px] md:text-xs text-white/70">Category</div>
              </div>
-             <div className="bg-white/10 rounded-lg px-3 py-2 text-center">
-               <div className="text-lg font-bold">{allColleges.filter(c => c.type === 'Government').length}</div>
-               <div className="text-xs text-white/70">Govt Colleges</div>
+             <div className="bg-white/10 rounded-lg px-2 py-1.5 md:px-3 md:py-2 text-center">
+               <div className="text-sm md:text-lg font-bold">{allColleges.filter(c => c.type === 'Government').length}</div>
+               <div className="text-[9px] md:text-xs text-white/70">Govt</div>
              </div>
-             <div className="bg-white/10 rounded-lg px-3 py-2 text-center">
-               <div className="text-lg font-bold">{sortedColleges.filter(c => c.overallChance !== 'Low').length}</div>
-               <div className="text-xs text-white/70">Safe + Dream</div>
+             <div className="bg-white/10 rounded-lg px-2 py-1.5 md:px-3 md:py-2 text-center">
+               <div className="text-sm md:text-lg font-bold">{sortedColleges.filter(c => c.overallChance !== 'Low').length}</div>
+               <div className="text-[9px] md:text-xs text-white/70">Safe+Dream</div>
              </div>
            </div>
          </CardContent>
        </Card>
  
        {/* Filters */}
-       <div className="flex flex-wrap gap-3">
-         <div className="flex-1 min-w-[200px]">
+       <div className="space-y-2 md:space-y-0 md:flex md:flex-wrap md:gap-3">
+         <div className="flex-1 min-w-0">
            <div className="relative">
              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
              <Input
@@ -763,22 +763,24 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
              />
            </div>
          </div>
-         <Select value={selectedDistrict} onValueChange={setSelectedDistrict}>
-           <SelectTrigger className="w-[180px]">
-             <MapPin className="h-4 w-4 mr-2" />
-             <SelectValue placeholder="District" />
-           </SelectTrigger>
-           <SelectContent>
-             <SelectItem value="all">All Districts</SelectItem>
-             {districts.map(d => (
-               <SelectItem key={d} value={d}>{d}</SelectItem>
-             ))}
-           </SelectContent>
-         </Select>
-         <Badge variant="outline" className="h-10 px-4 flex items-center gap-2 bg-green-50 text-green-700 border-green-300">
-           <Shield className="h-4 w-4" />
-           {sortedColleges.length} Colleges
-         </Badge>
+         <div className="flex gap-2 items-center">
+           <Select value={selectedDistrict} onValueChange={setSelectedDistrict}>
+             <SelectTrigger className="w-full md:w-[180px]">
+               <MapPin className="h-4 w-4 mr-1 flex-shrink-0" />
+               <SelectValue placeholder="District" />
+             </SelectTrigger>
+             <SelectContent>
+               <SelectItem value="all">All Districts</SelectItem>
+               {districts.map(d => (
+                 <SelectItem key={d} value={d}>{d}</SelectItem>
+               ))}
+             </SelectContent>
+           </Select>
+           <Badge variant="outline" className="h-10 px-2 md:px-4 flex items-center gap-1 md:gap-2 bg-green-50 text-green-700 border-green-300 whitespace-nowrap text-xs md:text-sm">
+             <Shield className="h-3.5 w-3.5 md:h-4 md:w-4" />
+             {sortedColleges.length}
+           </Badge>
+         </div>
        </div>
  
        {/* College Cards */}
@@ -792,60 +794,60 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
              <CardContent className="p-0">
                {/* College Header */}
                <div className={cn(
-                 'p-4 border-b',
+                 'p-3 md:p-4 border-b',
                  college.overallChance === 'High' ? 'bg-green-100 dark:bg-green-950/30' :
                  college.overallChance === 'Medium' ? 'bg-blue-50 dark:bg-blue-950/30' : 'bg-muted/50'
                )}>
-                 <div className="flex items-start justify-between gap-4">
-                   <div className="flex-1">
-                     <div className="flex items-center gap-2 mb-1 flex-wrap">
-                       <h4 className="font-semibold text-foreground">{college.name}</h4>
-                       {college.naacGrade && (
-                         <Badge variant="outline" className="text-xs">NAAC {college.naacGrade}</Badge>
+                 <div className="flex flex-col gap-2">
+                   <div className="flex items-start justify-between gap-2">
+                     <div className="flex-1 min-w-0">
+                       <h4 className="font-semibold text-sm md:text-base text-foreground leading-tight">{college.name}</h4>
+                       {college.nameTamil && (
+                         <p className="text-[10px] md:text-xs text-muted-foreground font-tamil mt-0.5">{college.nameTamil}</p>
                        )}
                      </div>
-                     {college.nameTamil && (
-                       <p className="text-xs text-muted-foreground font-tamil mb-2">{college.nameTamil}</p>
-                     )}
-                     <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-                       <span className="flex items-center gap-1">
-                         <MapPin className="h-3 w-3" /> {college.location}
-                       </span>
-                       <Badge className={`text-xs text-white ${college.type === 'Government' ? 'bg-green-600' : college.type === 'Aided' ? 'bg-blue-600' : 'bg-purple-600'}`}>🏛️ {college.type}</Badge>
-                       <span className="text-xs text-green-700 font-medium">
-                         {college.seats} {college.type === 'Government' ? 'Govt. Quota' : 'TNEA'} Seats
-                       </span>
-                       {college.nirfRank && (
-                         <span className="flex items-center gap-1">
-                           <Star className="h-3 w-3 text-yellow-500" /> NIRF #{college.nirfRank}
-                         </span>
-                       )}
+                     <div className="flex items-center gap-1 flex-shrink-0">
+                       <Button
+                         variant="ghost"
+                         size="icon"
+                         className={cn('h-8 w-8', savedColleges.includes(college.id) ? 'text-red-500' : '')}
+                         onClick={() => toggleSaveCollege(college.id)}
+                       >
+                         <Heart className={cn('h-4 w-4', savedColleges.includes(college.id) && 'fill-current')} />
+                       </Button>
+                       <div className={cn(
+                         'px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[10px] md:text-sm font-semibold whitespace-nowrap',
+                         college.overallChance === 'High' ? 'bg-green-100 text-green-700' :
+                         college.overallChance === 'Medium' ? 'bg-blue-100 text-blue-700' : 'bg-red-100 text-red-700'
+                       )}>
+                         {college.overallChance === 'High' ? '✅ Safe' :
+                          college.overallChance === 'Medium' ? '🎯 Dream' : '🔴 Reach'}
+                       </div>
                      </div>
                    </div>
-                   <div className="flex items-center gap-2">
-                     <Button
-                       variant="ghost"
-                       size="icon"
-                       onClick={() => toggleSaveCollege(college.id)}
-                       className={savedColleges.includes(college.id) ? 'text-red-500' : ''}
-                     >
-                       <Heart className={cn('h-5 w-5', savedColleges.includes(college.id) && 'fill-current')} />
-                     </Button>
-                     <div className={cn(
-                       'px-3 py-1 rounded-full text-sm font-semibold',
-                       college.overallChance === 'High' ? 'bg-green-100 text-green-700' :
-                       college.overallChance === 'Medium' ? 'bg-blue-100 text-blue-700' : 'bg-red-100 text-red-700'
-                     )}>
-                       {college.overallChance === 'High' ? '✅ Safe College' :
-                        college.overallChance === 'Medium' ? '🎯 Dream College' : '🔴 Reach College'}
-                     </div>
+                   <div className="flex flex-wrap items-center gap-1.5 md:gap-3 text-xs md:text-sm text-muted-foreground">
+                     <span className="flex items-center gap-1">
+                       <MapPin className="h-3 w-3" /> {college.location}
+                     </span>
+                     <Badge className={`text-[10px] md:text-xs text-white ${college.type === 'Government' ? 'bg-green-600' : college.type === 'Aided' ? 'bg-blue-600' : 'bg-purple-600'}`}>🏛️ {college.type}</Badge>
+                     {college.naacGrade && (
+                       <Badge variant="outline" className="text-[10px] md:text-xs">NAAC {college.naacGrade}</Badge>
+                     )}
+                     {college.nirfRank && (
+                       <span className="flex items-center gap-1 text-[10px] md:text-xs">
+                         <Star className="h-3 w-3 text-yellow-500" /> #{college.nirfRank}
+                       </span>
+                     )}
+                     <span className="text-[10px] md:text-xs text-green-700 font-medium">
+                       {college.seats} Seats
+                     </span>
                    </div>
                  </div>
  
                  {/* Cutoff Comparison */}
-                 <div className="mt-3 flex flex-wrap items-center gap-4 text-sm">
-                   <span>Your Cutoff: <strong className="text-primary">{college.userCutoff}</strong></span>
-                   <span>Last Year ({userCategory}): <strong>{college.collegeCutoff}</strong></span>
+                 <div className="mt-2 md:mt-3 flex flex-wrap items-center gap-2 md:gap-4 text-xs md:text-sm">
+                   <span>You: <strong className="text-primary">{college.userCutoff}</strong></span>
+                   <span>Last Yr ({userCategory}): <strong>{college.collegeCutoff}</strong></span>
                    <span className={cn(
                      'font-semibold',
                      college.userCutoff >= college.collegeCutoff ? 'text-green-600' : 'text-red-600'
@@ -858,14 +860,14 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
                </div>
  
                {/* Branch-wise Chances */}
-               <div className="p-4">
+               <div className="p-3 md:p-4">
                  <div className="text-sm font-medium text-muted-foreground mb-3">Available Branches:</div>
                  <div className="flex flex-wrap gap-2">
                    {college.branches.map((branch) => (
                      <div
                        key={branch.code}
                        className={cn(
-                         'px-3 py-2 rounded-lg text-sm border',
+                         'px-2 py-1.5 md:px-3 md:py-2 rounded-lg text-xs md:text-sm border',
                          branch.chance === 'High' ? 'bg-green-50 border-green-200 text-green-700' :
                          branch.chance === 'Medium' ? 'bg-yellow-50 border-yellow-200 text-yellow-700' : 
                          'bg-red-50 border-red-200 text-red-700'
@@ -878,7 +880,7 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
                  </div>
  
                  {/* College Stats */}
-                 <div className="mt-4 flex flex-wrap gap-4 text-sm">
+                 <div className="mt-3 md:mt-4 flex flex-wrap gap-2 md:gap-4 text-xs md:text-sm">
                    <div className="flex items-center gap-1 text-green-700 font-medium">
                      <IndianRupee className="h-4 w-4" />
                      <span>Fees: {college.annualFee}/year</span>

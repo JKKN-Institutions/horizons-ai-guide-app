@@ -170,10 +170,10 @@
    const collegesForCourse = selectedCourse ? collegeData[selectedCourse] || collegeData.arts_science : [];
  
    return (
-     <div className="bg-white rounded-xl shadow-sm border p-6 animate-fade-in">
-       <div className="mb-6">
+     <div className="bg-white rounded-xl shadow-sm border p-4 md:p-6 animate-fade-in">
+       <div className="mb-4 md:mb-6">
          <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-           🎓 Eligible Courses (Government Colleges - Free/Subsidized)
+           🎓 Eligible Courses
          </h3>
          <p className="text-sm text-gray-500 mt-1">
            அரசு கல்லூரிகள் - இலவச/மானிய கல்வி • Group {group}
@@ -182,7 +182,7 @@
  
        {/* Eligible Courses */}
        {eligibleCourses.length > 0 && (
-         <div className="mb-6">
+         <div className="mb-4 md:mb-6">
            <h4 className="text-sm font-semibold text-green-700 mb-3 flex items-center gap-2">
              ✅ ELIGIBLE ({eligibleCourses.length} courses)
            </h4>
@@ -192,7 +192,7 @@
                  key={course.id}
                  onClick={() => setSelectedCourse(course.id)}
                  className={cn(
-                   'p-4 rounded-xl border-2 text-left transition-all',
+                   'p-3 md:p-4 rounded-xl border-2 text-left transition-all',
                    getStatusBg(course.eligibilityStatus)
                  )}
                >
@@ -224,7 +224,7 @@
  
        {/* Borderline Courses */}
        {borderlineCourses.length > 0 && (
-         <div className="mb-6">
+         <div className="mb-4 md:mb-6">
            <h4 className="text-sm font-semibold text-yellow-700 mb-3 flex items-center gap-2">
              ⚠️ BORDERLINE ({borderlineCourses.length} courses)
            </h4>
@@ -234,7 +234,7 @@
                  key={course.id}
                  onClick={() => setSelectedCourse(course.id)}
                  className={cn(
-                   'p-4 rounded-xl border-2 text-left transition-all',
+                   'p-3 md:p-4 rounded-xl border-2 text-left transition-all',
                    getStatusBg(course.eligibilityStatus)
                  )}
                >
@@ -284,7 +284,7 @@
  
        {/* College Dialog */}
        <Dialog open={!!selectedCourse} onOpenChange={() => setSelectedCourse(null)}>
-         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+         <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto mx-2">
            <DialogHeader>
              <DialogTitle className="flex items-center gap-3">
                <span className="text-2xl">{selectedCourseData?.icon}</span>

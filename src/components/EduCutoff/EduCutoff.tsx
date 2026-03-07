@@ -103,13 +103,13 @@ export const EduCutoff = () => {
   return (
     <div className="space-y-4 md:space-y-8">
       {/* Premium Header Section */}
-      <div className="fresh-page-header rounded-2xl p-6 md:p-8 relative overflow-hidden">
+      <div className="fresh-page-header rounded-xl md:rounded-2xl p-4 md:p-8 relative overflow-hidden">
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center">
               <Calculator className="h-5 w-5 md:h-6 md:w-6 text-white" />
             </div>
-            <h2 className="text-lg md:text-2xl lg:text-3xl font-serif font-bold text-white whitespace-nowrap">Cutoff & College Predictor</h2>
+            <h2 className="text-base md:text-2xl lg:text-3xl font-serif font-bold text-white">Cutoff & College Predictor</h2>
           </div>
           <p className="text-fresh-gold-medium text-sm md:text-lg mb-1 font-tamil">கல்வி கட்ஆஃப் - அனைத்து மாணவர்களுக்கும்</p>
           <p className="text-white/90 text-xs md:text-sm mb-4 md:mb-6">

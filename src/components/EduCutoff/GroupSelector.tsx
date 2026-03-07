@@ -156,27 +156,27 @@ export const GroupSelector = ({ selectedGroup, onSelectGroup }: GroupSelectorPro
               <button
                 onClick={() => setExpandedCategory(isExpanded ? null : cat.category)}
                 className={cn(
-                  'w-full p-4 text-left transition-all duration-200 flex items-center justify-between',
+                  'w-full p-3 md:p-4 text-left transition-all duration-200 flex items-center justify-between gap-2',
                   hasSelectedGroup ? `${cat.bgColor} ${cat.color}` : 'hover:bg-gray-50'
                 )}
               >
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">{cat.icon}</span>
-                  <div>
-                    <h4 className="font-semibold text-sm">{cat.title}</h4>
-                    <p className="text-xs text-gray-500">{cat.titleTamil} • {cat.series}</p>
+                <div className="flex items-center gap-2 md:gap-3 min-w-0">
+                  <span className="text-xl md:text-2xl flex-shrink-0">{cat.icon}</span>
+                  <div className="min-w-0">
+                    <h4 className="font-semibold text-xs md:text-sm">{cat.title}</h4>
+                    <p className="text-[10px] md:text-xs text-gray-500 truncate">{cat.titleTamil} • {cat.series}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  {cat.category === 'science_maths' && <span className="text-[10px] bg-blue-100 text-blue-700 border border-blue-300 px-2 py-0.5 rounded-full font-bold whitespace-nowrap">CUTOFF NEEDED</span>}
-                  {cat.category === 'science_bio' && <span className="text-[10px] bg-amber-100 text-amber-700 border border-amber-300 px-2 py-0.5 rounded-full font-bold whitespace-nowrap">NEET NEEDED</span>}
-                  {(cat.category === 'commerce' || cat.category === 'arts') && <span className="text-[10px] bg-green-100 text-green-700 border border-green-300 px-2 py-0.5 rounded-full font-bold whitespace-nowrap">NO CUTOFF</span>}
+                <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
+                  {cat.category === 'science_maths' && <span className="text-[8px] md:text-[10px] bg-blue-100 text-blue-700 border border-blue-300 px-1.5 md:px-2 py-0.5 rounded-full font-bold whitespace-nowrap">CUTOFF</span>}
+                  {cat.category === 'science_bio' && <span className="text-[8px] md:text-[10px] bg-amber-100 text-amber-700 border border-amber-300 px-1.5 md:px-2 py-0.5 rounded-full font-bold whitespace-nowrap">NEET</span>}
+                  {(cat.category === 'commerce' || cat.category === 'arts') && <span className="text-[8px] md:text-[10px] bg-green-100 text-green-700 border border-green-300 px-1.5 md:px-2 py-0.5 rounded-full font-bold whitespace-nowrap">NO CUTOFF</span>}
                   {hasSelectedGroup && (
-                    <span className="text-xs bg-white/80 px-2 py-1 rounded font-medium">
+                    <span className="text-[10px] md:text-xs bg-white/80 px-1.5 md:px-2 py-0.5 md:py-1 rounded font-medium">
                       {selectedGroup}
                     </span>
                   )}
-                  {isExpanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+                  {isExpanded ? <ChevronUp className="h-4 w-4 md:h-5 md:w-5" /> : <ChevronDown className="h-4 w-4 md:h-5 md:w-5" />}
                 </div>
               </button>
 
@@ -245,19 +245,18 @@ export const GroupSelector = ({ selectedGroup, onSelectGroup }: GroupSelectorPro
 
       {/* Selected Group Info - Enhanced with all subjects as tags */}
       {selectedInfo && (
-        <div className={cn('mt-4 p-4 rounded-xl border-2', selectedInfo.category.color, selectedInfo.category.bgColor)}>
-          <div className="flex items-start gap-3">
-            <span className="text-3xl">{selectedInfo.group.icon}</span>
-            <div className="flex-1">
-              <h4 className="font-bold text-lg">
+        <div className={cn('mt-4 p-3 md:p-4 rounded-xl border-2', selectedInfo.category.color, selectedInfo.category.bgColor)}>
+          <div className="flex items-start gap-2 md:gap-3">
+            <span className="text-2xl md:text-3xl flex-shrink-0">{selectedInfo.group.icon}</span>
+            <div className="flex-1 min-w-0">
+              <h4 className="font-bold text-sm md:text-lg">
                 {selectedInfo.group.code} — {groupCourseName[selectedInfo.group.id] || selectedInfo.group.name}
               </h4>
-              {/* All subjects displayed clearly */}
-              <p className="text-sm mt-1">
+              <p className="text-xs md:text-sm mt-1">
                 <strong>Subjects:</strong> {selectedInfo.group.subjects.join(', ')}
               </p>
-              <p className="text-sm text-gray-600 mt-2">
-                <strong>+ Common:</strong> Tamil/Hindi (Part I) + English (Part II) — Compulsory
+              <p className="text-[10px] md:text-sm text-gray-600 mt-1 md:mt-2">
+                <strong>+ Common:</strong> Tamil/Hindi (Part I) + English (Part II)
               </p>
               <div className="mt-2 flex flex-wrap gap-1">
                 {selectedInfo.category.careers.slice(0, 5).map((career, idx) => (

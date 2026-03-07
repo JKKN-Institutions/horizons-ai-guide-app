@@ -97,32 +97,34 @@ export const CutoffResults = ({ result, group, marks, category }: CutoffResultsP
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border p-6 animate-fade-in">
-      <div className="mb-6 flex items-start justify-between">
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-            🎯 Your Eligibility Results (Group {group})
-          </h3>
-          <p className="text-sm text-gray-500 mt-1">
-            உங்கள் தகுதி முடிவுகள்
-          </p>
+    <div className="bg-white rounded-xl shadow-sm border p-4 md:p-6 animate-fade-in">
+      <div className="mb-4 md:mb-6">
+        <div className="flex items-start justify-between gap-2">
+          <div>
+            <h3 className="text-base md:text-lg font-semibold text-gray-900 flex items-center gap-2">
+              🎯 Your Results (Group {group})
+            </h3>
+            <p className="text-xs md:text-sm text-gray-500 mt-1">
+              உங்கள் தகுதி முடிவுகள்
+            </p>
+          </div>
+          <Button
+            onClick={handleDownloadPDF}
+            variant="outline"
+            size="sm"
+            className="flex-shrink-0 flex items-center gap-1.5 text-xs md:text-sm text-violet-600 border-violet-300 hover:bg-violet-50 px-2.5 md:px-3"
+          >
+            <Download className="h-3.5 w-3.5 md:h-4 md:w-4" />
+            <span className="hidden sm:inline">Download</span> PDF
+          </Button>
         </div>
-        <Button
-          onClick={handleDownloadPDF}
-          variant="outline"
-          size="sm"
-          className="flex items-center gap-2 text-violet-600 border-violet-300 hover:bg-violet-50"
-        >
-          <Download className="h-4 w-4" />
-          Download PDF
-        </Button>
       </div>
 
       {/* ─── CLEAR MESSAGE FOR ARTS/COMMERCE: NO CUTOFF ─── */}
       {(groupCategory === 'commerce' || groupCategory === 'arts') && (
-        <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-xl p-5 mb-5">
-          <div className="flex items-start gap-3">
-            <span className="text-3xl">✅</span>
+        <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-xl p-3 md:p-5 mb-4 md:mb-5">
+          <div className="flex items-start gap-2 md:gap-3">
+            <span className="text-2xl md:text-3xl">✅</span>
             <div>
               <h4 className="font-bold text-green-800 text-base mb-1">
                 No Cutoff Needed for {groupCategory === 'arts' ? 'Arts/Humanities' : 'Commerce'} Students!
@@ -150,9 +152,9 @@ export const CutoffResults = ({ result, group, marks, category }: CutoffResultsP
 
       {/* ─── NEET MESSAGE FOR BIO STUDENTS ─── */}
       {groupCategory === 'science_bio' && (
-        <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-300 rounded-xl p-5 mb-5">
-          <div className="flex items-start gap-3">
-            <span className="text-3xl">🩺</span>
+        <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-300 rounded-xl p-3 md:p-5 mb-4 md:mb-5">
+          <div className="flex items-start gap-2 md:gap-3">
+            <span className="text-2xl md:text-3xl">🩺</span>
             <div>
               <h4 className="font-bold text-amber-800 text-base mb-1">
                 Medical Admission = NEET Score (Not 12th Cutoff!)
@@ -221,11 +223,11 @@ export const CutoffResults = ({ result, group, marks, category }: CutoffResultsP
       </div>
 
       {/* ─── FORMULA BOX ─── */}
-      <div className="bg-gray-50 rounded-lg p-4 border">
-        <div className="text-sm font-medium text-gray-700 mb-2">
+      <div className="bg-gray-50 rounded-lg p-3 md:p-4 border overflow-x-auto">
+        <div className="text-xs md:text-sm font-medium text-gray-700 mb-2">
           {(groupCategory === 'commerce' || groupCategory === 'arts') ? 'ADMISSION METHOD:' : 'FORMULA USED:'}
         </div>
-        <pre className="text-sm text-gray-600 whitespace-pre-wrap font-mono">
+        <pre className="text-[11px] md:text-sm text-gray-600 whitespace-pre-wrap font-mono leading-relaxed">
           {getFormulaText()}
         </pre>
       </div>
