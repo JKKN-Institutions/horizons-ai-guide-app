@@ -25,7 +25,6 @@ const navItems: NavItem[] = [
   { id: 'scholarships', label: 'Scholarships', shortLabel: 'Scholarships', icon: Bookmark, activeColor: 'text-white', activeBg: 'bg-amber-600', route: '/career-assessment/colleges/scholarships' },
   { id: 'educutoff', label: 'Cutoff & Predictor', shortLabel: 'Cutoff', icon: Calculator, activeColor: 'text-white', activeBg: 'bg-purple-700', route: '/career-assessment/colleges/educutoff' },
   { id: 'entranceexams', label: 'Entrance Exams', shortLabel: 'Exams', icon: FileText, activeColor: 'text-white', activeBg: 'bg-orange-700', route: '/career-assessment/colleges/entrance-exams' },
-  { id: 'pyq', label: 'Previous Year Q', shortLabel: 'PYQ', icon: BookOpen, activeColor: 'text-white', activeBg: 'bg-red-700', route: '/career-assessment/colleges/pyq', isNew: true },
   { id: 'govtjobs', label: 'Govt Jobs', shortLabel: 'Govt Jobs', icon: Landmark, activeColor: 'text-white', activeBg: 'bg-stone-700', route: '/career-assessment/colleges/govt-jobs', isNew: true },
   { id: 'tnuniversity', label: 'TN University', shortLabel: 'TN Univ', icon: School, activeColor: 'text-white', activeBg: 'bg-violet-700', route: '/career-assessment/colleges/tn-university', isNew: true },
   { id: 'courseexplorer', label: 'Course Explorer', shortLabel: 'Courses', icon: Compass, activeColor: 'text-white', activeBg: 'bg-cyan-700', route: '/career-assessment/colleges/course-explorer', isNew: true },

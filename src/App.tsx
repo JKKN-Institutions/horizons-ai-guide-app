@@ -114,7 +114,7 @@ function App() {
                 <Route path="/career-assessment/colleges/scholarships" element={<ScholarshipsPage />} />
                 <Route path="/career-assessment/colleges/educutoff" element={<EduCutoffPage />} />
                 <Route path="/career-assessment/colleges/entrance-exams" element={<EntranceExamsPage />} />
-                <Route path="/career-assessment/colleges/pyq" element={<PYQPage />} />
+                <Route path="/career-assessment/colleges/pyq" element={<EntranceExamsPage />} />
                 <Route path="/career-assessment/colleges/govt-jobs" element={<GovtJobsPage />} />
                 <Route path="/career-assessment/colleges/tn-university" element={<TNUniversityPage />} />
                 <Route path="/career-assessment/colleges/course-explorer" element={<CourseExplorerPage />} />
