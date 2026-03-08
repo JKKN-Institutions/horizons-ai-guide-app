@@ -468,6 +468,94 @@ const GovernmentExams = () => {
         </div>
 
         {/* ═══════════════════════════════════════════════
+             📅 TNPSC 2026 ANNUAL PLANNER — THE CENTERPIECE
+           ═══════════════════════════════════════════════ */}
+        {!searchQuery && (
+          <div className="mb-6">
+            <div className="bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 rounded-2xl overflow-hidden shadow-xl shadow-purple-200/50 dark:shadow-none">
+              {/* Planner Header */}
+              <div className="p-4 pb-3">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center text-sm">🏛️</div>
+                  <div>
+                    <h2 className="text-sm font-black text-white tracking-tight">{ta ? 'TNPSC 2026 வருடாந்திர திட்டம்' : 'TNPSC 2026 Annual Planner'}</h2>
+                    <p className="text-[9px] text-white/50 font-medium">{ta ? 'வெளியிட்ட தேதி: 03.12.2025 | tnpsc.gov.in' : 'Published: 03.12.2025 | tnpsc.gov.in'}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Exam Timeline Cards */}
+              <div className="px-3 pb-3 space-y-1.5">
+                {[
+                  { id: 'tnpsc-cts-non-interview', sno: 1, name: ta ? 'CTS (நேர்காணல் அல்லாத)' : 'CTS (Non-Interview Posts)', nameFull: 'Combined Technical Services', notify: '20.05.2026', exam: '03.08.2026', days: 7, qual: ta ? 'பி.இ./பி.டெக்' : 'B.E./B.Tech', color: 'from-cyan-400 to-blue-500' },
+                  { id: 'tnpsc-group1', sno: 2, name: ta ? 'குரூப் I (CCSE-I)' : 'Group I (CCSE-I)', nameFull: 'Combined Civil Services – I', notify: '23.06.2026', exam: '06.09.2026', days: 1, qual: ta ? 'பட்டப்படிப்பு' : 'Any Degree', color: 'from-amber-400 to-orange-500' },
+                  { id: 'tnpsc-cts-diploma', sno: 3, name: ta ? 'CTS (டிப்ளோமா/ITI)' : 'CTS (Diploma/ITI Level)', nameFull: 'Combined Technical Services', notify: '07.07.2026', exam: '20.09.2026', days: 7, qual: ta ? 'டிப்ளோமா/ITI' : 'Diploma/ITI', color: 'from-teal-400 to-emerald-500' },
+                  { id: 'tnpsc-group2', sno: 4, name: ta ? 'குரூப் II & IIA (CCSE-II)' : 'Group II & IIA (CCSE-II)', nameFull: 'Combined Civil Services – II', notify: '11.08.2026', exam: '25.10.2026', days: 1, qual: ta ? 'பட்டப்படிப்பு' : 'Any Degree', color: 'from-rose-400 to-pink-500' },
+                  { id: 'tnpsc-cts-interview', sno: 5, name: ta ? 'CTS (நேர்காணல்)' : 'CTS (Interview Posts)', nameFull: 'Combined Technical Services', notify: '31.08.2026', exam: '14.11.2026', days: 4, qual: ta ? 'பி.இ./பி.டெக்' : 'B.E./B.Tech', color: 'from-blue-400 to-indigo-500' },
+                  { id: 'tnpsc-group4', sno: 6, name: ta ? 'குரூப் IV (CCSE-IV)' : 'Group IV (CCSE-IV)', nameFull: 'Combined Civil Services – IV', notify: '06.10.2026', exam: '20.12.2026', days: 1, qual: ta ? 'SSLC/12th' : 'SSLC/12th Pass', color: 'from-emerald-400 to-green-500' },
+                ].map((item) => {
+                  const detail = getExamDetailLink(item.id);
+                  return (
+                    <motion.div
+                      key={item.sno}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: item.sno * 0.06 }}
+                      className="bg-white/10 backdrop-blur-sm hover:bg-white/15 rounded-xl p-3 transition-all cursor-pointer border border-white/5"
+                      onClick={() => detail ? navigate(`/government-exams/${detail.categoryId}/${detail.examId}`) : null}
+                    >
+                      <div className="flex items-start gap-2.5">
+                        {/* Number badge */}
+                        <div className={cn("w-7 h-7 rounded-lg flex items-center justify-center text-[11px] font-black text-white bg-gradient-to-br flex-shrink-0 shadow-md", item.color)}>
+                          {item.sno}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          {/* Exam name */}
+                          <p className="text-[12px] font-bold text-white leading-tight">{item.name}</p>
+                          <p className="text-[9px] text-white/40 mb-1.5">{item.qual}</p>
+                          {/* Dates row */}
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="inline-flex items-center gap-1 text-[9px] font-semibold text-amber-300 bg-amber-400/15 px-1.5 py-0.5 rounded">
+                              <FileText className="w-2.5 h-2.5" /> {ta ? 'அறிவிப்பு' : 'Notify'}: {item.notify}
+                            </span>
+                            <span className="inline-flex items-center gap-1 text-[9px] font-semibold text-emerald-300 bg-emerald-400/15 px-1.5 py-0.5 rounded">
+                              <CalendarClock className="w-2.5 h-2.5" /> {ta ? 'தேர்வு' : 'Exam'}: {item.exam}
+                            </span>
+                            <span className="text-[9px] font-semibold text-white/40 bg-white/5 px-1.5 py-0.5 rounded">
+                              {item.days} {ta ? 'நாட்கள்' : item.days === 1 ? 'Day' : 'Days'}
+                            </span>
+                          </div>
+                        </div>
+                        <ChevronRight className="w-3.5 h-3.5 text-white/30 flex-shrink-0 mt-1" />
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* Planner footer */}
+              <div className="px-4 pb-3">
+                <div className="bg-white/5 rounded-lg px-3 py-2 flex items-start gap-2">
+                  <AlertTriangle className="w-3 h-3 text-amber-400 mt-0.5 flex-shrink-0" />
+                  <p className="text-[9px] text-white/40 leading-relaxed">
+                    {ta
+                      ? 'இது தற்காலிக திட்டம். தேதிகள் மாறலாம். அறிவிப்பு வெளியாகும் வரை tnpsc.gov.in பார்வையிடவும்.'
+                      : 'Tentative planner. Dates may change. Check tnpsc.gov.in for official notifications.'}
+                  </p>
+                </div>
+                <Button
+                  size="sm"
+                  className="w-full mt-2 h-9 bg-white/10 hover:bg-white/20 text-white text-[11px] font-bold rounded-xl border border-white/10"
+                  onClick={() => window.open('https://tnpsc.gov.in', '_blank')}
+                >
+                  <ExternalLink className="w-3 h-3 mr-1.5" /> {ta ? 'TNPSC அதிகாரப்பூர்வ தளம்' : 'Visit TNPSC Official Website'}
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ═══════════════════════════════════════════════
              🔥 OPEN APPLICATIONS — URGENCY SECTION
            ═══════════════════════════════════════════════ */}
         {openExams.length > 0 && !searchQuery && (

@@ -841,6 +841,183 @@ const stateExams: Exam[] = [
       ]
     },
     pyq: []
+  },
+  // ==================== TNPSC 2026 ANNUAL PLANNER EXAMS ====================
+  {
+    id: 'tnpsc-group1',
+    name: 'TNPSC Group I (CCSE-I)',
+    nameTamil: 'TNPSC குரூப் I (CCSE-I)',
+    qualification: 'Any Degree',
+    qualificationTamil: 'ஏதேனும் பட்டப்படிப்பு',
+    age: '21 - 37 years (varies by community)',
+    salary: '₹56,100 - ₹2,11,500/month',
+    selectionProcess: 'Prelims → Mains → Interview',
+    selectionProcessTamil: 'முதல் நிலை → முதன்மை → நேர்காணல்',
+    posts: ['Deputy Collector', 'DSP', 'Assistant Commissioner', 'District Registrar', 'RTO', 'Asst Director of Agriculture'],
+    postsTamil: ['துணை ஆட்சியர்', 'DSP', 'உதவி ஆணையர்', 'மாவட்ட பதிவாளர்', 'RTO', 'உதவி விவசாய இயக்குநர்'],
+    examPattern: [
+      { paper: 'Preliminary (CSSE-I)', paperTamil: 'முதல்நிலை (CSSE-I)', marks: 200, duration: '3 hours', questions: 200 },
+      { paper: 'Main Exam - Paper I (General Studies)', paperTamil: 'முதன்மை - தாள் I (பொது அறிவு)', marks: 300, duration: '3 hours', questions: 0 },
+      { paper: 'Main Exam - Paper II (Aptitude)', paperTamil: 'முதன்மை - தாள் II (திறன்)', marks: 300, duration: '3 hours', questions: 0 },
+      { paper: 'Main Exam - Paper III (GS-II)', paperTamil: 'முதன்மை - தாள் III (பொது அறிவு-II)', marks: 300, duration: '3 hours', questions: 0 }
+    ],
+    syllabus: {
+      prelims: [
+        {
+          name: 'Preliminary Exam (200 Questions, 3 Hours)',
+          nameTamil: 'முதல்நிலை தேர்வு (200 கேள்விகள், 3 மணி நேரம்)',
+          topics: [
+            { name: 'General Science', nameTamil: 'பொது அறிவியல்', subtopics: ['Physics', 'Chemistry', 'Biology', 'Environment & Ecology'] },
+            { name: 'Current Events', nameTamil: 'நடப்பு நிகழ்வுகள்', subtopics: ['National & International', 'Tamil Nadu Events', 'Sports', 'Awards & Honours'] },
+            { name: 'Geography', nameTamil: 'புவியியல்', subtopics: ['Indian Geography', 'Tamil Nadu Geography', 'Physical Geography', 'Climate & Resources'] },
+            { name: 'History & Culture', nameTamil: 'வரலாறு & பண்பாடு', subtopics: ['Indian History', 'Tamil Nadu History', 'Indian Culture', 'Sangam Age', 'Freedom Movement'] },
+            { name: 'Indian Polity', nameTamil: 'இந்திய அரசியல்', subtopics: ['Constitution', 'Union & State Government', 'Panchayati Raj', 'Election Commission', 'Fundamental Rights'] },
+            { name: 'Indian Economy', nameTamil: 'இந்திய பொருளாதாரம்', subtopics: ['Planning', 'Banking', 'Budget', 'Economic Reforms', 'GDP & Growth'] },
+            { name: 'Aptitude & Mental Ability', nameTamil: 'திறன் & மன திறன்', subtopics: ['Number Series', 'Logical Reasoning', 'Data Interpretation', 'Analytical Ability'] }
+          ]
+        }
+      ],
+      mains: [
+        {
+          name: 'Main Exam Papers (Descriptive)',
+          nameTamil: 'முதன்மை தேர்வு (விரிவான)',
+          topics: [
+            { name: 'Paper I: Role & Impact of Science & Technology', nameTamil: 'தாள் I: அறிவியல் & தொழில்நுட்பம்', subtopics: ['Science & Tech in everyday life', 'IT & Communications', 'Energy Resources', 'Environmental Issues', 'Bio-Technology', 'Space Technology'] },
+            { name: 'Paper II: Aptitude & CSAT', nameTamil: 'தாள் II: திறன் & CSAT', subtopics: ['Comprehension', 'Logical Reasoning', 'Analytical Ability', 'Data Interpretation', 'Decision Making'] },
+            { name: 'Paper III: General Studies', nameTamil: 'தாள் III: பொது அறிவு', subtopics: ['Indian & TN History', 'Constitution & Polity', 'Geography', 'Economy', 'Indian Society'] }
+          ]
+        }
+      ]
+    },
+    pyq: [
+      { id: 'g1-gs-1', question: 'The first session of Indian National Congress was held at:', questionTamil: 'இந்திய தேசிய காங்கிரசின் முதல் கூட்டம் நடைபெற்ற இடம்:', options: ['Calcutta', 'Bombay', 'Madras', 'Allahabad'], optionsTamil: ['கல்கத்தா', 'பம்பாய்', 'மெட்ராஸ்', 'அலகாபாத்'], answer: 1, explanation: 'The first session of INC was held in Bombay (1885) under W.C. Bonnerjee', explanationTamil: 'INC முதல் கூட்டம் 1885 இல் பம்பாயில் W.C. பானர்ஜி தலைமையில் நடைபெற்றது', subject: 'Indian History', difficulty: 'easy' },
+      { id: 'g1-gs-2', question: 'Article 370 of Indian Constitution was related to:', questionTamil: 'இந்திய அரசியலமைப்பின் 370 சட்டப்பிரிவு தொடர்புடையது:', options: ['Jammu & Kashmir', 'Nagaland', 'Sikkim', 'Goa'], optionsTamil: ['ஜம்மு & காஷ்மீர்', 'நாகாலாந்து', 'சிக்கிம்', 'கோவா'], answer: 0, explanation: 'Article 370 granted special autonomous status to Jammu & Kashmir', explanationTamil: 'சட்டப்பிரிவு 370 ஜம்மு & காஷ்மீருக்கு சிறப்பு தன்னாட்சி அந்தஸ்தை வழங்கியது', subject: 'Indian Polity', difficulty: 'medium' },
+      { id: 'g1-gs-3', question: 'Which Five Year Plan adopted the Mahalanobis Model?', questionTamil: 'எந்த ஐந்தாண்டு திட்டம் மகலனோபிஸ் மாதிரியை ஏற்றுக்கொண்டது?', options: ['First', 'Second', 'Third', 'Fourth'], optionsTamil: ['முதல்', 'இரண்டாவது', 'மூன்றாவது', 'நான்காவது'], answer: 1, explanation: 'Second Five Year Plan (1956-61) was based on Mahalanobis Model emphasizing industrialization', explanationTamil: 'இரண்டாவது ஐந்தாண்டுத் திட்டம் (1956-61) தொழில்மயமாக்கலை வலியுறுத்தும் மகலனோபிஸ் மாதிரியை அடிப்படையாகக் கொண்டது', subject: 'Indian Economy', difficulty: 'medium' }
+    ]
+  },
+  {
+    id: 'tnpsc-group2',
+    name: 'TNPSC Group II & IIA (CCSE-II)',
+    nameTamil: 'TNPSC குரூப் II & IIA (CCSE-II)',
+    qualification: 'Any Degree',
+    qualificationTamil: 'ஏதேனும் பட்டப்படிப்பு',
+    age: '18 - 32 years',
+    salary: '₹36,900 - ₹1,20,000/month',
+    selectionProcess: 'Written Exam → Interview (Group II) / CV (Group IIA)',
+    selectionProcessTamil: 'எழுத்துத் தேர்வு → நேர்காணல் (குரூப் II) / சான்றிதழ் சரிபார்ப்பு (குரூப் IIA)',
+    posts: ['Sub-Registrar', 'Assistant Section Officer', 'Probation Officer', 'Revenue Inspector', 'Supervisor of Industrial Co-operatives'],
+    postsTamil: ['துணை பதிவாளர்', 'உதவி பிரிவு அலுவலர்', 'தகுதிகாண் அலுவலர்', 'வருவாய் ஆய்வாளர்', 'தொழில் கூட்டுறவு மேற்பார்வையாளர்'],
+    examPattern: [
+      { paper: 'Combined Paper (Group II + IIA)', paperTamil: 'ஒருங்கிணைந்த தாள்', marks: 300, duration: '3 hours', questions: 200 }
+    ],
+    syllabus: {
+      main: [
+        {
+          name: 'CCSE-II Syllabus (200 Questions, 3 Hours)',
+          nameTamil: 'CCSE-II பாடத்திட்டம் (200 கேள்விகள், 3 மணி நேரம்)',
+          topics: [
+            { name: 'Tamil Eligibility (100 Questions)', nameTamil: 'தமிழ் தகுதி (100 கேள்விகள்)', subtopics: ['Tamil Grammar (இலக்கணம்)', 'Tamil Literature (இலக்கியம்)', 'Comprehension & Translation', 'Sangam Literature', 'Thirukkural', 'Modern Tamil Literature'] },
+            { name: 'General Studies (75 Questions)', nameTamil: 'பொது அறிவு (75 கேள்விகள்)', subtopics: ['Indian History & TN History', 'Indian & TN Geography', 'Indian Polity & Governance', 'Indian Economy', 'General Science', 'Current Affairs'] },
+            { name: 'Aptitude & Mental Ability (25 Questions)', nameTamil: 'திறன் & மன திறன் (25 கேள்விகள்)', subtopics: ['Number Series', 'Coding-Decoding', 'Blood Relations', 'Direction Sense', 'Logical Reasoning', 'Data Interpretation'] }
+          ]
+        }
+      ]
+    },
+    pyq: [
+      { id: 'g2-gs-1', question: 'The Pallava dynasty capital was:', questionTamil: 'பல்லவ வம்சத்தின் தலைநகரம்:', options: ['Madurai', 'Kanchipuram', 'Thanjavur', 'Trichy'], optionsTamil: ['மதுரை', 'காஞ்சிபுரம்', 'தஞ்சாவூர்', 'திருச்சி'], answer: 1, explanation: 'Kanchipuram was the capital of Pallava dynasty', explanationTamil: 'காஞ்சிபுரம் பல்லவ வம்சத்தின் தலைநகரமாக இருந்தது', subject: 'Tamil Nadu History', difficulty: 'easy' },
+      { id: 'g2-gs-2', question: 'Article 21 of Indian Constitution deals with:', questionTamil: 'இந்திய அரசியலமைப்பின் சட்டப்பிரிவு 21 தொடர்புடையது:', options: ['Right to Equality', 'Right to Life & Liberty', 'Right to Education', 'Right to Property'], optionsTamil: ['சமத்துவ உரிமை', 'உயிர் & சுதந்திர உரிமை', 'கல்வி உரிமை', 'சொத்துரிமை'], answer: 1, explanation: 'Article 21 guarantees Right to Life and Personal Liberty', explanationTamil: 'சட்டப்பிரிவு 21 உயிர் வாழும் உரிமை மற்றும் தனிப்பட்ட சுதந்திரத்தை உறுதி செய்கிறது', subject: 'Indian Polity', difficulty: 'easy' }
+    ]
+  },
+  {
+    id: 'tnpsc-cts-non-interview',
+    name: 'TNPSC CTS (Non-Interview Posts)',
+    nameTamil: 'TNPSC CTS (நேர்காணல் அல்லாத பதவிகள்)',
+    qualification: 'B.E./B.Tech',
+    qualificationTamil: 'பி.இ./பி.டெக்',
+    age: '18 - 30 years',
+    salary: '₹36,900 - ₹1,17,100/month',
+    selectionProcess: 'Written Exam → Certificate Verification',
+    selectionProcessTamil: 'எழுத்துத் தேர்வு → சான்றிதழ் சரிபார்ப்பு',
+    posts: ['Assistant Engineer', 'Junior Engineer', 'Technical Officer'],
+    postsTamil: ['உதவி பொறியாளர்', 'இளநிலை பொறியாளர்', 'தொழில்நுட்ப அலுவலர்'],
+    examPattern: [
+      { paper: 'Technical Paper', paperTamil: 'தொழில்நுட்ப தாள்', marks: 300, duration: '3 hours', questions: 200 }
+    ],
+    syllabus: {
+      main: [
+        {
+          name: 'CTS Non-Interview Syllabus',
+          nameTamil: 'CTS நேர்காணல் அல்லாத பாடத்திட்டம்',
+          topics: [
+            { name: 'General Studies', nameTamil: 'பொது அறிவு', subtopics: ['Current Affairs', 'Indian Polity', 'Geography', 'History', 'Economy', 'Science'] },
+            { name: 'Engineering Subject', nameTamil: 'பொறியியல் பாடம்', subtopics: ['Civil / Mechanical / Electrical / Electronics as per post', 'Technical Fundamentals', 'Applied Engineering'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', subtopics: ['Quantitative Aptitude', 'Reasoning', 'Data Interpretation'] }
+          ]
+        }
+      ]
+    },
+    pyq: []
+  },
+  {
+    id: 'tnpsc-cts-diploma',
+    name: 'TNPSC CTS (Diploma/ITI Level)',
+    nameTamil: 'TNPSC CTS (டிப்ளோமா/ITI நிலை)',
+    qualification: 'Diploma / ITI',
+    qualificationTamil: 'டிப்ளோமா / ITI',
+    age: '18 - 30 years',
+    salary: '₹20,000 - ₹72,000/month',
+    selectionProcess: 'Written Exam → Certificate Verification',
+    selectionProcessTamil: 'எழுத்துத் தேர்வு → சான்றிதழ் சரிபார்ப்பு',
+    posts: ['Junior Draughtsman', 'Supervisor', 'Overseer', 'Junior Inspector'],
+    postsTamil: ['இளநிலை வரைவாளர்', 'மேற்பார்வையாளர்', 'ஓவர்சீயர்', 'இளநிலை ஆய்வாளர்'],
+    examPattern: [
+      { paper: 'Technical Paper', paperTamil: 'தொழில்நுட்ப தாள்', marks: 300, duration: '3 hours', questions: 200 }
+    ],
+    syllabus: {
+      main: [
+        {
+          name: 'CTS Diploma/ITI Syllabus',
+          nameTamil: 'CTS டிப்ளோமா/ITI பாடத்திட்டம்',
+          topics: [
+            { name: 'General Studies', nameTamil: 'பொது அறிவு', subtopics: ['Current Affairs', 'Indian Polity', 'Geography', 'History', 'Science'] },
+            { name: 'Technical Subject', nameTamil: 'தொழில்நுட்ப பாடம்', subtopics: ['Diploma-level Engineering Subjects', 'Workshop Technology', 'Technical Drawing', 'Applied Sciences'] },
+            { name: 'Aptitude', nameTamil: 'திறன்', subtopics: ['Quantitative Aptitude', 'Reasoning', 'Mental Ability'] }
+          ]
+        }
+      ]
+    },
+    pyq: []
+  },
+  {
+    id: 'tnpsc-cts-interview',
+    name: 'TNPSC CTS (Interview Posts)',
+    nameTamil: 'TNPSC CTS (நேர்காணல் பதவிகள்)',
+    qualification: 'B.E./B.Tech',
+    qualificationTamil: 'பி.இ./பி.டெக்',
+    age: '21 - 37 years',
+    salary: '₹56,100 - ₹1,77,500/month',
+    selectionProcess: 'Written Exam → Interview → Certificate Verification',
+    selectionProcessTamil: 'எழுத்துத் தேர்வு → நேர்காணல் → சான்றிதழ் சரிபார்ப்பு',
+    posts: ['Assistant Executive Engineer', 'Executive Engineer', 'Assistant Director'],
+    postsTamil: ['உதவி செயற்பொறியாளர்', 'செயற்பொறியாளர்', 'உதவி இயக்குநர்'],
+    examPattern: [
+      { paper: 'Technical Paper', paperTamil: 'தொழில்நுட்ப தாள்', marks: 300, duration: '3 hours', questions: 200 },
+      { paper: 'Oral Test (Interview)', paperTamil: 'வாய்மொழி தேர்வு (நேர்காணல்)', marks: 100, duration: '20-30 mins', questions: 0 }
+    ],
+    syllabus: {
+      main: [
+        {
+          name: 'CTS Interview Posts Syllabus',
+          nameTamil: 'CTS நேர்காணல் பதவிகள் பாடத்திட்டம்',
+          topics: [
+            { name: 'General Studies', nameTamil: 'பொது அறிவு', subtopics: ['Current Affairs', 'Indian Polity', 'Geography', 'History', 'Economy'] },
+            { name: 'Engineering Subject (Advanced)', nameTamil: 'பொறியியல் பாடம் (மேம்பட்ட)', subtopics: ['Advanced Civil / Mechanical / Electrical / Electronics', 'Design & Analysis', 'Project Management'] },
+            { name: 'Aptitude & Interview Prep', nameTamil: 'திறன் & நேர்காணல் தயாரிப்பு', subtopics: ['Quantitative Aptitude', 'Logical Reasoning', 'Communication Skills', 'Domain Knowledge'] }
+          ]
+        }
+      ]
+    },
+    pyq: []
   }
 ];
 
