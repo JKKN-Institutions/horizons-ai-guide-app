@@ -85,7 +85,21 @@ export const UniversityCard = ({ university, onClick }: UniversityCardProps) => 
         "hover:-translate-y-1.5 hover:border-emerald-400/80"
       )}
     >
-      <CardContent className="p-5">
+      <CardContent className="p-0">
+        {/* Campus Image */}
+        {university.campusImage && (
+          <div className="relative h-28 md:h-32 overflow-hidden">
+            <img 
+              src={university.campusImage} 
+              alt={`${university.name} campus`}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              loading="lazy"
+              onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = 'none'; }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#f8faf8] via-transparent to-transparent" />
+          </div>
+        )}
+        <div className={`p-5 ${university.campusImage ? 'pt-2' : ''}`}>
         <div className="flex gap-4">
           {/* Logo Section - Left */}
           <div className="shrink-0">
@@ -191,6 +205,7 @@ export const UniversityCard = ({ university, onClick }: UniversityCardProps) => 
               View Courses
             </Button>
           </div>
+        </div>
         </div>
       </CardContent>
     </Card>

@@ -22,6 +22,7 @@ export interface University {
   examName: string;
   logoColor: string;
   logo?: string;
+  campusImage?: string;
   type?: 'State Government' | 'Central Government' | 'Deemed University (Central Govt Funded)';
   courses: Course[];
   importantDates: ImportantDate[];
@@ -135,6 +136,7 @@ export const universities: University[] = [
     examName: 'TANCET',
     logoColor: '#1e3a8a',
     logo: '/universities/anna-university-logo.jpg',
+    campusImage: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 600, obc: 600, scst: 300 },
     importantDates: [
@@ -370,6 +372,7 @@ export const universities: University[] = [
     examName: 'PUPGET',
     logoColor: '#059669',
     logo: '/universities/periyar-university-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
@@ -581,6 +584,7 @@ export const universities: University[] = [
     examName: 'BDU Entrance',
     logoColor: '#7c3aed',
     logo: '/universities/bharathidasan-university-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 600, obc: 600, scst: 300 },
     importantDates: [
@@ -2926,6 +2930,7 @@ export const universities: University[] = [
     examName: 'TNMGRMU Entrance',
     logoColor: '#0891b2',
     logo: '/universities/mgr-medical-university-logo.jpeg',
+    campusImage: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 1000, obc: 1000, scst: 500 },
     importantDates: [
@@ -4601,6 +4606,7 @@ export const universities: University[] = [
     examName: 'MKU PG Entrance',
     logoColor: '#16a34a',
     logo: '/universities/madurai-kamaraj-university-logo.jpeg',
+    campusImage: 'https://images.unsplash.com/photo-1592280771190-3e2e4d571952?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
@@ -7679,6 +7685,7 @@ export const universities: University[] = [
     examName: 'MTWU Entrance',
     logoColor: '#ec4899',
     logo: '/universities/mother-teresa-university-logo.jpeg',
+    campusImage: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 400, obc: 400, scst: 200 },
     importantDates: [
@@ -8668,6 +8675,7 @@ export const universities: University[] = [
     examName: 'AU Entrance',
     logoColor: '#ca8a04',
     logo: '/universities/alagappa-university-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1568792923760-d70635a89fdc?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
@@ -10177,6 +10185,7 @@ export const universities: University[] = [
     examName: 'MSU PG Entrance',
     logoColor: '#be185d',
     logo: '/universities/msu-tirunelveli-logo.jpeg',
+    campusImage: 'https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
@@ -12020,6 +12029,7 @@ export const universities: University[] = [
     examName: 'TVU PG Entrance',
     logoColor: '#0891b2',
     logo: '/universities/thiruvalluvar-university-logo.jpeg',
+    campusImage: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
@@ -13489,6 +13499,7 @@ export const universities: University[] = [
     email: 'registrar@tnau.ac.in',
     examName: 'TNAU Entrance',
     logo: '/universities/tnau-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1416169607655-0c2b3ce2e1cc?w=600&h=300&fit=crop&auto=format',
     logoColor: '#15803d',
     type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
@@ -13834,6 +13845,7 @@ export const universities: University[] = [
     email: 'registrar@tndalu.ac.in',
     examName: 'Merit-Based (Cut-off)',
     logo: '/universities/tndalu-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=300&fit=crop&auto=format',
     logoColor: '#7c2d12',
     type: 'State Government',
     fee: { general: 1000, obc: 1000, scst: 500 },
@@ -14300,6 +14312,7 @@ export const universities: University[] = [
     examName: 'CUET (NTA)',
     logoColor: '#1e40af',
     logo: '/universities/cutn-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1562774053-701939374585?w=600&h=300&fit=crop&auto=format',
     type: 'Central Government',
     fee: { general: 500, obc: 400, scst: 250 },
     importantDates: [
@@ -14973,6 +14986,7 @@ export const universities: University[] = [
     examName: 'TU Entrance / Merit / Aptitude Test',
     logoColor: '#7c2d12',
     logo: '/universities/tamil-university-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 300, obc: 200, scst: 100 },
     importantDates: [
@@ -15742,6 +15756,7 @@ export const universities: University[] = [
     examName: 'CUET-UG / CUET-PG',
     logoColor: '#166534',
     logo: '/universities/gandhigram-rural-logo.jpeg',
+    campusImage: 'https://images.unsplash.com/photo-1576495199011-eb94736d05d6?w=600&h=300&fit=crop&auto=format',
     type: 'Deemed University (Central Govt Funded)',
     fee: { general: 500, obc: 400, scst: 250 },
     importantDates: [
@@ -16530,6 +16545,7 @@ export const universities: University[] = [
     examName: 'UNOM PG Entrance / TANCET / Merit',
     logoColor: '#1e40af',
     logo: '/universities/university-of-madras-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 1500, obc: 1500, scst: 500 },
     importantDates: [
@@ -17778,6 +17794,7 @@ export const universities: University[] = [
     examName: 'BU PG Entrance / BUPGET',
     logoColor: '#047857',
     logo: '/universities/bharathiar-university-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
@@ -19423,6 +19440,7 @@ export const universities: University[] = [
     examName: 'Direct Admission (ODL)',
     logoColor: '#1e6b3a',
     logo: '/universities/tnou-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
@@ -20726,6 +20744,7 @@ export const universities: University[] = [
     examName: 'Annamalai University Entrance / TNEA / TNAU',
     logoColor: '#8B4513',
     logo: '/universities/annamalai-university-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1580537659466-0a9bfa916a54?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
@@ -22655,6 +22674,7 @@ export const universities: University[] = [
     examName: 'NEET-UG / Merit Based',
     logoColor: '#2E7D32',
     logo: '/universities/tanuvas-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     importantDates: [
       { event: 'B.V.Sc. Application Opens', date: 'May 2026', eventTamil: 'பி.வி.எஸ்சி. விண்ணப்பம் தொடங்கும்', status: 'upcoming' },
@@ -23151,6 +23171,7 @@ export const universities: University[] = [
     examName: 'TNPESU Entrance / Merit Based',
     logoColor: 'from-orange-600 to-red-700',
     logo: '/universities/tnpesu-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1461896836934-bd45ba688b5b?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
@@ -23725,6 +23746,7 @@ export const universities: University[] = [
     examName: 'TNJFU Entrance / Merit Based',
     logoColor: 'from-teal-600 to-blue-700',
     logo: '/universities/tnjfu-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: { general: 500, obc: 500, scst: 250 },
     importantDates: [
@@ -24085,6 +24107,7 @@ export const universities: University[] = [
     examName: 'Entrance Exam + Practical Audition',
     logoColor: '#2E7D32',
     logo: '/universities/tnmfau-logo.png',
+    campusImage: 'https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=600&h=300&fit=crop&auto=format',
     type: 'State Government',
     fee: {
       general: 500,
