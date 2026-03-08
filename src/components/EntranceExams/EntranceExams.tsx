@@ -9,6 +9,7 @@ import { CategoryOverview } from './CategoryOverview';
 import { PreparationTipsSection } from './PreparationTipsSection';
 import { ExamCalendar } from './ExamCalendar';
 import { ExamRecommendationQuiz } from './ExamRecommendationQuiz';
+import { JeeTneaGuide } from './JeeTneaGuide';
 import { examCategories, entranceExams, getExamsByCategory } from './examData';
 import { ExamCategory } from './types';
 import { useBookmarkedExams } from './useBookmarkedExams';
@@ -263,6 +264,9 @@ export const EntranceExams = () => {
 
       {/* Category Overview - Courses, Eligibility & Details */}
       <CategoryOverview category={activeCategory} />
+
+      {/* JEE vs TNEA Guide - shown for engineering category */}
+      {activeCategory === 'engineering' && <JeeTneaGuide />}
 
       {/* Search Bar */}
       <div className="max-w-md mx-auto">
