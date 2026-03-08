@@ -197,7 +197,7 @@ export default function CareerAssessment12thLearners() {
   return (
     <div className="fresh-page-wrapper page-transition">
       {/* Header */}
-      <div className="fresh-page-header">
+      <div className="fresh-page-header relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <Button
             variant="ghost"

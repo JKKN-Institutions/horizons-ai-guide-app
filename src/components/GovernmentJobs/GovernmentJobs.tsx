@@ -265,7 +265,10 @@ export const GovernmentJobs = () => {
             {language === 'ta' ? '12ஆம் வகுப்பு மாணவர்களுக்கு மட்டும்' : 'For 12th Pass Students Only'}
           </span>
         </div>
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+        <div className="w-full h-32 md:h-40 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=300&fit=crop&auto=format" alt="Government jobs" className="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
           {language === 'ta' ? 'அரசு வேலைகள் & தேர்வுகள்' : 'Government Jobs & Exams'}
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto">

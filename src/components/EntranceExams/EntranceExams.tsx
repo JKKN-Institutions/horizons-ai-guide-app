@@ -63,7 +63,7 @@ export const EntranceExams = () => {
   return (
     <div className="space-y-6">
       {/* Header Section - Light Green + Golden Theme */}
-      <div className="text-center space-y-4 bg-gradient-to-br from-[#E8F5E9] via-[#F0FDF4] to-[#FFF8E1] rounded-2xl p-6 border border-[#C8E6C9]">
+      <div className="text-center space-y-4 bg-gradient-to-br from-[#E8F5E9] via-[#F0FDF4] to-[#FFF8E1] rounded-2xl p-6 border border-[#C8E6C9] relative overflow-hidden" style={{backgroundImage: "url(https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=400&fit=crop&auto=format)", backgroundSize: "cover", backgroundPosition: "center", backgroundBlendMode: "overlay"}}>
         <h2 className="font-playfair text-3xl md:text-4xl font-bold text-[#1B5E20]">
           📝 Entrance Exams for Tamil Nadu 12th Students
         </h2>

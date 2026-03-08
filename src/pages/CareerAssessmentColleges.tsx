@@ -26,6 +26,7 @@ interface AssessmentCard {
   isChat?: boolean;
   isExternal?: boolean;
   secondaryIcon?: React.ElementType;
+  image?: string;
 }
 
 const assessmentCards: AssessmentCard[] = [
@@ -40,6 +41,7 @@ const assessmentCards: AssessmentCard[] = [
     bgColor: 'bg-orange-100',
     isChat: true,
     secondaryIcon: Mic,
+    image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=180&fit=crop&auto=format',
   },
   {
     id: 'industry_trends',
@@ -52,6 +54,7 @@ const assessmentCards: AssessmentCard[] = [
     bgColor: 'bg-emerald-100',
     isExternal: true,
     secondaryIcon: Target,
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=180&fit=crop&auto=format',
   },
 ];
 
@@ -69,6 +72,7 @@ interface BoosterCard {
   buttonText: string;
   badge1Icon: React.ElementType;
   badge2Icon: React.ElementType;
+  image?: string;
 }
 
 const boosterCards: BoosterCard[] = [
@@ -85,6 +89,7 @@ const boosterCards: BoosterCard[] = [
     buttonText: 'Get Predictions',
     badge1Icon: Sparkles,
     badge2Icon: Lightbulb,
+    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=180&fit=crop&auto=format',
   },
 ];
 
@@ -310,12 +315,19 @@ const CareerAssessmentColleges = () => {
                     </div>
                   )}
                   
+                  {/* Card Image */}
+                  {assessment.image && (
+                    <div className="relative h-36 md:h-40 overflow-hidden">
+                      <img src={assessment.image} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+                      <div className={`absolute inset-0 ${assessment.isChat ? 'bg-gradient-to-t from-orange-50 via-orange-50/50 to-transparent' : 'bg-gradient-to-t from-emerald-50 via-emerald-50/50 to-transparent'}`} />
+                    </div>
+                  )}
                   <CardHeader className="pb-4 relative z-10">
                     <div className="flex items-start gap-4">
-                      <div className={`p-3.5 rounded-xl ${iconGradient} transform group-hover:scale-110 transition-transform duration-300`}>
+                      <div className={`p-3.5 rounded-xl ${iconGradient} transform group-hover:scale-110 transition-transform duration-300 ${assessment.image ? '-mt-8 border-4 border-white shadow-xl' : ''}`}>
                         <Icon className="h-6 w-6 text-white" />
                       </div>
-                      <div className="flex-1 pt-1">
+                      <div className={`flex-1 ${assessment.image ? 'pt-0' : 'pt-1'}`}>
                         <CardTitle className="text-xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors">{assessment.title}</CardTitle>
                         <CardDescription className="mt-2 text-gray-600 leading-relaxed">
                           {assessment.description}
@@ -409,12 +421,19 @@ const CareerAssessmentColleges = () => {
                 >
                   <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-30 group-hover:opacity-50 transition-opacity ${booster.id === 'ai_predictor' ? 'bg-purple-300' : 'bg-blue-300'}`} />
                   
+                  {/* Booster Image */}
+                  {booster.image && (
+                    <div className="relative h-36 md:h-40 overflow-hidden">
+                      <img src={booster.image} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-purple-50 via-purple-50/50 to-transparent" />
+                    </div>
+                  )}
                   <CardHeader className="pb-4 relative z-10">
                     <div className="flex items-start gap-4">
-                      <div className={`p-3.5 rounded-xl ${booster.iconGradient} transform group-hover:scale-110 transition-transform duration-300`}>
+                      <div className={`p-3.5 rounded-xl ${booster.iconGradient} transform group-hover:scale-110 transition-transform duration-300 ${booster.image ? '-mt-8 border-4 border-white shadow-xl' : ''}`}>
                         <Icon className="h-6 w-6 text-white" />
                       </div>
-                      <div className="flex-1 pt-1">
+                      <div className={`flex-1 ${booster.image ? 'pt-0' : 'pt-1'}`}>
                         <CardTitle className="text-xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors">{booster.title}</CardTitle>
                         <CardDescription className="mt-2 text-gray-600 leading-relaxed">
                           {booster.description}

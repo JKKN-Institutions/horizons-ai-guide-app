@@ -38,6 +38,7 @@ export const StartupGuide = () => {
     <div className="space-y-0">
       {/* ===== JKKN GREEN HERO SECTION ===== */}
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#14532d] via-[#166534] to-[#1a4731] px-6 py-10 md:py-14 text-center mb-6 shadow-xl">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=400&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 mix-blend-overlay" loading="lazy" />
         <div className="absolute top-0 right-0 w-72 h-72 bg-gradient-to-br from-amber-400/10 to-yellow-400/5 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4" />
         <div className="absolute bottom-0 left-0 w-60 h-60 bg-gradient-to-tr from-emerald-300/10 to-green-400/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
 

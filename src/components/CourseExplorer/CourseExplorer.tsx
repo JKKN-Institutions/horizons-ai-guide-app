@@ -36,6 +36,9 @@ const CourseExplorer = () => {
             <BookOpen className="w-8 h-8" />
           </div>
           <div>
+            <div className="w-full h-32 md:h-40 rounded-xl overflow-hidden mb-3">
+              <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=300&fit=crop&auto=format" alt="Education" className="w-full h-full object-cover" loading="lazy" />
+            </div>
             <h1 className="text-2xl font-bold">Course Explorer</h1>
             <p className="text-white/80 text-sm">Discover the perfect course for your future</p>
           </div>

@@ -328,7 +328,12 @@ const AICareerPredictor = () => {
           >
             {/* Card Entry Point */}
             <Card className="border-0 shadow-xl overflow-hidden mb-8">
-              <CardContent className="p-8 md:p-12">
+              {/* Hero Image */}
+              <div className="relative h-40 md:h-48 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=300&fit=crop&auto=format" alt="Students planning career" className="w-full h-full object-cover" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/60 to-transparent" />
+              </div>
+              <CardContent className="p-8 md:p-12 -mt-12 relative z-10">
                 <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
                   <Brain className="h-10 w-10 text-primary" />
                 </div>
