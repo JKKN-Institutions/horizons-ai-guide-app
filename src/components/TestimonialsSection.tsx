@@ -27,7 +27,7 @@ const testimonials = [
     avatar: "KK",
     photo: "https://ui-avatars.com/api/?name=K+K&background=2563eb&color=fff&size=200&bold=true&font-size=0.4",
     gradient: "from-blue-400 to-indigo-500",
-    date: "28/11/2025"
+    date: "28/11/2026"
   },
   {
     name: "M.G. Bharanee Dharan",
@@ -36,7 +36,7 @@ const testimonials = [
     avatar: "MB",
     photo: "https://ui-avatars.com/api/?name=M+B&background=059669&color=fff&size=200&bold=true&font-size=0.4",
     gradient: "from-emerald-400 to-green-500",
-    date: "05/12/2025"
+    date: "05/12/2026"
   },
   {
     name: "Mahalakshmi.V",
