@@ -29,6 +29,7 @@
    nirfRank?: number;
    seats: number;
    logo?: string;
+   dataYear?: string;
  }
  
  interface Branch {
@@ -128,12 +129,13 @@
    {
      id: '4',
      logo: 'https://ui-avatars.com/api/?name=GCE+S&background=37474f&color=fff&size=128&bold=true&rounded=true',
+     dataYear: '2024',
      name: 'Govt. College of Engineering, Salem',
      nameTamil: 'அரசு பொறியியல் கல்லூரி, சேலம்',
      location: 'Salem',
      district: 'Salem',
      type: 'Government',
-     lastYearCutoff: { OC: 185, BC: 182, MBC: 179, SC: 170, ST: 160 },
+     lastYearCutoff: { OC: 188, BC: 185, MBC: 182, SC: 172, ST: 162 },
      branches: [
        { code: 'CSE', name: 'Computer Science', lastCutoff: 188, seats: 60, chance: 'High' },
        { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 185, seats: 90, chance: 'High' },
@@ -227,12 +229,14 @@
      location: 'Coimbatore',
      district: 'Coimbatore',
      type: 'Government',
-     lastYearCutoff: { OC: 192, BC: 189, MBC: 186, SC: 177, ST: 167 },
+     lastYearCutoff: { OC: 193, BC: 190, MBC: 187, SC: 178, ST: 168 },
      branches: [
-       { code: 'CSE', name: 'Computer Science', lastCutoff: 194, seats: 60, chance: 'Medium' },
-       { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 191, seats: 90, chance: 'High' },
-       { code: 'MECH', name: 'Mechanical', lastCutoff: 187, seats: 120, chance: 'High' },
+       { code: 'CSE', name: 'Computer Science', lastCutoff: 193, seats: 60, chance: 'Medium' },
+       { code: 'IT', name: 'Information Technology', lastCutoff: 190, seats: 60, chance: 'Medium' },
+       { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 188, seats: 90, chance: 'High' },
        { code: 'EEE', name: 'Electrical & Electronics', lastCutoff: 185, seats: 90, chance: 'High' },
+       { code: 'MECH', name: 'Mechanical', lastCutoff: 182, seats: 120, chance: 'High' },
+       { code: 'CIVIL', name: 'Civil Engineering', lastCutoff: 170, seats: 60, chance: 'High' },
        { code: 'BIOTECH', name: 'BioTechnology', lastCutoff: 162, seats: 30, chance: 'High' },
      ],
      annualFee: '₹7,500',
@@ -451,13 +455,16 @@ const topPrivateColleges: PredictedCollege[] = [
     location: 'Coimbatore',
     district: 'Coimbatore',
     type: 'Aided',
-    lastYearCutoff: { OC: 197, BC: 195, MBC: 193, SC: 185, ST: 175 },
+    lastYearCutoff: { OC: 199, BC: 197, MBC: 195, SC: 187, ST: 177 },
     branches: [
-      { code: 'CSE', name: 'Computer Science', lastCutoff: 199, seats: 60, chance: 'Low' },
-      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 197, seats: 90, chance: 'Low' },
+      { code: 'CSE', name: 'Computer Science', lastCutoff: 199.8, seats: 60, chance: 'Low' },
+      { code: 'IT', name: 'Information Technology', lastCutoff: 198.5, seats: 60, chance: 'Low' },
+      { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 197.5, seats: 90, chance: 'Low' },
       { code: 'EEE', name: 'Electrical & Electronics', lastCutoff: 195, seats: 60, chance: 'Medium' },
-      { code: 'MECH', name: 'Mechanical', lastCutoff: 193, seats: 120, chance: 'Medium' },
-      { code: 'BIOTECH', name: 'BioTechnology', lastCutoff: 170, seats: 30, chance: 'High' },
+      { code: 'MECH', name: 'Mechanical', lastCutoff: 194, seats: 120, chance: 'Medium' },
+      { code: 'ROBO', name: 'Robotics & Automation', lastCutoff: 196, seats: 30, chance: 'Medium' },
+      { code: 'BIOTECH', name: 'BioTechnology (SS)', lastCutoff: 172, seats: 30, chance: 'High' },
+      { code: 'BME', name: 'Biomedical (SS)', lastCutoff: 168, seats: 30, chance: 'High' },
     ],
     annualFee: '₹75,000',
     placement: '₹12 LPA',
@@ -496,10 +503,11 @@ const topPrivateColleges: PredictedCollege[] = [
     location: 'Madurai',
     district: 'Madurai',
     type: 'Aided',
-    lastYearCutoff: { OC: 194, BC: 191, MBC: 188, SC: 180, ST: 170 },
+    lastYearCutoff: { OC: 196, BC: 193, MBC: 190, SC: 182, ST: 172 },
     branches: [
-      { code: 'CSE', name: 'Computer Science', lastCutoff: 197, seats: 60, chance: 'Low' },
+      { code: 'CSE', name: 'Computer Science', lastCutoff: 196, seats: 60, chance: 'Low' },
       { code: 'ECE', name: 'Electronics & Communication', lastCutoff: 194, seats: 90, chance: 'Medium' },
+      { code: 'IT', name: 'Information Technology', lastCutoff: 193, seats: 60, chance: 'Medium' },
       { code: 'EEE', name: 'Electrical & Electronics', lastCutoff: 191, seats: 60, chance: 'Medium' },
       { code: 'MECH', name: 'Mechanical', lastCutoff: 188, seats: 90, chance: 'High' },
       { code: 'BIOTECH', name: 'BioTechnology', lastCutoff: 165, seats: 30, chance: 'High' },
