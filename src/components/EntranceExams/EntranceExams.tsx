@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Search, GraduationCap, FileText, Building2, Bookmark, CalendarDays, Scale, MapPin, BookOpen, Target } from 'lucide-react';
+import { Search, FileText, Building2, Bookmark, CalendarDays, Scale, MapPin, BookOpen, Target, ChevronDown, ChevronUp, X } from 'lucide-react';
 import { ExamCard } from './ExamCard';
 import { ExamCompare } from './ExamCompare';
 import { CategoryOverview } from './CategoryOverview';
@@ -23,19 +23,12 @@ export const EntranceExams = () => {
   const [showCompare, setShowCompare] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [showBookmarksOnly, setShowBookmarksOnly] = useState(false);
+  const [showMoreInfo, setShowMoreInfo] = useState(false);
   
   const { isBookmarked, toggleBookmark, getBookmarkedCount } = useBookmarkedExams();
 
-  const stats = useMemo(() => ({
-    total: entranceExams.length,
-    colleges: '500+',
-    updated: '2026',
-    streams: 'PCM, PCB, Arts',
-  }), []);
-
   const filteredExams = useMemo(() => {
     let exams = getExamsByCategory(activeCategory);
-    
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       exams = exams.filter(exam => 
@@ -45,11 +38,9 @@ export const EntranceExams = () => {
         exam.tamilName.toLowerCase().includes(query)
       );
     }
-    
     if (showBookmarksOnly) {
       exams = exams.filter(exam => isBookmarked(exam.id));
     }
-    
     return exams;
   }, [activeCategory, searchQuery, showBookmarksOnly, isBookmarked]);
 
@@ -64,24 +55,14 @@ export const EntranceExams = () => {
   const bookmarkedCount = getBookmarkedCount();
 
   return (
-    <div className="space-y-6">
-      {/* Header - Short title only */}
-      <div className="text-center space-y-3 bg-gradient-to-br from-[#E8F5E9] via-[#F0FDF4] to-[#FFF8E1] rounded-2xl p-5 border border-[#C8E6C9] relative overflow-hidden" style={{backgroundImage: "url(https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=400&fit=crop&auto=format)", backgroundSize: "cover", backgroundPosition: "center", backgroundBlendMode: "overlay"}}>
-        <h2 className="font-playfair text-2xl md:text-3xl font-bold text-[#1B5E20]">
-          📝 Entrance Exams & Practice
-        </h2>
-        <p className="text-sm md:text-base text-[#B8860B] font-tamil">
-          நுழைவுத் தேர்வுகள் & பயிற்சி வினாக்கள்
-        </p>
-      </div>
-
+    <div className="space-y-4">
       {/* ═══ PAGE VIEW TOGGLE ═══ */}
       <div className="bg-white rounded-2xl p-1.5 border border-gray-200 shadow-sm">
         <div className="grid grid-cols-2 gap-1">
           <button
             onClick={() => setPageView('exams')}
             className={cn(
-              "flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-all",
+              "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all",
               pageView === 'exams'
                 ? "bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white shadow-md"
                 : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
@@ -93,7 +74,7 @@ export const EntranceExams = () => {
           <button
             onClick={() => setPageView('practice')}
             className={cn(
-              "flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-all",
+              "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all",
               pageView === 'practice'
                 ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-md"
                 : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
@@ -106,189 +87,34 @@ export const EntranceExams = () => {
       </div>
 
       {/* ═══ PRACTICE VIEW ═══ */}
-      {pageView === 'practice' && (
-        <PreviousYearQuestions />
-      )}
+      {pageView === 'practice' && <PreviousYearQuestions />}
 
       {/* ═══ EXAM GUIDE VIEW ═══ */}
       {pageView === 'exams' && (<>
 
-      {/* Stats */}
-      <div className="text-center">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
-          <div className="bg-white rounded-xl p-3 border border-[#C8E6C9] shadow-sm">
-            <div className="flex items-center justify-center gap-2">
-              <FileText className="h-4 w-4 text-[#2E7D32]" />
-              <div className="text-xl font-bold text-[#2E7D32]">{stats.total}</div>
-            </div>
-            <div className="text-xs text-[#6B7280]">Exams</div>
-          </div>
-          <div className="bg-white rounded-xl p-3 border border-[#C8E6C9] shadow-sm">
-            <div className="flex items-center justify-center gap-2">
-              <Building2 className="h-4 w-4 text-[#B8860B]" />
-              <div className="text-xl font-bold text-[#B8860B]">{stats.colleges}</div>
-            </div>
-            <div className="text-xs text-[#6B7280]">TN Colleges</div>
-          </div>
-          <div className="bg-white rounded-xl p-3 border border-[#C8E6C9] shadow-sm">
-            <div className="flex items-center justify-center gap-2">
-              <CalendarDays className="h-4 w-4 text-[#1976D2]" />
-              <div className="text-xl font-bold text-[#1976D2]">{stats.updated}</div>
-            </div>
-            <div className="text-xs text-[#6B7280]">Updated</div>
-          </div>
-          <div className="bg-white rounded-xl p-3 border border-[#C8E6C9] shadow-sm">
-            <div className="flex items-center justify-center gap-2">
-              <GraduationCap className="h-4 w-4 text-[#7B1FA2]" />
-              <div className="text-xl font-bold text-[#7B1FA2]">{stats.streams}</div>
-            </div>
-            <div className="text-xs text-[#6B7280]">Streams</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Quick Reference Section */}
-        <div className="mt-6 grid md:grid-cols-2 gap-4 text-left">
-          {/* Stream-wise Guide */}
-          <div className="bg-white rounded-xl p-4 border border-[#C8E6C9] shadow-sm">
-            <h3 className="font-bold text-[#1B5E20] mb-3 flex items-center gap-2">
-              📚 Stream-wise Exam Guide
-              <span className="text-xs text-[#B8860B] font-tamil">(உங்கள் பிரிவுக்கான தேர்வுகள்)</span>
-            </h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center gap-2 p-2 bg-[#E3F2FD] rounded-lg">
-                <span className="font-semibold text-[#1976D2] min-w-[100px]">PCM (Maths)</span>
-                <span className="text-[#374151]">TNEA, JEE, VITEEE, SRMJEEE, BITSAT</span>
-              </div>
-              <div className="flex items-center gap-2 p-2 bg-[#FFEBEE] rounded-lg">
-                <span className="font-semibold text-[#D32F2F] min-w-[100px]">PCB (Biology)</span>
-                <span className="text-[#374151]">NEET, TNAU, TANUVAS, Nursing</span>
-              </div>
-              <div className="flex items-center gap-2 p-2 bg-[#E8F5E9] rounded-lg">
-                <span className="font-semibold text-[#2E7D32] min-w-[100px]">PCMB (Both)</span>
-                <span className="text-[#374151]">All exams eligible! Best flexibility ✓</span>
-              </div>
-              <div className="flex items-center gap-2 p-2 bg-[#F3E5F5] rounded-lg">
-                <span className="font-semibold text-[#7B1FA2] min-w-[100px]">Commerce</span>
-                <span className="text-[#374151]">CA/CS/CMA, CLAT, BBA/B.Com Direct</span>
-              </div>
-              <div className="flex items-center gap-2 p-2 bg-[#FFF8E1] rounded-lg">
-                <span className="font-semibold text-[#B8860B] min-w-[100px]">Arts</span>
-                <span className="text-[#374151]">CLAT, NIFT, BA/BSW Direct Admission</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Priority Exams */}
-          <div className="bg-white rounded-xl p-4 border border-[#FFE082] shadow-sm">
-            <h3 className="font-bold text-[#B8860B] mb-3 flex items-center gap-2">
-              ⭐ Priority Exams for TN Students
-              <span className="text-xs text-[#2E7D32] font-tamil">(முக்கிய தேர்வுகள்)</span>
-            </h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-start gap-2 p-2 bg-gradient-to-r from-[#E3F2FD] to-white rounded-lg border-l-4 border-[#1976D2]">
-                <span className="text-lg">⚙️</span>
-                <div>
-                  <span className="font-semibold text-[#1976D2]">Engineering:</span>
-                  <span className="text-[#374151]"> TNEA (Must!), JEE Main</span>
-                </div>
-              </div>
-              <div className="flex items-start gap-2 p-2 bg-gradient-to-r from-[#FFEBEE] to-white rounded-lg border-l-4 border-[#D32F2F]">
-                <span className="text-lg">🏥</span>
-                <div>
-                  <span className="font-semibold text-[#D32F2F]">Medical:</span>
-                  <span className="text-[#374151]"> NEET (Only option! No alternative)</span>
-                </div>
-              </div>
-              <div className="flex items-start gap-2 p-2 bg-gradient-to-r from-[#E8F5E9] to-white rounded-lg border-l-4 border-[#2E7D32]">
-                <span className="text-lg">🌾</span>
-                <div>
-                  <span className="font-semibold text-[#2E7D32]">Agriculture:</span>
-                  <span className="text-[#374151]"> TNAU (No exam - 12th marks only!)</span>
-                </div>
-              </div>
-              <div className="flex items-start gap-2 p-2 bg-gradient-to-r from-[#F3E5F5] to-white rounded-lg border-l-4 border-[#7B1FA2]">
-                <span className="text-lg">💼</span>
-                <div>
-                  <span className="font-semibold text-[#7B1FA2]">Law:</span>
-                  <span className="text-[#374151]"> CLAT (For TNNLU Trichy)</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Exam Recommendation Quiz */}
-        <div className="mt-6">
-          <ExamRecommendationQuiz />
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mt-4">
-          <Button
-            onClick={() => setShowCompare(true)}
-            className="bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] hover:from-[#1B5E20] hover:to-[#0D3F12] text-white shadow-md"
-          >
-            <Scale className="h-4 w-4 mr-2" />
-            Compare Exams
-          </Button>
-          <Button
-            onClick={() => setShowCalendar(true)}
-            className="bg-gradient-to-r from-[#B8860B] to-[#8B6914] hover:from-[#8B6914] hover:to-[#6B5210] text-white shadow-md"
-          >
-            <CalendarDays className="h-4 w-4 mr-2" />
-            Exam Calendar
-          </Button>
-          <Button
-            variant={showBookmarksOnly ? "default" : "outline"}
-            onClick={() => setShowBookmarksOnly(!showBookmarksOnly)}
-            className={cn(
-              "shadow-md",
-              showBookmarksOnly 
-                ? "bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white" 
-                : "border-[#F59E0B] text-[#B8860B] hover:bg-[#FFF8E1] bg-white"
-            )}
-          >
-            <Bookmark className="h-4 w-4 mr-2" />
-            Saved ({bookmarkedCount})
-          </Button>
-        </div>
-
-      {/* 6 Category Sub-tabs with Tamil */}
-      <div className="overflow-x-auto pb-2">
-        <div className="flex gap-2 min-w-max justify-center">
+      {/* ── CATEGORY PILLS (compact horizontal scroll) ── */}
+      <div className="overflow-x-auto pb-1 -mx-1 px-1">
+        <div className="flex gap-2 min-w-max">
           {examCategories.map((category) => {
             const isActive = activeCategory === category.id;
-            const count = categoryCounts[category.id];
-            
             return (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
                 className={cn(
-                  'flex flex-col items-center gap-1 px-4 py-3 rounded-xl border-2 transition-all duration-300',
-                  'hover:scale-[1.02] hover:shadow-lg whitespace-nowrap min-w-[120px]',
-                  isActive 
-                    ? `bg-gradient-to-br from-[#E8F5E9] to-[#FFF8E1] border-[#2E7D32] shadow-md` 
-                    : 'bg-white border-[#E8F5E9] text-[#4B5563] hover:border-[#C8E6C9]'
+                  "flex items-center gap-1.5 px-3.5 py-2.5 rounded-full border transition-all text-sm whitespace-nowrap",
+                  isActive
+                    ? "bg-[#1B5E20] text-white border-[#1B5E20] shadow-md"
+                    : "bg-white text-gray-600 border-gray-200 hover:border-[#2E7D32] hover:bg-emerald-50"
                 )}
               >
-                <span className="text-xl">{category.icon}</span>
-                <span className={cn(
-                  'font-semibold text-sm',
-                  isActive ? 'text-[#1B5E20]' : 'text-[#1F2937]'
-                )}>{category.label}</span>
-                <span className={cn(
-                  'text-xs font-tamil',
-                  isActive ? 'text-[#B8860B]' : 'text-[#6B7280]'
-                )}>{category.tamilLabel}</span>
+                <span className="text-base">{category.icon}</span>
+                <span className="font-medium">{category.label}</span>
                 <Badge className={cn(
-                  'text-xs mt-1',
-                  isActive 
-                    ? 'bg-[#2E7D32] text-white' 
-                    : 'bg-[#E8F5E9] text-[#2E7D32]'
+                  "text-[10px] h-5 px-1.5",
+                  isActive ? "bg-white/20 text-white border-0" : "bg-gray-100 text-gray-500 border-0"
                 )}>
-                  {count}
+                  {categoryCounts[category.id]}
                 </Badge>
               </button>
             );
@@ -296,87 +122,116 @@ export const EntranceExams = () => {
         </div>
       </div>
 
-      {/* Category Overview - Courses, Eligibility & Details */}
-      <CategoryOverview category={activeCategory} />
-
-      {/* JEE vs TNEA Guide - shown for engineering category */}
-      {activeCategory === 'engineering' && <JeeTneaGuide />}
-
-      {/* Search Bar */}
-      <div className="max-w-md mx-auto">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#6B7280]" />
+      {/* ── SEARCH + ACTIONS ROW ── */}
+      <div className="flex gap-2">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <Input
-            placeholder="Search exams... (English or Tamil)"
+            placeholder="Search exams..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 bg-white border-[#C8E6C9] focus:border-[#2E7D32] focus:ring-[#2E7D32]/20 shadow-sm"
+            className="pl-10 h-10 bg-white border-gray-200 rounded-xl shadow-sm text-sm"
           />
+          {searchQuery && (
+            <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2">
+              <X className="w-3.5 h-3.5 text-gray-400" />
+            </button>
+          )}
         </div>
+        <Button variant="outline" size="icon" onClick={() => setShowCompare(true)} className="h-10 w-10 border-gray-200 rounded-xl">
+          <Scale className="h-4 w-4 text-gray-500" />
+        </Button>
+        <Button variant="outline" size="icon" onClick={() => setShowCalendar(true)} className="h-10 w-10 border-gray-200 rounded-xl">
+          <CalendarDays className="h-4 w-4 text-gray-500" />
+        </Button>
+        <Button 
+          variant="outline" size="icon"
+          onClick={() => setShowBookmarksOnly(!showBookmarksOnly)} 
+          className={cn("h-10 w-10 rounded-xl", showBookmarksOnly ? "bg-amber-50 border-amber-300 text-amber-600" : "border-gray-200")}
+        >
+          <Bookmark className={cn("h-4 w-4", showBookmarksOnly ? "fill-amber-500 text-amber-500" : "text-gray-500")} />
+        </Button>
       </div>
 
-      {/* Exams Grid */}
+      {/* ── EXAM CARDS ── */}
       {filteredExams.length === 0 ? (
-        <div className="text-center py-12 bg-white rounded-xl border border-[#C8E6C9] shadow-md">
-          <p className="text-lg text-[#4B5563]">
-            {showBookmarksOnly 
-              ? "No saved exams in this category"
-              : "No exams found matching your criteria"
-            }
+        <div className="text-center py-10 bg-white rounded-xl border border-gray-100">
+          <p className="text-gray-500">
+            {showBookmarksOnly ? "No saved exams in this category" : "No exams found"}
           </p>
-          <div className="flex flex-wrap justify-center gap-2 mt-4">
+          <div className="flex justify-center gap-3 mt-3">
             {searchQuery && (
-              <Button
-                variant="link"
-                className="text-[#2E7D32]"
-                onClick={() => setSearchQuery('')}
-              >
-                Clear search
-              </Button>
+              <Button variant="link" className="text-[#2E7D32] text-sm" onClick={() => setSearchQuery('')}>Clear search</Button>
             )}
             {showBookmarksOnly && (
-              <Button
-                variant="link"
-                className="text-[#2E7D32]"
-                onClick={() => setShowBookmarksOnly(false)}
-              >
-                Show all exams
-              </Button>
+              <Button variant="link" className="text-[#2E7D32] text-sm" onClick={() => setShowBookmarksOnly(false)}>Show all</Button>
             )}
           </div>
         </div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredExams.map((exam) => (
-            <ExamCard 
-              key={exam.id} 
-              exam={exam} 
-              isBookmarked={isBookmarked(exam.id)}
-              onToggleBookmark={toggleBookmark}
-            />
+            <ExamCard key={exam.id} exam={exam} isBookmarked={isBookmarked(exam.id)} onToggleBookmark={toggleBookmark} />
           ))}
         </div>
       )}
 
-      {/* Preparation Tips Section */}
-      <PreparationTipsSection />
+      {/* ── JEE vs TNEA Guide (engineering only) ── */}
+      {activeCategory === 'engineering' && <JeeTneaGuide />}
 
-      {/* Info Note */}
-      <div className="bg-gradient-to-r from-[#FFF8E1] to-[#FFFDE7] border border-[#FFE082] rounded-xl p-4 text-center shadow-sm">
-        <p className="text-sm text-[#B8860B]">
-          💡 <strong>குறிப்பு:</strong> தேதிகள் தற்காலிகமானவை. விண்ணப்பிக்கும் முன் அதிகாரப்பூர்வ இணையதளங்களில் சரிபார்க்கவும்.
-        </p>
-        <p className="text-xs text-[#6B7280] mt-1">
-          Note: Dates are tentative. Always verify from official websites before applying.
-        </p>
-      </div>
+      {/* ── MORE INFO (collapsible) ── */}
+      <button
+        onClick={() => setShowMoreInfo(!showMoreInfo)}
+        className="w-full flex items-center justify-center gap-2 py-3 bg-white rounded-xl border border-gray-200 text-sm text-gray-600 hover:bg-gray-50 transition-all"
+      >
+        <BookOpen className="w-4 h-4" />
+        {showMoreInfo ? 'Hide' : 'More'}: Stream Guide, Eligibility & Tips
+        {showMoreInfo ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+      </button>
+
+      {showMoreInfo && (
+        <div className="space-y-4">
+          {/* Stream-wise Quick Reference */}
+          <div className="bg-white rounded-xl p-4 border border-gray-100">
+            <h3 className="font-bold text-[#1B5E20] text-sm mb-3">📚 Your Stream → Your Exams</h3>
+            <div className="space-y-1.5 text-xs">
+              {[
+                { stream: 'PCM (Maths)', exams: 'TNEA, JEE, VITEEE, SRMJEEE, BITSAT', bg: 'bg-blue-50', color: 'text-blue-700' },
+                { stream: 'PCB (Biology)', exams: 'NEET, TNAU, TANUVAS, Nursing', bg: 'bg-red-50', color: 'text-red-700' },
+                { stream: 'PCMB (Both)', exams: 'All exams eligible! ✅', bg: 'bg-emerald-50', color: 'text-emerald-700' },
+                { stream: 'Commerce', exams: 'CA/CS/CMA, CLAT, BBA Direct', bg: 'bg-purple-50', color: 'text-purple-700' },
+                { stream: 'Arts', exams: 'CLAT, NIFT, BA/BSW Direct', bg: 'bg-amber-50', color: 'text-amber-700' },
+              ].map((r) => (
+                <div key={r.stream} className={cn("flex items-center gap-2 p-2 rounded-lg", r.bg)}>
+                  <span className={cn("font-bold min-w-[85px]", r.color)}>{r.stream}</span>
+                  <span className="text-gray-600">{r.exams}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Category Overview */}
+          <CategoryOverview category={activeCategory} />
+
+          {/* Exam Recommendation Quiz */}
+          <ExamRecommendationQuiz />
+
+          {/* Preparation Tips */}
+          <PreparationTipsSection />
+
+          {/* Note */}
+          <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-center">
+            <p className="text-xs text-amber-700">
+              💡 Dates are tentative. Always verify from official websites before applying.
+            </p>
+          </div>
+        </div>
+      )}
 
       </>)}
 
-      {/* Compare Modal */}
+      {/* Modals */}
       <ExamCompare isOpen={showCompare} onClose={() => setShowCompare(false)} />
-      
-      {/* Calendar Modal */}
       <ExamCalendar isOpen={showCalendar} onClose={() => setShowCalendar(false)} />
     </div>
   );
