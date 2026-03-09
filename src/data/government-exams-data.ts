@@ -366,7 +366,7 @@ const railwayExams: Exam[] = [
     id: 'rrb-group-d',
     name: 'RRB Group D',
     nameTamil: 'RRB குரூப் D',
-    qualification: '10th Pass + ITI OR 12th Pass',
+    qualification: '12th Pass (or 10th + ITI)',
     qualificationTamil: '10ஆம் வகுப்பு + ITI அல்லது 12ஆம் வகுப்பு தேர்ச்சி',
     age: '18 - 33 years',
     salary: '₹18,000/month',
@@ -512,7 +512,7 @@ const sscExams: Exam[] = [
     id: 'ssc-mts',
     name: 'SSC MTS (Multi Tasking Staff)',
     nameTamil: 'SSC MTS (பல்பணி ஊழியர்)',
-    qualification: '10th Pass',
+    qualification: '10th / 12th Pass',
     qualificationTamil: '10ஆம் வகுப்பு தேர்ச்சி',
     age: '18 - 25 years',
     salary: '₹18,000 - ₹56,900/month',
@@ -599,128 +599,8 @@ const sscExams: Exam[] = [
   }
 ];
 
-// ==================== BANKING & INSURANCE ====================
-const bankingExams: Exam[] = [
-  {
-    id: 'ibps-clerk',
-    name: 'IBPS Clerk',
-    nameTamil: 'IBPS எழுத்தர்',
-    qualification: 'Any Graduate (12th for age)',
-    qualificationTamil: 'எந்த பட்டதாரியும் (வயதுக்கு 12ஆம் வகுப்பு)',
-    age: '20 - 28 years',
-    salary: '₹28,000 - ₹35,000/month',
-    selectionProcess: 'Prelims → Mains → Provisional Allotment',
-    selectionProcessTamil: 'முதல்நிலை → முக்கிய → தற்காலிக ஒதுக்கீடு',
-    examPattern: [
-      { paper: 'Prelims', paperTamil: 'முதல்நிலை', marks: 100, duration: '60 mins', questions: 100 },
-      { paper: 'Mains', paperTamil: 'முக்கிய', marks: 200, duration: '160 mins', questions: 190 }
-    ],
-    syllabus: {
-      prelims: [
-        {
-          name: 'IBPS Clerk Prelims (100 Questions, 60 Minutes)',
-          nameTamil: 'IBPS எழுத்தர் முதல்நிலை (100 கேள்விகள், 60 நிமிடங்கள்)',
-          topics: [
-            { name: 'English Language (30 Questions)', nameTamil: 'ஆங்கில மொழி (30 கேள்விகள்)', subtopics: ['Reading Comprehension', 'Cloze Test', 'Jumbled Sentences', 'Error Spotting', 'Fill in the Blanks'] },
-            { name: 'Numerical Ability (35 Questions)', nameTamil: 'எண் திறன் (35 கேள்விகள்)', subtopics: ['Number Series', 'Simplification', 'Percentage', 'Ratio & Proportion', 'Profit & Loss', 'Interest', 'Time & Work', 'Time & Distance', 'Data Interpretation'] },
-            { name: 'Reasoning Ability (35 Questions)', nameTamil: 'தர்க்க திறன் (35 கேள்விகள்)', subtopics: ['Puzzles', 'Seating Arrangement', 'Syllogism', 'Coding-Decoding', 'Blood Relations', 'Direction Sense', 'Inequalities', 'Alphabet Series'] }
-          ]
-        }
-      ]
-    },
-    pyq: [
-      { id: 'ibps-eng-1', question: 'Choose the correct synonym of "LUCID":', questionTamil: '"LUCID" இன் சரியான ஒத்த சொல்:', options: ['Vague', 'Clear', 'Complex', 'Obscure'], optionsTamil: ['தெளிவற்ற', 'தெளிவான', 'சிக்கலான', 'மறைவான'], answer: 1, explanation: 'Lucid means clear and easy to understand', explanationTamil: 'Lucid என்றால் தெளிவான மற்றும் புரிந்துகொள்ள எளிதான', subject: 'English', difficulty: 'easy' },
-      { id: 'ibps-quant-1', question: 'Find the next number in the series: 2, 5, 11, 23, 47, ?', questionTamil: 'தொடரில் அடுத்த எண்ணைக் கண்டறியவும்: 2, 5, 11, 23, 47, ?', options: ['95', '94', '93', '96'], optionsTamil: ['95', '94', '93', '96'], answer: 0, explanation: 'Pattern: ×2+1, ×2+1. 47×2+1 = 95', explanationTamil: 'முறை: ×2+1. 47×2+1 = 95', subject: 'Numerical Ability', difficulty: 'medium' },
-      { id: 'ibps-reas-1', question: 'If A is the sister of B, B is the brother of C, how is C related to A?', questionTamil: 'A என்பவர் B இன் சகோதரி, B என்பவர் C இன் சகோதரன் எனில், C என்பவர் A க்கு என்ன உறவு?', options: ['Brother', 'Sister', 'Brother or Sister', 'Cannot be determined'], optionsTamil: ['சகோதரன்', 'சகோதரி', 'சகோதரன் அல்லது சகோதரி', 'தீர்மானிக்க இயலாது'], answer: 2, explanation: 'C could be brother or sister of A (gender of C is not specified)', explanationTamil: 'C ஆனது A இன் சகோதரன் அல்லது சகோதரியாக இருக்கலாம் (C இன் பாலினம் குறிப்பிடப்படவில்லை)', subject: 'Reasoning', difficulty: 'medium' }
-    ]
-  },
-  {
-    id: 'sbi-clerk',
-    name: 'SBI Clerk (Junior Associate)',
-    nameTamil: 'SBI எழுத்தர் (இளநிலை கூட்டாளர்)',
-    qualification: 'Any Graduate',
-    qualificationTamil: 'எந்த பட்டதாரியும்',
-    age: '20 - 28 years',
-    salary: '₹30,000 - ₹40,000/month',
-    selectionProcess: 'Prelims → Mains → Local Language Test',
-    selectionProcessTamil: 'முதல்நிலை → முக்கிய → உள்ளூர் மொழி தேர்வு',
-    examPattern: [
-      { paper: 'Prelims', paperTamil: 'முதல்நிலை', marks: 100, duration: '60 mins', questions: 100 },
-      { paper: 'Mains', paperTamil: 'முக்கிய', marks: 200, duration: '160 mins', questions: 190 }
-    ],
-    syllabus: {
-      main: [
-        {
-          name: 'SBI Clerk Syllabus',
-          nameTamil: 'SBI எழுத்தர் பாடத்திட்டம்',
-          topics: [
-            { name: 'English Language', nameTamil: 'ஆங்கில மொழி', subtopics: ['Reading Comprehension', 'Error Detection', 'Para Jumbles', 'Cloze Test', 'Fill in the Blanks', 'Vocabulary'] },
-            { name: 'Numerical Ability', nameTamil: 'எண் திறன்', subtopics: ['Number Series', 'Data Interpretation', 'Simplification', 'Quadratic Equations', 'Arithmetic Problems'] },
-            { name: 'Reasoning Ability', nameTamil: 'தர்க்க திறன்', subtopics: ['Puzzles & Seating Arrangement', 'Syllogism', 'Inequality', 'Input-Output', 'Coding-Decoding', 'Blood Relations'] },
-            { name: 'General/Financial Awareness', nameTamil: 'பொது/நிதி விழிப்புணர்வு', subtopics: ['Banking Awareness', 'Current Affairs', 'Static GK', 'Financial Terms'] },
-            { name: 'Computer Aptitude', nameTamil: 'கணினி திறன்', subtopics: ['Computer Fundamentals', 'MS Office', 'Internet', 'Networking Basics'] }
-          ]
-        }
-      ]
-    },
-    pyq: [
-      { id: 'sbi-gk-1', question: 'SBI was established in:', questionTamil: 'SBI நிறுவப்பட்ட ஆண்டு:', options: ['1955', '1947', '1935', '1969'], optionsTamil: ['1955', '1947', '1935', '1969'], answer: 0, explanation: 'State Bank of India was established on 1 July 1955', explanationTamil: 'ஸ்டேட் பாங்க் ஆஃப் இந்தியா 1955 ஜூலை 1 அன்று நிறுவப்பட்டது', subject: 'Banking Awareness', difficulty: 'easy' },
-      { id: 'sbi-gk-2', question: 'The headquarters of SBI is located at:', questionTamil: 'SBI இன் தலைமையகம் அமைந்துள்ள இடம்:', options: ['New Delhi', 'Mumbai', 'Chennai', 'Kolkata'], optionsTamil: ['புது தில்லி', 'மும்பை', 'சென்னை', 'கொல்கத்தா'], answer: 1, explanation: 'SBI Headquarters is in Mumbai, Maharashtra', explanationTamil: 'SBI தலைமையகம் மகாராஷ்டிராவில் மும்பையில் உள்ளது', subject: 'Banking Awareness', difficulty: 'easy' }
-    ]
-  },
-  {
-    id: 'india-post-gds',
-    name: 'India Post GDS (Gramin Dak Sevak)',
-    nameTamil: 'இந்திய தபால் GDS (கிராமின் டாக் சேவக்)',
-    qualification: '10th Pass',
-    qualificationTamil: '10ஆம் வகுப்பு தேர்ச்சி',
-    age: '18 - 40 years',
-    salary: '₹12,000 - ₹14,500/month',
-    selectionProcess: 'Merit Based (10th Marks)',
-    selectionProcessTamil: 'தகுதி அடிப்படையில் (10ஆம் வகுப்பு மதிப்பெண்கள்)',
-    syllabus: {
-      main: [
-        {
-          name: 'Selection Based on 10th Class Marks',
-          nameTamil: '10ஆம் வகுப்பு மதிப்பெண்கள் அடிப்படையில் தேர்வு',
-          topics: [
-            { name: 'Selection Criteria', nameTamil: 'தேர்வு அளவுகோல்கள்', subtopics: ['No written exam', 'Merit based on 10th class percentage', 'Preference to local candidates', 'Computer knowledge certificate required'] },
-            { name: 'General Knowledge (for Interview)', nameTamil: 'பொது அறிவு (நேர்காணலுக்கு)', subtopics: ['Postal System in India', 'History of Indian Post', 'Types of Post Offices', 'Postal Services (Speed Post, Registered, etc.)', 'Indian Geography', 'Current Affairs'] }
-          ]
-        }
-      ]
-    },
-    pyq: []
-  },
-  {
-    id: 'lic-ado',
-    name: 'LIC ADO (Apprentice Development Officer)',
-    nameTamil: 'LIC ADO (பயிற்சி மேம்பாட்டு அதிகாரி)',
-    qualification: 'Graduate',
-    qualificationTamil: 'பட்டதாரி',
-    age: '21 - 30 years',
-    salary: '₹35,000+/month',
-    selectionProcess: 'Prelims → Mains → Interview',
-    selectionProcessTamil: 'முதல்நிலை → முக்கிய → நேர்காணல்',
-    syllabus: {
-      main: [
-        {
-          name: 'LIC ADO Syllabus',
-          nameTamil: 'LIC ADO பாடத்திட்டம்',
-          topics: [
-            { name: 'Reasoning Ability', nameTamil: 'தர்க்க திறன்', subtopics: ['Puzzles', 'Seating Arrangement', 'Syllogism', 'Blood Relations', 'Coding-Decoding', 'Inequalities', 'Input-Output'] },
-            { name: 'Quantitative Aptitude', nameTamil: 'அளவு திறன்', subtopics: ['Number Series', 'Data Interpretation', 'Simplification', 'Percentage', 'Profit & Loss', 'Time & Work', 'Time & Distance'] },
-            { name: 'English Language', nameTamil: 'ஆங்கில மொழி', subtopics: ['Reading Comprehension', 'Error Detection', 'Fill in the Blanks', 'Vocabulary', 'Cloze Test'] },
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', subtopics: ['Current Affairs', 'Insurance Awareness', 'Static GK', 'Banking & Finance'] }
-          ]
-        }
-      ]
-    },
-    pyq: [
-      { id: 'lic-gk-1', question: 'LIC was established in:', questionTamil: 'LIC நிறுவப்பட்ட ஆண்டு:', options: ['1956', '1950', '1947', '1969'], optionsTamil: ['1956', '1950', '1947', '1969'], answer: 0, explanation: 'Life Insurance Corporation of India was established on 1 September 1956', explanationTamil: 'இந்திய ஆயுள் காப்பீட்டு கழகம் 1956 செப்டம்பர் 1 அன்று நிறுவப்பட்டது', subject: 'Insurance Awareness', difficulty: 'easy' }
-    ]
-  }
-];
+// (Banking exams removed — degree required. India Post GDS moved to Central)
+const bankingExams: Exam[] = [];
 
 // ==================== TAMIL NADU STATE GOVT ====================
 const stateExams: Exam[] = [
@@ -848,6 +728,30 @@ const stateExams: Exam[] = [
 // ==================== OTHER CENTRAL GOVT ====================
 const centralExams: Exam[] = [
   {
+    id: 'india-post-gds',
+    name: 'India Post GDS (Gramin Dak Sevak)',
+    nameTamil: 'இந்திய தபால் GDS (கிராமின் டாக் சேவக்)',
+    qualification: '10th / 12th Pass',
+    qualificationTamil: '10ஆம் / 12ஆம் வகுப்பு தேர்ச்சி',
+    age: '18 - 40 years',
+    salary: '₹12,000 - ₹14,500/month',
+    selectionProcess: 'Merit Based (10th Marks)',
+    selectionProcessTamil: 'தகுதி அடிப்படையில் (10ஆம் வகுப்பு மதிப்பெண்கள்)',
+    syllabus: {
+      main: [
+        {
+          name: 'Selection Based on 10th Class Marks',
+          nameTamil: '10ஆம் வகுப்பு மதிப்பெண்கள் அடிப்படையில் தேர்வு',
+          topics: [
+            { name: 'Selection Criteria', nameTamil: 'தேர்வு அளவுகோல்கள்', subtopics: ['No written exam', 'Merit based on 10th class percentage', 'Preference to local candidates', 'Computer knowledge certificate required'] },
+            { name: 'General Knowledge (for Interview)', nameTamil: 'பொது அறிவு (நேர்காணலுக்கு)', subtopics: ['Postal System in India', 'History of Indian Post', 'Types of Post Offices', 'Postal Services (Speed Post, Registered, etc.)', 'Indian Geography', 'Current Affairs'] }
+          ]
+        }
+      ]
+    },
+    pyq: []
+  },
+  {
     id: 'army-clerk',
     name: 'Indian Army Clerk/SKT',
     nameTamil: 'இந்திய ராணுவ எழுத்தர்/SKT',
@@ -936,16 +840,7 @@ export const governmentExamCategories: Category[] = [
     borderColor: 'border-blue-300',
     exams: sscExams
   },
-  {
-    id: 'banking',
-    name: 'Banking & Insurance',
-    nameTamil: 'வங்கி & காப்பீடு',
-    icon: '🏦',
-    color: 'from-emerald-500 to-green-500',
-    bgColor: 'bg-emerald-50',
-    borderColor: 'border-emerald-300',
-    exams: bankingExams
-  },
+
   {
     id: 'state',
     name: 'Tamil Nadu State Govt',
@@ -958,8 +853,8 @@ export const governmentExamCategories: Category[] = [
   },
   {
     id: 'central',
-    name: 'Other Central Govt',
-    nameTamil: 'பிற மத்திய அரசு',
+    name: 'Central Govt & Others',
+    nameTamil: 'மத்திய அரசு & பிற',
     icon: '🏢',
     color: 'from-purple-500 to-violet-500',
     bgColor: 'bg-purple-50',

@@ -23,14 +23,13 @@ const CAT: Record<string, { icon: string; label: string; ta: string; accent: str
   defence:  { icon: '🎖️', label: 'Defence & Paramilitary', ta: 'பாதுகாப்பு & துணை ராணுவம்', accent: 'text-amber-600', bg: 'bg-amber-50 dark:bg-amber-950/30', dot: 'bg-amber-500' },
   railway:  { icon: '🚆', label: 'Indian Railways', ta: 'இந்திய ரயில்வே', accent: 'text-rose-600', bg: 'bg-rose-50 dark:bg-rose-950/30', dot: 'bg-rose-500' },
   ssc:      { icon: '📝', label: 'Staff Selection Commission', ta: 'SSC', accent: 'text-blue-600', bg: 'bg-blue-50 dark:bg-blue-950/30', dot: 'bg-blue-500' },
-  banking:  { icon: '🏦', label: 'Banking & Insurance', ta: 'வங்கி & காப்பீடு', accent: 'text-emerald-600', bg: 'bg-emerald-50 dark:bg-emerald-950/30', dot: 'bg-emerald-500' },
   state:    { icon: '🏛️', label: 'Tamil Nadu State Govt', ta: 'தமிழ்நாடு மாநில அரசு', accent: 'text-violet-600', bg: 'bg-violet-50 dark:bg-violet-950/30', dot: 'bg-violet-500' },
-  central:  { icon: '🇮🇳', label: 'Other Central Govt', ta: 'பிற மத்திய அரசு', accent: 'text-sky-600', bg: 'bg-sky-50 dark:bg-sky-950/30', dot: 'bg-sky-500' },
+  central:  { icon: '🇮🇳', label: 'Central Govt & Others', ta: 'மத்திய அரசு & பிற', accent: 'text-sky-600', bg: 'bg-sky-50 dark:bg-sky-950/30', dot: 'bg-sky-500' },
 };
 
 const getDetail = (id: string) => { for (const c of governmentExamCategories) { const f = c.exams.find(e => e.id === id); if (f) return { cat: c.id, id: f.id, pyq: f.pyq.length, topics: Object.values(f.syllabus).reduce((t, s) => t + s.reduce((a, x) => a + x.topics.length, 0), 0) }; } return null; };
 
-type Scope = 'all' | 'defence' | 'railway' | 'ssc' | 'banking' | 'state' | 'central';
+type Scope = 'all' | 'defence' | 'railway' | 'ssc' | 'state' | 'central';
 
 const GovernmentExams = () => {
   const navigate = useNavigate();
@@ -67,7 +66,7 @@ const GovernmentExams = () => {
           </button>
           <div className="flex-1">
             <h1 className="text-[15px] font-bold text-gray-900 dark:text-white tracking-tight">{t ? 'அரசு தேர்வுகள்' : 'Government Exams'}</h1>
-            <p className="text-[10px] text-gray-400 tracking-wide">{t ? '12ஆம் வகுப்பு தேர்ச்சி • 31 தேர்வுகள்' : '12th Pass Eligible • 31 Exams'}</p>
+            <p className="text-[10px] text-gray-400 tracking-wide">{t ? '12ஆம் வகுப்பு தேர்ச்சி • 27 தேர்வுகள்' : '12th Pass Eligible • 27 Exams'}</p>
           </div>
         </div>
       </div>
@@ -77,7 +76,7 @@ const GovernmentExams = () => {
         {/* ──────────── HERO STATS ──────────── */}
         <div className="grid grid-cols-4 gap-2 mb-5">
           {[
-            { value: '31', label: t ? 'தேர்வுகள்' : 'Exams', sub: t ? 'மொத்தம்' : 'Total' },
+            { value: '27', label: t ? 'தேர்வுகள்' : 'Exams', sub: t ? 'மொத்தம்' : 'Total' },
             { value: String(openCount), label: t ? 'திறந்தது' : 'Open', sub: t ? 'விண்ணப்பிக்கலாம்' : 'Apply now' },
             { value: String(totalPYQ), label: 'PYQ', sub: t ? 'கேள்விகள்' : 'Questions' },
             { value: '6', label: t ? 'வகைகள்' : 'Sectors', sub: t ? 'துறைகள்' : 'Categories' },
