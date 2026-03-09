@@ -155,17 +155,16 @@
     scroll-behavior: smooth;
     min-height: 100vh;
     /* ═══ THE GLOBAL BACKGROUND ═══ 
-       Applied on html so it's behind EVERYTHING.
-       Green-cream gradient with golden warmth. */
+       Stronger green-cream gradient that is CLEARLY visible */
     background: 
       linear-gradient(160deg, 
-        #e8f5e9 0%,     /* light green */
-        #f1f8e9 18%,    /* lime tint */
-        #fffde7 35%,    /* warm cream */
-        #f9fbe7 50%,    /* yellow-green */
-        #e8f5e9 65%,    /* green again */
-        #fff8e1 80%,    /* golden cream */
-        #e8f5e9 100%    /* back to green */
+        #c8e6c9 0%,     /* noticeable green */
+        #dcedc8 18%,    /* lime */
+        #fff9c4 35%,    /* warm yellow */
+        #e8f5e9 50%,    /* light green */
+        #c8e6c9 65%,    /* green */
+        #ffecb3 80%,    /* golden */
+        #c8e6c9 100%    /* green */
       );
     background-attachment: fixed;
   }
@@ -177,7 +176,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
+    height: 4px;
     background: linear-gradient(90deg, #0b6641, #f59e0b, #0b6641);
     z-index: 10000;
     pointer-events: none;
@@ -192,9 +191,8 @@
     right: 0;
     bottom: 0;
     background:
-      radial-gradient(ellipse 50% 40% at 5% 10%, rgba(76, 175, 80, 0.15), transparent),
-      radial-gradient(ellipse 50% 50% at 92% 88%, rgba(255, 193, 7, 0.12), transparent),
-      radial-gradient(ellipse 40% 35% at 50% 50%, rgba(129, 199, 132, 0.08), transparent);
+      radial-gradient(ellipse 50% 40% at 5% 10%, rgba(76, 175, 80, 0.2), transparent),
+      radial-gradient(ellipse 50% 50% at 92% 88%, rgba(255, 193, 7, 0.15), transparent);
     pointer-events: none;
     z-index: 0;
   }
@@ -203,7 +201,7 @@
     @apply text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
     min-height: 100vh;
-    background: transparent; /* Let html background show through */
+    background: transparent !important;
   }
 
   #root {
@@ -212,8 +210,7 @@
     min-height: 100vh;
   }
 
-  /* ═══ DOT GRID PATTERN OVERLAY ═══
-     Visible on ALL pages, sits above content */
+  /* ═══ DOT GRID PATTERN OVERLAY ═══ */
   #root::after {
     content: '';
     position: fixed;
@@ -221,7 +218,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(46, 125, 50, 0.07) 1px, transparent 0);
+    background-image: radial-gradient(circle at 1px 1px, rgba(46, 125, 50, 0.08) 1px, transparent 0);
     background-size: 28px 28px;
     pointer-events: none;
     z-index: 9999;
@@ -236,23 +233,11 @@
   }
 }
 
-/* ═══ FORCE PAGE WRAPPERS TO BE TRANSPARENT ═══
-   Pages use bg-background, bg-[#F5F5F5], bg-white etc. which 
-   cover the html gradient. Override ONLY page-level containers. */
-div.min-h-screen[class*="bg-background"],
-div.min-h-screen[class*="bg-white"],
-div.min-h-screen[class*="bg-gray"],
-div.min-h-screen[class*="bg-slate"],
-div.min-h-screen[class*="bg-muted"],
-div.min-h-screen[class*="F5F5F5"] {
+/* ═══ FORCE ALL PAGE WRAPPERS TO BE TRANSPARENT ═══
+   EVERY page uses min-h-screen + some bg class. Override ALL of them. */
+div.min-h-screen {
   background-color: transparent !important;
   background-image: none !important;
-}
-
-/* Keep gradient page backgrounds but make them semi-transparent 
-   so the html background blends through */
-div.min-h-screen[class*="bg-gradient"] {
-  opacity: 1;
 }
 
 @layer components {
