@@ -22,7 +22,7 @@ export const governmentExams: GovernmentExam[] = [
   },
   {
     id: 'coast-guard-navik',
-    name: 'Indian Coast Guard Navik',
+    name: 'Indian Coast Guard Navik (GD)',
     nameTamil: 'இந்திய கடலோர காவல் நாவிக்',
     category: 'defence',
     qualification: '12th Pass',

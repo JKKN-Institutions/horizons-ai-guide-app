@@ -252,27 +252,79 @@ const defenceExams: Exam[] = [
   },
   {
     id: 'coastguard',
-    name: 'Indian Coast Guard Navik',
-    nameTamil: 'இந்திய கடலோர காவல் நாவிக்',
+    name: 'Indian Coast Guard Navik (GD)',
+    nameTamil: 'இந்திய கடலோர காவல் நாவிக் (GD)',
     qualification: '12th Pass (PCM)',
     qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி (PCM)',
     age: '18 - 22 years',
     salary: '₹29,200/month',
-    selectionProcess: 'Written → Physical → Medical',
-    selectionProcessTamil: 'எழுத்துத் தேர்வு → உடற்தகுதி → மருத்துவம்',
+    selectionProcess: 'Stage I Written → Stage II Physical → Medical',
+    selectionProcessTamil: 'நிலை I எழுத்துத் தேர்வு → நிலை II உடற்தகுதி → மருத்துவம்',
+    posts: ['Navik (General Duty)'],
+    postsTamil: ['நாவிக் (பொது பணி)'],
     examPattern: [
-      { paper: 'Written Exam', paperTamil: 'எழுத்துத் தேர்வு', marks: 100, duration: '1 hour', questions: 100 }
+      { paper: 'Section I (10th Standard)', paperTamil: 'பிரிவு I (10ஆம் வகுப்பு)', marks: 60, duration: '75 min (total)', questions: 60 },
+      { paper: 'Section II (12th Standard - PCM)', paperTamil: 'பிரிவு II (12ஆம் வகுப்பு - PCM)', marks: 50, duration: 'Included in 75 min', questions: 50 }
     ],
     syllabus: {
-      main: [
+      'Section I — 10th Standard (60 Marks)': [
         {
-          name: 'Coast Guard Syllabus',
-          nameTamil: 'கடலோர காவல் பாடத்திட்டம்',
+          name: 'Section I — 10th Standard Level (60 Marks, 60 Questions)',
+          nameTamil: 'பிரிவு I — 10ஆம் வகுப்பு நிலை (60 மதிப்பெண்கள்)',
           topics: [
-            { name: 'Mathematics', nameTamil: 'கணிதம்', subtopics: ['Algebra', 'Trigonometry', 'Geometry', 'Mensuration'] },
-            { name: 'Physics', nameTamil: 'இயற்பியல்', subtopics: ['Mechanics', 'Heat', 'Light', 'Electricity'] },
-            { name: 'Chemistry', nameTamil: 'வேதியியல்', subtopics: ['Elements', 'Compounds', 'Reactions'] },
-            { name: 'English & GK', nameTamil: 'ஆங்கிலம் & பொது அறிவு', subtopics: ['Grammar', 'Vocabulary', 'Current Affairs', 'Coast Guard Info'] }
+            { name: 'Mathematics (20 Questions)', nameTamil: 'கணிதம் (20 கேள்விகள்)', subtopics: [
+              'Mathematical Simplification', 'Ratio and Proportion', 'Algebraic Identities',
+              'Linear Equations and Polynomials', 'Simultaneous Equations', 'Basic Trigonometry',
+              'Simple Mensuration', 'Geometry', 'Measures of Central Tendency (Average, Median, Mode)',
+              'Interest, Profit, Loss and Percentage', 'Work, Time, Speed, and Distance'
+            ] },
+            { name: 'Science (10 Questions)', nameTamil: 'அறிவியல் (10 கேள்விகள்)', subtopics: [
+              'Nature of Matter', 'Universe (Planets / Earth / Satellites / Sun)',
+              'Electricity and its Applications', 'Force and Gravitation', 'Newton\'s Laws of Motion',
+              'Work, Energy, and Power', 'Heat and Temperature', 'Metals and Non-Metals',
+              'Carbon and its Compounds', 'Measurements in Science', 'Sound and Wave Motion', 'Atomic Structure'
+            ] },
+            { name: 'English (15 Questions)', nameTamil: 'ஆங்கிலம் (15 கேள்விகள்)', subtopics: [
+              'Passage Comprehension', 'Prepositions', 'Correction of Sentences',
+              'Active to Passive / Passive to Active Voice', 'Direct to Indirect / Indirect to Direct Speech',
+              'Verbs, Tense, Non-Finites', 'Punctuation', 'Phrasal Verbs and Expressions',
+              'Synonyms and Antonyms', 'Use of Adjectives and Pronouns'
+            ] },
+            { name: 'Reasoning (10 Questions)', nameTamil: 'பகுத்தறிவு (10 கேள்விகள்)', subtopics: [
+              'Spatial Reasoning', 'Numerical Reasoning', 'Associative Ability',
+              'Sequences and Series', 'Spelling Unscrambling', 'Coding and Decoding'
+            ] },
+            { name: 'General Knowledge (5 Questions)', nameTamil: 'பொது அறிவு (5 கேள்விகள்)', subtopics: [
+              'Geography (Soil, Rivers, Mountains, Ports, Inland Harbours)',
+              'Culture and Religion', 'Freedom Movement',
+              'Important National Facts about India', 'Heritage, Arts and Dance'
+            ] }
+          ]
+        }
+      ],
+      'Section II — 12th Standard (50 Marks)': [
+        {
+          name: 'Section II — 12th Standard Level (50 Marks, 50 Questions)',
+          nameTamil: 'பிரிவு II — 12ஆம் வகுப்பு நிலை (50 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Mathematics (25 Questions)', nameTamil: 'கணிதம் (25 கேள்விகள்)', subtopics: [
+              'Sets, Relations and Functions', 'Complex Numbers', 'Quadratic Equations',
+              'Matrices and Determinants', 'Trigonometric Functions', 'Limits and Derivatives',
+              'Applications of Derivatives', 'Integrals', 'Differential Equations',
+              'Vector Algebra', '3D Geometry', 'Linear Programming',
+              'Probability', 'Conic Sections'
+            ] },
+            { name: 'Physics (25 Questions)', nameTamil: 'இயற்பியல் (25 கேள்விகள்)', subtopics: [
+              'Physical World and Measurement', 'Kinematics', 'Laws of Motion',
+              'Work, Energy and Power', 'Motion of Systems of Particles and Rigid Body',
+              'Gravitation', 'Mechanics of Solids and Fluids', 'Heat and Thermodynamics',
+              'Oscillations', 'Waves', 'Electrostatics', 'Current Electricity',
+              'Magnetic Effects of Current and Magnetism',
+              'Electromagnetic Induction and Alternating Currents',
+              'Electromagnetic Waves', 'Optics',
+              'Dual Nature of Matter and Radiation', 'Atoms and Nuclei',
+              'Electronic Devices', 'Communication Systems'
+            ] }
           ]
         }
       ]
