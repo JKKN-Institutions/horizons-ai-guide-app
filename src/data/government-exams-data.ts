@@ -948,31 +948,89 @@ const railwayExams: Exam[] = [
   {
     id: 'rpf-constable',
     name: 'RPF Constable',
-    nameTamil: 'RPF காவலர்',
+    nameTamil: 'RPF காவலர் (ரயில்வே பாதுகாப்புப் படை)',
     qualification: '12th Pass',
     qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி',
     age: '18 - 25 years',
     salary: '₹21,700/month',
-    selectionProcess: 'CBT → PET/PMT → Document Verification',
-    selectionProcessTamil: 'CBT → உடல் தகுதி → ஆவண சரிபார்ப்பு',
+    selectionProcess: 'Computer Based Test (CBT) → Physical Efficiency Test (PET) → Physical Measurement Test (PMT) → Document Verification → Medical Examination',
+    selectionProcessTamil: 'கணினி அடிப்படை தேர்வு (CBT) → உடல் திறன் தேர்வு (PET) → உடல் அளவீட்டு தேர்வு (PMT) → ஆவண சரிபார்ப்பு → மருத்துவப் பரிசோதனை',
     examPattern: [
-      { paper: 'CBT', paperTamil: 'CBT', marks: 120, duration: '90 mins', questions: 120 }
+      { paper: 'Computer Based Test (CBT)', paperTamil: 'கணினி அடிப்படை தேர்வு (CBT)', marks: 120, duration: '90 minutes', questions: 120 }
     ],
     syllabus: {
-      main: [
+      'Written Exam — CBT (120 Questions, 120 Marks, 90 Minutes)': [
         {
-          name: 'RPF Constable Syllabus',
-          nameTamil: 'RPF காவலர் பாடத்திட்டம்',
+          name: 'General Awareness (50 Questions, 50 Marks)',
+          nameTamil: 'பொது விழிப்புணர்வு (50 கேள்விகள், 50 மதிப்பெண்கள்)',
           topics: [
-            { name: 'General Awareness', nameTamil: 'பொது விழிப்புணர்வு', subtopics: ['Current Affairs', 'Railway Information', 'History', 'Geography', 'Polity'] },
-            { name: 'Arithmetic', nameTamil: 'எண்கணிதம்', subtopics: ['Number System', 'Percentage', 'Ratio', 'Time & Work', 'Profit & Loss'] },
-            { name: 'General Intelligence & Reasoning', nameTamil: 'பொது புத்திசாலித்தனம் & தர்க்கம்', subtopics: ['Coding-Decoding', 'Analogy', 'Series', 'Blood Relations', 'Puzzles'] }
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', subtopics: ['National & International Current Affairs', 'Sports Events — Olympics, Commonwealth, Asian Games, Cricket', 'Awards & Honours — Padma, Bharat Ratna, Nobel Prize', 'Government Schemes & Policies', 'Important Days & Dates', 'Books & Authors'] },
+            { name: 'Indian History & Culture', nameTamil: 'இந்திய வரலாறு & கலாச்சாரம்', subtopics: ['Ancient India — Indus Valley, Vedic Period, Maurya, Gupta', 'Medieval India — Delhi Sultanate, Mughal Empire', 'Modern India — British Rule, Freedom Movement, Important Leaders', 'Indian Art, Culture & Heritage'] },
+            { name: 'Geography', nameTamil: 'புவியியல்', subtopics: ['Indian Geography — Rivers, Mountains, Plains, Plateaus', 'Climate, Soil Types, Natural Vegetation', 'Indian States & Capitals', 'World Geography — Continents, Oceans, Countries'] },
+            { name: 'Indian Polity & Constitution', nameTamil: 'இந்திய அரசியல் & அரசியலமைப்பு', subtopics: ['Indian Constitution — Fundamental Rights, Duties, DPSP', 'Parliament — Lok Sabha, Rajya Sabha', 'President, Prime Minister, Judiciary', 'Panchayati Raj, Local Governance'] },
+            { name: 'Economics', nameTamil: 'பொருளாதாரம்', subtopics: ['Indian Economy — GDP, Budget, Five Year Plans', 'Banking — RBI, NABARD, Types of Banks', 'Taxation — GST, Income Tax'] },
+            { name: 'General Science (up to Class 10)', nameTamil: 'பொது அறிவியல் (10ஆம் வகுப்பு வரை)', subtopics: ['Physics — Light, Sound, Electricity, Force, Motion', 'Chemistry — Elements, Compounds, Acids & Bases, Chemical Reactions', 'Biology — Human Body, Diseases, Nutrition, Vitamins, Ecology'] }
+          ]
+        },
+        {
+          name: 'Arithmetic (35 Questions, 35 Marks)',
+          nameTamil: 'எண்கணிதம் (35 கேள்விகள், 35 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Number System & Basics', nameTamil: 'எண் முறை & அடிப்படைகள்', subtopics: ['Number System — Natural, Whole, Integers, Rational Numbers', 'Whole Numbers, Decimals & Fractions', 'LCM & HCF', 'Simplification — BODMAS Rule'] },
+            { name: 'Commercial Mathematics', nameTamil: 'வணிகக் கணிதம்', subtopics: ['Percentages — Calculation, Increase, Decrease', 'Ratio & Proportion — Direct, Inverse', 'Averages — Simple Average, Weighted Average', 'Profit & Loss — Cost Price, Selling Price, Discount, Markup', 'Simple Interest & Compound Interest'] },
+            { name: 'Time, Distance & Mensuration', nameTamil: 'நேரம், தூரம் & அளவீடு', subtopics: ['Time & Distance — Speed, Relative Speed, Trains, Boats & Streams', 'Time & Work — Pipe & Cistern Problems', 'Mensuration — Area, Perimeter, Volume of Basic Shapes'] }
+          ]
+        },
+        {
+          name: 'General Intelligence & Reasoning (35 Questions, 35 Marks)',
+          nameTamil: 'பொது புத்திசாலித்தனம் & தர்க்கம் (35 கேள்விகள், 35 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Verbal Reasoning', nameTamil: 'சொல் தர்க்கம்', subtopics: ['Analogies — Word & Number Relationships', 'Coding-Decoding — Letter, Number & Mixed Coding', 'Blood Relations — Family Tree Problems', 'Direction Sense Test', 'Number Series — Missing Number, Wrong Number', 'Alphabet Series & Letter Ranking'] },
+            { name: 'Analytical & Non-Verbal', nameTamil: 'பகுப்பாய்வு & சொல்லற்ற', subtopics: ['Spatial Visualization — Mirror Image, Water Image, Paper Folding', 'Syllogistic Reasoning — Statement & Conclusion', 'Statement & Assumption', 'Puzzles — Seating Arrangement, Floor Arrangement', 'Classification — Odd One Out', 'Venn Diagrams', 'Pattern Completion & Figure Series'] }
+          ]
+        }
+      ],
+      'Physical Measurement Test (PMT) — Qualifying': [
+        {
+          name: 'Height Requirements',
+          nameTamil: 'உயர தேவைகள்',
+          topics: [
+            { name: 'Male Candidates', nameTamil: 'ஆண் விண்ணப்பதாரர்கள்', subtopics: ['UR / OBC: 165 cm', 'SC / ST: 160 cm', 'Garhwalis, Gorkhas, Marathas, NE States: 163 cm'] },
+            { name: 'Female Candidates', nameTamil: 'பெண் விண்ணப்பதாரர்கள்', subtopics: ['UR / OBC: 157 cm', 'SC / ST: 152 cm', 'Garhwalis, Gorkhas, NE States: 155 cm'] },
+            { name: 'Chest (Male Only)', nameTamil: 'மார்பு (ஆண் மட்டும்)', subtopics: ['UR / OBC: 80 cm unexpanded, 85 cm expanded (5 cm expansion)', 'SC / ST: 76.2 cm unexpanded, 81.2 cm expanded (5 cm expansion)'] }
+          ]
+        }
+      ],
+      'Physical Efficiency Test (PET) — Qualifying': [
+        {
+          name: 'Running & Jumping Events',
+          nameTamil: 'ஓட்டம் & குதிப்பு நிகழ்வுகள்',
+          topics: [
+            { name: 'Male PET', nameTamil: 'ஆண் PET', subtopics: ['1600 Meters Run: 5 minutes 45 seconds (1 chance)', 'Long Jump: 14 feet / 4.27 meters (2 chances)', 'High Jump: 4 feet / 1.22 meters (2 chances)'] },
+            { name: 'Female PET', nameTamil: 'பெண் PET', subtopics: ['800 Meters Run: 3 minutes 40 seconds (1 chance)', 'Long Jump: 9 feet / 2.74 meters (2 chances)', 'High Jump: 3 feet / 0.91 meters (2 chances)'] }
+          ]
+        }
+      ],
+      'Medical Standards': [
+        {
+          name: 'Key Medical Requirements',
+          nameTamil: 'முக்கிய மருத்துவ தேவைகள்',
+          topics: [
+            { name: 'Vision & Fitness', nameTamil: 'பார்வை & உடல்நலம்', subtopics: ['Vision: Must meet Medical Category B-1 (Indian Railway Medical Manual)', 'Candidates wearing glasses may be declared unfit', 'Flat Feet — Not allowed', 'Knock Knees — Not allowed', 'Squint Eyes — Not allowed', 'Color Blindness — Not allowed'] }
           ]
         }
       ]
     },
     pyq: [
-      { id: 'rpf-gk-1', question: 'RPF stands for:', questionTamil: 'RPF என்பதன் விரிவாக்கம்:', options: ['Railway Protection Force', 'Railway Police Force', 'Railway Patrol Force', 'Railway Police Federation'], optionsTamil: ['ரயில்வே பாதுகாப்புப் படை', 'ரயில்வே போலீஸ் படை', 'ரயில்வே ரோந்து படை', 'ரயில்வே போலீஸ் கூட்டமைப்பு'], answer: 0, explanation: 'Railway Protection Force protects railway property and passengers', explanationTamil: 'ரயில்வே பாதுகாப்புப் படை ரயில்வே சொத்து மற்றும் பயணிகளை பாதுகாக்கிறது', subject: 'General Awareness', difficulty: 'easy' }
+      { id: 'rpf-gk-1', question: 'RPF stands for:', questionTamil: 'RPF என்பதன் விரிவாக்கம்:', options: ['Railway Protection Force', 'Railway Police Force', 'Railway Patrol Force', 'Railway Police Federation'], optionsTamil: ['ரயில்வே பாதுகாப்புப் படை', 'ரயில்வே போலீஸ் படை', 'ரயில்வே ரோந்து படை', 'ரயில்வே போலீஸ் கூட்டமைப்பு'], answer: 0, explanation: 'RPF = Railway Protection Force. It was established under the Railway Protection Force Act, 1957 to protect railway property and passengers.', explanationTamil: 'RPF = ரயில்வே பாதுகாப்புப் படை. ரயில்வே சொத்து & பயணிகளை பாதுகாக்க 1957 சட்டத்தின் கீழ் நிறுவப்பட்டது.', subject: 'General Awareness', difficulty: 'easy' },
+      { id: 'rpf-gk-2', question: 'The RPF Act was enacted in which year?', questionTamil: 'RPF சட்டம் எந்த ஆண்டு இயற்றப்பட்டது?', options: ['1957', '1947', '1962', '1972'], optionsTamil: ['1957', '1947', '1962', '1972'], answer: 0, explanation: 'The Railway Protection Force Act was enacted in 1957 to provide for the constitution and regulation of an armed force for better protection of railway property.', explanationTamil: 'ரயில்வே சொத்துக்களை சிறப்பாக பாதுகாக்க 1957 இல் RPF சட்டம் இயற்றப்பட்டது.', subject: 'General Awareness', difficulty: 'easy' },
+      { id: 'rpf-gk-3', question: 'Which is the largest railway station in India by number of platforms?', questionTamil: 'தளங்களின் எண்ணிக்கையில் இந்தியாவின் மிகப்பெரிய ரயில் நிலையம் எது?', options: ['Howrah Junction (23 platforms)', 'Sealdah (20 platforms)', 'CSMT Mumbai (18 platforms)', 'New Delhi (16 platforms)'], optionsTamil: ['ஹவுரா ஜங்ஷன் (23 தளங்கள்)', 'சீல்டா (20 தளங்கள்)', 'CSMT மும்பை (18 தளங்கள்)', 'புது தில்லி (16 தளங்கள்)'], answer: 0, explanation: 'Howrah Junction in Kolkata has 23 platforms, making it the largest railway station in India by platform count.', explanationTamil: 'கொல்கத்தாவில் உள்ள ஹவுரா ஜங்ஷனில் 23 தளங்கள் உள்ளன — இது தளங்கள் எண்ணிக்கையில் இந்தியாவின் மிகப்பெரிய ரயில் நிலையம்.', subject: 'General Awareness', difficulty: 'medium' },
+      { id: 'rpf-math-1', question: 'A train travels 240 km in 4 hours. What is its speed in km/h?', questionTamil: 'ஒரு ரயில் 4 மணி நேரத்தில் 240 கிமீ பயணிக்கிறது. அதன் வேகம் km/h இல் என்ன?', options: ['60 km/h', '80 km/h', '48 km/h', '55 km/h'], optionsTamil: ['60 km/h', '80 km/h', '48 km/h', '55 km/h'], answer: 0, explanation: 'Speed = Distance / Time = 240 / 4 = 60 km/h', explanationTamil: 'வேகம் = தூரம் / நேரம் = 240 / 4 = 60 km/h', subject: 'Arithmetic', difficulty: 'easy' },
+      { id: 'rpf-math-2', question: 'If 15% of a number is 45, what is the number?', questionTamil: 'ஒரு எண்ணின் 15% = 45 எனில், அந்த எண் என்ன?', options: ['300', '250', '350', '200'], optionsTamil: ['300', '250', '350', '200'], answer: 0, explanation: '15% × N = 45. N = 45 × 100/15 = 300', explanationTamil: '15% × N = 45. N = 45 × 100/15 = 300', subject: 'Arithmetic', difficulty: 'easy' },
+      { id: 'rpf-math-3', question: 'The ratio of two numbers is 4:7. If their difference is 21, find the smaller number:', questionTamil: 'இரண்டு எண்களின் விகிதம் 4:7. அவற்றின் வேறுபாடு 21 எனில், சிறிய எண்ணைக் காணவும்:', options: ['28', '49', '21', '35'], optionsTamil: ['28', '49', '21', '35'], answer: 0, explanation: 'Difference of ratio parts = 7-4 = 3. Each part = 21/3 = 7. Smaller = 4 × 7 = 28', explanationTamil: 'விகித வேறுபாடு = 7-4 = 3. ஒவ்வொரு பகுதி = 21/3 = 7. சிறியது = 4 × 7 = 28', subject: 'Arithmetic', difficulty: 'easy' },
+      { id: 'rpf-reason-1', question: 'Find the odd one out: Apple, Mango, Banana, Carrot', questionTamil: 'பொருத்தமற்றதை கண்டுபிடி: ஆப்பிள், மாம்பழம், வாழைப்பழம், கேரட்', options: ['Carrot', 'Apple', 'Mango', 'Banana'], optionsTamil: ['கேரட்', 'ஆப்பிள்', 'மாம்பழம்', 'வாழைப்பழம்'], answer: 0, explanation: 'Carrot is a vegetable (root), while the others are all fruits.', explanationTamil: 'கேரட் ஒரு காய்கறி (வேர்), மற்றவை அனைத்தும் பழங்கள்.', subject: 'Reasoning', difficulty: 'easy' },
+      { id: 'rpf-reason-2', question: 'If FRIEND is coded as GSJFOE, how is ENEMY coded?', questionTamil: 'FRIEND = GSJFOE என குறியிடப்பட்டால், ENEMY எப்படி குறியிடப்படும்?', options: ['FOFNZ', 'FOFNY', 'FOFMZ', 'ENFNZ'], optionsTamil: ['FOFNZ', 'FOFNY', 'FOFMZ', 'ENFNZ'], answer: 0, explanation: 'Each letter shifts +1: E→F, N→O, E→F, M→N, Y→Z = FOFNZ', explanationTamil: 'ஒவ்வொரு எழுத்தும் +1 நகரும்: E→F, N→O, E→F, M→N, Y→Z = FOFNZ', subject: 'Reasoning', difficulty: 'medium' },
+      { id: 'rpf-reason-3', question: 'Pointing to a woman, Rahul says "She is the daughter of my grandfather\'s only son." How is the woman related to Rahul?', questionTamil: 'ஒரு பெண்ணைச் சுட்டிக்காட்டி ராகுல் சொல்கிறார் "அவள் என் தாத்தாவின் ஒரே மகனின் மகள்." அந்த பெண் ராகுலுக்கு என்ன உறவு?', options: ['Sister', 'Mother', 'Daughter', 'Cousin'], optionsTamil: ['சகோதரி', 'தாய்', 'மகள்', 'உறவினர்'], answer: 0, explanation: 'Grandfather\'s only son = Rahul\'s father. Father\'s daughter = Rahul\'s sister.', explanationTamil: 'தாத்தாவின் ஒரே மகன் = ராகுலின் தந்தை. தந்தையின் மகள் = ராகுலின் சகோதரி.', subject: 'Reasoning', difficulty: 'medium' }
     ]
   },
   {
