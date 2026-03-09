@@ -76,7 +76,7 @@ export const governmentExams: GovernmentExam[] = [
   },
   {
     id: 'agniveer-airforce',
-    name: 'Agniveer Air Force',
+    name: 'Agniveer Air Force (Vayu)',
     nameTamil: 'அக்னிவீர் விமானப்படை',
     category: 'defence',
     qualification: '12th Pass',

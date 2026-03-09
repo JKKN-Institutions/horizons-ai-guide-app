@@ -388,27 +388,113 @@ const defenceExams: Exam[] = [
   },
   {
     id: 'agniveer-airforce',
-    name: 'Agniveer Air Force',
-    nameTamil: 'அக்னிவீர் விமானப்படை',
-    qualification: '12th Pass (PCM - 50%)',
-    qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி (PCM - 50%)',
+    name: 'Agniveer Air Force (Vayu)',
+    nameTamil: 'அக்னிவீர் விமானப்படை (வாயு)',
+    qualification: '12th Pass (PCM for Group X / Any Stream for Group Y)',
+    qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி (குரூப் X-க்கு PCM / குரூப் Y-க்கு ஏதேனும் பிரிவு)',
     age: '17.5 - 23 years',
     salary: '₹30,000/month',
-    selectionProcess: 'Written → Physical → Medical',
-    selectionProcessTamil: 'எழுத்துத் தேர்வு → உடற்தகுதி → மருத்துவம்',
+    selectionProcess: 'Online Exam → Physical Fitness Test → Medical',
+    selectionProcessTamil: 'ஆன்லைன் தேர்வு → உடற்தகுதி சோதனை → மருத்துவம்',
     examPattern: [
-      { paper: 'Written Exam', paperTamil: 'எழுத்துத் தேர்வு', marks: 100, duration: '1 hour', questions: 100 }
+      { paper: 'Group X (Science) — English + Physics + Maths', paperTamil: 'குரூப் X (அறிவியல்) — ஆங்கிலம் + இயற்பியல் + கணிதம்', marks: 70, duration: '60 minutes', questions: 70 },
+      { paper: 'Group Y (Non-Science) — English + RAGA', paperTamil: 'குரூப் Y (அறிவியல் அல்லாத) — ஆங்கிலம் + RAGA', marks: 50, duration: '45 minutes', questions: 50 },
+      { paper: 'Combined X & Y — All Subjects', paperTamil: 'ஒருங்கிணைந்த X & Y — அனைத்து பாடங்கள்', marks: 100, duration: '85 minutes', questions: 100 }
     ],
     syllabus: {
-      main: [
+      'Group X — Science Subjects (10+2 Level)': [
         {
-          name: 'Agniveer Air Force Syllabus',
-          nameTamil: 'அக்னிவீர் விமானப்படை பாடத்திட்டம்',
+          name: 'Group X — Science Subjects (60 min | +1 correct, −0.25 wrong)',
+          nameTamil: 'குரூப் X — அறிவியல் பாடங்கள் (60 நிமிடம் | +1 சரி, −0.25 தவறு)',
           topics: [
-            { name: 'Physics', nameTamil: 'இயற்பியல்', subtopics: ['Mechanics', 'Thermodynamics', 'Optics', 'Electricity', 'Magnetism'] },
-            { name: 'Mathematics', nameTamil: 'கணிதம்', subtopics: ['Algebra', 'Trigonometry', 'Calculus', 'Geometry', 'Probability'] },
-            { name: 'English', nameTamil: 'ஆங்கிலம்', subtopics: ['Grammar', 'Vocabulary', 'Comprehension'] },
-            { name: 'Reasoning', nameTamil: 'தர்க்கம்', subtopics: ['Verbal', 'Non-Verbal', 'Spatial Reasoning'] }
+            { name: 'Mathematics (10+2 Level)', nameTamil: 'கணிதம் (10+2 நிலை)', subtopics: [
+              'Sets, Relations & Functions',
+              'Trigonometric Functions — Identities, Equations, Inverse Trig',
+              'Complex Numbers & Quadratic Equations',
+              'Sequences & Series — AP, GP, Harmonic Progression',
+              'Permutations & Combinations',
+              'Binomial Theorem',
+              'Conic Sections — Circle, Parabola, Ellipse, Hyperbola',
+              'Matrices & Determinants — Operations, Inverse, Cramer\'s Rule',
+              'Calculus — Limits, Continuity, Differentiation, Integration',
+              'Differential Equations',
+              'Probability — Conditional, Bayes\' Theorem, Random Variables',
+              'Vectors — Dot Product, Cross Product, 3D Geometry',
+              'Statistics — Mean, Variance, Standard Deviation',
+              'Straight Lines & Coordinate Geometry'
+            ] },
+            { name: 'Physics (10+2 Level)', nameTamil: 'இயற்பியல் (10+2 நிலை)', subtopics: [
+              'Physical World & Measurement — Units, Dimensions, Significant Figures',
+              'Kinematics — Motion in Straight Line, Projectile, Relative Motion',
+              'Laws of Motion — Newton\'s Laws, Friction, Circular Motion',
+              'Work, Energy & Power — Conservation of Energy, Collisions',
+              'Gravitation — Kepler\'s Laws, Gravitational Potential',
+              'Properties of Solids & Liquids — Elasticity, Viscosity, Surface Tension',
+              'Thermodynamics — Laws, Heat Engines, Carnot Cycle',
+              'Kinetic Theory of Gases — Ideal Gas, RMS Speed',
+              'Oscillations & Waves — SHM, Sound Waves, Doppler Effect',
+              'Electrostatics — Coulomb\'s Law, Electric Field, Gauss\'s Law, Capacitors',
+              'Current Electricity — Ohm\'s Law, Kirchhoff\'s Laws, Wheatstone Bridge',
+              'Magnetic Effects of Current — Biot-Savart, Ampere\'s Law, Solenoid',
+              'Electromagnetic Induction — Faraday\'s Law, Lenz\'s Law, AC Circuits',
+              'Electromagnetic Waves — Spectrum, Properties',
+              'Optics — Reflection, Refraction, Lenses, Interference, Diffraction',
+              'Dual Nature of Matter & Radiation — Photoelectric Effect, de Broglie',
+              'Atoms & Nuclei — Bohr Model, Radioactivity, Nuclear Reactions',
+              'Electronic Devices — Semiconductors, Diodes, Transistors, Logic Gates'
+            ] },
+            { name: 'English (10+2 Level)', nameTamil: 'ஆங்கிலம் (10+2 நிலை)', subtopics: [
+              'Reading Comprehension — Passage Based Questions',
+              'Grammar — Tenses, Articles, Prepositions, Conjunctions',
+              'Active & Passive Voice — Transformation',
+              'Direct & Indirect Speech — Narration Changes',
+              'Vocabulary — Synonyms, Antonyms, One Word Substitution',
+              'Sentence Correction & Error Spotting',
+              'Fill in the Blanks — Cloze Test',
+              'Idioms & Phrases'
+            ] }
+          ]
+        }
+      ],
+      'Group Y — Non-Science Subjects': [
+        {
+          name: 'Group Y — RAGA + English (45 min | +1 correct, −0.25 wrong)',
+          nameTamil: 'குரூப் Y — RAGA + ஆங்கிலம் (45 நிமிடம் | +1 சரி, −0.25 தவறு)',
+          topics: [
+            { name: 'Reasoning (Part of RAGA)', nameTamil: 'தர்க்கம் (RAGA இன் பகுதி)', subtopics: [
+              'Coding-Decoding — Letter & Number Coding Patterns',
+              'Analogy — Word & Number Relationships',
+              'Odd One Out — Classification',
+              'Blood Relations — Family Tree Problems',
+              'Number Series — Missing Number, Wrong Term',
+              'Non-Verbal Reasoning — Pattern Recognition, Mirror & Water Image',
+              'Time & Distance — Trains, Boats, Streams',
+              'Profit & Loss — Cost Price, Selling Price, Discount',
+              'Percentage — Increase, Decrease, Population',
+              'Simple Interest & Compound Interest',
+              'Average — Weighted, Running Average',
+              'Ratio & Proportion — Direct, Inverse'
+            ] },
+            { name: 'General Awareness (Part of RAGA)', nameTamil: 'பொது விழிப்புணர்வு (RAGA இன் பகுதி)', subtopics: [
+              'Current Affairs — National & International Events (Last 6 Months)',
+              'Geography — Indian & World Geography, Climate, Rivers, Mountains',
+              'History — Indian History, Freedom Movement, World Wars',
+              'Basic Science — Inventions, Discoveries, Scientific Facts',
+              'Indian Polity — Constitution, Parliament, President, Judiciary',
+              'Sports — National & International Events, Awards, Records',
+              'Defence — Indian Air Force History, Aircraft, Operations, Missiles',
+              'Awards & Honours — Bharat Ratna, Padma Awards, Gallantry Awards',
+              'Books & Authors, Important Days'
+            ] },
+            { name: 'English (Same as Group X)', nameTamil: 'ஆங்கிலம் (குரூப் X போன்றது)', subtopics: [
+              'Reading Comprehension — Passage Based Questions',
+              'Grammar — Tenses, Articles, Prepositions, Conjunctions',
+              'Active & Passive Voice',
+              'Direct & Indirect Speech',
+              'Vocabulary — Synonyms, Antonyms, One Word Substitution',
+              'Sentence Correction & Error Spotting',
+              'Idioms & Phrases'
+            ] }
           ]
         }
       ]
