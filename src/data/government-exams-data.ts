@@ -2403,8 +2403,127 @@ const centralExams: Exam[] = [
       { id: 'fci-gk-2', question: 'FCI headquarters is located at:', questionTamil: 'FCI தலைமையகம் அமைந்துள்ள இடம்:', options: ['New Delhi', 'Mumbai', 'Chennai', 'Kolkata'], optionsTamil: ['புது தில்லி', 'மும்பை', 'சென்னை', 'கொல்கத்தா'], answer: 0, explanation: 'FCI headquarters is at 16-20, Barakhamba Lane, New Delhi - 110001.', explanationTamil: 'FCI தலைமையகம் 16-20, பரகம்பா லேன், புது தில்லி - 110001 இல் உள்ளது.', subject: 'General Knowledge', difficulty: 'easy' },
       { id: 'fci-math-1', question: 'If 20% of a number is 50, the number is:', questionTamil: 'ஒரு எண்ணின் 20% = 50 எனில், அந்த எண்:', options: ['250', '200', '300', '150'], optionsTamil: ['250', '200', '300', '150'], answer: 0, explanation: '20% × N = 50. N = 50 × 100/20 = 250', explanationTamil: '20% × N = 50. N = 50 × 100/20 = 250', subject: 'Mathematics', difficulty: 'easy' }
     ]
-  }
-];
+  },
+  {
+    id: 'nvs-lab-attendant',
+    name: 'NVS Lab Attendant (Navodaya Vidyalaya)',
+    nameTamil: 'NVS ஆய்வக உதவியாளர் (நவோதயா வித்யாலயா)',
+    qualification: '12th Pass (Science — PCM/PCB)',
+    qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி (அறிவியல்)',
+    age: '18 - 30 years',
+    salary: '₹18,000 - ₹56,900/month (Pay Level 1)',
+    selectionProcess: 'Tier 1: Preliminary (100 MCQs, 300 Marks, +3/-1 — Qualifying) → Tier 2: Main (70 Qs, 100 Marks — Merit) → Document Verification → Medical',
+    selectionProcessTamil: 'நிலை 1: முதல்நிலை (100 MCQ, 300 மதிப்பெண், +3/-1 — தகுதி) → நிலை 2: முதன்மை (70 கேள்விகள், 100 — தகுதி) → ஆவண சரிபார்ப்பு → மருத்துவம்',
+    posts: ['Lab Attendant (Jawahar Navodaya Vidyalayas)'],
+    postsTamil: ['ஆய்வக உதவியாளர் (ஜவஹர் நவோதயா வித்யாலயா)'],
+    examPattern: [
+      { paper: 'Tier 1: Preliminary (Qualifying)', paperTamil: 'நிலை 1: முதல்நிலை', marks: 300, duration: '2 hours', questions: 100 },
+      { paper: 'Tier 2: Main (Merit)', paperTamil: 'நிலை 2: முதன்மை', marks: 100, duration: '2.5 hours', questions: 70 }
+    ],
+    syllabus: {
+      'Tier 1 — Preliminary (100 MCQs, 300 Marks, +3/-1)': [
+        {
+          name: 'Screening Test — 6 Sections',
+          nameTamil: 'திரையிடல் தேர்வு — 6 பிரிவுகள்',
+          topics: [
+            { name: 'General Reasoning — 20 Qs, 60 Marks', nameTamil: 'தர்க்கம் — 20 கேள்விகள்', subtopics: ['Analogies, Series, Coding-Decoding, Blood Relations', 'Direction Sense, Syllogism, Classification, Mirror Images', 'Venn Diagrams, Seating Arrangement, Puzzles'] },
+            { name: 'Numeric Ability — 20 Qs, 60 Marks', nameTamil: 'எண் திறன் — 20 கேள்விகள்', subtopics: ['Number System, Percentage, Ratio, Average', 'Profit & Loss, SI & CI, Time & Work/Distance', 'HCF & LCM, Simplification, Data Interpretation'] },
+            { name: 'Basic Computer Literacy — 20 Qs, 60 Marks', nameTamil: 'கணினி — 20 கேள்விகள்', subtopics: ['Hardware, Software, I/O Devices, OS', 'MS Office (Word, Excel, PowerPoint)', 'Internet, Email, Memory (RAM/ROM), Networking'] },
+            { name: 'General Knowledge — 20 Qs, 60 Marks', nameTamil: 'பொது அறிவு — 20 கேள்விகள்', subtopics: ['History, Geography, Polity, Economy', 'General Science, Current Affairs, Awards'] },
+            { name: 'English — 10 Qs, 30 Marks', nameTamil: 'ஆங்கிலம் — 10 கேள்விகள்', subtopics: ['Grammar, Vocabulary, Comprehension, Error Spotting'] },
+            { name: 'Regional Language / Hindi — 10 Qs, 30 Marks', nameTamil: 'பிராந்திய மொழி / இந்தி — 10 கேள்விகள்', subtopics: ['Grammar, Vocabulary, Comprehension'] }
+          ]
+        }
+      ],
+      'Tier 2 — Main Exam (Objective 60 + Descriptive 10, 100 Marks)': [
+        {
+          name: 'Lab-Specific Knowledge (Merit Based)',
+          nameTamil: 'ஆய்வக குறிப்பிட்ட அறிவு (தகுதி அடிப்படை)',
+          topics: [
+            { name: 'Lab Equipment & Techniques', nameTamil: 'உபகரணங்கள் & நுட்பங்கள்', subtopics: ['Beakers, Flasks (Erlenmeyer, Volumetric, Round-bottom)', 'Bunsen Burner — Parts, Operation, Flame types', 'Microscope — Parts, Focusing, Handling', 'Centrifuge — Operation, Speed, Safety', 'Pipette & Burette — Titration techniques', 'pH Meter, Thermometer, Hydrometer'] },
+            { name: 'Chemical Safety', nameTamil: 'வேதியியல் பாதுகாப்பு', subtopics: ['AAA Rule (Always Add Acid to water)', 'MSDS — Material Safety Data Sheets', 'Waste Disposal — Chemical, Biological, Sharps', 'PPE — Gloves, Goggles, Lab Coat, Mask', 'Fire Safety — Extinguisher types', 'Spill Management protocols'] },
+            { name: 'First Aid in Laboratory', nameTamil: 'ஆய்வக முதலுதவி', subtopics: ['Chemical Burns — 15+ min water wash', 'Eye Exposure — Eyewash station, 15-20 min flush', 'Inhalation — Move to fresh air, seek medical help', 'Cuts & Wounds — Clean, pressure, bandage'] },
+            { name: 'Documentation', nameTamil: 'ஆவணமாக்கல்', subtopics: ['Inventory Register, Chemical Log Book', 'Daily Lab Reports, Experiment Records', 'Labeling Protocols, Equipment Maintenance Log'] }
+          ]
+        }
+      ],
+      'Salary & Career Growth': [
+        {
+          name: 'Compensation & Promotion',
+          nameTamil: 'ஊதியம் & பதவி உயர்வு',
+          topics: [
+            { name: 'Details', nameTamil: 'விவரங்கள்', subtopics: ['Pay Level 1: ₹18,000 – ₹56,900 basic', 'Gross: ~₹28,000 – ₹30,000/month with DA, HRA', '10% Special Residential Allowance (campus stay)', 'Free accommodation on JNV campus', 'Promotion: Lab Attendant → Lab Assistant → Lab Analyst → Lab Supervisor'] }
+          ]
+        }
+      ]
+    },
+    pyq: []
+  },
+  {
+    id: 'kvs-non-teaching',
+    name: 'KVS Non-Teaching (JSA / Steno / Lab Attendant)',
+    nameTamil: 'KVS பயிற்றா பணி (JSA / ஸ்டெனோ / ஆய்வக)',
+    qualification: '12th Pass (JSA/Steno) / 12th Science (Lab)',
+    qualificationTamil: '12ஆம் வகுப்பு (JSA/ஸ்டெனோ) / 12ஆம் அறிவியல் (ஆய்வக)',
+    age: '18 - 30 years',
+    salary: '₹18,000 - ₹56,900/month (Pay Level 1-2)',
+    selectionProcess: 'Tier 1: Preliminary (100 MCQs, 300 Marks, +3/-1 — Qualifying) → Tier 2: Main (Objective + Descriptive, 100 Marks — Merit) → Skill Test (Typing 35 WPM / Steno 80 WPM) → Document Verification',
+    selectionProcessTamil: 'நிலை 1: முதல்நிலை (100 MCQ, 300, +3/-1 — தகுதி) → நிலை 2: முதன்மை (100 — தகுதி) → திறன் (தட்டச்சு/சுருக்கெழுத்து) → ஆவணம்',
+    posts: ['Junior Secretariat Assistant (JSA)', 'Stenographer Grade II', 'Lab Attendant'],
+    postsTamil: ['இளநிலை செயலக உதவியாளர்', 'சுருக்கெழுத்தாளர் தரம் II', 'ஆய்வக உதவியாளர்'],
+    examPattern: [
+      { paper: 'Tier 1: Preliminary (Qualifying)', paperTamil: 'நிலை 1: முதல்நிலை', marks: 300, duration: '2 hours', questions: 100 },
+      { paper: 'Tier 2: Main (Merit)', paperTamil: 'நிலை 2: முதன்மை', marks: 100, duration: '2.5 hours', questions: 70 }
+    ],
+    syllabus: {
+      'Tier 1 — Common Preliminary (100 MCQs, 300 Marks, +3/-1)': [
+        {
+          name: 'Common for all Non-Teaching Posts',
+          nameTamil: 'அனைத்து பயிற்றா பதவிகளுக்கும் பொது',
+          topics: [
+            { name: 'General Reasoning — 20 Qs, 60 Marks', nameTamil: 'தர்க்கம்', subtopics: ['Analogies, Series, Coding-Decoding, Blood Relations', 'Syllogism, Classification, Mirror/Water Images, Puzzles'] },
+            { name: 'Numeric Ability — 20 Qs, 60 Marks', nameTamil: 'எண் திறன்', subtopics: ['Number System, %, Ratio, Profit/Loss, SI/CI', 'Time & Work/Distance, HCF/LCM, Data Interpretation'] },
+            { name: 'Computer Literacy — 20 Qs, 60 Marks', nameTamil: 'கணினி', subtopics: ['Hardware/Software, MS Office, OS, Internet, Memory, Networking'] },
+            { name: 'General Knowledge — 20 Qs, 60 Marks', nameTamil: 'பொது அறிவு', subtopics: ['History, Geography, Polity, Economy, Science, Current Affairs'] },
+            { name: 'Language — 20 Qs, 60 Marks', nameTamil: 'மொழி', subtopics: ['English (10 Qs): Grammar, Vocabulary, Comprehension', 'Hindi/Regional (10 Qs): Grammar, Vocabulary, Comprehension'] }
+          ]
+        }
+      ],
+      'Tier 2 — Post-Specific (60 Objective + 10 Descriptive, 100 Marks)': [
+        {
+          name: 'JSA — Typing + Computer Proficiency',
+          nameTamil: 'JSA — தட்டச்சு + கணினி திறன்',
+          topics: [
+            { name: 'JSA Requirements', nameTamil: 'JSA தேவைகள்', subtopics: ['MS Word — Formatting, Tables, Mail Merge', 'MS Excel — Formulas, Charts, Data Sorting', 'MS PowerPoint — Presentations, Animations', 'Office Procedure — Noting, Drafting, Records', 'Typing: 35 WPM English OR 30 WPM Hindi — mandatory'] }
+          ]
+        },
+        {
+          name: 'Stenographer — Shorthand + Transcription',
+          nameTamil: 'சுருக்கெழுத்தாளர் — சுருக்கெழுத்து + படியெடுப்பு',
+          topics: [
+            { name: 'Steno Requirements', nameTamil: 'ஸ்டெனோ தேவைகள்', subtopics: ['Shorthand Dictation: 10 min at 80 WPM', 'Computer Transcription within time limit', 'MS Office Proficiency — mandatory', 'Computer Proficiency Test (CPT) — mandatory'] }
+          ]
+        },
+        {
+          name: 'Lab Attendant — Lab Knowledge',
+          nameTamil: 'ஆய்வக உதவியாளர் — ஆய்வக அறிவு',
+          topics: [
+            { name: 'Lab Skills', nameTamil: 'ஆய்வக திறன்கள்', subtopics: ['Basic Lab Techniques — Measuring, Weighing, Heating', 'Lab Equipment — Microscope, Bunsen Burner, Flasks', 'Chemical Safety — Handling, PPE, Waste disposal', 'Foundational Science — Physics, Chemistry, Biology (10th/12th)'] }
+          ]
+        }
+      ],
+      'Post-Wise Eligibility (12th Pass)': [
+        {
+          name: 'Who Can Apply',
+          nameTamil: 'யார் விண்ணப்பிக்கலாம்',
+          topics: [
+            { name: 'Eligibility Details', nameTamil: 'தகுதி விவரங்கள்', subtopics: ['JSA: 12th Pass + Typing 35 WPM English / 30 WPM Hindi + CPT', 'Stenographer: 12th Pass + Shorthand 80 WPM + CPT', 'Lab Attendant: 10th + Lab Diploma OR 12th Science (PCM/PCB)', 'Age for all: 18-30 years (SC/ST +5, OBC +3, PwBD +10-15)'] }
+          ]
+        }
+      ]
+    },
+    pyq: []
+  }];
 
 // ==================== CATEGORIES ====================
 export const governmentExamCategories: Category[] = [

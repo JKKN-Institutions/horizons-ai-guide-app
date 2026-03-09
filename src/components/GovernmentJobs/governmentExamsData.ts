@@ -419,7 +419,7 @@ export const governmentExams: GovernmentExam[] = [
   },
   {
     id: 'nvs-lab-attendant',
-    name: 'NVS Lab Attendant',
+    name: 'NVS Lab Attendant (Navodaya)',
     nameTamil: 'NVS ஆய்வக உதவியாளர்',
     category: 'central',
     qualification: '12th Pass',
@@ -436,7 +436,7 @@ export const governmentExams: GovernmentExam[] = [
   },
   {
     id: 'kvs-non-teaching',
-    name: 'KVS Non-Teaching Staff',
+    name: 'KVS Non-Teaching (JSA/Steno/Lab)',
     nameTamil: 'KVS பயிற்றா பணியாளர்கள்',
     category: 'central',
     qualification: '12th Pass',
