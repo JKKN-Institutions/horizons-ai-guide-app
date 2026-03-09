@@ -109,11 +109,24 @@ export const UniversityCard = ({ university, onClick }: UniversityCardProps) => 
                   src={university.logo} 
                   alt={`${university.name} logo`}
                   className="w-full h-full object-contain p-1.5"
+                  onError={(e) => {
+                    // If logo fails to load, replace with initials
+                    const target = e.currentTarget;
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.className = "w-[60px] h-[60px] rounded-xl flex items-center justify-center font-bold text-lg shadow-sm group-hover:shadow-md transition-shadow border";
+                      parent.style.backgroundColor = university.logoColor || '#059669';
+                      parent.style.color = '#fff';
+                      parent.style.borderColor = university.logoColor || '#059669';
+                      parent.innerHTML = getInitials(university.name);
+                    }
+                  }}
                 />
               </div>
             ) : (
               <div 
-                className="w-[60px] h-[60px] rounded-xl flex items-center justify-center font-bold text-lg shadow-sm group-hover:shadow-md transition-shadow bg-emerald-100 text-emerald-800 border border-emerald-200"
+                className="w-[60px] h-[60px] rounded-xl flex items-center justify-center font-bold text-lg shadow-sm group-hover:shadow-md transition-shadow border"
+                style={{ backgroundColor: university.logoColor || '#059669', color: '#fff', borderColor: university.logoColor || '#059669' }}
               >
                 {getInitials(university.name)}
               </div>

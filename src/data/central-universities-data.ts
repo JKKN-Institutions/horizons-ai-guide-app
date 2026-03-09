@@ -812,8 +812,25 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitb-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['50+ courses', 'Top 3 IIT in India', 'Highest placement packages'] },
-      { id: 'iitb-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong research ecosystem'] }
+      { id: 'iitb-aero', name: 'B.Tech Aerospace Engineering', nameTamil: 'B.Tech விண்வெளி பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['ISRO & HAL opportunities'] },
+      { id: 'iitb-chem', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Petrochemical & Pharma'] },
+      { id: 'iitb-civil', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitb-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand, AIR <70'] },
+      { id: 'iitb-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitb-energy', name: 'B.Tech Energy Engineering', nameTamil: 'B.Tech ஆற்றல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Renewable energy focus'] },
+      { id: 'iitb-ep', name: 'B.Tech Engineering Physics', nameTamil: 'B.Tech பொறியியல் இயற்பியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitb-env', name: 'B.Tech Environmental Science & Engineering', nameTamil: 'B.Tech சுற்றுச்சூழல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Green technology'] },
+      { id: 'iitb-ie', name: 'B.Tech Industrial Engineering & Operations Research', nameTamil: 'B.Tech தொழிற்சாலை பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Analytics & Operations'] },
+      { id: 'iitb-mech', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitb-meta', name: 'B.Tech Metallurgical Engineering & Materials Science', nameTamil: 'B.Tech உலோகவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Materials R&D'] },
+      { id: 'iitb-bsc-chem', name: 'B.Sc. Chemistry', nameTamil: 'B.Sc. வேதியியல்', type: 'UG', category: 'On-Campus', school: 'Science', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research pathway'] },
+      { id: 'iitb-bsc-econ', name: 'B.Sc. Economics', nameTamil: 'B.Sc. பொருளாதாரம்', type: 'UG', category: 'On-Campus', school: 'HSS', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Economics + Tech'] },
+      { id: 'iitb-bsc-math', name: 'B.Sc. Mathematics', nameTamil: 'B.Sc. கணிதம்', type: 'UG', category: 'On-Campus', school: 'Science', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pure Mathematics'] },
+      { id: 'iitb-dd-ee', name: 'B.Tech+M.Tech (Dual Degree) Electrical Engineering', nameTamil: 'B.Tech+M.Tech இரட்டை பட்டம் மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '5 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['5-year integrated program'] },
+      { id: 'iitb-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['50+ specializations via GATE'] },
+      { id: 'iitb-mba', name: 'MBA (Shailesh J. Mehta School of Management)', nameTamil: 'MBA (மேலாண்மை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/GMAT qualified', tips: ['Top MBA program'] },
+      { id: 'iitb-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitb-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. (முனைவர் பட்டம்)', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Strong research ecosystem'] }
     ]
   },
 
@@ -839,8 +856,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitd-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['50+ courses', 'Strong startup ecosystem', 'Top recruiters: Google, Microsoft'] },
-      { id: 'iitd-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Excellent research facilities'] }
+      { id: 'iitd-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitd-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitd-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitd-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitd-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitd-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitd-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitd-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitd-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -866,8 +890,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitk-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['50+ courses', 'Pioneer in Computer Science', 'Strong in Aerospace'] },
-      { id: 'iitk-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['World-class research labs'] }
+      { id: 'iitk-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitk-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitk-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitk-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitk-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitk-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitk-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitk-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitk-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -893,8 +924,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitkgp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['60+ courses', "India's first IIT (1951)", 'Largest IIT campus'] },
-      { id: 'iitkgp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong in Architecture, Law, Medical'] }
+      { id: 'iitkgp-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitkgp-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitkgp-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitkgp-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitkgp-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitkgp-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitkgp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitkgp-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitkgp-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -920,8 +958,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['50+ courses', "Asia's oldest technical institution (1847)", 'Strong in Civil Engineering'] },
-      { id: 'iitr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Heritage campus with modern facilities'] }
+      { id: 'iitr-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitr-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitr-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitr-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitr-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitr-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitr-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitr-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -947,8 +992,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitg-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['45+ courses', 'Beautiful Brahmaputra campus', 'Strong in Design'] },
-      { id: 'iitg-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['NE India hub for technology'] }
+      { id: 'iitg-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitg-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitg-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitg-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitg-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitg-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitg-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitg-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitg-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -974,8 +1026,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iith-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['40+ courses', 'New generation IIT', 'Strong in AI/ML'] },
-      { id: 'iith-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Research collaboration with Japan'] }
+      { id: 'iith-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iith-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iith-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iith-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iith-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iith-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iith-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iith-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iith-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1001,8 +1060,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iittp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Madras', 'Near Tamil Nadu border'] },
-      { id: 'iittp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing rapidly'] }
+      { id: 'iitt-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitt-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitt-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitt-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitt-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitt-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitt-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitt-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitt-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1028,8 +1094,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitpkd-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Madras', 'Near Tamil Nadu - Coimbatore'] },
-      { id: 'iitpkd-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['New campus with modern facilities'] }
+      { id: 'iitp-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitp-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitp-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitp-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitp-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitp-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitp-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitp-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1055,8 +1128,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitdh-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Bombay', 'Karnataka hub'] },
-      { id: 'iitdh-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing institution'] }
+      { id: 'iitdw-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitdw-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitdw-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitdw-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitdw-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitdw-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitdw-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitdw-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitdw-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1082,8 +1162,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iiti-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['25+ courses', 'Central India hub', 'Strong research output'] },
-      { id: 'iiti-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Modern campus'] }
+      { id: 'iiti-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iiti-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iiti-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iiti-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iiti-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iiti-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iiti-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iiti-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iiti-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1109,8 +1196,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitbhu-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['40+ courses', 'Historic institution (1919)', 'Part of BHU campus'] },
-      { id: 'iitbhu-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong in Mining, Ceramic Engineering'] }
+      { id: 'iitbhu-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitbhu-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitbhu-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitbhu-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitbhu-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitbhu-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitbhu-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitbhu-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitbhu-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1136,8 +1230,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'New generation IIT', 'Growing placements'] },
-      { id: 'iitp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Bihar hub for technology'] }
+      { id: 'iitpat-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitpat-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitpat-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitpat-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitpat-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitpat-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitpat-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitpat-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitpat-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1163,8 +1264,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitgn-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['25+ courses', 'Liberal education approach', 'Strong in Cognitive Science'] },
-      { id: 'iitgn-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Beautiful campus architecture'] }
+      { id: 'iitgn-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitgn-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitgn-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitgn-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitgn-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitgn-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitgn-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitgn-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitgn-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1190,8 +1298,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitj-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'Desert campus', 'Strong in AI'] },
-      { id: 'iitj-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Rajasthan hub'] }
+      { id: 'iitj-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitj-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitj-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitj-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitj-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitj-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitj-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitj-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitj-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1217,8 +1332,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitrpr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'Punjab hub', 'New campus'] },
-      { id: 'iitrpr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing rapidly'] }
+      { id: 'iitrop-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitrop-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitrop-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitrop-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitrop-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitrop-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitrop-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitrop-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitrop-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1244,8 +1366,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitbbs-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'Odisha hub', 'Strong in Earth Sciences'] },
-      { id: 'iitbbs-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['New campus facilities'] }
+      { id: 'iitbbs-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitbbs-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitbbs-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitbbs-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitbbs-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitbbs-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitbbs-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitbbs-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitbbs-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1271,8 +1400,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitmandi-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'Beautiful Himalayan campus', 'Strong in Data Science'] },
-      { id: 'iitmandi-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Scenic location'] }
+      { id: 'iitman-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitman-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitman-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitman-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitman-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitman-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitman-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitman-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitman-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1298,8 +1434,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitjammu-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'New IIT', 'J&K technology hub'] },
-      { id: 'iitjammu-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing institution'] }
+      { id: 'iitjm-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitjm-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitjm-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitjm-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitjm-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitjm-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitjm-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitjm-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitjm-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1325,8 +1468,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitbhilai-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Hyderabad', 'Chhattisgarh hub'] },
-      { id: 'iitbhilai-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing rapidly'] }
+      { id: 'iitbh-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitbh-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitbh-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitbh-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitbh-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitbh-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitbh-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitbh-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitbh-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1352,8 +1502,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitgoa-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Bombay', 'Beautiful coastal campus'] },
-      { id: 'iitgoa-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Scenic Goa location'] }
+      { id: 'iitgoa-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitgoa-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitgoa-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitgoa-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitgoa-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitgoa-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitgoa-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitgoa-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitgoa-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1379,8 +1536,15 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 200000, obc: 200000, scst: 0 },
     courses: [
-      { id: 'iitism-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['35+ courses', 'Historic ISM (1926)', 'Best for Mining Engineering'] },
-      { id: 'iitism-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong in Petroleum, Mining, Geology'] }
+      { id: 'iitism-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'iitism-ee', name: 'B.Tech Electrical Engineering', nameTamil: 'B.Tech மின் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Power & Electronics'] },
+      { id: 'iitism-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Automobile & Manufacturing'] },
+      { id: 'iitism-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Infrastructure sector'] },
+      { id: 'iitism-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Pharma & Petrochemical'] },
+      { id: 'iitism-mse', name: 'B.Tech Materials Science & Engineering', nameTamil: 'B.Tech பொருட்கள் அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced, 12th PCM', tips: ['Research-oriented'] },
+      { id: 'iitism-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Multiple PG specializations via GATE'] },
+      { id: 'iitism-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - பல்வேறு அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM qualified', tips: ['Physics, Chemistry, Mathematics'] },
+      { id: 'iitism-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research programmes'] }
     ]
   },
 
@@ -1406,8 +1570,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitk-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Among top 5 NITs', 'Beautiful beach campus'] },
-      { id: 'nitk-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Excellent research facilities'] }
+      { id: 'nitk-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitk-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitk-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitk-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitk-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitk-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitk-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitk-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitk-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitk-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitk-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1433,8 +1606,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitw-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Oldest NIT (1959)', 'Top 3 NIT in rankings'] },
-      { id: 'nitw-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong industry connections'] }
+      { id: 'nitw-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitw-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitw-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitw-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitw-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitw-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitw-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitw-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitw-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitw-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitw-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1460,8 +1642,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitc-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Green campus in Kerala', 'Strong CSE department'] },
-      { id: 'nitc-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Research-oriented'] }
+      { id: 'nitc-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitc-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitc-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitc-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitc-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitc-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitc-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitc-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitc-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitc-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitc-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1487,8 +1678,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Strong in Metallurgy, Mining', 'Located in steel city'] },
-      { id: 'nitr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Industry tie-ups with steel plants'] }
+      { id: 'nitr-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitr-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitr-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitr-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitr-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitr-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitr-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitr-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitr-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitr-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1514,8 +1714,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitdgp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Strong ECE and CSE', 'Industrial area location'] },
-      { id: 'nitdgp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Good placement record'] }
+      { id: 'nitd-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitd-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitd-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitd-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitd-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitd-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitd-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitd-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitd-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitd-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitd-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1541,8 +1750,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'mnnit-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Heritage institute (1961)', 'Strong alumni network'] },
-      { id: 'mnnit-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Excellent placements'] }
+      { id: 'mnnit-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'mnnit-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'mnnit-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'mnnit-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'mnnit-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'mnnit-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'mnnit-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'mnnit-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'mnnit-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'mnnit-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'mnnit-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1568,8 +1786,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitkkr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Near Delhi NCR', 'Good industry exposure'] },
-      { id: 'nitkkr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Historical Kurukshetra location'] }
+      { id: 'nitkk-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitkk-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitkk-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitkk-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitkk-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitkk-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitkk-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitkk-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitkk-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitkk-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitkk-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1595,8 +1822,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitjsr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Steel city location', 'TATA industry connections'] },
-      { id: 'nitjsr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Core placements in steel sector'] }
+      { id: 'nitjsr-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitjsr-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitjsr-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitjsr-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitjsr-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitjsr-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitjsr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitjsr-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitjsr-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitjsr-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitjsr-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1622,8 +1858,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nits-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Northeast India', 'Lower cutoffs, good opportunities'] },
-      { id: 'nits-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Peaceful campus'] }
+      { id: 'nits-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nits-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nits-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nits-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nits-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nits-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nits-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nits-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nits-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nits-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nits-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1649,8 +1894,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nith-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Hill station campus', 'Scenic Himalayan location'] },
-      { id: 'nith-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Cool climate year-round'] }
+      { id: 'nith-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nith-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nith-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nith-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nith-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nith-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nith-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nith-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nith-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nith-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nith-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1676,8 +1930,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitsri-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Beautiful Kashmir valley', 'Lower cutoffs'] },
-      { id: 'nitsri-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Unique experience in Kashmir'] }
+      { id: 'nitsr-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitsr-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitsr-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitsr-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitsr-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitsr-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitsr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitsr-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitsr-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitsr-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitsr-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1703,8 +1966,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitj-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Punjab location', 'Good industrial exposure'] },
-      { id: 'nitj-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong placement support'] }
+      { id: 'nitj-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitj-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitj-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitj-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitj-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitj-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitj-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitj-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitj-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitj-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitj-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1730,8 +2002,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Historic NIT', 'Growing rapidly'] },
-      { id: 'nitp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['State capital location'] }
+      { id: 'nitp-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitp-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitp-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitp-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitp-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitp-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitp-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitp-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitp-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitp-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1757,8 +2038,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitrr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Central India location', 'Good infrastructure'] },
-      { id: 'nitrr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Mining industry connections'] }
+      { id: 'nitrp-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitrp-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitrp-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitrp-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitrp-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitrp-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitrp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitrp-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitrp-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitrp-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitrp-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1784,8 +2074,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nita-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'Northeast India', 'Lower cutoffs, affordable'] },
-      { id: 'nita-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Peaceful campus'] }
+      { id: 'nita-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nita-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nita-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nita-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nita-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nita-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nita-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nita-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nita-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nita-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nita-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1811,8 +2110,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'vnit-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Central India hub', 'Strong placements'] },
-      { id: 'vnit-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Named after Sir M. Visvesvaraya'] }
+      { id: 'vnit-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'vnit-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'vnit-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'vnit-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'vnit-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'vnit-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'vnit-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'vnit-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'vnit-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'vnit-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'vnit-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1838,8 +2146,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitgoa-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'Beautiful Goa location', 'Growing institute'] },
-      { id: 'nitgoa-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Beach state campus'] }
+      { id: 'nitg-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitg-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitg-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitg-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitg-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitg-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitg-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitg-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitg-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitg-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitg-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1865,8 +2182,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitd-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'National capital location', 'Industry hub access'] },
-      { id: 'nitd-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Delhi NCR advantages'] }
+      { id: 'nitdel-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitdel-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitdel-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitdel-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitdel-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitdel-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitdel-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitdel-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitdel-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitdel-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitdel-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1892,8 +2218,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nituk-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'Himalayan foothills', 'Scenic location'] },
-      { id: 'nituk-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Cool climate'] }
+      { id: 'nituk-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nituk-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nituk-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nituk-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nituk-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nituk-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nituk-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nituk-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nituk-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nituk-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nituk-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1919,8 +2254,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitm-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Scotland of the East', 'Lower cutoffs'] },
-      { id: 'nitm-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Beautiful hill station'] }
+      { id: 'nitmeg-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitmeg-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitmeg-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitmeg-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitmeg-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitmeg-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitmeg-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitmeg-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitmeg-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitmeg-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitmeg-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1946,8 +2290,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitmnp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Northeast gem', 'Growing infrastructure'] },
-      { id: 'nitmnp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Lower cutoffs'] }
+      { id: 'nitmani-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitmani-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitmani-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitmani-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitmani-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitmani-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitmani-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitmani-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitmani-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitmani-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitmani-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -1973,8 +2326,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitmz-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Peaceful hill state', 'Lowest cutoffs among NITs'] },
-      { id: 'nitmz-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Developing institute'] }
+      { id: 'nitmz-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitmz-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitmz-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitmz-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitmz-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitmz-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitmz-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitmz-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitmz-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitmz-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitmz-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -2000,8 +2362,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitngl-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Northeast location', 'Lower cutoffs'] },
-      { id: 'nitngl-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing institute'] }
+      { id: 'nitnag-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitnag-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitnag-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitnag-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitnag-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitnag-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitnag-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitnag-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitnag-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitnag-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitnag-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -2027,8 +2398,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitap-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Land of Dawn-Lit Mountains', 'Lower cutoffs'] },
-      { id: 'nitap-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Scenic location'] }
+      { id: 'nitar-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitar-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitar-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitar-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitar-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitar-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitar-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitar-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitar-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitar-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitar-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -2054,8 +2434,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitskm-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Himalayan beauty', 'Lower cutoffs'] },
-      { id: 'nitskm-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['View of Kanchenjunga'] }
+      { id: 'nitsk-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitsk-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitsk-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitsk-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitsk-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitsk-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitsk-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitsk-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitsk-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitsk-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitsk-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -2081,8 +2470,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitap2-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'South India location', 'Growing rapidly'] },
-      { id: 'nitap2-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['New campus development'] }
+      { id: 'nitap-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitap-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitap-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitap-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitap-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitap-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitap-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitap-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitap-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitap-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitap-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -2108,8 +2506,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'nitpy-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['11+ courses', 'French territory influence', 'Near TN students'] },
-      { id: 'nitpy-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Coastal location'] }
+      { id: 'nitpy-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'nitpy-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'nitpy-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'nitpy-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'nitpy-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'nitpy-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'nitpy-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'nitpy-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'nitpy-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'nitpy-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'nitpy-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
@@ -2135,8 +2542,17 @@ export const centralUniversities: University[] = [
     ],
     fee: { general: 150000, obc: 150000, scst: 0 },
     courses: [
-      { id: 'mnit-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Pink City location', 'Top 10 NIT in rankings'] },
-      { id: 'mnit-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong architecture program'] }
+      { id: 'mnit-cse', name: 'B.Tech Computer Science & Engineering', nameTamil: 'B.Tech கணினி அறிவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Highest demand branch'] },
+      { id: 'mnit-ece', name: 'B.Tech Electronics & Communication Engineering', nameTamil: 'B.Tech மின்னணு & தகவல் தொடர்பு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['VLSI & Telecom'] },
+      { id: 'mnit-eee', name: 'B.Tech Electrical & Electronics Engineering', nameTamil: 'B.Tech மின் & மின்னணு', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Power sector'] },
+      { id: 'mnit-me', name: 'B.Tech Mechanical Engineering', nameTamil: 'B.Tech இயந்திரவியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Manufacturing & Design'] },
+      { id: 'mnit-ce', name: 'B.Tech Civil Engineering', nameTamil: 'B.Tech சிவில் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Infrastructure'] },
+      { id: 'mnit-che', name: 'B.Tech Chemical Engineering', nameTamil: 'B.Tech வேதியியல் பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main, 12th PCM', tips: ['Chemical & Pharma'] },
+      { id: 'mnit-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['PG specializations'] },
+      { id: 'mnit-mca', name: 'MCA (Master of Computer Applications)', nameTamil: 'MCA கணினி பயன்பாடுகள்', type: 'PG', category: 'On-Campus', school: 'IT', duration: '2 Years', eligibility: 'NIMCET / University Entrance', tips: ['IT industry pathway'] },
+      { id: 'mnit-mba', name: 'MBA (Master of Business Administration)', nameTamil: 'MBA மேலாண்மை', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CAT/MAT qualified', tips: ['Management programme'] },
+      { id: 'mnit-msc', name: 'M.Sc. - Various Sciences', nameTamil: 'M.Sc. - அறிவியல்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'IIT JAM / University Entrance', tips: ['Science programmes'] },
+      { id: 'mnit-phd', name: 'Ph.D. (Doctor of Philosophy)', nameTamil: 'Ph.D. முனைவர் பட்டம்', type: 'PG', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'GATE/NET + Interview', tips: ['Research'] }
     ]
   },
 
