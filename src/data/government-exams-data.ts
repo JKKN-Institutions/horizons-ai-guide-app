@@ -689,6 +689,107 @@ const defenceExams: Exam[] = [
       { id: 'bsf-eng-1', question: 'Choose the correct sentence:', questionTamil: 'சரியான வாக்கியத்தை தேர்வு செய்:', options: ['He has been working since morning', 'He has been working from morning', 'He is working since morning', 'He was working since morning'], optionsTamil: ['He has been working since morning', 'He has been working from morning', 'He is working since morning', 'He was working since morning'], answer: 0, explanation: '"Since" is used with a point of time, and with Present Perfect Continuous tense for an action that started in the past and is still continuing', explanationTamil: '"Since" ஒரு குறிப்பிட்ட நேரத்துடன் பயன்படுத்தப்படும், Present Perfect Continuous tense உடன் பயன்படும்', subject: 'English', difficulty: 'medium' },
       { id: 'bsf-eng-2', question: 'The antonym of "Ancient" is:', questionTamil: '"Ancient" என்ற சொல்லின் எதிர்ச்சொல்:', options: ['Modern', 'Old', 'Historic', 'Traditional'], optionsTamil: ['நவீன', 'பழைய', 'வரலாற்று', 'பாரம்பரிய'], answer: 0, explanation: 'Ancient means very old or belonging to a long time ago. Modern is its opposite — meaning relating to the present or recent times.', explanationTamil: 'Ancient என்றால் மிகவும் பழமையான. Modern அதன் எதிர்ச்சொல் — தற்கால என்று பொருள்.', subject: 'English', difficulty: 'easy' }
     ]
+  },
+  {
+    id: 'crpf-constable',
+    name: 'CRPF Constable',
+    nameTamil: 'CRPF காவலர்',
+    qualification: '12th Pass',
+    qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி',
+    age: '18 - 23 years',
+    salary: '₹23,527 - ₹81,100/month',
+    selectionProcess: 'Computer Based Test (CBT) → Physical Standards Test (PST) → Physical Efficiency Test (PET) → Trade Test → Document Verification → Medical Examination',
+    selectionProcessTamil: 'கணினி அடிப்படையிலான தேர்வு (CBT) → உடல் தரநிலை தேர்வு (PST) → உடல் திறன் தேர்வு (PET) → தொழில் தேர்வு → ஆவண சரிபார்ப்பு → மருத்துவப் பரிசோதனை',
+    posts: ['CRPF Constable (GD)', 'CRPF Constable (Tradesman — Driver, Cook, Tailor, etc.)'],
+    postsTamil: ['CRPF காவலர் (GD)', 'CRPF காவலர் (டிரேட்ஸ்மேன் — டிரைவர், சமையல்காரர், தையல்காரர்)'],
+    examPattern: [
+      { paper: 'Computer Based Test (CBT)', paperTamil: 'கணினி அடிப்படையிலான தேர்வு (CBT)', marks: 100, duration: '2 hours', questions: 100 }
+    ],
+    syllabus: {
+      'Written Exam — CBT (100 Questions, 100 Marks, 2 Hours)': [
+        {
+          name: 'Section A — General Intelligence & Reasoning (25 Marks)',
+          nameTamil: 'பிரிவு A — பொது நுண்ணறிவு & தர்க்கம் (25 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Verbal Reasoning', nameTamil: 'சொல் தர்க்கம்', subtopics: ['Analogies — Word & Number Relationships', 'Similarities and Differences', 'Relationship Concepts — Blood Relations', 'Coding and Decoding — Letter/Number/Mixed Coding', 'Arithmetical Reasoning — Word Problems'] },
+            { name: 'Non-Verbal Reasoning', nameTamil: 'சொல்லற்ற தர்க்கம்', subtopics: ['Visual Memory & Discrimination', 'Observation — Pattern Recognition', 'Figural Classification — Odd One Out', 'Arithmetic Number Series — Missing Numbers', 'Non-verbal Series — Figure Completion', 'Spatial Orientation — Mirror Image, Paper Folding'] }
+          ]
+        },
+        {
+          name: 'Section B — General Knowledge & General Awareness (25 Marks)',
+          nameTamil: 'பிரிவு B — பொது அறிவு & விழிப்புணர்வு (25 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Indian History & Culture', nameTamil: 'இந்திய வரலாறு & கலாச்சாரம்', subtopics: ['Ancient India — Indus Valley, Maurya, Gupta Empires', 'Medieval India — Mughal Empire, Delhi Sultanate', 'Modern India — British Rule, Freedom Movement, Important Leaders', 'Indian Culture — Art, Dance, Music, Festivals, Heritage Sites'] },
+            { name: 'Geography & Economy', nameTamil: 'புவியியல் & பொருளாதாரம்', subtopics: ['Indian Geography — Rivers, Mountains, Plains, Climate, Soil', 'World Geography — Continents, Oceans, Countries & Capitals', 'Indian Economy — GDP, Budget, Five Year Plans, NITI Aayog', 'Socio-Economic Development — Poverty, Literacy, Population'] },
+            { name: 'Polity & Current Affairs', nameTamil: 'அரசியல் & நடப்பு நிகழ்வுகள்', subtopics: ['Indian Polity — Constitution, Fundamental Rights, Parliament, President', 'Current Events — National & International News', 'Scientific Developments — Space (ISRO), Defence (DRDO)', 'Awards & Honours, Sports, Books & Authors'] }
+          ]
+        },
+        {
+          name: 'Section C — Elementary Mathematics (25 Marks)',
+          nameTamil: 'பிரிவு C — அடிப்படை கணிதம் (25 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Arithmetic Fundamentals', nameTamil: 'எண்கணித அடிப்படைகள்', subtopics: ['Number Systems — Natural, Whole, Integers, Rational, Real Numbers', 'HCF & LCM — Prime Factorization Method', 'Percentages — Calculation, Increase/Decrease, Successive', 'Ratio and Proportion — Direct & Inverse', 'Average — Simple Average, Weighted Average', 'Simplification — BODMAS, Fractions, Decimals'] },
+            { name: 'Commercial & Applied Math', nameTamil: 'வணிக & பயன்பாட்டு கணிதம்', subtopics: ['Profit & Loss — Cost Price, Selling Price, Discount, Marked Price', 'Time & Work — Efficiency, Pipes & Cisterns', 'Time, Speed & Distance — Relative Speed, Trains, Boats & Streams', 'Simple Interest & Compound Interest', 'Data Interpretation — Tables, Bar Graphs, Pie Charts, Line Graphs'] },
+            { name: 'Mensuration', nameTamil: 'அளவீடு', subtopics: ['Area & Perimeter — Triangle, Circle, Rectangle, Square', 'Volume & Surface Area — Cylinder, Cone, Sphere, Cuboid', 'Mensuration Word Problems'] }
+          ]
+        },
+        {
+          name: 'Section D — English / Hindi (25 Marks)',
+          nameTamil: 'பிரிவு D — ஆங்கிலம் / இந்தி (25 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'English Grammar', nameTamil: 'ஆங்கில இலக்கணம்', subtopics: ['Error Recognition — Spot the Error in Sentences', 'Fill in the Blanks — Prepositions, Articles, Conjunctions', 'Grammar Rules — Tenses, Voice, Speech, Subject-Verb Agreement', 'Spellings — Commonly Misspelled Words', 'Sentence Rearrangement — Para Jumbles, Sentence Order'] },
+            { name: 'Vocabulary & Comprehension', nameTamil: 'சொல்வளம் & புரிதல்', subtopics: ['Synonyms — Words with Similar Meaning', 'Antonyms — Words with Opposite Meaning', 'Idioms & Phrases — Common English Idioms', 'One Word Substitution', 'Reading Comprehension — Passage-Based Questions'] }
+          ]
+        }
+      ],
+      'Physical Standards Test (PST) & Physical Efficiency Test (PET)': [
+        {
+          name: 'Physical Standards Test (PST)',
+          nameTamil: 'உடல் தரநிலை தேர்வு (PST)',
+          topics: [
+            { name: 'Height Requirements', nameTamil: 'உயர தேவைகள்', subtopics: ['General Male: 170 cm', 'ST Male: 162.5 cm', 'Garhwal, Kumaon, Gorkha, Dogra, Maratha, NE States: 165 cm', 'Female General: 157 cm', 'Female ST: 155 cm'] },
+            { name: 'Chest Measurement (Male Only)', nameTamil: 'மார்பு அளவு (ஆண் மட்டும்)', subtopics: ['General: 80 cm unexpanded, 85 cm expanded (5 cm expansion minimum)', 'ST/Hill areas: 76 cm unexpanded, 81 cm expanded'] },
+            { name: 'Weight', nameTamil: 'எடை', subtopics: ['Proportionate to height and age as per medical standards'] }
+          ]
+        },
+        {
+          name: 'Physical Efficiency Test (PET)',
+          nameTamil: 'உடல் திறன் தேர்வு (PET)',
+          topics: [
+            { name: 'Running Test', nameTamil: 'ஓட்டத் தேர்வு', subtopics: ['Male: 5 km run in 24 minutes', 'Female: 1.6 km run in 8 minutes 30 seconds', 'Candidates from hilly areas get additional time relaxation'] }
+          ]
+        }
+      ],
+      'Marking Scheme & Important Notes': [
+        {
+          name: 'Exam Rules',
+          nameTamil: 'தேர்வு விதிகள்',
+          topics: [
+            { name: 'Marking & Eligibility', nameTamil: 'மதிப்பெண் & தகுதி', subtopics: [
+              'Correct Answer: +1 mark per question',
+              'Wrong Answer: -0.25 marks deducted (negative marking)',
+              'Unanswered: No marks deducted',
+              'Recruitment via SSC GD Constable exam (conducted by SSC)',
+              'CRPF is one of the forces under CAPFs — selection based on SSC GD merit',
+              'Trade Test applicable for Tradesman posts (Driver, Cook, Tailor, etc.)',
+              'Always verify exact details from official CRPF notification (crpf.gov.in)'
+            ] }
+          ]
+        }
+      ]
+    },
+    pyq: [
+      { id: 'crpf-gk-1', question: 'CRPF was established in which year?', questionTamil: 'CRPF எந்த ஆண்டு நிறுவப்பட்டது?', options: ['1939', '1947', '1950', '1965'], optionsTamil: ['1939', '1947', '1950', '1965'], answer: 0, explanation: 'CRPF was established on 27 July 1939 as the Crown Representative\'s Police. After independence it became Central Reserve Police Force on 28 December 1949.', explanationTamil: 'CRPF 1939 ஜூலை 27 அன்று Crown Representative\'s Police ஆக நிறுவப்பட்டது. சுதந்திரத்திற்குப் பின் 1949 டிசம்பர் 28 அன்று மத்திய ரிசர்வ் போலீஸ் படை ஆனது.', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'crpf-gk-2', question: 'CRPF headquarters is located at:', questionTamil: 'CRPF தலைமையகம் அமைந்துள்ள இடம்:', options: ['New Delhi', 'Mumbai', 'Kolkata', 'Chennai'], optionsTamil: ['புது தில்லி', 'மும்பை', 'கொல்கத்தா', 'சென்னை'], answer: 0, explanation: 'CRPF Headquarters is at CGO Complex, Lodhi Road, New Delhi', explanationTamil: 'CRPF தலைமையகம் CGO வளாகம், லோதி சாலை, புது தில்லியில் உள்ளது', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'crpf-gk-3', question: 'The motto of CRPF is:', questionTamil: 'CRPF இன் குறிக்கோள்:', options: ['Service and Loyalty', 'Duty Unto Death', 'Valour and Victory', 'Always Ready'], optionsTamil: ['சேவை மற்றும் விசுவாசம்', 'கடமை இறுதிவரை', 'வீரமும் வெற்றியும்', 'எப்போதும் தயார்'], answer: 0, explanation: 'The motto of CRPF is "Service and Loyalty" (Seva aur Nishtha)', explanationTamil: 'CRPF இன் குறிக்கோள் "சேவை மற்றும் விசுவாசம்" (சேவா ஔர் நிஷ்டா)', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'crpf-gk-4', question: 'CRPF Valour Day (Shaurya Diwas) is observed on:', questionTamil: 'CRPF வீர தினம் (சௌர்ய திவஸ்) எப்போது கொண்டாடப்படுகிறது:', options: ['9 April', '26 January', '15 August', '1 December'], optionsTamil: ['ஏப்ரல் 9', 'ஜனவரி 26', 'ஆகஸ்ட் 15', 'டிசம்பர் 1'], answer: 0, explanation: 'CRPF Valour Day is on 9 April to honour the bravery of CRPF jawans in the Battle of Sardar Post (Hot Springs) against China in 1959', explanationTamil: 'CRPF வீர தினம் ஏப்ரல் 9 — 1959 இல் சர்தார் போஸ்ட் போரில் சீனாவுக்கு எதிராக CRPF வீரர்களின் வீரத்தை கௌரவிக்க', subject: 'General Knowledge', difficulty: 'medium' },
+      { id: 'crpf-math-1', question: 'If the ratio of two numbers is 3:5 and their sum is 80, find the larger number:', questionTamil: 'இரண்டு எண்களின் விகிதம் 3:5, அவற்றின் கூட்டுத்தொகை 80 எனில், பெரிய எண்ணைக் காணவும்:', options: ['50', '30', '40', '48'], optionsTamil: ['50', '30', '40', '48'], answer: 0, explanation: 'Sum of ratio = 3+5 = 8. Larger number = (5/8) × 80 = 50', explanationTamil: 'விகிதத்தின் கூட்டு = 3+5 = 8. பெரிய எண் = (5/8) × 80 = 50', subject: 'Mathematics', difficulty: 'easy' },
+      { id: 'crpf-math-2', question: 'A man buys an article for ₹800 and sells it for ₹920. His profit percentage is:', questionTamil: 'ஒரு பொருளை ₹800 க்கு வாங்கி ₹920 க்கு விற்கிறார். லாப சதவீதம் என்ன:', options: ['15%', '12%', '20%', '10%'], optionsTamil: ['15%', '12%', '20%', '10%'], answer: 0, explanation: 'Profit = ₹920 - ₹800 = ₹120. Profit % = (120/800) × 100 = 15%', explanationTamil: 'லாபம் = ₹920 - ₹800 = ₹120. லாப % = (120/800) × 100 = 15%', subject: 'Mathematics', difficulty: 'easy' },
+      { id: 'crpf-reason-1', question: 'In a code language, if CAT = 24, then DOG = ?', questionTamil: 'ஒரு குறியீட்டு மொழியில் CAT = 24 எனில், DOG = ?', options: ['26', '24', '30', '28'], optionsTamil: ['26', '24', '30', '28'], answer: 0, explanation: 'C=3, A=1, T=20. CAT = 3+1+20 = 24. D=4, O=15, G=7. DOG = 4+15+7 = 26', explanationTamil: 'C=3, A=1, T=20. CAT = 3+1+20 = 24. D=4, O=15, G=7. DOG = 4+15+7 = 26', subject: 'Reasoning', difficulty: 'medium' },
+      { id: 'crpf-reason-2', question: 'Complete the series: 2, 6, 12, 20, 30, ?', questionTamil: 'தொடரை நிறைவு செய்க: 2, 6, 12, 20, 30, ?', options: ['42', '40', '36', '44'], optionsTamil: ['42', '40', '36', '44'], answer: 0, explanation: 'Differences: 4, 6, 8, 10, 12. Next number = 30 + 12 = 42', explanationTamil: 'வேறுபாடுகள்: 4, 6, 8, 10, 12. அடுத்த எண் = 30 + 12 = 42', subject: 'Reasoning', difficulty: 'medium' },
+      { id: 'crpf-eng-1', question: 'Choose the synonym of "Enormous":', questionTamil: '"Enormous" என்ற சொல்லின் ஒத்த சொல்:', options: ['Huge', 'Tiny', 'Average', 'Narrow'], optionsTamil: ['மிகப்பெரிய', 'சிறிய', 'சராசரி', 'குறுகிய'], answer: 0, explanation: 'Enormous means extremely large or great. Huge is its closest synonym.', explanationTamil: 'Enormous என்றால் மிகவும் பெரிய. Huge அதன் ஒத்த சொல்.', subject: 'English', difficulty: 'easy' },
+      { id: 'crpf-eng-2', question: 'Identify the correct sentence:', questionTamil: 'சரியான வாக்கியத்தைக் கண்டறியுங்கள்:', options: ['Neither he nor his friends were present', 'Neither he nor his friends was present', 'Neither he nor his friends are present', 'Neither him nor his friends were present'], optionsTamil: ['Neither he nor his friends were present', 'Neither he nor his friends was present', 'Neither he nor his friends are present', 'Neither him nor his friends were present'], answer: 0, explanation: 'With "neither...nor", the verb agrees with the subject nearest to it. "Friends" is plural, so "were" is correct.', explanationTamil: '"Neither...nor" உடன், வினைச்சொல் அருகிலுள்ள எழுவாயுடன் பொருந்தும். "Friends" பன்மை, எனவே "were" சரி.', subject: 'English', difficulty: 'medium' }
+    ]
   }
 ];
 
