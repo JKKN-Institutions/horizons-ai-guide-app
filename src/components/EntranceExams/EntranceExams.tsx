@@ -179,6 +179,31 @@ export const EntranceExams = () => {
       {/* ── JEE vs TNEA Guide (engineering only) ── */}
       {activeCategory === 'engineering' && <JeeTneaGuide />}
 
+      {/* ── Defence Exams Explanation ── */}
+      {activeCategory === 'defence' && (
+        <div className="bg-gradient-to-r from-slate-800 to-slate-700 text-white rounded-2xl p-5 space-y-3">
+          <h3 className="font-bold text-base flex items-center gap-2">🎖️ Why Defence Exams are Entrance Exams</h3>
+          <p className="text-sm text-slate-300 leading-relaxed">
+            Defence exams like <strong className="text-white">NDA, Indian Navy B.Tech, Army TES, Coast Guard, and Agniveer</strong> are 
+            listed here because they are <strong className="text-white">competitive entrance exams</strong> that 12th pass students 
+            take to enter defence training academies — similar to how JEE is for IITs and NEET is for medical colleges.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+            <div className="bg-white/10 rounded-xl p-3">
+              <p className="font-bold text-amber-300 text-xs mb-1">🎓 TRAINING YOU GET</p>
+              <p className="text-slate-300 text-xs">NDA → 3 years at National Defence Academy (Pune), followed by 1 year at respective service academy. You get a B.Tech/B.A./B.Sc degree.</p>
+            </div>
+            <div className="bg-white/10 rounded-xl p-3">
+              <p className="font-bold text-amber-300 text-xs mb-1">💼 CAREER AFTER</p>
+              <p className="text-slate-300 text-xs">Commissioned Officer in Army/Navy/Air Force — one of the most prestigious careers in India with ₹56,100+ salary, pension, housing, and lifetime benefits.</p>
+            </div>
+          </div>
+          <p className="text-xs text-slate-400 border-t border-slate-600 pt-2">
+            💡 For government job exams (SSC, Railway, etc.) with different selection processes, check the <strong>Govt Jobs</strong> tab.
+          </p>
+        </div>
+      )}
+
       {/* ── MORE INFO (collapsible) ── */}
       <button
         onClick={() => setShowMoreInfo(!showMoreInfo)}
@@ -196,11 +221,12 @@ export const EntranceExams = () => {
             <h3 className="font-bold text-[#1B5E20] text-sm mb-3">📚 Your Stream → Your Exams</h3>
             <div className="space-y-1.5 text-xs">
               {[
-                { stream: 'PCM (Maths)', exams: 'TNEA, JEE, VITEEE, SRMJEEE, BITSAT', bg: 'bg-blue-50', color: 'text-blue-700' },
-                { stream: 'PCB (Biology)', exams: 'NEET, TNAU, TANUVAS, Nursing', bg: 'bg-red-50', color: 'text-red-700' },
-                { stream: 'PCMB (Both)', exams: 'All exams eligible! ✅', bg: 'bg-emerald-50', color: 'text-emerald-700' },
-                { stream: 'Commerce', exams: 'CA/CS/CMA, CLAT, BBA Direct', bg: 'bg-purple-50', color: 'text-purple-700' },
-                { stream: 'Arts', exams: 'CLAT, NIFT, BA/BSW Direct', bg: 'bg-amber-50', color: 'text-amber-700' },
+                { stream: 'PCM (Maths)', exams: 'TNEA, JEE, VITEEE, SRMJEEE, BITSAT, COMEDK, WBJEE, MHT CET, KCET, AP EAMCET', bg: 'bg-blue-50', color: 'text-blue-700' },
+                { stream: 'PCB (Biology)', exams: 'NEET, TNAU, TANUVAS, Nursing, B.Pharm, AYUSH, JIPMER', bg: 'bg-red-50', color: 'text-red-700' },
+                { stream: 'PCMB (Both)', exams: 'All engineering + All medical exams eligible! ✅', bg: 'bg-emerald-50', color: 'text-emerald-700' },
+                { stream: 'Commerce', exams: 'CA/CS/CMA, CLAT, BBA, CUET, SET, IPM (IIM)', bg: 'bg-purple-50', color: 'text-purple-700' },
+                { stream: 'Arts', exams: 'CLAT, NIFT, NID, CUET, BA/BSW Direct, UCEED', bg: 'bg-amber-50', color: 'text-amber-700' },
+                { stream: 'Any Stream', exams: 'NDA, CUET, IPM (IIM), SET (Symbiosis), Coast Guard', bg: 'bg-slate-50', color: 'text-slate-700' },
               ].map((r) => (
                 <div key={r.stream} className={cn("flex items-center gap-2 p-2 rounded-lg", r.bg)}>
                   <span className={cn("font-bold min-w-[85px]", r.color)}>{r.stream}</span>
