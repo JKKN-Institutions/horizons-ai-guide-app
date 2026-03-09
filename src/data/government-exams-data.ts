@@ -590,33 +590,104 @@ const defenceExams: Exam[] = [
   },
   {
     id: 'bsf-constable',
-    name: 'BSF/CRPF/CISF Constable',
-    nameTamil: 'BSF/CRPF/CISF காவலர்',
+    name: 'BSF Constable (Tradesman)',
+    nameTamil: 'BSF காவலர் (டிரேட்ஸ்மேன்)',
     qualification: '12th Pass',
     qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி',
     age: '18 - 23 years',
     salary: '₹23,527/month',
-    selectionProcess: 'Written → Physical → Medical',
-    selectionProcessTamil: 'எழுத்துத் தேர்வு → உடற்தகுதி → மருத்துவம்',
-    posts: ['BSF Constable', 'CRPF Constable', 'CISF Constable', 'ITBP Constable'],
-    postsTamil: ['BSF காவலர்', 'CRPF காவலர்', 'CISF காவலர்', 'ITBP காவலர்'],
+    selectionProcess: 'Online Application (OTR on bsf.gov.in) → Written Exam (OMR/CBT) → Physical Standards Test (PST) → Physical Efficiency Test (PET) → Trade Test → Document Verification → Medical Examination',
+    selectionProcessTamil: 'ஆன்லைன் விண்ணப்பம் (bsf.gov.in OTR) → எழுத்துத் தேர்வு (OMR/CBT) → உடல் தரநிலை தேர்வு (PST) → உடல் திறன் தேர்வு (PET) → தொழில் தேர்வு → ஆவண சரிபார்ப்பு → மருத்துவப் பரிசோதனை',
+    posts: ['BSF Constable (Tradesman)', 'BSF Constable (GD)', 'CRPF Constable', 'CISF Constable', 'ITBP Constable'],
+    postsTamil: ['BSF காவலர் (டிரேட்ஸ்மேன்)', 'BSF காவலர் (GD)', 'CRPF காவலர்', 'CISF காவலர்', 'ITBP காவலர்'],
+    examPattern: [
+      { paper: 'Written Exam (OMR/CBT)', paperTamil: 'எழுத்துத் தேர்வு (OMR/CBT)', marks: 100, duration: '2 hours', questions: 100 }
+    ],
     syllabus: {
-      main: [
+      'Written Exam (100 Questions, 100 Marks, 2 Hours)': [
         {
-          name: 'Paramilitary Constable Syllabus',
-          nameTamil: 'துணை ராணுவ காவலர் பாடத்திட்டம்',
+          name: 'General Awareness / Knowledge (25 Marks)',
+          nameTamil: 'பொது அறிவு (25 மதிப்பெண்கள்)',
           topics: [
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', subtopics: ['Current Affairs', 'History', 'Geography', 'Polity', 'Defence'] },
-            { name: 'Elementary Mathematics', nameTamil: 'அடிப்படை கணிதம்', subtopics: ['Arithmetic', 'Number System', 'Percentage', 'Average'] },
-            { name: 'Reasoning', nameTamil: 'தர்க்கம்', subtopics: ['Verbal', 'Non-Verbal', 'Analytical'] },
-            { name: 'English/Hindi', nameTamil: 'ஆங்கிலம்/இந்தி', subtopics: ['Grammar', 'Vocabulary', 'Comprehension'] }
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', subtopics: ['National & International Current Affairs', 'Awards & Honours — Padma, Bharat Ratna, Nobel', 'Books & Authors', 'Sports — Olympics, Commonwealth, Cricket', 'Important Days & Dates', 'Government Schemes — PM Awas Yojana, Jan Dhan, etc.'] },
+            { name: 'Indian History', nameTamil: 'இந்திய வரலாறு', subtopics: ['Ancient India — Indus Valley, Vedic Period', 'Medieval India — Mughal Empire, Delhi Sultanate', 'Modern India — British Rule, Freedom Movement', 'Important Personalities — Gandhi, Nehru, Bose, Bhagat Singh'] },
+            { name: 'Geography', nameTamil: 'புவியியல்', subtopics: ['Indian Geography — Rivers, Mountains, Plains, Plateaus', 'Climate & Seasons of India', 'Soil Types & Agriculture', 'World Geography — Continents, Oceans, Countries & Capitals'] },
+            { name: 'Indian Polity & Economy', nameTamil: 'இந்திய அரசியல் & பொருளாதாரம்', subtopics: ['Indian Constitution — Fundamental Rights, Directive Principles', 'Parliament, President, Prime Minister', 'Indian Economy — Budget, GDP, Five Year Plans', 'RBI, Banking System, Taxation'] },
+            { name: 'General Science', nameTamil: 'பொது அறிவியல்', subtopics: ['Physics — Laws of Motion, Light, Sound, Electricity', 'Chemistry — Elements, Compounds, Reactions, Acids & Bases', 'Biology — Human Body, Diseases, Nutrition, Vitamins'] }
+          ]
+        },
+        {
+          name: 'Elementary Mathematics (25 Marks)',
+          nameTamil: 'அடிப்படை கணிதம் (25 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Arithmetic', nameTamil: 'எண்கணிதம்', subtopics: ['Number Systems — Natural, Whole, Integers, Rational', 'Percentage — Calculation, Increase/Decrease', 'Ratio & Proportion', 'Average — Simple & Weighted', 'Profit & Loss — Cost Price, Selling Price, Discount'] },
+            { name: 'Time & Work', nameTamil: 'நேரம் & வேலை', subtopics: ['Time & Distance — Speed, Relative Speed, Trains', 'Time & Work — Pipe & Cistern Problems', 'Simple Interest & Compound Interest', 'Partnership — Profit Sharing'] },
+            { name: 'Geometry & Mensuration', nameTamil: 'வடிவியல் & அளவீடு', subtopics: ['Mensuration — Area, Perimeter, Volume', 'Triangles, Circles, Rectangles, Cubes, Cylinders', 'Data Interpretation — Tables, Bar Graphs, Pie Charts', 'Basic Algebra — Linear Equations, Simplification'] }
+          ]
+        },
+        {
+          name: 'Analytical Aptitude / Reasoning (25 Marks)',
+          nameTamil: 'பகுப்பாய்வு திறன் / தர்க்கம் (25 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'Verbal Reasoning', nameTamil: 'சொல் தர்க்கம்', subtopics: ['Analogies — Word Relationships', 'Coding-Decoding — Letter & Number Coding', 'Relationships — Blood Relations, Direction Sense', 'Classification — Odd One Out'] },
+            { name: 'Non-Verbal & Analytical', nameTamil: 'சொல்லற்ற & பகுப்பாய்வு', subtopics: ['Similarities & Differences', 'Spatial Visualization — Mirror Image, Paper Folding', 'Pattern Recognition — Series Completion', 'Arithmetic Reasoning — Word Problems', 'Venn Diagrams', 'Seating Arrangement', 'Syllogisms'] }
+          ]
+        },
+        {
+          name: 'Basic English / Hindi (25 Marks)',
+          nameTamil: 'அடிப்படை ஆங்கிலம் / இந்தி (25 மதிப்பெண்கள்)',
+          topics: [
+            { name: 'English Grammar', nameTamil: 'ஆங்கில இலக்கணம்', subtopics: ['Tenses — Past, Present, Future', 'Active & Passive Voice', 'Direct & Indirect Speech', 'Parts of Speech — Noun, Verb, Adjective, Adverb', 'Articles, Prepositions, Conjunctions', 'Subject-Verb Agreement', 'Error Spotting & Sentence Correction'] },
+            { name: 'Vocabulary & Comprehension', nameTamil: 'சொல்வளம் & புரிதல்', subtopics: ['Synonyms & Antonyms', 'Idioms & Phrases', 'One Word Substitution', 'Fill in the Blanks', 'Reading Comprehension — Passage Based Questions', 'Sentence Rearrangement / Para Jumbles', 'Cloze Test'] }
+          ]
+        }
+      ],
+      'Physical Standards & Efficiency Test (PST/PET)': [
+        {
+          name: 'Physical Standards Test (PST)',
+          nameTamil: 'உடல் தரநிலை தேர்வு (PST)',
+          topics: [
+            { name: 'Height Requirements', nameTamil: 'உயர தேவைகள்', subtopics: ['General Male: 170 cm', 'Scheduled Tribes: 162.5 cm', 'Candidates from Garhwal, Kumaon, Dogra, Maratha, NE States: 165 cm', 'Female: 157 cm (General), 155 cm (ST)'] },
+            { name: 'Chest Measurement (Male Only)', nameTamil: 'மார்பு அளவு (ஆண் மட்டும்)', subtopics: ['General: 80 cm unexpanded, 85 cm expanded (5 cm expansion)', 'ST/Hill areas: 76 cm unexpanded, 81 cm expanded'] }
+          ]
+        },
+        {
+          name: 'Physical Efficiency Test (PET)',
+          nameTamil: 'உடல் திறன் தேர்வு (PET)',
+          topics: [
+            { name: 'Running Test', nameTamil: 'ஓட்டத் தேர்வு', subtopics: ['Male: 5 km run in 24 minutes', 'Female: 1.6 km run in 8 minutes 30 seconds'] }
+          ]
+        }
+      ],
+      'Application Process (OTR on bsf.gov.in)': [
+        {
+          name: 'How to Apply — Online Application',
+          nameTamil: 'விண்ணப்பிப்பது எப்படி — ஆன்லைன் விண்ணப்பம்',
+          topics: [
+            { name: 'Step-by-Step Process', nameTamil: 'படிப்படியான செயல்முறை', subtopics: [
+              'Step 1: Go to www.bsf.gov.in and register One-Time Profile (OTR)',
+              'Step 2: Valid Email ID & Mobile Number required for registration',
+              'Step 3: Upload documents — Passport Photo (max 50KB), Signature (max 50KB), Thumb Impression (max 50KB)',
+              'Step 4: Login and click "Click Here to Apply" next to active advertisement',
+              'Step 5: System auto-checks eligibility — only eligible candidates accepted',
+              'Step 6: Fill all fields carefully — no editing after final submission',
+              'Step 7: Pay exam fee via Net Banking, Debit Card, Credit Card, or Common Service Centre',
+              'Note: Female / Ex-Servicemen / SC / ST candidates are exempt from exam fee'
+            ] }
           ]
         }
       ]
     },
     pyq: [
-      { id: 'bsf-gk-1', question: 'BSF stands for:', questionTamil: 'BSF என்பதன் விரிவாக்கம்:', options: ['Border Security Force', 'Border Safety Force', 'Border Surveillance Force', 'Basic Security Force'], optionsTamil: ['எல்லை பாதுகாப்புப் படை', 'எல்லை பாதுகாப்பு படை', 'எல்லை கண்காணிப்பு படை', 'அடிப்படை பாதுகாப்பு படை'], answer: 0, explanation: 'BSF = Border Security Force, established in 1965', explanationTamil: 'BSF = எல்லை பாதுகாப்புப் படை, 1965 இல் நிறுவப்பட்டது', subject: 'General Knowledge', difficulty: 'easy' },
-      { id: 'bsf-gk-2', question: 'CRPF headquarters is located at:', questionTamil: 'CRPF தலைமையகம் அமைந்துள்ள இடம்:', options: ['New Delhi', 'Mumbai', 'Kolkata', 'Chennai'], optionsTamil: ['புது தில்லி', 'மும்பை', 'கொல்கத்தா', 'சென்னை'], answer: 0, explanation: 'CRPF Headquarters is at CGO Complex, New Delhi', explanationTamil: 'CRPF தலைமையகம் CGO வளாகம், புது தில்லியில் உள்ளது', subject: 'General Knowledge', difficulty: 'easy' }
+      { id: 'bsf-gk-1', question: 'BSF stands for:', questionTamil: 'BSF என்பதன் விரிவாக்கம்:', options: ['Border Security Force', 'Border Safety Force', 'Border Surveillance Force', 'Basic Security Force'], optionsTamil: ['எல்லை பாதுகாப்புப் படை', 'எல்லை பாதுகாப்பு படை', 'எல்லை கண்காணிப்பு படை', 'அடிப்படை பாதுகாப்பு படை'], answer: 0, explanation: 'BSF = Border Security Force, established on 1 December 1965 to guard India\'s borders with Pakistan and Bangladesh', explanationTamil: 'BSF = எல்லை பாதுகாப்புப் படை, 1965 டிசம்பர் 1 அன்று நிறுவப்பட்டது', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'bsf-gk-2', question: 'CRPF headquarters is located at:', questionTamil: 'CRPF தலைமையகம் அமைந்துள்ள இடம்:', options: ['New Delhi', 'Mumbai', 'Kolkata', 'Chennai'], optionsTamil: ['புது தில்லி', 'மும்பை', 'கொல்கத்தா', 'சென்னை'], answer: 0, explanation: 'CRPF Headquarters is at CGO Complex, Lodhi Road, New Delhi', explanationTamil: 'CRPF தலைமையகம் CGO வளாகம், லோதி சாலை, புது தில்லியில் உள்ளது', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'bsf-gk-3', question: 'BSF was established in which year?', questionTamil: 'BSF எந்த ஆண்டு நிறுவப்பட்டது?', options: ['1965', '1947', '1950', '1962'], optionsTamil: ['1965', '1947', '1950', '1962'], answer: 0, explanation: 'BSF was raised on 1 December 1965 after the 1965 Indo-Pak War, to guard the India-Pakistan border', explanationTamil: 'BSF 1965 டிசம்பர் 1 அன்று 1965 இந்தியா-பாகிஸ்தான் போருக்குப் பிறகு எழுப்பப்பட்டது', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'bsf-gk-4', question: 'The motto of BSF is:', questionTamil: 'BSF இன் குறிக்கோள்:', options: ['Duty Unto Death', 'Service Before Self', 'Sentinel Always', 'Valour and Victory'], optionsTamil: ['கடமை இறுதிவரை', 'சேவை முதலில்', 'எப்போதும் காவல்', 'வீரமும் வெற்றியும்'], answer: 0, explanation: 'The motto of BSF is "Duty Unto Death" (Jeevan Paryant Kartavya) — reflecting total commitment to border security', explanationTamil: 'BSF இன் குறிக்கோள் "கடமை இறுதிவரை" (ஜீவன் பர்யந்த் கர்தவ்ய)', subject: 'General Knowledge', difficulty: 'easy' },
+      { id: 'bsf-math-1', question: 'If a product is bought for ₹500 and sold for ₹600, the profit percentage is:', questionTamil: 'ஒரு பொருளை ₹500 க்கு வாங்கி ₹600 க்கு விற்றால், லாப சதவீதம்:', options: ['20%', '25%', '10%', '15%'], optionsTamil: ['20%', '25%', '10%', '15%'], answer: 0, explanation: 'Profit = ₹600 - ₹500 = ₹100. Profit % = (100/500) × 100 = 20%', explanationTamil: 'லாபம் = ₹600 - ₹500 = ₹100. லாப % = (100/500) × 100 = 20%', subject: 'Mathematics', difficulty: 'easy' },
+      { id: 'bsf-math-2', question: 'A train 300m long crosses a pole in 15 seconds. Its speed is:', questionTamil: '300 மீ நீளமுள்ள ரயில் ஒரு கம்பத்தை 15 வினாடியில் கடக்கிறது. அதன் வேகம்:', options: ['72 km/h', '20 km/h', '60 km/h', '36 km/h'], optionsTamil: ['72 km/h', '20 km/h', '60 km/h', '36 km/h'], answer: 0, explanation: 'Speed = Distance/Time = 300/15 = 20 m/s = 20 × 18/5 = 72 km/h', explanationTamil: 'வேகம் = தூரம்/நேரம் = 300/15 = 20 m/s = 20 × 18/5 = 72 km/h', subject: 'Mathematics', difficulty: 'medium' },
+      { id: 'bsf-reason-1', question: 'In a certain code, COMPUTER is written as DPNQVUFS. How is MOBILE written?', questionTamil: 'ஒரு குறிப்பிட்ட குறியீட்டில் COMPUTER என்பது DPNQVUFS என எழுதப்படுகிறது. MOBILE எப்படி எழுதப்படும்?', options: ['NPCJMF', 'NPMCJF', 'NPBJMF', 'NPCJME'], optionsTamil: ['NPCJMF', 'NPMCJF', 'NPBJMF', 'NPCJME'], answer: 0, explanation: 'Each letter is replaced by the next letter in the alphabet: M→N, O→P, B→C, I→J, L→M, E→F = NPCJMF', explanationTamil: 'ஒவ்வொரு எழுத்தும் அடுத்த எழுத்தால் மாற்றப்படுகிறது: M→N, O→P, B→C, I→J, L→M, E→F = NPCJMF', subject: 'Reasoning', difficulty: 'medium' },
+      { id: 'bsf-eng-1', question: 'Choose the correct sentence:', questionTamil: 'சரியான வாக்கியத்தை தேர்வு செய்:', options: ['He has been working since morning', 'He has been working from morning', 'He is working since morning', 'He was working since morning'], optionsTamil: ['He has been working since morning', 'He has been working from morning', 'He is working since morning', 'He was working since morning'], answer: 0, explanation: '"Since" is used with a point of time, and with Present Perfect Continuous tense for an action that started in the past and is still continuing', explanationTamil: '"Since" ஒரு குறிப்பிட்ட நேரத்துடன் பயன்படுத்தப்படும், Present Perfect Continuous tense உடன் பயன்படும்', subject: 'English', difficulty: 'medium' },
+      { id: 'bsf-eng-2', question: 'The antonym of "Ancient" is:', questionTamil: '"Ancient" என்ற சொல்லின் எதிர்ச்சொல்:', options: ['Modern', 'Old', 'Historic', 'Traditional'], optionsTamil: ['நவீன', 'பழைய', 'வரலாற்று', 'பாரம்பரிய'], answer: 0, explanation: 'Ancient means very old or belonging to a long time ago. Modern is its opposite — meaning relating to the present or recent times.', explanationTamil: 'Ancient என்றால் மிகவும் பழமையான. Modern அதன் எதிர்ச்சொல் — தற்கால என்று பொருள்.', subject: 'English', difficulty: 'easy' }
     ]
   }
 ];

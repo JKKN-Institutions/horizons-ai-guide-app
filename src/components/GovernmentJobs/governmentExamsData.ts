@@ -94,8 +94,8 @@ export const governmentExams: GovernmentExam[] = [
   },
   {
     id: 'bsf-constable',
-    name: 'BSF Constable',
-    nameTamil: 'எல்லை பாதுகாப்பு படை கான்ஸ்டபிள்',
+    name: 'BSF Constable (Tradesman)',
+    nameTamil: 'BSF காவலர் (டிரேட்ஸ்மேன்)',
     category: 'defence',
     qualification: '12th Pass',
     ageMin: 18,
