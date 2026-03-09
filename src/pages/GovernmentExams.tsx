@@ -58,9 +58,9 @@ const GovernmentExams = () => {
   }, [filtered]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950">
+    <div className="min-h-screen">
       {/* ──────────── HEADER ──────────── */}
-      <div className="border-b border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-950 sticky top-0 z-30">
+      <div className="border-b border-gray-100/60 dark:border-slate-800 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl sticky top-0 z-30">
         <div className="container mx-auto px-4 py-3 flex items-center gap-3">
           <button onClick={() => navigate(-1)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors">
             <ArrowLeft className="w-4 h-4 text-gray-600 dark:text-gray-400" />

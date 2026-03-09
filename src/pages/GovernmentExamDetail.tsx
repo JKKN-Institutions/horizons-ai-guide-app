@@ -62,7 +62,7 @@ const GovernmentExamDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pb-20">
+    <div className="min-h-screen pb-20">
       {/* Header */}
       <div className={`bg-gradient-to-r ${category.color} text-white`}>
         <div className="container mx-auto px-4 py-6">
