@@ -168,235 +168,360 @@ export const streamsData: Record<string, StreamData> = {
   },
 };
 
-// Shared courses for science-maths groups
+// ═══════════════════════════════════════════════════════════
+// COMPLETE COURSE DATABASE — ALL COURSES FOR 12TH PASS
+// Organized by category, with every course available in India
+// ═══════════════════════════════════════════════════════════
+
+const C = (id: string, name: string, short: string, dur: string, ent: string, entReq: boolean, fee: string, sal: string, dem: number, desc: string, careers: string[], colleges: string[], skills: string[], extra?: Partial<CourseInfo>): CourseInfo => ({
+  id, name, shortName: short, duration: dur, entrance: ent, entranceRequired: entReq, fee, salaryRange: sal, demandLevel: dem, description: desc, careers, topColleges: colleges, skills, ...extra
+});
+
+// ═══ 1. ENGINEERING & TECHNOLOGY (20 courses) ═══
 const engineeringCourses: CourseCategory = {
   name: "Engineering & Technology",
   icon: "🔧",
   courses: [
-    { id: "btech-cse", name: "B.Tech Computer Science", shortName: "B.Tech CSE", duration: "4 years", entrance: "JEE Main / TNEA", entranceRequired: true, fee: "₹1-15 Lakhs", salaryRange: "₹4-25 LPA", demandLevel: 5, description: "Learn software development, algorithms, AI/ML, and computer systems.", careers: ["Software Engineer", "Data Scientist", "AI Engineer", "System Architect"], topColleges: ["IIT Madras", "Anna University", "VIT", "SRM", "PSG Tech"], skills: ["Programming", "DSA", "System Design", "Cloud Computing"] },
-    { id: "btech-ece", name: "B.Tech Electronics & Communication", shortName: "B.Tech ECE", duration: "4 years", entrance: "JEE Main / TNEA", entranceRequired: true, fee: "₹1-12 Lakhs", salaryRange: "₹4-18 LPA", demandLevel: 4, description: "Study electronic circuits, communication systems, and signal processing.", careers: ["Electronics Engineer", "VLSI Designer", "Network Engineer"], topColleges: ["IIT Madras", "CEG Anna Univ", "PSG Tech"], skills: ["Circuit Design", "VLSI", "Embedded Systems"] },
-    { id: "btech-mech", name: "B.Tech Mechanical Engineering", shortName: "B.Tech Mech", duration: "4 years", entrance: "JEE Main / TNEA", entranceRequired: true, fee: "₹1-10 Lakhs", salaryRange: "₹4-15 LPA", demandLevel: 3, description: "Design and build mechanical systems, automobiles, and industrial machinery.", careers: ["Design Engineer", "Manufacturing Engineer", "Automobile Engineer"], topColleges: ["IIT Madras", "CEG", "PSG Tech", "TCE"], skills: ["CAD/CAM", "Thermodynamics", "Manufacturing"] },
-    { id: "btech-civil", name: "B.Tech Civil Engineering", shortName: "B.Tech Civil", duration: "4 years", entrance: "JEE Main / TNEA", entranceRequired: true, fee: "₹1-8 Lakhs", salaryRange: "₹4-12 LPA", demandLevel: 3, description: "Build infrastructure - roads, bridges, buildings, and water systems.", careers: ["Structural Engineer", "Construction Manager", "Urban Planner"], topColleges: ["IIT Madras", "CEG", "GCT Coimbatore"], skills: ["AutoCAD", "Structural Analysis", "Surveying"] },
-    { id: "btech-ai", name: "B.Tech AI & Data Science", shortName: "B.Tech AI/DS", duration: "4 years", entrance: "JEE Main / TNEA", entranceRequired: true, fee: "₹2-15 Lakhs", salaryRange: "₹6-35 LPA", demandLevel: 5, hot: true, description: "Specialize in artificial intelligence, machine learning, and big data analytics.", careers: ["AI Engineer", "ML Engineer", "Data Scientist"], topColleges: ["IIT Madras", "Anna Univ", "VIT", "SRM"], skills: ["Python", "TensorFlow", "Deep Learning", "Statistics"] },
-    { id: "btech-eee", name: "B.Tech Electrical Engineering", shortName: "B.Tech EEE", duration: "4 years", entrance: "JEE Main / TNEA", entranceRequired: true, fee: "₹1-10 Lakhs", salaryRange: "₹4-15 LPA", demandLevel: 4, description: "Work with power systems, electrical machines, and renewable energy.", careers: ["Power Engineer", "Electrical Design", "TNEB"], topColleges: ["IIT Madras", "CEG", "PSG", "GCT"], skills: ["Power Systems", "Control Systems", "PLC"] },
+    C("btech-cse", "B.Tech Computer Science & Engineering", "B.Tech CSE", "4 years", "JEE Main / TNEA", true, "₹1-15L", "₹4-25 LPA", 5, "Software development, algorithms, AI/ML, and computer systems.", ["Software Engineer", "Data Scientist", "AI Engineer", "Full Stack Developer"], ["IIT Madras", "Anna University", "VIT", "SRM", "PSG Tech"], ["Programming", "DSA", "Cloud", "System Design"], { hot: true }),
+    C("btech-it", "B.Tech Information Technology", "B.Tech IT", "4 years", "JEE Main / TNEA", true, "₹1-12L", "₹4-20 LPA", 5, "IT systems, networking, cybersecurity, and enterprise solutions.", ["IT Manager", "Cloud Architect", "Cybersecurity Analyst"], ["Anna University", "VIT", "SRM", "SASTRA"], ["Networking", "Cloud", "Cybersecurity"]),
+    C("btech-ece", "B.Tech Electronics & Communication", "B.Tech ECE", "4 years", "JEE Main / TNEA", true, "₹1-12L", "₹4-18 LPA", 4, "Electronic circuits, communication systems, VLSI, IoT.", ["VLSI Designer", "Telecom Engineer", "IoT Developer"], ["IIT Madras", "CEG Anna Univ", "PSG Tech", "NIT Trichy"], ["Circuit Design", "VLSI", "Embedded Systems"]),
+    C("btech-eee", "B.Tech Electrical & Electronics", "B.Tech EEE", "4 years", "JEE Main / TNEA", true, "₹1-10L", "₹4-15 LPA", 4, "Power systems, electrical machines, renewable energy, smart grids.", ["Power Engineer", "TNEB Engineer", "Renewable Energy"], ["IIT Madras", "CEG", "PSG", "GCT Coimbatore"], ["Power Systems", "Control Systems", "PLC"]),
+    C("btech-mech", "B.Tech Mechanical Engineering", "B.Tech Mech", "4 years", "JEE Main / TNEA", true, "₹1-10L", "₹4-15 LPA", 3, "Design machines, automobiles, industrial systems, robotics.", ["Design Engineer", "Automobile Engineer", "Manufacturing"], ["IIT Madras", "CEG", "PSG Tech", "TCE Madurai"], ["CAD/CAM", "Thermodynamics", "Manufacturing"]),
+    C("btech-civil", "B.Tech Civil Engineering", "B.Tech Civil", "4 years", "JEE Main / TNEA", true, "₹1-8L", "₹4-12 LPA", 3, "Build infrastructure — roads, bridges, buildings, dams.", ["Structural Engineer", "Construction Manager", "Urban Planner"], ["IIT Madras", "CEG", "GCT Coimbatore", "TCE"], ["AutoCAD", "Structural Analysis", "Surveying"]),
+    C("btech-ai", "B.Tech AI & Data Science", "B.Tech AI/DS", "4 years", "JEE Main / TNEA", true, "₹2-15L", "₹6-35 LPA", 5, "Artificial intelligence, machine learning, big data analytics.", ["AI Engineer", "ML Engineer", "Data Scientist"], ["IIT Madras", "Anna Univ", "VIT", "SRM"], ["Python", "TensorFlow", "Deep Learning"], { hot: true }),
+    C("btech-chem", "B.Tech Chemical Engineering", "B.Tech Chem", "4 years", "JEE Main / TNEA", true, "₹1-8L", "₹4-15 LPA", 3, "Chemical processes, petroleum refining, pharmaceuticals.", ["Chemical Engineer", "Process Engineer", "Pharma"], ["IIT Madras", "NIT Trichy", "ACT Chennai"], ["Process Design", "Plant Operations", "Safety"]),
+    C("btech-biotech", "B.Tech Biotechnology", "B.Tech Biotech", "4 years", "JEE Main / TNEA", true, "₹1-10L", "₹3-15 LPA", 3, "Genetic engineering, bioinformatics, pharmaceutical biotech.", ["Biotech Engineer", "Research Scientist", "Pharma R&D"], ["IIT Madras", "VIT", "SASTRA", "SRM"], ["Genetic Engg", "Bioinformatics", "Cell Biology"]),
+    C("btech-food", "B.Tech Food Technology", "B.Tech Food", "4 years", "JEE Main / TNEA", true, "₹1-8L", "₹3-12 LPA", 3, "Food processing, preservation, quality control, packaging.", ["Food Technologist", "Quality Manager", "R&D"], ["NIFTEM", "CFTRI Mysore", "Anna Univ"], ["Food Processing", "Quality Control", "FSSAI"]),
+    C("btech-aero", "B.Tech Aeronautical Engineering", "B.Tech Aero", "4 years", "JEE Main / TNEA", true, "₹1-12L", "₹5-20 LPA", 4, "Aircraft design, propulsion, aerodynamics, space technology.", ["Aerospace Engineer", "ISRO/DRDO", "Airline Industry"], ["IIT Madras", "MIT Anna Univ", "IIST"], ["Aerodynamics", "Propulsion", "CAD"]),
+    C("btech-auto", "B.Tech Automobile Engineering", "B.Tech Auto", "4 years", "JEE Main / TNEA", true, "₹1-8L", "₹4-15 LPA", 3, "Vehicle design, EV technology, automotive systems.", ["Automobile Engineer", "EV Designer", "Testing Engineer"], ["Anna Univ", "VIT", "SRM", "PSG Tech"], ["Vehicle Dynamics", "EV Systems", "CAD"]),
+    C("btech-marine", "B.Tech Marine Engineering", "B.Tech Marine", "4 years", "IMU CET / JEE", true, "₹3-15L", "₹8-40 LPA", 4, "Ship propulsion, marine systems, work on commercial vessels.", ["Marine Engineer", "Ship Superintendent"], ["IMU Chennai", "MERI Mumbai", "TMI Pune"], ["Marine Systems", "Navigation", "Diesel Engines"]),
+    C("btech-robo", "B.Tech Robotics & Automation", "B.Tech Robotics", "4 years", "JEE Main / TNEA", true, "₹2-12L", "₹5-20 LPA", 4, "Design robots, automation systems, industrial IoT.", ["Robotics Engineer", "Automation Specialist", "IoT Developer"], ["IIT Madras", "VIT", "SRM", "BITS"], ["ROS", "PLC", "Embedded Systems"], { hot: true }),
+    C("btech-biomedical", "B.Tech Biomedical Engineering", "B.Tech Biomed", "4 years", "JEE Main / TNEA", true, "₹1-10L", "₹4-15 LPA", 3, "Medical devices, prosthetics, hospital equipment, health IT.", ["Biomedical Engineer", "Medical Device Designer"], ["IIT Madras", "VIT", "SRM", "Manipal"], ["Medical Devices", "Signal Processing", "Biomaterials"]),
+    C("btech-textile", "B.Tech Textile Technology", "B.Tech Textile", "4 years", "JEE Main / TNEA", true, "₹1-6L", "₹3-10 LPA", 2, "Textile manufacturing, fabric design, garment technology.", ["Textile Engineer", "Quality Manager", "Fashion Tech"], ["PSG Tech", "Anna Univ", "Kumaraguru"], ["Fibre Science", "Fabric Design", "Quality"]),
+    C("btech-mining", "B.Tech Mining Engineering", "B.Tech Mining", "4 years", "JEE Main", true, "₹1-8L", "₹5-15 LPA", 3, "Mine planning, mineral extraction, safety engineering.", ["Mining Engineer", "Safety Manager", "Geologist"], ["IIT Kharagpur", "ISM Dhanbad", "NIT Surathkal"], ["Mine Planning", "Geology", "Safety"]),
+    C("btech-agri", "B.Tech Agricultural Engineering", "B.Tech Agri", "4 years", "JEE Main / ICAR", true, "₹1-6L", "₹3-12 LPA", 3, "Farm machinery, irrigation systems, food processing.", ["Agricultural Engineer", "Farm Manager", "Agri-tech"], ["TNAU Coimbatore", "IIT Kharagpur", "ICAR Colleges"], ["Farm Machinery", "Irrigation", "Soil Science"]),
+    C("btech-env", "B.Tech Environmental Engineering", "B.Tech Env", "4 years", "JEE Main / TNEA", true, "₹1-8L", "₹4-12 LPA", 3, "Pollution control, waste management, environmental impact assessment.", ["Environmental Engineer", "EIA Consultant", "Pollution Control"], ["IIT Madras", "NIT Trichy", "Anna Univ"], ["EIA", "Water Treatment", "Waste Management"]),
+    C("btech-instru", "B.Tech Instrumentation Engineering", "B.Tech Instru", "4 years", "JEE Main / TNEA", true, "₹1-8L", "₹4-15 LPA", 3, "Sensors, control systems, process automation, IoT.", ["Instrumentation Engineer", "Process Control", "IoT"], ["NIT Trichy", "Anna Univ", "PSG Tech"], ["PLC/SCADA", "Sensors", "Control Systems"]),
   ],
 };
 
+// ═══ 2. ARCHITECTURE & DESIGN (5 courses) ═══
 const architectureCourses: CourseCategory = {
   name: "Architecture & Design",
   icon: "🏛️",
   courses: [
-    { id: "barch", name: "Bachelor of Architecture", shortName: "B.Arch", duration: "5 years", entrance: "NATA / JEE Paper 2", entranceRequired: true, fee: "₹2-15 Lakhs", salaryRange: "₹4-20 LPA", demandLevel: 4, description: "Design buildings, spaces, and urban environments with creativity and engineering.", careers: ["Architect", "Interior Designer", "Urban Planner"], topColleges: ["SAP Chennai", "SRM", "Anna Univ"], skills: ["AutoCAD", "3D Modeling", "Design Thinking"] },
+    C("barch", "Bachelor of Architecture", "B.Arch", "5 years", "NATA / JEE Paper 2", true, "₹2-15L", "₹4-20 LPA", 4, "Design buildings, spaces, and urban environments.", ["Architect", "Urban Planner", "Interior Designer"], ["SAP Chennai", "SRM", "Anna Univ", "NIT Trichy"], ["AutoCAD", "3D Modeling", "Design Thinking"]),
+    C("bdes-interior", "B.Des Interior Design", "B.Des Interior", "4 years", "UCEED / NID DAT", true, "₹2-10L", "₹3-15 LPA", 4, "Design interior spaces — homes, offices, retail, hospitality.", ["Interior Designer", "Space Planner", "Set Designer"], ["NID", "CEPT", "SPA Delhi", "Pearl Academy"], ["Space Planning", "3D Visualization", "Material Science"]),
+    C("bdes-product", "B.Des Product / Industrial Design", "B.Des Product", "4 years", "UCEED / NID DAT", true, "₹2-12L", "₹4-18 LPA", 4, "Design products — gadgets, furniture, packaging, consumer goods.", ["Product Designer", "UX Designer", "Industrial Designer"], ["IIT Bombay", "NID", "IIITDM Jabalpur"], ["Sketching", "CAD", "Prototyping", "UX"]),
+    C("bplan", "B.Plan — Bachelor of Planning", "B.Plan", "4 years", "JEE Main Paper 2", true, "₹1-8L", "₹4-12 LPA", 3, "Urban and regional planning, smart city development.", ["Urban Planner", "Town Planner", "Govt Planning Dept"], ["SPA Delhi", "IIT Kharagpur", "CEPT"], ["Urban Planning", "GIS", "Policy"]),
+    C("bdes-fashion", "B.Des Fashion Design", "B.Des Fashion", "4 years", "NIFT / NID DAT", true, "₹2-12L", "₹3-15 LPA", 4, "Fashion design, textile design, garment construction.", ["Fashion Designer", "Stylist", "Fashion Merchandiser"], ["NIFT Chennai", "NIFT Delhi", "Pearl Academy"], ["Pattern Making", "Draping", "CAD", "Textile"]),
   ],
 };
 
+// ═══ 3. PURE SCIENCES (15 courses) ═══
 const pureScienceCourses: CourseCategory = {
-  name: "Pure Sciences",
+  name: "Pure Sciences & IT",
   icon: "🔬",
   courses: [
-    { id: "bsc-maths", name: "B.Sc Mathematics", shortName: "B.Sc Maths", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹15K-2 Lakhs", salaryRange: "₹3-12 LPA", demandLevel: 3, description: "Deep study of pure and applied mathematics with research opportunities.", careers: ["Data Analyst", "Actuary", "Professor"], topColleges: ["Loyola", "Presidency", "Stella Maris", "MCC"], skills: ["Mathematical Analysis", "Statistics", "Problem Solving"] },
-    { id: "bsc-physics", name: "B.Sc Physics", shortName: "B.Sc Physics", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹15K-2 Lakhs", salaryRange: "₹3-15 LPA", demandLevel: 3, description: "Study fundamental physics and prepare for research at ISRO, DRDO, BARC.", careers: ["Scientist", "Professor", "ISRO/DRDO"], topColleges: ["Loyola", "Central Universities"], skills: ["Quantum Mechanics", "Lab Skills", "Research"] },
-    { id: "bsc-cs", name: "B.Sc Computer Science", shortName: "B.Sc CS", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹30K-3 Lakhs", salaryRange: "₹3-12 LPA", demandLevel: 4, description: "Learn programming, software development, and computer fundamentals.", careers: ["Software Developer", "Web Developer", "IT Support"], topColleges: ["Loyola", "MCC", "Stella Maris"], skills: ["Programming", "Web Development", "Database"] },
-    { id: "bca", name: "BCA - Computer Applications", shortName: "BCA", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹50K-4 Lakhs", salaryRange: "₹3-10 LPA", demandLevel: 4, description: "Application-focused computer science degree for IT industry entry.", careers: ["Software Developer", "App Developer", "Web Developer"], topColleges: ["Christ", "Loyola", "SRM", "VIT"], skills: ["Java", "Web Technologies", "Database"] },
+    C("bsc-maths", "B.Sc Mathematics", "B.Sc Maths", "3 years", "Merit / CUET", false, "₹15K-2L", "₹3-12 LPA", 3, "Pure and applied mathematics. Excellent for data science & research.", ["Data Analyst", "Actuary", "Professor", "Researcher"], ["Loyola", "Presidency", "Stella Maris", "MCC"], ["Mathematical Analysis", "Statistics", "Problem Solving"]),
+    C("bsc-physics", "B.Sc Physics", "B.Sc Physics", "3 years", "Merit / CUET", false, "₹15K-2L", "₹3-15 LPA", 3, "Fundamental physics. Prepare for ISRO, DRDO, BARC, research.", ["Scientist", "ISRO/DRDO", "Professor", "Lab Scientist"], ["Loyola", "Presidency", "Central Universities"], ["Quantum Mechanics", "Lab Skills", "Research"]),
+    C("bsc-chemistry", "B.Sc Chemistry", "B.Sc Chemistry", "3 years", "Merit / CUET", false, "₹15K-2L", "₹3-10 LPA", 3, "Study chemical reactions, organic/inorganic chemistry, lab techniques.", ["Chemist", "Pharma R&D", "Quality Control", "Professor"], ["Loyola", "MCC", "Presidency", "Central Universities"], ["Lab Techniques", "Organic Chemistry", "Analysis"]),
+    C("bsc-cs", "B.Sc Computer Science", "B.Sc CS", "3 years", "Merit / CUET", false, "₹30K-3L", "₹3-12 LPA", 4, "Programming, software development, databases, web technologies.", ["Software Developer", "Web Developer", "IT Support"], ["Loyola", "MCC", "Stella Maris", "Christ University"], ["Programming", "Web Development", "Database"]),
+    C("bca", "BCA — Bachelor of Computer Applications", "BCA", "3 years", "Merit / CUET", false, "₹50K-4L", "₹3-10 LPA", 4, "Application-focused IT degree. Popular alternative to B.Tech.", ["Software Developer", "App Developer", "Web Developer"], ["Christ University", "Loyola", "SRM", "VIT"], ["Java", "Web Tech", "Mobile Apps"]),
+    C("bsc-stats", "B.Sc Statistics", "B.Sc Stats", "3 years", "Merit / CUET", false, "₹15K-2L", "₹3-15 LPA", 4, "Statistical methods, probability, data analysis. High demand in analytics.", ["Statistician", "Data Analyst", "Actuary", "Research Analyst"], ["ISI Kolkata", "St. Stephen's", "Loyola"], ["R/Python", "Probability", "Regression"], { hot: true }),
+    C("bsc-electronics", "B.Sc Electronics", "B.Sc Electronics", "3 years", "Merit / CUET", false, "₹20K-2L", "₹3-10 LPA", 3, "Electronic circuits, microprocessors, communication systems.", ["Electronics Technician", "Embedded Developer", "IoT"], ["Loyola", "MCC", "Presidency"], ["Circuit Design", "Microprocessor", "IoT"]),
+    C("bsc-biotech", "B.Sc Biotechnology", "B.Sc Biotech", "3 years", "Merit / CUET", false, "₹30K-3L", "₹3-12 LPA", 3, "Genetic engineering, molecular biology, bioinformatics.", ["Biotech Researcher", "Lab Scientist", "Pharma R&D"], ["VIT", "SRM", "Loyola", "Christ"], ["Molecular Biology", "Genetics", "Lab Techniques"]),
+    C("bsc-micro", "B.Sc Microbiology", "B.Sc Micro", "3 years", "Merit / CUET", false, "₹20K-3L", "₹3-10 LPA", 3, "Study microorganisms — bacteria, viruses, fungi. Lab-intensive.", ["Microbiologist", "Lab Technician", "Quality Control", "Pharma"], ["Loyola", "Presidency", "Central Universities"], ["Microbial Culture", "Lab Techniques", "Food Safety"]),
+    C("bsc-biochem", "B.Sc Biochemistry", "B.Sc Biochem", "3 years", "Merit / CUET", false, "₹20K-2L", "₹3-10 LPA", 3, "Chemical processes in living organisms. Bridge between bio & chemistry.", ["Biochemist", "Research Analyst", "Pharma R&D"], ["Presidency", "Loyola", "Central Universities"], ["Enzymology", "Molecular Biology", "Lab Skills"]),
+    C("bsc-env", "B.Sc Environmental Science", "B.Sc Env Sci", "3 years", "Merit / CUET", false, "₹15K-2L", "₹3-10 LPA", 3, "Ecology, pollution, conservation, sustainability.", ["Environmental Scientist", "EIA Consultant", "Wildlife Officer"], ["Presidency", "BHU", "Delhi University"], ["Ecology", "EIA", "Conservation"]),
+    C("bsc-forensic", "B.Sc Forensic Science", "B.Sc Forensic", "3 years", "Merit / CUET", false, "₹30K-4L", "₹3-12 LPA", 4, "Crime scene investigation, forensic lab analysis, cybercrime.", ["Forensic Scientist", "Forensic Analyst", "Crime Lab", "Cyber Forensic"], ["Gujarat Forensic Sciences Uni", "LNJN NICFS Delhi", "Bundelkhand Univ"], ["DNA Analysis", "Fingerprinting", "Toxicology"]),
+    C("bsc-geology", "B.Sc Geology", "B.Sc Geology", "3 years", "Merit / CUET", false, "₹15K-2L", "₹3-12 LPA", 3, "Study earth sciences, minerals, groundwater, petroleum exploration.", ["Geologist", "Mining Consultant", "ONGC/ISRO", "GSI"], ["BHU", "Presidency", "Andhra University"], ["Mineralogy", "Geophysics", "GIS"]),
+    C("bsc-food-nutrition", "B.Sc Food Science & Nutrition", "B.Sc Food/Nutrition", "3 years", "Merit / CUET", false, "₹20K-3L", "₹3-10 LPA", 3, "Food processing, nutrition planning, dietetics, food safety.", ["Food Technologist", "Dietitian", "Nutritionist", "FSSAI Inspector"], ["NIFTEM", "Women's Christian College", "Central Universities"], ["Nutrition", "Food Processing", "FSSAI"]),
+    C("bsc-animation", "B.Sc Animation & Multimedia", "B.Sc Animation", "3 years", "Merit / Portfolio", false, "₹50K-5L", "₹3-15 LPA", 4, "2D/3D animation, VFX, game design, multimedia production.", ["Animator", "VFX Artist", "Game Designer", "Motion Graphics"], ["Arena", "MAAC", "Frameboxx", "LPU"], ["Maya/Blender", "After Effects", "Game Engines"]),
   ],
 };
 
+// ═══ 4. DEFENCE SERVICES (4 courses) ═══
 const defenseCourses: CourseCategory = {
-  name: "Defense Services",
+  name: "Defence Services",
   icon: "🎖️",
   courses: [
-    { id: "nda", name: "NDA - National Defence Academy", shortName: "NDA", duration: "3 years", entrance: "UPSC NDA Exam", entranceRequired: true, fee: "Free (Govt)", salaryRange: "₹6-15 LPA", demandLevel: 4, description: "Join Indian Army, Navy, or Air Force as an officer.", careers: ["Army Officer", "Navy Officer", "Air Force Officer"], topColleges: ["NDA Khadakwasla"], skills: ["Physical Fitness", "Leadership", "Discipline"], eligibility: "Age 16.5-19.5 years, Unmarried" },
-    { id: "merchant-navy", name: "Merchant Navy", shortName: "Merchant Navy", duration: "3-4 years", entrance: "IMU CET", entranceRequired: true, fee: "₹5-15 Lakhs", salaryRange: "₹8-40 LPA", demandLevel: 4, description: "Work on commercial ships, travel the world, and earn high salaries.", careers: ["Deck Officer", "Marine Engineer", "Ship Captain"], topColleges: ["IMU Chennai", "TMI Pune"], skills: ["Navigation", "Maritime Engineering", "Leadership"] },
+    C("nda", "NDA — National Defence Academy", "NDA", "3 years", "UPSC NDA Exam", true, "Free (Govt)", "₹6-15 LPA", 4, "Become an Army/Navy/Air Force officer. Prestigious career.", ["Army Officer", "Navy Officer", "Air Force Officer"], ["NDA Khadakwasla, Pune"], ["Leadership", "Physical Fitness", "Strategy"], { eligibility: "Age 16.5-19.5, Unmarried" }),
+    C("merchant-navy", "Merchant Navy (B.Sc Nautical Science)", "Merchant Navy", "3 years", "IMU CET", true, "₹5-15L", "₹8-40 LPA", 4, "Work on commercial ships. Travel the world, earn high salaries.", ["Deck Officer", "Ship Captain", "Marine Engineer"], ["IMU Chennai", "TMI Pune", "MERI Mumbai"], ["Navigation", "Maritime Law", "Leadership"]),
+    C("coast-guard", "Indian Coast Guard (Navik)", "Coast Guard", "Training", "Coast Guard CBT", true, "Free (Govt)", "₹5-12 LPA", 3, "Protect India's coastline. Maritime security & rescue operations.", ["Coast Guard Officer", "Maritime Operations"], ["Coast Guard Academy, Kannur"], ["Maritime Skills", "Fitness", "Rescue"]),
+    C("agniveer", "Agniveer (Army/Navy/Air Force)", "Agniveer", "4 years", "Agniveer CEE", true, "Free (Govt)", "₹4-7 LPA", 3, "Short-service military career. Training + combat experience.", ["Soldier", "Technician", "Clerk"], ["Army/Navy/AF Training Centres"], ["Combat", "Technical", "Fitness"]),
   ],
 };
 
-// Medical courses for biology groups
+// ═══ 5. MEDICAL — NEET REQUIRED (8 courses) ═══
 const medicalCourses: CourseCategory = {
   name: "Medical (NEET Required)",
   icon: "🏥",
   courses: [
-    { id: "mbbs", name: "MBBS - Bachelor of Medicine", shortName: "MBBS", duration: "5.5 years", entrance: "NEET UG", entranceRequired: true, fee: "₹50K-1 Crore", salaryRange: "₹8-100+ LPA", demandLevel: 5, hot: true, description: "Become a doctor. India's most prestigious medical degree.", careers: ["Doctor", "Surgeon", "Specialist", "Researcher"], topColleges: ["JIPMER", "MMC Chennai", "CMC Vellore", "Stanley"], skills: ["Clinical Skills", "Diagnosis", "Patient Care"], neetCutoff: "550-650 (Govt), 400-500 (Private)" },
-    { id: "bds", name: "BDS - Dental Surgery", shortName: "BDS", duration: "5 years", entrance: "NEET UG", entranceRequired: true, fee: "₹3-50 Lakhs", salaryRange: "₹5-40 LPA", demandLevel: 4, description: "Become a dentist. Good work-life balance and own practice potential.", careers: ["Dentist", "Orthodontist", "Oral Surgeon"], topColleges: ["Govt Dental Chennai", "SRM Dental", "Saveetha"], skills: ["Dental Procedures", "Patient Care", "Surgery"], neetCutoff: "450-520 (Govt)" },
-    { id: "bams", name: "BAMS - Ayurvedic Medicine", shortName: "BAMS", duration: "5.5 years", entrance: "NEET UG", entranceRequired: true, fee: "₹2-25 Lakhs", salaryRange: "₹4-25 LPA", demandLevel: 3, description: "Practice traditional Ayurvedic medicine with modern integration.", careers: ["Ayurvedic Doctor", "Wellness Consultant"], topColleges: ["Govt Ayurveda College", "AVP Coimbatore"], skills: ["Ayurveda", "Herbal Medicine", "Patient Care"], neetCutoff: "350-450" },
-    { id: "bvsc", name: "BVSc - Veterinary Science", shortName: "BVSc", duration: "5 years", entrance: "NEET UG", entranceRequired: true, fee: "₹1-20 Lakhs", salaryRange: "₹5-25 LPA", demandLevel: 3, description: "Treat animals - pets, livestock, wildlife. Growing field.", careers: ["Veterinarian", "Animal Surgeon", "Wildlife Doctor"], topColleges: ["TANUVAS Chennai", "KVASU Kerala"], skills: ["Animal Care", "Surgery", "Diagnosis"], neetCutoff: "500-550" },
+    C("mbbs", "MBBS — Bachelor of Medicine", "MBBS", "5.5 years", "NEET UG", true, "₹50K-1Cr", "₹8-100+ LPA", 5, "India's most prestigious medical degree. Become a doctor.", ["Doctor", "Surgeon", "Specialist", "Researcher"], ["JIPMER", "MMC Chennai", "CMC Vellore", "Stanley"], ["Clinical Skills", "Diagnosis", "Surgery"], { hot: true, neetCutoff: "550-650 (Govt)" }),
+    C("bds", "BDS — Dental Surgery", "BDS", "5 years", "NEET UG", true, "₹3-50L", "₹5-40 LPA", 4, "Become a dentist. Own practice potential, good work-life balance.", ["Dentist", "Orthodontist", "Oral Surgeon"], ["Govt Dental Chennai", "SRM Dental", "Saveetha"], ["Dental Procedures", "Surgery", "Patient Care"], { neetCutoff: "450-520 (Govt)" }),
+    C("bams", "BAMS — Ayurvedic Medicine", "BAMS", "5.5 years", "NEET UG", true, "₹2-25L", "₹4-25 LPA", 3, "Practice Ayurveda with modern integration. Own clinic possible.", ["Ayurvedic Doctor", "Wellness Consultant"], ["Govt Ayurveda College", "AVP Coimbatore"], ["Ayurveda", "Herbal Medicine", "Panchakarma"], { neetCutoff: "350-450" }),
+    C("bhms", "BHMS — Homeopathic Medicine", "BHMS", "5.5 years", "NEET UG", true, "₹1-20L", "₹3-15 LPA", 3, "Practice homeopathy. Strong demand for alternative medicine.", ["Homeopathic Doctor", "Own Clinic"], ["National Institute of Homeopathy", "Father Muller"], ["Homeopathy", "Materia Medica", "Patient Care"], { neetCutoff: "300-400" }),
+    C("bsms", "BSMS — Siddha Medicine", "BSMS", "5.5 years", "NEET UG", true, "₹1-10L", "₹3-12 LPA", 3, "Traditional Siddha medicine — strong in Tamil Nadu.", ["Siddha Doctor", "Govt Hospital", "Own Clinic"], ["Govt Siddha Medical College Chennai", "NIS Chennai"], ["Siddha", "Herbal Medicine", "Traditional Healing"], { neetCutoff: "300-380" }),
+    C("bums", "BUMS — Unani Medicine", "BUMS", "5.5 years", "NEET UG", true, "₹1-15L", "₹3-12 LPA", 2, "Practice Unani (Greco-Arabic) traditional medicine.", ["Unani Doctor", "AYUSH Hospital"], ["Ajmal Khan Tibbiya College", "NIUM Bangalore"], ["Unani", "Pharmacology", "Patient Care"], { neetCutoff: "300-380" }),
+    C("bnys", "BNYS — Naturopathy & Yoga", "BNYS", "5.5 years", "NEET UG", true, "₹1-10L", "₹3-15 LPA", 3, "Naturopathy, yoga therapy, holistic wellness — growing demand.", ["Naturopath", "Yoga Therapist", "Wellness Centre"], ["GNYMC Coimbatore", "SDM Dharwad"], ["Naturopathy", "Yoga Therapy", "Nutrition"]),
+    C("bvsc", "BVSc — Veterinary Science", "BVSc", "5 years", "NEET UG", true, "₹1-20L", "₹5-25 LPA", 3, "Treat animals — pets, livestock, wildlife. Growing field.", ["Veterinarian", "Animal Surgeon", "Wildlife Doctor"], ["TANUVAS Chennai", "KVASU Kerala"], ["Animal Care", "Surgery", "Diagnosis"], { neetCutoff: "500-550" }),
   ],
 };
 
+// ═══ 6. NURSING & PATIENT CARE (3 courses) ═══
 const nursingCourses: CourseCategory = {
   name: "Nursing & Patient Care",
   icon: "💉",
   courses: [
-    { id: "bsc-nursing", name: "B.Sc Nursing", shortName: "B.Sc Nursing", duration: "4 years", entrance: "State Entrance / Merit", entranceRequired: false, fee: "₹1-8 Lakhs", salaryRange: "₹3-6 LPA (India), ₹30-60 LPA (Abroad)", demandLevel: 5, hot: true, description: "High global demand career. Work in India or abroad with excellent pay.", careers: ["Staff Nurse", "ICU Nurse", "International Nurse"], topColleges: ["CMC Vellore", "AIIMS", "Apollo"], skills: ["Patient Care", "Clinical Skills", "Emergency Care"], abroadOptions: "UK, USA, Canada, Australia, Gulf" },
-    { id: "gnm", name: "GNM - General Nursing", shortName: "GNM", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹50K-3 Lakhs", salaryRange: "₹2.5-4 LPA", demandLevel: 4, description: "Diploma nursing course for quick hospital job entry.", careers: ["Staff Nurse", "Community Nurse"], topColleges: ["Govt Nursing Schools"], skills: ["Basic Nursing", "Patient Care", "First Aid"] },
+    C("bsc-nursing", "B.Sc Nursing", "B.Sc Nursing", "4 years", "State Entrance / NEET", false, "₹1-8L", "₹3-6 LPA (India), ₹30-60 LPA (Abroad)", 5, "Highest global demand. Work in India, UK, USA, Canada, Australia, Gulf.", ["Staff Nurse", "ICU Nurse", "International Nurse"], ["CMC Vellore", "AIIMS", "Apollo", "SRM"], ["Patient Care", "Clinical Skills", "Emergency Care"], { hot: true, abroadOptions: "UK, USA, Canada, Australia, Gulf" }),
+    C("gnm", "GNM — General Nursing & Midwifery", "GNM", "3 years", "Merit Based", false, "₹50K-3L", "₹2.5-4 LPA", 4, "Diploma nursing — quick hospital job entry.", ["Staff Nurse", "Community Nurse", "Midwife"], ["Govt Nursing Schools across TN"], ["Basic Nursing", "Midwifery", "Patient Care"]),
+    C("anm", "ANM — Auxiliary Nurse Midwife", "ANM", "2 years", "Merit Based", false, "₹20K-1.5L", "₹2-3.5 LPA", 3, "Shortest nursing course. Work in PHCs, community health.", ["Community Health Worker", "PHC Nurse", "ANM"], ["Govt ANM Schools", "District Hospitals"], ["Basic Nursing", "Immunization", "Maternal Care"]),
   ],
 };
 
+// ═══ 7. PHARMACY (2 courses) ═══
 const pharmacyCourses: CourseCategory = {
   name: "Pharmacy",
   icon: "💊",
   courses: [
-    { id: "bpharm", name: "B.Pharm - Bachelor of Pharmacy", shortName: "B.Pharm", duration: "4 years", entrance: "State / GPAT", entranceRequired: false, fee: "₹2-10 Lakhs", salaryRange: "₹3-15 LPA", demandLevel: 4, description: "Work in pharma industry, drug development, or medical stores.", careers: ["Pharmacist", "Drug Inspector", "Clinical Research"], topColleges: ["JSS Ooty", "MMC", "SRM"], skills: ["Drug Knowledge", "Chemistry", "Quality Control"] },
-    { id: "dpharm", name: "D.Pharm - Diploma in Pharmacy", shortName: "D.Pharm", duration: "2 years", entrance: "Merit Based", entranceRequired: false, fee: "₹50K-3 Lakhs", salaryRange: "₹2-4 LPA", demandLevel: 3, description: "Quick entry into pharmacy profession. Own medical shop possible.", careers: ["Pharmacist", "Medical Store Owner"], topColleges: ["Govt Polytechnics"], skills: ["Drug Dispensing", "Inventory"] },
+    C("bpharm", "B.Pharm — Bachelor of Pharmacy", "B.Pharm", "4 years", "State Entrance / Merit", false, "₹1-8L", "₹3-12 LPA", 4, "Work in pharma companies, hospitals, drug research, own medical shop.", ["Pharmacist", "Drug Inspector", "Pharma R&D", "Medical Representative"], ["JSS Ooty", "Manipal", "BITS Pilani", "Madras Medical College"], ["Pharmacology", "Drug Formulation", "Quality Control"]),
+    C("dpharm", "D.Pharm — Diploma in Pharmacy", "D.Pharm", "2 years", "Merit Based", false, "₹50K-3L", "₹2-5 LPA", 3, "Quick entry into pharmacy. Open a medical shop with license.", ["Pharmacist", "Medical Shop Owner", "Hospital Pharmacist"], ["Govt Pharmacy Colleges", "Private Colleges"], ["Dispensing", "Drug Knowledge", "Customer Service"]),
   ],
 };
 
+// ═══ 8. ALLIED HEALTH SCIENCES (12 courses) ═══
 const alliedHealthCourses: CourseCategory = {
-  name: "Allied Health (No NEET)",
+  name: "Allied Health Sciences",
   icon: "🩺",
   courses: [
-    { id: "bpt", name: "BPT - Physiotherapy", shortName: "BPT", duration: "4.5 years", entrance: "State Entrance", entranceRequired: false, fee: "₹2-10 Lakhs", salaryRange: "₹3-20 LPA", demandLevel: 4, description: "Help patients recover from injuries and disabilities.", careers: ["Physiotherapist", "Sports Physio", "Own Clinic"], topColleges: ["CMC Vellore", "SRM", "Saveetha"], skills: ["Manual Therapy", "Exercise Prescription", "Rehabilitation"] },
-    { id: "bsc-mlt", name: "B.Sc MLT - Medical Lab Technology", shortName: "B.Sc MLT", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹1-5 Lakhs", salaryRange: "₹2.5-10 LPA", demandLevel: 4, description: "Work in diagnostic labs conducting medical tests.", careers: ["Lab Technician", "Pathology Tech"], topColleges: ["CMC Vellore", "JIPMER", "Apollo"], skills: ["Lab Techniques", "Sample Analysis"] },
-    { id: "bsc-radiology", name: "B.Sc Radiology & Imaging", shortName: "B.Sc Radiology", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹1-5 Lakhs", salaryRange: "₹3-12 LPA", demandLevel: 4, description: "Operate X-ray, CT, MRI machines in hospitals.", careers: ["X-Ray Technician", "CT Tech", "MRI Tech"], topColleges: ["CMC Vellore", "JIPMER", "Fortis"], skills: ["Imaging Equipment", "Radiation Safety", "Anatomy"] },
-    { id: "bsc-optometry", name: "B.Sc Optometry", shortName: "B.Sc Optometry", duration: "4 years", entrance: "Merit Based", entranceRequired: false, fee: "₹1-6 Lakhs", salaryRange: "₹3-10 LPA", demandLevel: 3, description: "Test vision and prescribe glasses. Own optical shop possible.", careers: ["Optometrist", "Vision Therapist"], topColleges: ["Sankara Nethralaya", "LV Prasad"], skills: ["Eye Testing", "Lens Fitting"] },
+    C("bpt", "BPT — Bachelor of Physiotherapy", "BPT", "4.5 years", "State Entrance / Merit", false, "₹1-8L", "₹3-12 LPA", 4, "Treat injuries, disabilities through exercise and manual therapy.", ["Physiotherapist", "Sports Physio", "Own Clinic"], ["CMC Vellore", "SRM", "SRMC Chennai"], ["Manual Therapy", "Rehabilitation", "Exercise Science"]),
+    C("bot", "BOT — Occupational Therapy", "BOT", "4.5 years", "State Entrance / Merit", false, "₹1-6L", "₹3-10 LPA", 3, "Help patients recover daily living skills after illness/injury.", ["Occupational Therapist", "Rehabilitation Specialist"], ["CMC Vellore", "Manipal", "AIIMS"], ["Rehabilitation", "Adaptive Skills", "Patient Care"]),
+    C("baslp", "BASLP — Audiology & Speech Therapy", "BASLP", "4 years", "State Entrance / Merit", false, "₹1-6L", "₹3-12 LPA", 4, "Diagnose and treat hearing & speech disorders in all ages.", ["Audiologist", "Speech Therapist", "Own Clinic"], ["AIISH Mysore", "CMC Vellore", "Manipal"], ["Audiology", "Speech Pathology", "Hearing Aids"]),
+    C("bsc-mlt", "B.Sc Medical Lab Technology", "B.Sc MLT", "3 years", "Merit Based", false, "₹50K-4L", "₹2.5-8 LPA", 4, "Run diagnostic tests — blood, urine, pathology, microbiology.", ["Lab Technologist", "Pathology Lab", "Hospital Lab"], ["CMC Vellore", "JIPMER", "SRM Medical"], ["Hematology", "Microbiology", "Biochemistry"]),
+    C("bsc-radiology", "B.Sc Radiology & Imaging", "B.Sc Radiology", "3 years", "Merit Based", false, "₹50K-4L", "₹3-10 LPA", 4, "Operate X-ray, CT, MRI, Ultrasound machines. High demand.", ["Radiographer", "CT/MRI Technologist", "Sonographer"], ["CMC Vellore", "JIPMER", "SRM", "Apollo"], ["X-ray", "CT Scan", "MRI", "Ultrasound"]),
+    C("bsc-optometry", "B.Sc Optometry", "B.Sc Optometry", "4 years", "Merit Based", false, "₹50K-5L", "₹3-10 LPA", 3, "Eye care — vision testing, prescribe glasses, contact lenses.", ["Optometrist", "Eye Clinic", "Lens Specialist"], ["LVPEI Hyderabad", "SRM", "Manipal"], ["Vision Testing", "Contact Lens", "Eye Care"]),
+    C("bsc-cardiac", "B.Sc Cardiac Technology", "B.Sc Cardiac", "3 years", "Merit Based", false, "₹50K-4L", "₹3-10 LPA", 4, "ECG, ECHO, cardiac catheterization — support cardiologists.", ["Cardiac Technologist", "ECG Technician", "Cath Lab Tech"], ["CMC Vellore", "JIPMER", "Apollo Hospitals"], ["ECG", "Echocardiography", "Cardiac Care"]),
+    C("bsc-respiratory", "B.Sc Respiratory Therapy", "B.Sc Resp Therapy", "3 years", "Merit Based", false, "₹50K-4L", "₹3-10 LPA", 4, "Manage ventilators, oxygen therapy, treat respiratory diseases.", ["Respiratory Therapist", "ICU Specialist", "Ventilator Tech"], ["CMC Vellore", "Manipal", "Apollo"], ["Ventilator Management", "Pulmonary Care", "ICU"]),
+    C("bsc-ot-tech", "B.Sc Operation Theatre Technology", "B.Sc OT Tech", "3 years", "Merit Based", false, "₹50K-3L", "₹2.5-8 LPA", 3, "Assist surgeons in operation theatre. Manage OT equipment.", ["OT Technician", "Surgical Assistant", "Hospital OT"], ["CMC Vellore", "JIPMER", "SRM Medical"], ["OT Procedures", "Sterilization", "Surgical Instruments"]),
+    C("bsc-dialysis", "B.Sc Dialysis Technology", "B.Sc Dialysis", "3 years", "Merit Based", false, "₹50K-3L", "₹3-8 LPA", 3, "Operate dialysis machines for kidney patients.", ["Dialysis Technician", "Nephrology Unit", "Dialysis Centre"], ["CMC Vellore", "JIPMER", "Apollo"], ["Dialysis Machine", "Patient Care", "Renal Care"]),
+    C("bsc-anaesthesia", "B.Sc Anaesthesia Technology", "B.Sc Anaesthesia", "3 years", "Merit Based", false, "₹50K-3L", "₹3-8 LPA", 3, "Assist anesthesiologists during surgery. Monitor vital signs.", ["Anaesthesia Technologist", "OT Support", "ICU"], ["CMC Vellore", "JIPMER", "Apollo", "SRM"], ["Anaesthesia Equipment", "Monitoring", "Emergency"]),
+    C("bsc-emergency", "B.Sc Emergency & Trauma Care", "B.Sc Emergency", "3 years", "Merit Based", false, "₹50K-4L", "₹3-10 LPA", 4, "Emergency medical care, ambulance services, disaster management.", ["Emergency Medical Technician", "Trauma Care", "Ambulance"], ["CMC Vellore", "JIPMER", "Apollo", "108 Ambulance"], ["Emergency Care", "Trauma", "CPR/BLS"]),
   ],
 };
 
+// ═══ 9. LIFE SCIENCES & AGRICULTURE (8 courses) ═══
 const lifeScienceCourses: CourseCategory = {
-  name: "Life Sciences",
-  icon: "🧬",
+  name: "Life Sciences & Agriculture",
+  icon: "🌿",
   courses: [
-    { id: "bsc-biotech", name: "B.Sc Biotechnology", shortName: "B.Sc Biotech", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹1-5 Lakhs", salaryRange: "₹3-12 LPA", demandLevel: 4, description: "Work in biotech industry, research labs, and pharma R&D.", careers: ["Biotech Researcher", "Lab Scientist", "R&D"], topColleges: ["VIT", "SRM", "Anna Univ"], skills: ["Molecular Biology", "Genetic Engineering", "Bioinformatics"] },
-    { id: "bsc-micro", name: "B.Sc Microbiology", shortName: "B.Sc Micro", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹50K-3 Lakhs", salaryRange: "₹3-10 LPA", demandLevel: 3, description: "Study microorganisms for healthcare, food, and environmental industries.", careers: ["Microbiologist", "QC Analyst", "Food Technologist"], topColleges: ["Loyola", "MCC", "Presidency"], skills: ["Microbial Culture", "Lab Safety", "Quality Control"] },
+    C("bsc-zoology", "B.Sc Zoology", "B.Sc Zoology", "3 years", "Merit / CUET", false, "₹15K-2L", "₹3-10 LPA", 3, "Study animal kingdom — classification, anatomy, ecology.", ["Zoologist", "Wildlife Officer", "Lab Scientist", "Professor"], ["Loyola", "Presidency", "BHU"], ["Animal Taxonomy", "Ecology", "Lab Skills"]),
+    C("bsc-botany", "B.Sc Botany", "B.Sc Botany", "3 years", "Merit / CUET", false, "₹15K-2L", "₹3-8 LPA", 2, "Study plants — taxonomy, physiology, ecology, genetics.", ["Botanist", "Forest Officer", "Agriculture Research", "Professor"], ["Presidency", "BHU", "DU"], ["Plant Science", "Taxonomy", "Ecology"]),
+    C("bsc-agri", "B.Sc Agriculture", "B.Sc Agriculture", "4 years", "TNAU / ICAR", true, "₹20K-3L", "₹3-12 LPA", 4, "Modern farming, crop science, soil science, agribusiness.", ["Agricultural Officer", "Farm Manager", "Agri-tech Startup", "FCI/NABARD"], ["TNAU Coimbatore", "ICAR Colleges", "UAS Bangalore"], ["Crop Science", "Soil Science", "Agribusiness"], { hot: true }),
+    C("bsc-horti", "B.Sc Horticulture", "B.Sc Horticulture", "4 years", "TNAU / State", true, "₹20K-2L", "₹3-10 LPA", 3, "Fruits, vegetables, flowers, landscaping, nursery management.", ["Horticulturist", "Nursery Manager", "Landscape Designer"], ["TNAU", "IIHR Bangalore", "UAS Dharwad"], ["Horticulture", "Landscaping", "Nursery"]),
+    C("bsc-forestry", "B.Sc Forestry", "B.Sc Forestry", "4 years", "State / ICAR", true, "₹20K-2L", "₹3-12 LPA", 3, "Forest management, wildlife conservation, timber industry.", ["Forest Officer (IFS)", "Wildlife Manager", "Conservation"], ["FRI Dehradun", "TNAU", "ICAR"], ["Forest Management", "Wildlife", "Conservation"]),
+    C("bfsc", "B.F.Sc — Fisheries Science", "B.F.Sc", "4 years", "TNAU / ICAR", true, "₹15K-2L", "₹3-10 LPA", 3, "Aquaculture, fish production, marine biology, fish processing.", ["Fisheries Officer", "Aquaculture Manager", "Marine Biologist"], ["TNJFU Chennai", "CIFE Mumbai", "ICAR"], ["Aquaculture", "Marine Biology", "Fish Processing"]),
+    C("bsc-genetics", "B.Sc Genetics", "B.Sc Genetics", "3 years", "Merit / CUET", false, "₹30K-3L", "₹3-12 LPA", 4, "Study genes, heredity, DNA, genetic engineering.", ["Genetic Counselor", "Research Scientist", "Pharma R&D"], ["University of Madras", "Osmania University", "BHU"], ["Molecular Genetics", "Bioinformatics", "Lab Techniques"]),
+    C("bsc-home-science", "B.Sc Home Science", "B.Sc Home Sci", "3 years", "Merit / CUET", false, "₹15K-2L", "₹3-8 LPA", 2, "Nutrition, child development, textile, interior decoration, food science.", ["Nutritionist", "Child Development Officer", "ICDS Worker"], ["Lady Irwin College Delhi", "Women's Christian College", "Avinashilingam Univ"], ["Nutrition", "Child Dev", "Food Science"]),
   ],
 };
 
-// Commerce courses
+// ═══ 10. PROFESSIONAL COMMERCE (4 courses) ═══
 const professionalCourses: CourseCategory = {
-  name: "Professional Courses",
+  name: "Professional Courses (CA/CS/CMA)",
+  icon: "🏆",
+  courses: [
+    C("ca", "CA — Chartered Accountant", "CA", "4-5 years", "CA Foundation", true, "₹50K-1.5L", "₹7-50 LPA", 5, "India's most prestigious commerce qualification. Finance & audit.", ["Chartered Accountant", "CFO", "Financial Advisor", "Auditor"], ["ICAI (Self-study + Coaching)"], ["Accounting", "Audit", "Taxation", "Finance"], { hot: true, passRate: "5-10% at Final" }),
+    C("cs", "CS — Company Secretary", "CS", "3-4 years", "CSEET", true, "₹50K-1.5L", "₹5-30 LPA", 4, "Corporate governance, compliance, board management.", ["Company Secretary", "Compliance Officer", "Legal Advisor"], ["ICSI (Self-study)"], ["Corporate Law", "Compliance", "Governance"], { passRate: "15-20%" }),
+    C("cma", "CMA — Cost & Management Accountant", "CMA", "3-4 years", "CMA Foundation", true, "₹30K-1L", "₹5-25 LPA", 4, "Cost accounting, management accounting, financial analysis.", ["Cost Accountant", "Financial Controller", "Budget Analyst"], ["ICMAI (Self-study)"], ["Cost Accounting", "Budgeting", "Financial Analysis"]),
+    C("acca", "ACCA — UK Chartered Accountant", "ACCA", "2-3 years", "Registration", false, "₹2-5L", "₹8-35 LPA", 4, "Global accounting qualification. Work worldwide.", ["Global Accountant", "Audit Manager", "Finance Director"], ["ACCA (Online + Coaching)"], ["International Accounting", "IFRS", "Audit"], { globalRecognition: true }),
+  ],
+};
+
+// ═══ 11. COMMERCE & MANAGEMENT UG (10 courses) ═══
+const ugCommerceCourses: CourseCategory = {
+  name: "Commerce & Management UG",
   icon: "💼",
   courses: [
-    { id: "ca", name: "CA - Chartered Accountant", shortName: "CA", duration: "4-5 years", entrance: "CA Foundation Exam", entranceRequired: true, fee: "₹1-2 Lakhs (total)", salaryRange: "₹7-50 LPA", demandLevel: 5, hot: true, description: "India's most prestigious accounting qualification. High demand & salary.", careers: ["Auditor", "Tax Consultant", "CFO", "Own Practice"], topColleges: ["ICAI (Self-study)"], skills: ["Accounting", "Taxation", "Auditing", "Financial Analysis"], passRate: "8-10%", path: ["CA Foundation", "CA Intermediate", "3 Year Articleship", "CA Final"] },
-    { id: "cs", name: "CS - Company Secretary", shortName: "CS", duration: "3-4 years", entrance: "CSEET", entranceRequired: true, fee: "₹50K-1.5 Lakhs", salaryRange: "₹5-30 LPA", demandLevel: 4, description: "Corporate governance expert. Work with boards of directors.", careers: ["Company Secretary", "Compliance Officer", "Legal Advisor"], topColleges: ["ICSI (Self-study)"], skills: ["Corporate Law", "Compliance", "Governance"], passRate: "15-20%" },
-    { id: "cma", name: "CMA - Cost & Management Accountant", shortName: "CMA", duration: "3-4 years", entrance: "CMA Foundation", entranceRequired: true, fee: "₹50K-1 Lakh", salaryRange: "₹5-25 LPA", demandLevel: 4, description: "Cost accounting and management specialist for industries.", careers: ["Cost Accountant", "Management Accountant", "Financial Controller"], topColleges: ["ICMAI (Self-study)"], skills: ["Cost Accounting", "Budgeting", "Financial Planning"], passRate: "12-15%" },
-    { id: "acca", name: "ACCA - UK Accounting", shortName: "ACCA", duration: "2-3 years", entrance: "Direct Entry", entranceRequired: false, fee: "₹3-5 Lakhs", salaryRange: "₹8-40 LPA", demandLevel: 4, description: "Global accounting qualification. Valid in 180+ countries.", careers: ["Global Accountant", "Finance Manager"], topColleges: ["ACCA Approved Centers"], skills: ["International Accounting", "IFRS", "Audit"], globalRecognition: true },
+    C("bcom", "B.Com — Bachelor of Commerce", "B.Com", "3 years", "Merit / CUET", false, "₹10K-3L", "₹3-8 LPA", 4, "Foundation for CA/CS/CMA/MBA. Accounting, finance, economics.", ["Accountant", "Tax Consultant", "Banking", "Finance"], ["Loyola", "Hindu College", "St. Xavier's", "Christ"], ["Accounting", "Taxation", "Economics"]),
+    C("bcom-hons", "B.Com (Honours)", "B.Com Hons", "3 years", "Merit / CUET", false, "₹15K-4L", "₹3-10 LPA", 4, "Deeper specialization in one commerce area. Better placements.", ["Financial Analyst", "Accountant", "Banking", "CA Preparation"], ["SRCC Delhi", "St. Xavier's Mumbai", "Christ Bangalore"], ["Advanced Accounting", "Finance", "Economics"]),
+    C("bcom-ca", "B.Com (Computer Applications)", "B.Com CA", "3 years", "Merit", false, "₹15K-3L", "₹3-8 LPA", 4, "Commerce + IT skills. Popular in Tamil Nadu.", ["IT + Accounting", "ERP Consultant", "Data Entry"], ["Loyola", "MCC", "Stella Maris", "Ethiraj"], ["Tally", "SAP", "Advanced Excel", "Accounting"]),
+    C("bcom-banking", "B.Com Banking & Insurance", "B.Com Banking", "3 years", "Merit", false, "₹15K-3L", "₹3-8 LPA", 3, "Specialized for banking sector careers.", ["Bank PO/Clerk", "Insurance Agent", "Financial Advisor"], ["Mumbai Univ Colleges", "Ethiraj Chennai"], ["Banking Operations", "Insurance", "Finance"]),
+    C("bcom-corpsec", "B.Com Corporate Secretaryship", "B.Com Corp Sec", "3 years", "Merit", false, "₹15K-3L", "₹3-10 LPA", 3, "Corporate compliance, governance — pathway to CS exam.", ["Corporate Secretary", "Compliance Officer", "Legal Aid"], ["University of Madras Colleges", "Loyola"], ["Company Law", "Corporate Governance", "Compliance"]),
+    C("bba", "BBA — Bachelor of Business Administration", "BBA", "3 years", "Merit / SET / CUET", false, "₹50K-6L", "₹3-10 LPA", 4, "Business management, entrepreneurship, marketing, HR.", ["Manager", "Marketing Executive", "Entrepreneur", "HR"], ["Christ Bangalore", "Symbiosis Pune", "Loyola", "SRM"], ["Marketing", "Finance", "HR", "Operations"]),
+    C("bba-aviation", "BBA Aviation Management", "BBA Aviation", "3 years", "Merit", false, "₹1-6L", "₹3-12 LPA", 3, "Airline management, airport operations, aviation business.", ["Airport Manager", "Airline Operations", "Ground Staff"], ["IGIA Aviation Academy", "Rajiv Gandhi Academy"], ["Aviation Management", "Airport Ops", "Logistics"]),
+    C("bba-hospital", "BBA Hospital Administration", "BBA Hospital", "3 years", "Merit", false, "₹50K-5L", "₹3-10 LPA", 3, "Hospital management, healthcare administration.", ["Hospital Administrator", "Health IT Manager", "Clinic Manager"], ["Manipal", "AIIMS", "Apollo Hospitals"], ["Hospital Management", "Health IT", "Operations"]),
+    C("bba-llb", "BBA LLB — Integrated Law", "BBA LLB", "5 years", "CLAT / State", true, "₹1-8L", "₹5-25 LPA", 4, "Business + Law. Become a corporate lawyer.", ["Corporate Lawyer", "Legal Advisor", "Business Consultant"], ["NLU Delhi", "NALSAR", "NLSIU Bangalore"], ["Corporate Law", "Business Law", "Contracts"]),
+    C("ba-economics", "B.A Economics (Honours)", "B.A Economics", "3 years", "Merit / CUET", false, "₹15K-5L", "₹4-20 LPA", 4, "Economic theory, policy analysis. Gateway to RBI/UPSC/MBA.", ["Economist", "Policy Analyst", "RBI", "UPSC", "Banking"], ["St. Stephen's", "Hindu College", "Presidency", "DSE"], ["Economic Analysis", "Statistics", "Policy"]),
   ],
 };
 
-const ugCommerceCourses: CourseCategory = {
-  name: "Undergraduate Degrees",
-  icon: "🎓",
-  courses: [
-    { id: "bcom", name: "B.Com - Bachelor of Commerce", shortName: "B.Com", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹15K-3 Lakhs", salaryRange: "₹3-8 LPA", demandLevel: 4, description: "Foundation for commerce careers. Combine with CA/CS for best results.", careers: ["Accountant", "Bank Jobs", "CA/CS Path"], topColleges: ["Loyola", "Stella Maris", "MCC", "Presidency"], skills: ["Accounting", "Economics", "Business Law"] },
-    { id: "bba", name: "BBA - Business Administration", shortName: "BBA", duration: "3 years", entrance: "Merit / Entrance", entranceRequired: false, fee: "₹1-8 Lakhs", salaryRange: "₹4-12 LPA", demandLevel: 4, description: "Management fundamentals for future MBA or business roles.", careers: ["Management Trainee", "Marketing Executive", "Entrepreneur"], topColleges: ["Christ", "Symbiosis", "NMIMS", "Loyola"], skills: ["Management", "Marketing", "HR", "Communication"] },
-    { id: "bca-comm", name: "BCA - Computer Applications", shortName: "BCA", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹1-5 Lakhs", salaryRange: "₹3-10 LPA", demandLevel: 4, description: "IT degree for commerce students who want tech careers.", careers: ["Software Developer", "Web Developer", "IT Analyst"], topColleges: ["Christ", "VIT", "SRM"], skills: ["Programming", "Web Development", "Database"] },
-    { id: "ba-economics", name: "B.A Economics", shortName: "B.A Econ", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹20K-5 Lakhs", salaryRange: "₹4-15 LPA", demandLevel: 4, description: "Study economic theory and policy. Great for UPSC and RBI.", careers: ["Economist", "Policy Analyst", "RBI Officer", "UPSC"], topColleges: ["St. Stephen's", "Presidency", "Loyola"], skills: ["Economic Analysis", "Statistics", "Policy"] },
-  ],
-};
-
-// Law courses
+// ═══ 12. LAW (4 courses) ═══
 const lawCourses: CourseCategory = {
   name: "Law",
   icon: "⚖️",
   courses: [
-    { id: "ba-llb", name: "BA LLB - Integrated Law", shortName: "BA LLB", duration: "5 years", entrance: "CLAT / AILET / State", entranceRequired: true, fee: "₹2-15 Lakhs", salaryRange: "₹5-75 LPA", demandLevel: 5, hot: true, description: "Become a lawyer. High earning potential in corporate law.", careers: ["Advocate", "Corporate Lawyer", "Judge", "Legal Advisor", "Public Prosecutor"], topColleges: ["NLSIU Bangalore", "NALSAR", "NLU Delhi", "TNNLU Trichy"], skills: ["Legal Research", "Argumentation", "Contract Law", "Constitutional Law"] },
-    { id: "bcom-llb", name: "B.Com LLB - Commerce + Law", shortName: "B.Com LLB", duration: "5 years", entrance: "CLAT", entranceRequired: true, fee: "₹2-15 Lakhs", salaryRange: "₹5-50 LPA", demandLevel: 4, description: "Law with commerce background. Ideal for tax and corporate law.", careers: ["Tax Lawyer", "Corporate Lawyer", "Company Law", "Business Consultant"], topColleges: ["NLUs", "Symbiosis Law"], skills: ["Tax Law", "Corporate Law", "Commercial Law", "Accounting + Legal"] },
-    { id: "llb", name: "LLB - After Graduation", shortName: "LLB", duration: "3 years", entrance: "State CET", entranceRequired: true, fee: "₹1-8 Lakhs", salaryRange: "₹4-40 LPA", demandLevel: 4, description: "Law degree after completing any graduation.", careers: ["Advocate", "Legal Consultant", "Corporate Legal"], topColleges: ["Govt Law College Chennai", "State Law Universities"], skills: ["Legal Research", "Court Practice", "Documentation"] },
+    C("ballb", "B.A LLB — Integrated Law", "BA LLB", "5 years", "CLAT / State", true, "₹1-8L", "₹5-25 LPA", 4, "India's most popular law degree. Become a lawyer after 12th.", ["Advocate", "Judge", "Legal Advisor", "Corporate Lawyer"], ["NLSIU Bangalore", "NALSAR", "NLU Delhi", "Tamil Nadu Dr. Ambedkar Law Univ"], ["Constitutional Law", "Criminal Law", "Contracts"]),
+    C("bcomllb", "B.Com LLB — Commerce + Law", "B.Com LLB", "5 years", "CLAT / State", true, "₹1-8L", "₹5-20 LPA", 3, "Commerce + Law. Specialize in tax law, corporate law.", ["Tax Lawyer", "Corporate Lawyer", "Company Secretary"], ["NLU Delhi", "GNLU", "Tamil Nadu Dr. Ambedkar Law Univ"], ["Tax Law", "Corporate Law", "Compliance"]),
+    C("llb-3yr", "LLB — 3 Year (After Graduation)", "LLB 3yr", "3 years", "University Entrance", true, "₹50K-5L", "₹4-15 LPA", 3, "Law degree after completing any graduation. Traditional route.", ["Advocate", "Legal Advisor", "Judiciary"], ["DU Law Faculty", "GLC Mumbai", "Tamil Nadu Dr. Ambedkar Law Univ"], ["Criminal Law", "Civil Law", "Procedure"]),
+    C("bba-llb-law", "BBA LLB — Business Law", "BBA LLB", "5 years", "CLAT / State", true, "₹1-8L", "₹5-25 LPA", 4, "Business + Law combination for corporate legal careers.", ["Corporate Lawyer", "Business Legal", "Compliance"], ["NLSIU", "NALSAR", "NLU Delhi"], ["Business Law", "Corporate Law", "IP Law"]),
   ],
 };
 
-// Government Jobs Path
+// ═══ 13. GOVERNMENT JOBS (4 courses) ═══
 const govtJobsCourses: CourseCategory = {
-  name: "Government Jobs Path",
-  icon: "🏛️",
+  name: "Government Job Preparation",
+  icon: "🇮🇳",
   courses: [
-    { id: "upsc", name: "UPSC Civil Services (IAS/IPS)", shortName: "UPSC CSE", duration: "Graduation + 1-2 years prep", entrance: "UPSC CSE", entranceRequired: true, fee: "₹50K-2 Lakhs (coaching)", salaryRange: "₹10-25 LPA + perks", demandLevel: 5, description: "Become IAS/IPS/IFS officer. Most prestigious govt career in India.", careers: ["IAS Officer", "IPS Officer", "IFS", "IRS", "District Collector"], topColleges: ["Any Degree + Coaching (Shankar IAS, Vision IAS)"], skills: ["General Studies", "Current Affairs", "Essay", "Interview"] },
-    { id: "tnpsc", name: "TNPSC Group 1/2/4", shortName: "TNPSC", duration: "Graduation + 6-12 months prep", entrance: "TNPSC Exam", entranceRequired: true, fee: "₹10K-50K (coaching)", salaryRange: "₹4-15 LPA", demandLevel: 5, description: "Tamil Nadu state government jobs. Good job security.", careers: ["Deputy Collector", "DSP", "Tahsildar", "BDO", "Junior Assistant"], topColleges: ["Any Degree + TNPSC Coaching"], skills: ["Tamil Nadu GK", "Current Affairs", "Aptitude", "General Studies"] },
-    { id: "banking", name: "Banking - PO/Clerk", shortName: "Bank Jobs", duration: "Graduation + 6 months prep", entrance: "IBPS/SBI PO/Clerk", entranceRequired: true, fee: "₹10K-30K (coaching)", salaryRange: "₹4-12 LPA", demandLevel: 5, description: "Work in public sector banks. Good salary and job security.", careers: ["Bank PO", "Bank Clerk", "Bank Manager", "RBI Officer"], topColleges: ["Any Degree + Banking Coaching"], skills: ["Quantitative Aptitude", "Reasoning", "English", "Banking Awareness"] },
-    { id: "ssc", name: "SSC CGL/CHSL", shortName: "SSC", duration: "Graduation + 6 months prep", entrance: "SSC Exam", entranceRequired: true, fee: "₹10K-30K (coaching)", salaryRange: "₹4-10 LPA", demandLevel: 4, description: "Central government jobs across various ministries.", careers: ["Inspector", "Auditor", "Assistant", "Tax Assistant"], topColleges: ["Any Degree + SSC Coaching"], skills: ["Quantitative Aptitude", "Reasoning", "English", "General Studies"] },
+    C("upsc", "UPSC Civil Services (IAS/IPS)", "UPSC", "1-3 years prep", "UPSC CSE", true, "₹50K-5L (coaching)", "₹10-25 LPA", 5, "India's toughest & most prestigious exam. Become IAS/IPS officer.", ["IAS", "IPS", "IFS", "IRS", "IRTS"], ["Shankar IAS", "Vajiram", "Rau's IAS", "Unacademy"], ["General Studies", "CSAT", "Optional Subject"]),
+    C("tnpsc", "TNPSC Group 1/2/4", "TNPSC", "6-12 months prep", "TNPSC Exam", true, "₹5K-2L (coaching)", "₹3-12 LPA", 4, "Tamil Nadu state government officer exam.", ["Deputy Collector", "DSP", "VAO", "Junior Assistant"], ["Shankar IAS", "Brain Tree", "THiNK IAS"], ["GK", "Tamil", "Aptitude"]),
+    C("banking", "Banking — PO/Clerk", "Banking", "6-12 months prep", "IBPS/SBI", true, "₹5K-1L (coaching)", "₹4-12 LPA", 4, "Bank Probationary Officer and Clerk jobs.", ["Bank PO", "Bank Clerk", "RBI Grade B", "NABARD"], ["Career Power", "Oliveboard", "Unacademy"], ["Reasoning", "Quantitative", "English"]),
+    C("ssc", "SSC CGL/CHSL/MTS", "SSC", "6-12 months prep", "SSC Exams", true, "₹5K-1L (coaching)", "₹2.5-8 LPA", 4, "Central govt jobs — ministry offices, courts, embassies.", ["Tax Inspector", "Auditor", "LDC/UDC", "ASI"], ["Unacademy", "Adda247", "Testbook"], ["Maths", "English", "GK", "Reasoning"]),
   ],
 };
 
-// Media & Communication
+// ═══ 14. MEDIA & COMMUNICATION (6 courses) ═══
 const mediaCourses: CourseCategory = {
   name: "Media & Communication",
-  icon: "📰",
+  icon: "📺",
   courses: [
-    { id: "bjmc", name: "BJMC - Journalism & Mass Communication", shortName: "BJMC", duration: "3 years", entrance: "Merit / Entrance", entranceRequired: false, fee: "₹1-8 Lakhs", salaryRange: "₹4-25 LPA", demandLevel: 4, description: "Become a journalist, news anchor, or media professional.", careers: ["Journalist", "News Anchor", "Editor", "PR Manager", "Content Creator"], topColleges: ["IIMC", "AJK MCRC Jamia", "Symbiosis", "ACJ Chennai"], skills: ["Writing", "Reporting", "Video Production", "Communication"] },
-    { id: "bmm", name: "BMM - Bachelor of Mass Media", shortName: "BMM", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹1-5 Lakhs", salaryRange: "₹4-20 LPA", demandLevel: 4, description: "Study advertising, PR, film, and digital media.", careers: ["Advertising", "PR Executive", "Film Production", "Digital Media"], topColleges: ["St. Xavier's Mumbai", "MOP Vaishnav"], skills: ["Creative Writing", "Advertising", "Media Planning", "PR"] },
-    { id: "bsc-visual-comm", name: "B.Sc Visual Communication", shortName: "B.Sc Vis Comm", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹1-5 Lakhs", salaryRange: "₹4-18 LPA", demandLevel: 4, description: "Learn filmmaking, photography, and visual storytelling.", careers: ["Filmmaker", "Photographer", "Video Editor", "Documentary Maker"], topColleges: ["Loyola", "MOP Vaishnav", "Presidency"], skills: ["Video Production", "Photography", "Editing", "Storytelling"] },
+    C("bjmc", "BJMC — Journalism & Mass Communication", "BJMC", "3 years", "IPU CET / Merit", false, "₹1-5L", "₹3-15 LPA", 4, "News reporting, TV production, digital media, PR.", ["Journalist", "News Anchor", "PR Manager", "Digital Media"], ["IIMC Delhi", "Asian College of Journalism", "Symbiosis Pune"], ["Writing", "Video Production", "Digital Media"]),
+    C("bmm", "BMM — Bachelor of Mass Media", "BMM", "3 years", "Merit / Entrance", false, "₹50K-4L", "₹3-12 LPA", 3, "Advertising, journalism, entertainment, corporate communication.", ["Media Manager", "Ad Executive", "Content Strategist"], ["KC College Mumbai", "St. Xavier's Mumbai"], ["Media Management", "Advertising", "PR"]),
+    C("bsc-viscom", "B.Sc Visual Communication", "B.Sc VisCom", "3 years", "Merit Based", false, "₹1-5L", "₹4-18 LPA", 4, "Filmmaking, photography, animation, visual storytelling.", ["Filmmaker", "Photographer", "Video Editor", "Documentary Maker"], ["Loyola", "MOP Vaishnav", "Presidency"], ["Video Production", "Photography", "Editing"]),
+    C("bfa", "BFA — Bachelor of Fine Arts", "BFA", "4 years", "Portfolio / Entrance", true, "₹30K-5L", "₹3-15 LPA", 3, "Painting, sculpture, applied arts, graphic design.", ["Artist", "Graphic Designer", "Art Director", "Illustrator"], ["Govt College of Fine Arts Chennai", "JJ School Mumbai", "BHU"], ["Drawing", "Painting", "Digital Art", "Sculpture"]),
+    C("bpa", "BPA — Bachelor of Performing Arts", "BPA", "3 years", "Audition / Merit", false, "₹20K-3L", "₹2-15 LPA", 2, "Music, dance, drama, theatre arts.", ["Musician", "Dancer", "Theatre Artist", "Choreographer"], ["National School of Drama", "Kalakshetra Chennai", "Shantiniketan"], ["Performance", "Music/Dance", "Theatre"]),
+    C("bsc-film", "B.Sc Film & Television", "B.Sc Film/TV", "3 years", "Entrance / Portfolio", true, "₹1-8L", "₹3-15 LPA", 3, "Film direction, screenplay, cinematography, editing.", ["Film Director", "Cinematographer", "Editor", "Screenwriter"], ["FTII Pune", "LV Prasad Film Academy", "Adyar Film Institute"], ["Cinematography", "Direction", "Editing", "Screenplay"]),
   ],
 };
 
-// Teaching & Education
+// ═══ 15. TEACHING & EDUCATION (4 courses) ═══
 const teachingCourses: CourseCategory = {
   name: "Teaching & Education",
   icon: "👨‍🏫",
   courses: [
-    { id: "bed", name: "B.Ed - Bachelor of Education", shortName: "B.Ed", duration: "2 years (after graduation)", entrance: "State Entrance", entranceRequired: true, fee: "₹20K-2 Lakhs", salaryRange: "₹3-10 LPA", demandLevel: 4, description: "Become a school teacher. Required for govt teaching jobs.", careers: ["School Teacher", "TGT/PGT", "Education Officer"], topColleges: ["Govt B.Ed Colleges", "Central Universities"], skills: ["Pedagogy", "Subject Knowledge", "Communication", "Classroom Management"] },
-    { id: "integrated-bed", name: "Integrated B.A/B.Com + B.Ed", shortName: "B.A B.Ed / B.Com B.Ed", duration: "4 years", entrance: "State Entrance", entranceRequired: true, fee: "₹50K-3 Lakhs", salaryRange: "₹3-8 LPA", demandLevel: 4, description: "Combined degree for faster entry into teaching.", careers: ["School Teacher", "Primary Teacher"], topColleges: ["RIEs", "Integrated Colleges"], skills: ["Teaching", "Subject Knowledge", "Child Psychology"] },
-    { id: "ma-net", name: "M.A + NET (College Lecturer)", shortName: "MA + NET", duration: "2 + 1 years", entrance: "University + UGC NET", entranceRequired: true, fee: "₹50K-3 Lakhs", salaryRange: "₹8-18 LPA", demandLevel: 3, description: "Become a college professor with UGC NET qualification.", careers: ["Assistant Professor", "Lecturer", "Researcher"], topColleges: ["JNU", "DU", "Central Universities"], skills: ["Research", "Subject Expertise", "Teaching", "Publishing"] },
+    C("bed", "B.Ed — Bachelor of Education", "B.Ed", "2 years (after grad)", "State Entrance", true, "₹20K-2L", "₹3-10 LPA", 4, "Mandatory for govt school teaching jobs. TGT/PGT eligibility.", ["School Teacher", "TGT/PGT", "Education Officer"], ["Govt B.Ed Colleges", "Central Universities"], ["Pedagogy", "Subject Knowledge", "Classroom"]),
+    C("integrated-bed", "Integrated B.A/B.Sc/B.Com + B.Ed", "BA/BSc B.Ed", "4 years", "State Entrance", true, "₹50K-3L", "₹3-8 LPA", 4, "Combined degree — save 1 year vs separate BA + B.Ed.", ["School Teacher", "Primary Teacher"], ["RIEs", "Central Universities", "State Universities"], ["Teaching", "Subject Knowledge", "Child Psychology"]),
+    C("deled", "D.El.Ed — Diploma in Elementary Education", "D.El.Ed", "2 years", "State Entrance", true, "₹15K-1L", "₹2.5-6 LPA", 3, "Teach primary school (Class 1-5). Required for TET.", ["Primary Teacher", "Govt School Teacher"], ["DIETs (Govt)", "Private Colleges"], ["Primary Teaching", "Child Development"]),
+    C("ma-net", "M.A + NET (College Lecturer)", "MA + NET", "2+1 years", "University + UGC NET", true, "₹50K-3L", "₹8-18 LPA", 3, "Become a college professor with UGC NET qualification.", ["Assistant Professor", "Lecturer", "Researcher"], ["JNU", "DU", "Central Universities"], ["Research", "Subject Expertise", "Publishing"]),
   ],
 };
 
-// Social Work & NGO
+// ═══ 16. SOCIAL WORK (3 courses) ═══
 const socialWorkCourses: CourseCategory = {
-  name: "Social Work & NGO",
+  name: "Social Work & Community",
   icon: "🤝",
   courses: [
-    { id: "bsw", name: "BSW - Bachelor of Social Work", shortName: "BSW", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹30K-2 Lakhs", salaryRange: "₹3-12 LPA", demandLevel: 3, description: "Work for social causes, NGOs, and community development.", careers: ["Social Worker", "NGO Manager", "Community Developer", "CSR"], topColleges: ["TISS", "Delhi School of Social Work", "Loyola"], skills: ["Community Work", "Counseling", "Project Management", "Empathy"] },
-    { id: "ba-criminology", name: "B.A Criminology", shortName: "B.A Criminology", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹30K-2 Lakhs", salaryRange: "₹4-12 LPA", demandLevel: 3, description: "Study crime, criminal behavior, and justice system.", careers: ["Police", "Forensic Analyst", "Detective", "Prison Administration"], topColleges: ["University of Madras", "Gujarat Forensic Sciences"], skills: ["Criminal Law", "Investigation", "Psychology", "Forensics"] },
+    C("bsw", "BSW — Bachelor of Social Work", "BSW", "3 years", "Merit / CUET", false, "₹30K-2L", "₹3-12 LPA", 3, "Work for social causes, NGOs, community development, CSR.", ["Social Worker", "NGO Manager", "Community Developer", "CSR"], ["TISS Mumbai", "Delhi School of Social Work", "Loyola"], ["Community Work", "Counseling", "Project Management"]),
+    C("ba-criminology", "B.A Criminology & Criminal Justice", "B.A Criminology", "3 years", "Merit / CUET", false, "₹30K-2L", "₹4-12 LPA", 3, "Study crime, criminal behavior, forensic psychology, justice system.", ["Police", "Forensic Analyst", "Detective", "Prison Administration"], ["University of Madras", "Gujarat Forensic Sciences Univ"], ["Criminal Law", "Investigation", "Psychology", "Forensics"]),
+    C("ba-public-admin", "B.A Public Administration", "B.A Pub Admin", "3 years", "Merit / CUET", false, "₹10K-2L", "₹3-12 LPA", 3, "Study governance, public policy, bureaucracy. Best UPSC optional.", ["UPSC (IAS/IPS)", "Policy Analyst", "Govt Officer", "NGO"], ["JNU", "DU", "University of Madras"], ["Public Policy", "Governance", "Administration"]),
   ],
 };
 
-// Arts UG courses (expanded)
+// ═══ 17. ARTS & HUMANITIES UG (12 courses) ═══
 const artsUGCourses: CourseCategory = {
-  name: "Humanities Degrees",
+  name: "Humanities & Liberal Arts",
   icon: "📚",
   courses: [
-    { id: "ba-history", name: "B.A History", shortName: "B.A History", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹10K-2 Lakhs", salaryRange: "₹3-15 LPA", demandLevel: 3, description: "Study Indian and world history. Excellent for UPSC.", careers: ["Historian", "Archaeologist", "UPSC", "Professor", "Museum Curator"], topColleges: ["St. Stephen's", "Hindu College", "Presidency", "Loyola"], skills: ["Historical Analysis", "Research", "Writing", "Critical Thinking"] },
-    { id: "ba-polsci", name: "B.A Political Science", shortName: "B.A Pol Sci", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹10K-2 Lakhs", salaryRange: "₹3-15 LPA", demandLevel: 3, description: "Study governance, politics, and international relations.", careers: ["UPSC", "Political Analyst", "Journalist", "Diplomat", "NGO"], topColleges: ["St. Stephen's", "Hindu College", "JNU", "Loyola"], skills: ["Political Analysis", "Research", "Public Policy", "International Relations"] },
-    { id: "ba-economics-arts", name: "B.A Economics", shortName: "B.A Economics", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹15K-5 Lakhs", salaryRange: "₹4-20 LPA", demandLevel: 4, description: "Study economic theory, policy, and analysis. High demand.", careers: ["Economist", "Policy Analyst", "RBI", "UPSC", "Banking", "Research"], topColleges: ["St. Stephen's", "Hindu College", "Presidency Kolkata", "DSE"], skills: ["Economic Analysis", "Statistics", "Policy Analysis", "Research"] },
-    { id: "ba-geography", name: "B.A Geography", shortName: "B.A Geography", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹10K-2 Lakhs", salaryRange: "₹3-12 LPA", demandLevel: 3, description: "Study physical and human geography. Good UPSC optional.", careers: ["Geographer", "Urban Planner", "GIS Analyst", "UPSC"], topColleges: ["Delhi University", "JNU", "BHU", "Presidency"], skills: ["Cartography", "GIS", "Environmental Analysis", "Research"] },
-    { id: "ba-sociology", name: "B.A Sociology", shortName: "B.A Sociology", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹10K-2 Lakhs", salaryRange: "₹3-12 LPA", demandLevel: 3, description: "Study society, social structures, and human behavior.", careers: ["Social Worker", "HR", "NGO", "Research", "UPSC"], topColleges: ["JNU", "Delhi School of Economics", "TISS"], skills: ["Social Research", "Analysis", "Communication", "Empathy"] },
-    { id: "ba-psychology", name: "B.A Psychology", shortName: "B.A Psychology", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹20K-4 Lakhs", salaryRange: "₹3-15 LPA", demandLevel: 4, description: "Study human mind and behavior. Growing demand field.", careers: ["Counselor", "HR", "Clinical Psychologist", "UX Researcher", "Therapist"], topColleges: ["Christ", "Fergusson", "Loyola", "Lady Shri Ram"], skills: ["Counseling", "Research Methods", "Communication", "Empathy"] },
-    { id: "ba-english-arts", name: "B.A English Literature", shortName: "B.A English", duration: "3 years", entrance: "Merit / CUET", entranceRequired: false, fee: "₹15K-3 Lakhs", salaryRange: "₹3-12 LPA", demandLevel: 3, description: "Study literature, develop communication and critical thinking skills.", careers: ["Content Writer", "Editor", "Teacher", "Journalist"], topColleges: ["Loyola", "Stella Maris", "MCC", "Presidency"], skills: ["Writing", "Critical Analysis", "Communication"] },
+    C("ba-history", "B.A History", "B.A History", "3 years", "Merit / CUET", false, "₹10K-2L", "₹3-15 LPA", 3, "Indian & world history. Excellent UPSC optional.", ["Historian", "UPSC", "Archaeologist", "Museum Curator"], ["St. Stephen's", "Hindu College", "Presidency", "Loyola"], ["Historical Analysis", "Research", "Writing"]),
+    C("ba-polsci", "B.A Political Science", "B.A Pol Sci", "3 years", "Merit / CUET", false, "₹10K-2L", "₹3-15 LPA", 3, "Governance, politics, international relations.", ["UPSC", "Political Analyst", "Journalist", "Diplomat"], ["St. Stephen's", "Hindu College", "JNU", "Loyola"], ["Political Theory", "IR", "Public Policy"]),
+    C("ba-economics-arts", "B.A Economics", "B.A Economics", "3 years", "Merit / CUET", false, "₹15K-5L", "₹4-20 LPA", 4, "Economic theory, policy analysis. High demand in analytics.", ["Economist", "Policy Analyst", "RBI", "UPSC", "Banking"], ["St. Stephen's", "Presidency", "DSE"], ["Economic Analysis", "Statistics", "Policy"]),
+    C("ba-sociology", "B.A Sociology", "B.A Sociology", "3 years", "Merit / CUET", false, "₹10K-2L", "₹3-12 LPA", 3, "Study society, social structures, human behavior.", ["Social Worker", "HR", "NGO", "UPSC"], ["JNU", "Delhi School of Economics", "TISS"], ["Social Research", "Analysis", "Communication"]),
+    C("ba-psychology", "B.A Psychology", "B.A Psychology", "3 years", "Merit / CUET", false, "₹20K-4L", "₹3-15 LPA", 4, "Study human mind and behavior. Growing demand field.", ["Counselor", "HR", "Clinical Psychologist", "UX Researcher"], ["Christ Bangalore", "Fergusson", "Lady Shri Ram", "Loyola"], ["Counseling", "Research", "Communication"]),
+    C("ba-english", "B.A English Literature", "B.A English", "3 years", "Merit / CUET", false, "₹15K-3L", "₹3-12 LPA", 3, "Literature, communication, critical thinking.", ["Content Writer", "Editor", "Teacher", "Journalist"], ["Loyola", "Stella Maris", "MCC", "Presidency"], ["Writing", "Critical Analysis", "Communication"]),
+    C("ba-tamil", "B.A Tamil Literature", "B.A Tamil", "3 years", "Merit", false, "₹5K-1L", "₹3-8 LPA", 2, "Tamil literature, grammar, classical texts. TNPSC friendly.", ["Tamil Teacher", "TNPSC", "Translator", "Writer"], ["University of Madras", "Madurai Kamaraj Univ", "Bharathiar Univ"], ["Tamil Grammar", "Literature", "Translation"]),
+    C("ba-hindi", "B.A Hindi Literature", "B.A Hindi", "3 years", "Merit / CUET", false, "₹5K-1L", "₹3-8 LPA", 2, "Hindi literature and language. Useful for central govt jobs.", ["Hindi Teacher", "Translator", "UPSC", "Doordarshan"], ["DU", "BHU", "JNU"], ["Hindi Grammar", "Literature", "Translation"]),
+    C("ba-geography", "B.A Geography", "B.A Geography", "3 years", "Merit / CUET", false, "₹10K-2L", "₹3-12 LPA", 3, "Physical and human geography. Good UPSC optional.", ["Geographer", "Urban Planner", "GIS Analyst", "UPSC"], ["DU", "JNU", "BHU", "Presidency"], ["GIS", "Cartography", "Environmental Analysis"]),
+    C("ba-philosophy", "B.A Philosophy", "B.A Philosophy", "3 years", "Merit / CUET", false, "₹5K-1.5L", "₹3-10 LPA", 2, "Logic, ethics, metaphysics. Develops critical thinking for UPSC/Law.", ["UPSC (Ethics paper)", "Lawyer", "Writer", "Professor"], ["St. Stephen's", "Presidency", "JNU"], ["Logic", "Ethics", "Critical Thinking"]),
+    C("ba-journalism", "B.A Journalism", "B.A Journalism", "3 years", "Merit / CUET", false, "₹30K-3L", "₹3-12 LPA", 3, "News reporting, writing, digital journalism.", ["Journalist", "Reporter", "Digital Content Creator", "PR"], ["IIMC Delhi", "ACJ Chennai", "Symbiosis"], ["Writing", "Reporting", "Digital Media"]),
+    C("ba-music", "B.A Music (Carnatic / Hindustani)", "B.A Music", "3 years", "Audition / Merit", false, "₹10K-2L", "₹2-10 LPA", 2, "Classical music — vocal or instrumental. Perform or teach.", ["Musician", "Music Teacher", "Performer", "Composer"], ["Kalakshetra Chennai", "University of Madras", "BHU"], ["Carnatic/Hindustani Music", "Performance", "Theory"]),
   ],
 };
 
-// Vocational courses
+// ═══ 18. VOCATIONAL & DIPLOMA (10 courses) ═══
 const vocationalCourses: CourseCategory = {
-  name: "Diploma & Vocational",
+  name: "Diploma, Polytechnic & ITI",
   icon: "🛠️",
   courses: [
-    { id: "diploma-cs", name: "Diploma in Computer Engineering", shortName: "Diploma CS", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹20K-2 Lakhs", salaryRange: "₹2-6 LPA", demandLevel: 4, description: "Hands-on computer skills for IT support and junior dev roles.", careers: ["IT Technician", "Web Developer", "Help Desk"], topColleges: ["Govt Polytechnics", "Private Polytechnics"], skills: ["Hardware", "Networking", "Programming"] },
-    { id: "diploma-elec", name: "Diploma in Electronics", shortName: "Diploma ECE", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹20K-2 Lakhs", salaryRange: "₹2-5 LPA", demandLevel: 3, description: "Electronics repair, installation, and maintenance.", careers: ["Electronics Technician", "IoT Installer", "Repair Specialist"], topColleges: ["Govt Polytechnics"], skills: ["Circuit Repair", "Soldering", "Testing"] },
-    { id: "diploma-auto", name: "Diploma in Automobile Engineering", shortName: "Diploma Auto", duration: "3 years", entrance: "Merit Based", entranceRequired: false, fee: "₹20K-2 Lakhs", salaryRange: "₹2-6 LPA", demandLevel: 3, description: "Work with automobiles, EV technology, and workshops.", careers: ["Auto Technician", "Service Advisor", "EV Specialist"], topColleges: ["Govt Polytechnics", "Private Colleges"], skills: ["Engine Repair", "Diagnostics", "EV Systems"] },
-    { id: "iti", name: "ITI - Industrial Training", shortName: "ITI", duration: "1-2 years", entrance: "Merit Based", entranceRequired: false, fee: "₹5K-50K", salaryRange: "₹1.5-4 LPA", demandLevel: 3, description: "Quick skill-based training for trade jobs.", careers: ["Electrician", "Fitter", "Welder", "Plumber"], topColleges: ["Govt ITIs across TN"], skills: ["Trade Skills", "Safety", "Tools"] },
+    C("diploma-cs", "Diploma in Computer Engineering", "Diploma CS", "3 years", "Merit", false, "₹20K-2L", "₹2-6 LPA", 4, "Hands-on IT skills for junior developer and tech support roles.", ["IT Technician", "Web Developer", "Help Desk"], ["Govt Polytechnics"], ["Programming", "Networking", "Hardware"]),
+    C("diploma-ece", "Diploma in Electronics & Comm", "Diploma ECE", "3 years", "Merit", false, "₹20K-2L", "₹2-5 LPA", 3, "Electronics repair, installation, communication systems.", ["Electronics Technician", "IoT Installer", "Repair"], ["Govt Polytechnics"], ["Circuits", "Soldering", "Testing"]),
+    C("diploma-mech", "Diploma in Mechanical Engineering", "Diploma Mech", "3 years", "Merit", false, "₹20K-2L", "₹2-6 LPA", 3, "Manufacturing, workshop, CNC, maintenance.", ["Maintenance Engineer", "CNC Operator", "Supervisor"], ["Govt Polytechnics"], ["CNC", "Workshop", "Manufacturing"]),
+    C("diploma-civil", "Diploma in Civil Engineering", "Diploma Civil", "3 years", "Merit", false, "₹20K-2L", "₹2-5 LPA", 3, "Construction, surveying, drafting, site supervision.", ["Site Supervisor", "Draftsman", "Surveyor"], ["Govt Polytechnics"], ["AutoCAD", "Surveying", "Construction"]),
+    C("diploma-eee", "Diploma in Electrical Engineering", "Diploma EEE", "3 years", "Merit", false, "₹20K-2L", "₹2-6 LPA", 3, "Electrical wiring, power systems, solar installation.", ["Electrician (Diploma)", "Power Tech", "Solar Installer"], ["Govt Polytechnics"], ["Wiring", "Power Systems", "Safety"]),
+    C("diploma-auto", "Diploma in Automobile Engineering", "Diploma Auto", "3 years", "Merit", false, "₹20K-2L", "₹2-6 LPA", 3, "Automobile repair, EV technology, workshop management.", ["Auto Technician", "Service Advisor", "EV Specialist"], ["Govt Polytechnics"], ["Engine Repair", "Diagnostics", "EV"]),
+    C("iti", "ITI — Industrial Training Institute", "ITI", "1-2 years", "Merit", false, "₹5K-50K", "₹1.5-4 LPA", 3, "Quick trade-level skills. Fitter, Electrician, Welder, Plumber.", ["Electrician", "Fitter", "Welder", "Plumber", "Turner"], ["Govt ITIs across TN"], ["Trade Skills", "Safety", "Tools"]),
+    C("diploma-pharm", "Diploma in Pharmacy (D.Pharm)", "D.Pharm", "2 years", "Merit", false, "₹50K-3L", "₹2-5 LPA", 3, "Open a medical shop, work as hospital pharmacist.", ["Pharmacist", "Medical Shop Owner"], ["Govt Pharmacy Colleges"], ["Dispensing", "Drug Knowledge"]),
+    C("diploma-nursing", "Diploma in Nursing (GNM/ANM)", "Diploma Nursing", "2-3 years", "Merit", false, "₹20K-3L", "₹2-4 LPA", 4, "Nursing diploma for quick hospital employment.", ["Staff Nurse", "Community Nurse"], ["Govt Nursing Schools"], ["Patient Care", "Clinical Skills"]),
+    C("diploma-hotel", "Diploma in Hotel Management", "Diploma Hotel", "1-3 years", "Merit", false, "₹30K-3L", "₹2-6 LPA", 3, "Hospitality skills — cooking, front desk, housekeeping.", ["Chef", "Front Desk", "Housekeeping Manager"], ["IHMs", "Private Institutes"], ["Hospitality", "Cooking", "Service"]),
   ],
 };
 
-// Map group codes to course categories
+// ═══ 19. HOTEL MANAGEMENT & TOURISM (4 courses) ═══
+const hotelTourismCourses: CourseCategory = {
+  name: "Hotel Management & Tourism",
+  icon: "🏨",
+  courses: [
+    C("bhmct", "BHMCT — Hotel Management & Catering", "BHMCT", "4 years", "NCHMCT JEE", true, "₹2-10L", "₹3-12 LPA", 4, "Manage hotels, restaurants, catering. Work globally.", ["Hotel Manager", "Chef", "F&B Manager", "Event Manager"], ["IHM Mumbai", "IHM Chennai", "IHM Delhi"], ["Hospitality", "Food Production", "Front Office"]),
+    C("bsc-hotel", "B.Sc Hospitality & Hotel Administration", "B.Sc Hotel", "3 years", "Merit / NCHMCT", false, "₹1-6L", "₹3-10 LPA", 3, "Hotel operations, food & beverage, front office management.", ["Hotel Supervisor", "Restaurant Manager", "Banquet Manager"], ["IHMs", "Christ University", "Welcomgroup"], ["Hotel Ops", "F&B", "Housekeeping"]),
+    C("bsc-tourism", "B.Sc Travel & Tourism", "B.Sc Tourism", "3 years", "Merit", false, "₹50K-4L", "₹3-10 LPA", 3, "Tour planning, travel management, airline operations.", ["Travel Agent", "Tour Operator", "Airline Ground Staff"], ["IGNOU", "IITTM", "Christ University"], ["Tourism", "Travel Ops", "Geography"]),
+    C("bsc-culinary", "B.Sc Culinary Arts", "B.Sc Culinary", "3 years", "Merit / Entrance", false, "₹1-8L", "₹3-15 LPA", 3, "Professional cooking, baking, world cuisines, food styling.", ["Chef", "Pastry Chef", "Food Stylist", "Own Restaurant"], ["IHM Chennai", "Welcomgroup", "SRM"], ["Cooking", "Baking", "Food Presentation"]),
+  ],
+};
+
+// ═══ 20. AVIATION & MARINE (3 courses) ═══
+const aviationCourses: CourseCategory = {
+  name: "Aviation & Marine",
+  icon: "✈️",
+  courses: [
+    C("bsc-aviation", "B.Sc Aviation", "B.Sc Aviation", "3 years", "Merit / Entrance", false, "₹1-6L", "₹3-10 LPA", 3, "Airport management, airline operations, aviation safety.", ["Airport Manager", "Ground Staff", "Airline Operations"], ["Rajiv Gandhi Aviation Academy", "IGIA", "Hindustan Univ"], ["Aviation Ops", "Airport Mgmt", "Safety"]),
+    C("cpl", "CPL — Commercial Pilot License", "CPL", "18 months", "DGCA", true, "₹25-50L", "₹15-50 LPA", 5, "Become a commercial airline pilot. India's highest paying career.", ["Airline Pilot", "Co-Pilot", "Flight Instructor"], ["Indira Gandhi Rashtriya Udaan Academy", "Rajiv Gandhi Academy"], ["Flying", "Navigation", "Aviation Theory"], { hot: true }),
+    C("bsc-nautical", "B.Sc Nautical Science", "B.Sc Nautical", "3 years", "IMU CET", true, "₹3-15L", "₹8-40 LPA", 4, "Navigation officer on merchant ships. Travel the world.", ["Navigation Officer", "Ship Captain"], ["IMU Chennai", "TMI Pune"], ["Navigation", "Maritime Law", "Ship Handling"]),
+  ],
+};
+
+// ═══ 21. SPORTS & PHYSICAL EDUCATION (3 courses) ═══
+const sportsCourses: CourseCategory = {
+  name: "Sports & Physical Education",
+  icon: "⚽",
+  courses: [
+    C("bped", "B.P.Ed — Physical Education", "B.P.Ed", "2 years (after grad)", "State Entrance", true, "₹15K-2L", "₹3-8 LPA", 3, "Become a PE teacher in schools. Mandatory for govt PE teaching.", ["PE Teacher", "Sports Coach", "Fitness Trainer"], ["LNIPE Gwalior", "State Universities"], ["Sports Training", "Fitness", "Coaching"]),
+    C("bsc-sports", "B.Sc Sports Science", "B.Sc Sports", "3 years", "Merit / Entrance", false, "₹50K-4L", "₹3-12 LPA", 3, "Sports physiology, biomechanics, coaching, sports management.", ["Sports Scientist", "Fitness Coach", "Sports Analyst"], ["LNIPE Gwalior", "Tamil Nadu Physical Education Univ"], ["Biomechanics", "Physiology", "Coaching"]),
+    C("integrated-bped", "Integrated B.A/B.Sc + B.P.Ed", "BA B.P.Ed", "4 years", "State Entrance", true, "₹30K-2L", "₹3-8 LPA", 3, "Combined degree for PE teaching. Save 1 year.", ["PE Teacher", "Sports Instructor"], ["State Universities", "Central Universities"], ["Physical Education", "Sports", "Teaching"]),
+  ],
+};
+
+// ═══ MAP GROUP CODES TO COURSES ═══
 export const getCoursesForGroup = (groupCode: string): CourseCategory[] => {
   const code = parseInt(groupCode);
 
   // Science - Maths (100 series)
   if (code >= 101 && code <= 106) {
-    return [engineeringCourses, architectureCourses, pureScienceCourses, defenseCourses];
+    const base = [engineeringCourses, architectureCourses, pureScienceCourses, defenseCourses, aviationCourses];
+    if (code === 103 || code === 104) base.push(lifeScienceCourses); // PCMB groups
+    if (code === 106) base.push(hotelTourismCourses); // Home Science group
+    return base;
   }
 
   // Science - Biology (200 series)
   if (code >= 201 && code <= 208) {
-    const categories = [medicalCourses, nursingCourses, pharmacyCourses, alliedHealthCourses, lifeScienceCourses];
-    // Group 201 has CS, add some tech courses
-    if (code === 201) {
-      categories.push(pureScienceCourses);
-    }
-    return categories;
+    const base = [medicalCourses, nursingCourses, pharmacyCourses, alliedHealthCourses, lifeScienceCourses];
+    if (code === 201) base.push(pureScienceCourses); // CS group
+    if (code === 205 || code === 207) base.push(hotelTourismCourses); // Nutrition/Home Science
+    return base;
   }
 
   // Commerce (300 series)
   if (code >= 301 && code <= 308) {
-    return [professionalCourses, ugCommerceCourses, lawCourses, govtJobsCourses, teachingCourses];
+    return [professionalCourses, ugCommerceCourses, lawCourses, govtJobsCourses, teachingCourses, hotelTourismCourses];
   }
 
   // Arts (400 series)
   if (code >= 401 && code <= 406) {
-    return [artsUGCourses, lawCourses, govtJobsCourses, mediaCourses, teachingCourses, socialWorkCourses];
+    return [artsUGCourses, lawCourses, govtJobsCourses, mediaCourses, teachingCourses, socialWorkCourses, sportsCourses];
   }
 
   // Vocational
   if (groupCode === "VOC") {
-    return [vocationalCourses, pureScienceCourses, govtJobsCourses];
+    return [vocationalCourses, pureScienceCourses, govtJobsCourses, hotelTourismCourses];
   }
 
   return [];
@@ -406,5 +531,6 @@ export const boards = [
   { id: "tn", name: "Tamil Nadu State Board", icon: "🏛️", isDefault: true },
   { id: "cbse", name: "CBSE", icon: "📘" },
   { id: "icse", name: "ICSE", icon: "📗" },
-  { id: "other", name: "Other", icon: "📚" },
+  { id: "nios", name: "NIOS (Open School)", icon: "📖" },
+  { id: "other", name: "Other State Boards", icon: "📚" },
 ];
