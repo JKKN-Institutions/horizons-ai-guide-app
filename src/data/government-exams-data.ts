@@ -1109,21 +1109,125 @@ const railwayExams: Exam[] = [
   },
   {
     id: 'railway-apprentice',
-    name: 'Railway Apprentice',
-    nameTamil: 'ரயில்வே பயிற்சி',
-    qualification: '10th/12th Pass',
-    qualificationTamil: '10/12ஆம் வகுப்பு தேர்ச்சி',
+    name: 'Railway Apprentice (Act Apprentice)',
+    nameTamil: 'ரயில்வே பயிற்சி (சட்ட பயிற்சியாளர்)',
+    qualification: '10th Pass (50%) + ITI (NTC)',
+    qualificationTamil: '10ஆம் வகுப்பு (50%) + ITI (NTC) சான்றிதழ்',
     age: '15 - 24 years',
-    salary: '₹8,000 Stipend',
-    selectionProcess: 'Merit Based',
-    selectionProcessTamil: 'தகுதி அடிப்படையில்',
+    salary: '₹7,000 - ₹12,261 Stipend/month',
+    selectionProcess: 'Merit Based (No Written Exam) → Merit List (10th + ITI marks average) → Medical Examination',
+    selectionProcessTamil: 'தகுதி அடிப்படையில் (எழுத்துத் தேர்வு இல்லை) → தகுதிப் பட்டியல் (10ஆம் + ITI மதிப்பெண் சராசரி) → மருத்துவப் பரிசோதனை',
+    posts: ['Fitter', 'Electrician', 'Welder (Gas & Electric)', 'Electronic Mechanic', 'COPA/PASAA', 'Machinist', 'Turner', 'Carpenter', 'Painter', 'Diesel Mechanic'],
+    postsTamil: ['ஃபிட்டர்', 'எலக்ட்ரீஷியன்', 'வெல்டர்', 'எலக்ட்ரானிக் மெக்கானிக்', 'COPA/PASAA', 'மெஷினிஸ்ட்', 'டர்னர்', 'தச்சர்', 'பெயிண்டர்', 'டீசல் மெக்கானிக்'],
     syllabus: {
-      main: [
+      'Selection Process (No Written Exam)': [
         {
-          name: 'Railway Apprentice Selection',
-          nameTamil: 'ரயில்வே பயிற்சி தேர்வு',
+          name: 'Merit-Based Selection — How It Works',
+          nameTamil: 'தகுதி அடிப்படை தேர்வு — எவ்வாறு செயல்படுகிறது',
           topics: [
-            { name: 'Selection Criteria', nameTamil: 'தேர்வு அளவுகோல்கள்', subtopics: ['10th/12th Marks Merit', 'ITI Qualification (if applicable)', 'Age Criteria', 'Physical Standards'] }
+            { name: 'Merit Calculation Formula', nameTamil: 'தகுதி கணக்கீட்டு சூத்திரம்', subtopics: [
+              'NO written exam or interview is conducted',
+              'Merit = Average of 10th Class % + ITI (relevant trade) %',
+              'Equal weightage (50:50) given to Matriculation and ITI marks',
+              'Example: If 10th = 80% and ITI = 70%, Merit = (80+70)/2 = 75%',
+              'Higher merit score = higher chance of selection'
+            ] },
+            { name: 'Tie-Breaking Rules', nameTamil: 'சமநிலை உடைப்பு விதிகள்', subtopics: [
+              'If two candidates have the same merit score:',
+              'Rule 1: Older candidate (higher age) is preferred',
+              'Rule 2: If same date of birth, candidate who passed 10th earlier is prioritized',
+              'Rule 3: Further tie-breaking as per zone-specific notification'
+            ] },
+            { name: 'Medical Fitness', nameTamil: 'மருத்துவ தகுதி', subtopics: [
+              'Shortlisted candidates must pass a medical examination',
+              'Physical standards vary by trade and railway zone',
+              'Vision, hearing, and general fitness checked',
+              'Trade-specific physical requirements may apply (e.g., heavy lifting for Fitter)'
+            ] }
+          ]
+        }
+      ],
+      'Eligibility Criteria': [
+        {
+          name: 'Educational & Age Requirements',
+          nameTamil: 'கல்வி & வயது தேவைகள்',
+          topics: [
+            { name: 'Educational Qualification', nameTamil: 'கல்வித் தகுதி', subtopics: [
+              '10th Pass (Matriculation): Minimum 50% aggregate marks',
+              'ITI Certificate: Must possess National Trade Certificate (NTC)',
+              'NTC must be issued by NCVT (National Council for Vocational Training) or SCVT (State Council)',
+              'ITI trade must match the vacancy trade (e.g., Fitter ITI for Fitter vacancy)',
+              '12th Pass candidates can also apply if they have ITI qualification'
+            ] },
+            { name: 'Age Limit', nameTamil: 'வயது வரம்பு', subtopics: [
+              'Minimum Age: 15 years (as of application closing date)',
+              'Maximum Age: 24 years (as of application closing date)',
+              'SC/ST Relaxation: +5 years (up to 29 years)',
+              'OBC Relaxation: +3 years (up to 27 years)',
+              'PwBD (Persons with Benchmark Disabilities): +10 years (up to 34 years)',
+              'Ex-Servicemen: As per government rules'
+            ] }
+          ]
+        }
+      ],
+      'Popular Trades & Vacancies': [
+        {
+          name: 'Trade-wise Vacancy Information',
+          nameTamil: 'தொழில் வாரியான காலிப்பணியிட தகவல்',
+          topics: [
+            { name: 'High-Demand Trades', nameTamil: 'அதிக தேவை தொழில்கள்', subtopics: [
+              'Fitter: Highest volume — e.g., 1600+ vacancies in Western Railway alone',
+              'Electrician: Significant demand across all workshops & divisions',
+              'Welder (Gas & Electric): Structural & coach repair workshops',
+              'Electronic Mechanic: Signal & Telecommunication departments',
+              'Machinist: Mechanical workshops for precision work',
+              'Turner: Lathe work in railway workshops',
+              'Diesel Mechanic: Locomotive maintenance & repair'
+            ] },
+            { name: 'Computer & Admin Trades', nameTamil: 'கணினி & நிர்வாக தொழில்கள்', subtopics: [
+              'COPA (Computer Operator & Programming Assistant): Office automation & data management',
+              'PASAA (Programming & Systems Administration Assistant): Technical IT support',
+              'These trades suit candidates interested in computer-related railway work'
+            ] }
+          ]
+        }
+      ],
+      'Training Benefits & Stipend': [
+        {
+          name: 'What You Get During Training',
+          nameTamil: 'பயிற்சியின் போது நீங்கள் பெறுவது',
+          topics: [
+            { name: 'Stipend & Duration', nameTamil: 'உதவித்தொகை & காலம்', subtopics: [
+              'Training Period: Usually 1 year (some trades like CNC Operator may be 6 months)',
+              'Monthly Stipend: ₹7,000 to ₹12,261 (varies by zone, trade & year)',
+              'Stipend paid as per the Apprentices Act, 1961 provisions',
+              'Stipend increases with experience during training period'
+            ] },
+            { name: 'Future Employment Opportunities', nameTamil: 'எதிர்கால வேலை வாய்ப்புகள்', subtopics: [
+              'Railway is NOT obligated to offer permanent job after training',
+              'However: 20% of Direct Recruitment (Group D / Level-1) vacancies are RESERVED',
+              'Reserved for candidates who completed Railway Apprenticeship (CCAA holders)',
+              'CCAA = Certificate of Completion of Apprenticeship from Act Apprenticeship',
+              'This gives a significant advantage in future Group D recruitment',
+              'Experience certificate from Indian Railways improves employability'
+            ] }
+          ]
+        }
+      ],
+      'How to Apply': [
+        {
+          name: 'Application Process',
+          nameTamil: 'விண்ணப்ப செயல்முறை',
+          topics: [
+            { name: 'Step-by-Step Application', nameTamil: 'படிப்படியான விண்ணப்பம்', subtopics: [
+              'Applications are zone-wise — each Railway zone publishes its own notification',
+              'Apply online through the respective Railway zone website (e.g., rfrinda.com for Western Railway)',
+              'Upload scanned copies: 10th Marksheet, ITI Certificate (NTC), Photo, Signature',
+              'No application fee for SC/ST/PwBD/Women candidates',
+              'General/OBC candidates may need to pay ₹100 fee (varies by zone)',
+              'Keep checking indianrailways.gov.in for zone-wise notifications',
+              'Major zones: Northern, Southern, Western, Eastern, Central, South Central, etc.'
+            ] }
           ]
         }
       ]

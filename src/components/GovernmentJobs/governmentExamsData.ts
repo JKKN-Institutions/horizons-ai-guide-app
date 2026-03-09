@@ -201,7 +201,7 @@ export const governmentExams: GovernmentExam[] = [
   },
   {
     id: 'railway-apprentice',
-    name: 'Railway Apprentice',
+    name: 'Railway Apprentice (Act Apprentice)',
     nameTamil: 'ரயில்வே பயிற்சி நாடுநர்',
     category: 'railway',
     qualification: '12th Pass',
