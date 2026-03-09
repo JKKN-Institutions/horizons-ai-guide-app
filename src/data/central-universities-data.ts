@@ -677,322 +677,2147 @@ export const centralUniversities: University[] = [
   // ============================================
   // 9. DELHI UNIVERSITY
   // ============================================
+  {
+    id: 'delhi-university',
+    name: 'University of Delhi',
+    nameTamil: 'டெல்லி பல்கலைக்கழகம்',
+    location: 'Delhi',
+    website: 'https://www.du.ac.in',
+    phone: '011-27667011',
+    email: 'registrar@du.ac.in',
+    examName: 'CUET',
+    logoColor: '#800020',
+    logo: '/universities/delhi-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'DU Admission 2026', eventTamil: 'DU சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 20000, obc: 20000, scst: 5000 },
+    courses: [
+      { id: 'du-ba-hons', name: 'B.A. (Hons) - Various Subjects', nameTamil: 'B.A. (ஹானர்ஸ்) - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Arts', duration: '3 Years', eligibility: 'CUET qualified, 12th Pass', tips: ['500+ courses available', "India's most prestigious Arts & Humanities programs"] },
+      { id: 'du-bsc-hons', name: 'B.Sc. (Hons) - Various Subjects', nameTamil: 'B.Sc. (ஹானர்ஸ்) - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Science', duration: '3 Years', eligibility: 'CUET qualified, 12th PCM/PCB', tips: ['Strong research facilities', 'Multiple colleges to choose from'] },
+      { id: 'du-bcom-hons', name: 'B.Com. (Hons)', nameTamil: 'B.Com. (ஹானர்ஸ்)', type: 'UG', category: 'On-Campus', school: 'Commerce', duration: '3 Years', eligibility: 'CUET qualified, 12th Commerce', tips: ['Top choice for Commerce students', 'SRCC, Hindu College, St. Stephens'] }
+    ]
+  },
 
   // ============================================
   // 10. JAWAHARLAL NEHRU UNIVERSITY (JNU)
   // ============================================
+  {
+    id: 'jnu',
+    name: 'Jawaharlal Nehru University',
+    nameTamil: 'ஜவஹர்லால் நேரு பல்கலைக்கழகம்',
+    location: 'Delhi',
+    website: 'https://www.jnu.ac.in',
+    phone: '011-26704000',
+    email: 'registrar@jnu.ac.in',
+    examName: 'CUET',
+    logoColor: '#006400',
+    logo: '/universities/jnu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'JNU Admission 2026', eventTamil: 'JNU சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 15000, obc: 15000, scst: 5000 },
+    courses: [
+      { id: 'jnu-ba-hons', name: 'B.A. (Hons) - Various Subjects', nameTamil: 'B.A. (ஹானர்ஸ்) - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Social Sciences', duration: '3 Years', eligibility: 'CUET qualified, 12th Pass', tips: ['150+ courses', 'Best for Social Sciences & Languages'] },
+      { id: 'jnu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['Top research university in India', 'Strong international collaborations'] }
+    ]
+  },
 
   // ============================================
   // 11. JAMIA MILLIA ISLAMIA
   // ============================================
+  {
+    id: 'jamia',
+    name: 'Jamia Millia Islamia',
+    nameTamil: 'ஜாமியா மிலியா இஸ்லாமியா',
+    location: 'Delhi',
+    website: 'https://www.jmi.ac.in',
+    phone: '011-26981717',
+    email: 'registrar@jmi.ac.in',
+    examName: 'CUET',
+    logoColor: '#228B22',
+    logo: '/universities/jamia-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Jamia Admission 2026', eventTamil: 'ஜாமியா சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 15000, obc: 15000, scst: 5000 },
+    courses: [
+      { id: 'jamia-ba', name: 'B.A. - Various Subjects', nameTamil: 'B.A. - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Arts', duration: '3 Years', eligibility: 'CUET qualified, 12th Pass', tips: ['200+ courses', 'Strong in Mass Communication & Architecture'] },
+      { id: 'jamia-btech', name: 'B.Tech - Engineering', nameTamil: 'B.Tech - பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'CUET/JEE Main qualified, 12th PCM', tips: ['Faculty of Engineering & Technology'] }
+    ]
+  },
 
   // ============================================
   // 12. BANARAS HINDU UNIVERSITY (BHU)
   // ============================================
+  {
+    id: 'bhu',
+    name: 'Banaras Hindu University',
+    nameTamil: 'பனாரஸ் இந்து பல்கலைக்கழகம்',
+    location: 'Varanasi, Uttar Pradesh',
+    website: 'https://www.bhu.ac.in',
+    phone: '0542-2307050',
+    email: 'registrar@bhu.ac.in',
+    examName: 'CUET',
+    logoColor: '#8B0000',
+    logo: '/universities/bhu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'BHU Admission 2026', eventTamil: 'BHU சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'bhu-ba', name: 'B.A. - Various Subjects', nameTamil: 'B.A. - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Arts', duration: '3 Years', eligibility: 'CUET qualified, 12th Pass', tips: ['400+ courses', "Asia's largest residential university"] },
+      { id: 'bhu-bsc', name: 'B.Sc. - Various Subjects', nameTamil: 'B.Sc. - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Science', duration: '3 Years', eligibility: 'CUET qualified, 12th PCM/PCB', tips: ['Strong in Agriculture, Ayurveda, Law'] },
+      { id: 'bhu-iit', name: 'B.Tech - IIT (BHU)', nameTamil: 'B.Tech - IIT (BHU)', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified', tips: ['IIT BHU - Premier Engineering Institute'] }
+    ]
+  },
 
   // ============================================
   // 13. ALIGARH MUSLIM UNIVERSITY
   // ============================================
+  {
+    id: 'amu',
+    name: 'Aligarh Muslim University',
+    nameTamil: 'அலிகார் முஸ்லிம் பல்கலைக்கழகம்',
+    location: 'Aligarh, Uttar Pradesh',
+    website: 'https://www.amu.ac.in',
+    phone: '0571-2700920',
+    email: 'registrar@amu.ac.in',
+    examName: 'AMU Entrance',
+    logoColor: '#006633',
+    logo: '/universities/amu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'AMU Entrance 2026 Registration', eventTamil: 'AMU நுழைவுத் தேர்வு 2026 பதிவு', date: 'January 2026', status: 'upcoming' },
+      { event: 'AMU Entrance 2026 Exam', eventTamil: 'AMU நுழைவுத் தேர்வு 2026', date: 'April-May 2026', status: 'upcoming' },
+      { event: 'AMU Admission 2026', eventTamil: 'AMU சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 15000, obc: 15000, scst: 5000 },
+    courses: [
+      { id: 'amu-ba', name: 'B.A. - Various Subjects', nameTamil: 'B.A. - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Arts', duration: '3 Years', eligibility: 'AMU Entrance qualified, 12th Pass', tips: ['300+ courses', 'Strong in Law, Medicine, Engineering'] },
+      { id: 'amu-btech', name: 'B.Tech - Engineering', nameTamil: 'B.Tech - பொறியியல்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'AMU Entrance/JEE Main qualified', tips: ['Z.H. College of Engineering'] },
+      { id: 'amu-mbbs', name: 'MBBS', nameTamil: 'MBBS', type: 'UG', category: 'On-Campus', school: 'Medicine', duration: '5.5 Years', eligibility: 'NEET qualified', tips: ['J.N. Medical College - Premier Medical School'] }
+    ]
+  },
 
   // ============================================
   // 14. UNIVERSITY OF HYDERABAD
   // ============================================
+  {
+    id: 'uoh',
+    name: 'University of Hyderabad',
+    nameTamil: 'ஹைதராபாத் பல்கலைக்கழகம்',
+    location: 'Hyderabad, Telangana',
+    website: 'https://www.uohyd.ac.in',
+    phone: '040-23132100',
+    email: 'registrar@uohyd.ac.in',
+    examName: 'CUET',
+    logoColor: '#4B0082',
+    logo: '/universities/uoh-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'UoH Admission 2026', eventTamil: 'UoH சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'uoh-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['150+ courses', 'Research-intensive university'] },
+      { id: 'uoh-msc', name: 'M.Sc. - Various Subjects', nameTamil: 'M.Sc. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Science', duration: '2 Years', eligibility: 'CUET-PG qualified, B.Sc.', tips: ['Strong in Life Sciences & Physics'] }
+    ]
+  },
 
   // ============================================
   // 15. PONDICHERRY UNIVERSITY
   // ============================================
+  {
+    id: 'pondicherry-university',
+    name: 'Pondicherry University',
+    nameTamil: 'புதுச்சேரி பல்கலைக்கழகம்',
+    location: 'Puducherry',
+    website: 'https://www.pondiuni.edu.in',
+    phone: '0413-2654301',
+    email: 'registrar@pondiuni.edu.in',
+    examName: 'CUET',
+    logoColor: '#FF6600',
+    logo: '/universities/pondicherry-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Pondicherry University Admission 2026', eventTamil: 'புதுச்சேரி பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 15000, obc: 15000, scst: 5000 },
+    courses: [
+      { id: 'pu-ba', name: 'B.A. - Various Subjects', nameTamil: 'B.A. - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Arts', duration: '3 Years', eligibility: 'CUET qualified, 12th Pass', tips: ['100+ courses', 'Close to Tamil Nadu - easy access'] },
+      { id: 'pu-mba', name: 'MBA', nameTamil: 'MBA', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'CUET-PG/CAT qualified, Graduation', tips: ['Well-recognized MBA program'] }
+    ]
+  },
 
   // ============================================
   // 16. CENTRAL UNIVERSITY OF KERALA
   // ============================================
+  {
+    id: 'cukerala',
+    name: 'Central University of Kerala',
+    nameTamil: 'கேரள மத்திய பல்கலைக்கழகம்',
+    location: 'Kasaragod, Kerala',
+    website: 'https://www.cukerala.ac.in',
+    phone: '04994-256100',
+    email: 'registrar@cukerala.ac.in',
+    examName: 'CUET',
+    logoColor: '#2E8B57',
+    logo: '/universities/cukerala-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Kerala Admission 2026', eventTamil: 'CU கேரளா சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cuk-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'Growing central university'] }
+    ]
+  },
 
   // ============================================
   // 17. CENTRAL UNIVERSITY OF KARNATAKA
   // ============================================
+  {
+    id: 'cukarnataka',
+    name: 'Central University of Karnataka',
+    nameTamil: 'கர்நாடக மத்திய பல்கலைக்கழகம்',
+    location: 'Kalaburagi, Karnataka',
+    website: 'https://www.cuk.ac.in',
+    phone: '08472-246000',
+    email: 'registrar@cuk.ac.in',
+    examName: 'CUET',
+    logoColor: '#DC143C',
+    logo: '/universities/cukarnataka-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Karnataka Admission 2026', eventTamil: 'CU கர்நாடகா சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cukar-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'New campus with modern facilities'] }
+    ]
+  },
 
   // ============================================
   // 18. CENTRAL UNIVERSITY OF ANDHRA PRADESH
   // ============================================
+  {
+    id: 'cuap',
+    name: 'Central University of Andhra Pradesh',
+    nameTamil: 'ஆந்திர பிரதேச மத்திய பல்கலைக்கழகம்',
+    location: 'Anantapur, Andhra Pradesh',
+    website: 'https://www.cuap.ac.in',
+    phone: '08554-255700',
+    email: 'registrar@cuap.ac.in',
+    examName: 'CUET',
+    logoColor: '#FFD700',
+    logo: '/universities/cuap-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CUAP Admission 2026', eventTamil: 'CUAP சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cuap-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Developing central university'] }
+    ]
+  },
 
   // ============================================
   // 19. CENTRAL UNIVERSITY OF PUNJAB
   // ============================================
+  {
+    id: 'cupunjab',
+    name: 'Central University of Punjab',
+    nameTamil: 'பஞ்சாப் மத்திய பல்கலைக்கழகம்',
+    location: 'Bathinda, Punjab',
+    website: 'https://www.cup.edu.in',
+    phone: '0164-2864106',
+    email: 'registrar@cup.edu.in',
+    examName: 'CUET',
+    logoColor: '#FF4500',
+    logo: '/universities/cupunjab-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Punjab Admission 2026', eventTamil: 'CU பஞ்சாப் சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cup-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'Strong in Pharmaceutical Sciences'] }
+    ]
+  },
 
   // ============================================
   // 20. CENTRAL UNIVERSITY OF RAJASTHAN
   // ============================================
+  {
+    id: 'curajasthan',
+    name: 'Central University of Rajasthan',
+    nameTamil: 'ராஜஸ்தான் மத்திய பல்கலைக்கழகம்',
+    location: 'Ajmer, Rajasthan',
+    website: 'https://www.curaj.ac.in',
+    phone: '01463-238652',
+    email: 'registrar@curaj.ac.in',
+    examName: 'CUET',
+    logoColor: '#DAA520',
+    logo: '/universities/curajasthan-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Rajasthan Admission 2026', eventTamil: 'CU ராஜஸ்தான் சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cur-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'Strong in Culture & Heritage Studies'] }
+    ]
+  },
 
   // ============================================
   // 21. CENTRAL UNIVERSITY OF GUJARAT
   // ============================================
+  {
+    id: 'cugujarat',
+    name: 'Central University of Gujarat',
+    nameTamil: 'குஜராத் மத்திய பல்கலைக்கழகம்',
+    location: 'Gandhinagar, Gujarat',
+    website: 'https://www.cug.ac.in',
+    phone: '079-23977407',
+    email: 'registrar@cug.ac.in',
+    examName: 'CUET',
+    logoColor: '#8B4513',
+    logo: '/universities/cugujarat-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Gujarat Admission 2026', eventTamil: 'CU குஜராத் சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cug-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Strong in International Studies'] }
+    ]
+  },
 
   // ============================================
   // 22. CENTRAL UNIVERSITY OF HARYANA
   // ============================================
+  {
+    id: 'cuharyana',
+    name: 'Central University of Haryana',
+    nameTamil: 'ஹரியானா மத்திய பல்கலைக்கழகம்',
+    location: 'Mahendragarh, Haryana',
+    website: 'https://www.cuh.ac.in',
+    phone: '01285-249000',
+    email: 'registrar@cuh.ac.in',
+    examName: 'CUET',
+    logoColor: '#4682B4',
+    logo: '/universities/cuharyana-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Haryana Admission 2026', eventTamil: 'CU ஹரியானா சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cuh-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Near NCR region'] }
+    ]
+  },
 
   // ============================================
   // 23. CENTRAL UNIVERSITY OF HIMACHAL PRADESH
   // ============================================
+  {
+    id: 'cuhimachal',
+    name: 'Central University of Himachal Pradesh',
+    nameTamil: 'இமாச்சல பிரதேச மத்திய பல்கலைக்கழகம்',
+    location: 'Dharamshala, Himachal Pradesh',
+    website: 'https://www.cuhimachal.ac.in',
+    phone: '01892-229330',
+    email: 'registrar@cuhimachal.ac.in',
+    examName: 'CUET',
+    logoColor: '#20B2AA',
+    logo: '/universities/cuhimachal-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU HP Admission 2026', eventTamil: 'CU HP சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cuhp-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Beautiful hill campus'] }
+    ]
+  },
 
   // ============================================
   // 24. CENTRAL UNIVERSITY OF JHARKHAND
   // ============================================
+  {
+    id: 'cujharkhand',
+    name: 'Central University of Jharkhand',
+    nameTamil: 'ஜார்கண்ட் மத்திய பல்கலைக்கழகம்',
+    location: 'Ranchi, Jharkhand',
+    website: 'https://www.cuj.ac.in',
+    phone: '0651-2230123',
+    email: 'registrar@cuj.ac.in',
+    examName: 'CUET',
+    logoColor: '#228B22',
+    logo: '/universities/cujharkhand-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Jharkhand Admission 2026', eventTamil: 'CU ஜார்கண்ட் சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cuj-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Strong in Energy & Environmental Sciences'] }
+    ]
+  },
 
   // ============================================
   // 25. CENTRAL UNIVERSITY OF BIHAR
   // ============================================
+  {
+    id: 'cubihar',
+    name: 'Central University of Bihar',
+    nameTamil: 'பீகார் மத்திய பல்கலைக்கழகம்',
+    location: 'Gaya, Bihar',
+    website: 'https://www.cub.ac.in',
+    phone: '0631-2229450',
+    email: 'registrar@cub.ac.in',
+    examName: 'CUET',
+    logoColor: '#DC143C',
+    logo: '/universities/cubihar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Bihar Admission 2026', eventTamil: 'CU பீகார் சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cub-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Near Bodh Gaya - Buddhist Studies strong'] }
+    ]
+  },
 
   // ============================================
   // 26. CENTRAL UNIVERSITY OF ODISHA
   // ============================================
+  {
+    id: 'cuodisha',
+    name: 'Central University of Odisha',
+    nameTamil: 'ஒடிசா மத்திய பல்கலைக்கழகம்',
+    location: 'Koraput, Odisha',
+    website: 'https://www.cuo.ac.in',
+    phone: '06852-288212',
+    email: 'registrar@cuo.ac.in',
+    examName: 'CUET',
+    logoColor: '#FF6347',
+    logo: '/universities/cuodisha-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Odisha Admission 2026', eventTamil: 'CU ஒடிசா சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cuo-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['30+ courses', 'Focus on tribal studies'] }
+    ]
+  },
 
   // ============================================
   // 27. CENTRAL UNIVERSITY OF KASHMIR
   // ============================================
+  {
+    id: 'cukashmir',
+    name: 'Central University of Kashmir',
+    nameTamil: 'காஷ்மீர் மத்திய பல்கலைக்கழகம்',
+    location: 'Ganderbal, J&K',
+    website: 'https://www.cukashmir.ac.in',
+    phone: '0194-2462343',
+    email: 'registrar@cukashmir.ac.in',
+    examName: 'CUET',
+    logoColor: '#4169E1',
+    logo: '/universities/cukashmir-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'CU Kashmir Admission 2026', eventTamil: 'CU காஷ்மீர் சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'cuk-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Social Sciences', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Beautiful Kashmir campus'] }
+    ]
+  },
 
   // ============================================
   // 28. VISVA-BHARATI UNIVERSITY
   // ============================================
+  {
+    id: 'visva-bharati',
+    name: 'Visva-Bharati University',
+    nameTamil: 'விஸ்வ பாரதி பல்கலைக்கழகம்',
+    location: 'Santiniketan, West Bengal',
+    website: 'https://www.visvabharati.ac.in',
+    phone: '03463-262751',
+    email: 'registrar@visvabharati.ac.in',
+    examName: 'CUET',
+    logoColor: '#8B0000',
+    logo: '/universities/visva-bharati-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Visva-Bharati Admission 2026', eventTamil: 'விஸ்வ பாரதி சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'vb-ba', name: 'B.A. - Various Subjects', nameTamil: 'B.A. - பல்வேறு பாடங்கள்', type: 'UG', category: 'On-Campus', school: 'Arts', duration: '3 Years', eligibility: 'CUET qualified, 12th Pass', tips: ['100+ courses', 'Founded by Rabindranath Tagore', 'Unique open-air education'] },
+      { id: 'vb-bfa', name: 'BFA (Fine Arts)', nameTamil: 'BFA (நுண்கலை)', type: 'UG', category: 'On-Campus', school: 'Fine Arts', duration: '4 Years', eligibility: 'CUET qualified, 12th Pass', tips: ['Famous Kala Bhavana - Art school'] }
+    ]
+  },
 
   // ============================================
   // 29. TEZPUR UNIVERSITY
   // ============================================
+  {
+    id: 'tezpur',
+    name: 'Tezpur University',
+    nameTamil: 'தேஸ்பூர் பல்கலைக்கழகம்',
+    location: 'Tezpur, Assam',
+    website: 'https://www.tezu.ernet.in',
+    phone: '03712-267004',
+    email: 'registrar@tezu.ernet.in',
+    examName: 'CUET',
+    logoColor: '#006400',
+    logo: '/universities/tezpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Tezpur University Admission 2026', eventTamil: 'தேஸ்பூர் பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 15000, obc: 15000, scst: 5000 },
+    courses: [
+      { id: 'tu-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'CUET/JEE Main qualified, 12th PCM', tips: ['60+ courses', 'Strong in Science & Technology'] },
+      { id: 'tu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['Strong in Mass Communication'] }
+    ]
+  },
 
   // ============================================
   // 30. ASSAM UNIVERSITY
   // ============================================
+  {
+    id: 'assam-university',
+    name: 'Assam University',
+    nameTamil: 'அசாம் பல்கலைக்கழகம்',
+    location: 'Silchar, Assam',
+    website: 'https://www.aus.ac.in',
+    phone: '03842-270806',
+    email: 'registrar@aus.ac.in',
+    examName: 'CUET',
+    logoColor: '#2E8B57',
+    logo: '/universities/assam-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Assam University Admission 2026', eventTamil: 'அசாம் பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'aus-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'Strong in Life Sciences'] }
+    ]
+  },
 
   // ============================================
   // 31. NORTH EASTERN HILL UNIVERSITY (NEHU)
   // ============================================
+  {
+    id: 'nehu',
+    name: 'North Eastern Hill University',
+    nameTamil: 'வடகிழக்கு மலை பல்கலைக்கழகம்',
+    location: 'Shillong, Meghalaya',
+    website: 'https://www.nehu.ac.in',
+    phone: '0364-2722001',
+    email: 'registrar@nehu.ac.in',
+    examName: 'CUET',
+    logoColor: '#228B22',
+    logo: '/universities/nehu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEHU Admission 2026', eventTamil: 'NEHU சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'nehu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['60+ courses', 'Beautiful Shillong campus', 'Strong in NE Studies'] }
+    ]
+  },
 
   // ============================================
   // 32. MANIPUR UNIVERSITY
   // ============================================
+  {
+    id: 'manipur-university',
+    name: 'Manipur University',
+    nameTamil: 'மணிப்பூர் பல்கலைக்கழகம்',
+    location: 'Imphal, Manipur',
+    website: 'https://www.manipuruniv.ac.in',
+    phone: '0385-2435145',
+    email: 'registrar@manipuruniv.ac.in',
+    examName: 'CUET',
+    logoColor: '#DC143C',
+    logo: '/universities/manipur-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Manipur University Admission 2026', eventTamil: 'மணிப்பூர் பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'mu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Strong in Dance & Performing Arts'] }
+    ]
+  },
 
   // ============================================
   // 33. MIZORAM UNIVERSITY
   // ============================================
+  {
+    id: 'mizoram-university',
+    name: 'Mizoram University',
+    nameTamil: 'மிசோரம் பல்கலைக்கழகம்',
+    location: 'Aizawl, Mizoram',
+    website: 'https://www.mzu.edu.in',
+    phone: '0389-2330654',
+    email: 'registrar@mzu.edu.in',
+    examName: 'CUET',
+    logoColor: '#4B0082',
+    logo: '/universities/mizoram-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Mizoram University Admission 2026', eventTamil: 'மிசோரம் பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'mzu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Strong in Forestry & Environment'] }
+    ]
+  },
 
   // ============================================
   // 34. NAGALAND UNIVERSITY
   // ============================================
+  {
+    id: 'nagaland-university',
+    name: 'Nagaland University',
+    nameTamil: 'நாகாலாந்து பல்கலைக்கழகம்',
+    location: 'Lumami, Nagaland',
+    website: 'https://www.nagalanduniversity.ac.in',
+    phone: '0370-2292109',
+    email: 'registrar@nagalanduniversity.ac.in',
+    examName: 'CUET',
+    logoColor: '#006633',
+    logo: '/universities/nagaland-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Nagaland University Admission 2026', eventTamil: 'நாகாலாந்து பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'nu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Multi-campus university'] }
+    ]
+  },
 
   // ============================================
   // 35. TRIPURA UNIVERSITY
   // ============================================
+  {
+    id: 'tripura-university',
+    name: 'Tripura University',
+    nameTamil: 'திரிபுரா பல்கலைக்கழகம்',
+    location: 'Agartala, Tripura',
+    website: 'https://www.tripurauniv.ac.in',
+    phone: '0381-2374801',
+    email: 'registrar@tripurauniv.ac.in',
+    examName: 'CUET',
+    logoColor: '#FF6347',
+    logo: '/universities/tripura-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Tripura University Admission 2026', eventTamil: 'திரிபுரா பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'tu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'Strong in Rural Development'] }
+    ]
+  },
 
   // ============================================
   // 36. SIKKIM UNIVERSITY
   // ============================================
+  {
+    id: 'sikkim-university',
+    name: 'Sikkim University',
+    nameTamil: 'சிக்கிம் பல்கலைக்கழகம்',
+    location: 'Gangtok, Sikkim',
+    website: 'https://www.cus.ac.in',
+    phone: '03592-251067',
+    email: 'registrar@cus.ac.in',
+    examName: 'CUET',
+    logoColor: '#4682B4',
+    logo: '/universities/sikkim-university-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'Sikkim University Admission 2026', eventTamil: 'சிக்கிம் பல்கலைக்கழக சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'su-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['40+ courses', 'Beautiful Himalayan campus'] }
+    ]
+  },
 
   // ============================================
   // 37. RAJIV GANDHI UNIVERSITY
   // ============================================
+  {
+    id: 'rgu',
+    name: 'Rajiv Gandhi University',
+    nameTamil: 'ராஜீவ் காந்தி பல்கலைக்கழகம்',
+    location: 'Itanagar, Arunachal Pradesh',
+    website: 'https://www.rgu.ac.in',
+    phone: '0360-2277252',
+    email: 'registrar@rgu.ac.in',
+    examName: 'CUET',
+    logoColor: '#228B22',
+    logo: '/universities/rgu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CUET 2026 Registration', eventTamil: 'CUET 2026 பதிவு', date: 'February 2026', status: 'upcoming' },
+      { event: 'CUET 2026 Exam', eventTamil: 'CUET 2026 தேர்வு', date: 'May 2026', status: 'upcoming' },
+      { event: 'RGU Admission 2026', eventTamil: 'RGU சேர்க்கை 2026', date: 'June-July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 10000, obc: 10000, scst: 2500 },
+    courses: [
+      { id: 'rgu-ma', name: 'M.A. - Various Subjects', nameTamil: 'M.A. - பல்வேறு பாடங்கள்', type: 'PG', category: 'On-Campus', school: 'Arts', duration: '2 Years', eligibility: 'CUET-PG qualified, Graduation', tips: ['50+ courses', 'Only Central University in Arunachal Pradesh'] }
+    ]
+  },
 
   // ============================================
   // IIT BOMBAY
   // ============================================
+  {
+    id: 'iit-bombay',
+    name: 'Indian Institute of Technology Bombay',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் மும்பை',
+    location: 'Mumbai, Maharashtra',
+    website: 'https://www.iitb.ac.in',
+    phone: '022-25722545',
+    email: 'registrar@iitb.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
+    logoColor: '#003366',
+    logo: '/universities/iit-bombay-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitb-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['50+ courses', 'Top 3 IIT in India', 'Highest placement packages'] },
+      { id: 'iitb-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong research ecosystem'] }
+    ]
+  },
 
   // ============================================
   // IIT DELHI
   // ============================================
+  {
+    id: 'iit-delhi',
+    name: 'Indian Institute of Technology Delhi',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் டெல்லி',
+    location: 'Delhi',
+    website: 'https://www.iitd.ac.in',
+    phone: '011-26591000',
+    email: 'registrar@iitd.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
+    logoColor: '#00205B',
+    logo: '/universities/iit-delhi-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitd-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['50+ courses', 'Strong startup ecosystem', 'Top recruiters: Google, Microsoft'] },
+      { id: 'iitd-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Excellent research facilities'] }
+    ]
+  },
 
   // ============================================
   // IIT KANPUR
   // ============================================
+  {
+    id: 'iit-kanpur',
+    name: 'Indian Institute of Technology Kanpur',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் கான்பூர்',
+    location: 'Kanpur, Uttar Pradesh',
+    website: 'https://www.iitk.ac.in',
+    phone: '0512-2590111',
+    email: 'registrar@iitk.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
+    logoColor: '#C41E3A',
+    logo: '/universities/iit-kanpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitk-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['50+ courses', 'Pioneer in Computer Science', 'Strong in Aerospace'] },
+      { id: 'iitk-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['World-class research labs'] }
+    ]
+  },
 
   // ============================================
   // IIT KHARAGPUR
   // ============================================
+  {
+    id: 'iit-kharagpur',
+    name: 'Indian Institute of Technology Kharagpur',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் கரக்பூர்',
+    location: 'Kharagpur, West Bengal',
+    website: 'https://www.iitkgp.ac.in',
+    phone: '03222-255221',
+    email: 'registrar@iitkgp.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
+    logoColor: '#800000',
+    logo: '/universities/iit-kharagpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitkgp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['60+ courses', "India's first IIT (1951)", 'Largest IIT campus'] },
+      { id: 'iitkgp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong in Architecture, Law, Medical'] }
+    ]
+  },
 
   // ============================================
   // IIT ROORKEE
   // ============================================
+  {
+    id: 'iit-roorkee',
+    name: 'Indian Institute of Technology Roorkee',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் ரூர்கி',
+    location: 'Roorkee, Uttarakhand',
+    website: 'https://www.iitr.ac.in',
+    phone: '01332-285311',
+    email: 'registrar@iitr.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
+    logoColor: '#0033A0',
+    logo: '/universities/iit-roorkee-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['50+ courses', "Asia's oldest technical institution (1847)", 'Strong in Civil Engineering'] },
+      { id: 'iitr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Heritage campus with modern facilities'] }
+    ]
+  },
 
   // ============================================
   // IIT GUWAHATI
   // ============================================
+  {
+    id: 'iit-guwahati',
+    name: 'Indian Institute of Technology Guwahati',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் குவாஹாட்டி',
+    location: 'Guwahati, Assam',
+    website: 'https://www.iitg.ac.in',
+    phone: '0361-2582000',
+    email: 'registrar@iitg.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG) / CAT (MBA)',
+    logoColor: '#006633',
+    logo: '/universities/iit-guwahati-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitg-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['45+ courses', 'Beautiful Brahmaputra campus', 'Strong in Design'] },
+      { id: 'iitg-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['NE India hub for technology'] }
+    ]
+  },
 
   // ============================================
   // IIT HYDERABAD
   // ============================================
+  {
+    id: 'iit-hyderabad',
+    name: 'Indian Institute of Technology Hyderabad',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் ஹைதராபாத்',
+    location: 'Hyderabad, Telangana',
+    website: 'https://www.iith.ac.in',
+    phone: '040-23016000',
+    email: 'registrar@iith.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#8B0000',
+    logo: '/universities/iit-hyderabad-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iith-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['40+ courses', 'New generation IIT', 'Strong in AI/ML'] },
+      { id: 'iith-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Research collaboration with Japan'] }
+    ]
+  },
 
   // ============================================
   // IIT TIRUPATI
   // ============================================
+  {
+    id: 'iit-tirupati',
+    name: 'Indian Institute of Technology Tirupati',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் திருப்பதி',
+    location: 'Tirupati, Andhra Pradesh',
+    website: 'https://www.iittp.ac.in',
+    phone: '0877-2500400',
+    email: 'registrar@iittp.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#4B0082',
+    logo: '/universities/iit-tirupati-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iittp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Madras', 'Near Tamil Nadu border'] },
+      { id: 'iittp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing rapidly'] }
+    ]
+  },
 
   // ============================================
   // IIT PALAKKAD
   // ============================================
+  {
+    id: 'iit-palakkad',
+    name: 'Indian Institute of Technology Palakkad',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் பாலக்காடு',
+    location: 'Palakkad, Kerala',
+    website: 'https://www.iitpkd.ac.in',
+    phone: '04923-226000',
+    email: 'registrar@iitpkd.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#228B22',
+    logo: '/universities/iit-palakkad-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitpkd-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Madras', 'Near Tamil Nadu - Coimbatore'] },
+      { id: 'iitpkd-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['New campus with modern facilities'] }
+    ]
+  },
 
   // ============================================
   // IIT DHARWAD
   // ============================================
+  {
+    id: 'iit-dharwad',
+    name: 'Indian Institute of Technology Dharwad',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் தார்வாட்',
+    location: 'Dharwad, Karnataka',
+    website: 'https://www.iitdh.ac.in',
+    phone: '0836-2212001',
+    email: 'registrar@iitdh.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#DC143C',
+    logo: '/universities/iit-dharwad-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitdh-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Bombay', 'Karnataka hub'] },
+      { id: 'iitdh-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing institution'] }
+    ]
+  },
 
   // ============================================
   // IIT INDORE
   // ============================================
+  {
+    id: 'iit-indore',
+    name: 'Indian Institute of Technology Indore',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் இந்தோர்',
+    location: 'Indore, Madhya Pradesh',
+    website: 'https://www.iiti.ac.in',
+    phone: '0731-6603100',
+    email: 'registrar@iiti.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#0066CC',
+    logo: '/universities/iit-indore-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iiti-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['25+ courses', 'Central India hub', 'Strong research output'] },
+      { id: 'iiti-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Modern campus'] }
+    ]
+  },
 
   // ============================================
   // IIT BHU VARANASI
   // ============================================
+  {
+    id: 'iit-bhu',
+    name: 'Indian Institute of Technology (BHU) Varanasi',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் வாரணாசி',
+    location: 'Varanasi, Uttar Pradesh',
+    website: 'https://www.iitbhu.ac.in',
+    phone: '0542-2368106',
+    email: 'registrar@iitbhu.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#8B0000',
+    logo: '/universities/iit-bhu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitbhu-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['40+ courses', 'Historic institution (1919)', 'Part of BHU campus'] },
+      { id: 'iitbhu-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong in Mining, Ceramic Engineering'] }
+    ]
+  },
 
   // ============================================
   // IIT PATNA
   // ============================================
+  {
+    id: 'iit-patna',
+    name: 'Indian Institute of Technology Patna',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் பாட்னா',
+    location: 'Patna, Bihar',
+    website: 'https://www.iitp.ac.in',
+    phone: '0612-3028000',
+    email: 'registrar@iitp.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#006400',
+    logo: '/universities/iit-patna-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'New generation IIT', 'Growing placements'] },
+      { id: 'iitp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Bihar hub for technology'] }
+    ]
+  },
 
   // ============================================
   // IIT GANDHINAGAR
   // ============================================
+  {
+    id: 'iit-gandhinagar',
+    name: 'Indian Institute of Technology Gandhinagar',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் காந்திநகர்',
+    location: 'Gandhinagar, Gujarat',
+    website: 'https://www.iitgn.ac.in',
+    phone: '079-23952000',
+    email: 'registrar@iitgn.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#FF6600',
+    logo: '/universities/iit-gandhinagar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitgn-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['25+ courses', 'Liberal education approach', 'Strong in Cognitive Science'] },
+      { id: 'iitgn-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Beautiful campus architecture'] }
+    ]
+  },
 
   // ============================================
   // IIT JODHPUR
   // ============================================
+  {
+    id: 'iit-jodhpur',
+    name: 'Indian Institute of Technology Jodhpur',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் ஜோத்பூர்',
+    location: 'Jodhpur, Rajasthan',
+    website: 'https://www.iitj.ac.in',
+    phone: '0291-2801000',
+    email: 'registrar@iitj.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#DAA520',
+    logo: '/universities/iit-jodhpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitj-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'Desert campus', 'Strong in AI'] },
+      { id: 'iitj-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Rajasthan hub'] }
+    ]
+  },
 
   // ============================================
   // IIT ROPAR
   // ============================================
+  {
+    id: 'iit-ropar',
+    name: 'Indian Institute of Technology Ropar',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் ரோப்பர்',
+    location: 'Rupnagar, Punjab',
+    website: 'https://www.iitrpr.ac.in',
+    phone: '01881-231000',
+    email: 'registrar@iitrpr.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#4682B4',
+    logo: '/universities/iit-ropar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitrpr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'Punjab hub', 'New campus'] },
+      { id: 'iitrpr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing rapidly'] }
+    ]
+  },
 
   // ============================================
   // IIT BHUBANESWAR
   // ============================================
+  {
+    id: 'iit-bhubaneswar',
+    name: 'Indian Institute of Technology Bhubaneswar',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் புவனேஸ்வர்',
+    location: 'Bhubaneswar, Odisha',
+    website: 'https://www.iitbbs.ac.in',
+    phone: '0674-2306000',
+    email: 'registrar@iitbbs.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#2E8B57',
+    logo: '/universities/iit-bhubaneswar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitbbs-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'Odisha hub', 'Strong in Earth Sciences'] },
+      { id: 'iitbbs-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['New campus facilities'] }
+    ]
+  },
 
   // ============================================
   // IIT MANDI
   // ============================================
+  {
+    id: 'iit-mandi',
+    name: 'Indian Institute of Technology Mandi',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் மண்டி',
+    location: 'Mandi, Himachal Pradesh',
+    website: 'https://www.iitmandi.ac.in',
+    phone: '01905-267001',
+    email: 'registrar@iitmandi.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#20B2AA',
+    logo: '/universities/iit-mandi-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitmandi-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['20+ courses', 'Beautiful Himalayan campus', 'Strong in Data Science'] },
+      { id: 'iitmandi-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Scenic location'] }
+    ]
+  },
 
   // ============================================
   // IIT JAMMU
   // ============================================
+  {
+    id: 'iit-jammu',
+    name: 'Indian Institute of Technology Jammu',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் ஜம்மு',
+    location: 'Jammu, J&K',
+    website: 'https://www.iitjammu.ac.in',
+    phone: '0191-2570001',
+    email: 'registrar@iitjammu.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#4169E1',
+    logo: '/universities/iit-jammu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitjammu-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'New IIT', 'J&K technology hub'] },
+      { id: 'iitjammu-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing institution'] }
+    ]
+  },
 
   // ============================================
   // IIT BHILAI
   // ============================================
+  {
+    id: 'iit-bhilai',
+    name: 'Indian Institute of Technology Bhilai',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் பிலாய்',
+    location: 'Bhilai, Chhattisgarh',
+    website: 'https://www.iitbhilai.ac.in',
+    phone: '0788-2291000',
+    email: 'registrar@iitbhilai.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#FF6347',
+    logo: '/universities/iit-bhilai-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitbhilai-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Hyderabad', 'Chhattisgarh hub'] },
+      { id: 'iitbhilai-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing rapidly'] }
+    ]
+  },
 
   // ============================================
   // IIT GOA
   // ============================================
+  {
+    id: 'iit-goa',
+    name: 'Indian Institute of Technology Goa',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் கோவா',
+    location: 'Goa',
+    website: 'https://www.iitgoa.ac.in',
+    phone: '0832-2490000',
+    email: 'registrar@iitgoa.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#228B22',
+    logo: '/universities/iit-goa-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitgoa-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['15+ courses', 'Mentored by IIT Bombay', 'Beautiful coastal campus'] },
+      { id: 'iitgoa-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Scenic Goa location'] }
+    ]
+  },
 
   // ============================================
   // IIT DHANBAD (ISM)
   // ============================================
+  {
+    id: 'iit-dhanbad',
+    name: 'Indian Institute of Technology (ISM) Dhanbad',
+    nameTamil: 'இந்திய தொழில்நுட்பக் கழகம் தன்பாத்',
+    location: 'Dhanbad, Jharkhand',
+    website: 'https://www.iitism.ac.in',
+    phone: '0326-2235200',
+    email: 'registrar@iitism.ac.in',
+    examName: 'JEE Advanced (UG) / GATE (PG)',
+    logoColor: '#006633',
+    logo: '/universities/iit-dhanbad-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Advanced 2026', eventTamil: 'JEE அட்வான்ஸ்டு 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iitism-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Advanced qualified, 12th PCM', tips: ['35+ courses', 'Historic ISM (1926)', 'Best for Mining Engineering'] },
+      { id: 'iitism-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong in Petroleum, Mining, Geology'] }
+    ]
+  },
 
   // ============================================
   // NIT SURATHKAL (NITK)
   // ============================================
+  {
+    id: 'nit-surathkal',
+    name: 'National Institute of Technology Karnataka, Surathkal',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் சூரத்கல்',
+    location: 'Mangalore, Karnataka',
+    website: 'https://www.nitk.ac.in',
+    phone: '0824-2474000',
+    email: 'registrar@nitk.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#003366',
+    logo: '/universities/nit-surathkal-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitk-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Among top 5 NITs', 'Beautiful beach campus'] },
+      { id: 'nitk-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Excellent research facilities'] }
+    ]
+  },
 
   // ============================================
   // NIT WARANGAL
   // ============================================
+  {
+    id: 'nit-warangal',
+    name: 'National Institute of Technology Warangal',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் வாரங்கல்',
+    location: 'Warangal, Telangana',
+    website: 'https://www.nitw.ac.in',
+    phone: '0870-2462000',
+    email: 'registrar@nitw.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#8B0000',
+    logo: '/universities/nit-warangal-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitw-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Oldest NIT (1959)', 'Top 3 NIT in rankings'] },
+      { id: 'nitw-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong industry connections'] }
+    ]
+  },
 
   // ============================================
   // NIT CALICUT
   // ============================================
+  {
+    id: 'nit-calicut',
+    name: 'National Institute of Technology Calicut',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் கோழிக்கோடு',
+    location: 'Kozhikode, Kerala',
+    website: 'https://www.nitc.ac.in',
+    phone: '0495-2286100',
+    email: 'registrar@nitc.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#006400',
+    logo: '/universities/nit-calicut-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitc-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Green campus in Kerala', 'Strong CSE department'] },
+      { id: 'nitc-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Research-oriented'] }
+    ]
+  },
 
   // ============================================
   // NIT ROURKELA
   // ============================================
+  {
+    id: 'nit-rourkela',
+    name: 'National Institute of Technology Rourkela',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் ரூர்கேலா',
+    location: 'Rourkela, Odisha',
+    website: 'https://www.nitrkl.ac.in',
+    phone: '0661-2462000',
+    email: 'registrar@nitrkl.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#4B0082',
+    logo: '/universities/nit-rourkela-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Strong in Metallurgy, Mining', 'Located in steel city'] },
+      { id: 'nitr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Industry tie-ups with steel plants'] }
+    ]
+  },
 
   // ============================================
   // NIT DURGAPUR
   // ============================================
+  {
+    id: 'nit-durgapur',
+    name: 'National Institute of Technology Durgapur',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் துர்காபூர்',
+    location: 'Durgapur, West Bengal',
+    website: 'https://www.nitdgp.ac.in',
+    phone: '0343-2546339',
+    email: 'registrar@nitdgp.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#1E90FF',
+    logo: '/universities/nit-durgapur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitdgp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Strong ECE and CSE', 'Industrial area location'] },
+      { id: 'nitdgp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Good placement record'] }
+    ]
+  },
 
   // ============================================
   // MNNIT ALLAHABAD
   // ============================================
+  {
+    id: 'mnnit-allahabad',
+    name: 'Motilal Nehru National Institute of Technology Allahabad',
+    nameTamil: 'மோதிலால் நேரு தேசிய தொழில்நுட்ப நிறுவனம்',
+    location: 'Prayagraj, Uttar Pradesh',
+    website: 'https://www.mnnit.ac.in',
+    phone: '0532-2545404',
+    email: 'registrar@mnnit.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#800020',
+    logo: '/universities/mnnit-allahabad-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'mnnit-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Heritage institute (1961)', 'Strong alumni network'] },
+      { id: 'mnnit-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Excellent placements'] }
+    ]
+  },
 
   // ============================================
   // NIT KURUKSHETRA
   // ============================================
+  {
+    id: 'nit-kurukshetra',
+    name: 'National Institute of Technology Kurukshetra',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் குருக்ஷேத்ரா',
+    location: 'Kurukshetra, Haryana',
+    website: 'https://www.nitkkr.ac.in',
+    phone: '01744-238091',
+    email: 'registrar@nitkkr.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#FF8C00',
+    logo: '/universities/nit-kurukshetra-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitkkr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Near Delhi NCR', 'Good industry exposure'] },
+      { id: 'nitkkr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Historical Kurukshetra location'] }
+    ]
+  },
 
   // ============================================
   // NIT JAMSHEDPUR
   // ============================================
+  {
+    id: 'nit-jamshedpur',
+    name: 'National Institute of Technology Jamshedpur',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் ஜாம்ஷெட்பூர்',
+    location: 'Jamshedpur, Jharkhand',
+    website: 'https://www.nitjsr.ac.in',
+    phone: '0657-2374100',
+    email: 'registrar@nitjsr.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#2F4F4F',
+    logo: '/universities/nit-jamshedpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitjsr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Steel city location', 'TATA industry connections'] },
+      { id: 'nitjsr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Core placements in steel sector'] }
+    ]
+  },
 
   // ============================================
   // NIT SILCHAR
   // ============================================
+  {
+    id: 'nit-silchar',
+    name: 'National Institute of Technology Silchar',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் சில்சார்',
+    location: 'Silchar, Assam',
+    website: 'https://www.nits.ac.in',
+    phone: '03842-242273',
+    email: 'registrar@nits.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#228B22',
+    logo: '/universities/nit-silchar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nits-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Northeast India', 'Lower cutoffs, good opportunities'] },
+      { id: 'nits-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Peaceful campus'] }
+    ]
+  },
 
   // ============================================
   // NIT HAMIRPUR
   // ============================================
+  {
+    id: 'nit-hamirpur',
+    name: 'National Institute of Technology Hamirpur',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் ஹமிர்பூர்',
+    location: 'Hamirpur, Himachal Pradesh',
+    website: 'https://www.nith.ac.in',
+    phone: '01972-254001',
+    email: 'registrar@nith.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#4169E1',
+    logo: '/universities/nit-hamirpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nith-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Hill station campus', 'Scenic Himalayan location'] },
+      { id: 'nith-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Cool climate year-round'] }
+    ]
+  },
 
   // ============================================
   // NIT SRINAGAR
   // ============================================
+  {
+    id: 'nit-srinagar',
+    name: 'National Institute of Technology Srinagar',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் ஸ்ரீநகர்',
+    location: 'Srinagar, J&K',
+    website: 'https://www.nitsri.ac.in',
+    phone: '0194-2422032',
+    email: 'registrar@nitsri.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#006633',
+    logo: '/universities/nit-srinagar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitsri-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Beautiful Kashmir valley', 'Lower cutoffs'] },
+      { id: 'nitsri-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Unique experience in Kashmir'] }
+    ]
+  },
 
   // ============================================
   // NIT JALANDHAR
   // ============================================
+  {
+    id: 'nit-jalandhar',
+    name: 'Dr. B.R. Ambedkar National Institute of Technology Jalandhar',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் ஜலந்தர்',
+    location: 'Jalandhar, Punjab',
+    website: 'https://www.nitj.ac.in',
+    phone: '0181-2690301',
+    email: 'registrar@nitj.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#DC143C',
+    logo: '/universities/nit-jalandhar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitj-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Punjab location', 'Good industrial exposure'] },
+      { id: 'nitj-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong placement support'] }
+    ]
+  },
 
   // ============================================
   // NIT PATNA
   // ============================================
+  {
+    id: 'nit-patna',
+    name: 'National Institute of Technology Patna',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் பாட்னா',
+    location: 'Patna, Bihar',
+    website: 'https://www.nitp.ac.in',
+    phone: '0612-2371929',
+    email: 'registrar@nitp.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#B22222',
+    logo: '/universities/nit-patna-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Historic NIT', 'Growing rapidly'] },
+      { id: 'nitp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['State capital location'] }
+    ]
+  },
 
   // ============================================
   // NIT RAIPUR
   // ============================================
+  {
+    id: 'nit-raipur',
+    name: 'National Institute of Technology Raipur',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் ராய்பூர்',
+    location: 'Raipur, Chhattisgarh',
+    website: 'https://www.nitrr.ac.in',
+    phone: '0771-2254200',
+    email: 'registrar@nitrr.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#2E8B57',
+    logo: '/universities/nit-raipur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitrr-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['20+ courses', 'Central India location', 'Good infrastructure'] },
+      { id: 'nitrr-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Mining industry connections'] }
+    ]
+  },
 
   // ============================================
   // NIT AGARTALA
   // ============================================
+  {
+    id: 'nit-agartala',
+    name: 'National Institute of Technology Agartala',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் அகர்தலா',
+    location: 'Agartala, Tripura',
+    website: 'https://www.nita.ac.in',
+    phone: '0381-2346630',
+    email: 'registrar@nita.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#556B2F',
+    logo: '/universities/nit-agartala-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nita-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'Northeast India', 'Lower cutoffs, affordable'] },
+      { id: 'nita-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Peaceful campus'] }
+    ]
+  },
 
   // ============================================
   // VNIT NAGPUR
   // ============================================
+  {
+    id: 'vnit-nagpur',
+    name: 'Visvesvaraya National Institute of Technology Nagpur',
+    nameTamil: 'விஸ்வேஸ்வரய்யா தேசிய தொழில்நுட்ப நிறுவனம்',
+    location: 'Nagpur, Maharashtra',
+    website: 'https://www.vnit.ac.in',
+    phone: '0712-2801258',
+    email: 'registrar@vnit.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#FF6347',
+    logo: '/universities/vnit-nagpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'vnit-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['25+ courses', 'Central India hub', 'Strong placements'] },
+      { id: 'vnit-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Named after Sir M. Visvesvaraya'] }
+    ]
+  },
 
   // ============================================
   // NIT GOA
   // ============================================
+  {
+    id: 'nit-goa',
+    name: 'National Institute of Technology Goa',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் கோவா',
+    location: 'Goa',
+    website: 'https://www.nitgoa.ac.in',
+    phone: '0832-2404200',
+    email: 'registrar@nitgoa.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#20B2AA',
+    logo: '/universities/nit-goa-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitgoa-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'Beautiful Goa location', 'Growing institute'] },
+      { id: 'nitgoa-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Beach state campus'] }
+    ]
+  },
 
   // ============================================
   // NIT DELHI
   // ============================================
+  {
+    id: 'nit-delhi',
+    name: 'National Institute of Technology Delhi',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் டெல்லி',
+    location: 'Delhi',
+    website: 'https://www.nitdelhi.ac.in',
+    phone: '011-33861100',
+    email: 'registrar@nitdelhi.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#4682B4',
+    logo: '/universities/nit-delhi-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitd-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'National capital location', 'Industry hub access'] },
+      { id: 'nitd-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Delhi NCR advantages'] }
+    ]
+  },
 
   // ============================================
   // NIT UTTARAKHAND
   // ============================================
+  {
+    id: 'nit-uttarakhand',
+    name: 'National Institute of Technology Uttarakhand',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் உத்தரகண்ட்',
+    location: 'Srinagar, Uttarakhand',
+    website: 'https://www.nituk.ac.in',
+    phone: '01346-252170',
+    email: 'registrar@nituk.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#3CB371',
+    logo: '/universities/nit-uttarakhand-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nituk-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'Himalayan foothills', 'Scenic location'] },
+      { id: 'nituk-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Cool climate'] }
+    ]
+  },
 
   // ============================================
   // NIT MEGHALAYA
   // ============================================
+  {
+    id: 'nit-meghalaya',
+    name: 'National Institute of Technology Meghalaya',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் மேகாலயா',
+    location: 'Shillong, Meghalaya',
+    website: 'https://www.nitm.ac.in',
+    phone: '0364-2501294',
+    email: 'registrar@nitm.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#6B8E23',
+    logo: '/universities/nit-meghalaya-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitm-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Scotland of the East', 'Lower cutoffs'] },
+      { id: 'nitm-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Beautiful hill station'] }
+    ]
+  },
 
   // ============================================
   // NIT MANIPUR
   // ============================================
+  {
+    id: 'nit-manipur',
+    name: 'National Institute of Technology Manipur',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் மணிப்பூர்',
+    location: 'Imphal, Manipur',
+    website: 'https://www.nitmanipur.ac.in',
+    phone: '0385-2445812',
+    email: 'registrar@nitmanipur.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#8B4513',
+    logo: '/universities/nit-manipur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitmnp-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Northeast gem', 'Growing infrastructure'] },
+      { id: 'nitmnp-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Lower cutoffs'] }
+    ]
+  },
 
   // ============================================
   // NIT MIZORAM
   // ============================================
+  {
+    id: 'nit-mizoram',
+    name: 'National Institute of Technology Mizoram',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் மிசோரம்',
+    location: 'Aizawl, Mizoram',
+    website: 'https://www.nitmz.ac.in',
+    phone: '0389-2391236',
+    email: 'registrar@nitmz.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#228B22',
+    logo: '/universities/nit-mizoram-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitmz-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Peaceful hill state', 'Lowest cutoffs among NITs'] },
+      { id: 'nitmz-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Developing institute'] }
+    ]
+  },
 
   // ============================================
   // NIT NAGALAND
   // ============================================
+  {
+    id: 'nit-nagaland',
+    name: 'National Institute of Technology Nagaland',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் நாகாலாந்து',
+    location: 'Dimapur, Nagaland',
+    website: 'https://www.nitnagaland.ac.in',
+    phone: '03862-240156',
+    email: 'registrar@nitnagaland.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#2F4F4F',
+    logo: '/universities/nit-nagaland-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitngl-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Northeast location', 'Lower cutoffs'] },
+      { id: 'nitngl-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Growing institute'] }
+    ]
+  },
 
   // ============================================
   // NIT ARUNACHAL PRADESH
   // ============================================
+  {
+    id: 'nit-arunachal',
+    name: 'National Institute of Technology Arunachal Pradesh',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் அருணாச்சல பிரதேசம்',
+    location: 'Yupia, Arunachal Pradesh',
+    website: 'https://www.nitap.ac.in',
+    phone: '0360-2284801',
+    email: 'registrar@nitap.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#006633',
+    logo: '/universities/nit-arunachal-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitap-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Land of Dawn-Lit Mountains', 'Lower cutoffs'] },
+      { id: 'nitap-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Scenic location'] }
+    ]
+  },
 
   // ============================================
   // NIT SIKKIM
   // ============================================
+  {
+    id: 'nit-sikkim',
+    name: 'National Institute of Technology Sikkim',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் சிக்கிம்',
+    location: 'Ravangla, Sikkim',
+    website: 'https://www.nitsikkim.ac.in',
+    phone: '03595-260042',
+    email: 'registrar@nitsikkim.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#4682B4',
+    logo: '/universities/nit-sikkim-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitskm-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['10+ courses', 'Himalayan beauty', 'Lower cutoffs'] },
+      { id: 'nitskm-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['View of Kanchenjunga'] }
+    ]
+  },
 
   // ============================================
   // NIT ANDHRA PRADESH
   // ============================================
+  {
+    id: 'nit-andhra',
+    name: 'National Institute of Technology Andhra Pradesh',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் ஆந்திர பிரதேசம்',
+    location: 'Tadepalligudem, Andhra Pradesh',
+    website: 'https://www.nitandhra.ac.in',
+    phone: '08818-284700',
+    email: 'registrar@nitandhra.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#DC143C',
+    logo: '/universities/nit-andhra-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitap2-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['15+ courses', 'South India location', 'Growing rapidly'] },
+      { id: 'nitap2-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['New campus development'] }
+    ]
+  },
 
   // ============================================
   // NIT PUDUCHERRY
   // ============================================
+  {
+    id: 'nit-puducherry',
+    name: 'National Institute of Technology Puducherry',
+    nameTamil: 'தேசிய தொழில்நுட்ப நிறுவனம் புதுச்சேரி',
+    location: 'Karaikal, Puducherry',
+    website: 'https://www.nitpy.ac.in',
+    phone: '04368-231126',
+    email: 'registrar@nitpy.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#0000CD',
+    logo: '/universities/nit-puducherry-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'nitpy-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['11+ courses', 'French territory influence', 'Near TN students'] },
+      { id: 'nitpy-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Coastal location'] }
+    ]
+  },
 
   // ============================================
   // MNIT JAIPUR
   // ============================================
+  {
+    id: 'mnit-jaipur',
+    name: 'Malaviya National Institute of Technology Jaipur',
+    nameTamil: 'மாளவியா தேசிய தொழில்நுட்ப நிறுவனம்',
+    location: 'Jaipur, Rajasthan',
+    website: 'https://www.mnit.ac.in',
+    phone: '0141-2713137',
+    email: 'registrar@mnit.ac.in',
+    examName: 'JEE Main (UG) / GATE (PG)',
+    logoColor: '#C71585',
+    logo: '/universities/mnit-jaipur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'JEE Main 2026', eventTamil: 'JEE மெயின் 2026', date: 'January/April 2026', status: 'upcoming' },
+      { event: 'GATE 2026', eventTamil: 'GATE 2026', date: 'February 2026', status: 'upcoming' },
+      { event: 'JoSAA Counselling', eventTamil: 'JoSAA கலந்தாய்வு', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 150000, obc: 150000, scst: 0 },
+    courses: [
+      { id: 'mnit-btech', name: 'B.Tech - Various Branches', nameTamil: 'B.Tech - பல்வேறு பிரிவுகள்', type: 'UG', category: 'On-Campus', school: 'Engineering', duration: '4 Years', eligibility: 'JEE Main qualified, 12th PCM', tips: ['30+ courses', 'Pink City location', 'Top 10 NIT in rankings'] },
+      { id: 'mnit-mtech', name: 'M.Tech - Various Specializations', nameTamil: 'M.Tech - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Engineering', duration: '2 Years', eligibility: 'GATE qualified', tips: ['Strong architecture program'] }
+    ]
+  },
 
   // ============================================
   // AIIMS DELHI
   // ============================================
+  {
+    id: 'aiims-delhi',
+    name: 'All India Institute of Medical Sciences, New Delhi',
+    nameTamil: 'எய்ம்ஸ் டெல்லி',
+    location: 'Delhi',
+    website: 'https://www.aiims.edu',
+    phone: '011-26588500',
+    email: 'director@aiims.ac.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#1E3A8A',
+    logo: '/universities/aiims-delhi-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsd-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['20+ courses', 'Premier medical institute of India', 'Highest ranked medical college'] },
+      { id: 'aiimsd-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Top nursing program'] },
+      { id: 'aiimsd-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Super specialty training', 'Research opportunities'] },
+      { id: 'aiimsd-phd', name: 'Ph.D. Medical Sciences', nameTamil: 'Ph.D. மருத்துவ அறிவியல்', type: 'Research', category: 'On-Campus', school: 'Research', duration: '3-5 Years', eligibility: 'MD/MS or M.Sc.', tips: ['World-class research facilities'] }
+    ]
+  },
 
   // ============================================
   // AIIMS MADURAI
@@ -1024,148 +2849,1227 @@ export const centralUniversities: University[] = [
   // ============================================
   // AIIMS BHOPAL
   // ============================================
+  {
+    id: 'aiims-bhopal',
+    name: 'All India Institute of Medical Sciences, Bhopal',
+    nameTamil: 'எய்ம்ஸ் போபால்',
+    location: 'Bhopal, Madhya Pradesh',
+    website: 'https://www.aiimsbhopal.edu.in',
+    phone: '0755-2672355',
+    email: 'director@aiimsbhopal.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#006400',
+    logo: '/universities/aiims-bhopal-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsb-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['15+ courses', 'First new AIIMS (2012)', 'Well-established'] },
+      { id: 'aiimsb-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing program'] },
+      { id: 'aiimsb-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Good PG programs'] }
+    ]
+  },
 
   // ============================================
   // AIIMS JODHPUR
   // ============================================
+  {
+    id: 'aiims-jodhpur',
+    name: 'All India Institute of Medical Sciences, Jodhpur',
+    nameTamil: 'எய்ம்ஸ் ஜோத்பூர்',
+    location: 'Jodhpur, Rajasthan',
+    website: 'https://www.aiimsjodhpur.edu.in',
+    phone: '0291-2740741',
+    email: 'director@aiimsjodhpur.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#B8860B',
+    logo: '/universities/aiims-jodhpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsj-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['15+ courses', 'Blue City location', 'Modern facilities'] },
+      { id: 'aiimsj-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing education'] },
+      { id: 'aiimsj-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Strong PG programs'] }
+    ]
+  },
 
   // ============================================
   // AIIMS PATNA
   // ============================================
+  {
+    id: 'aiims-patna',
+    name: 'All India Institute of Medical Sciences, Patna',
+    nameTamil: 'எய்ம்ஸ் பாட்னா',
+    location: 'Patna, Bihar',
+    website: 'https://www.aiimspatna.edu.in',
+    phone: '0612-2451070',
+    email: 'director@aiimspatna.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#8B0000',
+    logo: '/universities/aiims-patna-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsp-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['15+ courses', 'Bihar state capital', 'Growing institute'] },
+      { id: 'aiimsp-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing program'] },
+      { id: 'aiimsp-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Good specialty programs'] }
+    ]
+  },
 
   // ============================================
   // AIIMS RAIPUR
   // ============================================
+  {
+    id: 'aiims-raipur',
+    name: 'All India Institute of Medical Sciences, Raipur',
+    nameTamil: 'எய்ம்ஸ் ராய்பூர்',
+    location: 'Raipur, Chhattisgarh',
+    website: 'https://www.aiimsraipur.edu.in',
+    phone: '0771-2577200',
+    email: 'director@aiimsraipur.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#2E8B57',
+    logo: '/universities/aiims-raipur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsr-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['15+ courses', 'Central India location', 'Modern campus'] },
+      { id: 'aiimsr-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing education'] },
+      { id: 'aiimsr-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Strong PG programs'] }
+    ]
+  },
 
   // ============================================
   // AIIMS RISHIKESH
   // ============================================
+  {
+    id: 'aiims-rishikesh',
+    name: 'All India Institute of Medical Sciences, Rishikesh',
+    nameTamil: 'எய்ம்ஸ் ரிஷிகேஷ்',
+    location: 'Rishikesh, Uttarakhand',
+    website: 'https://www.aiimsrishikesh.edu.in',
+    phone: '0135-2460929',
+    email: 'director@aiimsrishikesh.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#4682B4',
+    logo: '/universities/aiims-rishikesh-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsrk-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['15+ courses', 'Yoga capital of world', 'Himalayan location'] },
+      { id: 'aiimsrk-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Scenic location'] },
+      { id: 'aiimsrk-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Good PG programs'] }
+    ]
+  },
 
   // ============================================
   // AIIMS BHUBANESWAR
   // ============================================
+  {
+    id: 'aiims-bhubaneswar',
+    name: 'All India Institute of Medical Sciences, Bhubaneswar',
+    nameTamil: 'எய்ம்ஸ் புவனேஸ்வர்',
+    location: 'Bhubaneswar, Odisha',
+    website: 'https://www.aiimsbhubaneswar.nic.in',
+    phone: '0674-2476789',
+    email: 'director@aiimsbhubaneswar.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#DC143C',
+    logo: '/universities/aiims-bhubaneswar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsbb-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['15+ courses', 'Temple city', 'Strong hospital'] },
+      { id: 'aiimsbb-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing program'] },
+      { id: 'aiimsbb-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Growing PG programs'] }
+    ]
+  },
 
   // ============================================
   // AIIMS MANGALAGIRI
   // ============================================
+  {
+    id: 'aiims-mangalagiri',
+    name: 'All India Institute of Medical Sciences, Mangalagiri',
+    nameTamil: 'எய்ம்ஸ் மங்களகிரி',
+    location: 'Mangalagiri, Andhra Pradesh',
+    website: 'https://www.aiimsmangalagiri.edu.in',
+    phone: '0863-2287800',
+    email: 'director@aiimsmangalagiri.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG',
+    logoColor: '#228B22',
+    logo: '/universities/aiims-mangalagiri-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsmg-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['10+ courses', 'Near Amaravati', 'Modern infrastructure'] },
+      { id: 'aiimsmg-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing education'] }
+    ]
+  },
 
   // ============================================
   // AIIMS NAGPUR
   // ============================================
+  {
+    id: 'aiims-nagpur',
+    name: 'All India Institute of Medical Sciences, Nagpur',
+    nameTamil: 'எய்ம்ஸ் நாக்பூர்',
+    location: 'Nagpur, Maharashtra',
+    website: 'https://www.aiimsnagpur.edu.in',
+    phone: '0712-2296600',
+    email: 'director@aiimsnagpur.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG',
+    logoColor: '#FF6347',
+    logo: '/universities/aiims-nagpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsng-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['10+ courses', 'Orange city', 'Central India hub'] },
+      { id: 'aiimsng-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality nursing program'] }
+    ]
+  },
 
   // ============================================
   // AIIMS GORAKHPUR
   // ============================================
+  {
+    id: 'aiims-gorakhpur',
+    name: 'All India Institute of Medical Sciences, Gorakhpur',
+    nameTamil: 'எய்ம்ஸ் கோரக்பூர்',
+    location: 'Gorakhpur, Uttar Pradesh',
+    website: 'https://www.aiimsgorakhpur.edu.in',
+    phone: '0551-2500200',
+    email: 'director@aiimsgorakhpur.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#8B4513',
+    logo: '/universities/aiims-gorakhpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsgk-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['8+ courses', 'Eastern UP location', 'New AIIMS'] },
+      { id: 'aiimsgk-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Growing program'] }
+    ]
+  },
 
   // ============================================
   // AIIMS BATHINDA
   // ============================================
+  {
+    id: 'aiims-bathinda',
+    name: 'All India Institute of Medical Sciences, Bathinda',
+    nameTamil: 'எய்ம்ஸ் பதிண்டா',
+    location: 'Bathinda, Punjab',
+    website: 'https://www.aiimsbathinda.edu.in',
+    phone: '0164-2880001',
+    email: 'director@aiimsbathinda.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#DC143C',
+    logo: '/universities/aiims-bathinda-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsbth-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['8+ courses', 'Punjab location', 'New AIIMS'] },
+      { id: 'aiimsbth-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Growing program'] }
+    ]
+  },
 
   // ============================================
   // AIIMS RAEBARELI
   // ============================================
+  {
+    id: 'aiims-raebareli',
+    name: 'All India Institute of Medical Sciences, Raebareli',
+    nameTamil: 'எய்ம்ஸ் ராய்பரேலி',
+    location: 'Raebareli, Uttar Pradesh',
+    website: 'https://www.aiimsraebareli.edu.in',
+    phone: '0535-2700001',
+    email: 'director@aiimsraebareli.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#4682B4',
+    logo: '/universities/aiims-raebareli-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsrb-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['8+ courses', 'UP location', 'New AIIMS'] },
+      { id: 'aiimsrb-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Growing program'] }
+    ]
+  },
 
   // ============================================
   // AIIMS KALYANI
   // ============================================
+  {
+    id: 'aiims-kalyani',
+    name: 'All India Institute of Medical Sciences, Kalyani',
+    nameTamil: 'எய்ம்ஸ் கல்யாணி',
+    location: 'Kalyani, West Bengal',
+    website: 'https://www.aiimskalyani.edu.in',
+    phone: '033-2582-2100',
+    email: 'director@aiimskalyani.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#006400',
+    logo: '/universities/aiims-kalyani-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimskal-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['8+ courses', 'Near Kolkata', 'New AIIMS'] },
+      { id: 'aiimskal-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Growing program'] }
+    ]
+  },
 
   // ============================================
   // AIIMS DEOGHAR
   // ============================================
+  {
+    id: 'aiims-deoghar',
+    name: 'All India Institute of Medical Sciences, Deoghar',
+    nameTamil: 'எய்ம்ஸ் தேவ்கர்',
+    location: 'Deoghar, Jharkhand',
+    website: 'https://www.aiimsdeoghar.edu.in',
+    phone: '06432-250001',
+    email: 'director@aiimsdeoghar.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#8B0000',
+    logo: '/universities/aiims-deoghar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsdg-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Temple town', 'New AIIMS'] },
+      { id: 'aiimsdg-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
 
   // ============================================
   // AIIMS BILASPUR
   // ============================================
+  {
+    id: 'aiims-bilaspur',
+    name: 'All India Institute of Medical Sciences, Bilaspur',
+    nameTamil: 'எய்ம்ஸ் பிலாஸ்பூர்',
+    location: 'Bilaspur, Himachal Pradesh',
+    website: 'https://www.aiimsbilaspur.edu.in',
+    phone: '01978-250001',
+    email: 'director@aiimsbilaspur.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#4169E1',
+    logo: '/universities/aiims-bilaspur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsbp-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Hill state', 'Scenic location'] },
+      { id: 'aiimsbp-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
 
   // ============================================
   // AIIMS GUWAHATI
   // ============================================
+  {
+    id: 'aiims-guwahati',
+    name: 'All India Institute of Medical Sciences, Guwahati',
+    nameTamil: 'எய்ம்ஸ் குவாஹாட்டி',
+    location: 'Guwahati, Assam',
+    website: 'https://www.aiimsguwahati.ac.in',
+    phone: '0361-2680001',
+    email: 'director@aiimsguwahati.ac.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#228B22',
+    logo: '/universities/aiims-guwahati-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsgw-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Northeast hub', 'New AIIMS'] },
+      { id: 'aiimsgw-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
 
   // ============================================
   // AIIMS RAJKOT
   // ============================================
+  {
+    id: 'aiims-rajkot',
+    name: 'All India Institute of Medical Sciences, Rajkot',
+    nameTamil: 'எய்ம்ஸ் ராஜ்கோட்',
+    location: 'Rajkot, Gujarat',
+    website: 'https://www.aiimsrajkot.edu.in',
+    phone: '0281-2580001',
+    email: 'director@aiimsrajkot.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#FF8C00',
+    logo: '/universities/aiims-rajkot-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsrj-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Saurashtra region', 'New AIIMS'] },
+      { id: 'aiimsrj-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
 
   // ============================================
   // AIIMS BIBINAGAR
   // ============================================
+  {
+    id: 'aiims-bibinagar',
+    name: 'All India Institute of Medical Sciences, Bibinagar',
+    nameTamil: 'எய்ம்ஸ் பிபிநகர்',
+    location: 'Bibinagar, Telangana',
+    website: 'https://www.aiimsbibinagar.edu.in',
+    phone: '08685-250001',
+    email: 'director@aiimsbibinagar.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#DC143C',
+    logo: '/universities/aiims-bibinagar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsbbn-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Near Hyderabad', 'New AIIMS'] },
+      { id: 'aiimsbbn-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
 
   // ============================================
   // AIIMS JAMMU
   // ============================================
+  {
+    id: 'aiims-jammu',
+    name: 'All India Institute of Medical Sciences, Jammu',
+    nameTamil: 'எய்ம்ஸ் ஜம்மு',
+    location: 'Jammu, J&K',
+    website: 'https://www.aiimsjammu.edu.in',
+    phone: '0191-2580001',
+    email: 'director@aiimsjammu.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#006633',
+    logo: '/universities/aiims-jammu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsjm-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Gateway to Kashmir', 'New AIIMS'] },
+      { id: 'aiimsjm-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
 
   // ============================================
   // AIIMS DARBHANGA
   // ============================================
+  {
+    id: 'aiims-darbhanga',
+    name: 'All India Institute of Medical Sciences, Darbhanga',
+    nameTamil: 'எய்ம்ஸ் தர்பங்கா',
+    location: 'Darbhanga, Bihar',
+    website: 'https://www.aiimsdarbhanga.edu.in',
+    phone: '06272-250001',
+    email: 'director@aiimsdarbhanga.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#B22222',
+    logo: '/universities/aiims-darbhanga-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsdb-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Mithila region', 'New AIIMS'] },
+      { id: 'aiimsdb-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
 
   // ============================================
   // AIIMS REWARI
   // ============================================
+  {
+    id: 'aiims-rewari',
+    name: 'All India Institute of Medical Sciences, Rewari',
+    nameTamil: 'எய்ம்ஸ் ரேவாரி',
+    location: 'Rewari, Haryana',
+    website: 'https://www.aiimsrewari.edu.in',
+    phone: '01274-250001',
+    email: 'director@aiimsrewari.edu.in',
+    examName: 'NEET UG (MBBS)',
+    logoColor: '#2F4F4F',
+    logo: '/universities/aiims-rewari-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'AIIMS Counselling', eventTamil: 'எய்ம்ஸ் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'aiimsrw-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['5+ courses', 'Near Delhi NCR', 'New AIIMS'] },
+      { id: 'aiimsrw-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Developing program'] }
+    ]
+  },
 
   // ============================================
   // JIPMER PUDUCHERRY
   // ============================================
+  {
+    id: 'jipmer-puducherry',
+    name: 'Jawaharlal Institute of Postgraduate Medical Education and Research (JIPMER)',
+    nameTamil: 'ஜிப்மர் புதுச்சேரி',
+    location: 'Puducherry',
+    website: 'https://www.jipmer.edu.in',
+    phone: '0413-2272380',
+    email: 'director@jipmer.edu.in',
+    examName: 'NEET UG (MBBS) / NEET PG / INI-CET',
+    logoColor: '#1E3A8A',
+    logo: '/universities/jipmer-puducherry-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'NEET UG 2026', eventTamil: 'NEET UG 2026', date: 'May 2026', status: 'upcoming' },
+      { event: 'NEET PG 2026', eventTamil: 'NEET PG 2026', date: 'March 2026', status: 'upcoming' },
+      { event: 'JIPMER Counselling', eventTamil: 'ஜிப்மர் கலந்தாய்வு', date: 'July 2026', status: 'upcoming' }
+    ],
+    fee: { general: 5000, obc: 5000, scst: 0 },
+    courses: [
+      { id: 'jipmer-mbbs', name: 'MBBS', nameTamil: 'எம்.பி.பி.எஸ்', type: 'UG', category: 'On-Campus', school: 'Medical Sciences', duration: '5.5 Years', eligibility: 'NEET UG qualified, 12th PCB, 50% marks', tips: ['22+ courses', 'Institute of National Importance', 'Among top 5 medical colleges', 'Near to Tamil Nadu'] },
+      { id: 'jipmer-bsc-nursing', name: 'B.Sc. Nursing', nameTamil: 'B.Sc. செவிலியர்', type: 'UG', category: 'On-Campus', school: 'Nursing', duration: '4 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Premier nursing program'] },
+      { id: 'jipmer-bsc-mlt', name: 'B.Sc. Medical Lab Technology', nameTamil: 'B.Sc. மருத்துவ ஆய்வக தொழில்நுட்பம்', type: 'UG', category: 'On-Campus', school: 'Allied Health', duration: '3 Years', eligibility: 'NEET UG qualified, 12th PCB', tips: ['Quality paramedical education'] },
+      { id: 'jipmer-md', name: 'MD/MS - Various Specializations', nameTamil: 'MD/MS - பல்வேறு சிறப்புகள்', type: 'PG', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MBBS + INI-CET qualified', tips: ['Super specialty training', 'Excellent research'] },
+      { id: 'jipmer-dm', name: 'DM/MCh Super Speciality', nameTamil: 'DM/MCh சூப்பர் ஸ்பெஷாலிட்டி', type: 'Super-Specialty', category: 'On-Campus', school: 'Medical Sciences', duration: '3 Years', eligibility: 'MD/MS + INI-SS', tips: ['Advanced medical training'] },
+      { id: 'jipmer-phd', name: 'Ph.D. Medical Sciences', nameTamil: 'Ph.D. மருத்துவ அறிவியல்', type: 'Research', category: 'On-Campus', school: 'Research', duration: '3-5 Years', eligibility: 'MD/MS or M.Sc.', tips: ['World-class research'] }
+    ]
+  },
 
   // ============================================
   // INDIAN INSTITUTES OF MANAGEMENT (IIMs)
   // ============================================
 
   // IIM AHMEDABAD
+  {
+    id: 'iim-ahmedabad',
+    name: 'Indian Institute of Management Ahmedabad',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் அகமதாபாத்',
+    location: 'Ahmedabad, Gujarat',
+    website: 'https://www.iima.ac.in',
+    phone: '079-66324600',
+    email: 'admissions@iima.ac.in',
+    examName: 'CAT (MBA) / GMAT (Executive Programs)',
+    logoColor: '#1E3A8A',
+    logo: '/universities/iim-ahmedabad-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Registration', eventTamil: 'CAT 2026 பதிவு', date: 'August 2026', status: 'upcoming' },
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
+      { event: 'IIM Interviews', eventTamil: 'IIM நேர்முகத்தேர்வு', date: 'February-March 2026', status: 'upcoming' }
+    ],
+    fee: { general: 2500000, obc: 2500000, scst: 1250000 },
+    courses: [
+      { id: 'iima-pgp', name: 'PGP (Post Graduate Programme in Management)', nameTamil: 'PGP மேலாண்மை முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['10+ courses', 'Ranked #1 B-School in India', 'Highest placement packages', 'Top recruiters: McKinsey, BCG, Goldman Sachs'] },
+      { id: 'iima-pgpx', name: 'PGPX (One Year MBA)', nameTamil: 'PGPX (ஒரு வருட MBA)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'Graduation + GMAT + 5+ years work exp', tips: ['For senior professionals', 'Global MBA network'] },
+      { id: 'iima-fabm', name: 'PGP-FABM (Food & Agribusiness Management)', nameTamil: 'PGP-FABM (உணவு & விவசாய வணிக மேலாண்மை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['Specialized in agribusiness', 'Industry partnerships'] },
+      { id: 'iima-phd', name: 'Ph.D. (Fellow Programme in Management)', nameTamil: 'Ph.D. (FPM)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation + CAT/GMAT', tips: ['Doctoral research in management', 'Fellowship provided'] }
+    ]
+  },
 
   // IIM BANGALORE
+  {
+    id: 'iim-bangalore',
+    name: 'Indian Institute of Management Bangalore',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் பெங்களூர்',
+    location: 'Bangalore, Karnataka',
+    website: 'https://www.iimb.ac.in',
+    phone: '080-26993000',
+    email: 'admission@iimb.ac.in',
+    examName: 'CAT (MBA) / GMAT (Executive Programs)',
+    logoColor: '#003366',
+    logo: '/universities/iim-bangalore-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
+      { event: 'IIMB Selection Process', eventTamil: 'IIMB தேர்வு செயல்முறை', date: 'February-March 2026', status: 'upcoming' }
+    ],
+    fee: { general: 2500000, obc: 2500000, scst: 1250000 },
+    courses: [
+      { id: 'iimb-pgp', name: 'PGP (Post Graduate Programme in Management)', nameTamil: 'PGP மேலாண்மை முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['10+ courses', 'Strong analytics focus', 'Tech startup ecosystem in Bangalore'] },
+      { id: 'iimb-pgpba', name: 'PGP in Business Analytics', nameTamil: 'PGP வணிக பகுப்பாய்வு', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['Data science + management', 'Industry-focused curriculum'] },
+      { id: 'iimb-epgp', name: 'EPGP (Executive PGP)', nameTamil: 'EPGP (நிர்வாக PGP)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'Graduation + GMAT + 5+ years exp', tips: ['For working professionals'] },
+      { id: 'iimb-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D. (முனைவர் பட்டம்)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation + CAT/GMAT', tips: ['Research excellence'] }
+    ]
+  },
 
   // IIM CALCUTTA
+  {
+    id: 'iim-calcutta',
+    name: 'Indian Institute of Management Calcutta',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் கொல்கத்தா',
+    location: 'Kolkata, West Bengal',
+    website: 'https://www.iimcal.ac.in',
+    phone: '033-24678300',
+    email: 'pgpadmission@iimcal.ac.in',
+    examName: 'CAT (MBA) / GMAT (Executive Programs)',
+    logoColor: '#8B0000',
+    logo: '/universities/iim-calcutta-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
+      { event: 'IIMC Selection Process', eventTamil: 'IIMC தேர்வு செயல்முறை', date: 'February-March 2026', status: 'upcoming' }
+    ],
+    fee: { general: 2500000, obc: 2500000, scst: 1250000 },
+    courses: [
+      { id: 'iimc-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['10+ courses', 'First IIM established (1961)', 'Strong finance placements'] },
+      { id: 'iimc-pgdm', name: 'PGDM (Executive)', nameTamil: 'PGDM (நிர்வாக)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'Graduation + GMAT + work exp', tips: ['For working executives'] },
+      { id: 'iimc-mba', name: 'MBA (Evening Programme)', nameTamil: 'MBA (மாலை நேர பட்டம்)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '3 Years', eligibility: 'Graduation + work exp', tips: ['For Kolkata-based professionals'] },
+      { id: 'iimc-phd', name: 'Ph.D. (Fellow Programme)', nameTamil: 'Ph.D. (FPM)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation + CAT/GMAT', tips: ['Doctoral research'] }
+    ]
+  },
 
   // IIM LUCKNOW
+  {
+    id: 'iim-lucknow',
+    name: 'Indian Institute of Management Lucknow',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் லக்னோ',
+    location: 'Lucknow, Uttar Pradesh',
+    website: 'https://www.iiml.ac.in',
+    phone: '0522-2734101',
+    email: 'pgpadmissions@iiml.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#003366',
+    logo: '/universities/iim-lucknow-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
+      { event: 'IIML Selection Process', eventTamil: 'IIML தேர்வு செயல்முறை', date: 'February-March 2026', status: 'upcoming' }
+    ],
+    fee: { general: 2200000, obc: 2200000, scst: 1100000 },
+    courses: [
+      { id: 'iiml-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['8+ courses', 'Consistent top 5 B-School', 'Strong alumni network'] },
+      { id: 'iiml-pgp-abm', name: 'PGP-ABM (Agri-Business Management)', nameTamil: 'PGP-ABM (விவசாய வணிக மேலாண்மை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['Agribusiness specialization'] },
+      { id: 'iiml-pgp-sm', name: 'PGP-SM (Sustainable Management)', nameTamil: 'PGP-SM (நிலையான மேலாண்மை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['Focus on sustainability'] },
+      { id: 'iiml-phd', name: 'Ph.D. (Fellow Programme)', nameTamil: 'Ph.D. (FPM)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation + CAT/GMAT', tips: ['Doctoral research'] }
+    ]
+  },
 
   // IIM KOZHIKODE
+  {
+    id: 'iim-kozhikode',
+    name: 'Indian Institute of Management Kozhikode',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் கோழிக்கோடு',
+    location: 'Kozhikode, Kerala',
+    website: 'https://www.iimk.ac.in',
+    phone: '0495-2809100',
+    email: 'admissions@iimk.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#006633',
+    logo: '/universities/iim-kozhikode-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
+      { event: 'IIMK Selection Process', eventTamil: 'IIMK தேர்வு செயல்முறை', date: 'February-March 2026', status: 'upcoming' }
+    ],
+    fee: { general: 2200000, obc: 2200000, scst: 1100000 },
+    courses: [
+      { id: 'iimk-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['8+ courses', 'God\'s Own Campus - scenic location', 'Strong in consulting placements'] },
+      { id: 'iimk-pgp-bl', name: 'PGP-BL (Business Leadership)', nameTamil: 'PGP-BL (வணிக தலைமை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT + work exp', tips: ['Leadership focus program'] },
+      { id: 'iimk-pgp-f', name: 'PGP-F (Finance)', nameTamil: 'PGP-F (நிதி)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'CA/CFA/Graduation + work exp', tips: ['Specialized finance program'] },
+      { id: 'iimk-phd', name: 'Ph.D. (Fellow Programme)', nameTamil: 'Ph.D. (FPM)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation + CAT/GMAT', tips: ['Doctoral research'] }
+    ]
+  },
 
   // IIM INDORE
+  {
+    id: 'iim-indore',
+    name: 'Indian Institute of Management Indore',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் இந்தோர்',
+    location: 'Indore, Madhya Pradesh',
+    website: 'https://www.iimidr.ac.in',
+    phone: '0731-2439500',
+    email: 'pgpadmissions@iimidr.ac.in',
+    examName: 'CAT (MBA) / IPMAT (IPM)',
+    logoColor: '#8B4513',
+    logo: '/universities/iim-indore-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IPMAT 2026 Registration', eventTamil: 'IPMAT 2026 பதிவு', date: 'March 2026', status: 'upcoming' },
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
+    ],
+    fee: { general: 2100000, obc: 2100000, scst: 1050000 },
+    courses: [
+      { id: 'iimi-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['8+ courses', 'Known for IPM program', 'Dual campus (Indore + Mumbai)'] },
+      { id: 'iimi-ipm', name: 'IPM (Integrated Programme in Management)', nameTamil: 'IPM (ஒருங்கிணைந்த மேலாண்மை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Management', duration: '5 Years', eligibility: '12th Pass + IPMAT qualified', tips: ['After 12th entry to IIM', 'BA + MBA integrated'] },
+      { id: 'iimi-epgp', name: 'EPGP (Executive PGP)', nameTamil: 'EPGP (நிர்வாக PGP)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'Graduation + work exp', tips: ['For working professionals'] },
+      { id: 'iimi-phd', name: 'Ph.D. (Fellow Programme)', nameTamil: 'Ph.D. (FPM)', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation + CAT/GMAT', tips: ['Doctoral research'] }
+    ]
+  },
 
   // IIM SHILLONG
+  {
+    id: 'iim-shillong',
+    name: 'Indian Institute of Management Shillong',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் ஷில்லாங்',
+    location: 'Shillong, Meghalaya',
+    website: 'https://www.iimshillong.ac.in',
+    phone: '0364-2308000',
+    email: 'admissions@iimshillong.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#2E8B57',
+    logo: '/universities/iim-shillong-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1800000, obc: 1800000, scst: 900000 },
+    courses: [
+      { id: 'iims-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Scotland of the East', 'Sustainability focus'] },
+      { id: 'iims-pgpex', name: 'PGPEX (Executive)', nameTamil: 'PGPEX (நிர்வாக)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'Graduation + work exp', tips: ['For working professionals'] },
+      { id: 'iims-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
 
   // IIM RANCHI
+  {
+    id: 'iim-ranchi',
+    name: 'Indian Institute of Management Ranchi',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் ராஞ்சி',
+    location: 'Ranchi, Jharkhand',
+    website: 'https://www.iimranchi.ac.in',
+    phone: '0651-2280111',
+    email: 'admissions@iimranchi.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#4B0082',
+    logo: '/universities/iim-ranchi-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1800000, obc: 1800000, scst: 900000 },
+    courses: [
+      { id: 'iimr-pgdhrm', name: 'PGDHRM (HR Management)', nameTamil: 'PGDHRM (மனிதவள மேலாண்மை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Specialized HR program', 'Strong HR placements'] },
+      { id: 'iimr-pgdm', name: 'PGDM (General Management)', nameTamil: 'PGDM (பொது மேலாண்மை)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['General management program'] },
+      { id: 'iimr-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
 
   // IIM RAIPUR
+  {
+    id: 'iim-raipur',
+    name: 'Indian Institute of Management Raipur',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் ராய்பூர்',
+    location: 'Raipur, Chhattisgarh',
+    website: 'https://www.iimraipur.ac.in',
+    phone: '0771-2474700',
+    email: 'admissions@iimraipur.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#FF6600',
+    logo: '/universities/iim-raipur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1600000, obc: 1600000, scst: 800000 },
+    courses: [
+      { id: 'iimrai-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Growing reputation', 'Good placement record'] },
+      { id: 'iimrai-pgpwe', name: 'PGPWE (Working Executives)', nameTamil: 'PGPWE (பணிபுரியும் நிர்வாகிகள்)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + work exp', tips: ['Weekend program'] },
+      { id: 'iimrai-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
 
   // IIM ROHTAK
+  {
+    id: 'iim-rohtak',
+    name: 'Indian Institute of Management Rohtak',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் ரோஹ்தக்',
+    location: 'Rohtak, Haryana',
+    website: 'https://www.iimrohtak.ac.in',
+    phone: '01onal-274780',
+    email: 'admissions@iimrohtak.ac.in',
+    examName: 'CAT (MBA) / IPMAT (IPM)',
+    logoColor: '#800000',
+    logo: '/universities/iim-rohtak-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
+      { event: 'IPMAT 2026', eventTamil: 'IPMAT 2026', date: 'May 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1700000, obc: 1700000, scst: 850000 },
+    courses: [
+      { id: 'iimro-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Near Delhi NCR', 'IPM program available'] },
+      { id: 'iimro-ipm', name: 'IPM (Integrated Programme)', nameTamil: 'IPM (ஒருங்கிணைந்த பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Management', duration: '5 Years', eligibility: '12th Pass + IPMAT', tips: ['After 12th entry'] },
+      { id: 'iimro-epgp', name: 'EPGP (Executive PGP)', nameTamil: 'EPGP', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'Graduation + work exp', tips: ['Executive program'] },
+      { id: 'iimro-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
 
   // IIM KASHIPUR
+  {
+    id: 'iim-kashipur',
+    name: 'Indian Institute of Management Kashipur',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் காசிபூர்',
+    location: 'Kashipur, Uttarakhand',
+    website: 'https://www.iimkashipur.ac.in',
+    phone: '05947-262111',
+    email: 'admissions@iimkashipur.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#006400',
+    logo: '/universities/iim-kashipur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1700000, obc: 1700000, scst: 850000 },
+    courses: [
+      { id: 'iimk-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Near Jim Corbett Park', 'Scenic Himalayan foothills'] },
+      { id: 'iimk-mba-a', name: 'MBA (Analytics)', nameTamil: 'MBA (பகுப்பாய்வு)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['Analytics specialization'] },
+      { id: 'iimk-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
 
   // IIM UDAIPUR
+  {
+    id: 'iim-udaipur',
+    name: 'Indian Institute of Management Udaipur',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் உதய்பூர்',
+    location: 'Udaipur, Rajasthan',
+    website: 'https://www.iimu.ac.in',
+    phone: '0294-2477100',
+    email: 'admissions@iimu.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#4169E1',
+    logo: '/universities/iim-udaipur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1900000, obc: 1900000, scst: 950000 },
+    courses: [
+      { id: 'iimu-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'City of Lakes', 'Global accreditations'] },
+      { id: 'iimu-pgpx', name: 'PGPX (One Year MBA)', nameTamil: 'PGPX', type: 'PG', category: 'On-Campus', school: 'Management', duration: '1 Year', eligibility: 'Graduation + work exp', tips: ['Executive MBA'] },
+      { id: 'iimu-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
 
   // IIM NAGPUR
+  {
+    id: 'iim-nagpur',
+    name: 'Indian Institute of Management Nagpur',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் நாக்பூர்',
+    location: 'Nagpur, Maharashtra',
+    website: 'https://www.iimnagpur.ac.in',
+    phone: '0712-2806444',
+    email: 'admissions@iimnagpur.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#FF4500',
+    logo: '/universities/iim-nagpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1600000, obc: 1600000, scst: 800000 },
+    courses: [
+      { id: 'iimn-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Orange City', 'Mentored by IIM Ahmedabad'] },
+      { id: 'iimn-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
 
   // IIM VISAKHAPATNAM
+  {
+    id: 'iim-visakhapatnam',
+    name: 'Indian Institute of Management Visakhapatnam',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் விசாகப்பட்டினம்',
+    location: 'Visakhapatnam, Andhra Pradesh',
+    website: 'https://www.iimv.ac.in',
+    phone: '0891-2868100',
+    email: 'admissions@iimv.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#0066CC',
+    logo: '/universities/iim-visakhapatnam-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1600000, obc: 1600000, scst: 800000 },
+    courses: [
+      { id: 'iimv-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Port city', 'Mentored by IIM Bangalore'] },
+      { id: 'iimv-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
 
   // IIM BODH GAYA
+  {
+    id: 'iim-bodhgaya',
+    name: 'Indian Institute of Management Bodh Gaya',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் போத் கயா',
+    location: 'Bodh Gaya, Bihar',
+    website: 'https://www.iimbg.ac.in',
+    phone: '0631-2200567',
+    email: 'admissions@iimbg.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#DAA520',
+    logo: '/universities/iim-bodhgaya-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1500000, obc: 1500000, scst: 750000 },
+    courses: [
+      { id: 'iimbg-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Buddhist heritage site', 'Mentored by IIM Calcutta'] },
+      { id: 'iimbg-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
 
   // IIM AMRITSAR
+  {
+    id: 'iim-amritsar',
+    name: 'Indian Institute of Management Amritsar',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் அமிர்தசரஸ்',
+    location: 'Amritsar, Punjab',
+    website: 'https://www.iimamritsar.ac.in',
+    phone: '0183-2546100',
+    email: 'admissions@iimamritsar.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#FF6347',
+    logo: '/universities/iim-amritsar-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1500000, obc: 1500000, scst: 750000 },
+    courses: [
+      { id: 'iima-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Near Golden Temple', 'Mentored by IIM Kozhikode'] },
+      { id: 'iima-mba-ba', name: 'MBA (Business Analytics)', nameTamil: 'MBA (வணிக பகுப்பாய்வு)', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['Analytics focus'] },
+      { id: 'iima-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
 
   // IIM SAMBALPUR
+  {
+    id: 'iim-sambalpur',
+    name: 'Indian Institute of Management Sambalpur',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் சம்பல்பூர்',
+    location: 'Sambalpur, Odisha',
+    website: 'https://www.iimsambalpur.ac.in',
+    phone: '0663-2430567',
+    email: 'admissions@iimsambalpur.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#228B22',
+    logo: '/universities/iim-sambalpur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1500000, obc: 1500000, scst: 750000 },
+    courses: [
+      { id: 'iimsam-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Scenic Sambalpur', 'Mentored by IIM Indore'] },
+      { id: 'iimsam-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
 
   // IIM SIRMAUR
+  {
+    id: 'iim-sirmaur',
+    name: 'Indian Institute of Management Sirmaur',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் சிர்மௌர்',
+    location: 'Sirmaur, Himachal Pradesh',
+    website: 'https://www.iimsirmaur.ac.in',
+    phone: '01702-241500',
+    email: 'admissions@iimsirmaur.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#4682B4',
+    logo: '/universities/iim-sirmaur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1400000, obc: 1400000, scst: 700000 },
+    courses: [
+      { id: 'iimsir-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Himalayan campus', 'Focus on tourism & hospitality'] },
+      { id: 'iimsir-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
 
   // IIM JAMMU
+  {
+    id: 'iim-jammu',
+    name: 'Indian Institute of Management Jammu',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் ஜம்மு',
+    location: 'Jammu, J&K',
+    website: 'https://www.iimj.ac.in',
+    phone: '0191-2585100',
+    email: 'admissions@iimj.ac.in',
+    examName: 'CAT (MBA) / IPMAT (IPM)',
+    logoColor: '#8B0000',
+    logo: '/universities/iim-jammu-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' },
+      { event: 'IPMAT 2026', eventTamil: 'IPMAT 2026', date: 'May 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1500000, obc: 1500000, scst: 750000 },
+    courses: [
+      { id: 'iimj-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Gateway to Kashmir', 'IPM program available'] },
+      { id: 'iimj-ipm', name: 'IPM (Integrated Programme)', nameTamil: 'IPM', type: 'Integrated', category: 'On-Campus', school: 'Management', duration: '5 Years', eligibility: '12th Pass + IPMAT', tips: ['After 12th entry'] },
+      { id: 'iimj-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
 
   // IIM MUMBAI
+  {
+    id: 'iim-mumbai',
+    name: 'Indian Institute of Management Mumbai',
+    nameTamil: 'இந்திய மேலாண்மை நிறுவனம் மும்பை',
+    location: 'Mumbai, Maharashtra',
+    website: 'https://www.iimmumbai.ac.in',
+    phone: '022-26543000',
+    email: 'admissions@iimmumbai.ac.in',
+    examName: 'CAT (MBA)',
+    logoColor: '#000080',
+    logo: '/universities/iim-mumbai-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'CAT 2026 Exam', eventTamil: 'CAT 2026 தேர்வு', date: 'November 2026', status: 'upcoming' }
+    ],
+    fee: { general: 1800000, obc: 1800000, scst: 900000 },
+    courses: [
+      { id: 'iimm-pgp', name: 'PGP (Post Graduate Programme)', nameTamil: 'PGP முதுநிலை பட்டம்', type: 'PG', category: 'On-Campus', school: 'Management', duration: '2 Years', eligibility: 'Graduation + CAT qualified', tips: ['5+ courses', 'Newest IIM', 'Financial capital of India', 'Strong industry connections'] },
+      { id: 'iimm-phd', name: 'Ph.D. (Doctoral Programme)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '4-5 Years', eligibility: 'Post-graduation', tips: ['Research program'] }
+    ]
+  },
 
   // ============================================
   // INDIAN INSTITUTES OF SCIENCE EDUCATION AND RESEARCH (IISERs)
   // ============================================
 
   // IISER PUNE
+  {
+    id: 'iiser-pune',
+    name: 'Indian Institute of Science Education and Research (IISER) Pune',
+    nameTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனம் புனே',
+    location: 'Pune, Maharashtra',
+    website: 'https://www.iiserpune.ac.in',
+    phone: '020-25908000',
+    email: 'admissions@iiserpune.ac.in',
+    examName: 'IAT / JEE Advanced / KVPY',
+    logoColor: '#0066CC',
+    logo: '/universities/iiser-pune-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' },
+      { event: 'JEE Advanced Channel', eventTamil: 'JEE அட்வான்ஸ்டு வழி', date: 'May 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iiserp-bsms', name: 'BS-MS (Dual Degree in Science)', nameTamil: 'BS-MS (அறிவியல் இரட்டை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Sciences', duration: '5 Years', eligibility: '12th PCM/PCB + IAT/JEE Advanced/KVPY', tips: ['10+ courses', 'Premier science research institute', 'Path to Ph.D. and academia', 'Strong research culture'] },
+      { id: 'iiserp-phd', name: 'Ph.D. (Integrated Ph.D.)', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '5-6 Years', eligibility: 'B.Sc./M.Sc. + JEST/CSIR-NET', tips: ['Doctoral research in sciences'] }
+    ]
+  },
 
   // IISER KOLKATA
+  {
+    id: 'iiser-kolkata',
+    name: 'Indian Institute of Science Education and Research (IISER) Kolkata',
+    nameTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனம் கொல்கத்தா',
+    location: 'Kolkata, West Bengal',
+    website: 'https://www.iiserkol.ac.in',
+    phone: '033-25873000',
+    email: 'admissions@iiserkol.ac.in',
+    examName: 'IAT / JEE Advanced / KVPY',
+    logoColor: '#8B0000',
+    logo: '/universities/iiser-kolkata-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iiserk-bsms', name: 'BS-MS (Dual Degree in Science)', nameTamil: 'BS-MS (அறிவியல் இரட்டை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Sciences', duration: '5 Years', eligibility: '12th PCM/PCB + IAT/JEE Advanced/KVPY', tips: ['10+ courses', 'Strong research in biology & chemistry', 'Collaborative research with global institutes'] },
+      { id: 'iiserk-phd', name: 'Ph.D.', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '5-6 Years', eligibility: 'B.Sc./M.Sc. + JEST/CSIR-NET', tips: ['Research excellence'] }
+    ]
+  },
 
   // IISER MOHALI
+  {
+    id: 'iiser-mohali',
+    name: 'Indian Institute of Science Education and Research (IISER) Mohali',
+    nameTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனம் மொஹாலி',
+    location: 'Mohali, Punjab',
+    website: 'https://www.iisermohali.ac.in',
+    phone: '0172-2293100',
+    email: 'admissions@iisermohali.ac.in',
+    examName: 'IAT / JEE Advanced / KVPY',
+    logoColor: '#006633',
+    logo: '/universities/iiser-mohali-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iiserm-bsms', name: 'BS-MS (Dual Degree in Science)', nameTamil: 'BS-MS (அறிவியல் இரட்டை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Sciences', duration: '5 Years', eligibility: '12th PCM/PCB + IAT/JEE Advanced/KVPY', tips: ['10+ courses', 'Strong in chemical sciences', 'Near Chandigarh'] },
+      { id: 'iiserm-phd', name: 'Ph.D.', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '5-6 Years', eligibility: 'B.Sc./M.Sc. + JEST/CSIR-NET', tips: ['Research program'] }
+    ]
+  },
 
   // IISER BHOPAL
+  {
+    id: 'iiser-bhopal',
+    name: 'Indian Institute of Science Education and Research (IISER) Bhopal',
+    nameTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனம் போபால்',
+    location: 'Bhopal, Madhya Pradesh',
+    website: 'https://www.iiserb.ac.in',
+    phone: '0755-6692000',
+    email: 'admissions@iiserb.ac.in',
+    examName: 'IAT / JEE Advanced / KVPY',
+    logoColor: '#4B0082',
+    logo: '/universities/iiser-bhopal-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iiserb-bsms', name: 'BS-MS (Dual Degree in Science)', nameTamil: 'BS-MS (அறிவியல் இரட்டை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Sciences', duration: '5 Years', eligibility: '12th PCM/PCB + IAT/JEE Advanced/KVPY', tips: ['10+ courses', 'Beautiful campus', 'Strong physics & EE research'] },
+      { id: 'iiserb-phd', name: 'Ph.D.', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '5-6 Years', eligibility: 'B.Sc./M.Sc. + JEST/CSIR-NET', tips: ['Research program'] }
+    ]
+  },
 
   // IISER THIRUVANANTHAPURAM
+  {
+    id: 'iiser-tvm',
+    name: 'Indian Institute of Science Education and Research (IISER) Thiruvananthapuram',
+    nameTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனம் திருவனந்தபுரம்',
+    location: 'Thiruvananthapuram, Kerala',
+    website: 'https://www.iisertvm.ac.in',
+    phone: '0471-2778000',
+    email: 'admissions@iisertvm.ac.in',
+    examName: 'IAT / JEE Advanced / KVPY',
+    logoColor: '#006400',
+    logo: '/universities/iiser-tvm-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iisert-bsms', name: 'BS-MS (Dual Degree in Science)', nameTamil: 'BS-MS (அறிவியல் இரட்டை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Sciences', duration: '5 Years', eligibility: '12th PCM/PCB + IAT/JEE Advanced/KVPY', tips: ['10+ courses', 'Scenic Kerala location', 'Near Tamil Nadu border'] },
+      { id: 'iisert-phd', name: 'Ph.D.', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '5-6 Years', eligibility: 'B.Sc./M.Sc. + JEST/CSIR-NET', tips: ['Research program'] }
+    ]
+  },
 
   // IISER TIRUPATI
+  {
+    id: 'iiser-tirupati',
+    name: 'Indian Institute of Science Education and Research (IISER) Tirupati',
+    nameTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனம் திருப்பதி',
+    location: 'Tirupati, Andhra Pradesh',
+    website: 'https://www.iisertirupati.ac.in',
+    phone: '0877-2500900',
+    email: 'admissions@iisertirupati.ac.in',
+    examName: 'IAT / JEE Advanced / KVPY',
+    logoColor: '#FF6600',
+    logo: '/universities/iiser-tirupati-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iisertp-bsms', name: 'BS-MS (Dual Degree in Science)', nameTamil: 'BS-MS (அறிவியல் இரட்டை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Sciences', duration: '5 Years', eligibility: '12th PCM/PCB + IAT/JEE Advanced/KVPY', tips: ['10+ courses', 'Near Chennai/TN border', 'Growing research hub'] },
+      { id: 'iisertp-phd', name: 'Ph.D.', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '5-6 Years', eligibility: 'B.Sc./M.Sc. + JEST/CSIR-NET', tips: ['Research program'] }
+    ]
+  },
 
   // IISER BERHAMPUR
+  {
+    id: 'iiser-berhampur',
+    name: 'Indian Institute of Science Education and Research (IISER) Berhampur',
+    nameTamil: 'இந்திய அறிவியல் கல்வி ஆராய்ச்சி நிறுவனம் பெரம்பூர்',
+    location: 'Berhampur, Odisha',
+    website: 'https://www.iiserbpr.ac.in',
+    phone: '0680-2227500',
+    email: 'admissions@iiserbpr.ac.in',
+    examName: 'IAT / JEE Advanced / KVPY',
+    logoColor: '#4169E1',
+    logo: '/universities/iiser-berhampur-logo.png',
+    type: 'Central Government',
+    importantDates: [
+      { event: 'IISER Aptitude Test (IAT) 2026', eventTamil: 'IAT 2026', date: 'June 2026', status: 'upcoming' }
+    ],
+    fee: { general: 200000, obc: 200000, scst: 0 },
+    courses: [
+      { id: 'iiserbr-bsms', name: 'BS-MS (Dual Degree in Science)', nameTamil: 'BS-MS (அறிவியல் இரட்டை பட்டம்)', type: 'Integrated', category: 'On-Campus', school: 'Sciences', duration: '5 Years', eligibility: '12th PCM/PCB + IAT/JEE Advanced/KVPY', tips: ['10+ courses', 'Newest IISER', 'Developing campus'] },
+      { id: 'iiserbr-phd', name: 'Ph.D.', nameTamil: 'Ph.D.', type: 'Research', category: 'On-Campus', school: 'Research', duration: '5-6 Years', eligibility: 'B.Sc./M.Sc. + JEST/CSIR-NET', tips: ['Research program'] }
+    ]
+  },
 
   // ============================================
   // OTHER CENTRAL INSTITUTIONS
