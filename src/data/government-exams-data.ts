@@ -1911,23 +1911,213 @@ const stateExams: Exam[] = [
   },
   {
     id: 'tn-forest-guard',
-    name: 'TN Forest Guard',
-    nameTamil: 'TN வனக் காவலர்',
-    qualification: '10th/12th Pass',
-    qualificationTamil: '10/12ஆம் வகுப்பு தேர்ச்சி',
-    age: '18 - 30 years',
+    name: 'TN Forest Guard (TNFUSRC)',
+    nameTamil: 'TN வனக் காவலர் (TNFUSRC)',
+    qualification: '12th Pass (with Physics/Chemistry/Biology/Zoology/Botany)',
+    qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி (இயற்பியல்/வேதியியல்/உயிரியல் பாடங்களுடன்)',
+    age: '21 - 32 years (General) / 21 - 37 years (SC/ST/BC/MBC)',
     salary: '₹20,000/month',
-    selectionProcess: 'Written → Physical → Medical',
-    selectionProcessTamil: 'எழுத்துத் தேர்வு → உடற்தகுதி → மருத்துவம்',
+    selectionProcess: 'Written Exam (OMR, 200 Qs, 300 Marks, 3 Hours, No Negative Marking) → Physical Measurement Test → Endurance Test (25 km walk for Male / 16 km for Female in 4 hours) → Certificate Verification → Medical Examination',
+    selectionProcessTamil: 'எழுத்துத் தேர்வு (OMR, 200 கேள்விகள், 300 மதிப்பெண், 3 மணி, நெகட்டிவ் மார்க்கிங் இல்லை) → உடல் அளவீடு → சகிப்புத்தன்மை தேர்வு (25 கிமீ / 16 கிமீ நடை 4 மணியில்) → சான்றிதழ் சரிபார்ப்பு → மருத்துவம்',
+    posts: ['Forest Guard', 'Forest Guard with Driving Licence'],
+    postsTamil: ['வனக் காவலர்', 'வனக் காவலர் (ஓட்டுநர் உரிமத்துடன்)'],
+    examPattern: [
+      { paper: 'Part A — Tamil Eligibility-cum-Scoring Test', paperTamil: 'பகுதி A — தமிழ் தகுதி மற்றும் மதிப்பெண் தேர்வு', marks: 150, duration: '3 Hours (Total)', questions: 100 },
+      { paper: 'Part B — General Studies', paperTamil: 'பகுதி B — பொதுப் படிப்பு', marks: 112, duration: 'Included in 3 Hours', questions: 75 },
+      { paper: 'Part C — Aptitude & Mental Ability', paperTamil: 'பகுதி C — திறன் & மன திறன்', marks: 38, duration: 'Included in 3 Hours', questions: 25 }
+    ],
     syllabus: {
-      main: [
+      'Part A — Tamil Eligibility-cum-Scoring (100 Qs, 150 Marks)': [
         {
-          name: 'TN Forest Guard Syllabus',
-          nameTamil: 'TN வனக் காவலர் பாடத்திட்டம்',
+          name: 'Tamil Language — Eligibility + Scoring',
+          nameTamil: 'தமிழ் மொழி — தகுதி + மதிப்பெண்',
           topics: [
-            { name: 'General Knowledge', nameTamil: 'பொது அறிவு', subtopics: ['Current Affairs', 'Geography', 'Environment', 'Forest & Wildlife'] },
-            { name: 'Tamil', nameTamil: 'தமிழ்', subtopics: ['Grammar', 'Comprehension'] },
-            { name: 'Aptitude', nameTamil: 'திறன்', subtopics: ['Mathematics', 'Reasoning'] }
+            { name: 'Tamil Grammar (Ilakkanam)', nameTamil: 'தமிழ் இலக்கணம்', subtopics: [
+              'Ezhuthu Ilakkanam — Uyir (vowels), Mei (consonants), Uyirmei',
+              'Sol Ilakkanam — Types of words (Peyarchchol, Vinaichol, Idaichol, Urichol)',
+              'Porul Ilakkanam — Akam & Puram themes',
+              'Yaapu Ilakkanam — Venpa, Asiriyappa, Kalippa, Vanchippa',
+              'Ani Ilakkanam — Figures of speech (Uvamai, Uyarvuneri, Thazhvuneri)',
+              'Sandhi & Punarchi — Word joining and combination rules',
+              'Tholkappiyam & Nannool basics'
+            ] },
+            { name: 'Tamil Literature (Ilakkiyam)', nameTamil: 'தமிழ் இலக்கியம்', subtopics: [
+              'Sangam Literature — Ettuthogai, Pathupaattu',
+              'Thirukkural — Aram, Porul, Inbam sections',
+              'Epic Literature — Silapathikaram, Manimekalai',
+              'Devotional Literature — Thevaram, Thiruvasagam',
+              'Modern Tamil Literature — Bharathiar, Bharathidasan poems',
+              'Naladiyar, Pazhamozhi Naanooru, Aacharakkoval'
+            ] },
+            { name: 'Tamil Scholars & Service', nameTamil: 'தமிழ் அறிஞர்கள் & சேவை', subtopics: [
+              'Thiruvalluvar, Kambar, Ilango Adigal',
+              'Avvaiyar, Auvaiyar contributions',
+              'Bharathiar — Patriotic and social reform poetry',
+              'U.V. Swaminatha Iyer — Revival of Sangam texts',
+              'Maraimalai Adigal — Pure Tamil Movement',
+              'Tamil Renaissance leaders and their literary contributions'
+            ] }
+          ]
+        }
+      ],
+      'Part B — General Studies (75 Qs, 112.5 Marks)': [
+        {
+          name: 'General Science (10th Standard Level)',
+          nameTamil: 'பொது அறிவியல் (10ஆம் வகுப்பு நிலை)',
+          topics: [
+            { name: 'Physics', nameTamil: 'இயற்பியல்', subtopics: [
+              'Mechanics — Force, Motion, Newton\'s Laws, Work, Energy, Power',
+              'Electricity — Ohm\'s Law, Circuits, Current, Resistance',
+              'Magnetism — Magnetic fields, Electromagnets, Compass',
+              'Light — Reflection, Refraction, Lenses, Human Eye',
+              'Sound — Wave properties, Echo, Frequency',
+              'Heat — Conduction, Convection, Radiation, Thermometers'
+            ] },
+            { name: 'Chemistry', nameTamil: 'வேதியியல்', subtopics: [
+              'Acids, Bases & Salts — pH Scale, Indicators, Neutralization',
+              'Metals & Non-Metals — Properties, Reactivity Series',
+              'Chemical Reactions — Types, Balancing Equations',
+              'Elements & Compounds — Periodic Classification',
+              'Carbon Compounds — Organic Chemistry basics'
+            ] },
+            { name: 'Biology', nameTamil: 'உயிரியல்', subtopics: [
+              'Classification of Living Organisms — Plant & Animal Kingdoms',
+              'Nutrition — Autotrophic, Heterotrophic, Digestion in Humans',
+              'Human Diseases — Communicable & Non-communicable, Prevention',
+              'Cell Biology — Cell Structure, Cell Division (Mitosis, Meiosis)',
+              'Ecology — Ecosystem, Food Chain, Biodiversity',
+              'Forests & Wildlife — National Parks, Sanctuaries of Tamil Nadu'
+            ] }
+          ]
+        },
+        {
+          name: 'Geography',
+          nameTamil: 'புவியியல்',
+          topics: [
+            { name: 'Indian & TN Geography', nameTamil: 'இந்திய & TN புவியியல்', subtopics: [
+              'Physical Features of India — Himalayas, Indo-Gangetic Plains, Peninsular Plateau',
+              'Tamil Nadu Geography — Western Ghats, Eastern Ghats, Cauvery Basin, Nilgiris',
+              'Indian Monsoon — Southwest, Northeast, Rainfall patterns',
+              'Rivers of India & TN — Ganga, Cauvery, Vaigai, Tamiraparani',
+              'Soil Types — Alluvial, Black, Red, Laterite',
+              'Wildlife & Forest — Tiger Reserves, Biosphere Reserves, TN Forest coverage',
+              'Natural Vegetation — Tropical, Deciduous, Evergreen, Mangrove'
+            ] }
+          ]
+        },
+        {
+          name: 'History & Indian Polity',
+          nameTamil: 'வரலாறு & இந்திய அரசியல்',
+          topics: [
+            { name: 'History', nameTamil: 'வரலாறு', subtopics: [
+              'Ancient India — Indus Valley Civilization, Vedic Period, Maurya, Gupta',
+              'Medieval India — Delhi Sultanate, Mughal Empire, Vijayanagara',
+              'Indian National Movement — Moderates, Extremists, Gandhian Era',
+              'Tamil Nadu History — Chola, Chera, Pandya, Pallava Kingdoms',
+              'Freedom Fighters of TN — V.O.C., Subramania Bharathi, Vanchinathan'
+            ] },
+            { name: 'Indian Polity', nameTamil: 'இந்திய அரசியல்', subtopics: [
+              'Constitution of India — Preamble, Salient Features',
+              'Fundamental Rights (Articles 12-35)',
+              'Directive Principles of State Policy (Articles 36-51)',
+              'Fundamental Duties (Article 51A)',
+              'Parliament — Lok Sabha, Rajya Sabha, Law-making process',
+              'Tamil Nadu State Government — Governor, CM, Legislature'
+            ] }
+          ]
+        },
+        {
+          name: 'Economy & Current Affairs',
+          nameTamil: 'பொருளாதாரம் & நடப்பு நிகழ்வுகள்',
+          topics: [
+            { name: 'Indian Economy', nameTamil: 'இந்திய பொருளாதாரம்', subtopics: [
+              'Nature of Indian Economy — Mixed Economy, Sectors (Primary, Secondary, Tertiary)',
+              'NITI Aayog — Functions, Objectives, Replacement of Planning Commission',
+              'Development Administration in Tamil Nadu — District administration, Panchayati Raj',
+              'Tamil Nadu Government Schemes — Free bus pass, noon meal, laptop scheme',
+              'Banking & Finance — RBI, Types of Banks, Financial inclusion'
+            ] },
+            { name: 'Current Affairs', nameTamil: 'நடப்பு நிகழ்வுகள்', subtopics: [
+              'National & International Current Events',
+              'Sports — Olympics, Commonwealth, Asian Games',
+              'Science & Technology — ISRO missions, Defence developments',
+              'Awards — Padma Awards, Bharat Ratna, Nobel Prize',
+              'Environment — Climate change, Conservation efforts, International treaties'
+            ] }
+          ]
+        }
+      ],
+      'Part C — Aptitude & Mental Ability (25 Qs, 37.5 Marks)': [
+        {
+          name: 'Aptitude & Mental Ability Test',
+          nameTamil: 'திறன் & மன திறன் தேர்வு',
+          topics: [
+            { name: 'Arithmetic Aptitude', nameTamil: 'எண்கணித திறன்', subtopics: [
+              'Simplification — BODMAS, Fractions, Decimals',
+              'Percentage — Calculations, Increase, Decrease',
+              'HCF & LCM — Problems and applications',
+              'Ratio & Proportion — Direct and Inverse',
+              'Simple & Compound Interest',
+              'Profit & Loss — Cost Price, Selling Price, Discount',
+              'Time & Work, Time & Distance — Speed problems'
+            ] },
+            { name: 'Mental Ability & Reasoning', nameTamil: 'மன திறன் & தர்க்கம்', subtopics: [
+              'Number Series — Missing number, Wrong number',
+              'Coding-Decoding — Letter & Number coding',
+              'Analogies — Word & Number relationships',
+              'Blood Relations — Family tree problems',
+              'Direction Sense — Compass-based problems',
+              'Odd One Out — Classification',
+              'Calendar & Clock problems',
+              'Venn Diagrams — Set relationships'
+            ] }
+          ]
+        }
+      ],
+      'Physical & Endurance Standards': [
+        {
+          name: 'Physical Measurement & Endurance Test',
+          nameTamil: 'உடல் அளவீடு & சகிப்புத்தன்மை தேர்வு',
+          topics: [
+            { name: 'Physical Measurement Test', nameTamil: 'உடல் அளவீட்டு தேர்வு', subtopics: [
+              'Male Height: Minimum 163 cm',
+              'Male Chest: Normal 79 cm, Expansion to 84 cm (5 cm expansion)',
+              'Female / Third Gender Height: Minimum 150 cm',
+              'Female / Third Gender Chest: Normal 74 cm, Expansion to 79 cm (5 cm expansion)'
+            ] },
+            { name: 'Endurance Test', nameTamil: 'சகிப்புத்தன்மை தேர்வு', subtopics: [
+              'Male: 25 km walk to be completed within 4 hours',
+              'Female: 16 km walk to be completed within 4 hours',
+              'This is a mandatory qualifying test — no marks awarded',
+              'Conducted in forest/terrain conditions'
+            ] },
+            { name: 'Vision & Medical Standards', nameTamil: 'பார்வை & மருத்துவ தரநிலைகள்', subtopics: [
+              'Must have specified visual standard WITHOUT glasses',
+              'Candidates wearing glasses / contact lenses: NOT eligible',
+              'Color Blindness: Disqualified',
+              'LASIK surgery: Disqualified (candidates who had LASIK are not eligible)',
+              'General physical fitness — free from any disability that affects forest duties'
+            ] }
+          ]
+        }
+      ],
+      'Eligibility Criteria 2026': [
+        {
+          name: 'Education & Age Requirements',
+          nameTamil: 'கல்வி & வயது தேவைகள்',
+          topics: [
+            { name: 'Educational Qualification', nameTamil: 'கல்வித் தகுதி', subtopics: [
+              'Must have passed Higher Secondary Course (12th Standard / HSC)',
+              'Must have studied one of these subjects: Physics, Chemistry, Biology, Zoology, or Botany',
+              'Science stream preferred (PCB / PCM with Biology)',
+              'Certificate from a recognized State or Central Board'
+            ] },
+            { name: 'Age Limit', nameTamil: 'வயது வரம்பு', subtopics: [
+              'General Category: 21 to 32 years',
+              'SC / ST / BC / MBC / BCM: 21 to 37 years (5 years relaxation)',
+              'Ex-Servicemen: Maximum 30 years after deducting service period',
+              'Age calculated as of the notification date'
+            ] }
           ]
         }
       ]
