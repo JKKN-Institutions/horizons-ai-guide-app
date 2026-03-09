@@ -221,7 +221,7 @@ const GovernmentExams = () => {
         <div className="flex gap-0 bg-white dark:bg-slate-800 rounded-2xl shadow-lg -mt-3 mb-4 p-1 relative z-20 border border-gray-100 dark:border-slate-700">
           {([
             { key: 'exams' as MainTab, icon: LayoutGrid, label: ta ? 'தேர்வுகள்' : 'All Exams' },
-            { key: 'tnpsc' as MainTab, icon: Calendar, label: ta ? 'TNPSC 2026' : 'TNPSC 2026' },
+            { key: 'tnpsc' as MainTab, icon: Calendar, label: ta ? 'TN மாநிலம்' : 'TN State' },
             { key: 'study' as MainTab, icon: Library, label: ta ? 'பாடம் & PYQ' : 'Syllabus & PYQ' },
           ]).map(t => (
             <button
@@ -311,81 +311,98 @@ const GovernmentExams = () => {
         )}
 
         {/* ════════════════════════════════════════
-             TAB 2: TNPSC 2026 ANNUAL PLANNER
+             TAB 2: TN STATE EXAMS (12th Pass)
            ════════════════════════════════════════ */}
         {mainTab === 'tnpsc' && (
           <div>
+            {/* TNPSC Group IV Highlight */}
             <div className="bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 rounded-2xl overflow-hidden shadow-xl mb-5">
               <div className="p-4 pb-3">
                 <div className="flex items-center gap-2.5">
                   <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center text-xl">🏛️</div>
                   <div>
-                    <h2 className="text-base font-black text-white">{ta ? 'TNPSC 2026 வருடாந்திர திட்டம்' : 'TNPSC 2026 Annual Planner'}</h2>
-                    <p className="text-[10px] text-white/40">{ta ? 'வெளியிட்ட தேதி: 03.12.2025 • tnpsc.gov.in' : 'Published: 03.12.2025 • tnpsc.gov.in'}</p>
+                    <h2 className="text-base font-black text-white">{ta ? 'TNPSC குரூப் IV — 12th Pass' : 'TNPSC Group IV — 12th Pass Eligible'}</h2>
+                    <p className="text-[10px] text-white/40">{ta ? 'TNPSC 2026 திட்டம் • tnpsc.gov.in' : 'TNPSC 2026 Planner • tnpsc.gov.in'}</p>
                   </div>
                 </div>
               </div>
-              <div className="px-3 pb-3 space-y-2">
-                {[
-                  { id: 'tnpsc-cts-non-interview', sno: 1, name: ta ? 'CTS (நேர்காணல் அல்லாத)' : 'CTS (Non-Interview Posts)', notify: '20.05.2026', exam: '03.08.2026', days: 7, qual: ta ? 'B.E./B.Tech' : 'B.E./B.Tech', salary: '₹36.9K–₹1.17L', color: 'from-cyan-400 to-blue-500' },
-                  { id: 'tnpsc-group1', sno: 2, name: ta ? 'குரூப் I (CCSE-I)' : 'Group I (CCSE-I)', notify: '23.06.2026', exam: '06.09.2026', days: 1, qual: ta ? 'பட்டப்படிப்பு' : 'Any Degree', salary: '₹56.1K–₹2.11L', color: 'from-amber-400 to-orange-500' },
-                  { id: 'tnpsc-cts-diploma', sno: 3, name: ta ? 'CTS (டிப்ளோமா/ITI)' : 'CTS (Diploma/ITI)', notify: '07.07.2026', exam: '20.09.2026', days: 7, qual: ta ? 'டிப்ளோமா/ITI' : 'Diploma/ITI', salary: '₹20K–₹72K', color: 'from-teal-400 to-emerald-500' },
-                  { id: 'tnpsc-group2', sno: 4, name: ta ? 'குரூப் II & IIA (CCSE-II)' : 'Group II & IIA (CCSE-II)', notify: '11.08.2026', exam: '25.10.2026', days: 1, qual: ta ? 'பட்டப்படிப்பு' : 'Any Degree', salary: '₹36.9K–₹1.2L', color: 'from-rose-400 to-pink-500' },
-                  { id: 'tnpsc-cts-interview', sno: 5, name: ta ? 'CTS (நேர்காணல்)' : 'CTS (Interview Posts)', notify: '31.08.2026', exam: '14.11.2026', days: 4, qual: ta ? 'B.E./B.Tech' : 'B.E./B.Tech', salary: '₹56.1K–₹1.77L', color: 'from-blue-400 to-indigo-500' },
-                  { id: 'tnpsc-group4', sno: 6, name: ta ? 'குரூப் IV (CCSE-IV)' : 'Group IV (CCSE-IV)', notify: '06.10.2026', exam: '20.12.2026', days: 1, qual: ta ? 'SSLC/12th' : 'SSLC/12th', salary: '₹19.5K–₹62K', color: 'from-emerald-400 to-green-500' },
-                ].map(item => {
-                  const detail = getDetailLink(item.id);
-                  const pyq = getPYQCount(item.id);
-                  const syll = getSyllabusCount(item.id);
+
+              {/* Group IV card */}
+              <div className="px-3 pb-3">
+                {(() => {
+                  const detail = getDetailLink('tnpsc-group4');
+                  const pyq = getPYQCount('tnpsc-group4');
+                  const syll = getSyllabusCount('tnpsc-group4');
                   return (
-                    <motion.div key={item.sno} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: item.sno * 0.06 }}>
-                      <div className="bg-white/10 hover:bg-white/15 rounded-xl p-3 transition-all border border-white/5">
-                        <div className="flex items-start gap-2.5">
-                          <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center text-[11px] font-black text-white bg-gradient-to-br shadow-md flex-shrink-0", item.color)}>{item.sno}</div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-[12px] font-bold text-white">{item.name}</p>
-                            <div className="flex items-center gap-2 mt-1 flex-wrap">
-                              <span className="text-[9px] text-white/50">🎓 {item.qual}</span>
-                              <span className="text-[9px] text-emerald-300">💰 {item.salary}</span>
-                            </div>
-                            <div className="flex items-center gap-2 mt-1.5 flex-wrap">
-                              <span className="text-[9px] font-semibold text-amber-300 bg-amber-400/15 px-1.5 py-0.5 rounded">📝 {ta ? 'அறிவிப்பு' : 'Notify'}: {item.notify}</span>
-                              <span className="text-[9px] font-semibold text-emerald-300 bg-emerald-400/15 px-1.5 py-0.5 rounded">📅 {ta ? 'தேர்வு' : 'Exam'}: {item.exam}</span>
-                              <span className="text-[9px] text-white/30 bg-white/5 px-1.5 py-0.5 rounded">{item.days}{ta ? ' நாட்கள்' : item.days === 1 ? ' Day' : ' Days'}</span>
-                            </div>
-                            {/* Quick actions */}
-                            {detail && (
-                              <div className="flex gap-2 mt-2">
-                                {syll > 0 && <button className="text-[9px] font-bold text-indigo-300 bg-indigo-400/15 px-2 py-1 rounded-lg hover:bg-indigo-400/25 transition-all flex items-center gap-1" onClick={() => navigate(`/government-exams/${detail.categoryId}/${detail.examId}`)}>
-                                  <BookOpen className="w-2.5 h-2.5" /> {ta ? 'பாடத்திட்டம்' : 'Syllabus'} ({syll})
-                                </button>}
-                                {pyq > 0 && <button className="text-[9px] font-bold text-amber-300 bg-amber-400/15 px-2 py-1 rounded-lg hover:bg-amber-400/25 transition-all flex items-center gap-1" onClick={() => navigate(`/government-exams/${detail.categoryId}/${detail.examId}`)}>
-                                  <Target className="w-2.5 h-2.5" /> PYQ ({pyq})
-                                </button>}
-                              </div>
-                            )}
-                          </div>
+                    <div className="bg-white/10 rounded-xl p-4 border border-white/10">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-400 to-green-500 flex items-center justify-center text-white text-lg font-black shadow-lg">IV</div>
+                        <div>
+                          <p className="text-[14px] font-black text-white">{ta ? 'CCSE-IV (குரூப் IV)' : 'CCSE-IV (Group IV Services)'}</p>
+                          <p className="text-[10px] text-white/50">{ta ? 'VAO, இளநிலை உதவியாளர், தட்டச்சர்' : 'VAO, Junior Assistant, Typist, Steno-Typist'}</p>
                         </div>
                       </div>
-                    </motion.div>
+
+                      <div className="grid grid-cols-2 gap-2 mb-3">
+                        <div className="bg-white/10 rounded-lg p-2.5 text-center">
+                          <p className="text-[9px] text-white/40 uppercase font-bold">{ta ? 'அறிவிப்பு' : 'Notification'}</p>
+                          <p className="text-sm font-black text-amber-300">06.10.2026</p>
+                        </div>
+                        <div className="bg-white/10 rounded-lg p-2.5 text-center">
+                          <p className="text-[9px] text-white/40 uppercase font-bold">{ta ? 'தேர்வு தேதி' : 'Exam Date'}</p>
+                          <p className="text-sm font-black text-emerald-300">20.12.2026</p>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-2 flex-wrap mb-3">
+                        <span className="text-[10px] font-semibold px-2.5 py-1 rounded-lg bg-white/10 text-white/70">🎓 {ta ? 'SSLC / 12th' : 'SSLC / 12th Pass'}</span>
+                        <span className="text-[10px] font-semibold px-2.5 py-1 rounded-lg bg-white/10 text-emerald-300">💰 ₹19.5K–₹62K/{ta ? 'மாதம்' : 'month'}</span>
+                        <span className="text-[10px] font-semibold px-2.5 py-1 rounded-lg bg-white/10 text-white/70">👤 18–30 {ta ? 'வயது' : 'years'}</span>
+                        <span className="text-[10px] font-semibold px-2.5 py-1 rounded-lg bg-white/10 text-white/70">📝 200 Q / 3 {ta ? 'மணி' : 'hrs'}</span>
+                      </div>
+
+                      {/* Action buttons */}
+                      {detail && (
+                        <div className="grid grid-cols-3 gap-2">
+                          <button className="flex flex-col items-center gap-1 bg-white/10 hover:bg-white/20 rounded-xl p-2.5 transition-all" onClick={() => navigate(`/government-exams/${detail.categoryId}/${detail.examId}`)}>
+                            <BookOpen className="w-4 h-4 text-indigo-300" />
+                            <span className="text-[9px] font-bold text-white">{ta ? 'பாடத்திட்டம்' : 'Syllabus'}</span>
+                            <span className="text-[8px] text-white/40">{syll} {ta ? 'தலைப்பு' : 'topics'}</span>
+                          </button>
+                          <button className="flex flex-col items-center gap-1 bg-white/10 hover:bg-white/20 rounded-xl p-2.5 transition-all" onClick={() => navigate(`/government-exams/${detail.categoryId}/${detail.examId}`)}>
+                            <Target className="w-4 h-4 text-amber-300" />
+                            <span className="text-[9px] font-bold text-white">PYQ</span>
+                            <span className="text-[8px] text-white/40">{pyq} {ta ? 'கேள்விகள்' : 'questions'}</span>
+                          </button>
+                          <button className="flex flex-col items-center gap-1 bg-white/10 hover:bg-white/20 rounded-xl p-2.5 transition-all" onClick={() => navigate(`/government-exams/${detail.categoryId}/${detail.examId}`)}>
+                            <Play className="w-4 h-4 text-emerald-300" />
+                            <span className="text-[9px] font-bold text-white">{ta ? 'மாக் டெஸ்ட்' : 'Mock Test'}</span>
+                            <span className="text-[8px] text-white/40">{ta ? 'தொடங்கு' : 'Start'}</span>
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   );
-                })}
+                })()}
               </div>
+
               <div className="px-3 pb-3">
                 <div className="bg-white/5 rounded-lg px-3 py-2 flex items-start gap-2 mb-2">
                   <AlertTriangle className="w-3 h-3 text-amber-400 mt-0.5 flex-shrink-0" />
-                  <p className="text-[9px] text-white/40">{ta ? 'தற்காலிக திட்டம். தேதிகள் மாறலாம். tnpsc.gov.in சரிபார்க்கவும்.' : 'Tentative planner. Dates may change. Check tnpsc.gov.in'}</p>
+                  <p className="text-[9px] text-white/40">{ta ? 'தற்காலிக திட்டம். தேதிகள் மாறலாம். tnpsc.gov.in சரிபார்க்கவும்.' : 'Tentative. Dates may change. Check tnpsc.gov.in for official notification.'}</p>
                 </div>
                 <Button size="sm" className="w-full h-9 bg-white/10 hover:bg-white/20 text-white text-[11px] font-bold rounded-xl border border-white/10" onClick={() => window.open('https://tnpsc.gov.in', '_blank')}>
-                  <ExternalLink className="w-3 h-3 mr-1.5" /> {ta ? 'TNPSC தளம்' : 'TNPSC Official Website'}
+                  <ExternalLink className="w-3 h-3 mr-1.5" /> {ta ? 'TNPSC அதிகாரப்பூர்வ தளம்' : 'Visit TNPSC Official Website'}
                 </Button>
               </div>
             </div>
 
-            {/* Other TN State exams */}
-            <h3 className="text-xs font-black text-gray-800 dark:text-white mb-2 flex items-center gap-2"><Sparkles className="w-3.5 h-3.5 text-violet-500" /> {ta ? 'பிற தமிழ்நாடு தேர்வுகள்' : 'Other TN State Exams'}</h3>
+            {/* Other TN State exams for 12th pass */}
+            <h3 className="text-xs font-black text-gray-800 dark:text-white mb-2.5 flex items-center gap-2">
+              <Sparkles className="w-3.5 h-3.5 text-violet-500" /> {ta ? 'பிற TN மாநில தேர்வுகள் (12th Pass)' : 'Other TN State Exams (12th Pass)'}
+            </h3>
             <div className="space-y-2.5">
-              {governmentExams.filter(e => e.category === 'state' && !e.id.startsWith('tnpsc')).map((e, i) => <ExamCard key={e.id} exam={e} idx={i} />)}
+              {governmentExams.filter(e => e.category === 'state' && e.id !== 'tnpsc-group4').map((e, i) => <ExamCard key={e.id} exam={e} idx={i} />)}
             </div>
           </div>
         )}
