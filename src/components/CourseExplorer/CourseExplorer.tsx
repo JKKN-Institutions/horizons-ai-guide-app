@@ -1,13 +1,11 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import StreamSection from "./StreamSection";
 import CourseResults from "./CourseResults";
 import CourseDetailModal from "./CourseDetailModal";
-import { streamsData, boards, getCoursesForGroup } from "./courseExplorerData";
+import { streamsData, boards, getCoursesForGroup, getStreamsForBoard } from "./courseExplorerData";
 import type { CourseInfo } from "./courseExplorerData";
-
-const streamKeys = Object.keys(streamsData);
 
 const CourseExplorer = () => {
   const [selectedBoard, setSelectedBoard] = useState("tn");
@@ -15,7 +13,17 @@ const CourseExplorer = () => {
   const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
   const [selectedCourse, setSelectedCourse] = useState<CourseInfo | null>(null);
 
+  // Get streams for the selected board
+  const currentStreams = useMemo(() => getStreamsForBoard(selectedBoard), [selectedBoard]);
+  const streamKeys = useMemo(() => Object.keys(currentStreams), [currentStreams]);
+
   const courseCategories = selectedGroup ? getCoursesForGroup(selectedGroup) : [];
+
+  const handleBoardChange = (boardId: string) => {
+    setSelectedBoard(boardId);
+    setSelectedStream(null);   // Reset stream when board changes
+    setSelectedGroup(null);    // Reset group when board changes
+  };
 
   const handleStreamSelect = (key: string) => {
     if (selectedStream === key) {
@@ -64,7 +72,7 @@ const CourseExplorer = () => {
                   ? "bg-purple-600 text-white shadow-lg"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               )}
-              onClick={() => setSelectedBoard(board.id)}
+              onClick={() => handleBoardChange(board.id)}
             >
               <span>{board.icon}</span>
               <span>{board.name}</span>
@@ -94,7 +102,7 @@ const CourseExplorer = () => {
         {!selectedStream && (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
             {streamKeys.map((key) => {
-              const stream = streamsData[key];
+              const stream = currentStreams[key];
               return (
                 <button
                   key={key}
@@ -114,9 +122,9 @@ const CourseExplorer = () => {
         )}
 
         {/* Groups for selected stream */}
-        {selectedStream && streamsData[selectedStream] && (
+        {selectedStream && currentStreams[selectedStream] && (
           <StreamSection
-            stream={streamsData[selectedStream]}
+            stream={currentStreams[selectedStream]}
             selectedGroup={selectedGroup}
             onGroupSelect={setSelectedGroup}
           />

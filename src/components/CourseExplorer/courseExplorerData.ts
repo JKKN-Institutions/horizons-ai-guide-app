@@ -493,44 +493,167 @@ const sportsCourses: CourseCategory = {
 export const getCoursesForGroup = (groupCode: string): CourseCategory[] => {
   const code = parseInt(groupCode);
 
-  // Science - Maths (100 series)
+  // ─── TN State Board (100-400 series) ───
   if (code >= 101 && code <= 106) {
     const base = [engineeringCourses, architectureCourses, pureScienceCourses, defenseCourses, aviationCourses];
-    if (code === 103 || code === 104) base.push(lifeScienceCourses); // PCMB groups
-    if (code === 106) base.push(hotelTourismCourses); // Home Science group
+    if (code === 103 || code === 104) base.push(lifeScienceCourses);
+    if (code === 106) base.push(hotelTourismCourses);
     return base;
   }
-
-  // Science - Biology (200 series)
   if (code >= 201 && code <= 208) {
     const base = [medicalCourses, nursingCourses, pharmacyCourses, alliedHealthCourses, lifeScienceCourses];
-    if (code === 201) base.push(pureScienceCourses); // CS group
-    if (code === 205 || code === 207) base.push(hotelTourismCourses); // Nutrition/Home Science
+    if (code === 201) base.push(pureScienceCourses);
+    if (code === 205 || code === 207) base.push(hotelTourismCourses);
     return base;
   }
-
-  // Commerce (300 series)
   if (code >= 301 && code <= 308) {
     return [professionalCourses, ugCommerceCourses, lawCourses, govtJobsCourses, teachingCourses, hotelTourismCourses];
   }
-
-  // Arts (400 series)
   if (code >= 401 && code <= 406) {
     return [artsUGCourses, lawCourses, govtJobsCourses, mediaCourses, teachingCourses, socialWorkCourses, sportsCourses];
   }
-
-  // Vocational
   if (groupCode === "VOC") {
     return [vocationalCourses, pureScienceCourses, govtJobsCourses, hotelTourismCourses];
+  }
+
+  // ─── CBSE / ICSE / NIOS / Other (named codes) ───
+  if (groupCode === "PCM") {
+    return [engineeringCourses, architectureCourses, pureScienceCourses, defenseCourses, aviationCourses];
+  }
+  if (groupCode === "PCB") {
+    return [medicalCourses, nursingCourses, pharmacyCourses, alliedHealthCourses, lifeScienceCourses];
+  }
+  if (groupCode === "PCMB") {
+    return [engineeringCourses, architectureCourses, pureScienceCourses, defenseCourses, aviationCourses, medicalCourses, nursingCourses, pharmacyCourses, alliedHealthCourses, lifeScienceCourses];
+  }
+  if (groupCode === "COM_MATH") {
+    return [professionalCourses, ugCommerceCourses, lawCourses, govtJobsCourses, teachingCourses, hotelTourismCourses, pureScienceCourses];
+  }
+  if (groupCode === "COM") {
+    return [professionalCourses, ugCommerceCourses, lawCourses, govtJobsCourses, teachingCourses, hotelTourismCourses];
+  }
+  if (groupCode === "HUMANITIES") {
+    return [artsUGCourses, lawCourses, govtJobsCourses, mediaCourses, teachingCourses, socialWorkCourses, sportsCourses];
   }
 
   return [];
 };
 
+// ═══ BOARD DEFINITIONS ═══
 export const boards = [
   { id: "tn", name: "Tamil Nadu State Board", icon: "🏛️", isDefault: true },
   { id: "cbse", name: "CBSE", icon: "📘" },
-  { id: "icse", name: "ICSE", icon: "📗" },
+  { id: "icse", name: "ICSE / ISC", icon: "📗" },
   { id: "nios", name: "NIOS (Open School)", icon: "📖" },
   { id: "other", name: "Other State Boards", icon: "📚" },
 ];
+
+// ═══ CBSE / ICSE / NIOS / OTHER — Simpler stream structure ═══
+const cbseStreams: Record<string, StreamData> = {
+  cbse_science_pcm: {
+    title: "🔬 Science (PCM)",
+    subtitle: "Physics, Chemistry, Mathematics",
+    color: "blue",
+    bgClass: "bg-blue-50", borderClass: "border-blue-200", accentClass: "bg-blue-600",
+    textClass: "text-blue-600", selectedBorder: "border-blue-500", selectedBg: "bg-blue-50",
+    dotClass: "bg-blue-400", tagBg: "bg-blue-100", tagText: "text-blue-700",
+    groups: [
+      { code: "PCM", subjects: ["Physics", "Chemistry", "Mathematics", "English", "Optional (CS/PE/Eco)"], careers: ["Engineering", "B.Sc", "NDA", "Merchant Navy", "Architecture"], courseCount: 55, popular: true, badge: "Most Popular" },
+    ],
+  },
+  cbse_science_pcb: {
+    title: "🧬 Science (PCB)",
+    subtitle: "Physics, Chemistry, Biology",
+    color: "green",
+    bgClass: "bg-emerald-50", borderClass: "border-emerald-200", accentClass: "bg-emerald-600",
+    textClass: "text-emerald-600", selectedBorder: "border-emerald-500", selectedBg: "bg-emerald-50",
+    dotClass: "bg-emerald-400", tagBg: "bg-emerald-100", tagText: "text-emerald-700",
+    groups: [
+      { code: "PCB", subjects: ["Physics", "Chemistry", "Biology", "English", "Optional (Maths/PE)"], careers: ["MBBS", "BDS", "Nursing", "Pharmacy", "Agriculture", "Veterinary"], courseCount: 48, popular: true, badge: "Medical" },
+    ],
+  },
+  cbse_science_pcmb: {
+    title: "🔬🧬 Science (PCMB)",
+    subtitle: "Physics, Chemistry, Maths + Biology",
+    color: "violet",
+    bgClass: "bg-violet-50", borderClass: "border-violet-200", accentClass: "bg-violet-600",
+    textClass: "text-violet-600", selectedBorder: "border-violet-500", selectedBg: "bg-violet-50",
+    dotClass: "bg-violet-400", tagBg: "bg-violet-100", tagText: "text-violet-700",
+    groups: [
+      { code: "PCMB", subjects: ["Physics", "Chemistry", "Mathematics", "Biology", "English"], careers: ["Engineering + Medical both eligible", "Maximum flexibility"], courseCount: 95, badge: "Most Flexible" },
+    ],
+  },
+  cbse_commerce: {
+    title: "💼 Commerce",
+    subtitle: "Accountancy, Economics, Business Studies",
+    color: "orange",
+    bgClass: "bg-amber-50", borderClass: "border-amber-200", accentClass: "bg-amber-600",
+    textClass: "text-amber-600", selectedBorder: "border-amber-500", selectedBg: "bg-amber-50",
+    dotClass: "bg-amber-400", tagBg: "bg-amber-100", tagText: "text-amber-700",
+    groups: [
+      { code: "COM_MATH", subjects: ["Accountancy", "Economics", "Business Studies", "Mathematics", "English"], careers: ["CA", "CS", "CMA", "B.Com", "BBA", "Finance", "Banking"], courseCount: 62, popular: true, badge: "With Maths" },
+      { code: "COM", subjects: ["Accountancy", "Economics", "Business Studies", "Informatics/PE", "English"], careers: ["CA", "CS", "B.Com", "BBA", "Law"], courseCount: 55 },
+    ],
+  },
+  cbse_humanities: {
+    title: "📚 Humanities / Arts",
+    subtitle: "History, Political Science, Geography & more",
+    color: "purple",
+    bgClass: "bg-purple-50", borderClass: "border-purple-200", accentClass: "bg-purple-600",
+    textClass: "text-purple-600", selectedBorder: "border-purple-500", selectedBg: "bg-purple-50",
+    dotClass: "bg-purple-400", tagBg: "bg-purple-100", tagText: "text-purple-700",
+    groups: [
+      { code: "HUMANITIES", subjects: ["History", "Political Science", "Geography", "Economics", "English", "Psychology/Sociology"], careers: ["UPSC/IAS", "Law", "Journalism", "Teaching", "Social Work", "Civil Services"], courseCount: 72, popular: true, badge: "Best for UPSC" },
+    ],
+  },
+};
+
+// ICSE uses the same structure as CBSE (same courses available)
+const icseStreams: Record<string, StreamData> = {
+  icse_science_pcm: { ...cbseStreams.cbse_science_pcm, title: "🔬 Science (PCM)", subtitle: "Physics, Chemistry, Mathematics (ISC)" },
+  icse_science_pcb: { ...cbseStreams.cbse_science_pcb, title: "🧬 Science (PCB)", subtitle: "Physics, Chemistry, Biology (ISC)" },
+  icse_science_pcmb: { ...cbseStreams.cbse_science_pcmb, title: "🔬🧬 Science (PCMB)", subtitle: "All Science Subjects (ISC)" },
+  icse_commerce: { ...cbseStreams.cbse_commerce, title: "💼 Commerce", subtitle: "Accounts, Economics, Business (ISC)" },
+  icse_humanities: { ...cbseStreams.cbse_humanities, title: "📚 Humanities", subtitle: "History, Geography, Languages (ISC)" },
+};
+
+const niosStreams: Record<string, StreamData> = {
+  nios_science: {
+    title: "🔬 Science Stream",
+    subtitle: "Choose your subjects flexibly",
+    color: "blue",
+    bgClass: "bg-blue-50", borderClass: "border-blue-200", accentClass: "bg-blue-600",
+    textClass: "text-blue-600", selectedBorder: "border-blue-500", selectedBg: "bg-blue-50",
+    dotClass: "bg-blue-400", tagBg: "bg-blue-100", tagText: "text-blue-700",
+    groups: [
+      { code: "PCM", subjects: ["Physics", "Chemistry", "Mathematics", "English", "Any Optional"], careers: ["Engineering", "B.Sc", "IT", "Defence"], courseCount: 55, badge: "PCM" },
+      { code: "PCB", subjects: ["Physics", "Chemistry", "Biology", "English", "Any Optional"], careers: ["Medical", "Nursing", "Pharmacy", "Agriculture"], courseCount: 48, badge: "PCB" },
+      { code: "PCMB", subjects: ["Physics", "Chemistry", "Mathematics", "Biology", "English"], careers: ["All Science courses eligible"], courseCount: 95, badge: "All Science" },
+    ],
+  },
+  nios_commerce: { ...cbseStreams.cbse_commerce, title: "💼 Commerce", subtitle: "Flexible Commerce Subjects" },
+  nios_humanities: { ...cbseStreams.cbse_humanities, title: "📚 Arts / Humanities", subtitle: "Flexible Arts Subjects" },
+  nios_vocational: {
+    title: "🛠️ Vocational",
+    subtitle: "Skill-based courses",
+    color: "teal",
+    bgClass: "bg-teal-50", borderClass: "border-teal-200", accentClass: "bg-teal-600",
+    textClass: "text-teal-600", selectedBorder: "border-teal-500", selectedBg: "bg-teal-50",
+    dotClass: "bg-teal-400", tagBg: "bg-teal-100", tagText: "text-teal-700",
+    groups: [
+      { code: "VOC", subjects: ["Computer Science", "Electronics", "Data Entry", "Others"], careers: ["Technician", "IT Support", "Skill-based jobs"], courseCount: 35 },
+    ],
+  },
+};
+
+// ═══ GET STREAMS FOR SELECTED BOARD ═══
+export const getStreamsForBoard = (boardId: string): Record<string, StreamData> => {
+  switch (boardId) {
+    case 'tn': return streamsData;           // TN State Board — 100/200/300/400 series
+    case 'cbse': return cbseStreams;          // CBSE — PCM/PCB/Commerce/Humanities
+    case 'icse': return icseStreams;          // ICSE — Same as CBSE with ISC labels
+    case 'nios': return niosStreams;          // NIOS — Flexible
+    case 'other': return cbseStreams;         // Other state boards — similar to CBSE
+    default: return streamsData;
+  }
+};
