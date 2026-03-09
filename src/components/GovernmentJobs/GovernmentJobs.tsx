@@ -7,6 +7,7 @@ import {
   Flag, Users, Banknote, Clock, Target
 } from 'lucide-react';
 import { governmentExams } from './governmentExamsData';
+import { GovtJobsRoadmap } from './GovtJobsRoadmap';
 import { CategoryType, StatusType } from './types';
 import { useLanguage } from '@/hooks/useLanguage';
 import { cn } from '@/lib/utils';
@@ -33,6 +34,7 @@ export const GovernmentJobs = () => {
   const [activeCat, setActiveCat] = useState<CategoryType>('all');
   const [activeStatus, setActiveStatus] = useState<StatusType>('all');
   const [savedSet, setSavedSet] = useState<Set<string>>(new Set());
+  const [pageView, setPageView] = useState<'roadmap' | 'exams'>('roadmap');
 
   const toggleSave = (id: string) => setSavedSet(prev => {
     const s = new Set(prev); s.has(id) ? s.delete(id) : s.add(id); return s;
@@ -92,6 +94,40 @@ export const GovernmentJobs = () => {
           </div>
         </div>
       </div>
+
+      {/* ══════════ VIEW TOGGLE ══════════ */}
+      <div className="bg-white rounded-2xl p-1.5 border border-slate-200 shadow-sm">
+        <div className="grid grid-cols-2 gap-1">
+          <button
+            onClick={() => setPageView('roadmap')}
+            className={cn(
+              "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all",
+              pageView === 'roadmap'
+                ? "bg-gradient-to-r from-slate-800 to-slate-700 text-white shadow-md"
+                : "text-slate-500 hover:text-slate-700 hover:bg-slate-50"
+            )}
+          >
+            🗺️ {ta ? 'வழிகாட்டி' : 'Roadmap & Guide'}
+          </button>
+          <button
+            onClick={() => setPageView('exams')}
+            className={cn(
+              "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all",
+              pageView === 'exams'
+                ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md"
+                : "text-slate-500 hover:text-slate-700 hover:bg-slate-50"
+            )}
+          >
+            📋 {ta ? 'தேர்வுகள் பார்க்க' : 'Browse Exams'} ({governmentExams.length})
+          </button>
+        </div>
+      </div>
+
+      {/* ══════════ ROADMAP VIEW ══════════ */}
+      {pageView === 'roadmap' && <GovtJobsRoadmap ta={ta} />}
+
+      {/* ══════════ EXAMS VIEW ══════════ */}
+      {pageView === 'exams' && (<>
 
       {/* ══════════ CATEGORY PILLS ══════════ */}
       <div className="overflow-x-auto -mx-3 px-3 pb-1">
@@ -314,6 +350,8 @@ export const GovernmentJobs = () => {
       )}
 
       {/* ══════════ FOOTER ══════════ */}
+      </>)}
+
       <div className="bg-amber-50 border border-amber-200/60 rounded-2xl p-4 text-center">
         <p className="text-sm text-amber-700 font-medium">
           💡 {ta
