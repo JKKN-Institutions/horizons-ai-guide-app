@@ -1240,7 +1240,7 @@ const railwayExams: Exam[] = [
 const sscExams: Exam[] = [
   {
     id: 'ssc-chsl',
-    name: 'SSC CHSL (Combined Higher Secondary Level)',
+    name: 'SSC CHSL (Combined Higher Secondary Level) 2026',
     nameTamil: 'SSC CHSL (ஒருங்கிணைந்த மேல்நிலை தேர்வு)',
     qualification: '12th Pass',
     qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி',
@@ -1344,7 +1344,7 @@ const sscExams: Exam[] = [
   },
   {
     id: 'ssc-mts',
-    name: 'SSC MTS (Multi Tasking Staff)',
+    name: 'SSC MTS (Multi Tasking Staff) 2026',
     nameTamil: 'SSC MTS (பல்பணி ஊழியர்)',
     qualification: '10th / 12th Pass',
     qualificationTamil: '10ஆம் வகுப்பு தேர்ச்சி',
@@ -1374,7 +1374,7 @@ const sscExams: Exam[] = [
   },
   {
     id: 'ssc-gd',
-    name: 'SSC GD Constable',
+    name: 'SSC GD Constable (CAPFs) 2027',
     nameTamil: 'SSC GD காவலர்',
     qualification: '10th/12th Pass',
     qualificationTamil: '10/12ஆம் வகுப்பு தேர்ச்சி',
@@ -1404,7 +1404,7 @@ const sscExams: Exam[] = [
   },
   {
     id: 'ssc-steno',
-    name: 'SSC Stenographer',
+    name: 'SSC Stenographer Grade C & D 2026',
     nameTamil: 'SSC சுருக்கெழுத்தாளர்',
     qualification: '12th Pass',
     qualificationTamil: '12ஆம் வகுப்பு தேர்ச்சி',
