@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Home } from 'lucide-react';
+import { ArrowLeft, Home, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PillNavigation } from '@/components/PillNavigation';
+import { useAuth } from '@/hooks/useAuth';
 
 interface CollegesPageLayoutProps {
   activeTab: string;
@@ -10,6 +11,12 @@ interface CollegesPageLayoutProps {
 
 export const CollegesPageLayout = ({ activeTab, children }: CollegesPageLayoutProps) => {
   const navigate = useNavigate();
+  const { user, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/');
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50/50 to-amber-50/30">
@@ -33,6 +40,15 @@ export const CollegesPageLayout = ({ activeTab, children }: CollegesPageLayoutPr
               Career & Higher Studies Guide
             </p>
           </div>
+          {user && (
+            <button
+              onClick={handleSignOut}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 text-white text-xs font-semibold transition-all flex-shrink-0"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Sign Out</span>
+            </button>
+          )}
         </div>
       </header>
 
