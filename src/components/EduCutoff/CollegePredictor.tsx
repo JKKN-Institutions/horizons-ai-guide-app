@@ -769,22 +769,22 @@ export const CollegePredictor = ({ engineeringResult, cutoffScore, categoryCode 
                <p className="text-xs md:text-sm text-white/80 font-tamil">அரசு + முன்னணி கல்லூரிகள் - TNEA கலந்தாய்வு</p>
              </div>
            </div>
-           <div className="mt-3 grid grid-cols-4 gap-1.5 md:gap-3">
+           <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-1.5 md:gap-3">
              <div className="bg-white/10 rounded-lg px-2 py-1.5 md:px-3 md:py-2 text-center">
                <div className="text-base md:text-xl font-bold">{userCutoff}</div>
-               <div className="text-[9px] md:text-xs text-white/70">Your Cutoff</div>
+               <div className="text-xs md:text-xs text-white/70">Your Cutoff</div>
              </div>
              <div className="bg-white/10 rounded-lg px-2 py-1.5 md:px-3 md:py-2 text-center">
                <div className="text-sm md:text-lg font-semibold">{userCategory}</div>
-               <div className="text-[9px] md:text-xs text-white/70">Category</div>
+               <div className="text-xs md:text-xs text-white/70">Category</div>
              </div>
              <div className="bg-white/10 rounded-lg px-2 py-1.5 md:px-3 md:py-2 text-center">
                <div className="text-sm md:text-lg font-bold">{allColleges.filter(c => c.type === 'Government').length}</div>
-               <div className="text-[9px] md:text-xs text-white/70">Govt</div>
+               <div className="text-xs md:text-xs text-white/70">Govt</div>
              </div>
              <div className="bg-white/10 rounded-lg px-2 py-1.5 md:px-3 md:py-2 text-center">
                <div className="text-sm md:text-lg font-bold">{sortedColleges.filter(c => c.overallChance !== 'Low').length}</div>
-               <div className="text-[9px] md:text-xs text-white/70">Safe+Dream</div>
+               <div className="text-xs md:text-xs text-white/70">Safe+Dream</div>
              </div>
            </div>
          </CardContent>

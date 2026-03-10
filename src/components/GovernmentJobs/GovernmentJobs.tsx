@@ -79,7 +79,7 @@ export const GovernmentJobs = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { val: governmentExams.length, label: ta ? 'தேர்வுகள்' : 'Exams', color: 'text-white' },
               { val: openCount, label: ta ? 'திறப்பு' : 'Open Now', color: 'text-emerald-400' },
@@ -257,7 +257,7 @@ export const GovernmentJobs = () => {
                     <p className="text-xs text-slate-500 mt-2.5 leading-relaxed">{exam.description}</p>
 
                     {/* ── Row 3: 4-column Info Strip (aligned) ── */}
-                    <div className="grid grid-cols-4 gap-0 mt-4 bg-slate-50 rounded-xl overflow-hidden border border-slate-100">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-0 mt-4 bg-slate-50 rounded-xl overflow-hidden border border-slate-100">
                       <div className="p-2.5 text-center border-r border-slate-100">
                         <Banknote className="w-4 h-4 text-emerald-500 mx-auto mb-1" />
                         <p className="text-[10px] text-slate-400 font-medium">{ta ? 'சம்பளம்' : 'Salary'}</p>

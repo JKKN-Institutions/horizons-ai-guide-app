@@ -194,7 +194,7 @@ export const CutoffResults = ({ result, group, marks, category }: CutoffResultsP
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg md:rounded-xl p-2 md:p-4 text-center border border-blue-200">
             <div className="text-[10px] md:text-sm text-blue-600 font-medium">Cutoff</div>
             <div className="text-xl md:text-3xl font-bold text-blue-700">{animatedCutoff > 0 ? Math.round(animatedCutoff / 2 * 10) / 10 : 0}</div>
-            <div className="text-[9px] md:text-sm text-blue-500">/100</div>
+            <div className="text-xs md:text-sm text-blue-500">/100</div>
             <Progress value={animatedCutoff > 0 ? (animatedCutoff / 2) : 0} className="h-1.5 mt-1.5 bg-blue-200" />
           </div>
         )}
@@ -202,7 +202,7 @@ export const CutoffResults = ({ result, group, marks, category }: CutoffResultsP
           <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg md:rounded-xl p-2 md:p-4 text-center border border-indigo-200">
             <div className="text-[10px] md:text-sm text-indigo-600 font-medium">TNEA Scale</div>
             <div className="text-xl md:text-3xl font-bold text-indigo-700">{animatedCutoff}</div>
-            <div className="text-[9px] md:text-sm text-indigo-500">/200</div>
+            <div className="text-xs md:text-sm text-indigo-500">/200</div>
             <Progress value={(animatedCutoff / 200) * 100} className="h-1.5 mt-1.5 bg-indigo-200" />
           </div>
         )}

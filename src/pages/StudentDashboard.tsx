@@ -139,7 +139,7 @@ const StudentDashboard = () => {
             <div className="flex items-center gap-3">
               <div className={cn("w-14 h-14 rounded-xl flex flex-col items-center justify-center", nextExamDays <= 30 ? "bg-rose-500" : nextExamDays <= 90 ? "bg-amber-500" : "bg-emerald-500")}>
                 <span className="text-xl font-extrabold text-white leading-none">{nextExamDays}</span>
-                <span className="text-[8px] font-bold text-white/80 uppercase">days</span>
+                <span className="text-[10px] font-bold text-white/80 uppercase">days</span>
               </div>
               <div className="flex-1">
                 <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">Next Exam</p>

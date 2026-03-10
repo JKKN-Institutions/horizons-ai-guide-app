@@ -117,12 +117,12 @@ export const AchievementRarityBadge = ({
       {rarity.tier !== 'legendary' && rarity.icon}
       
       {!compact && (
-        <span className="text-[9px] font-medium">
+        <span className="text-xs font-medium">
           {language === 'ta' ? rarity.labelTa : rarity.label}
         </span>
       )}
       
-      <span className="text-[8px] opacity-75">
+      <span className="text-[10px] opacity-75">
         {unlockPercent.toFixed(1)}%
       </span>
     </motion.div>

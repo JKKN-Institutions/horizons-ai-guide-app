@@ -69,7 +69,7 @@ export const LanguageRequirementsGuide = () => {
 
         {/* Score Requirements */}
         <Tabs value={activeExam} onValueChange={setActiveExam}>
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
             <TabsTrigger value="ielts">IELTS</TabsTrigger>
             <TabsTrigger value="toefl">TOEFL</TabsTrigger>
             <TabsTrigger value="pte">PTE</TabsTrigger>

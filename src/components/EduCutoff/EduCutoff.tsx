@@ -116,26 +116,26 @@ export const EduCutoff = () => {
             Calculate your cutoff & discover courses you're eligible for
           </p>
 
-          <div className="grid grid-cols-4 gap-1.5 md:gap-4 mt-4 md:mt-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-1.5 md:gap-4 mt-4 md:mt-6">
             <div className="bg-white rounded-lg p-1.5 md:p-4 text-center shadow-sm border border-green-100">
               <GraduationCap className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-0.5 md:mb-2 text-fresh-gold-dark" />
               <div className="text-sm md:text-2xl font-bold text-fresh-green-dark">1000+</div>
-              <div className="text-[8px] md:text-xs text-gray-500">Colleges</div>
+              <div className="text-[10px] md:text-xs text-gray-500">Colleges</div>
             </div>
             <div className="bg-white rounded-lg p-1.5 md:p-4 text-center shadow-sm border border-green-100">
               <Building2 className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-0.5 md:mb-2 text-fresh-gold-dark" />
               <div className="text-sm md:text-2xl font-bold text-fresh-green-dark">200+</div>
-              <div className="text-[8px] md:text-xs text-gray-500">Courses</div>
+              <div className="text-[10px] md:text-xs text-gray-500">Courses</div>
             </div>
             <div className="bg-white rounded-lg p-1.5 md:p-4 text-center shadow-sm border border-green-100">
               <MapPin className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-0.5 md:mb-2 text-fresh-gold-dark" />
               <div className="text-sm md:text-2xl font-bold text-fresh-green-dark">38</div>
-              <div className="text-[8px] md:text-xs text-gray-500">Districts</div>
+              <div className="text-[10px] md:text-xs text-gray-500">Districts</div>
             </div>
             <div className="bg-white rounded-lg p-1.5 md:p-4 text-center shadow-sm border border-green-100">
               <CheckCircle className="h-4 w-4 md:h-6 md:w-6 mx-auto mb-0.5 md:mb-2 text-fresh-gold-dark" />
               <div className="text-sm md:text-2xl font-bold text-fresh-green-dark">All</div>
-              <div className="text-[8px] md:text-xs text-gray-500">Groups</div>
+              <div className="text-[10px] md:text-xs text-gray-500">Groups</div>
             </div>
           </div>
         </div>

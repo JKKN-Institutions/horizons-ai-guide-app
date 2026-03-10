@@ -664,15 +664,15 @@
            <div className="grid grid-cols-3 gap-2 md:gap-4 mb-6">
              <Card className="border-0 shadow-sm bg-gradient-to-br from-red-50 to-orange-50 text-center p-2 md:p-5">
                <p className="text-xl md:text-4xl font-bold text-red-600">38%</p>
-               <p className="text-[9px] md:text-sm text-gray-600 mt-0.5 leading-tight">Job seekers unprepared</p>
+               <p className="text-xs md:text-sm text-gray-600 mt-0.5 leading-tight">Job seekers unprepared</p>
              </Card>
              <Card className="border-0 shadow-sm bg-gradient-to-br from-blue-50 to-indigo-50 text-center p-2 md:p-5">
                <p className="text-xl md:text-4xl font-bold text-blue-600">74%</p>
-               <p className="text-[9px] md:text-sm text-gray-600 mt-0.5 leading-tight">Recruiters can't find talent</p>
+               <p className="text-xs md:text-sm text-gray-600 mt-0.5 leading-tight">Recruiters can't find talent</p>
              </Card>
              <Card className="border-0 shadow-sm bg-gradient-to-br from-green-50 to-emerald-50 text-center p-2 md:p-5">
                <p className="text-xl md:text-4xl font-bold text-green-600">46%</p>
-               <p className="text-[9px] md:text-sm text-gray-600 mt-0.5 leading-tight">Hire by skills data</p>
+               <p className="text-xs md:text-sm text-gray-600 mt-0.5 leading-tight">Hire by skills data</p>
              </Card>
            </div>
 

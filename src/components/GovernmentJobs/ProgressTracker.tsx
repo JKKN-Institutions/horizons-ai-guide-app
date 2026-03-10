@@ -393,7 +393,7 @@ export const ProgressTracker = ({ language }: ProgressTrackerProps) => {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid grid-cols-4 w-full">
+          <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full">
             <TabsTrigger value="overview" className="text-xs">{t_text.overview}</TabsTrigger>
             <TabsTrigger value="study" className="text-xs">{t_text.studyTime}</TabsTrigger>
             <TabsTrigger value="streak" className="text-xs">{t_text.streakHistory}</TabsTrigger>
@@ -601,7 +601,7 @@ export const ProgressTracker = ({ language }: ProgressTrackerProps) => {
                 <Calendar className="h-4 w-4" />
                 {t_text.practiceCalendar}
               </h3>
-              <div className="grid grid-cols-7 gap-1">
+              <div className="grid grid-cols-4 md:grid-cols-7 gap-1">
                 {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
                   <div key={day} className="text-center text-[10px] text-gray-500 py-1">
                     {language === 'ta' ? day.charAt(0) : day.slice(0, 2)}

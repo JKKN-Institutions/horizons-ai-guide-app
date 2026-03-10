@@ -155,7 +155,7 @@ export const GovtPYQSection = ({ language = 'en' }: GovtPYQSectionProps) => {
       <CardContent className="space-y-4">
         {/* Category Tabs */}
         <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
-          <TabsList className="grid grid-cols-5 h-auto p-1">
+          <TabsList className="grid grid-cols-2 md:grid-cols-5 h-auto p-1">
             {Object.entries(categoryData).map(([key, { icon: Icon, label, labelTa }]) => (
               <TabsTrigger 
                 key={key} 

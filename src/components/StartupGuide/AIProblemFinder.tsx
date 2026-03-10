@@ -566,7 +566,7 @@ export const AIProblemFinder = () => {
                 <div className="space-y-1.5">
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-bold text-foreground">Phase {phase.phase}: {phase.title}</span>
-                    <Badge variant="secondary" className="text-[9px]">{phase.duration}</Badge>
+                    <Badge variant="secondary" className="text-xs">{phase.duration}</Badge>
                   </div>
                   <div className="space-y-1">
                     {phase.tasks.map((task, i) => (
@@ -603,17 +603,17 @@ export const AIProblemFinder = () => {
             {result.patentGuidance.map((pstep) => (
               <div key={pstep.step} className="relative pl-6 pb-3 border-l-2 border-emerald-200 last:border-l-0 last:pb-0">
                 <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-gradient-to-br from-emerald-500 to-green-500 border-2 border-white shadow-sm flex items-center justify-center">
-                  <span className="text-[7px] font-bold text-white">{pstep.step}</span>
+                  <span className="text-[10px] font-bold text-white">{pstep.step}</span>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs font-bold text-foreground">{pstep.title}</p>
                   <p className="text-[11px] text-muted-foreground leading-relaxed">{pstep.description}</p>
                   <div className="flex gap-2 flex-wrap">
                     {pstep.cost && (
-                      <Badge variant="secondary" className="text-[9px]">💰 {pstep.cost}</Badge>
+                      <Badge variant="secondary" className="text-xs">💰 {pstep.cost}</Badge>
                     )}
                     {pstep.timeline && (
-                      <Badge variant="secondary" className="text-[9px]">⏱ {pstep.timeline}</Badge>
+                      <Badge variant="secondary" className="text-xs">⏱ {pstep.timeline}</Badge>
                     )}
                   </div>
                 </div>
@@ -650,8 +650,8 @@ export const AIProblemFinder = () => {
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold text-foreground">{fund.name}</p>
                   <div className="flex gap-2 mt-0.5">
-                    <Badge variant="secondary" className="text-[9px]">{fund.type}</Badge>
-                    <Badge className="text-[9px] bg-emerald-50 text-emerald-700 border border-emerald-200/50">{fund.amount}</Badge>
+                    <Badge variant="secondary" className="text-xs">{fund.type}</Badge>
+                    <Badge className="text-xs bg-emerald-50 text-emerald-700 border border-emerald-200/50">{fund.amount}</Badge>
                   </div>
                 </div>
                 {fund.link && (

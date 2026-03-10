@@ -129,7 +129,7 @@ export const ProfileTab = (props: ProfileTabProps) => {
               <Flame className="w-4 h-4" />
               <span className="text-lg font-bold text-white">{taskStreak}</span>
             </div>
-            <p className="text-[9px] text-white/40 font-medium uppercase">Day Streak</p>
+            <p className="text-xs text-white/40 font-medium uppercase">Day Streak</p>
           </div>
           <div className="w-px h-8 bg-white/15 self-center" />
           <div className="text-center">
@@ -137,7 +137,7 @@ export const ProfileTab = (props: ProfileTabProps) => {
               <Target className="w-4 h-4" />
               <span className="text-lg font-bold text-white">{score.total}</span>
             </div>
-            <p className="text-[9px] text-white/40 font-medium uppercase">Score</p>
+            <p className="text-xs text-white/40 font-medium uppercase">Score</p>
           </div>
           <div className="w-px h-8 bg-white/15 self-center" />
           <div className="text-center">
@@ -145,7 +145,7 @@ export const ProfileTab = (props: ProfileTabProps) => {
               <BarChart3 className="w-4 h-4" />
               <span className="text-lg font-bold text-white">{progressPercent}%</span>
             </div>
-            <p className="text-[9px] text-white/40 font-medium uppercase">Progress</p>
+            <p className="text-xs text-white/40 font-medium uppercase">Progress</p>
           </div>
         </div>
       </div>
@@ -215,10 +215,10 @@ export const ProfileTab = (props: ProfileTabProps) => {
                           Step {step.step}: {step.title}
                         </p>
                         {isDone && (
-                          <span className="text-[9px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-full font-semibold">Done ✓</span>
+                          <span className="text-xs bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-full font-semibold">Done ✓</span>
                         )}
                         {isActive && (
-                          <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full font-semibold">In Progress</span>
+                          <span className="text-xs bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full font-semibold">In Progress</span>
                         )}
                       </div>
                       

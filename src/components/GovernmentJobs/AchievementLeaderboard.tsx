@@ -395,7 +395,7 @@ export const AchievementLeaderboard = ({ language }: AchievementLeaderboardProps
                 </Badge>
               )}
             </div>
-            <div className="grid grid-cols-4 gap-2 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-center">
               <div>
                 <div className="text-xl font-bold text-purple-700">{localStats.totalAchievements}</div>
                 <div className="text-xs text-purple-600">{language === 'ta' ? 'சாதனைகள்' : 'Badges'}</div>
@@ -461,7 +461,7 @@ export const AchievementLeaderboard = ({ language }: AchievementLeaderboardProps
                       <div className="flex justify-center gap-0.5 mt-1">
                         {getTierBadges(topThree[1]).map((b, i) => (
                           <div key={i} className={`w-4 h-4 rounded-full bg-gradient-to-br ${b.color} flex items-center justify-center`}>
-                            <span className="text-[8px] text-white font-bold">{b.count}</span>
+                            <span className="text-[10px] text-white font-bold">{b.count}</span>
                           </div>
                         ))}
                       </div>
@@ -492,7 +492,7 @@ export const AchievementLeaderboard = ({ language }: AchievementLeaderboardProps
                       <div className="flex justify-center gap-0.5 mt-1">
                         {getTierBadges(topThree[0]).map((b, i) => (
                           <div key={i} className={`w-5 h-5 rounded-full bg-gradient-to-br ${b.color} flex items-center justify-center`}>
-                            <span className="text-[9px] text-white font-bold">{b.count}</span>
+                            <span className="text-xs text-white font-bold">{b.count}</span>
                           </div>
                         ))}
                       </div>
@@ -521,7 +521,7 @@ export const AchievementLeaderboard = ({ language }: AchievementLeaderboardProps
                       <div className="flex justify-center gap-0.5 mt-1">
                         {getTierBadges(topThree[2]).map((b, i) => (
                           <div key={i} className={`w-4 h-4 rounded-full bg-gradient-to-br ${b.color} flex items-center justify-center`}>
-                            <span className="text-[8px] text-white font-bold">{b.count}</span>
+                            <span className="text-[10px] text-white font-bold">{b.count}</span>
                           </div>
                         ))}
                       </div>

@@ -89,7 +89,7 @@ export const DashboardTab = ({ userName, profile, score, currentDay, tasks, onbo
                 {stat.icon}
                 <span className="text-sm font-bold text-white">{stat.value}</span>
               </div>
-              <p className="text-[9px] text-white/40 font-medium uppercase">{stat.label}</p>
+              <p className="text-xs text-white/40 font-medium uppercase">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -153,7 +153,7 @@ export const DashboardTab = ({ userName, profile, score, currentDay, tasks, onbo
                 <div key={m.key} className="flex items-center">
                   <div className={`flex flex-col items-center p-2 rounded-lg ${done ? 'bg-emerald-50' : 'bg-gray-50'}`}>
                     <span className={`text-lg ${done ? '' : 'grayscale opacity-40'}`}>{m.icon}</span>
-                    <p className={`text-[9px] font-medium mt-1 ${done ? 'text-emerald-700' : 'text-gray-400'}`}>{m.label}</p>
+                    <p className={`text-xs font-medium mt-1 ${done ? 'text-emerald-700' : 'text-gray-400'}`}>{m.label}</p>
                   </div>
                   {i < milestones.length - 1 && (
                     <div className={`w-4 h-0.5 ${done ? 'bg-emerald-400' : 'bg-gray-200'}`} />

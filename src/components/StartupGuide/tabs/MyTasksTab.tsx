@@ -54,12 +54,12 @@ export const MyTasksTab = ({ tasks, currentDay, reflections, onSubmitReflection,
         <div className="flex justify-center gap-4 mt-3">
           <div className="text-center">
             <p className="text-lg font-bold text-amber-300">{tasks.filter(t => t.isCompleted).length}/7</p>
-            <p className="text-[9px] text-white/40">COMPLETED</p>
+            <p className="text-xs text-white/40">COMPLETED</p>
           </div>
           <div className="w-px h-8 bg-white/15 self-center" />
           <div className="text-center">
             <p className="text-lg font-bold text-emerald-300">Day {Math.min(currentDay, 7)}</p>
-            <p className="text-[9px] text-white/40">CURRENT</p>
+            <p className="text-xs text-white/40">CURRENT</p>
           </div>
         </div>
       </div>

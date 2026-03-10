@@ -173,13 +173,13 @@ export const BuildStartupTab = ({ unlocked, roadmap, surveyResponseCount, onGene
       <Card className="border-border/40">
         <CardContent className="p-4">
           <p className="text-xs font-bold text-foreground mb-3">🏆 Milestone Badges</p>
-          <div className="grid grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             {badges.map((badge, i) => {
               const earned = i === 0; // First badge always earned if build tab unlocked
               return (
                 <div key={badge.key} className={`text-center p-3 rounded-lg border ${earned ? 'bg-amber-50 border-amber-300' : 'bg-gray-50 border-gray-200 opacity-50'}`}>
                   <span className={`text-2xl ${earned ? '' : 'grayscale'}`}>{badge.icon}</span>
-                  <p className={`text-[9px] font-bold mt-1 ${earned ? 'text-amber-700' : 'text-gray-400'}`}>{badge.label}</p>
+                  <p className={`text-xs font-bold mt-1 ${earned ? 'text-amber-700' : 'text-gray-400'}`}>{badge.label}</p>
                 </div>
               );
             })}

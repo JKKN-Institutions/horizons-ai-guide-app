@@ -91,7 +91,7 @@ export function JKKNBottomNav({ activeTab, onTabChange }: BottomNavProps) {
             <SheetHeader className="pb-4">
               <SheetTitle className="text-left">More Options</SheetTitle>
             </SheetHeader>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {moreItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = activeTab === item.id;

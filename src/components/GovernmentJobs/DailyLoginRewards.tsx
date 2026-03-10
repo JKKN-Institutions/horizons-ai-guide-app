@@ -229,7 +229,7 @@ const DailyLoginRewards: React.FC = () => {
                     <Star className="h-4 w-4 text-amber-500" />
                     {language === 'ta' ? 'தினசரி வெகுமதிகள்' : 'Daily Rewards'}
                   </h3>
-                  <div className="grid grid-cols-7 gap-2">
+                  <div className="grid grid-cols-4 md:grid-cols-7 gap-2">
                     {data.dailyRewards.map((reward) => {
                       const isAvailable = reward.day <= data.weeklyProgress;
                       const isClaimed = reward.claimed;
@@ -253,7 +253,7 @@ const DailyLoginRewards: React.FC = () => {
                           }`}
                         >
                           <span className="text-lg">{reward.icon}</span>
-                          <span className="text-[8px] font-medium text-gray-600 dark:text-gray-400 mt-0.5">
+                          <span className="text-[10px] font-medium text-gray-600 dark:text-gray-400 mt-0.5">
                             {language === 'ta' ? `நாள் ${reward.day}` : `Day ${reward.day}`}
                           </span>
                           {isClaimed && (

@@ -697,7 +697,7 @@ export const MockTest = ({ exam, questions, onExit }: MockTestProps) => {
 
                 {/* Question Grid */}
                 <ScrollArea className="h-[300px]">
-                  <div className="grid grid-cols-5 gap-2">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                     {questions.map((q, idx) => {
                       const status = getQuestionStatus(q.id);
                       return (

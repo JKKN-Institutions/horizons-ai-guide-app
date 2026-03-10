@@ -71,7 +71,7 @@ export const UniversityCompare = () => {
                     <SelectItem key={uni.id} value={uni.id}>
                       <div className="flex items-center gap-2">
                         <div 
-                          className="w-4 h-4 rounded-sm flex items-center justify-center text-white text-[8px] font-bold"
+                          className="w-4 h-4 rounded-sm flex items-center justify-center text-white text-[10px] font-bold"
                           style={{ backgroundColor: uni.logoColor }}
                         >
                           {uni.name.charAt(0)}

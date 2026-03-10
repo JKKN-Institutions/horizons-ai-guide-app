@@ -668,7 +668,7 @@ export const ScholarshipFinder = () => {
                 >
                   {stat.value}
                 </p>
-                <p className="text-[7px] md:text-xs uppercase tracking-wide font-medium mt-0.5" style={{ color: '#8B7355' }}>
+                <p className="text-[10px] md:text-xs uppercase tracking-wide font-medium mt-0.5" style={{ color: '#8B7355' }}>
                   {stat.label}
                 </p>
               </div>

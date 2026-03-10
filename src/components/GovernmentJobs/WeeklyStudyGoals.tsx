@@ -737,7 +737,7 @@ export const WeeklyStudyGoals = ({ language }: WeeklyStudyGoalsProps) => {
                   <BarChart3 className="h-4 w-4" />
                   {language === 'ta' ? 'தினசரி பிரிவு' : 'Daily Breakdown'}
                 </h4>
-                <div className="grid grid-cols-7 gap-1">
+                <div className="grid grid-cols-4 md:grid-cols-7 gap-1">
                   {Array.from({ length: 7 }).map((_, i) => {
                     const date = format(addWeeks(startOfWeek(new Date(), { weekStartsOn: 1 }), 0), 'yyyy-MM-dd');
                     const dayDate = new Date(startOfWeek(new Date(), { weekStartsOn: 1 }));
@@ -763,7 +763,7 @@ export const WeeklyStudyGoals = ({ language }: WeeklyStudyGoalsProps) => {
                           {getDayName(dateStr, language)}
                         </div>
                         {minutes > 0 && (
-                          <div className="text-[9px] text-gray-400">
+                          <div className="text-xs text-gray-400">
                             {hours.toFixed(1)}h
                           </div>
                         )}
@@ -827,7 +827,7 @@ export const WeeklyStudyGoals = ({ language }: WeeklyStudyGoalsProps) => {
                     : 'How many hours do you want to study this week?'}
                 </p>
                 
-                <div className="grid grid-cols-4 gap-2 mb-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
                   {PRESET_HOURS.map(hours => (
                     <Button
                       key={hours}

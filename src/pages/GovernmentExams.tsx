@@ -83,7 +83,7 @@ const GovernmentExams = () => {
       <div className="container mx-auto px-4 pt-4 pb-10">
 
         {/* ── HERO STATS ── */}
-        <div className="grid grid-cols-4 gap-2.5 mb-5">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 mb-5">
           {[
             { value: String(totalExams), label: t ? 'தேர்வுகள்' : 'Exams', color: 'text-gray-900' },
             { value: String(openCount), label: t ? 'திறந்தது' : 'Open Now', color: 'text-emerald-600' },

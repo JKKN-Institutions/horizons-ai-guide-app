@@ -36,19 +36,19 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/95 via-green-800/90 to-emerald-900/85"></div>
         {/* Decorative elements with subtle floating animation */}
         <div 
-          className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-amber-400/15 to-orange-500/5 rounded-full blur-3xl transform translate-x-1/4 -translate-y-1/4"
+          className="absolute top-0 right-0 w-[80vw] max-w-[600px] h-[600px] bg-gradient-to-br from-amber-400/15 to-orange-500/5 rounded-full blur-3xl transform translate-x-1/4 -translate-y-1/4"
           style={{ 
             animation: 'float-slow 20s ease-in-out infinite',
           }} 
         />
         <div 
-          className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-emerald-400/10 to-teal-500/5 rounded-full blur-3xl transform -translate-x-1/4 translate-y-1/4"
+          className="absolute bottom-0 left-0 w-[70vw] max-w-[500px] h-[500px] bg-gradient-to-tr from-emerald-400/10 to-teal-500/5 rounded-full blur-3xl transform -translate-x-1/4 translate-y-1/4"
           style={{ 
             animation: 'float-slow 25s ease-in-out infinite reverse',
           }} 
         />
         <div 
-          className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"
+          className="absolute top-1/2 left-1/2 w-[60vw] max-w-[400px] h-[400px] bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"
           style={{ 
             animation: 'pulse-subtle 8s ease-in-out infinite',
           }} 

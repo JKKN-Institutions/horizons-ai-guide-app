@@ -232,7 +232,7 @@ export const AchievementShareCard = ({
         {/* Share Options */}
         <div className="p-4 bg-gray-50 border-t space-y-4">
           {/* Social Media Buttons */}
-          <div className="grid grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             <Button
               variant="outline"
               className="flex flex-col items-center gap-1 h-auto py-3 hover:bg-[#1DA1F2]/10 hover:border-[#1DA1F2] hover:text-[#1DA1F2]"

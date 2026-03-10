@@ -168,9 +168,9 @@ export const GroupSelector = ({ selectedGroup, onSelectGroup }: GroupSelectorPro
                   </div>
                 </div>
                 <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
-                  {cat.category === 'science_maths' && <span className="text-[8px] md:text-[10px] bg-blue-100 text-blue-700 border border-blue-300 px-1.5 md:px-2 py-0.5 rounded-full font-bold whitespace-nowrap">CUTOFF</span>}
-                  {cat.category === 'science_bio' && <span className="text-[8px] md:text-[10px] bg-amber-100 text-amber-700 border border-amber-300 px-1.5 md:px-2 py-0.5 rounded-full font-bold whitespace-nowrap">NEET</span>}
-                  {(cat.category === 'commerce' || cat.category === 'arts') && <span className="text-[8px] md:text-[10px] bg-green-100 text-green-700 border border-green-300 px-1.5 md:px-2 py-0.5 rounded-full font-bold whitespace-nowrap">NO CUTOFF</span>}
+                  {cat.category === 'science_maths' && <span className="text-[10px] md:text-[10px] bg-blue-100 text-blue-700 border border-blue-300 px-1.5 md:px-2 py-0.5 rounded-full font-bold whitespace-nowrap">CUTOFF</span>}
+                  {cat.category === 'science_bio' && <span className="text-[10px] md:text-[10px] bg-amber-100 text-amber-700 border border-amber-300 px-1.5 md:px-2 py-0.5 rounded-full font-bold whitespace-nowrap">NEET</span>}
+                  {(cat.category === 'commerce' || cat.category === 'arts') && <span className="text-[10px] md:text-[10px] bg-green-100 text-green-700 border border-green-300 px-1.5 md:px-2 py-0.5 rounded-full font-bold whitespace-nowrap">NO CUTOFF</span>}
                   {hasSelectedGroup && (
                     <span className="text-[10px] md:text-xs bg-white/80 px-1.5 md:px-2 py-0.5 md:py-1 rounded font-medium">
                       {selectedGroup}

@@ -294,7 +294,7 @@ export const ChapterWeightage: React.FC<ChapterWeightageProps> = ({ language }) 
 
                       {/* Topic Table */}
                       <div className="border border-gray-100 rounded-lg overflow-hidden">
-                        <div className="grid grid-cols-4 gap-2 px-3 py-2 bg-gray-50 text-xs font-medium text-gray-600">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 px-3 py-2 bg-gray-50 text-xs font-medium text-gray-600">
                           <span>{language === 'en' ? 'Chapter' : 'அத்தியாயம்'}</span>
                           <span className="text-center">{language === 'en' ? 'Weight' : 'எடை'}</span>
                           <span className="text-center">{language === 'en' ? 'Questions' : 'கேள்விகள்'}</span>
@@ -303,7 +303,7 @@ export const ChapterWeightage: React.FC<ChapterWeightageProps> = ({ language }) 
                         {subject.topics.map((topic, topicIdx) => (
                           <div 
                             key={topicIdx} 
-                            className={`grid grid-cols-4 gap-2 px-3 py-2 text-sm ${topicIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}
+                            className={`grid grid-cols-2 md:grid-cols-4 gap-2 px-3 py-2 text-sm ${topicIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}
                           >
                             <span className="text-gray-700 truncate">{topic.name}</span>
                             <span className="text-center font-medium text-gray-800">{topic.weightage}%</span>

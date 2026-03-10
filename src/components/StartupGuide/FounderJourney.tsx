@@ -534,7 +534,7 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
             </p>
           </div>
           <div className="flex items-center gap-2 flex-shrink-0 ml-2">
-            <Badge className={`text-[9px] border hidden sm:inline-flex ${
+            <Badge className={`text-xs border hidden sm:inline-flex ${
               founder.stream === 'Science' ? 'bg-blue-50 text-blue-700 border-blue-200' :
               founder.stream === 'Commerce' ? 'bg-amber-50 text-amber-700 border-amber-200' :
               'bg-rose-50 text-rose-700 border-rose-200'
@@ -550,7 +550,7 @@ const FounderCard = ({ founder, isExpanded, onToggle }: { founder: FounderDetail
       {isExpanded && (
         <div className="border-t border-border/30 p-4 space-y-4 bg-gradient-to-b from-muted/20 to-transparent">
           {/* Stream badge on mobile */}
-          <Badge className={`text-[9px] border sm:hidden ${
+          <Badge className={`text-xs border sm:hidden ${
             founder.stream === 'Science' ? 'bg-blue-50 text-blue-700 border-blue-200' :
             founder.stream === 'Commerce' ? 'bg-amber-50 text-amber-700 border-amber-200' :
             'bg-rose-50 text-rose-700 border-rose-200'

@@ -269,7 +269,7 @@ export const StudyPlanCalendar: React.FC<StudyPlanCalendarProps> = ({
       
       <CardContent>
         {/* Calendar Grid */}
-        <div className="grid grid-cols-7 gap-2">
+        <div className="grid grid-cols-4 md:grid-cols-7 gap-2">
           {/* Day Headers */}
           {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
             <div key={day} className="text-center text-xs font-medium text-muted-foreground py-2">

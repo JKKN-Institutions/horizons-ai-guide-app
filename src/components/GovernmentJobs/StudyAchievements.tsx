@@ -635,7 +635,7 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
                           <motion.div
                             animate={{ scale: [1, 1.2, 1] }}
                             transition={{ repeat: Infinity, duration: 1.5 }}
-                            className="absolute -top-1.5 -right-1.5 px-1.5 py-0.5 bg-gradient-to-r from-orange-500 to-red-500 text-white text-[9px] font-bold rounded-full"
+                            className="absolute -top-1.5 -right-1.5 px-1.5 py-0.5 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold rounded-full"
                           >
                             🔥 HOT
                           </motion.div>
@@ -652,7 +652,7 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
                                 {language === 'ta' ? achievement.nameTa : achievement.name}
                               </span>
                               {isRare && (
-                                <Badge variant="outline" className="text-[9px] px-1 py-0 border-purple-300 text-purple-600">
+                                <Badge variant="outline" className="text-xs px-1 py-0 border-purple-300 text-purple-600">
                                   <Gem className="h-2.5 w-2.5 mr-0.5" />
                                   {rarity.toFixed(0)}%
                                 </Badge>
@@ -676,7 +676,7 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
                                   {remaining} {language === 'ta' ? 'மீதம்' : 'to go'}
                                 </span>
                                 {timeEstimate && (
-                                  <span className={`text-[9px] font-medium flex items-center gap-0.5 px-1 py-0.5 rounded ${
+                                  <span className={`text-xs font-medium flex items-center gap-0.5 px-1 py-0.5 rounded ${
                                     timeEstimate.days <= 7 ? 'bg-green-100 text-green-700' :
                                     timeEstimate.days <= 30 ? 'bg-amber-100 text-amber-700' :
                                     'bg-gray-100 text-gray-500'
@@ -720,7 +720,7 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
         </AnimatePresence>
         {/* Category Filters & Sort */}
         <div className="flex flex-col gap-2">
-          <div className="flex gap-1 overflow-x-auto pb-1">
+          <div className="flex gap-1 overflow-x-auto scrollbar-hide pb-1">
             {categories.map(cat => (
               <Button
                 key={cat.id}
@@ -869,14 +869,14 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
                     <div className="w-full mt-2">
                       <Progress value={progress} className="h-1 bg-gray-200" />
                       <div className="flex items-center justify-between mt-0.5">
-                        <span className="text-[9px] text-gray-400">
+                        <span className="text-xs text-gray-400">
                           {currentValue.toFixed(0)} / {achievement.requirement}
                         </span>
                         {timeEstimate && (
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
-                                <span className={`text-[9px] font-medium flex items-center gap-0.5 ${
+                                <span className={`text-xs font-medium flex items-center gap-0.5 ${
                                   timeEstimate.days <= 7 ? 'text-green-600' :
                                   timeEstimate.days <= 30 ? 'text-amber-600' :
                                   'text-gray-400'
@@ -907,7 +907,7 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
                   <div className="flex flex-col items-center gap-1 mt-1">
                     <Badge 
                       variant="outline" 
-                      className={`text-[9px] px-1.5 py-0 ${
+                      className={`text-xs px-1.5 py-0 ${
                         isUnlocked ? tierConfig.border : 'border-gray-300'
                       }`}
                     >
@@ -955,8 +955,8 @@ const [unlockedAchievements, setUnlockedAchievements] = useState<UnlockedAchieve
             ].map((rarity) => (
               <div key={rarity.label} className="flex items-center gap-1">
                 <div className={`w-2.5 h-2.5 rounded bg-gradient-to-r ${rarity.color}`} />
-                <span className="text-[9px] text-gray-500">{rarity.label}</span>
-                <span className="text-[8px] text-gray-400">({rarity.range})</span>
+                <span className="text-xs text-gray-500">{rarity.label}</span>
+                <span className="text-[10px] text-gray-400">({rarity.range})</span>
               </div>
             ))}
           </div>

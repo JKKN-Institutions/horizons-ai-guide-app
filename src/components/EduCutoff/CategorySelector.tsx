@@ -72,7 +72,7 @@ export const CategorySelector = ({
               )}
             >
               <div className="font-bold text-base md:text-lg">{category.name}</div>
-              <div className="text-[8px] md:text-[10px] text-gray-500">{category.fullName}</div>
+              <div className="text-[10px] md:text-[10px] text-gray-500">{category.fullName}</div>
             </button>
           );
         })}

@@ -201,7 +201,7 @@ const LiveExamCountdown: React.FC = () => {
                             </div>
                             
                             <div className="text-right">
-                              <div className="grid grid-cols-4 gap-1 text-center">
+                              <div className="grid grid-cols-2 md:grid-cols-4 gap-1 text-center">
                                 <div className="bg-muted rounded px-2 py-1">
                                   <div className="text-lg font-bold font-mono">{time.days}</div>
                                   <div className="text-[10px] text-muted-foreground">DAYS</div>
