@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Home, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PillNavigation } from '@/components/PillNavigation';
-import { useAuth } from '@/hooks/useAuth';
+import { supabase } from '@/integrations/supabase/client';
 
 interface CollegesPageLayoutProps {
   activeTab: string;
@@ -11,11 +11,17 @@ interface CollegesPageLayoutProps {
 
 export const CollegesPageLayout = ({ activeTab, children }: CollegesPageLayoutProps) => {
   const navigate = useNavigate();
-  const { user, signOut } = useAuth();
 
   const handleSignOut = async () => {
-    await signOut();
-    navigate('/');
+    try {
+      await supabase.auth.signOut();
+    } catch (e) {
+      // Even if Supabase fails, clear local state
+    }
+    // Clear any local storage
+    localStorage.removeItem('vzk_student_profile');
+    // Redirect to home
+    window.location.href = '/';
   };
 
   return (
@@ -40,15 +46,13 @@ export const CollegesPageLayout = ({ activeTab, children }: CollegesPageLayoutPr
               Career & Higher Studies Guide
             </p>
           </div>
-          {user && (
-            <button
-              onClick={handleSignOut}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 text-white text-xs font-semibold transition-all flex-shrink-0"
-            >
-              <LogOut className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Sign Out</span>
-            </button>
-          )}
+          <button
+            onClick={handleSignOut}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/15 hover:bg-red-500/80 active:bg-red-600 text-white text-xs font-semibold transition-all flex-shrink-0"
+          >
+            <LogOut className="w-4 h-4" />
+            <span>Sign Out</span>
+          </button>
         </div>
       </header>
 
