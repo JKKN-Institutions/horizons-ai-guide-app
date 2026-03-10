@@ -425,40 +425,6 @@ const TNUniversityBrowse = () => {
             </div>
 
             {/* Fee Range Filter */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2.5 text-sm font-semibold text-foreground">
-                <div className="p-2 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 shadow-lg shadow-amber-500/30">
-                  <IndianRupee className="h-4 w-4 text-white" />
-                </div>
-                <span className="text-foreground">Filter by Fee</span>
-                <span className="font-tamil text-xs text-muted-foreground">/ கட்டணம் வாரியாக வடிகட்டு</span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {feeRanges
-                  .filter(feeRange => !selectedLocation || (feeRangeCounts[feeRange.id] || 0) > 0)
-                  .map((feeRange) => (
-                  <Badge
-                    key={feeRange.id}
-                    variant={selectedFeeRange === feeRange.id ? "default" : "outline"}
-                    className={`cursor-pointer transition-all duration-200 py-2 px-3.5 font-medium ${
-                      selectedFeeRange === feeRange.id
-                        ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0 shadow-md shadow-amber-500/25'
-                        : 'bg-white/70 dark:bg-white/10 hover:bg-amber-50 dark:hover:bg-amber-900/30 border-amber-200/50 dark:border-amber-800/30 hover:border-amber-300 dark:hover:border-amber-700'
-                    }`}
-                    onClick={() => setSelectedFeeRange(selectedFeeRange === feeRange.id ? null : feeRange.id)}
-                  >
-                    <span className="mr-1.5 text-foreground">{feeRange.label}</span>
-                    <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
-                      selectedFeeRange === feeRange.id 
-                        ? 'bg-white/25 text-white' 
-                        : 'bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300'
-                    }`}>
-                      {feeRangeCounts[feeRange.id] || 0}
-                    </span>
-                  </Badge>
-                ))}
-              </div>
-            </div>
           </div>
         )}
 
