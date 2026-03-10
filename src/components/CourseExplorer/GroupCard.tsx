@@ -1,4 +1,4 @@
-import { Check, BookOpen } from "lucide-react";
+import { Check, BookOpen, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { StreamGroup, StreamData } from "./courseExplorerData";
 
@@ -11,57 +11,67 @@ interface GroupCardProps {
 
 const GroupCard = ({ group, stream, isSelected, onClick }: GroupCardProps) => {
   return (
-    <div
+    <button
       onClick={onClick}
       className={cn(
-        "relative p-4 rounded-xl border-2 cursor-pointer transition-all duration-300",
+        "w-full text-left relative p-4 rounded-xl border-2 transition-all active:scale-[0.98]",
         isSelected
-          ? `${stream.selectedBorder} ${stream.selectedBg} shadow-lg scale-[1.02]`
+          ? `${stream.selectedBorder} ${stream.selectedBg} shadow-lg`
           : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
       )}
     >
-      {group.badge && (
-        <div className={cn("absolute -top-2 -right-2 text-white text-[10px] px-2 py-0.5 rounded-full font-semibold", stream.accentClass)}>
-          {group.badge}
+      {/* Badge */}
+      {(group.badge || group.popular) && (
+        <div className={cn(
+          "absolute -top-2.5 right-3 text-white text-xs px-2.5 py-0.5 rounded-full font-bold",
+          group.badge ? stream.accentClass : "bg-pink-500"
+        )}>
+          {group.badge || '🔥 Popular'}
         </div>
       )}
-      {group.popular && !group.badge && (
-        <div className="absolute -top-2 -right-2 bg-pink-500 text-white text-[10px] px-2 py-0.5 rounded-full font-semibold">
-          🔥 Popular
+
+      <div className="flex items-start gap-3">
+        {/* Group Code */}
+        <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 font-extrabold text-lg", stream.bgClass, stream.textClass)}>
+          {group.code}
         </div>
-      )}
 
-      <div className="flex items-center justify-between mb-3">
-        <span className={cn("text-2xl font-bold", stream.textClass)}>{group.code}</span>
-        {isSelected && (
-          <div className={cn("w-6 h-6 rounded-full flex items-center justify-center", stream.accentClass)}>
-            <Check className="w-4 h-4 text-white" />
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          {/* Subjects */}
+          <div className="flex flex-wrap gap-1 mb-2">
+            {group.subjects.map((subject, idx) => (
+              <span key={idx} className="text-xs font-medium text-gray-700 bg-gray-100 px-2 py-0.5 rounded-md">
+                {subject}
+              </span>
+            ))}
           </div>
-        )}
-      </div>
 
-      <div className="space-y-1 mb-3">
-        {group.subjects.map((subject, idx) => (
-          <div key={idx} className="text-xs text-gray-600 flex items-center gap-1.5">
-            <div className={cn("w-1.5 h-1.5 rounded-full", stream.dotClass)} />
-            {subject}
+          {/* Careers */}
+          <div className="flex flex-wrap gap-1 mb-2">
+            {group.careers.slice(0, 4).map((career, idx) => (
+              <span key={idx} className={cn("text-xs px-2 py-0.5 rounded-md font-medium", stream.tagBg, stream.tagText)}>
+                {career}
+              </span>
+            ))}
           </div>
-        ))}
-      </div>
 
-      <div className="flex flex-wrap gap-1 mb-3">
-        {group.careers.slice(0, 3).map((career, idx) => (
-          <span key={idx} className={cn("text-[10px] px-2 py-0.5 rounded-full", stream.tagBg, stream.tagText)}>
-            {career}
-          </span>
-        ))}
+          {/* Course count */}
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-gray-500 flex items-center gap-1">
+              <BookOpen className="w-3.5 h-3.5" /> {group.courseCount} courses
+            </span>
+            {isSelected ? (
+              <div className={cn("w-6 h-6 rounded-full flex items-center justify-center", stream.accentClass)}>
+                <Check className="w-3.5 h-3.5 text-white" />
+              </div>
+            ) : (
+              <ChevronRight className="w-4 h-4 text-gray-400" />
+            )}
+          </div>
+        </div>
       </div>
-
-      <div className="text-xs text-gray-500 flex items-center gap-1">
-        <BookOpen className="w-3 h-3" />
-        {group.courseCount} courses
-      </div>
-    </div>
+    </button>
   );
 };
 

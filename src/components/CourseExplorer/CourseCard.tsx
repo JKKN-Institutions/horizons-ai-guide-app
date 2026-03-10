@@ -22,7 +22,7 @@ const DemandBar = ({ level }: { level: number }) => (
         )}
       />
     ))}
-    <span className="text-[10px] text-gray-500 ml-1">
+    <span className="text-xs text-gray-500 ml-1">
       {level >= 4 ? "High" : level >= 3 ? "Medium" : "Low"}
     </span>
   </div>
@@ -52,16 +52,16 @@ const CourseCard = ({ course, onViewDetails }: CourseCardProps) => {
             <div className="flex items-center gap-2 mb-1 flex-wrap">
               <h4 className="font-semibold text-sm text-gray-900">{course.shortName}</h4>
               {course.hot && (
-                <Badge className="bg-red-500 text-white text-[10px] px-1.5 py-0">🔥 Hot</Badge>
+                <Badge className="bg-red-500 text-white text-xs px-1.5 py-0">🔥 Hot</Badge>
               )}
               {course.entranceRequired && (
-                <Badge variant="outline" className="text-[10px] px-1.5 py-0 border-amber-300 text-amber-700">Entrance</Badge>
+                <Badge variant="outline" className="text-xs px-1.5 py-0 border-amber-300 text-amber-700">Entrance</Badge>
               )}
               {!course.entranceRequired && (
-                <Badge variant="outline" className="text-[10px] px-1.5 py-0 border-emerald-300 text-emerald-700">Merit</Badge>
+                <Badge variant="outline" className="text-xs px-1.5 py-0 border-emerald-300 text-emerald-700">Merit</Badge>
               )}
               {hasTrending && (
-                <Badge className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-[10px] px-1.5 py-0">📈 Trending 2026</Badge>
+                <Badge className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs px-1.5 py-0">📈 Trending 2026</Badge>
               )}
             </div>
             <p className="text-xs text-gray-500">{course.name}</p>
@@ -119,7 +119,7 @@ const CourseCard = ({ course, onViewDetails }: CourseCardProps) => {
             </p>
             <div className="flex flex-wrap gap-1">
               {course.careers.map((c, i) => (
-                <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">{c}</span>
+                <span key={i} className="text-xs px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">{c}</span>
               ))}
             </div>
           </div>
@@ -130,7 +130,7 @@ const CourseCard = ({ course, onViewDetails }: CourseCardProps) => {
             </p>
             <div className="flex flex-wrap gap-1">
               {course.topColleges.map((c, i) => (
-                <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">{c}</span>
+                <span key={i} className="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">{c}</span>
               ))}
             </div>
           </div>
@@ -142,7 +142,7 @@ const CourseCard = ({ course, onViewDetails }: CourseCardProps) => {
                 const isTrending = trendingSkills2026.some(t => s.toLowerCase().includes(t.toLowerCase()) || t.toLowerCase().includes(s.toLowerCase()));
                 return (
                   <span key={i} className={cn(
-                    "text-[10px] px-2 py-0.5 rounded-full",
+                    "text-xs px-2 py-0.5 rounded-full",
                     isTrending ? "bg-blue-100 text-blue-700 border border-blue-300 font-semibold" : "bg-emerald-100 text-emerald-700"
                   )}>
                     {isTrending && '📈 '}{s}
@@ -151,7 +151,7 @@ const CourseCard = ({ course, onViewDetails }: CourseCardProps) => {
               })}
             </div>
             {hasTrending && (
-              <p className="text-[10px] text-blue-600 mt-1.5 italic">
+              <p className="text-xs text-blue-600 mt-1.5 italic">
                 📈 = LinkedIn Trending Skill 2026 — High demand in India
               </p>
             )}
@@ -181,7 +181,7 @@ const CourseCard = ({ course, onViewDetails }: CourseCardProps) => {
               <p className="text-xs font-semibold text-gray-700 mb-1.5">📋 Path</p>
               <div className="flex flex-wrap gap-1">
                 {course.path.map((p, i) => (
-                  <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-gray-200 text-gray-700">
+                  <span key={i} className="text-xs px-2 py-0.5 rounded-full bg-gray-200 text-gray-700">
                     {i + 1}. {p}
                   </span>
                 ))}
