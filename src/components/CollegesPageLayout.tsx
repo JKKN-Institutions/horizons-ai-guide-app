@@ -28,8 +28,8 @@ export const CollegesPageLayout = ({ activeTab, children }: CollegesPageLayoutPr
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50/50 to-amber-50/30">
       {/* ═══ COMPACT HEADER ═══ */}
       <header className="bg-gradient-to-r from-emerald-700 via-green-700 to-emerald-800 relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=200&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover opacity-15" loading="lazy" />
-        <div className="px-3 py-2.5 md:px-6 md:py-4 flex items-center gap-3">
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=200&fit=crop&auto=format" alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none" loading="lazy" />
+        <div className="px-3 py-2.5 md:px-6 md:py-4 flex items-center gap-3 relative z-10">
           <Button 
             variant="ghost" 
             size="icon"
