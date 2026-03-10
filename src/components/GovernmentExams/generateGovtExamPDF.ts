@@ -11,193 +11,222 @@ interface PDFOptions {
 
 export const generateGovtExamPDF = async (options: PDFOptions): Promise<void> => {
   const { type, exam, category } = options;
-  const doc = new jsPDF();
-  const pw = doc.internal.pageSize.getWidth();
-  const margin = 14;
-  const contentW = pw - margin * 2;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  const pw = 210;    // A4 width
+  const margin = 15;
+  const W = pw - margin * 2; // usable width = 180mm
 
-  // Category colors
-  const colors: Record<string, [number, number, number]> = {
-    defence: [22, 163, 74],    // green-600
-    railway: [37, 99, 235],    // blue-600
-    ssc: [124, 58, 237],       // violet-600
-    state: [225, 29, 72],      // rose-600
-    central: [217, 119, 6],    // amber-600
+  const clr: Record<string, [number, number, number]> = {
+    defence: [22, 101, 52],     // dark green
+    railway: [30, 64, 175],     // dark blue
+    ssc: [88, 28, 175],         // dark violet
+    state: [159, 18, 57],       // dark rose
+    central: [146, 64, 14],     // dark amber
   };
-  const c = colors[category.id] || [37, 99, 235];
+  const c = clr[category.id] || [30, 64, 175];
+  let yPos = 0;
 
-  // ─── HELPER: add page break if needed ───
-  const checkPage = (needed: number) => {
-    if (yPos + needed > 275) { doc.addPage(); yPos = 20; }
-  };
+  const newPage = () => { doc.addPage(); yPos = 18; };
+  const need = (h: number) => { if (yPos + h > 274) newPage(); };
 
-  // ─── HEADER ───
+  // ══════════════════════════════════════════
+  // HEADER — tall colored banner
+  // ══════════════════════════════════════════
   doc.setFillColor(c[0], c[1], c[2]);
-  doc.rect(0, 0, pw, 45, 'F');
-
-  // Small accent line
-  doc.setFillColor(255, 255, 255);
-  doc.rect(0, 45, pw, 1.5, 'F');
+  doc.rect(0, 0, pw, 48, 'F');
 
   doc.setTextColor(255, 255, 255);
-  doc.setFontSize(22);
+  doc.setFontSize(26);
   doc.setFont('helvetica', 'bold');
-  doc.text('VAZHIKAATTI', pw / 2, 16, { align: 'center' });
-
-  doc.setFontSize(10);
-  doc.setFont('helvetica', 'normal');
-  doc.text('Career Guidance for 12th Pass Students', pw / 2, 23, { align: 'center' });
-
-  doc.setFontSize(14);
-  doc.setFont('helvetica', 'bold');
-  doc.text(exam.name, pw / 2, 33, { align: 'center' });
+  doc.text('VAZHIKAATTI', pw / 2, 17, { align: 'center' });
 
   doc.setFontSize(11);
   doc.setFont('helvetica', 'normal');
-  doc.text(type === 'syllabus' ? 'COMPLETE SYLLABUS' : 'PREVIOUS YEAR QUESTIONS', pw / 2, 41, { align: 'center' });
+  doc.text('Career Guidance for 12th Pass Students', pw / 2, 25, { align: 'center' });
 
-  let yPos = 55;
+  doc.setFontSize(16);
+  doc.setFont('helvetica', 'bold');
+  const titleLines = doc.splitTextToSize(exam.name, W - 20);
+  titleLines.forEach((line: string, i: number) => {
+    doc.text(line, pw / 2, 34 + i * 6, { align: 'center' });
+  });
+
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'normal');
+  doc.text(
+    type === 'syllabus' ? 'COMPLETE SYLLABUS' : 'PREVIOUS YEAR QUESTIONS',
+    pw / 2, 34 + titleLines.length * 6 + 2, { align: 'center' }
+  );
+
+  yPos = 58;
 
   if (type === 'syllabus') {
-    // ─── EXAM OVERVIEW TABLE ───
-    doc.setFontSize(14);
+    // ══════════════════════════════════════
+    // EXAM OVERVIEW — clean table
+    // ══════════════════════════════════════
+    doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(c[0], c[1], c[2]);
     doc.text('Exam Overview', margin, yPos);
-    yPos += 3;
-
-    const overviewRows = [
-      ['Qualification', exam.qualification],
-      ['Age Limit', exam.age],
-      ['Salary', exam.salary],
-      ['Selection Process', exam.selectionProcess],
-    ];
+    yPos += 4;
 
     autoTable(doc, {
       startY: yPos,
-      body: overviewRows,
+      body: [
+        ['Qualification', exam.qualification],
+        ['Age Limit', exam.age],
+        ['Salary', exam.salary],
+        ['Selection', exam.selectionProcess],
+      ],
       theme: 'plain',
-      styles: { fontSize: 10, cellPadding: { top: 4, bottom: 4, left: 6, right: 6 }, lineColor: [230, 230, 230], lineWidth: 0.3 },
+      styles: { fontSize: 11, cellPadding: { top: 5, bottom: 5, left: 8, right: 8 }, lineColor: [220, 220, 220], lineWidth: 0.4 },
       columnStyles: {
-        0: { fontStyle: 'bold', cellWidth: 45, textColor: [60, 60, 60] },
-        1: { cellWidth: contentW - 45, textColor: [30, 30, 30] }
+        0: { fontStyle: 'bold', cellWidth: 40, textColor: [80, 80, 80] },
+        1: { cellWidth: W - 40, textColor: [20, 20, 20] }
       },
-      alternateRowStyles: { fillColor: [248, 250, 252] },
+      alternateRowStyles: { fillColor: [245, 247, 250] },
     });
-    yPos = (doc as any).lastAutoTable.finalY + 12;
+    yPos = (doc as any).lastAutoTable.finalY + 14;
 
-    // ─── EXAM PATTERN TABLE ───
+    // ══════════════════════════════════════
+    // EXAM PATTERN TABLE
+    // ══════════════════════════════════════
     if (exam.examPattern && exam.examPattern.length > 0) {
-      checkPage(40);
-      doc.setFontSize(14);
+      need(45);
+      doc.setFontSize(16);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(c[0], c[1], c[2]);
       doc.text('Exam Pattern', margin, yPos);
-      yPos += 3;
-
-      const patternRows = exam.examPattern.map(p => [
-        p.paper, String(p.questions), String(p.marks), p.duration
-      ]);
+      yPos += 4;
 
       autoTable(doc, {
         startY: yPos,
         head: [['Paper / Section', 'Questions', 'Marks', 'Duration']],
-        body: patternRows,
+        body: exam.examPattern.map(p => [p.paper, String(p.questions), String(p.marks), p.duration]),
         theme: 'grid',
-        headStyles: { fillColor: [c[0], c[1], c[2]], textColor: [255, 255, 255], fontSize: 10, fontStyle: 'bold', cellPadding: 5 },
-        styles: { fontSize: 10, cellPadding: 4 },
-        alternateRowStyles: { fillColor: [248, 250, 252] },
+        headStyles: { fillColor: [c[0], c[1], c[2]], textColor: [255, 255, 255], fontSize: 11, fontStyle: 'bold', cellPadding: 6 },
+        styles: { fontSize: 11, cellPadding: 5, textColor: [20, 20, 20] },
+        alternateRowStyles: { fillColor: [245, 247, 250] },
       });
-      yPos = (doc as any).lastAutoTable.finalY + 15;
+      yPos = (doc as any).lastAutoTable.finalY + 14;
     }
 
-    // ─── SYLLABUS CONTENT ───
-    let sectionNum = 0;
+    // ══════════════════════════════════════
+    // SYLLABUS — clear hierarchy
+    // ══════════════════════════════════════
+    let secNum = 0;
     Object.entries(exam.syllabus).forEach(([sectionKey, sections]) => {
-      sectionNum++;
-      checkPage(20);
+      secNum++;
+      need(22);
 
-      // Section header bar
+      // ── SECTION HEADER BAR (dark, prominent) ──
       doc.setFillColor(c[0], c[1], c[2]);
-      doc.rect(margin, yPos - 5, contentW, 10, 'F');
+      doc.rect(margin, yPos - 5, W, 12, 'F');
       doc.setTextColor(255, 255, 255);
-      doc.setFontSize(12);
+      doc.setFontSize(13);
       doc.setFont('helvetica', 'bold');
-      doc.text(`Section ${sectionNum}: ${sectionKey}`, margin + 4, yPos + 1.5);
-      yPos += 12;
+      const secTitle = `${secNum}. ${sectionKey}`;
+      const secLines = doc.splitTextToSize(secTitle, W - 10);
+      doc.text(secLines[0], margin + 5, yPos + 2.5);
+      yPos += 14;
+
+      // If section title was too long, show 2nd line
+      if (secLines.length > 1) {
+        doc.setTextColor(c[0], c[1], c[2]);
+        doc.setFontSize(11);
+        doc.text(secLines.slice(1).join(' '), margin + 5, yPos);
+        yPos += 7;
+      }
 
       sections.forEach((section) => {
-        checkPage(15);
+        need(16);
 
-        // Sub-section heading
-        doc.setFontSize(12);
+        // ── Sub-section heading (colored, bold, underlined) ──
+        doc.setFontSize(13);
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(c[0], c[1], c[2]);
-        doc.text(section.name, margin + 2, yPos);
-        yPos += 8;
+        const subLines = doc.splitTextToSize(section.name, W - 4);
+        subLines.forEach((line: string) => {
+          need(7);
+          doc.text(line, margin + 3, yPos);
+          yPos += 6;
+        });
+        // Underline
+        doc.setDrawColor(c[0], c[1], c[2]);
+        doc.setLineWidth(0.5);
+        doc.line(margin + 3, yPos - 3.5, margin + 3 + Math.min(doc.getTextWidth(subLines[0]) * 1.1, W - 6), yPos - 3.5);
+        yPos += 4;
 
         section.topics.forEach((topic, tIdx) => {
-          checkPage(15);
+          need(14);
 
-          // Topic name
-          doc.setFontSize(11);
+          // ── Topic name (numbered, bold, dark) ──
+          doc.setFontSize(12);
           doc.setFont('helvetica', 'bold');
-          doc.setTextColor(30, 30, 30);
-          doc.text(`${tIdx + 1}. ${topic.name}`, margin + 4, yPos);
-          yPos += 7;
+          doc.setTextColor(20, 20, 20);
+          const topicText = `${tIdx + 1}. ${topic.name}`;
+          const topicLines = doc.splitTextToSize(topicText, W - 10);
+          topicLines.forEach((line: string) => {
+            need(6);
+            doc.text(line, margin + 5, yPos);
+            yPos += 6;
+          });
+          yPos += 1;
 
-          // Subtopics as bullet list (NOT comma-separated)
-          doc.setFontSize(10);
+          // ── Subtopics as clear bullet list ──
+          doc.setFontSize(11);
           doc.setFont('helvetica', 'normal');
-          doc.setTextColor(70, 70, 70);
+          doc.setTextColor(40, 40, 40);
 
           topic.subtopics.forEach((sub) => {
-            checkPage(8);
-            const lines = doc.splitTextToSize(`•  ${sub}`, contentW - 16);
-            lines.forEach((line: string) => {
-              checkPage(6);
-              doc.text(line, margin + 10, yPos);
-              yPos += 5.5;
+            need(8);
+            // Bullet character
+            doc.setFontSize(8);
+            doc.text('\u2022', margin + 10, yPos); // bullet dot
+            doc.setFontSize(11);
+            const subLines = doc.splitTextToSize(sub, W - 22);
+            subLines.forEach((line: string, li: number) => {
+              need(6);
+              doc.text(line, margin + 14, yPos);
+              yPos += 5.8;
             });
+            yPos += 0.5;
           });
           yPos += 4;
         });
-        yPos += 4;
+        yPos += 3;
       });
-      yPos += 3;
+      yPos += 4;
     });
 
-    // ─── POSTS (if available) ───
+    // ── POSTS ──
     if (exam.posts && exam.posts.length > 0) {
-      checkPage(25);
-      doc.setFontSize(13);
+      need(25);
+      doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(c[0], c[1], c[2]);
       doc.text('Available Posts', margin, yPos);
       yPos += 8;
 
-      doc.setFontSize(10);
+      doc.setFontSize(11);
       doc.setFont('helvetica', 'normal');
-      doc.setTextColor(50, 50, 50);
+      doc.setTextColor(30, 30, 30);
       exam.posts.forEach((post) => {
-        checkPage(7);
-        doc.text(`•  ${post}`, margin + 4, yPos);
-        yPos += 6;
+        need(7);
+        doc.text(`-  ${post}`, margin + 5, yPos);
+        yPos += 6.5;
       });
-      yPos += 5;
     }
 
   } else {
-    // ─── PYQ CONTENT ───
+    // ══════════════════════════════════════
+    // PYQ — Previous Year Questions
+    // ══════════════════════════════════════
     if (exam.pyq.length === 0) {
-      doc.setTextColor(120, 120, 120);
-      doc.setFontSize(14);
-      doc.text('No previous year questions available yet.', pw / 2, yPos, { align: 'center' });
-      doc.setFontSize(11);
-      yPos += 10;
-      doc.text('Questions will be added soon. Check back later.', pw / 2, yPos, { align: 'center' });
+      doc.setTextColor(100, 100, 100);
+      doc.setFontSize(16);
+      doc.text('No previous year questions available yet.', pw / 2, yPos + 10, { align: 'center' });
     } else {
-      // Group by subject
       const grouped = exam.pyq.reduce((acc, q) => {
         if (!acc[q.subject]) acc[q.subject] = [];
         acc[q.subject].push(q);
@@ -206,88 +235,94 @@ export const generateGovtExamPDF = async (options: PDFOptions): Promise<void> =>
 
       let qNum = 0;
       Object.entries(grouped).forEach(([subject, questions]) => {
-        checkPage(20);
+        need(22);
 
         // Subject header bar
         doc.setFillColor(c[0], c[1], c[2]);
-        doc.rect(margin, yPos - 5, contentW, 10, 'F');
+        doc.rect(margin, yPos - 5, W, 12, 'F');
         doc.setTextColor(255, 255, 255);
-        doc.setFontSize(12);
+        doc.setFontSize(13);
         doc.setFont('helvetica', 'bold');
-        doc.text(`${subject} (${questions.length} Questions)`, margin + 4, yPos + 1.5);
-        yPos += 14;
+        doc.text(`${subject}  (${questions.length} Questions)`, margin + 5, yPos + 2.5);
+        yPos += 16;
 
         questions.forEach((q) => {
           qNum++;
-          checkPage(40);
+          need(50);
 
-          // Question
-          doc.setFontSize(11);
+          // Question — large, bold
+          doc.setFontSize(12);
           doc.setFont('helvetica', 'bold');
-          doc.setTextColor(30, 30, 30);
-          const qText = `Q${qNum}. ${q.question}`;
-          const qLines = doc.splitTextToSize(qText, contentW - 6);
+          doc.setTextColor(20, 20, 20);
+          const qText = `Q${qNum}.  ${q.question}`;
+          const qLines = doc.splitTextToSize(qText, W - 8);
           qLines.forEach((line: string) => {
-            checkPage(7);
-            doc.text(line, margin + 2, yPos);
-            yPos += 6;
-          });
-          yPos += 2;
-
-          // Options
-          doc.setFontSize(10);
-          q.options.forEach((opt, oIdx) => {
-            checkPage(7);
-            const label = String.fromCharCode(65 + oIdx);
-            if (oIdx === q.answer) {
-              doc.setFont('helvetica', 'bold');
-              doc.setTextColor(22, 163, 74); // green
-              doc.text(`${label})  ${opt}  ✓`, margin + 8, yPos);
-            } else {
-              doc.setFont('helvetica', 'normal');
-              doc.setTextColor(70, 70, 70);
-              doc.text(`${label})  ${opt}`, margin + 8, yPos);
-            }
+            need(7);
+            doc.text(line, margin + 3, yPos);
             yPos += 6.5;
           });
-          yPos += 2;
+          yPos += 3;
+
+          // Options — clear A B C D
+          doc.setFontSize(11);
+          q.options.forEach((opt, oIdx) => {
+            need(8);
+            const label = String.fromCharCode(65 + oIdx);
+            const isCorrect = oIdx === q.answer;
+
+            if (isCorrect) {
+              // Green background for correct answer
+              doc.setFillColor(220, 252, 231); // green-100
+              doc.roundedRect(margin + 6, yPos - 4.5, W - 12, 7.5, 1.5, 1.5, 'F');
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(22, 101, 52); // green-800
+              doc.text(`${label})  ${opt}   [CORRECT]`, margin + 10, yPos);
+            } else {
+              doc.setFont('helvetica', 'normal');
+              doc.setTextColor(50, 50, 50);
+              doc.text(`${label})  ${opt}`, margin + 10, yPos);
+            }
+            yPos += 7.5;
+          });
+          yPos += 3;
 
           // Explanation box
-          checkPage(15);
-          doc.setFillColor(240, 249, 255);
-          const expText = `Answer: ${String.fromCharCode(65 + q.answer)}) — ${q.explanation}`;
-          const expLines = doc.splitTextToSize(expText, contentW - 14);
-          const boxH = expLines.length * 5 + 6;
-          doc.roundedRect(margin + 4, yPos - 3, contentW - 8, boxH, 2, 2, 'F');
-          doc.setFontSize(9);
-          doc.setFont('helvetica', 'italic');
-          doc.setTextColor(37, 99, 235);
+          need(18);
+          doc.setFillColor(239, 246, 255); // blue-50
+          doc.setDrawColor(191, 219, 254); // blue-200
+          const expStr = `Explanation:  ${q.explanation}`;
+          const expLines = doc.splitTextToSize(expStr, W - 22);
+          const boxH = expLines.length * 5.5 + 7;
+          doc.roundedRect(margin + 5, yPos - 3, W - 10, boxH, 2, 2, 'FD');
+
+          doc.setFontSize(10);
+          doc.setFont('helvetica', 'normal');
+          doc.setTextColor(30, 64, 175); // blue-800
           expLines.forEach((line: string) => {
-            doc.text(line, margin + 8, yPos + 2);
-            yPos += 5;
+            doc.text(line, margin + 10, yPos + 2);
+            yPos += 5.5;
           });
-          yPos += 8;
+          yPos += 10;
         });
         yPos += 5;
       });
     }
   }
 
-  // ─── FOOTER ON ALL PAGES ───
-  const pageCount = doc.getNumberOfPages();
-  for (let i = 1; i <= pageCount; i++) {
+  // ══════════════════════════════════════
+  // FOOTER — all pages
+  // ══════════════════════════════════════
+  const totalPages = doc.getNumberOfPages();
+  for (let i = 1; i <= totalPages; i++) {
     doc.setPage(i);
-
-    // Footer line
     doc.setDrawColor(200, 200, 200);
-    doc.line(margin, 284, pw - margin, 284);
-
-    doc.setFontSize(8);
+    doc.line(margin, 283, pw - margin, 283);
+    doc.setFontSize(9);
     doc.setFont('helvetica', 'normal');
-    doc.setTextColor(150, 150, 150);
-    doc.text(`Page ${i} of ${pageCount}`, pw / 2, 290, { align: 'center' });
-    doc.text('VAZHIKAATTI — Career Guidance', margin, 290);
-    doc.text(new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }), pw - margin, 290, { align: 'right' });
+    doc.setTextColor(140, 140, 140);
+    doc.text(`Page ${i} of ${totalPages}`, pw / 2, 289, { align: 'center' });
+    doc.text('VAZHIKAATTI', margin, 289);
+    doc.text(new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }), pw - margin, 289, { align: 'right' });
   }
 
   doc.save(`${exam.id}-${type}.pdf`);
