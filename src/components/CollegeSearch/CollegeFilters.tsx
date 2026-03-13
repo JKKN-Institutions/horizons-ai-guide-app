@@ -31,6 +31,8 @@ interface CollegeFiltersProps {
   sortBy: string;
   onSortChange: (sort: string) => void;
   typeCounts: Record<string, number>;
+  showSportsQuota?: boolean;
+  onSportsQuotaToggle?: () => void;
 }
 
 export const CollegeFilters = ({
@@ -45,6 +47,8 @@ export const CollegeFilters = ({
   sortBy,
   onSortChange,
   typeCounts,
+  showSportsQuota,
+  onSportsQuotaToggle,
 }: CollegeFiltersProps) => {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
@@ -117,12 +121,13 @@ export const CollegeFilters = ({
           </Badge>
         ))}
         <Badge
-          variant="outline"
-          className="cursor-pointer transition-all border-orange-300 text-orange-700 bg-orange-50 hover:bg-orange-100 hover:border-orange-500 font-semibold"
-          onClick={() => {
-            const el = document.getElementById('sports-quota-section');
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }}
+          variant={showSportsQuota ? "default" : "outline"}
+          className={`cursor-pointer transition-all font-semibold ${
+            showSportsQuota
+              ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-white border-orange-600'
+              : 'border-orange-300 text-orange-700 bg-orange-50 hover:bg-orange-100 hover:border-orange-500'
+          }`}
+          onClick={() => onSportsQuotaToggle?.()}
         >
           🏆 Sports Quota
         </Badge>

@@ -76,6 +76,7 @@ export const CollegeSearch = () => {
   const [selectedNaacGrade, setSelectedNaacGrade] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState('name');
   const [autonomousFilter, setAutonomousFilter] = useState(false);
+  const [showSportsQuota, setShowSportsQuota] = useState(false);
 
   // Fetch colleges when district changes
   useEffect(() => {
@@ -309,30 +310,29 @@ export const CollegeSearch = () => {
           sortBy={sortBy}
           onSortChange={setSortBy}
           typeCounts={typeCounts}
+          showSportsQuota={showSportsQuota}
+          onSportsQuotaToggle={() => setShowSportsQuota(!showSportsQuota)}
         />
       )}
 
-      {/* Facility Checklist Guide — shown when viewing colleges */}
-      {selectedDistrict && <FacilityChecklist />}
+      {/* Facility Checklist Guide — hidden when Sports Quota is active */}
+      {selectedDistrict && !showSportsQuota && <FacilityChecklist />}
 
-      {/* College List */}
-      <CollegeList
-        colleges={colleges}
-        loading={loading}
-        selectedDistrict={selectedDistrict}
-        searchQuery={searchQuery}
-        selectedTypes={selectedTypes}
-        selectedCategories={selectedCategories}
-        selectedNaacGrade={selectedNaacGrade}
-        sortBy={sortBy}
-        autonomousFilter={autonomousFilter}
-      />
-
-      {/* Sports Quota Admission Guide */}
-      {selectedDistrict && (
-        <div id="sports-quota-section">
-          <SportsQuotaGuide />
-        </div>
+      {/* Show Sports Quota Directory OR College List */}
+      {showSportsQuota ? (
+        <SportsQuotaGuide />
+      ) : (
+        <CollegeList
+          colleges={colleges}
+          loading={loading}
+          selectedDistrict={selectedDistrict}
+          searchQuery={searchQuery}
+          selectedTypes={selectedTypes}
+          selectedCategories={selectedCategories}
+          selectedNaacGrade={selectedNaacGrade}
+          sortBy={sortBy}
+          autonomousFilter={autonomousFilter}
+        />
       )}
     </div>
   );
