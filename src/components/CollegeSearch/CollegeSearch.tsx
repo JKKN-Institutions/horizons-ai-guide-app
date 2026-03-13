@@ -190,146 +190,204 @@ export const CollegeSearch = () => {
   }, [colleges]);
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <Card className="bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] text-white border-0 shadow-lg">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-3 text-2xl text-white">
-            <Building2 className="h-8 w-8" />
-            College Search by District
-          </CardTitle>
-          <p className="text-[#FFD54F]">
-            Find all colleges in any Tamil Nadu district with complete details
-          </p>
-        </CardHeader>
-        <CardContent>
-          <DistrictSelector
-            selectedDistrict={selectedDistrict}
-            onDistrictSelect={setSelectedDistrict}
-          />
-        </CardContent>
-      </Card>
+    <div className="space-y-4">
+      {/* ═══ COMPACT HEADER ═══ */}
+      <div className="bg-gradient-to-r from-blue-700 to-blue-800 rounded-2xl p-5 text-white">
+        <div className="flex items-center gap-3 mb-1">
+          <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+            <Building2 className="w-5 h-5" />
+          </div>
+          <div>
+            <h2 className="text-lg font-extrabold">Find Colleges</h2>
+            <p className="text-xs text-blue-200">கல்லூரிகளைக் கண்டறியுங்கள் — Tamil Nadu</p>
+          </div>
+        </div>
+        <p className="text-sm text-blue-200 mt-2">Search 1000+ colleges across 38 districts. Filter by type, category, NAAC grade & more.</p>
+      </div>
 
-      {/* Summary Stats */}
-      {selectedDistrict && !loading && colleges.length > 0 && (
-        <Card className="bg-white border border-[#C8E6C9] shadow-md">
-          <CardContent className="pt-4">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="flex flex-wrap items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">📍</span>
-                  <div>
-                    <p className="text-sm text-[#6B7280]">Colleges in</p>
-                    <p className="font-semibold text-[#1F2937]">{selectedDistrict} District</p>
-                  </div>
+      {/* ═══ DISTRICT SELECTOR ═══ */}
+      <div className="bg-white rounded-xl border-2 border-gray-200 p-4">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="w-7 h-7 rounded-full bg-blue-700 text-white text-xs font-bold flex items-center justify-center">1</span>
+          <p className="text-sm font-bold text-gray-900">Select Your District</p>
+        </div>
+        <DistrictSelector
+          selectedDistrict={selectedDistrict}
+          onDistrictSelect={setSelectedDistrict}
+        />
+      </div>
+
+      {/* ═══ FEATURES OVERVIEW — shown when NO district selected ═══ */}
+      {!selectedDistrict && (
+        <div className="space-y-4">
+          {/* Feature Cards */}
+          <div className="bg-white rounded-xl border-2 border-gray-200 p-4">
+            <p className="text-sm font-bold text-gray-900 mb-3">What you can do here:</p>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-green-50 border border-green-200 rounded-xl p-3 text-center">
+                <span className="text-xl">🟢</span>
+                <p className="text-xs font-bold text-green-800 mt-1">Government</p>
+                <p className="text-xs text-green-600">Lowest fees</p>
+              </div>
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 text-center">
+                <span className="text-xl">🔵</span>
+                <p className="text-xs font-bold text-blue-800 mt-1">Government Aided</p>
+                <p className="text-xs text-blue-600">Govt + Private</p>
+              </div>
+              <div className="bg-orange-50 border border-orange-200 rounded-xl p-3 text-center">
+                <span className="text-xl">🟠</span>
+                <p className="text-xs font-bold text-orange-800 mt-1">Private</p>
+                <p className="text-xs text-orange-600">Self-financed</p>
+              </div>
+              <div className="bg-purple-50 border border-purple-200 rounded-xl p-3 text-center">
+                <span className="text-xl">🟣</span>
+                <p className="text-xs font-bold text-purple-800 mt-1">Autonomous</p>
+                <p className="text-xs text-purple-600">Own syllabus</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Filter Preview */}
+          <div className="bg-white rounded-xl border-2 border-gray-200 p-4">
+            <p className="text-sm font-bold text-gray-900 mb-3">Filter & find the right college:</p>
+            <div className="space-y-2">
+              <div className="flex items-center gap-3 p-2.5 bg-gray-50 rounded-lg">
+                <span className="text-base">🏛️</span>
+                <div>
+                  <p className="text-xs font-bold text-gray-800">16 College Categories</p>
+                  <p className="text-xs text-gray-500">Engineering, Medical, Arts, Law, Nursing, Pharmacy, B.Ed & more</p>
                 </div>
-                <div className="h-10 w-px bg-[#C8E6C9] hidden sm:block" />
-                <div className="flex flex-wrap gap-2">
-                  <Badge className="text-sm py-1 font-semibold bg-[#2E7D32] text-white">
-                    Total: {totalColleges} Colleges
-                  </Badge>
-                  {Object.entries(COLLEGE_TYPE_INFO).map(([type, info]) => (
-                    typeCounts[type] > 0 && (
-                      <Badge key={type} variant="outline" className="text-sm py-1 border-[#C8E6C9] text-[#374151]">
-                        {info.badge} {info.label}: {typeCounts[type]}
-                      </Badge>
-                    )
-                  ))}
+              </div>
+              <div className="flex items-center gap-3 p-2.5 bg-gray-50 rounded-lg">
+                <span className="text-base">⭐</span>
+                <div>
+                  <p className="text-xs font-bold text-gray-800">NAAC Grade Filter</p>
+                  <p className="text-xs text-gray-500">A++, A+, A, B++, B+, B, C — find top-rated colleges</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-2.5 bg-gray-50 rounded-lg">
+                <span className="text-base">🔍</span>
+                <div>
+                  <p className="text-xs font-bold text-gray-800">Search by Name</p>
+                  <p className="text-xs text-gray-500">Type any college name to find it instantly</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-2.5 bg-gray-50 rounded-lg">
+                <span className="text-base">📊</span>
+                <div>
+                  <p className="text-xs font-bold text-gray-800">Sort Options</p>
+                  <p className="text-xs text-gray-500">Name A-Z, Oldest first, Newest first, NAAC grade</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-2.5 bg-orange-50 rounded-lg border border-orange-200">
+                <span className="text-base">🏆</span>
+                <div>
+                  <p className="text-xs font-bold text-orange-800">Sports Quota Guide</p>
+                  <p className="text-xs text-orange-600">12 colleges with sports seats, rules & how to apply</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-2.5 bg-gray-50 rounded-lg">
+                <span className="text-base">📋</span>
+                <div>
+                  <p className="text-xs font-bold text-gray-800">College Visit Checklist</p>
+                  <p className="text-xs text-gray-500">18 things to check when visiting a college</p>
                 </div>
               </div>
             </div>
-            {/* Autonomous Colleges - Prominent Toggle Button */}
-            {autonomousCount > 0 && (
-              <div className="mt-4 pt-3 border-t border-[#C8E6C9]">
-                <button
-                  onClick={() => setAutonomousFilter(!autonomousFilter)}
-                  className={`w-full sm:w-auto flex items-center justify-center gap-3 px-5 py-3 rounded-xl font-semibold text-base transition-all duration-200 shadow-md hover:shadow-lg ${
-                    autonomousFilter
-                      ? 'bg-gradient-to-r from-[#7B1FA2] to-[#6A1B9A] text-white ring-2 ring-[#CE93D8] ring-offset-2'
-                      : 'bg-gradient-to-r from-[#F3E5F5] to-[#E1BEE7] text-[#6A1B9A] hover:from-[#E1BEE7] hover:to-[#CE93D8] border border-[#CE93D8]'
-                  }`}
-                >
-                  <span className="text-2xl">🏅</span>
-                  <span>
-                    {autonomousFilter ? '✓ Showing' : 'View'} Autonomous Colleges
-                  </span>
-                  <span className={`px-2.5 py-0.5 rounded-full text-sm font-bold ${
-                    autonomousFilter
-                      ? 'bg-white/20 text-white'
-                      : 'bg-[#7B1FA2] text-white'
-                  }`}>
-                    {autonomousCount}
-                  </span>
-                </button>
-                {autonomousFilter && (
-                  <p className="text-sm text-[#7B1FA2] mt-2 flex items-center gap-1.5">
-                    <span>🟣</span>
-                    Showing {autonomousCount} Autonomous / Deemed institutions in {selectedDistrict}.
-                    <button onClick={() => setAutonomousFilter(false)} className="underline font-medium ml-1 hover:text-[#4A148C]">Show all</button>
-                  </p>
-                )}
-              </div>
-            )}
-            {totalColleges < 30 && (
-              <p className="text-sm text-[#F59E0B] mt-3 flex items-center gap-2">
-                <span>⚠️</span>
-                Showing {totalColleges} colleges. Some colleges may not be listed yet. 
-                We're continuously updating our database.
-              </p>
-            )}
-          </CardContent>
-        </Card>
-      )}
+          </div>
 
-      {/* Loading Indicator */}
-      {loading && (
-        <div className="flex flex-col items-center justify-center py-12 px-4 text-center bg-white rounded-xl border border-[#C8E6C9] shadow-md">
-          <Loader2 className="h-12 w-12 animate-spin text-[#2E7D32] mb-4" />
-          <h3 className="text-lg font-semibold mb-2 text-[#1B5E20]">
-            Searching all colleges in {selectedDistrict}...
-          </h3>
-          <p className="text-[#4B5563] max-w-md">
-            Fetching comprehensive data from government records, university affiliations, 
-            and accreditation databases. This may take a moment for complete results.
-          </p>
+          {/* CTA */}
+          <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 text-center">
+            <p className="text-sm font-bold text-blue-800">👆 Select a district above to start exploring colleges</p>
+            <p className="text-xs text-blue-600 mt-1">38 districts · 1000+ colleges · Government, Aided & Private</p>
+          </div>
+
+          {/* Sports Quota always visible */}
+          <SportsQuotaGuide />
         </div>
       )}
 
-      {/* Filters */}
-      {selectedDistrict && !loading && colleges.length > 0 && (
-        <CollegeFilters
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-          selectedTypes={selectedTypes}
-          onTypeChange={setSelectedTypes}
-          selectedCategories={selectedCategories}
-          onCategoryChange={setSelectedCategories}
-          selectedNaacGrade={selectedNaacGrade}
-          onNaacGradeChange={setSelectedNaacGrade}
-          sortBy={sortBy}
-          onSortChange={setSortBy}
-          typeCounts={typeCounts}
-        />
+      {/* ═══ AFTER DISTRICT SELECTED — Results ═══ */}
+      {selectedDistrict && (
+        <>
+          {/* Summary Stats */}
+          {!loading && colleges.length > 0 && (
+            <div className="bg-white rounded-xl border-2 border-gray-200 p-4">
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <span className="text-lg">📍</span>
+                <p className="text-sm font-bold text-gray-900">{selectedDistrict} District</p>
+                <Badge className="text-xs font-bold bg-blue-700 text-white">{totalColleges} Colleges</Badge>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {Object.entries(COLLEGE_TYPE_INFO).map(([type, info]) => (
+                  typeCounts[type] > 0 && (
+                    <Badge key={type} variant="outline" className="text-xs border-gray-300 text-gray-700">
+                      {info.badge} {info.label}: {typeCounts[type]}
+                    </Badge>
+                  )
+                ))}
+              </div>
+              {/* Autonomous Toggle */}
+              {autonomousCount > 0 && (
+                <button
+                  onClick={() => setAutonomousFilter(!autonomousFilter)}
+                  className={`mt-3 w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
+                    autonomousFilter
+                      ? 'bg-purple-700 text-white'
+                      : 'bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100'
+                  }`}
+                >
+                  🏅 {autonomousFilter ? `Showing ${autonomousCount}` : `View ${autonomousCount}`} Autonomous Colleges
+                </button>
+              )}
+            </div>
+          )}
+
+          {/* Loading */}
+          {loading && (
+            <div className="flex flex-col items-center py-10 bg-white rounded-xl border-2 border-gray-200">
+              <Loader2 className="h-10 w-10 animate-spin text-blue-700 mb-3" />
+              <p className="text-sm font-bold text-gray-700">Searching colleges in {selectedDistrict}...</p>
+            </div>
+          )}
+
+          {/* Filters */}
+          {!loading && colleges.length > 0 && (
+            <CollegeFilters
+              searchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+              selectedTypes={selectedTypes}
+              onTypeChange={setSelectedTypes}
+              selectedCategories={selectedCategories}
+              onCategoryChange={setSelectedCategories}
+              selectedNaacGrade={selectedNaacGrade}
+              onNaacGradeChange={setSelectedNaacGrade}
+              sortBy={sortBy}
+              onSortChange={setSortBy}
+              typeCounts={typeCounts}
+            />
+          )}
+
+          {/* Facility Checklist */}
+          <FacilityChecklist />
+
+          {/* College List */}
+          <CollegeList
+            colleges={colleges}
+            loading={loading}
+            selectedDistrict={selectedDistrict}
+            searchQuery={searchQuery}
+            selectedTypes={selectedTypes}
+            selectedCategories={selectedCategories}
+            selectedNaacGrade={selectedNaacGrade}
+            sortBy={sortBy}
+            autonomousFilter={autonomousFilter}
+          />
+
+          {/* Sports Quota */}
+          <SportsQuotaGuide />
+        </>
       )}
-
-      {/* Facility Checklist Guide — shown when viewing colleges */}
-      {selectedDistrict && <FacilityChecklist />}
-
-      {/* College List */}
-      <CollegeList
-        colleges={colleges}
-        loading={loading}
-        selectedDistrict={selectedDistrict}
-        searchQuery={searchQuery}
-        selectedTypes={selectedTypes}
-        selectedCategories={selectedCategories}
-        selectedNaacGrade={selectedNaacGrade}
-        sortBy={sortBy}
-        autonomousFilter={autonomousFilter}
-      />
-
-      {/* Sports Quota Admission Guide */}
-      <SportsQuotaGuide />
     </div>
   );
 };
