@@ -329,7 +329,7 @@
                {/* Cutoff Score */}
                <div className="text-center p-6 bg-white dark:bg-card rounded-xl shadow-sm">
                  <div className="text-sm text-muted-foreground mb-1">🎓 TNEA CUTOFF</div>
-                 <div className="text-5xl font-bold text-primary">{cutoff}</div>
+                 <div className="text-3xl md:text-5xl font-bold text-primary">{cutoff}</div>
                  <div className="text-sm text-muted-foreground">out of 200</div>
                  <Progress value={(cutoff / 200) * 100} className="h-2 mt-3" />
                </div>

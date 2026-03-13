@@ -252,7 +252,7 @@ export const TNMockTest = () => {
           <Card className="rounded-2xl">
             <CardContent className="p-6 space-y-4">
               <div className="text-center">
-                <div className="text-5xl font-bold text-[#6a0dad]">{percentage}%</div>
+                <div className="text-3xl md:text-5xl font-bold text-[#6a0dad]">{percentage}%</div>
                 <p className="text-muted-foreground">Score</p>
               </div>
 

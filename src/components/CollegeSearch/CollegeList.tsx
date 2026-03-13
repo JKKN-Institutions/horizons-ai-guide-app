@@ -105,7 +105,7 @@ export const CollegeList = ({
   if (!selectedDistrict) {
     return (
       <div className="text-center py-16">
-        <div className="text-6xl mb-4">🎓</div>
+        <div className="text-3xl md:text-6xl mb-4">🎓</div>
         <h3 className="text-xl font-semibold mb-2">Select a District</h3>
         <p className="text-muted-foreground">
           Choose a district from the dropdown above to explore all colleges in that area
@@ -133,7 +133,7 @@ export const CollegeList = ({
   if (filteredColleges.length === 0) {
     return (
       <div className="text-center py-16">
-        <div className="text-6xl mb-4">🔍</div>
+        <div className="text-3xl md:text-6xl mb-4">🔍</div>
         <h3 className="text-xl font-semibold mb-2">No Colleges Found</h3>
         <p className="text-muted-foreground">
           Try adjusting your filters or search query

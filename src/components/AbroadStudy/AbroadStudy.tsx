@@ -141,7 +141,7 @@ export const AbroadStudy = () => {
               <CardHeader className="pb-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <span className="text-5xl">{selectedCountry.flag}</span>
+                    <span className="text-3xl md:text-5xl">{selectedCountry.flag}</span>
                     <div>
                       <CardTitle className="text-2xl">{selectedCountry.name[language]}</CardTitle>
                       <CardDescription>{selectedCountry.universities}+ Universities</CardDescription>

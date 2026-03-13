@@ -1097,7 +1097,7 @@ export const GovtMockTest = () => {
         </CardHeader>
         <CardContent>
           <div className="text-center mb-6">
-            <div className="text-5xl font-bold text-gray-800">{score}/{currentQuestions.length}</div>
+            <div className="text-3xl md:text-5xl font-bold text-gray-800">{score}/{currentQuestions.length}</div>
             <div className="text-xl text-gray-600 mt-1">{percentage}%</div>
             <div className="mt-2">
               {percentage >= 80 ? (

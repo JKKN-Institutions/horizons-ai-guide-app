@@ -356,7 +356,7 @@ const AIEligibilityWizard = ({ open, onClose, scholarships }: {
           </div>
         ) : (
           <div className="p-6 pt-8 text-center">
-            <div className="text-6xl mb-4" style={{ animation: 'sfBounce 0.6s ease-out' }}>🎉</div>
+            <div className="text-3xl md:text-6xl mb-4" style={{ animation: 'sfBounce 0.6s ease-out' }}>🎉</div>
             <h3 className="text-2xl font-bold mb-2" style={{ color: '#1B5E20', fontFamily: 'Playfair Display, serif' }}>
               Great News!
             </h3>
@@ -926,7 +926,7 @@ export const ScholarshipFinder = () => {
                 </div>
               ) : (
                 <div className="text-center py-16 rounded-xl" style={{ border: '1px solid #C8E6C9', background: 'linear-gradient(145deg, #F1F8E9, #E8F5E9)' }}>
-                  <div className="text-5xl mb-4">🔍</div>
+                  <div className="text-3xl md:text-5xl mb-4">🔍</div>
                   <h3 className="text-lg font-bold mb-2" style={{ color: '#1B5E20', fontFamily: 'Playfair Display, serif' }}>
                     No scholarships found
                   </h3>
@@ -1097,7 +1097,7 @@ export const ScholarshipFinder = () => {
                 </div>
               ) : (
                 <div className="text-center py-16">
-                  <div className="text-5xl mb-4">⭐</div>
+                  <div className="text-3xl md:text-5xl mb-4">⭐</div>
                   <h3 className="text-lg font-bold mb-2" style={{ color: '#1B5E20', fontFamily: 'Playfair Display, serif' }}>
                     No Scholarships Saved Yet
                   </h3>

@@ -387,7 +387,7 @@ const CareerBoosterSection = () => {
                 </>
               ) : (
                 <Card className="border-2 border-dashed border-purple-200 bg-purple-50/50">
-                  <CardContent className="p-12 text-center">
+                  <CardContent className="p-4 md:p-12 text-center">
                     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-100 to-fuchsia-100 flex items-center justify-center mx-auto mb-4">
                       <Brain className="w-10 h-10 text-purple-500" />
                     </div>
@@ -615,7 +615,7 @@ const CareerBoosterSection = () => {
                 </>
               ) : (
                 <Card className="border-2 border-dashed border-teal-200 bg-teal-50/50">
-                  <CardContent className="p-12 text-center">
+                  <CardContent className="p-4 md:p-12 text-center">
                     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-teal-100 to-cyan-100 flex items-center justify-center mx-auto mb-4">
                       <Target className="w-10 h-10 text-teal-500" />
                     </div>

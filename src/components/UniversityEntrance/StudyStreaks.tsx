@@ -208,7 +208,7 @@ export const StudyStreaks = () => {
         <Card className="rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 text-white">
           <CardContent className="p-6 text-center">
             <Flame className="h-12 w-12 mx-auto mb-2" />
-            <div className="text-5xl font-bold mb-1">{data.currentStreak}</div>
+            <div className="text-3xl md:text-5xl font-bold mb-1">{data.currentStreak}</div>
             <p className="text-orange-100">Day Streak</p>
             
             {!isActiveToday && (

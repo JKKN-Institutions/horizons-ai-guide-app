@@ -29,7 +29,7 @@ const EventsAndAISection = () => {
   return (
     <section className="py-16 md:py-24 bg-muted/30" id="events">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-4 md:p-12">
           {/* Events Section */}
           <div className="animate-fade-up">
             <h2 className="font-serif text-3xl md:text-4xl font-bold italic text-foreground mb-8">

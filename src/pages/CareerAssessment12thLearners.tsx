@@ -224,7 +224,7 @@ export default function CareerAssessment12thLearners() {
         {step === 'intro' && (
           <div className="max-w-3xl mx-auto text-center">
             <div className="mb-8">
-              <div className="text-6xl mb-4">🎓</div>
+              <div className="text-3xl md:text-6xl mb-4">🎓</div>
               <h2 className="fresh-heading text-2xl md:text-3xl mb-4">
                 {t('assessment12.introHeading')}
               </h2>

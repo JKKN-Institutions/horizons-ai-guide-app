@@ -23,7 +23,7 @@ const TwelfthLearnersSection = () => {
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-4 md:p-12 items-center max-w-6xl mx-auto">
           {/* Left: Content */}
           <div className="animate-fade-up text-center md:text-left">
             <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-amber-300 px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-amber-400/30">

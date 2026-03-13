@@ -43,7 +43,7 @@ export const DashboardTab = ({ userName, profile, score, currentDay, tasks, onbo
     return (
       <div className="space-y-4">
         <div className="bg-gradient-to-br from-[#14532d] via-[#166534] to-[#1a4731] rounded-xl p-8 text-center shadow-lg border border-emerald-700/30">
-          <div className="text-5xl mb-4">🚀</div>
+          <div className="text-3xl md:text-5xl mb-4">🚀</div>
           <h2 className="text-2xl font-bold text-white mb-2">Welcome to Your Startup Journey!</h2>
           <p className="text-white/60 mb-6 max-w-md mx-auto">
             In 40 days, you'll go from an idea to a validated startup. Let's start by understanding your interests.

@@ -358,7 +358,7 @@ const DailyLoginRewards: React.FC = () => {
                 transition={{ repeat: Infinity, duration: 2 }}
                 className="h-24 w-24 rounded-full bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center mb-4"
               >
-                <span className="text-5xl">{pendingReward.icon}</span>
+                <span className="text-3xl md:text-5xl">{pendingReward.icon}</span>
               </motion.div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">
                 {language === 'ta' ? pendingReward.labelTa : pendingReward.label}

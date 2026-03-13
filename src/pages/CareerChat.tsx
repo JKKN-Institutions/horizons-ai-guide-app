@@ -1392,7 +1392,7 @@ Be empathetic and respect Indian family values while helping the student communi
                     <span className="text-xs font-medium">Chat History</span>
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="w-[320px] sm:w-[380px] p-0">
+                <SheetContent side="right" className="w-[320px] sm:w-full max-w-[380px] p-0">
                   <SheetHeader className="px-5 pt-5 pb-3 border-b bg-gradient-to-r from-emerald-50 to-green-50">
                     <SheetTitle className="flex items-center gap-2 text-emerald-800">
                       <History className="h-5 w-5" />

@@ -280,7 +280,7 @@ export const MilestoneCelebration: React.FC<MilestoneCelebrationProps> = ({
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
-                  className={`text-5xl font-bold bg-gradient-to-r ${config.gradient} bg-clip-text text-transparent`}
+                  className={`text-3xl md:text-5xl font-bold bg-gradient-to-r ${config.gradient} bg-clip-text text-transparent`}
                 >
                   {milestone}%
                 </motion.div>

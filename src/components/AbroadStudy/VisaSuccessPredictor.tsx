@@ -161,7 +161,7 @@ export const VisaSuccessPredictor = () => {
             'bg-red-50 border-red-300'
           }`}>
             <div className="text-center mb-4">
-              <div className={`text-5xl font-bold ${
+              <div className={`text-3xl md:text-5xl font-bold ${
                 color === 'green' ? 'text-green-600' :
                 color === 'amber' ? 'text-amber-600' :
                 color === 'orange' ? 'text-orange-600' :

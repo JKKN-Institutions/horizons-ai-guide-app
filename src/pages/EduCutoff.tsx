@@ -67,7 +67,7 @@
  
          {/* Main Tabs */}
          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-           <TabsList className="grid w-full grid-cols-2 lg:w-[400px] h-14">
+           <TabsList className="grid w-full grid-cols-2 lg:w-full max-w-[400px] h-14">
              <TabsTrigger value="engineering" className="text-base gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                <Calculator className="h-5 w-5" />
                Engineering (TNEA)

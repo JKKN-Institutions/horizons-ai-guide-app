@@ -41,7 +41,7 @@ const AchievementUnlockedModal = ({ achievements, onClose }: AchievementUnlocked
               animate={{ opacity: 1, scale: 1 }}
               className="text-center"
             >
-              <div className="text-5xl mb-3">{achievement.icon}</div>
+              <div className="text-3xl md:text-5xl mb-3">{achievement.icon}</div>
               <h3 className="text-xl font-semibold text-gray-800">
                 {language === 'ta' ? achievement.titleTamil : achievement.title}
               </h3>

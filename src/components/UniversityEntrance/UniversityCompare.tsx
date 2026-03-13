@@ -108,7 +108,7 @@ export const UniversityCompare = () => {
         {/* Comparison Table */}
         {selectedUniversities.length > 0 ? (
           <ScrollArea className="w-full">
-            <div className="min-w-[600px]">
+            <div className="min-w-full md:w-[600px]">
               <table className="w-full border-collapse">
                 <thead>
                   <tr className="bg-slate-50 dark:bg-slate-800">
@@ -357,7 +357,7 @@ export const UniversityCompare = () => {
           </ScrollArea>
         ) : (
           <Card className="bg-slate-50 dark:bg-slate-800/50 border-dashed border-2 rounded-2xl">
-            <CardContent className="p-12 text-center">
+            <CardContent className="p-4 md:p-12 text-center">
               <Plus className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-foreground mb-2">No Universities Selected</h3>
               <p className="text-muted-foreground text-sm mb-4">

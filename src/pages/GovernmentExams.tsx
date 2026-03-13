@@ -151,7 +151,7 @@ const GovernmentExams = () => {
         {/* ── EXAM LIST ── */}
         {filtered.length === 0 ? (
           <div className="text-center py-20 bg-white rounded-2xl border border-gray-200">
-            <p className="text-gray-300 text-5xl mb-3">∅</p>
+            <p className="text-gray-300 text-3xl md:text-5xl mb-3">∅</p>
             <p className="text-sm text-gray-500 font-medium">{t ? 'தேர்வுகள் கிடைக்கவில்லை' : 'No exams found'}</p>
             <button onClick={() => { setSearch(''); setScope('all'); }} className="text-sm text-blue-600 font-bold mt-3">{t ? 'அனைத்தும் காண்க' : 'Clear filters'}</button>
           </div>
