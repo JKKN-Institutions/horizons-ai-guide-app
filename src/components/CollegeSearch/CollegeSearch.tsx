@@ -302,7 +302,7 @@ export const CollegeSearch = () => {
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
           selectedTypes={selectedTypes}
-          onTypeChange={setSelectedTypes}
+          onTypeChange={(types) => { setSelectedTypes(types); setShowSportsQuota(false); }}
           selectedCategories={selectedCategories}
           onCategoryChange={setSelectedCategories}
           selectedNaacGrade={selectedNaacGrade}
@@ -311,28 +311,52 @@ export const CollegeSearch = () => {
           onSortChange={setSortBy}
           typeCounts={typeCounts}
           showSportsQuota={showSportsQuota}
-          onSportsQuotaToggle={() => setShowSportsQuota(!showSportsQuota)}
+          onSportsQuotaToggle={() => {
+            if (showSportsQuota) {
+              // Turn off: clear type filter
+              setShowSportsQuota(false);
+              setSelectedTypes([]);
+            } else {
+              // Turn on: filter to govt/aided types
+              setShowSportsQuota(true);
+              setSelectedTypes(['government', 'government-aided']);
+            }
+          }}
         />
       )}
 
-      {/* Facility Checklist Guide — hidden when Sports Quota is active */}
-      {selectedDistrict && !showSportsQuota && <FacilityChecklist />}
+      {/* Sports Quota Active Banner */}
+      {showSportsQuota && selectedDistrict && (
+        <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-3 flex items-start gap-2">
+          <span className="text-lg">🏆</span>
+          <div>
+            <p className="text-sm font-bold text-orange-800">Sports Quota Filter Active</p>
+            <p className="text-xs text-orange-600">Showing Government & Govt-Aided colleges — all have 5% sports quota seats. Use category filters below to narrow by Arts, Engineering, Medical, etc.</p>
+          </div>
+        </div>
+      )}
 
-      {/* Show Sports Quota Directory OR College List */}
-      {showSportsQuota ? (
-        <SportsQuotaGuide />
-      ) : (
-        <CollegeList
-          colleges={colleges}
-          loading={loading}
-          selectedDistrict={selectedDistrict}
-          searchQuery={searchQuery}
-          selectedTypes={selectedTypes}
-          selectedCategories={selectedCategories}
-          selectedNaacGrade={selectedNaacGrade}
-          sortBy={sortBy}
-          autonomousFilter={autonomousFilter}
-        />
+      {/* Facility Checklist */}
+      {selectedDistrict && <FacilityChecklist />}
+
+      {/* College List — always shown (filtered when sports quota is active) */}
+      <CollegeList
+        colleges={colleges}
+        loading={loading}
+        selectedDistrict={selectedDistrict}
+        searchQuery={searchQuery}
+        selectedTypes={selectedTypes}
+        selectedCategories={selectedCategories}
+        selectedNaacGrade={selectedNaacGrade}
+        sortBy={sortBy}
+        autonomousFilter={autonomousFilter}
+      />
+
+      {/* Sports Quota Directory — reference at bottom */}
+      {selectedDistrict && (
+        <div id="sports-quota-section">
+          <SportsQuotaGuide />
+        </div>
       )}
     </div>
   );
