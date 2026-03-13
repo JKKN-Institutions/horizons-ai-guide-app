@@ -76,7 +76,7 @@ export const CollegeSearch = () => {
   const [selectedNaacGrade, setSelectedNaacGrade] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState('name');
   const [autonomousFilter, setAutonomousFilter] = useState(false);
-  const [showSportsQuota, setShowSportsQuota] = useState(false);
+  
 
   // Fetch colleges when district changes
   useEffect(() => {
@@ -310,27 +310,7 @@ export const CollegeSearch = () => {
           sortBy={sortBy}
           onSortChange={setSortBy}
           typeCounts={typeCounts}
-          showSportsQuota={showSportsQuota}
-          onSportsQuotaToggle={() => {
-            // Sports Quota is independent — doesn't change type filters
-            setShowSportsQuota(!showSportsQuota);
-          }}
         />
-      )}
-
-      {/* Sports Quota Active Banner */}
-      {showSportsQuota && selectedDistrict && (
-        <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-3 flex items-start gap-2">
-          <span className="text-lg">🏆</span>
-          <div>
-            <p className="text-sm font-bold text-orange-800">Sports Quota Active{selectedTypes.length > 0 ? ` + ${selectedTypes.map(t => t === 'government' ? 'Government' : t === 'government-aided' ? 'Govt-Aided' : t === 'private' ? 'Private' : 'Autonomous').join(' + ')}` : ''}</p>
-            <p className="text-xs text-orange-600">
-              {selectedTypes.length === 0
-                ? 'Showing all colleges — all TNEA colleges have 5% sports quota. Select Government, Aided, or Private to narrow down.'
-                : 'All colleges shown have 5% sports quota seats. Use category filters for Arts, Engineering, Medical, etc.'}
-            </p>
-          </div>
-        </div>
       )}
 
       {/* Facility Checklist */}
