@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Building2, Loader2 } from 'lucide-react';
+import { Building2, Loader2, Trophy, X, ChevronRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
@@ -76,6 +76,7 @@ export const CollegeSearch = () => {
   const [selectedNaacGrade, setSelectedNaacGrade] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState('name');
   const [autonomousFilter, setAutonomousFilter] = useState(false);
+  const [showSportsDirectory, setShowSportsDirectory] = useState(false);
   
 
   // Fetch colleges when district changes
@@ -211,6 +212,44 @@ export const CollegeSearch = () => {
         </CardContent>
       </Card>
 
+      {/* Sports Quota Card — always visible */}
+      <button
+        onClick={() => setShowSportsDirectory(true)}
+        className="w-full flex items-center gap-3 p-3.5 rounded-xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 hover:border-amber-400 hover:shadow-md transition-all active:scale-[0.99] text-left"
+      >
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center flex-shrink-0">
+          <Trophy className="w-5 h-5 text-white" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-bold text-gray-900">Sports Quota Directory</p>
+          <p className="text-xs text-gray-500">436 colleges · 30 districts · Search & verify with TNEA codes</p>
+        </div>
+        <ChevronRight className="w-5 h-5 text-amber-500 flex-shrink-0" />
+      </button>
+
+      {/* Sports Quota Directory Overlay */}
+      {showSportsDirectory && (
+        <div className="fixed inset-0 z-50 flex flex-col" onClick={() => setShowSportsDirectory(false)}>
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+          <div className="relative flex-1 flex flex-col mt-12 mx-0 sm:mx-4 sm:mb-4 overflow-hidden" onClick={e => e.stopPropagation()}>
+            {/* Close bar */}
+            <div className="flex items-center justify-between px-4 py-3 rounded-t-2xl" style={{ background: '#16161e' }}>
+              <span className="text-sm font-bold text-white">🏆 Sports Quota Directory</span>
+              <button
+                onClick={() => setShowSportsDirectory(false)}
+                className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all"
+              >
+                <X className="w-4 h-4 text-white" />
+              </button>
+            </div>
+            {/* Directory content */}
+            <div className="flex-1 overflow-y-auto">
+              <SportsQuotaGuide />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Summary Stats */}
       {selectedDistrict && !loading && colleges.length > 0 && (
         <Card className="bg-white border border-[#C8E6C9] shadow-md">
@@ -328,13 +367,6 @@ export const CollegeSearch = () => {
         sortBy={sortBy}
         autonomousFilter={autonomousFilter}
       />
-
-      {/* Sports Quota Directory — reference at bottom */}
-      {selectedDistrict && (
-        <div id="sports-quota-section">
-          <SportsQuotaGuide />
-        </div>
-      )}
     </div>
   );
 };
